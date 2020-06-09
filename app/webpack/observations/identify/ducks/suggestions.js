@@ -61,18 +61,19 @@ export default function reducer(
         source: state.query.source,
         order_by: state.query.order_by
       };
-      const observation = action.observation;
+      const { observation } = action;
       if ( observation.taxon ) {
-        let indexOfTaxonInAncestors = observation.taxon.ancestor_ids.indexOf( observation.taxon.id );
+        let indexOfTaxonInAncestors = observation.
+          taxon.ancestor_ids.indexOf( observation.taxon.id );
         if ( indexOfTaxonInAncestors < 0 ) {
           indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
         }
         if ( observation.taxon.rank_level === 10 ) {
-          newState.query.taxon_id =
-            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
+          newState.query.taxon_id = observation
+            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
         } else if ( observation.taxon.rank_level < 10 ) {
-          newState.query.taxon_id =
-            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
+          newState.query.taxon_id = observation
+            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
         } else {
           newState.query.taxon_id = observation.taxon.id;
         }
@@ -147,11 +148,11 @@ export function updateQuery( query ) {
       newQuery.taxon_id = query.taxon.id;
     }
     if (
-      query.taxon_id &&
-      !query.taxon &&
-      s.suggestions.observation &&
-      s.suggestions.observation.taxon &&
-      s.suggestions.observation.taxon.id === query.taxon_id
+      query.taxon_id
+      && !query.taxon
+      && s.suggestions.observation
+      && s.suggestions.observation.taxon
+      && s.suggestions.observation.taxon.id === query.taxon_id
     ) {
       newQuery.taxon = s.suggestions.observation.taxon;
     }
@@ -209,8 +210,8 @@ export function fetchSuggestions( query ) {
       return null;
     }
     if (
-      _.isEqual( sanitizeQuery( s.suggestions.responseQuery, newQuery ) ) &&
-      s.suggestions.response.results.length > 0
+      _.isEqual( sanitizeQuery( s.suggestions.responseQuery, newQuery ) )
+      && s.suggestions.response.results.length > 0
     ) {
       // already loaded results for this query
       return null;
@@ -254,7 +255,7 @@ export function fetchSuggestions( query ) {
 
 export function fetchDetailTaxon( ) {
   return function ( dispatch, getState ) {
-    const detailTaxon = getState( ).suggestions.detailTaxon;
+    const { detailTaxon } = getState( ).suggestions;
     if ( !detailTaxon ) {
       return;
     }

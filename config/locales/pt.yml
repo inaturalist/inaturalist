@@ -91,7 +91,6 @@ pt:
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   a_flag_for_x: "um sinalizador para %{x}"
-  a_member_of: "Um membro de"
   a_member_of_taxon_html: "um membro de %{taxon}"
   about: Acerca de
   about_blocking: Sobre Bloquear
@@ -237,7 +236,6 @@ pt:
   admin_s: Administrador(es)
   admin_only: Apenas administradores
   admin_tools: Ferramentas de Administração
-  agree: concordar
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
@@ -459,7 +457,6 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
-  at_time: "às %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -637,7 +634,6 @@ pt:
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um local
   choose_a_taxon: Escolha um taxon (opcional)
-  choose_cc_licensed_photos_html: 'Escolha <a href="http://creativecommons.org/">abrir</a>-fotos licenciadas de outros sites ou carregue das observações de %{site_name}. Tente escolher imagens que <em>mostrem características que possibilitem a identificação</em> e sejam <em>bonitas com ícones</em>.  A <em>primeira será a padrão</em>.'
   choose_columns: Escolha colunas
   choose_file: Escolher ficheiros
   choose_files: Escolher ficheiros
@@ -707,7 +703,6 @@ pt:
   confirm_new_password: Confirmar Nova Palavra-passe
   confirm_now: Confirme agora
   confirm_your_info: Confirme as suas informações
-  confirmed: confirmado
   connect_to_provider: "Ligar a %{provider}"
   connected_accounts: Contas vinculadas
   connecting_flickr: "Ligando ao Flickr..."
@@ -948,7 +943,6 @@ pt:
   edit_field: Editar campo
   edit_license: Editar licença
   edit_multiple_dates: Editar várias datas
-  edit_multiple_descriptions: Editar várias descrições
   edit_multiple_locations: Editar várias localizações
   edit_multiple_species: Editar várias espécies
   edit_notes: Editar notas
@@ -1148,7 +1142,6 @@ pt:
   forgot_your_password: Esqueceu-se da sua palavra-passe?
   forum: Fórum
   frequency: Frequência
-  from: De
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
@@ -1156,8 +1149,6 @@ pt:
   from_photos: Das fotografias
   from_place: De um local
   from_soundcloud: Do Soundcloud
-  from_your_site_observations: "Observações de %{site_name}"
-  from_licensed_site_observations: "Observações licenciadas por %{site_name}"
   full_screen: Ecrã inteiro
   fungi:
     one: fungo
@@ -1485,7 +1476,6 @@ pt:
   loading: "A carregar..."
   loading_flickr_photos: "A carregar fotografias do Flickr..."
   loading_images: A carregar imagens...
-  loading_map: A carregar mapa...
   loading_metadata: A carregar metadados...
   loading_preview_and_code: A carregar a pré-visualização e o código...
   loading_suggestions: A carregar sugestões...
@@ -1774,7 +1764,6 @@ pt:
   no_more_taxa_to_load: Não existem mais espécies ou grupos para carregar!
   no_more_results_found: Nenhum resultado encontrado
   no_new_messages: Não há novas mensagens
-  no_news_yet: Nenhuma notícia ainda
   no_observations: Não existem observações
   no_observations_from_this_place_yet: Ainda não existem observações neste local.
   no_observations_matching_those_ids: Não existem observações correspondentes com estas identificações.
@@ -1935,9 +1924,7 @@ pt:
   official_blog: Blogue oficial
   offline_access_enabled: Acesso offline permitido
   old_observation_form: Formulário antigo de registo de observação (descontinuado)
-  on_date: "em %{date}"
   on_day: "no"
-  on_your_life_list: na sua lista da vida
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
     observe_panel_body_p1_local: Precisa de inspiração? Eis alguns organismos a serem observados nas proximidades...
@@ -1993,7 +1980,6 @@ pt:
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
   or_if_you_dont_want_email: "Ou se simplesmente não quer nenhum email..."
-  or_upload: Ou carregar
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2012,7 +1998,6 @@ pt:
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam ser confundidas com esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies que costumam ser confundidas com esta espécie em <a href="%{url}">%{place}</a>
   our_blog: O nosso blogue
-  out_of_range: Fora de alcance
   output_taxon: Táxon resultante
   overview: Visão geral
   owner: Proprietário
@@ -2067,7 +2052,6 @@ pt:
   pink: rosa
   place: Lugar
   placeholder: Carácter de preenchimento
-  place_added_to_inat_by: "Lugar adicionado a %{site_name} por"
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
   place_deleted: Lugar eliminado.
   place_geo:
@@ -2306,7 +2290,6 @@ pt:
   present: presente
   press: Imprensa
   preview: Pré-visualização
-  preview_observations: Visualizar as Observações
   preview_of_synced_observation: "<strong>Preview</strong> da observação sincronizada.  <a href=\"%{url}\">Anular?</a>"
   preview_personal_message: "Recomendo que adira ao %{site}, um website onde pode registar as suas observações de plantas e animais, seguir a sua lista de biodiversidade e aprender mais sobre o mundo natural!"
   preview_your_message: Pré-visualize a sua mensagem
@@ -2357,8 +2340,6 @@ pt:
   project_rules: Regras do Projeto
   project_settings: Definições do Projeto
   project_that_does_not_contain_these_observations: Projeto que não inclui essas observações
-  project_type_description: |
-    Avaliações e bioblitz são um tipo especial de projetos. As avaliações são uma forma de colaboração num conjunto de avaliações de espécies, em geral para medir a sua importância para a conservação. Os bioblitz são eventos com um começo e um fim especificados.
   project_user_cannot_be_found: Não foi encontrado o utilizador do projecto
   project_user_was_invalid: "Utilizador do projeto não é válido: %{project_user}"
   project_was_successfully_created: O projeto foi criado com sucesso.
@@ -2615,7 +2596,6 @@ pt:
   show_taxa_from_place: "Mostrar taxa de %{place}"
   show_total_counts: Mostrar as contagens totais
   show_uncountable_species: Mostrar as espécies incontáveis
-  showing_one_to: A mostrar 1 -
   showing_taxa_from_everywhere: "A mostrar taxa de toda a parte"
   showing_taxa_from_place: "A mostrar taxa de %{place}"
   showing_x_of_y_listings: "A mostrar %{x} de %{y} listagens"
@@ -2870,6 +2850,7 @@ pt:
   user_commented: "%{user} comentou"
   user_commented_on: "%{user} comentou o seu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} adicionou %{noun} por %{owner} como favorito"
   user_is_a_naturalist: "%{user} é um naturalista!"
   user_muted: Utilizador silenciado
@@ -2879,10 +2860,8 @@ pt:
   username_or_email: Nome de utilizador ou email
   username_or_user_id: Nome de utilizador ou identificação do utilizador
   users: Utilizadores
-  users_comment_html: "Comentário de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> ao projeto %{project_title}
   users_id: "Identificação de %{user}"
-  users_identification_short_html: "Identificação de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Últimas observações de %{user} no %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"

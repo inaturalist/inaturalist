@@ -1,3 +1,5 @@
+/* global history */
+
 import _ from "lodash";
 import {
   UPDATE_SEARCH_PARAMS,
@@ -28,9 +30,9 @@ const normalizeParams = params => {
   _.forEach( params, ( v, k ) => {
     // remove blank params
     if (
-      v === null ||
-      v === undefined ||
-      ( typeof( v ) === "string" && v.length === 0 )
+      v === null
+      || v === undefined
+      || ( typeof ( v ) === "string" && v.length === 0 )
     ) {
       return;
     }
@@ -40,7 +42,7 @@ const normalizeParams = params => {
     else if ( newValue === "false" ) newValue = false;
     // coerce integerish strings to numbers
     if (
-      typeof( newValue ) === "string"
+      typeof ( newValue ) === "string"
       && newValue.match( /^\d+$/ )
     ) {
       newValue = parseInt( newValue, 10 );
@@ -48,10 +50,10 @@ const normalizeParams = params => {
     // coerce arrayish strings to arrays
     if ( k === "month" && !_.isArray( newValue ) ) {
       newValue = newValue.toString( ).split( "," ).map( m => parseInt( m, 10 ) );
-    } else if ( typeof( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
+    } else if ( typeof ( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
     }
-    if ( k === "iconic_taxa" && typeof( newValue ) === "string" ) {
+    if ( k === "iconic_taxa" && typeof ( newValue ) === "string" ) {
       newValue = [newValue];
     }
     newParams[k] = newValue;
@@ -74,11 +76,22 @@ const normalizeParams = params => {
       newParams.createdDateType = "month";
     }
   }
+  if ( newParams.without_term_value_id && !newParams.term_id ) {
+    delete newParams.without_term_value_id;
+  }
+  if (
+    newParams.without_term_value_id
+    && newParams.term_id
+    && newParams.without_term_id
+    && newParams.term_id === newParams.without_term_id
+  ) {
+    delete newParams.without_term_id;
+  }
   return newParams;
 };
 
 // Filter search params for use in API requests
-const paramsForSearch = ( params ) => {
+const paramsForSearch = params => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {

@@ -4,13 +4,15 @@ import {
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
   SET_REVIEWING,
-  SET_PLACES_BY_ID
+  SET_PLACES_BY_ID,
+  SET_LAST_REQUEST_AT
 } from "../actions";
 
 const observationsReducer = ( state = {
   results: [],
   reviewing: false,
-  placesByID: {}
+  placesByID: {},
+  lastRequestAt: null
 }, action ) => {
   if ( action.type === RECEIVE_OBSERVATIONS ) {
     return Object.assign( {}, state, {
@@ -58,6 +60,11 @@ const observationsReducer = ( state = {
       placesByID: Object.assign( state.placesByID, action.placesByID )
     } );
     return newState;
+  }
+  if ( action.type === SET_LAST_REQUEST_AT ) {
+    return Object.assign( {}, state, {
+      lastRequestAt: action.lastRequestAt
+    } );
   }
   return state;
 };

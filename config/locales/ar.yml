@@ -7,7 +7,6 @@ ar:
     سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
     عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   a_flag_for_x: "علم ل%{x}"
-  a_member_of: "عضو في"
   a_member_of_taxon_html: "عضو في %{taxon}"
   about: حول
   about_blocking: حول الحظر
@@ -160,7 +159,6 @@ ar:
   admin_s: إداري(ون)
   admin_only: الإداري فقط
   admin_tools: أدوات المشرف
-  agree: موافقة
   agree_: أوافق
   agree?: موافق؟
   agree_with_current_taxon: توافق مع الأصنوفة الحالية
@@ -318,7 +316,6 @@ ar:
   assessment_x: "تقييم %{assessment}"
   assessments: تقييمات
   associations: مرتبطة
-  at_time: "في %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -517,7 +514,6 @@ ar:
   choose_a_list_above: اختر قائمة أعلاه.
   choose_a_place: اختر مكانا
   choose_a_taxon: اختر أصنوفة (اختياري)
-  choose_cc_licensed_photos_html: 'اختر الصور <a href="http://creativecommons.org/">المفتوحة</a>-المرخصة من مواقع أخرى أو اختر من ملاحظات %{site_name}، حاول اختيار الصور التي <em>تعرض الميزات التشخيصية</em> و<em> تبدو جيدة كأيقونات</em>، <em>الأول هو الافتراضي</em>.'
   choose_columns: اختر أعمدة
   choose_file: اختر ملفا
   choose_files: اختر الملفات
@@ -589,7 +585,6 @@ ar:
   confirm_new_password: تأكيد كلمة السر الجديدة
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
-  confirmed: تم التأكيد
   connect_to_provider: "الاتصال بـ%{provider}"
   connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
@@ -868,7 +863,6 @@ ar:
   edit_field: تعديل الحقل
   edit_license: تعديل الترخيص
   edit_multiple_dates: تعديل تواريخ متعددة
-  edit_multiple_descriptions: تعديل أوصاف متعددة
   edit_multiple_locations: تعديل مواقع متعددة
   edit_multiple_species: تحرير أنواع متعددة
   edit_notes: تحرير الملاحظات
@@ -957,7 +951,6 @@ ar:
   exact_location: التاريخ_المحدد
   exact_rank: الترتيب الدقيق
   except: إلا
-  exclude_x: استبعاد %{x}
   exclusion_filters: مرشحات الاستبعاد
   existing_flags: الأعلام الموجودة
   exit_full_screen: "إنهاء وضع الشاشة الكاملة"
@@ -990,6 +983,7 @@ ar:
   favorites: "المفضلة"
   feature_this_project_: "تمييز هذا المشروع"
   featured: مميز
+  #Title for a button or section describing the "featured" status of a project
   featuring: تمييز
   feedback: ردود الفعل
   #Plural noun, as in Atom and RSS feeds
@@ -1099,7 +1093,6 @@ ar:
     feature requests, bug reports, announcements, and more.
     المنتدى هو مكان لمناقشة إنات نفسه، بما في ذلك المساعدة والدعم، وطلبات الميزات، وتقارير الأخطاء، والإعلانات، والمزيد.
   frequency: تردد
-  from: من
   from_a_place: من مكان
   from_eol_collection: من مجموعة موسوعة الحياة
   from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
@@ -1107,8 +1100,6 @@ ar:
   from_photos: من الصور
   from_place: من مكان
   from_soundcloud: من ساوند كلاود
-  from_your_site_observations: "من ملاحظات %{site_name}"
-  from_licensed_site_observations: "من ملاحظات %{site_name} المرخصة"
   full_screen: ملء الشاشة
   gbif_occurrences: أحداث المرفق العالمي لمعلومات التنوع البيولوجي
   generate_taxonomic_tags_for_flickr: توفير علامات تصنيفية لصور فليكر الخاصة بك
@@ -1481,7 +1472,6 @@ ar:
   loading: "جارٍ التحميل..."
   loading_flickr_photos: "جارٍ تحميل صور فليكر..."
   loading_images: جارٍ تحميل الصور...
-  loading_map: جارٍ تحميل الخريطة...
   loading_metadata: جارٍ تحميل البيانات الوصفية...
   loading_preview_and_code: جارٍ تحميل المعاينة والكود...
   loading_suggestions: جارٍ تحميل الاقتراحات...
@@ -1642,9 +1632,7 @@ ar:
       M: "شهر واحد"
       #Short text representing 1 year in the past
       'y': "سنة واحدة"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "ي شش سسسس · LT مز"
   month: شهر
   monthly_supporter_since_date_html: |
@@ -1798,7 +1786,6 @@ ar:
   no_more_taxa_to_load: لا يوجد المزيد من الأصناف للتحميل!
   no_more_results_found: لم يتم العثور على مزيد من النتائج
   no_new_messages: لا توجد رسائل جديدة
-  no_news_yet: لا توجد أخبار حتى الآن
   no_observations: لا توجد ملاحظات
   no_observations_from_this_place_yet: لا توجد ملاحظات من هذا المكان حتى الآن.
   no_observations_matching_those_ids: لا توجد ملاحظات مطابقة لهذه المعرفات.
@@ -1994,9 +1981,7 @@ ar:
   offline_access_enabled: تم تمكين الدخول بلا اتصال
   old_observation_form: استمارة الملاحظة القديمة (مهملة)
   ok: "موافق"
-  on_date: "في %{date}"
   on_day: "على"
-  on_your_life_list: في قائمة حياتك
   onboarding:
     observe_panel_title: دعونا نبدأ من خلال نشر بعض الملاحظات
     observe_panel_body_p1_local: تحتاج إلهاما؟ هنا بعض الكائنات الحية التي تتم ملاحظتها في مكان قريب...
@@ -2062,7 +2047,6 @@ ar:
   or_all_caps: أو
   or_choose_high_level_taxa: "...أو الاختيار من بعض الأصناف عالية المستوى"
   or_if_you_dont_want_email: "أو إذا كنت لا تريد أي بريد إلكتروني..."
-  or_upload: أو تحميل
   orange: برتقالي
   order: الترتيب
   order_by: ترتيب حسب
@@ -2085,7 +2069,6 @@ ar:
   other_taxa_commonly_misidentified_as_this_rank: الأصناف الأخرى التي يتم التعرف عليها عادة خطأ كهذه %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: الأصناف الأخرى التي يتم التعرف عليها عادة خطأ كهذه %{rank} in <a href="%{url}">%{place}</a>
   our_blog: مدونتنا
-  out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
   owner: المالك
@@ -2168,7 +2151,6 @@ ar:
     تثبيت هذه المجموعة من الإحداثيات والدقة والخصوصية الجغرافية وملاحظات المكان لاستخدامها لاحقا.
   place: مكان
   placeholder: نائب
-  place_added_to_inat_by: "تمت إضافة المكان إلى %{site_name} بواسطة"
   place_autocomplete_placeholder: حديقة صهيون الوطنية ، ميامي، إلخ.
   place_deleted: تم حذف المكان.
   place_geo:
@@ -2582,7 +2564,6 @@ ar:
   present: الحالي
   press: صحافة
   preview: معاينة
-  preview_observations: معاينة الملاحظات
   preview_of_synced_observation: "<strong>معاينة </strong> الملاحظة التي تمت مزامنتها <a href=\"%{url}\">تراجع؟</a>"
   preview_personal_message: "أود منك أن تنضم لي في %{site}، وهو موقع على شبكة الانترنت حيث يمكنك تسجيل ملاحظاتك للنباتات والحيوانات، وتتبع قائمة حياتك، والتعرف على العالم الطبيعي!"
   preview_your_message: معاينة رسالتك
@@ -2639,10 +2620,6 @@ ar:
   project_rules: قواعد المشروع
   project_settings: إعدادات المشروع
   project_that_does_not_contain_these_observations: المشروع الذي لا يحتوي على هذه الملاحظات
-  project_type_description: |
-    التقييمات وبيوبليتزس أنواع خاصة من المشاريع، والتقييمات هي 
-    التعاون على مجموعة من تقييمات الأنواع; عادة لقياس 
-    أهمية الحفظ. بيوبليتزس هي الأحداث التي لها بداية ونهاية محددة.
   project_user_cannot_be_found: لا يمكن العثور على مستخدم المشروع
   project_user_was_invalid: "مستخدم المشروع غير صالح: %{project_user}"
   project_was_successfully_created: تم إنشاء المشروع بنجاح.
@@ -2842,20 +2819,6 @@ ar:
     must_be_in: يجب أن يكون في أصنوفة
     must_be_coordinates_shareable_by_project_curators: يجب أن يسمح المراقب لأمناء المشروع بعرض الإحداثيات.
   running_total: مجموع التشغيل
-  same_day_obscured: ملاحظة أخرى من قبل هذا الشخص في هذا اليوم غامضة
-  same_day_obscured_desc: |
-    عندما تكون الإحداثيات مشوشة بسبب أصنوفة مهددة، فإن كل 
-    الملاحظات الأخرى التي يقوم بها ذلك الشخص في ذلك اليوم تكون مشوشة أيضا لمنع الناس 
-    من تخمين الإحداثيات بناءً على الملاحظات التي يتم إجراؤها في نفس 
-    الوقت تقريبا، يمكن للأفراد أيضا تطبيق هذه الحماية على الإحداثيات التي 
-    اختاروا تشويشها.
-  same_day_private: ملاحظة أخرى من قبل هذا الشخص في هذا اليوم خاصة
-  same_day_private_desc: |
-    عندما تكون الإحداثيات مخفية بسبب أصنوفة مهددة، فإن كل 
-    الملاحظات الأخرى التي يقوم بها ذلك الشخص في ذلك اليوم تكون مخفية أيضا لمنع الناس 
-    من تخمين الإحداثيات بناءً على الملاحظات التي يتم إجراؤها في نفس 
-    الوقت تقريبا، يمكن للأفراد أيضا تطبيق هذه الحماية على الإحداثيات التي 
-    اختاروا إخفاءها.
   said: قال
   satellite: القمر الصناعي
   save: حفظ
@@ -2962,7 +2925,6 @@ ar:
   show_taxa_from_place: "عرض أصناف من %{place}"
   show_total_counts: إظهار العدد الإجمالي
   show_uncountable_species: عرض الأنواع التي لا تُحصَى
-  showing_one_to: عرض 1 -
   showing_taxa_from_everywhere: "عرض أصناف من كل مكان"
   showing_taxa_from_place: "عرض أصناف من %{place}"
   showing_x_of_y_listings: "عرض %{x} من قوائم %{y}"
@@ -3512,6 +3474,7 @@ ar:
   user_commented_on: "علق %{user} على %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} فضل %{noun} بواسطة %{owner}"
   user_flagged_as_a_non_spammer_html: "تم تعليم %{user} كغير مرسل لرسائل غير مرغوب فيها"
   user_flagged_as_a_spammer_html: "تم تعليم %{user} كمرسل رسائل غير مرغوب فيها"
@@ -3537,11 +3500,9 @@ ar:
   username_or_email: اسم المستخدم أو البريد الإلكتروني
   username_or_user_id: اسم المستخدم أو معرف المستخدم
   users: المستخدمون
-  users_comment_html: "تعليق <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: مساهمات <a href="%{url}">%{login}</a> في %{project_title}
   users_highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{user} من %{year} في %{site}"
   users_id: "معرف %{user}"
-  users_identification_short_html: "معرف <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "ملاحظات %{user} الأخيرة على %{site}"
   users_profile: "الملف الشخصي ل%{user}"
   users_projects: "مشاريع %{user}"
@@ -3589,8 +3550,6 @@ ar:
   view_observation_flags: عرض أعلام الملاحظة
   view_observations_by_everyone: عرض الملاحظات من قبل الجميع
   view_observations_by_these_users: عرض الملاحظات من قبل هؤلاء المستخدمين
-  view_observations_causing_this_observation_to_be_obscured: |
-    عرض الملاحظات التي تجعل هذه الملاحظة غامضة
   view_observations_of_this_taxon_by: عرض ملاحظات هذ الأصنوفة من قبل
   view_on: عرض في
   view_on_flickr: عرض في فليكر
@@ -4616,16 +4575,6 @@ ar:
         ليس لدينا إذن للوصول إلى هذه الصور في الوقت الحالي؛ قد 
         تحتاج إلى فصل الحساب وإعادة ربطه في
         <a href="/users/edit">إعداداتك</a> لمنحنا أذونات إضافية.
-      inviter:
-        automatically_add_to_project: الإضافة إلى المشروع تلقائيا
-        automatically_id_the_new_obs_as: حدد الملاحظات الجديدة تلقائيا كـ
-        dont_forget_the_invite_link_placeholder: "لا تنسى العنصر النائب {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "دعوة مصورين آخرين إلى %{site_name}"
-        invite_your_friends_description: |
-          يمكنك أن تجعل من السهل على الناس الرائعين في فيسبوك و فليكر إضافة  
-          صورهم كملاحظات %{site_name}، فقط اترك تعليقا يتضمن 
-          مسار دعوة خاص أدناه، يمكنك أيضا التحديد المسبق للأصنوفة والمشروع \ 
-          للملاحظة الجديدة.
       show:
         view_original_html: |
           يمكنك عرض النسخة الأصلية <a href="%{url}">%{url}</a>، يُرجَى 
@@ -4760,7 +4709,6 @@ ar:
           </p>
         rules:
           captive: يكون أسيرا / مزروعا
-          coordinates_shareable_by_project_curators: الإحداثيات القابلة للمشاركة من قبل أمناء المشروع
           georeferenced: لديك إحداثيات
           has_a_photo: لديك صورة
           has_a_sound: لديك صوت
@@ -4850,12 +4798,6 @@ ar:
         please_specify_the_requirements: |
           ُيرجَى تحديد متطلبات الملاحظات التي ستُضاف إلى
           هذا المشروع.
-        please_specify_the_requirements_html: |
-          يُرجَى تحديد متطلبات الملاحظات التي ستُضاف إلى 
-          هذا المشروع، يمكنك تحديد أنواع أو أماكن أو مستخدمين أو 
-          درجات جودة متعددة لإدراجها تلقائيا، أو ترك الحقل فارغا إذا 
-          لم يكن لديك أي متطلبات محددة لذلك، يمكن العثور على 
-          تفسيرات لكل حقل <a href="%{url}">هنا</a>.
         project_background_color: لون خلفية ملخص المشروع
         project_background_color_help: تأكد من اختيار لون داكن بدرجة كافية حتى يصبح النص المتراكب الأبيض مقروءا.
         project_banner: بانر المشروع (PNG أو JPG أو GIF)

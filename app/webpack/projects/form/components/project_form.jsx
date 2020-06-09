@@ -13,6 +13,7 @@ import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
 import SharedForm from "./shared_form";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import UserImage from "../../../shared/components/user_image";
 
 class ProjectForm extends React.Component {
   constructor( props ) {
@@ -23,11 +24,13 @@ class ProjectForm extends React.Component {
 
   render( ) {
     const {
+      config,
       project,
       addManager,
-      removeProjectUser,
+      removeProjectManager,
       confirmSubmitProject,
-      removeProject
+      removeProject,
+      changeOwner
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
@@ -56,7 +59,7 @@ class ProjectForm extends React.Component {
             <Col xs={12}>
               <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
-                { I18n.t( "views.projects.new.include_annotated_observations" ) }
+                { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}
@@ -70,22 +73,48 @@ class ProjectForm extends React.Component {
               />
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">
-                  { _.map( project.undestroyedAdmins, admin => (
-                    <div className="badge-div" key={`user_rule_${admin.user.id}`}>
-                      <span className="badge">
-                        { admin.user.login }
-                        { ( admin.user.id === project.user_id ) ? " (owner)" : (
-                          <button
-                            type="button"
-                            className="btn btn-nostyle"
-                            onClick={( ) => removeProjectUser( admin )}
-                          >
-                            <i className="fa fa-times-circle-o" />
-                          </button>
-                        ) }
-                      </span>
-                    </div>
-                  ) ) }
+                  <table className="table">
+                    <tbody>
+                      { _.map( project.undestroyedAdmins, admin => (
+                        <tr className="badge-div" key={`user_rule_${admin.user.id}`}>
+                          <td>
+                            <UserImage user={admin.user} />
+                          </td>
+                          <td>
+                            <span className="badge">
+                              { admin.user.login }
+                              { ( project.user && admin.user.id === project.user.id ) ? " (owner)" : (
+                                <button
+                                  type="button"
+                                  className="btn btn-nostyle"
+                                  onClick={( ) => removeProjectManager( admin )}
+                                >
+                                  <i className="fa fa-times-circle-o" />
+                                </button>
+                              ) }
+                            </span>
+                          </td>
+                          <td>
+                            {
+                              project.user
+                                && config.currentUser.id === project.user.id
+                                && admin.id
+                                && admin.user.id !== config.currentUser.id
+                                && (
+                                  <button
+                                    className="btn btn-sm btn-default"
+                                    type="button"
+                                    onClick={( ) => changeOwner( admin )}
+                                  >
+                                    { I18n.t( "views.projects.edit.make_owner" ) }
+                                  </button>
+                                )
+                            }
+                          </td>
+                        </tr>
+                      ) ) }
+                    </tbody>
+                  </table>
                 </div>
               ) }
             </Col>
@@ -146,11 +175,12 @@ ProjectForm.propTypes = {
   project: PropTypes.object,
   onFileDrop: PropTypes.func,
   addManager: PropTypes.func,
-  removeProjectUser: PropTypes.func,
+  removeProjectManager: PropTypes.func,
   showObservationPreview: PropTypes.func,
   confirmSubmitProject: PropTypes.func,
   removeProject: PropTypes.func,
-  updateProject: PropTypes.func
+  updateProject: PropTypes.func,
+  changeOwner: PropTypes.func
 };
 
 export default ProjectForm;

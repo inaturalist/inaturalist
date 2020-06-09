@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
+import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
@@ -76,6 +77,7 @@ class Charts extends React.Component {
 
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const { loadFieldValueChartData } = this.props;
     $( "a[data-toggle=tab]", domNode ).unbind( "shown.bs.tab" );
     $( "a[data-toggle=tab]", domNode ).bind( "shown.bs.tab", e => {
       if ( e.target.hash === "#charts-seasonality" ) {
@@ -89,6 +91,7 @@ class Charts extends React.Component {
       } else {
         const match = e.target.hash.match( /field-values-([0-9]+)$/ );
         if ( match && this.fieldValueCharts[Number( match[1] )] ) {
+          loadFieldValueChartData( );
           this.fieldValueCharts[Number( match[1] )].flush( );
         }
       }
@@ -96,7 +99,14 @@ class Charts extends React.Component {
   }
 
   defaultC3Config( ) {
-    const { colors } = this.props;
+    const { colors, chartedFieldValues } = this.props;
+    _.each( chartedFieldValues, values => {
+      _.each( values, value => {
+        if ( value.controlled_value.label === "No Annotation" ) {
+          colors[`${value.controlled_attribute.label}=No Annotation`] = colors.unannotated;
+        }
+      } );
+    } );
     return {
       data: {
         colors,
@@ -149,17 +159,25 @@ class Charts extends React.Component {
     if ( unAnnotatedItem ) {
       items.push( unAnnotatedItem );
     }
-    const tipRows = items.map( item => `
-      <div class="series">
-        <span class="swatch" style="background-color: ${color( item )}"></span>
-        <span class="column-label">
-          ${I18n.t( `views.taxa.show.frequency.${item.name}`, { defaultValue: item.name.split( "=" )[1] } )}:
-        </span>
-        <span class="value">
-          ${this.formatNumber( item.value )}
-        </span>
-      </div>
-    ` );
+    const tipRows = items.map( item => {
+      let columnLabel = I18n.t( `views.taxa.show.frequency.${item.name}`, {
+        defaultValue: item.name.split( "=" )[1]
+      } );
+      if ( item.name.match( /No Annotation/ ) ) {
+        columnLabel = I18n.t( "views.taxa.show.frequency.unannotated" );
+      }
+      return `
+        <div class="series">
+          <span class="swatch" style="background-color: ${color( item )}"></span>
+          <span class="column-label">
+            ${columnLabel}:
+          </span>
+          <span class="value">
+            ${this.formatNumber( item.value )}
+          </span>
+        </div>
+      `;
+    } );
     return `
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
@@ -222,25 +240,18 @@ class Charts extends React.Component {
     this.fieldValueCharts = this.fieldValueCharts || { };
     const { chartedFieldValues, seasonalityColumns } = this.props;
     if ( !chartedFieldValues ) { return; }
-    _.each( chartedFieldValues, ( values, termID ) => {
-      const columns = _.filter(
+    _.each( chartedFieldValues, ( values, attributeId ) => {
+      let columns = _.filter(
         seasonalityColumns,
         column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
-      const verifiableColumn = _.find( seasonalityColumns, c => c[0] === "verifiable" );
-      if ( verifiableColumn ) {
-        const unAnnotatedColumn = verifiableColumn.slice( 0 );
-        unAnnotatedColumn[0] = "unannotated";
-        _.each( columns, column => {
-          for ( let i = 1; i < column.length; i += 1 ) {
-            unAnnotatedColumn[i] -= column[i];
-          }
-        } );
-        columns.unshift( unAnnotatedColumn );
-      }
+      columns = _.sortBy( columns, c => ( -1 * _.sum( c.slice( 1 ) ) ) );
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
-        [`${v.controlled_attribute.label}=${v.controlled_value.label}`,
-          v.controlled_value.id] ) ) );
+        [
+          `${v.controlled_attribute.label}=${v.controlled_value.label}`,
+          v.controlled_value.id
+        ]
+      ) ) );
       const config = this.seasonalityConfigForColumns( columns, {
         controlled_attribute: values[0].controlled_attribute,
         labels_to_value_ids: labelsToValueIDs
@@ -250,8 +261,8 @@ class Charts extends React.Component {
         config.data.types[columns[i][0]] = "area-spline";
       }
       config.data.order = null;
-      const mountNode = $( `#FieldValueChart${termID}`, ReactDOM.findDOMNode( this ) ).get( 0 );
-      this.fieldValueCharts[termID] = c3.generate(
+      const mountNode = $( `#FieldValueChart${attributeId}`, ReactDOM.findDOMNode( this ) ).get( 0 );
+      this.fieldValueCharts[attributeId] = c3.generate(
         Object.assign( { bindto: mountNode }, config )
       );
     } );
@@ -335,6 +346,7 @@ class Charts extends React.Component {
     const fieldValuePanels = [];
     if ( chartedFieldValues ) {
       _.each( chartedFieldValues, ( values, termID ) => {
+        const loading = !values[0].month_of_year;
         fieldValueTabs.push( (
           <li role="presentation" key={`charts-field-values-${termID}`}>
             <a
@@ -361,6 +373,13 @@ class Charts extends React.Component {
               }
             >
               { I18n.t( "no_observations_yet" ) }
+            </div>
+            <div
+              className={
+                `no-content text-muted text-center ${loading ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "loading" ) }
             </div>
             <div
               id={`FieldValueChart${termID}`}
@@ -529,14 +548,22 @@ Charts.propTypes = {
   scaled: PropTypes.bool,
   setScaledPreference: PropTypes.func,
   taxon: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  loadFieldValueChartData: PropTypes.func
 };
 
 Charts.defaultProps = {
   colors: {
     research: "#74ac00",
     verifiable: "#dddddd",
-    unannotated: "#dddddd"
+    unannotated: "#dddddd",
+
+    // d3 schemeCategory10 colors are what c3 will use by default. Here's we're
+    // just ensuring consistent color for each of these series
+    "Plant Phenology=Flower Budding": schemeCategory10[1],
+    "Plant Phenology=Flowering": schemeCategory10[3],
+    "Plant Phenology=Fruiting": schemeCategory10[0],
+    "Plant Phenology=No Evidence of Flowering": schemeCategory10[2]
   }
 };
 

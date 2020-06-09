@@ -49,7 +49,6 @@
     =raw t(:recent_observations_by, :login => link_to(you_or_login(@selected_user).downcase, @selected_user))
   - else
     =t :recent_observations 
-  = t(:from).downcase
   = link_to image_tag(@site.logo.url, :alt => @site.name), root_url, :title => @site.name
 
 .observationcontrols.stacked

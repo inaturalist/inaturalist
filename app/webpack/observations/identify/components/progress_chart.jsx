@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
 
 const ProgressChart = ( {
   reviewed,
@@ -9,19 +8,18 @@ const ProgressChart = ( {
   <div className="ProgressChart">
     <div className="title">
       <span
-        dangerouslySetInnerHTML={ { __html:
-          I18n.t( "x_observations_reviewed_html",
-            { count: I18n.toNumber( reviewed, { precision: 0 } ) }
-          )
-        } }
-      ></span>
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "x_observations_reviewed_html", {
+            count: I18n.toNumber( reviewed, { precision: 0 } )
+          } )
+        }}
+      />
     </div>
     <div className="chart">
       <div
         className="value"
-        style={ { width: `${( reviewed / ( reviewed + unreviewed ) ) * 100}%` } }
-      >
-      </div>
+        style={{ width: `${( reviewed / ( reviewed + unreviewed ) ) * 100}%` }}
+      />
     </div>
     <div className="footer">
       0

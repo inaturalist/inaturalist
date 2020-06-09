@@ -123,7 +123,6 @@ sv:
   a_default_taxon_name_will_automatically_created: |
     Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
-  a_member_of: "En medlem av"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -271,6 +270,7 @@ sv:
   add_plant_phenology_flower_budding_annotation: 'Lägg till anteckning "Växtfenologi: Blomknopp"'
   add_plant_phenology_flowering_annotation: 'Lägg till notering "Växtfenologi: Blomning"'
   add_plant_phenology_fruiting_annotation: 'Lägg till notering "Växtfenologi: I frukt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
   add_life_stage_adult_annotation: 'Lägg till notering "Livsstadium: Adult"'
   add_life_stage_teneral_annotation: 'Lägg till notering "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Lägg till notering "Livsstadium: subimago"'
@@ -286,6 +286,7 @@ sv:
   add_several_observations_at_once: Lägg till flera observationer på en gång.
   add_sex_female_annotation: 'Lägg till anteckning "Kön: Hona"'
   add_sex_male_annotation: 'Lägg till anteckning "Kön: Hane"'
+  add_sex_cannot_be_determined_annotation: 'Lägg till anteckningen "Kön: Kan inte fastställas"'
   add_some_now: Lägg till lite nu
   add_tag: Lägg till taggning
   add_tags: Lägg till taggningar
@@ -331,7 +332,6 @@ sv:
   admin_s: Administratör(er)
   admin_only: Endast admin.
   admin_tools: Admin-verktyg
-  agree: håller med
   agree_: Håller med
   agree?: Håller med?
   agree_with_current_taxon: Håller med om aktuellt taxon
@@ -548,6 +548,8 @@ sv:
     Eventuella spam-flaggor på användarens innehåll kommer avlägsnas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Är du säker på att du vill ta bort dessa %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Är du säker på att du vill ta bort denna inbjudan?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Är du säker på att du vill ta bort denna observation från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
   associated_observations: Tillhörande observationer
   associated_taxa: Tillhörande taxa
@@ -566,7 +568,6 @@ sv:
   assessments: bedömningar
   associations: Kopplingar
   atlas_for_taxon_html: Atlas för %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -669,6 +670,7 @@ sv:
   cant_merge_a_taxon_with_itself: Det går inte slå ihop en taxon med sig själv.
   captive: I fångenskap
   captive_cultivated: I fångenskap / odlad
+  captive_observations: Observationer i fångenskap
   card: Kort
   casual: informell
   casual_: Informell
@@ -768,7 +770,6 @@ sv:
   choose_a_list_above: Välj en lista ovan.
   choose_a_place: Välj en plats
   choose_a_taxon: Välj en taxon (valfritt)
-  choose_cc_licensed_photos_html: 'Välj <a href="http://creativecommons.org/">öppna</a>-licensierade foton från andra webbplatser eller välj från %{site_name}-observationer. Försök att välja bilder som <em>visar diagnostiska egenskaper</em> och <em>ser bra ut som ikoner</em>. Den <em>första är standard</em>.'
   choose_columns: Välj kolumner
   choose_file: Välj fil
   choose_files: Välj filer
@@ -847,13 +848,13 @@ sv:
   confirm_new_password: Bekräfta nytt lösenord
   confirm_now: Bekräfta nu
   confirm_your_info: Bekräfta din info
-  confirmed: bekräftad
   connect_to_provider: "Anslut till %{provider}"
   connected_accounts: Anslutna konton
   connecting_flickr: "Ansluter till Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Anslut till Flickr igen för att godkänna skrivrättigheter
   connecting_to_facebook: "Ansluter till Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Genom att ansluta ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
+  cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
@@ -897,6 +898,7 @@ sv:
     teneral: Teneral
     subimago: Subimago
     pupa: Puppa
+    no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
     egg: Ägg
@@ -911,7 +913,9 @@ sv:
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
+    cannot_be_determined: Kan inte bestämmas utifrån angiven information
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -989,6 +993,7 @@ sv:
   custom_project_was_successfully_updated: Projektanpassningar uppdaterade
   customize_location: Anpassa plats
   darr_apply_darr: "&darr; Verkställ &darr;"
+  daily_users: Dagliga användare
   dashboard: Kontrollpanel
   data_deficient: Kunskapsbrist
   data_quality: Datakvalitet
@@ -1162,7 +1167,6 @@ sv:
   edit_field: Redigera fält
   edit_license: Redigera licens
   edit_multiple_dates: Redigera flera datum
-  edit_multiple_descriptions: Redigera flera beskrivningar
   edit_multiple_locations: Redigera flera platser
   edit_multiple_species: Redigera flera arter
   edit_notes: Redigera anteckningar
@@ -1199,6 +1203,7 @@ sv:
   editing_project: Redigerar %{project}
   editing_project_asset: Redigerar projekttillgång för
   editing_subscription_to_x_html: "Redigerar prenumeration på %{x}"
+  editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
   editing_taxon_range: Redigerar taxonintervall
@@ -1256,7 +1261,10 @@ sv:
   exact_location: Exakt plats
   exact_rank: Exakt rang
   except: förutom
-  exclude_x: Exkludera %{x}
+  exclude_places: Uteslut platser
+  exclude_projects: Uteslut projekt
+  exclude_taxa: Uteslut taxa
+  exclude_users: Uteslut användare
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
@@ -1289,6 +1297,7 @@ sv:
   favorites: "Favoriter"
   feature_this_project_: "Uppmärksamma detta projekt"
   featured: Uppmärksammat
+  #Title for a button or section describing the "featured" status of a project
   featuring: Uppmärksammat
   feedback: Återkoppling
   #Plural noun, as in Atom and RSS feeds
@@ -1431,7 +1440,6 @@ sv:
     Forumet är en plats för diskussioner om iNat, inklusive hjälp & support,
     funktionsförfrågningar, felrapporter, tillkännagivanden med mera.
   frequency: Frekvens
-  from: Från
   from_a_place: från en plats
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
@@ -1439,8 +1447,6 @@ sv:
   from_photos: Från foton
   from_place: Från plats
   from_soundcloud: Från Soundcloud
-  from_your_site_observations: "Från %{site_name}-observationer"
-  from_licensed_site_observations: "Från licensierade %{site_name}-observationer"
   full_screen: Helskärm
   fungi:
     one: svamp
@@ -1472,6 +1478,7 @@ sv:
   got_it!: Uppfattat!
   got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
   graft: Ympa
+  graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
   grant_role: "%{grant} %{role} roll"
   grid: Rutnät
@@ -1598,6 +1605,7 @@ sv:
   ignore_and_continue: Ignorera och fortsätt
   ignore_times: Ignorera tider
   image_must_be_exactly: bilden måste vara exakt 950px bred och högst 400px hög
+  image_size_control: Kontroll av bildstorlek
   imperiled: Äventyrad
   import: Importera
   import_all_photos_as_observations: Importera alla bilder som observationer
@@ -1619,6 +1627,10 @@ sv:
   inaturalist_network_affiliation: iNaturalist Network anknytning
   #Label for messages you've received
   inbox: Inkorg
+  include_places: Inkludera platser
+  include_projects: Inkludera projekt
+  include_taxa: Inkludera taxa
+  include_users: Inkludera användare
   including: inklusive
   increase_brightness: Öka ljusstyrkan
   in_progress: pågår
@@ -1671,6 +1683,8 @@ sv:
   join: Gå med
   join_and_add_an_observation_to_project_html: Gå med och lägg till en observation till %{project}
   join_project: Gå med detta projektet
+  #Prompt to join a specific project
+  join_project?: Gå med i %{project}?
   join_some_projects_and_invite_some_observations_html: "Gå med i några <a href='%{join_url}'>projekt</a> och <a href='%{invite_url}'>bjud in några observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Gå med i den största gruppen naturforskare i världen!
   join_this_project: Gå med detta projektet
@@ -1695,6 +1709,9 @@ sv:
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
   location_private: Privat plats
   location_unknown: Plats okänd
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomnivå
   language_slash_type: Språk / Typ
   #Large photo size
   large: stor
@@ -1835,7 +1852,6 @@ sv:
   loading: "Laddar..."
   loading_flickr_photos: "Laddar Flickr-bilder..."
   loading_images: Laddar bilder...
-  loading_map: Laddar karta...
   loading_metadata: Laddar metadata...
   loading_preview_and_code: Laddar förhandsgranskning och kod...
   loading_suggestions: Läser in förslag...
@@ -2028,14 +2044,18 @@ sv:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Månad
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
@@ -2186,6 +2206,7 @@ sv:
   no_favorites_added:
     current_user: Du har inte lagt till favoriter än.
     user: "%{user} har inte lagt till favoriter."
+  no_journal_posts_yet: Inga dagboksinlägg ännu
   no_license_all_rights_reserved: Ingen licens (alla rättigheter reserverade)
   no_managers_set: Inga ledare angivna
   no_matching_article_from_x: "Ingen matchande artikel från %{x}"
@@ -2202,7 +2223,6 @@ sv:
   no_more_taxa_to_load: Inga fler taxa att ladda!
   no_more_results_found: Inga fler resultat hittades
   no_new_messages: Inga nya inlägg
-  no_news_yet: Inga nyheter ännu
   no_observations: Inga observationer
   no_observations_from_this_place_yet: Inga observationer från denna plats än.
   no_observations_matching_those_ids: Inga observationer som matchar de bestämningarna.
@@ -2433,9 +2453,7 @@ sv:
   offline_access_enabled: Offline-åtkomst aktiverad
   old_observation_form: Gammalt observationsformulär (utfasat)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
-  on_your_life_list: på din livslista
   onboarding:
     observe_panel_title: Låt oss komma igång genom att posta några observationer
     observe_panel_body_p1_local: Behöver du inspiration? Här är några organismer som observeras i närheten...
@@ -2501,7 +2519,6 @@ sv:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   or_if_you_dont_want_email: "Eller om du helt enkelt inte vill ha någon e-post..."
-  or_upload: Eller ladda upp
   orange: orange
   order: Ordning
   order_by: Sortera efter
@@ -2540,7 +2557,6 @@ sv:
   other_taxa_commonly_misidentified_as_this_subsection: Andra taxa som ofta felbestäms som denna undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andra taxa som ofta felbestäms till denna undersektion i <a href="%{url}">%{place}</a>
   our_blog: Vår blogg
-  out_of_range: Utanför intervallet
   output_taxon: Uttaxon
   overview: Översikt
   overlapping_downstream_taxon_frameworks_html: "Överlappande underliggande taxonkontexter: %{count}"
@@ -2628,7 +2644,6 @@ sv:
     Nåla denna kombination av koordinater, noggrannhet, geosekretess och lokalanteckningar för senare användning.
   place: Plats
   placeholder: Platshållare
-  place_added_to_inat_by: "Plats lades till i %{site_name} av"
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_deleted: Plats borttagen.
   place_geo:
@@ -2659,7 +2674,13 @@ sv:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Institutionsenhet
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: institutionsenhet
       District: Distrikt
       district: distrikt
@@ -3067,7 +3088,7 @@ sv:
   present: påträffad
   press: Tryck
   preview: Förhandsgranska
-  preview_observations: Förhandsgranska observationer
+  preview_observations_with_these_observation_requirements: Förhandsgranska observationer med dessa observationskrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserad observation.  <a href=\"%{url}\">Ångra?</a>"
   preview_personal_message: "Jag vill bjuda in dig till %{site}, en webbplats där du kan spara dina observationer av växter och djur, hålla koll på din livslista och lär dig om naturen!"
   preview_your_message: Förhandsgranska ditt meddelande
@@ -3111,6 +3132,7 @@ sv:
   project_group_description: Grupp som projektet tillhör
   project_home: Projekt hem
   project_icon: Projektikon
+  project_journal: Projektdagbok
   project_id_or_url_slug: ProjektID eller URL-slug, t.ex. 333 eller mitt-projekt
   project_invitations: 'Projektinbjudningar'
   project_list: Projektlista
@@ -3120,6 +3142,7 @@ sv:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> förvaltare lade till några av dina observationer
   project_members: "%{project}-medlemmar"
+  project_members_only: Endast projektmedlemmar
   project_membership_model_description: Är ditt projekt öppet för alla eller bara för personer du bjuder in?
   project_observations: Projekt observationer
   project_post: Projekt inlägg
@@ -3330,6 +3353,7 @@ sv:
   rules_for_becoming_a_member: Regler för att bli medlem
   rules_for_becoming_memner: Regler för att bli medlem
   rules_types:
+    must_be_captive: måste vara i fångenskap / odlad
     must_be_georeferenced: måste vara koordinatsatt
     must_be_identified: måste bestämmas
     must_be_on_list: måste vara med på listan
@@ -3337,20 +3361,6 @@ sv:
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
   running_total: Ackumulerat
-  same_day_obscured: En annan observation av denna person denna dag är diffuserad
-  same_day_obscured_desc: |
-    När koordinater diffuseras på grund av ett hotat taxon, är alla andra
-    observationer av den personen på samma dag också diffuserade för att
-    förhindra att man gissar koordinaterna baserat på observationer
-    gjorda ungefär samtidigt. Man kan också tillämpa detta skydd för
-    koordinater man har valt att diffusera.
-  same_day_private: En annan observation av denna person denna dag är privat
-  same_day_private_desc: |
-    När koordinater döljs på grund av ett hotat taxon, är alla andra
-    observationer av den personen på samma dag också dolda för att
-    förhindra att man gissar koordinaterna baserat på observationer
-    gjorda ungefär samtidigt. Man kan också tillämpa detta skydd för
-    koordinater man har valt att dölja.
   said: sade
   satellite: satellit
   save: Spara
@@ -3378,6 +3388,8 @@ sv:
   scale_colon: "Skala:"
   schemes: Sammanställning
   schemes_including: Sammanställningar som inkluderar
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vetenskapligt namn
   search: Sök
   search_all_fields: sök alla fält
   search_by_name_or_email: Sök efter namn eller e-post
@@ -3464,7 +3476,9 @@ sv:
   show_taxa_from_place: "Visa taxa från %{place}"
   show_total_counts: Visa totalt antal
   show_uncountable_species: Visa oräkneliga arter
-  showing_one_to: Visar 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Visar %{x} första
   showing_taxa_from_everywhere: "Visa taxa från alla ställen"
   showing_taxa_from_place: "Visa taxa från %{place}"
   showing_x_of_y: Visar %{x} av %{y}
@@ -4067,6 +4081,7 @@ sv:
     tooltips:
       add: Lägg till observation(er)
       combine: Kombinera markerade observationer
+      duplicate: Duplicera valda observationer
       photo_failed: Bilden kunde inte laddas upp
       remove: Ta bort markerade observationer
       remove_observation: Ta bort observation
@@ -4130,6 +4145,7 @@ sv:
   user_commented_on: "%{user} kommenterade på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
   user_faved_this_observation: "%{user} favoritmarkerade denna observation"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
@@ -4163,11 +4179,9 @@ sv:
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
-  users_comment_html: "<a href='%{url}'>%{user}</a>s kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>s ID"
   users_latest_observations_on_site: "%{user}senaste observationer på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
@@ -4215,8 +4229,6 @@ sv:
   view_observation_flags: Visa observationsflaggor
   view_observations_by_everyone: Visa observationer av alla
   view_observations_by_these_users: Visa observationer av dessa användare
-  view_observations_causing_this_observation_to_be_obscured: |
-    Visa observationer som gör att denna observation diffuseras
   view_observations_of_this_taxon_by: Visa observationer av detta taxon av
   view_on: Visa på
   view_on_flickr: Visa på Flickr
@@ -4523,6 +4535,14 @@ sv:
         som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt
         enkelt detta tomt.
+    content_freeze:
+      content_freeze: Låsning av innehåll
+      during_this_time: |
+        När innehållet är låst kan vissa typer av innehåll inte skapas, förstöras eller ändras.
+      this_functionality_will_return: |
+        Denna funktionalitet återinrättas så snart låsningen av innehållet är borta.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi förväntar oss att denna funktionalitet är tillbaka den %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5417,16 +5437,6 @@ sv:
         Vi har inte behörighet att komma åt de bilderna just nu. Du kan
         behöva koppla bort och återansluta kontot i
         <a href="/users/edit">-inställningarna</a> för att ge oss ytterligare behörighet.
-      inviter:
-        automatically_add_to_project: Lägg automatiskt till i projektet
-        automatically_id_the_new_obs_as: Bestäm automatiskt nya obsar till
-        dont_forget_the_invite_link_placeholder: "glöm inte platshållaren {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Bjud in andra fotografer till %{site_name}"
-        invite_your_friends_description: |
-          Du kan göra det superenkelt för människor på Facebook och Flickr att lägga till sina
-          bilder som %{site_name}-observationer. Lämna bara en kommentar som inkluderar denna
-          speciella inbjudnings-URL nedan. Du kan också förhandsvälja ett taxon och ett projekt för
-          den nya observationen.
       show:
         view_original_html: |
           Du kan se originalet på <a href="%{url}">%{url}</a>.
@@ -5510,6 +5520,9 @@ sv:
           som man samlar in värdefulla data.
           </p>
         change_admin_desc: Välj den av projektförvaltarna som ska bli den nya administratören.
+        change_owner_alert: |
+          Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra
+          äganderätt igen. Vill du fortsätta?
         cover_desc: "Valfri banner-bild som visas högst upp på din projektsida. Måste vara 950px bred, mindre än 400px hög."
         custom_project_fields_means: "Anpassa projektets banner, lägg till sidoinnehåll och redigera CSS."
         end_time_desc: "Sluttid för din bioblitz. Måste vara mindre än ett år efter starttiden"
@@ -5523,6 +5536,8 @@ sv:
           Det verkar som om detta projekt kan konverteras till ett nytt <a href="%{url}">Samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tid när aggregeraren senast lade till observationer till detta projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gör till ägare
         no_curators: |
           Det finns inga projektetförvaltare. Om du vill tilldela en ny person rollen som
           administratör, måste denne först gå med i projektet och sedan måste du
@@ -5624,6 +5639,10 @@ sv:
           att projektikonen och bannern inte kommer att kopieras och måste laddas upp igen i dubblettprojektet.
         are_you_sure_you_want_to_delete: Är du säker på att du vill radera detta projekt?
         can_be_included_in_multiple: Kan inkluderas i flera paraplyprojekt
+        check_the_box_to_include_member_observations: |
+          Kryssa i rutan nedan för att endast inkludera observationer gjorda av användare som har anslutit
+          sig till detta projekt. Använd Exkludera användare-filtret ovan för att utesluta observationer från
+          specifika användare, inklusive projektägaren och administratörerna.
         click_through_to_individual_projects: Klicka vidare till enskilda projekt
         collection_projects: Samlingsprojekt
         collection_project_features: "Samlingsprojektsfunktioner:"
@@ -5637,6 +5656,10 @@ sv:
           anpassade observationsfält eller möjlighet att lägga till individuella observationer som
           inte kan filtreras automatiskt?
         duplicate_project: Dubblettprojekt
+        include_annotated_observations: |
+          Inkludera endast observationer kommenterade med ett visst attribut (t.ex. livsstadium),
+          eller ett visst attribut och värde (t.ex. livsstadium = adult).
+          Detta är begränsat till ett kommentarsfilter per projekt.
         leaderboards_among_individuals: Topplistor för <strong>individer</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Topplistor för <strong>projekt</strong>
@@ -5648,16 +5671,15 @@ sv:
           Obs: dessa användare kommer att kunna redigera ALLA projektdetaljer inklusive administratörer.
         note_you_can_delete_the_time: |
           (Obs: du kan ta bort tidszonen och exakta tider om du vill inkludera hela dagar.)
+        note_about_unselected_filters: |
+          Obs: Om du inte väljer taxa, platser eller användare, kommer alla att inkluderas som standard.
+        only_display_member_observations: |
+          Visa endast observationer från projektmedlemmar (personer som gått med i projektet)
+        optionally_filter_media: Filtrera valfritt ut observationer med foton, ljud eller både och.
         or_drag_and_drop: (eller dra och släpp)
         please_specify_the_requirements: |
           Vänligen ange villkoren för de observationer som ska läggas till i
           detta projekt.
-        please_specify_the_requirements_html: |
-          Vänligen ange kraven för de observationer som ska läggas till i
-          detta projekt. Du kan ange flera arter, platser, användare eller
-          kvalitetsnivåer som automatiskt inkluderas eller lämna ett fält tomt om
-          du inte har något specifikt krav på det. Förklaringar för varje fält
-          hittar du <a href="%{url}">här</a>.
         project_background_color: Bakgrundsfärg för projektsammanställning
         project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
         project_banner: Projektbanderoll (PNG, JPG eller GIF)
@@ -5672,11 +5694,29 @@ sv:
           Förklara kortfattat ditt projekt. Ungefär de första 200 tecknen kommer att
           synas till höger om banderollen på projektets startskärm så ta det viktigaste först!
         project_summary_placeholder: Upptäck och håll reda på Golden Gate-parkens fåglar...
+        select_native_to_include: |
+          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk"
+          för din(a) projektplats(er). Välj "Införd" för att endast inkludera taxa som har
+          markerats som "Införd" för din(a) projektplats(er).
+        select_quality_grade: |
+          Välj minst en kvalitetsnivå. Ytterligare förklaring av varje kvalitetsnivå finns på
+          på vår <a href="%{url}">FAQ-sida</a>.
         show_projects_as_flags: Visar projekt som flaggor på kartan
+        specify_project_filters: |
+          Ange filter som avgör vilka observationer som ska ingå i ditt projekt.
+          Du kan välja flera arter (eller taxa), platser, datum eller andra kriterier för
+          observationer som ska inkluderas automatiskt.
         start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
         traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
         umbrella_project_features: "Funktionalitet för paraplyprojekt"
         unique_url_for_outreach: Unik publik URL
+        use_this_for_a_time_limited_event: |
+          Använd detta för en tidsbegränsad händelse, bioblitz eller säsongsprojekt. Välj
+          ett enskilt datum, ett intervall av datum, eller de månader på året observationerna
+          måste göras i (oavsett år). Om du använder sektionen Datumintervall, se till att
+          du har rätt tider och tidszoner valda, eller ta bort tid/tidszon-texten så att observationer
+          gjorda när som helst hela dagen inkluderas. Du kan lämna startdatum eller slutdatum
+          tomt om du vill begränsa projektet med endast ett datum.
         users_can_follow_your_project: Användare kan följa ditt projekt och få uppdateringar via dagboksinlägg
         use_this_link_to_create_html: |
           Använd <a href="%{url}">denna länk</a> för att istället skapa ett traditionellt projekt.
@@ -5775,6 +5815,10 @@ sv:
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
         this_is_a_preview: |
           Detta är en förhandsvisning av hur detta projekt skulle se ut som ett Samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Detta projekt har inte definierat några observationskrav. Projekt måste välja ett eller
+          flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum
+          för att börja visa observationer.
       updates_desc: |
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om
         dagens uppdateringar.
@@ -6112,6 +6156,7 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence of Flowering": Inga tecken
           "Life Stage=egg": Ägg
           "Life Stage=larva": Larv
           "Life Stage=teneral": Teneral
@@ -6751,9 +6796,11 @@ sv:
       invalid: är ogiltig
       less_than: måste vara mindre än %{count}
       less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
       not_a_number: är inte ett nummer
       not_an_integer: måste vara ett heltal
       odd: måste vara udda
+      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
       record_invalid: 'Validering misslyckades: %{errors}'
       requires_privilege_speech: |
         måste ha tre verifierbara observationer eller tre bestämningar
@@ -6888,9 +6935,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte ett nummer
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
@@ -6941,6 +6990,7 @@ sv:
         occurrence_status_level: Nivå för förekomststatus
         establishment_means: Invandringshistoria
       observation:
+        description: Anteckningar
         geo_x: Östlig
         geo_y: Nordlig
         observed_on: observerat datum
@@ -7028,9 +7078,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det

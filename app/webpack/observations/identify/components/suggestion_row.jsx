@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
+import { COLORS } from "../../../shared/util";
 import TaxonMap from "./taxon_map";
 
 const SuggestionRow = ( {
@@ -34,6 +35,41 @@ const SuggestionRow = ( {
   }
   const currentUserPrefersMedialessObs = config.currentUser
     && config.currentUser.prefers_medialess_obs_maps;
+  const taxonLayer = {
+    taxon,
+    gbif: { disabled: true, legendColor: "#F7005A" },
+    places: true,
+    ranges: true
+  };
+  if ( source === "rg_observations" ) {
+    taxonLayer.observationLayers = [
+      { label: I18n.t( "rg_observations" ), quality_grade: "research" }
+    ];
+  } else if ( source === "captive_observations" ) {
+    taxonLayer.observationLayers = [
+      {
+        label: I18n.t( "captive_observations" ),
+        captive: "true",
+        color: COLORS.blue
+      }
+    ];
+  } else {
+    taxonLayer.observationLayers = [
+      { label: I18n.t( "verifiable_observations" ), verifiable: true },
+      {
+        label: I18n.t( "observations_without_media" ),
+        color: COLORS.maroon,
+        verifiable: false,
+        captive: false,
+        photos: false,
+        sounds: false,
+        disabled: !currentUserPrefersMedialessObs,
+        onChange: e => updateCurrentUser( {
+          prefers_medialess_obs_maps: e.target.checked
+        } )
+      }
+    ];
+  }
   return (
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
       <h3 className="clearfix">
@@ -85,7 +121,7 @@ const SuggestionRow = ( {
                 taxon={taxon}
                 height={200}
                 backgroundSize={backgroundSize}
-                showTaxonPhotoModal={ p => {
+                showTaxonPhotoModal={p => {
                   const index = _.findIndex( taxon.taxonPhotos,
                     taxonPhoto => taxonPhoto.photo.id === p.id );
                   setDetailTaxon( taxon, { detailPhotoIndex: index } );
@@ -104,23 +140,7 @@ const SuggestionRow = ( {
             observations={[observation]}
             gestureHandling="auto"
             reloadKey={`map-for-${observation.id}-${taxon.id}`}
-            taxonLayers={[{
-              taxon,
-              observationLayers: [
-                { label: I18n.t( "verifiable_observations" ), verifiable: true },
-                {
-                  label: I18n.t( "observations_without_media" ),
-                  verifiable: false,
-                  disabled: !currentUserPrefersMedialessObs,
-                  onChange: e => updateCurrentUser( {
-                    prefers_medialess_obs_maps: e.target.checked
-                  } )
-                }
-              ],
-              gbif: { disabled: true },
-              places: true,
-              ranges: true
-            }]}
+            taxonLayers={[taxonLayer]}
             zoomControl={false}
             mapTypeControl={false}
             disableFullscreen

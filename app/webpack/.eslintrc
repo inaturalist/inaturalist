@@ -37,6 +37,7 @@
     "prefer-destructuring": [2, { "object": true, "array": false }],
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"],
+    "no-restricted-globals": 0,
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
     "react/forbid-prop-types": 0,

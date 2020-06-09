@@ -1,6 +1,7 @@
 # See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
 
 User-agent: *
+Disallow: /calendar/
 Disallow: /observations?
 Disallow: /observations/?
 Disallow: /observations.csv
@@ -10,7 +11,9 @@ Disallow: /taxa/search?
 Disallow: /*?
 Disallow: /taxa/*/description$
 Disallow: /taxa/*/map_layers$
+Disallow: *.atom*
 Disallow: *.csv*
+Disallow: *.json*
 Disallow: *page=*
 Disallow: /*?
 

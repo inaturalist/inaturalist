@@ -6,7 +6,8 @@ import {
 const finishedModalReducer = ( state = { visible: false }, action ) => {
   if ( action.type === SHOW_FINISHED_MODAL ) {
     return { visible: true };
-  } else if ( action.type === HIDE_FINISHED_MODAL ) {
+  }
+  if ( action.type === HIDE_FINISHED_MODAL ) {
     return { visible: false };
   }
   return state;

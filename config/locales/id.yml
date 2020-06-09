@@ -75,7 +75,6 @@ id:
   a_community_for_naturalist: Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
-  a_member_of: "Anggota dari"
   a_member_of_taxon_html: "anggota dari %{taxon}"
   about: Tentang
   about_blocking: Tentang pemblokiran
@@ -210,7 +209,6 @@ id:
   added_by: Ditambahkan oleh
   adding: "Menambahkan..."
   admin_tools: Peralatan Pengurus
-  agree: Setuju
   agree_: Setuju
   agree?: Setuju?
   agree_with_current_taxon: Setuju dengan takson saat ini
@@ -325,7 +323,6 @@ id:
   assessment_was_successfully_updated: Penilaian itu berhasil diperbarui.
   assessments: Penilaian
   associations: asosiasi
-  at_time: "di %{time}"
   authority_list:
     iucn_red_list: Daftar Merah IUCN
   authorize_permissions_from_provider: "Otorisasi izin dari %{provider}"
@@ -522,7 +519,6 @@ id:
   confirm_new_password: Konfirmasi kata sandi
   confirm_now: Konfirmasi sekarang
   confirm_your_info: Konfirmasi info anda
-  confirmed: (telah dikonfirmasi)
   connect_to_provider: "menghubungkan ke %{provider}"
   connected_accounts: akun telah terhubungkan
   connecting_flickr: "hubungkan ke flickr..."
@@ -711,7 +707,6 @@ id:
   edit_field: Merubah halaman
   edit_license: Mengubah lisensi
   edit_multiple_dates: Mengedit beberapa tanggal
-  edit_multiple_descriptions: Mengedit beberapa deskripsi
   edit_multiple_locations: Mengedit beberapa lokasi
   edit_multiple_species: Mengedit beberapa spesies
   edit_notes: Merubah catatan
@@ -891,7 +886,6 @@ id:
     tutorials: Tutorial
   forum_desc: |
     Forum adalah tempat berdiskusi iNat itu sendiri, termasuk bantuan dan dukungan, permohonan fitur, laporan masalah, pengumuman, dan lain-lain.
-  from: Dari
   from_a_place: Dari tempat
   from_eol_collection: Dari koleksi EOL
   from_flickr_facebook_etc: Dari Flickr, Facebook, dll
@@ -899,8 +893,6 @@ id:
   from_photos: Dari foto
   from_place: Dari tempat
   from_soundcloud: dari SoundCloud
-  from_your_site_observations: "Dari %{site_name} observasi"
-  from_licensed_site_observations: "Dari pengamtan berlisensi %{site_name}"
   full_screen: Layar penuh
   gbif_occurrences: Kemunculan GBIF
   generate_taxonomic_tags_for_flickr: Menghasilkan tag taksonomi untuk foto Flickr Anda.
@@ -1150,7 +1142,6 @@ id:
   loading: "Menunggah..."
   loading_flickr_photos: "Mengunggah foto Flickr..."
   loading_images: Mengunggah gambar...
-  loading_map: Mengunggah peta...
   loading_preview_and_code: Mengunggah pratinjau dan kode...
   loading_tags: "Mengunggah tanda..."
   loading_taxa_from_your: "Mengunggah taksa dari pengamatan anda..."
@@ -1482,9 +1473,7 @@ id:
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
   ok: "Oke"
-  on_date: "pada %{date}"
   on_day: "pada"
-  on_your_life_list: pada daftar hidupmu
   one_by_one: "satu per satu"
   one_of_your_lists: "satu dari daftar Anda..."
   only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status proyek kurator
@@ -1514,7 +1503,6 @@ id:
   or: atau
   or_choose_high_level_taxa: "... Atau memilih dari beberapa tingkat tinggi taksa"
   or_if_you_dont_want_email: "Atau jika Anda tidak ingin email apapun..."
-  or_upload: Atau unggah
   orange: jingga
   order: Urut
   order_by: 'Urut berdasarkan:'
@@ -1530,7 +1518,6 @@ id:
   other_animals: binatangt lain
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat ini
   our_blog: Blog Kami
-  out_of_range: Jauh dari jarak
   output_taxon: Keluaran takson
   overview: Ikhtisar
   owner: 'Pemilik:'
@@ -1582,7 +1569,6 @@ id:
   photos_updated: Foto diperbarui.
   pink: merah muda
   place: Tempat
-  place_added_to_inat_by: "Tempat ditambahkan ke %{site_name} oleh"
   place_deleted: Tempat dihapus
   place_geo:
     geo_planet_place_types:
@@ -1774,9 +1760,6 @@ id:
   project_rules: Aturan Proyek
   project_settings: Pengaturan proyek
   project_that_does_not_contain_these_observations: Proyek yang tidak mengandung pengamatan ini
-  project_type_description: |
-    Penilaian dan bioblitzes adalah jenis khusus dari proyek. Penilaian merupakan untuk kolaborasi pada satu set penilaian spesies, biasanya untuk mengukur
-    pentingnya konservasi. Bioblitzes adalah peristiwa yang memiliki awalan dan akhiran spesifik.
   project_user_cannot_be_found: Pengguna proyek tidak dapat ditemukan
   project_user_was_invalid: "Proyek tidak valid %{project_user}"
   project_was_successfully_created: Proyek telah sukses dibuat.
@@ -1988,7 +1971,6 @@ id:
   show_taxa_from_both: (tampilkan taksa dari kedua daftar)
   show_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   show_taxa_from_place: "Tampilkan taksa dari %{place}"
-  showing_one_to: Tampilkan 1 -
   showing_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   showing_taxa_from_place: "Tampilkan taksa dari %{place}"
   sign_in: Masuk
@@ -2568,10 +2550,6 @@ id:
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memungkinkan pengamatan dengan koordinat yang kurator proyek tidak dapat melihat. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan dari proyek tersebut.
-    photos:
-      inviter:
-        automatically_add_to_project: Secara otomatis ditambahkan ke proyek
-        automatically_id_the_new_obs_as: Secara otomatis ID pengamatan sebagai
     places:
       kml_field_desc: |
         KML dari batas tempat. Anda dapat membuat satu menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu polygon dan menjadi di bawah 1 MB (5 MB untuk kurator situs)

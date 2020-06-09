@@ -17,13 +17,15 @@ const EstablishmentMeansBadge = ( { observation, taxon } ) => {
   const meansType = lt.establishment_means === "introduced" ? "introduced" : "endemic";
   const popover = (
     <Popover
-      className={ `EstablishmentMeansBadgePopover ${meansType}` }
-      id={ `em-popover-${lt.id}` }
+      className={`EstablishmentMeansBadgePopover ${meansType}`}
+      id={`em-popover-${lt.id}`}
     >
       <span className="bold">
         { lt.establishment_means_label }
         { lt.place ? ` in ${lt.place.display_name}` : "" }
-        : { lt.establishment_means_description }
+        :
+        { " " }
+        { lt.establishment_means_description }
       </span>
     </Popover>
   );
@@ -32,13 +34,13 @@ const EstablishmentMeansBadge = ( { observation, taxon } ) => {
       <OverlayTrigger
         trigger="click"
         rootClose
-        overlay={ popover }
+        overlay={popover}
         placement="bottom"
       >
-        <Badge className={ `${meansType}` }>
-          { meansType === "introduced" ?
-            ( <i className="fa fa-exclamation" /> ) :
-            ( <i className="fa fa-star" /> )
+        <Badge className={`${meansType}`}>
+          { meansType === "introduced"
+            ? <i className="fa fa-exclamation" />
+            : <i className="fa fa-star" />
           }
         </Badge>
       </OverlayTrigger>

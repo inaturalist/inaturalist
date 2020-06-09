@@ -257,7 +257,7 @@ export function removeProjectRule( ruleToRemove ) {
   };
 }
 
-export function removeProjectUser( projectUser ) {
+export function removeProjectManager( projectUser ) {
   return ( dispatch, getState ) => {
     const { project } = getState( ).form;
     if ( !project || !projectUser ) { return; }
@@ -471,21 +471,7 @@ export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const { project } = state.form;
-    let empty = true;
-    const dateType = project.date_type;
-    if ( !_.isEmpty( project.rule_quality_grade ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_photos ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_native ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_introduced ) ) { empty = false; }
-    if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
-    if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }
-    if ( dateType === "months" && !_.isEmpty( project.rule_month ) ) { empty = false; }
-    if ( !_.isEmpty( project.project_observation_rules ) ) { empty = false; }
-    if ( !empty ) {
+    if ( !project.hasInsufficientRequirements( ) ) {
       dispatch( submitProject( ) );
       return;
     }
@@ -513,5 +499,19 @@ export function duplicateProject( ) {
         window.location = `/projects/new?copy_project_id=${project.slug}`;
       }
     } ) );
+  };
+}
+
+export function changeOwner( projectUser ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( ).form;
+    if ( !project || !projectUser ) { return; }
+    if ( confirm( I18n.t( "views.projects.edit.change_owner_alert" ) ) ) {
+      dispatch( updateProject( {
+        user: projectUser.user,
+        user_id: projectUser.user.id,
+        saving: false
+      } ) );
+    }
   };
 }

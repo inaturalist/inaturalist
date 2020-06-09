@@ -64,7 +64,7 @@ const IdentificationForm = ( {
       type="textarea"
       name="body"
       className="form-control"
-      elementKey={ `${key}-inat-text-area` }
+      elementKey={`${key}-inat-text-area`}
       mentions
     />
     { blind ? (

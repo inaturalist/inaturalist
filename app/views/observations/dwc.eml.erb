@@ -18,25 +18,94 @@
       <% end %>
     </title>
 
-    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "creator", :data => @creator} %>
-    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "metadataProvider", :data => @metadata_provider} %>
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "creator", data: @creator %>
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "metadataProvider", data: @metadata_provider %>
 
     <pubDate><%= Date.today.to_s %></pubDate>
 
     <!-- This is the RESOURCE language and not the metadata language which is at the bottom -->
     <language>en_US</language>
     <abstract>
-      <para>Observations from iNaturalist.org. iNaturalist is a joint initiative of the California Academy of Sciences and the National Geographic Society.</para>
+      <para>
+        Observations from iNaturalist.org, an online social network of people sharing biodiversity information to help each other learn about nature. iNaturalist is a joint initiative of the California Academy of Sciences and the National Geographic Society.
+      </para>
+      <% unless @observations_params.blank? %>
+      <para>
+        Observations included in this archive met the following requirements:
+      </para>
+      <% unless @taxa.blank? %>
+      <para>
+        * Depicts an individual in the following taxa:
+        <%=raw @taxa.each_with_index.map {|taxon, i| "#{i+1}) #{taxon.name} (<![CDATA[#{FakeView.taxon_url( taxon )}]]>)" }.join( ", " ) %>
+      </para>
+      <% end %>
+      <% if @place %>
+      <para>
+        * Coordinates in <%=raw @place.display_name %> (<![CDATA[<%= FakeView.place_url( @place ) %>]]>)
+      </para>
+      <% end %>
+      <% if @observations_params[:license] == "none" %>
+      <para>
+        * Published without any license or waiver of intellectual property rights (all rights reserved)
+      </para>
+      <% elsif @observations_params[:license] != "any" && ( licenses = @observations_params[:license].to_s.split( "," ) ) && !licenses.blank? %>
+      <para>
+        * Published under one of the following licenses or waivers:
+        <%=raw licenses.each_with_index.map {|license, i| "#{i+1}) <![CDATA[#{FakeView.url_for_license( license )}]]>" }.join( ", " ) %>
+      </para>
+      <% end %>
+      <% if @observations_params[:projects] && project_ids = @observations_params[:projects].to_s.split( "," ) %>
+      <para>
+        * In one of the following iNaturalist projects:
+        <%=raw project_ids.map {|project_id|
+          ( project = Project.find_by_id( project_id ) ) && "<![CDATA[<#{FakeView.project_url( project )}]]>"
+        }.compact.join( ", " ) %>
+      </para>
+      <% end %>
+      <% if !@observations_params[:quality_grade].blank? && quality_grades = @observations_params[:quality_grade].split( "," ) %>
+      <para>
+        * Achieved one of following iNaturalist quality grades: <%= quality_grades.map(&:humanize).join( ", " ) %>
+      </para>
+      <% end %>
+      <% if site = Site.find_by_id( @observations_params[:site_id] ) %>
+      <para>
+        * Affiliated with the iNaturalist Network Partner <![CDATA[<%=raw FakeView.site_url( site )%>]]>
+      </para>
+      <% end %>
+      <% if @observations_params[:created_d1] %>
+      <para>
+        * Created on or after <%= @observations_params[:created_d1] %>
+      </para>
+      <% end %>
+      <% if @observations_params[:created_d2] %>
+      <para>
+        * Created on or before <%= @observations_params[:created_d2] %>
+      </para>
+      <% end %>
+      <% if @observations_params[:with_photos] %>
+      <para>
+        * Has photos
+      </para>
+      <% end %>
+      <% if @observations_params[:ofv_datatype] %>
+      <para>
+        * Has an observation field value of type <%= @observations_params[:ofv_datatype] %>
+      </para>
+      <% end %>
+      <para>
+        You can view observations meeting these requirements at <![CDATA[<%=raw @uri %>]]>
+      </para>
+      <% end %>
     </abstract>
     <intellectualRights>
       <para>
         <% if @license %>
-          This archive is licensed under a
-          <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
-            <citetitle><%= FakeView.license_name( @license ) %></citetitle>
-          </ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
+        This archive is licensed under a
+        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        </ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
         <% else %>
-          These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
+        These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
         <% end %>
       </para>
     </intellectualRights>
@@ -51,10 +120,10 @@
       <geographicCoverage>
         <geographicDescription>Bounding Box</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate><%= [@extent.lower_corner.x, -180].max %></westBoundingCoordinate>
-          <eastBoundingCoordinate><%= [@extent.upper_corner.x, 180].min %></eastBoundingCoordinate>
-          <northBoundingCoordinate><%= [@extent.upper_corner.y, 90].min %></northBoundingCoordinate>
-          <southBoundingCoordinate><%= [@extent.lower_corner.y, -90].max %></southBoundingCoordinate>
+          <westBoundingCoordinate><%= [@extent.top_left.lon, -180].max %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= [@extent.bottom_right.lon, 180].min %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= [@extent.top_left.lat, 90].min %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= [@extent.bottom_right.lat, -90].max %></southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <% end %>
@@ -68,122 +137,27 @@
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
+
+      <% unless @taxa.blank? %>
+      <taxonomicCoverage>
+        <generalTaxonomicCoverage>
+          For information about iNaturalist's taxonomy, see https://www.inaturalist.org/pages/curator+guide.
+        </generalTaxonomicCoverage>
+      <% unless @taxa.blank? %>
+      <% @taxa.each do |taxon| %>
+        <taxonomicClassification>
+          <taxonRankName><%= taxon.rank %></taxonRankName>
+          <taxonRankValue><%= taxon.name %></taxonRankValue>
+        </taxonomicClassification>
+      <% end %>
+      <% end %>
+      </taxonomicCoverage>
+      <% end %>
     </coverage>
 
     <purpose>
       <para>
         iNaturalist.org is a website where anyone can record their observations from nature. Members record observations for numerous reasons, including participation in citizen science projects, school projects, and personal fulfillment.
-
-        <% unless @observations_params.blank? %>
-          Observations included in this archive must meet the following requirements:
-          <itemizedList>
-            <% if @taxon %>
-              <listitem>
-                <para>
-                  Depicts an individual in
-                  <ulink url=<%=raw FakeView.taxon_url( @taxon ).encode( xml: :attr ) %>>
-                    <citetitle><%= render "taxa/taxon.txt", taxon: @taxon, no_common: true %></citetitle>
-                  </ulink>
-                </para>
-              </listitem>
-            <% end %>
-            <% if @place %>
-              <listitem>
-                <para>
-                  Coordinates in
-                  <ulink url=<%=raw FakeView.place_url( @place ).encode( xml: :attr ) %>>
-                    <citetitle><%= @place.display_name %></ulink></citetitle>
-                  </ulink>
-                </para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:license] == "none" %>
-              <listitem>
-                <para>
-                  Published without any license or waiver of intellectual property rights (all rights reserved)
-                </para>
-              </listitem>
-            <% elsif @observations_params[:license] != "any" && ( licenses = @observations_params[:license].to_s.split( "," ) ) && !licenses.blank? %>
-              <listitem>
-                <para>
-                  Published under one of the following licenses or waivers:
-                  <itemizedList>
-                    <% licenses.each do |license| %>
-                      <listitem>
-                        <para>
-                          <ulink url=<%=raw FakeView.url_for_license( license ).encode( xml: :attr ) %>>
-                            <citetitle><%= FakeView.license_name( license ) %></citetitle>
-                          </ulink>
-                        </para>
-                      </listitem>
-                    <% end %>
-                  </itemizedList>
-                </para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:projects] && project_ids = @observations_params[:projects].to_s.split( ",") %>
-              <listitem>
-                <para>
-                  In the following iNaturalist projects:
-                  <itemizedList>
-                    <% project_ids.each do |project_id| %>
-                      <% if ( project = Project.find( project_id ) rescue nil ) %>
-                        <listitem>
-                          <para>
-                            <ulink url=<%=raw FakeView.project_url( project ).encode( xml: :attr ) %>>
-                              <citetitle><%= project.title %></citetitle>
-                            </ulink>
-                          </para>
-                        </listitem>
-                      <% end %>
-                    <% end %>
-                  </itemizedList>
-                </para>
-              </listitem>
-            <% end %>
-            <% if !@observations_params[:quality_grade].blank? && quality_grades = @observations_params[:quality_grade].split( "," ) %>
-              <listitem>
-                <para>
-                  Achieved one of following iNaturalist quality grades: <%= quality_grades.map(&:humanize).join( ", " ) %>
-                </para>
-              </listitem>
-            <% end %>
-            <% if site = Site.find_by_id( @observations_params[:site_id] ) %>
-              <listitem>
-                <para>
-                  Affiliated with the iNaturalist Network Partner
-                  <ulink url=<%=raw FakeView.site_url( site ).encode( xml: :attr ) %>>
-                    <citetitle><%= site.name %></citetitle>
-                  </ulink>
-                </para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:created_d1] %>
-              <listitem>
-                <para>Created on or after <%= @observations_params[:created_d1] %></para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:created_d2] %>
-              <listitem>
-                <para>Created on or before <%= @observations_params[:created_d2] %></para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:with_photos] %>
-              <listitem>
-                <para>Has photos</para>
-              </listitem>
-            <% end %>
-            <% if @observations_params[:ofv_datatype] %>
-              <listitem>
-                <para>Has an observation field value of type <%= @observations_params[:ofv_datatype] %></para>
-              </listitem>
-            <% end %>
-          </itemizedList>
-          You can view observations meeting these requirements at
-          <ulink url=<%=raw @uri.encode( xml: :attr ) %>>
-            <citetitle><![CDATA[<%=raw @uri %>]]></citetitle>
-          </ulink>
-        <% end %>
       </para>
     </purpose>
 
@@ -196,7 +170,7 @@
       </maintenance>
     <% end %>
 
-    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "contact", :data => @contact} %>
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "contact", data: @contact %>
 
     <methods>
       <methodStep>

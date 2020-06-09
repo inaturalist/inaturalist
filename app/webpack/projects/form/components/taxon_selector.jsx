@@ -5,6 +5,8 @@ import util from "../../../observations/show/util";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
+/* global ROOT_TAXON_ID */
+
 class TaxonSelector extends React.Component {
   constructor( props, context ) {
     super( props, context );
@@ -24,6 +26,7 @@ class TaxonSelector extends React.Component {
       : I18n.t( "include_taxa" );
     const rule = inverse ? "not_in_taxon?" : "in_taxon?";
     const rulesAttribute = inverse ? "notTaxonRules" : "taxonRules";
+    const notIDs = [ROOT_TAXON_ID].concat( _.map( project[rulesAttribute], r => r.taxon.id ) );
     return (
       <div className="TaxonSelector">
         <label>{ label }</label>
@@ -36,6 +39,7 @@ class TaxonSelector extends React.Component {
             addProjectRule( rule, "Taxon", e.item );
             this.taxonAutocomplete.current.inputElement( ).val( "" );
           }}
+          notIDs={notIDs}
           config={config}
           placeholder={I18n.t( "taxon_autocomplete_placeholder" )}
         />

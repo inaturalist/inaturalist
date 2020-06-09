@@ -201,7 +201,6 @@ ru:
   a_default_taxon_name_will_automatically_created: |
     Название таксона по умолчанию будет автоматически создано из атрибута научного названия этого таксона. Когда вы сохраните этот новый таксон, вы сможете добавлять здесь другие названия  (народные названия, устаревшие научные названия и т.д.).
   a_flag_for_x: "флаг для %{x}"
-  a_member_of: "Член"
   a_member_of_taxon_html: "член %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -332,6 +331,7 @@ ru:
   add_plant_phenology_flower_budding_annotation: 'Добавить значение "Фенология растений: бутонизация"'
   add_plant_phenology_flowering_annotation: 'Добавить значение "Фенология растений: Цветение"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Добавить значение "Фенология растений: Нет доказательств цветения"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
   add_life_stage_teneral_annotation: 'Добавить значение "Стадия жизни: после линьки"'
   add_life_stage_subimago_annotation: 'Добавить значение "Стадия жизни: Субимаго"'
@@ -347,6 +347,7 @@ ru:
   add_several_observations_at_once: Добавить несколько наблюдений одновременно.
   add_sex_female_annotation: 'Добавить значение "Пол: Женский"'
   add_sex_male_annotation: 'Добавить значение "Пол: Мужской"'
+  add_sex_cannot_be_determined_annotation: 'Добавить значение "Пол: нельзя определить"'
   add_some_now: Добавить немного сейчас
   add_tag: Добавить тег
   add_tags: Добавить теги
@@ -393,7 +394,6 @@ ru:
   admin_s: Администратор(ы)
   admin_only: Только администраторы
   admin_tools: Средства Администрирования
-  agree: согласен
   agree_: Согласен
   agree?: Согласны?
   agree_with_current_taxon: Согласен с текущим таксоном
@@ -637,6 +637,8 @@ ru:
     Любые флаги спама на его контенте будут разрешены.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Вы уверены, что хотите удалить эти %{x} таксоны?"
   are_you_sure_you_want_to_remove_this_invitation: Вы уверены, что хотите удалить это приглашение?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Вы уверены что хотите удалить это наблюдение из %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы уверены что хотите удалить этот таксон из контрольного списка %{place}?"
   associated_observations: Связанные наблюдения
   associated_taxa: Связанные таксоны
@@ -655,7 +657,6 @@ ru:
   assessments: оценки
   associations: Ассоциации
   atlas_for_taxon_html: Атлас для %{taxon}
-  at_time: "в %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -758,6 +759,7 @@ ru:
   cant_merge_a_taxon_with_itself: Невозможно объединение таксона с самим собой.
   captive: В неволе
   captive_cultivated: В неволе / Культивируемое
+  captive_observations: Наблюдения в неволе
   card: Карта
   casual: обыкновенное
   casual_: Обыкновенное
@@ -850,7 +852,6 @@ ru:
   choose_a_list_above: Выберите список из приведённых выше
   choose_a_place: Выберите место
   choose_a_taxon: Выберите таксон (опционально)
-  choose_cc_licensed_photos_html: 'Выберите <a href="http://creativecommons.org/">открыть</a>-лицензированные фото с других сайтов или укажите наблюдения с %{site_name}. Постарайтесь выбрать изображения, которые <em>показывают диагностические особенности</em> и <em>выглядят так хорошо, как иконки</em>. <em>По умолчанию используется первое из изображений</em>.'
   choose_columns: Выберите столбцы
   choose_file: Выберите файл
   choose_files: Выберите файлы
@@ -928,17 +929,21 @@ ru:
   confirm_new_password: Подтвердить новый пароль
   confirm_now: Подтвердить сейчас
   confirm_your_info: Подтвердите вашу информацию
-  confirmed: подтверждено
   connect_to_provider: "Подключиться к %{provider}"
   connected_accounts: Связанные учётные записи
   connecting_flickr: "Подключение к Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Подключитесь к Flickr снова для авторизации прав на запись
   connecting_to_facebook: "Подключение к Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Подключение учётной записи %{site_name} к учётным записям на других сайтах позволит вам входить в %{site_name}, используя учётные данные этих сайтов."
+  cannot_be_changed_during_a_content_freeze: Нельзя изменить во время блокировки контента
   conservation_status: Природоохранный статус
   conservation_status_descriptions:
     status: Код состояния, ранг и т.д. Если существует короткий код типа E или CR, используйте его, но если нет, используйте полный статус, например, находящийся под угрозой исчезновения или находящийся на грани исчезновения.
     description: Краткое описание того, почему это было указано.
+    authority: |
+      Организация, которая объявила этот статус. Пожалуйста, используйте автозаполнение
+      , чтобы выбрать существующее разрешение перед добавлением нового. Вы можете пропустить это, если
+      *Вы* хотите быть в списке полномочий.
     place: Место, в котором этот статус ограничен.
     url: URL страницы с описанием этого статуса.
     geoprivacy: Значение по умолчанию приватности местоположения для наблюдений этого таксона
@@ -976,6 +981,7 @@ ru:
     teneral: После линьки
     subimago: Субимаго
     pupa: Куколка
+    no_evidence_of_flowering: Нет доказательств цветения
     nymph: Нимфа
     larva: Личинка
     egg: Яйцо
@@ -990,7 +996,9 @@ ru:
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
+    no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
     teneral: Взрослые, которые недавно окуклились, но еще не достигли своей окончательной взрослой формы
+    cannot_be_determined: Не может быть определен на основании представленных доказательств
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1068,6 +1076,7 @@ ru:
   custom_project_was_successfully_updated: CustomProject был успешно обновлён.
   customize_location: Настройка местоположения
   darr_apply_darr: "&darr; Применить &darr;"
+  daily_users: Пользователей за сутки
   dashboard: Панель мониторинга
   data_deficient: нехватка данных
   data_quality: Качество данных
@@ -1234,7 +1243,6 @@ ru:
   edit_field: Редактировать поле
   edit_license: Редактировать лицензию
   edit_multiple_dates: Редактировать несколько дат
-  edit_multiple_descriptions: Редактировать множественные описания
   edit_multiple_locations: Редактировать множественные местоположения
   edit_multiple_species: Редактировать несколько видов
   edit_notes: Редактировать примечания
@@ -1273,6 +1281,7 @@ ru:
   editing_project: Редактирование %{project}
   editing_project_asset: Редактирование актива проекта для
   editing_subscription_to_x_html: "Редактирование подписки на %{x}"
+  editing_taxon: Редактировать %{taxon}
   editing_taxon_link: Редактирование ссылки на таксон
   editing_taxon_name_for_taxon_html: Редактирование названия таксона "%{name}" для %{taxon}
   editing_taxon_range: Редактирование ареала таксона
@@ -1329,7 +1338,10 @@ ru:
   exact_location: Точное местоположение
   exact_rank: Точный ранг
   except: за исключением
-  exclude_x: Исключить %{x}
+  exclude_places: Исключить места
+  exclude_projects: Исключить проекты
+  exclude_taxa: Исключить таксоны
+  exclude_users: Исключить пользователей
   exclusion_filters: Фильтры исключений
   existing_flags: Существующие флаги
   exit_full_screen: "Выйти из полноэкранного режима"
@@ -1362,6 +1374,7 @@ ru:
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
   featured: Рекомендуемые
+  #Title for a button or section describing the "featured" status of a project
   featuring: Демонстрация
   feedback: Обратная связь
   #Plural noun, as in Atom and RSS feeds
@@ -1503,7 +1516,6 @@ ru:
   forum_desc: |
     Форум - это место для обсуждения самого iNat, включая помощь и поддержку, пожелания, отчеты об ошибках, объявления и многое другое.
   frequency: Частота наблюдения
-  from: Из
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
   from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
@@ -1511,8 +1523,6 @@ ru:
   from_photos: Из фотографий
   from_place: Из места
   from_soundcloud: Из Soundcloud
-  from_your_site_observations: "Из наблюдений %{site_name}"
-  from_licensed_site_observations: "Из лицензированных наблюдений %{site_name}"
   full_screen: Полный экран
   fungi:
     one: гриб
@@ -1546,6 +1556,7 @@ ru:
   got_it!: Понятно!
   got_your_data_somewhere_else?: Ваши данные где-то ещё? Мы можем помочь.
   graft: Привязка
+  graft_taxon: Нарастить %{taxon}
   grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в наше таксономическое дерево, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
   grant_role: "%{grant} %{role} роль"
   grid: Плитка
@@ -1655,6 +1666,7 @@ ru:
   ignore_and_continue: Игнорировать и продолжить
   ignore_times: Пропустите время
   image_must_be_exactly: изображение должно быть ровно 950 пикселей в ширину и не более 400 пикселей в высоту
+  image_size_control: Управление размером изображения
   imperiled: Под угрозой
   import: Импорт
   import_all_photos_as_observations: Импортировать все фото в качестве наблюдений
@@ -1676,6 +1688,10 @@ ru:
   inaturalist_network_affiliation: Присоединившиеся к сети iNaturalist
   #Label for messages you've received
   inbox: Входящие
+  include_places: Включить места
+  include_projects: Включить проекты
+  include_taxa: Включить таксоны
+  include_users: Включить пользователей
   including: включая
   increase_brightness: Увеличить яркость
   in_progress: в процессе выполнения
@@ -1726,6 +1742,8 @@ ru:
   join: Присоединиться
   join_and_add_an_observation_to_project_html: Присоединиться и добавить наблюдение к %{project}
   join_project: Присоединиться к этому проекту
+  #Prompt to join a specific project
+  join_project?: Присоединиться к %{project}?
   join_some_projects_and_invite_some_observations_html: "Присоединиться к некоторым %{join_url} проектам и %{invite_url} пригласить к участию некоторые наблюдения"
   join_the_largest_group_of_naturalists_in_the_world: Присоединяйтесь к самой большой группе натуралистов в мире!
   join_this_project: Присоединиться к этому проекту
@@ -1750,6 +1768,9 @@ ru:
   label_to_group_a_batch_of_taxon_changes: Метка для группировки пакета изменений таксона
   location_private: Местоположение является конфиденциальным
   location_unknown: Местоположение неизвестно
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Блокировка уровня масштабирования
   language_slash_type: Язык / Тип
   #Large photo size
   large: большой
@@ -1890,7 +1911,6 @@ ru:
   loading: "Загрузка…"
   loading_flickr_photos: "Загрузка фото Flickr..."
   loading_images: Загрузка изображений...
-  loading_map: Загрузка карты…
   loading_metadata: Загрузка метаданных...
   loading_preview_and_code: Загрузка предварительного просмотра и кода...
   loading_suggestions: Загрузка предложений...
@@ -2080,14 +2100,18 @@ ru:
       'y': "1г"
       #Short text representing %d years in the past
       yy: "%dг"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Месяц
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесячный спонсор</a> с %{date}
@@ -2202,7 +2226,7 @@ ru:
   new_taxon_range: Новый ареал таксона
   new_taxonomic_change: Новые таксономические изменения (Черновик)
   new_trip: Новое путешествие
-  new_updates_in_the_last_24_hours_from: "Новые обновления за последние 24 часа от %{site_name}"
+  new_updates_in_the_last_24_hours_from: "Обновления за последние 24 часа от %{site_name}"
   new_users: Новые участники
   new_users_in_year: "Новые пользователи в %{year}"
   new_users_w_7_obs: Новые участники с 7 набл за неделю
@@ -2237,6 +2261,7 @@ ru:
   no_favorites_added:
     current_user: Вы ещё не добавляли ничего к фаворитам.
     user: "%{user} не добавил ничего к фаворитам"
+  no_journal_posts_yet: В журнале пока нет сообщений
   no_license_all_rights_reserved: Нет лицензии (Все права защищены)
   no_managers_set: Менеджеры не назначены
   no_matching_article_from_x: "Нет соответствующей статьи из %{x}"
@@ -2253,7 +2278,6 @@ ru:
   no_more_taxa_to_load: Больше нет таксонов для загрузки!
   no_more_results_found: Больше ничего не найдено
   no_new_messages: Нет новых сообщений
-  no_news_yet: Пока нет новостей
   no_observations: Нет наблюдений
   no_observations_from_this_place_yet: Пока нет наблюдений в этом месте.
   no_observations_matching_those_ids: Нет наблюдений, соответствующих этим идентификациям.
@@ -2466,9 +2490,7 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: "ОК"
-  on_date: "на %{date}"
   on_day: ", "
-  on_your_life_list: в вашем списке жизни
   onboarding:
     observe_panel_title: Давайте начнём публиковать некоторые наблюдения
     observe_panel_body_p1_local: Нужно вдохновение? Вот некоторые организмы, наблюдаемые поблизости...
@@ -2531,7 +2553,6 @@ ru:
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "... или выберите из нескольких таксонов верхнего уровня"
   or_if_you_dont_want_email: "Или если вы просто не хотите ничего получать по электронной почте..."
-  or_upload: или загрузить
   orange: оранжевый
   order: Упорядочить
   order_by: Сортировать по
@@ -2570,7 +2591,6 @@ ru:
   other_taxa_commonly_misidentified_as_this_subsection: Другие таксоны, которые обычно ошибочно идентифицируются как эта подсекция
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Другие таксоны, которые обычно ошибочно идентифицируются как эта подсекция, в <a href="%{url}">%{place}</a>
   our_blog: Наш блог
-  out_of_range: Вне диапазона
   output_taxon: Выходной таксон
   overview: Обзор
   overlapping_downstream_taxon_frameworks_html: "Перекрытие основ таксона в направлении вниз: %{count}"
@@ -2647,7 +2667,6 @@ ru:
     Закрепить эту комбинацию координат, точности, приватности местоположения и примечаний локалитета для последующего использования.
   place: Место
   placeholder: Заполнитель
-  place_added_to_inat_by: "Место добавлено к %{site_name}"
   place_autocomplete_placeholder: Национальный парк Зайон, Майами и т.п.
   place_deleted: Место удалено.
   place_geo:
@@ -2678,7 +2697,13 @@ ru:
       Delegation: Подокруг
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: подокруг
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Подразделение департамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: подразделение департамента
       District: Район
       district: район
@@ -3082,7 +3107,7 @@ ru:
   present: присутствует
   press: Пресса
   preview: Предварительный просмотр
-  preview_observations: Просмотр наблюдений
+  preview_observations_with_these_observation_requirements: Предварительный просмотр наблюдений согласно требованиям проекта
   preview_of_synced_observation: "<strong>Предварительный просмотр</strong> синхронизированного наблюдения. <a href=\"%{url}\">Отменить?</a>"
   preview_personal_message: "Я хотел бы, чтобы вы присоединились ко мне на сайте %{site}, где вы сможете регистрировать свои наблюдения растений и животных, отслеживать свой список жизни и узнавать о мире природы!"
   preview_your_message: Просмотреть ваше сообщение
@@ -3124,6 +3149,7 @@ ru:
   project_group_description: Группа, к которой относится проект
   project_home: Начальная страница проекта
   project_icon: Значок проекта
+  project_journal: Журнал проекта
   project_id_or_url_slug: Идентификатор или URL-адрес проекта, например, 333 или мой-проект
   project_invitations: 'Приглашения в проект'
   project_list: Список проектов
@@ -3133,6 +3159,7 @@ ru:
   project_curators_added_some_of_your_observations_html: |
     кураторы добавили некоторые из ваших наблюдений к <a href="%{url}">%{project}</a>
   project_members: "Участники %{project}"
+  project_members_only: Только участники проекта
   project_membership_model_description: Ваш проект открыт для всех или только для людей, которых вы приглашаете?
   project_observations: Наблюдения проекта
   project_post: Сообщение проекта
@@ -3142,7 +3169,7 @@ ru:
   project_start_time_datetime: "Начало: %{datetime}"
   project_that_does_not_contain_these_observations: Проект, не содержащий данные наблюдения
   project_type_description: |
-    Оценки и биоблицы - специальные типы проектов. Оценки используются в совместных работах с наборами оценок видов, обычно  для целей охраны природы. Биоблицы - это события, имеющие заданные начало и конец.
+    Оценки и биоблицы - специальные типы проектов. Оценки используются в совместных работах с наборами оценок видов, обычно для целей охраны природы. Биоблицы - это события, имеющие заданные начало и конец.
   project_user_cannot_be_found: Участник проекта не найден
   project_user_was_invalid: "Недействительный пользователь проекта: %{project_user}"
   project_was_successfully_created: Проект был успешно создан.
@@ -3341,6 +3368,7 @@ ru:
   rules_for_becoming_a_member: Как стать участником
   rules_for_becoming_memner: Как стать участником
   rules_types:
+    must_be_captive: должно быть в неволе / культивируемое
     must_be_georeferenced: должен иметь геолокацию
     must_be_identified: должен быть идентифицирован
     must_be_on_list: должен быть в списке
@@ -3348,12 +3376,6 @@ ru:
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить куратору проекта видеть координаты.
   running_total: Текущий итог
-  same_day_obscured: Другое наблюдение этого участника за данный день скрыто
-  same_day_obscured_desc: |
-    Когда координаты скрыты из-за находящегося под угрозой таксона, все другие наблюдения этого человека в этот день также скрываются, чтобы люди не могли угадать координаты на основе наблюдений, сделанных примерно в то же время. Люди могут также применить этот способ защиты к координатам, которые они сочли защищёнными.
-  same_day_private: Другое наблюдение этого участника за этот же день является конфиденциальным
-  same_day_private_desc: |
-    Когда координаты скрыты из-за таксона, находящегося под угрозой, все остальные наблюдения этого человека в этот день также скрыты, чтобы люди не могли угадать координаты на основе наблюдений, сделанных примерно в одно и то же время. Люди могут также применять эту защиту к координатам, которые они хотят скрыть.
   said: добавил
   satellite: спутниковый
   save: Сохранить
@@ -3383,6 +3405,8 @@ ru:
   scale_colon: "Шкала:"
   schemes: Схемы
   schemes_including: Схемы, включающие
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Научное название
   search: Поиск
   search_all_fields: Поиск по всем полям
   search_by_name_or_email: Поиск по имени или e-mail
@@ -3467,7 +3491,9 @@ ru:
   show_taxa_from_place: "Показать таксоны из %{place}"
   show_total_counts: Показать общее количество
   show_uncountable_species: Показывать неисчислимые виды
-  showing_one_to: Показано 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Показанные первыми %{x}
   showing_taxa_from_everywhere: "Показывать таксоны отовсюду"
   showing_taxa_from_place: "Показ таксонов из %{place}"
   showing_x_of_y: Показано %{x} из %{y}
@@ -4063,6 +4089,7 @@ ru:
     tooltips:
       add: Добавить наблюдение(я)
       combine: Объединить выбранные наблюдения
+      duplicate: Дублировать выбранные наблюдения
       photo_failed: Фото не удалось загрузить
       remove: Удалить выбранные наблюдения
       remove_observation: Удалить наблюдение
@@ -4125,6 +4152,7 @@ ru:
   user_commented_on: "%{user} прокомментировал ваш %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} добавил к фаворитам %{noun} от %{owner}"
   user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
@@ -4157,11 +4185,9 @@ ru:
   username_or_email: Имя пользователя или адрес электронной почты
   username_or_user_id: Имя пользователя или его идентификатор
   users: Пользователи
-  users_comment_html: "<a href='%{url}'>%{user}</a> комментарий"
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> идентификация"
   users_latest_observations_on_site: "последние наблюдения %{user} на %{site}"
   users_profile: "Профиль %{user}"
   users_projects: "Проекты %{user}"
@@ -4209,8 +4235,6 @@ ru:
   view_observation_flags: Посмотреть флаги наблюдения
   view_observations_by_everyone: Просмотр наблюдений всеми
   view_observations_by_these_users: Посмотреть наблюдения этих пользователей
-  view_observations_causing_this_observation_to_be_obscured: |
-    Посмотреть наблюдения, из-за которых данное наблюдение имеет скрытое местоположение
   view_observations_of_this_taxon_by: 'Посмотреть наблюдения этого таксона:'
   view_on: Посмотреть в
   view_on_flickr: Посмотреть на Flickr
@@ -4501,6 +4525,14 @@ ru:
     announcements:
       locales_desc: |
         Удерживайте CMD- или SHIFT, чтобы сделать множественный выбор. Если не выбирать ничего, объявление будет отображаться для всех пользователей, независимо от языкового стандарта. Выбор языка без региона *не* будет отображать языковые стандарты регионов, например, если вы выбрали en, объявление не будет отображаться для людей, которые выбрали en-US. Если вы хотите нацелиться на оба, выберите оба. Если вы хотите показать объявление для всех участников сайта, просто оставьте это поле пустым.
+    content_freeze:
+      content_freeze: Блокировка контента
+      during_this_time: |
+        Во время блокировки контента некоторые типы контента не могут быть созданы, удалены или изменены.
+      this_functionality_will_return: |
+        Эта функциональность вернется, как только прекратится блокировка контента.
+      we_expect_this_functionality_will_return_by_date: |
+        Мы ожидаем, что эта функциональность вернётся %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5125,13 +5157,6 @@ ru:
     photos:
       forbidden_notice_html: |
         В данный момент у нас нет разрешения на доступ к этим фото. Возможно, вам понадобится отключить и снова подключить учётную запись в ваших <a href="/users/edit">настройках</a>, чтобы предоставить нам дополнительные разрешения.
-      inviter:
-        automatically_add_to_project: Автоматически добавлять к проекту
-        automatically_id_the_new_obs_as: Автоматически идентифицировать нов набл как
-        dont_forget_the_invite_link_placeholder: "не забудьте заполнить {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Пригласите других фотографов на %{site_name}"
-        invite_your_friends_description: |
-          Для людей с Facebook и Flickr можно с легкостью обеспечить добавление их фото в качестве %{site_name} наблюдений. Просто оставьте комментарий, включающий специальное указанное ниже URL-приглашение. Вы также можете предварительно выбрать таксон и проект для нового наблюдения.
       show:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.
@@ -5189,6 +5214,8 @@ ru:
           Биоблиц - это мероприятие, в котором участники пытаются наблюдать как можно больше видов в течение заданного периода времени. Это интересный способ познакомить людей с биоразнообразием при одновременном сборе ценных данных.
           </p>
         change_admin_desc: Назначьте одного из кураторов проекта новым администратором.
+        change_owner_alert: |
+          Это лишит вас возможности удалять этот проект или же передавать право собственности на него. Вы хотите продолжить?
         cover_desc: "Необязательное изображение баннера, которое появится в верхней части страницы проекта. Должно иметь ширину 950px и высоту менее 400px."
         custom_project_fields_means: "Настройте баннер проекта, добавьте боковой контент и отредактируйте CSS."
         end_time_desc: "Время окончания вашего биоблица. Должно быть не позже чем через  один год после времени начала"
@@ -5199,6 +5226,8 @@ ru:
           Похоже, что этот проект может быть преобразован в новый <a href="%{url}">коллекционный проект</a>.
         last_aggregated_at_desc: |
           Время, когда агрегатор завершил добавление наблюдений в этот проект
+        #Label for button to make another user the owner of a project
+        make_owner: Сделать владельцем
         no_curators: |
           Кураторов проекта нет. Если вы хотите назначить нового человека администратором, он должен сначала присоединиться к этому проекту, а вы должны назначить его куратором.
         observation_aggregation_desc_html: |
@@ -5273,6 +5302,8 @@ ru:
           Готовы ли вы уйти с этой страницы, чтобы продублировать этот проект?
         are_you_sure_you_want_to_delete: Вы уверены, что хотите удалить этот проект?
         can_be_included_in_multiple: Может быть включён в несколько зонтичных проектов
+        check_the_box_to_include_member_observations: |
+          Установите расположенный ниже флажок, чтобы включить только наблюдения, сделанные пользователями, которые присоединились к этому проекту. Используйте расположенный выше фильтр «Исключить пользователей», чтобы исключить наблюдения определенных пользователей, включая владельца проекта и администраторов.
         click_through_to_individual_projects: Перейдите к отдельным проектам
         collection_projects: Коллекционные проекты
         collection_project_features: "Особенности коллекционных проектов:"
@@ -5284,6 +5315,9 @@ ru:
         do_you_need_features_from_traditional: |
           Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
         duplicate_project: Дублировать проект
+        include_annotated_observations: |
+          Включить только наблюдения, имеющие определенным атрибут (например, этап жизни) или конкретный атрибутом и его значение (например, этап жизни = взрослый).
+          Существует ограничение в один фильтр значений на проект.
         leaderboards_among_individuals: Таблицы лидеров среди <strong>отдельных лиц</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Лидеры <strong>проектов</strong>
@@ -5295,11 +5329,14 @@ ru:
           Примечание: эти пользователи смогут редактировать ВСЕ детали проекта, включая администраторов.
         note_you_can_delete_the_time: |
           (Примечание: вы можете удалить часовой пояс и точное время, если вы хотите включить целые дни.)
+        note_about_unselected_filters: |
+          Примечание: если вы не выберете таксоны, места или пользователей, всё будет включено по умолчанию.
+        only_display_member_observations: |
+          Отображать наблюдения только от участников проекта (тех, которые присоединились к проекту)
+        optionally_filter_media: Опционально фильтр для наблюдений с фотографиями, звуками или тем и другим.
         or_drag_and_drop: (или перетащить и отпустить)
         please_specify_the_requirements: |
           Пожалуйста, укажите требования к наблюдениям, которые будут добавлены в этот проект.
-        please_specify_the_requirements_html: |
-          Просьба указать требования к наблюдениям, которые должны быть включены в этот проект. Можно выбрать несколько видов, мест, пользователей и уровней качества для автоматического включения или оставить поле пустым, если у вас нет к нему особых требований. Пояснения к каждому полю можно найти по <a href="%{url}">этой ссылке</a>.
         project_background_color: Цвет фона описания проекта
         project_background_color_help: Не забудьте выбрать цвет достаточно темным, чтобы белый наложенный текст был разборчивым.
         project_banner: Баннер проекта (PNG, JPG, или GIF)
@@ -5313,11 +5350,19 @@ ru:
         project_summary_help: |
           Дайте краткое объяснение вашего проекта. Примерно первые 200 символов будут видны справа от баннера главного экрана проекта, поэтому сначала поместите лучший материал!
         project_summary_placeholder: Откройте для себя птиц парка Golden Gate и следите за ними ...
+        select_native_to_include: |
+          Выберите «Естественный», чтобы включить только те таксоны, которые были помечены как «Естественные» для мест в вашем проекте. Выберите «Интродуцированный», чтобы включить только те таксоны, которые были помечены как «Интродуцированные» для мест в вашем проекте.
+        select_quality_grade: |
+          Выберите хотя бы одну оценку качества. Подробное разъяснение каждой категории качества можно найти на нашей странице часто задаваемых вопросов <a href="%{url}">FAQ page</a>.
         show_projects_as_flags: Показывать проекты как флажки на карте
+        specify_project_filters: |
+          Укажите фильтры, по которым наблюдения будут включаться в ваш проект. Вы можете выбрать несколько видов (или таксонов), мест, дат или других критериев для автоматического включения наблюдений.
         start_and_end_times_for_bioblitzes: Дата/время начала и окончания (для событий типа биоблицев)
         traditional_projects_cannot_be_copied: Традиционный проект не может быть скопирован
         umbrella_project_features: "Особенности зонтичного проекта:"
         unique_url_for_outreach: Уникальный URL для охвата
+        use_this_for_a_time_limited_event: |
+          Используйте это для ограниченного по времени события, биоблица или сезонного проекта. Выберите одну дату, диапазон дат или месяцы года, в которые должны выполняться наблюдения (независимо от года). При использовании раздела «Диапазон дат» убедитесь, что выбраны правильные часы и часовые пояса, или удалите текст о часовом поясе, чтобы включить наблюдения, сделанные в любое время в течение всего дня. Вы можете оставить поле «Дата начала» или «Дата окончания» пустым, если хотите ограничить проект только одной датой.
         users_can_follow_your_project: Пользователи могут следить за обновлениями вашего проекта через сообщения журнала
         use_this_link_to_create_html: |
           Используйте <a href="%{url}">эту ссылку</a> для создания традиционного проекта взамен этого.
@@ -5381,6 +5426,8 @@ ru:
           Убедитесь, что вы прочитали о различиях в нашем <a href="%{url}" target="_blank">блоге о коллекционных проектах</a>.
         this_is_a_preview: |
           Это просмотр того, как будет выглядеть ваш проект в виде проекта коллекции.
+        this_project_has_not_defined_requirements: |
+          Этот проект не определил никаких требований к наблюдению. В проекте должен быть выбран один или несколько таксонов (например, птицы, хвойные), мест (например, Бразилия, Йеллоустон), пользователей и/или даты, чтобы наблюдения начали отображаться .
       updates_desc: |
         Получайте последнюю информацию о данном проекте на панели мониторинга и по электронной почте в ежедневных обновлениях.
     search:
@@ -5592,6 +5639,7 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
+          "Plant Phenology=No Evidence of Flowering": Нет доказательств
           "Life Stage=egg": Яйцо
           "Life Stage=larva": Личинка
           "Life Stage=teneral": После линьки
@@ -6076,9 +6124,11 @@ ru:
       invalid: недопустимо
       less_than: должно быть меньше %{count}
       less_than_or_equal_to: должно быть меньше или равно %{count}
+      new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
       not_a_number: не является числом
       not_an_integer: должно быть целым
       odd: должно быть нечётным
+      only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
       record_invalid: 'Ошибка проверки: %{errors}'
       requires_privilege_speech: |
         для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
@@ -6222,9 +6272,11 @@ ru:
         invalid: недопустимо
         less_than: должно быть меньше %{count}
         less_than_or_equal_to: должно быть меньше или равно %{count}
+        new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
         not_a_number: не является числом
         not_an_integer: должно быть целым
         odd: должно быть нечётным
+        only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
         record_invalid: 'Ошибка проверки: %{errors}'
         requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
@@ -6370,9 +6422,11 @@ ru:
         invalid: неверно
         less_than: должно быть меньше %{count}
         less_than_or_equal_to: должно быть меньше или равно %{count}
+        new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
         not_a_number: не является числом
         not_an_integer: должно быть целым
         odd: должно быть нечетным
+        only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
         record_invalid: 'Ошибка проверки: %{errors}'
         requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений

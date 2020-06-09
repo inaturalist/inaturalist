@@ -87,6 +87,11 @@ const annotationShortcuts = [
     term: "Plant Phenology",
     value: "Fruiting"
   },
+  {
+    shortcut: "p n",
+    term: "Plant Phenology",
+    value: "No Evidence of Flowering"
+  },
 
   // Sex
   {
@@ -98,6 +103,11 @@ const annotationShortcuts = [
     shortcut: "s m",
     term: "Sex",
     value: "Male"
+  },
+  {
+    shortcut: "s c",
+    term: "Sex",
+    value: "Cannot Be Determined"
   },
 
   // Alive or Dead

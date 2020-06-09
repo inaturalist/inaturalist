@@ -2231,6 +2231,23 @@ describe Observation do
       expect( o.to_plain_s ).not_to be =~ /#{original_place_guess}/
       expect( o.private_place_guess ).not_to be_blank
     end
+
+    it "should set public coordinates to something other than the private coordinates when going from private to obscured" do
+      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.private_latitude ).not_to eq o.latitude
+      o.update_attributes( geoprivacy: Observation::PRIVATE )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.private_latitude ).not_to eq o.latitude
+      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      Delayed::Worker.new.work_off
+      o.reload
+      puts "o.private_latitude: #{o.private_latitude}"
+      puts "o.latitude:         #{o.latitude}"
+      expect( o.private_latitude ).not_to eq o.latitude
+    end
   end
 
   describe "geom" do
@@ -2364,53 +2381,6 @@ describe Observation do
         :include => [:user, :taxon, :iconic_taxon])).not_to match(/<script/)
       o = Observation.make!(:species_guess => "<script lang='javascript'>window.close()</script>")
       expect(o.to_json).not_to match(/<script/)
-    end
-  end
-
-  describe "set_out_of_range" do
-    before(:each) do
-      @taxon = Taxon.make!
-      @taxon_range = TaxonRange.make!(
-        :taxon => @taxon, 
-        :geom => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
-      )
-    end
-    it "should set to false if observation intersects known range" do
-      o = Observation.make!(:taxon => @taxon, :latitude => 0.5, :longitude => 0.5)
-      o.set_out_of_range
-      expect(o.out_of_range).to eq false
-    end
-    it "should set to true if observation does not intersect known range" do
-      o = Observation.make!(:taxon => @taxon, :latitude => 2, :longitude => 2)
-      o.set_out_of_range
-      expect(o.out_of_range).to eq true
-    end
-    it "should set to null if observation does not have a taxon" do
-      o = Observation.make!
-      o.set_out_of_range
-      expect(o.out_of_range).to eq nil
-    end
-    it "should set to null if observation changes to have no taxon" do
-      o = without_delay { Observation.make!(:taxon => @taxon, :latitude => 2, :longitude => 2) }
-      expect(o).to be_out_of_range
-      without_delay { o.update_attributes(taxon: nil) }
-      o.reload
-      expect(o.out_of_range).to eq nil
-    end
-    it "should set to null if taxon does not have a range" do
-      t = Taxon.make!
-      o = Observation.make!(:taxon => t)
-      o.set_out_of_range
-      expect(o.out_of_range).to eq nil
-    end
-  end
-
-  describe "out_of_range" do
-    it "should get set to false immediately if taxon set to nil" do
-      o = Observation.make!(:taxon => Taxon.make!, :out_of_range => true)
-      expect(o).to be_out_of_range
-      o.update_attributes(:taxon => nil)
-      expect(o).not_to be_out_of_range
     end
   end
 

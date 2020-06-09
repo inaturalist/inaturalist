@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ProgressChartContainer from "../containers/progress_chart_container";
-import IdentifierStatsContainer from "../containers/identifier_stats_container";
 
-const SideBar = ( { blind } ) => (
+const SideBar = ( { blind, hidden, setSideBarHidden } ) => (
   <div className="SideBar">
+    <button
+      className="hide-button"
+      type="button"
+      onClick={() => setSideBarHidden( !hidden )}
+    >
+      <i className={`fa fa-angle-double-${hidden ? "left" : "right"}`} />
+    </button>
     <ProgressChartContainer />
-    <IdentifierStatsContainer />
     { blind ? (
       <div className="alert alert-warning">
         <p>
@@ -52,7 +57,9 @@ const SideBar = ( { blind } ) => (
 );
 
 SideBar.propTypes = {
-  blind: PropTypes.bool
+  blind: PropTypes.bool,
+  hidden: PropTypes.bool,
+  setSideBarHidden: PropTypes.func
 };
 
 export default SideBar;

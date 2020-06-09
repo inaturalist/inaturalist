@@ -123,7 +123,6 @@ da:
   a_default_taxon_name_will_automatically_created: |
     Et standard taksonnavn vil automatisk blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige navne osv.)
   a_flag_for_x: "en markering for %{x}"
-  a_member_of: "Et medlem af"
   a_member_of_taxon_html: "et medlem af %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -254,6 +253,7 @@ da:
   add_plant_phenology_flower_budding_annotation: 'Tilføj "Plantefænologi: Blomstknopbærende" anmærkning'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Tilføj anmærkningen "Plantefenologi: Intet bevis på Blomstring"'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
   add_life_stage_teneral_annotation: 'Tilføj anmærkningen "Livsstadie: teneral"'
   add_life_stage_subimago_annotation: 'Tilføj noten "Livsstadie: subimago"'
@@ -269,6 +269,7 @@ da:
   add_several_observations_at_once: Tilføj flere observationer på en gang.
   add_sex_female_annotation: 'Tilføj anmærkningen "Køn: Hunkøn"'
   add_sex_male_annotation: 'Tilføj noten "Køn: Hankøn"'
+  add_sex_cannot_be_determined_annotation: 'Tilføj "Køn: Kan ikke bestemmes" anmærkning'
   add_some_now: Tilføj noget nu
   add_tag: Tilføj tag
   add_tags: Tilføj tags
@@ -314,7 +315,6 @@ da:
   admin_s: Administrator(er)
   admin_only: Kun admin.
   admin_tools: Administrator værktøjer
-  agree: enig
   agree_: Enig
   agree?: Enig?
   agree_with_current_taxon: Enig i den aktuelle takson
@@ -531,6 +531,8 @@ da:
     Eventuelle spam-markeringer på deres indhold vil blive løst.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Er du sikker på at du vil fjerne disse %{x} taksa?"
   are_you_sure_you_want_to_remove_this_invitation: Er du sikker på, at du ønsker at fjerne denne invitation?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Sikker på, at du vil fjerne denne observation fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne denne takson %{place}'s tjekliste?"
   associated_observations: Tilknyttede observationer
   associated_taxa: Tilknyttede taksa
@@ -549,7 +551,6 @@ da:
   assessments: vurderinger
   associations: Foreninger
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "ved %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -652,6 +653,7 @@ da:
   cant_merge_a_taxon_with_itself: Kan ikke sammenlægge en takson med sig selv.
   captive: I fangenskab
   captive_cultivated: I fangenskab / dyrket
+  captive_observations: Opdrætsobservationer
   card: Kort
   casual: uformel
   casual_: Almindelig
@@ -747,7 +749,6 @@ da:
   choose_a_list_above: Vælg en af ovenstående lister.
   choose_a_place: Vælg et sted
   choose_a_taxon: Vælg en takson (valgfrit)
-  choose_cc_licensed_photos_html: 'Vælg <a href="http://creativecommons.org/">åben</a> licenserede fotos fra andre websteder eller vælg fra %{site_name} observationer. Prøv at vælge billeder, der <em>viser diagnostiske egenskaber</em> og <em> ser godt ud som ikoner</em>. <em>Det første bliver standard fotoet</em>.'
   choose_columns: Vælg kolonner
   choose_file: Vælg fil
   choose_files: Vælg filer
@@ -825,13 +826,13 @@ da:
   confirm_new_password: Bekræft ny adgangskode
   confirm_now: Bekræft nu
   confirm_your_info: Bekræft din info
-  confirmed: bekræftet
   connect_to_provider: "Tilknyt %{provider}"
   connected_accounts: Tilknyttede konti
   connecting_flickr: "Tilknytter til Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Forbind til Flickr igen for at godkende skriverettigheder
   connecting_to_facebook: "Tilknytter til Facebook"
   connecting_your_inat_account_to_accounts_other_sites: "Ved at tilknytte din %{site_name} konto med konti på andre websteder kan du logge ind på %{site_name} ved hjælp af dine legitimationsoplysninger fra disse websteder."
+  cannot_be_changed_during_a_content_freeze: Kan ikke ændres under en indholdsfrysning
   conservation_status: Bevaringsstatus
   conservation_status_descriptions:
     status: Status kode, rang osv. Hvis der findes en kort kode som E eller CR, skal du bruge det, men hvis ikke, skal du bruge den fulde status, f.eks. truet eller kritisk truet.
@@ -877,6 +878,7 @@ da:
     teneral: Tenerel
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Intet bevis på Blomstring
     nymph: Nymfe
     larva: Larve
     egg: Æg
@@ -891,7 +893,9 @@ da:
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
+    no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
+    cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
@@ -969,6 +973,7 @@ da:
   custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
   customize_location: Tilpas sted
   darr_apply_darr: "&darr; Anvend &darr;"
+  daily_users: Daglige brugere
   dashboard: Betjeningspanel
   data_deficient: Mangelfuld data
   data_quality: Datakvalitet
@@ -1139,7 +1144,7 @@ da:
   edit_field: Redigér felt
   edit_license: Redigér licens
   edit_multiple_dates: Redigér flere datoer
-  edit_multiple_descriptions: Redigér flere beskrivelser
+  edit_multiple_descriptions: Redigér flere notater
   edit_multiple_locations: Redigér flere steder
   edit_multiple_species: Redigér flere arter
   edit_notes: Redigér noter
@@ -1176,6 +1181,7 @@ da:
   editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
+  editing_taxon: Redigering af %{taxon}
   editing_taxon_link: Redigering af takson link
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigering af takson område
@@ -1233,7 +1239,10 @@ da:
   exact_location: Eksakt_sted
   exact_rank: Eksakt række
   except: bort set fra
-  exclude_x: Ekskluder %{x}
+  exclude_places: Ekskludér steder
+  exclude_projects: Ekskludér projekter
+  exclude_taxa: Ekskludér taksa
+  exclude_users: Ekskludér brugere
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
@@ -1266,6 +1275,7 @@ da:
   favorites: "Favoritter"
   feature_this_project_: "Fremhæv dette projekt"
   featured: Udvalgte
+  #Title for a button or section describing the "featured" status of a project
   featuring: Indeholder
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
@@ -1408,7 +1418,6 @@ da:
     Forum er en platform hvor selve iNaturalist og dets funktioner kan diskuteres, herunder hjælp, support,
     funktions anmodninger, fejlrapporter, meddelelser og meget mere.
   frequency: Hyppighed
-  from: Fra
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
@@ -1416,8 +1425,6 @@ da:
   from_photos: Fra fotos
   from_place: Fra et sted
   from_soundcloud: Fra Soundcloud
-  from_your_site_observations: "Fra %{site_name} observationer"
-  from_licensed_site_observations: "Fra licens %{site_name} observationer"
   full_screen: Fuldskærm
   fungi:
     one: svamp
@@ -1449,6 +1456,7 @@ da:
   got_it!: Forstået!
   got_your_data_somewhere_else?: Har du dine data et andet sted? Vi kan hjælpe.
   graft: Pode
+  graft_taxon: Podet %{taxon}
   grafting_attemps_to_insert_this_taxon: Podning forsøger at indsætte denne takson i vores taksonomiske træ, finde et eksisterende overordnet takson eller opret alle de nødvendige mellemliggende taksa for at vedhæfte det til et eksisterende højere takson niveau.
   grant_role: "%{grant} %{role} rolle"
   grid: Gitter
@@ -1559,6 +1567,7 @@ da:
   ignore_and_continue: Ignorér og fortsæt
   ignore_times: Ignorér antal gange
   image_must_be_exactly: billedet skal være nøjagtigt 950px bredt og højst 400px højt
+  image_size_control: Billedstørrelsestyring
   imperiled: Fare
   import: Importér
   import_all_photos_as_observations: Importér alle billeder som observationer
@@ -1580,6 +1589,10 @@ da:
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
+  include_places: Inkludér steder
+  include_projects: Inkludér projekter
+  include_taxa: Inkludér taksa
+  include_users: Inkludér brugere
   including: inklusiv
   increase_brightness: Øg lysstyrke
   in_progress: i gang
@@ -1630,6 +1643,8 @@ da:
   join: Tilslut
   join_and_add_an_observation_to_project_html: Deltag og tilføj en observation til %{project}
   join_project: Bliv medlem af dette projekt
+  #Prompt to join a specific project
+  join_project?: Tilmeld dig %{project}?
   join_some_projects_and_invite_some_observations_html: "Tilslut dig <a href='%{join_url}'>projekter</a> og <a href='%{invite_url}'>invitér nogle observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største gruppe af naturelskere
   join_this_project: Bliv medlem af dette projekt
@@ -1654,6 +1669,9 @@ da:
   label_to_group_a_batch_of_taxon_changes: Mærke til at grupperer et bundt af takson ændringer
   location_private: Fortrolig lokalitet
   location_unknown: Sted ukendt
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomniveau
   language_slash_type: Sprog / Type
   #Large photo size
   large: stor
@@ -1794,7 +1812,6 @@ da:
   loading: "Indlæser…"
   loading_flickr_photos: "Indlæser Flickr fotos..."
   loading_images: Indlæser billeder...
-  loading_map: Indlæser kort...
   loading_metadata: Indlæser metadata...
   loading_preview_and_code: Indlæser forhåndsvisning og kode...
   loading_suggestions: Indlæser forslag...
@@ -1985,14 +2002,18 @@ da:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
@@ -2143,6 +2164,7 @@ da:
   no_favorites_added:
     current_user: Du har ikke tilføjet favoritter endnu.
     user: "%{user} har ikke tilføjet favoritter."
+  no_journal_posts_yet: Endnu ingen journaoptegnelser
   no_license_all_rights_reserved: Ingen licens (alle rettigheder forbeholdt)
   no_managers_set: Ingen ledere valgt
   no_matching_article_from_x: "Ingen matchende artikel fra %{x}"
@@ -2159,7 +2181,6 @@ da:
   no_more_taxa_to_load: Ikke flere taksa at indlæse!
   no_more_results_found: Ikke flere resultater fundet
   no_new_messages: Ingen nye beskeder
-  no_news_yet: Ingen nyheder endnu
   no_observations: Ingen observationer
   no_observations_from_this_place_yet: Ingen observationer fra dette sted endnu.
   no_observations_matching_those_ids: Ingen observationer matcher disse IDs.
@@ -2384,9 +2405,7 @@ da:
   offline_access_enabled: Offline adgang er aktiveret
   old_observation_form: Gammel observations formular (forældet)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
-  on_your_life_list: på din livsliste
   onboarding:
     observe_panel_title: Lad os komme i gang med at indsende nogle observationer
     observe_panel_body_p1_local: Har du brug for inspiration? Her er nogle organismer observeret i nærheden ...
@@ -2450,7 +2469,6 @@ da:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller vælg fra et højere taksa niveau"
   or_if_you_dont_want_email: "Eller hvis du bare ikke vil have nogen e-mail ..."
-  or_upload: Eller upload
   orange: orange
   order: Orden
   order_by: Sorteret efter
@@ -2489,7 +2507,6 @@ da:
   other_taxa_commonly_misidentified_as_this_subsection: Andre taksa hyppigt fejlidentificeret som denne undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andre taksa hyppigt fejlidentificeret som denne undersektion i <a href="%{url}">%{place}</a>
   our_blog: Vores blog
-  out_of_range: Udenfor område
   output_taxon: Output takson
   overview: Overblik
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
@@ -2571,7 +2588,6 @@ da:
     Gem denne kombination af koordinater, geofortrolighed og stedbeskrivelser til senere brug.
   place: Sted
   placeholder: Pladsholder
-  place_added_to_inat_by: "Sted tilføjet til %{site_name} af"
   place_autocomplete_placeholder: Zion National Park, Miami, osv.
   place_deleted: Sted slettet.
   place_geo:
@@ -2602,7 +2618,13 @@ da:
       Delegation: Delegation
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegation
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       Department_Segment: Afdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
       department_segment: afdelingssegment
       District: Distrikt
       district: distrikt
@@ -3009,7 +3031,7 @@ da:
   present: til stede
   press: Presse
   preview: Forhåndsvisning
-  preview_observations: Forhåndsvis observationer
+  preview_observations_with_these_observation_requirements: Forhåndsvis Observationer med disse Observationskrav
   preview_of_synced_observation: "<strong>Preview</strong> af synkroniseret observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message: "Jeg vil gerne invitere dig til %{site}, som er et websted, hvor du kan registrere dine observationer af planter og dyr. Du kan også oprette en liste med alle de dyr du har observeret samt lære noget mere om naturen."
   preview_your_message: Forhåndsvisning af din besked
@@ -3051,6 +3073,7 @@ da:
   project_group_description: Gruppe projektet tilhører
   project_home: Projekt hjem
   project_icon: Projekt ikon
+  project_journal: Projektjournal
   project_id_or_url_slug: Projekt ID eller URL adresse
   project_invitations: 'Projekt invitationer'
   project_list: Projekt liste
@@ -3060,6 +3083,7 @@ da:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> kuratorer tilføjede nogle af dine observationer
   project_members: "%{project} Medlemmer"
+  project_members_only: Kun Projektmedlemmer
   project_membership_model_description: Er dit projekt åbent for alle eller kun for personer, du inviterer?
   project_observations: Projekt observationer
   project_post: Projekt indlæg
@@ -3069,7 +3093,8 @@ da:
   project_start_time_datetime: "Starttidspunkt: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, der ikke indeholder disse observationer
   project_type_description: |
-    Vurdering- og bioblitzprojekter er en speciel type projekt. Vurderingsprojekter er for at samarbejde som en gruppe omkring artsvurderinger, som regel for at finde ud af bevaringsbetydningen. Bioblitzprojekter er begivenheder/events med et bestemt start- og sluttidspunkt
+    Evalueringer er til samarbejde om et sæt artsvurderinger, 
+    normalt til bedømmelse af bevaringsværdighed.
   project_user_cannot_be_found: Projektbruger kan ikke findes
   project_user_was_invalid: "Projektbrugeren var ugyldig: %{project_user}"
   project_was_successfully_created: Projekt blev oprettet.
@@ -3266,6 +3291,7 @@ da:
   rules_for_becoming_a_member: Regler for medlemsskab
   rules_for_becoming_memner: Regler for medlemsskab
   rules_types:
+    must_be_captive: skal være i fangenskab/dyrket
     must_be_georeferenced: skal geo refereres
     must_be_identified: skal identificeres
     must_be_on_list: skal være på listen
@@ -3273,18 +3299,6 @@ da:
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer at se koordinater.
   running_total: Igangværende total
-  same_day_obscured: Endnu en observation af denne person på denne dag er sløret
-  same_day_obscured_desc: |
-    Når koordinater er sløret grundet en truet takson, er alle andre
-    observationer på den pågældende dag også sløret for at forhindre folk
-    i at gætte koordinaterne baseret på observationer foretaget omkring samme
-    tidspunkt. Man kan også anvende denne beskyttelse på andre koordinater for at skjule dem.
-  same_day_private: En anden observation af denne person på denne dag er fortrolig
-  same_day_private_desc: |
-    Når koordinater er skjult grundet en truet takson, er alle andre
-    observationer fra denne person på denne dag også skjulte for at forhindre folk
-    i at gætte koordinaterne baseret på observationer foretaget omkring samme
-    tidspunkt. Andre kan også anvende denne beskyttelse på koordinater, de ønsker at skjule.
   said: sagde
   satellite: satellit
   save: Gem
@@ -3312,6 +3326,8 @@ da:
   scale_colon: "Skala:"
   schemes: Systemer
   schemes_including: Systemer der inkluderer
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Videnskabeligt navn
   search: Søg
   search_all_fields: søg i alle felter
   search_by_name_or_email: Søg efter navn eller e-mail
@@ -3396,7 +3412,9 @@ da:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totalt antal
   show_uncountable_species: Skjul arter der ikke medregnes
-  showing_one_to: Viser 1-
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Viser første %{x}
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser af %{x} af %{y}
@@ -3982,6 +4000,7 @@ da:
     tooltips:
       add: Tilføj observation(er)
       combine: Kombinér valgte observationer
+      duplicate: Duplér valgte observationer
       photo_failed: Fotoet mislykkedes at uploade
       remove: Fjern valgte observationer
       remove_observation: Fjern observation
@@ -4041,6 +4060,7 @@ da:
   user_commented_on: "%{user} kommenterede på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
@@ -4073,11 +4093,9 @@ da:
   username_or_email: Brugernavn eller e-mail
   username_or_user_id: Brugernavn eller bruger ID
   users: Brugere
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s bidrag til %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s højdepunkter og statistik fra %{year} på %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>s ID"
   users_latest_observations_on_site: "%{user}'s seneste observation på %{site}"
   users_profile: "%{user}'s profil"
   users_projects: "%{user}'s projekter"
@@ -4125,8 +4143,6 @@ da:
   view_observation_flags: Vis observations markeringer
   view_observations_by_everyone: Vis observation af alle
   view_observations_by_these_users: Vis observationer af disse brugere
-  view_observations_causing_this_observation_to_be_obscured: |
-    Se observationer som gør, at denne observation er sløret
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_on: Vis på
   view_on_flickr: Vis på Flickr
@@ -4416,6 +4432,14 @@ da:
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
         vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
         til alle medlemmer af en side, skal du bare lade dette stå tomt.
+    content_freeze:
+      content_freeze: Indholdsfrysning
+      during_this_time: |
+        Under indefrysningen kan visse typer indhold ikke oprettes, destrueres eller ændres.
+      this_functionality_will_return: |
+        Denne funktionalitet er atter tilgængelig, når indholdsfrysning er slut.
+      we_expect_this_functionality_will_return_by_date: |
+        Denne funktionalitet forventes atter tilgængelig pr. %{date}
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5165,14 +5189,6 @@ da:
         Vi har ikke tilladelse til at få adgang til disse billeder lige nu. Du skal måske
         afbryde forbindelsen og tilslutte den igen i din
         <a href="/users/edit"> indstillinger </a> for at give os yderligere tilladelser.
-      inviter:
-        automatically_add_to_project: Tilføj automatisk til projekt
-        automatically_id_the_new_obs_as: Automatisk ID den nye obs. som
-        dont_forget_the_invite_link_placeholder: "Glem ikke {{INVITE_LINK}} pladsholder"
-        invite_other_photographers_to_inat: "Invitér andre fotografer til %{site_name}"
-        invite_your_friends_description: |
-          Du kan gøre det super nemt for andre personer på Facebook og Flickr, at tilføje deres foto´s som %{site_name} observationer. Bare send dem en kommentar samt nedenstående invitations URL. Du kan også forudvælge en takson og et projekt til
-          den nye observation.
       show:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
@@ -5249,6 +5265,9 @@ da:
           indsamler værdifuld data.
           </p>
         change_admin_desc: Vælg en af projekt kuratorerne til at være den nye administrator.
+        change_owner_alert: |
+          Dette fjerner din mulighed for at slette dette projekt eller overføre
+          ejerskab igen. Fortsæt?
         cover_desc: "Valgfrit bannerbillede, der vises øverst på din projektside. Skal være 950px bred,og mindre end 400px høj."
         custom_project_fields_means: "Tilpas projektetbanner, tilføj sideindhold og rediger CSS."
         end_time_desc: "Slut tidspunkt for din bioblitz. Skal være mindre end et år efter starttidspunktet"
@@ -5261,6 +5280,8 @@ da:
           Det ser ud til at dette projekt kan konverteres til et nyt <a href="%{url}">samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt, hvor samleren sidst var færdig med at tilføje observationer til dette projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gør til Ejer
         no_curators: |
           Der er ingen projektkuratorer. Hvis du vil udnævne en ny person som
           administrator, skal de først være medlem af dette projekt, og du skal gøre dem
@@ -5297,7 +5318,7 @@ da:
           </P>
         rules:
           captive: være i fangenskab/dyrket
-          coordinates_shareable_by_project_curators: Koordinater er delbare af projektkuratorer
+          coordinates_shareable_by_project_curators: have koordinater læsbare for projektkuratorer
           georeferenced: have koordinater
           has_a_photo: have et foto
           has_a_sound: have en lyd
@@ -5349,6 +5370,9 @@ da:
           Er du klar til at forlade denne side for at duplikere dette projekt?
         are_you_sure_you_want_to_delete: Er du sikker på, at du vil slette dette projekt?
         can_be_included_in_multiple: Kan inkluderes i flere paraplyprojekter
+        check_the_box_to_include_member_observations: |
+          Markér afkrydsningsfeltet nedenfor for kun at inkludere observationer foretaget af brugere, som er projektmedlemmer.
+          Benyt Ekskludér brugere-filteret ovenfor til observationseksklusioner fra specifikke brugere, inkl. projektejer og -admins.
         click_through_to_individual_projects: Klik videre til individuelle projekter
         collection_projects: Samlingsprojekter
         collection_project_features: "Samlingsprojekt egenskaber:"
@@ -5360,6 +5384,10 @@ da:
         do_you_need_features_from_traditional: |
           Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         duplicate_project: Duplikér Projekt
+        include_annotated_observations: |
+          Inkludér kun observationer kommenteret med én bestemt attribut (f.eks. Livsfase),
+          eller én bestemt attribut og værdi (f.eks. livsfase = voksen).
+          Der er en grænse på ét annotationsfilter pr. projekt.
         leaderboards_among_individuals: Toplister iblandt <strong>individuelle</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Toplister iblandt <strong>projekter</strong>
@@ -5371,15 +5399,14 @@ da:
           OBS: Disse brugere er i stand til at redigere ALLE projektdetaljer inklusiv administratorer.
         note_you_can_delete_the_time: |
           (OBS: Du kan slette tidszone og nøjagtige tidspunkt, hvis du i stedet vil bruge hele dage.)
+        note_about_unselected_filters: |
+          Bemærk: Vælges ikke taxa, steder eller brugere, inkluderes alle som standard.
+        only_display_member_observations: |
+          Vis kun observationer fra projektmedlemmer (personer, som har tilmeldt sig projektet)
+        optionally_filter_media: Valgfri filtrering af observationer med fotos, lyde eller begge.
         or_drag_and_drop: (eller træk og slip)
         please_specify_the_requirements: |
           Præcisér venligst betingelserne for at observationerne kan tilføjes til projektet.
-        please_specify_the_requirements_html: |
-          Angiv venligst kravene til de observationer, der kan tilføjes til
-          dette projekt. Du kan angive flere arter, steder, brugere eller
-          kvalitetsgrader, der automatisk indgår eller efterlad et felt tomt hvis
-          du ikke har noget specifikt krav til det. Forklaringer for hvert felt
-          kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok, så den hvide overlejrede tekst er læselig.
         project_banner: Projektbanner (PNG, JPG eller GIF)
@@ -5393,11 +5420,25 @@ da:
         project_summary_help: |
           Angiv en koncis beskrivelse af dit projekt. De første ca. 200 karakterer vil blive synlige i banneret i højre side på projektsiden, så begynd med det bedste!
         project_summary_placeholder: Opdag og følg Golden Gate Parks fugle...
+        select_native_to_include: |
+          Vælg "Indfødt" for kun at medtage taksa markeret som "Indfødt" til
+          sted(et/erne) i dit projekt. Vælg "Introduceret" for kun at medtage taksa, som har været
+          markeret som "Introduceret" til sted(et/erne i dit projekt.
+        select_quality_grade: |
+          Vælg mindst én Kvalitetsgrad. Yderligere forklaring på hver Kvalitetsgrad findes på
+          vores
+          <a href="%fterurl"">OSS (FAQ) side</a>.
         show_projects_as_flags: Vis projekter som flag på kort
+        specify_project_filters: |
+          Angiv filtrene for de observationer, som skal medtages i dit projekt.
+          Du kan vælge flere arter (eller taksa), steder, datoer eller andre kriterier for 
+          observationer, som automatisk bliver medtaget.
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
         traditional_projects_cannot_be_copied: Det oprindelige projekt kan ikke kopieres
         umbrella_project_features: "Paraplyprojekt egenskaber:"
         unique_url_for_outreach: Unik URL til opsøgning
+        use_this_for_a_time_limited_event: |
+          Benyt dette til en tidsafgrænset begivenhed, bioblitz eller sæsonbestemt projekt. Vælg en enkelt dato, datoområde, eller i hvilke måneder af året, observationer skal foretages (uanset år). Benyttes afsnittet Datoområde, så vær sikker på, at de korrekte tidsangivelser og tidszoner er valgt, eller slet tidsangivelsen/tidszoneteksten for at medtage observationer foretaget uanset dagstidspunkt. Felterne Startdato/Slutdato kan være tomme, hvis projektet kun skal datoafgrænses.
         users_can_follow_your_project: Brugere kan følge dit projekt for opdateringer via journalindlæg
         use_this_link_to_create_html: |
           Brug <a href="%{url}">dette link</a> for at oprette et traditionelt projekt istedet.
@@ -5469,6 +5510,10 @@ da:
           Husk at læse om forskellene i vores <a href="%{url}" target="_blank">blogindlæg om samlingsprojekter</a>.
         this_is_a_preview: |
           Dette er en forhåndsvisning af hvordan projektet vil se ud som et samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Dette projekt har ikke defineret nogen observationskrav. Projekter skal vælge én eller flere
+          taksaer (f.eks. fugle, nåletræer), steder (f.eks. Brasilien, Yellowstone), brugere og/eller datoer
+          for at begynde at vise observationer.
       updates_desc: |
         Modtag underretninger om dette projekt på dit betjeningspanel samt i den daglige underretnings e-mail.
     search:
@@ -5749,6 +5794,7 @@ da:
           "Plant Phenology=Flower Budding": Blomsterknopbærende
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
+          "Plant Phenology=No Evidence of Flowering": Intet Bevis
           "Life Stage=egg": Æg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Tenerel
@@ -6279,9 +6325,11 @@ da:
       invalid: er ugyldig
       less_than: skal være mindre end %{count}
       less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
+      new_project_owner_must_be_a_manager: Den nye projektejer skal være en admin
       not_a_number: er ikke et tal
       not_an_integer: skal være et heltal
       odd: skal være ulige
+      only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
       record_invalid: 'Validering mislykkedes: %{errors}'
       requires_privilege_speech: |
         skal have tre verificérbare observationer eller tre identifikationer
@@ -6416,9 +6464,11 @@ da:
         invalid: er ugyldig
         less_than: skal være mindre end %{count}
         less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
+        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et heltal
         odd: skal være ulige
+        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering mislykkedes: %{errors}'
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
@@ -6469,6 +6519,7 @@ da:
         occurrence_status_level: Forekomst status niveau
         establishment_means: Oprindelse
       observation:
+        description: Notater
         geo_x: Østlig
         geo_y: Nordlig
         observed_on: observationsdato
@@ -6556,9 +6607,11 @@ da:
         invalid: er ugyldig
         less_than: skal være mindre end %{count}
         less_than_or_equal_to: skal være mindre end eller lig med %{count}
+        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et helt tal
         odd: skal være et ulige tal
+        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering fejlede: %{errors}'
         requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det

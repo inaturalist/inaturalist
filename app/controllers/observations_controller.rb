@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
     if: lambda { authenticate_with_oauth? }
   
-  before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
   after_filter :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
@@ -45,7 +45,8 @@ class ObservationsController < ApplicationController
                             :map,
                             :taxon_summary,
                             :observation_links,
-                            :torquemap]
+                            :torquemap,
+                            :lifelist_by_login]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -267,6 +268,10 @@ class ObservationsController < ApplicationController
           include: { place: { only: [:id, :display_name] } } ) : nil,
       wikipedia_summary: taxon ? taxon.wikipedia_summary( locale: I18n.locale ) : nil
     }
+  end
+
+  def lifelist_by_login
+    return render layout: "bootstrap"
   end
 
   # GET /observations/1
@@ -1006,7 +1011,8 @@ class ObservationsController < ApplicationController
     Delayed::Job.enqueue(
       bof, 
       priority: USER_PRIORITY,
-      unique_hash: unique_hash
+      unique_hash: unique_hash,
+      queue: "csv"
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.
@@ -2107,7 +2113,6 @@ class ObservationsController < ApplicationController
     @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
-    @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     @sound_license = search_params[:sound_license]
@@ -2153,7 +2158,6 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@captive.blank? ||
-      !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
       !@ofv_params.blank? ||

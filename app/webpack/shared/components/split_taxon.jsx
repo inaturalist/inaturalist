@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { objectToComparable } from "../util";
@@ -17,9 +18,10 @@ const SplitTaxon = props => {
     noInactive,
     showMemberGroup,
     user,
-    iconLink
+    iconLink,
+    sciFirst
   } = props;
-  const showScinameFirst = user && user.prefers_scientific_name_first;
+  const showScinameFirst = sciFirst || ( user && user.prefers_scientific_name_first );
   const LinkElement = ( url || onClick ) ? "a" : "span";
   const keyBase = objectToComparable( props );
   let title = "";
@@ -240,15 +242,21 @@ const SplitTaxon = props => {
     }
     if ( groupAncestor ) {
       memberGroup = (
-        <span key={`${keyBase}-memberGroup`} className="member-group">
-          { I18n.t( "a_member_of" ) }
-          { " " }
-          <SplitTaxon
-            taxon={groupAncestor}
-            url={`/taxa/${groupAncestor.id}`}
-            user={user}
-          />
-        </span>
+        <span
+          key={`${keyBase}-memberGroup`}
+          className="member-group"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "a_member_of_taxon_html", {
+              taxon: ReactDOMServer.renderToString(
+                <SplitTaxon
+                  taxon={groupAncestor}
+                  url={`/taxa/${groupAncestor.id}`}
+                  user={user}
+                />
+              )
+            } )
+          }}
+        />
       );
     }
   }
@@ -303,7 +311,8 @@ SplitTaxon.propTypes = {
   noInactive: PropTypes.bool,
   showMemberGroup: PropTypes.bool,
   user: PropTypes.object,
-  iconLink: PropTypes.bool
+  iconLink: PropTypes.bool,
+  sciFirst: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

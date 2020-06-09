@@ -175,7 +175,6 @@ en:
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
-  a_member_of: "A member of"
   a_member_of_taxon_html: "a member of %{taxon}"
   # Used as a noun phrase in sentences like "kueda added a comment to *an
   # observation*". %{resource} could be any of the following:
@@ -332,6 +331,7 @@ en:
   add_plant_phenology_flower_budding_annotation: 'Add "Plant Phenology: Flower Budding" annotation'
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Add "Plant Phenology: No Evidence of Flowering" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
   add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
   add_life_stage_subimago_annotation: 'Add "Life Stage: subimago" annotation'
@@ -347,6 +347,7 @@ en:
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add "Sex: Female" annotation'
   add_sex_male_annotation: 'Add "Sex: Male" annotation'
+  add_sex_cannot_be_determined_annotation: 'Add "Sex: Cannot Be Determined" annotation'
   add_some_now: Add Some Now
   add_tag: Add Tag
   add_tags: Add Tags
@@ -393,7 +394,6 @@ en:
   admin_s: Admin(s)
   admin_only: Admin-only
   admin_tools: Admin Tools
-  agree: agree
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
@@ -610,6 +610,8 @@ en:
     Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Are you sure you want to remove this observation from %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
   associated_taxa: Associated taxa
@@ -628,7 +630,6 @@ en:
   assessments: assessments
   associations: Associations
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "at %{time}"
   # As in the Atom Syndication Format:
   # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   # an Atom representation of the content shown on the current page
@@ -731,6 +732,7 @@ en:
   cant_merge_a_taxon_with_itself: Can't merge a taxon with itself.
   captive: Captive
   captive_cultivated: Captive / Cultivated
+  captive_observations: Captive Observations
   card: Card
   casual: casual
   casual_: Casual
@@ -830,7 +832,6 @@ en:
   choose_a_list_above: Choose a list above.
   choose_a_place: Choose a place
   choose_a_taxon: Choose a taxon (optional)
-  choose_cc_licensed_photos_html: 'Choose <a href="http://creativecommons.org/">open</a>-licensed photos from other sites or pick from %{site_name} observations. Try to choose images that <em>show diagnostic features</em> and <em>look good as icons</em>.  The <em>first is the default</em>.'
   choose_columns: Choose columns
   choose_file: Choose file
   choose_files: Choose files
@@ -912,13 +913,13 @@ en:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
-  confirmed: confirmed
   connect_to_provider: "Connect to %{provider}"
   connected_accounts: Connected accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
+  cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
   conservation_status_descriptions:
     status: Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.
@@ -964,6 +965,7 @@ en:
     teneral: Teneral
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: No Evidence of Flowering
     nymph: Nymph
     larva: Larva
     egg: Egg
@@ -978,7 +980,9 @@ en:
     flower_budding: Flower buds are visible but not open
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
+    no_evidence_of_flowering: Media provides no evidence of reproductive structures
     teneral: Adult that has recently pupated but has not yet achieved its final adult form
+    cannot_be_determined: Cannot be determined from the evidence provided
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -1235,7 +1239,7 @@ en:
   edit_field: Edit Field
   edit_license: Edit License
   edit_multiple_dates: Edit Multiple Dates
-  edit_multiple_descriptions: Edit Multiple Descriptions
+  edit_multiple_descriptions: Edit Multiple Notes
   edit_multiple_locations: Edit Multiple Locations
   edit_multiple_species: Edit Multiple Species
   edit_notes: Edit Notes
@@ -1272,6 +1276,7 @@ en:
   editing_project: Editing %{project}
   editing_project_asset: Editing Project Asset for
   editing_subscription_to_x_html: "Editing subscription to %{x}"
+  editing_taxon: Editing %{taxon}
   editing_taxon_link: Editing Taxon Link
   editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
   editing_taxon_range: Editing Taxon Range
@@ -1366,6 +1371,7 @@ en:
   favorites: "Favorites"
   feature_this_project_: "Feature This Project"
   featured: Featured
+  # Title for a button or section describing the "featured" status of a project
   featuring: Featuring
   feedback: Feedback
   # Plural noun, as in Atom and RSS feeds
@@ -1510,7 +1516,6 @@ en:
     The forum is a place to discuss iNat itself, including help & support,
     feature requests, bug reports, announcements, and more.
   frequency: Frequency
-  from: From
   from_a_place: from a place
   from_eol_collection: From EOL collection
   from_flickr_facebook_etc: From Flickr, Facebook, etc.
@@ -1518,8 +1523,6 @@ en:
   from_photos: From photos
   from_place: From place
   from_soundcloud: From Soundcloud
-  from_your_site_observations: "From %{site_name} observations"
-  from_licensed_site_observations: "From licensed %{site_name} observations"
   full_screen: Full screen
   fungi:
     one: fungus
@@ -1551,6 +1554,7 @@ en:
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
+  graft_taxon: Graft %{taxon}
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
   grant_role: "%{grant} %{role} role"
   grid: Grid
@@ -1677,6 +1681,7 @@ en:
   ignore_and_continue: Ignore and continue
   ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
+  image_size_control: Image size control
   imperiled: Imperiled
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
@@ -1756,6 +1761,8 @@ en:
   join: Join
   join_and_add_an_observation_to_project_html: Join and Add An Observation to %{project}
   join_project: Join this project
+  # Prompt to join a specific project
+  join_project?: Join %{project}?
   join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Join the largest group of naturalists in the world!
   join_this_project: Join this project
@@ -1780,6 +1787,9 @@ en:
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
   location_private: Location Private
   location_unknown: Location Unknown
+  # Option to lock the zoom level for maps on Identify so the zoom level remains
+  # the same as you move from one observation to another
+  lock_zoom_level: Lock zoom level
   language_slash_type: Language / Type
   # Large photo size
   large: large
@@ -1920,7 +1930,6 @@ en:
   loading: "Loading..."
   loading_flickr_photos: "Loading Flickr photos..."
   loading_images: Loading images...
-  loading_map: Loading map...
   loading_metadata: Loading metadata...
   loading_preview_and_code: Loading preview and code...
   loading_suggestions: Loading suggestions...
@@ -2114,14 +2123,18 @@ en:
       'y':  "1y"
       # Short text representing %d years in the past
       yy: "%dy"
-    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    # Note that this should display a time zone code and not an offset, so
-    # please use z and not Z
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     # Note that this should display an offset and not a time zone code, so
     # please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
@@ -2291,7 +2304,6 @@ en:
   no_more_taxa_to_load: No more taxa to load!
   no_more_results_found: No more results found
   no_new_messages: No new messages
-  no_news_yet: No news yet
   no_observations: No Observations
   no_observations_from_this_place_yet: No observations from this place yet.
   no_observations_matching_those_ids: No observations matching those IDs.
@@ -2524,9 +2536,7 @@ en:
   offline_access_enabled: Offline access enabled
   old_observation_form: Old observation form (deprecated)
   ok: "OK"
-  on_date: "at %{date}"
   on_day: "on"
-  on_your_life_list: on your life list
   onboarding:
       observe_panel_title: Let's Get Started by Posting Some Observations
       observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...  
@@ -2592,7 +2602,6 @@ en:
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
-  or_upload: Or upload
   orange: orange
   order: Order
   order_by: Order by
@@ -2631,7 +2640,6 @@ en:
   other_taxa_commonly_misidentified_as_this_subsection: Other taxa commonly misidentified as this subsection
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Other taxa commonly misidentified as this subsection in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
-  out_of_range: Out of range
   output_taxon: Output taxon
   overview: Overview
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
@@ -2720,7 +2728,6 @@ en:
     Pin this combination of coordinates, accuracy, geoprivacy, and locality notes for later use.
   place: Place
   placeholder: Placeholder
-  place_added_to_inat_by: "Place added to %{site_name} by"
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_deleted: Place deleted.
   place_geo:
@@ -2751,7 +2758,13 @@ en:
             Delegation: Delegation
             # https://en.wikipedia.org/wiki/Delegations_of_Tunisia
             delegation: delegation
+            # Added by mistake with some GADM place types, but subsequently used
+            # by some of our users. Assume it's a type of place contained within
+            # a "department"
             Department_Segment: Department Segment
+            # Added by mistake with some GADM place types, but subsequently used
+            # by some of our users. Assume it's a type of place contained within
+            # a "department"
             department_segment: department segment
             District: District
             district: district
@@ -3159,7 +3172,6 @@ en:
   present: present
   press: Press
   preview: Preview
-  preview_observations: Preview Observations
   preview_observations_with_these_observation_requirements: Preview Observations with these Observation Requirements
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
@@ -3224,9 +3236,8 @@ en:
   project_start_time_datetime: "Start time: %{datetime}"
   project_that_does_not_contain_these_observations: Project that does not contain these observations
   project_type_description: |
-    Assessments and bioblitzes are special types of projects. Assessments are
-    for collaborating on a set of species assessments, usually to gauge
-    conservation importance. Bioblitzes are events that have a specified beginning and end.
+    Assessments are for collaborating on a set of species assessments, usually
+    to gauge conservation importance.
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.
@@ -3425,6 +3436,7 @@ en:
   rules_for_becoming_a_member: Rules for Becoming a Member
   rules_for_becoming_memner: Rules for Becoming a Member
   rules_types:
+    must_be_captive: must be captive / cultivated
     must_be_georeferenced: must be georeferenced
     must_be_identified: must be identified
     must_be_on_list: must be on list
@@ -3432,20 +3444,6 @@ en:
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
   running_total: Running Total
-  same_day_obscured: Another observation by this person on this day is obscured
-  same_day_obscured_desc: |
-    When coordinates are obscured because of a threatened taxon, all other
-    observations by that person on that day are also obscured to prevent people
-    from guessing the coordinates based on observations made around the same
-    time. Individuals can also apply this protection to coordinates they have
-    chosen to obscure.
-  same_day_private: Another observation by this person on this day is private
-  same_day_private_desc: |
-    When coordinates are hidden because of a threatened taxon, all other
-    observations by that person on that day are also hidden to prevent people
-    from guessing the coordinates based on observations made around the same
-    time. Individuals can also apply this protection to coordinates they have
-    chosen to hide.
   said: said
   satellite: satellite
   save: Save
@@ -3473,6 +3471,8 @@ en:
   scale_colon: "Scale:"
   schemes: Schemes
   schemes_including: Schemes including
+  # E.g. "Homo sapiens" instead of "human"
+  scientific_name: Scientific Name
   search: Search
   search_all_fields: search all fields
   search_by_name_or_email: Search by name or email
@@ -3560,7 +3560,9 @@ en:
   show_taxa_from_place: "Show taxa from %{place}"
   show_total_counts: Show total counts
   show_uncountable_species: Show uncountable species
-  showing_one_to: Showing 1 - 
+  # Text to indicate that the first X items in a list are being shown, but there
+  # could be more
+  showing_first_x: Showing first %{x}
   showing_taxa_from_everywhere: "Showing taxa from everywhere"
   showing_taxa_from_place: "Showing taxa from %{place}"
   showing_x_of_y: Showing %{x} of %{y}
@@ -4167,6 +4169,7 @@ en:
     tooltips:
       add: Add observation(s)
       combine: Combine selected observations
+      duplicate: Duplicate selected observations
       photo_failed: Photo failed to upload
       remove: Remove selected observations
       remove_observation: Remove observation
@@ -4231,6 +4234,7 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
+  # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
@@ -4264,11 +4268,9 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or User ID
   users: Users
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
@@ -4316,8 +4318,6 @@ en:
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
   view_observations_by_these_users: View Observations By These Users
-  view_observations_causing_this_observation_to_be_obscured: |
-    View observations causing this observation to be obscured
   view_observations_of_this_taxon_by: View observations of this taxon by
   view_on: View on
   view_on_flickr: View on Flickr
@@ -4631,6 +4631,14 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+    content_freeze:
+      content_freeze: Content Freeze
+      during_this_time: |
+        During the content freeze some types of content cannot be created, destroyed, or modified.
+      this_functionality_will_return: |
+        This functionality will return as soon as the content freeze is over.
+      we_expect_this_functionality_will_return_by_date: |
+        We expect this functionality to return by %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -5552,16 +5560,6 @@ en:
         We don't have permission to access those photos right now. You might
         need to disconnect and reconnect the account in your
         <a href="/users/edit">settings</a> to grant us additional permissions.
-      inviter:
-        automatically_add_to_project: Automatically add to project
-        automatically_id_the_new_obs_as: Automatically ID the new obs as
-        dont_forget_the_invite_link_placeholder: "don't forget the {{INVITE_LINK}} placeholder"
-        invite_other_photographers_to_inat: "Invite other photographers to %{site_name}"
-        invite_your_friends_description: |
-          You can make it super easy for people on Facebook and Flickr to add their 
-          photos as %{site_name} observations. Just leave a comment including this 
-          special invite URL below. You can also pre-select a taxon and project for 
-          the new observation.
       show:
         view_original_html: |
           You can view the original at <a href="%{url}">%{url}</a>. Please
@@ -5645,6 +5643,9 @@ en:
             data at the same time.
           </p>
         change_admin_desc: Choose one of the project curators to be the new admin.
+        change_owner_alert: |
+          This will remove your ability to delete this project or transfer
+          ownership again. Do you want to proceed?
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"
@@ -5658,6 +5659,8 @@ en:
           It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
+        # Label for button to make another user the owner of a project
+        make_owner: Make Owner
         no_curators: |
           There are no project curators. If you want to assign a new person as
           the admin, they must first join this project and you must make them
@@ -5697,7 +5700,7 @@ en:
           </p>
         rules:
           captive: be captive/cultivated
-          coordinates_shareable_by_project_curators: coordinates shareable by project curators
+          coordinates_shareable_by_project_curators: have coordinates viewable by project curators
           georeferenced: have coordinates
           has_a_photo: have a photo
           has_a_sound: have a sound
@@ -5935,6 +5938,10 @@ en:
           our <a href="%{url}" target="_blank">blog post about Collection Projects</a>.
         this_is_a_preview: |
           This is a preview of what this project would look like as a Collection Project.
+        this_project_has_not_defined_requirements: |
+          This project has not defined any observation requirements. Projects need to select one or
+          more taxa (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates
+          to begin displaying observations.
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.
@@ -6277,6 +6284,7 @@ en:
           "Plant Phenology=Flower Budding": Flower Budding
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
+          "Plant Phenology=No Evidence of Flowering": No Evidence
           "Life Stage=egg": Egg
           "Life Stage=larva": Larva
           "Life Stage=teneral": Teneral
@@ -6938,9 +6946,11 @@ en:
       invalid: is invalid
       less_than: must be less than %{count}
       less_than_or_equal_to: must be less than or equal to %{count}
+      new_project_owner_must_be_a_manager: New project owner must be an admin
       not_a_number: is not a number
       not_an_integer: must be an integer
       odd: must be odd
+      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
       record_invalid: 'Validation failed: %{errors}'
       requires_privilege_speech: |
         must have three verifiable observations or three identifications
@@ -7105,6 +7115,7 @@ en:
         occurrence_status_level: Occurrence Status Level
         establishment_means: Establishment Means
       observation:
+        description: Notes
         geo_x: Easting
         geo_y: Northing
         observed_on: date observed

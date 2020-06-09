@@ -124,7 +124,11 @@ class PlacesController < ApplicationController
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
-        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50).to_a
+        @projects += Project.joins( "JOIN rules ON rules.ruler_type = 'Project' AND rules.ruler_id = projects.id" )
+          .where( "rules.operand_type = 'Place' AND rules.operand_id = ?", @place.id )
+          .page( 1 ).per_page( 50 ).to_a
+        @projects = @projects[0..50].sort_by{|p| p.title.downcase}
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)

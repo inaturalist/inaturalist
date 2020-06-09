@@ -111,33 +111,31 @@ class RegularForm extends React.Component {
               </Panel>
             </Col>
           </Row>
-          { viewerIsAdmin ? (
-            <Row>
-              <Col xs={12} className="members-only">
-                <label className="sectionlabel">
-                  { I18n.t( "project_members_only" ) }
-                </label>
-                <div className="help-text">
-                  { I18n.t( "views.projects.new.check_the_box_to_include_member_observations" ) }
-                </div>
-                <input
-                  type="checkbox"
-                  id="project-members-only"
-                  defaultChecked={project.rule_members_only}
-                  onChange={e => setRulePreference( "members_only", e.target.checked || null )}
-                />
-                <label className="inline" htmlFor="project-members-only">
-                  { I18n.t( "views.projects.new.only_display_member_observations" ) }
-                </label>
-              </Col>
-            </Row>
-          ) : null }
+          <Row>
+            <Col xs={12} className="members-only">
+              <label className="sectionlabel">
+                { I18n.t( "project_members_only" ) }
+              </label>
+              <div className="help-text">
+                { I18n.t( "views.projects.new.check_the_box_to_include_member_observations" ) }
+              </div>
+              <input
+                type="checkbox"
+                id="project-members-only"
+                defaultChecked={project.rule_members_only}
+                onChange={e => setRulePreference( "members_only", e.target.checked || null )}
+              />
+              <label className="inline" htmlFor="project-members-only">
+                { I18n.t( "views.projects.new.only_display_member_observations" ) }
+              </label>
+            </Col>
+          </Row>
           <Row>
             <Col xs={12}>
               <div className="form-group annotations-form-group">
                 <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
                 <div className="help-text">
-                  { I18n.t( "views.projects.new.only_display_member_observations" ) }
+                  { I18n.t( "views.projects.new.include_annotated_observations" ) }
                 </div>
                 <select
                   id="project-term-id"

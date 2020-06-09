@@ -102,7 +102,7 @@ describe User do
     end
 
     it "should not allow time_zone to be a blank string" do
-      expect( User.make( time_zone: "" ) ).not_to be_valid
+      expect( User.make!( time_zone: "" ).time_zone ).to be_nil
     end
     
     it "should set latitude and longitude" do
@@ -501,6 +501,12 @@ describe User do
       Delayed::Worker.new.work_off
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 0
+    end
+
+    it "should destroy friendships where user is the friend" do
+      f = Friendship.make!
+      f.friend.destroy
+      expect( Friendship.find_by_id( f.id ) ).to be_blank
     end
   end
 
@@ -1238,7 +1244,7 @@ describe User do
       obs = Observation.make!(
         user: user,
         taxon: taxon,
-        observed_on_string: Date.yesterday.to_s
+        observed_on_string: 1.week.ago.to_s
       )
       expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
     end

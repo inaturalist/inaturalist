@@ -56,7 +56,6 @@ mk:
   _100_day_trends: Трендови за 100 дена
   a_community_for_naturalist: Заедница за природници
   a_flag_for_x: "обележувач за %{x}"
-  a_member_of: "Член на"
   a_member_of_taxon_html: "член на %{taxon}"
   about: За
   about_blocking: За блокирањето
@@ -155,7 +154,6 @@ mk:
   admin_s: Администратор(и)
   admin_only: Само за администратори
   admin_tools: Администраторски алатки
-  agree: се согласувам
   agree_: Се согласувам
   agree?: Се согласувате?
   agree_with_current_taxon: Се согласувам со тековниот таксон
@@ -282,7 +280,6 @@ mk:
   assessment_x: "Оценка %{assessment}"
   assessments: оценки
   associations: Поврзаности
-  at_time: "во %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -384,7 +381,6 @@ mk:
   confirm_new_password: Потврдете ја новата лозинка
   confirm_now: Потврди сега
   confirm_your_info: Потврдете ги вашите информации
-  confirmed: потврдено
   connect_to_provider: "Поврзи со %{provider}"
   connecting_flickr: "Поврзувам со Flickr..."
   connecting_to_facebook: "Поврзувам со Facebook..."
@@ -565,7 +561,6 @@ mk:
   follow_user: "Следи го/ја %{user}"
   following: следач
   for_a_taxon: за таксон
-  from: Од
   from_a_place: од местото
   fungi:
     one: габа
@@ -896,9 +891,7 @@ mk:
     absent: отсутен
   offensive_inappropriate: навредливо / неумесно
   offline_access_enabled: Вонмрежниот пристап е вклучен
-  on_date: "на %{date}"
   on_day: "на"
-  on_your_life_list: на вашиот животен список
   one_by_one: "Еден по еден"
   one_of_your_lists: "еден од вашите списоци..."
   open: отворено
@@ -910,7 +903,6 @@ mk:
   order: Редослед
   order_by: Подреди по
   original: изворна
-  out_of_range: Вон опсег
   output_taxon: Излезен таксон
   owner: Сопственик
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -939,7 +931,6 @@ mk:
   photos_updated: Сликите се подновени.
   pink: розова
   place: Место
-  place_added_to_inat_by: "Додадено место на %{site_name} од"
   place_deleted: Местото е избришано.
   place_geo:
     geo_planet_place_types:
@@ -1189,7 +1180,6 @@ mk:
   show: Прикажи
   show_taxa_from_everywhere: "Прикажи таксони од секаде"
   show_taxa_from_place: "Прикажи таксони од %{place}"
-  showing_one_to: Приказ на 1 -
   showing_taxa_from_everywhere: "Приказ на таксони од секаде"
   showing_taxa_from_place: "Приказ на таксони од %{place}"
   sign_in: Најава

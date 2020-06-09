@@ -14,6 +14,7 @@ import StatsTabContainer from "../containers/stats_tab_container";
 import StatsHeaderContainer from "../containers/stats_header_container";
 import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
+import InsufficientRequirementsContainer from "../containers/insufficient_requirements_container";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
@@ -28,6 +29,9 @@ const App = ( {
     && !( project.recent_observations && !_.isEmpty( project.recent_observations.results ) ) );
   if ( showingCountdown ) {
     tab = "before_event";
+  }
+  if ( project.hasInsufficientRequirements( ) && tab !== "about" ) {
+    tab = "insufficient_requirements";
   }
   switch ( tab ) {
     case "observations":
@@ -47,6 +51,9 @@ const App = ( {
       break;
     case "before_event":
       view = ( <BeforeEventTabContainer /> );
+      break;
+    case "insufficient_requirements":
+      view = ( <InsufficientRequirementsContainer /> );
       break;
     case "about":
       return ( <AboutContainer /> );
@@ -272,7 +279,7 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      { !showingCountdown && ( <StatsHeaderContainer /> ) }
+      { !showingCountdown && !project.hasInsufficientRequirements( ) && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
       </div>

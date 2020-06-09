@@ -54,9 +54,8 @@ describe CheckList, "creation" do
   it "should populate with taxa from RG observations within place boundary" do
     obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
     place = make_place_with_geom
-    without_delay do
-      place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
-    end
+    place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
+    Delayed::Worker.new.work_off
     expect( place.check_list.taxa ).to include obs.taxon
   end
 end

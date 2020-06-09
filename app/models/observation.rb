@@ -96,7 +96,6 @@ class Observation < ActiveRecord::Base
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
-  OUT_OF_RANGE_BUFFER = 5000 # meters
   PLANETARY_RADIUS = 6370997.0
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
@@ -142,7 +141,6 @@ class Observation < ActiveRecord::Base
     "common_name", 
     "iconic_taxon_name",
     "taxon_id",
-    "id_please",
     "num_identification_agreements",
     "num_identification_disagreements",
     "observed_on_string",
@@ -162,7 +160,6 @@ class Observation < ActiveRecord::Base
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
-    "out_of_range",
     "user_id", 
     "user_login",
     "created_at",
@@ -183,7 +180,6 @@ class Observation < ActiveRecord::Base
     "observed_on", 
     "time_observed_at",
     "time_zone",
-    "out_of_range",
     "user_id", 
     "user_login",
     "created_at",
@@ -195,7 +191,6 @@ class Observation < ActiveRecord::Base
     "sound_url",
     "tag_list",
     "description",
-    "id_please",
     "num_identification_agreements",
     "num_identification_disagreements",
     "captive_cultivated",
@@ -385,7 +380,6 @@ class Observation < ActiveRecord::Base
 
   after_save :refresh_lists,
              :refresh_check_lists,
-             :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses,
              :update_taxon_counter_caches,
@@ -617,9 +611,7 @@ class Observation < ActiveRecord::Base
   scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date)) }
   
   scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
-  
-  scope :out_of_range, -> { where(:out_of_range => true) }
-  scope :in_range, -> { where(:out_of_range => false) }
+
   scope :license, lambda {|license|
     if license == 'none'
       where("observations.license IS NULL")
@@ -1495,7 +1487,7 @@ class Observation < ActiveRecord::Base
   
   def obscure_coordinates
     return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
-    geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
+    geoprivacy_changed_from_private_to_obscured = latitude_was.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
     if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )
@@ -2081,44 +2073,6 @@ class Observation < ActiveRecord::Base
     self.user_agent = user_agent[0..254]
     true
   end
-  
-  def update_out_of_range_later
-    if taxon_id_changed? && taxon.blank?
-      update_out_of_range
-    elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      delay(:priority => USER_INTEGRITY_PRIORITY).update_out_of_range
-    end
-    true
-  end
-  
-  def update_out_of_range
-    set_out_of_range
-    Observation.where(id: id).update_all(out_of_range: out_of_range)
-  end
-  
-  def set_out_of_range
-    if taxon_id.blank? || !georeferenced? || !TaxonRange.exists?(["taxon_id = ?", taxon_id])
-      self.out_of_range = nil
-      return
-    end
-    
-    # buffer the point to accomodate simplified or slightly inaccurate ranges
-    buffer_degrees = OUT_OF_RANGE_BUFFER / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
-    
-    self.out_of_range = if coordinates_obscured?
-      TaxonRange.where(
-        "taxon_ranges.taxon_id = ? AND ST_Distance(taxon_ranges.geom, ST_Point(?,?)) > ?",
-        taxon_id, private_longitude, private_latitude, buffer_degrees
-      ).exists?
-    else
-      TaxonRange.
-        from("taxon_ranges, observations").
-        where(
-          "taxon_ranges.taxon_id = ? AND observations.id = ? AND ST_Distance(taxon_ranges.geom, observations.geom) > ?",
-          taxon_id, id, buffer_degrees
-        ).count > 0
-    end
-  end
 
   def set_uri
     if uri.blank?
@@ -2494,7 +2448,8 @@ class Observation < ActiveRecord::Base
       Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
-        29625  # City Nature Challenge 2019
+        29625, # City Nature Challenge 2019
+        40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
         if umbrella = Project.find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|

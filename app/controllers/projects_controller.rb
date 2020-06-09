@@ -242,7 +242,11 @@ class ProjectsController < ApplicationController
         # if previewing, or the project is a new-style, fetch the API
         # response and render the React projects show page
         if @project.is_new_project? || preview
-          projects_response = INatAPIService.project( @project.id, { rule_details: true, ttl: -1 } )
+          projects_response = INatAPIService.project( @project.id, {
+            rule_details: true,
+            ttl: -1,
+            authenticate: current_user
+          } )
           if projects_response.blank?
             flash[:error] = I18n.t( :doh_something_went_wrong )
             return redirect_to projects_path
@@ -316,6 +320,7 @@ class ProjectsController < ApplicationController
 
   def new_traditional
     @project = Project.new
+    @project_types = [Project::ASSESSMENT_TYPE]
   end
 
   def new
@@ -357,6 +362,7 @@ class ProjectsController < ApplicationController
       where( "user_id != ?", @project.user_id ).
       limit( 100 ).
       includes(:user).order( "users.login" )
+    @project_types = @project.bioblitz? ? Project::PROJECT_TYPES : [Project::ASSESSMENT_TYPE]
   end
 
   def create
@@ -370,6 +376,7 @@ class ProjectsController < ApplicationController
           render :json => @project.to_json
         }
       else
+        @project_types = [Project::ASSESSMENT_TYPE]
         format.html { render :action => "new_traditional" }
         format.json { render :status => :unprocessable_entity,
           :json => { :error => @project.errors.full_messages } }
@@ -382,12 +389,42 @@ class ProjectsController < ApplicationController
   def update
     @project.icon = nil if params[:icon_delete]
     @project.cover = nil if params[:cover_delete]
+    if params[:project] && params[:project][:user_id]
+      msg = if current_user.id != @project.user_id && @project.user_id != params[:project][:user_id].to_i
+        I18n.t( "errors.messages.only_project_owner_can_change_project_owner" )
+      elsif @project.user_id != params[:project][:user_id].to_i
+        new_admin = User.find_by_id( params[:project][:user_id] )
+        if new_admin.blank?
+          I18n.t( :x_does_not_exist, x: I18n.t( :user ) )
+        elsif !@project.project_users.where( user_id: new_admin, role: ProjectUser::MANAGER ).exists?
+          I18n.t( "errors.messages.new_project_owner_must_be_a_manager" )
+        end
+      end
+      if msg
+        respond_to do |format|
+          format.html do
+            flash[:error] = msg
+            redirect_back_or_default( @project )
+          end
+          format.json do
+            render json: { error: msg }, status: :unprocessable_entity
+          end
+        end
+        return
+      end
+    end
     respond_to do |format|
       if @project.update_attributes(params[:project])
         Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
+        @project_types = Project::PROJECT_TYPES
+        @project_types = if [@project.project_type, @project.project_type_was].include?( Project::BIOBLITZ_TYPE )
+          Project::PROJECT_TYPES
+        else
+          [Project::ASSESSMENT_TYPE]
+        end
         format.html { render :action => "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

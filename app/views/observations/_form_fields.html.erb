@@ -51,7 +51,7 @@
       </div>
       
       <div class="field">
-        <%= o.label(:description, t(:description)) %>
+        <%= o.label( :description, t(:notes, default: t("activerecord.attributes.observation.description") ) ) %>
         <%= o.text_area(:description, :class => "text") %>
       </div>
       

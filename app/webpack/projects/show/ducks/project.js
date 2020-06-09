@@ -63,7 +63,7 @@ export function fetchMembers( ) {
 
 export function fetchPopularObservations( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     if ( project.popular_observations_loaded ) { return null; }
     const params = Object.assign( { }, project.search_params, {
@@ -82,7 +82,7 @@ export function fetchPopularObservations( ) {
 
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     const params = Object.assign( { }, project.search_params, {
       return_bounds: "true",
@@ -155,8 +155,8 @@ export function infiniteScrollObservations( nextScrollIndex ) {
       params = Object.assign( params, config.observationFilters );
     }
     return inatjs.observations.search( params ).then( response => {
-      project.filtered_observations.results =
-        project.filtered_observations.results.concat( response.results );
+      project.filtered_observations.results = project
+        .filtered_observations.results.concat( response.results );
       dispatch( setAttributes( {
         filtered_observations: project.filtered_observations,
         filtered_observations_page: project.filtered_observations_page + 1
@@ -168,7 +168,7 @@ export function infiniteScrollObservations( nextScrollIndex ) {
 
 export function fetchSpecies( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.observations.speciesCounts( project.search_params ).then( response => {
       dispatch( setAttributes( {
@@ -181,7 +181,7 @@ export function fetchSpecies( ) {
 
 export function fetchObservers( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.observations.observers( project.search_params ).then( response => {
       dispatch( setAttributes( {
@@ -194,7 +194,7 @@ export function fetchObservers( ) {
 
 export function fetchSpeciesObservers( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     const params = Object.assign( { }, project.search_params, { order_by: "species_count" } );
     return inatjs.observations.observers( params ).then( response => {
@@ -208,7 +208,7 @@ export function fetchSpeciesObservers( ) {
 
 export function fetchIdentifiers( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.observations.identifiers( project.search_params ).then( response => {
       dispatch( setAttributes( {
@@ -221,7 +221,7 @@ export function fetchIdentifiers( ) {
 
 export function fetchPosts( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.projects.posts( { id: project.id, per_page: 3 } ).then( response => {
       dispatch( setAttributes( {
@@ -234,7 +234,7 @@ export function fetchPosts( ) {
 
 export function fetchIconicTaxaCounts( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.observations.iconicTaxaSpeciesCounts( project.search_params ).then( response => {
       dispatch( setAttributes( {
@@ -247,7 +247,7 @@ export function fetchIconicTaxaCounts( ) {
 
 export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
     if ( !project ) { return null; }
     return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
       dispatch( setAttributes( {
@@ -260,9 +260,11 @@ export function fetchUmbrellaStats( ) {
 
 export function fetchQualityGradeCounts( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
-    if ( !project || project.quality_grade_counts_loading ||
-         project.quality_grade_counts_loaded ) { return null; }
+    const { project } = getState( );
+    if ( !project || project.quality_grade_counts_loading
+         || project.quality_grade_counts_loaded ) {
+      return null;
+    }
     dispatch( setAttributes( {
       quality_grade_counts_loading: true
     } ) );
@@ -278,9 +280,11 @@ export function fetchQualityGradeCounts( ) {
 
 export function fetchIdentificationCategories( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
-    if ( !project || project.identification_categories_loading ||
-        project.identification_categories_loaded ) { return null; }
+    const { project } = getState( );
+    if ( !project || project.identification_categories_loading
+         || project.identification_categories_loaded ) {
+      return null;
+    }
     dispatch( setAttributes( {
       identification_categories_loading: true
     } ) );
@@ -296,7 +300,13 @@ export function fetchIdentificationCategories( ) {
 
 export function fetchOverviewData( ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project } = getState( );
+    if ( project.hasInsufficientRequirements( )
+      || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 ) ) {
+      dispatch( fetchMembers( ) );
+      dispatch( fetchPosts( ) );
+      return;
+    }
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
@@ -384,8 +394,8 @@ export function feature( options = { } ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     const loggedIn = config.currentUser;
-    const viewerIsAdmin = loggedIn && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsAdmin = loggedIn && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const viewerIsSiteAdmin = loggedIn && config.currentUser.site_admin;
     // user must be an admin or site admin
     if ( !project || !loggedIn || !( viewerIsAdmin || viewerIsSiteAdmin ) || !config.site ) {
@@ -409,8 +419,8 @@ export function unfeature( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     const loggedIn = config.currentUser;
-    const viewerIsAdmin = loggedIn && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsAdmin = loggedIn && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const viewerIsSiteAdmin = loggedIn && config.currentUser.site_admin;
     // user must be an admin or site admin
     if ( !project || !loggedIn || !( viewerIsAdmin || viewerIsSiteAdmin ) || !config.site ) {
@@ -470,11 +480,14 @@ export function createFlag( className, id, flag, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !state.project || !state.config.currentUser ) { return null; }
-    const params = { flag: {
-      flaggable_type: className,
-      flaggable_id: id,
-      flag
-    }, flag_explanation: body };
+    const params = {
+      flag: {
+        flaggable_type: className,
+        flaggable_id: id,
+        flag
+      },
+      flag_explanation: body
+    };
     return inatjs.flags.create( params ).then( ( ) => {
       dispatch( afterFlagChange( ) );
     } ).catch( e => console.log( e ) );

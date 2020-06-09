@@ -33,7 +33,6 @@ eu:
     beste izen batzuk gehitu ahal izango dituzu hemen (izen arruntak,
     eguneratutako izen zientifikoak eta abar).
   a_flag_for_x: "marka bat: %{x}"
-  a_member_of: "ren kidea"
   a_member_of_taxon_html: "honetako kide bat: %{taxon}"
   about: 'Honi buruz:'
   about_community_taxa: Komunitate taxoien inguruan
@@ -156,7 +155,6 @@ eu:
   admin: administratzailea
   admin_s: Administratzailea(k)
   admin_tools: Tresna Administratiboak
-  agree: ados
   agree_: Ados
   agree?: Ados al zaude?
   agreeing: Prozesuan...
@@ -293,7 +291,6 @@ eu:
   ascending: Goranzkoa
   assessment: balorazioa
   associations: Elkarteak
-  at_time: "hemen: %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -423,7 +420,6 @@ eu:
   choose_a_list_above: Zerrenda hautatu goian
   choose_a_place: Leku bat hautatu
   choose_a_taxon: Espeziea edo taldea hautatu (aukerakoa)
-  choose_cc_licensed_photos_html: 'Lizentzia hau duten argazkiak topatu: <a href="http://creativecommons.org/">CC</a> Flickr-en edo zure oharretatik hautatu hemen: %{site_name}. Egin proba eta hautatu diagnosiko ezaugarriak</em> erakusten dituzten <em> eta <em> ikono</em> gisa ondo ikusten diren irudiak.  <em>Lehenengoa lehenetsita</em> azaltzen da.'
   choose_file: Fitxategia aukeratu
   choose_files: Artxiboak hautatu
   choose_from_your_lists: Zure zerrendetatik hautatu
@@ -480,7 +476,6 @@ eu:
   confirm_new_password: Pasahitz berria baieztatu
   confirm_now: Orain baieztatu
   confirm_your_info: Zure informazioa baieztatu
-  confirmed: baieztatuak
   connect_to_provider: "Hona konektatu: %{provider}"
   connected_accounts: Lotutako kontuak
   connecting_flickr: "Flickr-era konektatzen..."
@@ -667,7 +662,6 @@ eu:
   edit_custom_project_fields: Pertsonalizatutako proiektu-eremuak aldatu
   edit_license: Lizentzia aldatu
   edit_multiple_dates: Data anitzak aldatu
-  edit_multiple_descriptions: Deskribapen anitzak aldatu
   edit_multiple_locations: Kokapen anitzak aldatu
   edit_multiple_species: Espezie anitzak aldatu
   edit_notes: Oharrak aldatu
@@ -822,12 +816,9 @@ eu:
   for_a_taxon: taxon batena
   forgot_your_password: Zure pasahitza ahaztu duzu?
   frequency: Maiztasuna
-  from: 'hemendik:'
   from_a_place: leku batekoa
   from_list: Zerrendakoa
   from_photos: Argazkiena
-  from_your_site_observations: "Honi buruzko oharrak: %{site_name}"
-  from_licensed_site_observations: "Honi buruzko oharrak: %{site_name} lizentzia"
   full_screen: Pantaila osoa
   fungi:
     one: onddoa 
@@ -1062,7 +1053,6 @@ eu:
   loading: "Kargatzen..."
   loading_flickr_photos: "Flickr-eko argazkiak kargatzen..."
   loading_images: Irudiak kargatzen...
-  loading_map: Mapa kargatzen...
   loading_preview_and_code: Kodea... kargatzen...
   loading_tags: "Etiketak kargatzen..."
   loading_taxa_from_your: "Oharretako taxonak kargatzen..."
@@ -1327,8 +1317,6 @@ eu:
     doubtful: zalantzagarria
     absent: ez dago
   offensive_inappropriate: Iraingarria/ Desegokia
-  on_date: "egun honetan: %{date}"
-  on_your_life_list: zure bizitzako zerrendan
   one_of_your_lists: "zure zerrendetako bat..."
   only_a_project_manager_can_add: Proiektuko kudeatzaileak soilik eman diezaioke sailkapena proiektuko administratzaileari
   only_an_admin_can_remove_project_users: Administratzaileak soilik ezaba ditzake proiektuko erabiltzaileak.
@@ -1350,7 +1338,6 @@ eu:
   optional: aukerakoa
   or: edo
   or_choose_high_level_taxa: "... Edo aukeratu maila altuko zenbait taxonetatik"
-  or_upload: 'Edo deskargatu hau:'
   orange: laranja
   order: Ordena
   order_by: 'Honen arabera ordenatu:'
@@ -1360,7 +1347,6 @@ eu:
   other: Beste
   other_animals: beste animalia batzuk
   our_blog: Gure bloga
-  out_of_range: Mailatik kanpo
   owner: Jabea
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Nagusia
@@ -1396,7 +1382,6 @@ eu:
   photos_updated: Eguneratutako argazkiak.
   pink: arrosa
   place: Tokia
-  place_added_to_inat_by: "%{site_name} webgunera gehitutako lekua, honek gehitua:"
   place_deleted: Tokia ezabatuta.
   place_geo:
     geo_planet_place_types:
@@ -1766,7 +1751,6 @@ eu:
   show_off_your_recent_observations: Argitaratu behaketak zure blogean edo web orrian!
   show_only: Erakutsi soilik
   show_taxa_from_both: (bi zerrendetako taxonak berriro erakutsi)
-  showing_one_to: 1 erakusten -
   sign_in: Sartu
   sign_in_with_provider: "Hasi saioa honekin: %{provider}"
   sign_out: Irten
@@ -2262,14 +2246,6 @@ eu:
       copy_tip: "Behaketa berria gehitu behaketa honen data, lekua, argazkiak eta behaketa-eremuak kopiatuta."
       captive_help_html: |
         Behatu zenuen organismoa <strong>landua</strong> edo <strong>gatibu</strong> izan al da? Esate baterako, <strong>lorategi, zoologiko edo akuario</strong> batean zegoen edo beste kokapen batean zegoen <strong>gizakiek han egotera zuzendu zutelako bakarrik</strong>? Izaki bizidunei buruzko behaketa guztiak ongi etorriak dira, baina izaki horiek basatiak ez ote diren edo naturalizatu egin diren jakin nahi genuke.
-    photos:
-      inviter:
-        automatically_add_to_project: Automatikoki gehitu proiektuari
-        automatically_id_the_new_obs_as: 'Behaketa berria automatikoki identifikatu IDarekin honela:'
-        dont_forget_the_invite_link_placeholder: "ez ahaztu {{INVITE_LINK}} leku-marka gehitzea"
-        invite_other_photographers_to_inat: "%{site_name}-(e)ko beste argazkilari batzuk gonbidatu"
-        invite_your_friends_description: |
-          Beste pertsona batzuek argazkiak Flickr-en behaketa gisa gehi ditzaten lagun dezakezu %{site_name}. Aipamena utzi eta gonbidapen bereziaren esteka gehitu besterik ez duzu egin behar. Behaketa berrirako taxona eta proiektuaren lehen hautaketa ere egin dezakezu.
     places:
       new:
         check_list_note: "Oharra: Egiaztapen-zerrendak automatikoki desaktibatzen dira leku oso handietarako."

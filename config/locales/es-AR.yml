@@ -108,7 +108,6 @@ es-AR:
   a_default_taxon_name_will_automatically_created: |
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
-  a_member_of: "Un miembro de"
   a_member_of_taxon_html: "un miembro de %{taxon}"
   about: Acerca de
   about_blocking: Acerca de los bloqueos
@@ -274,7 +273,6 @@ es-AR:
   admin_s: Administrador(es)
   admin_only: Solamente administrador
   admin_tools: Herramientas administrativas
-  agree: de acuerdo
   agree_: Aceptar
   agree?: '¿De acuerdo?'
   agree_with_current_taxon: De acuerdo con el taxón actual
@@ -505,7 +503,6 @@ es-AR:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
-  at_time: "en %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -698,7 +695,6 @@ es-AR:
   choose_a_list_above: Selecciona una lista de arriba
   choose_a_place: Selecciona un lugar
   choose_a_taxon: Selecciona un taxón (opcional)
-  choose_cc_licensed_photos_html: 'Selecciona fotos con licencia <a href=\"http://creativecommons.org/\">abierta</a> de otros lugares o selecciona de observaciones en %{site_name}. Trata de seleccionar imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien como íconos</em>.  La <em>primera aparece por defecto</em>.'
   choose_columns: Seleccionar columnas
   choose_file: Seleccionar un archivo
   choose_files: Seleccionar archivos
@@ -771,7 +767,6 @@ es-AR:
   confirm_new_password: Confirmar nueva contraseña
   confirm_now: Confirmar ahora
   confirm_your_info: Confirma tu información
-  confirmed: confirmadas
   connect_to_provider: "Conectar a %{provider}"
   connected_accounts: Cuentas vinculadas
   connecting_flickr: "Conectándose a Flickr..."
@@ -1063,7 +1058,6 @@ es-AR:
   edit_field: Edita el campo
   edit_license: Modifica licencia
   edit_multiple_dates: Edita múltiples fechas
-  edit_multiple_descriptions: Edita múltiples descripciones
   edit_multiple_locations: Edita múltiples localizaciones
   edit_multiple_species: Edita múltiples grupos o especies
   edit_notes: Modifica notas
@@ -1155,7 +1149,6 @@ es-AR:
   exact_location: Ubicación exacta
   exact_rank: Rango exacto
   except: excepto
-  exclude_x: Excluye %{x}
   exclusion_filters: Filtros para excluir
   existing_flags: Advertencias existentes
   exit_full_screen: "Sal de la pantalla completa"
@@ -1188,6 +1181,7 @@ es-AR:
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
   featured: Destacados
+  #Title for a button or section describing the "featured" status of a project
   featuring: Presentando
   feedback: Retroalimentación
   #Plural noun, as in Atom and RSS feeds
@@ -1326,7 +1320,6 @@ es-AR:
   forum_desc: |
     El foro es un sitio para hablar sobre iNat, incluyendo soporte técnico y ayuda, peticiones de nuevas características, informes de errores, anuncios y más.
   frequency: Frecuencia
-  from: de
   from_a_place: de un lugar
   from_eol_collection: De colección EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
@@ -1334,8 +1327,6 @@ es-AR:
   from_photos: De fotos
   from_place: De lugar
   from_soundcloud: De Soundcloud
-  from_your_site_observations: "Observaciones de %{site_name}"
-  from_licensed_site_observations: "Observaciones de %{site_name} licencia"
   full_screen: Pantalla completa
   fungi:
     one: hongo
@@ -1710,7 +1701,6 @@ es-AR:
   loading: "Cargando..."
   loading_flickr_photos: "Cargando fotos de Flickr..."
   loading_images: Cargando imágenes...
-  loading_map: Cargando el mapa…
   loading_metadata: Cargando metadatos ...
   loading_preview_and_code: Cargando el código...
   loading_suggestions: Cargando las sugerencias…
@@ -1894,9 +1884,7 @@ es-AR:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
@@ -2058,7 +2046,6 @@ es-AR:
   no_more_taxa_to_load: No hay más taxones que cargar.
   no_more_results_found: No hay más resultados
   no_new_messages: No hay nuevos mensajes
-  no_news_yet: Todavía no hay noticias
   no_observations: No hay observaciones
   no_observations_from_this_place_yet: Aún no hay observaciones de especies para este lugar.
   no_observations_matching_those_ids: No hay observaciones que coincidan con esos Identificadores.
@@ -2269,9 +2256,7 @@ es-AR:
   offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
-  on_date: "en %{date}"
   on_day: "el"
-  on_your_life_list: en tu lista de vida
   onboarding:
     observe_panel_title: Vamos a añadir observaciones
     observe_panel_body_p1_local: Por un poco de inspiración, aquí hay algunas especies que se observan en las inmediaciones...
@@ -2333,7 +2318,6 @@ es-AR:
   or_all_caps: o
   or_choose_high_level_taxa: "... o seleccione de algunos taxones de alto nivel"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
-  or_upload: O descarga el
   orange: naranja
   order: Orden
   order_by: Ordenar por
@@ -2372,7 +2356,6 @@ es-AR:
   other_taxa_commonly_misidentified_as_this_subsection: Otros taxones identificados erróneamente como esta subsección
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Otros taxones comúnmente identificados erróneamente como esta subsección en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
-  out_of_range: Fuera del área
   output_taxon: Taxón de salida
   overview: Visión de conjunto
   overlapping_downstream_taxon_frameworks_html: "Superposición de los marcos de referencia de taxones descendentes: %{count}"
@@ -2450,7 +2433,6 @@ es-AR:
     Selecciona esta combinación de notas de coordenadas, precisión, geoprivacidad y ubicación para más tarde.
   place: Lugar
   placeholder: Posición
-  place_added_to_inat_by: "Lugar agregado a %{site_name} por"
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
   place_deleted: Lugar eliminado.
   place_geo:
@@ -2865,7 +2847,6 @@ es-AR:
   present: nativo
   press: Prensa
   preview: Vista previa
-  preview_observations: Ver observaciones
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
   preview_personal_message: "Me gustaría que te unas a %{site}, un sitio web donde podrás registrar tus observaciones de plantas y animales, llevar un control de tu lista de vida y aprender sobre el mundo natural."
   preview_your_message: Vista previa de tu mensaje
@@ -2922,8 +2903,6 @@ es-AR:
   project_settings: Configuración de proyectos
   project_start_time_datetime: "Hora de inicio: %{datetime}"
   project_that_does_not_contain_these_observations: Proyecto que no contenga estas observaciones
-  project_type_description: |
-    Los inventarios rápidos (maratón naturalista) son tipos especiales de proyectos. Los inventarios son una forma de colaboración sobre la evaluación de un conjunto de especies, generalmente para medir su importancia para la conservación. Los inventarios rápidos son eventos que tienen un principio y un final preestablecidos.
   project_user_cannot_be_found: El usuario del proyecto no pudo ser encontrado
   project_user_was_invalid: "El usuario del proyecto no era válido: %{project_user}"
   project_was_successfully_created: El proyecto fue creado satisfactoriamente.
@@ -3127,12 +3106,6 @@ es-AR:
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
   running_total: Total acumulado
-  same_day_obscured: Otra observación de esta persona en este día ha sido ocultada.
-  same_day_obscured_desc: |
-    Cuando las coordenadas están ocultadas debido a que el taxón está en riesgo, todas las demás observaciones de ese observador en aquel día son también ocultadas para impedir que otros adivinen las coordenadas en base a las otras observaciones. Los observadores también pueden aplicar esta protección a coordenadas que han decidido ocultar.
-  same_day_private: Otra observación realizada por esta persona en este día es privada.
-  same_day_private_desc: |
-    Cuando las coordenadas están ocultadas debido a que el taxón está en riesgo, todas las demás observaciones de ese observador en aquel día son también ocultadas para impedir que otros adivinen las coordenadas en base a las otras observaciones. Los observadores también pueden aplicar esta protección a coordenadas que han decidido ocultar.
   said: decia
   satellite: satélite
   save: Guardar
@@ -3242,7 +3215,6 @@ es-AR:
   show_taxa_from_place: "Muestra taxones de %{place}"
   show_total_counts: Enseña conteos totales
   show_uncountable_species: Mostrar especies incontables
-  showing_one_to: Mostrando 1 -
   showing_taxa_from_everywhere: "Mostrando taxones de todas partes"
   showing_taxa_from_place: "Mostrando taxones de %{place}"
   showing_x_of_y: Editando %{x} en%{y}
@@ -3835,6 +3807,7 @@ es-AR:
   user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
@@ -3866,11 +3839,9 @@ es-AR:
   username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
-  users_comment_html: "Comentario de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a> a %{project_title}
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
-  users_identification_short_html: "Identificador de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
@@ -3918,8 +3889,6 @@ es-AR:
   view_observation_flags: Ver marcas de observación
   view_observations_by_everyone: Ver las observaciones de todos
   view_observations_by_these_users: Ver observaciones de estos usuarios
-  view_observations_causing_this_observation_to_be_obscured: |
-    Ver observaciones que causan que esta observación esté oscurecida
   view_observations_of_this_taxon_by: Ver observaciones de este taxón por
   view_on: Ver en
   view_on_flickr: Ver en Flickr
@@ -4784,16 +4753,6 @@ es-AR:
     photos:
       forbidden_notice_html: |
         No tenemos permiso para acceder a esas fotos justo ahora. Puede que necesite desconectar y reconectar la cuenta en sus <a href="/users/edit">settings</a> para concedernos permisos adicionales.
-      inviter:
-        automatically_add_to_project: Añadir automáticamente al proyecto
-        automatically_id_the_new_obs_as: Identificar automáticamente la nueva observación como
-        dont_forget_the_invite_link_placeholder: "no se olvide de incluir el {{INVITE_LINK}} marcador de posición"
-        invite_other_photographers_to_inat: "Invitar a otros fotógrafos %{site_name}"
-        invite_your_friends_description: |
-          Usted puede facilitar que otras personas agreguen sus fotos en Flickr como 
-          observaciones %{site_name}. Sólo déjeles un comentario incluyendo este 
-          vínculo de invitación especial.  También puede preseleccionar un taxón y 
-          proyecto para la observación nueva.
       show:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
@@ -4969,8 +4928,6 @@ es-AR:
         or_drag_and_drop: (O arrastrar y soltar)
         please_specify_the_requirements: |
           Especifica los requisitos para las observaciones que se añadirán a este proyecto.
-        please_specify_the_requirements_html: |
-          Especifica por favor los requisitos que deben cumplir las observaciones que serán añadidas a este proyecto. Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente incluidos, o dejar el campo en blanco si no existen requerimientos específicos. La definición de cada sitio puede ser encontrada <a href="%{url}">aquí</a>.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.
         project_banner: Imagen del proyecto (PNG, JPG, o GIF)

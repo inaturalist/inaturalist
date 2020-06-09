@@ -57,19 +57,6 @@ class CommunityIdentification extends React.Component {
     this.refs["popover-trigger"].hide( );
   }
 
-  communityIDInfoPopover( ) {
-    return (
-      <Popover
-        className="CommunityIDInfoOverlay"
-        id="popover-community-id-info"
-      >
-        <div dangerouslySetInnerHTML={{
-          __html: I18n.t( "views.observations.community_id.explanation" )
-        }}/>
-      </Popover>
-    );
-  }
-
   communityIDOverridePanel( ) {
     if ( !( this.userIsObserver && this.ownerID && this.communityIDIsRejected ) ) {
       return ( <div /> );
@@ -77,11 +64,17 @@ class CommunityIdentification extends React.Component {
     return (
       <div className="override out">
         <span className="bold">
-          { I18n.t( "views.observations.community_id.you_have_opted_out" ) }.
+          { I18n.t( "views.observations.community_id.you_have_opted_out" ) }
+          { "." }
         </span>
-        <a href="#" onClick={this.communityIDOptIn}>
+        <button
+          type="button"
+          className="btn btn-nostyle linky"
+          href="#"
+          onClick={this.communityIDOptIn}
+        >
           { I18n.t( "views.observations.community_id.opt_in_for_this_observation" ) }
-        </a>
+        </button>
         <span className="separator">·</span>
         <a href="/users/edit">
           { I18n.t( "edit_your_default_settings" ) }
@@ -100,7 +93,18 @@ class CommunityIdentification extends React.Component {
             trigger="click"
             rootClose
             placement="top"
-            overlay={this.communityIDInfoPopover( )}
+            overlay={(
+              <Popover
+                className="CommunityIDInfoOverlay"
+                id="popover-community-id-info"
+              >
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.observations.community_id.explanation" )
+                  }}
+                />
+              </Popover>
+            )}
             containerPadding={20}
           >
             <i className="fa fa-question-circle" />
@@ -114,13 +118,19 @@ class CommunityIdentification extends React.Component {
   optOutPopover( ) {
     const { observation } = this.props;
     // must be observer, IDer, must not have opted out already
-    if ( !( this.userIsObserver && this.ownerID
-      && observation.taxon && !this.observationOptedOut ) ) {
+    if ( !(
+      this.userIsObserver
+      && this.ownerID
+      && observation.taxon
+      && !this.observationOptedOut
+    ) ) {
       return null;
     }
     // the taxa must be different, or the user defaults to opt-out, but opted in here
-    if ( this.ownerID.taxon.id === observation.taxon.id
-      && !( this.observerOptedOut && this.observationOptedIn ) ) {
+    if (
+      this.ownerID.taxon.id === observation.taxon.id
+      && !( this.observerOptedOut && this.observationOptedIn )
+    ) {
       return null;
     }
     let dissimilarMessage;
@@ -152,16 +162,17 @@ class CommunityIdentification extends React.Component {
           <button
             type="button"
             className="btn btn-default reject"
-            onClick={this.communityIDOptOu}
+            onClick={this.communityIDOptOut}
           >
             { I18n.t( "yes_reject_it" ) }
           </button>
-          <div
-            className="cancel linky"
+          <button
+            type="button"
+            className="btn btn-nostyle cancel linky"
             onClick={this.optOutPopoverClose}
           >
             { I18n.t( "cancel" ) }
-          </div>
+          </button>
         </div>
       </Popover>
     );
@@ -174,15 +185,19 @@ class CommunityIdentification extends React.Component {
         overlay={popover}
         ref="popover-trigger"
       >
-        <div className="reject linky">
+        <button
+          type="button"
+          className="btn btn-nostyle linky"
+        >
           { I18n.t( "reject?" ) }
-        </div>
+        </button>
       </OverlayTrigger>
     );
   }
 
   showCommunityIDModal( ) {
-    this.props.setCommunityIDModalState( { show: true } );
+    const { setCommunityIDModalState } = this.props;
+    setCommunityIDModalState( { show: true } );
   }
 
   sortedIdents( ) {
@@ -452,7 +467,7 @@ class CommunityIdentification extends React.Component {
                     className="pull-right compare-link"
                     onClick={e => {
                       if ( onClickCompare ) {
-                        return onClickCompare( e, observation.communityTaxon, observation );
+                        return onClickCompare( e, communityTaxon, observation );
                       }
                       return true;
                     }}

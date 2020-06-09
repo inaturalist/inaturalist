@@ -151,15 +151,18 @@ class PhotoBrowser extends React.Component {
         containerClass = "sound-container-soundcloud";
         player = (
           <iframe
+            title="Soundcloud"
             scrolling="no"
             frameBorder="no"
-            src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
-          ></iframe>
+            src={
+              `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}`
+            }
+          />
         );
       } else {
         player = (
-          <audio controls preload="none">
-            <source src={ sound.file_url } type={ sound.file_content_type } />
+          <audio controls preload="none" controlsList="nodownload">
+            <source src={sound.file_url} type={sound.file_content_type} />
             { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
           </audio>
         );

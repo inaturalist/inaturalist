@@ -185,11 +185,12 @@
   vertical-align: middle;
 }
 .ac-result.place .ac-label {
-  max-width: 400px;
+  max-width: 100%;
 }
 .ac-result.place .title {
   float: left;
   margin-right: 8px;
+  max-width: 100%;
 }
 .ac-result.place .type {
   float: left;

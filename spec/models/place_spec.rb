@@ -384,6 +384,13 @@ describe Place, "save_geom" do
       p.reload
       expect( p.check_list.taxon_ids ).to include o.taxon_id
     end
+    it "should not add taxa observed outside the place to the checklist" do
+      expect( p.check_list.taxon_ids ).to be_empty
+      o = make_research_grade_observation(latitude: 5, longitude: 5)
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).not_to include o.taxon_id
+    end
     it "should not remove existing user-added listed taxa to the checklist" do
       t = Taxon.make!
       u = User.make!

@@ -97,6 +97,8 @@ class User < ActiveRecord::Base
   preference :map_tile_test, :boolean, default: false
   preference :no_site, :boolean, default: false
   preference :no_tracking, :boolean, default: false
+  preference :identify_image_size, :string, default: nil
+  preference :identify_side_bar, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -122,6 +124,8 @@ class User < ActiveRecord::Base
   has_many :deleted_sounds
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :friendships, dependent: :destroy
+  has_many :friendships_as_friend, class_name: "Friendship",
+    foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
 
   def followees
     User.where( "friendships.user_id = ?", id ).
@@ -232,7 +236,7 @@ class User < ActiveRecord::Base
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
-  before_save :set_time_zone
+  before_validation :set_time_zone
   before_save :whitelist_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user

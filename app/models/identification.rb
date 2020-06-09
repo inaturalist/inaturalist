@@ -581,6 +581,7 @@ class Identification < ActiveRecord::Base
     scope = scope.includes( { observation: :observations_places }, :user )
     scope = scope.where( "identifications.created_at < ?", Time.now )
     observation_ids = []
+    ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       new_ident = Identification.new(
@@ -589,7 +590,8 @@ class Identification < ActiveRecord::Base
         user_id: ident.user_id,
         taxon_change: taxon_change,
         disagreement: false,
-        skip_set_disagreement: true
+        skip_set_disagreement: true,
+        skip_indexing: true
       )
       if ident.disagreement && ident.previous_observation_taxon && ( current_synonym = ident.previous_observation_taxon.current_synonymous_taxon )
         new_ident.disagreement = true
@@ -599,17 +601,23 @@ class Identification < ActiveRecord::Base
       new_ident.skip_observation = true
       new_ident.save
       observation_ids << ident.observation_id
+      ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
     Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-        ident.update_attributes( skip_set_previous_observation_taxon: true, previous_observation_taxon: taxon_change.output_taxon )
+        ident.update_attributes(
+          skip_set_previous_observation_taxon: true,
+          previous_observation_taxon: taxon_change.output_taxon,
+          skip_indexing: true
+        )
         observation_ids << ident.observation_id
       elsif taxon_change.is_a?( TaxonSplit )
-        ident.update_attributes( disagreement: false )
+        ident.update_attributes( disagreement: false, skip_indexing: true )
         observation_ids << ident.observation_id
       end
+      ident_ids << ident.id
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
@@ -628,10 +636,20 @@ class Identification < ActiveRecord::Base
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
         obs.save
-        Identification.update_categories_for_observation( obs, skip_reload: true )
+        Identification.update_categories_for_observation( obs, skip_reload: true, skip_indexing: true )
+        ident_ids += obs.identification_ids
       end
-      Observation.elastic_index!( ids: obs_ids )
     end
+    # Get observations that may have received new identifications from this
+    # change from a previous attempt to commit records for this change, in case
+    # a previous attempt hit an error and stopped before indexing some records
+    observation_ids += Identification.connection.execute(
+      "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
+    ).select {|r| r["observation_id"].to_i }
+    observation_ids.uniq!
+    ident_ids.uniq!
+    Identification.elastic_index!( ids: ident_ids )
+    Observation.elastic_index!( ids: observation_ids )
   end
 
   def self.update_disagreement_identifications_for_taxon( taxon )
@@ -669,6 +687,28 @@ class Identification < ActiveRecord::Base
         results_remaining = false
       end
     end
+  end
+
+  def self.reindex_for_taxon( taxon_id )
+    page = 1
+    ident_ids = []
+    while true
+      r = Identification.elastic_search(
+        source: {
+          includes: ["id"],
+        },
+        filters: [
+          { terms: { "taxon.id" => [taxon_id] } }
+        ],
+        track_total_hits: true
+      ).page( page ).per_page( 1000 )
+      break unless r.response && r.response.hits && r.response.hits.hits
+      new_ident_ids = r.response.hits.hits.map(&:_id)
+      break if new_ident_ids.blank?
+      ident_ids += new_ident_ids
+      page += 1
+    end
+    Identification.elastic_index!( ids: ident_ids )
   end
 
 end

@@ -1,10 +1,9 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  load_only = [ :show, :edit, :update, :destroy,
-    :edit_photos, :update_photos, :sync ]
+  load_only = [ :show, :edit, :update, :destroy, :update_photos, :sync ]
   before_filter :load_record, :only => load_only
   before_filter :load_guide, :only => load_only
-  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
+  before_filter :only => [:edit, :update, :destroy, :update_photos, :sync] do |c|
     require_guide_user
   end
   layout "bootstrap"
@@ -111,12 +110,6 @@ class GuideTaxaController < ApplicationController
       format.html { redirect_to edit_guide_url(@guide_taxon.guide_id), notice: "Taxon removed" }
       format.json { head :no_content }
     end
-  end
-
-  def edit_photos
-    @resource = @guide_taxon
-    @photos = @guide_taxon.guide_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
-    render :layout => false, :template => "taxa/edit_photos", :locals => {:licensed => true}
   end
 
   def update_photos

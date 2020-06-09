@@ -16,6 +16,7 @@ const TopMenu = ( {
   confirmRemoveSelected,
   selectAll,
   combineSelected,
+  duplicateSelected,
   trySubmitObservations,
   fileChooser,
   countTotal,
@@ -45,6 +46,7 @@ const TopMenu = ( {
   if ( scrolledPastToolbar ) { className += " fixed"; }
   const removeDisabled = countSelected === 0;
   const combineDisabled = countSelected < 2;
+  const duplicateDisabled = countSelected === 0;
   const selectAllDisabled = countTotal === 0;
   return (
     <Navbar className={className} fluid>
@@ -99,6 +101,24 @@ const TopMenu = ( {
           placement="top"
           delayShow={1000}
           overlay={
+            duplicateDisabled
+              ? <span />
+              : <Tooltip id="duplicate-tip">{ I18n.t( "uploader.tooltips.duplicate" ) }</Tooltip>
+          }
+        >
+          <NavItem
+            onClick={duplicateSelected}
+            disabled={duplicateDisabled}
+          >
+            <i className="fa fa-files-o" />
+            { " " }
+            { I18n.t( "duplicate_verb" ) }
+          </NavItem>
+        </OverlayTrigger>
+        <OverlayTrigger
+          placement="top"
+          delayShow={1000}
+          overlay={
             selectAllDisabled
               ? <span />
               : <Tooltip id="select-tip">{ I18n.t( "uploader.tooltips.select_all" ) }</Tooltip>
@@ -121,9 +141,7 @@ const TopMenu = ( {
           </li>
         </OverlayTrigger>
       </Nav>
-      <div className="pull-right">
-        { saveButton }
-      </div>
+      { saveButton }
     </Navbar>
   );
 };
@@ -134,6 +152,7 @@ TopMenu.propTypes = {
   countSelected: PropTypes.number,
   countTotal: PropTypes.number,
   createBlankObsCard: PropTypes.func,
+  duplicateSelected: PropTypes.func,
   fileChooser: PropTypes.func,
   scrolledPastToolbar: PropTypes.bool,
   selectAll: PropTypes.func,
