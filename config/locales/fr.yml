@@ -2,6 +2,9 @@ fr:
   x_comments:
     one: '1 commentaire'
     other: '%{count} commentaires'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> commentaire'
+    other: '<span class="count">%{count}</span> commentaires'
   x_faves:
     one: '1 favori'
     other: '%{count} favoris'
@@ -789,6 +792,7 @@ fr:
   comment_deleted: Commentaire supprimé
   comments: Commentaires
   comments_by_me: Mes commentaires
+  comments_have_been_disabled: Les commentaires sont désactivés
   comments_on: Commentaires sur
   comments_on_my_observations: Commentaires sur mes observations
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
@@ -1091,6 +1095,8 @@ fr:
   did_you_mean: 'Voulez-vous dire'
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
   disable: Désactiver
+  disable_comments: Désactiver les commentaires
+  disable_comments_desc: Empêcher les utilisateurs d'ajouter de nouveaux commentaires
   disagree_: Refuser
   disconnect_provider: "Déconnecter %{provider}"
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
@@ -2034,6 +2040,7 @@ fr:
   most_observed_introduced_species: Espèces introduites les plus observées
   most_observed_threatened_species: Espèces menacées les plus observées
   move_input_children_to_output?: Déplacer les enfants vers la sortie ?
+  multiple: multiple
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
   must_be_observed_after: |
@@ -4758,6 +4765,19 @@ fr:
         taking_a_while: "Cette action peut prendre un peu de temps. Veuillez essayer une des options ci-dessous."
         date_range_help: "Dates max et min observées au format AAAA-MM-JJ, par ex. 2015-01-17"
         created_on_help: "Date où les observations ont été créées, non observées, par ex. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Autres Options</h3>
+          <p>
+          Les exports de gros volumes de données ralentissent notre infrastructure et rendent difficiles la publication de nouvelles améliorations. Voici quelques autres options que vous pourriez choisir :
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF :</a>
+          Le GBIF intègre la plupart de nos observations avec licence, de Niveau Recherche, et leurs outils d'export sont excellents. Les exports du GBIF incluent également un <a href="https://www.doi.org/">DOI</a> que vous pouvez citer si vous publiez des recherches basées sur les données exportées, et ces citations sont très importantes pour nous car elles nous permettent de suivre l'utilisation qui est faite des données iNat.
+          </p>
       field_descriptions:
         id: "Identificateur unique pour l’observation"
         species_guess: "Nom de l’observateur entré pour le taxon observé"
@@ -6036,6 +6056,10 @@ fr:
         notification_preferences_messages: Messages
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: Quand un projet ajoute vos observations
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Modifications par le superviseur du projet
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Modifications taxinomiques
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6064,6 +6088,11 @@ fr:
           observations du même jour, pour rendre plus difficile aux autres personnes de
           deviner les vraies coordonnées d’après les observations faites alentour au même
           moment.
+        prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Les informations que nous pourrions partager avec ces tiers incluent
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Détails de l'appareil, comme la marque et le modèle d'un téléphone portable
         project_settings_desc: |
           Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
           coordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
@@ -6343,6 +6372,7 @@ fr:
       not_a_number: n’est pas un nombre
       not_an_integer: doit être un nombre entier
       odd: doit être impair
+      only_project_owner_can_change_project_owner: Seul le propriétaire du projet peut changer le propriétaire du projet
       record_invalid: 'Échec de validation : %{errors}'
       requires_privilege_speech: |
         doit avoir trois observations vérifiables ou trois identifications
@@ -6457,6 +6487,7 @@ fr:
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair
+        only_project_owner_can_change_project_owner: Seul le propriétaire du projet peut modifier le propriétaire du projet
         record_invalid: 'Échec de validation : %{errors}'
         requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour d’autres, pour pouvoir faire cela"
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
@@ -6490,6 +6521,7 @@ fr:
         body: Corps
       conservation_status:
         status: Situation
+        description: Description
         authority: Autorité
         place_id: Lieu
         url: URL
@@ -6593,6 +6625,7 @@ fr:
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair
+        only_project_owner_can_change_project_owner: Seul le propriétaire du projet peut modifier le propriétaire du projet
         record_invalid: 'Échec de la validation : %{errors}'
         requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour que les autres puissent faire cela"
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
@@ -6663,6 +6696,8 @@ fr:
               contains_too_many_observations: contient trop d'observations à importer
         post:
           attributes:
+            parent:
+              prefers_no_comments: n'autorise pas les nouveaux commentaires
             user:
               must_be_on_site_long_enough: |
                 doit être inscrit depuis plus de 24 heures pour pouvoir
