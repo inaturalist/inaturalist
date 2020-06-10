@@ -2,6 +2,9 @@ sv:
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoriter'
@@ -804,6 +807,7 @@ sv:
   comment_deleted: Kommentar raderad
   comments: Kommentarer
   comments_by_me: Kommentarer av mig
+  comments_have_been_disabled: Kommentarer har inaktiverats
   comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mina observationer
   commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
@@ -1105,6 +1109,8 @@ sv:
   did_you_mean: 'Menade du'
   did_you_photos_flickr?: Har du lagt några bilder på Flickr?
   disable: Inaktivera
+  disable_comments: Inaktivera kommentarer
+  disable_comments_desc: Förhindra personer från att lägga till nya kommentarer
   disagree_: Håller inte med
   disconnect_provider: "Koppla från %{provider}"
   display_link_to_checklist: Visa länk till projektlistan från projektsidan
@@ -7153,6 +7159,8 @@ sv:
               contains_too_many_observations: innehåller för många observationer för import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillåter inte nya kommentarer
             user:
               must_be_on_site_long_enough: |
                 måste ha registrerat sig för mer än 24 timmar sedan för att publicera.
