@@ -17,6 +17,7 @@ class Comment < ActiveRecord::Base
 
   validates_length_of :body, within: 1..5000
   validates_presence_of :parent
+  validate :parent_prefers_comments
 
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
@@ -112,6 +113,13 @@ class Comment < ActiveRecord::Base
   def flagged_with(flag, options)
     evaluate_new_flag_for_spam(flag)
     index_parent
+  end
+
+  def parent_prefers_comments
+    if parent && parent.respond_to?( :prefers_no_comments? ) && parent.prefers_no_comments?
+      errors.add( :parent, :prefers_no_comments )
+    end
+    true
   end
 
 end

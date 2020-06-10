@@ -123,40 +123,39 @@
                             %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
                       - if element[:observations].count > 8
                         ="..."
-      .col-xs-12
-        - unless @trip_observations.blank? && @trip.observations.blank?
-          %section{:id => "observations"}
-            .observationcontrols.pull-right
-            %h2=t :observations
-            - if @trip.is_a?(Trip)
-              .observations.medium.grid
-                - compact do
-                  = render :partial => "observations/cached_component", :collection => @trip_obsevations
-              .text-muted
-                :ruby
-                  obs_params = {
-                    taxon_is_active: true,
-                    lat: @trip.latitude,
-                    lng: @trip.longitude,
-                    radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
-                    d1: @trip.start_time.iso8601,
-                    d2: @trip.stop_time.iso8601,
-                    user_id: @trip.user_id
-                  }
-                  obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
-                = link_to observations_url(obs_params), :class => "readmore" do
-                  =t( :search_observations)
-            - else
-              .observations.medium.grid
-                - compact do
-                  = render :partial => "observations/cached_component", :collection => @trip.observations
-        %section{:id => "comments"}
-          - if @trip.published_at
-            = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
+      - unless @trip_observations.blank? && @trip.observations.blank?
+        %section{:id => "observations"}
+          .observationcontrols.pull-right
+          %h2=t :observations
+          - if @trip.is_a?(Trip)
+            .observations.medium.grid
+              - compact do
+                = render :partial => "observations/cached_component", :collection => @trip_obsevations
+            .text-muted
+              :ruby
+                obs_params = {
+                  taxon_is_active: true,
+                  lat: @trip.latitude,
+                  lng: @trip.longitude,
+                  radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
+                  d1: @trip.start_time.iso8601,
+                  d2: @trip.stop_time.iso8601,
+                  user_id: @trip.user_id
+                }
+                obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
+              = link_to observations_url(obs_params), :class => "readmore" do
+                =t( :search_observations)
           - else
-            = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
-          - if logged_in? && current_user.id != @trip.user_id
-            .upstacked
-              = render "subscriptions/subscription", resource: @trip.becomes( Post )
+            .observations.medium.grid
+              - compact do
+                = render :partial => "observations/cached_component", :collection => @trip.observations
+      %section{:id => "comments"}
+        - if @trip.published_at
+          = render "comments/comments", parent: @trip, header_tag: :h2, hide_form: @trip.prefers_no_comments?
+        - else
+          = render "comments/comments", parent: @trip, header_tag: :h2, hide_form: true
+        - if logged_in? && current_user.id != @trip.user_id
           .upstacked
-            = render :partial => "shared/flagging", :locals => { :instance => @post }
+            = render "subscriptions/subscription", resource: @trip.becomes( Post )
+        .upstacked
+          = render :partial => "shared/flagging", :locals => { :instance => @post }
