@@ -2,6 +2,12 @@ en:
   x_comments:
     one: '%{count} comment'
     other: '%{count} comments'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> comments'
+    one: '<span class="count">%{count}</span> comment'
+    few: '<span class="count">%{count}</span> comments'
+    many: '<span class="count">%{count}</span> comments'
+    other: '<span class="count">%{count}</span> comments'
   x_faves:
     one: '%{count} fave'
     other: '%{count} faves'
@@ -866,6 +872,7 @@ en:
   comment_deleted: Comment deleted
   comments: Comments
   comments_by_me: Comments by me
+  comments_have_been_disabled: Comments have been disabled
   comments_on: Comments on
   comments_on_my_observations: Comments on my observations
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
@@ -1177,6 +1184,8 @@ en:
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disable: Disable
+  disable_comments: Disable comments
+  disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
@@ -7244,6 +7253,8 @@ en:
               contains_too_many_observations: contains too many observations to import
         post:
           attributes:
+            parent:
+              prefers_no_comments: does not allow new comments
             user:
               must_be_on_site_long_enough: |
                 must have registered more than 24 hours ago to publish. We get

@@ -15,9 +15,9 @@ class ProjectObservationRule < Rule
   
   before_save :clear_operand
   after_save :reset_last_aggregated_if_rules_changed
-  after_save :touch_project
+  after_save :touch_projects
   after_destroy :reset_last_aggregated_if_rules_changed
-  after_destroy :touch_project
+  after_destroy :touch_projects
   validate :operand_present
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
@@ -63,9 +63,12 @@ class ProjectObservationRule < Rule
     end
   end
 
-  def touch_project
-    if ruler && ruler.is_a?(Project)
+  def touch_projects
+    if ruler && ruler.is_a?( Project )
       ruler.touch
+      if operand && operand.is_a?( Project )
+        operand.touch
+      end
     end
   end
 

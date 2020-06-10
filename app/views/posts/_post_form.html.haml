@@ -24,19 +24,22 @@
     .col-md-7
       = error_messages_for :post
       = f.text_field :title
-      = f.text_area :body, rows: 20      
-      = f.form_field :formatting, label: t(:formatting), :class => "inline" do
-        %label.radio-inline{ title: t( "views.posts.formatting_simple_help" ) }
-          = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_SIMPLE, post.preferred_formatting == Post::FORMATTING_SIMPLE
-          = t( Post::FORMATTING_SIMPLE )
-        %label.radio-inline{ title: t( "views.posts.formatting_none_help" ) }
-          = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_NONE, post.preferred_formatting == Post::FORMATTING_NONE
-          = t( Post::FORMATTING_NONE )
-      .stacked.small.meta
-        %strong
-          = t :allowed_html
-          \:
-        = Post::ALLOWED_TAGS.to_a.sort.join(', ')
+      = f.text_area :body, rows: 20
+      .stacked
+        = f.form_field :formatting, label: t(:formatting), :class => "inline" do
+          %label.radio-inline{ title: t( "views.posts.formatting_simple_help" ) }
+            = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_SIMPLE, post.preferred_formatting == Post::FORMATTING_SIMPLE
+            = t( Post::FORMATTING_SIMPLE )
+          %label.radio-inline{ title: t( "views.posts.formatting_none_help" ) }
+            = radio_button_tag "post[preferred_formatting]", Post::FORMATTING_NONE, post.preferred_formatting == Post::FORMATTING_NONE
+            = t( Post::FORMATTING_NONE )
+        .stacked.small.meta
+          %strong
+            = t :allowed_html
+            \:
+          = Post::ALLOWED_TAGS.to_a.sort.join(', ')
+      .stacked
+        = f.check_box :prefers_no_comments, label: t(:disable_comments), description: t(:disable_comments_desc)
       = f.hidden_field :user_id
       = f.hidden_field :parent_id
       = f.hidden_field :parent_type

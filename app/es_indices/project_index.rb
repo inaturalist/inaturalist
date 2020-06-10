@@ -11,7 +11,8 @@ class Project < ActiveRecord::Base
     :observation_fields,
     { project_observation_rules: :operand },
     :stored_preferences,
-    :site_featured_projects
+    :site_featured_projects,
+    :project_observation_rules_as_operand
   ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -126,6 +127,7 @@ class Project < ActiveRecord::Base
         search_analyzer: "standard_analyzer"
       indexes :title_exact, type: "keyword"
       indexes :universal_search_rank, type: "integer"
+      indexes :umbrella_project_ids, type: "integer"
       indexes :updated_at, type: "date"
       indexes :user_id, type: "integer"
       indexes :user_ids, type: "integer"
@@ -216,7 +218,8 @@ class Project < ActiveRecord::Base
       universal_search_rank: total_obs_by_members + ( site_featured_projects.size > 0 ? 1000 : 0 ),
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
-      site_features: site_featured_projects.map(&:as_indexed_json)
+      site_features: site_featured_projects.map(&:as_indexed_json),
+      umbrella_project_ids: within_umbrella_ids
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags

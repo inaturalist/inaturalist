@@ -2,6 +2,9 @@ nb:
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '%{count} favorittpoeng'
     other: '%{count} favorittpoeng'
@@ -778,6 +781,7 @@ nb:
   comment_deleted: Kommentar slettet
   comments: Kommentarer
   comments_by_me: Mine kommentarer
+  comments_have_been_disabled: Kommentarer er deaktivert
   comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mine observasjoner
   commercial_solicitation: Kommersielle meldinger, lenker til ingenting, osv.
@@ -1073,6 +1077,8 @@ nb:
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt noen bilder på Flickr?
   disable: Deaktiver
+  disable_comments: Deaktiver kommentarer
+  disable_comments_desc: Hindre at folk legger inn nye kommentarer
   disagree_: Uenig
   disconnect_provider: "Koble fra %{provider}"
   display_link_to_checklist: Vis lenke til prosjektliste fra prosjektside
@@ -1131,7 +1137,6 @@ nb:
   edit_field: Rediger felt
   edit_license: Rediger lisens
   edit_multiple_dates: Rediger flere datoer
-  edit_multiple_descriptions: Rediger flere beskrivelser
   edit_multiple_locations: Rediger flere lokaliteter
   edit_multiple_species: Rediger flere arter
   edit_notes: Rediger notater
@@ -6104,6 +6109,8 @@ nb:
               contains_too_many_observations: inneholder for mange observasjoner til import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillater ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |
                 må ha registrert over 24 timer siden for å publisere. Vi får en del spammere, og dette er en litt teit måte å håndtere de. Du kan fortsatt lagre et utkast, og hvis du fortsatt bruker siden en dag senere, kan du publisere.

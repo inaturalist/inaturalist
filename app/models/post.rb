@@ -60,6 +60,8 @@ class Post < ActiveRecord::Base
   FORMATTING_NONE = "none"
   preference :formatting, :string, default: FORMATTING_SIMPLE
 
+  preference :no_comments, :boolean, default: false
+
   ALLOWED_TAGS = %w(
     a
     abbr

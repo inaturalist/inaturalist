@@ -12,23 +12,29 @@
     end
   end
 -%>
-<%= content_tag header_tag do %>
-  <%=t :comments %>
-<% end -%>
-<% if comments.empty? %>
-  <div class="text-muted noresults"><%=t :no_comments_yet %></div>
+<% if parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments? && comments.blank? %>
+<%# Just don't show anything if there's nothing to show %>
+<% else %>
+  <%= content_tag header_tag do %>
+    <%=t :comments %>
+  <% end -%>
+  <% for comment in comments.sort {|a,b| a.created_at <=> b.created_at } %>
+    <div class="<%= cycle('odd', 'even') %>">
+      <%= render :partial => 'shared/activity_item', :object => comment %>
+    </div>
+  <%- end -%>
+  <% if parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments? %>
+    <div class="text-muted noresults"><%=t :comments_have_been_disabled %></div>
+  <% elsif comments.empty? %>
+    <div class="text-muted noresults"><%=t :no_comments_yet %></div>
+  <% end %>
+  <%- unless hide_form -%>
+    <div id="new-comment">
+      <h3><%=t :add_comment %></h3>
+      <%= render "comments/comment_form",
+        comment: Comment.new( parent: parent, user: logged_in? ? current_user : nil ),
+        remote: remote
+      %>
+    </div><!-- end new comment -->
+  <% end -%>
 <% end %>
-<% for comment in comments.sort {|a,b| a.created_at <=> b.created_at } %>
-  <div class="<%= cycle('odd', 'even') %>">
-    <%= render :partial => 'shared/activity_item', :object => comment %>
-  </div>
-<%- end -%>
-<%- unless hide_form -%>
-  <div id="new-comment">
-    <h3><%=t :add_comment %></h3>
-    <%= render :partial => 'comments/comment_form', :locals => { 
-      :comment => Comment.new(:parent => parent, :user => logged_in? ? current_user : nil),
-      :remote => remote
-    } %>
-  </div><!-- end new comment -->
-<% end -%>

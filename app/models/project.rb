@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
+  has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
   
   before_save :strip_title
   before_save :reset_last_aggregated_at
@@ -1067,6 +1068,10 @@ class Project < ActiveRecord::Base
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
+  end
+
+  def within_umbrella_ids
+    return project_observation_rules_as_operand.map( &:ruler_id )
   end
 
   private

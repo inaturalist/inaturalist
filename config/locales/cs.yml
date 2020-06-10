@@ -4,6 +4,11 @@ cs:
     few: '%{count} komentáře'
     many: '%{count} komentářů'
     other: '%{count} komentářů'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentář'
+    few: '<span class="count">%{count}</span> komentáře'
+    many: '<span class="count">%{count}</span> komentářů'
+    other: '<span class="count">%{count}</span> komentářů'
   x_faves:
     one: '%{count} oblíbený'
     few: '%{count} oblíbené'
@@ -906,6 +911,7 @@ cs:
   comment_deleted: komentář smazán
   comments: Komentáře
   comments_by_me: Moje komentáře
+  comments_have_been_disabled: Komentáře byly zakázány
   comments_on: Komentáře o
   comments_on_my_observations: Komentáře k mým pozorováním
   commercial_solicitation: Komerční žádost, neplatné odkazy atd.
@@ -1203,6 +1209,8 @@ cs:
   did_you_mean: 'Mysleli jste'
   did_you_photos_flickr?: Nahráli jste nějaké fotografie na Flickr?
   disable: Odepřít
+  disable_comments: Zakázat komentáře
+  disable_comments_desc: Zabránit lidem přidávat nové komentáře
   disagree_: Nesouhlasím
   disconnect_provider: "Odpojit %{provider}"
   display_link_to_checklist: Zobrazit odkaz na seznam projektu ze stránky projektu
@@ -1261,7 +1269,6 @@ cs:
   edit_field: Editovat pole
   edit_license: Editovat licenci
   edit_multiple_dates: Editovat více dat
-  edit_multiple_descriptions: Editovat více popisků
   edit_multiple_locations: Editovat více míst
   edit_multiple_species: Editovat více druhů
   edit_notes: Editovat poznámky
@@ -6502,6 +6509,7 @@ cs:
         occurrence_status_level: Úroveň statusu výskytu
         establishment_means: Způsob vzniku
       observation:
+        description: Poznámky
         geo_x: Východní směr
         geo_y: Nic
         observed_on: datum pozorování
@@ -6672,6 +6680,8 @@ cs:
               contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
         post:
           attributes:
+            parent:
+              prefers_no_comments: neumožňuje nové komentáře
             user:
               must_be_on_site_long_enough: |
                 pro zveřejnění je nutná registrace před více než 24 hodinami. Objevuje se nám tady hodně spamů a tohle je způsob, jak se proti nim bránit. Můžete si uložit koncept, a když budete na stránce i příští den, budete ho moci zveřejnit.

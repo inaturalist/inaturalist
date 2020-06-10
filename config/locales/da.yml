@@ -1144,7 +1144,7 @@ da:
   edit_field: Redigér felt
   edit_license: Redigér licens
   edit_multiple_dates: Redigér flere datoer
-  edit_multiple_descriptions: Redigér flere beskrivelser
+  edit_multiple_descriptions: Redigér flere notater
   edit_multiple_locations: Redigér flere steder
   edit_multiple_species: Redigér flere arter
   edit_notes: Redigér noter
@@ -5318,6 +5318,7 @@ da:
           </P>
         rules:
           captive: være i fangenskab/dyrket
+          coordinates_shareable_by_project_curators: have koordinater læsbare for projektkuratorer
           georeferenced: have koordinater
           has_a_photo: have et foto
           has_a_sound: have en lyd
@@ -6518,6 +6519,7 @@ da:
         occurrence_status_level: Forekomst status niveau
         establishment_means: Oprindelse
       observation:
+        description: Notater
         geo_x: Østlig
         geo_y: Nordlig
         observed_on: observationsdato

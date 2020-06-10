@@ -4,6 +4,11 @@ lt:
     few: '%{count} komentarai'
     many: '%{count} komentarai'
     other: '%{count} komentarai(-ų)'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentaras'
+    few: '<span class="count">%{count}</span> komentarai'
+    many: '<span class="count">%{count}</span> komentarai'
+    other: '<span class="count">%{count}</span> komentarai'
   x_faves:
     one: '%{count} pamėgimas'
     few: '%{count} pamėgimai'
@@ -805,6 +810,7 @@ lt:
   comment_deleted: Komentaras ištrintas
   comments: Komentarai
   comments_by_me: Mano komentarai
+  comments_have_been_disabled: Komentarai buvo išjungti
   comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
@@ -1079,6 +1085,8 @@ lt:
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
   disable: Išjungti
+  disable_comments: Išjungti komentarus
+  disable_comments_desc: Neleisk žmonėms pridėti daugiau komentarų
   disagree_: Nesutikti
   disconnect_provider: "Atjungti %{provider}"
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
@@ -1130,7 +1138,6 @@ lt:
   edit_field: Redaguoti lauką
   edit_license: Redaguoti licenciją
   edit_multiple_dates: Redaguoti kelias datas
-  edit_multiple_descriptions: Redaguoti kelius aprašymus
   edit_multiple_locations: Redaguoti kelias vietas
   edit_multiple_species: Redaguoti kelias rūšis
   edit_notes: Redaguoti užrašus
@@ -4762,6 +4769,10 @@ lt:
               is_too_large_to_edit: yra per didelis redagavimui
               is_too_large_to_import: per didelis importui
               contains_too_many_observations: turi per daug stebėjimų importui
+        post:
+          attributes:
+            parent:
+              prefers_no_comments: neleidžia pridėti naujų komentarų
         project_observation:
           attributes:
             user_id:

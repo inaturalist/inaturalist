@@ -392,7 +392,6 @@ I18n.translations["ar"] = {
   "edit_atlas": "تحرير أطلس",
   "edit_license": "تعديل الترخيص",
   "edit_multiple_dates": "تعديل تواريخ متعددة",
-  "edit_multiple_descriptions": "تعديل أوصاف متعددة",
   "edit_multiple_locations": "تعديل مواقع متعددة",
   "edit_multiple_species": "تحرير أنواع متعددة",
   "edit_photos": "تحرير الصور",
@@ -4472,7 +4471,6 @@ I18n.translations["ca"] = {
   "edit_atlas": "Edita Atlas",
   "edit_license": "Modifica la llicència",
   "edit_multiple_dates": "Editeu diverses dates",
-  "edit_multiple_descriptions": "Editar múltiples descripcions",
   "edit_multiple_locations": "Editeu diverses localitzacions",
   "edit_multiple_species": "Editeu diverses espècies",
   "edit_photos": "Modifiqueu les fotos",
@@ -6782,7 +6780,6 @@ I18n.translations["cs"] = {
   "edit_atlas": "Editovat atlas",
   "edit_license": "Editovat licenci",
   "edit_multiple_dates": "Editovat více dat",
-  "edit_multiple_descriptions": "Editovat více popisků",
   "edit_multiple_locations": "Editovat více míst",
   "edit_multiple_species": "Editovat více druhů",
   "edit_photos": "Editovat fotografie",
@@ -8667,6 +8664,7 @@ I18n.translations["da"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notater"
       }
     }
   },
@@ -9136,7 +9134,7 @@ I18n.translations["da"] = {
   "edit_atlas": "Redigér atlas",
   "edit_license": "Redigér licens",
   "edit_multiple_dates": "Redigér flere datoer",
-  "edit_multiple_descriptions": "Redigér flere beskrivelser",
+  "edit_multiple_descriptions": "Redigér flere notater",
   "edit_multiple_locations": "Redigér flere steder",
   "edit_multiple_species": "Redigér flere arter",
   "edit_photos": "Redigér fotos",
@@ -10941,6 +10939,7 @@ I18n.translations["de"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Bemerkungen"
       }
     }
   },
@@ -11410,7 +11409,6 @@ I18n.translations["de"] = {
   "edit_atlas": "Atlas bearbeiten",
   "edit_license": "Lizenz bearbeiten",
   "edit_multiple_dates": "Datumsangaben bearbeiten",
-  "edit_multiple_descriptions": "Mehrere Beschreibungen bearbeiten",
   "edit_multiple_locations": "Mehrere Standorte bearbeiten",
   "edit_multiple_species": "Mehrere Arten bearbeiten",
   "edit_photos": "Fotos bearbeiten",
@@ -13653,7 +13651,6 @@ I18n.translations["el"] = {
   "edit_atlas": "Επεξεργασία Άτλαντα",
   "edit_license": "Επεξεργασία Άδειας",
   "edit_multiple_dates": "Επεξεργασία Πολλαπλών Ημερομηνιών",
-  "edit_multiple_descriptions": "Επεξεργασία Πολλαπλών Περιγραφών",
   "edit_multiple_locations": "Επεξεργασία Πολλαπλών Τοποθεσιών",
   "edit_multiple_species": "Επεξεργασία Πολλαπλών Ειδών",
   "edit_photos": "Επεξεργασία φωτογραφιών",
@@ -18279,7 +18276,6 @@ I18n.translations["eo"] = {
   "edit": "Redakti",
   "edit_atlas": "Redakti Atlason",
   "edit_license": "Redakti Permesilon",
-  "edit_multiple_descriptions": "Redakti Plurajn Priskribojn",
   "edit_multiple_species": "Redakti Plurajn Speciojn",
   "edit_photos": "Redakti Fotojn",
   "edit_project": "Redakti Projekton",
@@ -19650,7 +19646,6 @@ I18n.translations["es"] = {
   "edit_atlas": "Edita atlas",
   "edit_license": "Modificar licencia",
   "edit_multiple_dates": "Editar múltiples fechas",
-  "edit_multiple_descriptions": "Editar múltiples descripciones",
   "edit_multiple_locations": "Edita múltiples localizaciones",
   "edit_multiple_species": "Editar múltiples grupos o especies",
   "edit_photos": "Modifica fotos",
@@ -21895,7 +21890,6 @@ I18n.translations["es-AR"] = {
   "edit_atlas": "Edita atlas",
   "edit_license": "Modifica licencia",
   "edit_multiple_dates": "Edita múltiples fechas",
-  "edit_multiple_descriptions": "Edita múltiples descripciones",
   "edit_multiple_locations": "Edita múltiples localizaciones",
   "edit_multiple_species": "Edita múltiples grupos o especies",
   "edit_photos": "Modifica fotos",
@@ -24178,7 +24172,6 @@ I18n.translations["es-MX"] = {
   "edit_atlas": "Edita atlas",
   "edit_license": "Edita la licencia",
   "edit_multiple_dates": "Edita múltiples fechas",
-  "edit_multiple_descriptions": "Editar múltiples descripciones",
   "edit_multiple_locations": "Editar múltiples localizaciones",
   "edit_multiple_species": "Edita múltiples especies",
   "edit_photos": "Edita las fotos",
@@ -26013,7 +26006,6 @@ I18n.translations["et"] = {
   "edit_atlas": "Muuda atlast",
   "edit_license": "Muuda litsentsi",
   "edit_multiple_dates": "Muuda mitu kuupäeva korraga",
-  "edit_multiple_descriptions": "Muuda mitut kirjeldus korraga",
   "edit_multiple_locations": "Muuda mitut kohta korraga",
   "edit_multiple_species": "Muuda mitut liiki korraga",
   "edit_photos": "Muuda fotosid",
@@ -27779,7 +27771,6 @@ I18n.translations["eu"] = {
   "edit_atlas": "Atlasa Aldatu",
   "edit_license": "Lizentzia aldatu",
   "edit_multiple_dates": "Data anitzak aldatu",
-  "edit_multiple_descriptions": "Deskribapen anitzak aldatu",
   "edit_multiple_locations": "Kokapen anitzak aldatu",
   "edit_multiple_species": "Espezie anitzak aldatu",
   "edit_photos": "Argazkiak aldatu",
@@ -28889,7 +28880,6 @@ I18n.translations["fi"] = {
   "edit_atlas": "Muokkaa atlasta",
   "edit_license": "Muokkaa lisenssiä",
   "edit_multiple_dates": "Muokkaa useita päivämääriä",
-  "edit_multiple_descriptions": "Muokkaa useita kuvauksia",
   "edit_multiple_locations": "Muokkaa useita paikkoja",
   "edit_multiple_species": "Muokkaa useita lajeja",
   "edit_photos": "Muokkaa valokuvia",
@@ -30707,6 +30697,7 @@ I18n.translations["fr"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notes"
       }
     }
   },
@@ -31176,7 +31167,6 @@ I18n.translations["fr"] = {
   "edit_atlas": "Modifier un atlas",
   "edit_license": "Modifier la licence",
   "edit_multiple_dates": "Modifier des dates multiples",
-  "edit_multiple_descriptions": "Modifier des descriptions multiples",
   "edit_multiple_locations": "Modifier des emplacements multiples",
   "edit_multiple_species": "Modifier plusieurs espèces",
   "edit_photos": "Modifier les photos",
@@ -32644,6 +32634,7 @@ I18n.translations["fr"] = {
         "project_summary_help": "Donner une explication concise de votre projet. Les deux cents premiers caractères environ seront\nvisibles à droite de la bannière de l’écran d’accueil du projet, donc mettez le meilleur en premier !\n",
         "project_summary_placeholder": "Découvrir et suivre les oiseaux du parc de Golden Gate…",
         "select_native_to_include": "Sélectionnez \"Natif\" pour inclure uniquement les taxons qui ont été marqués comme \"Natif\" sur le(s) lieu(x) de votre projet. Sélectionnez \"Introduit\" pour inclure uniquement les taxons qui ont été marqués comme \"Introduit\" sur le(s) lieu(x) de votre projet.\n",
+        "select_quality_grade": "Sélectionnez au moins une note de qualité. Vous trouverez plus d'explications pour chaque note de qualité sur notre page de <a href=\"%{url}\">FAQ</a>.\n",
         "show_projects_as_flags": "Afficher les projets avec des drapeaux sur la carte",
         "start_and_end_times_for_bioblitzes": "Heures de début et de fin (pour les événements de type bioblitz)",
         "umbrella_project_features": "Fonctionnalités du projet cadre:",
@@ -32718,6 +32709,7 @@ I18n.translations["fr"] = {
         "about_establishment_desc": "« Les moyens d’implantation » décrivent comment une espèce est arrivée là\noù elle se trouve actuellement. Implanté signifie qu’elle est arrivée par une activité\nhumaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.\nLes espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.\n",
         "about_names_desc": "<p>\nLa plupart des catégories d’organismes ont des « noms communs » dans les langues\nparlées. Ces noms sont reconnus couramment, faciles à prononcer,\net stables dans le temps, mais de nombreux organismes ont plusieurs noms\ndifférents selon les endroits, même dans la même langue, ce qui peut rendre\ndifficile la communication sans confusion à propos de ces organismes.\nLes scientifiques résolvent ce problème en utilisant un « nom scientifique »\nunique pour chaque catégorie d’organisme, qui se conforme aux règles de\n<a href=\"https://fr.wikipedia.org/wiki/Nom_binominal\">la nomenclature biologique</a>,\nmais ces noms sont en général basés sur le latin, une langue que plus personne\nne parle, et ne sont donc pas mémorisables comme des noms communs pour beaucoup\nde gens. Les noms scientifiques peuvent aussi refléter l’emplacement taxinomique\nd’un organisme, donc ils peuvent changer quand les scientifiques développent des théories\nplus précises sur les relations d’évolution entre différents organismes, réduisant\nencore l’utilité dans la communication, même parmi les personnes qui connaissent\nles noms scientifiques.\n</p>\n<p>\nLe vieil adage le résume ainsi : « Les noms communs changent de lieu en\nlieu, les noms scientifiques changent de temps en temps. »\n</p>\n<p>\nNous essayons de corriger ces lacunes en affichant à la fois les noms\ncommuns et scientifiques quand c’est possible, et en choisissant les noms communs\nbasés sur la langue et les préférences géographiques du lecteur.\n</p>\n",
         "charts_help_history": "Ce graphique affiche le nombre d’observations de ce taxon par mois au cours\ndes dix dernières années. De nouveau, il est biaisé par le nombre de personnes\nobservant, mais il affichera des pics inhabituels dans les observations, et s’il\nsemble plat ou en décroissance malgré un nombre croissant d’observateurs,\ncela peut suggérer une modification de son abondance.\n",
+        "charts_help_other": "Nous présentons également des tableaux saisonniers pour les annotations d’observation.\nLes annotations sont un moyen d'ajouter des métadonnées aux observations en utilisant\nun vocabulaire contrôlé, par exemple pour indiquer si une observation représente\nune plante au stade floraison ou bien fructification.\n",
         "charts_help_relative_observations": "Afficher la fréquence dans des proportions relatives par rapport à toutes les observations aide\nà aplanir l’effet de la croissance globale du site. Par exemple,\nsi le site croît alors que nous obtenons plus d’observations pour chaque année\nqui passe, nous aurons plus d’observations d’un taxon individuel, ce qui ne vous\ndit rien quant au fait qu’il y a davantage de ce taxon à observer\nalentour, simplement qu’il y a plus de personnes qui l’observent. Afficher la\nproportion relative signifie que s’il y a un total de 100 observations mais\n20 observations de ce taxon, la proportion est de 20% (20 / 100). Si\nles gens font 2000 observations l’année suivante et 400 de\nce taxon, la proportion reste de 20% (400 / 2000). Cela provoque quelques\naberrations quand il y a très peu d’observateurs dans une zone, ou pour des taxons\nqui sont très rarement observés, mais c’est également vrai du nombre total\nd’observations.\n",
         "charts_help_seasonality": "Ce graphique affiche le nombre d’observations de ce taxon, groupées par\nmois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils\nsont influencés à la fois par le moment où l’organisme peut être  observé et par celui\noù les gens prennent la peine de les observer. Ainsi, un oiseau peut sembler très actif\nen mai, mais cela peut aussi être dû à ce que davantage de gens observent les oiseaux en mai, qui\ntendent à ignorer ces espèces les mois suivants. De même, si vous voyez\ndavantage de libellules en juin qu’en janvier, c’est sans doute parce que nous\navons plus d’observateurs dans l’hémisphère nord que dans le\nsud, et pas parce que les libellules sont plus actives en\njuin ; vérifiez donc la carte en examinant ces graphiques. C’est toujours une\nbonne idée d’être critique à propos de ces graphiques, quand ils représentent un faible nombre\nd’observations ou une grande divergence entre les nombres d’observations\n« vérifiables » et « qualité de recherche ».\n",
         "complete_taxon_desc": "Les taxons « complets » ont tous leurs taxons descendants encore en vie à un rang particulier présents dans la base de données du site. Quand un taxon est complet pour les espèces,par exemple, nous pouvons dire combien de ses espèces ont été observées et combien doivent encore l’être. Le nombre des espèces pour les taxons complets pour les espèces ne comprend pas les espèces « indénombrables » comme les espèces éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces, non les taxons de niveau spécifique inférieur, comme les sous-espèces ou les variétés.\n",
@@ -33301,6 +33293,7 @@ I18n.translations["gl"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notas"
       }
     }
   },
@@ -33669,7 +33662,10 @@ I18n.translations["gl"] = {
       "7": "Sá"
     },
     "formats": {
-      "long": "%d de %B de %Y"
+      "compact": "%b %e",
+      "long": "%d de %B de %Y",
+      "month_day_year": "%d de %B, %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -33767,7 +33763,7 @@ I18n.translations["gl"] = {
   "edit_atlas": "Editar Atlas",
   "edit_license": "Modificar licenza",
   "edit_multiple_dates": "Editar Varias Datas",
-  "edit_multiple_descriptions": "Editar Varias Descricións",
+  "edit_multiple_descriptions": "Editar Varias Notas",
   "edit_multiple_locations": "Editar Varias Ubicacións",
   "edit_multiple_species": "Editar Varias Especies",
   "edit_photos": "Modificar as fotos",
@@ -33908,6 +33904,7 @@ I18n.translations["gl"] = {
         "complex": "@m",
         "epifamily": "@f",
         "family": "@f",
+        "favorite": "@m",
         "flag": "@f",
         "form": "@m",
         "genus": "@m",
@@ -33931,7 +33928,27 @@ I18n.translations["gl"] = {
         "species": "@f",
         "subclass": "@f",
         "subfamily": "@f",
-        "subgenus": "@m"
+        "subgenus": "@m",
+        "suborder": "@f",
+        "subphylum": "@m",
+        "subsection": "@f",
+        "subspecies": "@f",
+        "subtribe": "@f",
+        "superclass": "@f",
+        "superfamily": "@f",
+        "superorder": "@f",
+        "supertribe": "@f",
+        "taxon": "@m",
+        "taxon_change": "@f",
+        "taxon_drop": "@m",
+        "taxon_link": "@m",
+        "taxon_merge": "@m",
+        "taxon_split": "@f",
+        "taxon_stage": "@m",
+        "taxon_swap": "@m",
+        "tribe": "@f",
+        "variety": "@f",
+        "default": "@m"
       },
       "@vow_or_con": {
         "vow": "vogal",
@@ -34267,6 +34284,9 @@ I18n.translations["gl"] = {
       "delimiter": ".",
       "separator": ",",
       "si": {
+        "giga": "%{number}G",
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -35381,6 +35401,7 @@ I18n.translations["gl"] = {
   "who_user_helped_the_most": "A Quen %{user} Axudou Máis",
   "why_the_coordinates_are_obscured": "Porqué As Coordenadas Están Escurecidas",
   "why_you_can_see_the_coordinates": "Porqué Podes Ver As Coordenadas",
+  "wild": "Silvestre",
   "with_annotation": "Con Anotación",
   "withdraw": "Retirar",
   "without_annotation": "Sen Anotación",
@@ -36038,7 +36059,6 @@ I18n.translations["he"] = {
   "edit_atlas": "ערוך אטלס",
   "edit_license": "עריכת רשיון",
   "edit_multiple_dates": "עריכת מספר תאריכים",
-  "edit_multiple_descriptions": "עריכת מספר תיאורים",
   "edit_multiple_locations": "עריכת מספר מיקומים",
   "edit_multiple_species": "עריכת מספר מינים",
   "edit_photos": "עריכת תמונות",
@@ -38219,7 +38239,6 @@ I18n.translations["id"] = {
   "edit_atlas": "Mengedit Atlas",
   "edit_license": "Mengubah lisensi",
   "edit_multiple_dates": "Mengedit beberapa tanggal",
-  "edit_multiple_descriptions": "Mengedit beberapa deskripsi",
   "edit_multiple_locations": "Mengedit beberapa lokasi",
   "edit_multiple_species": "Mengedit beberapa spesies",
   "edit_photos": "Merubah foto",
@@ -38963,6 +38982,7 @@ I18n.translations["it"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Descrizioni"
       }
     }
   },
@@ -39432,7 +39452,7 @@ I18n.translations["it"] = {
   "edit_atlas": "Modifica Atlante",
   "edit_license": "Modifica la licenza",
   "edit_multiple_dates": "Modifica più date",
-  "edit_multiple_descriptions": "Modifica più descrizioni",
+  "edit_multiple_descriptions": "Modifica più Descrizioni",
   "edit_multiple_locations": "Modifica più località",
   "edit_multiple_species": "Modifica più specie",
   "edit_photos": "Modifica le foto",
@@ -41806,7 +41826,6 @@ I18n.translations["ja"] = {
   "edit_atlas": "地図を編集",
   "edit_license": "ライセンスを編集",
   "edit_multiple_dates": "複数の日付を編集",
-  "edit_multiple_descriptions": "複数の説明欄を編集",
   "edit_multiple_locations": "複数の場所を編集",
   "edit_multiple_species": "複数の種を編集",
   "edit_photos": "写真を編集",
@@ -41929,7 +41948,7 @@ I18n.translations["ja"] = {
     "inflections": {
     }
   },
-  "i_dont_know_but_i_am_sure_this_is_taxon": "わかりませんが、これは%{taxon} だと思います。",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "私にはわかりませんが、これは%{taxon} だと思います",
   "id_categories": {
     "tooltips": {
       "improving": "この分類群の最初の提案は、後にコミュニティが同意したものです。これがコミュニティの分類群を洗練させるのに役立ちました。\n",
@@ -41943,8 +41962,8 @@ I18n.translations["ja"] = {
   "identify": "ID判定",
   "identify_observations": "観察記録をID判定",
   "identify_title": "ID判定",
-  "ids_made_for_others": "他のユーザのためのID",
-  "if_for_some_reason_a_user_doesnt_agree": "何らかの理由でコミュニティ分類群に同意しない場合は拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ研究段階になることができます。\n",
+  "ids_made_for_others": "他のユーザーへ提案したID",
+  "if_for_some_reason_a_user_doesnt_agree": "何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ研究用として使用可能になります。\n",
   "ignore_and_continue": "無視して続行",
   "import": "インポート",
   "improving": "改善",
@@ -41966,7 +41985,7 @@ I18n.translations["ja"] = {
   "introduced": "外来種",
   "introduced_in_place": "%{place}の外来種",
   "iphone": "iPhone",
-  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "この観察記録は%{taxon} だと確認できる十分な証拠を提供していますか？",
+  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "この観察記録にはこれが%{taxon} だと同定するのに十分な情報がありますか？",
   "it_can_now_be_used_for_research": "研究に利用できるようになり、他のサイトでも紹介されるようになります。",
   "item_flagged_notice_html": "これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、サイトの管理者のみに表示されます。間違いだと思われる場合は<a href=\"mailto:%{help_email}\" class=\"contact\">ご連絡ください</a>。<a href=\"%{manage_flags_path}\">フラグの管理</a>\n",
   "join": "参加",
@@ -42100,6 +42119,7 @@ I18n.translations["ja"] = {
   "location_private": "位置情報は非公開",
   "location_specified": "指定した位置",
   "location_unknown": "不明な位置",
+  "lock_zoom_level": "ズームレベルを固定",
   "log_in": "ログイン",
   "log_scale_label": "ログ",
   "long": "経度:",
@@ -42109,7 +42129,7 @@ I18n.translations["ja"] = {
   "make_this_your_default_license": "デフォルの%{type}トライセンスにする",
   "mammals": "哺乳類",
   "manage_names": "名称を管理",
-  "manage_your_relationships": "人間関係の管理",
+  "manage_your_relationships": "ユーザーとの関係の管理",
   "map": "マップ",
   "map_legend": "地図記号一覧",
   "map_marker_size": "地図マーカー大きさ",
@@ -42128,9 +42148,9 @@ I18n.translations["ja"] = {
       "range": "分布・生息区域"
     }
   },
-  "mark_all_as_reviewed": "すべてに既読の印をつける",
-  "mark_all_as_unreviewed": "すべてに未読の印を付ける",
-  "mark_as_reviewed": "既読の印をつける",
+  "mark_all_as_reviewed": "このページすべてを既読にする",
+  "mark_all_as_unreviewed": "すべてを未読にする",
+  "mark_as_reviewed": "既読にする",
   "media": "メディア",
   "media_type": "メディアの種類",
   "members": "メンバー一覧",
@@ -42149,7 +42169,7 @@ I18n.translations["ja"] = {
       "hh": "%d 時間前",
       "d": "1日",
       "dd": "%d 日前",
-      "M": "1分",
+      "M": "1ヶ月",
       "MM": "%d か月前",
       "y": "1年",
       "yy": "%d 年前"
@@ -42181,7 +42201,7 @@ I18n.translations["ja"] = {
   "native_to_place": "%{place}の在来種",
   "near_threatened": "近危急種/準絶滅危惧種",
   "nearby_observations_": "近隣の観察記録",
-  "needs_id": "要ID",
+  "needs_id": "要同定",
   "needs_id_": "要同定",
   "new": "新規",
   "new_and_noteworthy": "注目すべき新機能",
@@ -42201,7 +42221,7 @@ I18n.translations["ja"] = {
   "next_photo": "次の写真",
   "next_tab": "次のタブ",
   "no": "いいえ",
-  "no_but_it_is_a_member_of_taxon": "証拠は不十分です(別分類群の可能性あり)。しかし %{taxon} のメンバーではあります。",
+  "no_but_it_is_a_member_of_taxon": "同定に必要な情報がありません。しかし %{taxon} です。",
   "no_identifications": "同定なし",
   "no_ids_have_been_suggested_yet": "同定はまだ提案されていません",
   "no_interaction_data_available": "相互作用データはありません",
@@ -42209,7 +42229,7 @@ I18n.translations["ja"] = {
   "no_matching_observations": "一致する観察記録がありません",
   "no_misidentifications_yet": "誤った同定がまだありません",
   "no_more_results_found": "これ以上結果がありません",
-  "no_more_taxa_to_load": "未読込の分類群がありません",
+  "no_more_taxa_to_load": "未読の分類群がありません",
   "no_observations": "観測記録ありません",
   "no_observations_from_this_place_yet": "この場所からの観測記録はまだありません",
   "no_observations_yet": "観測記録はまだありません",
@@ -42241,6 +42261,7 @@ I18n.translations["ja"] = {
   "obscured": "不明瞭",
   "observation": "観察記録",
   "observation_": "観察記録",
+  "observation_brief_taxon_from_place": "%{place} の %{taxon}",
   "observation_date": "日付",
   "observation_fields": "観測記録フィールド",
   "observation_without_media": "メディアなしの観察",
@@ -42406,8 +42427,8 @@ I18n.translations["ja"] = {
       "supername": "集合名称",
       "Territory": "領地",
       "territory": "領地",
-      "Time_Zone": "時間帯",
-      "time_zone": "時間帯",
+      "Time_Zone": "タイムゾーン",
+      "time_zone": "タイムゾーン",
       "Town": "市町村",
       "town": "市町村",
       "Undefined": "未定義",
@@ -42894,6 +42915,7 @@ I18n.translations["ja"] = {
   "taxonomic": "分類学上",
   "taxonomic_groups": "分類群グループ",
   "taxonomy": "分類",
+  "taxonomy_details": "分類の詳細",
   "tell_us_why": "理由を教えてください...",
   "terms": "規約",
   "terrain": "地形",
@@ -42970,7 +42992,10 @@ I18n.translations["ja"] = {
   },
   "use_name_as_a_placeholder": "<span class='ac-placeholder'>「%{name}」</span> をプレースホルダーとして使用します。\n",
   "user": "ユーザー",
-  "user_disagrees_this_is_taxon": "%{user} さんは %{taxon} ではないと考えています",
+  "user1_and_user2_faved_this_observation": "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました",
+  "user1_user2_and_x_others_faved_this_observation": "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました",
+  "user_disagrees_this_is_taxon": "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています",
+  "user_faved_this_observation": "%{user}さんがこの観察記録をお気に入りに追加しました",
   "user_has_opted_out_of_community_id": "利用者はコミュニティー分類の通知を受け取りません",
   "username_or_user_id": "ユーザー名またはユーザーID",
   "users": "ユーザー",
@@ -42990,7 +43015,10 @@ I18n.translations["ja"] = {
   "views": {
     "observations": {
       "community_id": {
-        "explanation": "<p>\nもし利用者が何らかの理由でコミュニティのタクソンに同意しない\n場合は否定できます。するとその利用者の判定がその他の鑑定への\nリンク、その他の観察、人生リストの更新などに使われます。また\n　コミュニティーの同意が得られた場合にのみ、その観察は学術研究\n　レベルと認められます。\n</p>\n<p>\nその場合であっても、コミュニティーの判定は表示され、判定の差\n　をだれでも確認できます。\n</p>\n",
+        "ancestor_disagreements": "祖先の不一致数",
+        "cumulative_count": "一致数",
+        "disagreement_count": "不一致数",
+        "explanation": "<p>\nもしユーザーが何らかの理由でコミュニティの分類群に同意しない場合はそれを否定できます。その場合、そのユーザーの判定が他の観察やライフリストの更新へのリンクなどに使われます。またコミュニティーの同意が得られた場合にのみ、その観察は研究用に使用できます。\n</p>\n<p>\nしかしその場合でも、コミュニティの判定は表示されるため、判定の違いを誰でも確認できます。\n</p>\n",
         "identification_count": "同定件数",
         "you_have_opted_out": "コミュニティー判定の通知を解除しました",
         "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません\n"
@@ -43006,10 +43034,11 @@ I18n.translations["ja"] = {
       },
       "show": {
         "ancestor_disagreements_desc": "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)",
-        "community_taxon_desc_html": "<p class=\"ui\">\nコミュニティ分類（もしくはコミュニティ判定）とは\n%{site_name}コミュニティが特定の観察において\n認定した分類です。もしコミュニティ判定の選択基準に\n関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に\n<strong>判定者の 2/3 より多いユーザーが同意した分類\n群を選択しています</strong>。場合によっては、これは\n異なる分類群を複数含むより上位の分類群を選択することを\n意味します（たとえばキングヘビだと予想するあなたと\nガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む\nヘビ亜目を採用するなど）。また、このアルゴリズムは反対派が\n正しいことが多いことがわかったため、反対派を\nやや優先しがちです。\n</p>\n<p class=\"ui\">\n研究レベルの観察では（その他の規定に優先して）コミュニティ\n分類が必要です。特定の観察において識別が\n1件のみの場合、コミュニティ分類はゼロです。すべての\n観察で最低識別が1件ある場合は必ず観察\n分類を伴います。観察分類とはデータ提供者と\n観察を共有するときに用いる分類であり、その観察地における\n同一の分類の観察の共有やライフリスト更新その他に用います。ほとんどの\n場合、観察分類は結局はコミュニティ分類を採用することに\nなるものの、ときには合致しないことがあり、特にコミュニティが\n識別の合意を得ないうちは起こりがちです。たとえばあなたは\nヘビ（ヘビ亜目）だと考え、私はキングヘビ\n（<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては\nヘビ亜目（最低2件の識別が支持）になります。あるいは\nその他の理由であなたがコミュニティ分類に不賛同な場合、\nそれを個人の識別では否定しておき、観察\n分類は（あなた個人の識別となり）コミュニティ分類と合致しません。\nさらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは\nなりえないことを意味します。コミュニティ分類という考え方そのものを\n容認できない場合、<a href=\"/users/edit\" target=\"_blank\">個人設定を編集し</a>\nまったく不採用にすることも可能です。\n</p>\n<p class=\"ui\">\n<strong>アルゴリズム：</strong>すべての識別された分類群とそれを含む分類群\n(たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類群の累積IDに対する\n「反対」の件数 - まったく異なるIDの件数（たとえば分類群IDで\n計算した分類群を含まない物）と、「祖先の不一致」 - より\n保守的なIDでより詳細な分類群と不一致の件数の割合として算出します。スコアが 2/3 より多い識別分類で\n最低2件の識別がある分類群のうち、もっとも下位の分類群を選択します。\n</p>\n",
+        "community_taxon_desc_html": "<p class=\"ui\">\nコミュニティ分類群（もしくはコミュニティ判定）とは\n特定の観察記録において%{site_name}コミュニティが\n考えている分類群が何かを表しています。もしコミュニティ分類群\nがどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。\n一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>が\nコミュニティ分類群となります。場合によっては、これは\n異なる分類群を複数含むより上位の分類群がコミュニティ分類群となることを\n意味します（例：あなたがキングヘビだと予想し、\n私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含む\nヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が\n正しいことが多いとわかっているため、反対派を\nやや優先する傾向にあります。\n</p>\n<p class=\"ui\">\n研究用レベルとなる観察記録には（他にも基準はありますが）コミュニティ\n分類群が必要です。特定の観察記録において同定の提案が\n1件のみの場合、コミュニティ分類群はありません。すべての\n観察記録で、同定の提案が1件でもあれば必ず観察\n分類群を伴います。観察分類群は、データパートナーと観察を共有したり、\nサイト上で同じ分類群の観察をリンクしたり、ライフリストを更新したりするときに\n使用する分類群です。ほとんどの場合、最終的に観察分類群はコミュニティ分類群と\n一致しますが、特にコミュニティが同定を決定する前では、その２つは異なる場合があります。\n例えば、あなたがヘビ亜目 Serpentesだと考えていて、私がキングヘビ属 <i>Lampropeltis</i> だと\n考えている場合は、観察分類群はキングヘビ属  <i>Lampropeltis</i> になります\n（私の同定にのみ支持される）。しかし、コミュニティ分類群はヘビ亜目 Serpentes となります\n（こちらは最低２人の同意が必要）。もし自分の観察記録で、あなたが何らかの理由でコミュニティ分類群に同意できない場合は、コミュニティ分類群を拒否することができます。つまり、観察分類群がコミュニティ分類群とはなりません（あなたが設定した分類群になります）。\nこれは、コミュニティがあなたに同意した場合のみ、観察記録が研究用となることを意味しています。\nコミュニティ分類群という考え方そのものを\n認められない場合、<a href=\"/users/edit\" target=\"_blank\">アカウント設定・プロフィール編集</a>を編集してコミュニティ分類群を採用しないことも可能です。\n</p>\n<p class=\"ui\">\n<strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について、・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>\n",
         "cumulative_count_desc": "単一の分類群とその下位分類に対する同定の総数",
         "data_quality_assessment_desc_html": "データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。\n",
-        "identification_count_desc": "単一の分類群に対する同定の件数"
+        "identification_count_desc": "単一の分類群に対する同定の件数",
+        "score_desc": "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
       }
     },
     "projects": {
@@ -43017,7 +43046,8 @@ I18n.translations["ja"] = {
       },
       "new": {
         "errors": {
-        }
+        },
+        "note_you_can_delete_the_time": "(注：丸１日を含めたい場合は、タイムゾーンと正確な時刻を削除できます。\n"
       },
       "show": {
       }
@@ -43035,7 +43065,7 @@ I18n.translations["ja"] = {
         "avg_ttid": "TTIDの平均値",
         "med_ttcid": "TTCIDの中央値",
         "med_ttid": "TTIDの中央値",
-        "obs_cid_d_to_genus": "属レベル以下のコミュニティ分類を持つ観察記録"
+        "obs_cid_d_to_genus": "属レベル以下のコミュニティ判定を持つ観察記録"
       },
       "year": {
       }
@@ -43072,6 +43102,8 @@ I18n.translations["ja"] = {
   "website": "ウェブサイト",
   "whats_this?": "もっと詳しく",
   "white": "白",
+  "who_helped_user_the_most": "%{user} さんの同定を最も助けたユーザー",
+  "who_user_helped_the_most": "%{user} さんが最も同定を助けたユーザー",
   "wild": "野生",
   "withdraw": "撤回",
   "x_comments": {
@@ -43081,7 +43113,7 @@ I18n.translations["ja"] = {
     "other": "%{count}件のお気に入り"
   },
   "x_identifications": {
-    "other": "%{count} 同定"
+    "other": "%{count} 件の同定"
   },
   "x_identifications_": {
     "other": "%{count} 同定"
@@ -43133,7 +43165,7 @@ I18n.translations["ja"] = {
   },
   "x_of_y_people_over_two_thirds_agree_it_is": "%{y} 人中 %{x} 人（2/3を超える）が同意しています",
   "x_others": {
-    "other": "その他%{count}件"
+    "other": "その他%{count}人"
   },
   "x_people": {
     "other": "%{count} 人"
@@ -43705,7 +43737,6 @@ I18n.translations["ko"] = {
   "edit": "수정",
   "edit_license": "라이선스 수정",
   "edit_multiple_dates": "다수의 날짜 편집",
-  "edit_multiple_descriptions": "여러 설명 편집",
   "edit_multiple_locations": "다수의 장소 편집",
   "edit_multiple_species": "다수의 종 편집",
   "edit_photos": "사진 편집",
@@ -45005,7 +45036,6 @@ I18n.translations["lb"] = {
   "edit_atlas": "Atlas änneren",
   "edit_license": "Lizenz änneren",
   "edit_multiple_dates": "Méi Datumen änneren",
-  "edit_multiple_descriptions": "Méi Beschreiwungen änneren",
   "edit_photos": "Fotoen änneren",
   "edit_project": "Projet änneren",
   "edit_your_settings_for_this_project": "Ännert Är Astellunge fir dëse Projet",
@@ -46167,7 +46197,6 @@ I18n.translations["lt"] = {
   "edit_atlas": "Redaguoti atlasą",
   "edit_license": "Redaguoti licenciją",
   "edit_multiple_dates": "Redaguoti kelias datas",
-  "edit_multiple_descriptions": "Redaguoti kelius aprašymus",
   "edit_multiple_locations": "Redaguoti kelias vietas",
   "edit_multiple_species": "Redaguoti kelias rūšis",
   "edit_photos": "Redaguoti nuotraukas",
@@ -49240,7 +49269,6 @@ I18n.translations["nb"] = {
   "edit_atlas": "Rediger atlas",
   "edit_license": "Rediger lisens",
   "edit_multiple_dates": "Rediger flere datoer",
-  "edit_multiple_descriptions": "Rediger flere beskrivelser",
   "edit_multiple_locations": "Rediger flere lokaliteter",
   "edit_multiple_species": "Rediger flere arter",
   "edit_photos": "Rediger bilder",
@@ -51497,7 +51525,6 @@ I18n.translations["nl"] = {
   "edit_atlas": "Atlas bewerken",
   "edit_license": "Licentie bewerken",
   "edit_multiple_dates": "Meerdere data bewerken",
-  "edit_multiple_descriptions": "Meerdere beschrijvingen bewerken",
   "edit_multiple_locations": "Meerdere locaties bewerken",
   "edit_multiple_species": "Meerdere soorten bewerken",
   "edit_photos": "Foto's bewerken",
@@ -54724,7 +54751,6 @@ I18n.translations["pl"] = {
   "edit_atlas": "Edytuj atlas",
   "edit_license": "Edytuj licencję",
   "edit_multiple_dates": "Edytuj wiele dat",
-  "edit_multiple_descriptions": "Edytuj wiele opisów",
   "edit_multiple_locations": "Edytuj wiele lokalizacji",
   "edit_multiple_species": "Edytuj wiele gatunków",
   "edit_photos": "Edytuj zdjęcia",
@@ -56642,7 +56668,6 @@ I18n.translations["pt"] = {
   "edit_atlas": "Editar Atlas",
   "edit_license": "Editar licença",
   "edit_multiple_dates": "Editar várias datas",
-  "edit_multiple_descriptions": "Editar várias descrições",
   "edit_multiple_locations": "Editar várias localizações",
   "edit_multiple_species": "Editar várias espécies",
   "edit_photos": "Editar fotografias",
@@ -58133,7 +58158,6 @@ I18n.translations["pt-BR"] = {
   "edit_atlas": "Editar Atlas",
   "edit_license": "Editar licença",
   "edit_multiple_dates": "Editar múltiplas datas",
-  "edit_multiple_descriptions": "Editar múltiplas descrições",
   "edit_multiple_locations": "Editar múltiplas localizações",
   "edit_multiple_species": "Editar múltiplas espécies",
   "edit_photos": "Alterar fotos",
@@ -60412,7 +60436,6 @@ I18n.translations["ru"] = {
   "edit_atlas": "Редактировать атлас",
   "edit_license": "Редактировать лицензию",
   "edit_multiple_dates": "Редактировать несколько дат",
-  "edit_multiple_descriptions": "Редактировать множественные описания",
   "edit_multiple_locations": "Редактировать множественные местоположения",
   "edit_multiple_species": "Редактировать несколько видов",
   "edit_photos": "Редактировать фото",
@@ -62658,7 +62681,6 @@ I18n.translations["sk"] = {
   "edit_atlas": "Upraviť atlas",
   "edit_license": "Upraviť licenciu",
   "edit_multiple_dates": "Upraviť viaceré dátumy",
-  "edit_multiple_descriptions": "Upraviť viaceré opisy",
   "edit_multiple_locations": "Upraviť viaceré lokácie",
   "edit_multiple_species": "Upraviť viaceré druhy",
   "edit_photos": "Upraviť fotky",
@@ -64381,7 +64403,6 @@ I18n.translations["sq"] = {
   "edit_atlas": "Ndrysho Atlasin",
   "edit_license": "Ndrysho licencën",
   "edit_multiple_dates": "Ndrysho datat e shumta",
-  "edit_multiple_descriptions": "Ndrysho përshkrimet e shumëfishta",
   "edit_multiple_locations": "Ndrysho vende të shumëfishta",
   "edit_multiple_species": "Redakto speciet e shumta",
   "edit_photos": "Ndrysho fotot",
@@ -65249,6 +65270,7 @@ I18n.translations["sv"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Anteckningar"
       }
     }
   },
@@ -65718,7 +65740,6 @@ I18n.translations["sv"] = {
   "edit_atlas": "Redigera Atlas",
   "edit_license": "Redigera licens",
   "edit_multiple_dates": "Redigera flera datum",
-  "edit_multiple_descriptions": "Redigera flera beskrivningar",
   "edit_multiple_locations": "Redigera flera platser",
   "edit_multiple_species": "Redigera flera arter",
   "edit_photos": "Redigera foton",
@@ -67992,7 +68013,6 @@ I18n.translations["tr"] = {
   "edit_atlas": "Atlas'ı Düzenle",
   "edit_license": "Lisansı Düzenle",
   "edit_multiple_dates": "Birden Çok Tarihi Düzenle",
-  "edit_multiple_descriptions": "Birden Çok Açıklama Düzenle",
   "edit_multiple_locations": "Birden Çok Konumu Düzenle",
   "edit_multiple_species": "Birden Çok Türü Düzenle",
   "edit_photos": "Fotoğrafları Düzenle",
@@ -70596,7 +70616,6 @@ I18n.translations["zh-CN"] = {
   "edit_atlas": "编辑地图集",
   "edit_license": "编辑许可协议",
   "edit_multiple_dates": "编辑多个日期",
-  "edit_multiple_descriptions": "编辑多个描述",
   "edit_multiple_locations": "编辑多个位置",
   "edit_multiple_species": "编辑多个物种",
   "edit_photos": "编辑照片",
@@ -72520,7 +72539,6 @@ I18n.translations["zh-TW"] = {
   "edit_atlas": "編輯地圖集",
   "edit_license": "編輯許可協議",
   "edit_multiple_dates": "編輯多個日期",
-  "edit_multiple_descriptions": "編輯多項描述",
   "edit_multiple_locations": "編輯多個位置",
   "edit_multiple_species": "編輯多個物種",
   "edit_photos": "編輯照片",

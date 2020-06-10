@@ -94,6 +94,18 @@ function fetchObservations( ) {
         if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
           return;
         }
+        if ( !e.response ) {
+          dispatch(
+            showAlert(
+              "",
+              {
+                title: I18n.t( "unknown_error" ),
+                onClose: dispatch( hideAlert( ) )
+              }
+            )
+          );
+          return;
+        }
         e.response.json( ).then( json => {
           if ( json.error.match( /window is too large/ ) ) {
             dispatch(

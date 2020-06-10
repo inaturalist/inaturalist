@@ -2,6 +2,9 @@ de:
   x_comments:
     one: '%{count} Kommentar'
     other: '%{count} Kommentare'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> Kommentar'
+    other: '<span class="count">%{count}</span> Kommentare'
   x_faves:
     one: '1 Stimme'
     other: '%{count} Stimmen'
@@ -66,8 +69,8 @@ de:
     one: '<span class="count">%{count}</span> Beobachter'
     other: '<span class="count">%{count}</span> Beobachter'
   x_others:
-    one: "Eine weitere"
-    other: "%{count} weitere"
+    one: "%{count} weitere Person"
+    other: "%{count} weitere Personen"
   x_people:
     one: "%{count} Person"
     other: "%{count} Personen"
@@ -767,6 +770,7 @@ de:
   comment_deleted: Kommentar gelöscht
   comments: Kommentare
   comments_by_me: Kommentare von mir
+  comments_have_been_disabled: Kommentare wurden deaktiviert
   comments_on: Kommentare zu
   comments_on_my_observations: Kommentare zu meinen Beobachtungen
   commercial_solicitation: Kommerzielle Werbung, Verknüpfungen ins Nirgendwo, usw.
@@ -1064,6 +1068,8 @@ de:
   did_you_mean: 'Meintest du'
   did_you_photos_flickr?: Hast du Bilder auf Flickr hinzugefügt?
   disable: Deaktivieren
+  disable_comments: Kommentare deaktivieren
+  disable_comments_desc: Benutzer daran hindern, neue Kommentare hinzuzufügen
   disagree_: Widersprechen
   disconnect_provider: "%{provider} trennen"
   display_link_to_checklist: Link zur Projektliste auf der Projektseite anzeigen
@@ -1117,7 +1123,6 @@ de:
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
   edit_multiple_dates: Datumsangaben bearbeiten
-  edit_multiple_descriptions: Mehrere Beschreibungen bearbeiten
   edit_multiple_locations: Mehrere Standorte bearbeiten
   edit_multiple_species: Mehrere Arten bearbeiten
   edit_notes: Anmerkungen bearbeiten
@@ -6030,6 +6035,7 @@ de:
         occurrence_status_level: Verbreitungsstatus
         establishment_means: Art der Verbreitung
       observation:
+        description: Bemerkungen
         geo_x: Rechtswert
         geo_y: Hochwert
         observed_on: Beobachtungsdatum
@@ -6182,6 +6188,8 @@ de:
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
         post:
           attributes:
+            parent:
+              prefers_no_comments: erlaubt keine neuen Kommentare
             user:
               must_be_on_site_long_enough: |
                 muss sich vor mehr als 24 Stunden registriert haben, um zu veröffentlichen. Wir haben viele Spammer, und dies ist eine Art mit ihnen umzugehen. Du kannst immer noch einen Entwurf speichern, und wenn du die Seite in einem Tag immer noch benutzt, kannst du den Post veröffentlichen.
