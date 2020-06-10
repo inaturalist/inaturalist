@@ -2,6 +2,9 @@ nl:
   x_comments:
     one: '1 reactie'
     other: '%{count} reacties'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> reactie'
+    other: '<span class="count">%{count}</span> reacties'
   x_faves:
     one: '1 favoriet'
     other: '%{count} favorieten'
@@ -795,6 +798,7 @@ nl:
   comment_deleted: Reactie verwijderd
   comments: Reacties
   comments_by_me: Reacties door mij
+  comments_have_been_disabled: Reacties zijn uitgeschakeld
   comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
@@ -1092,6 +1096,8 @@ nl:
   did_you_mean: 'Bedoelde u'
   did_you_photos_flickr?: Heb je foto's geplaatst op Flickr?
   disable: Uitgeschakeld
+  disable_comments: Reacties uitschakelen
+  disable_comments_desc: Voorkom dat mensen nieuwe reacties toevoegen
   disagree_: Niet akkoord
   disconnect_provider: "Verbinding verbreken met %{provider}"
   display_link_to_checklist: Toon link naar de projectlijst van de project pagina
@@ -6371,6 +6377,8 @@ nl:
               contains_too_many_observations: bevat te veel waarnemingen om te importeren
         post:
           attributes:
+            parent:
+              prefers_no_comments: staat geen nieuwe reacties toe
             user:
               must_be_on_site_long_enough: |
                 moet meer dan 24 uur geleden hebben geregistreerd om te publiceren. We krijgen
