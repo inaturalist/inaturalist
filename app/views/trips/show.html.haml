@@ -154,7 +154,7 @@
           = render "comments/comments", parent: @trip, header_tag: :h2, hide_form: @trip.prefers_no_comments?
         - else
           = render "comments/comments", parent: @trip, header_tag: :h2, hide_form: true
-        - if logged_in? && current_user.id != @trip.user_id
+        - if logged_in? && current_user.id != @trip.user_id && !@trip.prefers_no_comments?
           .upstacked
             = render "subscriptions/subscription", resource: @trip.becomes( Post )
         .upstacked
