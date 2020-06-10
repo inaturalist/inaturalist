@@ -32,6 +32,8 @@ class Photo < ActiveRecord::Base
   MEDIUM = 500
   LARGE = 1024
 
+  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
+
   def original_url
     self["original_url"] && self["original_url"].with_fixed_https
   end
@@ -326,7 +328,7 @@ class Photo < ActiveRecord::Base
     if head = fetch_head(remote_photo_url)
       # image must return 200 and have a valid image mime-type
       return head.code == "200" &&
-        head.to_hash["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+        head.to_hash["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
     end
     false
   end
@@ -352,7 +354,7 @@ class Photo < ActiveRecord::Base
     if %w(301 302 303 307 308).include?( head.code ) && headers["location"]
       return valid_remote_photo_url( headers["location"][0], depth: depth + 1 )
     end
-    if head.code == "200" && headers["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+    if head.code == "200" && headers["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
       return remote_photo_url
     end
     false

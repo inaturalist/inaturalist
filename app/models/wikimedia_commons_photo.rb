@@ -1,8 +1,35 @@
 #encoding: utf-8
 class WikimediaCommonsPhoto < Photo
   validate :licensed_if_no_user
+
+  # List of base64-encoded words that appear in Wikimedia Commons images that we
+  # wouldn't allow according to our Community Guidelines
+  FILTERED_WORDS_BASE64 = [
+    "YmFsbHN0cmV0Y2hlcg==\n",
+    "Y2FnZWQgd29tYW4=\n",
+    "Y2hhbmNyb2lkIGxlc2lvbg==\n",
+    "Y29uZG9t\n",
+    "Z2xhbnM=\n",
+    "bnVkZSBtYW4=\n",
+    "bnVkZSB3b21hbg==\n",
+    "cGVuaXM=\n",
+    "c2Nyb3R1bQ==\n",
+    "dGVzdGljbGU=\n",
+    "dG9wbGVzcw==\n"
+  ]
+  FILTERED_WORDS_PATTERN = /#{FILTERED_WORDS_BASE64.map{|w| Base64.decode64( w ) }.join( "|" )}/i
   
-  # retrieve WikimediaCommonsPhotos from Wikimedia Commons based on a taxon_name
+  # Retrieve WikimediaCommonsPhotos from Wikimedia Commons based on a
+  # taxon_name. Note that this is deeply imperfect, and is made to serve
+  # search-and-paginate interfaces that show photos from a variety of providers
+  # and rely on the number of photos in the response to determine whether or not
+  # a next page exists. This method filters out some content that would not be
+  # acceptable according to our community guidelines, which messes up this
+  # assumption, so we overselect to always return the maximum number images
+  # available within the requested limit. This results in some unpleasant
+  # effects in which some images near the border will appear on the next page.
+  # This method *does* return content that could not be made into Photo records,
+  # e.g PDFs.
   def self.search_wikimedia_for_taxon(taxon_name, options = {})
     wm = WikimediaCommonsService.new(:debug => true)
     wikimedia_photos = []
@@ -14,18 +41,21 @@ class WikimediaCommonsPhoto < Photo
     offset = page * per_page - per_page
     query_results = begin
       wm.query(
-        :generator => "search",
-        :gsrsearch => taxon_name,
-        :gsrnamespace => 6,
-        :prop => "imageinfo",
-        :iiprop => "size|mime|url",
-        :gsrlimit => limit,
-        :gsroffset => offset)
+        generator: "search",
+        gsrsearch: taxon_name,
+        gsrnamespace: 6,
+        prop: "imageinfo",
+        iiprop: "size|mime|url",
+        gsrlimit: limit * 2,
+        gsroffset: offset
+      )
     rescue Timeout::Error => e
       nil
     end
     return unless query_results
-    images = query_results.search('ii').select {|ii| ii['descriptionurl'][/File:.+/,0] =~ /\.(jpg|jpeg|png|gif)/i}
+    images = query_results.search('ii').select do |ii|
+      ii["url"].gsub(/_+/, " ") !~ FILTERED_WORDS_PATTERN
+    end
     if images.blank? && (taxon = Taxon.find_by_name(taxon_name))
       title = taxon.try(:wikipedia_title) || taxon_name
       if filename = wikipedia_image_filename_for_title(taxon_name)
@@ -39,16 +69,16 @@ class WikimediaCommonsPhoto < Photo
         next if width == 0
         md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name)) 
         WikimediaCommonsPhoto.new(
-          :native_photo_id => file_name,
-          :original_url => "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
-          :large_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}",
-          :medium_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}",
-          :small_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}",
-          :square_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}",
-          :thumb_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}",
-          :native_page_url => "http://commons.wikimedia.org/wiki/File:#{file_name}"
+          native_photo_id: file_name,
+          original_url: "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
+          large_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}",
+          medium_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}",
+          small_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}",
+          square_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}",
+          thumb_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}",
+          native_page_url: "http://commons.wikimedia.org/wiki/File:#{file_name}"
         )
-      end.compact
+      end.compact[0...limit]
     end
   end
 

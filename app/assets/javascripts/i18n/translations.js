@@ -16369,6 +16369,8 @@ I18n.translations["en"] = {
   "photo_licensing": "Photo Licensing",
   "photos_chosen_for_this_taxon": "Photos chosen for this taxon",
   "photos_from": "Photos from",
+  "photos_locked": "Photos Locked",
+  "photos_locked_desc": "Only staff can change the default photos for this taxon",
   "photos_of_taxon_html": "Photos of %{taxon}",
   "photos_or_sounds": "Photos or sounds",
   "pin_verb": "Pin",

@@ -2707,6 +2707,9 @@ en:
   photo_urls_repaired: Photo URLs repaired
   photos_chosen_for_this_taxon: Photos chosen for this taxon
   photos_from: Photos from
+  # Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Photos Locked
+  photos_locked_desc: Only staff can change the default photos for this taxon
   photos_of_taxon_html: "Photos of %{taxon}"
   photos_or_sounds: Photos or sounds
   photos_or_sounds?: Photos or sounds?
