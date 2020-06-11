@@ -1102,8 +1102,30 @@ sv:
   deviation: Avvikelse
   devise:
     failure:
+      already_authenticated: 'Du är redan inloggad.'
+      unauthenticated: 'Du måste logga in eller registrera dig för att kunna fortsätta.'
+      invalid: 'Ogiltig e-postadress eller lösenord.'
+      invalid_token: 'Ogiltig autentiseringstoken.'
       user:
         suspended: Ditt konto har blivit avstängt
+    sessions:
+      signed_in: 'Du är nu inloggad.'
+      signed_out: 'Du är nu utloggad.'
+    passwords:
+      send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
+      updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
+      updated_not_active: 'Ditt lösenord har ändrats.'
+      send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
+      no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
+    registrations:
+      signed_up: 'Välkommen! Du har lyckats registrera dig.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruktioner för bekräftelse'
+      reset_password_instructions:
+        subject: 'Instruktioner för återställning av lösenord'
   discoveries: Upptäckter
   did_not_send_invitations_because: Skickade inte inbjudningar till följande eftersom...
   did_you_mean: 'Menade du'
@@ -1835,6 +1857,8 @@ sv:
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista raderad.
+  list_reloaded_from_observations: Lista omladdad utifrån observationer
+  list_rules_reapplied: Listans regler har åter tillämpats
   list_saved: Lista sparad.
   list_tooltip: Visa listvy
   list_updated: Listan uppdaterad!
@@ -2620,6 +2644,9 @@ sv:
   photo_urls_repaired: Fotoadresser reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
   photos_from: Bilder från
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Bilder låsta
+  photos_locked_desc: Endast personal kan ändra standardbilderna för detta taxon
   photos_of_taxon_html: "Foton av %{taxon}"
   photos_or_sounds: Foton eller ljud
   photos_or_sounds?: Bild eller ljud?
@@ -4518,6 +4545,7 @@ sv:
   your_recent_projects: Dina senaste projekt
   your_relationships: Dina relationer
   your_site_needs_your_to_authorize_more_permissions_from_provider: "För att %{site_name} ska kunna fortsätta måste du auktorisera ökad behörighet till %{provider}:"
+  your_subscriptions_to_this_place: Dina prenumerationer här
   your_tags: Dina taggningar
   yours: Din
   youre_not_following_anyone: |-
