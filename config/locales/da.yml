@@ -2,6 +2,9 @@ da:
   x_comments:
     one: '1 kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoritter'
@@ -782,6 +785,7 @@ da:
   comment_deleted: Kommentar slettet
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
+  comments_have_been_disabled: Kommentarer er deaktiveret
   comments_on: Kommentarer til
   comments_on_my_observations: Kommentarer til mine observationer
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
@@ -1083,6 +1087,8 @@ da:
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
   disable: Deaktiver
+  disable_comments: Deaktivér kommentarer
+  disable_comments_desc: Forhindr folk i at tilføje nye kommentarer
   disagree_: Uenig
   disconnect_provider: "Frakobl %{provider}"
   display_link_to_checklist: Vis link til projektliste fra projektside
@@ -2564,6 +2570,9 @@ da:
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos låst
+  photos_locked_desc: Kun medarbejdere kan ændre standardfotos til denne takson
   photos_of_taxon_html: "Foto´s af %{taxon}"
   photos_or_sounds: Fotos eller lyde
   photos_or_sounds?: Foto´s eller lyde
@@ -6682,6 +6691,8 @@ da:
               contains_too_many_observations: indeholder for mange observationer til import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillader ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
