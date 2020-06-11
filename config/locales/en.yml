@@ -1177,8 +1177,30 @@ en:
   deviation: Deviation
   devise:
     failure:
+      already_authenticated: 'You are already signed in.'
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
       user:
         suspended: Your account has been suspended
+    sessions:
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
+    passwords:
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password was changed successfully. You are now signed in.'
+      updated_not_active: 'Your password was changed successfully.'
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+    registrations:
+      signed_up: 'Welcome! You have signed up successfully.'
+      updated: 'You updated your account successfully.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'Reset password instructions'
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
@@ -1916,6 +1938,8 @@ en:
   linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
+  list_reloaded_from_observations: List reloaded from observations
+  list_rules_reapplied: List rules have been re-applied
   list_saved: List saved.
   list_tooltip: Show list view
   list_updated: List updated!
@@ -4621,6 +4645,7 @@ en:
   your_recent_projects: Your Recent Projects
   your_relationships: Your Relationships
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"
+  your_subscriptions_to_this_place: Your subscriptions to this place
   your_tags: Your Tags
   yours: Yours
   youre_not_following_anyone: |-

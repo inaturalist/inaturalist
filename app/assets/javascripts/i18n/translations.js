@@ -6273,6 +6273,7 @@ I18n.translations["cs"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Poznámky"
       }
     }
   },
@@ -13106,8 +13107,8 @@ I18n.translations["de"] = {
   "x_of_y": "%{x} von %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} von %{y} Leute (mehr als 2/3) sind damit einverstanden",
   "x_others": {
-    "one": "Eine weitere",
-    "other": "%{count} weitere"
+    "one": "%{count} weitere Person",
+    "other": "%{count} weitere Personen"
   },
   "x_people": {
     "one": "%{count} Person",
@@ -31617,6 +31618,7 @@ I18n.translations["fr"] = {
   "most_observed_threatened_species": "Espèces menacées les plus observées",
   "most_recent_observation_by_date_observed": "Observation vérifiable la plus récente observée par date",
   "most_species": "Par nombre d'espèces",
+  "multiple": "multiple",
   "must_be_observed_after": "doit être observé après %{operand}\n",
   "must_be_observed_before": "doit être observé avant %{operand}\n",
   "name": "Nom",
@@ -42966,6 +42968,7 @@ I18n.translations["ja"] = {
   "type_species_name": "種名を入力",
   "unknown": "不明",
   "unknown_error": "不明なエラー",
+  "update_observations": "観察記録を更新",
   "update_past": "過去の%{type}を更新",
   "update_search": "検索結果を更新",
   "update_x_selected_taxa": {
