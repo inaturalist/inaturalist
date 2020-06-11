@@ -2,6 +2,9 @@ it:
   x_comments:
     one: '1 commento'
     other: '%{count} commenti'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> commento'
+    other: '<span class="count">%{count}</span> commenti'
   x_faves:
     one: '1 preferito'
     other: '%{count} preferiti'
@@ -781,6 +784,7 @@ it:
   comment_deleted: Commento cancellato
   comments: Commenti
   comments_by_me: I miei commenti
+  comments_have_been_disabled: I commenti sono stati disabilitati
   comments_on: Commenti su
   comments_on_my_observations: Commenti alle mie osservazioni
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
@@ -1077,6 +1081,8 @@ it:
   did_you_mean: 'Forse cercavi'
   did_you_photos_flickr?: Hai caricato qualche foto su Flickr?
   disable: Disabilita
+  disable_comments: Disabilita commenti
+  disable_comments_desc: Impedisci alle persone di aggiungere nuovi commenti
   disagree_: Non d'accordo
   disconnect_provider: "Disconnettere %{provider}"
   display_link_to_checklist: Visualizza il link alla lista del progetto sulla pagina del progetto
@@ -6243,6 +6249,8 @@ it:
               contains_too_many_observations: contiene troppe osservazioni da importare
         post:
           attributes:
+            parent:
+              prefers_no_comments: non consente nuovi commenti
             user:
               must_be_on_site_long_enough: |
                 devi essere registrato da più di 24 ore per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno userai ancora il sito, potrai pubblicare.
