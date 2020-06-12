@@ -98,16 +98,20 @@ if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ )
 ) {
-  /* global INITIAL_OBSERVATION_UUID */
-  obsId = INITIAL_OBSERVATION_UUID;
-  store.dispatch( setConfig( {
-    testingApiV2: true
-  } ) );
-  // For some reason this seems to set it everywhere...
-  inatjs.setConfig( {
-    apiURL: "http://localhost:4000/v2",
-    writeApiURL: "http://localhost:4000/v2"
-  } );
+  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    /* global INITIAL_OBSERVATION_UUID */
+    obsId = INITIAL_OBSERVATION_UUID;
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    // For some reason this seems to set it everywhere...
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
 }
 
 store.dispatch( fetchObservation( obsId, {
