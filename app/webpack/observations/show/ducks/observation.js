@@ -373,6 +373,7 @@ export function fetchObservation( uuid, options = { } ) {
         license_code: true,
         location: true,
         longitude: true,
+        obscured: true,
         observed_on: true,
         ofvs: {
           name: true,
@@ -436,6 +437,7 @@ export function fetchObservation( uuid, options = { } ) {
         },
         tags: true,
         taxon: taxonFields,
+        taxon_geoprivacy: true,
         time_observed_at: true,
         time_zone: true,
         user: Object.assign( {}, userFields, {

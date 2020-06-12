@@ -94,7 +94,10 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
 
 /* global INITIAL_OBSERVATION_ID */
 let obsId = INITIAL_OBSERVATION_ID;
-if ( window.location.search.match( /test=apiv2/ ) ) {
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
   /* global INITIAL_OBSERVATION_UUID */
   obsId = INITIAL_OBSERVATION_UUID;
   store.dispatch( setConfig( {
