@@ -2,6 +2,9 @@ da:
   x_comments:
     one: '1 kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoritter'
@@ -782,6 +785,7 @@ da:
   comment_deleted: Kommentar slettet
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
+  comments_have_been_disabled: Kommentarer er deaktiveret
   comments_on: Kommentarer til
   comments_on_my_observations: Kommentarer til mine observationer
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
@@ -1076,13 +1080,37 @@ da:
   deviation: Afvigelse
   devise:
     failure:
+      already_authenticated: 'Du er allerede logget ind.'
+      unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
+      invalid: 'Ugyldig e-mail eller adgangskode.'
+      invalid_token: 'Ugyldig godkendelsestoken'
       user:
         suspended: Din konto er suspenderet
+    sessions:
+      signed_in: 'Du er nu logget ind.'
+      signed_out: 'Du er nu logget ud.'
+    passwords:
+      send_instructions: 'Du vil om et øjeblik modtage en e-mail med instruktioner til nulstilling af din adgangskode.'
+      updated: 'Din adgangskode er skiftet, og du er nu logget ind.'
+      updated_not_active: 'Du har nu skiftet din adgangskode.'
+      send_paranoid_instructions: "Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode."
+      no_token: "Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen."
+    registrations:
+      signed_up: 'Velkommen! Din registrering lykkedes.'
+      updated: 'Din kontoopdatering er nu gennemført.'
+      destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bekræftelsesinstruktioner'
+      reset_password_instructions:
+        subject: 'Instruktioner til adgangskodenulstilling'
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
   disable: Deaktiver
+  disable_comments: Deaktivér kommentarer
+  disable_comments_desc: Forhindr folk i at tilføje nye kommentarer
   disagree_: Uenig
   disconnect_provider: "Frakobl %{provider}"
   display_link_to_checklist: Vis link til projektliste fra projektside
@@ -1789,6 +1817,8 @@ da:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
+  list_reloaded_from_observations: Liste genindlæst fra observationer
+  list_rules_reapplied: Listeregler er blevet anvendt igen
   list_saved: Liste gemt.
   list_tooltip: Vis listevisning
   list_updated: Liste opdateret!
@@ -2564,6 +2594,9 @@ da:
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos låst
+  photos_locked_desc: Kun medarbejdere kan ændre standardfotos til denne takson
   photos_of_taxon_html: "Foto´s af %{taxon}"
   photos_or_sounds: Fotos eller lyde
   photos_or_sounds?: Foto´s eller lyde
@@ -4414,6 +4447,7 @@ da:
   your_recent_projects: Dine seneste projekter
   your_relationships: Dine forbindelser
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} har brug for at du godkender flere tilladelser fra %{provider} for at fortsætte:"
+  your_subscriptions_to_this_place: Dine abonnementer til dette sted
   your_tags: Dine tags
   yours: Dine
   youre_not_following_anyone: |-
@@ -6682,6 +6716,8 @@ da:
               contains_too_many_observations: indeholder for mange observationer til import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillader ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
