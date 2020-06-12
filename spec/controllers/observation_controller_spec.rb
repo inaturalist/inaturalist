@@ -486,6 +486,23 @@ describe ObservationsController do
     end
   end
 
+  describe "export" do
+    let(:user) { User.make! }
+    before do
+      sign_in user
+    end
+    it "should assign flow_task_id that belongs to the current user" do
+      flow_task = make_observations_export_flow_task( user: user )
+      get :export, flow_task_id: flow_task.id
+      expect( assigns(:flow_task) ).to eq flow_task
+    end
+    it "should not assign flow_task_id that belongs to another user" do
+      flow_task = make_observations_export_flow_task
+      get :export, flow_task_id: flow_task.id
+      expect( assigns(:flow_task) ).to be_blank
+    end
+  end
+
 end
 
 describe ObservationsController, "spam" do

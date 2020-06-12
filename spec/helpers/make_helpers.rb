@@ -43,6 +43,13 @@ module MakeHelpers
     )
     list
   end
+
+  def make_observations_export_flow_task( options = {} )
+    ft = ObservationsExportFlowTask.make( options )
+    ft.inputs.build( extra: { query: "user_id=#{ft.user.id}" } )
+    ft.save!
+    ft
+  end
   
   def make_observation_of_threatened(options = {})
     Observation.make!(options.merge(

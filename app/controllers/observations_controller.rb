@@ -1117,7 +1117,8 @@ class ObservationsController < ApplicationController
 
   def export
     if params[:flow_task_id]
-      if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
+      if @flow_task = ObservationsExportFlowTask.
+          where( id: params[:flow_task_id], user_id: current_user ).first
         output = @flow_task.outputs.first
         @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
       end
