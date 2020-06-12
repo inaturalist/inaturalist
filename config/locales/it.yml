@@ -1074,8 +1074,30 @@ it:
   deviation: Scostamento
   devise:
     failure:
+      already_authenticated: 'Hai già eseguito l''accesso.'
+      unauthenticated: 'Per continuare è necessario accedere o registrarsi.'
+      invalid: 'E-mail o password non valida.'
+      invalid_token: 'Token di autenticazione non valido.'
       user:
         suspended: Il tuo account è stato sospeso
+    sessions:
+      signed_in: 'Accesso effettuato con successo.'
+      signed_out: 'Logout eseguito correttamente.'
+    passwords:
+      send_instructions: 'Entro qualche minuto riceverai un messaggio email con le istruzioni per reimpostare la tua password.'
+      updated: 'Password modificata correttamente. Hai eseguito l''accesso.'
+      updated_not_active: 'Password modificata correttamente.'
+      send_paranoid_instructions: "Se la tua email esiste nel nostro database, entro qualche minuto riceverai un messaggio email contenente un link per il ripristino della password"
+      no_token: "Non è possibile accedere a questa pagina a meno di esservi stati indirizzati da un'e-mail di reset della password. Se sei stato indirizzato su questa pagina da un'e-mail di reset della password, assicurati di aver utilizzato l'URL completo fornito."
+    registrations:
+      signed_up: 'Benvenuto! Ti sei registrato correttamente.'
+      updated: 'L''account è stato aggiornato correttamente.'
+      destroyed: 'Arrivederci! L''account è stato cancellato. Speriamo di rivederci presto.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Istruzioni per la conferma'
+      reset_password_instructions:
+        subject: 'Istruzioni per reimpostare la password'
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
@@ -1781,6 +1803,8 @@ it:
   linkedin: LinkedIn
   list: Elenco
   list_deleted: Lista eliminata.
+  list_reloaded_from_observations: Elenco ricaricato dalle osservazioni
+  list_rules_reapplied: Le regole della lista sono state riapplicate
   list_saved: Lista salvata.
   list_tooltip: Mostra la visualizzazione ad elenco
   list_updated: Lista aggiornata!
@@ -2541,6 +2565,9 @@ it:
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Foto Bloccate
+  photos_locked_desc: Solo lo staff può cambiare le foto predefinite per questo taxon
   photos_of_taxon_html: "Foto di %{taxon}"
   photos_or_sounds: Foto o suoni
   photos_or_sounds?: Foto o suoni?
@@ -4352,6 +4379,7 @@ it:
   your_recent_projects: I tuoi progetti recenti
   your_relationships: Le tue relazioni
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} ha bisogno che tu autorizzi maggiori operazioni da %{provider} per poter procedere:"
+  your_subscriptions_to_this_place: Le tue iscrizioni a questo luogo
   your_tags: Le tue etichette
   yours: Le tue
   youre_not_following_anyone: |-
