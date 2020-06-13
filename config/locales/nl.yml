@@ -250,7 +250,7 @@ nl:
   add_new_rule: Nieuwe regel toevoegen
   add_new_source: "Nieuwe bron toevoegen..."
   add_new_taxon_name: Nieuwe taxonnaam toevoegen
-  add_notes_about_this_taxon: Opmerkingen toevoegen over dit taxon op deze plaats, bijvoorbeeld waar en wanneer het voorkomt.
+  add_notes_about_this_taxon: Notities over dit taxon op deze plaats toevoegen, bijv. waar en wanneer het voorkomt.
   add_obs_from_a_link: "Voeg Wrn uit lijst: %{link} toe"
   add_obs_from_a_list: Voeg waarnemingen toe van een lijst
   add_observations: Waarnemingen toevoegen
@@ -1089,8 +1089,30 @@ nl:
   deviation: Afwijking
   devise:
     failure:
+      already_authenticated: 'Je bent al ingelogd.'
+      unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
+      invalid: 'Ongeldig e-mailadres of wachtwoord.'
+      invalid_token: 'Ongeldig authenticatie-token.'
       user:
         suspended: Je account is opgeschort
+    sessions:
+      signed_in: 'Succesvol ingelogd.'
+      signed_out: 'Succesvol uitgelogd.'
+    passwords:
+      send_instructions: 'Binnen enkele minuten ontvang je een e-mail met instructies om je wachtwoord te resetten.'
+      updated: 'Je wachtwoord is succesvol gewijzigd. Je bent nu ingelogd.'
+      updated_not_active: 'Je wachtwoord is succesvol gewijzigd.'
+      send_paranoid_instructions: "Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen."
+      no_token: "Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt."
+    registrations:
+      signed_up: 'Welkom! Je bent succesvol aangemeld.'
+      updated: 'Je hebt je account succesvol bijgewerkt.'
+      destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instructies voor bevestiging'
+      reset_password_instructions:
+        subject: 'Instructies voor wachtwoord resetten'
   discoveries: Ontdekkingen
   did_not_send_invitations_because: Geen uitnodigingen verzonden naar de volgende personen omdat...
   did_you_mean: 'Bedoelde u'
@@ -1157,6 +1179,7 @@ nl:
   edit_field: Veld bewerken
   edit_license: Licentie bewerken
   edit_multiple_dates: Meerdere data bewerken
+  edit_multiple_descriptions: Meerdere notities bewerken
   edit_multiple_locations: Meerdere locaties bewerken
   edit_multiple_species: Meerdere soorten bewerken
   edit_notes: Notities Bewerken
@@ -1802,6 +1825,8 @@ nl:
   linkedin: LinkedIn
   list: Lijst
   list_deleted: Lijst verwijderd.
+  list_reloaded_from_observations: Lijst herladen uit waarnemingen
+  list_rules_reapplied: Lijstregels zijn opnieuw toegepast
   list_saved: Lijst opgeslagen.
   list_tooltip: Toon lijstweergave
   list_updated: Lijst bijgewerkt!
@@ -1874,7 +1899,7 @@ nl:
     tr: Turks
     zh-CN: Chinees (vereenvoudigd)
     zh-TW: Chinees (traditioneel)
-  locality_notes: Localiteits aantekeningen
+  locality_notes: Localiteits-notities
   localized_species_accounts: Lokale soortenoverzichten
   location: Locatie
   location_is_accurate: Locatie klopt
@@ -2255,8 +2280,8 @@ nl:
   not_recorded: Niet opgenomen
   not_resolved: Niet opgelost
   not_seeing_what_looking_for: Niet gezien waar je naar zocht?
-  note: Opmerking
-  notes: Aantekeningen
+  note: Notitie
+  notes: Notities
   note_you_can_modify_the_height_attribute: "Let op: je kunt het 'height' attribuut aanpassen aan de beschikbare ruimte op je webpagina."
   notify_me_of_mentions: Breng me op de hoogte van vermeldingen (bv. @gebruikersnaam)
   notify_me_about_redundant_identifications: Hou me op de hoogte van bevestigende determinaties
@@ -2580,6 +2605,9 @@ nl:
   photo_urls_repaired: Foto URL's hersteld
   photos_chosen_for_this_taxon: Foto's gekozen voor dit taxon
   photos_from: Foto's van
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Foto's vergrendeld
+  photos_locked_desc: Alleen werknemers kunnen de standaardfoto's voor dit taxon wijzigen
   photos_of_taxon_html: "Foto's van %{taxon}"
   photos_or_sounds: Foto's of geluiden
   photos_or_sounds?: Foto's of geluiden?
@@ -2740,7 +2768,7 @@ nl:
   place_imported: Plaats geïmporteerd!
   place_must_have_a_boundary_defined: Plaats moet een grens gedefinieerd hebben.
   place_name: Plaatsnaam
-  place_notes: Notities plaatsen
+  place_notes: Plaats-notities
   place_too_big_for_check_list: |
     Deze plaats is te groot voor een checklist. Het berekenen van checklist-statistieken is vrij intensief, dus we staan dat niet toe voor zeer grote plaatsen, tenzij ze zijn toegevoegd door de siteadministratoren. Je kunt deze plaats echter nog steeds gebruiken voor het afgrenzen van projecten en het zoeken naar waarnemingen.
   place_updated: Plaats bijgewerkt!
@@ -3961,6 +3989,7 @@ nl:
   unresolve: Oplossing ongedaan maken
   unreview_all: Alles opnieuw nakijken
   unsubscribe: Uitschrijven
+  unsubscribe_from_all_emails: Afmelden van alle e-mails
   unsuspend_user: Gebruiker niet schorsen
   upcoming_bioblitzes: Komende bioblitzes
   update: Bijwerken
@@ -4409,6 +4438,7 @@ nl:
   your_recent_projects: Je recente projecten
   your_relationships: Je relaties
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} vereist dat je meer toestemmingen geeft voor %{provider} om door te gaan:"
+  your_subscriptions_to_this_place: Je abonnementen op deze plaats
   your_tags: Je labels
   yours: De jouwe
   youre_not_following_anyone: |-
@@ -5189,6 +5219,10 @@ nl:
           Is deze pagina af en klaar om een kopie van dit project te maken? Let op dat het projectpictogram en banner niet worden gedupliceerd en opnieuw moeten worden geüpload in het duplicaat project.
         are_you_sure_you_want_to_delete: Weet je zeker dat je dit project wilt verwijderen?
         can_be_included_in_multiple: Kan worden opgenomen in meerdere overkoepelende projecten
+        check_the_box_to_include_member_observations: |
+          Vink het selectievakje aan om alleen waarnemingen toe te voegen van gebruikers die lid zijn van dit project.
+          Gebruik het filter voor het uitsluiten van gebruikers hierboven om waarnemingen van specifieke gebruikers uit te sluiten,
+          inclusief de projecteigenaar en admins.
         click_through_to_individual_projects: Doorklikken naar individuele projecten
         collection_projects: Verzamelprojecten
         collection_project_features: "Kenmerken van het verzamelproject:"
@@ -5236,10 +5270,16 @@ nl:
         project_summary_help: |
           Geef een beknopte uitleg van je project. Ongeveer de eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner van het startscherm van het project, dus begin met de beste dingen!
         project_summary_placeholder: Ontdek en volg de vogels van het Zuiderpark ...
+        select_native_to_include: |
+          Selecteer "Inheems" om alleen taxa op te nemen die als "Inheems" zijn aangemerkt voor de plaats(en) in je project. Selecteer "Geïntroduceerd" om alleen taxa op te nemen die als "Geïntroduceerd" zijn aangemerkt voor de plaats(en) in je project.
         select_quality_grade: |
           Selecteer ten minste één kwaliteitsbeoordeling. Verdere uitleg voor elke kwaliteitsbeoordeling kan worden gevonden op
           onze <a href="%{url}">FAQ pagina</a>.
         show_projects_as_flags: Toon projecten als vlaggetjes op de kaart
+        specify_project_filters: |
+          Specificeer de filters op basis waarvan waarnemingen moeten worden opgenomen in je project.
+          Je kunt meerdere soorten (of taxa), plaatsen, data, of andere criteria selecteren om
+          waarnemingen automatisch op te nemen.
         start_and_end_times_for_bioblitzes: Start- en eindtijd/-datum voor bioblitz-achtige activiteiten
         traditional_projects_cannot_be_copied: Traditioneel project kan niet worden gekopieerd.
         umbrella_project_features: "Kenmerken van het overkoepelende project:"
@@ -5312,6 +5352,8 @@ nl:
           Zorg ervoor dat je over de verschillen hebt gelezen in onze <a href="%{url}" target="_blank">blogpost over verzamelprojecten</a>.
         this_is_a_preview: |
           Dit is een voorproefje van hoe dit project eruit zou zien als een verzamelproject.
+        this_project_has_not_defined_requirements: |
+          Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
     search:
@@ -6215,6 +6257,7 @@ nl:
         occurrence_status_level: Statusniveau van voorkomen
         establishment_means: Vestigingswijze
       observation:
+        description: Notities
         geo_x: Oostwaarde
         geo_y: Noordwaarde
         observed_on: Waarnemingsdatum
