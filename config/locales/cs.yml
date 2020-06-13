@@ -1202,8 +1202,30 @@ cs:
   deviation: Odchylka
   devise:
     failure:
+      already_authenticated: 'Již jste přihlášeni.'
+      unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
+      invalid: 'Neplatný e-mail nebo heslo.'
+      invalid_token: 'Neplatný ověřovací token.'
       user:
         suspended: Váš účet byl pozastaven
+    sessions:
+      signed_in: 'Přihlášení proběhlo úspěšně.'
+      signed_out: 'Odhlášení proběhlo úspěšně.'
+    passwords:
+      send_instructions: 'Během několika minut obdržíte e-mail s pokyny pro obnovení hesla.'
+      updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.'
+      updated_not_active: 'Vaše heslo bylo úspěšně změněno.'
+      send_paranoid_instructions: "Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla."
+      no_token: "Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL."
+    registrations:
+      signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
+      updated: 'Účet byl úspěšně aktualizován.'
+      destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Pokyny k potvrzení'
+      reset_password_instructions:
+        subject: 'Pokyny pro obnovení hesla'
   discoveries: Objevy
   did_not_send_invitations_because: Pozvánka těmto nebyla odeslána, protože...
   did_you_mean: 'Mysleli jste'
@@ -1919,6 +1941,8 @@ cs:
   linkedin: LinkedIn
   list: Seznam
   list_deleted: Seznam byl smazán.
+  list_reloaded_from_observations: Seznam znovu načten z pozorování
+  list_rules_reapplied: Pravidla seznamu byla znovu použita
   list_saved: Seznam byl uložen.
   list_tooltip: Zobrazit jako seznam
   list_updated: Seznam aktualizovánǃ
@@ -2683,6 +2707,9 @@ cs:
   photo_urls_repaired: URL fotky opravena
   photos_chosen_for_this_taxon: Fotky vybrané pro tento taxon
   photos_from: Fotky z
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotografie uzamčeny
+  photos_locked_desc: Pouze zaměstnanci mohou změnit výchozí fotografie pro tento taxon
   photos_of_taxon_html: "Fotky %{taxon}"
   photos_or_sounds: Fotky nebo zvuky
   photos_or_sounds?: Fotky nebo zvuky?
@@ -4110,7 +4137,6 @@ cs:
   update_search: Aktualizovat vyhledávání
   update_selected_taxa: Aktualizovat vybrané taxony
   update_subscription: Aktualizovat odběr
-  update_subscription_preferences: aktualizovat nastavení odebírání
   update_x_selected_taxa:
     one: "Aktualizace 1 vybraného taxonu"
     few: "Aktualizace %{count} vybraných taxonů"
@@ -4562,6 +4588,7 @@ cs:
   your_recent_projects: Vaše nedávné projekty
   your_relationships: Vaše vztahy
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} pro pokračování vyžaduje, abyste schválili další povolení od %{provider}:"
+  your_subscriptions_to_this_place: Vaše odběry k tomuto místu
   your_tags: Vaše štítky
   yours: Váš
   youre_not_following_anyone: |-
