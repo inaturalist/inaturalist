@@ -1061,8 +1061,30 @@ de:
   deviation: Abweichung
   devise:
     failure:
+      already_authenticated: 'Du bist bereits angemeldet.'
+      unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
+      invalid: 'Email-Adresse oder Passwort ungültig.'
+      invalid_token: 'Identifizierungscode ungültig'
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
+    sessions:
+      signed_in: 'Erfolgreich angemeldet.'
+      signed_out: 'Erfolgreich abgemeldet.'
+    passwords:
+      send_instructions: 'In wenigen Minuten wirst du eine Email mit Anweisungen erhalten, wie das Passwort zurückgesetzt werden kann.'
+      updated: 'Das Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.'
+      updated_not_active: 'Dein Passwort wurde erfolgreich geändert.'
+      send_paranoid_instructions: "Wenn deine E-Mail-Adresse in unserer Datenbank ist, wirst du in wenigen Minuten einen 'Passwort wiederherstellen' Link erhalten."
+      no_token: "Du kannst auf diese Seite nicht ohne eine 'Passwort zurücksetzen' E-Mail zugreifen. Wenn du von einer 'Passwort zurücksetzen' E-Mail kommst, bitte stelle sicher, dass du die enthaltene URL vollständig benutzt hast."
+    registrations:
+      signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
+      updated: 'Du hast dein Konto erfolgreich aktualisiert.'
+      destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bestätigungsanweisungen'
+      reset_password_instructions:
+        subject: 'Anweisungen zum Zurücksetzen des Passworts'
   discoveries: Entdeckungen
   did_not_send_invitations_because: Den folgenden wurde keine Einladung geschickt, weil...
   did_you_mean: 'Meintest du'
@@ -1758,6 +1780,8 @@ de:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste gelöscht.
+  list_reloaded_from_observations: Liste aus Beobachtungen neu geladen
+  list_rules_reapplied: Listenregeln wurden erneut angewendet
   list_saved: Liste gespeichert.
   list_tooltip: Listen-Ansicht zeigen
   list_updated: Liste aktualisiert!
@@ -2501,6 +2525,7 @@ de:
   photo_urls_repaired: Foto URLs repariert
   photos_chosen_for_this_taxon: Foto für diese Art ausgewählt
   photos_from: Fotos von
+  photos_locked_desc: Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern
   photos_of_taxon_html: "Fotos von %{taxon}"
   photos_or_sounds: Bilder oder Audio
   photos_or_sounds?: Bilder oder Audio?
@@ -3852,6 +3877,7 @@ de:
   #Undo the action of resolving a flag
   unresolve: ungelöst
   unsubscribe: Abbestellen
+  unsubscribe_from_all_emails: Alle E-Mails abbestellen
   unsuspend_user: Benutzer entsperren
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
@@ -3863,7 +3889,6 @@ de:
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
   update_subscription: Abonnement aktualisieren
-  update_subscription_preferences: Abonnement-Einstellungen aktualisieren
   update_x_selected_taxa:
     one: "1 ausgewähltes Taxon aktualisieren"
     other: "%{count} ausgewählte Taxa aktualisieren"
@@ -4298,6 +4323,7 @@ de:
   your_recent_projects: Deine Aktuellen Projekte
   your_relationships: Deine Beziehungen
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} benötigt mehr Berechtigungen von %{provider} , um fortzufahren:"
+  your_subscriptions_to_this_place: Deine Abonnements zu diesem Ort
   your_tags: Deine Stichwörter
   yours: Dein
   youre_not_following_anyone: |-
