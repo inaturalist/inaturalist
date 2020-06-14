@@ -2549,6 +2549,7 @@ nb:
   photos_from: Bilder fra
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Bilder låst
+  photos_locked_desc: Bare ansatte kan endre standardbildene for dette taksonet
   photos_of_taxon_html: "Bilder av %{taxon}"
   photos_or_sounds: Bilder eller lyd
   photos_or_sounds?: Bilder eller lyder?
@@ -2605,6 +2606,14 @@ nb:
       Delegation: Delegasjon
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegasjon
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Avdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: avdelingssegment
       District: Distrikt
       district: distrikt
       Division: Divisjon
@@ -4348,6 +4357,7 @@ nb:
   your_recent_projects: Dine siste prosjekter
   your_relationships: Dine relasjoner
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} trenger din godkjenning for flere tillatelser fra %{provider} for å fortsette:"
+  your_subscriptions_to_this_place: Dine abonnementer på dette stedet
   your_tags: Dine etiketter
   yours: Dine
   youre_not_following_anyone: |-
@@ -5090,6 +5100,11 @@ nb:
           Merk: disse brukere vil kunne redigere ALLE prosjektdetaljer inklusivt admins.
         note_you_can_delete_the_time: |
           (Merk: du kan slette tidssonen og nøyaktige klokkeslett hvis du ønsker å inkludere hele dager.)
+        note_about_unselected_filters: |
+          Merk: Hvis du ikke velger taksa, steder eller brukere, vil alle bli inkludert som standard.
+        only_display_member_observations: |
+          Vis bare observasjoner fra prosjektmedlemmer (personer som har blitt med i prosjektet)
+        optionally_filter_media: Filtrer eventuelt for observasjoner med bilder, lyder eller begge deler.
         or_drag_and_drop: (eller dra og slipp)
         please_specify_the_requirements: |
           Vennligst oppgi kravene for observasjonene som skal legges til dette prosjektet.
@@ -5106,6 +5121,9 @@ nb:
         project_summary_help: |
           Gi en kortfattet forklaring av ditt prosjekt. Omtrent de første 200 tegn vil være synlige til høyre for coverbildet på prosjektsiden, så sett det beste øverst!
         project_summary_placeholder: Oppdag og følg med på fuglene i Slottsparken...
+        select_quality_grade: |
+          Velg minst én kvalitetsgrad. Ytterligere forklaring for hver kvalitetsgrad finnes på
+          vår <a href="%{url}">FAQ side</a>.
         show_projects_as_flags: Vis prosjekter som markeringer på kart
         start_and_end_times_for_bioblitzes: Start- og slutt-datoer/tider (for bioblitz-aktige arrangement)
         traditional_projects_cannot_be_copied: Tradisjonelt prosjekt kan ikke kopieres
