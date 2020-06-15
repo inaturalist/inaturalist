@@ -4751,11 +4751,6 @@ nl:
           other: "%{count} unieke"
       export:
         choose_columns_desc: Selecteer de kolommen die je wenst te exporteren
-        create_a_query_desc_html: |
-          Maak een waarnemingsquery zoals je elders ook doet op de
-          website. Je kunt ook een waarnemings-URL van een ander deel van de website knippen en plakken. Je moet een opgeven
-          <strong>taxon</strong>, <strong>plaats</strong>, <strong>gebruiker</strong>,
-          <strong>project</strong> of <strong>zoekopdracht</strong>.
         ident_by_user_desc_html: |
           Kolommen voor de huidige determinatie door %{user}
         query_placeholder: "Kies onderstaande queryparameters of plak een waarnemings-URL in"
