@@ -2,6 +2,9 @@ tr:
   x_comments:
     one: '%{count} yorum'
     other: '%{count} yorum'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> yorum'
+    other: '<span class="count">%{count}</span> yorum'
   x_faves:
     one: '%{count} favori'
     other: '%{count} favori'
@@ -791,6 +794,7 @@ tr:
   comment_deleted: Yorum silindi
   comments: Yorumlar
   comments_by_me: Yorumlarım
+  comments_have_been_disabled: Yorumlar devre dışı bırakıldı
   comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
@@ -1080,13 +1084,37 @@ tr:
   deviation: Uygunsuzluk
   devise:
     failure:
+      already_authenticated: 'Zaten giriş yaptınız.'
+      unauthenticated: 'Devam etmeden önce giriş yapmanız ya da kayıt olmanız gereklidir.'
+      invalid: 'Geçersiz e-posta ya da şifre.'
+      invalid_token: 'Geçersiz kimlik doğrulama belirteci.'
       user:
         suspended: Hesabınız askıya alındı
+    sessions:
+      signed_in: 'Başarıyla giriş yapıldı.'
+      signed_out: 'Başarıyla çıkış yapıldı.'
+    passwords:
+      send_instructions: 'Birkaç dakika içinde şifrenizi nasıl sıfırlayacağınıza dair talimatları içeren bir e-posta alacaksınız.'
+      updated: 'Şifreniz başarılı bir şekilde değiştirildi. Şu an oturumun açık.'
+      updated_not_active: 'Şifreniz başarılı bir şekilde değiştirildi.'
+      send_paranoid_instructions: "Eğer e-posta adresiniz veri tabanımızda mevcutsa, birkaç dakika içinde e-posta adresinize bir şifre kurtarma bağlantısı gönderilecektir."
+      no_token: "Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun."
+    registrations:
+      signed_up: 'Hoş geldiniz! Başarılı bir şekilde oturum açtınız.'
+      updated: 'Hesabınız başarılı bir şekilde güncellendi.'
+      destroyed: 'Güle Güle! Hesabınız başarılı bir şekilde iptal edildi. Umarız sizinle yakında yine görüşürüz.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Onaylama talimatları'
+      reset_password_instructions:
+        subject: 'Şifre sıfırlama talimatları'
   discoveries: Keşifler
   did_not_send_invitations_because: Aşağıdakilere davetiye gönderilmedi çünkü...
   did_you_mean: 'Bunu mu demek istediniz'
   did_you_photos_flickr?: Flickr'a herhangi bir fotoğraf koydunuz mu?
   disable: Devre dışı bırak
+  disable_comments: Yorumları devre dışı bırak
+  disable_comments_desc: İnsanların yeni yorum eklemesini önleme
   disagree_: Katılmıyorum
   disconnect_provider: "%{provider} bağlantısını kes"
   display_link_to_checklist: Proje sayfasından proje listesine bağlantıyı göster
@@ -1145,6 +1173,7 @@ tr:
   edit_field: Alanı Düzenle
   edit_license: Lisansı Düzenle
   edit_multiple_dates: Birden Çok Tarihi Düzenle
+  edit_multiple_descriptions: Birden Çok Açıklama Düzenle
   edit_multiple_locations: Birden Çok Konumu Düzenle
   edit_multiple_species: Birden Çok Türü Düzenle
   edit_notes: Notları Düzenle
@@ -1181,6 +1210,7 @@ tr:
   editing_project: '%{project} Düzenleme'
   editing_project_asset: Şunun için Proje Varlığını Düzenleme
   editing_subscription_to_x_html: "Aboneliği %{x} olarak düzenleme"
+  editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Sınıf Bağlantısını Düzenleme
   editing_taxon_name_for_taxon_html: '%{taxon} için Sınıf Adı "%{name}"'' Düzenleme'
   editing_taxon_range: Sınıf Aralığını Düzenleme
@@ -1453,6 +1483,7 @@ tr:
   got_it!: Anlaşıldı!
   got_your_data_somewhere_else?: Verilerinizi başka bir yere mi aldınız? Yardımcı olabiliriz.
   graft: Aşılama
+  graft_taxon: '%{taxon} aşılama'
   grafting_attemps_to_insert_this_taxon: Aşılama bu sınıfı; sınıflandırma ağacımıza sokmaya, var olan bir ana sınıf bulmaya ya da bir üst düzey sınıfa eklemek için gerekli tüm sınıflar arasında oluşturmaya yarar.
   grant_role: "%{grant} %{role} rol"
   grid: Izgara
@@ -1782,6 +1813,8 @@ tr:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste silindi.
+  list_reloaded_from_observations: Gözlemlerden yeniden yüklenen liste
+  list_rules_reapplied: Liste kuralları yeniden uygulandı
   list_saved: Liste kaydedildi.
   list_tooltip: Liste görünümünü göster
   list_updated: Liste güncellendi!
@@ -2543,6 +2576,9 @@ tr:
   photo_urls_repaired: Fotoğraf URL'leri düzeltildi
   photos_chosen_for_this_taxon: Bu sınıf için seçilen fotoğraflar
   photos_from: Şuradan fotoğraflar
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotoğraflar Kilitli
+  photos_locked_desc: Bu sınıfın varsayılan fotoğraflarını yalnızca yetkili değiştirebilir
   photos_of_taxon_html: "%{taxon} Fotoğrafları"
   photos_or_sounds: Fotoğraflar veya sesler
   photos_or_sounds?: Fotoğraflar veya sesler var mı?
@@ -3298,6 +3334,8 @@ tr:
   scale_colon: "Ölçek:"
   schemes: Şemalar
   schemes_including: Şemalar şunları içerir
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Bilimsel Ad
   search: Arama Yap
   search_all_fields: tüm alanları ara
   search_by_name_or_email: İsme veya e-postaya göre arama
@@ -3903,6 +3941,7 @@ tr:
   unresolve: Çözümü Kaldır
   unreview_all: Tümünü Görüntülenmemiş Yap
   unsubscribe: Abonelikten ayrıl
+  unsubscribe_from_all_emails: Tüm e-posta aboneliklerinden çık
   unsuspend_user: Kullanıcıyı Askıdan Çıkar
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
@@ -3915,6 +3954,7 @@ tr:
   update_search: Aramayı Güncelle
   update_selected_taxa: Seçilen Sınıfları Güncelle
   update_subscription: Aboneliği Güncelle
+  update_subscription_preferences: Abonelik tercihlerinizi güncelleyin
   update_x_selected_taxa:
     one: "Seçilen 1 sınıfı güncelle"
     other: "Seçilen %{count} sınıfı güncelle"
@@ -4359,6 +4399,7 @@ tr:
   your_recent_projects: Son Projeleriniz
   your_relationships: İlişkilerin
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} devam etmek için %{provider} tarafından daha çok izine gerek duyuyor:"
+  your_subscriptions_to_this_place: Bu yere olan abonelikleriniz
   your_tags: Etiketleriniz
   yours: Seninki
   youre_not_following_anyone: |-
@@ -4670,8 +4711,6 @@ tr:
           other: "%{count} benzersiz"
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
-        create_a_query_desc_html: |
-          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. <strong>Sınıf</strong>, <strong>yer</strong>, <strong>kullanıcı</strong>, <strong>proje</strong> ya da <strong>arama sorgusu</strong> belirtmen gerekir.
         ident_by_user_desc_html: |
           %{user} tarafından geçerli tanımlama için sütunlar
         query_placeholder: "Aşağıdaki sorgu parametrelerinden birini seçin veya bir gözlem URL'ine yapıştırın"
@@ -5173,6 +5212,8 @@ tr:
           tanıtmanın eğlenceli bir yoludur, aynı zamanda değerli veriler toplar.
           </p>
         change_admin_desc: Yeni yönetici olması için proje sorumlularından birini seçin.
+        change_owner_alert: |
+          Bu, bu projeyi silme ya da sahipliği devretme yeteneğinizi kaldıracaktır. Devam etmek istiyor musunuz?
         cover_desc: "Proje sayfanızın üstünde görünecek isteğe bağlı afiş resmi. Genişliği 950px, boyu 400px'den küçük olmalı."
         custom_project_fields_means: "Projenin afişini kişiselleştirin, yan içerik ekleyin, ve CSS'i düzenleyin."
         end_time_desc: "Bioblitzinizin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
@@ -5185,6 +5226,8 @@ tr:
           Görünüşe göre bu proje yeni bir <a href="%{url}">Koleksiyon Projesine</a> dönüştürülebilir.
         last_aggregated_at_desc: |
           Toplayıcı bu projeye en son gözlem eklemeyi bitirdiğinde zaman
+        #Label for button to make another user the owner of a project
+        make_owner: Sahip Yap
         no_curators: |
           Burada proje sorumlusu yok. Yönetici olarak yeni bir kişi atamak istiyorsanız, 
           önce bu projeye katılmalılar ve onları bir sorumlu yapmalısınız.
@@ -6264,9 +6307,11 @@ tr:
       invalid: geçersiz
       less_than: '%{count} değerinden küçük olmalı'
       less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+      new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
       not_a_number: bir sayı değil
       not_an_integer: bir tam sayı olmalı
       odd: tek sayı olmalı
+      only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
       record_invalid: 'Doğrulama başarısız oldu: %{errors}'
       requires_privilege_speech: |
         başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
@@ -6400,9 +6445,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6453,6 +6500,7 @@ tr:
         occurrence_status_level: Oluşum Durumu Seviyesi
         establishment_means: Kuruluş Varlığı
       observation:
+        description: Notlar
         geo_x: Doğuya Doğru
         geo_y: Kuzeye Doğru
         observed_on: gözlenen tarih
@@ -6540,9 +6588,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük ya da eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6613,6 +6663,8 @@ tr:
               contains_too_many_observations: içe aktarılacak çok fazla gözlem var
         post:
           attributes:
+            parent:
+              prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |
                 yayınlamak için 24 saatten daha önce kayıt yaptırmış olmalısınız. İstenmeyen kullanımların önüne geçmek için böyle bir önlem aldık. Yine de bir taslak olarak kaydedebilirsiniz, ve bir gün içinde hala siteyi kullanıyor olursanız, yayınlayabilirsiniz.
