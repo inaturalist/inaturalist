@@ -2121,7 +2121,8 @@ I18n.translations["bg"] = {
     },
     "formats": {
       "long": "%d %B %Y",
-      "month_day_year": "%d %B %Y"
+      "month_day_year": "%d %B %Y",
+      "month_year": "%B %Y"
     },
     "month_names": [
       null,
@@ -2377,6 +2378,7 @@ I18n.translations["bg"] = {
   "insects": "насекоми",
   "introduced": "Интродуциран",
   "introduced_in_place": "Интродуциран във %{place}",
+  "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Наличните свидетелства достатъчни ли са за да се потвърди, че това е %{taxon}?",
   "it_can_now_be_used_for_research": "Сега може да се използва в научни изследвания и да се показва на други сайтове",
   "join": "Включи се",
@@ -2426,10 +2428,13 @@ I18n.translations["bg"] = {
     "italian": "италиански",
     "japanese": "японски",
     "korean": "корейски",
+    "lithuanian": "литовски",
+    "luxembourgish": "люксембургски",
     "maltese": "малтийски",
     "maori": "маорски",
     "misima_paneati": "мисимски",
     "norwegian": "норвежки",
+    "occitan": "окситански",
     "pangasinan": "пангасинан",
     "portuguese": "португалски",
     "romanian": "румънски",
@@ -2551,7 +2556,10 @@ I18n.translations["bg"] = {
       "yy": "%dг"
     },
     "datetime_with_zone": "D MMM YYYY · LT z",
-    "datetime_with_offset": "D MMM YYYY · LT Z"
+    "datetime_with_zone_no_year": "D MMMM h:mm z",
+    "datetime_with_offset": "D MMM YYYY · LT Z",
+    "date_long": "D MMMM YYYY",
+    "date_long_without_year": "D MMMM"
   },
   "months": "Месеци",
   "more": "Още",
@@ -2575,6 +2583,7 @@ I18n.translations["bg"] = {
   "nearby_observations_": "Наблюдения наблизо",
   "needs_id": "нуждае се от разпознаване",
   "needs_id_": "Нуждае се от разпознаване",
+  "new": "Нови",
   "new_and_noteworthy": "Ново и интересно",
   "new_observation_field": "Ново поле за наблюдения",
   "new_observations": "Нови наблюдения",
@@ -7390,6 +7399,8 @@ I18n.translations["cs"] = {
   "photo_licensing": "Licence k fotce",
   "photos_chosen_for_this_taxon": "Fotky vybrané pro tento taxon",
   "photos_from": "Fotky z",
+  "photos_locked": "Fotografie uzamčeny",
+  "photos_locked_desc": "Pouze zaměstnanci mohou změnit výchozí fotografie pro tento taxon",
   "photos_of_taxon_html": "Fotky %{taxon}",
   "photos_or_sounds": "Fotky nebo zvuky",
   "pin_verb": "Připnout",
@@ -9741,6 +9752,8 @@ I18n.translations["da"] = {
   "photo_licensing": "Fotolicens",
   "photos_chosen_for_this_taxon": "Foto´s valgt for denne takson",
   "photos_from": "Foto´s fra",
+  "photos_locked": "Fotos låst",
+  "photos_locked_desc": "Kun medarbejdere kan ændre standardfotos til denne takson",
   "photos_of_taxon_html": "Foto´s af %{taxon}",
   "photos_or_sounds": "Fotos eller lyde",
   "pin_verb": "Gem",
@@ -12003,6 +12016,7 @@ I18n.translations["de"] = {
   "photo_licensing": "Foto-Lizenzierung",
   "photos_chosen_for_this_taxon": "Foto für diese Art ausgewählt",
   "photos_from": "Fotos von",
+  "photos_locked_desc": "Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern",
   "photos_of_taxon_html": "Fotos von %{taxon}",
   "photos_or_sounds": "Bilder oder Audio",
   "pin_verb": "Anpinnen",
@@ -12771,7 +12785,7 @@ I18n.translations["de"] = {
         "explanation": "<p>\nWenn ein Benutzer aus irgendeinem Grund nicht mit dem Community-Taxon einverstanden ist,\nkann er es ablehnen, was bedeutet, dass seine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Life-Lsten usw. verwendet wird. Es bedeutet auch, dass seine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community ihm zustimmt.\n</p>\n<p>\nDie Community-ID wird jedoch immer noch angezeigt, so dass alle die\nverschiedenen vorgeschlagenen IDs sehen können.\n</p>\n",
         "identification_count": "Anzahl an Bestimmungen",
         "score": "Punktzahl",
-        "you_have_opted_out": "Du hast Dich aus den Community-Bestimmungen zurückgezogen.",
+        "you_have_opted_out": "Du hast Dich aus den Community-Bestimmungen zurückgezogen",
         "your_id_does_not_match": "Deine ID (<span class=\"bold\">%{taxon_name}</span>) stimmt nicht mit der Community-ID überein\n"
       },
       "compare": {
@@ -30684,11 +30698,11 @@ I18n.translations["fr"] = {
   "about_charts": "À propos des graphiques",
   "about_community_taxa": "À propos des taxons de la communauté",
   "about_complete_taxa": "À propos des taxons complets",
-  "about_conservation_status": "À propos de l’état de conservation",
+  "about_conservation_status": "À propos du niveau de protection",
   "about_establishment_means": "À propos des moyens d’implantation",
   "about_names": "À propos des noms",
   "about_this_bioblitz": "À propos de ce bioblitz",
-  "acc": "Comp. (m)",
+  "acc": "Préc. (m)",
   "account": "Compte",
   "account_creation": "Création de compte",
   "accuracy": "Précision",
@@ -30706,7 +30720,7 @@ I18n.translations["fr"] = {
   "add": "Ajouter",
   "add_a_comment": "Ajouter un commentaire",
   "add_a_field": "Ajouter un champ",
-  "add_a_name": "Ajoutez un nom",
+  "add_a_name": "Ajouter un nom",
   "add_alive_or_dead_alive_annotation": "Ajouter l'annotation \"Vivant ou Mort : Vivant\"",
   "add_alive_or_dead_dead_annotation": "Ajouter l'annotation \"Vivant ou Mort : Mort\"",
   "add_an_identification": "Ajouter une identification",
@@ -31767,6 +31781,8 @@ I18n.translations["fr"] = {
   "photo_licensing": "Licence de photo",
   "photos_chosen_for_this_taxon": "Photos choisies pour ce taxon",
   "photos_from": "Photos de",
+  "photos_locked": "Photos verrouillées",
+  "photos_locked_desc": "Seuls les membres de l'équipe iNaturalist peuvent modifier les photos par défaut pour ce taxon",
   "photos_of_taxon_html": "Photos de %{taxon}",
   "photos_or_sounds": "Photos ou sons",
   "pin_verb": "Épingler",
@@ -32811,7 +32827,7 @@ I18n.translations["fr"] = {
   },
   "x_misidentifications_of_species_in_this_rank": {
     "one": "1 mauvaise identification d’espèce dans ce %{rank}",
-    "other": "%{count} mauvaises identifications d’espèce dans ce %{rank}"
+    "other": "%{count} mauvaises identifications d’espèces dans ce %{rank}"
   },
   "x_misidentifications_of_this_species": {
     "one": "1 mauvaise identification de cette espèce",
@@ -32846,8 +32862,8 @@ I18n.translations["fr"] = {
     "other": "<a href='%{url}'>%{count} observations</a>"
   },
   "x_observations_reviewed_html": {
-    "one": "<span class='count'>1</span> observation revue",
-    "other": "<span class='count'>%{count}</span> observations revues"
+    "one": "<span class='count'>%{count}</span> observation vérifiée",
+    "other": "<span class='count'>%{count}</span> observations vérifiées"
   },
   "x_observers_html": {
     "one": "<span class=\"count\">%{count}</span> Observateur",
@@ -32867,7 +32883,7 @@ I18n.translations["fr"] = {
     "one": "%{count} personne",
     "other": "%{count} personnes"
   },
-  "x_people_helped_user_with_y_ids_html": "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} IDs</strong>",
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>",
   "x_photos": {
     "one": "%{count} photo",
     "other": "%{count} photos"
@@ -34371,6 +34387,8 @@ I18n.translations["gl"] = {
   "photo_licensing": "Licenza da Foto",
   "photos_chosen_for_this_taxon": "Fotos escollidas para este taxon",
   "photos_from": "Fotos de",
+  "photos_locked": "Fotos Bloqueadas",
+  "photos_locked_desc": "Soamente o persoal pode mudar as fotos predeterminadas para este taxon",
   "photos_of_taxon_html": "Fotos de %{taxon}",
   "photos_or_sounds": "Fotos ou sons",
   "pin_verb": "Fixar",
@@ -40060,6 +40078,8 @@ I18n.translations["it"] = {
   "photo_licensing": "Licenza delle foto",
   "photos_chosen_for_this_taxon": "Foto scelte per questo taxon",
   "photos_from": "Foto da",
+  "photos_locked": "Foto Bloccate",
+  "photos_locked_desc": "Solo lo staff può cambiare le foto predefinite per questo taxon",
   "photos_of_taxon_html": "Foto di %{taxon}",
   "photos_or_sounds": "Foto o suoni",
   "pin_verb": "Memorizza",
@@ -46764,6 +46784,8 @@ I18n.translations["lt"] = {
   "photo_licensing": "Nuotraukos licencija",
   "photos_chosen_for_this_taxon": "Nuotraukos parinktos šiam taksonui",
   "photos_from": "Nuotraukos iš",
+  "photos_locked": "Nuotraukos užrakintos",
+  "photos_locked_desc": "Tik tinklalapio kūrėjai gali keisti šio taksono numatytasias nuotraukas",
   "photos_of_taxon_html": "%{taxon} nuotraukos",
   "photos_or_sounds": "Nuotraukos arba garsai",
   "pin_verb": "Žymė",
@@ -47806,6 +47828,198 @@ I18n.translations["lt"] = {
   "zoom_out": "Tolinti",
   "zoom_photo": "Padidinti nuotrauką"
 };
+I18n.translations["lv"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sv.",
+      "P.",
+      "O.",
+      "T.",
+      "C.",
+      "Pk.",
+      "S."
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "svētdiena",
+      "pirmdiena",
+      "otrdiena",
+      "trešdiena",
+      "ceturtdiena",
+      "piektdiena",
+      "sestdiena"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Mo",
+      "3": "Tu",
+      "4": "We",
+      "5": "Th",
+      "6": "Fr",
+      "7": "Sa"
+    },
+    "formats": {
+      "long": "%Y. gada %e. %B"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "zero": "%{count} dienas",
+        "one": "%{count} diena",
+        "other": "%{count} dienas"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ",",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "priekšpusdiena",
+    "formats": {
+      "long": "%Y. gada %e. %B, %H:%M:%S"
+    },
+    "pm": "pēcpusdiena"
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["mk"] = {
   "a_member_of_taxon_html": "член на %{taxon}",
   "about": "За",
@@ -48804,6 +49018,7 @@ I18n.translations["nb"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notater"
       }
     }
   },
@@ -49272,6 +49487,7 @@ I18n.translations["nb"] = {
   "edit_atlas": "Rediger atlas",
   "edit_license": "Rediger lisens",
   "edit_multiple_dates": "Rediger flere datoer",
+  "edit_multiple_descriptions": "Rediger flere notater",
   "edit_multiple_locations": "Rediger flere lokaliteter",
   "edit_multiple_species": "Rediger flere arter",
   "edit_photos": "Rediger bilder",
@@ -49877,6 +50093,8 @@ I18n.translations["nb"] = {
   "photo_licensing": "Bildelisensiering",
   "photos_chosen_for_this_taxon": "Bilder valgt for dette taksonet",
   "photos_from": "Bilder fra",
+  "photos_locked": "Bilder låst",
+  "photos_locked_desc": "Bare ansatte kan endre standardbildene for dette taksonet",
   "photos_of_taxon_html": "Bilder av %{taxon}",
   "photos_or_sounds": "Bilder eller lyd",
   "pin_verb": "Sett fast",
@@ -49910,6 +50128,8 @@ I18n.translations["nb"] = {
       "county": "county",
       "Delegation": "Delegasjon",
       "delegation": "delegasjon",
+      "Department_Segment": "Avdelingssegment",
+      "department_segment": "avdelingssegment",
       "District": "Distrikt",
       "district": "distrikt",
       "Division": "Divisjon",
@@ -49996,6 +50216,8 @@ I18n.translations["nb"] = {
       "undefined": "udefinert",
       "Unknown": "Ukjent",
       "unknown": "ukjent",
+      "Village_block": "Landsbyblokk",
+      "village_block": "landsbyblokk",
       "Zone": "Sone",
       "zone": "sone"
     }
@@ -50710,6 +50932,7 @@ I18n.translations["nb"] = {
     "projects": {
       "collection": "Samling",
       "edit": {
+        "make_owner": "Gjør til eier"
       },
       "new": {
         "a_project_allows_you_to_gather": "Et samlingsprosjekt lar deg samle og visualisere observasjoner ved bruk av standard iNaturalist søkeverktøy. Alt som tilfredsstiller parametrene satt av prosjektet blir inkludert automatisk.\n",
@@ -50738,8 +50961,11 @@ I18n.translations["nb"] = {
         "multiple_project_administrators": "Flere prosjektadministratorer",
         "name_placeholder": "Fugler i Trøndelag, Flotte øyenstikkere, osv.",
         "no_need_to_rely_on_manual_addition": "Ingen manuell innlegging av observasjoner\n",
+        "note_about_unselected_filters": "Merk: Hvis du ikke velger taksa, steder eller brukere, vil alle bli inkludert som standard.\n",
         "note_these_users_will_be_able_to_edit": "Merk: disse brukere vil kunne redigere ALLE prosjektdetaljer inklusivt admins.\n",
         "note_you_can_delete_the_time": "(Merk: du kan slette tidssonen og nøyaktige klokkeslett hvis du ønsker å inkludere hele dager.)\n",
+        "only_display_member_observations": "Vis bare observasjoner fra prosjektmedlemmer (personer som har blitt med i prosjektet)\n",
+        "optionally_filter_media": "Filtrer eventuelt for observasjoner med bilder, lyder eller begge deler.",
         "or_drag_and_drop": "(eller dra og slipp)",
         "please_specify_the_requirements": "Vennligst oppgi kravene for observasjonene som skal legges til dette prosjektet.\n",
         "project_background_color": "Bakgrunnsfarge til prosjektsammendrag",
@@ -50753,6 +50979,7 @@ I18n.translations["nb"] = {
         "project_summary": "Prosjektsammendrag",
         "project_summary_help": "Gi en kortfattet forklaring av ditt prosjekt. Omtrent de første 200 tegn vil være synlige til høyre for coverbildet på prosjektsiden, så sett det beste øverst!\n",
         "project_summary_placeholder": "Oppdag og følg med på fuglene i Slottsparken...",
+        "select_quality_grade": "Velg minst én kvalitetsgrad. Ytterligere forklaring for hver kvalitetsgrad finnes på\nvår <a href=\"%{url}\">FAQ side</a>.\n",
         "show_projects_as_flags": "Vis prosjekter som markeringer på kart",
         "start_and_end_times_for_bioblitzes": "Start- og slutt-datoer/tider (for bioblitz-aktige arrangement)",
         "umbrella_project_features": "Egenskaper for paraplyprosjekt:",
@@ -51059,6 +51286,7 @@ I18n.translations["nl"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notities"
       }
     }
   },
@@ -51528,6 +51756,7 @@ I18n.translations["nl"] = {
   "edit_atlas": "Atlas bewerken",
   "edit_license": "Licentie bewerken",
   "edit_multiple_dates": "Meerdere data bewerken",
+  "edit_multiple_descriptions": "Meerdere notities bewerken",
   "edit_multiple_locations": "Meerdere locaties bewerken",
   "edit_multiple_species": "Meerdere soorten bewerken",
   "edit_photos": "Foto's bewerken",
@@ -51892,7 +52121,7 @@ I18n.translations["nl"] = {
     "zh-CN": "Chinees (vereenvoudigd)",
     "zh-TW": "Chinees (traditioneel)"
   },
-  "locality_notes": "Localiteits aantekeningen",
+  "locality_notes": "Localiteits-notities",
   "location": "Locatie",
   "location_is_accurate": "Locatie klopt",
   "location_is_obscured": "Locatie is verborgen",
@@ -52042,7 +52271,7 @@ I18n.translations["nl"] = {
   "none_found": "Niet gevonden",
   "not_evaluated": "Niet beoordeeld",
   "not_recorded": "Niet opgenomen",
-  "notes": "Aantekeningen",
+  "notes": "Notities",
   "number": {
     "format": {
       "delimiter": ".",
@@ -52133,6 +52362,8 @@ I18n.translations["nl"] = {
   "photo_licensing": "Fotolicentie",
   "photos_chosen_for_this_taxon": "Foto's gekozen voor dit taxon",
   "photos_from": "Foto's van",
+  "photos_locked": "Foto's vergrendeld",
+  "photos_locked_desc": "Alleen werknemers kunnen de standaardfoto's voor dit taxon wijzigen",
   "photos_of_taxon_html": "Foto's van %{taxon}",
   "photos_or_sounds": "Foto's of geluiden",
   "pin_verb": "Vastzetten",
@@ -52979,6 +53210,7 @@ I18n.translations["nl"] = {
         "are_you_ready_to_duplicate": "Is deze pagina af en klaar om een kopie van dit project te maken? Let op dat het projectpictogram en banner niet worden gedupliceerd en opnieuw moeten worden geüpload in het duplicaat project.\n",
         "are_you_sure_you_want_to_delete": "Weet je zeker dat je dit project wilt verwijderen?",
         "can_be_included_in_multiple": "Kan worden opgenomen in meerdere overkoepelende projecten",
+        "check_the_box_to_include_member_observations": "Vink het selectievakje aan om alleen waarnemingen toe te voegen van gebruikers die lid zijn van dit project.\nGebruik het filter voor het uitsluiten van gebruikers hierboven om waarnemingen van specifieke gebruikers uit te sluiten,\ninclusief de projecteigenaar en admins.\n",
         "click_through_to_individual_projects": "Doorklikken naar individuele projecten",
         "collection_project_features": "Kenmerken van het verzamelproject:",
         "collection_projects": "Verzamelprojecten",
@@ -53019,8 +53251,10 @@ I18n.translations["nl"] = {
         "project_summary": "Project overzicht",
         "project_summary_help": "Geef een beknopte uitleg van je project. Ongeveer de eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner van het startscherm van het project, dus begin met de beste dingen!\n",
         "project_summary_placeholder": "Ontdek en volg de vogels van het Zuiderpark ...",
+        "select_native_to_include": "Selecteer \"Inheems\" om alleen taxa op te nemen die als \"Inheems\" zijn aangemerkt voor de plaats(en) in je project. Selecteer \"Geïntroduceerd\" om alleen taxa op te nemen die als \"Geïntroduceerd\" zijn aangemerkt voor de plaats(en) in je project.\n",
         "select_quality_grade": "Selecteer ten minste één kwaliteitsbeoordeling. Verdere uitleg voor elke kwaliteitsbeoordeling kan worden gevonden op\nonze <a href=\"%{url}\">FAQ pagina</a>.\n",
         "show_projects_as_flags": "Toon projecten als vlaggetjes op de kaart",
+        "specify_project_filters": "Specificeer de filters op basis waarvan waarnemingen moeten worden opgenomen in je project.\nJe kunt meerdere soorten (of taxa), plaatsen, data, of andere criteria selecteren om\nwaarnemingen automatisch op te nemen.\n",
         "start_and_end_times_for_bioblitzes": "Start- en eindtijd/-datum voor bioblitz-achtige activiteiten",
         "umbrella_project_features": "Kenmerken van het overkoepelende project:",
         "unique_url_for_outreach": "Unieke URL voor outreach",
@@ -53039,7 +53273,8 @@ I18n.translations["nl"] = {
         "are_you_sure_you_want_to_convert": "Weet je zeker dat je dit project wilt omzetten in een verzamelproject?\n",
         "click_here_to_convert_this_project": "Klik hier om dit project om te zetten in een verzamelproject.\n",
         "make_sure_you_have_read_about_the_differences": "Zorg ervoor dat je over de verschillen hebt gelezen in onze <a href=\"%{url}\" target=\"_blank\">blogpost over verzamelprojecten</a>.\n",
-        "this_is_a_preview": "Dit is een voorproefje van hoe dit project eruit zou zien als een verzamelproject.\n"
+        "this_is_a_preview": "Dit is een voorproefje van hoe dit project eruit zou zien als een verzamelproject.\n",
+        "this_project_has_not_defined_requirements": "Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.\n"
       },
       "tracks_multiple_projects": "volgt meerdere projecten",
       "umbrella": "Overkoepelend"
@@ -66348,6 +66583,8 @@ I18n.translations["sv"] = {
   "photo_licensing": "Foto licensiering",
   "photos_chosen_for_this_taxon": "Utvalda bilder för detta taxon",
   "photos_from": "Bilder från",
+  "photos_locked": "Bilder låsta",
+  "photos_locked_desc": "Endast personal kan ändra standardbilderna för detta taxon",
   "photos_of_taxon_html": "Foton av %{taxon}",
   "photos_or_sounds": "Foton eller ljud",
   "pin_verb": "Fäst",
