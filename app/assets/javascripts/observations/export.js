@@ -1,6 +1,6 @@
 /* eslint-disable */
 var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
-var MAX_OBSERVATIONS = 1000 // 200000;
+var MAX_OBSERVATIONS = 200000;
 function reloadPreview() {
   $( "#limit-alert" ).hide( );
   $('#previewwrapper').loadingShades()

@@ -5,7 +5,7 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
-  after_action :set_sendgrid_headers
+  include Shared::MailerModule
 
   default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
           reply_to: Site.default.try(:email_noreply)
@@ -288,11 +288,4 @@ class Emailer < ActionMailer::Base
     }
   end
 
-  def set_sendgrid_headers
-    mailer = self.class.name
-    headers "X-SMTPAPI" => {
-      category:    [ mailer, "#{mailer}##{action_name}" ],
-      unique_args: { environment: Rails.env }
-    }.to_json
-  end
 end
