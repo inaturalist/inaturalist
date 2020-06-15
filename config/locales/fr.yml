@@ -1088,8 +1088,20 @@ fr:
   deviation: Déviation
   devise:
     failure:
+      already_authenticated: 'Vous êtes déjà connecté.'
+      unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
+      invalid: 'E-mail ou mot de passe non valide.'
+      invalid_token: 'Code d''authentification non valide.'
       user:
         suspended: Votre compte a été suspendu
+    sessions:
+      signed_in: 'Connexion réussie.'
+      signed_out: 'Déconnexion réussie.'
+    passwords:
+      send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instructions de confirmation'
   discoveries: Découvertes
   did_not_send_invitations_because: Nous n’avons pas envoyé d’invitations aux personnes suivantes parce que…
   did_you_mean: 'Voulez-vous dire'
@@ -2547,6 +2559,7 @@ fr:
   photos_from: Photos de
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Photos verrouillées
+  photos_locked_desc: Seuls les membres de l'équipe iNaturalist peuvent modifier les photos par défaut pour ce taxon
   photos_of_taxon_html: "Photos de %{taxon}"
   photos_or_sounds: Photos ou sons
   photos_or_sounds?: Photos ou sons?
@@ -3907,6 +3920,7 @@ fr:
   update_search: Mettre à jour la recherche
   update_selected_taxa: Mettre à jour les taxons sélectionnés
   update_subscription: Mettre à jour l’abonnement
+  update_subscription_preferences: Mettre à jour les préférences d’abonnement
   update_x_selected_taxa:
     one: "Mettre à jour le taxon sélectionné"
     other: "Mettre à jour les %{count} taxons sélectionnés"
@@ -6511,6 +6525,7 @@ fr:
   activerecord:
     models:
       AssessmentSection: Section d’évaluation
+      Atlas: Atlas
       CompleteSet: Ensemble complet
       #Noun
       Flag: Signalement
