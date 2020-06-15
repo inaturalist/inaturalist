@@ -1,5 +1,8 @@
+/* eslint-disable */
 var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
+var MAX_OBSERVATIONS = 1000 // 200000;
 function reloadPreview() {
+  $( "#limit-alert" ).hide( );
   $('#previewwrapper').loadingShades()
   if (window.previewRequest) {
     previewRequest.abort()
@@ -14,7 +17,10 @@ function reloadPreview() {
     var total = parseInt(req.getResponseHeader('X-Total-Entries')),
         page = parseInt(req.getResponseHeader('X-Page')),
         perPage = parseInt(req.getResponseHeader('X-Per-Page')),
-        start = page * perPage - perPage
+        start = page * perPage - perPage;
+    if ( total > MAX_OBSERVATIONS ) {
+      $( "#limit-alert" ).show( );
+    }
     $('#previewheader .status').text((start+1) + ' - ' + (Math.min(start+perPage, total)) + ' of ' + total)
   })
 }

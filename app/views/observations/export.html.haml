@@ -46,6 +46,8 @@
   #success.success.ui
     %h3 Export complete
     = render 'exports_table', :flow_tasks => [@flow_task]
+- if queued_export = @recent_exports.detect{|ft| ft.finished_at.blank? && ft.error.blank? }
+  .notice=t "views.observations.export.export_in_progress_notice"
 = form_for ObservationsExportFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
   .column.span-24
     %h3
@@ -56,6 +58,7 @@
       = fti.fields_for :extra do |ftie|
         = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => t('views.observations.export.query_placeholder')
     #filtersplaceholder
+    #limit-alert.notice.hide=t "views.observations.export.limit_alert"
     #previewwrapper
       %h3#previewheader
         .right.status.ui.meta=t :no_matching_observations
@@ -129,11 +132,11 @@
             / = text_field_tag :ofv_chooser, "", :placeholder => "Add an observation field", :class => "text"
     %h3.inlineblock
       %span.number 4
-    = f.submit t(:create_export, :default => "Create export"), :class => "default inline button", :data => {:loading_click => t(:loading)}
-    - unless @recent_exports.blank?
-      #recent_exports.meta.clear
-        %strong=t :recent_exports
-        = render 'exports_table', :flow_tasks => @recent_exports
+    = f.submit t(:create_export), :class => "default inline button", :data => {:loading_click => t(:loading)}
+- unless @recent_exports.blank?
+  #recent_exports.meta.clear
+    %h4=t :recent_exports
+    = render 'exports_table', :flow_tasks => @recent_exports
 
 #filters
   = render "filter_fields", 
