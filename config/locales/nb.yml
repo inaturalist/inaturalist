@@ -4629,9 +4629,6 @@ nb:
           other: "%{count} unike"
       export:
         choose_columns_desc: Velg kolonnene du vil eksportere
-        create_a_query_desc_html: |
-          Opprett en observasjonsspørring akkurat som du ville ha gjort andre steder på siden. Du kan også klippe og lime en observasjons-url fra en annen del av siden. Du må spesifisere et <strong>takson</strong>, <strong>sted</strong>, en <strong>bruker</strong>,
-          et <strong>prosjekt</strong>, eller en <strong>søkespørring</strong>.
         ident_by_user_desc_html: |
           Kolonner for den nåværende identifikasjonen av %{user}
         query_placeholder: "Velg spørrinsgparametre under eller lim in en observasjons-url"
