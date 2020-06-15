@@ -4686,8 +4686,6 @@ gl:
           other: "%{count} únicos"
       export:
         choose_columns_desc: Escolle as columnas que queres exportar
-        create_a_query_desc_html: |
-          Crea unha consulta sobre observacións como farías noutro sitio calquera dentro do sitio web. Tamén podes cortar e colar a URL dunha observación doutra parte do sitio. Debes especificar un <strong>taxon</strong>, <strong>ubicación</strong>, <strong>usuario</strong>, <strong>proxecto</strong>, ou <strong>consulta de busca</strong>.
         ident_by_user_desc_html: |
           Columnas para a identificación actual de %{user}
         query_placeholder: "Escolle abaixo os parámetros de consulta ou cola a URL dunha observación"

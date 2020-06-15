@@ -4651,9 +4651,6 @@ ca:
           other: "%{count} únics"
       export:
         choose_columns_desc: Escolliu les columnes que voleu exportar
-        create_a_query_desc_html: |
-          Crear una consulta d'observació com ho faríeu en qualsevol altre part d'aquest lloc. També podeu tallar i enganxar una URL d'observacions des d'altra part del lloc. Heu d'especificar un <strong>taxó</strong>, <strong>lloc</strong>, <strong>usuari</strong>, <strong>projecte</strong>, o <strong>consulta de
-          cerca</strong>.
         ident_by_user_desc_html: |
           Columnes per a l'actual identificació de %{user}
         query_placeholder: "Escull els paràmetres de consulta a continuació o enganxar en una URL d'observacions"

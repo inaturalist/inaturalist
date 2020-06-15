@@ -4671,8 +4671,6 @@ it:
           other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
-        create_a_query_desc_html: |
-          Esegui una interrogazione per le osservazioni come faresti altrove nel sito. Puoi anche tagliare ed incollare l'URL delle osservazioni da un'altra parte del sito. Devi specificare <strong>taxon</strong>, <strong>luogo</strong>, <strong>utente</strong>, <strong>progetto</strong>, o <strong>interrogazione di ricerca</strong>.
         ident_by_user_desc_html: |
           Colonne per l'identificazione per %{user}
         query_placeholder: "Scegli i parametri dell'interrogazione qui sotto o incolla l'URL della ricerca di osservazioni"

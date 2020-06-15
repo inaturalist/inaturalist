@@ -4228,11 +4228,6 @@ fi:
           other: "%{count} yksilöllistä"
       export:
         choose_columns_desc: Valitse sarakkeet, jotka haluat viedä
-        create_a_query_desc_html: |
-          Luo havaintokysely aivan kuten voisit muualla sivustolla. Voit myös leikata ja liittää havaintojen URL-osoitteet muualta
-          sivustosta. Sinun on määritettävä
-          <strong>taksoni</strong>, <strong>paikka</strong>, <strong>käyttäjä</strong>, 
-          <strong>projekti</strong>, tai <strong>hakukysely</strong>.
         query_placeholder: "Valitse alla olevat kyselyparametrit tai liitä havainnon URL-osoite"
         taxon_extras_help_html: "Huomautus: nämä sarakkeet hidastavat tiedoston luontia"
         geo_help_html: |
