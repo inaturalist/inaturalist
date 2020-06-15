@@ -4936,10 +4936,6 @@ cs:
           other: "%{count} jedineční"
       export:
         choose_columns_desc: Vyberte sloupce, které chcete exportovat
-        create_a_query_desc_html: |
-          Vytvořte dotaz k pozorování stejným způsobem jako jinde na stránce. Také můžete zkopírovat a vložit URL pozorování z jiné části stránky. Musíte uvést
-          <strong>taxon</strong>, <strong>místo</strong>, <strong>uživatele</strong>, 
-          <strong>projekt</strong> nebo <strong>zadání hledání</strong>.
         ident_by_user_desc_html: |
           Sloupce k aktuální identifikaci uživatelem %{user}
         query_placeholder: "Zvolte parametry dotazu níže nebo vložte URL pozorování"
