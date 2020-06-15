@@ -4956,12 +4956,6 @@ sv:
           other: "%{count} unika"
       export:
         choose_columns_desc: Välj de kolumner du vill exportera
-        create_a_query_desc_html: |
-          Skapa en observationsfråga precis som du skulle göra på andra ställen på
-          webbplatsen. Du kan också klippa och klistra in en observations-URL från
-          en annan del av webbplatsen. Du måste ange ett/en
-          <strong>taxon</strong>, <strong>plats</strong>, <strong>användare</strong>,
-          <strong>projekt</strong>eller <strong>sökfråga</strong>.
         ident_by_user_desc_html: |
           Kolumner för den aktuella bestämningen av %{user}
         query_placeholder: "Välj parametrar nedan eller klistra in i en observations-URL"
