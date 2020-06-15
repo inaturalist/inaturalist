@@ -4756,12 +4756,6 @@ fr:
           other: "%{count} unique"
       export:
         choose_columns_desc: Choissez les colonnes que vous voulez exporter
-        create_a_query_desc_html: |
-          Créez une requête d’observation tout comme vous le feriez ailleurs sur le
-          site. Vous pouvez aussi copier et coller une URL d’observation à partir d’un autre
-          endroit du site. Vous devez spécifier un
-          <strong>taxon</strong>, un <strong>lieu</strong>, un <strong>utilisateur</strong>, 
-          un <strong>projet</strong> ou une <strong>requête de recherche</strong>.
         ident_by_user_desc_html: |
           Colonnes pour l'identification actuelle par %{user}
         query_placeholder: "Choisissez les paramètres de requête ci-dessous ou coller une URL d’observations"
