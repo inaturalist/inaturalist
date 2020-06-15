@@ -9,8 +9,8 @@ fr:
     one: '1 favori'
     other: '%{count} favoris'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> marque résolue"
-    other: "<span class='count'>%{count}</span> marques résolues"
+    one: "<span class='count'>%{count}</span> signalement résolue"
+    other: "<span class='count'>%{count}</span> signalements résolus"
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
@@ -36,8 +36,8 @@ fr:
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} premiers lanceurs de la liste de vie"
   x_journal_posts_html:
-    one: '<span class="count">1</span> publication du journal'
-    other: '<span class="count">%{count}</span> publications du journal'
+    one: '<span class="count">%{count}</span> article de blog'
+    other: '<span class="count">%{count}</span> articles de blog'
   x_matching_taxa:
     one: '1 taxon correspondant'
     other: '%{count} taxons correspondants'
@@ -49,7 +49,7 @@ fr:
     other: "%{count} mauvaises identifications de cette espèce"
   x_misidentifications_of_species_in_this_rank:
     one: "1 mauvaise identification d’espèce dans ce %{rank}"
-    other: "%{count} mauvaises identifications d’espèce dans ce %{rank}"
+    other: "%{count} mauvaises identifications d’espèces dans ce %{rank}"
   x_observations:
     one: "%{count} observation"
     other: "%{count} observations"
@@ -63,8 +63,8 @@ fr:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observations</a>"
   x_observations_reviewed_html:
-    one: "<span class='count'>1</span> observation revue"
-    other: "<span class='count'>%{count}</span> observations revues"
+    one: "<span class='count'>%{count}</span> observation vérifiée"
+    other: "<span class='count'>%{count}</span> observations vérifiées"
   x_observers_html:
     one: '<span class="count">%{count}</span> Observateur'
     other: '<span class="count">%{count}</span> Observateurs'
@@ -74,7 +74,7 @@ fr:
   x_people:
     one: "%{count} personne"
     other: "%{count} personnes"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} IDs</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} personne(s)</strong> a/ont aidé %{user} sur <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} photo"
     other: "%{count} photos"
@@ -106,8 +106,8 @@ fr:
     one: "<span class='count'>1</span> observation de calibre recherche</span>"
     other: "<span class='count'>%{count}</span> observations de calibre recherche</span>"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observation de calibre recherche identifiée au rang d'espèce ou à un rang inférieur</span>"
-    other: "<span class='count'>%{count}</span> observations de calibre recherche identifiées au rang d'espèce ou à un rang inférieur</span>"
+    one: "<span class='count'>%{count}</span> observation de calibre recherche identifiée au niveau de l'espèce ou à un niveau inférieur</span>"
+    other: "<span class='count'>%{count}</span> observations de calibre recherche identifiées au niveau de l'espèce ou à un niveau inférieur</span>"
   x_sounds:
     one: "%{count} son"
     other: "%{count} sons"
@@ -115,18 +115,18 @@ fr:
     one: "<span class='count'>1</span> taxon supervisé"
     other: "<span class='count'>%{count}</span> taxons supervisés"
   x_taxa_matching_current_filters:
-    one: "1 taxon correspondant aux filtres actuels"
-    other: "%{count} taxons correspondant aux filtres actuels"
+    one: "%{count} taxon correspondant aux filtres choisis"
+    other: "%{count} taxons correspondant aux filtres choisis"
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> modification de taxon ajoutée"
     other: "<span class='count'>%{count}</span> modifications de taxon ajoutées"
   _100_day_trends: Tendances à 100 jours
   _percent_ID_d: "% ID assigné(s)"
-  a_community_for_naturalist: Une communauté pour les naturalistes
+  a_community_for_naturalist: Une communauté pour naturalistes
   a_default_taxon_name_will_automatically_created: |
-    Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. 
+    Un nom de taxon par défaut sera créé automatiquement à partir de l’attribut "nom scientifique" de ce taxon. 
     Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs, noms scientifiques obsolètes, etc.).
-  a_flag_for_x: "un repère pour %{x}"
+  a_flag_for_x: "un signalement pour %{x}"
   a_member_of_taxon_html: "un membre de %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -153,14 +153,14 @@ fr:
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_complete_taxa: À propos des taxons complets
-  about_conservation_status: À propos de l’état de conservation
+  about_conservation_status: À propos du niveau de protection
   about_editing_observation_fields: À propos de la modification des champs d’observation
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: À propos des moyens d’implantation
   about_licenses: À propos des licences
-  about_muting: À propos de réduire au silence
+  about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
   about_places: À propos des lieux
@@ -170,9 +170,9 @@ fr:
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
   about_trips_html: |
-    <h4>Les voyages activent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquer sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
+    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
   about_x: "À propos de %{x}"
-  acc: 'Comp. (m)'
+  acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
@@ -194,12 +194,12 @@ fr:
   activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
   add: Ajouter
-  add_a_batch_of_observations: Ajouter un lot d’observations
-  add_a_batch_of_taxa: Ajouter un lot de taxons
+  add_a_batch_of_observations: Ajouter un groupe d’observations
+  add_a_batch_of_taxa: Ajouter un grupe de taxons
   add_a_comment: Ajouter un commentaire
   add_a_field: Ajouter un champ
   add_a_flag: Ajouter un signalement
-  add_a_name: Ajoutez un nom
+  add_a_name: Ajouter un nom
   add_a_new_change_group: Ajouter un nouveau groupe de modifications
   add_a_single_observation: Ajouter une observation unique.
   add_a_taxon: Ajouter un taxon
@@ -209,7 +209,7 @@ fr:
   add_an_identification: Ajouter une identification
   add_an_observation: Ajouter une observation
   add_an_observation?: Ajouter une observation ?
-  add_an_observation_of: "Ajouter une observation sur %{taxon}"
+  add_an_observation_of: "Ajouter une observation de %{taxon}"
   add_an_observation_to_project_html: Ajouter une observation à %{project}
   add_annotations_for_x: Ajouter des annotations pour « %{x} »
   add_annotations_for_controlled_attribute:
@@ -1088,8 +1088,20 @@ fr:
   deviation: Déviation
   devise:
     failure:
+      already_authenticated: 'Vous êtes déjà connecté.'
+      unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
+      invalid: 'E-mail ou mot de passe non valide.'
+      invalid_token: 'Code d''authentification non valide.'
       user:
         suspended: Votre compte a été suspendu
+    sessions:
+      signed_in: 'Connexion réussie.'
+      signed_out: 'Déconnexion réussie.'
+    passwords:
+      send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instructions de confirmation'
   discoveries: Découvertes
   did_not_send_invitations_because: Nous n’avons pas envoyé d’invitations aux personnes suivantes parce que…
   did_you_mean: 'Voulez-vous dire'
@@ -2547,6 +2559,7 @@ fr:
   photos_from: Photos de
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Photos verrouillées
+  photos_locked_desc: Seuls les membres de l'équipe iNaturalist peuvent modifier les photos par défaut pour ce taxon
   photos_of_taxon_html: "Photos de %{taxon}"
   photos_or_sounds: Photos ou sons
   photos_or_sounds?: Photos ou sons?
@@ -2989,7 +3002,7 @@ fr:
   posts: Notes
   potential_disagreement: Désapprobation potentielle
   powered_by: Optimisé par
-  powered_by_inaturalist_open_source_software_html: 'Propulsé par le logiciel open source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>'
+  powered_by_inaturalist_open_source_software_html: 'Hébergé par la plateforme open source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>'
   present: présent
   press: Presse
   preview: Aperçu
@@ -3894,6 +3907,7 @@ fr:
   unresolve: Annuler
   unreview_all: Marquer tout comme non relu
   unsubscribe: Désabonnez-vous
+  unsubscribe_from_all_emails: Se désinscrire de tous les mails
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
@@ -6511,6 +6525,7 @@ fr:
   activerecord:
     models:
       AssessmentSection: Section d’évaluation
+      Atlas: Atlas
       CompleteSet: Ensemble complet
       #Noun
       Flag: Signalement

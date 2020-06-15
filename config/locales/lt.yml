@@ -1078,8 +1078,30 @@ lt:
   deviation: Nuokrypis
   devise:
     failure:
+      already_authenticated: 'Jūs jau esate prisijungęs.'
+      unauthenticated: 'Prieš tęsiant, Jums reikia prisijungti arba užsiregistruoti.'
+      invalid: 'Neteisingas el. paštas arba slaptažodis.'
+      invalid_token: 'Neteisingas autentifikavimo prieigos raktas.'
       user:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
+    sessions:
+      signed_in: 'Prisijungta sėkmingai.'
+      signed_out: 'Atsijungta sėkmingai.'
+    passwords:
+      send_instructions: 'Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.'
+      updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jūs dabar esate prisijungę.'
+      updated_not_active: 'Jūsų slaptažodis buvo sėkmingai pakeistas.'
+      send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
+      no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
+    registrations:
+      signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
+      updated: 'Jūsų paskyra sėkmingai atnaujinta.'
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Patvirtinimo instrukcijos'
+      reset_password_instructions:
+        subject: 'Atstatyti slaptažodžio instrukcijas'
   discoveries: Atradimai
   did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: 'Ar turėjote omenyje'
@@ -1734,6 +1756,7 @@ lt:
   linkedin: LinkedIn
   list: Sąrašas
   list_deleted: Sąrašas ištrintas.
+  list_rules_reapplied: Sąrašo taisyklės atnaujintos
   list_saved: Sąrašas išsaugotas.
   list_tooltip: Rodyti sąraše
   list_updated: Sąrašas atnaujintas!
@@ -2327,6 +2350,9 @@ lt:
   photo_urls_repaired: Nuotraukos URL sutaisyti
   photos_chosen_for_this_taxon: Nuotraukos parinktos šiam taksonui
   photos_from: Nuotraukos iš
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Nuotraukos užrakintos
+  photos_locked_desc: Tik tinklalapio kūrėjai gali keisti šio taksono numatytasias nuotraukas
   photos_of_taxon_html: "%{taxon} nuotraukos"
   photos_or_sounds: Nuotraukos arba garsai
   photos_or_sounds?: Nuotraukos ar garsai?
@@ -3556,6 +3582,7 @@ lt:
   #Undo the action of resolving a flag
   unresolve: Neišspręsti
   unsubscribe: Atšaukti prenumeratą
+  unsubscribe_from_all_emails: Atšaukti visų elektroninių laiškų prenumeratą
   upcoming_bioblitzes: Artėjantys bioblicai
   update: Atnaujinti
   update_observations: Atnaujinti stebėjimus

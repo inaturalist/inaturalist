@@ -832,6 +832,7 @@ nb:
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
   connecting_to_facebook: "Kobler til Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Å koble din konto på %{site_name} til kontoer på andre sider lar deg logge på %{site_name} ved å bruke dine påloggingsopplysninger fra disse sidene."
+  cannot_be_changed_during_a_content_freeze: Kan ikke endres under frysing av innhold
   conservation_status: Bevaringsstatus
   conservation_status_descriptions:
     status: Statuskode, nivå, osv. Vennligst bruk en kort kode som E eller CR hvis det finnes, men hvis ikke, vennligst bruk hele statusen, f.eks. truet eller kritisk truet.
@@ -1070,8 +1071,25 @@ nb:
   deviation: Avvik
   devise:
     failure:
+      already_authenticated: 'Du allerede er logget på.'
+      unauthenticated: 'Du må logge inn eller registrere deg før du fortsetter.'
+      invalid: 'Ugyldig e-post eller passord.'
+      invalid_token: 'Ugyldig autoriseringsnøkkel.'
       user:
         suspended: Din konto har blitt suspendert
+    sessions:
+      signed_in: 'Pålogging vellykket.'
+      signed_out: 'Avlogging vellykket.'
+    passwords:
+      updated_not_active: 'Endring av ditt passord var vellykket.'
+    registrations:
+      signed_up: 'Velkommen! Registreringen var vellykket.'
+      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruksjoner for bekreftelse'
+      reset_password_instructions:
+        subject: 'Instruksjoner for å tilbakestille passord'
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
   did_you_mean: 'Mente du'
@@ -1137,6 +1155,7 @@ nb:
   edit_field: Rediger felt
   edit_license: Rediger lisens
   edit_multiple_dates: Rediger flere datoer
+  edit_multiple_descriptions: Rediger flere notater
   edit_multiple_locations: Rediger flere lokaliteter
   edit_multiple_species: Rediger flere arter
   edit_notes: Rediger notater
@@ -1173,6 +1192,7 @@ nb:
   editing_project: Redigerer %{project}
   editing_project_asset: Redigere prosjektressurs for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
+  editing_taxon: Redigerer %{taxon}
   editing_taxon_link: Redigerer taksonlenke
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigerer taksonutbredelse
@@ -1445,6 +1465,7 @@ nb:
   got_it!: Skjønner!
   got_your_data_somewhere_else?: Har du dataene dine et annet sted? Vi kan hjelpe.
   graft: Pod
+  graft_taxon: Pod %{taxon}
   grafting_attemps_to_insert_this_taxon: Poding forsøker å integrere dette taksonet i vårt taksonomiske tre, finne et eksisterende foreldretakson eller opprette alle taksa i mellom for å knytte det opp mot et takson på et høyere nivå.
   grant_role: "%{grant} %{role}-rolle"
   grid: Raster
@@ -1774,6 +1795,8 @@ nb:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
+  list_reloaded_from_observations: Listen ble lastet inn på nytt fra observasjoner
+  list_rules_reapplied: Listeregler har blitt tilpasset på nytt
   list_saved: Liste lagret.
   list_tooltip: Vis som liste
   list_updated: Liste oppdatert!
@@ -2524,6 +2547,9 @@ nb:
   photo_urls_repaired: Bilde-URL-er reparert
   photos_chosen_for_this_taxon: Bilder valgt for dette taksonet
   photos_from: Bilder fra
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Bilder låst
+  photos_locked_desc: Bare ansatte kan endre standardbildene for dette taksonet
   photos_of_taxon_html: "Bilder av %{taxon}"
   photos_or_sounds: Bilder eller lyd
   photos_or_sounds?: Bilder eller lyder?
@@ -2580,6 +2606,14 @@ nb:
       Delegation: Delegasjon
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: delegasjon
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Avdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: avdelingssegment
       District: Distrikt
       district: distrikt
       Division: Divisjon
@@ -2670,6 +2704,8 @@ nb:
       undefined: udefinert
       Unknown: Ukjent
       unknown: ukjent
+      Village_block: Landsbyblokk
+      village_block: landsbyblokk
       Zone: Sone
       zone: sone
   place_guess: sted gjett
@@ -3272,6 +3308,8 @@ nb:
   scale_colon: "Skala:"
   schemes: Skjema
   schemes_including: Skjema som inkluderer
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vitenskapelig navn
   search: Søk
   search_all_fields: søk i alle felt
   search_by_name_or_email: Søk etter navn eller e-post
@@ -3875,6 +3913,7 @@ nb:
   unresolve: Fjern løsning
   unreview_all: Fjern revisjon for alle
   unsubscribe: Meld av
+  unsubscribe_from_all_emails: Meld av fra alle e-poster
   unsuspend_user: Opphev suspenderingen til bruker
   upcoming_bioblitzes: Kommende bioblitzer
   update: Oppdater
@@ -4318,6 +4357,7 @@ nb:
   your_recent_projects: Dine siste prosjekter
   your_relationships: Dine relasjoner
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} trenger din godkjenning for flere tillatelser fra %{provider} for å fortsette:"
+  your_subscriptions_to_this_place: Dine abonnementer på dette stedet
   your_tags: Dine etiketter
   yours: Dine
   youre_not_following_anyone: |-
@@ -4332,6 +4372,14 @@ nb:
     announcements:
       locales_desc: |
         Klikk mens du holder cmd- eller shift-knappen for å velge flere. Å ikke velge minst en vil vise kunngjøringen for alle brukere uansett lokalisering. Å velge et språk uten en region vil *ikke* nå lokaliseringer med regioner, hvis du f.eks. velger "en" vil det ikke vises for personer som har valgt "en-US". Hvis du vil nå begge, velge begge. Hvis du vil vise en kunngjøring for alle medlemmer av en side, la dette stå tomt.
+    content_freeze:
+      content_freeze: Frysing av innhold
+      during_this_time: |
+        Under frysing av innhold kan ikke enkelte typer innhold ikke opprettes, destrueres eller modifiseres.
+      this_functionality_will_return: |
+        Denne funksjonaliteten vil komme tilbake så snart frysingen av innhold er over.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi forventer at denne funksjonaliteten kommer tilbake før %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4953,6 +5001,8 @@ nb:
           Det ser ut som dette prosjektet kan konverteres til et nytt <a href="%{url}">samlingsprosjekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt når aggregatoren sist ble ferdig med å legge til observasjoner til dette prosjektet
+        #Label for button to make another user the owner of a project
+        make_owner: Gjør til eier
         no_curators: |
           Det er ingen prosjektkuratorer. Hvis du vil sette en ny person som admin, må de først bli medlem i dette prosjektet og må du gjøre vedkommende til en kurator.
         observation_aggregation_desc_html: |
@@ -5050,6 +5100,11 @@ nb:
           Merk: disse brukere vil kunne redigere ALLE prosjektdetaljer inklusivt admins.
         note_you_can_delete_the_time: |
           (Merk: du kan slette tidssonen og nøyaktige klokkeslett hvis du ønsker å inkludere hele dager.)
+        note_about_unselected_filters: |
+          Merk: Hvis du ikke velger taksa, steder eller brukere, vil alle bli inkludert som standard.
+        only_display_member_observations: |
+          Vis bare observasjoner fra prosjektmedlemmer (personer som har blitt med i prosjektet)
+        optionally_filter_media: Filtrer eventuelt for observasjoner med bilder, lyder eller begge deler.
         or_drag_and_drop: (eller dra og slipp)
         please_specify_the_requirements: |
           Vennligst oppgi kravene for observasjonene som skal legges til dette prosjektet.
@@ -5066,6 +5121,9 @@ nb:
         project_summary_help: |
           Gi en kortfattet forklaring av ditt prosjekt. Omtrent de første 200 tegn vil være synlige til høyre for coverbildet på prosjektsiden, så sett det beste øverst!
         project_summary_placeholder: Oppdag og følg med på fuglene i Slottsparken...
+        select_quality_grade: |
+          Velg minst én kvalitetsgrad. Ytterligere forklaring for hver kvalitetsgrad finnes på
+          vår <a href="%{url}">FAQ side</a>.
         show_projects_as_flags: Vis prosjekter som markeringer på kart
         start_and_end_times_for_bioblitzes: Start- og slutt-datoer/tider (for bioblitz-aktige arrangement)
         traditional_projects_cannot_be_copied: Tradisjonelt prosjekt kan ikke kopieres
@@ -5762,6 +5820,7 @@ nb:
       invalid: er ugyldig
       less_than: må være mindre enn %{count}
       less_than_or_equal_to: må være mindre enn eller lik %{count}
+      new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
       not_a_number: er ikke et tall
       not_an_integer: må være et helt tall
       odd: må være oddetall
@@ -5898,6 +5957,7 @@ nb:
         invalid: er ugyldig
         less_than: må være mindre enn %{count}
         less_than_or_equal_to: må være mindre enn eller lik %{count}
+        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
@@ -5951,6 +6011,7 @@ nb:
         occurrence_status_level: Forekomststatus-nivå
         establishment_means: Etableringsmåter
       observation:
+        description: Notater
         geo_x: Østverdi
         geo_y: Nordverdi
         observed_on: dato observert
@@ -6038,9 +6099,11 @@ nb:
         invalid: er ugyldig
         less_than: må være mindre enn %{count}
         less_than_or_equal_to: må være mindre enn eller lik %{count}
+        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
+        only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
         record_invalid: 'Verifisering mislykket: %{errors}'
         requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
