@@ -1296,6 +1296,7 @@ lt:
   fields_can_only_be_edited_by_the_people_who: Laukai gali būti redaguojami tik tų žmonių, kurie juos sukūrė arba puslapio kuratorių
   fields_merged: Laukai sujungti
   file: Failas
+  file_size: Failo dydis
   file_should_be_in_the_following_format: "Failas turi būti tokio formato: taksono pavadinimas, aprašymas"
   fill_out_project_observation_fields: Užpildyti projekto stebėjimo laukus
   fill_out_your_profile: užbaigti savo profilį
@@ -3582,7 +3583,6 @@ lt:
   #Undo the action of resolving a flag
   unresolve: Neišspręsti
   unsubscribe: Atšaukti prenumeratą
-  unsubscribe_from_all_emails: Atšaukti visų elektroninių laiškų prenumeratą
   upcoming_bioblitzes: Artėjantys bioblicai
   update: Atnaujinti
   update_observations: Atnaujinti stebėjimus
@@ -4691,6 +4691,13 @@ lt:
         observed_on: stebėjimo data
       observation_field_value:
         value: 'reikšmė'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Eilėje
+        #Date/time the task began processing
+        started_at: Pradžia
+        #Date/time the task finished processing
+        finished_at: Pabaiga
       post:
         title: Pavadinimas
       project:
