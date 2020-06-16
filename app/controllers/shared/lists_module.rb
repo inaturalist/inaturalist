@@ -125,19 +125,19 @@ module Shared::ListsModule
             render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
           end
         else
-          job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
+          job_id = Rails.cache.read(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
           job = Delayed::Job.find_by_id(job_id)
           if job
             # Still working
           else
             # no job id, no job, let's get this party started
-            Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+            Rails.cache.delete(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
             job = if @view == "taxonomic"
               @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
             else
               @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_normal_csv)
             end
-            Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+            Rails.cache.write(@list.generate_csv_cache_key(view: @view, user_id: current_user.id), job.id, :expires_in => 1.hour)
           end
           prevent_caching
           render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
