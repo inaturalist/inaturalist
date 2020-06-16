@@ -5,6 +5,8 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
+  before_action :set_x_smtpapi_headers
+
   include Shared::MailerModule
 
   default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
@@ -285,6 +287,20 @@ class Emailer < ActionMailer::Base
     {
       from: "#{@site.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
+    }
+  end
+
+  def set_x_smtpapi_headers
+    @x_smtpapi_headers = {
+      # This is an identifier specifying the Sendgrid Unsubscribe Group this
+      # email belongs to. This assumes we're using one for all email sent from
+      # the webapp
+      asm_group_id: CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids ? CONFIG.sendgrid.asm_group_ids.default : nil,
+      # We're having Sendgrid perform this substitution because ERB freaks out
+      # when you put tags like this in a template
+      sub: {
+        "{{asm_group_unsubscribe_raw_url}}" => ['<%asm_group_unsubscribe_raw_url%>'.html_safe]
+      }
     }
   end
 

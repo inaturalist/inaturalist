@@ -87,7 +87,7 @@
               <% end %>
             <% end -%>
           <% end -%>
-          <% unless no_meta -%>
+          <% if !no_meta && user && viewing_user -%>
             <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
               <%=t :posted_by %>
               <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 

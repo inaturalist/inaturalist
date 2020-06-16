@@ -102,19 +102,14 @@
                               <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
                               <br>
                               <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
-                              <%- if @user && @user.is_admin? %>
-                                <br/>
-                                <%-
-                                  # Sendgrid global unsubscribe template tag
-                                  # https://sendgrid.com/docs/ui/sending-email/global-unsubscribes/
-                                -%>
-                                <a
-                                  href="<%= "\<%asm_global_unsubscribe_raw_url%\>" %>"
-                                  style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"
-                                >
-                                  <%= t(:unsubscribe_from_all_emails) %>
-                                </a>
-                              <% end %>
+                              <br/>
+                              <%-
+                                # Sendgrid unsubscribe template tag
+                                # https://sendgrid.com/docs/ui/sending-email/index-suppressions/
+                              -%>
+                              <a href="{{asm_group_unsubscribe_raw_url}}" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;">
+                                <%= t(:unsubscribe_from_emails_like_this) %>
+                              </a>
                             </td>
                           </tr>
                         </table>

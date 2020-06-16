@@ -7,9 +7,9 @@ module Shared::MailerModule
   def set_sendgrid_headers
     mailer = self.class.name
     headers "X-SMTPAPI" => {
+      to: mail.to,
       category:    [ mailer, "#{mailer}##{action_name}" ],
-      unique_args: { environment: Rails.env },
-      asm_group_id: CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids ? CONFIG.sendgrid.asm_group_ids.default : nil
-    }.to_json
+      unique_args: { environment: Rails.env }
+    }.merge( @x_smtpapi_headers || {} ).to_json
   end
 end

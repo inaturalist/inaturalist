@@ -1,4 +1,6 @@
 class DeviseMailer < Devise::Mailer
+  # Note: do not send asm_group_id to Sendgrid from here. We do not want people
+  # to be able to unsubscribe from reset password emails
   include Shared::MailerModule
   
   def devise_mail( record, action, opts={ } )
