@@ -3993,7 +3993,6 @@ da:
   unresolve: Fjern løsning
   unreview_all: Fjern gennemgang for alle
   unsubscribe: Afmeld abonnement
-  unsubscribe_from_all_emails: Afmeld alle e-mails
   unsuspend_user: Bruger ikke længere suspenderet
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
@@ -4810,6 +4809,10 @@ da:
           other: "%{count} unikke"
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
+        create_a_query_desc_html: |
+          Opret en observationsforespørgsel ligesom du ville gøre andre steder på
+          webstedet. Du kan også klippe og indsætte en URL over observationer fra en anden
+          del af webstedet. Din forespørgsel <strong>kan maksimalt returnere 200.000 observationer</strong>.
         export_in_progress_notice: |
           En eksport er igangværende. Du er nødt til at afvente, at denne færdiggøres, inden du kan placere en ny eksoprt i køen.
         ident_by_user_desc_html: |
