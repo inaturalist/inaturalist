@@ -225,6 +225,33 @@ shared_examples_for "an ObservationsController" do
       expect( Observation.where( uuid: uuid ).count ).to eq 1
     end
 
+    describe "with uuid of existing observation" do
+      let(:existing) { Observation.make!( user: user ) }
+      it "should ignore photos if no photos specified" do
+        op = ObservationPhoto.make!( observation: existing, photo: LocalPhoto.make!( user: user ) )
+        existing.reload
+        expect( existing.photos.size ).to eq 1
+        post :create, format: :json, observation: { uuid: existing.uuid }
+        existing.reload
+        expect( existing.photos.size ).to eq 1
+      end
+      it "should use photos if photos specified" do
+        expect( existing.photos.size ).to eq 0
+        p = LocalPhoto.make!( user: user )
+        post :create, format: :json, observation: { uuid: existing.uuid }, local_photos: { "0" => p.id }
+        existing.reload
+        expect( existing.photos.size ).to eq 1
+      end
+      it "should not create duplicate observation photos" do
+        op = ObservationPhoto.make!( observation: existing, photo: LocalPhoto.make!( user: user ) )
+        existing.reload
+        expect( existing.observation_photos.size ).to eq 1
+        post :create, format: :json, observation: { uuid: existing.uuid }, local_photos: { "0" => op.photo_id }
+        existing.reload
+        expect( existing.observation_photos.size ).to eq 1
+      end
+    end
+
     it "should set the uuid even if it wasn't included in the request" do
       post :create, format: :json, observation: { species_guess: "foo" }
       json = JSON.parse( response.body )[0]

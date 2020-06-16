@@ -21,7 +21,8 @@ class ObservationPhoto < ActiveRecord::Base
   end
   
   def destroy_orphan_photo
-    Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
+    # Disabling temporarily ~~kueda 2020-06-16
+    # Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
     true
   end
   
