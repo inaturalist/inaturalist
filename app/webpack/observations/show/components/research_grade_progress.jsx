@@ -5,7 +5,6 @@ import { Col } from "react-bootstrap";
 /* global OUTLINK_SITE_ICONS */
 
 class ResearchGradeProgress extends React.Component {
-
   constructor( ) {
     super( );
     const criteria = ["date", "location", "media", "ids", "metric-date",
@@ -58,16 +57,17 @@ class ResearchGradeProgress extends React.Component {
     const sortedCriteria = _.sortBy(
       _.map( remainingCriteria, ( bool, type ) => ( { type, bool } ) ), c => (
         this.criteriaOrder[c.type]
-      ) );
+      )
+    );
     return (
       <ul className="remaining">
         { _.map( sortedCriteria, c => {
-          const type = c.type;
+          const { type } = c;
           if ( type === "rank_or_needs_id" ) {
             return (
               <li
                 key="need-rank_or_needs_id"
-                className={ _.size( remainingCriteria ) > 1 ? "top_border" : "" }
+                className={_.size( remainingCriteria ) > 1 ? "top_border" : ""}
               >
                 <div className="reason">
                   <div className="reason_icon">
@@ -78,7 +78,7 @@ class ResearchGradeProgress extends React.Component {
                   </div>
                 </div>
                 <div className="or">
-                  - { I18n.t( "or" ) } -
+                  { `- ${I18n.t( "or" )} -`}
                 </div>
                 <div className="reason">
                   <div className="reason_icon">
@@ -146,9 +146,9 @@ class ResearchGradeProgress extends React.Component {
               return null;
           }
           return (
-            <li key={ `need-${type}` }>
+            <li key={`need-${type}`}>
               <div className="reason_icon">
-                <i className={ `fa ${icon}` } />
+                <i className={`fa ${icon}`} />
               </div>
               <div className="reason_label">{ label }</div>
             </li>
@@ -159,7 +159,7 @@ class ResearchGradeProgress extends React.Component {
   }
 
   render( ) {
-    const observation = this.props.observation;
+    const { observation } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const grade = observation.quality_grade;
     const needsIDActive = ( grade === "needs_id" || grade === "research" );
@@ -171,76 +171,82 @@ class ResearchGradeProgress extends React.Component {
         <span>
           <span className="bold">
             { I18n.t( "this_observation_is_research_grade" ) }
-          </span> { I18n.t( "it_can_now_be_used_for_research" ) }.
+          </span>
+          { " " }
+          { I18n.t( "it_can_now_be_used_for_research" ) }
         </span>
       );
     } else {
       criteria = this.criteriaList( );
       description = (
         <span
-          dangerouslySetInnerHTML={ { __html: I18n.t( "the_below_items_are_needed_to_achieve" ) } }
+          dangerouslySetInnerHTML={{ __html: I18n.t( "the_below_items_are_needed_to_achieve" ) }}
         />
       );
     }
     if ( observation.outlinks && observation.outlinks.length > 0 ) {
-      outlinks = ( <div className="outlinks">
-        <span className="intro">
-          { I18n.t( "this_observation_is_featured_on_x_sites", {
-            count: observation.outlinks.length } ) }
-          { grade !== "research" ? (
-            <span className="intro-sub">
-              { I18n.t( "please_allow_a_few_weeks_for_external_sites" ) }
-            </span>
-          ) : "" }
-        </span>
-        { observation.outlinks.map( ol => (
-          <div className="outlink" key={ `outlink-${ol.source}` }>
-            <a href={ ol.url }>
-              <div className="squareIcon">
-                <img src={ OUTLINK_SITE_ICONS[ol.source] } />
-              </div>
-              <div className="title">{ ol.source }</div>
-            </a>
-          </div>
-        ) ) }
-      </div> );
+      outlinks = (
+        <div className="outlinks">
+          <span className="intro">
+            { I18n.t(
+              "this_observation_is_featured_on_x_sites",
+              { count: observation.outlinks.length }
+            ) }
+            { grade !== "research" && (
+              <span className="intro-sub">
+                { I18n.t( "please_allow_a_few_weeks_for_external_sites" ) }
+              </span>
+            ) }
+          </span>
+          { observation.outlinks.map( ol => (
+            <div className="outlink" key={`outlink-${ol.source}`}>
+              <a href={ol.url}>
+                <div className="squareIcon">
+                  <img alt={ol.source} src={OUTLINK_SITE_ICONS[ol.source]} />
+                </div>
+                <div className="title">{ ol.source }</div>
+              </a>
+            </div>
+          ) ) }
+        </div>
+      );
     }
     return (
       <div className="ResearchGradeProgress">
         <div className="graphic">
           <div className="separators">
-            <Col xs={ 6 } className="left">
-              <div className={ `separator ${needsIDActive ? "active" : "incomplete"}` } />
+            <Col xs={6} className="left">
+              <div className={`separator ${needsIDActive ? "active" : "incomplete"}`} />
             </Col>
-            <Col xs={ 6 } className="right">
-              <div className={ `separator ${grade === "research" ? "active" : "incomplete"}` } />
+            <Col xs={6} className="right">
+              <div className={`separator ${grade === "research" ? "active" : "incomplete"}`} />
             </Col>
           </div>
           <div className="checks">
-            <Col xs={ 4 }>
+            <Col xs={4}>
               <div className="check casual active">
                 <i className="fa fa-check" />
               </div>
             </Col>
-            <Col xs={ 4 }>
-              <div className={ `check needs-id ${needsIDActive ? "active" : "incomplete"}` }>
+            <Col xs={4}>
+              <div className={`check needs-id ${needsIDActive ? "active" : "incomplete"}`}>
                 <i className="fa fa-check" />
               </div>
             </Col>
-            <Col xs={ 4 }>
-              <div className={ `check research ${grade === "research" ? "active" : "incomplete"}` }>
+            <Col xs={4}>
+              <div className={`check research ${grade === "research" ? "active" : "incomplete"}`}>
                 <i className="fa fa-check" />
               </div>
             </Col>
           </div>
           <div className="labels">
-            <div className={ `casual ${grade === "casual" && "active"}` }>
+            <div className={`casual ${grade === "casual" && "active"}`}>
               { I18n.t( "casual_" ) }
             </div>
-            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>
+            <div className={`needs-id ${grade === "needs_id" && "active"}`}>
               { I18n.t( "needs_id_" ) }
             </div>
-            <div className={ `research ${grade === "research" && "active"}` }>
+            <div className={`research ${grade === "research" && "active"}`}>
               { I18n.t( "research_grade" ) }
             </div>
           </div>
