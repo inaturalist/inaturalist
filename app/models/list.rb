@@ -228,7 +228,7 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv_cache_key(options = {})
-    key = (options[:view] = "taxonomic") ? "generate_csv_taxonomic_#{id}" : "generate_csv_#{id}"
+    key = (options[:view] == "taxonomic") ? "generate_csv_taxonomic_#{id}" : "generate_csv_#{id}"
     key << "_#{options[:user_id]}" if options[:user_id]
     key
   end
