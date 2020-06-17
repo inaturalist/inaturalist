@@ -95,7 +95,7 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений"
     other: "<span class='count'>%{count}</span> наблюдений"
   x_observations_link_html:
-    one: "<a href='%{url}'>1 наблюдение</a>"
+    one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
     many: "<a href='%{url}'>%{count} наблюдений</a>"
     other: "<a href='%{url}'>%{count} наблюдений</a>"
@@ -1497,8 +1497,8 @@ ru:
   followers: Подписчики
   following: Подписка
   following_x_people:
-    one: 'Подписан на 1 человека'
-    few: 'Подписан на %{count} человек'
+    one: 'Подписан на %{count} человека'
+    few: 'Подписан на %{count} человека'
     many: 'Подписан на %{count} человек'
     other: 'Подписан на %{count} человек'
   for_a_taxon: для таксона
