@@ -40,7 +40,7 @@ ja:
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
-    other: "<span class='count'>%{count}</span>件の観察記録を既読"
+    other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
   x_observers_html:
     other: '<span class="count">%{count}</span> 観察者'
   x_others:
@@ -373,7 +373,7 @@ ja:
   all_taxonomic_groups: "&laquo; すべての分類群"
   all_updates: すべての更新情報
   all_your_observations_will_default_this_time_zone: 今後指定があった場合を除き、観察記録がデファルトでこのタイムゾーンになります
-  all_your_observations_will_default_to_this_time_zone: 今後指定があった場合を除き、観察記録がデフォルトでこのタイムゾーンになります
+  all_your_observations_will_default_to_this_time_zone: 今後指定があった場合を除き、このタイムゾーンが観察記録のデフォルトになります。
   #Option to allow any taxa on a list
   allow_any: すべてを許可
   allow_curator_access: キュレーター管理者アクセスを許可
@@ -664,7 +664,7 @@ ja:
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "その他の%{place}のチェックリスト"
-  check_out_my_observations_at: よかったら、下記リンクから私の観察記録をご覧ください。
+  check_out_my_observations_at: 下記リンクから私の観察記録をご覧ください。
   check_out_our_blog: 公式ブログも読んでみてください
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
   check_this_box_if_html: |
@@ -790,7 +790,7 @@ ja:
     flowering: 開花
     fruiting: 結実
     life_stage: ライフステージ
-    adult: 成虫
+    adult: 成体・成虫
     teneral: 脱皮直後
     subimago: 亜成虫
     pupa: 蛹
@@ -947,8 +947,8 @@ ja:
   decrease_brightness: 輝度を下げる
   default: 既定
   default_invite_comment: "いい写真ですね！よかったら、%{site_name}に投稿してみませんか？\n{{INVITE_LINK}}"
-  default_observation_license: 規定観察記録ライセンス
-  default_photo_license: 規定写真ライセンス
+  default_observation_license: デフォルトの観察記録ライセンス
+  default_photo_license: デフォルトの写真ライセンス
   default_sound_license: 規定音声ライセンス
   defaults_to_your_name_or_username: デフォルトとして自分の名前またユーザ名になります
   defines_a_taxon_framework_for: '%{taxon_name} のタクソン・フレームワークを定義する'
@@ -1207,7 +1207,7 @@ ja:
   find_unsuitable_observations: 不適切な観察記録を検索
   find_your_current_location: 現在地を取得
   finished: 完了
-  first_confirmed_inat_observation: "%{site_name}で初確認済の観察記録"
+  first_confirmed_inat_observation: "%{site_name}で初めて確認された観察記録"
   first_connect_your_provider_account_to_your_site: "まず、%{provider}のアカウントを%{site_name}と接続しましょう。"
   first_inat_observation: "初めての%{site_name}観察記録"
   first_observation: 初観察
@@ -1411,7 +1411,7 @@ ja:
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
   id_withdrawn: 同定の撤回
-  identify: ID判定
+  identify: 同定する
   identify_observations: "観察記録をID判定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
   identify_title: "ID判定"
@@ -1545,7 +1545,7 @@ ja:
   #Large photo size
   large: 大
   last_active_with_date: "最後の活動: %{date}"
-  last_confirmed_observation: 最終確認済観察記録
+  last_confirmed_observation: 最後に確認された観察記録
   last_observation: 最終観察記録
   last_seen: 最終観察時
   last_year: 昨年
@@ -1577,7 +1577,7 @@ ja:
   legacy_authentication_notice_html: |
     このWebサイトの古いバージョンのパスワードを使用しているようです。
     新しいバージョンのパスワードを忘れずに<a href="%{url}">変更してください</a>。
-  let_us_walk_you_through: 本サイトの主な機能をご紹介します。
+  let_us_walk_you_through: このサイトの主な機能をご紹介します。
   lexicon: 言語
   lexicons:
     scientific_names: 学名
@@ -1680,7 +1680,7 @@ ja:
   loading_tags: "タグを読み込み中..."
   loading_taxa_from_your: "観察記録から分類群を読み込み中..."
   loading_wikipedia_description: "ウィキペディアより情報を読み込み中..."
-  locale_description: 地域設定で表記言語、日付のフォーマットなどが変えられます
+  locale_description: 地域設定では、言語と日付のフォーマットを設定できます
   locales_: 地域
   locales:
     ar: アラビア語
@@ -1790,8 +1790,8 @@ ja:
       checklist_places_description: この分類群がリストされている場所
       range: 分布・生息区域
   map_tooltip: マップを表示
-  mark_as_reviewed: 既読にする
-  mark_all_as_reviewed: このページすべてを既読にする
+  mark_as_reviewed: 確認済みにする
+  mark_all_as_reviewed: このページすべてを確認済みにする
   mark_all_as_unreviewed: すべてを未読にする
   matching_species_will_shown_up_here: 該当する種はここに表示されます。%{place}におけるその種の棲息区域情報があれば、マップに表示されます。
   media: メディア
@@ -1850,7 +1850,7 @@ ja:
   monthly_supporter_since_date_html: |
     <a href="%{url}">マンスリーサポーター</a>: %{date} から
   months: 月
-  more: 続き
+  more: もっと表示
   more_fields: 追加フィールド
   more_filters: その他のフィルター
   more_import_options: その他のインポート設定
@@ -2878,8 +2878,8 @@ ja:
     family: 科
     subfamily: 亜科
     supertribe: 上族
-    tribe: 族
-    subtribe: 亜族
+    tribe: 族(連)
+    subtribe: 亜族(亜連)
     genus: 属
     genushybrid: 属間雑種
     subgenus: 亜属
@@ -2996,8 +2996,8 @@ ja:
   restore: 復元
   restoring: 復旧中...
   results: 結果
-  review_all: すべてを確認済に
-  reviewed: 確認済
+  review_all: すべてを確認済みに
+  reviewed: 確認済み
   role: 役割
   rotate_left: 左回転
   rotate_right: 右回転
@@ -3115,7 +3115,7 @@ ja:
   show_less: 一部のみ表示
   show_more: もっと表示
   show_observation_photos: 観測記録の写真を表示
-  show_off_your_recent_observations: 最近の観察記録を自分のブログまたホームページで紹介しよう！
+  show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
   show_running_total: 現在の総計を表示
@@ -3323,19 +3323,31 @@ ja:
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     other: "%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位"
   taxon_is_a_rank_of_amphibia_with_x_observations:
-    other: "観察された%{count}件の%{taxon}は両生ハ虫類中%{rank}位"
+    other: "%{taxon}は両生類の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_aves_with_x_observations:
-    other: "%{taxon}は観察%{count}件で鳥類の%{rank}位"
+    other: "%{taxon}は鳥類の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_mammalia_with_x_observations:
-    other: "%{taxon} は %{count} 回観察された哺乳類の %{rank} です。"
+    other: "%{taxon}は哺乳類の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_reptilia_with_x_observations:
-    other: "%{taxon}は観察%{count}件でハ虫類の%{rank}位"
+    other: "%{taxon}は爬虫類の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_plantae_with_x_observations:
-    other: "%{taxon} は %{count} 回観察された植物の %{rank} です"
+    other: "%{taxon}は植物の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    other: "%{taxon}は条鰭類の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    other: "%{taxon}は動物の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_insecta_with_x_observations:
-    other: "%{taxon}は観察%{count}件で昆虫類の%{rank}位"
+    other: "%{taxon}は昆虫の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    other: "%{taxon}はクモガタ類の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_fungi_with_x_observations:
-    other: "%{taxon}は観察%{count}件でキノコ類の%{rank}位"
+    other: "%{taxon}は菌類の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    other: "%{taxon}は原生動物の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    other: "%{taxon}は軟体動物の%{rank}です。%{count}件の観察記録があります"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    other: "%{taxon}はクロミスタの%{rank}です。%{count}件の観察記録があります"
   taxonomy: 分類
   taxon_deleted: 分類群（taxon）が削除されました
   taxon_doesnt_have_a_range: 分類群には分布・生息区域がありません
@@ -3377,6 +3389,7 @@ ja:
   taxonomic_tags_for_flickr: Flickr用のタクソンタグ付け
   taxonomy_details: 分類の詳細
   taxonomy_details_for: 分類の詳細
+  taxonomy_settings: 分類の設定
   teachers_guide: 先生方へのご案内
   tell_everyone_a_little_about_you: みんなに自己紹介しましょう
   tell_the_world_a_little_about_yourself: 自己紹介しましょう
@@ -3541,6 +3554,7 @@ ja:
   unsuspend_user: ユーザー利用停止を解除
   upcoming_bioblitzes: 開催予定のバイオビリッツ（観察会）
   update: 更新
+  update_existing_observations_with_new_license: 既存の観察記録を新しく選択されたライセンスに更新する。
   update_observations: 観察記録を更新
   update_past: "過去の%{type}を更新"
   update_photos: 写真を更新
@@ -3682,6 +3696,7 @@ ja:
   welcome_to_inat: "%{site_name}へようこそ！"
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
+  were_pretty_sure_this_is_in_the_rank: 下の%{rank}だと確信しています
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
   what_did_you_see: 何を見ましたか？
   what_did_you_see?: <em>何を</em>見ましたか？
@@ -3696,7 +3711,7 @@ ja:
   where_does_x_live: '%{taxa}はどこに生息していますか？'
   where_were_they?: 場所は？
   where_were_you?: 場所は？
-  which_projects_can_add_your_observations?: 自分の観察記録の追加を、どの伝統的なプロジェクトに許可しますか？
+  which_projects_can_add_your_observations?: どのプロジェクトに自分の観察記録の追加を許可しますか？
   white: 白
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
@@ -3764,6 +3779,8 @@ ja:
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
   you_must_select_dates_to_compare: 比較したい日付お選びください
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
+  you_retain_full_copyright: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"
+  you_retain_full_copyright_over_your_content: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"
   you_sure_delete_asset?: このアセットを削除して本当によろしいですか？
   you_sure_delete_comment?: このコメントを削除して本当によろしいですか？
   you_sure_delete_custom_field?: この専用フィールドを削除して本当によろしいですか？
@@ -4035,7 +4052,7 @@ ja:
           "Life Stage=teneral": 脱皮直後
           "Life Stage=nymph": 幼虫・幼体・幼生・若虫 (Nymph)
           "Life Stage=pupa": 蛹
-          "Life Stage=adult": 成虫
+          "Life Stage=adult": 成体・成虫
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -4068,6 +4085,7 @@ ja:
         x_comments_html:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
+        about_third_party_tracking: サードパーティのトラッキングについて
         blocking_desc_html: |
           <p>
           誰かをブロックすると、相手からのメッセージを受信しなくなり、あなたの
@@ -4101,7 +4119,7 @@ ja:
           一般名を表示します。学名のみを表示する場合は無効にします。場所や地域の設定を変更することで、表示する一般名を制御することができます。
         inaturalist_network_affiliation_desc_html: |
           <p>
-          The <a href="%{url}" target="_blank">iNaturalist Network</a> は、世界のiNaturalistコミュニティに完全に接続されている、地域に特化したウェブサイトの集合体です。ネットワークサイトは、地元での利用を促進し、地元の生物多様性に利益をもたらすために、iNaturalistと契約を結んだ地元の機関によってサポートされています。これらのサイトは、絶滅の危機に瀕している種を保護するために、自動的に一般の目には見えないようになっている自国の真の座標にアクセスすることができます。
+          <a href="%{url}" target="_blank">iNaturalist Network</a> は、世界のiNaturalistコミュニティに完全に接続されている、地域に特化したウェブサイトの集合体です。ネットワークサイトは、地元での利用を促進し、地元の生物多様性に利益をもたらすために、iNaturalistと契約を結んだ地元の機関によってサポートされています。これらのサイトは、絶滅の危機に瀕している種を保護するために、自動的に一般の目には見えないようになっている自国の真の座標にアクセスすることができます。
           </p>
           <p>
           あなたのユーザー名とパスワードは、iNaturalist Networkの一部であるすべてのサイトで使用できます。ネットワークサイトとのアフィリエイトを選択した場合、各サイトを運営している現地機関は、あなたのメールアドレスにもアクセスすることができます（サイトの活動についてあなたと連絡を取るためだけに使用します）。
@@ -4109,6 +4127,8 @@ ja:
           <p>
           注意: 1000件以上の観測がある場合は、実験的に所属を変更しないでください。
           </p>
+        licensing_desc_html: |
+          あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name}では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF)のために作成したアーカイブには、著作権なし (CC0)、表示 (CC BY)、表示ー非営利 (CC BY-NC)の記録が含まれています。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントや
@@ -4120,6 +4140,8 @@ ja:
           コミュニティ判定で上書きするなど、潜在的に重要な通知を見逃すことになる
           点にご注意ください。
           </p>
+        name_place_help_html: |
+          この場所で使用される一般名を優先します
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: コメント
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4142,8 +4164,12 @@ ja:
         notification_preferences_taxon_or_place_observations: 私がフォローしている分類群または場所からの観察記録
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
+          none: "許可しない。あなただけがあなたの観察記録をプロジェクトに追加することができます。"
         prefers_community_taxa_desc: |
           %{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。
+        prefers_no_tracking_label: サードパーティのサービスを使用して安定性や利用状況のデータを収集しない
+        search_place_help_html: |
+          観察記録検索のデフォルトの場所です
         scientific_name_first_desc: |
           一般名の前に学名を表示します。
         taxon_change_desc: |
@@ -4430,6 +4456,7 @@ ja:
         name_provider: 名称提供先
         source_url: ソースURL
       user:
+        locale: 地域
         time_zone: タイムゾーン
         search_place_id: 場所を検索
         place_id: 場所
