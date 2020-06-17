@@ -1100,6 +1100,9 @@ fr:
       signed_out: 'Déconnexion réussie.'
     passwords:
       send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+      updated: 'Votre mot de passe a été changé avec succès. Vous êtes maintenant connecté.'
+      updated_not_active: 'Votre mot de passe a été modifié avec succès.'
+      send_paranoid_instructions: "Si votre adresse e-mail existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
     mailer:
       confirmation_instructions:
         subject: 'Instructions de confirmation'
@@ -3910,6 +3913,7 @@ fr:
   unresolve: Annuler
   unreview_all: Marquer tout comme non relu
   unsubscribe: Désabonnez-vous
+  unsubscribe_from_emails_like_this: Se désabonner des e-mails comme celui-ci
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
@@ -4758,6 +4762,10 @@ fr:
           other: "%{count} unique"
       export:
         choose_columns_desc: Choissez les colonnes que vous voulez exporter
+        create_a_query_desc_html: |
+          Créez une requête d’observation tout comme vous le feriez ailleurs sur le
+          site. Vous pouvez aussi copier et coller une URL d’observations à partir d’un autre
+          endroit du site. Votre requête <strong>ne doit pas retourner plus de 200.000 observations</strong>.
         export_in_progress_notice: |
           Vous avez un export en cours. Vous devrez attendre qu'il se termine avant de pouvoir en effectuer un autre.
         ident_by_user_desc_html: |
@@ -5474,6 +5482,8 @@ fr:
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         umbrella_project_features: "Fonctionnalités du projet cadre:"
         unique_url_for_outreach: URL unique pour le dépassement
+        use_this_for_a_time_limited_event: |
+          Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.
         users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal
         use_this_link_to_create_html: |
           Utilisez à la place,  <a href="%{url}">ce lien</a> pour créer un projet traditionnel.
