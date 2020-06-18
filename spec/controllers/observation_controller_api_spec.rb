@@ -617,7 +617,7 @@ shared_examples_for "an ObservationsController" do
       t2 = Taxon.make!
       t3 = Taxon.make!
       o = Observation.make!( taxon: t1, user: user )
-      o.update_attributes( taxon: t2 )
+      o.update_attributes( taxon: t2, editing_user_id: o.user_id )
       o.reload
       expect( o.identifications.count ).to eq 2
       put :update, format: :json, id: o.id, observation: { taxon_id: t3.id }

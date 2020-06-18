@@ -253,7 +253,7 @@ describe Annotation do
     end
     describe "changing the observation taxon" do
       it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
-        @observation.update_attributes( taxon: Taxon.make! )
+        @observation.update_attributes( taxon: Taxon.make!, editing_user_id: @observation.user_id )
         expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
       end
       it "should not happen if the taxon is still a descendant of the controlled term taxon" do

@@ -314,7 +314,7 @@ describe ProjectObservation, "identified?" do
     project_observation = make_project_observation
     observation = project_observation.observation
     expect(project_observation).not_to be_identified
-    observation.update_attributes(:taxon => Taxon.make!)
+    observation.update_attributes( taxon: Taxon.make!, editing_user_id: observation.user_id )
     expect(project_observation).to be_identified
   end
   

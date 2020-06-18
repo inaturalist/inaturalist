@@ -318,7 +318,8 @@ describe ObservationsController do
         @observation.update_attributes(
           latitude: 1.2345,
           longitude: 1.2345,
-          taxon: make_threatened_taxon
+          taxon: make_threatened_taxon,
+          editing_user_id: @observation.user_id
         )
         expect( @observation ).to be_coordinates_obscured
         expect( @project_observation ).to be_prefers_curator_coordinate_access
