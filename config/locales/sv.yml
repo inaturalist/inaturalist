@@ -966,6 +966,7 @@ sv:
   create_a_query: Skapa en fråga
   create_an_account: Skapa ett konto
   create_an_atlas: Skapa en Atlas
+  create_export: Skapa export
   create_new_taxon: Skapa ett nytt taxon
   create_observations: Skapa observationer
   created: Skapades
@@ -1195,6 +1196,7 @@ sv:
   edit_field: Redigera fält
   edit_license: Redigera licens
   edit_multiple_dates: Redigera flera datum
+  edit_multiple_descriptions: Redigera flera beskrivningar
   edit_multiple_locations: Redigera flera platser
   edit_multiple_species: Redigera flera arter
   edit_notes: Redigera anteckningar
@@ -1339,6 +1341,7 @@ sv:
   fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av dem som skapade dem samt webbplatsens förvaltare
   fields_merged: Fält sammanslagna
   file: Fil
+  file_size: Filstorlek
   file_should_be_in_the_following_format: "Filen ska ha följande format: taxonnamn, beskrivning"
   fill_out_project_observation_fields: Fyll i projektobservationsfält
   fill_out_your_profile: slutför din profil
@@ -3278,6 +3281,7 @@ sv:
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   recent: Senaste
   recent_evidence_of_organism: Färska tecken på en organism
+  recent_exports: Senaste exporter
   recent_new_users: Senaste nya användare
   recent_observations: Senaste observationerna
   recent_observations_: Senaste Observationerna
@@ -4071,6 +4075,7 @@ sv:
   unresolve: Ångra lösning
   unreview_all: Avgranska alla
   unsubscribe: Avsluta prenumerationen
+  unsubscribe_from_emails_like_this: Avregistrera dig från sådan här e-post
   unsuspend_user: Återaktivera användare
   upcoming_bioblitzes: Kommande bioblitzer
   update: Uppdatera
@@ -4083,6 +4088,7 @@ sv:
   update_search: Uppdatera sök
   update_selected_taxa: Uppdatera valda taxa
   update_subscription: Uppdatera prenumeration
+  update_subscription_preferences: Uppdatera prenumerationsinställningar
   update_x_selected_taxa:
     one: "Uppdatera 1 valt taxon"
     other: "Uppdatera %{count} valda taxa"
@@ -4956,8 +4962,13 @@ sv:
           other: "%{count} unika"
       export:
         choose_columns_desc: Välj de kolumner du vill exportera
+        create_a_query_desc_html: |
+          Skapa en observationsfråga precis som du skulle göra på andra ställen på webbplatsen. Du kan också klippa och klistra in en observations-URL från en annan del av webbplatsen. Din fråga bör inte resultera i <strong>mer än 200 000 observationer</strong>.
+        export_in_progress_notice: |
+          Du har en pågående export. Du måste vänta tills den är klar innan du kan köa en annan export.
         ident_by_user_desc_html: |
           Kolumner för den aktuella bestämningen av %{user}
+        limit_alert: Din export blir för stor. Ändra dina filter tills det finns färre än 200 000 observationer.
         query_placeholder: "Välj parametrar nedan eller klistra in i en observations-URL"
         taxon_extras_help_html: "Obs: dessa kolumner kommer att göra genereringen av din export långsammare"
         geo_help_html: |
@@ -7023,6 +7034,15 @@ sv:
         observed_on: observerat datum
       observation_field_value:
         value: 'Värde'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Köad
+        #Date/time the task began processing
+        started_at: Startad
+        #Date/time the task finished processing
+        finished_at: Slutförd
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Indata
       post:
         title: Rubrik
         body: Innehåll
@@ -7172,6 +7192,13 @@ sv:
             observation_id:
               user_does_not_accept_fields_from_others: användare accepterar inte fält från andra
               user_only_accepts_fields_from_site_curators: användaren accepterar bara fält från webbplatsen förvaltare
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Exporter kan inte ha mer än 200 000 observationer
+              must_have_query: Frågan får inte vara tom
+            user_id:
+              already_has_an_export_in_progress: har redan en pågående export
         place:
           attributes:
             place_geometry:

@@ -228,7 +228,7 @@ fr:
   add_conservation_status: Ajouter la situation quant à la conservation
   add_countries: Ajouter des pays
   add_custom_project_fields: Ajouter des champs de projet personnalisés
-  add_edit_flags: Ajouter / éditer les signalements
+  add_edit_flags: Ajouter / modifier les signalements
   add_editor: Ajouter un éditeur
   add_description: "Ajouter %{description_name}"
   add_from_your_observations: Ajouter à partir de vos observations
@@ -236,83 +236,83 @@ fr:
   add_higher_level_taxon: Ajouter un taxon de plus haut rang (par ex. « oiseaux »)
   add_id: Ajouter une identification
   add_new_lexicon: Ajouter un nouveau lexique
-  add_new_photos_by_their_ids: Ajouter de nouvelles photos selon leur identifiant Flickr (doivent avoir une licence Creative Commons !)
+  add_new_photos_by_their_ids: Ajouter de nouvelles photos à partir de leur identifiant Flickr (la licence doit être Creative Commons !)
   add_new_place: Ajouter un nouveau lieu
   add_new_rule: Ajouter une nouvelle règle
   add_new_source: "Ajouter une nouvelle source…"
   add_new_taxon_name: Ajouter un nouveau nom de taxon
-  add_notes_about_this_taxon: Ajouter des notes à propos de ce taxon dans ce lieu, par ex. où et quand cela se produit.
-  add_obs_from_a_link: "Ajouter des observations à partir du lien : %{link}"
+  add_notes_about_this_taxon: Ajouter des notes sur ce taxon à cet endroit, par ex. où et quand on le rencontre.
+  add_obs_from_a_link: "Ajouter des observations à partir de la liste: %{link}"
   add_obs_from_a_list: Ajouter des observations à partir d’une liste
   add_observations: Ajouter des observations
   add_observations_by_checking_off: Ajouter des observations en cochant les espèces dans une liste.
   add_observations_project: Ajouter des observations à ce projet
   #Prompt to add a new journal post
-  add_one: Ajoutez-en une!
+  add_one: En ajouter une!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: En ajouter une maintenant
+  add_one_now: En ajouter une
   add_photos: Ajouter des photos
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation "Vivant ou Mort : Vivant"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation "Vivant ou Mort : Indéterminé"'
   add_alive_or_dead_dead_annotation: 'Ajouter l''annotation "Vivant ou Mort : Mort"'
-  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale : Bourgeonnement »'
-  add_plant_phenology_flower_budding_annotation: 'Ajouter l''annotation "Phénologie de la plante : Boudin des fleurs"'
-  add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de plante : Floraison »'
-  add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie de plante : Fruits »'
-  add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucune preuve de fleur"'
-  add_life_stage_adult_annotation: 'Ajoute l''annotation "Stade d''évolution : Adulte"'
-  add_life_stage_teneral_annotation: 'Ajoute l''annotation "Stade d''évolution : Ténéral"'
-  add_life_stage_subimago_annotation: 'Ajouter l’annotation « Stade de vie : Subimago »'
-  add_life_stage_pupa_annotation: 'Ajoute l''annotation "Stade d''évolution : Pupe"'
-  add_life_stage_nymph_annotation: 'Ajoute l''annotation "Stade d''évolution : Nymphe"'
-  add_life_stage_larva_annotation: 'Ajoute l''annotation "Stade d''évolution : Larve"'
-  add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de vie : Juvénile »'
-  add_life_stage_egg_annotation: 'Ajoute l''annotation "Stade d''évolution : Oeuf"'
+  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale : bourgeonnement »'
+  add_plant_phenology_flower_budding_annotation: 'Ajouter l''annotation "Phénologie végétale: fleur en bourgeon"'
+  add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
+  add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
+  add_life_stage_adult_annotation: 'Ajoute l''annotation "Stade d''évolution : adulte"'
+  add_life_stage_teneral_annotation: 'Ajoute l''annotation "Stade d''évolution : post-exuvial"'
+  add_life_stage_subimago_annotation: 'Ajouter l’annotation « Stade de vie : subimago »'
+  add_life_stage_pupa_annotation: 'Ajoute l''annotation "Stade d''évolution : pupe"'
+  add_life_stage_nymph_annotation: 'Ajoute l''annotation "Stade d''évolution : nymphe"'
+  add_life_stage_larva_annotation: 'Ajoute l''annotation "Stade d''évolution : larve"'
+  add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de vie : juvénile »'
+  add_life_stage_egg_annotation: 'Ajoute l''annotation "Stade d''évolution : oeuf"'
   #As in a Taxon Framework Relationship
-  add_relationship: 'Ajouter une relation'
+  add_relationship: 'Ajouter un lien'
   #As in a Guide Section
   add_section: Ajouter une section
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_sex_female_annotation: 'Ajouter l''annotation "Sexe: femelle"'
   add_sex_male_annotation: 'Ajouter l''annotation "Sexe: mâle"'
-  add_sex_cannot_be_determined_annotation: 'Ajouter l''annotation "Sexe : Indéterminé"'
+  add_sex_cannot_be_determined_annotation: 'Ajouter l''annotation "Sexe : indéterminé"'
   add_some_now: En ajouter maintenant
   add_tag: Ajouter une balise
   add_tags: Ajouter des balises
   add_tags_to_selected_taxa: Ajouter des balises aux taxons sélectionnés
   add_taxa: Ajouter des taxons
   add_taxon_batch_to: "Ajouter un lot de taxons à %{list}"
-  add_taxon_range: Ajouter un périmètre de taxon
-  add_taxonomic_tags_to: "Ajouter des étiquettes taxinomiques aux photos ''Flickr'' sélectionnées &raquo;"
+  add_taxon_range: Ajouter une aire de répartition
+  add_taxonomic_tags_to: "Ajouter des étiquettes taxinomiques aux photos 'Flickr' sélectionnées &raquo;"
   add_to_a_scheme: Ajouter à un programme
   add_to_a_project: Ajouter à un projet
   add_to_calendar: Ajouter au calendrier
-  add_to_checklist: Ajouter à la liste de contrôle
+  add_to_checklist: Ajouter à la checklist
   add_to_favorites: Ajouter aux favoris
   add_to_list: Ajouter à la liste
   add_to_project: Ajouter au projet
   add_to_your_life_list: Ajouter à votre liste des êtres vivants !
   add_to_your_list: Ajouter à votre liste
   add_your_email_to_get: |
-    Ajoutez votre adresse électronique pour obtenir des commentaires sur votre observation de la communauté.
-    Si vous préférez ne pas l’inclure, revenez consulter la page bientôt!
+    Ajoutez votre adresse mail pour obtenir des commentaires de la communauté sur votre observation .
+    Si vous préférez ne pas l'ajouter, revenez consulter la page plus tard!
   add_your_own_observations_at: "Ajoutez vos propres observations à %{site_name}"
   added: Ajouté
   added!: Ajouté !
   added_as_a_part_of_a_taxon_change_html: |
-    Ajouté dans le cadre d'un changement de taxon
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
+    Ajouté dans le cadre d'un 
+    <a target="%{target}" class="%{class}" href="%{url}">changement de taxon</a>
   added_as_a_part_of_a_taxon_merge_html: |
-    Ajouté dans le cadre d'une fusion de taxon
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
+    Ajouté dans le cadre d'une 
+    <a target="%{target}" class="%{class}" href="%{url}">fusion de taxon</a>
   added_as_a_part_of_a_taxon_split_html: |
-    Ajouté dans le cadre d'une scission de taxon
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
+    Ajouté dans le cadre d'une 
+    <a target="%{target}" class="%{class}" href="%{url}">scission de taxon</a>
   added_as_a_part_of_a_taxon_swap_html: |
-    Ajouté dans le cadre d'un échange de taxons
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
+    Ajouté dans le cadre d'un 
+    <a target="%{target}" class="%{class}" href="%{url}">échange de taxons</a>
   added_by: Ajouté par
   added_by_user_on_date_html: "Ajouté par %{user} le %{date}"
   added_on_datetime: "Ajouté le %{datetime}"
@@ -322,12 +322,12 @@ fr:
   adjust_brightness: Ajuster la luminosité
   admin: Admin
   admin_s: Administrateur(s)
-  admin_only: Administrateur uniquement
+  admin_only: Réservé aux administrateurs
   admin_tools: Outils d’administration
   agree_: Accepter
   agree?: Accepter?
-  agree_with_current_taxon: Accord avec le taxon actuel
-  agreeing: Consentement en cours…
+  agree_with_current_taxon: D'accord avec le taxon actuel
+  agreeing: En cours d'acceptance...
   aka: alias
   all: Tous
   all_comments: Tous les commentaires
@@ -437,12 +437,12 @@ fr:
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
   all_updates: Toutes les mises à jour
-  all_your_observations_will_default_this_time_zone: "Toutes vos observations seront par  défaut dans ce fuseau horaire, sauf si\nvous le définissez autrement."
-  all_your_observations_will_default_to_this_time_zone: "Toutes vos observations seront par défaut dans ce fuseau horaire, sauf si\nvous le définissez autrement."
+  all_your_observations_will_default_this_time_zone: Toutes vos observations seront automatiquement assignées à ce fuseau horaire, sauf si vous spécifiez une autre préférence.
+  all_your_observations_will_default_to_this_time_zone: Toutes vos observations seront automatiquement assignées à ce fuseau horaire, sauf si vous spécifiez une autre préférence.
   #Option to allow any taxa on a list
   allow_any: Autoriser tout
   allow_curator_access: Autoriser l’accès au responsable
-  allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables du projet à voir vos coordonnées masquées
+  allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables de projets à voir vos coordonnées géographiques masquées
   allowed_establish_means_values: Valeurs des moyens d’établissement autorisées
   allowed_html: HTML autorisé
   allowed_occurrence_status_values: Valeurs de présence autorisées
@@ -452,10 +452,10 @@ fr:
   alphabetical_order: Ordre alphabétique
   already_have_an_account_log_in_html: Vous avez déjà un compte ?<strong>Connectez-vous.</strong>
   amphibians: amphibiens
-  ancestor_taxon: Taxon ancêtre
+  ancestor_taxon: Taxon parent
   and: et
   and_other_taxa: "&amp; Autres taxons"
-  android: Androïde
+  android: Android
   animals: Animaux
   annotation: Annotation
   annotations: Annotations
@@ -470,26 +470,26 @@ fr:
   apply_fields: Appliquer les champs
   apply_geoprivacy: Appliquer la géoconfidentialité
   apply_darr: "Appliquer &darr;"
-  apply_establishment_means_to_descendant_places: "Appliquer les moyens d’établissement aux lieux qui comportent des descendants"
+  apply_establishment_means_to_descendant_places: "Appliquer les moyens d’établissement aux lieux où il existe des descendants"
   apply_these_settings_to_all: Appliquer ces paramètres à toutes les observations ci-dessous.
   appropriate?: Approprié?
   arachnids: arachnides
   archives: Archives
-  are_you_really_sure_want_delete_this_user: Êtes-vous vraiment certain de vouloir supprimer cet utilisateur et tout son contenu?
+  are_you_really_sure_want_delete_this_user: Êtes-vous vraiment vraiment certain de vouloir supprimer cet utilisateur et tout son contenu?
   are_you_sure?: Êtes-vous certain ?
-  are_you_sure_no_undo: Êtes-vous sûr ? Cela ne peut pas être annulé.
+  are_you_sure_no_undo: Êtes-vous sûr ? Ca ne peut pas être annulé.
   are_you_sure_delete_post: Êtes-vous certain de vouloir supprimer cette note ?
-  are_you_sure_delete_taxon_move_associates: "Êtes-vous certain de vouloir supprimer %{taxonname} (%{taxonid}) et déplacer tous les taxons connexes?"
+  are_you_sure_delete_taxon_move_associates: "Êtes-vous certain de vouloir supprimer %{taxonname} (%{taxonid}) et déplacer tous ses attributs?"
   are_you_sure_delete_this_place: Êtes-vous certain de vouloir supprimer ce lieu ?
   are_you_sure_leave_this_project: Êtes-vous certain de vouloir quitter ce projet?
-  are_you_sure_merge_these_places: Êtes-vous certain de vouloir fusionner ces lieux
+  are_you_sure_merge_these_places: Êtes-vous certain de vouloir fusionner ces lieux? Ca ne peut pas être annulé.
   are_you_sure_remove_photo: "Êtes-vous sûr de vouloir supprimer cette photo ?"
-  are_you_sure_remove_relationship: Êtes-vous sûr de vouloir supprimer cette relation ? Ceci arrêtera le suivi de cette personne et supprimera l’accès à vos coordonnées masquées si vous en avez autorisé l’accès.
+  are_you_sure_remove_relationship: Êtes-vous sûr de vouloir supprimer ce lien? Ceci empêchera cette personne de vous suivre et supprimera l’accès à vos coordonnées masquées si vous en avez autorisé l’accès.
   are_you_sure_remove_taxon_from_list: "Êtes-vous certain de vouloir enlever ce taxon de la liste?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Êtes-vous certain
+    Êtes-vous certain? Cela rechargera la page et vous risquez de perdre certaines de vos modifications.
   are_you_sure_unresolve_flag?: |
-    Êtes-vous sûr de vouloir annuler la résolution du problème signalé ? Ceci supprimera le changement et l'utilisateur qui l'a résolu de cette page.
+    Êtes-vous certain de vouloir annuler la résolution du problème signalé ? Ceci enlèvera de ce signalement à la fois la résolution et son auteur.
   are_you_sure_want_delete_taxon: "Êtes-vous certain de vouloir supprimer ce taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des taxons descendants.
@@ -512,13 +512,13 @@ fr:
   are_you_sure_want_delete_taxon_identifications_observations: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des identifications et des observations.
   are_you_sure_want_delete_taxon_listed_taxa: |
-    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a répertorié des taxons.
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a des taxons descendants.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a répertorié des taxons et des identifications
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a des taxons et des identifications
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a listé des taxons, des identifications et des observations.
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a des taxons, des identifications et des observations.
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a listé les taxons et les observations.
+    Êtes-vous sûr de vouloir supprimer ce taxon ? Il a des taxons et des observations.
   are_you_sure_want_delete_taxon_observations: |
     Êtes-vous sûr de vouloir supprimer ce taxon ? Il contient des observations.
   are_you_sure_want_delete_taxon_link: Êtes-vous sûr de vouloir supprimer ce lien de taxon ?
@@ -531,16 +531,16 @@ fr:
   are_you_sure_you_want_to_delete_this_post: Êtes-vous certain de vouloir supprimer cette note ?
   are_you_sure_you_want_to_delete_this_taxon_change: Êtes-vous certain de vouloir supprimer cette modification de taxon ?
   are_you_sure_you_want_to_remove_all_tags: Êtes-vous certain de vouloir supprimer toutes les étiquettes ?
-  are_you_sure_you_want_to_remove_curator: Êtes-vous sûr de vouloir supprimer %{user} en tant que conservateur ?
+  are_you_sure_you_want_to_remove_curator: Êtes-vous sûr de vouloir supprimer %{user} comme conservateur ?
   are_you_sure_you_want_to_remove_from_project: Êtes-vous certain de vouloir retirer %{user} du projet  ?
-  are_you_sure_you_want_to_remove_manager: Êtes-vous certain de vouloir enlever %{user} en tant que gestionnaire ?
+  are_you_sure_you_want_to_remove_manager: Êtes-vous certain de vouloir enlever %{user} en tant que manager?
   are_you_sure_you_want_to_remove_spammer: |
-    Êtes-vous certain que vous considérez cet utilisateur comme fiable ? Tout signalement de pourriel dans ses contenus sera enlevé.
+    Êtes-vous certain que vous considérez cet utilisateur comme fiable ? Tout signalement de spam dans ses contenus sera enlevé.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Êtes-vous certain de vouloir supprimer ces %{x} taxons ?"
   are_you_sure_you_want_to_remove_this_invitation: Êtes-vous certain de vouloir supprimer cette invitation ?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la liste de contrôle de « %{place} » ?"
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la checklist de « %{place} » ?"
   associated_observations: Observations connexes
   associated_taxa: Taxons connexes
   attention: Attention
@@ -569,20 +569,20 @@ fr:
   attribution: Attribution
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
-    natureserve: Serve de la nature
+    natureserve: NatureServe
     cites: CITATIONS
   authorize: Autoriser
   authorize_permissions_from_provider: "Autoriser les permissions de %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations à ce projet
-  automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour mon contenu des modifications de taxon
-  back: Retourner
-  back_to_all_species: Retourner à Toutes les Espèces
-  back_to_browsing_people: Retourner à l’exploration par personne
+  automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour mon contenu pour les modifications de taxon
+  back: Précédent
+  back_to_all_species: Retourner à la liste des espèces
+  back_to_browsing_people: Retourner à la recherche par personne
   back_to_calendar: "Retourner au calendrier de %{user}"
   back_to_editing_observation: Retourner à la modification des observations
-  back_to_friends: Retour aux amis
-  back_to_flags_html: "&laquo; Retour aux marques"
+  back_to_friends: Retourner aux amis
+  back_to_flags_html: "&laquo; Retour aux signalements"
   back_to_lists: "Retourner aux listes de %{name}"
   back_to_observation: Retourner à l’observation
   back_to_observation_fields: Retourner aux champs de l’observation
@@ -591,29 +591,29 @@ fr:
   back_to_possessive_user_profile: "Retourner au profil de %{possuser}"
   back_to_post: '&laquo; Retourner à la note'
   back_to_projects: Retourner aux projets
-  back_to_suggestions: Retour aux propositions
+  back_to_suggestions: Retourner aux propositions
   back_to_taxon: "Retourner à %{defaulttaxon}"
-  back_to_taxon_changes: "Retour aux modifications taxinomiques"
-  back_to_taxon_framework_for_x: "Retour au cadre de taxon pour %{taxon_name}"
-  back_to_viewing: "Retourner à la visualisation de <i>%{taxon}</i>"
+  back_to_taxon_changes: "Retourner aux modifications taxinomiques"
+  back_to_taxon_framework_for_x: "Retourner au cadre taxinomique pour %{taxon_name}"
+  back_to_viewing: "Retourner à <i>%{taxon}</i>"
   back_to_x: "Retourner à %{noun}"
   back_to_x_assessment: "Retourner aux évaluations de %{project}"
   back_to_x_history: "Retourner à l’historique de %{x}"
   back_to_x_journal: "Retourner au journal de %{user}"
   back_to_x_blog: "Retour au blog de %{x}"
-  back_to_your_dashboard: Retour à votre tableau de bord
+  back_to_your_dashboard: Retourner à votre tableau de bord
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   back_to_your_projects: Retourner à vos projets
   based_on_the_evidence_can_id_be_improved: |
-    D’après les preuves, le taxon de communauté peut-il être encore confirmé ou amélioré ?
+    D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Lot
   batch_edit: Modification groupée
   batch_edit_taxa_for_x_html: "Modification groupée des taxons %{x}"
-  batch_operations: Opérations par lot
-  be_the_first_to_fave_this_observation: Soyez le premier à mettre cette observation en favori !
+  batch_operations: Opérations groupées
+  be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
   because_of: en raison de
   before_importing_photos: avant d’importer des photos
   bg_color: Couleur de fond
@@ -630,32 +630,32 @@ fr:
   body: Corps
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
-  bounding_box: Boîte englobante
-  breadcrumbs: Piste de navigation
+  bounding_box: Zone surlignée
+  breadcrumbs: Fil d'Ariane
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
   #page where the project title and a button to add an observation are usually
   #shown
-  breadcrumbs_description: "Cette action remplacera le h1 et les appels à l’action par défaut;\nassurez-vous de les inclure s’ils sont importants au projet et\nrappelez-vous que la largeur maximale autorisée est de 950px"
-  brief_caption: Courte légende
+  breadcrumbs_description: "Cette action remplacera le h1 et les appels à l’action par défaut;\nassurez-vous de les inclure s’ils sont importants pour le projet et\nrappelez-vous que la largeur maximale autorisée est de 950px"
+  brief_caption: Légende concise
   brown: brun
   browse: Explorer
   browse_all_projects: Explorer tous les projets
   browse_all_species: Explorer toutes les espèces
-  browse_observations: Voir les observations
-  browse_people: Parcourir les personnes
+  browse_observations: Explorer les observations
+  browse_people: Explorer les utilisateurs
   browse_projects: Explorer les projets
   browse_species_that_occur_near_this_observation: Explorer les espèces présentes à proximité de cette observation.
   built_with_site_guides_html: "Construit avec les <a href='%{url}'>guides d’%{site_name}</a>"
-  bulk_import_of_filename_is_complete: "L’importation en vrac de %{filename} est terminée"
+  bulk_import_of_filename_is_complete: "L’import en masse de %{filename} est terminée"
   by: par
   by_everyone: Par tout le monde
   by_user: "Par %{user}"
   by_you: Par vous
   calendar: Calendrier
-  calendars_only_show_x_observations_at_time: Les agendas ne montrent que %{x} observations à la fois
+  calendars_only_show_x_observations_at_time: Les calendriers ne montrent que %{x} observations à la fois
   cancel: Annuler
-  cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer du contenu masqué par des utilisateurs du site
+  cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer de contenu masqué par des responsables du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe pas
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
   captive: En captivité
@@ -665,30 +665,29 @@ fr:
   casual: occasionnel
   casual_: Occasionnel
   categories: Catégories
-  cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous accorder quelque crédit. C’est la plus accommodante des licences offertes. Recommandée pour une diffusion maximale et l’utilisation de matériels sous licence."
+  cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous mentionner. C’est la licence la plus pratique parmi celles qui nous sont offertes. Recommandée pour une diffusion maximale et l’utilisation de données sous licence."
   cc_0_name: Pas de droit d’auteur (CC0)
-  cc_attribution_license: Licence d’attribution de Creative Commons
-  cc_by_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit pour la création initiale."
+  cc_attribution_license: Licence d’attribution Creative Commons
+  cc_by_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant qu’ils vous mentionnent comme auteur de la version initiale."
   cc_by_name: Attribution
-  cc_by_nc_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version à des fins non\ncommerciales et, bien que leur nouvelle œuvre doit souligner votre\ncontribution et servir à des fins non commerciales, elle n’est pas tenue de\nsatisfaire aux mêmes conditions de licence."
-  cc_by_nc_name: Attribution–Non commercial
-  cc_by_nc_nd_description: "Cette licence est la plus restrictive des six licences principales. Elle\npermet aux autres de télécharger vos travaux et de les échanger, tant et\naussi longtemps qu’ils vous en donnent le crédit, mais ils ne peuvent les\nmodifier en aucune façon ni les utiliser à des fins commerciales."
-  cc_by_nc_nd_name: Attribution-Non commercial-Pas de modifications
-  cc_by_nc_sa_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version, à des fins non\ncommerciales, tant qu’ils vous en donnent\nle crédit et que leur nouvelle œuvre respecte les mêmes conditions de licence."
-  cc_by_nc_sa_name: Attribution-Non commercial-Partage des conditions
-  cc_by_nd_description: "Cette licence permet la distribution de l’œuvre, à des fins commerciales ou\nnon, tant qu’elle demeure inchangée et complète et que le crédit vous soit\naccordé."
+  cc_by_nc_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version à des fins non commerciales et, bien que leur travail doive souligner votre contribution et être utilisée à des fins non commerciales, elle n’est pas tenue de satisfaire aux mêmes conditions de licence."
+  cc_by_nc_name: Attribution–Non commerciale
+  cc_by_nc_nd_description: "Cette licence est la plus restrictive des six licences principales. Elle permet aux autres de télécharger vos travaux et de les échanger, tant qu’ils vous mentionnent, mais ils ne peuvent en aucune façon les modifier ni les utiliser à des fins commerciales."
+  cc_by_nc_nd_name: Attribution-Non commerciale-Pas de modifications
+  cc_by_nc_sa_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, à des fins non commerciales, tant qu’ils vous mentionnent et que les fruits de leur travail respectent les mêmes conditions de licence."
+  cc_by_nd_description: "Cette licence permet la distribution de l’œuvre, à des fins commerciales ou\nnon, tant qu’elle demeure inchangée et complète et que vous êtes mentionné."
   cc_by_nd_name: Attribution-Pas de modifications
-  cc_by_sa_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version, même à des\nfins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit\npour la création initiale et que leur nouvelle œuvre respecte les mêmes\nconditions de licence. Tous les nouveaux travaux fondés sur le vôtre seront\ninscrits sous la même licence; ainsi, tous les produits dérivés pourront\naussi être utilisés à des fins commerciales."
-  cc_by_sa_name: Attribution-Partage des conditions
+  cc_by_sa_description: "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant qu’ils vous donnent le crédit\npour l'oeuvre originale et que leur nouvelle œuvre respecte les mêmes conditions de licence. Tous les nouveaux travaux fondés sur le vôtre seront publiés sous la même licence; et donc, tous les travaux dérivés pourront aussi être utilisés à des fins commerciales."
+  cc_by_sa_name: Attribution-Partage sous même license
   cc_used_under_a: "Creative Commons, utilisé sous une"
   change_admin: Changer d’administrateur
   change_cover: Modifier la couverture
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
     merge: Plusieurs anciens taxons agrégés dans un nouveau taxon
-    swap: Modification de nom 1-à-1
-    drop: Le concept de taxon est non valide. Conserver à des fins historiques ou de compatibilité avec le partenaire
-    stage: Préparer un concept inactif pour diffusion dans un groupe de modifications
+    swap: Modification de nom 1 pour1
+    drop: Le concept de taxon est non valide mais conservé à des fins historiques ou de compatibilité avec le partenaire
+    stage: Préparer un concept inactif pour publication dans un groupe de modifications
   change_geoprivacy: 'Modifier la géoconfidentialité'
   change_group: Modifier le groupe
   change_icon: Modifier l’icône
@@ -927,11 +926,11 @@ fr:
     public_domain: domaine public
     copyright: droit d’auteur
     no_copyright: pas de droit d'auteur (CC0)
-    attribution_noncommercial_sharealike_license: Licence d’attribution non commerciale pour échange sans modification
+    attribution_noncommercial_sharealike_license: Licence d’attribution non commerciale pour publication sous même license
     attribution_noncommercial_license: Licence d’attribution non commerciale
     attribution_noncommercial_noderivs_license: Licence d’attribution non commerciale – Pas de modifications
     attribution_license: Licence d’attribution
-    attribution_sharealike_license: Licence d’attribution – Partage des conditions
+    attribution_sharealike_license: Licence d’attribution – Publication sous même license
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
   copyright_holder: Détenteur des droits
@@ -953,6 +952,7 @@ fr:
   create_a_query: Créer une requête
   create_an_account: Créer un compte
   create_an_atlas: Créer un atlas
+  create_export: Créer un fichier d'export
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   created: Date de création
@@ -1099,6 +1099,9 @@ fr:
       signed_out: 'Déconnexion réussie.'
     passwords:
       send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+      updated: 'Votre mot de passe a été changé avec succès. Vous êtes maintenant connecté.'
+      updated_not_active: 'Votre mot de passe a été modifié avec succès.'
+      send_paranoid_instructions: "Si votre adresse e-mail existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
     mailer:
       confirmation_instructions:
         subject: 'Instructions de confirmation'
@@ -1186,7 +1189,7 @@ fr:
   edit_taxon: Modifier le taxon
   edit_taxon_framework: Modifier le cadre de taxon
   edit_taxon_link: Modifier le lien relatif au taxon
-  edit_taxon_range: Modifier le périmètre du taxon
+  edit_taxon_range: Modifier l'aire de répartition du taxon
   edit_the_observation: Modifier l’observation
   edit_your_account_and_profile_html: "Modifier votre compte et votre profil"
   edit_your_default_settings: "Modifier vos paramètres par défaut"
@@ -1210,7 +1213,7 @@ fr:
   editing_taxon: Edition de %{taxon}
   editing_taxon_link: Modification du lien relatif au taxon
   editing_taxon_name_for_taxon_html: Modification du nom du taxon "%{name}" pour %{taxon}
-  editing_taxon_range: Modification de l’aire de répartition de taxon
+  editing_taxon_range: Modification de l’aire de répartition du taxon
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
@@ -1315,6 +1318,7 @@ fr:
   fields_can_only_be_edited_by_the_people_who: Les champs peuvent uniquement être modifiés par les personnes qui les ont créés et par les responsables de l’organisation du site
   fields_merged: Champs fusionnés
   file: Fichier
+  file_size: Taille du fichier
   file_should_be_in_the_following_format: "Le fichier doit être dans le format suivant : nom du taxon, description"
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
   fill_out_your_profile: compléter votre profil
@@ -1590,7 +1594,7 @@ fr:
   if_matches_come_from_a_comprehensive_list: Si la correspondance vient d’une liste complète, une barre verte sera affichée.
   if_this_is_a_scientific_name: Si c’est un nom scientifique, est-il actuellement accepté?
   if_this_link_will_apply_to_descendant: Si ce lien s’applique aux taxons descendants, vous pouvez utiliser les étiquettes modèles pour remplir le nom du taxon dans l’URL
-  if_you_have_any_trouble_with_the_site_check_out: 'Si vous avez des questions, veuillez consulter notre <a href="%{help_url}">section d’aide</a> ou inscrire un message sur notre <a href="%{feedback_url}">groupe de commentaires</a>.'
+  if_you_have_any_trouble_with_the_site_check_out: 'Si vous avez des questions, veuillez consulter notre <a href="%{help_url}">section d’aide</a> ou poster un message sur notre <a href="%{feedback_url}">groupe de commentaires</a>.'
   if_your_project_is: Si votre projet concerne un lieu particulier, fixez ses coordonnées en cliquant sur la carte ou en les saisissant manuellement.
   ignore: ignorer
   ignore_and_continue: Ignorer et continuer
@@ -1961,7 +1965,7 @@ fr:
       place_boundary: Frontière du lieu
       checklist_places: Lieux de la liste de contrôle
       checklist_places_description: Lieux où ce taxon a été répertorié
-      range: Plage
+      range: Aire de répartition
   map_tooltip: Afficher la vue de la carte
   mark_as_reviewed: Marquer comme relu
   mark_all_as_reviewed: Marquer l’ensemble comme relu
@@ -2559,7 +2563,7 @@ fr:
   photos_from: Photos de
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Photos verrouillées
-  photos_locked_desc: Seuls les membres de l'équipe iNaturalist peuvent modifier les photos par défaut pour ce taxon
+  photos_locked_desc: Seuls les membres de l'équipe iNaturalist peuvent modifier les photos officielles de ce taxon
   photos_of_taxon_html: "Photos de %{taxon}"
   photos_or_sounds: Photos ou sons
   photos_or_sounds?: Photos ou sons?
@@ -3149,6 +3153,7 @@ fr:
   receive_updates_from_this_project: Recevoir des avis pour ce projet
   recent: Récent
   recent_evidence_of_organism: Preuve récente d’un organisme
+  recent_exports: Exports récents
   recent_new_users: Nouveaux utilisateurs récents
   recent_observations: Observations récentes
   recent_observations_: Observations récentes
@@ -3638,8 +3643,8 @@ fr:
     Un des taxons suggérés dans les identifications, ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
   taxonomy: Taxinomie
   taxon_assessments_are: |
-    Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement sa situation quant à la conservation.
-    Par exemple, un organisme régional de protection peut les utiliser pour gérer l’information et demander de la rétroaction sur la situation des taxons menacés dans la région.
+    Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement son statut de conservation.
+    Par exemple, un organisme régional de protection de l'environnement peut les utiliser pour exploiter de l’information et demander des données sur la situation des taxons menacés dans la région.
   taxon_change_must_be_committed_to_update_records: La modification de taxon doit être validée pour mettre à jour les enregistrements
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
@@ -3669,8 +3674,8 @@ fr:
   taxon_observed_by_user: "%{taxon} observé par %{user}"
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
-  taxon_range_created_notice: La gamme de taxons a bien été créée. Veuillez attendre quelques minutes qu’elle apparaisse sur les cartes.
-  taxon_range_updated_notice: La gamme de taxons a bien été mise à jour. Veuillez attendre quelques minutes pour que les modifications apparaissent sur les cartes.
+  taxon_range_created_notice: L'aire de répartition du taxon a bien été créée. Veuillez attendre quelques minutes pour qu’elle apparaisse sur les cartes.
+  taxon_range_updated_notice: L'aire de répartition du taxon a bien été mise à jour. Veuillez attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   taxon_ranks: Rangs de taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
   taxon_scheme: Classification du taxon
@@ -3752,7 +3757,7 @@ fr:
   the_world_is_full_of_interesting_places: |
     Le monde est plein de lieux intéressants, chacun rempli de formes de vie
     étranges et merveilleuses. Certaines sont de l’autre côté de la planète, tandis que
-    d’autres sont juste au bout de la rue! Les lieux sur %{site_name} vous laissent découvrir la vie
+    d’autres sont juste au bout de la rue! Les lieux sur %{site_name} vous laissent découvrir des êtres vivants
     sur toute la planète. Commencez votre exploration!
   then_keybord_sequence: alors
   there_are_x_synonyms_html:
@@ -3907,7 +3912,7 @@ fr:
   unresolve: Annuler
   unreview_all: Marquer tout comme non relu
   unsubscribe: Désabonnez-vous
-  unsubscribe_from_all_emails: Se désinscrire de tous les mails
+  unsubscribe_from_emails_like_this: Se désabonner des e-mails comme celui-ci
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
@@ -3937,7 +3942,7 @@ fr:
   upload_a_csv_file_with_observation: |
     Uploader les données d’observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c’est la meilleure méthode à adopter.
   upload_photo: Uploader des photos
-  upload_range: Télécharger la classification
+  upload_range: Uploader l'aire de répartition
   uploaded_by: Téléversé par
   uploader:
     errors:
@@ -4756,8 +4761,15 @@ fr:
           other: "%{count} unique"
       export:
         choose_columns_desc: Choissez les colonnes que vous voulez exporter
+        create_a_query_desc_html: |
+          Créez une requête d’observation tout comme vous le feriez ailleurs sur le
+          site. Vous pouvez aussi copier et coller une URL d’observations à partir d’un autre
+          endroit du site. Votre requête <strong>ne doit pas retourner plus de 200.000 observations</strong>.
+        export_in_progress_notice: |
+          Vous avez un export en cours. Vous devrez attendre qu'il se termine avant de pouvoir en effectuer un autre.
         ident_by_user_desc_html: |
           Colonnes pour l'identification actuelle par %{user}
+        limit_alert: Votre export sera trop gros. Changez vos filtres jusqu'à ce qu'il y ait moins de 200 000 observations.
         query_placeholder: "Choisissez les paramètres de requête ci-dessous ou coller une URL d’observations"
         taxon_extras_help_html: "Remarque : ces colonnes ralentiront la génération de votre exportation"
         geo_help_html: |
@@ -5431,7 +5443,7 @@ fr:
         leaderboards_among_projects_and_bioblitzes: |
           Classements entre <strong>projets</strong>
         multiple_project_administrators: Administrateurs multiples du projet
-        name_placeholder: Oiseaux de Chicago, étranges libellules, etc.
+        name_placeholder: Oiseaux de Chicago, libellules magnifiques, etc.
         no_need_to_rely_on_manual_addition: |
           Pas d’ajout manuel d’observations
         note_these_users_will_be_able_to_edit: |
@@ -5469,6 +5481,8 @@ fr:
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         umbrella_project_features: "Fonctionnalités du projet cadre:"
         unique_url_for_outreach: URL unique pour le dépassement
+        use_this_for_a_time_limited_event: |
+          Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.
         users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal
         use_this_link_to_create_html: |
           Utilisez à la place,  <a href="%{url}">ce lien</a> pour créer un projet traditionnel.
@@ -5561,27 +5575,27 @@ fr:
     search:
       index:
         no_taxa_options_html: |
-          <p>Vous avez quelques options :</p>
+          <p>Vous avez plusieurs options :</p>
           <ul class="list-unstyled">
           <li>
-          <strong>Ajouter un drapeau à un taxon de plus haut niveau</strong>
+          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
           <p>
-          Par ex. le genre qui contient une espèce. Avec de la chance, un responsable
-          ami ajoutera le taxon s’il peut être ajouté.
+          Par ex. le genre qui contient une espèce. Ensuite, un responsable
+          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
           </p>
           </li>
           <li>
           <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
           <p>
-          Beaucoup de responsables du site gardent trace des messages vers le Forum.
+          Beaucoup de responsables du site suivent les messages vers le forum.
           </p>
           </li>
           <li>
           <strong>
-          <a href="mailto:%{help_email}">Contacter le soutien</a>
+          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
           </strong>
           <p>
-          Soyez patient, nous n’avons pas une grosse équipe dédiée au soutien.
+          Soyez patient, notre équipe d'assistance est restreinte.
           </p>
           </li>
           </ul>
@@ -5671,7 +5685,7 @@ fr:
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
           Vous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur
           dans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre
-          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été téléversées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
+          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été uploadées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
           de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
           Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
           <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
@@ -5693,16 +5707,28 @@ fr:
         stats_generated_datetime: Statistiques générées le %{datetime}
         sunburst_desc_html: |
           Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base
-          de la hiérarchie est au centre, en commençant par « Vie » et en se terminant
+          de la hiérarchie est au centre, en commençant par «Etre vivant» et se termine
           par les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle
           au nombre d’observations de ce taxon, et les couleurs correspondent
-          à peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,
+          à peu près à nos couleurs d'icônes de taxon habituelles (vert pour les plantes,
           orange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous
-          voyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.
-          <strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et
+          voyez beaucoup de vert, cela veut dire que vous avez observé beaucoup de plantes.
+          <strong>Cliquez sur un des arcs pour placer ce taxon au centre</strong> et
           ses enfants autour, ou <strong>cliquez sur le centre pour remonter dans
           la hiérarchie</strong>.
         translators_title: Traducteurs
+        translators_desc: |
+          Saviez-vous que iNaturalist a été traduit dans %{x_languages} presque entièrement par
+          %{x_people} ? Voici tous les extraordinaires traducteurs qui
+          ont ajouté des traductions cette année, ainsi que le nombre de mots
+          qu'ils ont traduits pour le %{website_link_tag}site%{link_tag_end}, nos applications iNaturalist
+          %{iphone_link_tag}iOS%{link_tag_end} et
+          %{android_link_tag}Android%{link_tag_end} ainsi que
+          %{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir
+          toutes les personnes qui ont contribué à des traductions dans toutes les langues,
+          y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
+          %{view_all_web_link_tag}web%{link_tag_end} et
+          %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
         translators_desc_for_site: |
           Saviez-vous que %{site_name} a été traduit presque entièrement par
           %{x_people} personnes ? Voici tous les extraordinaires traducteurs qui
@@ -5827,7 +5853,7 @@ fr:
           existantes pour en ajouter d’autres.
         no_trending_desc: Rien d’observé dans le dernier mois concernant ce taxon
         photo_chooser_modal_desc: |
-          Faire glisser les photos d’ici vers la gauche, ou les faire glisser ici pour les réarranger.
+          Faire glisser les photos ici depuis la gauche, ou pour les réarranger.
         photo_chooser_modal_explanation: |
           À noter que la page du taxon affichera les photos de ce taxon
           et de ses descendants. Les photos choisies pour ce
@@ -6211,10 +6237,10 @@ fr:
         discuss_your_findings: Discuter de vos découvertes
         contribute_to_science: Contribuer à la Science
         science_desc_html: |
-          Chaque observation peut contribuer à la science de la biodiversité, du
-          papillon le plus rare à la mauvaise herbe de l’arrière-cour la plus courante. Nous partageons vos
-          découvertes avec les dépôts de données scientifique comme l’<a href='http://gbif.org' target='_blank'>Établissement pour l’Information sur la Biodiversité Globale</a>
-          pour aider les scientifiques à trouver et utiliser vos données. Tout ce que vous avez à faire est
+          Toute observation peut contribuer à l'étude de la biodiversité, du
+          papillon le plus rare à la mauvaise herbe de jardin la plus courante. Nous partageons vos
+          découvertes avec les bases de données scientifique comme l’<a href='http://gbif.org' target='_blank'> système mondial d'informations sur la biodiversité</a>
+          pour aider les scientifiques à trouver et utiliser vos données. Tout ce que vous avez à faire c'est
           d’observer.
         nature_at_your_fingertips: La nature au bout de vos doigts
         keep_track: Garder la trace
@@ -6554,6 +6580,15 @@ fr:
         observed_on: date d’observation
       observation_field_value:
         value: 'valeur'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Ajouté à la file d'attente
+        #Date/time the task began processing
+        started_at: Démarré
+        #Date/time the task finished processing
+        finished_at: Terminé
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Entrées
       post:
         title: Titre
         body: Corps
@@ -6699,6 +6734,13 @@ fr:
             observation_id:
               user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas les champs des autres
               user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement les champs des responsables du site
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Les exports ne peuvent contenir plus de 200 000 observations
+              must_have_query: La requête ne peut pas être vide
+            user_id:
+              already_has_an_export_in_progress: a déjà un export en cours
         place:
           attributes:
             place_geometry:

@@ -952,6 +952,7 @@ tr:
   create_a_query: Bir Sorgu Oluştur
   create_an_account: Bir Hesap Oluştur
   create_an_atlas: Bir Atlas Oluştur
+  create_export: Dışa Aktarma Oluştur
   create_new_taxon: Yeni Bir Sınıf Oluştur
   create_observations: Gözlem Oluştur
   created: Oluşuturulma
@@ -1317,6 +1318,7 @@ tr:
   fields_can_only_be_edited_by_the_people_who: Alanlar yalnızca onları oluşturan kişiler ve site sorumluları tarafından düzenlenebilir
   fields_merged: Alanlar birleştirildi
   file: Dosya
+  file_size: Dosya boyutu
   file_should_be_in_the_following_format: "Dosya takip eden formatta olmalıdır: sınıf adı, açıklama"
   fill_out_project_observation_fields: Proje gözlem alanlarını doldurun
   fill_out_your_profile: profilinizi tamamlayın
@@ -3191,6 +3193,7 @@ tr:
   receive_updates_from_this_project: Bu projeden güncellemeleri al
   recent: Son
   recent_evidence_of_organism: Bir organizmanın son kanıtı
+  recent_exports: Son Dışa Aktarmalar
   recent_new_users: Son Katılan Yeni Kullanıcılar
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
@@ -3941,7 +3944,7 @@ tr:
   unresolve: Çözümü Kaldır
   unreview_all: Tümünü Görüntülenmemiş Yap
   unsubscribe: Abonelikten ayrıl
-  unsubscribe_from_all_emails: Tüm e-posta aboneliklerinden çık
+  unsubscribe_from_emails_like_this: Bunun gibi e-posta listesinden çık
   unsuspend_user: Kullanıcıyı Askıdan Çıkar
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
@@ -4711,8 +4714,13 @@ tr:
           other: "%{count} benzersiz"
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
+        create_a_query_desc_html: |
+          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. Sorgunuz <strong>200.000'den çok </strong> gözlem içermemelidir.
+        export_in_progress_notice: |
+          Devam eden bir dışa aktarmanz var. Başka bir dışa aktarma kuyruğuna girmeden önce bitmesini beklemeniz gerekecek.
         ident_by_user_desc_html: |
           %{user} tarafından geçerli tanımlama için sütunlar
+        limit_alert: Dışa aktarmanız çok büyük olacak. 200.000'den az gözlem olana kadar filtrelerinizi değiştirin.
         query_placeholder: "Aşağıdaki sorgu parametrelerinden birini seçin veya bir gözlem URL'ine yapıştırın"
         taxon_extras_help_html: "Not: Bu sütunlar dışa aktarımın oluşturulmasını yavaşlatır"
         geo_help_html: |
@@ -6506,6 +6514,15 @@ tr:
         observed_on: gözlenen tarih
       observation_field_value:
         value: 'değer'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Kuyrukta
+        #Date/time the task began processing
+        started_at: Başladı
+        #Date/time the task finished processing
+        finished_at: Bitti
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Girdiler
       post:
         title: Başlık
         body: İçerik
@@ -6655,6 +6672,13 @@ tr:
             observation_id:
               user_does_not_accept_fields_from_others: kullanıcı başkalarından alanları kabul etmiyor
               user_only_accepts_fields_from_site_curators: kullanıcı yalnızca sayfa sorumlularından alanları kabul eder
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Dışa aktarma 200.000'den çok gözlem içeremez
+              must_have_query: Sorgu boş olamaz
+            user_id:
+              already_has_an_export_in_progress: zaten bir dışa aktarma devam ediyor
         place:
           attributes:
             place_geometry:
