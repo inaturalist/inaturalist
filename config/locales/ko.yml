@@ -14,7 +14,7 @@ ko:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span> 명'
+    other: '동정한 사용자 <span class="count">%{count}</span>'
   x_journal_posts_html:
     other: '일지 포스팅 <span class="count">%{count}</span> 개'
   x_matching_taxa:
@@ -36,7 +36,7 @@ ko:
   x_observations_reviewed_html:
     other: "검토한 관찰 <span class='count'>%{count}</span> 개"
   x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span> 명'
+    other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
