@@ -108,6 +108,10 @@
           <span class="description">
             Only staff can add or remove photos for this taxon
           </span>
+
+          <div class="ui clearfix upstacked">
+            <%= link_to t(:add_photo), new_taxon_photo_path( taxon_id: @taxon.id ), class: "readmore" %>
+          </div>
         </div>
       <% end %>
       

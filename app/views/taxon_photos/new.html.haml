@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-xs-12
+      %h1
+        - if @taxon
+          New Taxon Photo for
+          = link_to @taxon.name, @taxon
+        - else
+          New Taxon Photo
+      = form_for @taxon_photo, builder: DefaultFormBuilder, html: { class: "admin", multipart: true } do |f|
+        = f.text_field :taxon_id
+        .stacked
+          = file_field_tag :file
+        = f.submit t(:save), class: "btn btn-primary"
