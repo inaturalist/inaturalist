@@ -16,6 +16,7 @@ module DarwinCore
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
       %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
       %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
@@ -160,24 +161,31 @@ module DarwinCore
         "https://orcid.org/#{orcid_id}"
       end
 
+      def identifiedBy
+        return unless first_improving = first_improving_identification
+        first_improving.user.name.blank? ? first_improving.user.login : first_improving.user.name
+      end
+
       def identifiedByID
+        return unless first_improving = first_improving_identification
+        orcid_id = first_improving.user.provider_authorizations.detect{|pa|
+          pa.provider_name == "orcid"
+        }.try(:provider_uid)
+        return if orcid_id.blank?
+        "https://orcid.org/#{orcid_id}"
+      end
+
+      # As noted in https://github.com/gbif/occurrence/issues/89, identifiedBy
+      # and identifiedByID are primarily meant to provide attribution to the
+      # person who first provided the "correct" identification and not
+      # necessarily to track all people who may have agreed with that
+      # identification, sp we are only including the person who added the first
+      # improving identification that matches the observation taxon
+      def first_improving_identification
         return unless dwc_taxon
         taxon_id = dwc_taxon.id
         idents = identifications.select(&:current?).sort_by(&:id)
-        first_improving = idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
-        # Crediting the supporting identifiers gets dicey. Yes, they contribute
-        # to the Community Taxon, but it's not always possible to say which ones
-        # really shifted the Community Taxon or the quality grade. So... just
-        # omitting this for now.
-        # first_supporting = idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::SUPPORTING }
-        first_supporting = nil
-        identifiers = [first_improving, first_supporting].compact.collect(&:user)
-        return if identifiers.blank?
-        orcid_ids = identifiers.collect do |u|
-          u.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
-        end.compact
-        return if orcid_ids.blank?
-        orcid_ids.collect{|orcid_id| "https://orcid.org/#{orcid_id}"}.join( "|" )
+        idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
       end
 
       def establishmentMeans
