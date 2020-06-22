@@ -1070,6 +1070,7 @@ cs:
   create_a_query: Vytvořit dotaz
   create_an_account: Vytvořit účet
   create_an_atlas: Vytvořit atlas
+  create_export: Vytvořit export
   create_new_taxon: Vytvořit nový taxon
   create_observations: Založit pozorování
   created: Vytvořeno
@@ -1435,6 +1436,7 @@ cs:
   fields_can_only_be_edited_by_the_people_who: Pole mohou upravovat pouze osoby, které je vytvořily, a kurátoři stránek
   fields_merged: Sloučená pole
   file: Soubor
+  file_size: Velikost souboru
   file_should_be_in_the_following_format: "Soubor by měl být v následujícím formátu: název taxonu, popis"
   fill_out_project_observation_fields: Vyplnit pole pozorování v projektu
   fill_out_your_profile: vyplnit váš profil
@@ -1545,10 +1547,10 @@ cs:
   followers: Sledovatelé
   following: sledující
   following_x_people:
-    one: 'Sledující 1 osobu'
-    few: 'Sledující %{count} lidí'
-    many: 'Sledující %{count} lidí'
-    other: 'Sledující %{count} lidi'
+    one: 'Sleduje 1 osobu'
+    few: 'Sleduje %{count} osob'
+    many: 'Sleduje %{count} osob'
+    other: 'Sleduje %{count} osob'
   for_a_taxon: pro taxon
   formatting: Formátování
   forgot_your_password: Zapomněli jste heslo?
@@ -2191,7 +2193,7 @@ cs:
   most_observations: Nejvíce pozorování
   most_recent_observation_by_date_observed: Nejnovější ověřitelné pozorování podle data pozorování
   most_species: Nejvíce druhů
-  most_observed_species: Nejvíce pozorovaných druhů
+  most_observed_species: Nejvíce pozorované druhy
   most_observed_introduced_species: Nejvíce pozorovaných nepůvodních druhů
   most_observed_threatened_species: Nejvíce pozorovaných ohrožených druhů
   move_input_children_to_output?: Přesunout děti na výstup?
@@ -3330,6 +3332,7 @@ cs:
   receive_updates_from_this_project: Dostávat aktualizace z tohoto projektu
   recent: Nedávné
   recent_evidence_of_organism: Nedávné důkazy o organismu
+  recent_exports: Nedávné exporty
   recent_new_users: Noví uživatelé
   recent_observations: Nedávná pozorování
   recent_observations_: Nedávná pozorování
@@ -4936,8 +4939,12 @@ cs:
           other: "%{count} jedineční"
       export:
         choose_columns_desc: Vyberte sloupce, které chcete exportovat
+        export_in_progress_notice: |
+          Právě probíhá export. Budete muset počkat na dokončení,
+          než budete moci vytvořit další export.
         ident_by_user_desc_html: |
           Sloupce k aktuální identifikaci uživatelem %{user}
+        limit_alert: Export bude příliš velký. Změňte filtrování, aby bylo výsledkem méně než 200 000 pozorování.
         query_placeholder: "Zvolte parametry dotazu níže nebo vložte URL pozorování"
         taxon_extras_help_html: "Poznámka: tyto sloupce zpomalí generování vašeho exportu"
         geo_help_html: |
@@ -6539,6 +6546,15 @@ cs:
         observed_on: datum pozorování
       observation_field_value:
         value: 'Hodnota'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Ve frontě
+        #Date/time the task began processing
+        started_at: Spuštěno
+        #Date/time the task finished processing
+        finished_at: Dokončeno
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Vstupy
       post:
         title: Název
         body: Obsah
@@ -6696,6 +6712,13 @@ cs:
             observation_id:
               user_does_not_accept_fields_from_others: uživatel nepřijímá pole od ostatních
               user_only_accepts_fields_from_site_curators: uživatel přijímá pole pouze od kurátorů stránky
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Export nemůže obsahovat více než 200 000 pozorování
+              must_have_query: Dotaz nemůže být prázdný
+            user_id:
+              already_has_an_export_in_progress: export již probíhá
         place:
           attributes:
             place_geometry:

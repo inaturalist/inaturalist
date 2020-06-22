@@ -942,6 +942,7 @@ it:
   create_a_query: Crea una ricerca
   create_an_account: Crea un account
   create_an_atlas: Crea un Atlante
+  create_export: Crea Esportazione
   create_new_taxon: Crea un nuovo taxon
   create_observations: Crea delle osservazioni
   created: Creato
@@ -1307,6 +1308,7 @@ it:
   fields_can_only_be_edited_by_the_people_who: I campi possono essere modificati solo da chi li ha creati e dai curatori del sito
   fields_merged: Campi uniti
   file: File
+  file_size: Dimensione file
   file_should_be_in_the_following_format: "Il file deve essere nel seguente formato: nome del taxon, descrizione"
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
   fill_out_your_profile: completa il tuo profilo
@@ -3180,6 +3182,7 @@ it:
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
   recent: Recenti
   recent_evidence_of_organism: Evidenze recenti della presenza dell'organismo
+  recent_exports: Esportazioni Recenti
   recent_new_users: Nuovi Utenti Recenti
   recent_observations: Osservazioni recenti
   recent_observations_: Osservazioni recenti
@@ -3930,6 +3933,7 @@ it:
   unresolve: Rimuovi la risoluzione
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
+  unsubscribe_from_emails_like_this: Annulla l'iscrizione ad email come queste
   unsuspend_user: Riammetti utente
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
@@ -3942,6 +3946,7 @@ it:
   update_search: Aggiorna ricerca
   update_selected_taxa: Aggiorna i taxa selezionati
   update_subscription: Aggiorna iscrizione
+  update_subscription_preferences: Aggiorna preferenze dell'iscrizione
   update_x_selected_taxa:
     one: "Aggiorna il taxon selezionato"
     other: "Aggiorna i %{count} taxa selezionati"
@@ -4670,8 +4675,14 @@ it:
           other: "%{count} uniche"
       export:
         choose_columns_desc: Scegli le colonne da esportare
+        create_a_query_desc_html: |
+          Esegui una interrogazione per le osservazioni come faresti altrove nel sito. Puoi anche tagliare ed incollare l'URL delle osservazioni da un'altra parte del sito. La tua interrogazione deve restituire<strong>non più di 200'000 osservazioni</strong>.
+        export_in_progress_notice: |
+          Hai un'esportazione in corso. Dovrai aspettare che finisca
+          prima di poter mettere in coda un'altra esportazione.
         ident_by_user_desc_html: |
           Colonne per l'identificazione per %{user}
+        limit_alert: La tua esportazione sarà troppo grande. Cambia i tuoi filtri finché non ci saranno meno di 200.000 osservazioni.
         query_placeholder: "Scegli i parametri dell'interrogazione qui sotto o incolla l'URL della ricerca di osservazioni"
         taxon_extras_help_html: "Nota: queste colonne rallenteranno la creazione della tua esportazione"
         geo_help_html: |
@@ -6117,6 +6128,15 @@ it:
         observed_on: osservata in data
       observation_field_value:
         value: 'valore'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: In coda
+        #Date/time the task began processing
+        started_at: Iniziata
+        #Date/time the task finished processing
+        finished_at: Terminata
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Input
       post:
         title: Titolo
         body: Corpo
@@ -6266,6 +6286,13 @@ it:
             observation_id:
               user_does_not_accept_fields_from_others: l'utente non accetta campi da altri
               user_only_accepts_fields_from_site_curators: l'utente accetta i campi solo dai curatori del sito
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Le esportazioni non possono contenere più di 200.000 osservazioni
+              must_have_query: La query non può essere vuota
+            user_id:
+              already_has_an_export_in_progress: ha già un'esportazione in corso
         place:
           attributes:
             place_geometry:

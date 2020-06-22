@@ -936,6 +936,7 @@ ca:
   create_a_query: Crea una consulta
   create_an_account: Crea un compte
   create_an_atlas: Crear un Atlas
+  create_export: Crea una exportació
   create_new_taxon: Crea un nou tàxon
   create_observations: Crea observacions
   created: Creat
@@ -1068,8 +1069,30 @@ ca:
   deviation: Desviació
   devise:
     failure:
+      already_authenticated: 'Ja heu iniciat la sessió.'
+      unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
+      invalid: 'Correu electrònic o contrasenya incorrectes'
+      invalid_token: 'Autenticació no vàlida'
       user:
         suspended: El vostre compte s'ha suspès
+    sessions:
+      signed_in: 'Sessió iniciada correctament.'
+      signed_out: 'Sessió finalitzada correctament.'
+    passwords:
+      send_instructions: 'Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.'
+      updated: 'La contrasenya ha canviat correctament. Ara ja esteu registrat.'
+      updated_not_active: 'La vostra contrasenya s''ha modificat correctament.'
+      send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
+      no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
+    registrations:
+      signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
+      updated: 'Heu actualitzat el vostre compte amb èxit.'
+      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruccions de confirmació'
+      reset_password_instructions:
+        subject: 'Instruccions de regeneració de la contrasenya'
   discoveries: Descobriments
   did_not_send_invitations_because: 'No ho compartirem amb els seguidors perquè:'
   did_you_mean: 'Es refereix a'
@@ -1133,6 +1156,7 @@ ca:
   edit_field: Camp d'edició
   edit_license: Modifica la llicència
   edit_multiple_dates: Editeu diverses dates
+  edit_multiple_descriptions: Editar múltiples notes
   edit_multiple_locations: Editeu diverses localitzacions
   edit_multiple_species: Editeu diverses espècies
   edit_notes: Modifiqueu les notes
@@ -1274,6 +1298,7 @@ ca:
   fields_can_only_be_edited_by_the_people_who: Els camps només poden ser editats per les persones que els van crear i els supervisors del lloc
   fields_merged: Camps fusionats
   file: Arxiu
+  file_size: Mida del fitxer
   file_should_be_in_the_following_format: "L'arxiu hauria de tenir el següent format: nom de l'espècie o grup, descripció"
   fill_out_project_observation_fields: Ompliu els camps d'observació del projecte
   fill_out_your_profile: ompliu el perfil
@@ -1772,6 +1797,8 @@ ca:
   linkedin: LinkedIn
   list: Llista
   list_deleted: Llista eliminada.
+  list_reloaded_from_observations: Llista recarregada de les observacions
+  list_rules_reapplied: La llista de regles s'ha tornat a aplicar
   list_saved: Llista desada.
   list_tooltip: Mostrar la vista de llista
   list_updated: Llista actualitzada!
@@ -3147,6 +3174,7 @@ ca:
   receive_updates_from_this_project: Rebre les actualitzacions d'aquest projecte
   recent: Recent
   recent_evidence_of_organism: Evidència recent d'un organisme
+  recent_exports: Exportacions recents
   recent_new_users: Nous Usuaris recents
   recent_observations: Observacions recents
   recent_observations_: Observacions recents
@@ -3909,6 +3937,7 @@ ca:
   update_search: Actualitzeu la cerca
   update_selected_taxa: Actualitza els tàxons seleccionats
   update_subscription: Actualitzeu la subscripció
+  update_subscription_preferences: Actualitzeu les Preferències de la subscripció
   update_x_selected_taxa:
     one: "Actualitzar el tàxon seleccionat"
     other: "Actualitzar els %{count} tàxons seleccionats"
@@ -4344,6 +4373,7 @@ ca:
   your_recent_projects: Els vostres projectes recents
   your_relationships: Les vostres relacions
   your_site_needs_your_to_authorize_more_permissions_from_provider: "Des d’%{site_name} us demanem que autoritzeu els següents permisos de %{provider} per continuar:"
+  your_subscriptions_to_this_place: Les vostres subscripcions a aquest lloc
   your_tags: Les vostres Etiquetes
   yours: El vostre
   youre_not_following_anyone: |-
@@ -4651,8 +4681,11 @@ ca:
           other: "%{count} únics"
       export:
         choose_columns_desc: Escolliu les columnes que voleu exportar
+        export_in_progress_notice: |
+          Hi ha una exportació en curs. Heu d’esperar-ne la finalització abans que pugueu sol·licitar-ne una altra.
         ident_by_user_desc_html: |
           Columnes per a l'actual identificació de %{user}
+        limit_alert: L’exportació serà massa gran. Canvieu els filtres fins què hi hagi menys de 200 000 observacions.
         query_placeholder: "Escull els paràmetres de consulta a continuació o enganxar en una URL d'observacions"
         taxon_extras_help_html: "Nota: aquestes columnes ralentitzarà la generació de la vostra exportació"
         geo_help_html: |
@@ -6067,6 +6100,13 @@ ca:
         observed_on: data d'observació
       observation_field_value:
         value: 'valor'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: En cua
+        #Date/time the task began processing
+        started_at: Iniciades
+        #Date/time the task finished processing
+        finished_at: Finalitzades
       post:
         title: Títol
         body: Text
