@@ -17238,6 +17238,7 @@ I18n.translations["en"] = {
     "projects": {
       "collection": "Collection",
       "edit": {
+        "admins_must_be_existing_members": "Admins must be existing members of the project.",
         "change_owner_alert": "This will remove your ability to delete this project or transfer\nownership again. Do you want to proceed?\n",
         "make_owner": "Make Owner"
       },

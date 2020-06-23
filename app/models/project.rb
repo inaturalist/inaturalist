@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   before_update :set_updated_at_if_preferences_changed
-  after_save :add_admins
+  around_save :add_admins
 
   after_destroy :destroy_project_rules
 
@@ -1039,16 +1039,16 @@ class Project < ActiveRecord::Base
   end
 
   def add_admins
+    new = new_record?
+    yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
-      if admin_attr["_destroy"] == "true"
-        if pu = project_users.where( user_id: admin_attr["user_id"] ).first
-          pu.update_attributes( role: nil )
-        end
+      new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
+      if new
+        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update_attributes( role: new_role )
       else
-        pu = project_users.find_or_create_by( user_id: admin_attr["user_id"] )
-        pu.update_attributes( role: "manager" )
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update_attributes( role: new_role )     
       end
     end
     project_users.reload
