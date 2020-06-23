@@ -61,11 +61,13 @@ class PhotoModal extends React.Component {
       }
       photoAttribution = (
         <div className="photo-attribution">
-          {
-            localizedPhotoAttribution( photo, {
-              name: observation ? ( observation.user.name || observation.user.login ) : null
-            } )
-          }
+          <span
+            dangerouslySetInnerHTML={{
+              __html: localizedPhotoAttribution( photo, {
+                name: observation ? ( observation.user.name || observation.user.login ) : null
+              } )
+            }}
+          />
           <a href={`/photos/${photo.id}`} title={I18n.t( "details" )}>
             <i className="fa fa-info-circle" />
           </a>

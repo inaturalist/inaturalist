@@ -23,7 +23,8 @@ class Photo < ActiveRecord::Base
   before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses,
-             :index_observations
+             :index_observations,
+             :index_taxa
   after_destroy :create_deleted_photo
 
   SQUARE = 75
@@ -150,7 +151,11 @@ class Photo < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: observations)
+    Observation.elastic_index!( scope: observations )
+  end
+
+  def index_taxa
+    Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 
   def editable_by?(user)
