@@ -1545,7 +1545,7 @@ cs:
   follow_user: "Sledovat %{user}"
   followed_projects: Sledované projekty
   followers: Sledovatelé
-  following: sledující
+  following: Sledovaní
   following_x_people:
     one: 'Sleduje 1 osobu'
     few: 'Sleduje %{count} osob'
@@ -5340,6 +5340,7 @@ cs:
         revoke_observations_desc: |
           Pokud odcházíte jen proto, že nechcete, aby kurátoři projektu viděli vaše soukromé souřadnice.
       edit:
+        admins_must_be_existing_members: Administrátoři musí být existujícími členy projektu.
         aggregation_pending: Seskupení ve frontě
         new_place_desc_html: |
           Zkuste si projít
