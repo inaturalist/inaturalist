@@ -5291,6 +5291,7 @@ fr:
         revoke_observations_desc: |
           Si le seul motif de votre départ est d’empêcher les responsables du projet de voir vos coordonnées masquées.
       edit:
+        admins_must_be_existing_members: Les administrateurs doivent être des membres existants du projet.
         aggregation_pending: En attente d'aggrégation
         new_place_desc_html: |
           Essayez de voir en utilisant 
@@ -6127,8 +6128,14 @@ fr:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Les informations que nous pourrions partager avec ces tiers incluent
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Détails du navigateur, comme la marque, le modèle ou la version
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Détails de l'appareil, comme la marque et le modèle d'un téléphone portable
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Ces services tiers nous fournissent une valeur ajoutée énorme</strong> pour maintenir la stabilité et la facilité d'utilisation d'iNaturalist, malgré notre équipe relativement réduite. Sur les appareils mobiles, il n'y a quasiment pas d'autre façon pour nous d'être alertés des problèmes qui se produisent puisque le logiciel fonctionne sur des appareils que nous ne contrôlons pas. Parfois, nous ne sommes même pas au courant de l'existence de tels problèmes jusqu'à ce qu'ils apparaissent dans les données que ces services nous fournissent. <strong>En partageant ces informations, vous nous aidez à vous aider, ainsi que toute la communauté iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Notez que cette option ne s'applique qu'aux données de statistiques et d'erreurs que nous envoyons explicitement à ces entreprises. Tous les serveurs d'iNaturalist sont fournis et hébergés par Microsoft, toutes les images d'iNaturalist sont hébergées par Amazon, et presque toutes les cartes d'iNaturalist sont fournies par Google, ce qui signifie que chaque fois que vous regardez une observation sur iNaturalist, vous vous connectez aux services fournis par ces entreprises et leur exposez au minimum votre adresse IP (dans l’application pour iPhone nous utilisons les cartes d’Apple). iNaturalist n'existerait probablement pas sans les services fournis par ces sociétés, et bien que nous puissions limiter la quantité et les types de données que vous partagez avec eux en utilisant iNat, nous ne pouvons pas supprimer complètement ce flux de données.
         project_settings_desc: |
           Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
           coordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
