@@ -1869,7 +1869,8 @@ class Observation < ActiveRecord::Base
         private_geom: o.private_geom,
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
-        taxon_geoprivacy: o.taxon_geoprivacy
+        taxon_geoprivacy: o.taxon_geoprivacy,
+        public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
