@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :saved_locations
   apipie
 
-  resources :sites
+  resources :sites do
+    collection do
+      get :network
+    end
+  end
 
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
