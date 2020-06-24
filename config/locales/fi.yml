@@ -2061,7 +2061,7 @@ fi:
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi siihen %{site_name}:in sijaan?
+    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi %{site_name}:een kansainvälisen sivuston sijasta?
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
