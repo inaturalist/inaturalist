@@ -3630,6 +3630,7 @@ ja:
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
   view: 表示
   view_all: すべて表示
+  view_all_flags: すべてのフラグを表示
   view_all_members: メンバーをすべて表示
   view_all_n: "すべての%{n}を表示"
   view_all_observations: すべての観察記録を表示
@@ -3715,6 +3716,8 @@ ja:
   white: 白
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
+  with_annotation: 注釈付き
+  without_annotation: 注釈なし
   widget: ウィジェット
   widget_code: ウィジェットコード
   wikipedia_attribution_cc_by_sa_3_html: |
@@ -3966,6 +3969,7 @@ ja:
         remove_observations_label: |
           このプロジェクトから自分の全ての観察記録を取り除く
       edit:
+        admins_must_be_existing_members: 管理者はプロジェクトの既存のメンバーでなければなりません。
         end_time_desc: "バイオブリッツの終了時間。開始時間より1年未満の期間でなければなりません。"
         icon_desc: "正方形にトリミングされます"
         project_assets_desc_html: |
