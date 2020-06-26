@@ -113,6 +113,7 @@ bg:
     other: "<span class='count'>%{count}</span> промени на таксони добавени"
   _100_day_trends: Тенденции за 100 дена
   a_community_for_naturalist: Общност за естествоизпитатели
+  a_flag_for_x: "маркер за %{x}"
   a_member_of_taxon_html: "представител на %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -138,7 +139,12 @@ bg:
   about_blocking: Относно блокирането
   about_charts: Относно диаграмите
   about_community_taxa: За консенсусните разпознавания от общността
+  about_conservation_status: Относно природозащитния статут
   about_editing_observation_fields: Относно редактирането на полета за наблюдения
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Относно начина на заселване
   about_licenses: За лицензите
   about_muting: Относно заглушаването
   #Header for a section describing taxon names
@@ -415,6 +421,7 @@ bg:
   back_to_observation: Обратно към наблюдението
   back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
+  back_to_places: Обратно към Места
   back_to_possessive_user_profile: "Обратно към профила на %{possuser}"
   back_to_projects: Обратно към проекти
   back_to_suggestions: Назад към предложенията
@@ -611,9 +618,12 @@ bg:
     cannot_be_determined: Неопределим
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
+    dead: Организмът е мъртъв или по всичко личи, че скоро ще загине
     flower_budding: Виждат се цветни пъпки, но не са разтворени
+    flowering: Цветовете са видими, напълно развити и все още прикачени към растението
     fruiting: Плодът се вижда и все още е прикрепен към растението
     no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
+    cannot_be_determined: Не може да се определи по наличните свидетелства
   coordinate_systems: Координатни системи
   coordinates: Координати
   copy: Копирай
@@ -649,6 +659,7 @@ bg:
   created_on: Създадено на
   creating_your_account: "Създаване на акаунт..."
   critically_endangered: Критично застрашен
+  csv: CSV
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
   curation: Куриране
@@ -703,6 +714,11 @@ bg:
   date_range: Интервал от време
   date_specified: Указана дата
   date_time: Дата/Час
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} – %{d2}"
   date_updated: Дата на обновяване
   day: Ден
   decrease_brightness: Намали яркостта
@@ -726,6 +742,7 @@ bg:
   describe_purpose: Опишете целите на проекта.
   describe_your_interest_in_nature: Опишете Вашия интерес към природата!
   description: Описание
+  description_from: Описание от
   description_slash_tags: Описание / етикети
   desription: Описание
   destroy: Унищожи
@@ -743,6 +760,9 @@ bg:
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Може би изучавате нематодите? Или сте най-изтъкнатият експерт по таксономия на веслоногите? Може би просто се захласвате по красивите цветя? Попълването на профила Ви му придава по-личен характер и способства за установяване на Вашият авторитет когато помагате на други хора с разпознаването.
   doh_something_went_wrong: Ох, нещо се обърка.
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ДАРЕТЕ
   done: Готово
   dont_send_me_email: "Не ми изпращайте никакви писма!"
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -811,6 +831,8 @@ bg:
     native: местен
     naturalised: натурализиран
   establishment_means: Начин на заселване
+  establishment_means_describes_how: |
+    Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
   every_species_seen_by: Всеки вид видян от
   everyone: всички
   everyone_: Всички
@@ -910,6 +932,7 @@ bg:
   frequency: Честота
   from_a_place: от място
   from_flickr_facebook_etc: От Flickr, Facebook и др.
+  from_place: От място
   from_soundcloud: От Soundcloud
   full_screen: Пълен екран
   fungi:
@@ -994,6 +1017,7 @@ bg:
   importing: "Импортиране..."
   in_n: "във %{n}"
   in_place_x: във %{place}
+  inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
   inbox: входящи
   increase_brightness: Увеличи яркостта
@@ -1265,6 +1289,7 @@ bg:
   merge: Обединяване
   merge_it_with_another_place: Обедини с друго място
   message: Съобщение
+  message_from_user_on_date: От %{user} на %{date}
   messages: Съобщения
   misleading_or_illegal_content_html: |
     Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, погледнете <a href="/help#inappropriate">ЧЗВ</a>.
@@ -1308,6 +1333,8 @@ bg:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
   month: Месец
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
   months: Месеци
   more: Още
   more_fields: Още полета
@@ -1359,6 +1386,10 @@ bg:
   needs_id_: Нуждае се от разпознаване
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
   needs_to_be_identified: Нуждае се от разпознаване
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от iNaturalist.org на %{site_name}?
+  network_affiliation_prompt_from_other_site_html: |
+    Желаете ли да промените своето членство от <strong>%{other_site_name}</strong> на <strong>%{site_name}</strong>?
   new: Нови
   new_and_noteworthy: Ново и интересно
   new_check_list: Нов видов списък
@@ -1450,6 +1481,16 @@ bg:
   observation_: наблюдение
   observation_added: Наблюдението е добавено.
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
+  observation_brief_something_from_place_on_day: "Нещо от %{place} на %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Нещо от %{place} на %{day} от %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Нещо от %{place} на %{day} в %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Нещо от %{place} на %{day} в %{time} от %{user}"
+  observation_brief_taxon_from_place: "%{taxon} от %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} от %{place} от %{user}"
+  observation_brief_taxon_from_place_on_day: "%{taxon} от %{place} на %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} от %{place} на %{day} от %{user}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} от %{place} на %{day} в %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} от %{place} на %{day} в %{time} от %{user}"
   observations_by_app: Наблюдения според приложение
   observations_by_rank: Наблюдения според ранг
   observations_by_user_on_date: "Наблюдения от %{user} на %{date}"
@@ -1471,6 +1512,9 @@ bg:
   observation_fields_are_additional: Полетата за наблюдения са допълнителни полета за данни, които могат да бъдат добавяни към наблюденията.
   observation_fields_by_preferences_description: |
     Полетата за наблюдения са подобни на етикети, само че по подразбиране всеки може да ги добавя към Вашите наблюдения. Можете да промените това ако предпочитате само Вие (и кураторите) да правите това.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    например 2019-10-29 13:12:21
   observed_on_datetime: Наблюдаване на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_rules: Правила за наблюдения
@@ -1514,6 +1558,7 @@ bg:
   observer: Наблюдател
   observers: Наблюдатели
   observer_short: Налюдател
+  occurrence_status_establishment_means: срещаемост, начин на заселване
   of_observations: наблюдения
   of_species: вид
   of_observers: наблюдатели
@@ -1552,6 +1597,7 @@ bg:
   only_one_coordinate_system_per_file: |
     Само една координатна система може да бъде използвана в един файл. В противен случай ще се конвертира или изобрази погрешно.
   only_project_curators_can_do_that: Само кураторите на проекта могат да правят това.
+  only_receive_updates_about_this_taxon: Получавай известия само за този таксон
   only_species: само видове
   only_species_and_subspecies: само видове и подвидове/вариетети
   only_the_owner_of_this_list_can_do_that: Само собственика на списъка може да прави това. Не бъди така лош.
@@ -1637,6 +1683,8 @@ bg:
       building: сграда
       Canton: Кантон
       canton: кантон
+      City Building: Градска постройка
+      city building: градска постройка
       Colloquial: Разговорно
       colloquial: разговорно
       Commune: Комуна
@@ -1647,6 +1695,10 @@ bg:
       country: държава
       County: Окръг
       county: окръг
+      District: Област
+      district: област
+      Division: Район
+      division: район
       Drainage: Канализация
       drainage: канализация
       Estate: Имот
@@ -1681,6 +1733,8 @@ bg:
       open_space: отворено пространство
       Parish: Eнория
       parish: енория
+      Prefecture: Префектура
+      prefecture: префектура
       Prefecture_City: Център на префектура
       prefecture_city: център на префектура
       Point_of_Interest: Място от интерес
@@ -1689,6 +1743,8 @@ bg:
       postal_code: пощенски код
       Province: Провинция
       province: провинция
+      Regency: Регентство
+      regency: регентство
       Region: Регион
       region: регион
       Republic: Република
@@ -1707,6 +1763,10 @@ bg:
       subdivision: подразделение
       Suburb: Предградие
       suburb: предградие
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Сум
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: сум
       Supername: Надиме
       supername: надиме
       Territory: Територия
@@ -1731,6 +1791,7 @@ bg:
   places_name:
     afghanistan: Афганистан
     africa: Африка
+    akrotiri_and_dhekelia: Акротири и Декелия
     aland: Оландски острови
     albania: Албания
     algeria: Алжир
@@ -1767,13 +1828,43 @@ bg:
     brunei: Бруней
     bulgaria: България
     burkina_faso: Буркина Фасо
+    burundi: Бурунди
+    cambodia: Камбоджа
+    cameroon: Камерун
     canada: Канада
+    cape_verde: Кабо Верде
+    cayman_islands: Кайманови острови 
+    central_african_republic: Централноафриканска република
     central_america: Централна Америка
+    chad: Чад
+    chile: Чили
     china: Китай
+    christmas_island: Коледен остров
+    clipperton_island: Остров Клипертон
+    cocos_islands: Кокосови острови
     colombia: Колумбия
+    commonwealth_of_the_northern_mariana_islands: Северни Мариански острови
+    comoros: Коморски острови 
+    cook_islands: Острови Кук 
+    costa_rica: Коста Рика 
+    cote_d_ivoire: Кот д'Ивоар 
+    croatia: Хърватия
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кипър
+    czech_republic: Чехия
+    democratic_republic_of_the_congo: Демократична република Конго
     denmark: Дания
+    djibouti: Джибути
+    dominica: Доминика
+    dominican_republic: Доминиканска Република
+    east_timor: Източен Тимор
+    ecuador: Еквадор
     egypt: Египет
+    el_salvador: Салвадор
     equatorial_guinea: Екваториална Гвинея
+    eritrea: Еритрея
+    estonia: Естония
     ethiopia: Етиопия
     europe: Европа
     falkland_islands: Фолкландски острови
@@ -1835,6 +1926,9 @@ bg:
     lithuania: Литва
     luxembourg: Люксембург
     macao: Макао
+    macedonia: Македония
+    madagascar: Мадагаскар
+    malawi: Малави
     martinique: Мартиника
     mexico: Мексико
     netherlands: Нидерландия
@@ -1847,8 +1941,19 @@ bg:
     peru: Перу
     poland: Полша
     portugal: Португалия
+    puerto_rico: Пуерто Рико
+    qatar: Катар
     republic_of_congo: Република Конго
+    reunion: Реюнион
+    romania: Румъния
     russia: Русия
+    rwanda: Руанда
+    saint_barthelemy: Сен Бартелми 
+    saint_helena: Света Елена
+    saint_kitts_and_nevis: Сейнт Китс и Невис
+    saint_lucia: Сейнт Лусия
+    saint_martin: Сен Мартен
+    saint_pierre_and_miquelon: Сен Пиер и Микелон
     saint_vincent_and_the_grenadines: Сейнт Винсънт и Гренадини
     samoa: Самоа
     san_marino: Сан Марино
@@ -2074,6 +2179,8 @@ bg:
   removed: Премахнато
   removing: "Премахване..."
   reptiles: влечуги
+  required: задължително
+  required_: Задължително
   required_field: задължително поле
   research: изследователско
   research_grade: Изследователско качество
@@ -2093,6 +2200,8 @@ bg:
   rotate_right: Завърти надясно
   row_singular_or_plural: Ред(ове)
   rules_for_adding_observations: Правила за добавяне на наблюдения
+  rules_types:
+    must_be_in: трябва да бъде от таксон
   said: каза
   satellite: сателит
   save: Съхраняване
@@ -2257,6 +2366,9 @@ bg:
   stats: Статистика
   status: Статус
   stop_following_user: "Спри да следваш %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: МАГАЗИН
   submission_model_description: Кой може да добавя наблюдения към Вашия проект?
   submit_observations:
     one: Публикувай 1 наблюдение
@@ -2291,6 +2403,7 @@ bg:
   taxa_info: Информация за таксони
   taxa_needing_curation: Таксони нуждаещи се от куриране
   taxon: Таксон
+  taxon_autocomplete_placeholder: Птици, пеперуди и т.н.
   taxon_is_a_rank: "%{taxon} е %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} е %{rank} от %{iconic_taxon} с 1 наблюдение"
@@ -2335,6 +2448,8 @@ bg:
     one: "%{taxon} е %{rank} хромисти (кафяви водорасли и сродни) с 1 наблюдение"
     other: "%{taxon} е %{rank} хромисти (кафяви водорасли и сродни) със %{count} наблюдения"
   taxonomy: Таксономия
+  taxon_assessments_are: |
+    Оценките на таксони са документи оценяващи текущия статут на биологичен вид – обикновено природозащитния му статут.
   taxon_drop: отпадане на таксон
   taxon_map:
     gbif_occurrences: Записи от GBIF
@@ -2498,6 +2613,7 @@ bg:
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
+  user_autocomplete_placeholder: kueda, simon123 и т.н.
   user_commented_on: "%{user} коментира Ваш(а/е) %{title} %{time}"
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -2514,6 +2630,8 @@ bg:
   user_is_now_a_manager_for_project_html: |
     <strong>%{user}</strong> стана управител на %{project}
   user_muted: Потребителят е заглушен
+  user_observed_on_on_date_in_place: |
+    %{user} го наблюдава на %{date} във %{place}
   user_suggested_an_id: "%{user} предложи ID"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдателят е решил да Ви довери координатите на всичките си наблюдения.
@@ -2572,6 +2690,8 @@ bg:
   we_can_only_understand_csv_in: Разбираме CSV само в следния формат
   we_couldnt_find_a_user: Не намерихме потребител с такъв имейл адрес.
   we_couldnt_find_a_user_with_that_activation_code: "Не намерихме потребител с такъв код за активиране. Може би вече сте активирали акаунта си, моля опитайте се да влезете."
+  we_have_no_conservation_status_for_this_taxon: Нямаме данни за природозащитния статут на този таксон
+  we_have_no_establishment_data_for_this_taxon: "Нямаме данни за начина на заселване на този таксон"
   weather: Време
   website: Уебсайт
   welcome_back: Добре дошли отново
@@ -2579,6 +2699,7 @@ bg:
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what_did_you_see: Какво наблюдавахте?
   what_do_you_think: Какво мислите?
+  what_want_to_list?: Какво искате да включите в списъка?
   whats_this?: Какво е това?
   when_did_you_see_it?: Кога го наблюдавахте?
   where: Къде
@@ -2602,6 +2723,9 @@ bg:
   x_journal_archives_for_y: "Дневникът на %{user} • Архиви за"
   x_journal_middot: "Дневникът на %{user} •;"
   x_journal_new_post: "Дневникът на %{user} • Нова публикация"
+  x_of_count_observed:
+    one: "%{x} от %{count} наблюдавано"
+    other: "%{x} от %{count} наблюдавани"
   x_project_stats: "Статистика за %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} Ви изпрати ново съобщение на %{y}:"
   x_wrote_a_new_post_html: "%{x} написа нова публикация"
@@ -2671,6 +2795,22 @@ bg:
   verifiable: Потвърдимо
   verifiable_observations: Потвърдими наблюдения
   views:
+    donate:
+      donate_short_desc: "Дарете и покажете своята подкрепа!"
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Станете Ежемесечен поддръжник на iNaturalist
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим Ви, че сте част от нея!</strong>
+          </p>
+          <p class="lead">Искаме iNaturalist да остане безплатен за използване, но далеч не е безплатен за поддръжка. Ако харесвате iNaturalist, моля обмислете възможността да станете Ежемесечен поддръжник. Редовните дарения спомагат за поддръжката и развитието на инфраструктурата на iNaturalist и за осигуряване на редовно обезпечение на екипа. От настройките, можете да изберете да се изобразява Вашият статус на Ежемесечен поддръжник на Вашия потребителски профил.
+          </p>
+          <p class="lead">
+          Вашите благотворителни дарения помагат за поддръжката iNaturalist, чиято общност непрекъснато нараства - за развитието на компютърното зрение и разработването на нови функции, за обезпечаването на сървърите и екипа ни и др. Ако предпочитате да дадете еднократно дарение, моля <a href="%{donate_url}">щракнете тук</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist e съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Всички дарения ще бъдат получени от Калифорнийската академия на науките - базирана в САЩ, некомерсиална и освободена от данъци организация според секция 501(c)(3) от Кодекса на САЩ.
+          </p>
     guides:
       index:
         funding_html: |
@@ -2861,6 +3001,7 @@ bg:
         you_can_learn_more_html: |
           Можете да научите повече за управлението на проекти <a href="https://www.inaturalist.org/pages/managing-projects">тук</a> или да прочетете за историята на проектите на <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">нашия блог</a>.
         errors:
+          name_is_required: Трябва да зададете има на проекта
           cannot_have_more_than_x_project_rules: Проектът не може да има повече от %{x} правила
           summary_is_required: Необходимо е добавянето на резюме на проекта
       project_location_privacy_notice_html: |
@@ -2892,6 +3033,10 @@ bg:
           Създадено чрез <a href="https://www.inaturalist.org">iNaturalist</a>
           или чрез сайтове от <a href="%{url}">Мрежата на iNaturalist</a>
       year:
+        donate_title: "Специални благодарности на всичките ни поддръжници"
+        donate_desc_html: |
+          Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество.
+          Поддържа се от <a href="%{team_url}">малък екип</a>, който разработва целия дизайн и софтуер за уебсайта, мобилните приложения, включително <a href="%{seek_url}">Seek by iNaturalist</a>, и освен това ръководи поддръжката на общността, сътрудничеството и интеграциите необходими за функционирането и разрастването на платформата. А тя разчита на множество субсидии и дарения, включително на благотворителни дарения на по-малко от 0,2% от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие. Можете да дарите в повече от 30 валути, за да поддържате основната дейност на iNaturalist. Благодарим на всички, които превърнаха 2019-та в най-успешната година за iNaturalist досега!
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
@@ -2899,6 +3044,8 @@ bg:
         complete_desc_html: |
           Един „пълен“ таксон съдържа <em>всички</em> известни дъщерни таксони с даден ранг отговарящи на политиката за куриране на таксони на iNaturalist, независимо дали са били наблюдавани или не. В момента, само администраторите на сайта могат да обявяват таксони като пълни.
       show:
+        about_conservation_status_desc: |
+          Природозащитният статут обобщава рискът за изчезване на дадена група организми.
         about_establishment_desc: |
           "Начин на заселване" описва как даден вид се е установил на мястото в което се среща. "Интродуциран" означава, че е пренесен от човека, докато "местен" означава, че се е заселил без намесата на човека. Ендемичните видове се срещат само на определено и ограничено място.
         charts_help_seasonality: |
@@ -2946,12 +3093,34 @@ bg:
           Просто напомняне: кураторите на проекта могат да виждат поверителните и замаскираните координати на наблюденията които добавяте към проекта.
       edit:
         about_third_party_tracking: Относно следенето от трети страни
+        blocking_desc_html: |
+          <p>Когато блокирате хора, те няма да могат да Ви изпращат съобщения, да коментират и разпознават Вашите наблюдения или да взаимодействат с Вас по какъвто и да било начин в %{site_name}. Това също ще премахва техните наблюдения от Вашите резултати при търсене на сайта, както ще премахва и Вашите наблюдения при техните търсения. Това обаче няма да Ви направи невидими за тях. Те все още ще могат да виждат Вашите наблюдения и профил, но няма да могат да взаимодействат с Вас.</p>
+          <p>Блокирането е за случаите когато не можете да се разберете с някого и когато не Ви оставят на мира, въпреки усилията Ви да разрешите проблема с цивилизован диалог. Това не е начин да се скриете от някого, да попречите на разпознавания от хора на които нямате доверие или въобще да забраните разпознавания от общността (има настройка за това). Блокирането работи двупосочно - те няма да могат да взаимодействат с Вас, но и Вие няма да можете да взаимодействате с тях. Ако злоупотребите с функцията за да попречите на някого да разпознава наблюденията Ви, то и Вие няма да можете да разпознавате техните.</p>
+          <p>Можете да блокирате само три човека. Смятаме, че това е приемлив брой удовлетворяващ случаите на реална нужда от блокиране, като същевременно ограничава възможността за злоупотреба с функцията. Ако смятате, че наистина трябва да блокирате повече хора - моля, <a href="mailto:%{help_email}">свържете се с нас</a>.</p>
+          <p>Ако някой Ви тормози или преследва в %{site_name} - моля, <a href="mailto:%{help_email}">уведомете ни</a>. Ако това е в нарушение на Условията за ползване или сметнем, че е неприемливо поведение за сайта - ще проучим случая.</p>
         common_names_desc: |
           Показвай народните имена. Деактивирайте, ако искате да виждате само научните имена. Забележете, че можете да контролирате кои народни имена виждате, като промените настройките на своя локал и място.
+        display_monthly_supporter_status_on_my_profile: |
+          Изобразявай статуса "Ежемесечен поддръжник" в профила ми
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">Мрежата на iNaturalist</a> е сбор от локализирани сайтове, които са изцяло свързани с международната общност на iNaturalist. Сайтовете от мрежата се поддържат от местни институции, които са подписали споразумение с iNaturalist да популяризират местната му употреба и да са в полза на местното биоразнообразие. Те имат достъп до реалните координати на застрашени видове в рамките на съответната държава, които са автоматично замаскирани за обществото с цел тяхната защита.
+          </p>
+          <p>
+          Вашето потребителско име и парола работят на всички сайтове, които са част от Мрежата на iNaturalist. Ако промените членството си към някой от тези сайтове, местната институция, която го управлява, ще може да се свързва с Вас чрез имейл и да вижда реалните координати на наблюденията Ви със скрити или замаскирани координати.
+          </p>
+          <p>
+          Забележка: Моля, не променяйте членството си експериментално, ако имате повече от 1000 наблюдения.
+          </p>
         licensing_desc_html: |
           Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.
         license_description_attribution_html: |
           Описанията на лицензите и изображенията са &copy; %{year} Creative Commons, използвани под лиценз <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons</a> (толкова мета!)
+        monthly_supporter: Ежемесечен поддръжник
+        monthly_supporter_desc_html: |
+          Ежемесечните поддръжници на iNaturalist правят автоматични приноси, получавани от Калифорнийската академия на науките (САЩ, IRS EIN 94-1156258), в поддръжка на некомерсиалната дейност на iNaturalist и другите сайтове от Мрежата на iNaturalist.
+          <a href="%{url}">Щракнете тук, ако искате да станете Ежемесечен поддръжник</a>.
+          Когато потвърдим Вашата поддръжка, ще можете да добавите отметка в тази кутийка и статусът ще се изобразява на Вашия профил. Забележка: трябва да използвате същия имейл в Donorbox, какъвто използвате и в iNaturalist, за да можем да потвърдим поддръжката Ви.
         muting_desc_html: |
           <p> Ако заглушите някого, вече няма да получавате известия за нещата които прави, включително когато коментира Ваши наблюдения, изпраща Ви съобщения, споменава Ви и т.н. Заглушаването ще Ви помогне да игнорирате някого, без да му попречите да прави каквото и да било. </p>
           <p> Можете да заглушите колкото хора искате, но имайте предвид, че така може да пропуснете потенциално важни известия, например за разпознавания които променят консенсусното разпознаване от общността на наблюденията Ви. </p>
@@ -3090,9 +3259,15 @@ bg:
       7: Сб
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d.%m.%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%d %B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%e %b"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%-d %b %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -3265,7 +3440,21 @@ bg:
   time:
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%-d %b %Y, %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%-d %B %Y, %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%-d %b, %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%-d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%-d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%H:%M"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
@@ -3313,6 +3502,8 @@ bg:
         published_at: Публикация
       listed_taxon:
         establishment_means: Начин на заселване
+      observation:
+        observed_on: Дата на наблюдаване
       observation_field_value:
         value: 'стойност'
       post:
