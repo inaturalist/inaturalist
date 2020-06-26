@@ -5206,6 +5206,7 @@ tr:
         revoke_observations_desc: |
           Ayrılmanızın tek sebebi proje sorumlularının gizli koordinatlarınızı görüntülemelerini engellemekse.
       edit:
+        admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut yerlerimize</a>
