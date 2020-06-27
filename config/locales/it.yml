@@ -4313,6 +4313,7 @@ it:
   you_cant_do_that_for_the_default_check_list_place: Non puoi farlo per una checklist predefinita di un luogo!
   you_cant_flag_that: Questo non lo puoi contrassegnare!
   you_cant_leave_a_project_you_created: Non puoi lasciare un progetto che hai creato!
+  you_cant_merge_standard_places: Non puoi unire i luoghi standard
   you_cant_rotate_photos_hostde_outside: "Non puoi ruotare le foto ospitate al di fuori di %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Non puoi eliminare i taxa coinvolti in modifiche di taxon o che contengono taxa coinvolti in modifiche di taxon
   you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene questa osservazione
@@ -5070,6 +5071,7 @@ it:
         revoke_observations_desc: |
           Se l'unica ragione per cui tu stai abbandonando il progetto è la volontà di impedire ai curatori di vedere le coordinate nascoste.
       edit:
+        admins_must_be_existing_members: Gli amministratori devono essere membri esistenti del progetto.
         aggregation_pending: In attesa di Aggregazione
         new_place_desc_html: |
           Cerca nei
@@ -5624,7 +5626,7 @@ it:
           Commons</a> (così metareferenziale!)
         monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
-          I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS FIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
+          I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS EIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
           <a href="%{url}">Fai clic qui per diventare un sostenitore mensile</a>.
           Quando avremo avuto conferma del tuo supporto potrai spuntare questa casella per visualizzare tale stato sul tuo profilo. Nota: dovrai usare esattamente lo stesso indirizzo e-mail che usi su iNaturalist anche su Donorbox per confermarci che sei diventato un sostenitore mensile.
         muting_desc_html: |
