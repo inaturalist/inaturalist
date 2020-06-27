@@ -245,12 +245,8 @@ class PlacesController < ApplicationController
           error: @place.errors.full_messages.join(', '))
       end
 
-      if params[:remove_geom] && @place.place_geometry_without_geom
-        @place.place_geometry_without_geom.delete
-      end
-
       if !@place.valid?
-        render :action => :edit
+        render action: :edit, status: :unprocessable_entity
         return
       end
       
@@ -264,7 +260,7 @@ class PlacesController < ApplicationController
       flash[:notice] = t(:place_updated)
       redirect_to @place
     else
-      render :action => :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
   
@@ -366,6 +362,11 @@ class PlacesController < ApplicationController
       keepers = nil if keepers.blank?
       unless @merge_target
         flash[:error] = t(:you_must_select_a_place_to_merge_with)
+        return
+      end
+
+      if !@place.admin_level.nil? || !@merge_target.admin_level.nil?
+        flash[:error] = t(:you_cant_merge_standard_places)
         return
       end
       
