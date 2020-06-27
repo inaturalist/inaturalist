@@ -215,6 +215,8 @@ bg:
   add_new_place: Добавяне на ново място
   add_new_rule: Добавяне на ново правило
   add_new_source: "Добавяне на нов източник..."
+  add_obs_from_a_link: "Добавете наблюдения от списък: %{link}"
+  add_obs_from_a_list: Добавете наблюдения от списък
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
   #Prompt to add a new journal post
@@ -516,6 +518,7 @@ bg:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} бяха обединени във %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} ще бъдат обединени във %{output_taxon}"
   change_your_password: Промяна на паролата
+  changing_the_geoprivacy: 'Геоповерителността определя как другите хора виждат местоположението на Вашето наблюдение.'
   check_back_soon: Проверете пак скоро!
   check_list: Видов списък
   check_list_description: Изберете родителски таксон който искате да показвате в този списък - например "Aves" за птици, "Amphibia" за земноводни и т.н. Ако изберете родителски таксон, в списъка няма да се добавят таксони които не принадлежат на родителския таксон. Например, ако изберете "Птици" като родителски таксон, няма да можете да добавяте жаби към него.
@@ -528,6 +531,7 @@ bg:
   check_lists_for: "Други видови списъци за %{place}"
   checklist: Видов списък
   choose_a_field: Изберете поле
+  choose_a_list_above: Изберете списък по-горе
   choose_a_place: Изберете място
   choose_a_taxon: Изберете таксон (незадълж.)
   choose_columns: Избери колони
@@ -585,6 +589,8 @@ bg:
     url: Адрес на уеб страница описваща този статут.
     geoprivacy: Геоповерителност по подразбиране за този таксон
     iucn: Еквивалент на кода в Червения списък на IUCN
+  conservation_status_geoprivacy_desc: |
+    Геоповерителността по подразбиране прилагана към всички наблюдения от този таксон и на това място
   contact_support: Свържете се с поддръжка
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Съдържание
@@ -932,6 +938,7 @@ bg:
   frequency: Честота
   from_a_place: от място
   from_flickr_facebook_etc: От Flickr, Facebook и др.
+  from_photos: От снимки
   from_place: От място
   from_soundcloud: От Soundcloud
   full_screen: Пълен екран
@@ -952,6 +959,7 @@ bg:
   go_back: Върни се
   google: Google
   got_it!: Разбраx!
+  got_your_data_somewhere_else?: Данните Ви са някъде другаде? Можем да помогнем.
   grid: Решетка
   grid_layout: Решетъчно оформление
   grid_tooltip: Покажи изглед „решетка“
@@ -1001,6 +1009,8 @@ bg:
   identification_withdrawn: Разпознаването е оттеглено.
   identifications: Разпознавания
   identifications_by: "Разпознавания от %{user}"
+  computer_vision_suggestion_desc: |
+    Компютърното зрение е метод за обучаване на компютрите да разпознават обекти в изображенията. Предоставяме инструменти – използващи компютърно зрение обучено чрез снимките направени от общността – които могат да дадат предположения за разпознаване на организмите. Този етикет показва, че потребителят добавил разпознаването е използвал един от тези инструменти.
   identifiers: Разпознавачи
   ids: "Разпознавания"
   ids_made_for_others: Разпознавания направени за други
@@ -1455,6 +1465,7 @@ bg:
   no_relevant_annotations: Няма подходящи анотации
   no_results_found: Не бяха открити резултати
   no_subject_parens: "(без наслов)"
+  no_suggestions_available: Няма предложения
   no_taxonomic_changes_match_those_criteria: Няма таксономични промени отговарящи на тези критерии
   no_wikipedia_page_for_taxon: В Уикипедия няма статия за този таксон.
   noble_curators: "Знатните куратори на %{site}"
@@ -1466,6 +1477,7 @@ bg:
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   note: Бележка
+  notes: Бележки
   notify_me_of_mentions: Известявай ме за споменавания (напр. @потр.име)
   notify_me_about_redundant_identifications: Известявай ме при потвърждаване на разпознаване
   notify_me_about_redundant_identifications_desc: |
@@ -1477,6 +1489,8 @@ bg:
   number_of_observers: "Брой наблюдатели"
   obscured: Замаскирано
   obscured_or_private: замаскирано или поверително
+  obscured_description: |
+    Координатите се показват като произволна точка в рамките на правоъгълник с размери 0,2 градуса геогр. дължина и ширина, който съдържа реалните координати на неопределено място в себе си.
   observation: Наблюдение
   observation_: наблюдение
   observation_added: Наблюдението е добавено.
@@ -1551,6 +1565,7 @@ bg:
   observations_w_field: наблюдения с поле
   observations_was_successfully_updated: Наблюденията бяха обновени.
   observations_widget: Widget за наблюдения
+  observations_without_media: Наблюдения без медия
   observationcounts_refreshed: Броят наблюдения подновен
   observed: Наблюдавано
   observed_by: Наблюдаван от
@@ -1600,6 +1615,7 @@ bg:
   only_receive_updates_about_this_taxon: Получавай известия само за този таксон
   only_species: само видове
   only_species_and_subspecies: само видове и подвидове/вариетети
+  only_staff_can_edit_standard_places: Само екипът на сайта може да редактира местата в стандартната йерархия
   only_the_owner_of_this_list_can_do_that: Само собственика на списъка може да прави това. Не бъди така лош.
   only_the_project_admin_can_delete_this_project: Само администратора на проекта може да го изтрие.
   only_you: Само Вие
@@ -2051,6 +2067,7 @@ bg:
   print_verb: Печат
   privacy: Защита на лични данни
   private: поверително
+  private_description: "Координатите са напълно скрити на общодостъпните карти. Истинските координати за видими само за Вас и кураторите на проекти, към които сте добавили наблюдението. Наблюденията със скрити координати ще продължават да се използват при генерирането на видовите списъци на географски места."
   proceed: Продължи
   processing: Обработка
   processing3p: "Обработка..."
@@ -2253,6 +2270,7 @@ bg:
   select_at_least_one: Изберете поне едно
   select_one_or_more_photos: 'Изберете една или повече снимки'
   select_observations_to_edit: Изберете наблюдения за редактиране...
+  select_one_of_your_albums: Изберете някой от албумите си
   select_options: Избери опция
   select_photos_to_display: Избор на снимки за изобразяване
   selected_photos: Избрани снимки
@@ -2322,6 +2340,9 @@ bg:
   sounds:
     add_media: Добави медийно съдържание
     add_sounds: Добави звуци
+    import_from_soundcloud_description: "Изберете звуци от Вашия акаунт на SoundCloud, които да превърнете в наблюдения на iNaturalist. Ще попълним датата и часа от метаданните на файла и ще опитаме да попълним вида от етикетите (таговете)."
+    import_from_sounds: Импорт от аудио
+    import_sounds: Импортиране на звуци
     no_photos_sounds: Няма снимки и звуци
     photos_sounds: Снимки / звуци
     select_one_or_more_sounds: Изберете един или повече звуци
@@ -2356,6 +2377,7 @@ bg:
   species_taxon_name: Вид / таксон
   species_unknown: Непознат вид
   specify_the_reason_youre_flagging: Опишете причината, заради която маркирате това
+  standard: Стандартни
   start: Начало
   start_a_new_project: Започни нов проект
   start_a_project: Започни проект
@@ -2404,6 +2426,7 @@ bg:
   taxa_needing_curation: Таксони нуждаещи се от куриране
   taxon: Таксон
   taxon_autocomplete_placeholder: Птици, пеперуди и т.н.
+  taxon_geoprivacy: Геоповерителност на таксона
   taxon_is_a_rank: "%{taxon} е %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} е %{rank} от %{iconic_taxon} с 1 наблюдение"
@@ -2468,6 +2491,7 @@ bg:
   taxon_swap_has_inputs_and_outputs: таксономичната размяна трябва да има както входящи, така и изходни стойности
   taxon_was_successfully_created: Таксонът беше създаден успешно.
   taxon_was_successfully_updated: Таксонът беше обновен успешно.
+  taxonomic: Таксономично
   taxonomic_changes: Таксономични промени
   taxonomic_groups: Таксономични групи
   taxonomic_order: Таксономичен ред
@@ -2513,6 +2537,8 @@ bg:
   this_is_a_life_list_of: Това е житейски списък на
   this_is_a_life_list_from_place_html: "Това е житейски списък от %{place}"
   this_is_a_life_list_of_taxon_in_place: "Това е житейски списък на%{taxon} от %{place}"
+  this_is_your_observation: Това наблюдение е Ваше
+  this_is_your_observation_desc: Винаги можете да виждате координатите на собствените си наблюдения.
   this_list_is_empty!: Този списък е празен!
   this_observation: Това наблюдение
   this_observation_is_featured_on_x_sites:
@@ -2652,26 +2678,38 @@ bg:
   view_all_observations: Виж всички наблюдения
   view_all_photocount_photos: "Виж всичките %{photo_count} снимки"
   view_check_list_page: Виж видовия списък
+  view_contributions: Виж приносите
   view_field_options: Виж възможните полета
+  view_full_observation: Виж цялото наблюдение
+  view_invitation: Виж поканата
   view_journal: Виж дневника
   view_leaderboard_from_last_month: Виж водачеството от миналия месец
   view_leaderboard_from_last_year: Виж водачеството от миналата година
   view_license: Виж лиценза
+  view_moderation_history: Виж историята на модерирането
+  view_moderation_history_for_this_comment: Виж историята на модерирането на този коментар
   view_more: Виж още
   view_more_observations_from: Виж още наблюдения от
+  view_more_observations_near_x_place: "Виж още наблюдения край %{place} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Виж още наблюдения от %{project} на <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Виж още наблюдения на %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_observation: Виж наблюдението
   view_observations: Виж наблюденията
   view_observation_flags: Виж маркерите на наблюдението
   view_observations_by_everyone: Виж наблюденията на всички
+  view_observations_by_these_users: Виж наблюдения от тези потребители
   view_observations_of_this_taxon_by: Виж наблюдения на този таксон от
+  view_on: Виж във
+  view_on_flickr: Виж във Flickr
   view_original: "Виж оригинала"
   view_original_by: "Виж оригинала от %{by} на %{photo}"
   view_original_ccD_photo: "Виж оригиналната снимка от %{owner}"
   view_photos_ranges_observations_more: "Вижте снимки, разпространение, наблюдения от %{site_name} и още много! Събрали сме информация от много различни източници и сме я обединили в удобно резюме за всеки биологичен вид от всяко място."
   view_sample: Виж пример
+  view_taxon_change: Виж таксономичната промяна
   view_taxon_changes: Виж таксономичните промени
   view_taxononomy_details_for_taxon: "Виж таксономични детайли за %{taxon}"
+  view_the_observation: Виж наблюдението
   view_user_observations: "Виж наблюденията на %{user}"
   view_your_dashboard: Виж информационното табло
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Вижте Вашето информационното табло</a> за повече новости"
@@ -2701,13 +2739,19 @@ bg:
   what_do_you_think: Какво мислите?
   what_want_to_list?: Какво искате да включите в списъка?
   whats_this?: Какво е това?
+  when: Кога
   when_did_you_see_it?: Кога го наблюдавахте?
+  when_did_you_see_them?: <em>Кога</em> ги видяхте?
   where: Къде
   where_do_x_live: Къде живеят %{taxa}?
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
   who_can_add_observations_to_this_project?: Кой може да добавя наблюдения към проекта?
+  who_can_see_the_coordinates: Кой може да види координатите
+  who_can_see_the_coordinates_observer: Човекът направил наблюдението
+  who_can_see_the_coordinates_projects: Кураторите на следните проекти
+  who_can_see_the_coordinates_trusted: Хора, на които наблюдателят е доверил скритите си координати
   why_the_coordinates_are_obscured: Защо координатите са замаскирани
   with_annotation: С анотация
   without_annotation: Без анотация
@@ -2738,6 +2782,7 @@ bg:
   yes_i_want_to_join: Да, искам да се присъединя
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
+  you_: Вас
   you_appear_offline_try_again: |
     Изглежда, че нямате мрежова връзка. Моля, опитайте отново, когато възобновите връзката с Интернет.
   you_are_now_following_x: "Вече следвате %{friend_user}."
@@ -2858,6 +2903,8 @@ bg:
         disagreement: Несъгласие
       field_descriptions:
         time_zone: Часова зона на наблюдението
+        taxon_geoprivacy: "Приложена е най-консервативната геоповерителност заради природозащитния статут на таксона от текущото разпознаване."
+        coordinates_obscured: "Дали координатите са замаскирани (заради геоповерителност или застрашен таксон) или не"
         user_id: Уникален идентификатор на наблюдателя
         user_login: Потребителско име на наблюдателя
         license: Лиценза, избран от наблюдателят, за това наблюдение
@@ -3182,6 +3229,8 @@ bg:
           Когато таксон бъде променен или преименуван на %{site_name}, Вашите наблюдения, списъци, разпознавания и т.н. ще бъдат автоматично обновени до новия таксон, ако тези промени са еднозначни. Ако изключите тази функция или ако промяната е двузначна (например разделяне на таксон), ще получите известие за промяната с препратка към инструмент, с който собственоръчно да обновите съдържанието си ако пожелаете.
         this_only_applies_to_traditional_projects: |
           Това се отнася единствено за традиционните проекти. Не можете да изключвате наблюдения от Събирателни или Обединителни проекти, които по същество са преконфигурирани търсения. Можете да прочетете повече <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тук</a>.
+      recent:
+        about_recent_users: Относно
       show:
         this_user_was_banned: Този потребител е запориран
         favorites_list_prompt_html: |
@@ -3562,6 +3611,16 @@ bg:
                 да е наблюдавано след %{time}
               must_be_observed_before: |
                 да е наблюдавано преди %{time}
+        taxon:
+          attributes:
+            name:
+              bad_format: |
+                може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
+        taxon_name:
+          attributes:
+            name:
+              bad_format: |
+                може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
   doorkeeper:
     scopes:
       write: |
