@@ -39,6 +39,7 @@ gem "diffy"
 gem "doorkeeper", "~> 5.0.3"
 gem "dynamic_form"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
+gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"
 gem "flickraw-cached"
 gem "friendly_id", "~> 5.2.4"
