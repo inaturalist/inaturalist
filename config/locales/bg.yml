@@ -420,6 +420,7 @@ bg:
   back_to_all_species: Обратно към всички видове
   back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
+  back_to_flags_html: "&laquo; Обратно към флагове"
   back_to_observation: Обратно към наблюдението
   back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
@@ -559,6 +560,7 @@ bg:
   comment_deleted: Коментарът е изтрит
   comments: Коментари
   comments_by_me: Коментари от мен
+  comments_have_been_disabled: Коментарите са изключени
   comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
   commercial_solicitation: Комерсиални предложения, препратки доникъде и т.н.
@@ -740,6 +742,9 @@ bg:
   delete_taxon_and_merge_most_data_html: |
     Изтрий таксона <i>%{taxon}</i> и обедини повечето от данните му с друг таксон. Използвайте този инструмент за <strong>премахване на дублиращи се таксони</strong>. Ако искате да премахнете неактуален таксон, моля създайте таксономична размяна. <strong>БЪДЕТЕ ВНИМАТЕЛНИ!</strong> Изтриването на таксони може да бъде много разрушително. Погледнете <a href="%{curator_url}">Наръчника за куратори</a> за повече подробности.
   delete_your_account: Изтриване на акаунта
+  deleted_synonyms: Изтрити синоними
+  deleted_user: изтрит потребител
+  deleted_vote: Изтрит вот
   deleting: Изтриване...
   deleting_verb: Изтриване
   deny: Отказвам
@@ -758,9 +763,12 @@ bg:
       user:
         suspended: Вашият акаунт е запориран
   disable: Изключване
+  disable_comments: Изключи коментарите
+  disable_comments_desc: Забрани на хората да добавят нови коментари
   disagree_: Несъгласен
   disconnect_provider: "Откачи %{provider}"
   display_link_to_checklist: Показвай препратка към проектния списък на страницата на проекта
+  distance_traveled: "Изминато разстояние (m)"
   documentation_for_developers_html: Документация за <a href="/pages/developers">разработчици</a>
   do_not_show_this_message_again: Не показвай това събщение повече
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -905,9 +913,13 @@ bg:
   flag_an_item: Маркирай елемент
   flag_as_spammer: Маркирай като спамър
   flag_as_non_spammer: Маркирай като не-спамър
+  #Label for the date/time when a flag was created
+  flag_created: Маркерът е създаден на
   flag_for_curation: Маркирай за куриране
   flag_it!: Маркирай го!
   flag_marked_as_resolved_html: '<span class="meta">Маркерът е отбелязан като</span> <strong>резрешен.</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Обект
   flag_reason: "&ldquo;Маркирам %{record} защото"
   flag_saved: Маркерът е запазен.
   flag_this_observation: Маркирай това наблюдение
@@ -917,6 +929,7 @@ bg:
   flagged_thing_explanation: "Потребителите са маркирали текущ. %{thing}, защото"
   flagging_desc: |
     Маркирането поставя нещо под вниманието на доброволните куратори на сайта. Моля, не маркирайте проблеми, които можете да разрешите чрез добавяне на разпознаване, гласуване в карето Оценка на качеството на данните или чрез разговор с човека добавил съдържанието.
+  flagger: Маркирал
   flags: Маркери
   flags_explanation: "Потребителите на %{site_name} могат да маркират неща когато сметнат нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите."
   flags_on_users_content: "Маркери на съдържанието на %{user}"
@@ -924,6 +937,7 @@ bg:
   flickr_tags: Flickr етикети
   follow: Следвай
   follow_user: "Следвай %{user}"
+  followed_projects: Следвани проекти
   followers: Последователи
   following: Следване
   following_x_people:
@@ -933,6 +947,14 @@ bg:
   formatting: Форматиране
   forgot_your_password: Забравена парола?
   forum: Форум
+  forum_categories:
+    bug_reports: Докладване на неизправности
+    feature_requests: Заявки за подобрения
+    forum_feedback: Обратна връзка на форума
+    forum_moderation: Модериране на форума
+    nature_talk: Обсъждане на природата
+    news_and_updates: Новини и обновления
+    tutorials: Ръководства
   forum_desc: |
     Форумът е място за обсъждане на самия iNat - за помощ, предложения за подобрения, докладване на бъгове и проблеми, известия и др.
   frequency: Честота
@@ -946,6 +968,7 @@ bg:
     one: гъба
     other: гъби
   generate_widget: Генериране на приставка
+  generate_your_stats: Генерирай своята статистика
   Genus: Род
   geoprivacy: Геоповерителност
   geoprivacy_is_obscured: Геоповерителността е замаскирана
@@ -954,6 +977,8 @@ bg:
   get_started: Започни
   getting_started_guide: Ръководство за начинаещи
   give_it_some_detail: Добави детайли
+  give_monthly_caps: ДАРЯВАЙ ЕЖЕМЕСЕЧНО
+  give_now_caps: ДАРИ СЕГА
   globally: глобално
   go: Напред
   go_back: Върни се
@@ -991,6 +1016,9 @@ bg:
   hex_color_eg: Цвят в шестнайсетичен код, например 6564BF
   hi: Привет,
   hi_user: "Здравей %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Скрий
+  hide_content: Скрий съдържанието
   high: Висок
   highest_rank: Най-висок ранг
   history: История
@@ -1000,6 +1028,7 @@ bg:
   iconic_taxon: Таксон за иконка
   identify: Разпознаване
   identify_observations: "Разпознай наблюдения"
+  identify_observations_by_these_users: Разпознайте наблюдения от тези потребители
   identify_title: "Разпознай"
   identification: разпознаване
   identification_by_user: Разпознаване от %{user}
@@ -1041,6 +1070,8 @@ bg:
   inaturalist_places: "%{site_name} Места"
   info: Информация
   insects: насекоми
+  instagram: Инстаграм
+  interactions: Взаимодействия
   internal_server_error: Вътрешна грешка на сървъра
   introduced: Интродуциран
   introduced_in_place: "Интродуциран във %{place}"
@@ -1060,7 +1091,10 @@ bg:
   join: Включи се
   join_and_add_an_observation_to_project_html: Присъединете се и добавете наблюдение към %{project}
   join_project: Включи се в проекта
+  #Prompt to join a specific project
+  join_project?: Присъедини се към %{project}?
   join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>поканете няколко наблюдения</a>"
+  join_the_largest_group_of_naturalists_in_the_world: Присъедини се към най-голямата общност от естествоизпитатели в света!
   join_this_project: Включи се в проекта
   'joined!': Присъединихте се!
   joined_projects: Проекти, в които участвате
@@ -1072,7 +1106,9 @@ bg:
   journal_posts: Публикации в дневник
   jpg_png_or_gif: "JPG, PNG или GIF"
   keyboard_shortcuts: Клавишни комбинации
+  kml: KML
   kml_file_size_error: "KML файла трябва да е по-малък от 1MB"
+  label_colon: "%{label}:"
   labels: Етикети
   label_to_group_a_batch_of_taxon_changes: Етикет за групиране на множество таксономични промени
   location_unknown: Неизвестно местоположение
@@ -1085,6 +1121,8 @@ bg:
   lat: г.ш.
   latitude: Геогр. ширина
   latitude_in_decimals: 'Геогр. ширина в десетични градуси, например 38.123'
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers: Слоеве
   layout: Оформление
   leaderboard: Водачество
   leaderboard_for_x: "Водачество за %{x}"
@@ -1168,6 +1206,7 @@ bg:
   linked_facebook: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук."
   linked_flickr: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr."
   linked_flickr_description: "Когато акаунтите Ви на %{site_name} и Flickr са свързани, ще можете да добавяте множество снимки от Flickr към наблюденията си. Разбира се, ако решите да прекратите връзката между акаунтите, няма да Ви спираме, но тогава няма да можете да добавяте снимки от Flickr. Прекратяването на връзката може да е необходимо и ако искате да свържете друг (нов) Flickr акаунт към %{site_name}."
+  linkedin: LinkedIn
   list: Списък
   list_deleted: Списъкът е изтрит.
   list_saved: Списъкът е запазен.
@@ -1259,6 +1298,12 @@ bg:
   lookup: Потърси
   low: Нисък
   lowest_rank: Най-нисък ранг
+  make_admin: Направи администратор
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Основно съдържание
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Тук се разполага основното съдържание
+  make_curator: Направи куратор
   make_it_a_life_list?: Направи житейски списък?
   make_manager: Направи управител
   mammals: бозайници
@@ -1296,6 +1341,15 @@ bg:
     Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
   mentioned_you_in_noun_html: "%{user} Ви спомена във %{noun}"
+  mentioned_you_in_noun_by_html: "%{user} Ви спомена във %{noun} от %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} Ви спомена във %{noun} от %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} Ви спомена във %{noun} от Вас"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} Ви спомена във %{x} на %{noun} от %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} Ви спомена във %{x} на %{noun} от %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} Ви спомена във %{x} на %{noun} от Вас"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} Ви спомена във %{x} на %{noun} от %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} Ви спомена във %{x} на %{noun} от %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} Ви спомена във %{x} на %{noun} от Вас"
   merge: Обединяване
   merge_it_with_another_place: Обедини с друго място
   message: Съобщение
@@ -1358,6 +1412,7 @@ bg:
   most_browser_print_pdf: "Забележка: Повечето браузъри предлагат възможност за принтиране в PDF"
   most_comments_and_faves: Най-много коментари и харесвания
   most_observations: Най-много наблюдения
+  most_recent_observation_by_date_observed: Най-новите потвърдими наблюдения според дата на наблюдаване
   most_species: Най-много видове
   most_observed_species: Най-наблюдавани видове
   multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
@@ -1458,14 +1513,24 @@ bg:
   no_observations: Няма наблюдения
   no_observations_from_this_place_yet: Все още няма наблюдения от това място.
   no_observations_yet: Все още няма наблюдения
+  no_photo: Няма снимка
+  no_photos: Няма снимки
   no_photos_of_that_size: Няма снима с такъв размер.
+  no_places_available: Няма налични места
   no_post_yet: Все още няма публикации!
   no_project_to_admin_current_user: "Не администрирате никакви проекти"
   no_project_to_admin_login: "%{login} не администрира никакви проекти"
+  no_recent_activity: Няма скорошна активност
   no_relevant_annotations: Няма подходящи анотации
+  no_reply_yet: Няма отговор
   no_results_found: Не бяха открити резултати
+  no_results_for: 'Няма резултати за '
   no_subject_parens: "(без наслов)"
   no_suggestions_available: Няма предложения
+  no_summary_from_wikipedia: Няма резюме от Уикипедия
+  no_summary_has_been_set: Не е зададено резюме.
+  no_taxa: Няма таксони
+  no_taxa_selected: Няма избрани таксони!
   no_taxonomic_changes_match_those_criteria: Няма таксономични промени отговарящи на тези критерии
   no_wikipedia_page_for_taxon: В Уикипедия няма статия за този таксон.
   noble_curators: "Знатните куратори на %{site}"
@@ -1476,6 +1541,7 @@ bg:
   not_finding_place_you_want?: Не намирате нужното място?
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
+  not_seeing_what_looking_for: Не откривате това което търсите?
   note: Бележка
   notes: Бележки
   notify_me_of_mentions: Известявай ме за споменавания (напр. @потр.име)
@@ -1495,16 +1561,24 @@ bg:
   observation_: наблюдение
   observation_added: Наблюдението е добавено.
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
+  observation_brief_something_on_day_at_time_by_user: "Нещо на %{day} в %{time} от %{user}"
+  observation_brief_something_on_day_by_user: "Нещо на %{day} от %{user}"
+  observation_brief_something_by_user: "Нещо от %{user}"
+  observation_brief_something_from_place_by_user: "Нещо от %{place} от %{user}"
   observation_brief_something_from_place_on_day: "Нещо от %{place} на %{day}"
   observation_brief_something_from_place_on_day_by_user: "Нещо от %{place} на %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Нещо от %{place} на %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Нещо от %{place} на %{day} в %{time} от %{user}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} на %{day} в %{time} от %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} на %{day} от %{user}"
+  observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} от %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} от %{place} от %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} от %{place} на %{day}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} от %{place} на %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} от %{place} на %{day} в %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} от %{place} на %{day} в %{time} от %{user}"
+  observations_by_category: "Наблюдения според категория"
   observations_by_app: Наблюдения според приложение
   observations_by_rank: Наблюдения според ранг
   observations_by_user_on_date: "Наблюдения от %{user} на %{date}"
@@ -1529,7 +1603,7 @@ bg:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     например 2019-10-29 13:12:21
-  observed_on_datetime: Наблюдаване на %{datetime}
+  observed_on_datetime: Наблюдавано на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_rules: Правила за наблюдения
   observation_rules_description: |
@@ -1569,7 +1643,7 @@ bg:
   observationcounts_refreshed: Броят наблюдения подновен
   observed: Наблюдавано
   observed_by: Наблюдаван от
-  observed_on: Наблюдаван на
+  observed_on: Наблюдавано на
   observer: Наблюдател
   observers: Наблюдатели
   observer_short: Налюдател
@@ -1633,6 +1707,7 @@ bg:
   organism_is_wild: Организмът е див
   organisms: Организми
   original: Оригинал
+  originally_flagged_by: Първоначално маркирано от
   original_page_url_for_this_photo: "Оригинален уеб адрес на снимката."
   organism_appears_captive_cultivated: Организмът изглежда отгледан от човек
   other: Друго
@@ -2197,17 +2272,21 @@ bg:
   remove_tags: Премахване на етикети
   removed: Премахнато
   removing: "Премахване..."
+  reorder_by_taxonomy: Пренареди според таксономия
   reptiles: влечуги
   required: задължително
   required_: Задължително
   required_field: задължително поле
   research: изследователско
+  research_: Изследователско
   research_grade: Изследователско качество
   research_grade_short_html: "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>"
   research_grade_observations_have: 'Наблюденията от "Изследователско качество" имат дата, снимка, координати и ID потвърдено от общността. Щракнете за да видите оценката на качеството на данните.'
   research_grade_qualification: Годност за Изследователско качество
   reset_brightness: Възстанови яркостта
   reset_search_filters: Нулирай филтрите за търсене
+  resolved_by: Коригирано от
+  resolved_by_user_on_date_html: Коригирано от %{user} на %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} каза:</span> "%{x}"'
   restore: Възстанови
   restoring: Възстановяване...
@@ -2248,6 +2327,7 @@ bg:
   search: Търси
   search_all_fields: търси по всички полета
   search_by_name_or_email: Търси по име или имейл
+  search_by_taxon_name_or_observation_id: Търси по име на таксон или ID на наблюдение
   search_by_taxon_name_or_flickr_photo_id: Търси по име на таксон или Flickr ID на снимка
   search_catalogue_of_life: 'Търси в <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Търси в Catalogue of Life &raquo;"
@@ -2272,6 +2352,7 @@ bg:
   select_all: Избери всички
   select_at_least_one: Изберете поне едно
   select_one_or_more_photos: 'Изберете една или повече снимки'
+  select_none: Празен избор
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
   select_options: Избери опция
@@ -2330,6 +2411,7 @@ bg:
   somewhere_on_earth: някъде на Земята
   somewhere: (Някъде...)
   sorry_flickr_isnt_responding_at_the_moment: "Съжаляваме, Flickr не отговаря в момента."
+  sorry_how_about_we_try_repeat: "Съжаляваме! Какво ще кажете да повторим търсенето в някои други бази данни с имена на видове? Ако намерим нещо, ще го запазим за да го откриете следващия път."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Съжаляваме, някоя от тези снимки на Flickr или не съществува или нямате разрешение да я видите."
   sorry_that_photo_provider_isnt_responding: "Съжаляваме, източникът на снимката на отговаря в момента. Моля, опитайте пак по-късно."
   sorry_that_service_is_not_responding: "Съжаляваме, услугата не отговаря в момента. Моля, опитайте пак по-късно."
@@ -2390,6 +2472,7 @@ bg:
   start_typing_someones_name: "Започни да въвеждаш нечие име..."
   stats: Статистика
   status: Статус
+  still_no_luck?: Пак ли нищо?
   stop_following_user: "Спри да следваш %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
@@ -2483,6 +2566,8 @@ bg:
     overlays: Слоеве
   taxon_changes: Таксономични промени
   taxon_merge: обединяване на таксони
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> наблюдавано от
   taxon_observed_by_user: "%{taxon}, наблюдавано от %{user}"
   taxon_ranks: Таксономични рангове
   taxon_removed_from_list: Таксонът е премахнат от списъка.
@@ -2606,6 +2691,8 @@ bg:
   update_search: Обнови търсенето
   update_your_content: Обнови съдържанието си
   updated: Обновено
+  updated_by: Обновено от
+  updated_by_user_on_date_html: Обновено от %{user} на %{date}
   updated_daily: Обновявано ежедневно
   upload: Качване
   upload_a_csv_file: Качи CSV файл
@@ -2633,6 +2720,8 @@ bg:
   user: Потребител
   user_added_a_x: "%{user} добави %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
   user_added_a_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_an_identification_html: "%{user} добави разпознаване"
   user_added_an_observation_field_html: '%{user} добави стойност на %{field_name} към наблюдение от %{owner}'
@@ -2640,6 +2729,8 @@ bg:
   user_added_an_observation_html: "%{user} добави наблюдение"
   user_added_an_x: "%{user} добави %{x}"
   user_added_an_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} добави %{x} към %{noun} от Вас"
   user_added_an_x_to_noun_html: "%{user} добави %{x} към %{noun}"
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
@@ -2676,6 +2767,7 @@ bg:
   verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдение
   view: Виж
   view_all: Виж всички
+  view_all_flags: Виж всички маркери
   view_all_members: Виж всичките членове
   view_all_n: "Виж всички %{n}"
   view_all_observations: Виж всички наблюдения
@@ -2761,6 +2853,8 @@ bg:
   widget: Приставка
   widget_code: Код за приставката
   widget_for: Приставка за
+  wikipedia_attribution_cc_by_sa_3: |
+    Източник: Уикипедия, „%{title}“, %{url}, CC BY-SA 3.0
   wikipedia_entry: Статия на Уикипедия
   withdraw: Оттегли
   withdrawing: Оттегляне...
@@ -2785,6 +2879,7 @@ bg:
   yes_i_want_to_join: Да, искам да се присъединя
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
+  you: Вас
   you_: Вас
   you_appear_offline_try_again: |
     Изглежда, че нямате мрежова връзка. Моля, опитайте отново, когато възобновите връзката с Интернет.
@@ -2843,6 +2938,9 @@ bg:
   verifiable: Потвърдимо
   verifiable_observations: Потвърдими наблюдения
   views:
+    content_freeze:
+      we_expect_this_functionality_will_return_by_date: |
+        Очакваме тази функция да се възстанови до %{date}.
     donate:
       donate_short_desc: "Дарете и покажете своята подкрепа!"
       monthly_supporters:
@@ -2893,6 +2991,8 @@ bg:
       index:
         show_messages_from_user: Покажи съобщенията от %{user}
         show_messages_to_user: Покажи съобщенията до %{user}
+        speech_privilege_notice: |
+          Ще можете да изпращате нови съобщения след като добавите поне три проверими наблюдения или направите три разпознавания за други. Засега можете да четете и отговаряте на съобщения, които сте получили.
     oauth:
       authorizations:
         new:
@@ -3027,6 +3127,7 @@ bg:
           Без ръчно добавяне на наблюдения
         only_display_member_observations: |
           Показвай само наблюдения от членове на проекта (хора които са се присъединили към проекта)
+        or_drag_and_drop: (или завлачи и пусни)
         project_background_color: Цвят на фона на резюмето на проекта
         project_background_color_help: Уверете се, че избраният цвят е достатъчно тъмен, за да може да се чете белият текст върху него.
         project_banner: Заглавно каре на проекта (PNG, JPG или GIF)
@@ -3068,6 +3169,32 @@ bg:
           </p>
       updates_desc: |
         Получавайте новости за този проект на Вашето информационно табло и в писмото с ежедневните новости.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Имате няколко възможности:</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Добавете маркер към някой по-висш таксон</strong>
+          <p>
+          Например към рода, който съдържа нужния вид. Тогава някой от кураторите ще добави вида, ако това е възможно.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Пишете във форума</a></strong>
+          <p>
+          Много от кураторите на сайта следят публикациите във форума.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Свържете се с поддръжката</a>
+          </strong>
+          <p>
+          Моля, бъдете търпеливи. Персоналът ни е малък.
+          </p>
+          </li>
+          </ul>
     shared:
       spam:
         message_for_owner_and_curators_html: |
@@ -3105,6 +3232,7 @@ bg:
         charts_help_relative_observations: |
           Показването на относителния дял на наблюденията - като брой наблюдения на таксона отнесени към общия брой наблюдения, позволява да се премахне ефекта от растежа на наблюдателите на сайта. Например, когато сайтът се разраства и получаваме повече наблюдения всяка година, обикновено получаваме повече наблюдения и за всеки един таксон - но това не означава, че популациите на този таксон непременно нарастват, а просто означава, че има повече хора които го наблюдават. Например ако има общо 100 наблюдения, 20 от които на този таксон - относителният дял на този таксон е 0,2 (20 / 100). Ако следващата година хората направят общо 2000 наблюдения, 400 от които са на този таксон - относителният дял на таксона ще е отново 0,2 (400 / 2000). Това може да причини отклонения, когато има много малко наблюдатели в даден район или когато таксонът е наблюдаван рядко, но това важи и за абсолютните стойности.
         frequency:
+          research: Изследователско качество
           verifiable: Потвърдимо
           "Alive or Dead=Alive": Жив
           "Alive or Dead=Dead": Мъртъв
@@ -3535,6 +3663,8 @@ bg:
   activerecord:
     models:
       Atlas: Атлас
+      #Noun
+      Flag: Маркер
     attributes:
       assessment:
         description: Описание
