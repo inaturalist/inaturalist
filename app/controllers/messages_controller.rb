@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
         @messages.where( from_user_id: @search_user )
       end
     end
-    if params[:group] == "thread"
+    if params[:threads].yesish?
       unless params[:q].blank?
         error_message = "Search will not work when grouping by thread"
         respond_to do |format|
@@ -68,11 +68,16 @@ class MessagesController < ApplicationController
         end
       end
       format.json do
+        results = if params[:threads].yesish?
+          @messages.as_json( methods: [:thread_flags] )
+        else
+          @messages
+        end
         render json: {
           page: @messages.current_page,
           per_page: @messages.per_page,
           total_results: @messages.total_entries,
-          results: @messages
+          results: results
         }
       end
     end

@@ -176,7 +176,7 @@ shared_examples_for "a MessagesController" do
         expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
       end
     end
-    describe "group=thread" do
+    describe "threads" do
       before do
         @m1 = make_message( user: user, from_user: user, to_user: to_user )
         @m1.send_message
@@ -184,7 +184,7 @@ shared_examples_for "a MessagesController" do
         @m2.send_message
         @m3 = make_message( user: user, from_user: user, to_user: to_user, thread_id: @m1.id, body: "last reply" )
         @m3.send_message
-        get :index, format: :json, box: "any", group: "thread"
+        get :index, format: :json, box: "any", threads: true
         json = JSON.parse( response.body )
         @thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
       end
@@ -196,6 +196,17 @@ shared_examples_for "a MessagesController" do
       end
       it "should include a thread_messages_count attribute" do
         expect( @thread_results[0]["thread_messages_count"] ).to eq 3
+      end
+      it "should include a thread_flags array that includes flags on all messages" do
+        expect( @m1.thread_id ).to eq @m3.thread_id
+        m1_flag = Flag.make!( flaggable: @m1.to_user_copy, user: user )
+        m2_flag = Flag.make!( flaggable: @m2, user: user )
+        get :index, format: :json, box: "any", threads: true
+        json = JSON.parse( response.body )
+        thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
+        expect( thread_results[0]["thread_flags"].size ).to eq 2
+        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m1_flag.id } ).not_to be_blank
+        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m2_flag.id } ).not_to be_blank
       end
     end
   end

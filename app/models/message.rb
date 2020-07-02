@@ -67,6 +67,13 @@ class Message < ActiveRecord::Base
     true
   end
 
+  def thread_flags
+    Flag.where( flaggable_type: "Message" ).
+      joins( "JOIN messages ON messages.id = flags.flaggable_id" ).
+      where( "messages.thread_id = ?", thread_id ).
+      where( "flags.user_id = ?", user_id ).to_a
+  end
+
   def set_subject_for_reply
     return true if thread_id.blank?
     first = Message.where(:thread_id => thread_id, :user_id => user_id).order("id asc").first
