@@ -15,9 +15,11 @@ class MessagesController < ApplicationController
   def index
     @messages = case @box
     when Message::SENT
-      current_user.messages.sent.order( "id desc" ).page( params[:page] )
+      current_user.messages.sent
+    when "any"
+      current_user.messages
     else
-      current_user.messages.inbox.order( "id desc" ).page( params[:page] )
+      current_user.messages.inbox
     end
     unless params[:user_id].blank?
       @search_user = User.find_by_id( params[:user_id] )
@@ -25,15 +27,38 @@ class MessagesController < ApplicationController
       @messages = case @box
       when Message::SENT
         @messages.where( to_user_id: @search_user )
+      when "any"
+        @messages.where( "to_user_id = ? OR from_user_id = ?", @search_user, @search_user )
       else
         @messages.where( from_user_id: @search_user )
       end
     end
+    if params[:group] == "thread"
+      unless params[:q].blank?
+        error_message = "Search will not work when grouping by thread"
+        respond_to do |format|
+          format.html do
+            flash[:error] = error_message
+            redirect_back_or_default messages_path
+          end
+          format.json do
+            render json: { errors: [error_message] }, status: :unprocessable_entity
+          end
+        end
+        return
+      end
+      threads_scope = @messages.select( "max(id) AS latest_id, thread_id, COUNT(id) AS thread_messages_count" ).group( "thread_id" )
+      @messages = Message.
+        select( "messages.*, threads.thread_messages_count" ).
+        from( "(#{threads_scope.to_sql}) AS threads" ).
+        joins( "JOIN messages AS messages ON messages.id = threads.latest_id" )
+    end
     unless params[:q].blank?
       @q = params[:q].to_s[0..100]
-      @messages = @messages.joins( :from_user ).
+      @messages = @messages.joins( "JOIN users ON users.id = from_user_id" ).
         where( "subject ILIKE ? OR body ILIKE ? OR users.name ILIKE ? OR users.login = ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", @q )
     end
+    @messages = @messages.order( "id desc" ).page( params[:page] )
     respond_to do |format|
       format.html do
         if params[:partial]
@@ -126,7 +151,7 @@ class MessagesController < ApplicationController
         if @message.valid?
           redirect_to @message
         else
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end
       format.json do
@@ -136,7 +161,7 @@ class MessagesController < ApplicationController
         elsif @message.valid?
           render json: @message.as_json
         else
-          render json: { errors: @message.errors }
+          render json: { errors: @message.errors }, status: :unprocessable_entity
         end
       end
     end
@@ -186,19 +211,19 @@ class MessagesController < ApplicationController
 
   def load_box
     @box = params[:box]
-    @box = Message::INBOX unless Message::BOXES.include?(@box)
+    @box = Message::INBOX unless Message::BOXES.include?(@box) || @box == "any"
   end
 
   def require_owner
     return true if current_user && current_user.is_admin?
     if @message.user != current_user
-      msg = "You don't have permission to do that"
+      msg = I18n.t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
           return redirect_back_or_default(messages_url)
         end
-        format.json { render :json => {:error => msg}, status: :forbidden }
+        format.json { render json: { error: msg}, status: :forbidden }
       end
     end
   end
