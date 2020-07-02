@@ -497,12 +497,18 @@ de:
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa und aufgelistete Taxa
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es enthält untergeordnete Taxa und Identifikationen
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa, gelistete Taxa, Identifikationen und Beobachtungen
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa, gelistete Taxa und Beobachtungen.
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa und Beobachtungen
   are_you_sure_want_delete_taxon_identifications: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Identifikationen
   are_you_sure_want_delete_taxon_identifications_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Identifikationen und Beobachtungen
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa.
   are_you_sure_want_delete_taxon_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Beobachtungen
   are_you_sure_want_delete_taxon_link: Bist du sicher, dass du diesen Taxon-Link entfernen willst?
@@ -1146,6 +1152,7 @@ de:
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
   edit_multiple_dates: Datumsangaben bearbeiten
+  edit_multiple_descriptions: Mehrere Beschreibungen bearbeiten
   edit_multiple_locations: Mehrere Standorte bearbeiten
   edit_multiple_species: Mehrere Arten bearbeiten
   edit_notes: Anmerkungen bearbeiten
@@ -2527,6 +2534,8 @@ de:
   photo_urls_repaired: Foto URLs repariert
   photos_chosen_for_this_taxon: Foto für diese Art ausgewählt
   photos_from: Fotos von
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos gesperrt
   photos_locked_desc: Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern
   photos_of_taxon_html: "Fotos von %{taxon}"
   photos_or_sounds: Bilder oder Audio
@@ -3892,6 +3901,7 @@ de:
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
   update_subscription: Abonnement aktualisieren
+  update_subscription_preferences: Abonnement-Einstellungen aktualisieren
   update_x_selected_taxa:
     one: "1 ausgewähltes Taxon aktualisieren"
     other: "%{count} ausgewählte Taxa aktualisieren"
