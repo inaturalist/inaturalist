@@ -77,7 +77,7 @@ module UsersHelper
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
     if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
-      capitalize_it ? t(:you).capitalize : t(:you).downcase
+      capitalize_it ? t(:you_) : t(:you)
     else
       user.login
     end
