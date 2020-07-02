@@ -3955,6 +3955,7 @@ gl:
   update_search: Renovar Busca
   update_selected_taxa: Renovar os Taxons Seleccionados
   update_subscription: Renovar Subscrición
+  update_subscription_preferences: Renovar as Preferencias da Subscrición
   update_x_selected_taxa:
     one: "Renovar 1 taxon seleccionado"
     other: "Renovar %{count} taxons seleccionados"
@@ -5607,6 +5608,10 @@ gl:
         license_description_attribution_html: |
           As descricións de licenzas e imaxes &copy;%{year} Creative Commons, usados baixo unha <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a> (que meta!)
         monthly_supporter: Patrocinador Mensual
+        monthly_supporter_desc_html: |
+          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
+          <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
+          Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
           <p>
           Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.
