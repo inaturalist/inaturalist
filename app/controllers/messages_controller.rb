@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
       @messages = @messages.joins( "JOIN users ON users.id = from_user_id" ).
         where( "subject ILIKE ? OR body ILIKE ? OR users.name ILIKE ? OR users.login = ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", @q )
     end
-    @messages = @messages.order( "id desc" ).page( params[:page] )
+    @messages = @messages.order( "id desc" ).page( params[:page] ).includes( :from_user, :to_user )
     respond_to do |format|
       format.html do
         if params[:partial]
@@ -68,10 +68,15 @@ class MessagesController < ApplicationController
         end
       end
       format.json do
-        results = if params[:threads].yesish?
-          @messages.as_json( methods: [:thread_flags] )
-        else
-          @messages
+        results = @messages.map do |m|
+          merges = {
+            from_user: m.from_user&.as_json( only: [:id, :login] ),
+            to_user: m.to_user&.as_json( only: [:id, :login] ),
+          }
+          if params[:threads].yesish?
+            merges[:thread_flags] = m.thread_flags.map{|f| f.as_indexed_json}
+          end
+          m.as_json.merge( merges )
         end
         render json: {
           page: @messages.current_page,

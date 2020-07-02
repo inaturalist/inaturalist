@@ -71,7 +71,7 @@ class Message < ActiveRecord::Base
     Flag.where( flaggable_type: "Message" ).
       joins( "JOIN messages ON messages.id = flags.flaggable_id" ).
       where( "messages.thread_id = ?", thread_id ).
-      where( "flags.user_id = ?", user_id ).to_a
+      where( "flags.user_id = ?", user_id )
   end
 
   def set_subject_for_reply
