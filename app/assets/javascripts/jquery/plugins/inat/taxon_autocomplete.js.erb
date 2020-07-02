@@ -183,7 +183,8 @@ $.fn.taxonAutocomplete = function( options ) {
         if( options.showPlaceholder && !options.idEl.val( ) && field.val( ) ) {
           results.unshift({
             type: "placeholder",
-            title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
+            title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) }),
+            placeholderTitle: field.val( )
           });
         }
         response( _.map( results, function( r ) {
@@ -233,7 +234,8 @@ $.fn.taxonAutocomplete = function( options ) {
             if( options.showPlaceholder && field.val( ) ) {
               data.unshift({
                 type: "placeholder",
-                title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) })
+                title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) }),
+                placeholderTitle: field.val( )
               });
             }
             ac._suggest( data );
@@ -279,7 +281,7 @@ $.fn.taxonAutocomplete = function( options ) {
   field.bind( "assignSelection", function( e, t ) {
     options.idEl.val( t.id );
     autocompleter.setTitle( t, options );
-    field.val( t.textTitle || t.title );
+    field.val( t.type === "placeholder" ? t.placeholderTitle : ( t.textTitle || t.title ));
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;
