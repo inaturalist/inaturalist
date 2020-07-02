@@ -1,6 +1,8 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
+  x_comments_html:
+    other: '댓글 <span class="count">%{count}</span> 개'
   x_faves:
     other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
@@ -820,6 +822,7 @@ ko:
   edit_field: 분야 편집
   edit_license: 라이선스 수정
   edit_multiple_dates: 다수의 날짜 편집
+  edit_multiple_descriptions: 여러 설명 편집
   edit_multiple_locations: 다수의 장소 편집
   edit_multiple_species: 다수의 종 편집
   edit_notes: 메모 편집
@@ -2286,6 +2289,7 @@ ko:
   update_observations: 관찰 업데이트
   update_photos: 사진 갱신
   update_subscription: 구독 갱신
+  update_subscription_preferences: 구독 환경 설정 업데이트
   updated: 갱신됨
   updated_daily: 매일 갱신
   upload: 올리기
