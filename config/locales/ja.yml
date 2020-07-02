@@ -180,7 +180,7 @@ ja:
   add_conservation_status: 保全状況を追加
   add_countries: 国を追加
   add_custom_project_fields: プロジェクト専用フィールドを追加
-  add_edit_flags: フラッグの追加・編集
+  add_edit_flags: フラグの追加・編集
   add_editor: 編集者を追加
   add_description: "%{description_name}を追加"
   add_from_your_observations: 自分の観測記録から追加
@@ -492,6 +492,10 @@ ja:
   assessments: 評価
   associations: 関連情報
   atlas_for_taxon_html: '%{taxon} の一覧'
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
   attached_taxon: 関連する分類群
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -984,6 +988,7 @@ ja:
   desription: 説明
   destroy: 破棄
   details: 詳細
+  deviation: 逸脱
   devise:
     failure:
       user:
@@ -1047,6 +1052,7 @@ ja:
   edit_field: フィールドを編集
   edit_license: ライセンスを編集
   edit_multiple_dates: 複数の日付を編集
+  edit_multiple_descriptions: 複数の説明欄を編集
   edit_multiple_locations: 複数の場所を編集
   edit_multiple_species: 複数の種を編集
   edit_notes: メモを編集
@@ -1191,7 +1197,7 @@ ja:
   filter_by_taxon: 分類群でフィルタ
   filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
   filter_list_by_this_taxon: この分類群でリストをフィルター
-  filtering: フィラター中
+  filtering: フィルター中
   filters: フィルター
   find: 検索
   find_a_guide: ガイドを探す
@@ -3561,6 +3567,7 @@ ja:
   update_search: 検索結果を更新
   update_selected_taxa: 選択された分類群を更新
   update_subscription: フォローを更新
+  update_subscription_preferences: フォロー設定を更新
   update_x_selected_taxa:
     other: "選んだ分類群%{count}件を更新"
   update_your_content: 内容を更新
@@ -4112,6 +4119,8 @@ ja:
         notification_preferences_messages: メッセージ
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: プロジェクトのジャーナル投稿
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: プロジェクトがあなたの観察記録を追加するとき
         #Checkbox label for user preference about what to receive in the daily
         #email update. This one controls whether or not you get notifications
         #when the curators change in a project you've joined
