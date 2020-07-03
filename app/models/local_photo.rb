@@ -114,7 +114,7 @@ class LocalPhoto < Photo
         metadata[:dimensions][style] = extract_dimensions(style)
       end
       if (file_path = (path || file.queued_for_write[:original].path))
-        exif_data = ExifMetadata.new(path: file_path, type: file_content_type).extract_metadata
+        exif_data = ExifMetadata.new(path: file_path, type: file_content_type).extract
         metadata.merge!(exif_data)
       end
     rescue EXIFR::MalformedImage, EOFError => e
@@ -125,8 +125,8 @@ class LocalPhoto < Photo
     rescue TypeError => e
       raise e unless e.message =~ /no implicit conversion of Integer into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
-    rescue ExiftoolNotInstalled => e
-      Rails.logger.error "[ERROR #{Time.now}] ExifTool not installed for PNG metadata: #{e}"
+    rescue ExifMetadata::ExtractionError => e
+      Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
     self.metadata = metadata

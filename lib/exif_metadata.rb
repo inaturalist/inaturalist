@@ -2,7 +2,10 @@
 class ExifMetadata
   attr_accessor :path, :type
   attr_reader :metadata
-  
+
+  class ExtractionError < StandardError; end
+
+  # Initializes a new ExifMetada instance
   # @param [String] path Path to file to extract exif tags from 
   # @param [String] type Filetype (mime) with which to treat the file 
   def initialize(path: nil, type: nil)
@@ -11,8 +14,9 @@ class ExifMetadata
     @metadata = {}
   end
 
+  # Extracts metadata from file and returns key/value pairs
   # @return [Hash] metadata Hash of metadata extracted, can be empty
-  def extract_metadata
+  def extract
     case type
     when /jpe?g/i
       extract_jpg
@@ -20,6 +24,8 @@ class ExifMetadata
       extract_png
     end 
     metadata
+  rescue Errno::ENOENT, Exiftool::ExiftoolNotInstalled, Exiftool::NoSuchFile, Exiftool::NotAFile => e
+    raise ExtractionError, "#{e.class.name}: #{e.message}"
   end
   
   private 
@@ -75,6 +81,8 @@ class ExifMetadata
   
   def map_png_dates
     # ExifTool refers to 0x0132 as 'ModifyDate' https://exiftool.org/TagNames/EXIF.html
+    # whereas EXIFR maps 0x0132 to "date_time" 
+    # Note this differs from "0x9003 DateTimeOriginal"
     metadata[:date_time] = serialize_date_time(metadata[:modify_date])
   
     %i[date_time_digitized date_time_original modify_date].each do |k|
