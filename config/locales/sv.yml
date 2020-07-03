@@ -4478,6 +4478,7 @@ sv:
   you_cant_do_that_for_the_default_check_list_place: Du kan inte göra det med en plats standardchecklista!
   you_cant_flag_that: Du kan inte flagga det
   you_cant_leave_a_project_you_created: Du kan inte lämna ett projekt som du har skapat.
+  you_cant_merge_standard_places: Du kan inte slå ihop standardplatser
   you_cant_rotate_photos_hostde_outside: "Du kan inte rotera bilder lagrade utanför %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan inte ta bort taxa som ingår i taxonändringar eller som innehåller taxa som ingår i taxonändringar
   you_curate_a_project_that_contains_this_observation: Du förvaltar ett projekt där denna observation ingår
@@ -5542,6 +5543,7 @@ sv:
         revoke_observations_desc: |
           Om den enda anledningen till att du lämnar är för att hindra projektförvaltare från att se dina dolda koordinater.
       edit:
+        admins_must_be_existing_members: Administratörer måste vara befintliga medlemmar i projektet.
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
@@ -6439,14 +6441,10 @@ sv:
           Commons Erkännande-licens</a> (så meta!)
         monthly_supporter: Månatlig bidragsgivare
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag
-          till California Academy of Sciences (United States IRS FIN 94-1156258)
-          för att stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-
-          nätverkets webbplatser.
+          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
-          När vi har bekräftat ditt stöd kommer du att kunna markera denna
-          ruta för att visa denna status på din profil. Obs: du måste använda
-          exakt samma e-postadress på Donorbox som du gör på iNaturalist
+          När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
+          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist
           för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
         muting_desc_html: |
           <p>

@@ -2,6 +2,9 @@ fi:
   x_comments:
     one: '1 kommentti'
     other: '%{count} kommenttia'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentti'
+    other: '<span class="count">%{count}</span> kommenttia'
   x_faves:
     one: '1 suositus'
     other: '%{count} suositusta'
@@ -796,6 +799,7 @@ fi:
   comment_deleted: Kommentti poistettu
   comments: Kommentit
   comments_by_me: Omat kommentit
+  comments_have_been_disabled: Kommentointi poistettu käytöstä
   comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
@@ -1081,13 +1085,37 @@ fi:
   deviation: Poikkeama
   devise:
     failure:
+      already_authenticated: 'Olet jo kirjautunut sisään.'
+      unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
+      invalid: 'Väärä sähköposti tai salasana.'
+      invalid_token: 'Todennuskoodi ei kelpaa.'
       user:
         suspended: Käyttäjätunnuksesi on suljettu
+    sessions:
+      signed_in: 'Sisäänkirjautuminen onnistui.'
+      signed_out: 'Uloskirjautuminen onnistui.'
+    passwords:
+      send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.'
+      updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
+      updated_not_active: 'Salasanasi on vaihdettu onnistuneesti.'
+      send_paranoid_instructions: "Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen."
+      no_token: "Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä."
+    registrations:
+      signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
+      updated: 'Päivitit tilisi onnistuneesti.'
+      destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Vahvistusohjeet'
+      reset_password_instructions:
+        subject: 'Ohjeet salasanan nollaukseen'
   discoveries: Löydöt
   did_not_send_invitations_because: Kutsuja ei lähetetty seuraaville koska...
   did_you_mean: 'Tarkoititko'
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
   disable: Poista käytöstä
+  disable_comments: Poista kommentit käytöstä
+  disable_comments_desc: Estä käyttäjiä lisäämästä uusia kommentteja
   disagree_: Eri mieltä
   disconnect_provider: "Katkaise yhteys palveluun %{provider}"
   display_link_to_checklist: Näytä linkki projektiluetteloon projektisivulta
@@ -1144,6 +1172,7 @@ fi:
   edit_field: Muokkaa kenttää
   edit_license: Muokkaa lisenssiä
   edit_multiple_dates: Muokkaa useita päivämääriä
+  edit_multiple_descriptions: Muokkaa useita kuvauksia
   edit_multiple_locations: Muokkaa useita paikkoja
   edit_multiple_species: Muokkaa useita lajeja
   edit_notes: Muokkaa muistiinpanoja
@@ -1281,6 +1310,7 @@ fi:
   fields_can_only_be_edited_by_the_people_who: Kenttiä voivat muokata vain henkilöt, jotka ovat luoneet ne ja sivuston kuraattorit
   fields_merged: Kentät yhdistetään
   file: Tiedosto
+  file_size: Tiedostokoko
   file_should_be_in_the_following_format: "Tiedoston pitäisi olla seuraavassa muodossa: taksonin nimi, kuvaus"
   fill_out_project_observation_fields: Täytä projektin havaintokentät
   fill_out_your_profile: täydennä profiilisi
@@ -1764,6 +1794,7 @@ fi:
   linkedin: LinkedIn
   list: Luettelo
   list_deleted: Luettelo poistettu.
+  list_reloaded_from_observations: Luettelo on päivitetty havaintojesi perusteella
   list_saved: Luettelo tallennettu.
   list_tooltip: Näytä luettelona
   list_updated: Luettelo päivitetty!
@@ -1963,7 +1994,7 @@ fi:
       #Short text representing %d hours in the past
       hh: "%dt"
       #Short text representing 1 day in the past
-      d: "1p"
+      d: "1 pv"
       #Short text representing %d days in the past
       dd: "%dp"
       #Short text representing 1 month in the past
@@ -2057,7 +2088,7 @@ fi:
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi siihen %{site_name}:in sijaan?
+    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi %{site_name}:een kansainvälisen sivuston sijasta?
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
@@ -2305,6 +2336,7 @@ fi:
   observations_with_this_field: Havainnot tällä kentällä
   observations_with_this_field_and_value: Havainnot tällä kentällä ja arvolla
   observations_without_media: Havainnot ilman mediasisältöä
+  observationcounts_refreshed: Havaintolukemat päivitetty
   observed: Havaittu
   observed_by: Havainnut
   observed_on: Havaittu
@@ -2487,6 +2519,9 @@ fi:
   photo_urls_repaired: Valokuvien URLit korjattu
   photos_chosen_for_this_taxon: Tälle taksonille valitut kuvat
   photos_from: Kuvat sivustolta
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Kuvat lukittu
+  photos_locked_desc: Vain henkilökunta voi muuttaa tämän taksonin oletuskuvia
   photos_of_taxon_html: "Taksonin %{taxon} kuvat"
   photos_or_sounds: Kuvia tai ääniä
   photos_or_sounds?: Kuvia tai ääniä?
@@ -2615,6 +2650,7 @@ fi:
       zone: vyöhyke
   place_guess: arvaus paikasta
   place_imported: Paikka tuotu!
+  place_must_have_a_boundary_defined: Paikalla täytyy olla raja määritettynä.
   place_name: Paikan nimi
   place_notes: Paikkamerkinnät
   place_too_big_for_check_list: |
@@ -2623,6 +2659,7 @@ fi:
   placement: Sijoitus
   places: Paikat
   places_added_by_members_of_the_community: Yhteisön jäsenien lisäämät paikat
+  places_maintained_by_site_admins: Paikat, joita sivuston ylläpitäjät pitävät yllä
   places_name:
     afghanistan: Afganistan
     africa: Afrikka
@@ -2891,6 +2928,7 @@ fi:
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
+  please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
   please_add_this_to_x_html: "Lisää tämä projektiin %{x}"
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta
   please_complete_the_following_to_add_project: |
@@ -2943,6 +2981,8 @@ fi:
   project_assets: Projektitiedostot
   project_cover: Projektin kansikuva
   project_created_on: loi tämän projektin %{date}
+  project_curator_id: Projektin kuraattorin käyttäjätunnus
+  project_curator_tools: Projektin kuratointityökalut
   project_curators: Projektin kuraattorit
   project_group_label: Ryhmä
   project_group_description: Ryhmä johon projekti kuuluu
@@ -3298,7 +3338,7 @@ fi:
   duplicate_observation_flag_warning: |
     Jos huomaat tuplahavaintoja, pyydä havainnoijaa korjaamaan tilanne sen sijaan, että liputtaisit havainnon, sillä sivuston kuraattorit eivät voi poistaa havaintoja.
   some_rights_reserved: osa oikeuksista pidätetään
-  something: Jotain
+  something: Jokin
   something_: jotain
   somewhere_on_earth: jossakin maapallolla
   somewhere: (Jossain...)
@@ -3656,6 +3696,7 @@ fi:
   #Undo the action of resolving a flag
   unresolve: Poista ratkaisu
   unsubscribe: Peruuta tilaus
+  unsubscribe_from_emails_like_this: Lopeta tämänkaltaisten viestien tilaus.
   unsuspend_user: Jäädytetty käyttäjä
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
@@ -3668,6 +3709,7 @@ fi:
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
   update_subscription: Päivitä tilaus
+  update_subscription_preferences: Päivitä tilausasetukset
   update_x_selected_taxa:
     one: "Päivitä 1 valittu taksoni"
     other: "Päivitä %{count} valittua taksonia"
@@ -3865,6 +3907,7 @@ fi:
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
+  were_pretty_sure_this_is_in_the_rank: Olemme melko varmoja, että se on osa %{rank}a
   what: Mitä
   what_did_you_see: Mitä näet?
   what_did_you_see?: <em>Mitä</em> näet?
@@ -3977,6 +4020,7 @@ fi:
   you_cant_delete_a_project_list: "Et voi poistaa projektiluetteloa"
   you_cant_flag_that: Et voi liputtaa tätä
   you_cant_leave_a_project_you_created: Et voi lähteä luomastasi projektista.
+  you_cant_merge_standard_places: Et voi yhdistää vakiopaikkoja
   you_cannot_delete_taxa_involved_in_taxon_changes: Et voi poistaa taksoneita, jotka liittyvät taksonimuutoksiin, tai taksoneita, jotka sisältävät taksonimuutoksiin liittyviä taksoneita
   you_didnt_select_any_observations: Et valinnut yhtään havaintoa
   you_dont_have_permission_to_do_that: Sinulla ei ole oikeutta tehdä sitä.
@@ -4033,6 +4077,7 @@ fi:
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
   your_recent_projects: Viimeaikaiset projektisi
   your_relationships: Omat kaverisuhteet
+  your_subscriptions_to_this_place: Tilauksesi, jotka liittyvät tähän paikkaan.
   your_tags: Omat merkinnät
   yours: Sinun
   youre_not_following_anyone: |-
@@ -4538,6 +4583,7 @@ fi:
         revoke_observations_desc: |
           Jos ainut syy lähtöösi on estää projektin kuraattoreita näkemästä piilotettuja koordinaattejasi.
       edit:
+        admins_must_be_existing_members: Vain projektin jäsenistä voidaan tehdä ylläpitäjiä.
         new_place_desc_html: |
           Yritä katsella 
           <a href="%{places_url}" target="_blank">nykyisistä paikoistamme</a> ja varmista, että paikan nimi on oikein. Jos et 
@@ -4982,7 +5028,7 @@ fi:
         monthly_supporter: Kuukausitukija
         monthly_supporter_desc_html: |
           iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
-          States IRS FIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
+          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
           <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
           Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
@@ -5454,6 +5500,7 @@ fi:
       listed_taxon:
         establishment_means: Lajin alkuperä
       observation:
+        description: Muistiinpanot
         geo_x: Itä
         geo_y: Pohjoiseen
         observed_on: havaintopäiväys
@@ -5594,6 +5641,8 @@ fi:
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
         post:
           attributes:
+            parent:
+              prefers_no_comments: uusia kommentteja ei voi lisätä
             user:
               must_be_on_site_long_enough: |
                 täytyy olla rekisteröitynyt aiemmin kuin 24 tuntia sitten, jotta voit julkaista tietoja. Saamme paljon roskaviestejä (spam) ja tällä tavalla pyrimme estämään niiden määrää. Voit tallentaa tietosi luonnoksena, ja jos käytät vielä sivustoa vuorokauden päästä, voit julkaista ne.

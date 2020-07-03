@@ -4332,6 +4332,7 @@ tr:
   you_cant_do_that_for_the_default_check_list_place: Bir yerin varsayılan kontrol listesi için bunu yapamazsınız!
   you_cant_flag_that: Bunu işaretleyemezsiniz
   you_cant_leave_a_project_you_created: Oluşturduğunuz bir projeden ayrılamazsınız.
+  you_cant_merge_standard_places: Standart alanları birleştiremezsiniz
   you_cant_rotate_photos_hostde_outside: "%{site_name} dışında barındırılan fotoğrafları döndüremezsiniz."
   you_cannot_delete_taxa_involved_in_taxon_changes: Sınıf değişiklikleri içeren ve sınıf değişikliklerinde yer alan sınıfları silemezsin
   you_curate_a_project_that_contains_this_observation: Bu gözlemi içeren bir projenin sorumluluğunu yaptınız
@@ -5206,6 +5207,7 @@ tr:
         revoke_observations_desc: |
           Ayrılmanızın tek sebebi proje sorumlularının gizli koordinatlarınızı görüntülemelerini engellemekse.
       edit:
+        admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut yerlerimize</a>
@@ -5960,12 +5962,12 @@ tr:
           Atıf lisansı</a> altında kullanılır (referans!)
         monthly_supporter: Aylık Destekçi
         monthly_supporter_desc_html: |
-          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin 
-          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy 
-          (ABD IRS FIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
+          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin
+          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy
+          (ABD IRS EIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
           <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>.
-          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu 
-          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için, 
+          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu
+          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,
           iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
         muting_desc_html: |
           <p>

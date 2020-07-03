@@ -883,6 +883,7 @@ he:
   comment_deleted: התגובה נמחקה
   comments: תגובות
   comments_by_me: תגובות שלי
+  comments_have_been_disabled: לא ניתן להוסיף הערות
   comments_on: תגובות על
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
@@ -931,6 +932,7 @@ he:
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
   connecting_to_facebook: "מתחבר לפייסבוק..."
+  connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
   cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת קפיאת תוכן
   conservation_status: סטטוס שימור
   conservation_status_descriptions:
@@ -945,6 +947,7 @@ he:
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
+  contain_all_descendants?: האם רשימה זו כוללת את כל הצאצאים של טקסון זה הנמצאים כאן?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: תוכן
   content_author: יוצרי התוכן
@@ -966,6 +969,7 @@ he:
     female: נקבה
     plant_phenology: פנולוגיית צומח
     budding: הנצה
+    flower_budding: ניצן פרחים
     flowering: פריחה
     fruiting: יצירת פרי
     life_stage: שלב חיים
@@ -973,6 +977,7 @@ he:
     teneral: לאחר השלה
     subimago: טרום-בוגר
     pupa: גולם
+    no_evidence_of_flowering: אין ראיות לפריחה
     nymph: נימפה
     larva: לרווה
     egg: ביצה
@@ -982,8 +987,12 @@ he:
     dead: מת
     cannot_be_determined: לא ניתן לברר
   controlled_term_definitions:
+    alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
+    dead: היצור מת או מראה שימנים של מוות מיידי
+    flower_budding: רואים ניצני פרחים אך סגורים
     flowering: פרחים נראים, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
+    no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
     cannot_be_determined: לא ניתן לדעת מתצפית זו
   controls: פקדים
   convert: המרה
@@ -1146,6 +1155,8 @@ he:
   did_you_mean: 'האם התכוונת ל'
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
   disable: כיבוי
+  disable_comments: חסימת הערות
+  disable_comments_desc: למנוע הוספת הערות מידי משתמשים
   disagree_: לא מסכים/מה
   disconnect_provider: "ניתוק %{provider}"
   documentation_for_developers_html: דוקומנטציה בשביל <a href="/pages/developers">מפתחים</a>
@@ -1189,6 +1200,7 @@ he:
   edit_field: עריכת שדה
   edit_license: עריכת רשיון
   edit_multiple_dates: עריכת מספר תאריכים
+  edit_multiple_descriptions: עריכת מספר תיאורים
   edit_multiple_locations: עריכת מספר מיקומים
   edit_multiple_species: עריכת מספר מינים
   edit_notes: עריכת הודעות
@@ -3414,6 +3426,7 @@ he:
   unpublish: ביטול פרסום
   unreview_all: ביטול הסקירה של הכול
   unsubscribe: ביטול מינוי
+  unsubscribe_from_emails_like_this: הסר מתפוצת דברי דואר מסוג זה
   upcoming_bioblitzes: ביובליצים עתידיים
   update: עדכון
   update_observations: עדכון תצפיות
@@ -3422,6 +3435,7 @@ he:
   update_search: עדכון חיפוש
   update_selected_taxa: עדכון טקסונים נבחרים
   update_subscription: עדכון מנויי
+  update_subscription_preferences: עדכון העדפות הרשמה
   updated: עודכן
   updated_by: עודכן על ידי
   updated_daily: מעודכן יומית
@@ -4570,6 +4584,7 @@ he:
         occurrence_status_level: סטטוס הופעה
         establishment_means: דרכי התבססות
       observation:
+        description: רשימות
         geo_x: אייסטינג
         geo_y: נורת'ינג
         observed_on: תאריך צפייה
@@ -4731,6 +4746,10 @@ he:
               is_too_large_to_edit: גדול מדי בכדי לערוך
               is_too_large_to_import: קובץ גדול מדי לייבוא
               contains_too_many_observations: יותר מדי תצפיות מכדי לייבא
+        post:
+          attributes:
+            parent:
+              prefers_no_comments: אין אישור להוספת הערות
         project_observation:
           attributes:
             base:

@@ -497,12 +497,18 @@ de:
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa und aufgelistete Taxa
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es enthält untergeordnete Taxa und Identifikationen
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa, gelistete Taxa, Identifikationen und Beobachtungen
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa, gelistete Taxa und Beobachtungen.
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat untergeordnete Taxa und Beobachtungen
   are_you_sure_want_delete_taxon_identifications: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Identifikationen
   are_you_sure_want_delete_taxon_identifications_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Identifikationen und Beobachtungen
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa.
   are_you_sure_want_delete_taxon_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Beobachtungen
   are_you_sure_want_delete_taxon_link: Bist du sicher, dass du diesen Taxon-Link entfernen willst?
@@ -1024,7 +1030,7 @@ de:
   default_invite_comment: "Super Foto! Du solltest es hier posten: %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
-  default_sound_license: Standardtonlizenz
+  default_sound_license: Standard-Tonlizenz
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
   defines_a_taxon_framework_for: Definiert ein Taxon-Framework für %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definiert ein Taxon-Framework für %{taxon} auf Grundlage von %{source}
@@ -1146,6 +1152,7 @@ de:
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
   edit_multiple_dates: Datumsangaben bearbeiten
+  edit_multiple_descriptions: Mehrere Beschreibungen bearbeiten
   edit_multiple_locations: Mehrere Standorte bearbeiten
   edit_multiple_species: Mehrere Arten bearbeiten
   edit_notes: Anmerkungen bearbeiten
@@ -2527,6 +2534,8 @@ de:
   photo_urls_repaired: Foto URLs repariert
   photos_chosen_for_this_taxon: Foto für diese Art ausgewählt
   photos_from: Fotos von
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos gesperrt
   photos_locked_desc: Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern
   photos_of_taxon_html: "Fotos von %{taxon}"
   photos_or_sounds: Bilder oder Audio
@@ -3892,6 +3901,7 @@ de:
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
   update_subscription: Abonnement aktualisieren
+  update_subscription_preferences: Abonnement-Einstellungen aktualisieren
   update_x_selected_taxa:
     one: "1 ausgewähltes Taxon aktualisieren"
     other: "%{count} ausgewählte Taxa aktualisieren"
@@ -4256,6 +4266,7 @@ de:
   you_cant_do_that_for_the_default_check_list_place: Du kannst das nicht für die Standard-Checkliste eines Gebietes tun!
   you_cant_flag_that: Du kannst das nicht melden
   you_cant_leave_a_project_you_created: Du kannst von dir erstellte Projekte nicht verlassen.
+  you_cant_merge_standard_places: Standard-Gebiete können nicht zusammengeführt werden
   you_cant_rotate_photos_hostde_outside: "Du kannst Bilder nicht drehen, welche außerhalb von %{site_name} gehostet sind."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kannst Taxa nicht löschen, die an Taxonänderungen beteiligt sind oder Taxa enthalten, die an Taxonänderungen beteiligt sind
   you_curate_a_project_that_contains_this_observation: Du kuratierst ein Projekt, das diese Beobachtung enthält.
@@ -4999,6 +5010,7 @@ de:
         revoke_observations_desc: |
           Wenn der einzige Grund sein sollte, Projektkuratoren daran zu hindern, die versteckten Koordinaten deiner Beobachtungen zu sehen.
       edit:
+        admins_must_be_existing_members: Administratoren müssen existierende Mitglieder des Projekts sein.
         new_place_desc_html: |
           Durchsuche <a href="%{places_url}" target="_blank">unsere vorhandenen Gebiete</a>
           und überprüfe, dass der Namen des Ortes korrekt ist. Wenn der gewünschter Ort wirklich nicht gefunden wird, gibt es die Möglichkeit 
@@ -5456,7 +5468,7 @@ de:
           <ul>
           Versuche Namen hinzuzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
           <li><p>Füge keine doppelten Namen hinzu, z.B. nenne nicht mehrere Falken "Falke"</p></li>
-          <li><p>Für höhere Taxa versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse"</p></li> enthalten.
+          <li><p>Für höhere Taxa versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse" enthalten.</p></li>
           <li>
           <p>
           Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. beiläufige Informationen darüber wie der Name Ihrer Meinung nach verwendet werden sollte

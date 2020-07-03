@@ -4381,6 +4381,7 @@ da:
   you_cant_do_that_for_the_default_check_list_place: Det kan du ikke gøre med standard tjeklisten for et sted!
   you_cant_flag_that: Du kan ikke markere dette
   you_cant_leave_a_project_you_created: Du kan ikke forlade et projekt, du har oprettet.
+  you_cant_merge_standard_places: Du kan ikke flette standardsteder
   you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere foto´s lagret udenfor %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan ikke slette taksa involveret i takson-ændringer, eller som indeholder taksa involveret i takson-ændringer
   you_curate_a_project_that_contains_this_observation: Du er kurator på et projekt, som indeholder denne observation
@@ -5293,6 +5294,7 @@ da:
         revoke_observations_desc: |
           Hvis den eneste grund til, at du smutter, er at stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
+        admins_must_be_existing_members: Admins skal være eksisterende projektmedlemmer.
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |
           Prøv at se
@@ -6021,10 +6023,10 @@ da:
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
         monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
-          iNaturalist månedlige supporters giver månedlige bidrag, som modtages af California Academy of Sciences (United
-          States IRS FIN 94-1156258) til støtte af nonprofit-driften af iNaturalist og iNaturalist-netværk sites.
-          <a href="%{url}">Klik her for at blive en månedlig supporter</a>.
-          Når vi har bekræftet din støtte, vil du kunne markere denne boks for at vise denne status på din profil. Bemærk: du skal bruge præcis den samme email-adresse på Donorbox, som du bruger på iNaturalist, for at vi kan bekræfte at du er blevet en månedlig supporter.
+          iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
+          States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
+          <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.

@@ -1,4 +1,4 @@
-pt-BR:
+pt:
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
@@ -1065,13 +1065,34 @@ pt-BR:
   deviation: Desvio
   devise:
     failure:
+      already_authenticated: 'Você já está logado.'
+      unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
+      invalid: 'E-mail ou senha inválidos.'
+      invalid_token: 'Token de autenticação inválido.'
       user:
         suspended: Sua conta foi suspensa
+    sessions:
+      signed_in: 'Login efetuado com sucesso.'
+      signed_out: 'Logout efetuado com sucesso.'
+    passwords:
+      updated: 'Sua senha foi alterada com sucesso. Você agora está conectado.'
+      updated_not_active: 'Sua senha foi alterada com sucesso.'
+    registrations:
+      signed_up: 'Bem-vindo! Você se registrou com sucesso.'
+      updated: 'Você atualizou sua conta com sucesso.'
+      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruções de confirmação'
+      reset_password_instructions:
+        subject: 'Instruções de redefinição de senha'
   discoveries: Descobertas
   did_not_send_invitations_because: Não foram enviados convites para estes contatos porque...
   did_you_mean: 'Você quis dizer'
   did_you_photos_flickr?: Você incluiu alguma foto no Flickr?
   disable: Desativar
+  disable_comments: Desativar comentários
+  disable_comments_desc: Impedir que pessoas adicionem novos comentários
   disagree_: Não concordo
   disconnect_provider: "Desconecte-se de %{provider}"
   display_link_to_checklist: Mostra link para a lista do projeto a partir da página
@@ -1129,6 +1150,7 @@ pt-BR:
   edit_field: Editar campo
   edit_license: Editar licença
   edit_multiple_dates: Editar múltiplas datas
+  edit_multiple_descriptions: Editar múltiplas descrições
   edit_multiple_locations: Editar múltiplas localizações
   edit_multiple_species: Editar múltiplas espécies
   edit_notes: Alterar anotações
@@ -3913,6 +3935,7 @@ pt-BR:
   update_search: Atualizar pesquisa
   update_selected_taxa: Atualizar táxons selecionados
   update_subscription: Atualizar assinatura
+  update_subscription_preferences: Atualizar preferências de inscrições
   update_x_selected_taxa:
     one: "Atualizar 1 táxon selecionado"
     other: "Update %{count} táxons selecionados"
@@ -5425,6 +5448,9 @@ pt-BR:
             incluindo o trabalho das
             <strong class="count">%{helpers_count} pessoas</strong> quem têm
             ajudado você com identificações
+        x_comments_html:
+          one: <strong class="count">%{count} comentário</strong> que você adicionou
+          other: <strong class="count">%{count} comentários</strong> que você adicionou
         furthermore_cannot_undo_html: |
           Além disso, <strong>essa ação não pode ser desfeita.</Strong> Se você mudar de ideia mais tarde, você não está recebendo nada desse conteúdo de volta.
         settings_and_mute_html: |
@@ -5498,7 +5524,7 @@ pt-BR:
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
           recebidos pela Academia de Ciências da Califórnia (United
-          IRS FIN 94-1156258) para apoiar a operação sem fins lucrativos de
+          IRS EIN 94-1156258) para apoiar a operação sem fins lucrativos de
           Sites da iNaturalist e da iNaturalist Network.
           <a href="%{url}">Clique aqui para se tornar um apoiador mensal</a>.
           Quando confirmarmos seu apoio, você poderá verificar isso
@@ -6034,6 +6060,7 @@ pt-BR:
         occurrence_status_level: Status de ocorrência
         establishment_means: Período de Estabelecimento
       observation:
+        description: Anotações
         geo_x: Deslocando-se ao leste
         geo_y: Deslocando-se ao norte
         observed_on: data observada
@@ -6196,6 +6223,8 @@ pt-BR:
               contains_too_many_observations: contém observações demais para ser importado
         post:
           attributes:
+            parent:
+              prefers_no_comments: não permite novos comentários
             user:
               must_be_on_site_long_enough: |
                 Deve ter feito o registro por mais de 24 horas para publicar. Nós temos muitos casos de introdução de spam, e esta foi uma maneira que encontramos para lidar com isso. Você ainda pode salvar um rascunho, e se você voltar em um dia já poderá efetivar a publicação.

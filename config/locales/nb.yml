@@ -5085,6 +5085,10 @@ nb:
         do_you_need_features_from_traditional: |
           Trenger du funksjonalitet fra tradisjonelle prosjekter, som tilgang til sanne koordinater, egendefinerte observasjonsfelt, eller å legge til individuelle observasjoner som ikke kan filtreres automatisk?
         duplicate_project: Dupliser prosjekt
+        include_annotated_observations: |
+          Inkluder bare observasjoner som er kommentert med en bestemt egenskap (f.eks. livsstadium),
+          eller en bestemt egenskap og verdi (f.eks. livsstadium = voksen).
+          Det er begrenset til ett merknadsfilter per prosjekt.
         leaderboards_among_individuals: Topplister blant <strong>individer</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Topplister blant <strong>prosjekter</strong>
@@ -5512,7 +5516,7 @@ nb:
         monthly_supporter: Månedlig supporter
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
-          States IRS FIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
+          States IRS EIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
           <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
         muting_desc_html: |
           <p>

@@ -1292,6 +1292,7 @@ cs:
   edit_field: Editovat pole
   edit_license: Editovat licenci
   edit_multiple_dates: Editovat více dat
+  edit_multiple_descriptions: Editovat více popisků
   edit_multiple_locations: Editovat více míst
   edit_multiple_species: Editovat více druhů
   edit_notes: Editovat poznámky
@@ -1545,7 +1546,7 @@ cs:
   follow_user: "Sledovat %{user}"
   followed_projects: Sledované projekty
   followers: Sledovatelé
-  following: sledující
+  following: Sledovaní
   following_x_people:
     one: 'Sleduje 1 osobu'
     few: 'Sleduje %{count} osob'
@@ -3244,6 +3245,9 @@ cs:
   project_settings: Nastavení projektu
   project_start_time_datetime: "Čas zahájení: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, který neobsahuje tato pozorování
+  project_type_description: |
+    Posouzení slouží ke spolupráci na souboru posouzení druhů, obvykle
+    za účelem posouzení důležitosti ochrany.
   project_user_cannot_be_found: Projektový uživatel nebyl nalezen
   project_user_was_invalid: "Projektový uživatel byl neplatný: %{project_user}"
   project_was_successfully_created: Projekt byl úspěšně vytvořen.
@@ -4141,6 +4145,7 @@ cs:
   update_search: Aktualizovat vyhledávání
   update_selected_taxa: Aktualizovat vybrané taxony
   update_subscription: Aktualizovat odběr
+  update_subscription_preferences: aktualizovat nastavení odebírání
   update_x_selected_taxa:
     one: "Aktualizace 1 vybraného taxonu"
     few: "Aktualizace %{count} vybraných taxonů"
@@ -4521,6 +4526,7 @@ cs:
   you_cant_do_that_for_the_default_check_list_place: Tento krok nemůžete se základním seznamem místa provést!
   you_cant_flag_that: Toto nemůžete označit
   you_cant_leave_a_project_you_created: Nemůžete odejít z projektu, který jste vytvořili.
+  you_cant_merge_standard_places: Standardní místa nelze sloučit
   you_cant_rotate_photos_hostde_outside: "Nemůžete otáčet fotky uložené mimo %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Nemůžete odstranit taxony zapojené do změn taxonů nebo taxony, které se podílejí na změnách taxonu
   you_curate_a_project_that_contains_this_observation: Organizujete projekt, který obsahuje toto pozorování
@@ -4939,6 +4945,8 @@ cs:
           other: "%{count} jedineční"
       export:
         choose_columns_desc: Vyberte sloupce, které chcete exportovat
+        create_a_query_desc_html: |
+          Vytvořte dotaz k pozorování stejným způsobem jako jinde na stránce. Také můžete zkopírovat a vložit URL pozorování z jiné části stránky. Výsledkem vašeho dotazu by <strong>nemělo být více než 200 000 pozorování </strong>.
         export_in_progress_notice: |
           Právě probíhá export. Budete muset počkat na dokončení,
           než budete moci vytvořit další export.
@@ -5340,6 +5348,7 @@ cs:
         revoke_observations_desc: |
           Pokud odcházíte jen proto, že nechcete, aby kurátoři projektu viděli vaše soukromé souřadnice.
       edit:
+        admins_must_be_existing_members: Administrátoři musí být existujícími členy projektu.
         aggregation_pending: Seskupení ve frontě
         new_place_desc_html: |
           Zkuste si projít
@@ -5396,6 +5405,7 @@ cs:
           </p>
         rules:
           captive: žije v zajetí/pěstováno
+          coordinates_shareable_by_project_curators: mají viditelné souřadnice pro kurátory projektu
           georeferenced: mají souřadnice
           has_a_photo: mít fotku
           has_a_sound: mají zvuk
@@ -5958,7 +5968,7 @@ cs:
         monthly_supporter: Měsíční podporovatel
         monthly_supporter_desc_html: |
           měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy
-          IRS FIN 94-1156258) na podporu neziskových operací
+          IRS EIN 94-1156258) na podporu neziskových operací
           stránek iNaturalist a iNaturalist sítě.
           <a href="%{url}">Klikněte zde, abyste se stali Měsíčním podporovatelem</a>.
           Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
