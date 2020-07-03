@@ -33,22 +33,8 @@ class ComputerVisionDemoUpload < ActiveRecord::Base
     return unless path
     self.metadata ||= { }
     begin
-      if photo_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new( path )
-        self.metadata.merge!( exif.to_hash )
-        xmp = XMP.parse( exif )
-        if xmp && xmp.respond_to?( :dc ) && !xmp.dc.nil?
-          self.metadata[:dc] = { }
-          xmp.dc.attributes.each do |dcattr|
-            begin
-              unless xmp.dc.send(dcattr).blank?
-                self.metadata[:dc][dcattr.to_sym] = xmp.dc.send( dcattr )
-              end
-            rescue ArgumentError
-              # XMP does this for some DC attributes, not sure why
-            end
-          end
-        end
-      end
+      exif_data = ExifMetadata.new(path: path, type: photo_content_type ).extract
+      self.metadata.merge!(exif_data)
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     rescue NoMethodError => e
