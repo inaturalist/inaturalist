@@ -904,8 +904,6 @@ class Project < ActiveRecord::Base
 
   def update_users_observations_counts(options = {})
     Project.transaction do
-      # set all counts to zero
-      project_users.update_all(observations_count: 0) unless options[:user_id]
       user_ids = options[:user_id] ? [ options[:user_id] ] :
         project_users.pluck(:user_id).uniq.sort
       user_ids.in_groups_of(500, false) do |uids|
