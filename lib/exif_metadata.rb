@@ -8,7 +8,7 @@ class ExifMetadata
   # Initializes a new ExifMetada instance
   # @param [String] path Path to file to extract exif tags from 
   # @param [String] type Filetype (mime) with which to treat the file 
-  def initialize(path: nil, type: nil)
+  def initialize( path: nil, type: nil )
     @path = path
     @type = type
     @metadata = {}
@@ -91,7 +91,7 @@ class ExifMetadata
     end
   end
   
-  def serialize_date_time(dt)
+  def serialize_date_time( dt )
     # Parsed using EXIFR::TIFF's time proc by R.W. van 't Veer for consistency with existing serialization
     if dt =~ /^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)(?:\.(\d{3}))?$/
       EXIFR::TIFF.mktime_proc.call( $1.to_i, $2.to_i, $3.to_i, $4.to_i, $5.to_i, $6.to_i, $7.to_i * 1000 )
