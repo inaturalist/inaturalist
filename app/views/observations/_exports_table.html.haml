@@ -8,7 +8,7 @@
     %th=t "activerecord.attributes.observations_export_flow_task.inputs"
   %tbody
   - for ft in flow_tasks
-    %tr
+    %tr{ id: "export-#{ft.id}", class: !ft.finished_at && !ft.error ? "notice" : "" }
       %td.inline.buttonrow.smallbuttons
         - if ft.export_output
           = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"

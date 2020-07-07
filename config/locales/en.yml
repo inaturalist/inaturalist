@@ -5090,9 +5090,9 @@ en:
           site. You can also cut and paste an observations URL from another
           part of the site. Your query should return <strong>no more than
           200,000 observations</strong>.
-        export_in_progress_notice: |
-          You have an export in progress. You'll need to wait for it to finish
-          before you can queue another export.
+        export_in_progress_notice_html: |
+          You have an <a href="%{url}">export in progress</a>. You'll need to
+          wait for it to finish before you can queue another export.
         ident_by_user_desc_html: |
           Columns for the current identification by %{user}
         limit_alert:

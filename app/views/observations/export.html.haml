@@ -45,9 +45,10 @@
 - if @export_url
   #success.success.ui
     %h3 Export complete
-    = render 'exports_table', :flow_tasks => [@flow_task]
+    = render "exports_table", flow_tasks: [@flow_task]
 - if queued_export = @recent_exports.detect{|ft| ft.finished_at.blank? && ft.error.blank? }
-  .notice=t "views.observations.export.export_in_progress_notice"
+  .notice
+    =t "views.observations.export.export_in_progress_notice_html", url: url_for( anchor: "export-#{queued_export.id}" )
 = form_for ObservationsExportFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
   .column.span-24
     %h3
@@ -136,7 +137,7 @@
 - unless @recent_exports.blank?
   #recent_exports.meta.clear
     %h4=t :recent_exports
-    = render 'exports_table', :flow_tasks => @recent_exports
+    = render "exports_table", flow_tasks: @recent_exports
 
 #filters
   = render "filter_fields", 
