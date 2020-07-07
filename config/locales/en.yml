@@ -1407,6 +1407,7 @@ en:
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
+  failed_to_save_record_with_errors: "Failed to save record: %{errors}"
   'false': 'False'
   # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
@@ -3482,6 +3483,7 @@ en:
   resolved_by: Resolved by
   resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
+  restart: Restart
   restore: Restore
   restoring: Restoring...
   results: results
@@ -3826,6 +3828,7 @@ en:
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
+  task_deleted: Task deleted
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info

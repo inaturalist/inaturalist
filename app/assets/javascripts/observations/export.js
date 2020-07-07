@@ -81,19 +81,9 @@ $(document).ready(function() {
     reloadPreview()
   }
 
-  $('#new_observations_export_flow_task').bind('ajax:success', function(e, json) {
-    window.flowTask = json
-    var runUrl = '/flow_tasks/'+json.id+'/run.json'
-    runFlowTask(runUrl)
-    $('#rundialog').dialog({
-      modal: true, 
-      title: I18n.t('exporting'),
-      width: 490
-    })
-    $('#exportingstatus').removeClass('notice box centered').addClass('loading').html(I18n.t('loading'))
-    $('#receive_an_email .inter, #receive_an_email .status').remove()
-    $('#receive_an_email .button').show()
-  })
+  $( "#new_observations_export_flow_task" ).bind( "ajax:success", function( e, json ) {
+    startFlowTask( json );
+  } );
   $('#new_observations_export_flow_task').bind('ajax:error', function(e,r) {
     var json = $.parseJSON(r.responseText)
     alert(json.error)
@@ -103,15 +93,30 @@ $(document).ready(function() {
       filtersToQuery( );
       reloadPreview( );
     }
-  });
-})
+  } );
+} );
+
+window.startFlowTask = function ( flowTask ) {
+  window.flowTask = flowTask
+  var runUrl = "/flow_tasks/" + flowTask.id + "/run.json";
+  runFlowTask( runUrl );
+  $( "#rundialog" ).dialog( {
+    modal: true,
+    title: I18n.t( "exporting" ),
+    width: 490
+  } );
+  $( "#exportingstatus" ).removeClass( "notice box centered" ).addClass( "loading" ).html( I18n.t( "loading" ) );
+  $( "#receive_an_email .inter, #receive_an_email .status" ).remove( );
+  $( "#receive_an_email .button" ).show( );
+};
+
 window.runFlowTask = function(runUrl) {
   window.delayedLinkTries = (window.delayedLinkTries || 0) + 1
   if (window.delayedLinkTries > 20) {
     $('#exportingstatus').removeClass('loading').addClass('notice box centered').html(I18n.t('views.observations.export.taking_a_while'))
     return
   }
-  $.ajax({
+  $.ajax( {
     url: runUrl,
     type: 'get',
     dataType: 'json',
@@ -128,9 +133,9 @@ window.runFlowTask = function(runUrl) {
         window.open(redirectUrl, '_self')
       }
     }
-  }).error(function() {
-    alert("Something went wrong.")
-  })
+  } ).error( function ( ) {
+    alert( I18n.t( "doh_something_went_wrong" ) );
+  } );
 }
 function emailWhenComplete() {
   $('#receive_an_email .button').hide()

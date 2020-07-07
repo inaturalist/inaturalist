@@ -40,7 +40,7 @@ class FlowTasksController < ApplicationController
         end
         format.json { render :json => @flow_task }
       else
-        msg = "Failed to save task: " + @flow_task.errors.full_messages.to_sentence
+        msg = I18n.t(:failed_to_save_record_with_errors, errors: @flow_task.errors.full_messages.to_sentence )
         format.html do
           flash[:error] = msg
           redirect_back_or_default('/')
@@ -75,8 +75,8 @@ class FlowTasksController < ApplicationController
   
   def destroy
     @flow_task.destroy
-    flash[:notice] = "Flow task destroyed"
-    redirect_to flow_tasks_path
+    flash[:notice] = I18n.t( :task_deleted )
+    redirect_back_or_default flow_tasks_path
   end
   
   private

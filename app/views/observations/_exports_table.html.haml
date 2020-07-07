@@ -6,6 +6,7 @@
     %th=t "activerecord.attributes.observations_export_flow_task.started_at"
     %th=t "activerecord.attributes.observations_export_flow_task.finished_at"
     %th=t "activerecord.attributes.observations_export_flow_task.inputs"
+    %th
   %tbody
   - for ft in flow_tasks
     %tr{ id: "export-#{ft.id}", class: !ft.finished_at && !ft.error ? "notice" : "" }
@@ -13,9 +14,14 @@
         - if ft.export_output
           = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
         - elsif ft.error
-          = t(:failed)
+          =t :failed
+        - elsif ft.started_at
+          =t :processing
+        - elsif @recent_export_jobs_by_flow_task_id && @recent_export_jobs_by_flow_task_id[ft.id].blank?
+          %button{type: "button", class: "default button", onClick: "javascript:startFlowTask( { id: #{ft.id} } );return false;" }
+            =t :restart
         - else
-          = ft.started_at ? t(:processing) : t(:queued)
+          =t :queued
       %td.nobr
         = ft.export_output ? number_to_human_size(ft.export_output.file.size, precision: 3) : nil
       %td.queued
@@ -34,3 +40,5 @@
         %div
           %strong=t :columns
           = ft.export_columns.join(', ')
+      %td.inline.buttonrow.smallbuttons
+        = button_to t(:delete), flow_task_path( ft ), method: :delete, class: "pale button", data: { confirm: t(:are_you_sure?) }

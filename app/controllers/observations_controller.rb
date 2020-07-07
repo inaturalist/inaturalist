@@ -1148,7 +1148,11 @@ class ObservationsController < ApplicationController
       end
     end
     @recent_exports = ObservationsExportFlowTask.
-      where(user_id: current_user).order(id: :desc).limit(20)
+      where( user_id: current_user ).order( id: :desc ).limit( 20 ).includes( :outputs )
+    @recent_export_jobs_by_flow_task_id = @recent_exports.select{|ft| ft.outputs.blank?}.inject( {} ) do |memo, ft|
+      memo[ft.id] = Delayed::Job.find_by_unique_hash( ft.enqueue_options[:unique_hash].to_s )
+      memo
+    end
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
     set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     @identification_fields = if @ident_user
