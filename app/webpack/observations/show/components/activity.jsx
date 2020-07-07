@@ -161,7 +161,7 @@ class Activity extends React.Component {
       ? (
         <div className="form-group">
           <TextEditor
-            key="remarks"
+            key={`comment-editor-${observation.id}-${observation.comments.length}`}
             placeholder={I18n.t( "leave_a_comment" )}
             textareaClassName="form-control"
             maxLength={5000}
@@ -198,7 +198,7 @@ class Activity extends React.Component {
           />
           <div className="form-group">
             <TextEditor
-              key={`comment-editor-${observation.identifications.length}`}
+              key={`comment-editor-${observation.id}-${observation.identifications.length}`}
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"

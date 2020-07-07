@@ -6,7 +6,8 @@
   padding: 0px;
   .ac {
     min-width: 370px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     width: 100%;
   }
