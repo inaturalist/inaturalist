@@ -74,9 +74,13 @@ export function fetchControlledTerms( options = {} ) {
 }
 
 export function fetchAllControlledTerms( ) {
-  return dispatch => inatjs.controlled_terms.search( BASE_REQUEST_PARAMS )
-    .then( response => dispatch( setAllControlledTerms( response.results ) ) )
-    .catch( ( ) => { } );
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    inatjs.controlled_terms.search( testingApiV2 ? API_V2_BASE_REQUEST_PARAMS : {} )
+      .then( response => dispatch( setAllControlledTerms( response.results ) ) )
+      .catch( ( ) => { } );
+  };
 }
 
 // This is a utility that doesn't modify the state, but could be useful elsewhere

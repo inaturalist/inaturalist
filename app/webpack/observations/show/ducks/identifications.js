@@ -53,7 +53,8 @@ export function fetchIdentifiers( params ) {
         : {}
     );
     inatjs.identifications.identifiers( identifiersParams ).then( response => {
-      const { identifications } = state;
+      // fetch the state again since we're reset lastFetchTime
+      const { identifications } = getState( );
       if ( time === identifications.lastFetchTime ) {
         dispatch( setIdentifiers( response.results ) );
       }
