@@ -182,8 +182,8 @@ fr:
   accuracy_meters: Précision (mètres)
   accuracy_of_the_coordinates: |
     Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées
-    en cliquant sur le lien «  modifiez  » ci-dessus ou en cliquant sur le
-    marqueur de la carte et en le déplacant au bon endroit. Assurez-vous que le
+    en cliquant sur le lien « modifiez » ci-dessus ou en cliquant sur le
+    marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
     cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
   action: Action
@@ -4814,8 +4814,6 @@ fr:
           Créez une requête d’observation tout comme vous le feriez ailleurs sur le
           site. Vous pouvez aussi copier et coller une URL d’observations à partir d’un autre
           endroit du site. Votre requête <strong>ne doit pas retourner plus de 200.000 observations</strong>.
-        export_in_progress_notice: |
-          Vous avez un export en cours. Vous devrez attendre qu'il se termine avant de pouvoir en effectuer un autre.
         ident_by_user_desc_html: |
           Colonnes pour l'identification actuelle par %{user}
         limit_alert: Votre export sera trop gros. Changez vos filtres jusqu'à ce qu'il y ait moins de 200 000 observations.
