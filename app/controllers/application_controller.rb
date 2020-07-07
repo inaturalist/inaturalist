@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_preferred_place
   before_filter :check_preferred_site
   before_filter :sign_out_spammers
+  before_filter :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
   skip_filter *_process_action_callbacks.map(&:filter), only: :ping
@@ -692,6 +693,21 @@ class ApplicationController < ActionController::Base
     response.headers['X-Per-Page'] = collection.per_page.to_s
   end
 
+  def set_session_oauth_application_id
+    if doorkeeper_token && doorkeeper_token.accessible? && (a = doorkeeper_token.try(:application))
+      session["oauth_application_id"] = a.id
+    elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
+      jwt_claims = begin
+        ::JsonWebToken.decode(token)
+      rescue JWT::DecodeError => e
+        nil
+      end
+      if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
+        session["oauth_application_id"] = oauth_application_id
+      end
+    end
+  end
+
   # Encapsulates common pattern for actions that start a bg task get called 
   # repeatedly to check progress
   # Key is required, and a block that assigns a new Delayed::Job to @job
@@ -775,6 +791,12 @@ class ApplicationController < ActionController::Base
       UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
     else
       UpdateAction.user_viewed_updates( updates, current_user.id )
+    end
+  end
+
+  def blocked_by_content_freeze
+    if CONFIG.content_freeze_enabled
+      render template: "content_freeze", status: 403, layout: "application"
     end
   end
 

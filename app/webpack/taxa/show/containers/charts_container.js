@@ -7,6 +7,7 @@ import {
   openObservationsSearch
 } from "../ducks/observations";
 import { setScaledPreference } from "../actions/taxon";
+import { fetchTerms } from "../../shared/ducks/taxon";
 
 const TERMS_TO_CHART = ["Life Stage", "Plant Phenology", "Sex"];
 
@@ -17,10 +18,11 @@ function mapStateToProps( state ) {
     monthOfYearFrequencyVerifiable
   ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
   const seasonalityColumns = [];
-  const order = [
+  const seriesNames = [
     "verifiable",
     "research"
   ];
+  const monthOfYearFrequencies = Object.assign( {}, state.observations.monthOfYearFrequency );
   const chartedFieldValues = { };
   _.each( state.taxon.fieldValues, ( values, termID ) => {
     if ( !_.includes( TERMS_TO_CHART, values[0].controlled_attribute.label ) ) {
@@ -28,20 +30,22 @@ function mapStateToProps( state ) {
     }
     chartedFieldValues[termID] = values;
     _.each( values, v => {
-      order.push( `${v.controlled_attribute.label}=${v.controlled_value.label}` );
+      const seriesName = `${v.controlled_attribute.label}=${v.controlled_value.label}`;
+      seriesNames.push( seriesName );
+      monthOfYearFrequencies[seriesName] = v.month_of_year;
     } );
   } );
-  const scaledSeasonality = state.config.prefersScaledFrequencies &&
-    state.observations.monthOfYearFrequency.background;
-  for ( let i = 0; i < order.length; i++ ) {
-    const series = order[i];
-    const frequency = state.observations.monthOfYearFrequency[series];
+  const scaledSeasonality = state.config.prefersScaledFrequencies
+    && monthOfYearFrequencies.background;
+  for ( let i = 0; i < seriesNames.length; i += 1 ) {
+    const series = seriesNames[i];
+    const frequency = monthOfYearFrequencies[series];
     if ( frequency ) {
       seasonalityColumns.push(
         [series, ...seasonalityKeys.map( key => {
           let freq = frequency[key.toString( )] || 0;
           if ( scaledSeasonality ) {
-            freq = freq / ( state.observations.monthOfYearFrequency.background[key.toString( )] || 1 );
+            freq /= ( monthOfYearFrequencies.background[key.toString( )] || 1 );
           }
           return freq;
         } )]
@@ -54,21 +58,21 @@ function mapStateToProps( state ) {
   const monthFrequencyResearch = state.observations.monthFrequency.research || {};
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
-  const scaledHistory = state.config.prefersScaledFrequencies &&
-    state.observations.monthFrequency.background;
+  const scaledHistory = state.config.prefersScaledFrequencies
+    && state.observations.monthFrequency.background;
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
     historyColumns.push( ["verifiable", ...historyKeys.map( d => {
       let freq = monthFrequencyVerifiable[d] || 0;
       if ( scaledHistory ) {
-        freq = freq / ( state.observations.monthFrequency.background[d] || 1 );
+        freq /= ( state.observations.monthFrequency.background[d] || 1 );
       }
       return freq;
     } )] );
     historyColumns.push( ["research", ...historyKeys.map( d => {
       let freq = monthFrequencyResearch[d] || 0;
       if ( scaledHistory ) {
-        freq = freq / ( state.observations.monthFrequency.background[d] || 1 );
+        freq /= ( state.observations.monthFrequency.background[d] || 1 );
       }
       return freq;
     } )] );
@@ -90,7 +94,8 @@ function mapDispatchToProps( dispatch ) {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
     fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
     openObservationsSearch: params => dispatch( openObservationsSearch( params ) ),
-    setScaledPreference: pref => dispatch( setScaledPreference( pref ) )
+    setScaledPreference: pref => dispatch( setScaledPreference( pref ) ),
+    loadFieldValueChartData: ( ) => dispatch( fetchTerms( { histograms: true } ) )
   };
 }
 

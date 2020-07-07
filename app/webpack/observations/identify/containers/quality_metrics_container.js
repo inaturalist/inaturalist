@@ -10,17 +10,16 @@ function mapStateToProps( state ) {
     config: state.config,
     qualityMetrics: Object.assign( { },
       _.groupBy( state.qualityMetrics, "metric" ),
-      _.groupBy( state.currentObservation.observation.votes, "vote_scope" )
-    ),
+      _.groupBy( state.currentObservation.observation.votes, "vote_scope" ) ),
     tableOnly: true
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
-    voteMetric: ( metric, params ) => { dispatch( voteMetric( metric, params ) ); },
-    unvoteMetric: ( metric ) => { dispatch( unvoteMetric( metric ) ); }
+    setFlaggingModalState: newState => dispatch( setFlaggingModalState( newState ) ),
+    voteMetric: ( metric, params ) => dispatch( voteMetric( metric, params ) ),
+    unvoteMetric: metric => dispatch( unvoteMetric( metric ) )
   };
 }
 

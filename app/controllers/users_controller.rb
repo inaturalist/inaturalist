@@ -511,7 +511,7 @@ class UsersController < ApplicationController
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
-      cache_key = "dashboard-discourse-data"
+      cache_key = "dashboard-discourse-data-#{@site.id}"
       begin
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
@@ -1154,6 +1154,7 @@ protected
       :password_confirmation,
       :per_page,
       :place_id,
+      :preferred_identify_image_size,
       :preferred_observation_fields_by,
       :preferred_observation_license,
       :preferred_observations_search_map_type,
@@ -1165,6 +1166,7 @@ protected
       :prefers_comment_email_notification,
       :prefers_forum_topics_on_dashboard,
       :prefers_identification_email_notification,
+      :prefers_identify_side_bar,
       :prefers_message_email_notification,
       :prefers_medialess_obs_maps,
       :prefers_project_invitation_email_notification,

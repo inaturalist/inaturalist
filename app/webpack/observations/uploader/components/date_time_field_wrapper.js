@@ -60,6 +60,7 @@ class DateTimeFieldWrapper extends Component {
       <DateTimeField
         ref="datetime"
         key="datetime"
+        className="datetime"
         mode={ this.props.mode }
         size={ this.props.size }
         maxDate={ this.props.allowFutureDates ? null : moment( ) }

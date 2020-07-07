@@ -65,8 +65,22 @@ const Project = class Project {
     }
     this.undestroyedAdmins = _.filter( this.admins, a => !a._destroy );
     // TODO don't hardcode default color
-    this.banner_color = this.banner_color || "#28387d";
+    this.banner_color = this.banner_color || "#74ac00";
     this.errors = this.errors || { };
+  }
+
+  hasInsufficientRequirements( ) {
+    let empty = true;
+    const dateType = this.date_type;
+    if ( !_.isEmpty( this.rule_term_id ) ) { empty = false; }
+    if ( !_.isEmpty( this.rule_term_value_id ) ) { empty = false; }
+    if ( dateType === "exact" && !_.isEmpty( this.rule_observed_on ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( this.rule_d1 ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( this.rule_d2 ) ) { empty = false; }
+    if ( dateType === "months" && !_.isEmpty( this.rule_month ) ) { empty = false; }
+    if ( !_.isEmpty( this.project_observation_rules ) ) { empty = false; }
+    if ( this.rule_members_only ) { empty = false; }
+    return empty;
   }
 
   bannerURL( ) {
@@ -196,16 +210,27 @@ const Project = class Project {
     if ( this.date_type !== "exact" ) {
       delete this.previewSearchParamsObject.observed_on;
     }
-    // using naming consistent with the web obs search form
-    if ( this.previewSearchParamsObject.observed_on ) {
-      this.previewSearchParamsObject.on = this.previewSearchParamsObject.observed_on;
-      delete this.previewSearchParamsObject.observed_on;
+    if ( this.previewSearchParamsObject.members_only ) {
+      if ( this.id ) {
+        this.previewSearchParamsObject.members_of_project = this.id;
+      } else if ( this.previewSearchParamsObject.user_id ) {
+        this.previewSearchParamsObject.user_id = _.intersection(
+          _.map( this.admins, a => a.user.id ),
+          _.map( ( this.previewSearchParamsObject.user_id || "" ).split( "," ), Number )
+        ).join( "," );
+        if ( _.isEmpty( this.previewSearchParamsObject.user_id ) ) {
+          this.previewSearchParamsObject.user_id = "-1";
+        }
+      } else {
+        this.previewSearchParamsObject.user_id = _.map( this.admins, a => a.user.id ).join( "," );
+      }
+      delete this.previewSearchParamsObject.members_only;
     }
+    // using naming consistent with the web obs search form
     this.previewSearchParamsObject.verifiable = "any";
     this.previewSearchParamsObject.place_id = this.previewSearchParamsObject.place_id || "any";
     this.previewSearchParamsString = $.param( this.previewSearchParamsObject );
   }
-
 };
 
 export default Project;

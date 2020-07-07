@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
     if: lambda { authenticate_with_oauth? }
   
-  before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
   after_filter :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
@@ -45,7 +45,8 @@ class ObservationsController < ApplicationController
                             :map,
                             :taxon_summary,
                             :observation_links,
-                            :torquemap]
+                            :torquemap,
+                            :lifelist_by_login]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -267,6 +268,10 @@ class ObservationsController < ApplicationController
           include: { place: { only: [:id, :display_name] } } ) : nil,
       wikipedia_summary: taxon ? taxon.wikipedia_summary( locale: I18n.locale ) : nil
     }
+  end
+
+  def lifelist_by_login
+    return render layout: "bootstrap"
   end
 
   # GET /observations/1
@@ -546,6 +551,15 @@ class ObservationsController < ApplicationController
     @observations = params[:observations].map do |fieldset_index, observation|
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
+
+      # If the client is trying to create an observation that already exists,
+      # update that observation instead of returning an error. This is meant to
+      # handle cases where the client submits a create request, the server
+      # receives it, but the client loses its connection before receiving a
+      # response. The client then thinks the request was not successful and
+      # tries to submit a create request again when it has network. We are not
+      # simply returning the existing state of the observation here because the
+      # client might have changed its copy of the observation in the interim.
       o = unless observation[:uuid].blank?
         current_user.observations.where( uuid: observation[:uuid] ).first
       end
@@ -554,6 +568,7 @@ class ObservationsController < ApplicationController
       if o.blank? && !observation[:uuid].blank?
         o = current_user.observations.where( uuid: observation[:uuid].downcase ).first
       end
+
       o ||= Observation.new
       o.assign_attributes(observation_params(observation))
       o.user = current_user
@@ -576,42 +591,56 @@ class ObservationsController < ApplicationController
         end
       end
 
-      # Get photos
-      photos = []
-      Photo.subclasses.each do |klass|
-        klass_key = klass.to_s.underscore.pluralize.to_sym
-        if params[klass_key] && params[klass_key][fieldset_index]
-          photos += retrieve_photos(params[klass_key][fieldset_index],
-            :user => current_user, :photo_class => klass)
-        end
-        if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          if photo = photos.to_a.compact.last
-            photo_o = photo.to_observation
-            PHOTO_SYNC_ATTRS.each do |a|
-              o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
+      # We will process the photos if this is really a new observation or if the
+      # client actually specified some photos. Without this, there's a
+      # significant risk clients will resubmit photos without the local_photos
+      # param and we'll assume its absence means the client wants to remove
+      # existing photos
+      if o.new_record? || !params[:local_photos].blank?
+        # Get photos
+        # This is kind of double-protection against deleting existing photos
+        photos = o.photos
+        Photo.subclasses.each do |klass|
+          klass_key = klass.to_s.underscore.pluralize.to_sym
+          if params[klass_key] && params[klass_key][fieldset_index]
+            photos += retrieve_photos(params[klass_key][fieldset_index],
+              :user => current_user, :photo_class => klass)
+          end
+          if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
+            if photo = photos.to_a.compact.last
+              photo_o = photo.to_observation
+              PHOTO_SYNC_ATTRS.each do |a|
+                o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
+              end
             end
           end
         end
-      end
-      photo = photos.compact.last
-      if o.new_record? && photo && photo.respond_to?(:to_observation) && !params[:uploader] &&
-          (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
-        photo_o = photo.to_observation
-        if o.observed_on_string.blank?
-          o.observed_on_string = photo_o.observed_on_string
-          o.observed_on = photo_o.observed_on
-          o.time_observed_at = photo_o.time_observed_at
+        photo = photos.compact.last
+        if o.new_record? && photo && photo.respond_to?(:to_observation) && !params[:uploader] &&
+            (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
+          photo_o = photo.to_observation
+          if o.observed_on_string.blank?
+            o.observed_on_string = photo_o.observed_on_string
+            o.observed_on = photo_o.observed_on
+            o.time_observed_at = photo_o.time_observed_at
+          end
+          if o.latitude.blank?
+            o.latitude = photo_o.latitude
+            o.longitude = photo_o.longitude
+          end
+          o.taxon = photo_o.taxon if o.taxon.blank?
+          o.species_guess = photo_o.species_guess if o.species_guess.blank?
         end
-        if o.latitude.blank?
-          o.latitude = photo_o.latitude
-          o.longitude = photo_o.longitude
-        end
-        o.taxon = photo_o.taxon if o.taxon.blank?
-        o.species_guess = photo_o.species_guess if o.species_guess.blank?
+        o.photos = ensure_photos_are_local_photos( photos )
       end
-      o.photos = ensure_photos_are_local_photos( photos )
-      new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
-      o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+
+      # Same logic we use for photos: try to avoid deleting sounds if they
+      # weren't specified, but make sure we add them for new reocrds
+      if o.new_record? || !params[:local_sounds].blank?
+        new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+      end
+
       # make sure the obs get a valid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
       o.set_quality_grade
@@ -1006,7 +1035,8 @@ class ObservationsController < ApplicationController
     Delayed::Job.enqueue(
       bof, 
       priority: USER_PRIORITY,
-      unique_hash: unique_hash
+      unique_hash: unique_hash,
+      queue: "csv"
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.
@@ -1111,7 +1141,8 @@ class ObservationsController < ApplicationController
 
   def export
     if params[:flow_task_id]
-      if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
+      if @flow_task = ObservationsExportFlowTask.
+          where( id: params[:flow_task_id], user_id: current_user ).first
         output = @flow_task.outputs.first
         @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
       end
@@ -2107,7 +2138,6 @@ class ObservationsController < ApplicationController
     @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
-    @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     @sound_license = search_params[:sound_license]
@@ -2153,7 +2183,6 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@captive.blank? ||
-      !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
       !@ofv_params.blank? ||

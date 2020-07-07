@@ -2,6 +2,9 @@ tr:
   x_comments:
     one: '%{count} yorum'
     other: '%{count} yorum'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> yorum'
+    other: '<span class="count">%{count}</span> yorum'
   x_faves:
     one: '%{count} favori'
     other: '%{count} favori'
@@ -93,6 +96,9 @@ tr:
   x_suggestions_filtered_by_colon:
     one: "%{count} Önerinin Filtreme Şekli:"
     other: "%{count} Önerinin Filtreme Şekli:"
+  x_taxa:
+    one: "%{count} sınıf"
+    other: "%{count} sınıf"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> sınıf gözlemlendi"
     other: "<span class='count'>%{count}</span> sınıf gözlemlendi"
@@ -118,9 +124,8 @@ tr:
   _percent_ID_d: "% tanımlama"
   a_community_for_naturalist: Doğa Bilimciler Topluluğu
   a_default_taxon_name_will_automatically_created: |
-    Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (genel adlar, eski bilimsel adlar vb.).
+    Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (yaygın adlar, eski bilimsel adlar vb.).
   a_flag_for_x: "%{x} için bir işaret"
-  a_member_of: "Şunun bir üyesi"
   a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -267,6 +272,7 @@ tr:
   add_plant_phenology_flower_budding_annotation: '"Bitki Fenolojisi: Tomurcuklu Çiçek" açıklaması ekle'
   add_plant_phenology_flowering_annotation: '"Bitki Fenolojisi: Çiçeklenme" açıklaması ekle'
   add_plant_phenology_fruiting_annotation: '"Bitki Fenolojisi: Meyveli" açıklaması ekle'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '"Bitki Fenolojisi: Çiçeklenme Belirtisi Yok" açıklaması ekle'
   add_life_stage_adult_annotation: '"Yaşam Evresi: Yetişkin" açıklaması ekle'
   add_life_stage_teneral_annotation: '"Yaşam Evresi: Teneral" açıklaması ekle'
   add_life_stage_subimago_annotation: '"Yaşam Evresi: Subimago" açıklaması ekle'
@@ -282,6 +288,7 @@ tr:
   add_several_observations_at_once: Aynı anda birkaç gözlem ekle.
   add_sex_female_annotation: '"Cinsiyet: Dişi" açıklamasını ekle'
   add_sex_male_annotation: '"Cinsiyet: Erkek" açıklamasını ekle'
+  add_sex_cannot_be_determined_annotation: '"Cinsiyet: Belirlenemeyen" açıklaması ekle'
   add_some_now: Şimdi Bir Şey Ekle
   add_tag: Etiket Ekle
   add_tags: Etiket Ekle
@@ -324,7 +331,6 @@ tr:
   admin_s: Yönetici(ler)
   admin_only: Yalnızca Yönetici
   admin_tools: Yönetici Araçları
-  agree: onayla
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
@@ -489,6 +495,8 @@ tr:
   are_you_sure_remove_taxon_from_list: "Bu sınıfı listeden kaldırmak istediğinize emin misiniz?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Emin misiniz? Bu, sayfayı yeniden yükleyecektir ve bazı değişikliklerinizi kaybedebilirsiniz.
+  are_you_sure_unresolve_flag?: |
+    Bu işareti çözümlenmemiş yapmak istediğinizden emin misiniz? Bu işlem, çözümü ve çözümleyen kullanıcıyı bu işaretten kaldıracaktır.
   are_you_sure_want_delete_taxon: "Bu sınıfı silmek istediğinden emin misin?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Bu sınıfı silmek istediğinden emin misin? Alt sınıflara sahiptir.
@@ -537,6 +545,8 @@ tr:
     Bu kullanıcıyı güvenilir bulduğuna emin misin? İçeriğindeki gereksiz işaretleri kaldırılacak.
   are_you_sure_you_want_to_remove_these_x_taxa?: "%{x} sınıflarını kaldırmak istediğine emin misin?"
   are_you_sure_you_want_to_remove_this_invitation: Bu çağrıyı kaldırmak istediğine emin misin?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Bu gözlemi %{project} projesinden kaldırmak istediğinizden emin misiniz?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu sınıfı %{place} kısmındaki kontrol listesinden kaldırmak istediğine emin misin?"
   associated_observations: İlgili gözlemler
   associated_taxa: İlgili sınıflar
@@ -555,7 +565,6 @@ tr:
   assessments: değerlendirmeler
   associations: İlişikler
   atlas_for_taxon_html: '%{taxon} için Atlas'
-  at_time: "%{time} zamanında"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -658,6 +667,7 @@ tr:
   cant_merge_a_taxon_with_itself: Bir sınıfı kendisiyle birleştiremezsin.
   captive: Kısıtlanmış
   captive_cultivated: Kısıtlanmış / Ekili
+  captive_observations: Kısıtlanmış Gözlemler
   card: Kart
   casual: sıradan
   casual_: Sıradan
@@ -683,7 +693,6 @@ tr:
   change_descriptions:
     split: Eski sınıf birçok yeni sınıfa bölündü
     merge: Birkaç eski sınıf yeni bir sınıfı içine aldı
-    swap: 1'e 1 ad değişikliği
     drop: Sınıf kavramı tamamen geçersiz, tarihsel amaçlar ya da ortak uyumluluğu için korundu
     stage: Değişim grubunun bir parçası olarak serbest bırakmak için etkin olmayan bir konsept hazırlayın
   change_geoprivacy: 'Coğrafi Gizliliği Değiştir'
@@ -751,7 +760,6 @@ tr:
   choose_a_list_above: Yukarıdan bir liste seç.
   choose_a_place: Bir alan seç
   choose_a_taxon: Bir sınıf seç (isteğe bağlı)
-  choose_cc_licensed_photos_html: 'Diğer sayfalardan <a href="http://creativecommons.org/">açık</a> lisanslı fotoğraflar seçin ya da %{site_name} sayfasındaki gözlemlerden birini seçin. <em>Tanılama özelliklerini gösteren</em> ve <em>simgeler olarak iyi görünen</em> görüntüler seçmeyi deneyin. İlki <em>varsayılandır</em>.'
   choose_columns: Sütun seç
   choose_file: Dosya seç
   choose_files: Dosyaları seç
@@ -785,6 +793,7 @@ tr:
   comment_deleted: Yorum silindi
   comments: Yorumlar
   comments_by_me: Yorumlarım
+  comments_have_been_disabled: Yorumlar devre dışı bırakıldı
   comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
@@ -828,17 +837,19 @@ tr:
   confirm_new_password: Yeni Şifreyi Onayla
   confirm_now: Şimdi onayla
   confirm_your_info: Bilgini onayla
-  confirmed: onaylandı
   connect_to_provider: "%{provider}'a bağlandı"
   connected_accounts: Hesaplara bağlandı
   connecting_flickr: "Flickr'ye bağlanıyor... "
   connect_to_flickr_again_to_authorize_write_permissions: Yazma izinlerini yetkilendirmek için Flickr'ye yeniden bağlanın
   connecting_to_facebook: "Facebook'a bağlanıyor..."
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} hesabınızı başka sitelerdeki hesaplara bağlamak, bu sitelerdeki kimlik bilgilerinizi kullanarak %{site_name} hesabınıza giriş yapmanızı sağlar."
+  cannot_be_changed_during_a_content_freeze: İçerik dondurulduğunda değiştirilemez
   conservation_status: Koruma Durumu
   conservation_status_descriptions:
     status: Durum kodu, sıra, vb. E ya da CR gibi kısa bir kod varsa, lütfen bunu kullanın ancak yoksa, lütfen tam durumu kullanın örn. tehlikede ya da kritik tehlikede.
     description: Bunun neden listelendiğinin kısa açıklaması.
+    authority: |
+      Bu durumu bildiren kuruluş. Lütfen yeni bir tane eklemeden önce var olan bir yetkiliyi seçmek için otomatik tamamlamayı kullanın. Yetkili olarak listelenmek istiyorsanız bunu atlayabilirsiniz.
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
     geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
@@ -876,6 +887,7 @@ tr:
     teneral: Teneral
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: Çiçeklenme Belirtisi Yok
     nymph: Nimfa
     larva: Larva
     egg: Yumurta
@@ -890,7 +902,9 @@ tr:
     flower_budding: Çiçek tomurcukları görünür ama açmamış
     flowering: Çiçekler görünür, açık ve hala bitkiye bağlı
     fruiting: Meyveler görünür ve hala bitkiye bağlı
+    no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
     teneral: Son zamanlarda pupa evresini geçirmiş ancak henüz son yetişkin durumunu almamış bir yetişkin
+    cannot_be_determined: Sununlan kanıtlardan tespit edilemez
   controls: Kontroller
   convert: Dönüştür
   coordinate_systems: Koordinat sistemleri
@@ -937,6 +951,7 @@ tr:
   create_a_query: Bir Sorgu Oluştur
   create_an_account: Bir Hesap Oluştur
   create_an_atlas: Bir Atlas Oluştur
+  create_export: Dışa Aktarma Oluştur
   create_new_taxon: Yeni Bir Sınıf Oluştur
   create_observations: Gözlem Oluştur
   created: Oluşuturulma
@@ -968,6 +983,7 @@ tr:
   custom_project_was_successfully_updated: Proje özelleştirmeleri güncellendi
   customize_location: Konumu Özelleştir
   darr_apply_darr: "&darr; Uygula &darr;"
+  daily_users: Günlük Kullanıcılar
   dashboard: Kontrol Paneli
   data_deficient: Eksik Veri
   data_quality: Veri Niteliği
@@ -1068,13 +1084,37 @@ tr:
   deviation: Uygunsuzluk
   devise:
     failure:
+      already_authenticated: 'Zaten giriş yaptınız.'
+      unauthenticated: 'Devam etmeden önce giriş yapmanız ya da kayıt olmanız gereklidir.'
+      invalid: 'Geçersiz e-posta ya da şifre.'
+      invalid_token: 'Geçersiz kimlik doğrulama belirteci.'
       user:
         suspended: Hesabınız askıya alındı
+    sessions:
+      signed_in: 'Başarıyla giriş yapıldı.'
+      signed_out: 'Başarıyla çıkış yapıldı.'
+    passwords:
+      send_instructions: 'Birkaç dakika içinde şifrenizi nasıl sıfırlayacağınıza dair talimatları içeren bir e-posta alacaksınız.'
+      updated: 'Şifreniz başarılı bir şekilde değiştirildi. Şu an oturumun açık.'
+      updated_not_active: 'Şifreniz başarılı bir şekilde değiştirildi.'
+      send_paranoid_instructions: "Eğer e-posta adresiniz veri tabanımızda mevcutsa, birkaç dakika içinde e-posta adresinize bir şifre kurtarma bağlantısı gönderilecektir."
+      no_token: "Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun."
+    registrations:
+      signed_up: 'Hoş geldiniz! Başarılı bir şekilde oturum açtınız.'
+      updated: 'Hesabınız başarılı bir şekilde güncellendi.'
+      destroyed: 'Güle Güle! Hesabınız başarılı bir şekilde iptal edildi. Umarız sizinle yakında yine görüşürüz.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Onaylama talimatları'
+      reset_password_instructions:
+        subject: 'Şifre sıfırlama talimatları'
   discoveries: Keşifler
   did_not_send_invitations_because: Aşağıdakilere davetiye gönderilmedi çünkü...
   did_you_mean: 'Bunu mu demek istediniz'
   did_you_photos_flickr?: Flickr'a herhangi bir fotoğraf koydunuz mu?
   disable: Devre dışı bırak
+  disable_comments: Yorumları devre dışı bırak
+  disable_comments_desc: İnsanların yeni yorum eklemesini önleme
   disagree_: Katılmıyorum
   disconnect_provider: "%{provider} bağlantısını kes"
   display_link_to_checklist: Proje sayfasından proje listesine bağlantıyı göster
@@ -1170,6 +1210,7 @@ tr:
   editing_project: '%{project} Düzenleme'
   editing_project_asset: Şunun için Proje Varlığını Düzenleme
   editing_subscription_to_x_html: "Aboneliği %{x} olarak düzenleme"
+  editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Sınıf Bağlantısını Düzenleme
   editing_taxon_name_for_taxon_html: '%{taxon} için Sınıf Adı "%{name}"'' Düzenleme'
   editing_taxon_range: Sınıf Aralığını Düzenleme
@@ -1204,10 +1245,10 @@ tr:
   establishment:
     endemic: Yöreye özgü
     establishment: Kuruluş
-    introduced: Tanıtıldı
+    introduced: Yerel Olmayan
     invasive: İstilacı
     managed: Yönetilen
-    native: Yerli
+    native: Yerel
     naturalised: Uyum sağlamış
   establishment_means: Kuruluş Varlıkları
   establishment_means_describes_how: |
@@ -1227,7 +1268,10 @@ tr:
   exact_location: Tam_konum
   exact_rank: Tam Düzey
   except: dışında
-  exclude_x: '%{x} dışında'
+  exclude_places: Yerleri Dışında Tut
+  exclude_projects: Projeleri Dışında Tut
+  exclude_taxa: Sınıfları Dışında Tut
+  exclude_users: Kullanıcıları Dışında Tut
   exclusion_filters: Dışında Tutma Filtreleri
   existing_flags: Mevcut İşaretler
   exit_full_screen: "Tam Ekrandan Çık"
@@ -1260,6 +1304,7 @@ tr:
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
   featured: Öne Çıkarılan
+  #Title for a button or section describing the "featured" status of a project
   featuring: Öne Çıkan
   feedback: Geri bildirim
   #Plural noun, as in Atom and RSS feeds
@@ -1272,6 +1317,7 @@ tr:
   fields_can_only_be_edited_by_the_people_who: Alanlar yalnızca onları oluşturan kişiler ve site sorumluları tarafından düzenlenebilir
   fields_merged: Alanlar birleştirildi
   file: Dosya
+  file_size: Dosya boyutu
   file_should_be_in_the_following_format: "Dosya takip eden formatta olmalıdır: sınıf adı, açıklama"
   fill_out_project_observation_fields: Proje gözlem alanlarını doldurun
   fill_out_your_profile: profilinizi tamamlayın
@@ -1400,7 +1446,6 @@ tr:
   forum_desc: |
     Forum; yardım ve destek, özellik istekleri, hata raporları, duyurular ve daha çoğunu içermek üzere iNat’ın kendisini tartışacağı bir yerdir.
   frequency: Sıklık
-  from: Şuradan
   from_a_place: bir yerden
   from_eol_collection: EOL koleksiyonundan
   from_flickr_facebook_etc: Flickr, Facebook vb'den.
@@ -1408,8 +1453,6 @@ tr:
   from_photos: Fotoğraflardan
   from_place: Yerden
   from_soundcloud: Soundcloud'dan
-  from_your_site_observations: "%{site_name} gözlemlerinden"
-  from_licensed_site_observations: "Lisanslı %{site_name} gözlemlerinden"
   full_screen: Tam ekran
   fungi:
     one: mantar
@@ -1441,6 +1484,7 @@ tr:
   got_it!: Anlaşıldı!
   got_your_data_somewhere_else?: Verilerinizi başka bir yere mi aldınız? Yardımcı olabiliriz.
   graft: Aşılama
+  graft_taxon: '%{taxon} aşılama'
   grafting_attemps_to_insert_this_taxon: Aşılama bu sınıfı; sınıflandırma ağacımıza sokmaya, var olan bir ana sınıf bulmaya ya da bir üst düzey sınıfa eklemek için gerekli tüm sınıflar arasında oluşturmaya yarar.
   grant_role: "%{grant} %{role} rol"
   grid: Izgara
@@ -1550,6 +1594,7 @@ tr:
   ignore_and_continue: Yoksay ve devam et
   ignore_times: Zamanları yok say
   image_must_be_exactly: görüntü tam olarak 950 piksel genişliğinde ve en çok 400 piksel uzunluğunda olmalıdır
+  image_size_control: Görüntü boyutu kontrolü
   imperiled: Tehlikede
   import: İçe aktar
   import_all_photos_as_observations: Tüm fotoğrafları gözlem olarak içe aktar
@@ -1571,6 +1616,10 @@ tr:
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
   inbox: Gelen Kutusu
+  include_places: Yerleri Ekle
+  include_projects: Projeleri Ekle
+  include_taxa: Sınıfları Ekle
+  include_users: Kullanıcıları Ekle
   including: şunu içerir
   increase_brightness: Parlaklığı Arttır
   in_progress: devam ediyor
@@ -1594,7 +1643,7 @@ tr:
   internal_server_error: İç Sunucu Hatası
   internal_taxon_including_descendants: İç sınıf (alt sınıfları içerir)
   internal_taxon_rank: İç sınıf düzeyi
-  introduced: Tanıtılmış
+  introduced: Yerel Olmayan
   introduced_in_place: "%{place}'de tanıtıldı"
   invitation: Davetiye
   invite: davet et
@@ -1620,6 +1669,8 @@ tr:
   join: Katıl
   join_and_add_an_observation_to_project_html: Katıl ve %{project}'e Bir Gözlem Ekle
   join_project: Bu projeye katılın
+  #Prompt to join a specific project
+  join_project?: '%{project} projesine girilsin mi?'
   join_some_projects_and_invite_some_observations_html: "Birkaç <a href='%{join_url}'>projeye</a> katılın ve <a href='%{invite_url}'>gözlem yapmaya davet edin</a>"
   join_the_largest_group_of_naturalists_in_the_world: Dünyanın en büyük doğacılar grubuna katılın!
   join_this_project: Bu projeye katılın
@@ -1644,6 +1695,9 @@ tr:
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
   location_private: Özel Konum
   location_unknown: Bilinmeyen Konum
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Yakınlaştırma düzeyini kilitleme
   language_slash_type: Dil / Tür
   #Large photo size
   large: büyük
@@ -1760,6 +1814,8 @@ tr:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste silindi.
+  list_reloaded_from_observations: Gözlemlerden yeniden yüklenen liste
+  list_rules_reapplied: Liste kuralları yeniden uygulandı
   list_saved: Liste kaydedildi.
   list_tooltip: Liste görünümünü göster
   list_updated: Liste güncellendi!
@@ -1783,7 +1839,6 @@ tr:
   loading: "Yükleniyor..."
   loading_flickr_photos: "Flickr fotoğrafları yükleniyor..."
   loading_images: Resimler yükleniyor...
-  loading_map: Harita yükleniyor...
   loading_metadata: Üst veri yükleniyor...
   loading_preview_and_code: Ön izleme ve kod yükleniyor...
   loading_suggestions: Öneriler yükleniyor...
@@ -1973,14 +2028,18 @@ tr:
       'y': "1 y"
       #Short text representing %d years in the past
       yy: "%dyıl"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Ay
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
@@ -2004,7 +2063,7 @@ tr:
   most_recent_observation_by_date_observed: Gözlenen tarihe göre en son doğrulanabilir gözlem
   most_species: Çoğu Tür
   most_observed_species: En Çok Gözlenen Türler
-  most_observed_introduced_species: En Çok Gözlenen Tanıtılmış Türler
+  most_observed_introduced_species: En Çok Gözlenen Yerel Olmayan Türler
   most_observed_threatened_species: En Çok Gözlenen Tehdit Altındaki Türler
   move_input_children_to_output?: Alt sınıflar çıktıya mı taşınsın?
   multiple: çoklu
@@ -2037,7 +2096,7 @@ tr:
     nzor: Yeni Zelanda Organizmaları Kaydı
   names: İsimler
   names_for_taxon_html: "%{taxon} için isimler"
-  native: yerli
+  native: yerel
   native_page_url: Yerel Sayfa URL'si
   native_to_place: "%{place}'e özgü"
   #Short for "navigation," used to describe a navigational component on the
@@ -2131,6 +2190,7 @@ tr:
   no_favorites_added:
     current_user: Henüz hiç favori eklemedin.
     user: "%{user} henüz favori eklemedi."
+  no_journal_posts_yet: Henüz yayın gönderisi yok
   no_license_all_rights_reserved: Lisans yok (tüm hakları saklıdır)
   no_managers_set: Yönetici ayarlanmadı
   no_matching_article_from_x: "%{x}'de eşleşen makale yok"
@@ -2147,7 +2207,6 @@ tr:
   no_more_taxa_to_load: Yüklenecek başka sınıflar yok!
   no_more_results_found: Başka sonuç bulunamadı
   no_new_messages: Yeni ileti yok
-  no_news_yet: Henüz haber yok
   no_observations: Gözlem Yok
   no_observations_from_this_place_yet: Bu yerden henüz gözlem yok.
   no_observations_matching_those_ids: Bu tanımlamalarla eşleşen gözlem yok.
@@ -2360,9 +2419,7 @@ tr:
   offline_access_enabled: Çevrimdışı erişim etkin
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
-  on_date: "%{date} tarihinde"
   on_day: "şu tarihte"
-  on_your_life_list: yaşam listenizde
   onboarding:
     observe_panel_title: Haydi Bazı Gözlemler Göndererek Başlayalım
     observe_panel_body_p1_local: Düşüceye mi gereksiniminiz var? İşte yakınlarda bazı organizmalar gözlemleniyor...
@@ -2425,7 +2482,6 @@ tr:
   or_all_caps: YA DA
   or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seçin"
   or_if_you_dont_want_email: "Ya da yalnızca hergangi bir e-posta istemiyorsanız..."
-  or_upload: Ya da yükle
   orange: turuncu
   order: Sıralama
   order_by: Sıralama ölçütü
@@ -2464,7 +2520,6 @@ tr:
   other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
   our_blog: Blogumuz
-  out_of_range: Kapsam dışı
   output_taxon: Sınıf çıkışı
   overview: Genel Bakış
   overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
@@ -2485,6 +2540,10 @@ tr:
   people_following_user: "İnsanlar %{user} Kullanıcısını Takip Ediyor"
   people_user_follows: "%{user} Kişi Takip Ediyor"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: bir <a href="%{observation_url}">gözlem</a> eklendi
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2518,6 +2577,9 @@ tr:
   photo_urls_repaired: Fotoğraf URL'leri düzeltildi
   photos_chosen_for_this_taxon: Bu sınıf için seçilen fotoğraflar
   photos_from: Şuradan fotoğraflar
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotoğraflar Kilitli
+  photos_locked_desc: Bu sınıfın varsayılan fotoğraflarını yalnızca yetkili değiştirebilir
   photos_of_taxon_html: "%{taxon} Fotoğrafları"
   photos_or_sounds: Fotoğraflar veya sesler
   photos_or_sounds?: Fotoğraflar veya sesler var mı?
@@ -2540,7 +2602,6 @@ tr:
     Daha sonra kullanmak üzere bu koordinat, doğruluk, coğrafi gizlilik ve konum notlarının birleşimini işaretleyin.
   place: Yer
   placeholder: Yer imi
-  place_added_to_inat_by: "Yer, şu kişi tarafından, %{site_name} eklendi"
   place_autocomplete_placeholder: Zion Ulusal Parkı, Miami, vb.
   place_deleted: Yer silindi.
   place_geo:
@@ -2553,16 +2614,32 @@ tr:
       building: yapı
       Canton: Kanton
       canton: kanton
+      City Building: Kent Yapısı
+      city building: kent yapısı
       Colloquial: Günlük dilde
       colloquial: günlük dilde
       Commune: Komün
       commune: komün
+      Constituency: Seçim bölgesi
+      constituency: seçim bölgesi
       Continent: Kıta
       continent: kıta
       Country: Ülke
       country: ülke
       County: İlçe
       county: ilçe
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegasyon
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegasyon
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Bölüm Segmenti
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: bölüm segmenti
       District: Semt
       district: semt
       Division: Alan
@@ -2603,6 +2680,12 @@ tr:
       open_space: açık alan
       Parish: Mahalle
       parish: mahalle
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefektörlük
+      prefecture: prefektörlük
       Prefecture_City: İl Düzeyindeki Kent
       prefecture_city: il düzeyindeki kent
       Point_of_Interest: İlgi Alanı
@@ -2611,6 +2694,8 @@ tr:
       postal_code: posta kodu
       Province: İl/Eyalet
       province: il/eyalet
+      Regency: Regency
+      regency: regency
       Region: Bölge
       region: bölge
       Republic: Cumhuriyet
@@ -2629,6 +2714,10 @@ tr:
       subdivision: alt bölüm
       Suburb: Banliyö
       suburb: banliyö
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Genel Ad
       supername: genel ad
       Territory: Bölge
@@ -2641,6 +2730,8 @@ tr:
       undefined: tanımlanmamış
       Unknown: Bilinmeyen
       unknown: bilinmeyen
+      Village_block: Mezra
+      village_block: mezra
       Zone: Bölge
       zone: bölge
   place_guess: yer tahmini
@@ -2951,7 +3042,7 @@ tr:
   present: mevcut
   press: Basın
   preview: Ön İzleme
-  preview_observations: Gözlemleri Ön İzle
+  preview_observations_with_these_observation_requirements: Bu Gözlem Koşullarıyla Gözlemleri Önizleyin
   preview_of_synced_observation: "Eşitlenmiş gözlemi <strong>ön izleme</strong>. <a href=\"%{url}\">Geri alınsın mı?</a>"
   preview_personal_message: "Bitkiler ve hayvanlarla ilgili gözlemlerinizi kaydedebileceğin, yaşam listenizi izleyebileceğin ve doğal dünyayı öğrenebileceğin yer olan %{site} sayfasında bana katılmanı istiyorum!"
   preview_your_message: İletini ön izle
@@ -2991,6 +3082,7 @@ tr:
   project_group_description: Projenin bağlı olduğu grup
   project_home: Proje sayfası
   project_icon: Proje simgesi
+  project_journal: Proje Yayını
   project_id_or_url_slug: Proje Kimliği ya da URL adresi, örn. 333 ya da projem
   project_invitations: 'Proje davetiyeleri'
   project_list: Proje Listesi
@@ -3000,6 +3092,7 @@ tr:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> sorumluları gözlemlerinizden bazılarını ekledi
   project_members: "%{project} Üyeleri"
+  project_members_only: Yalnızca Proje Üyeleri
   project_membership_model_description: Projeniz herkese açık mı yoksa yalnızca davet ettiğiniz kişilere mi açık?
   project_observations: Proje Gözlemleri
   project_post: Proje Gönderisi
@@ -3009,7 +3102,7 @@ tr:
   project_start_time_datetime: "Başlangıç zamanı: %{datetime}"
   project_that_does_not_contain_these_observations: Bu gözlemleri içermeyen proje
   project_type_description: |
-    Değerlendirmeler ve bioblitzler projelerin özel türleridir. Değerlendirmeler, genellikle koruma önemini ölçmek için bir dizi tür değerlendirmesi üzerinde iş birliği yapmak içindir. Bioblitzler, belirli bir başlangıcı ve bitişi olan olaylardır.
+    Değerlendirmeler, genellikle koruma önemini ölçmek için bir dizi tür değerlendirmesi üzerinde işbirliği yapmak içindir.
   project_user_cannot_be_found: Proje kullanıcısı bulunamadı
   project_user_was_invalid: "Proje kullanıcısı geçerli değil: %{project_user}"
   project_was_successfully_created: Proje başarıyla oluşturuldu.
@@ -3099,6 +3192,7 @@ tr:
   receive_updates_from_this_project: Bu projeden güncellemeleri al
   recent: Son
   recent_evidence_of_organism: Bir organizmanın son kanıtı
+  recent_exports: Son Dışa Aktarmalar
   recent_new_users: Son Katılan Yeni Kullanıcılar
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
@@ -3207,6 +3301,7 @@ tr:
   rules_for_becoming_a_member: Üye Olmak için Kurallar
   rules_for_becoming_memner: Üye Olmak için Kurallar
   rules_types:
+    must_be_captive: kısıtlanmış / ekili olmalı
     must_be_georeferenced: coğrafi ilişikli olmalı
     must_be_identified: tanımlanmalı
     must_be_on_list: listede olmalı
@@ -3214,12 +3309,6 @@ tr:
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje sorumlularının koordinatları görmesine izin vermelidir.
   running_total: Toplam Bulunan
-  same_day_obscured: Bu kişinin, bu gün başka bir gözlemi gizlendi
-  same_day_obscured_desc: |
-    Tehdit edilen bir sınıf nedeniyle koordinatlar gizlendiğinde, aynı günlerde yapılan gözlemlere dayanarak, insanların o koordinatları öngörmelerini engellemek için o kişinin o gün yaptığı diğer tüm gözlemler de gizlenir. Kişiler, bu korumayı gizlemeyi seçtikleri koordinatlara da uygulayabilirler.
-  same_day_private: Bu kişinin, bu gün başka bir gözlemi özel
-  same_day_private_desc: |
-    Tehdit edilen bir sınıf nedeniyle koordinatlar saklandığında, aynı günlerde yapılan gözlemlere dayanarak, insanların o koordinatları öngörmelerini engellemek için o kişinin o gün yaptığı diğer tüm gözlemler de saklanır. Kişiler, bu korumayı saklamayı seçtikleri koordinatlara da uygulayabilirler.
   said: şunu dedi
   satellite: uydu
   save: Kaydet
@@ -3247,6 +3336,8 @@ tr:
   scale_colon: "Ölçek:"
   schemes: Şemalar
   schemes_including: Şemalar şunları içerir
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Bilimsel Ad
   search: Arama Yap
   search_all_fields: tüm alanları ara
   search_by_name_or_email: İsme veya e-postaya göre arama
@@ -3314,7 +3405,7 @@ tr:
   short_or_abbreviated_title_for_display: Boşluk sınırlı alanlarda görüntülemek için kısa ya da kısaltılmış başlık. En çok 10 karakter.
   show: Göster
   show_active_and_inactive_taxa: Etkin ve etkin olmayan sınıfları göster
-  show_common_names: Genel adları göster
+  show_common_names: Yaygın adları göster
   show_default_taxon_photos: varsayılan sınıf fotoğraflarını göster
   show_hidden_content: Gizli İçeriği Göster
   show_keyboard_shortcuts: Klavye Kısayollarını Göster
@@ -3331,7 +3422,9 @@ tr:
   show_taxa_from_place: "%{place} konumundan sınıfları göster"
   show_total_counts: Toplam sayıyı göster
   show_uncountable_species: Sayılamayan türleri göster
-  showing_one_to: Gösterilen 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: İlk %{x} ile gösterme
   showing_taxa_from_everywhere: "Her yerden sınıflar gösteriliyor"
   showing_taxa_from_place: "%{place} konumundan sınıflar gösteriliyor"
   showing_x_of_y: Gösterilen %{y} / %{x}
@@ -3465,6 +3558,8 @@ tr:
   stats: İstatistikler
   stats_for_this_year_have_not_been_generated: Bu yıl için istatistikler oluşturulamadı.
   status: Durum
+  status_globally: '"%{status}" Küresel'
+  status_in_place: '%{place} içindeki "%{status}"'
   stay_and_try_again: Bekle ve yeniden dene
   still_no_luck?: Hala şans yok mu?
   still_needs_id?: Topluluk tanımlamayı doğrulayabilir/geliştirebilir mi?
@@ -3606,6 +3701,7 @@ tr:
   taxon_curators: Sınıf Sorumluları
   taxon_framework_complete: "Tamamlama: evet"
   taxon_framework_deviations_with_count_html: "Uygunsuzluklar: %{count}"
+  taxon_framework_relationships_with_count_html: "Sınıf Yapısı İlişkileri: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "İşaretlenmiş kapsanan sınıflar: %{count}"
   taxon_framework_notes: Sınıf Yapısı notları
@@ -3746,7 +3842,7 @@ tr:
   this_list_only_accepts_taxa_that_are_species_or_lower: Bu liste yalnızca tür ya da daha aşağı olan sınıfları kabul eder
   this_observation: Bu gözlem
   this_observation_is_featured_on_x_sites:
-    one: Bu gözlem 1 sitede yayınlandı
+    one: Bu gözlem %{count} sitede yayınlandı
     other: Bu gözlem %{count} sitede yayınlandı
   this_observation_is_research_grade: Bu gözlem Araştırma Sınıfı!
   this_observation_was_created_using: "Bu gözlem kullanılarak oluşturuldu:"
@@ -3843,8 +3939,11 @@ tr:
   updating: Güncelleniyor...
   unprocessable: İşlenemeyen
   unpublish: Yayından Kaldır
+  #Undo the action of resolving a flag
+  unresolve: Çözümü Kaldır
   unreview_all: Tümünü Görüntülenmemiş Yap
   unsubscribe: Abonelikten ayrıl
+  unsubscribe_from_emails_like_this: Bunun gibi e-posta listesinden çık
   unsuspend_user: Kullanıcıyı Askıdan Çıkar
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
@@ -3857,7 +3956,7 @@ tr:
   update_search: Aramayı Güncelle
   update_selected_taxa: Seçilen Sınıfları Güncelle
   update_subscription: Aboneliği Güncelle
-  update_subscription_preferences: Abonelik Tercihlerinizi Güncelleyin
+  update_subscription_preferences: Abonelik tercihlerinizi güncelleyin
   update_x_selected_taxa:
     one: "Seçilen 1 sınıfı güncelle"
     other: "Seçilen %{count} sınıfı güncelle"
@@ -3885,6 +3984,7 @@ tr:
     tooltips:
       add: Gözlem(ler) ekle
       combine: Seçilen gözlemleri birleştir
+      duplicate: Seçilen gözlemleri çoğalt
       photo_failed: Fotoğraf yüklenemedi
       remove: Seçilen gözlemleri kaldır
       remove_observation: Gözlemi Kaldır
@@ -3919,6 +4019,8 @@ tr:
   user_added_a_project_invitation_html: "%{user} bir proje daveti ekledi"
   user_added_a_x: "%{user} bir %{x} ekledi"
   user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
+  user_added_a_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
+  user_added_a_x_to_noun_by_you_html: "%{user}, sizin tarafınızdan yapılan %{noun}'a bir %{x} ekledi"
   user_added_a_x_to_noun_html: "%{user}, %{noun}'a bir %{x} ekledi"
   user_added_an_identification_html: "%{user} bir tanımlama ekledi"
   user_added_an_observation_field_html: '%{user}, %{owner} tarafından yapılan bir gözlem için "%{field_name}" değeri ekledi'
@@ -3926,6 +4028,8 @@ tr:
   user_added_an_observation_html: "%{user} bir gözlem ekledi"
   user_added_an_x: "%{user} bir %{x} ekledi"
   user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
+  user_added_an_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'a bir %{x} ekledi"
+  user_added_an_x_to_noun_by_you_html: "%{user}, sizin tarafınızdan yapılan %{noun}'a bir %{x} ekledi"
   user_added_an_x_to_noun_html: "%{user}, %{noun}'a bir %{x} ekledi"
   user_added_x_observations_html: "%{user} %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
@@ -3939,6 +4043,7 @@ tr:
   user_commented_on: "%{user}, %{time} zamanında %{title} başlığınıza yorum yaptı"
   user_disagrees_this_is_taxon: "%{user} bunun %{taxon} olduğunu kabul etmiyor"
   user_disagrees_with_previous_finer_identifications: "%{user} önceki iyi tanımları kabul etmiyor"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}'i favori yaptı"
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz işaretçi değil olarak işaretlendi"
@@ -3971,11 +4076,9 @@ tr:
   username_or_email: Kullanıcı adı veya e-posta
   username_or_user_id: Kullanıcı Adı ya da Kimliği
   users: Kullanıcılar
-  users_comment_html: "<a href='%{url}'>%{user}</a> kullanıcısının yorumu"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'in %{project_title} projesine katkıları
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{year} yerinde %{site} sayfasındaki öne çıkanları ve istatistikleri"
   users_id: "%{user} Kimliği"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> Kullanıcısının Kimliği"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
@@ -4023,8 +4126,6 @@ tr:
   view_observation_flags: Gözlem işaretlerini görüntüle
   view_observations_by_everyone: Herkesin gözlemlerini görüntüle
   view_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Görüntüle
-  view_observations_causing_this_observation_to_be_obscured: |
-    Bu gözlemin gizlenmesine yol açan gözlemleri incele
   view_observations_of_this_taxon_by: Bu sınıfın gözlemlerini şu açıdan görüntüle
   view_on: Şunun üzerinden görüntüle
   view_on_flickr: Flickr'da Görüntüle
@@ -4148,6 +4249,12 @@ tr:
     one: "%{count} gözlem başarısız oldu"
     other: "%{count} gözlem başarısız oldu"
   x_of_y: "%{x} / %{y}"
+  x_of_count_confirmed:
+    one: "%{count} / %{x} onaylandı"
+    other: "%{count} / %{x} onaylandı"
+  x_of_count_observed:
+    one: "%{count} / %{x} gözlemlendi"
+    other: "%{count} / %{x} gözlemlendi"
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} / %{x} insan (2/3'ü geçen) bunu kabul ediyor"
   x_is_the_root_of_the_tree: "%{rank} %{name} ağacın alt sınıfıdır"
   x_project_journal: "%{project}'nin %{name}"
@@ -4224,6 +4331,7 @@ tr:
   you_cant_do_that_for_the_default_check_list_place: Bir yerin varsayılan kontrol listesi için bunu yapamazsınız!
   you_cant_flag_that: Bunu işaretleyemezsiniz
   you_cant_leave_a_project_you_created: Oluşturduğunuz bir projeden ayrılamazsınız.
+  you_cant_merge_standard_places: Standart alanları birleştiremezsiniz
   you_cant_rotate_photos_hostde_outside: "%{site_name} dışında barındırılan fotoğrafları döndüremezsiniz."
   you_cannot_delete_taxa_involved_in_taxon_changes: Sınıf değişiklikleri içeren ve sınıf değişikliklerinde yer alan sınıfları silemezsin
   you_curate_a_project_that_contains_this_observation: Bu gözlemi içeren bir projenin sorumluluğunu yaptınız
@@ -4294,6 +4402,7 @@ tr:
   your_recent_projects: Son Projeleriniz
   your_relationships: İlişkilerin
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} devam etmek için %{provider} tarafından daha çok izine gerek duyuyor:"
+  your_subscriptions_to_this_place: Bu yere olan abonelikleriniz
   your_tags: Etiketleriniz
   yours: Seninki
   youre_not_following_anyone: |-
@@ -4308,6 +4417,14 @@ tr:
     announcements:
       locales_desc: |
         Birden çok seçmek için CMD ya da SHIFT-tıkla tuşuna basın. Hiçbirini seçmemek ne olursa olsun yeri tüm kullanıcılar için duyuru olarak gösterecek. Bölgesiz bir dil seçmek, bölgeleri olan yerleri hedeflemeyecektir, örn. EN'i seçtiyseniz, en-US seçmiş kişiler için görünmeyecektir. Her ikisini de hedeflemek istiyorsanız, ikisini de seçin. Bir sitenin tüm üyeleri için bir duyuru göstermek istiyorsanız, bunu boş bırakmanız yeterlidir.
+    content_freeze:
+      content_freeze: İçeriği Dondurma
+      during_this_time: |
+        İçeriği dondurma sırasında bazı içerik türleri oluşturulamaz, silinemez ya da değiştirilemez.
+      this_functionality_will_return: |
+        Bu işlevsellik içerik dondurması biter bitmez geri gelecektir.
+      we_expect_this_functionality_will_return_by_date: |
+        Bu işlevselliğin %{date} tarihinde dönmesini bekliyoruz.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4429,7 +4546,7 @@ tr:
         licensing_explanation: |
           İçeriğinizi lisanslamak, diğer kişilere izninizi almadan kopyalayıp değiştirme hakkını verir. Çalışmanızı paylaşmayı çok kolaylaştırır ve Creative Commons Aynı Lisansla Paylaş lisanslarını (Vikipedi gibi) kullanan diğer kaynaklardan 3. taraf içeriğini eklerseniz, yasal olarak benzer bir lisans kullanmak zorunda kalırsınız. Tüm Creative Commons lisanslarına ve bunların ne anlama geldiğine bir genel bakış:
         paste_note_html: |
-          Her satıra bir tane olmak üzere en çok 500 tür adı yapıştır. %{site_name} genel adları tür kavramlarıyla eşleştirmek için elinden gelenin en iyisini yapar ancak belirsizliği önlemek için bilimsel adları kullanmak daha iyidir. Her ikisini de belirtmek istiyorsanız, bilimsel adı genel addan virgülle, <code>Homo sapiens, Human</code> gibi ayırın.
+          Her satıra bir tane olmak üzere en çok 500 tür adı yapıştır. %{site_name} yaygın adları tür kavramlarıyla eşleştirmek için elinden gelenin en iyisini yapar ancak belirsizliği önlemek için bilimsel adları kullanmak daha iyidir. Her ikisini de belirtmek istiyorsanız, bilimsel adı yaygın addan virgülle, <code>Homo sapiens, Human</code> gibi ayırın.
         places_note: |
           Not: Tüm yerlerde sınıf içeren kontrol listeleri yoktur. Sınıflarla bir yer bulmakta sorun yaşıyorsanız, devletler, eyaletler, iller ya da ilçeler gibi siyasi sınırları olan daha geniş alanları seçmeyi deneyin.
         replace_existing_eol_desc: Yaşam ansiklopedisinden içe aktarmadan önce mevcut içeriği silin
@@ -4483,7 +4600,7 @@ tr:
           Emin misiniz? Bu, bu yerdeki yerlere ait TÜM listelenen sınıflar
           için kuruluş varlığını değiştirecektir. Bir çok çalışmayı bozuyor olabilirsin.
         description_html: |
-          Bu, sınıfın <em>tüm</em> listelerinin kuruluş varlığını <a href="%{place_url}">%{place_name}</a> yerinin bütün soyunda <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca sorumlular kullanabilir. Kuruluş varlığının “tanıtılmış” olarak değişimi, aşağı yukarı aynı etkiye sahip olacak ancak var olan değerleri değiştirmeyecek, yalnızca boş olanları doldurunuz.
+          Bu, sınıfın <em>tüm</em> listelerinin kuruluş varlığını <a href="%{place_url}">%{place_name}</a> yerinin bütün soyunda <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca sorumlular kullanabilir. Kuruluş varlığının “yerel olmayan” olarak değişimi, aşağı yukarı aynı etkiye sahip olacak ancak var olan değerleri değiştirmeyecek, yalnızca boş olanları doldurunuz.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Yaşam Listesi başlıkları değiştirilemez
@@ -4598,9 +4715,12 @@ tr:
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
         create_a_query_desc_html: |
-          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. <strong>Sınıf</strong>, <strong>yer</strong>, <strong>kullanıcı</strong>, <strong>proje</strong> ya da <strong>arama sorgusu</strong> belirtmen gerekir.
+          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. Sorgunuz <strong>200.000'den çok </strong> gözlem içermemelidir.
+        export_in_progress_notice: |
+          Devam eden bir dışa aktarmanz var. Başka bir dışa aktarma kuyruğuna girmeden önce bitmesini beklemeniz gerekecek.
         ident_by_user_desc_html: |
           %{user} tarafından geçerli tanımlama için sütunlar
+        limit_alert: Dışa aktarmanız çok büyük olacak. 200.000'den az gözlem olana kadar filtrelerinizi değiştirin.
         query_placeholder: "Aşağıdaki sorgu parametrelerinden birini seçin veya bir gözlem URL'ine yapıştırın"
         taxon_extras_help_html: "Not: Bu sütunlar dışa aktarımın oluşturulmasını yavaşlatır"
         geo_help_html: |
@@ -4616,11 +4736,43 @@ tr:
         taking_a_while: "Bu biraz zaman alıyor. Lütfen aşağıdaki seçeneklerden birini deneyin."
         date_range_help: "GG-AA-YYYY biçiminde gözlemlenen en çok ve en az tarihler, örn. 17-01-2015"
         created_on_help: "Tarih gözlemleri oluşturuldu, gözlenmedi, örn. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Diğer Ayarlar</h3>
+          <p>
+          Büyük dışa aktarmalar altyapımızı yavaşlatıyor ve yeni değişiklikler yapmamızı zorlaştırıyor. Dikkate almanız gereken diğer seçenekler şunlardır:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF, Araştırma Sınıfımızın çoğunu içinde biriktirir, lisanslı gözlemler ve bunların dışa aktarım araçları mükemmeldir. GBIF dışa aktarımları da bir <a href="https://www.doi.org/">DOI</a> ile birlikte gelir, dışa aktardığınız verilere dayalı olarak araştırma yayınlarsanız alıntı yapabilirsiniz ve bu alıntılar, iNat verilerinin nasıl kullanıldığını görmemize izin verdiği için bizim için çok yararlıdır.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip"> GBIF için DarwinCore
+          Archive (DwC-A)</a>: bu site
+          GBIF'ın biriktirmesi için oluşturduğumuz <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> dosyasıdır, bu nedenle GBIF'da olmayan bir şey içermemelidir ancak tüm arşivi istiyorsanız, indirebilirsiniz. CSV'deki kayıtları içeren çok büyük bir zip dosyasıdır. Haftalık olarak güncellenir.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">FGVC 2017'de iNaturalist Mücadelesi</a>: bilgisayarla görüş eğitiminde kullanılmak üzere 5.089 türün 675.000 lisanslı iNaturalist fotoğrafını bu sayfayla bağlantılı duruma getirir. Haziran 2017 tarihinde oluşturuldu, güncellenmedi.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Gözlem için benzersiz tanımlayıcı"
         species_guess: "Gözlemlenen sınıf için girilen gözlemcinin adı"
         scientific_name: "Bu siteye göre gözlemlenen sınıfın bilimsel adı"
-        common_name: "Bu siteye göre gözlenen sınıf genel ya da yerel adı"
+        common_name: "Bu siteye göre gözlenen sınıf yaygın ya da yerel adı"
         iconic_taxon_name: Gözlenen sınıflar için üst düzey sınıflandırmasal kategori
         taxon_id: Gözlenen sınıf için benzersiz tanımlayıcı
         id_please: Gözlemcinin kimlik yardımı istedğinde bulunup bulunmadığı
@@ -4999,15 +5151,6 @@ tr:
         Şu anda bu fotoğraflara erişim iznimiz yok. Bize ek izinler vermek için 
         <a href="/users/edit">ayarlarınızdaki</a> hesabın bağlantısını kesmeniz 
         ve yeniden bağlamanız gerekebilir.
-      inviter:
-        automatically_add_to_project: Projeye otomatik olarak ekle
-        automatically_id_the_new_obs_as: Yeni gözlemleri otomatik olarak tanımla
-        dont_forget_the_invite_link_placeholder: "{{INVITE_LINK}} yer imini unutmayın"
-        invite_other_photographers_to_inat: "Diğer fotoğrafçıları %{site_name}'e davet et"
-        invite_your_friends_description: |
-          Facebook ve Flickr'daki kişiler için, fotoğraflarını %{site_name} gözlemi olarak eklemelerini 
-          çok kolaylaştırabilirsiniz. Aşağıda bu özel davet URL’si dahil bir yorum bırakın. 
-          Ayrıca yeni gözlem için sınıf ve ön proje seçebilirsiniz.
       show:
         view_original_html: |
           <a href="%{url}">%{url}</a> bağlantısından aslını görebilirsin. Bu fotoğraf telif hakkını ihlal ederse, lütfen telif hakkı ihlali işaretlerini çözümlenmemiş olarak bırakın.
@@ -5063,6 +5206,7 @@ tr:
         revoke_observations_desc: |
           Ayrılmanızın tek sebebi proje sorumlularının gizli koordinatlarınızı görüntülemelerini engellemekse.
       edit:
+        admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut yerlerimize</a>
@@ -5077,6 +5221,8 @@ tr:
           tanıtmanın eğlenceli bir yoludur, aynı zamanda değerli veriler toplar.
           </p>
         change_admin_desc: Yeni yönetici olması için proje sorumlularından birini seçin.
+        change_owner_alert: |
+          Bu, bu projeyi silme ya da sahipliği devretme yeteneğinizi kaldıracaktır. Devam etmek istiyor musunuz?
         cover_desc: "Proje sayfanızın üstünde görünecek isteğe bağlı afiş resmi. Genişliği 950px, boyu 400px'den küçük olmalı."
         custom_project_fields_means: "Projenin afişini kişiselleştirin, yan içerik ekleyin, ve CSS'i düzenleyin."
         end_time_desc: "Bioblitzinizin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
@@ -5089,6 +5235,8 @@ tr:
           Görünüşe göre bu proje yeni bir <a href="%{url}">Koleksiyon Projesine</a> dönüştürülebilir.
         last_aggregated_at_desc: |
           Toplayıcı bu projeye en son gözlem eklemeyi bitirdiğinde zaman
+        #Label for button to make another user the owner of a project
+        make_owner: Sahip Yap
         no_curators: |
           Burada proje sorumlusu yok. Yönetici olarak yeni bir kişi atamak istiyorsanız, 
           önce bu projeye katılmalılar ve onları bir sorumlu yapmalısınız.
@@ -5187,6 +5335,8 @@ tr:
           unutmayın.
         are_you_sure_you_want_to_delete: Bu projeyi silmek istediğinize emin misiniz?
         can_be_included_in_multiple: Birden fazla şemsiye projesine dahil edilebilir
+        check_the_box_to_include_member_observations: |
+          Yalnızca bu projeye katılan kullanıcılar tarafından yapılan gözlemleri içermesi için aşağıdaki kutuyu işaretleyin. Proje sahibi ve yöneticileri de içermek üzere belirli kullanıcılardan gelen gözlemleri bunun dışında tutmak için yukarıdaki Kullanıcıları Dışında Tut filtresini kullanın.
         click_through_to_individual_projects: Bireysel projeler için tıklayın
         collection_projects: Koleksiyon Projeleri
         collection_project_features: "Koleksiyon Projesi özellikleri:"
@@ -5199,6 +5349,8 @@ tr:
           Gerçek koordinatlara erişim, özel gözlem alanları veya otomatik olarak filtrelenemeyen 
           bireysel gözlemler ekleme gibi geleneksel projelerden özelliklere mi ihtiyacınız var?
         duplicate_project: Projeyi Kopyala
+        include_annotated_observations: |
+          Yalnızca belirli bir özellikle açıklamalı gözlemleri (örn. yaşam evresi) ya da belirli bir özellik ve değeri ekleyin (örn. yaşam evresi = yetişkin). Proje başına bir ek açıklama filtresi sınırı vardır.
         leaderboards_among_individuals: <strong>Kişiler</strong> arasında liderlik sıralaması
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projeler</strong> arasında liderlik sıralaması
@@ -5210,14 +5362,14 @@ tr:
           Not: bu kullanıcılar yöneticileri de içeren TÜM proje detaylarını düzenleyebilirler.
         note_you_can_delete_the_time: |
           (Not: Tüm günleri dahil etmek istiyorsanız, saat dilimini ve kesin zamanları silebilirsiniz.)
+        note_about_unselected_filters: |
+          Not: Sınıfları, yerleri ya da kullanıcıları seçmezseniz, tümü varsayılan olarak eklenir.
+        only_display_member_observations: |
+          Yalnızca proje üyelerinden (projeye katılan kişiler) gözlemler gösterin.
+        optionally_filter_media: İsteğe bağlı olarak fotoğraf, ses ya da her ikisiyle yapılan gözlemleri filtreleyin.
         or_drag_and_drop: (veya sürükle ve bırak)
         please_specify_the_requirements: |
           Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz.
-        please_specify_the_requirements_html: |
-          Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz. 
-          Otomatik olarak eklenecek birden fazla tür, yer, kullanıcı veya kalite derecesi 
-          belirtebilir veya belirli bir gereksiniminiz yoksa bir alanı boş bırakabilirsiniz.
-          Her alan için açıklamaları <a href="%{url}">buradan</a> bulabilirsiniz.
         project_background_color: Proje Özeti Arka Plan Rengi
         project_background_color_help: Beyaz kaplanmış metnin okunaklı olması için yeterince koyu bir renk seçtiğinize emin olun.
         project_banner: Proje Afişi (PNG, JPG, veya GIF)
@@ -5232,11 +5384,19 @@ tr:
           Projeniz hakkında kısa bir açıklama verin. Yaklaşık ilk 200 karakter, projenin ana ekran başlığının 
           sağında görünür olacak, bu yüzden en iyi şeyleri ilk sıraya koy!
         project_summary_placeholder: Golden Gate Parkı'ın kuşlarını izleyin ve keşfedin...
+        select_native_to_include: |
+          Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş sınıfları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yerel Olmayan" olarak işaretlenmiş sınıfları eklemek için "Yerel Olmayan"ı seçin.
+        select_quality_grade: |
+          En az bir Nitelik Düzeyi seçin. Her bir Nitelik Düzei için daha çok açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
         show_projects_as_flags: Projeleri haritada işaret olarak göster
+        specify_project_filters: |
+          Projenize gözlemlerin ekleneceği filtreleri belirtin. Gözlemlerin otomatik olarak eklenmesi için birden çok sınıf (ya da sınıflar), yer, tarih ya da başka ölçütler seçebilirsiniz.
         start_and_end_times_for_bioblitzes: Başlangıç ve bitiş tarihi/saati (bioblitz türünden olaylar için)
         traditional_projects_cannot_be_copied: Geleneksel projeler kopyalanamaz
         umbrella_project_features: "Şemsiye Projesi özellikleri:"
         unique_url_for_outreach: Sosyal yardım için özgün URL
+        use_this_for_a_time_limited_event: |
+          Zamanı sınırlı bir etkinlik, bioblitz ya da mevsimsel proje için bunu kullanın. Gözlemlerin tek bir tarih, tarih aralığı ya da yılın hangi aylarında yapılması gerektiğini seçin (yıla bakılmaksızın). Tarih Aralığı bölümünü kullanıyorsanız, doğru zaman ve saat dilimlerini seçtiğinizden emin olun ya da tüm gün herhangi bir zamanda yapılan gözlemleri eklemek için saat/saat dilimi metnini silin. Projeyi yalnızca bir tarihle sınırlamak istiyorsanız Başlangıç Tarihi ya da Bitiş Tarihi'ni boş bırakabilirsiniz.
         users_can_follow_your_project: Kullanıcılar güncellemeleri takip etmek için projenizi yayın gönderileri üzerinden takip edebilir
         use_this_link_to_create_html: |
           Bunun yerine geleneksel bir proje oluşturmak için <a href="%{url}">bu linki</a> kullanın.
@@ -5328,6 +5488,8 @@ tr:
           farklılıkları okuduğunuza emin olun.
         this_is_a_preview: |
           Bu, bu projenin bir Koleksiyon Projesi olarak nasıl görüneceğinin bir ön izlemesidir.
+        this_project_has_not_defined_requirements: |
+          Bu proje herhangi bir gözlem gerekliliği tanımlamamıştır. Projelerin, gözlem görüntülemeye başlamak için bir ya da daha çok sınıf (ör. kuşlar, kozalaklı ağaçlar), yerler (örneğin Brezilya, Yellowstone), kullanıcılar ve/ya da tarihler seçmesi gerekir.
       updates_desc: |
         Bu proje hakkındaki güncellemeleri kontrol panelinizden ve günlük güncellemeler e-postasında alın.
     search:
@@ -5397,6 +5559,7 @@ tr:
         obs_desc: Önceki 7 gün içerisinde oluşturulmuş
         obs_id_d_desc: Önceki 7 gün içerisinde oluşturulmuş ve bir tanımlamaya sahip (gözlemcinin olabilir)
         observations_1_week_moving_window: Gözlemler (1 haftalık hareketli pencere)
+        observers_desc: Bu gün bir gözlem eklendi
         other_desc_html: <a href="%{url}">geliştiriciler tarafından yapılmış</a> diğer uygulamalar üzerinden oluşturuldu
         recent_desc: Önceki 7 günde kaydoldu
         recent_w_0_obs: Son h/ 0 gözl
@@ -5528,20 +5691,20 @@ tr:
       show:
         about_names_desc: |
           <p>
-          Çoğu organizma kategorisinin konuşulan dillerde "genel adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için genel adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim insanları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
+          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için yaygın adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim insanları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
           </p>
           <p>
-          Eski atasözü şöyle özetliyor: "Genel adlar yerden yere değişiyor ve bilimsel adlar zaman zaman değişiyor."
+          Eski atasözü şöyle özetliyor: "Yaygın adlar bölgeden bölgeden değişiyor ve bilimsel adlar zaman zaman değişiyor."
           </p>
           <p>
-          Olanaklı olan yerlerde hem genel hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
+          Olanaklı olan yerlerde hem yaygın hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
           </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
           "Kuruluş varlıkları", bir türün halihazırda meydana geldiği yere nasıl ulaştığını tanımlar. 
-          Tanıtılmış, insan faaliyetlerinden dolayı meydana geldiği anlamına gelirken, yerli, 
-          insan yardımı olmadan meydana geldiği anlamına gelir. Endemik türler yalnızca 
+          Yerel olmayan, insan etkinliklerinden dolayı ortaya çıktığı anlamına gelirken, yerli, 
+          insan yardımı olmadan ortaya çıktığı anlamına gelir. Endemik türler yalnızca 
           belirli bir yerde ortaya çıkar ve başka hiçbir yerde ortaya çıkmaz.
         about_taxon_curators_desc: |
           Bu insanlar sınıflandırma ağacının bu sınıfı içeren kısmını yönetir. 
@@ -5565,6 +5728,8 @@ tr:
           gözlemleyen kişi sayısı tarafından önyargılıdır, ancak gözlemlerde olağandışı ani artışlar 
           gösterecektir ve artan sayıda gözlemciye rağmen düz veya azalan görünüyorsa, 
           bu bollukta bir değişiklik önerebilir.
+        charts_help_other: |
+          Gözlem açıklamalarına ilişkin mevsimsellik tablolarını da gösteriyoruz. Açıklamalar, kontrollü bir terim dağarcığı kullanarak gözlemlere veri eklemenin bir yoludur; bir gözlemin çiçek açan ya da meyve veren bir bitkiyi olduğunu betimlemesi gibi.
         charts_help_relative_observations: |
           Sıklığı, tüm gözlemlerin ilişkili bir oranı olarak göstermek, sayfanın genel büyümesinin etkisini düzeltmeye yardımcı olur. Örneğin, her geçen yıl daha çok gözlem yaptıkça sayfa büyüyorsa, bireysel sınıflara ilişkin daha çok gözlem ediniriz; bu, gözlemlemek için bu sınıfın daha çok olup olmadığıyla ilgili hiçbir şey söylemez yalnızca bunu gözlemleyen daha çok insan olduğunu anlatır. İlişkili oranın gösterilmesi, toplam 100 gözlem varsa ancak bu sınıfın 20 gözlemi varsa, oranın 0,2 (20/100) olduğu anlamına gelir. İnsanlar gelecek yıl 2000 gözlem yaparsa ve bu sınıfın 400 gözlemi olursa, oran hâlâ 0,2'dir (400/2000). Bu, bir alanda çok az sayıda gözlemci varken ya da nadiren gözlemlenen sınıflar için bazı sapmalara neden olur ancak toplam sayımlar için de geçerlidir.
         complete_taxon_desc: |
@@ -5579,6 +5744,7 @@ tr:
           "Plant Phenology=Flower Budding": Tomurcuklu Çiçek
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
+          "Plant Phenology=No Evidence of Flowering": Kanıt Yok
           "Life Stage=egg": Yumurta
           "Life Stage=larva": Larva
           "Life Stage=teneral": Teneral
@@ -5795,12 +5961,12 @@ tr:
           Atıf lisansı</a> altında kullanılır (referans!)
         monthly_supporter: Aylık Destekçi
         monthly_supporter_desc_html: |
-          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin 
-          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy 
-          (ABD IRS FIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
+          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin
+          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy
+          (ABD IRS EIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
           <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>.
-          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu 
-          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için, 
+          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu
+          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,
           iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
         muting_desc_html: |
           <p>
@@ -5813,7 +5979,7 @@ tr:
           değiştiren tanımlamalar gibi, potansiyel olarak önemli bildirimlerden mahrum kalacağınızı unutmayın.
           </p>
         name_place_help_html: |
-          Bu yerde kullanılan ortak isimlere öncelik ver.
+          Bu yerde kullanılan yaygın adlara öncelik ver.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Yorumlar
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6150,9 +6316,11 @@ tr:
       invalid: geçersiz
       less_than: '%{count} değerinden küçük olmalı'
       less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+      new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
       not_a_number: bir sayı değil
       not_an_integer: bir tam sayı olmalı
       odd: tek sayı olmalı
+      only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
       record_invalid: 'Doğrulama başarısız oldu: %{errors}'
       requires_privilege_speech: |
         başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
@@ -6286,9 +6454,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6339,11 +6509,21 @@ tr:
         occurrence_status_level: Oluşum Durumu Seviyesi
         establishment_means: Kuruluş Varlığı
       observation:
+        description: Notlar
         geo_x: Doğuya Doğru
         geo_y: Kuzeye Doğru
         observed_on: gözlenen tarih
       observation_field_value:
         value: 'değer'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Kuyrukta
+        #Date/time the task began processing
+        started_at: Başladı
+        #Date/time the task finished processing
+        finished_at: Bitti
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Girdiler
       post:
         title: Başlık
         body: İçerik
@@ -6426,9 +6606,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük ya da eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6491,6 +6673,13 @@ tr:
             observation_id:
               user_does_not_accept_fields_from_others: kullanıcı başkalarından alanları kabul etmiyor
               user_only_accepts_fields_from_site_curators: kullanıcı yalnızca sayfa sorumlularından alanları kabul eder
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Dışa aktarma 200.000'den çok gözlem içeremez
+              must_have_query: Sorgu boş olamaz
+            user_id:
+              already_has_an_export_in_progress: zaten bir dışa aktarma devam ediyor
         place:
           attributes:
             place_geometry:
@@ -6499,6 +6688,8 @@ tr:
               contains_too_many_observations: içe aktarılacak çok fazla gözlem var
         post:
           attributes:
+            parent:
+              prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |
                 yayınlamak için 24 saatten daha önce kayıt yaptırmış olmalısınız. İstenmeyen kullanımların önüne geçmek için böyle bir önlem aldık. Yine de bir taslak olarak kaydedebilirsiniz, ve bir gün içinde hala siteyi kullanıyor olursanız, yayınlayabilirsiniz.
@@ -6548,6 +6739,8 @@ tr:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 bu veri sözlüğü için bir türün bilimsel adıyla eşleşemez
+              must_match_the_taxon_if_valid: |
+                geçerli bir bilimsel ad ise sınıf adıyla eşleşmelidir
               bad_format: |
                 yalnızca standart Latin karakterler, kısa çizgiler, boşluklar, ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
         taxon_photo:

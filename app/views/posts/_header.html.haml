@@ -4,7 +4,7 @@
     = render :partial => 'posts/breadcrumbs'
 - if @parent.is_a?(Project)
   - tools = capture do
-    - if @display_project.editable_by?(current_user)
+    - if @display_project.curated_by?(current_user)
       #tools.buttonrow
         = link_to t(:new_post), new_project_journal_post_path(@parent_slug), |
           :id => "newpostbutton", :class => "default button"                 |

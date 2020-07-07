@@ -1,31 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Grid,
+  Row,
+  Col
+} from "react-bootstrap";
 import { bind as bindShortcut, unbind as unbindShortcut } from "mousetrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import {
   urlForTaxon,
   urlForTaxonPhotos,
   localizedPhotoAttribution
-} from "../../shared/util";
+} from "../util";
 
 class PhotoModal extends React.Component {
   componentDidMount( ) {
+    const { visible, showNext, showPrev } = this.props;
     bindShortcut( "right", ( ) => {
-      if ( this.props.visible ) {
-        this.props.showNext( );
+      if ( visible ) {
+        showNext( );
       }
     } );
     bindShortcut( "left", ( ) => {
-      if ( this.props.visible ) {
-        this.props.showPrev( );
+      if ( visible ) {
+        showPrev( );
       }
     } );
   }
+
   componentWillUnmount( ) {
     unbindShortcut( "right" );
     unbindShortcut( "left" );
   }
+
   render( ) {
     const {
       photo,
@@ -52,13 +61,15 @@ class PhotoModal extends React.Component {
       }
       photoAttribution = (
         <div className="photo-attribution">
-          {
-            localizedPhotoAttribution( photo, {
-              name: observation ? ( observation.user.name || observation.user.login ) : null
-            } )
-          }
-          <a href={`/photos/${photo.id}`} title={ I18n.t( "details" ) }>
-            <i className="fa fa-info-circle"></i>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: localizedPhotoAttribution( photo, {
+                name: observation ? ( observation.user.name || observation.user.login ) : null
+              } )
+            }}
+          />
+          <a href={`/photos/${photo.id}`} title={I18n.t( "details" )}>
+            <i className="fa fa-info-circle" />
           </a>
           { obsLink }
         </div>
@@ -93,13 +104,13 @@ class PhotoModal extends React.Component {
                   { I18n.t( "more_photos" ) }
                 </a>
                 <SplitTaxon
-                  taxon={ taxon }
-                  url={ linkToTaxon ? urlForTaxon( taxon ) : null }
-                  user={ config.currentUser }
+                  taxon={taxon}
+                  url={linkToTaxon ? urlForTaxon( taxon ) : null}
+                  user={config.currentUser}
                 />
                 { linkToTaxon ? (
                   <a href={urlForTaxon( taxon )} className="taxon-link">
-                    <i className="fa fa-arrow-circle-right"></i>
+                    <i className="fa fa-arrow-circle-right" />
                   </a>
                 ) : null }
               </Col>
@@ -115,11 +126,11 @@ class PhotoModal extends React.Component {
         bsSize="large"
         className="PhotoModal"
       >
-        <button className="close" onClick={onClose}>×</button>
-        <Button className="nav-button" onClick={ function ( ) { showPrev( ); } }>
+        <button type="button" className="close" onClick={onClose}>×</button>
+        <Button className="nav-button" onClick={( ) => showPrev( )}>
           &lsaquo;
         </Button>
-        <Button className="next nav-button" onClick={ function ( ) { showNext( ); } }>
+        <Button className="next nav-button" onClick={( ) => showNext( )}>
           &rsaquo;
         </Button>
         <div className="photo-modal-content">

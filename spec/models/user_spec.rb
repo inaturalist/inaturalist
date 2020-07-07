@@ -102,7 +102,7 @@ describe User do
     end
 
     it "should not allow time_zone to be a blank string" do
-      expect( User.make( time_zone: "" ) ).not_to be_valid
+      expect( User.make!( time_zone: "" ).time_zone ).to be_nil
     end
     
     it "should set latitude and longitude" do
@@ -501,6 +501,12 @@ describe User do
       Delayed::Worker.new.work_off
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 0
+    end
+
+    it "should destroy friendships where user is the friend" do
+      f = Friendship.make!
+      f.friend.destroy
+      expect( Friendship.find_by_id( f.id ) ).to be_blank
     end
   end
 
@@ -985,6 +991,28 @@ describe User do
       o.reload
       expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
     end
+
+    it "should not create new identifications for the observer when set to true" do
+      user = User.make!( prefers_community_taxa: false )
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      o = Observation.make!( user: user )
+      owners_ident = Identification.make!( user: user, observation: o, taxon: family )
+      2.times do
+        Identification.make!( observation: o, taxon: species )
+      end
+      o.reload
+      expect( o.taxon ).to eq owners_ident.taxon
+      expect( o.community_taxon ).to eq species
+      expect( o.identifications.by( user ).count ).to eq 1
+      user.update_attributes( prefers_community_taxa: true )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.by( user ).count ).to eq 1
+      owners_ident.reload
+      expect( owners_ident ).to be_current
+    end
   end
 
   describe "active_ids" do
@@ -1238,7 +1266,7 @@ describe User do
       obs = Observation.make!(
         user: user,
         taxon: taxon,
-        observed_on_string: Date.yesterday.to_s
+        observed_on_string: 1.week.ago.to_s
       )
       expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
     end

@@ -75,10 +75,10 @@ export function fetchDataForTab( options = { } ) {
   };
 }
 
-function fetchCurrentObservation( observation = null ) {
-  return function ( dispatch, getState ) {
-    const s = getState();
-    const obs = observation || s.currentObservation.observation;
+function fetchObservation( observation ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const obs = observation;
     const { currentUser, preferredPlace } = s.config;
     const params = {
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
@@ -138,6 +138,7 @@ function fetchCurrentObservation( observation = null ) {
           if (
             cachedPlaces
             && cachedPlaces.length > 0
+            && s.currentObservation.observation
             && s.currentObservation.observation.id === o.id
           ) {
             dispatch( updateCurrentObservation( { places: cachedPlaces } ) );
@@ -172,6 +173,26 @@ function fetchCurrentObservation( observation = null ) {
         dispatch( resetSuggestions( ) );
         dispatch( fetchDataForTab( { observation: finalObservation } ) );
       } );
+  };
+}
+
+function fetchCurrentObservation( observation = null ) {
+  return ( dispatch, getState ) => {
+    const s = getState();
+    // Theoretically there's no reason to fetch the obs if the modal isn't even
+    // visible
+    if ( !s.currentObservation.visible ) {
+      return Promise.resolve( );
+    }
+    if (
+      observation
+      && s.currentObservation.observation
+      && observation.id !== s.currentObservation.observation.id
+    ) {
+      // Don't bother fetching an observation that we're no longer looking at
+      return Promise.resolve( );
+    }
+    return dispatch( fetchObservation( observation || s.currentObservation.observation ) );
   };
 }
 
@@ -337,7 +358,10 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
       controlled_value_id: controlledValue.id
     };
     iNaturalistJS.annotations.create( payload )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Faile to add annotation: ", e );
+      } );
   };
 }
 
@@ -372,7 +396,10 @@ export function deleteAnnotation( id ) {
     ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
     iNaturalistJS.annotations.delete( { id } )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Failed to delete annotation: ", e );
+      } );
   };
 }
 
@@ -393,7 +420,10 @@ export function voteAnnotation( id, voteValue ) {
     ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
     iNaturalistJS.annotations.vote( { id, vote: voteValue } )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Failed to vote on annotation: ", e );
+      } );
   };
 }
 
@@ -414,7 +444,10 @@ export function unvoteAnnotation( id ) {
     ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
     iNaturalistJS.annotations.unvote( { id } )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Failed to unvote on annotation: ", e );
+      } );
   };
 }
 
@@ -800,6 +833,7 @@ export {
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,
+  fetchObservation,
   receiveCurrentObservation,
   showNextObservation,
   showPrevObservation,

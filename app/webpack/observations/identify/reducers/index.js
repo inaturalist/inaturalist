@@ -31,7 +31,6 @@ import observationsStats from "./observations_stats_reducer";
 import currentObservation from "./current_observation_reducer";
 import config from "../../../shared/ducks/config";
 import searchParams from "./search_params_reducer";
-import identifiers from "./identifiers_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alert from "./alert_reducer";
 import suggestions from "../ducks/suggestions";
@@ -48,7 +47,6 @@ const rootReducer = combineReducers( {
   observationsStats,
   currentObservation,
   searchParams,
-  identifiers,
   finishedModal,
   alert,
   suggestions,

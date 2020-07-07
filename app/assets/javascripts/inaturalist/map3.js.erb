@@ -408,10 +408,12 @@ iNaturalist.Map.createMap = function(options) {
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
+    rotateControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
     gestureHandling: "greedy",
-    controlSize: 26
+    controlSize: 26,
+    tilt: 0
   }, options);
   
   var map;
@@ -777,16 +779,16 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   legendLeft.append( checkbox );
   var legendRight = $( "<div class='legend-right' />" );
   legendRight.append( label );
-  // // Append an element to show the color of this layer in the legend. Note the
-  // // legend color can be specified independently of the layer color with
-  // // legendColor, otherwise it defaults to color
-  // var legendColor = options.legendColor || options.color;
-  // if ( legendColor ) {
-  //   li.addClass( "with-legend-mark" );
-  //   legendLeft.append(
-  //     $( "<div class='legend-mark' />" ).css( { backgroundColor: legendColor } )
-  //   );
-  // }
+  // Append an element to show the color of this layer in the legend. Note the
+  // legend color can be specified independently of the layer color with
+  // legendColor, otherwise it defaults to color
+  var legendColor = options.legendColor || options.color;
+  if ( legendColor ) {
+    li.addClass( "with-legend-mark" );
+    legendLeft.append(
+      $( "<div class='legend-mark' />" ).css( { backgroundColor: legendColor } )
+    );
+  }
   li.append( legendLeft, legendRight );
   if( options.endpoint === "gbif" && options.gbif_id ) {
      label.append(
@@ -1120,6 +1122,13 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
       gridmaxzoom = options.gridmaxzoom || 9;
   options.title = title;
   options.tile_size = 512;
+  // If iconic colors requested, use the default API behavior, which is to show
+  // iconic colors at close zooms
+  if ( options.color === "iconic" ) {
+    delete options.color;
+  } else if ( options.mapStyle !== "heatmap" ) {
+    options.color = options.color || "#FF4500"; // default the points to the same color as the grid
+  }
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
@@ -1166,6 +1175,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "list_id",
     "lng",
     "lrank",
+    "members_of_project",
     "month",
     "native",
     "nelat",
@@ -1177,7 +1187,6 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "oauth_application_id",
     "on",
     "opacity",
-    "out_of_range",
     "photo_license",
     "photos",
     "place_id",

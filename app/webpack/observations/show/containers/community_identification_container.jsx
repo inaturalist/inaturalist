@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import CommunityIdentification from "../components/community_identification";
-import { addID } from "../ducks/observation";
-import { updateObservation } from "../ducks/observation";
+import { addID, updateObservation } from "../ducks/observation";
 import { setCommunityIDModalState } from "../ducks/community_id_modal";
 import { updateSession } from "../ducks/users";
 import {
@@ -22,7 +21,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
-    updateObservation: ( attributes ) => { dispatch( updateObservation( attributes ) ); },
+    updateObservation: attributes => { dispatch( updateObservation( attributes ) ); },
     setCommunityIDModalState: ( key, value ) => {
       dispatch( setCommunityIDModalState( key, value ) );
     },

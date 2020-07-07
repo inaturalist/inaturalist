@@ -38,7 +38,7 @@ class StatsController < ApplicationController
     observers = INatAPIService.observations_observers(params)
     species_counts = INatAPIService.observations_species_counts(params)
     user_count_scope = User.where("suspended_at IS NULL")
-    if @site.name != "iNaturalist.org"
+    if @site && @site != Site.default
       user_count_scope = user_count_scope.where(site_id: @site.id)
     end
     @stats = {

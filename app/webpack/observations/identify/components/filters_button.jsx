@@ -26,6 +26,7 @@ class FiltersButton extends React.Component {
       show: false
     };
     this.clickOffEventNamespace = "click.FiltersButtonClickOff";
+    this.target = React.createRef( );
   }
 
   toggle( ) {
@@ -67,15 +68,12 @@ class FiltersButton extends React.Component {
       updateSearchParams,
       replaceSearchParams,
       defaultParams,
-      terms,
-      config
+      terms
     } = this.props;
     const {
       moreFiltersHidden,
       show
     } = this.state;
-    const viewerIsAdmin = config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -638,7 +636,7 @@ class FiltersButton extends React.Component {
           <select
             id="params-without-term-id"
             className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
-            defaultValue={params.without_term_id}
+            defaultValue={params.without_term_id || params.term_id}
             onChange={e => {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
@@ -656,7 +654,7 @@ class FiltersButton extends React.Component {
               </option>
             ) ) }
           </select>
-          { rejectedTerm ? (
+          { ( rejectedTerm || chosenTerm ) && (
             <div className="term-value">
               <big>=</big>
               <select
@@ -668,14 +666,14 @@ class FiltersButton extends React.Component {
                 <option value="">
                   { I18n.t( "any_" ) }
                 </option>
-                { rejectedTerm.values.map( t => (
+                { ( rejectedTerm || chosenTerm ).values.map( t => (
                   <option value={t.id} key={`without-term-value-id-${t.id}`}>
                     { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
                   </option>
                 ) ) }
               </select>
             </div>
-          ) : null }
+          ) }
         </div>
         <div className="form-group recent-users-form-group">
           <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>
@@ -785,7 +783,7 @@ class FiltersButton extends React.Component {
           bsRole="toggle"
           bsStyle="default"
           className="FiltersButton"
-          ref="target"
+          ref={this.target}
           onClick={( ) => this.toggle( )}
         >
           <i className="fa fa-sliders" />
@@ -801,7 +799,7 @@ class FiltersButton extends React.Component {
           onHide={( ) => this.setState( { show: false } )}
           container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="bottom"
-          target={( ) => ReactDOM.findDOMNode( this.refs.target )}
+          target={( ) => ReactDOM.findDOMNode( this.target.current )}
         >
           <Popover
             id="FiltersButtonPopover"
@@ -821,8 +819,7 @@ FiltersButton.propTypes = {
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  terms: PropTypes.array,
-  config: PropTypes.object
+  terms: PropTypes.array
 };
 
 FiltersButton.defaultProps = {

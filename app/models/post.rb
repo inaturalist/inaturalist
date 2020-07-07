@@ -60,17 +60,80 @@ class Post < ActiveRecord::Base
   FORMATTING_NONE = "none"
   preference :formatting, :string, default: FORMATTING_SIMPLE
 
+  preference :no_comments, :boolean, default: false
+
   ALLOWED_TAGS = %w(
-    a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i
-    iframe img li object ol p param pre s small strike strong sub sup tt ul
-    table thead tfoot tr td th
-    audio source
-    div del ins
+    a
+    abbr
+    acronym
+    audio
+    b
+    blockquote
+    br
+    cite
+    code
+    del
+    div
+    dl
+    dt
+    em
+    embed
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+    hr
+    i
+    iframe
+    img
+    ins
+    li
+    object
+    ol
+    p
+    param
+    pre
+    s
+    small
+    source
+    strike
+    strong
+    sub
+    sup
+    table
+    td
+    tfoot
+    th
+    thead
+    tr
+    tt
+    ul
   )
 
   ALLOWED_ATTRIBUTES = %w(
-    href src width height alt cite title class name xml:lang abbr value align style controls preload
-    frameborder frameBorder seamless
+    abbr
+    align
+    alt
+    cite
+    class
+    controls
+    frameborder
+    frameBorder
+    height
+    href
+    name
+    preload
+    rel
+    seamless
+    src
+    style
+    target
+    title
+    value
+    width
+    xml:lang
   )
 
   def user_must_be_on_site_long_enough

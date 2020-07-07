@@ -15,8 +15,9 @@ module DarwinCore
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
-      %w(recordedById http://rs.gbif.org/terms/1.0/recordedByID),
-      %w(identifiedById http://rs.gbif.org/terms/1.0/identifiedById),
+      %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
+      %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
@@ -121,7 +122,9 @@ module DarwinCore
       end
 
       def informationWithheld
-        if geoprivacy_private?
+        if @show_private_coordinates
+          nil
+        elsif geoprivacy_private?
           "Coordinates hidden at the request of the observer"
         elsif geoprivacy_obscured?
           "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
@@ -152,30 +155,37 @@ module DarwinCore
         user.login
       end
 
-      def recordedById
+      def recordedByID
         orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
         return unless orcid_id
         "https://orcid.org/#{orcid_id}"
       end
 
-      def identifiedById
+      def identifiedBy
+        return unless first_improving = first_improving_identification
+        first_improving.user.name.blank? ? first_improving.user.login : first_improving.user.name
+      end
+
+      def identifiedByID
+        return unless first_improving = first_improving_identification
+        orcid_id = first_improving.user.provider_authorizations.detect{|pa|
+          pa.provider_name == "orcid"
+        }.try(:provider_uid)
+        return if orcid_id.blank?
+        "https://orcid.org/#{orcid_id}"
+      end
+
+      # As noted in https://github.com/gbif/occurrence/issues/89, identifiedBy
+      # and identifiedByID are primarily meant to provide attribution to the
+      # person who first provided the "correct" identification and not
+      # necessarily to track all people who may have agreed with that
+      # identification, sp we are only including the person who added the first
+      # improving identification that matches the observation taxon
+      def first_improving_identification
         return unless dwc_taxon
         taxon_id = dwc_taxon.id
         idents = identifications.select(&:current?).sort_by(&:id)
-        first_improving = idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
-        # Crediting the supporting identifiers gets dicey. Yes, they contribute
-        # to the Community Taxon, but it's not always possible to say which ones
-        # really shifted the Community Taxon or the quality grade. So... just
-        # omitting this for now.
-        # first_supporting = idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::SUPPORTING }
-        first_supporting = nil
-        identifiers = [first_improving, first_supporting].compact.collect(&:user)
-        return if identifiers.blank?
-        orcid_ids = identifiers.collect do |u|
-          u.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
-        end.compact
-        return if orcid_ids.blank?
-        orcid_ids.collect{|orcid_id| "https://orcid.org/#{orcid_id}"}.join( "|" )
+        idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
       end
 
       def establishmentMeans
@@ -192,11 +202,15 @@ module DarwinCore
       end
 
       def verbatimEventDate
-        dwc_filter_text(observed_on_string) unless observed_on_string.blank?
+        dwc_filter_text( observed_on_string ) unless observed_on_string.blank?
       end
 
       def verbatimLocality
-        dwc_filter_text(place_guess) unless place_guess.blank?
+        if @show_private_coordinates
+          dwc_filter_text(private_place_guess || place_guess) unless place_guess.blank?
+        else
+          dwc_filter_text( place_guess ) unless place_guess.blank?
+        end
       end
 
       def decimalLatitude
@@ -212,7 +226,6 @@ module DarwinCore
       end
 
       def decimalLongitude
-        # longitude.to_f unless longitude.blank?
         if @show_private_coordinates
           if private_longitude.blank?
             longitude.to_f unless longitude.blank?
@@ -225,7 +238,11 @@ module DarwinCore
       end
 
       def coordinateUncertaintyInMeters
-        public_positional_accuracy
+        if @show_private_coordinates
+          positional_accuracy
+        else
+          public_positional_accuracy
+        end
       end
 
       def countryCode

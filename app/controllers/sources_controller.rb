@@ -14,7 +14,7 @@ class SourcesController < ApplicationController
       format.html
       format.json do
         @sources = @sources.map do |source|
-          source.html = render_to_string(:partial => "chooser.html.erb", :object => source)
+          source.html = render_to_string(:partial => "chooser.html.haml", :object => source)
           source
         end
         render :json => @sources.to_json(:methods => [:html])
@@ -26,7 +26,7 @@ class SourcesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        @source.html = render_to_string(:partial => "chooser.html.erb", :object => @source)
+        @source.html = render_to_string(:partial => "chooser.html.haml", :object => @source)
         render :json => @source.to_json(:methods => [:html])
       end
     end

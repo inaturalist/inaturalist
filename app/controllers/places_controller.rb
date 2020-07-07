@@ -124,7 +124,11 @@ class PlacesController < ApplicationController
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
-        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50).to_a
+        @projects += Project.joins( "JOIN rules ON rules.ruler_type = 'Project' AND rules.ruler_id = projects.id" )
+          .where( "rules.operand_type = 'Place' AND rules.operand_id = ?", @place.id )
+          .page( 1 ).per_page( 50 ).to_a
+        @projects = @projects[0..50].sort_by{|p| p.title.downcase}
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
@@ -241,12 +245,8 @@ class PlacesController < ApplicationController
           error: @place.errors.full_messages.join(', '))
       end
 
-      if params[:remove_geom] && @place.place_geometry_without_geom
-        @place.place_geometry_without_geom.delete
-      end
-
       if !@place.valid?
-        render :action => :edit
+        render action: :edit, status: :unprocessable_entity
         return
       end
       
@@ -260,7 +260,7 @@ class PlacesController < ApplicationController
       flash[:notice] = t(:place_updated)
       redirect_to @place
     else
-      render :action => :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
   
@@ -362,6 +362,11 @@ class PlacesController < ApplicationController
       keepers = nil if keepers.blank?
       unless @merge_target
         flash[:error] = t(:you_must_select_a_place_to_merge_with)
+        return
+      end
+
+      if !@place.admin_level.nil? || !@merge_target.admin_level.nil?
+        flash[:error] = t(:you_cant_merge_standard_places)
         return
       end
       

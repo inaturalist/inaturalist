@@ -12,7 +12,7 @@
     }
 - content_for :extrajs do
   = javascript_include_tag :stats
-  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
+  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','language':'#{I18n.locale}','packages':['corechart','annotationchart']}]}"
   - if @stats
     :javascript
       var STATS_JSON = #{ @stats.to_json.html_safe };

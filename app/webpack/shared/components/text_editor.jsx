@@ -20,9 +20,18 @@ class TextEditor extends React.Component {
       placeholder,
       className,
       textareaClassName,
-      showCharsRemainingAt
+      showCharsRemainingAt,
+      onBlur
     } = this.props;
     const { textareaChars, preview } = this.state;
+    let textareaOnChange;
+    if ( maxLength ) {
+      textareaOnChange = e => {
+        if ( e.target.value.length > showCharsRemainingAt ) {
+          this.setState( { textareaChars: e.target.value.length } );
+        }
+      };
+    }
     return (
       <div className={`TextEditor ${className} ${preview && "with-preview"}`}>
         { this.textarea && this.textarea.current && (
@@ -135,7 +144,8 @@ class TextEditor extends React.Component {
           className={textareaClassName}
           maxLength={maxLength}
           placeholder={placeholder}
-          onChange={e => this.setState( { textareaChars: e.target.value.length } )}
+          onChange={textareaOnChange}
+          onBlur={onBlur}
         >
           { content }
         </textarea>
@@ -162,7 +172,8 @@ TextEditor.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   textareaClassName: PropTypes.string,
-  showCharsRemainingAt: PropTypes.number
+  showCharsRemainingAt: PropTypes.number,
+  onBlur: PropTypes.func
 };
 
 TextEditor.defaultProps = {

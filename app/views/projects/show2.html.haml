@@ -19,7 +19,8 @@
 - content_for :extrajs do
   - if logged_in?
     :ruby
-      js_current_user = { id: current_user.id,
+      js_current_user = {
+        id: current_user.id,
         login: current_user.login,
         curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
         site_admin: is_site_admin?,

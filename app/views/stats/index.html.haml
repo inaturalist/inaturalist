@@ -3,13 +3,17 @@
 - content_for(:extracss) do
   = stylesheet_link_tag :stats
 - content_for(:extrajs) do
-  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
-  = javascript_include_tag :stats, "d3.min"
+  = javascript_include_tag "https://www.gstatic.com/charts/loader.js"
   :javascript
+    google.charts.load( "current", {
+      language: "#{I18n.locale}",
+      packages: ["corechart", "annotationchart"]
+    } );
     var STATS_JSON = #{ @stats.to_json.html_safe };
     $(document).ready(function( ) {
       Stats.loadCharts( );
     });
+  = javascript_include_tag :stats, "d3.min"
 .container
   %h2=t :site_stats
   .row.sparks
@@ -86,25 +90,43 @@
       %p.meta=t "views.stats.index.TTID_note"
   .row
     .col-md-12
-      %h3=t :users
-      #users.stacked.vis
+      %h3=t :active_users
+      #active-users.stacked.vis
         .loading.status=t :loading
     .col-md-6
       %dl.meta
         %dt=t :active
         %dd=t "views.stats.index.active_desc"
-        %dt=t :new
-        %dd=t "views.stats.index.new_users_desc"
-        %dt=t :identifiers
-        %dd=t "views.stats.index.identifiers_desc"
+  .row
+    .col-md-12
+      %h3=t :recent_new_users
+      #recent-users.stacked.vis
+        .loading.status=t :loading
     .col-md-6
       %dl.meta
         %dt=t :recent
         %dd=t "views.stats.index.recent_desc"
         %dt=t "views.stats.index.recent_w_7_obs"
         %dd=t "views.stats.index.recent_w_7_obs_desc"
+    .col-md-6
+      %dl.meta
         %dt=t "views.stats.index.recent_w_0_obs"
         %dd=t "views.stats.index.recent_w_0_obs_desc"
+  .row
+    .col-md-12
+      %h3=t :daily_users
+      #daily-users.stacked.vis
+        .loading.status=t :loading
+    .col-md-6
+      %dl.meta
+        %dt=t :new
+        %dd=t "views.stats.index.new_users_desc"
+        %dt=t :observers
+        %dd=t "views.stats.index.observers_desc"
+    .col-md-6
+      %dl.meta
+        %dt=t :identifiers
+        %dd=t "views.stats.index.identifiers_desc"
   .row
     .col-md-6
       %h3=t :observations

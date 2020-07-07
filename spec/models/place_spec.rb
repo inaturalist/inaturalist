@@ -85,6 +85,13 @@ describe Place, "creation" do
     p.save
     expect( p.slug ).to eq "foo"
   end
+
+  it "should not be valid without a place_geometry" do
+    p = Place.make
+    expect( p.place_geometry ).to be_blank
+    expect( p ).not_to be_valid
+    expect( p.errors[:place_geometry] ).not_to be_blank
+  end
 end
 
 describe Place, "updating" do
@@ -383,6 +390,13 @@ describe Place, "save_geom" do
       without_delay { p.save_geom(geom) }
       p.reload
       expect( p.check_list.taxon_ids ).to include o.taxon_id
+    end
+    it "should not add taxa observed outside the place to the checklist" do
+      expect( p.check_list.taxon_ids ).to be_empty
+      o = make_research_grade_observation(latitude: 5, longitude: 5)
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).not_to include o.taxon_id
     end
     it "should not remove existing user-added listed taxa to the checklist" do
       t = Taxon.make!

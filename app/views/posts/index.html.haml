@@ -15,9 +15,9 @@
           = t( :back_to_x, noun: @parent.title )
     .row
       .col-md-12
-        - title = t( :x_project_journal, project: strip_tags( @parent.title ), name: t( :news ) )
+        - title = t( :x_project_journal, project: strip_tags( @parent.title ), name: t( :journal ) )
         %h1= title
-        - if @display_project.editable_by?(current_user)
+        - if @display_project.curated_by?(current_user)
           = link_to t(:new_post), new_project_journal_post_path(@parent_slug), |
             :id => "newpostbutton", :class => "default button"                 |
   - else
@@ -30,7 +30,7 @@
         - if @posts.empty?
           - if @parent.is_a?(Project) && @parent.is_new_project?
             #noposts.news
-              = t(:no_news_yet) + "."
+              = t(:no_journal_posts_yet) + "."
               = t(:check_back_soon)
           - else
             %center#noposts.readable.description

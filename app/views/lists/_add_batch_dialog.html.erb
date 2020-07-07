@@ -11,7 +11,7 @@
     <% end %>
   </div>
   
-  <h3><%= t :or_upload %> CSV</h3>
+  <h3><%= t :upload_a_csv_file %></h3>
   <p class="meta ui">
     <%= t :file_should_be_in_the_following_format %><% if @list.is_a?(CheckList) %>, <%= t :occurrence_status_establishment_means %><% end %>. <%= t :csv_should_not_contain_a_header_row %>.
     <% if @list.is_a?(CheckList) %>

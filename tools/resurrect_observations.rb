@@ -239,6 +239,7 @@ if @user
   puts <<-EOT
 bundle exec rails r "User.update_identifications_counter_cache(#{@user.id})"
 bundle exec rails r "User.update_observations_counter_cache(#{@user.id})"
+bundle exec rails r "User.elasic_index( ids: [#{@user.id}])"
   EOT
 end
 

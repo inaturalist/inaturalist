@@ -15,6 +15,8 @@ addons:
 
 before_install:
   - sudo apt-get -qq update
+  - sudo rm /usr/share/ca-certificates/mozilla/AddTrust_External_Root.crt
+  - sudo update-ca-certificates -f -v
   - sudo apt-get install -y postgresql-10-postgis-2.4 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev ffmpeg
   - psql -U postgres -c "create extension postgis"
   - psql -U postgres -c 'create extension "uuid-ossp"'

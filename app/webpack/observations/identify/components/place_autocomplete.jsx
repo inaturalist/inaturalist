@@ -15,14 +15,16 @@ class PlaceAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialPlaceID !== prevProps.initialPlaceID ) {
+    const { initialPlaceID } = this.props;
+    if ( initialPlaceID !== prevProps.initialPlaceID ) {
       this.fetchPlace( );
     }
   }
 
   fetchPlace( ) {
-    if ( this.props.initialPlaceID ) {
-      inaturalistjs.places.fetch( this.props.initialPlaceID ).then( r => {
+    const { initialPlaceID } = this.props;
+    if ( initialPlaceID ) {
+      inaturalistjs.places.fetch( initialPlaceID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updatePlace( { place: r.results[0] } );
         }
@@ -35,15 +37,15 @@ class PlaceAutocomplete extends React.Component {
   updatePlace( options = { } ) {
     const domNode = ReactDOM.findDOMNode( this );
     if ( options.place ) {
-      $( "input[name='place_name']", domNode ).
-        trigger( "assignSelection", Object.assign(
+      $( "input[name='place_name']", domNode )
+        .trigger( "assignSelection", Object.assign(
           {},
           options.place,
           { title: options.place.display_name }
         ) );
     } else {
-      $( "input[name='place_name']", domNode ).
-        trigger( "resetAll" );
+      $( "input[name='place_name']", domNode )
+        .trigger( "resetAll" );
     }
   }
 
@@ -53,14 +55,15 @@ class PlaceAutocomplete extends React.Component {
   }
 
   render( ) {
+    const { className, placeholder } = this.props;
     return (
       <span className="PlaceAutocomplete">
         <div className="form-group">
           <input
             type="search"
             name="place_name"
-            className={`form-control ${this.props.className}`}
-            placeholder={ this.props.placeholder || I18n.t( "place" ) }
+            className={`form-control ${className}`}
+            placeholder={placeholder || I18n.t( "place" )}
           />
         </div>
         <input type="hidden" name="place_id" />

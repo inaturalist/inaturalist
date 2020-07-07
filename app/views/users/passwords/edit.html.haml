@@ -1,6 +1,7 @@
 = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   %h1=t :change_your_password
   = f.hidden_field :reset_password_token
+  = errors_for_hidden_fields resource, visible_fields: [:password, :password_confirmation]
   .form-group.text-field.password
     = f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: t(:new_password), required: true, class: "form-control"
     - unless resource.errors[:password].blank?

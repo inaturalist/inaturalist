@@ -10,9 +10,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    onClose: ( ) => {
-      dispatch( hideAlert( ) );
-    }
+    onClose: ( ) => dispatch( hideAlert( ) )
   };
 }
 

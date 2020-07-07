@@ -43,6 +43,13 @@ module MakeHelpers
     )
     list
   end
+
+  def make_observations_export_flow_task( options = {} )
+    ft = ObservationsExportFlowTask.make( options )
+    ft.inputs.build( extra: { query: "user_id=#{ft.user.id}" } )
+    ft.save!
+    ft
+  end
   
   def make_observation_of_threatened(options = {})
     Observation.make!(options.merge(
@@ -63,8 +70,20 @@ module MakeHelpers
   end
   
   def make_research_grade_observation(options = {})
+    user = if options[:user]
+      options[:user]
+    elsif u = User.find_by_id( options[:user_id] )
+      u
+    else
+      User.make!
+    end
     options = {
-      :taxon => Taxon.make!(:species), :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
+      taxon: Taxon.make!(:species),
+      latitude: 1,
+      longitude: 1,
+      observed_on_string: "yesterday",
+      user: user,
+      editing_user_id: user.id
     }.merge(options)
     o = Observation.make!(options)
     i = Identification.make!(:observation => o, :taxon => o.taxon)

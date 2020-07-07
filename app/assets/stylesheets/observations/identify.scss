@@ -51,6 +51,8 @@ input.filter-changed + .searchclear.glyphicon {
 
 .mainrow {
   background-color: #DDDDDD;
+  position: relative;
+  overflow: hidden;
 }
 
 .mainrow,
@@ -58,20 +60,45 @@ input.filter-changed + .searchclear.glyphicon {
   box-shadow: inset 0px 10px 10px -10px #aaa;
 }
 
+$sidebar-width: 320px;
 .mainrow .main-col {
   background-color: #EFEFEF;
+  margin-right: $sidebar-width;
+  padding-bottom: 20px;
 }
 
 .ObservationsGrid {
-  padding-top: 30px;
+  padding: 30px;
   min-height: 500px;
 }
 
-.bootstrap .sidebar-col {
-  padding: 0px;
-}
 .SideBar {
   padding: 15px;
+  width: $sidebar-width;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  &.sidebar-hidden {
+    right: 320px;
+  }
+  $hide-button-dim: 30px;
+  .hide-button {
+    width: $hide-button-dim;
+    height: $hide-button-dim;
+    border: 0;
+    background-color: #ddd;
+    position: absolute;
+    left: -$hide-button-dim;
+    top: 9px;
+  }
+}
+.side-bar-hidden {
+  .main-col {
+    margin-right: 0px;
+  }
+  .SideBar {
+    right: -$sidebar-width;
+  }
 }
 
 .PaginationControl {
@@ -248,5 +275,22 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   .PlaceAutocomplete {
     position: relative;
     top: 0.5px;
+  }
+}
+
+.image-size-large {
+  .ObservationsGridItem,
+  .ObservationsGridItem .media {
+    width: 220px;
+  }
+  .ObservationsGridItem .media {
+    height: 220px;
+  }
+}
+
+.ImageSizeControlButton {
+  i {
+    position: relative;
+    top: 2px;
   }
 }

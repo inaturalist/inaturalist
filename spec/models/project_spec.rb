@@ -30,6 +30,21 @@ describe Project do
     expect( p.end_time ).to be_nil
   end
 
+  describe "indexing" do
+    elastic_models( Project )
+
+    it "indexes umbrellas containing it" do
+      umbrella_project = Project.make!( project_type: "umbrella" )
+      subproject = Project.make!( project_type: "collection" )
+      expect( Project.find( subproject.id ).as_indexed_json[:umbrella_project_ids] ).to eq []
+      rule = umbrella_project.project_observation_rules.create( operator: "in_project?", operand: subproject )
+      expect( Project.find( umbrella_project.id ).project_observation_rules.length ).to eq 1
+      expect( Project.find( subproject.id ).as_indexed_json[:umbrella_project_ids] ).to eq [umbrella_project.id]
+      rule.destroy!
+      expect( Project.find( subproject.id ).as_indexed_json[:umbrella_project_ids] ).to eq []
+    end
+  end
+
   describe "creation" do
     it "should automatically add the creator as a member" do
       project = Project.make!

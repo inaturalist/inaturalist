@@ -36,7 +36,6 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
   
   if @extensions
     @extensions.each do |ext|
-      ext_file_location = ext[:file_location]
       ext_terms = ext[:terms]
       ext_row_type = ext[:row_type]
       xml.extension :encoding => "UTF-8", 
@@ -46,7 +45,9 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
           :ignoreHeaderLines => "1",
           :rowType => ext_row_type do
         xml.files do
-          xml.location ext_file_location
+          ext[:files].each do|ext_file|
+            xml.location ext_file
+          end
         end
         xml.coreid :index => 0
         ext_terms.each_with_index do |tuple, i|

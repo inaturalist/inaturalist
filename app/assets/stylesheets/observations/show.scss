@@ -104,6 +104,7 @@ button.linky,
 .bootstrap button.linky {
   color: $bootstrap-link-color;
   cursor: pointer;
+  background: transparent;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
@@ -1380,12 +1381,8 @@ h3, h4 {
     padding: 15px !important;
   }
   .action {
-    .reject, .cancel {
-      float: left;
-    }
-    .cancel {
-      line-height: 34px;
-      margin-left: 20px;
+    .reject {
+      margin-right: 20px;
     }
   }
 }

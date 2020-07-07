@@ -1,7 +1,6 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
-import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
@@ -11,6 +10,7 @@ const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
 const UPDATE_ALL_LOCAL = "update_all_local";
 const SET_REVIEWING = "identify/observations/set-reviewing";
 const SET_PLACES_BY_ID = "identify/observations/set-places-by-id";
+const SET_LAST_REQUEST_AT = "identify/observations/set-last-request-at";
 
 function receiveObservations( results ) {
   return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
@@ -18,6 +18,10 @@ function receiveObservations( results ) {
 
 function setPlacesByID( placesByID ) {
   return { type: SET_PLACES_BY_ID, placesByID };
+}
+
+function setLastRequestAt( lastRequestAt ) {
+  return { type: SET_LAST_REQUEST_AT, lastRequestAt };
 }
 
 function fetchObservationPlaces( ) {
@@ -57,8 +61,14 @@ function fetchObservations( ) {
       apiParams.quality_grade = "any";
       apiParams.page = 1;
     }
+    const thisRequestSentAt = new Date( );
+    dispatch( setLastRequestAt( thisRequestSentAt ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
+        const { lastRequestAt } = getState( ).observations;
+        if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
+          return;
+        }
         let obs = response.results;
         if ( currentUser.id ) {
           obs = response.results.map( o => {
@@ -78,9 +88,24 @@ function fetchObservations( ) {
           results: obs
         } ) );
         dispatch( fetchObservationsStats( ) );
-        dispatch( fetchIdentifiers( ) );
         dispatch( fetchObservationPlaces( ) );
       } ).catch( e => {
+        const { lastRequestAt } = getState( ).observations;
+        if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
+          return;
+        }
+        if ( !e.response ) {
+          dispatch(
+            showAlert(
+              "",
+              {
+                title: I18n.t( "unknown_error" ),
+                onClose: dispatch( hideAlert( ) )
+              }
+            )
+          );
+          return;
+        }
         e.response.json( ).then( json => {
           if ( json.error.match( /window is too large/ ) ) {
             dispatch(
@@ -174,11 +199,13 @@ export {
   UPDATE_ALL_LOCAL,
   SET_REVIEWING,
   SET_PLACES_BY_ID,
+  SET_LAST_REQUEST_AT,
   receiveObservations,
   fetchObservations,
   updateObservationInCollection,
   reviewAll,
   unreviewAll,
   updateAllLocal,
-  setReviewing
+  setReviewing,
+  setLastRequestAt
 };

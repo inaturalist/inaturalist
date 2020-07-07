@@ -41,7 +41,7 @@ class Activity extends React.Component {
     }
   }
 
-  componentDidUpdate( prevProps ) {
+  componentDidUpdate( ) {
     this.setUpMentionsAutocomplete( );
   }
 
@@ -61,8 +61,22 @@ class Activity extends React.Component {
     );
   }
 
+  postIdentification( ) {
+    const { addID } = this.props;
+    const input = $( ".id_tab input[name='taxon_name']" );
+    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    if ( selectedTaxon ) {
+      addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+      input.trigger( "resetSelection" );
+      input.val( "" );
+      input.data( "uiAutocomplete" ).selectedItem = null;
+      $( ".id_tab textarea" ).val( "" );
+      $( ".comment_tab textarea" ).val( "" );
+    }
+  }
+
   doneButton( ) {
-    const { config, addComment, addID } = this.props;
+    const { config, addComment } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -74,17 +88,10 @@ class Activity extends React.Component {
               if ( comment ) {
                 addComment( $( ".comment_tab textarea" ).val( ) );
                 $( ".comment_tab textarea" ).val( "" );
-              }
-            } else {
-              const input = $( ".id_tab input[name='taxon_name']" );
-              const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-              if ( selectedTaxon ) {
-                addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                input.trigger( "resetSelection" );
-                input.val( "" );
-                input.data( "uiAutocomplete" ).selectedItem = null;
                 $( ".id_tab textarea" ).val( "" );
               }
+            } else {
+              this.postIdentification( );
             }
           }
         }
@@ -146,15 +153,20 @@ class Activity extends React.Component {
       }
       return null;
     } ) );
+    // couldn't find a great way to do this within React
+    const syncRemarks = text => {
+      $( ".id_tab textarea, .comment_tab textarea" ).val( text );
+    };
     const commentContent = loggedIn
       ? (
         <div className="form-group">
           <TextEditor
-            key={`comment-editor-${observation.comments.length}`}
+            key="remarks"
             placeholder={I18n.t( "leave_a_comment" )}
             textareaClassName="form-control"
             maxLength={5000}
             showCharsRemainingAt={4000}
+            onBlur={e => syncRemarks( e.target.value )}
           />
         </div>
       ) : (
@@ -185,6 +197,12 @@ class Activity extends React.Component {
               visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
             }
             config={config}
+            onKeyDown={e => {
+              const key = e.keyCode || e.which;
+              if ( key === 13 ) {
+                this.postIdentification( );
+              }
+            }}
           />
           <div className="form-group">
             <TextEditor
@@ -192,6 +210,7 @@ class Activity extends React.Component {
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"
+              onBlur={e => syncRemarks( e.target.value )}
             />
           </div>
         </div>

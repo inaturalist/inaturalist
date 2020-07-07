@@ -27,7 +27,7 @@ function mapStateToProps( state ) {
       && aboveGenusTabs.indexOf( state.config.chosenTab ) >= 0
     )
   ) {
-    chosenTab = state.config.chosenTab;
+    ( { chosenTab } = state.config );
   }
   return {
     taxon: state.taxon.taxon,

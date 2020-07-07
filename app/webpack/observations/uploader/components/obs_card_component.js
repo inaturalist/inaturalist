@@ -3,19 +3,21 @@ import PropTypes from "prop-types";
 import { DragSource, DropTarget } from "react-dnd";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
-import TaxonAutocomplete from "./taxon_autocomplete";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
 import moment from "moment-timezone";
+import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
 import util, { ACCEPTED_FILE_TYPES } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
-    if ( $( `div[data-id=${props.obsCard.id}] input:focus` ).length > 0 ||
-         $( `div[data-id=${props.obsCard.id}] textarea:focus` ).length > 0 ||
-         $( ".bootstrap-datetimepicker-widget:visible" ).length > 0 ) {
+    if (
+      $( `div[data-id=${props.obsCard.id}] input:focus` ).length > 0
+      || $( `div[data-id=${props.obsCard.id}] textarea:focus` ).length > 0
+      || $( ".bootstrap-datetimepicker-widget:visible" ).length > 0
+    ) {
       return false;
     }
     return true;
@@ -63,7 +65,6 @@ const fileTarget = {
 };
 
 class ObsCardComponent extends Component {
-
   static collectCard( connect, monitor ) {
     return {
       cardDragSource: connect.dragSource( ),
@@ -93,16 +94,23 @@ class ObsCardComponent extends Component {
   }
 
   shouldComponentUpdate( nextProps ) {
+    const {
+      fileIsOver,
+      cardIsDragging,
+      cardIsOver,
+      obsCard,
+      selectedSpeciesGuess
+    } = this.props;
     const b = (
-      this.props.fileIsOver !== nextProps.fileIsOver ||
-      this.props.cardIsDragging !== nextProps.cardIsDragging ||
-      this.props.cardIsOver !== nextProps.cardIsOver ||
-      this.props.obsCard.galleryIndex !== nextProps.obsCard.galleryIndex ||
-      this.props.selected_species_guess !== nextProps.selected_species_guess ||
-      this.props.obsCard.saveState !== nextProps.obsCard.saveState ||
-      _.size( this.props.obsCard.files ) !==
-        _.size( nextProps.obsCard.files ) ||
-      !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
+      fileIsOver !== nextProps.fileIsOver
+      || cardIsDragging !== nextProps.cardIsDragging
+      || cardIsOver !== nextProps.cardIsOver
+      || obsCard.galleryIndex !== nextProps.obsCard.galleryIndex
+      || selectedSpeciesGuess !== nextProps.selectedSpeciesGuess
+      || obsCard.saveState !== nextProps.obsCard.saveState
+      || _.size( obsCard.files ) !== _.size( nextProps.obsCard.files )
+      || !_.isMatch( obsCard, nextProps.obsCard )
+    );
     return b;
   }
 
@@ -121,19 +129,22 @@ class ObsCardComponent extends Component {
   }
 
   openLocationChooser( ) {
-    this.props.setState( { locationChooser: {
-      show: true,
-      lat: this.props.obsCard.latitude,
-      lng: this.props.obsCard.longitude,
-      radius: this.props.obsCard.accuracy,
-      geoprivacy: this.props.obsCard.geoprivacy,
-      obsCard: this.props.obsCard,
-      zoom: this.props.obsCard.zoom,
-      center: this.props.obsCard.center,
-      bounds: this.props.obsCard.bounds,
-      notes: this.props.obsCard.locality_notes,
-      manualPlaceGuess: this.props.obsCard.manualPlaceGuess
-    } } );
+    const { setState, obsCard } = this.props;
+    setState( {
+      locationChooser: {
+        show: true,
+        lat: obsCard.latitude,
+        lng: obsCard.longitude,
+        radius: obsCard.accuracy,
+        geoprivacy: obsCard.geoprivacy,
+        obsCard,
+        zoom: obsCard.zoom,
+        center: obsCard.center,
+        bounds: obsCard.bounds,
+        notes: obsCard.locality_notes,
+        manualPlaceGuess: obsCard.manualPlaceGuess
+      }
+    } );
   }
 
   closeDatepicker( ) {
@@ -143,9 +154,23 @@ class ObsCardComponent extends Component {
   }
 
   render( ) {
-    const { obsCard, cardDropTarget, onCardDrop, cardIsDragging, draggingProps,
-      cardIsOver, confirmRemoveObsCard, updateObsCard, setState, selectCard,
-      fileDropTarget, cardDragSource, confirmRemoveFile, fileIsOver } = this.props;
+    const {
+      cardDragSource,
+      cardDropTarget,
+      cardIsDragging,
+      cardIsOver,
+      confirmRemoveFile,
+      confirmRemoveObsCard,
+      draggingProps,
+      fileDropTarget,
+      fileIsOver,
+      obsCard,
+      onCardDrop,
+      selectCard,
+      setState,
+      updateObsCard,
+      config
+    } = this.props;
     let className = "cellDropzone thumbnail card ui-selectee";
     if ( cardIsDragging ) { className += " dragging"; }
     if ( cardIsOver || fileIsOver ) { className += " dragOver"; }
@@ -153,24 +178,29 @@ class ObsCardComponent extends Component {
     if ( obsCard.saveState === "saving" ) { className += " saving"; }
     if ( obsCard.saveState === "saved" ) { className += " saved"; }
     if ( obsCard.saveState === "failed" ) { className += " failed"; }
-    let locationText = obsCard.locality_notes ||
-      ( obsCard.latitude &&
-      `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` );
+    const locationText = obsCard.locality_notes || (
+      obsCard.latitude
+      && `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}`
+    );
     let captiveMarker;
     if ( obsCard.captive ) {
       captiveMarker = (
         <button
+          type="button"
           className="label-captive"
-          title={ I18n.t( "captive_cultivated" ) }
-          alt={ I18n.t( "captive_cultivated" ) }
-        >C</button>
+          title={I18n.t( "captive_cultivated" )}
+          alt={I18n.t( "captive_cultivated" )}
+        >
+          C
+        </button>
       );
     }
     let photoCountOrStatus;
     const fileCount = _.size( obsCard.files );
     if ( fileCount ) {
-      if ( _.find( obsCard.files, f =>
-             f.uploadState === "uploading" || f.uploadState === "pending" ) ) {
+      if (
+        _.find( obsCard.files, f => f.uploadState === "uploading" || f.uploadState === "pending" )
+      ) {
         photoCountOrStatus = I18n.t( "loading_metadata" );
       } else if ( fileCount > 1 ) {
         photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
@@ -196,35 +226,46 @@ class ObsCardComponent extends Component {
     }
 
     return cardDropTarget( fileDropTarget( cardDragSource(
-      <li onClick={ () => selectCard( obsCard ) }>
+      <div
+        className="ObsCardComponent"
+        onClick={() => selectCard( obsCard )}
+        draggable
+      >
         <Dropzone
           ref="dropzone"
-          className={ className }
-          data-id={ obsCard.id }
+          className={className}
+          data-id={obsCard.id}
           disableClick
-          onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
-          onDragEnter={ this.onDragEnter }
+          onDrop={f => onCardDrop( f, obsCard )}
+          onDragEnter={this.onDragEnter}
           activeClassName="hover"
-          accept={ ACCEPTED_FILE_TYPES }
-          key={ obsCard.id }
+          accept={ACCEPTED_FILE_TYPES}
+          key={obsCard.id}
         >
           { captiveMarker }
           <OverlayTrigger
             placement="top"
-            delayShow={ 1000 }
-            overlay={ ( <Tooltip id="remove-obs-tip">{
-              I18n.t( "uploader.tooltips.remove_observation" ) }</Tooltip> ) }
+            delayShow={1000}
+            overlay={(
+              <Tooltip id="remove-obs-tip">
+                { I18n.t( "uploader.tooltips.remove_observation" ) }
+              </Tooltip>
+            )}
           >
-            <button className="btn-close" onClick={ confirmRemoveObsCard }>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={confirmRemoveObsCard}
+            >
               <Glyphicon glyph="remove" />
             </button>
           </OverlayTrigger>
           <FileGallery
-            obsCard={ obsCard }
-            setState={ setState }
-            draggingProps={ draggingProps }
-            updateObsCard={ updateObsCard }
-            confirmRemoveFile={ confirmRemoveFile }
+            obsCard={obsCard}
+            setState={setState}
+            draggingProps={draggingProps}
+            updateObsCard={updateObsCard}
+            confirmRemoveFile={confirmRemoveFile}
           />
           <div className="caption">
             <p className="photo-count">
@@ -232,54 +273,62 @@ class ObsCardComponent extends Component {
             </p>
             <TaxonAutocomplete
               key={
-                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.title}` }
+                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.title}`
+              }
               small
               bootstrap
               searchExternal
               showPlaceholder
-              perPage={ 6 }
-              visionParams={ obsCard.visionParams( ) }
-              initialSelection={ obsCard.selected_taxon }
-              initialTaxonID={ obsCard.taxon_id }
-              resetOnChange={ false }
-              afterSelect={ r => {
+              perPage={6}
+              visionParams={obsCard.visionParams( )}
+              initialSelection={obsCard.selected_taxon}
+              initialTaxonID={obsCard.taxon_id}
+              resetOnChange={false}
+              afterSelect={r => {
                 if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
-                  updateObsCard( obsCard,
-                    { taxon_id: r.item.id,
-                      selected_taxon: r.item,
-                      species_guess: r.item.title,
-                      modified: r.item.id !== obsCard.taxon_id } );
+                  updateObsCard( obsCard, {
+                    taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title,
+                    modified: r.item.id !== obsCard.taxon_id
+                  } );
                 }
-              } }
-              afterUnselect={ ( ) => {
+              }}
+              afterUnselect={( ) => {
                 if ( obsCard.selected_taxon ) {
-                  updateObsCard( obsCard,
-                    { taxon_id: null,
-                      selected_taxon: null,
-                      species_guess: null } );
+                  updateObsCard( obsCard, {
+                    taxon_id: null,
+                    selected_taxon: null,
+                    species_guess: null
+                  } );
                 }
-              } }
-              config={ this.props.config }
+              }}
+              config={config}
             />
             <DateTimeFieldWrapper
-              key={ `datetime${obsCard.selected_date}`}
-              reactKey={ `datetime${obsCard.selected_date}`}
+              key={`datetime${obsCard.selected_date}`}
+              reactKey={`datetime${obsCard.selected_date}`}
               ref="datetime"
               inputFormat={inputFormat}
-              dateTime={ obsCard.selected_date ?
-                moment( obsCard.selected_date, inputFormat ).format( "x" ) : undefined }
-              timeZone={ obsCard.time_zone }
-              onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
-              onSelection={ dateString =>
-                updateObsCard( obsCard, { date: dateString, selected_date: dateString } )
+              dateTime={obsCard.selected_date
+                ? moment( obsCard.selected_date, inputFormat ).format( "x" )
+                : undefined
+              }
+              timeZone={obsCard.time_zone}
+              onChange={dateString => updateObsCard( obsCard, { date: dateString } )}
+              onSelection={
+                dateString => updateObsCard(
+                  obsCard, { date: dateString, selected_date: dateString }
+                )
               }
             />
-            <div className={ `input-group${invalidDate ? " has-error" : ""}` }
-              onClick= { () => {
+            <div
+              className={`input-group${invalidDate ? " has-error" : ""}`}
+              onClick={() => {
                 if ( this.refs.datetime ) {
                   this.refs.datetime.onClick( );
                 }
-              } }
+              }}
             >
               <div className="input-group-addon input-sm">
                 <Glyphicon glyph="calendar" />
@@ -287,17 +336,18 @@ class ObsCardComponent extends Component {
               <input
                 type="text"
                 className="form-control input-sm"
-                value={ obsCard.date || "" }
-                onChange= { e => {
+                value={obsCard.date || ""}
+                onChange={e => {
                   if ( this.refs.datetime ) {
                     this.refs.datetime.onChange( undefined, e.target.value );
                   }
-                } }
-                placeholder={ I18n.t( "date_" ) }
+                }}
+                placeholder={I18n.t( "date_" )}
               />
             </div>
-            <div className="input-group"
-              onClick={ this.openLocationChooser }
+            <div
+              className="input-group"
+              onClick={this.openLocationChooser}
             >
               <div className="input-group-addon input-sm">
                 { locationIcon }
@@ -305,22 +355,26 @@ class ObsCardComponent extends Component {
               <input
                 type="text"
                 className="form-control input-sm"
-                value={ locationText || "" }
-                placeholder={ I18n.t( "location" ) }
+                value={locationText || ""}
+                placeholder={I18n.t( "location" )}
                 readOnly
               />
             </div>
             <div className="form-group">
               <textarea
-                placeholder={ I18n.t( "description" ) }
+                placeholder={
+                  I18n.t( "notes", {
+                    defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+                  } )
+                }
                 className="form-control input-sm"
-                value={ obsCard.description || "" }
-                onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
+                value={obsCard.description || ""}
+                onChange={e => updateObsCard( obsCard, { description: e.target.value } )}
               />
             </div>
           </div>
         </Dropzone>
-      </li>
+      </div>
     ) ) );
   }
 }
@@ -334,18 +388,13 @@ ObsCardComponent.propTypes = {
   confirmRemoveObsCard: PropTypes.func,
   draggingProps: PropTypes.object,
   files: PropTypes.object,
-  mergeObsCards: PropTypes.func,
-  movePhoto: PropTypes.func,
   obsCard: PropTypes.object,
   onCardDrop: PropTypes.func,
   fileDropTarget: PropTypes.func,
   fileIsOver: PropTypes.bool,
   selectCard: PropTypes.func,
-  selected_species_guess: PropTypes.string,
-  selectedObsCards: PropTypes.object,
-  selectObsCards: PropTypes.func,
+  selectedSpeciesGuess: PropTypes.string,
   setState: PropTypes.func,
-  shiftKeyPressed: PropTypes.bool,
   updateObsCard: PropTypes.func,
   config: PropTypes.object
 };

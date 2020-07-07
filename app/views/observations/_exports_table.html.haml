@@ -1,4 +1,12 @@
 %table
+  %thead
+    %th
+    %th=t :file_size
+    %th=t "activerecord.attributes.observations_export_flow_task.created_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.started_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.finished_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.inputs"
+  %tbody
   - for ft in flow_tasks
     %tr
       %td.inline.buttonrow.smallbuttons
@@ -8,13 +16,17 @@
           = t(:failed)
         - else
           = ft.started_at ? t(:processing) : t(:queued)
-      %td
+      %td.nobr
         = ft.export_output ? number_to_human_size(ft.export_output.file.size, precision: 3) : nil
-      %td
+      %td.queued
+        - if ft.created_at
+          =l ft.created_at, format: :short
+      %td.started
+        - if ft.started_at
+          =l ft.started_at, format: :short
+      %td.finished
         - if ft.finished_at
-          = l ft.finished_at, :format => :long
-        - elsif ft.started_at
-          = l ft.started_at, :format => :long
+          =l ft.finished_at, format: :short
       %td
         %div
           %strong=t :query

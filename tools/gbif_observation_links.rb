@@ -29,7 +29,7 @@ delete_count = 0
 count = 0
 
 def system_call(cmd)
-  puts "Running #{cmd}"
+  puts "[#{Time.now}] Running #{cmd}"
   system cmd
   puts
 end
@@ -69,7 +69,7 @@ def generating
   zip_url = "http://api.gbif.org/v0.9/occurrence/download/request/#{@key}.zip"
   status_url = "http://api.gbif.org/v0.9/occurrence/download/#{@key}"
   @num_checks ||= 0
-  puts "Checking #{status_url}" if @opts.debug && @num_checks == 0
+  puts "[#{Time.now}] Checking #{status_url}" if @opts.debug && @num_checks == 0
   # begin
   #   RestClient.head url
   #   @num_checks += 1
@@ -97,13 +97,13 @@ def download
 end
 
 request
-puts "Waiting for archive to generate..."
+puts "[#{Time.now}] Waiting for archive to generate..."
 while generating
   print '.'
   sleep 3
 end
 puts
-puts "Downloading archive..."
+puts "[#{Time.now}] Downloading archive..."
 download
 obs_ids_to_index = []
 # "\x00" is an unprintable character that I hope we can assume will never appear in the data. If it does, CSV will choke
@@ -137,13 +137,15 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
   count += 1
 end
 
-delete_count = ObservationLink.where(href_name: "GBIF").where("updated_at < ?", start_time).count
 links_to_delete_scope = ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time)
-obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+delete_count = links_to_delete_scope.count
+puts
+puts "[#{Time.now}] Deleting #{delete_count} observation links..."
 links_to_delete_scope.delete_all unless @opts[:debug]
 
 puts
-puts "Re-indexing #{obs_ids_to_index.size} observations..."
+puts "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
+obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 obs_ids_to_index = obs_ids_to_index.compact.uniq
 obs_ids_to_index.in_groups_of( 500 ) do |group|
   print '.'

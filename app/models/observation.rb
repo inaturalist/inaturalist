@@ -96,7 +96,6 @@ class Observation < ActiveRecord::Base
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
-  OUT_OF_RANGE_BUFFER = 5000 # meters
   PLANETARY_RADIUS = 6370997.0
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
@@ -142,7 +141,6 @@ class Observation < ActiveRecord::Base
     "common_name", 
     "iconic_taxon_name",
     "taxon_id",
-    "id_please",
     "num_identification_agreements",
     "num_identification_disagreements",
     "observed_on_string",
@@ -162,7 +160,6 @@ class Observation < ActiveRecord::Base
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
-    "out_of_range",
     "user_id", 
     "user_login",
     "created_at",
@@ -183,7 +180,6 @@ class Observation < ActiveRecord::Base
     "observed_on", 
     "time_observed_at",
     "time_zone",
-    "out_of_range",
     "user_id", 
     "user_login",
     "created_at",
@@ -195,7 +191,6 @@ class Observation < ActiveRecord::Base
     "sound_url",
     "tag_list",
     "description",
-    "id_please",
     "num_identification_agreements",
     "num_identification_disagreements",
     "captive_cultivated",
@@ -385,7 +380,6 @@ class Observation < ActiveRecord::Base
 
   after_save :refresh_lists,
              :refresh_check_lists,
-             :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses,
              :update_taxon_counter_caches,
@@ -617,9 +611,7 @@ class Observation < ActiveRecord::Base
   scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date)) }
   
   scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
-  
-  scope :out_of_range, -> { where(:out_of_range => true) }
-  scope :in_range, -> { where(:out_of_range => false) }
+
   scope :license, lambda {|license|
     if license == 'none'
       where("observations.license IS NULL")
@@ -950,10 +942,14 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
 
     # Dumb hack for Adelaide's half hour time zone offset
-    elsif (offset = date_string[tz_js_offset_pattern, 2]) &&
-        %w(+0930 +1030).include?( offset )
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && %w(+0930 +1030).include?( offset )
       parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
       date_string = date_string.sub( tz_js_offset_pattern, "" )
+      date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
+      date_string = date_string.sub(/\(.+\)/, "" )
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && %w(+09:30 +10:30).include?( offset )
+      parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
+      date_string = date_string.sub( tz_colon_offset_pattern, "" )
       date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
       date_string = date_string.sub(/\(.+\)/, "" )
     end
@@ -1083,28 +1079,32 @@ class Observation < ActiveRecord::Base
     return true if @skip_identifications
     return true unless taxon_id_changed?
     owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
+    owner_editing_own_obs = editing_user_id == user_id
     
-    # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
-      # If the owner doesn't have an identification for this obs, make one
-      attrs = {
-        user: user,
-        taxon: taxon,
-        observation: self,
-        skip_observation: true,
-        vision: owners_identification_from_vision_requested
-      }
-      owners_ident = if new_record?
-        self.identifications.build( attrs )
-      else
-        self.identifications.create( attrs )
-      end
-    elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where( user_id: user_id ).count > 1
-        owners_ident.update_attributes( current: false, skip_observation: true )
-      else
-        owners_ident.skip_observation = true
-        owners_ident.destroy
+    # Don't mess with the owner's ident if they owner didn't change anything
+    if owner_editing_own_obs || new_record?
+      # If there's a taxon we need to make sure the owner's ident agrees
+      if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
+        # If the owner doesn't have an identification for this obs, make one
+        attrs = {
+          user: user,
+          taxon: taxon,
+          observation: self,
+          skip_observation: true,
+          vision: owners_identification_from_vision_requested
+        }
+        owners_ident = if new_record?
+          self.identifications.build( attrs )
+        else
+          self.identifications.create( attrs )
+        end
+      elsif taxon.blank? && owners_ident && owners_ident.current?
+        if identifications.where( user_id: user_id ).count > 1
+          owners_ident.update_attributes( current: false, skip_observation: true )
+        else
+          owners_ident.skip_observation = true
+          owners_ident.destroy
+        end
       end
     end
     
@@ -1491,7 +1491,7 @@ class Observation < ActiveRecord::Base
   
   def obscure_coordinates
     return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
-    geoprivacy_changed_from_private_to_obscured = latitude.blank? &&
+    geoprivacy_changed_from_private_to_obscured = latitude_was.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
     if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )
@@ -1869,7 +1869,8 @@ class Observation < ActiveRecord::Base
         private_geom: o.private_geom,
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
-        taxon_geoprivacy: o.taxon_geoprivacy
+        taxon_geoprivacy: o.taxon_geoprivacy,
+        public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
@@ -2076,44 +2077,6 @@ class Observation < ActiveRecord::Base
     return true if user_agent.blank?
     self.user_agent = user_agent[0..254]
     true
-  end
-  
-  def update_out_of_range_later
-    if taxon_id_changed? && taxon.blank?
-      update_out_of_range
-    elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      delay(:priority => USER_INTEGRITY_PRIORITY).update_out_of_range
-    end
-    true
-  end
-  
-  def update_out_of_range
-    set_out_of_range
-    Observation.where(id: id).update_all(out_of_range: out_of_range)
-  end
-  
-  def set_out_of_range
-    if taxon_id.blank? || !georeferenced? || !TaxonRange.exists?(["taxon_id = ?", taxon_id])
-      self.out_of_range = nil
-      return
-    end
-    
-    # buffer the point to accomodate simplified or slightly inaccurate ranges
-    buffer_degrees = OUT_OF_RANGE_BUFFER / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
-    
-    self.out_of_range = if coordinates_obscured?
-      TaxonRange.where(
-        "taxon_ranges.taxon_id = ? AND ST_Distance(taxon_ranges.geom, ST_Point(?,?)) > ?",
-        taxon_id, private_longitude, private_latitude, buffer_degrees
-      ).exists?
-    else
-      TaxonRange.
-        from("taxon_ranges, observations").
-        where(
-          "taxon_ranges.taxon_id = ? AND observations.id = ? AND ST_Distance(taxon_ranges.geom, observations.geom) > ?",
-          taxon_id, id, buffer_degrees
-        ).count > 0
-    end
   end
 
   def set_uri
@@ -2490,7 +2453,8 @@ class Observation < ActiveRecord::Base
       Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
       [
         19126, # City Nature Challenge 2018
-        29625  # City Nature Challenge 2019
+        29625, # City Nature Challenge 2019
+        40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
         if umbrella = Project.find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|

@@ -5,6 +5,7 @@ import ObsCard from "../models/obs_card";
 
 const defaultState = {
   obsCards: { },
+  obsPositions: [],
   files: { },
   numberOfUploads: 0,
   maximumNumberOfUploads: 3,
@@ -24,8 +25,15 @@ const defaultState = {
 const dragDropZone = ( state = defaultState, action ) => {
   switch ( action.type ) {
     case types.APPEND_OBS_CARDS: {
+      const newCardIds = _.without(
+        _.map( action.obsCards, ( card, id ) => parseInt( id, 0 ) ),
+        state.obsPositions
+      );
       return update( state, {
-        obsCards: { $merge: action.obsCards }
+        obsCards: { $merge: action.obsCards },
+        obsPositions: {
+          $push: newCardIds
+        }
       } );
     }
 
@@ -258,7 +266,12 @@ const dragDropZone = ( state = defaultState, action ) => {
           delete files[file.id];
         }
       } );
-      return Object.assign( { }, state, { obsCards: cards, selectedIDs: ids, files } );
+      return Object.assign( { }, state, {
+        obsCards: cards,
+        obsPositions: _.filter( state.obsPositions, id => cards[id] ),
+        selectedIDs: ids,
+        files
+      } );
     }
 
     case types.REMOVE_FILE: {
@@ -307,7 +320,8 @@ const dragDropZone = ( state = defaultState, action ) => {
       return Object.assign( { }, state, {
         obsCards: modified,
         files,
-        selectedObsCards: { }
+        selectedObsCards: { },
+        obsPositions: _.filter( state.obsPositions, id => modified[id] )
       } );
     }
 
@@ -316,7 +330,29 @@ const dragDropZone = ( state = defaultState, action ) => {
       return update( state, {
         obsCards: {
           [obsCard.id]: { $set: obsCard }
+        },
+        obsPositions: {
+          $push: [parseInt( obsCard.id, 0 )]
         }
+      } );
+    }
+
+    case types.INSERT_CARDS_BEFORE: {
+      let newPositions = [];
+      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 0 ) );
+      _.each( state.obsPositions, cardId => {
+        if ( cardId === action.beforeCardId ) {
+          newPositions = newPositions.concat( cardIds );
+        }
+        if ( cardIds.indexOf( cardId ) < 0 ) {
+          newPositions.push( cardId );
+        }
+      } );
+      if ( !action.beforeCardId || action.beforeCardId === undefined ) {
+        newPositions = newPositions.concat( cardIds );
+      }
+      return Object.assign( { }, state, {
+        obsPositions: newPositions
       } );
     }
 

@@ -72,11 +72,12 @@ const App = ( {
       </div>
     );
   }
-  const viewerIsObserver = config && config.currentUser &&
-    config.currentUser.id === observation.user.id;
-  const photosColClass =
-    ( ( !observation.photos || observation.photos.length === 0 ) &&
-    ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
+  const viewerIsObserver = config && config.currentUser
+    && config.currentUser.id === observation.user.id;
+  const photosColClass = (
+    ( !observation.photos || observation.photos.length === 0 )
+    && ( !observation.sounds || observation.sounds.length === 0 )
+  ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
@@ -91,12 +92,19 @@ const App = ( {
   const description = observation.description ? (
     <Row>
       <Col xs={12}>
-        <h3>{ I18n.t( "description" ) }</h3>
-        <UserText text={ observation.description } />
+        <h3>
+          {
+            I18n.t( "notes", {
+              defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+            } )
+          }
+        </h3>
+        <UserText text={observation.description} />
       </Col>
     </Row> ) : "";
-  const qualityGrade = observation.quality_grade === "research" ?
-    "research_grade" : observation.quality_grade;
+  const qualityGrade = observation.quality_grade === "research"
+    ? "research_grade"
+    : observation.quality_grade;
   let viewerTimeZone = moment.tz.guess();
   if ( config && config.currentUser && config.currentUser.time_zone ) {
     viewerTimeZone = config.currentUser.time_zone;
@@ -105,14 +113,14 @@ const App = ( {
   return (
     <div id="ObservationShow">
       <FlashMessagesContainer
-        item={ observation }
-        manageFlagsPath={ `/observations/${observation.id}/flags` }
+        item={observation}
+        manageFlagsPath={`/observations/${observation.id}/flags`}
         showBlocks
       />
       <div className="upper">
         <Grid>
           <Row className="title_row">
-            <Col xs={ 10 }>
+            <Col xs={10}>
               <div className="ObservationTitle">
                 <SplitTaxon
                   taxon={observation.taxon}
@@ -120,9 +128,9 @@ const App = ( {
                   placeholder={observation.species_guess}
                   user={config.currentUser}
                 />
-                <ConservationStatusBadge observation={ observation } />
-                <EstablishmentMeansBadge observation={ observation } />
-                <span className={ `quality_grade ${observation.quality_grade} ` }>
+                <ConservationStatusBadge observation={observation} />
+                <EstablishmentMeansBadge observation={observation} />
+                <span className={`quality_grade ${observation.quality_grade} `}>
                   { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
                 </span>
               </div>
@@ -132,17 +140,17 @@ const App = ( {
                 <SplitButton
                   bsStyle="primary"
                   className="edit"
-                  href={ `/observations/${observation.id}/edit` }
-                  title={ I18n.t( "edit" ) }
+                  href={`/observations/${observation.id}/edit`}
+                  title={I18n.t( "edit" )}
                   id="edit-dropdown"
                   pullRight
-                  onSelect={ key => {
+                  onSelect={key => {
                     if ( key === "delete" ) {
                       deleteObservation( );
                     } else if ( key === "license" ) {
                       setLicensingModalState( { show: true } );
                     }
-                  } }
+                  }}
                 >
                   <MenuItem eventKey="delete">
                     <i className="fa fa-trash" />
@@ -150,7 +158,7 @@ const App = ( {
                   </MenuItem>
                   <MenuItem
                     eventKey="duplicate"
-                    href={ `/observations/new?copy=${observation.id}` }
+                    href={`/observations/new?copy=${observation.id}`}
                   >
                     <i className="fa fa-files-o" />
                     { I18n.t( "duplicate_verb" ) }
@@ -167,13 +175,13 @@ const App = ( {
             <Col xs={12}>
               <Grid className="top_container">
                 <Row className="top_row">
-                  <Col xs={7} className={ `photos_column ${photosColClass}` }>
+                  <Col xs={7} className={`photos_column ${photosColClass}`}>
                     <PhotoBrowserContainer />
                   </Col>
                   <Col xs={5} className="info_column">
                     <div className="user_info">
                       <PreviousNextButtonsContainer />
-                      <UserWithIcon user={ observation.user } />
+                      <UserWithIcon user={observation.user} />
                     </div>
                     <Row className="date_row">
                       <Col xs={6}>
@@ -228,22 +236,21 @@ const App = ( {
                   <AnnotationsContainer />
                 </Col>
               </Row>
-              <Row className={ _.isEmpty( controlledTerms ) ? "top-row" : "" }>
+              <Row className={_.isEmpty( controlledTerms ) ? "top-row" : ""}>
                 <Col xs={12}>
                   <ProjectsContainer />
                 </Col>
               </Row>
               { (
-                  ( config.currentUser && config.currentUser.id === observation.user.id )
-                  ||
-                  observation && observation.tags && observation.tags.length > 0
-                ) ? (
+                ( config.currentUser && config.currentUser.id === observation.user.id )
+                || ( observation && observation.tags && observation.tags.length > 0 )
+              ) && (
                 <Row>
                   <Col xs={12}>
                     <TagsContainer />
                   </Col>
                 </Row>
-              ) : null }
+              ) }
               <Row>
                 <Col xs={12}>
                   <ObservationFieldsContainer />
@@ -303,12 +310,10 @@ const App = ( {
 App.propTypes = {
   config: PropTypes.object,
   controlledTerms: PropTypes.array,
-  leaveTestGroup: PropTypes.func,
+  // leaveTestGroup: PropTypes.func,
   observation: PropTypes.object,
-  otherObservations: PropTypes.object,
   deleteObservation: PropTypes.func,
-  setLicensingModalState: PropTypes.func,
-  showNewObservation: PropTypes.func
+  setLicensingModalState: PropTypes.func
 };
 
 export default App;

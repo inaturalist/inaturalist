@@ -58,7 +58,7 @@ class LocalSound < Sound
       # -strict -2 allows use of an experimental AAC codec on linux
       line = Terrapin::CommandLine.new(
         "ffmpeg",
-        "-i :source -vn -y -strict -2 :dest"
+        "-i :source -vn -y -strict -2 -compression_level 0 :dest"
       )
       line.run(
         source: data.path,

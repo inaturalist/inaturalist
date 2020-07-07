@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+import { COLORS } from "../../shared/util";
 
 const urlForTaxon = t => (
   t ? `/taxa/${t.id}-${t.name.replace( /\W/g, "-" )}` : null
@@ -47,30 +48,36 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
       license_name: I18n.t( "public_domain" )
     } );
   } else if ( photo.license_code === "cc0" ) {
-    s = I18n.t( "by_user", { user: userName } );
+    if ( userName === I18n.t( "unknown" ) ) {
+      s = "";
+    } else {
+      s = I18n.t( "by_user", { user: userName } );
+    }
   } else {
     s = `(c) ${userName}`;
   }
   let url;
   let rights = I18n.t( "all_rights_reserved" );
   if ( photo.license_code ) {
-    s += separator;
+    if ( s.length > 0 ) {
+      s += separator;
+    }
     if ( photo.license_code === "cc0" ) {
       url = "http://creativecommons.org/publicdomain/zero/1.0/";
       rights = `${I18n.t( "copyright.no_rights_reserved" )} (CC0)`;
     } else {
-      url = `http://creativecommons.org/licenses/${photo.license_code.replace( /cc\-?/, "" )}/4.0`;
+      url = `http://creativecommons.org/licenses/${photo.license_code.replace( /cc-?/, "" )}/4.0`;
       rights = `${I18n.t( "some_rights_reserved" )}
-        (${photo.license_code.replace( /cc\-?/, "CC " ).toUpperCase( )})`;
+        (${photo.license_code.replace( /cc-?/, "CC " ).toUpperCase( )})`;
     }
   }
-  return (
-    <span>
-      { s },
-      { " " }
-      { url ? <a href={url} title={photo.license_code}>{ rights }</a> : rights }
-    </span>
-  );
+  let final = s && s.length > 0 ? `${s} – ` : "";
+  if ( url ) {
+    final += `<a href=${url} title=${photo.license_code}>${rights}</a>`;
+  } else {
+    final += rights;
+  }
+  return final;
 };
 
 const commasAnd = items => {
@@ -125,6 +132,58 @@ const windowStateForTaxon = taxon => {
   };
 };
 
+const taxonLayerForTaxon = ( taxon, options = {} ) => {
+  const {
+    currentUser,
+    updateCurrentUser,
+    observation
+  } = options;
+  const currentUserPrefersMedialessObs = currentUser
+    && currentUser.prefers_medialess_obs_maps;
+  const currentUserPrefersCaptiveObs = currentUser
+    && currentUser.prefers_captive_obs_maps;
+  return {
+    taxon,
+    observationLayers: [
+      {
+        label: I18n.t( "verifiable_observations" ),
+        verifiable: true
+      },
+      {
+        label: I18n.t( "observations_without_media" ),
+        verifiable: false,
+        captive: false,
+        photos: false,
+        sounds: false,
+        color: COLORS.maroon,
+        disabled: !currentUserPrefersMedialessObs,
+        observation_id: observation
+          && observation.obscured
+          && observation.private_geojson
+          && observation.id,
+        onChange: currentUser
+          && ( e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } ) )
+      },
+      {
+        label: I18n.t( "captive_cultivated" ),
+        verifiable: false,
+        captive: true,
+        color: COLORS.blue,
+        observation_id: observation
+          && observation.obscured
+          && observation.private_geojson
+          && observation.id,
+        disabled: !currentUserPrefersCaptiveObs,
+        onChange: currentUser
+          && ( e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } ) )
+      }
+    ],
+    gbif: { disabled: true, legendColor: "#F7005A" },
+    places: true,
+    ranges: true
+  };
+};
+
 const RANK_LEVELS = {
   root: 100,
   kingdom: 70,
@@ -173,6 +232,7 @@ export {
   localizedPhotoAttribution,
   commasAnd,
   windowStateForTaxon,
+  taxonLayerForTaxon,
   RANK_LEVELS,
   MAX_TAXON_PHOTOS
 };

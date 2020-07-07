@@ -348,7 +348,8 @@ class Guide < ActiveRecord::Base
   def generate_ngz_later( options = {} )
     delay(
       priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Guide::generate_ngz": id }
+      unique_hash: { "Guide::generate_ngz": id },
+      queue: "csv"
     ).generate_ngz( options )
   end
 

@@ -49,7 +49,6 @@ oc:
     other: "%{count} taxons correspondents als filtres actuals"
   a_community_for_naturalist: Una comunautat pels naturalistas
   a_flag_for_x: "una marca per %{x}"
-  a_member_of: "Un membre de"
   a_member_of_taxon_html: "un membre de %{taxon}"
   about: A prepaus
   about_charts: A prepaus dels grafics
@@ -147,7 +146,6 @@ oc:
     Apondut als <a href="%{url}">favorits</a>
   adding: "Apondon en cors…"
   admin_tools: Aisinas d’administracion
-  agree: acceptar
   agree_: Acceptar
   agree?: Acceptat ?
   agreeing: Acceptacion en cors…
@@ -259,7 +257,6 @@ oc:
   assessment_x: "avaloracion %{assessment}"
   assessments: avaloracions
   associations: Associacions
-  at_time: "a %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -331,7 +328,6 @@ oc:
   cc_used_under_a: "Creative Commons, utilizat jos un"
   change_cover: Modificar la tampa
   change_descriptions:
-    swap: modificacion de nom 1-a-1
     stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
   change_geoprivacy: 'Modificar la confidencialitat geografica'
   change_group: Modificar lo grop
@@ -400,7 +396,6 @@ oc:
   configure: Configurar
   confirm: Confirmar
   confirm_now: Confirmar ara
-  confirmed: confirmat
   connect_to_provider: "Se connectar a %{provider}"
   connected_accounts: Comptes connectats
   connecting_flickr: "Connexion a Flickr…"
@@ -605,12 +600,10 @@ oc:
   follow_user: "Seguir %{user}"
   following: seguiment
   for_a_taxon: per un taxon
-  from: De
   from_a_place: A partir d’un luòc
   from_list: Dempuèi la lista
   from_photos: Dempuèi las fòtos
   from_place: Dempuèi lo luòc
-  from_your_site_observations: "Dempuèi las observacions de %{site_name}"
   full_screen: Ecran complet
   fungi:
     one: campairòl
@@ -859,7 +852,6 @@ oc:
     uncommon: rare
     doubtful: dobtós
   ok: "D'acòrdi"
-  on_date: "lo %{date}"
   on_day: "sus"
   onboarding:
     observe_panel_title: Començam per publicar qualques observacions
@@ -1139,7 +1131,6 @@ oc:
   user_invited_you_to_join_project: "%{user} vos a convidat a vos jónher a %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} vos a convidat a vos jónher a aqueste projècte lo %{date}"
   username: Nom d'utilizaire
-  users_comment_html: "comentari de <a href='%{url}'>%{user}</a>"
   users_id: "Identificant de %{user}"
   view_all_n: "Afichar totes los %{n}"
   view_all_observations: Afichar totas las observacions

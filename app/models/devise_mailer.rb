@@ -1,5 +1,7 @@
 class DeviseMailer < Devise::Mailer
-  after_action :set_sendgrid_headers
+  # Note: do not send asm_group_id to Sendgrid from here. We do not want people
+  # to be able to unsubscribe from reset password emails
+  include Shared::MailerModule
   
   def devise_mail( record, action, opts={ } )
     user = if record.is_a?( User )
@@ -32,12 +34,4 @@ class DeviseMailer < Devise::Mailer
     end
   end
 
-  private
-  def set_sendgrid_headers
-    mailer = self.class.name
-    headers "X-SMTPAPI" => {
-      category:    [ mailer, "#{mailer}##{action_name}" ],
-      unique_args: { environment: Rails.env }
-    }.to_json
-  end
 end

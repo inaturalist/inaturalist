@@ -102,7 +102,7 @@
       <div class="wikipedia_summary">
         <% if summary = taxon.wikipedia_summary -%>
           <%= summary.html_safe %>
-          <span class="small description">(<%= t(:from) %> <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+          <span class="small description">(<%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
         <% else %>
           <span class="description">
             <%= t(:no_wikipedia_page_for_taxon) %> <%= link_to t(:start_one_now), "http://wikipedia.org/wiki/#{taxon.name}" %>

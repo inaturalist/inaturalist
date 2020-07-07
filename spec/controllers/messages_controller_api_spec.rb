@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "an MessagesController basics" do
+shared_examples_for "a basic MessagesController" do
   let(:user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
   let(:to_user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
 
@@ -12,7 +12,7 @@ shared_examples_for "an MessagesController basics" do
   end
 end
 
-shared_examples_for "an MessagesController" do
+shared_examples_for "a MessagesController" do
   let(:user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
   let(:to_user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
 
@@ -160,6 +160,55 @@ shared_examples_for "an MessagesController" do
       json = JSON.parse( response.body )
       expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
     end
+    describe "box=any and search" do
+      it "should include inbox messages" do
+        message = make_message( user: to_user, from_user: to_user, to_user: user, body: "is this ceanothus?" )
+        message.send_message
+        get :index, format: :json, box: "any", q: "ceanothus"
+        json = JSON.parse( response.body )
+        expect( json["results"].detect{|m| m["thread_id"] == message.thread_id } ).not_to be_blank
+      end
+      it "should include sent messages" do
+        message = make_message( user: user, from_user: user, to_user: to_user, body: "is this ceanothus?" )
+        message.send_message
+        get :index, format: :json, box: "any", q: "ceanothus"
+        json = JSON.parse( response.body )
+        expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      end
+    end
+    describe "threads" do
+      before do
+        @m1 = make_message( user: user, from_user: user, to_user: to_user )
+        @m1.send_message
+        @m2 = make_message( user: to_user, from_user: to_user, to_user: user, thread_id: @m1.id )
+        @m2.send_message
+        @m3 = make_message( user: user, from_user: user, to_user: to_user, thread_id: @m1.id, body: "last reply" )
+        @m3.send_message
+        get :index, format: :json, box: "any", threads: true
+        json = JSON.parse( response.body )
+        @thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
+      end
+      it "should include only one message per thread" do
+        expect( @thread_results.size ).to eq 1
+      end
+      it "should the latest message in a thread" do
+        expect( @thread_results[0]["body"] ).to eq @m3.body
+      end
+      it "should include a thread_messages_count attribute" do
+        expect( @thread_results[0]["thread_messages_count"] ).to eq 3
+      end
+      it "should include a thread_flags array that includes flags on all messages" do
+        expect( @m1.thread_id ).to eq @m3.thread_id
+        m1_flag = Flag.make!( flaggable: @m1.to_user_copy, user: user )
+        m2_flag = Flag.make!( flaggable: @m2, user: user )
+        get :index, format: :json, box: "any", threads: true
+        json = JSON.parse( response.body )
+        thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
+        expect( thread_results[0]["thread_flags"].size ).to eq 2
+        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m1_flag.id } ).not_to be_blank
+        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m2_flag.id } ).not_to be_blank
+      end
+    end
   end
 
   describe "count" do
@@ -187,11 +236,11 @@ describe MessagesController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
-  it_behaves_like "an MessagesController basics"
-  it_behaves_like "an MessagesController"
+  it_behaves_like "a basic MessagesController"
+  it_behaves_like "a MessagesController"
 end
 
 describe MessagesController, "devise authentication" do
   before { http_login(user) }
-  it_behaves_like "an MessagesController basics"
+  it_behaves_like "a basic MessagesController"
 end

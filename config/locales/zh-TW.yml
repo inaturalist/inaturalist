@@ -62,6 +62,8 @@ zh-TW:
     other: "<a href='%{url}'>%{count}物種"
   x_suggestions_filtered_by_colon:
     other: "%{count} 個建議篩選自："
+  x_taxa:
+    other: "%{count} 個分類群"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 筆已觀察的物種分類群"
   x_research_grade_observations_html:
@@ -83,7 +85,6 @@ zh-TW:
     拉丁文學名會自動成為此物種之預設分類群名稱。
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_flag_for_x: "%{x} 已被標記"
-  a_member_of: "成員隸屬於"
   a_member_of_taxon_html: "%{taxon} 之一員"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -214,6 +215,7 @@ zh-TW:
   add_plant_phenology_flower_budding_annotation: '新增註解「植物物候：花苞」'
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '新增「植物物候：沒有開花的證據」註記'
   add_life_stage_adult_annotation: '新增「生命階段：成體」的註解'
   add_life_stage_teneral_annotation: '新增「生命階段：初羽化」的註解'
   add_life_stage_subimago_annotation: '新增「生命階段：亞成蟲」註解'
@@ -229,6 +231,7 @@ zh-TW:
   add_several_observations_at_once: 一次增加多筆觀察紀錄。
   add_sex_female_annotation: '新增「性别：雌」的註解'
   add_sex_male_annotation: '新增「性別：雄」之註解'
+  add_sex_cannot_be_determined_annotation: '新增「性別：無法判定」的註記'
   add_some_now: 現在添加一些
   add_tag: 添加標籤
   add_tags: 添加標籤
@@ -270,7 +273,6 @@ zh-TW:
   admin_s: 管理員
   admin_only: 只供管理員使用
   admin_tools: 管理員工具
-  agree: 同意
   agree_: 同意
   agree?: 同意嗎？
   agree_with_current_taxon: 同意以目前物種分類(學名)
@@ -421,6 +423,8 @@ zh-TW:
   are_you_sure_remove_taxon_from_list: "您確定要從清單移除此物種分類？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     您確定嗎？這將會重新載入頁面而您會遺失您更改的內容。
+  are_you_sure_unresolve_flag?: |
+    您確定要取消解決這個標記嗎？這將會移除這個解決問題標記，以及此標記的解決者。
   are_you_sure_want_delete_taxon: "您確定要刪除此物種分類？"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     您確定要刪除這個分類群嗎？它有子階層分類群。
@@ -470,6 +474,8 @@ zh-TW:
     任何在他們內容裡的垃圾訊息標籤將會被清除。
   are_you_sure_you_want_to_remove_these_x_taxa?: "您確定要刪除這些共 %{x} 個物種分類嗎？"
   are_you_sure_you_want_to_remove_this_invitation: 您確定要刪除此邀請？
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    您確定要從 %{project} 中移除這筆觀察記錄嗎？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的名錄移除此分類群？"
   associated_observations: 相關觀察
   associated_taxa: 相關物種分類
@@ -488,7 +494,6 @@ zh-TW:
   assessments: 評估
   associations: 關聯
   atlas_for_taxon_html: '%{taxon} 的地圖集'
-  at_time: "在%{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -591,6 +596,7 @@ zh-TW:
   cant_merge_a_taxon_with_itself: 物種分類不能合併至本身項目。
   captive: 圈養
   captive_cultivated: 圈養/栽培
+  captive_observations: 圈養的觀察記錄
   card: 卡片
   casual: 粗略
   casual_: 粗略
@@ -616,7 +622,6 @@ zh-TW:
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
     merge: 數個舊物種分類合併成一個新物種分類群
-    swap: 一對一的名稱修改
     drop: 在歷史用途或與合作者間兼容性的維護上，物種分類的概念完全無效
     stage: 準備一個無作用概念來作為更改群組時釋出的部份
   change_geoprivacy: '更改位置隱私設定'
@@ -682,7 +687,6 @@ zh-TW:
   choose_a_list_above: 選擇一個在上方的清單。
   choose_a_place: 挑選一個地點
   choose_a_taxon: 挑選一個分類（可選）
-  choose_cc_licensed_photos_html: '從其它網站挑選<a href="http://creativecommons.org/">開放</a>授權的照片，或從 %{site_name} 的觀察來選出。請嘗試挑選<em>顯示偵測屬性</em>並<em>看起來適合作為圖示</em>的圖片。其中<em>第一張為預設照片</em>。'
   choose_columns: 選擇欄位
   choose_file: 選擇檔案
   choose_files: 挑選檔案
@@ -720,6 +724,7 @@ zh-TW:
   commercial_solicitation: 商業招攬，無效連結等等。
   commit: 提交
   committed: 已提交
+  committed_by_user_on_date_html: 由 %{user} 於 %{date} 所提交
   committed_on: 提交於 %{date}
   committing: 提交中…
   community: 社群
@@ -757,17 +762,19 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
-  confirmed: 已確認
   connect_to_provider: "連接至%{provider}"
   connected_accounts: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
   connecting_to_facebook: "連接至臉書..."
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
+  cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
+    authority: |
+      組織單位已宣告此保育狀態。在新增一個之前，請使用自動補齊來選擇既有的職權單位。如果*您*想被列為職權單位的話，您可以略過這一步。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
@@ -805,6 +812,7 @@ zh-TW:
     teneral: 初羽化
     subimago: 亞成蟲
     pupa: 蛹
+    no_evidence_of_flowering: 沒有開花的跡象
     nymph: 若蟲
     larva: 幼蟲
     egg: 卵
@@ -819,7 +827,9 @@ zh-TW:
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     teneral: 成蟲最近剛化蛹，但是尚未變成最終型態的成蟲
+    cannot_be_determined: 從提供的證據當中無法判定
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -897,6 +907,7 @@ zh-TW:
   custom_project_was_successfully_updated: 自訂專案更新成功。
   customize_location: 自訂位置
   darr_apply_darr: "&darr; 申請 &darr;"
+  daily_users: 每日使用者
   dashboard: 控制面板
   data_deficient: 資料不足
   data_quality: 資料品質
@@ -1155,7 +1166,10 @@ zh-TW:
   exact_location: 精確位置
   exact_rank: 精確級別
   except: 除外
-  exclude_x: 不包含%{x}
+  exclude_places: 排除的地點
+  exclude_projects: 排除的專案
+  exclude_taxa: 排除的分類群
+  exclude_users: 排除的使用者
   exclusion_filters: 排除的篩選
   existing_flags: 精確標記
   exit_full_screen: "結束全螢幕"
@@ -1188,6 +1202,7 @@ zh-TW:
   favorites: "我的最愛"
   feature_this_project_: "精選此專案"
   featured: 精選
+  #Title for a button or section describing the "featured" status of a project
   featuring: 精選
   feedback: 意見回饋
   #Plural noun, as in Atom and RSS feeds
@@ -1244,6 +1259,7 @@ zh-TW:
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
   flag_for_comment_id_html: 標記此 <a href="%{url}">評論 %{id}</a>
+  flag_for_comment_id_deleted: 標記評論 %{id} (已刪除)
   flag_for_curation: 標記為策展
   flag_for_guide_title_html: |
     標記此指南：%{title}
@@ -1326,7 +1342,6 @@ zh-TW:
   forum_desc: |
     此討論區是用來談論 iNaturalist 本身的地方，包含協助、支援、功能請求、程式錯誤回報、公告、以及其它。
   frequency: 頻率
-  from: 來自
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
   from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
@@ -1334,8 +1349,6 @@ zh-TW:
   from_photos: 來自照片
   from_place: 來自地點
   from_soundcloud: 來自 Soundcloud
-  from_your_site_observations: "來自 %{site_name} 觀察"
-  from_licensed_site_observations: "來自 %{site_name} 的授權許可觀察"
   full_screen: 全螢幕
   fungi:
     other: 個真菌
@@ -1475,6 +1488,7 @@ zh-TW:
   ignore_and_continue: 忽略並繼續
   ignore_times: 忽略次數
   image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
+  image_size_control: 圖片大小控制
   imperiled: 危及
   import: 匯入
   import_all_photos_as_observations: 匯入所有照片成為觀察
@@ -1496,6 +1510,10 @@ zh-TW:
   inaturalist_network_affiliation: iNaturalist 網路聯合
   #Label for messages you've received
   inbox: 收件匣
+  include_places: 包含的地點
+  include_projects: 包含的專案
+  include_taxa: 包含的分類群
+  include_users: 包含的使用者
   including: 包含
   increase_brightness: 增加亮度
   in_progress: 任務進行中
@@ -1545,6 +1563,8 @@ zh-TW:
   join: 加入
   join_and_add_an_observation_to_project_html: 參與並加入一筆觀察記錄至%{project}專案
   join_project: 加入此專案
+  #Prompt to join a specific project
+  join_project?: 加入專案嗎?
   join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>專案</a>並<a href='%{invite_url}'>徵求一些觀察</a>"
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
@@ -1569,6 +1589,9 @@ zh-TW:
   label_to_group_a_batch_of_taxon_changes: 分組批量物種分類更改符號
   location_private: 位置為私有的
   location_unknown: 位置不明
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: 鎖定縮放等級
   language_slash_type: 語言/類型
   #Large photo size
   large: 大
@@ -1708,7 +1731,6 @@ zh-TW:
   loading: "載入中…"
   loading_flickr_photos: "正在載入 Flickr 照片…"
   loading_images: 讀取圖片中...
-  loading_map: 讀取地圖中...
   loading_metadata: 正在載入詮釋資料...
   loading_preview_and_code: 正在載入預覽和代碼…
   loading_suggestions: 正在載入建議…
@@ -1846,10 +1868,16 @@ zh-TW:
   membership_model: 成員模組
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
   mentioned_you_in_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 提到了您"
+  mentioned_you_in_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_you_html: "%{user} 在 %{noun} 中提到了您"
   mentioned_you_in_a_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 透過您在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 透過您在 %{noun} 中的 %{x} 提到了您"
   merge: 合併
   merge_it_with_another_place: 與其它地點合併此
   merge_two_places_together: 將兩個地點合併為一。所有在名錄上的物種，以及地理資料將會合併。
@@ -1893,14 +1921,16 @@ zh-TW:
       'y': "一年前"
       #Short text representing %d years in the past
       yy: "%d年前"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "YYYY/MM/DD · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "YYYY 年 M 月 D 日"
   month: 月
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> since %{date}
@@ -2048,6 +2078,7 @@ zh-TW:
   no_favorites_added:
     current_user: 您尚未添加最愛。
     user: "%{user} 尚未添加最愛。"
+  no_journal_posts_yet: 還未有日誌貼文
   no_license_all_rights_reserved: 無許可協議（保留所有權利）
   no_managers_set: 沒有設定負責人
   no_matching_article_from_x: "沒有來自%{x}的符合條目"
@@ -2064,7 +2095,6 @@ zh-TW:
   no_more_taxa_to_load: 沒有更多要載入的物種分類群！
   no_more_results_found: 沒有找到更多結果
   no_new_messages: 沒有新訊息
-  no_news_yet: 尚無最新消息
   no_observations: 沒有觀察
   no_observations_from_this_place_yet: 尚未有來自此地點的觀察。
   no_observations_matching_those_ids: 沒有符合這些鑑定的觀察。
@@ -2149,6 +2179,8 @@ zh-TW:
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   observation_brief_something_on_day: "在 %{day} 的某種生物"
+  observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
+  observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
@@ -2158,6 +2190,8 @@ zh-TW:
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
+  observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
+  observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
@@ -2273,9 +2307,7 @@ zh-TW:
   offline_access_enabled: 離線存取已啟用
   old_observation_form: 舊式觀察表單（已廢棄使用）
   ok: "確定"
-  on_date: "於 %{date}"
   on_day: "在"
-  on_your_life_list: 在妳的生命清單中
   onboarding:
     observe_panel_title: 讓我們來開始發佈一些觀察
     observe_panel_body_p1_local: 需要靈感？這裡有一些在附近被觀察到的生物...
@@ -2338,7 +2370,6 @@ zh-TW:
   or_all_caps: 或
   or_choose_high_level_taxa: "...或從更高階物種分類挑選"
   or_if_you_dont_want_email: "或者是您不想要接受任何電子郵件..."
-  or_upload: 或上傳
   orange: 橘色
   order: 排序
   order_by: 排序依
@@ -2377,9 +2408,9 @@ zh-TW:
   other_taxa_commonly_misidentified_as_this_subsection: 常被誤認為此亞節的其他分類群
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞節的其他分類群
   our_blog: 我們的部落格
-  out_of_range: 超出範圍
   output_taxon: 輸出物種分類
   overview: 概要
+  overlapping_downstream_taxon_frameworks_html: "重複的下游物種分類框架數量：%{count}"
   owner: 擁有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: 父級
@@ -2397,6 +2428,10 @@ zh-TW:
   people_following_user: "關注 %{user} 的人"
   people_user_follows: "%{user} 關注的人"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: 新增一筆<a href="%{observation_url}">觀察記錄</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2452,7 +2487,6 @@ zh-TW:
     釘選此座標、精確度、位置隱私以及地點標註的組合內容來供日後使用。
   place: 地點
   placeholder: 位置標誌符
-  place_added_to_inat_by: "地點已增加至 %{site_name} 由"
   place_autocomplete_placeholder: 錫安國家公園、邁阿密等等。
   place_deleted: 地點已刪除。
   place_geo:
@@ -2465,16 +2499,32 @@ zh-TW:
       building: 建築物
       Canton: 行政區
       canton: 行政區
+      City Building: 城市建築
+      city building: 城市建築
       Colloquial: 口語區域
       colloquial: 口語區域
       Commune: 公社
       commune: 公社
+      Constituency: 選區
+      constituency: 選區
       Continent: 洲
       continent: 洲
       Country: 國家
       country: 國家
       County: 縣（郡）
       county: 縣
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: 代理區
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: 代理區
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: 支部
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: 支部
       District: 區
       district: 區
       Division: 門
@@ -2515,6 +2565,12 @@ zh-TW:
       open_space: 開放空間
       Parish: 教區
       parish: 教區
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: 老城區(菲律賓地理單位)
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: 老城區(菲律賓地理單位)
+      Prefecture: 都道府縣(日本地理單位)
+      prefecture: 都道府縣(日本地理單位)
       Prefecture_City: 地級市
       prefecture_city: 地級市
       Point_of_Interest: 興趣點
@@ -2523,6 +2579,8 @@ zh-TW:
       postal_code: 郵遞區號
       Province: 省
       province: 省
+      Regency: 攝政區
+      regency: 攝政區
       Region: 地帶
       region: 地帶
       Republic: 共和國
@@ -2541,6 +2599,10 @@ zh-TW:
       subdivision: 次分區
       Suburb: 郊區
       suburb: 郊區
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: 蘇木(俄國、中國、蒙古的地理單位)
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: 蘇木(俄國、中國、蒙古的地理單位)
       Supername: 超類名稱
       supername: 超類名稱
       Territory: 領地
@@ -2553,6 +2615,8 @@ zh-TW:
       undefined: 未定義
       Unknown: 未知
       unknown: 未知
+      Village_block: 城鎮區塊
+      village_block: 城鎮區塊
       Zone: 地區
       zone: 地區
   place_guess: 地點猜測
@@ -2863,7 +2927,7 @@ zh-TW:
   present: 現今
   press: 報刊
   preview: 預覽
-  preview_observations: 預覽觀察
+  preview_observations_with_these_observation_requirements: 用這些觀察需求來預覽觀察記錄
   preview_of_synced_observation: "<strong>預覽</strong>同步觀察。<a href=\"%{url}\">要取消？</a>"
   preview_personal_message: "我希望您能與我一同加入 %{site}，這網站可以讓您紀錄您對動植物觀察的資料，替您觀察到的生物建立清單，並來探索自然世界！"
   preview_your_message: 預覽您的訊息
@@ -2902,6 +2966,7 @@ zh-TW:
   project_group_description: 歸類專案隸屬於
   project_home: 專案首頁
   project_icon: 專案圖示
+  project_journal: 專案日誌
   project_id_or_url_slug: 專案 ID 或 URL slug，例如：333 或 my-project
   project_invitations: '專案邀請'
   project_list: 專案清單
@@ -2911,6 +2976,7 @@ zh-TW:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a>策展人添加了一些您的觀察
   project_members: "%{project} 成員"
+  project_members_only: 僅限專案成員
   project_membership_model_description: 您的專案是對任何人開放、或是僅對您邀請的人開放？
   project_observations: 專案觀察
   project_post: 專案發佈文章
@@ -2919,8 +2985,6 @@ zh-TW:
   project_settings: 專案設定
   project_start_time_datetime: "開始時間：%{datetime}"
   project_that_does_not_contain_these_observations: 專案沒有包含這些觀察
-  project_type_description: |
-    評估與 bioblitz 是專案裡的特殊類別。評估用於在協作物種集合上，通常用來衡量保育的重要性。Bioblitz 則是擁有特定起始和結束的事件活動。
   project_user_cannot_be_found: 找不到專案用戶
   project_user_was_invalid: "專案用戶無效：%{project_user}"
   project_was_successfully_created: 專案創建成功。
@@ -3117,6 +3181,7 @@ zh-TW:
   rules_for_becoming_a_member: 成為成員的規則
   rules_for_becoming_memner: 成為成員的規則
   rules_types:
+    must_be_captive: 必須是圈養/栽培
     must_be_georeferenced: 必須被地理參考
     must_be_identified: 必須被鑑定
     must_be_on_list: 必須在清單
@@ -3124,12 +3189,6 @@ zh-TW:
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   running_total: 運行總計
-  same_day_obscured: 此人在這天的其它觀察是被遮蔽的
-  same_day_obscured_desc: |
-    當座標是因為受威脅物種緣故而遮蔽時，此人當天其它的所有觀察紀錄也會被遮蔽起來，以防止其他人藉由相同的觀察時間來猜測座標位置。每個人也可以使用此保護機制在他們想要遮蔽的座標。
-  same_day_private: 此人在這天的其它觀察是隱私的
-  same_day_private_desc: |
-    當座標是因為受威脅物種緣故而隱藏時，所有由該人的當天其它觀察也會一同隱藏，以防止其他人基於圍繞在同一時間所做出的觀察來猜測座標位置。個人也可以套用此保護到所挑選出想隱藏的座標。
   said: 說
   satellite: 衛星
   save: 儲存
@@ -3240,7 +3299,9 @@ zh-TW:
   show_taxa_from_place: "顯示來自於%{place}的物種分類"
   show_total_counts: 顯示總計計數
   show_uncountable_species: 顯示無法計數的物種
-  showing_one_to: 顯示 1 -
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: 顯示前 %{x} 筆項目
   showing_taxa_from_everywhere: "進行顯示來自於任何地點的物種分類群"
   showing_taxa_from_place: "進行顯示來自於%{place}的物種分類群"
   showing_x_of_y: 顯示 %{y} 的 %{x}
@@ -3259,6 +3320,8 @@ zh-TW:
   skip_to_next_page: "跳至下一頁"
   small: 小
   site_admin_tools: 網站管理工具
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: 網站管理員
   site_name_place: "%{site_name} 地點"
   site_observations_export_from_date: "自 %{date} %{site_name} 匯出的觀察"
   site_site_admin: "%{site_name} 網站管理員"
@@ -3372,6 +3435,8 @@ zh-TW:
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年份尚未產生的統計內容。
   status: 狀態
+  status_globally: '全球 %{status}'
+  status_in_place: '在 %{place} 為 %{status}'
   stay_and_try_again: 延遲並重試
   still_no_luck?: 仍然運氣糟嗎？
   still_needs_id?: 社群可以確認/改進鑑定嗎？
@@ -3494,9 +3559,14 @@ zh-TW:
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
   taxon_framework_complete: "完成：是"
+  taxon_framework_deviations_with_count_html: "差異數量：%{count}"
+  taxon_framework_relationships_with_count_html: "物種分類框架關聯：%{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "已標記涵蓋的分類群：%{count}"
   taxon_framework_notes: 物種分類框架備註
   taxon_framework_relationship: 物種分類群框架關聯
   taxon_framework_relationship_number: "物種分類框架關聯 %{number}"
+  taxon_framework_relationship_unknown_count_html: "未知關聯的數量：%{count}"
   taxon_framework_relationships: 物種分類框架關聯
   taxon_framework_taxon: 物種分類框架的分類單元
   taxon_merge: 物種分類合併
@@ -3722,6 +3792,8 @@ zh-TW:
   updating: 正在更新...
   unprocessable: 不可處理
   unpublish: 未發佈
+  #Undo the action of resolving a flag
+  unresolve: 未解決的
   unreview_all: 取消全部檢閱
   unsubscribe: 取消訂閱
   unsuspend_user: 取消暫停用戶
@@ -3806,6 +3878,7 @@ zh-TW:
   user_commented_on: "%{user} 已評論您的 %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} 不同意這是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意之前較佳的鑑定"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"
@@ -3837,11 +3910,9 @@ zh-TW:
   username_or_email: 用戶名稱或電子郵件
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
-  users_comment_html: "<a href='%{url}'>%{user}</a> 的評論"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>的鑑定"
   users_latest_observations_on_site: "%{user} 在 %{site} 的最新觀察"
   users_profile: "%{user}的個人檔案"
   users_projects: "%{user} 的專案"
@@ -3889,8 +3960,6 @@ zh-TW:
   view_observation_flags: 檢視觀察標記
   view_observations_by_everyone: 檢視每個人的觀察
   view_observations_by_these_users: 檢視由這些使用者所做的觀察
-  view_observations_causing_this_observation_to_be_obscured: |
-    檢視導致此觀察給遮蔽的觀察
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_on: 檢視在
   view_on_flickr: 在 Flickr 上檢視
@@ -4199,6 +4268,8 @@ zh-TW:
           infringement</code> 標記。
     guides:
       index:
+        deprecated_banner: |
+          請注意：從 2019 年一月開始，指南的功能就依此現狀("as is")來呈現；也就是我們不打算刪除它，未來也不打算開發新功能。
         funding_html: |
           指南開發的資金由 <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> 提供
         welcome_message_html: |
@@ -4311,6 +4382,8 @@ zh-TW:
           這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類清單之定居方式成為<strong>「%{establishment_means}」</strong>. 僅策展人可使用此工具。更改定居方式
           為「引進」會有大致相同的效果，但不會更改現有內容值，僅是填為空白。
     lists:
+      edit:
+        lifelist_titles_cannot_be_changed: 無法更改生涯清單的標題
       new:
         place_desc: |
           自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
@@ -4327,6 +4400,9 @@ zh-TW:
         show_messages_to_user: 顯示給%{user}的訊息
         speech_privilege_notice: |
           在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
+      show:
+        flag_notice_html: |
+          在 %{date} 時您標記了此對話。這個標記即便您刪除此對話的副本後，還會存在，所以如果您不想再看到這個的話，刪除它是沒問題的。
     oauth:
       authorizations:
         new:
@@ -4363,13 +4439,21 @@ zh-TW:
         <strong>捕獲</strong>的？例如：是存在<strong>花園、動物園、魚缸</strong>或一些其它存在情況是<strong>因為人類行為意圖而在這裡</strong>？我們歡迎所有生物的觀察，不過請讓我們了解該生物是屬於野化或歸化。
       compare:
         about_missing_taxa: 關於找不到的分類群
+        about_total_taxa: "關於全部的分類群"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: 合併
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: 水平的
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: 時間區間
         some_queries_missing_taxa: 有些查詢缺少分類群資料
+        taxa_observed_in_all_queries: 在所有查詢中所觀察到的分類群
+        taxa_observed_in_only_one_query: 僅在一筆查詢中所觀察到的分類群
+        total_taxa: 分類群總計
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: 垂直方向
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
-        create_a_query_desc_html: |
-          創建一份觀察查詢，就像您會前往到網站的某處。您可剪貼來自於其它網站裡的觀察 URL。您必須指明出<strong>物種分類</strong>、<strong>地點</strong>、<strong>用戶</strong>、<strong>專案</strong>，或是<strong>搜尋查詢</strong>。
         ident_by_user_desc_html: |
           目前由 %{user} 所做鑑定的欄位
         query_placeholder: "挑選以下查詢參數或貼在一個觀察 URL 上"
@@ -4666,13 +4750,6 @@ zh-TW:
     photos:
       forbidden_notice_html: |
         我們現在沒有權限來取用這些照片。您可能需要在您的<a href="/users/edit">設定</a>中斷連接並重新連接帳號來授予我們額外權限。
-      inviter:
-        automatically_add_to_project: 自動添加至專案
-        automatically_id_the_new_obs_as: 自動鑑定新觀察為
-        dont_forget_the_invite_link_placeholder: "不要忘記 {{INVITE_LINK}} 位置標誌符"
-        invite_other_photographers_to_inat: "邀請其他攝影師到 %{site_name}"
-        invite_your_friends_description: |
-          您能讓在臉書和 Flickr 上的人們更容易添加他們的照片作為 %{site_name} 觀察，只要留下包含著下列特殊邀請 URL 位址的評論即可。您也可替新的觀察預先選擇物種分類與專案。
       show:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
@@ -4843,8 +4920,6 @@ zh-TW:
         or_drag_and_drop: '（或是拖拉）'
         please_specify_the_requirements: |
           請指定添加至此專案的觀察之需求。
-        please_specify_the_requirements_html: |
-          請指名添加至此專案的觀察所需內容。您可以指定多項物種、地點、自動包含的品質等級。若您對此沒有特別需求，欄位可以留空。對於各欄位的解釋可<a href="%{url}">在此</a>找尋。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
         project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）
@@ -5084,6 +5159,7 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
+          "Plant Phenology=No Evidence of Flowering": 沒有證據
           "Life Stage=egg": 卵
           "Life Stage=larva": 幼蟲
           "Life Stage=teneral": 初羽化
@@ -5229,7 +5305,7 @@ zh-TW:
         monthly_supporter: 每月支助者
         monthly_supporter_desc_html: |
           iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
-          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS FIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
+          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
         muting_desc_html: |
           <p>
           禁言某人會防止您接受到到對方的通知，包含評論您的觀察、

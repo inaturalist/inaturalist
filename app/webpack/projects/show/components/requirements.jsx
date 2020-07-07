@@ -8,11 +8,15 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 function dateToString( date, spansYears = false ) {
   let format;
   if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
-    format = spansYears ? "MMMM D, YYYY h:mma z" : "MMMM D h:mma z";
+    format = spansYears
+      ? I18n.t( "momentjs.datetime_with_zone" )
+      : I18n.t( "momentjs.datetime_with_zone_no_year" );
     return moment( date, "YYYY-MM-DD HH:mm Z" )
       .parseZone( ).tz( TIMEZONE ).format( format );
   }
-  format = spansYears ? "MMMM D, YYYY" : "MMMM D";
+  format = spansYears
+    ? I18n.t( "momentjs.date_long" )
+    : I18n.t( "momentjs.date_long_without_year" );
   return moment( date ).format( format );
 }
 
@@ -51,12 +55,18 @@ const Requirements = ( {
         { r.place.display_name }
       </a>
     ) );
-  const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" )
-    : _.map( project.userRules, r => (
+  let userRules;
+  if ( project.rule_members_only ) {
+    userRules = I18n.t( "project_members_only" );
+  } else if ( _.isEmpty( project.userRules ) ) {
+    userRules = I18n.t( "any" );
+  } else {
+    userRules = _.map( project.userRules, r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
+  }
   const exceptUserRules = !_.isEmpty( project.notUserRules )
     && _.map( project.notUserRules, r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
@@ -89,7 +99,7 @@ const Requirements = ( {
     : media.join( ` ${I18n.t( "and" )} ` );
   let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
-    const spansYears = project.startDate.year( ) !== project.endDate.year( );
+    const spansYears = true;
     dateRules = I18n.t( "date_to_date", {
       d1: dateToString( project.rule_d1, spansYears ),
       d2: dateToString( project.rule_d2, spansYears )
@@ -98,6 +108,9 @@ const Requirements = ( {
     dateRules = dateToString( project.rule_observed_on );
   } else if ( project.rule_d1 ) {
     dateRules = I18n.t( "project_start_time_datetime", { datetime: dateToString( project.rule_d1 ) } );
+  } else if ( project.rule_month ) {
+    const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 0 ) );
+    dateRules = monthIndices.map( m => I18n.t( "date.month_names" )[m] ).join( ", " );
   }
   let establishmentRules = I18n.t( "any" );
   if ( project.rule_native || project.rule_introduced ) {
@@ -158,6 +171,99 @@ const Requirements = ( {
       </tr>
     );
   }
+  const requirementContents = project.hasInsufficientRequirements( )
+    ? I18n.t( "views.projects.show.this_project_has_not_defined_requirements" )
+    : (
+      <div>
+        <div className="section-intro">
+          { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td className="param">
+                <i className="fa fa-leaf" />
+                { I18n.t( "taxa" ) }
+              </td>
+              <td className="value">
+                { taxonRules }
+                { exceptTaxonRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptTaxonRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-map-marker" />
+                { I18n.t( "location" ) }
+              </td>
+              <td className="value">
+                { locationRules }
+                { exceptLocationRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptLocationRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-user" />
+                { I18n.t( "users" ) }
+              </td>
+              <td className="value">
+                { userRules }
+                { exceptUserRules && (
+                  <span className="except">
+                    <span className="bold">
+                      { I18n.t( "except" ) }
+                    </span>
+                    { exceptUserRules }
+                  </span>
+                ) }
+              </td>
+            </tr>
+            { projectsRequirement }
+            <tr>
+              <td className="param">
+                <i className="fa fa-certificate" />
+                { I18n.t( "quality_grade_" ) }
+              </td>
+              <td className="value">{ qualityGradeRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-file-image-o" />
+                { I18n.t( "media_type" ) }
+              </td>
+              <td className="value">{ mediaRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-calendar" />
+                { I18n.t( "date_" ) }
+              </td>
+              <td className="value">{ dateRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-globe" />
+                { I18n.t( "establishment.establishment" ) }
+              </td>
+              <td className="value">{ establishmentRules }</td>
+            </tr>
+            { annotationRequirement }
+          </tbody>
+        </table>
+      </div> );
   return (
     <div className="Requirements">
       <h2>
@@ -168,100 +274,11 @@ const Requirements = ( {
             className="btn btn-nostyle"
             onClick={( ) => setSelectedTab( "about" )}
           >
-            <i
-              className="fa fa-arrow-circle-right"
-            />
+            <i className="fa fa-arrow-circle-right" />
           </button>
         ) }
       </h2>
-      <div className="section-intro">
-        { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
-      </div>
-      <table>
-        <tbody>
-          <tr>
-            <td className="param">
-              <i className="fa fa-leaf" />
-              { I18n.t( "taxa" ) }
-            </td>
-            <td className="value">
-              { taxonRules }
-              { exceptTaxonRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptTaxonRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-map-marker" />
-              { I18n.t( "location" ) }
-            </td>
-            <td className="value">
-              { locationRules }
-              { exceptLocationRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptLocationRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-user" />
-              { I18n.t( "users" ) }
-            </td>
-            <td className="value">
-              { userRules }
-              { exceptUserRules && (
-                <span className="except">
-                  <span className="bold">
-                    { I18n.t( "except" ) }
-                  </span>
-                  { exceptUserRules }
-                </span>
-              ) }
-            </td>
-          </tr>
-          { projectsRequirement }
-          <tr>
-            <td className="param">
-              <i className="fa fa-certificate" />
-              { I18n.t( "quality_grade_" ) }
-            </td>
-            <td className="value">{ qualityGradeRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-file-image-o" />
-              { I18n.t( "media_type" ) }
-            </td>
-            <td className="value">{ mediaRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-calendar" />
-              { I18n.t( "date_" ) }
-            </td>
-            <td className="value">{ dateRules }</td>
-          </tr>
-          <tr>
-            <td className="param">
-              <i className="fa fa-globe" />
-              { I18n.t( "establishment.establishment" ) }
-            </td>
-            <td className="value">{ establishmentRules }</td>
-          </tr>
-          { annotationRequirement }
-        </tbody>
-      </table>
+      { requirementContents }
     </div>
   );
 };

@@ -5,7 +5,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
 import ChartsContainer from "../containers/charts_container";
-import Leaders from "../components/leaders";
+import Leaders from "./leaders";
 import TaxonPageTabsContainer from "../containers/taxon_page_tabs_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
 import PhotoChooserModalContainer from "../containers/photo_chooser_modal_container";
@@ -23,7 +23,7 @@ const App = ( { taxon, showNewTaxon, config } ) => (
         <Col xs={8}>
           <TaxonCrumbsContainer />
           <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
-            <i className="icon-link"></i>
+            <i className="icon-link" />
           </a>
         </Col>
         <Col xs={4}>
@@ -33,9 +33,7 @@ const App = ( { taxon, showNewTaxon, config } ) => (
               bootstrapClear
               placeholder={I18n.t( "search_species_" )}
               searchExternal={false}
-              afterSelect={ function ( result ) {
-                showNewTaxon( result.item );
-              } }
+              afterSelect={result => showNewTaxon( result.item )}
               position={{ my: "right top", at: "right bottom", collision: "none" }}
             />
           </div>
@@ -47,27 +45,30 @@ const App = ( { taxon, showNewTaxon, config } ) => (
             <h1>
               <SplitTaxon
                 taxon={taxon}
-                user={ config.currentUser }
+                user={config.currentUser}
               />
               {
-                config.currentUser &&
-                config.currentUser.roles &&
-                (
-                  config.currentUser.roles.indexOf( "curator" ) >= 0 ||
-                  config.currentUser.roles.indexOf( "admin" ) >= 0
-                ) &&
-                taxon.flag_counts &&
-                taxon.flag_counts.unresolved &&
-                taxon.flag_counts.unresolved > 0 ? (
-                  <a href={ `/taxa/${taxon.id}/flags` } className="btn btn-default btn-flags">
-                    <i className="fa fa-flag">
-                    </i> { I18n.t( "flags_with_count", { count: taxon.flag_counts.unresolved } ) }
-                  </a>
-                ) : null
+                config.currentUser
+                && config.currentUser.roles
+                && (
+                  config.currentUser.roles.indexOf( "curator" ) >= 0
+                  || config.currentUser.roles.indexOf( "admin" ) >= 0
+                )
+                && taxon.flag_counts
+                && taxon.flag_counts.unresolved
+                && taxon.flag_counts.unresolved > 0
+                  ? (
+                    <a href={`/taxa/${taxon.id}/flags`} className="btn btn-default btn-flags">
+                      <i className="fa fa-flag" />
+                      { " " }
+                      { I18n.t( "flags_with_count", { count: taxon.flag_counts.unresolved } ) }
+                    </a>
+                  )
+                  : null
               }
             </h1>
             <div id="place-chooser-container">
-              <PlaceChooserContainer container={ $( "#app" ).get( 0 ) } />
+              <PlaceChooserContainer container={$( "#app" ).get( 0 )} />
             </div>
           </div>
         </Col>

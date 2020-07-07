@@ -46,7 +46,7 @@
           %tr
             %td
               - if @flag.flaggable_user
-                = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )} 
+                = link_to_user( @flag.flaggable_user ) {|| char_wrap( @flag.flaggable_user.login, 20 )}
             %td
               - if @object
                 = link_to @object.to_plain_s, @object
@@ -62,8 +62,11 @@
             %td=l @flag.created_at
             %td=formatted_user_text @flag.flag
             %td
-              - unless @flag.resolver.nil?
-                = link_to @flag.resolver.login, @flag.resolver
+              - if @flag.resolved?
+                - if @flag.resolver_id && @flag.resolver_id <= 0
+                  iNaturalist
+                - else
+                  = link_to_user @flag.resolver
               - else
                 =t :not_resolved
             %td.nobr.form-inline

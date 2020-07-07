@@ -164,6 +164,9 @@ class TaxonChange < ActiveRecord::Base
 
   # Override in subclasses
   def commit
+    if CONFIG.content_freeze_enabled
+      raise I18n.t( "cannot_be_changed_during_a_content_freeze" )
+    end
     unless committable_by?( committer )
       raise PermissionError, "Committing user doesn't have permission to commit"
     end
@@ -191,6 +194,9 @@ class TaxonChange < ActiveRecord::Base
   # the change
   def commit_records( options = {} )
     # unless draft?
+    if CONFIG.content_freeze_enabled
+      raise I18n.t( "cannot_be_changed_during_a_content_freeze" )
+    end
     unless valid?
       msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
       # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
@@ -240,6 +246,7 @@ class TaxonChange < ActiveRecord::Base
       Taxon.where(id: taxon.id).update_all(
         observations_count: Observation.of(taxon).count,
         listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
+      taxon.elastic_index!
     end
     Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
   end

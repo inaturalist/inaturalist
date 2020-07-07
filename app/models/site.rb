@@ -349,7 +349,7 @@ class Site < ActiveRecord::Base
   end
 
   def to_s
-    "<Site #{id} #{url}>"
+    "<Site #{id} #{name} #{url}>"
   end
 
   def contact
@@ -434,6 +434,22 @@ class Site < ActiveRecord::Base
 
   def short_url
     url.sub( /https?:\/\//, "" ).sub( /\/$/, "" )
+  end
+
+  # We can't use OAuth to authenticate a user with Google unless our OAuth
+  # authentication page has been approved by Google with the domain that is
+  # showing this button, and in order to do so, we need that domain to be
+  # verified under our Google account, and to do that we need the owner of the
+  # domain to add a DNS record (see the site settings page for the site in
+  # question)
+  #
+  # So, in cases where we're trying to show a button to link a Google account
+  # AND the site does not use an inaturalist.org subdomain AND the site's domain
+  # has not been verified, we cannot show the button.
+  def google_oauth_allowed?
+    default_site_domain = URI.parse( Site.default.url ).host.to_s[/\.(.+)$/, 1]
+    return true if default_site_domain.blank?
+    prefers_google_webmaster_dns_verified? || URI.parse( url.to_s ).host.to_s.include?( default_site_domain )
   end
 
 end

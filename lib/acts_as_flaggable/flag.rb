@@ -101,7 +101,7 @@ class Flag < ActiveRecord::Base
       flag: flag,
       comment: comment,
       user_id: user_id,
-      resolver_id: user_id,
+      resolver_id: resolver_id,
       resolved: resolved,
       created_at: created_at,
       updated_at: updated_at

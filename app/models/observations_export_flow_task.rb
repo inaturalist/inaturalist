@@ -1,9 +1,11 @@
 #encoding: utf-8
 class ObservationsExportFlowTask < FlowTask
   validate :must_have_query
-  validate :must_have_primary_filter
   validate :must_have_reasonable_number_of_rows
+  validate :must_be_the_only_active_export, on: :create
   validates_presence_of :user_id
+
+  MAX_OBSERVATIONS = 200000
 
   before_save do |record|
     record.redirect_url = FakeView.export_observations_path
@@ -11,26 +13,21 @@ class ObservationsExportFlowTask < FlowTask
 
   def must_have_query
     if params.keys.blank?
-      errors.add(:base, "Query cannot be blank")
+      errors.add( :base, :must_have_query )
     end  
   end
 
-  def must_have_primary_filter
-    unless params[:iconic_taxa] || 
-           params[:iconic_taxon_id] || 
-           params[:taxon_id] || 
-           params[:place_id] || 
-           params[:user_id] || 
-           params[:q] || 
-           params[:projects] ||
-           params.keys.detect{|k| k =~ /^field:/}
-      errors.add(:base, "You must specify a taxon, place, user, or search query")
+  def must_have_reasonable_number_of_rows
+    if observations_count > MAX_OBSERVATIONS
+      errors.add( :base, :must_have_reasonable_number_of_rows )
     end
   end
 
-  def must_have_reasonable_number_of_rows
-    if observations_count > 200000
-      errors.add(:base, "Exports cannot contain more than 200,000 observations")
+  def must_be_the_only_active_export
+    if ObservationsExportFlowTask.where( user_id: user_id ).
+        where( "finished_at IS NULL AND error IS NULL" ).
+        exists?
+      errors.add( :user_id, :already_has_an_export_in_progress )
     end
   end
 
@@ -220,7 +217,7 @@ class ObservationsExportFlowTask < FlowTask
     else
       NOTIFICATION_PRIORITY
     end
-    opts[:queue] = "slow" if count > 10000
+    opts[:queue] = "csv" if count > 5000
     opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
   end

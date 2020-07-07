@@ -270,7 +270,6 @@ describe Taxon, "updating" do
     expect(taxon.errors).to be_blank
   end
   
-  
   it "should prevent updating a taxon to be active if it has an inactive parent" do
     parent = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
     taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: parent, is_active: false )
@@ -325,6 +324,25 @@ describe Taxon, "updating" do
     t.update_attributes( rank: Taxon::GENUS )
     t.reload
     expect( t.updater ).to be_blank
+  end
+
+  describe "reindexing identifications" do
+    elastic_models( Identification )
+    it "should happen when the rank_level changes" do
+      t = Taxon.make!( rank: Taxon::SUBCLASS )
+      i = Identification.make!( taxon: t )
+      Delayed::Worker.new.work_off
+      t.reload
+      expect( t.rank_level ).to eq Taxon::SUBCLASS_LEVEL
+      i_es = Identification.elastic_search( where: { id: i.id } ).results.results.first
+      expect( i_es.taxon.rank_level ).to eq t.rank_level
+      t.update_attributes( rank: Taxon::CLASS )
+      Delayed::Worker.new.work_off
+      t.reload
+      expect( t.rank_level ).to eq Taxon::CLASS_LEVEL
+      i_es = Identification.elastic_search( where: { id: i.id } ).results.results.first
+      expect( i_es.taxon.rank_level ).to eq t.rank_level
+    end
   end
 end
 
@@ -1033,6 +1051,28 @@ describe Taxon, "moving" do
     s.reload
     es_response = Taxon.elastic_search( where: { id: s.id } ).results.results.first
     expect( es_response.ancestor_ids ).to include @Hylidae.id
+  end
+
+  it "should reindex identifications of the taxon" do
+    g = Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    g_ident = Identification.make!( taxon: g )
+    s_ident = Identification.make!( taxon: s )
+    Delayed::Worker.new.work_off
+    s.reload
+    g_ident_es = Identification.elastic_search( where: { id: g_ident.id } ).results.results.first
+    s_ident_es = Identification.elastic_search( where: { id: s_ident.id } ).results.results.first
+    expect( g_ident_es.taxon.ancestor_ids ).to include @Trochilidae.id
+    expect( s_ident_es.taxon.ancestor_ids ).to include @Trochilidae.id
+    expect( s_ident_es.taxon.rank_level ).to eq s.rank_level
+    g.move_to_child_of( @Hylidae )
+    Delayed::Worker.new.work_off
+    s.reload
+    g_ident_es = Identification.elastic_search( where: { id: g_ident.id } ).results.results.first
+    s_ident_es = Identification.elastic_search( where: { id: s_ident.id } ).results.results.first
+    expect( g_ident_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_ident_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_ident_es.taxon.rank_level ).to eq s.rank_level
   end
   
 end

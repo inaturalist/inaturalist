@@ -149,6 +149,9 @@ class Place < ActiveRecord::Base
   GADM_PLACE_TYPES = {
     1000 => 'Municipality',
     1001 => 'Parish',
+    # As far as I can tell, this is not actually present in GADM, but people
+    # have started using it so I guess we have to keep it... whatever it means.
+    # ~~kueda 20200409
     1002 => 'Department Segment',
     1003 => 'City Building',
     1004 => 'Commune',
@@ -188,7 +191,13 @@ class Place < ActiveRecord::Base
   PARK_LEVEL = 10
   ADMIN_LEVELS = [CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
+  # 66 is roughly the size of Texas
   MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
+  # 6 is roughly the size of West Virginia
+  MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
+
+  MAX_PLACE_OBSERVATION_COUNT = 200000
+  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 50000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -506,12 +515,15 @@ class Place < ActiveRecord::Base
       add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
       return false
     end
-    # 66 is roughly the size of Texas
+    observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
     if other_attrs[:user] && !other_attrs[:user].is_admin?
-      if geom.respond_to?(:area) && geom.area > MAX_PLACE_AREA_FOR_NON_STAFF
-        add_custom_error(:place_geometry, :is_too_large_to_import)
+      if geom.respond_to?(:area) && (
+         ( CONFIG.content_freeze_enabled && geom.area > MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE ) ||
+         geom.area > MAX_PLACE_AREA_FOR_NON_STAFF )
+        add_custom_error( :place_geometry, :is_too_large_to_import )
         return false
-      elsif Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count >= 500000
+      elsif ( ( CONFIG.content_freeze_enabled && observation_count >= MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE ) ||
+        observation_count >= MAX_PLACE_OBSERVATION_COUNT )
         add_custom_error(:place_geometry, :contains_too_many_observations)
         return false
       end
