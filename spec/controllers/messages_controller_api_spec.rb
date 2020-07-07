@@ -51,6 +51,16 @@ shared_examples_for "a MessagesController" do
         ).first
       ).to be_blank
     end
+    it "should return a 422 for a 0 user" do
+      messages_count = Message.count
+      post :create, format: :json, message: {
+        to_user_id: 0,
+        subject: "foo",
+        body: "bar"
+      }
+      expect( Message.count ).to eq messages_count
+      expect( response.response_code ).to eq 422
+    end
   end
   
   describe "show" do
