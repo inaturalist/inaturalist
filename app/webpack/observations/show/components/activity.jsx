@@ -170,20 +170,12 @@ class Activity extends React.Component {
           />
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_add_comments" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_comments_html" )
+          }}
+        />
       );
     const idContent = loggedIn
       ? (
@@ -215,20 +207,12 @@ class Activity extends React.Component {
           </div>
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_suggest_an_identification" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_identifications_html" )
+          }}
+        />
       );
     const tabs = (
       <Tabs
