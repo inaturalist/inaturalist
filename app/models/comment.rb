@@ -70,10 +70,6 @@ class Comment < ActiveRecord::Base
     }
   end
 
-  def formatted_body
-    BlueCloth::new(self.body).to_html
-  end
-
   def update_parent_counter_cache
     if parent && parent.class.column_names.include?("comments_count")
       if parent.class.column_names.include?("updated_at")

@@ -72,6 +72,7 @@ class Post < ActiveRecord::Base
     br
     cite
     code
+    del
     div
     dl
     dt
@@ -87,6 +88,7 @@ class Post < ActiveRecord::Base
     i
     iframe
     img
+    ins
     li
     object
     ol

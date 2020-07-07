@@ -7,6 +7,7 @@ import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../../shared/components/user_image";
+import TextEditor from "../../../shared/components/text_editor";
 import ActivityItem from "./activity_item";
 
 class Activity extends React.Component {
@@ -131,7 +132,7 @@ class Activity extends React.Component {
     const {
       observation,
       config,
-      commentIDPanel,
+      activeTab,
       setActiveTab
     } = this.props;
     if ( !observation ) { return ( <div /> ); }
@@ -159,28 +160,22 @@ class Activity extends React.Component {
     const commentContent = loggedIn
       ? (
         <div className="form-group">
-          <textarea
-            key="remarks"
+          <TextEditor
+            key={`comment-editor-${observation.id}-${observation.comments.length}`}
             placeholder={I18n.t( "leave_a_comment" )}
-            className="form-control"
-            onBlur={e => { syncRemarks( e.target.value ); }}
+            textareaClassName="form-control"
+            maxLength={5000}
+            showCharsRemainingAt={4000}
+            onBlur={e => syncRemarks( e.target.value )}
           />
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_add_comments" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_comments_html" )
+          }}
+        />
       );
     const idContent = loggedIn
       ? (
@@ -202,33 +197,27 @@ class Activity extends React.Component {
             }}
           />
           <div className="form-group">
-            <textarea
+            <TextEditor
+              key={`comment-editor-${observation.id}-${observation.identifications.length}`}
               placeholder={I18n.t( "tell_us_why" )}
-              className="form-control"
-              onBlur={e => { syncRemarks( e.target.value ); }}
+              className="upstacked"
+              textareaClassName="form-control"
+              onBlur={e => syncRemarks( e.target.value )}
             />
           </div>
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_suggest_an_identification" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_identifications_html" )
+          }}
+        />
       );
     const tabs = (
       <Tabs
         id="comment-id-tabs"
-        activeKey={commentIDPanel.activeTab}
+        activeKey={activeTab}
         onSelect={key => {
           setActiveTab( key );
         }}
@@ -269,7 +258,7 @@ class Activity extends React.Component {
 Activity.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
-  commentIDPanel: PropTypes.object,
+  activeTab: PropTypes.string,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
