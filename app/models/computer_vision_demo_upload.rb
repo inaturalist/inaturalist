@@ -33,8 +33,8 @@ class ComputerVisionDemoUpload < ActiveRecord::Base
     return unless path
     self.metadata ||= { }
     begin
-      exif_data = ExifMetadata.new(path: path, type: photo_content_type ).extract
-      self.metadata.merge!(exif_data)
+      exif_data = ExifMetadata.new( path: path, type: photo_content_type ).extract
+      self.metadata.merge!( exif_data )
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     rescue NoMethodError => e

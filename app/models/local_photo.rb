@@ -113,9 +113,9 @@ class LocalPhoto < Photo
       file.styles.keys.each do |style|
         metadata[:dimensions][style] = extract_dimensions(style)
       end
-      if (file_path = (path || file.queued_for_write[:original].path))
-        exif_data = ExifMetadata.new(path: file_path, type: file_content_type).extract
-        metadata.merge!(exif_data)
+      if ( file_path = ( path || file.queued_for_write[:original].path ) )
+        exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
+        metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"

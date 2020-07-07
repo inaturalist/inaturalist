@@ -196,15 +196,15 @@ describe LocalPhoto, "to_observation" do
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.png" ) )
       p.extract_metadata
       o = p.to_observation
-      expect( o.observed_on_string ).to eq p.metadata[:date_time_original].strftime("%Y-%m-%d %H:%M:%S")
+      expect( o.observed_on_string ).to eq p.metadata[:date_time_original].strftime( "%Y-%m-%d %H:%M:%S" )
       expect( o.latitude ).to eq p.metadata[:gps_latitude].to_d
       expect( o.longitude ).to eq p.metadata[:gps_longitude].to_d
     end
 
     it "should set a taxon from a file name" do
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "polistes_dominula-png-metadata.png"))
-      t = Taxon.make!(:name => "Polistes dominula")
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "polistes_dominula-png-metadata.png" ) )
+      t = Taxon.make!( :name => "Polistes dominula" )
       o = p.to_observation
       expect( o.taxon ).to eq t
     end
