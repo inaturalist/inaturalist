@@ -4677,9 +4677,6 @@ it:
         choose_columns_desc: Scegli le colonne da esportare
         create_a_query_desc_html: |
           Esegui una interrogazione per le osservazioni come faresti altrove nel sito. Puoi anche tagliare ed incollare l'URL delle osservazioni da un'altra parte del sito. La tua interrogazione deve restituire<strong>non più di 200'000 osservazioni</strong>.
-        export_in_progress_notice: |
-          Hai un'esportazione in corso. Dovrai aspettare che finisca
-          prima di poter mettere in coda un'altra esportazione.
         ident_by_user_desc_html: |
           Colonne per l'identificazione per %{user}
         limit_alert: La tua esportazione sarà troppo grande. Cambia i tuoi filtri finché non ci saranno meno di 200.000 osservazioni.
