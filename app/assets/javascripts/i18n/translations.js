@@ -392,6 +392,7 @@ I18n.translations["ar"] = {
   "edit_atlas": "تحرير أطلس",
   "edit_license": "تعديل الترخيص",
   "edit_multiple_dates": "تعديل تواريخ متعددة",
+  "edit_multiple_descriptions": "تعديل أوصاف متعددة",
   "edit_multiple_locations": "تعديل مواقع متعددة",
   "edit_multiple_species": "تحرير أنواع متعددة",
   "edit_photos": "تحرير الصور",
@@ -1810,6 +1811,8 @@ I18n.translations["bg"] = {
   "about": "Относно",
   "about_charts": "Относно диаграмите",
   "about_community_taxa": "За консенсусните разпознавания от общността",
+  "about_conservation_status": "Относно природозащитния статут",
+  "about_establishment_means": "Относно начина на заселване",
   "about_names": "Относно имената",
   "about_this_bioblitz": "Относно този биоблиц",
   "acc": "Точност (m)",
@@ -2019,13 +2022,18 @@ I18n.translations["bg"] = {
   "community_id_at_species_level_or_lower": "Консенсусно разпознаване до ниво вид или по-ниско",
   "community_id_heading": "Консенсусно разпознаване",
   "compare": "Сравняване",
+  "computer_vision_suggestion_desc": "Компютърното зрение е метод за обучаване на компютрите да разпознават обекти в изображенията. Предоставяме инструменти – използващи компютърно зрение обучено чрез снимките направени от общността – които могат да дадат предположения за разпознаване на организмите. Този етикет показва, че потребителят добавил разпознаването е използвал един от тези инструменти.\n",
   "conservation_status": "Природозащитен статут",
+  "conservation_status_geoprivacy_desc": "Геоповерителността по подразбиране прилагана към всички наблюдения от този таксон и на това място\n",
   "contact_support": "Свържете се с поддръжка",
   "content_hidden": "Съдържанието е скрито",
   "content_hidden_by_user_on_date_because_reason_html": "Съдържанието е скрито от %{user} на %{date}, защото: „%{reason}“\n",
   "controlled_term_definitions": {
     "alive": "Организмът е жив и не показва признаци за предстояща смърт",
+    "cannot_be_determined": "Не може да се определи по наличните свидетелства",
+    "dead": "Организмът е мъртъв или по всичко личи, че скоро ще загине",
     "flower_budding": "Виждат се цветни пъпки, но не са разтворени",
+    "flowering": "Цветовете са видими, напълно развити и все още прикачени към растението",
     "fruiting": "Плодът се вижда и все още е прикрепен към растението",
     "no_evidence_of_flowering": "Медията не свидетелства за наличието на репродуктивни структури"
   },
@@ -2070,6 +2078,7 @@ I18n.translations["bg"] = {
   "create_an_atlas": "Създай атлас",
   "created_by": "Създадено от",
   "critically_endangered": "Критично застрашен",
+  "csv": "CSV",
   "curation": "Куриране",
   "curators": "Куратори",
   "dashboard": "Табло",
@@ -2120,6 +2129,7 @@ I18n.translations["bg"] = {
       "7": "Сб"
     },
     "formats": {
+      "compact": "%e %b",
       "long": "%d %B %Y",
       "month_day_year": "%d %B %Y",
       "month_year": "%B %Y"
@@ -2169,6 +2179,7 @@ I18n.translations["bg"] = {
   },
   "date_specified": "Указана дата",
   "date_time": "Дата/Час",
+  "date_to_date": "%{d1} – %{d2}",
   "date_updated": "Дата на обновяване",
   "datetime": {
     "countdown_x_days": {
@@ -2275,11 +2286,14 @@ I18n.translations["bg"] = {
     "one": "гъба",
     "other": "гъби"
   },
+  "generate_your_stats": "Генерирай своята статистика",
   "geoprivacy": "Геоповерителност",
   "geoprivacy_is_obscured": "Геоповерителността е замаскирана",
   "geoprivacy_is_obscured_desc": "Наблюдателят е решил да замаскира координатите.",
   "geoprivacy_is_private_desc": "Наблюдателят е решил да скрие координатите.",
   "get_started": "Започни",
+  "give_monthly_caps": "ДАРЯВАЙ ЕЖЕМЕСЕЧНО",
+  "give_now_caps": "ДАРИ СЕГА",
   "globally": "глобално",
   "go": "Напред",
   "go_back": "Върни се",
@@ -2297,6 +2311,7 @@ I18n.translations["bg"] = {
   "has_sound": "Има звук",
   "has_sounds": "Има звуци",
   "here_are_our_top_species_suggestions": "Ето нашите най-добри предложения за видове",
+  "hide_content": "Скрий съдържанието",
   "high": "Висок",
   "history": "История",
   "i18n": {
@@ -2376,6 +2391,7 @@ I18n.translations["bg"] = {
   "increase_brightness": "Увеличи яркостта",
   "info": "Информация",
   "insects": "насекоми",
+  "interactions": "Взаимодействия",
   "introduced": "Интродуциран",
   "introduced_in_place": "Интродуциран във %{place}",
   "iphone": "iPhone",
@@ -2388,12 +2404,14 @@ I18n.translations["bg"] = {
   "journal": "Дневник",
   "keyboard_shortcuts": "Клавишни комбинации",
   "kml_file_size_error": "KML файла трябва да е по-малък от 1MB",
+  "label_colon": "%{label}:",
   "labels": "Етикети",
   "language_slash_type": "Език / Тип",
   "large": "голям",
   "last_observation": "Последно наблюдение",
   "lat": "г.ш.",
   "latitude": "Геогр. ширина",
+  "layers": "Слоеве",
   "leaderboard": "Водачество",
   "least_concern": "Незастрашен",
   "leave_a_comment": "Остави коментар",
@@ -2561,6 +2579,7 @@ I18n.translations["bg"] = {
     "date_long": "D MMMM YYYY",
     "date_long_without_year": "D MMMM"
   },
+  "monthly_supporter_since_date_html": "<a href=\"%{url}\">Ежемесечен поддръжник</a> от %{date}\n",
   "months": "Месеци",
   "more": "Още",
   "more_filters": "Още филтри",
@@ -2571,6 +2590,7 @@ I18n.translations["bg"] = {
   "most_comments_and_faves": "Най-много коментари и харесвания",
   "most_observations": "Най-много наблюдения",
   "most_observed_species": "Най-наблюдавани видове",
+  "most_recent_observation_by_date_observed": "Най-новите потвърдими наблюдения според дата на наблюдаване",
   "most_species": "Най-много видове",
   "must_be_observed_after": "трябва да е наблюдавано след %{operand}\n",
   "must_be_observed_before": "трябва да е наблюдавано преди %{operand}\n",
@@ -2601,11 +2621,18 @@ I18n.translations["bg"] = {
   "no_observations": "Няма наблюдения",
   "no_observations_from_this_place_yet": "Все още няма наблюдения от това място.",
   "no_observations_yet": "Все още няма наблюдения",
+  "no_photo": "Няма снимка",
+  "no_photos": "Няма снимки",
+  "no_places_available": "Няма налични места",
   "no_relevant_annotations": "Няма подходящи анотации",
+  "no_results_for": "Няма резултати за ",
   "no_results_found": "Не бяха открити резултати",
+  "no_suggestions_available": "Няма предложения",
+  "no_summary_from_wikipedia": "Няма резюме от Уикипедия",
   "none": "Нищо",
   "none_found": "Няма намерени",
   "not_evaluated": "неоценен",
+  "notes": "Бележки",
   "number": {
     "format": {
       "delimiter": ".",
@@ -2617,19 +2644,22 @@ I18n.translations["bg"] = {
   "obscured": "Замаскирано",
   "observation": "Наблюдение",
   "observation_": "наблюдение",
+  "observation_brief_taxon_from_place": "%{taxon} от %{place}",
   "observation_date": "Дата",
   "observation_fields": "Полета за наблюдения",
   "observation_without_media": "Наблюдение без медийно съдържание",
   "observations": "Наблюдения",
   "observations_": "наблюдения",
   "observations_annotated_with_annotation": "Наблюдения с анотация %{annotation}",
+  "observations_by_category": "Наблюдения според категория",
   "observations_in_this_project_must": "Наблюденията в този проект трябва да отговарят на следните критерии",
   "observations_map": "Наблюдения / Карта",
   "observations_of_relatives": "Наблюдения на сродни видове",
   "observations_total": "Общо наблюдения",
+  "observations_without_media": "Наблюдения без медия",
   "observed": "Наблюдавано",
-  "observed_on": "Наблюдаван на",
-  "observed_on_datetime": "Наблюдаване на %{datetime}",
+  "observed_on": "Наблюдавано на",
+  "observed_on_datetime": "Наблюдавано на %{datetime}",
   "observers": "Наблюдатели",
   "of_identifiers": "разпознавачи",
   "of_observations": "наблюдения",
@@ -2671,6 +2701,8 @@ I18n.translations["bg"] = {
       "building": "сграда",
       "Canton": "Кантон",
       "canton": "кантон",
+      "City Building": "Градска постройка",
+      "city building": "градска постройка",
       "Colloquial": "Разговорно",
       "colloquial": "разговорно",
       "Commune": "Комуна",
@@ -2681,6 +2713,10 @@ I18n.translations["bg"] = {
       "country": "държава",
       "County": "Окръг",
       "county": "окръг",
+      "District": "Област",
+      "district": "област",
+      "Division": "Район",
+      "division": "район",
       "Drainage": "Канализация",
       "drainage": "канализация",
       "Estate": "Имот",
@@ -2715,6 +2751,8 @@ I18n.translations["bg"] = {
       "open_space": "отворено пространство",
       "Parish": "Eнория",
       "parish": "енория",
+      "Prefecture": "Префектура",
+      "prefecture": "префектура",
       "Prefecture_City": "Център на префектура",
       "prefecture_city": "център на префектура",
       "Point_of_Interest": "Място от интерес",
@@ -2723,6 +2761,8 @@ I18n.translations["bg"] = {
       "postal_code": "пощенски код",
       "Province": "Провинция",
       "province": "провинция",
+      "Regency": "Регентство",
+      "regency": "регентство",
       "Region": "Регион",
       "region": "регион",
       "Republic": "Република",
@@ -2741,6 +2781,8 @@ I18n.translations["bg"] = {
       "subdivision": "подразделение",
       "Suburb": "Предградие",
       "suburb": "предградие",
+      "Sum": "Сум",
+      "sum": "сум",
       "Supername": "Надиме",
       "supername": "надиме",
       "Territory": "Територия",
@@ -2762,6 +2804,7 @@ I18n.translations["bg"] = {
   "places_name": {
     "afghanistan": "Афганистан",
     "africa": "Африка",
+    "akrotiri_and_dhekelia": "Акротири и Декелия",
     "aland": "Оландски острови",
     "albania": "Албания",
     "algeria": "Алжир",
@@ -2798,13 +2841,43 @@ I18n.translations["bg"] = {
     "brunei": "Бруней",
     "bulgaria": "България",
     "burkina_faso": "Буркина Фасо",
+    "burundi": "Бурунди",
+    "cambodia": "Камбоджа",
+    "cameroon": "Камерун",
     "canada": "Канада",
+    "cape_verde": "Кабо Верде",
+    "cayman_islands": "Кайманови острови ",
+    "central_african_republic": "Централноафриканска република",
     "central_america": "Централна Америка",
+    "chad": "Чад",
+    "chile": "Чили",
     "china": "Китай",
+    "christmas_island": "Коледен остров",
+    "clipperton_island": "Остров Клипертон",
+    "cocos_islands": "Кокосови острови",
     "colombia": "Колумбия",
+    "commonwealth_of_the_northern_mariana_islands": "Северни Мариански острови",
+    "comoros": "Коморски острови ",
+    "cook_islands": "Острови Кук ",
+    "costa_rica": "Коста Рика ",
+    "cote_d_ivoire": "Кот д'Ивоар ",
+    "croatia": "Хърватия",
+    "cuba": "Куба",
+    "curacao": "Кюрасао",
+    "cyprus": "Кипър",
+    "czech_republic": "Чехия",
+    "democratic_republic_of_the_congo": "Демократична република Конго",
     "denmark": "Дания",
+    "djibouti": "Джибути",
+    "dominica": "Доминика",
+    "dominican_republic": "Доминиканска Република",
+    "east_timor": "Източен Тимор",
+    "ecuador": "Еквадор",
     "egypt": "Египет",
+    "el_salvador": "Салвадор",
     "equatorial_guinea": "Екваториална Гвинея",
+    "eritrea": "Еритрея",
+    "estonia": "Естония",
     "ethiopia": "Етиопия",
     "europe": "Европа",
     "falkland_islands": "Фолкландски острови",
@@ -2866,6 +2939,9 @@ I18n.translations["bg"] = {
     "lithuania": "Литва",
     "luxembourg": "Люксембург",
     "macao": "Макао",
+    "macedonia": "Македония",
+    "madagascar": "Мадагаскар",
+    "malawi": "Малави",
     "martinique": "Мартиника",
     "mexico": "Мексико",
     "netherlands": "Нидерландия",
@@ -2878,8 +2954,19 @@ I18n.translations["bg"] = {
     "peru": "Перу",
     "poland": "Полша",
     "portugal": "Португалия",
+    "puerto_rico": "Пуерто Рико",
+    "qatar": "Катар",
     "republic_of_congo": "Република Конго",
+    "reunion": "Реюнион",
+    "romania": "Румъния",
     "russia": "Русия",
+    "rwanda": "Руанда",
+    "saint_barthelemy": "Сен Бартелми ",
+    "saint_helena": "Света Елена",
+    "saint_kitts_and_nevis": "Сейнт Китс и Невис",
+    "saint_lucia": "Сейнт Лусия",
+    "saint_martin": "Сен Мартен",
+    "saint_pierre_and_miquelon": "Сен Пиер и Микелон",
     "saint_vincent_and_the_grenadines": "Сейнт Винсънт и Гренадини",
     "samoa": "Самоа",
     "san_marino": "Сан Марино",
@@ -2953,6 +3040,7 @@ I18n.translations["bg"] = {
   "previous_observation": "Предишно наблюдение",
   "previous_photo": "Предишна снимка",
   "previous_tab": "Предишен раздел",
+  "private_": "Поверително",
   "proceed": "Продължи",
   "profile": "Профил",
   "project": "Проект",
@@ -3025,7 +3113,9 @@ I18n.translations["bg"] = {
   },
   "removing": "Премахване...",
   "reptiles": "влечуги",
+  "required_": "Задължително",
   "research": "изследователско",
+  "research_": "Изследователско",
   "research_grade": "Изследователско качество",
   "research_grade_qualification": "Годност за Изследователско качество",
   "research_grade_short_html": "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>",
@@ -3046,12 +3136,15 @@ I18n.translations["bg"] = {
   "saving_verb": "Запазване",
   "search": "Търси",
   "search_by_taxon_name_or_flickr_photo_id": "Търси по име на таксон или Flickr ID на снимка",
+  "search_by_taxon_name_or_observation_id": "Търси по име на таксон или ID на наблюдение",
   "search_for_a_location": "Търси за място",
   "search_species_": "Търси видове...",
   "seasonality": "Сезонност",
+  "seen_nearby": "Видяно наоколо",
   "select": "Избери",
   "select_all": "Избери всички",
   "select_at_least_one": "Изберете поне едно",
+  "select_none": "Празен избор",
   "select_observations_to_edit": "Изберете наблюдения за редактиране...",
   "select_options": "Избери опция",
   "selected_photos": "Избрани снимки",
@@ -3085,10 +3178,12 @@ I18n.translations["bg"] = {
   "species_name_cap": "Име на вид",
   "species_unknown": "Непознат вид",
   "specify_the_reason_youre_flagging": "Опишете причината, заради която маркирате това",
+  "standard": "Стандартни",
   "start": "Начало",
   "start_typing_taxon_name": "Започни да въвеждаш таксон...",
   "stats": "Статистика",
   "status": "Статус",
+  "store": "МАГАЗИН",
   "submit_observations": {
     "one": "Публикувай 1 наблюдение",
     "other": "Публикувай %{count} наблюдения"
@@ -3100,8 +3195,10 @@ I18n.translations["bg"] = {
   "tags": "Етикети",
   "taxa": "Таксони",
   "taxon": "Таксон",
+  "taxon_autocomplete_placeholder": "Птици, пеперуди и т.н.",
   "taxon_changes": "Таксономични промени",
   "taxon_drop": "отпадане на таксон",
+  "taxon_geoprivacy": "Геоповерителност на таксона",
   "taxon_map": {
     "overlays": "Слоеве"
   },
@@ -3109,6 +3206,7 @@ I18n.translations["bg"] = {
   "taxon_schemes": "Таксономични схеми",
   "taxon_split": "разделяне на таксон",
   "taxon_swap": "таксономична размяна",
+  "taxonomic": "Таксономично",
   "taxonomic_groups": "Таксономични групи",
   "taxonomy": "Таксономия",
   "taxonomy_details": "Таксономични детайли",
@@ -3118,6 +3216,8 @@ I18n.translations["bg"] = {
   "the_below_items_are_needed_to_achieve": "Долните елементи са необходими за достигане на <span className=\"bold\">Изследователско качество:</span>\n",
   "the_world": "Светът",
   "this_bioblitz_beings_in": "Този биоблиц започва след",
+  "this_is_your_observation": "Това наблюдение е Ваше",
+  "this_is_your_observation_desc": "Винаги можете да виждате координатите на собствените си наблюдения.",
   "this_observation": "Това наблюдение",
   "this_observation_is_featured_on_x_sites": {
     "one": "Това наблюдение се използва на %{count} сайт",
@@ -3131,7 +3231,8 @@ I18n.translations["bg"] = {
   "time": {
     "am": "преди обяд",
     "formats": {
-      "long": "%d %B %Y, %H:%M"
+      "hours": "%H:%M",
+      "long": "%-d %B %Y, %H:%M"
     },
     "pm": "следобед"
   },
@@ -3170,6 +3271,7 @@ I18n.translations["bg"] = {
     "other": "Качване на %{num} от %{count} снимки..."
   },
   "user": "Потребител",
+  "user_autocomplete_placeholder": "kueda, simon123 и т.н.",
   "user_disagrees_this_is_taxon": "Потребителят %{user} не е съгласен, че това е %{taxon}",
   "user_suggested_an_id": "%{user} предложи ID",
   "user_trusts_you_with_their_private_coordinates_desc": "Наблюдателят е решил да Ви довери координатите на всичките си наблюдения.\n",
@@ -3184,11 +3286,14 @@ I18n.translations["bg"] = {
   "view_all_members": "Виж всичките членове",
   "view_field_options": "Виж възможните полета",
   "view_license": "Виж лиценза",
+  "view_moderation_history": "Виж историята на модерирането",
   "view_more": "Виж още",
   "view_observation": "Виж наблюдението",
   "view_observations": "Виж наблюденията",
   "view_observations_of_this_taxon_by": "Виж наблюдения на този таксон от",
+  "view_on": "Виж във",
   "view_sample": "Виж пример",
+  "view_taxon_change": "Виж таксономичната промяна",
   "view_your_year_stats": "Виж своята статистика за %{year}",
   "view_yours": "Виж своите",
   "views": {
@@ -3226,6 +3331,7 @@ I18n.translations["bg"] = {
         "do_you_need_features_from_traditional": "Нуждаете ли се от особеностите на Традиционните проекти като достъп до реалните координати, собствени полета за наблюдения или ръчно добавяне на наблюдения, които не могат да бъдат автоматично открити?\n",
         "errors": {
           "cannot_have_more_than_x_project_rules": "Проектът не може да има повече от %{x} правила",
+          "name_is_required": "Трябва да зададете има на проекта",
           "summary_is_required": "Необходимо е добавянето на резюме на проекта"
         },
         "leaderboards_among_individuals": "Водачества за <strong>потребители</strong>",
@@ -3233,6 +3339,7 @@ I18n.translations["bg"] = {
         "multiple_project_administrators": "Множество администратори на проекта",
         "no_need_to_rely_on_manual_addition": "Без ръчно добавяне на наблюдения\n",
         "only_display_member_observations": "Показвай само наблюдения от членове на проекта (хора които са се присъединили към проекта)\n",
+        "or_drag_and_drop": "(или завлачи и пусни)",
         "project_background_color": "Цвят на фона на резюмето на проекта",
         "project_background_color_help": "Уверете се, че избраният цвят е достатъчно тъмен, за да може да се чете белият текст върху него.",
         "project_banner": "Заглавно каре на проекта (PNG, JPG или GIF)",
@@ -3266,16 +3373,20 @@ I18n.translations["bg"] = {
       "index": {
       },
       "year": {
+        "donate_desc_html": "Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество.\nПоддържа се от <a href=\"%{team_url}\">малък екип</a>, който разработва целия дизайн и софтуер за уебсайта, мобилните приложения, включително <a href=\"%{seek_url}\">Seek by iNaturalist</a>, и освен това ръководи поддръжката на общността, сътрудничеството и интеграциите необходими за функционирането и разрастването на платформата. А тя разчита на множество субсидии и дарения, включително на благотворителни дарения на по-малко от 0,2% от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие. Можете да дарите в повече от 30 валути, за да поддържате основната дейност на iNaturalist. Благодарим на всички, които превърнаха 2019-та в най-успешната година за iNaturalist досега!\n",
+        "donate_title": "Специални благодарности на всичките ни поддръжници",
         "translators_prompt": "Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.\n"
       }
     },
     "taxa": {
       "show": {
+        "about_conservation_status_desc": "Природозащитният статут обобщава рискът за изчезване на дадена група организми.\n",
         "about_establishment_desc": "\"Начин на заселване\" описва как даден вид се е установил на мястото в което се среща. \"Интродуциран\" означава, че е пренесен от човека, докато \"местен\" означава, че се е заселил без намесата на човека. Ендемичните видове се срещат само на определено и ограничено място.\n",
         "charts_help_history": "Тази диаграма показва броя наблюдения на този таксон на месец за последните десет години. Тя също е повлияна от броя наблюдатели, но може да Ви посочи необикновени резки изменения на наблюденията. А ако кривата е равна или намаляваща, въпреки растящия брой наблюдатели - това може да означава намаляващи популации на таксона.\n",
         "charts_help_relative_observations": "Показването на относителния дял на наблюденията - като брой наблюдения на таксона отнесени към общия брой наблюдения, позволява да се премахне ефекта от растежа на наблюдателите на сайта. Например, когато сайтът се разраства и получаваме повече наблюдения всяка година, обикновено получаваме повече наблюдения и за всеки един таксон - но това не означава, че популациите на този таксон непременно нарастват, а просто означава, че има повече хора които го наблюдават. Например ако има общо 100 наблюдения, 20 от които на този таксон - относителният дял на този таксон е 0,2 (20 / 100). Ако следващата година хората направят общо 2000 наблюдения, 400 от които са на този таксон - относителният дял на таксона ще е отново 0,2 (400 / 2000). Това може да причини отклонения, когато има много малко наблюдатели в даден район или когато таксонът е наблюдаван рядко, но това важи и за абсолютните стойности.\n",
         "charts_help_seasonality": "Тази диаграма показва броя наблюдения на този таксон на месец. Имайте предвид, че това е броят на самите наблюдения, а той се влияе от това - кога организмите могат да бъдат наблюдавани, както и от това - кога наблюдателите искат да ги наблюдават. Така че, един вид птица може да изглежда по-активен през месец май, но това да се дължи на по-голямата активност на наблюдателите през този месец. Ако пък виждате повече наблюдения на водни кончета направени през юни, отколкото през януари - това вероятно се дължи на факта, че имаме повече наблюдатели от северното полукълбо, отколкото от южното, а не защото водните кончета са по-активни през юни в световен мащаб - в такива случаи е полезно да направите справка и с картата за географското разпределение на наблюденията. Трябва да сте особено внимателни със статистика основана на малък брой наблюдения, както и когато има големи несъответствия между наблюденията оценени като „Потвърдими“ и тези с “Изследователско качество“.\n",
         "frequency": {
+          "research": "Изследователско качество",
           "verifiable": "Потвърдимо",
           "Alive or Dead=Alive": "Жив",
           "Alive or Dead=Dead": "Мъртъв",
@@ -3310,10 +3421,16 @@ I18n.translations["bg"] = {
   },
   "visually_similar": "Визуално подобен",
   "vulnerable": "Уязвим",
+  "we_have_no_conservation_status_for_this_taxon": "Нямаме данни за природозащитния статут на този таксон",
+  "we_have_no_establishment_data_for_this_taxon": "Нямаме данни за начина на заселване на този таксон",
   "website": "Уебсайт",
   "were_pretty_sure_this_is_in_the_rank": "Почти сигурни сме, че това е от %{rank}",
   "whats_this?": "Какво е това?",
   "white": "бяло",
+  "who_can_see_the_coordinates": "Кой може да види координатите",
+  "who_can_see_the_coordinates_observer": "Човекът направил наблюдението",
+  "who_can_see_the_coordinates_projects": "Кураторите на следните проекти",
+  "who_can_see_the_coordinates_trusted": "Хора, на които наблюдателят е доверил скритите си координати",
   "why_the_coordinates_are_obscured": "Защо координатите са замаскирани",
   "wild": "Див",
   "with_annotation": "С анотация",
@@ -3423,6 +3540,7 @@ I18n.translations["bg"] = {
   "yellow": "жълто",
   "yes": "Да",
   "yesterday": "Вчера",
+  "you_": "Вас",
   "you_appear_offline_try_again": "Изглежда, че нямате мрежова връзка. Моля, опитайте отново, когато възобновите връзката с Интернет.\n",
   "you_curate_a_project_that_contains_this_observation_desc": "Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.\n",
   "you_must_fill_out_the_required_fields": "Трябва да попълните задължителните полета",
@@ -4011,6 +4129,7 @@ I18n.translations["ca"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notes"
       }
     }
   },
@@ -4480,6 +4599,7 @@ I18n.translations["ca"] = {
   "edit_atlas": "Edita Atlas",
   "edit_license": "Modifica la llicència",
   "edit_multiple_dates": "Editeu diverses dates",
+  "edit_multiple_descriptions": "Editar múltiples notes",
   "edit_multiple_locations": "Editeu diverses localitzacions",
   "edit_multiple_species": "Editeu diverses espècies",
   "edit_photos": "Modifiqueu les fotos",
@@ -5085,6 +5205,8 @@ I18n.translations["ca"] = {
   "photo_licensing": "Llicència de la foto",
   "photos_chosen_for_this_taxon": "Fotos escollides per a aquest tàxon",
   "photos_from": "Fotos de",
+  "photos_locked": "Fotos Bloquejades",
+  "photos_locked_desc": "Només les persones de l'staff podes canviar les fotografies per defecte d'aquest tàxon",
   "photos_of_taxon_html": "Fotos de %{taxon}",
   "photos_or_sounds": "Fotografies o sons",
   "pin_verb": "Posar al mapa",
@@ -5922,6 +6044,9 @@ I18n.translations["ca"] = {
     "projects": {
       "collection": "Col·lecció",
       "edit": {
+        "admins_must_be_existing_members": "Els Administradors han de ser membres del projecte",
+        "change_owner_alert": "Això eliminarà la vostra capacitat per esborrar aquest projecte o transferir la seva propietat de nou. Voleu continuar?\n",
+        "make_owner": "Fer Propietari"
       },
       "new": {
         "a_project_allows_you_to_gather": "Un Projecte de Col·lecció us permet reunir i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist. Tot allò que compleixi els paràmetres del projecte s'inclouen automàticament.\n",
@@ -6790,6 +6915,7 @@ I18n.translations["cs"] = {
   "edit_atlas": "Editovat atlas",
   "edit_license": "Editovat licenci",
   "edit_multiple_dates": "Editovat více dat",
+  "edit_multiple_descriptions": "Editovat více popisků",
   "edit_multiple_locations": "Editovat více míst",
   "edit_multiple_species": "Editovat více druhů",
   "edit_photos": "Editovat fotografie",
@@ -7244,7 +7370,7 @@ I18n.translations["cs"] = {
   "most_comments_and_faves": "Nejvíce komentářů a oblíbených",
   "most_observations": "Nejvíce pozorování",
   "most_observed_introduced_species": "Nejvíce pozorovaných nepůvodních druhů",
-  "most_observed_species": "Nejvíce pozorovaných druhů",
+  "most_observed_species": "Nejvíce pozorované druhy",
   "most_observed_threatened_species": "Nejvíce pozorovaných ohrožených druhů",
   "most_recent_observation_by_date_observed": "Nejnovější ověřitelné pozorování podle data pozorování",
   "most_species": "Nejvíce druhů",
@@ -8260,6 +8386,7 @@ I18n.translations["cs"] = {
     "projects": {
       "collection": "Sbírka",
       "edit": {
+        "admins_must_be_existing_members": "Administrátoři musí být existujícími členy projektu.",
         "change_owner_alert": "Tímto odstraníte vaši schopnost odstranit tento projekt nebo znovu převést\nvlastnictví. Chcete pokračovat?\n",
         "make_owner": "Učinit vlastníkem"
       },
@@ -10591,6 +10718,7 @@ I18n.translations["da"] = {
     "projects": {
       "collection": "Samling",
       "edit": {
+        "admins_must_be_existing_members": "Admins skal være eksisterende projektmedlemmer.",
         "change_owner_alert": "Dette fjerner din mulighed for at slette dette projekt eller overføre\nejerskab igen. Fortsæt?\n",
         "make_owner": "Gør til Ejer"
       },
@@ -11423,6 +11551,7 @@ I18n.translations["de"] = {
   "edit_atlas": "Atlas bearbeiten",
   "edit_license": "Lizenz bearbeiten",
   "edit_multiple_dates": "Datumsangaben bearbeiten",
+  "edit_multiple_descriptions": "Mehrere Beschreibungen bearbeiten",
   "edit_multiple_locations": "Mehrere Standorte bearbeiten",
   "edit_multiple_species": "Mehrere Arten bearbeiten",
   "edit_photos": "Fotos bearbeiten",
@@ -12016,6 +12145,7 @@ I18n.translations["de"] = {
   "photo_licensing": "Foto-Lizenzierung",
   "photos_chosen_for_this_taxon": "Foto für diese Art ausgewählt",
   "photos_from": "Fotos von",
+  "photos_locked": "Fotos gesperrt",
   "photos_locked_desc": "Nur iNat-Mitarbeiter können die Standard-Fotos für dieses Taxon ändern",
   "photos_of_taxon_html": "Fotos von %{taxon}",
   "photos_or_sounds": "Bilder oder Audio",
@@ -12842,6 +12972,7 @@ I18n.translations["de"] = {
     "projects": {
       "collection": "Sammlung",
       "edit": {
+        "admins_must_be_existing_members": "Administratoren müssen existierende Mitglieder des Projekts sein.",
         "change_owner_alert": "Dies wird dir die Möglichkeit nehmen, dieses Projekt zu löschen oder\nerneut an jemanden zu übertragen. Möchtest du fortfahren?\n",
         "make_owner": "zum Besitzer machen"
       },
@@ -13666,6 +13797,7 @@ I18n.translations["el"] = {
   "edit_atlas": "Επεξεργασία Άτλαντα",
   "edit_license": "Επεξεργασία Άδειας",
   "edit_multiple_dates": "Επεξεργασία Πολλαπλών Ημερομηνιών",
+  "edit_multiple_descriptions": "Επεξεργασία Πολλαπλών Περιγραφών",
   "edit_multiple_locations": "Επεξεργασία Πολλαπλών Τοποθεσιών",
   "edit_multiple_species": "Επεξεργασία Πολλαπλών Ειδών",
   "edit_photos": "Επεξεργασία φωτογραφιών",
@@ -13705,7 +13837,6 @@ I18n.translations["el"] = {
   "except": "εκτός",
   "exclude_places": "Εξαίρεση τοποθεσιών",
   "exclude_projects": "Εξαίρεση πρότζεκτ",
-  "exclude_taxa": "Εξαίρεση ταξινομικών βαθμιδών",
   "exclude_users": "Εξαίρεση χρηστών",
   "exclusion_filters": "Φίλτρα Εξαίρεσης",
   "exit_full_screen": "Έξοδος από πλήρη οθόνη",
@@ -13837,7 +13968,6 @@ I18n.translations["el"] = {
   "inappropriate_content": "Ακατάλληλο περιεχόμενο;",
   "include_places": "Συμπεριλάβετε τοποθεσίες",
   "include_projects": "Συμπεριλάβετε πρότζεκτ",
-  "include_taxa": "Συμπεριλάβετε ταξινομικές βαθμίδες",
   "include_users": "Συμπεριλάβετε χρήστες",
   "including": "συμπεριλαμβανομένων",
   "increase_brightness": "Αύξηση φωτεινότητας",
@@ -15314,15 +15444,20 @@ I18n.translations["en"] = {
   },
   "activity": "Activity",
   "add": "Add",
+  "add_a_bulleted_list": "Add a bulleted list",
   "add_a_comment": "Add a Comment",
   "add_a_field": "Add a Field",
+  "add_a_link": "Add a link",
   "add_a_name": "Add a Name",
+  "add_a_numbered_list": "Add a numbered list",
   "add_alive_or_dead_alive_annotation": "Add \"Alive or Dead: Alive\" annotation",
   "add_alive_or_dead_dead_annotation": "Add \"Alive or Dead: Dead\" annotation",
   "add_an_identification": "Add an Identification",
   "add_annotations_for_x": "Add Annotations for \"%{x}\"",
+  "add_bold_text": "Add bold text",
   "add_edit_flags": "Add/Edit Flags",
   "add_id": "Add ID",
+  "add_italic_text": "Add italic text",
   "add_life_stage_adult_annotation": "Add \"Life Stage: Adult\" annotation",
   "add_life_stage_egg_annotation": "Add \"Life Stage: Egg\" annotation",
   "add_life_stage_larva_annotation": "Add \"Life Stage: Larva\" annotation",
@@ -15497,6 +15632,7 @@ I18n.translations["en"] = {
   "blue": "blue",
   "blue_butterfly_etc": "blue, butterfly, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "bold text",
   "bounding_box": "Bounding Box",
   "brown": "brown",
   "browse": "Browse",
@@ -16013,12 +16149,14 @@ I18n.translations["en"] = {
   "input_taxon": "Input taxon",
   "insect_life_stage": "Insect Life Stage",
   "insects": "insects",
+  "insert_a_quote": "Insert a quote",
   "interactions": "Interactions",
   "introduced": "Introduced",
   "introduced_in_place": "Introduced in %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is the evidence provided enough to confirm this is %{taxon}?",
   "it_can_now_be_used_for_research": "It can now be used for research and featured on other websites",
+  "italic_text": "italic text",
   "item_flagged_notice_html": "This has been flagged as spam and is no longer\npublicly visible. You can see it because you created it, or you are a\nsite curator. If you think this is a mistake, please\n<a href=\"mailto:%{help_email}\" class=\"contact\">contact us</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
   "join": "Join",
   "join_project": "Join this project",
@@ -16095,6 +16233,7 @@ I18n.translations["en"] = {
   "life": "Life",
   "life_list": "%{user}'s Life List",
   "linear_scale_label": "Linear",
+  "linked_text": "linked text",
   "list": "List",
   "list_tooltip": "Show list view",
   "lists": "Lists",
@@ -16154,6 +16293,8 @@ I18n.translations["en"] = {
   "location_unknown": "Location Unknown",
   "lock_zoom_level": "Lock zoom level",
   "log_in": "Log In",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Log in</a> or <a href=\"/sign_up\">sign up</a> to add comments.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Log in</a> or <a href=\"/sign_up\">sign up</a> to add identifications.\n",
   "log_scale_label": "Log",
   "long": "Lon",
   "longitude": "Longitude",
@@ -17553,6 +17694,7 @@ I18n.translations["en"] = {
   },
   "x_of_y": "%{x} of %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} of %{y} people (over 2/3) agree it is",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} other",
     "other": "%{count} others"
@@ -18292,6 +18434,7 @@ I18n.translations["eo"] = {
   "edit": "Redakti",
   "edit_atlas": "Redakti Atlason",
   "edit_license": "Redakti Permesilon",
+  "edit_multiple_descriptions": "Redakti Plurajn Priskribojn",
   "edit_multiple_species": "Redakti Plurajn Speciojn",
   "edit_photos": "Redakti Fotojn",
   "edit_project": "Redakti Projekton",
@@ -19193,6 +19336,7 @@ I18n.translations["es"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notas"
       }
     }
   },
@@ -19662,6 +19806,7 @@ I18n.translations["es"] = {
   "edit_atlas": "Edita atlas",
   "edit_license": "Modificar licencia",
   "edit_multiple_dates": "Editar múltiples fechas",
+  "edit_multiple_descriptions": "Editar múltiples descripciones",
   "edit_multiple_locations": "Edita múltiples localizaciones",
   "edit_multiple_species": "Editar múltiples grupos o especies",
   "edit_photos": "Modifica fotos",
@@ -20267,6 +20412,8 @@ I18n.translations["es"] = {
   "photo_licensing": "Licencia de la foto",
   "photos_chosen_for_this_taxon": "Fotos elegidas para este taxón",
   "photos_from": "Fotos de",
+  "photos_locked": "Fotos bloqueadas",
+  "photos_locked_desc": "Sólo el personal de la página puede cambiar las fotos por defecto para este taxón",
   "photos_of_taxon_html": "Fotos de %{taxon}",
   "photos_or_sounds": "Fotos o sonidos",
   "pin_verb": "Fijar",
@@ -21104,6 +21251,9 @@ I18n.translations["es"] = {
     "projects": {
       "collection": "Colección",
       "edit": {
+        "admins_must_be_existing_members": "Los administradores deben ser miembros del proyecto.",
+        "change_owner_alert": "Esto eliminará tu capacidad para eliminar este proyecto o transferir\nde nuevo la propiedad. ¿Quieres continuar?\n",
+        "make_owner": "Hacer propietario"
       },
       "new": {
         "a_project_allows_you_to_gather": "Un proyecto de recopilación le permite recopilar y visualizar observaciones utilizando las principales herramientas de búsqueda de iNaturalist. Todo lo que cumpla con los parámetros establecidos por el proyecto se incluirá automáticamente.\n",
@@ -21464,6 +21614,7 @@ I18n.translations["es-AR"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notas"
       }
     }
   },
@@ -21906,6 +22057,7 @@ I18n.translations["es-AR"] = {
   "edit_atlas": "Edita atlas",
   "edit_license": "Modifica licencia",
   "edit_multiple_dates": "Edita múltiples fechas",
+  "edit_multiple_descriptions": "Edita múltiples descripciones",
   "edit_multiple_locations": "Edita múltiples localizaciones",
   "edit_multiple_species": "Edita múltiples grupos o especies",
   "edit_photos": "Modifica fotos",
@@ -22478,6 +22630,8 @@ I18n.translations["es-AR"] = {
   "photo_licensing": "Licencia de la foto",
   "photos_chosen_for_this_taxon": "Fotos elegidas para este taxón",
   "photos_from": "Fotos de",
+  "photos_locked": "Fotos bloqueadas",
+  "photos_locked_desc": "Sólo el personal puede cambiar las fotos por defecto para este taxón",
   "photos_of_taxon_html": "Fotos de %{taxon}",
   "photos_or_sounds": "Fotos o sonidos",
   "pin_verb": "Fijar",
@@ -23287,6 +23441,7 @@ I18n.translations["es-AR"] = {
     "projects": {
       "collection": "Colección",
       "edit": {
+        "admins_must_be_existing_members": "Los administradores deben ser miembros existentes del proyecto."
       },
       "new": {
         "a_project_allows_you_to_gather": "Un proyecto de recopilación le permite recopilar y visualizar observaciones utilizando las principales herramientas de búsqueda de iNaturalist. Todo lo que cumpla con los parámetros establecidos por el proyecto se incluirá automáticamente.\n",
@@ -26022,6 +26177,7 @@ I18n.translations["et"] = {
   "edit_atlas": "Muuda atlast",
   "edit_license": "Muuda litsentsi",
   "edit_multiple_dates": "Muuda mitu kuupäeva korraga",
+  "edit_multiple_descriptions": "Muuda mitut kirjeldus korraga",
   "edit_multiple_locations": "Muuda mitut kohta korraga",
   "edit_multiple_species": "Muuda mitut liiki korraga",
   "edit_photos": "Muuda fotosid",
@@ -27787,6 +27943,7 @@ I18n.translations["eu"] = {
   "edit_atlas": "Atlasa Aldatu",
   "edit_license": "Lizentzia aldatu",
   "edit_multiple_dates": "Data anitzak aldatu",
+  "edit_multiple_descriptions": "Deskribapen anitzak aldatu",
   "edit_multiple_locations": "Kokapen anitzak aldatu",
   "edit_multiple_species": "Espezie anitzak aldatu",
   "edit_photos": "Argazkiak aldatu",
@@ -28427,6 +28584,7 @@ I18n.translations["fi"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Muistiinpanot"
       }
     }
   },
@@ -28896,6 +29054,7 @@ I18n.translations["fi"] = {
   "edit_atlas": "Muokkaa atlasta",
   "edit_license": "Muokkaa lisenssiä",
   "edit_multiple_dates": "Muokkaa useita päivämääriä",
+  "edit_multiple_descriptions": "Muokkaa useita kuvauksia",
   "edit_multiple_locations": "Muokkaa useita paikkoja",
   "edit_multiple_species": "Muokkaa useita lajeja",
   "edit_photos": "Muokkaa valokuvia",
@@ -29280,7 +29439,7 @@ I18n.translations["fi"] = {
       "mm": "%d min",
       "h": "1t",
       "hh": "%dt",
-      "d": "1p",
+      "d": "1 pv",
       "dd": "%dp",
       "M": "1kk",
       "MM": "%dk",
@@ -29391,7 +29550,7 @@ I18n.translations["fi"] = {
   "observation_fields": "Havainnointikentät",
   "observation_requirements": "Havaintojen vaatimukset",
   "observation_without_media": "Havainto ilman mediaa",
-  "observations": "Havaintoa",
+  "observations": "Havainnot",
   "observations_": "havainnot",
   "observations_by_category": "Havainnot luokittain",
   "observations_in_this_project_must": "Tässä projektissa olevien havaintojen on täytettävä seuraavat kriteerit",
@@ -29455,6 +29614,8 @@ I18n.translations["fi"] = {
   "photo_licensing": "Kuvien lisensointi",
   "photos_chosen_for_this_taxon": "Tälle taksonille valitut kuvat",
   "photos_from": "Kuvat sivustolta",
+  "photos_locked": "Kuvat lukittu",
+  "photos_locked_desc": "Vain henkilökunta voi muuttaa tämän taksonin oletuskuvia",
   "photos_of_taxon_html": "Taksonin %{taxon} kuvat",
   "photos_or_sounds": "Kuvia tai ääniä",
   "pin_verb": "Kiinnitä",
@@ -29566,6 +29727,7 @@ I18n.translations["fi"] = {
   },
   "placeholder": "Väliaikainen nimi",
   "places_added_by_members_of_the_community": "Yhteisön jäsenien lisäämät paikat",
+  "places_maintained_by_site_admins": "Paikat, joita sivuston ylläpitäjät pitävät yllä",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrikka",
@@ -29990,7 +30152,7 @@ I18n.translations["fi"] = {
   "some_observations_failed_to_save": "Joidenkin havaintojen tallentaminen epäonnistui",
   "some_other_reason": "Jokin muu syy jonka voit selittää alla.",
   "some_rights_reserved": "osa oikeuksista pidätetään",
-  "something": "Jotain",
+  "something": "Jokin",
   "somewhere_on_earth": "jossakin maapallolla",
   "sort_by": "Lajitteluperuste",
   "sounds": {
@@ -30213,6 +30375,7 @@ I18n.translations["fi"] = {
     "projects": {
       "collection": "Kokoelma",
       "edit": {
+        "admins_must_be_existing_members": "Vain projektin jäsenistä voidaan tehdä ylläpitäjiä.",
         "change_owner_alert": "Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?\n",
         "make_owner": "Tee käyttäjästä omistaja"
       },
@@ -30378,6 +30541,7 @@ I18n.translations["fi"] = {
   "wanted": "Haluttu",
   "website": "Verkkosivusto",
   "week_of_date": "Päivän %{date} viikko",
+  "were_pretty_sure_this_is_in_the_rank": "Olemme melko varmoja, että se on osa %{rank}a",
   "whats_this?": "Mikä tämä on?",
   "white": "valkoinen",
   "who_can_see_the_coordinates": "Kuka voi nähdä koordinaatit",
@@ -30726,16 +30890,16 @@ I18n.translations["fr"] = {
   "add_alive_or_dead_dead_annotation": "Ajouter l'annotation \"Vivant ou Mort : Mort\"",
   "add_an_identification": "Ajouter une identification",
   "add_annotations_for_x": "Ajouter des annotations pour « %{x} »",
-  "add_edit_flags": "Ajouter / éditer les signalements",
+  "add_edit_flags": "Ajouter / modifier les signalements",
   "add_id": "Ajouter une identification",
-  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : Adulte\"",
-  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : Oeuf\"",
-  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : Larve\"",
-  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : Pupe\"",
+  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : adulte\"",
+  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : oeuf\"",
+  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : larve\"",
+  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : pupe\"",
   "add_link": "Ajouter un lien",
-  "add_one_now": "En ajouter une maintenant",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie de plante : Floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie de plante : Fruits »",
+  "add_one_now": "En ajouter une",
+  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie végétale : floraison »",
+  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie végétale : fruits»",
   "add_sex_female_annotation": "Ajouter l'annotation \"Sexe: femelle\"",
   "add_sex_male_annotation": "Ajouter l'annotation \"Sexe: mâle\"",
   "add_tag": "Ajouter une balise",
@@ -30745,16 +30909,16 @@ I18n.translations["fr"] = {
   "add_to_project": "Ajouter au projet",
   "added": "Ajouté",
   "added!": "Ajouté !",
-  "added_as_a_part_of_a_taxon_change_html": "Ajouté dans le cadre d'un changement de taxon\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
-  "added_as_a_part_of_a_taxon_merge_html": "Ajouté dans le cadre d'une fusion de taxon\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
-  "added_as_a_part_of_a_taxon_split_html": "Ajouté dans le cadre d'une scission de taxon\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
-  "added_as_a_part_of_a_taxon_swap_html": "Ajouté dans le cadre d'un échange de taxons\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\"></a>\n",
+  "added_as_a_part_of_a_taxon_change_html": "Ajouté dans le cadre d'un \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">changement de taxon</a>\n",
+  "added_as_a_part_of_a_taxon_merge_html": "Ajouté dans le cadre d'une \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">fusion de taxon</a>\n",
+  "added_as_a_part_of_a_taxon_split_html": "Ajouté dans le cadre d'une \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">scission de taxon</a>\n",
+  "added_as_a_part_of_a_taxon_swap_html": "Ajouté dans le cadre d'un \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">échange de taxons</a>\n",
   "added_by": "Ajouté par",
   "added_on_datetime": "Ajouté le %{datetime}",
   "adjust_brightness": "Ajuster la luminosité",
   "admin_s": "Administrateur(s)",
   "agree_": "Accepter",
-  "agree_with_current_taxon": "Accord avec le taxon actuel",
+  "agree_with_current_taxon": "D'accord avec le taxon actuel",
   "aka": "alias",
   "all": "Tous",
   "all_flags_must_be_resolved": "Tous les signalements doivent être résolus",
@@ -30872,10 +31036,10 @@ I18n.translations["fr"] = {
   },
   "all_taxa_": "Tous les taxons",
   "allow_curator_access": "Autoriser l’accès au responsable",
-  "allow_project_curators_to_view_your_private_coordinates": "Autoriser les responsables du projet à voir vos coordonnées masquées",
+  "allow_project_curators_to_view_your_private_coordinates": "Autoriser les responsables de projets à voir vos coordonnées géographiques masquées",
   "amphibians": "amphibiens",
   "and": "et",
-  "android": "Androïde",
+  "android": "Android",
   "animals": "Animaux",
   "annotation": "Annotation",
   "annotations": "Annotations",
@@ -30893,16 +31057,16 @@ I18n.translations["fr"] = {
   "atom": "Atom",
   "attention": "Attention",
   "attribute": "Attribut",
-  "back_to_suggestions": "Retour aux propositions",
+  "back_to_suggestions": "Retourner aux propositions",
   "back_to_x": "Retourner à %{noun}",
-  "based_on_the_evidence_can_id_be_improved": "D’après les preuves, le taxon de communauté peut-il être encore confirmé ou amélioré ?\n",
-  "be_the_first_to_fave_this_observation": "Soyez le premier à mettre cette observation en favori !",
+  "based_on_the_evidence_can_id_be_improved": "D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?\n",
+  "be_the_first_to_fave_this_observation": "Soyez le premier à ajouter cette observation comme favori !",
   "birds": "oiseaux",
   "black": "noir",
   "blue": "bleu",
   "blue_butterfly_etc": "bleu, papillon, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
-  "bounding_box": "Boîte englobante",
+  "bounding_box": "Zone surlignée",
   "brown": "brun",
   "browse": "Explorer",
   "by_user": "Par %{user}",
@@ -30914,20 +31078,20 @@ I18n.translations["fr"] = {
   "casual": "occasionnel",
   "casual_": "Occasionnel",
   "categories": "Catégories",
-  "cc_0_description": "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous accorder quelque crédit. C’est la plus accommodante des licences offertes. Recommandée pour une diffusion maximale et l’utilisation de matériels sous licence.",
+  "cc_0_description": "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous mentionner. C’est la licence la plus pratique parmi celles qui nous sont offertes. Recommandée pour une diffusion maximale et l’utilisation de données sous licence.",
   "cc_0_name": "Pas de droit d’auteur (CC0)",
-  "cc_by_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit pour la création initiale.",
+  "cc_by_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant qu’ils vous mentionnent comme auteur de la version initiale.",
   "cc_by_name": "Attribution",
-  "cc_by_nc_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version à des fins non\ncommerciales et, bien que leur nouvelle œuvre doit souligner votre\ncontribution et servir à des fins non commerciales, elle n’est pas tenue de\nsatisfaire aux mêmes conditions de licence.",
-  "cc_by_nc_name": "Attribution–Non commercial",
-  "cc_by_nc_nd_description": "Cette licence est la plus restrictive des six licences principales. Elle\npermet aux autres de télécharger vos travaux et de les échanger, tant et\naussi longtemps qu’ils vous en donnent le crédit, mais ils ne peuvent les\nmodifier en aucune façon ni les utiliser à des fins commerciales.",
-  "cc_by_nc_nd_name": "Attribution-Non commercial-Pas de modifications",
-  "cc_by_nc_sa_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version, à des fins non\ncommerciales, tant qu’ils vous en donnent\nle crédit et que leur nouvelle œuvre respecte les mêmes conditions de licence.",
-  "cc_by_nc_sa_name": "Attribution-Non commercial-Partage des conditions",
-  "cc_by_nd_description": "Cette licence permet la distribution de l’œuvre, à des fins commerciales ou\nnon, tant qu’elle demeure inchangée et complète et que le crédit vous soit\naccordé.",
+  "cc_by_nc_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version à des fins non commerciales et, bien que leur travail doive souligner votre contribution et être utilisée à des fins non commerciales, elle n’est pas tenue de satisfaire aux mêmes conditions de licence.",
+  "cc_by_nc_name": "Attribution–Non commerciale",
+  "cc_by_nc_nd_description": "Cette licence est la plus restrictive des six licences principales. Elle permet aux autres de télécharger vos travaux et de les échanger, tant qu’ils vous mentionnent, mais ils ne peuvent en aucune façon les modifier ni les utiliser à des fins commerciales.",
+  "cc_by_nc_nd_name": "Attribution-Non commerciale-Pas de modifications",
+  "cc_by_nc_sa_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, à des fins non commerciales, tant qu’ils vous mentionnent et que les fruits de leur travail respectent les mêmes conditions de licence.",
+  "cc_by_nc_sa_name": "Attribution-Non commercial-Publication sous même license",
+  "cc_by_nd_description": "Cette licence permet la distribution de l’œuvre, à des fins commerciales ou\nnon, tant qu’elle demeure inchangée et complète et que vous êtes mentionné.",
   "cc_by_nd_name": "Attribution-Pas de modifications",
-  "cc_by_sa_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail,\nd’y ajouter des éléments et d’en créer une nouvelle version, même à des\nfins commerciales, tant et aussi longtemps qu’ils vous donnent le crédit\npour la création initiale et que leur nouvelle œuvre respecte les mêmes\nconditions de licence. Tous les nouveaux travaux fondés sur le vôtre seront\ninscrits sous la même licence; ainsi, tous les produits dérivés pourront\naussi être utilisés à des fins commerciales.",
-  "cc_by_sa_name": "Attribution-Partage des conditions",
+  "cc_by_sa_description": "Cette licence permet aux autres de distribuer et d’améliorer votre travail, d’y ajouter des éléments et d’en créer une nouvelle version, même à des fins commerciales, tant qu’ils vous donnent le crédit\npour l'oeuvre originale et que leur nouvelle œuvre respecte les mêmes conditions de licence. Tous les nouveaux travaux fondés sur le vôtre seront publiés sous la même licence; et donc, tous les travaux dérivés pourront aussi être utilisés à des fins commerciales.",
+  "cc_by_sa_name": "Attribution-Partage sous même license",
   "change_types": {
     "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa} ont été fusionnés dans %{output_taxon}",
     "input_taxa_will_be_merged_into_output_taxon_html": "%{input_taxa} sera fusionné dans %{output_taxon}",
@@ -31012,11 +31176,11 @@ I18n.translations["fr"] = {
     "public_domain": "domaine public",
     "copyright": "droit d’auteur",
     "no_copyright": "pas de droit d'auteur (CC0)",
-    "attribution_noncommercial_sharealike_license": "Licence d’attribution non commerciale pour échange sans modification",
+    "attribution_noncommercial_sharealike_license": "Licence d’attribution non commerciale pour publication sous même license",
     "attribution_noncommercial_license": "Licence d’attribution non commerciale",
     "attribution_noncommercial_noderivs_license": "Licence d’attribution non commerciale – Pas de modifications",
     "attribution_license": "Licence d’attribution",
-    "attribution_sharealike_license": "Licence d’attribution – Partage des conditions",
+    "attribution_sharealike_license": "Licence d’attribution – Publication sous même license",
     "attribution_noderivs_license": "Licence d’attribution – Pas de modifications",
     "gnu_free_documentation_license": "Licence Documentation libre GNU"
   },
@@ -31183,6 +31347,7 @@ I18n.translations["fr"] = {
   "edit_atlas": "Modifier un atlas",
   "edit_license": "Modifier la licence",
   "edit_multiple_dates": "Modifier des dates multiples",
+  "edit_multiple_descriptions": "Modifier des descriptions multiples",
   "edit_multiple_locations": "Modifier des emplacements multiples",
   "edit_multiple_species": "Modifier plusieurs espèces",
   "edit_photos": "Modifier les photos",
@@ -31583,7 +31748,7 @@ I18n.translations["fr"] = {
       "place_boundary": "Frontière du lieu",
       "checklist_places": "Lieux de la liste de contrôle",
       "checklist_places_description": "Lieux où ce taxon a été répertorié",
-      "range": "Plage"
+      "range": "Aire de répartition"
     }
   },
   "mark_all_as_reviewed": "Marquer l’ensemble comme relu",
@@ -31634,6 +31799,7 @@ I18n.translations["fr"] = {
   "most_recent_observation_by_date_observed": "Observation vérifiable la plus récente observée par date",
   "most_species": "Par nombre d'espèces",
   "multiple": "multiple",
+  "multiple_select_option": "-- multiple --",
   "must_be_observed_after": "doit être observé après %{operand}\n",
   "must_be_observed_before": "doit être observé avant %{operand}\n",
   "name": "Nom",
@@ -31699,7 +31865,8 @@ I18n.translations["fr"] = {
       "separator": ",",
       "si": {
         "giga": "%{number}G",
-        "kilo": "%{number}k"
+        "kilo": "%{number}k",
+        "mega": "%{number}M"
       }
     }
   },
@@ -31783,7 +31950,7 @@ I18n.translations["fr"] = {
   "photos_chosen_for_this_taxon": "Photos choisies pour ce taxon",
   "photos_from": "Photos de",
   "photos_locked": "Photos verrouillées",
-  "photos_locked_desc": "Seuls les membres de l'équipe iNaturalist peuvent modifier les photos par défaut pour ce taxon",
+  "photos_locked_desc": "Seuls les membres de l'équipe iNaturalist peuvent modifier les photos officielles de ce taxon",
   "photos_of_taxon_html": "Photos de %{taxon}",
   "photos_or_sounds": "Photos ou sons",
   "pin_verb": "Épingler",
@@ -31801,16 +31968,24 @@ I18n.translations["fr"] = {
       "building": "bâtiment",
       "Canton": "Canton",
       "canton": "Canton",
+      "City Building": "Bâtiment municipal",
+      "city building": "bâtiment municipal",
       "Colloquial": "Familier",
       "colloquial": "familier",
       "Commune": "Commune",
       "commune": "Commune",
+      "Constituency": "Circonscription",
+      "constituency": "circonscription",
       "Continent": "Continent",
       "continent": "continent",
       "Country": "Pays",
       "country": "pays",
       "County": "Comté",
       "county": "comté",
+      "Delegation": "Délégation",
+      "delegation": "délégation",
+      "Department_Segment": "Zone infra-départementale",
+      "department_segment": "zone infra-départementale",
       "District": "District",
       "district": "District",
       "Division": "Division",
@@ -31851,6 +32026,10 @@ I18n.translations["fr"] = {
       "open_space": "espace ouvert",
       "Parish": "Commune",
       "parish": "commune",
+      "Poblacion": "Population",
+      "poblacion": "population",
+      "Prefecture": "Préfecture",
+      "prefecture": "préfecture",
       "Prefecture_City": "Ville préfecture",
       "prefecture_city": "Ville préfecture",
       "Point_of_Interest": "Point d’intérêt",
@@ -31859,6 +32038,7 @@ I18n.translations["fr"] = {
       "postal_code": "code postal",
       "Province": "Province",
       "province": "province",
+      "Regency": "Régence",
       "Region": "Région",
       "region": "région",
       "Republic": "République",
@@ -32602,6 +32782,7 @@ I18n.translations["fr"] = {
     "projects": {
       "collection": "Collections",
       "edit": {
+        "admins_must_be_existing_members": "Les administrateurs doivent être des membres existants du projet.",
         "change_owner_alert": "Cela supprimera votre possibilité de supprimer ce projet ou d'en transférer à nouveau la propriété. Voulez-vous continuer ?\n",
         "make_owner": "Rendre Propriétaire"
       },
@@ -32632,7 +32813,7 @@ I18n.translations["fr"] = {
         "leaderboards_among_individuals": "Classements entre <strong>individus</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classements entre <strong>projets</strong>\n",
         "multiple_project_administrators": "Administrateurs multiples du projet",
-        "name_placeholder": "Oiseaux de Chicago, étranges libellules, etc.",
+        "name_placeholder": "Oiseaux de Chicago, libellules magnifiques, etc.",
         "no_need_to_rely_on_manual_addition": "Pas d’ajout manuel d’observations\n",
         "note_about_unselected_filters": "Remarque : Si vous ne sélectionnez pas de taxons, lieux ou utilisateurs, tous seront inclus par défaut.\n",
         "note_these_users_will_be_able_to_edit": "Note : ces utilisateurs pourront modifier TOUS les détails du projet, y compris les administrateurs.\n",
@@ -32658,6 +32839,7 @@ I18n.translations["fr"] = {
         "start_and_end_times_for_bioblitzes": "Heures de début et de fin (pour les événements de type bioblitz)",
         "umbrella_project_features": "Fonctionnalités du projet cadre:",
         "unique_url_for_outreach": "URL unique pour le dépassement",
+        "use_this_for_a_time_limited_event": "Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.\n",
         "use_this_link_to_create_html": "Utilisez à la place,  <a href=\"%{url}\">ce lien</a> pour créer un projet traditionnel.\n",
         "users_can_follow_your_project": "Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal",
         "visual_comparison_of_data_among": "Comparaison visuelle des données parmi les projets sous l'ombrelle",
@@ -32672,7 +32854,8 @@ I18n.translations["fr"] = {
         "are_you_sure_you_want_to_convert": "Êtes-vous sûr de vouloir convertir ce projet en projet collection ?\n",
         "click_here_to_convert_this_project": "Cliquer ici pour convertir ce projet en un projet Collection.\n",
         "make_sure_you_have_read_about_the_differences": "Assurez-vous d'avoir lu les différences dans notre <a href=\"%{url}\" target=\"_blank\">billet de blog au sujet des Projets collection</a>.\n",
-        "this_is_a_preview": "Ceci est un aperçu de la façon dont ce projet apparaîtra en tant que projet Collection.\n"
+        "this_is_a_preview": "Ceci est un aperçu de la façon dont ce projet apparaîtra en tant que projet Collection.\n",
+        "this_project_has_not_defined_requirements": "Ce projet n'a défini aucune exigence d'observation. Les projets doivent sélectionner un ou plusieurs\ntaxons (par ex. oiseaux, conifères), lieux (par exemple, Brésil, jaune), utilisateurs et/ou dates\npour commencer à afficher des observations.\n"
       },
       "tracks_multiple_projects": "suit de multiples projets",
       "umbrella": "cadre"
@@ -32709,14 +32892,18 @@ I18n.translations["fr"] = {
         "inaturalist_network": "Réseau iNaturalist",
         "inaturalist_network_desc": "Consultez la rétrospective de l'année des membres du réseau iNaturalist.\n",
         "include_usa": "NOUS inclure",
-        "new_species_desc_html": "Espèces ajoutées pour la première fois cette année.\nCliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.\nVous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur\ndans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre\nles espèces dont l'observation est vérifiable en fonction du mois où elles ont été téléversées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas\nde taxons de niveau supérieur ou inférieur, donc une observation identifiée comme\nMammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>\n<i>arctos</i> comptera seulement comme <i>Canis lupus</i>.\n",
+        "new_species_desc_html": "Espèces ajoutées pour la première fois cette année.\nCliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.\nVous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur\ndans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre\nles espèces dont l'observation est vérifiable en fonction du mois où elles ont été uploadées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas\nde taxons de niveau supérieur ou inférieur, donc une observation identifiée comme\nMammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>\n<i>arctos</i> comptera seulement comme <i>Canis lupus</i>.\n",
         "obs_in_year": "Obs en %{year}",
         "observation_streaks": "Séries d’observation",
         "observation_streaks_color_desc": "La couleur représente le nombre de jours sur une échelle logarithmique :\n",
+        "observation_streaks_desc": "Une série d'observations est une période de temps où quelqu'un à enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ou étaient déjà en cours lorsque nous avons généré ces statistiques.\n",
         "percent_growth_in_year": "% de croissance en %{year}",
         "percent_of_total_growth": "% de croissance totale",
+        "publications_desc_short_html": "Cliquez sur les graphiques pour plus d'informations sur ce que les chiffres\net les couleurs signifient. Les données d'impact et les graphiques sont fournis par\n<a href=\"https://www.altmetric.com\">Altmetric</a>. L'information\nsur l'utilisation des données est fournie par nos amis de \n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n",
         "stats_generated_datetime": "Statistiques générées le %{datetime}",
-        "sunburst_desc_html": "Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base\nde la hiérarchie est au centre, en commençant par « Vie » et en se terminant\npar les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle\nau nombre d’observations de ce taxon, et les couleurs correspondent\nà peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,\norange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous\nvoyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.\n<strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et\nses enfants autour, ou <strong>cliquez sur le centre pour remonter dans\nla hiérarchie</strong>.\n",
+        "store_prompt": "Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat\n!\n",
+        "sunburst_desc_html": "Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base\nde la hiérarchie est au centre, en commençant par «Etre vivant» et se termine\npar les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle\nau nombre d’observations de ce taxon, et les couleurs correspondent\nà peu près à nos couleurs d'icônes de taxon habituelles (vert pour les plantes,\norange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous\nvoyez beaucoup de vert, cela veut dire que vous avez observé beaucoup de plantes.\n<strong>Cliquez sur un des arcs pour placer ce taxon au centre</strong> et\nses enfants autour, ou <strong>cliquez sur le centre pour remonter dans\nla hiérarchie</strong>.\n",
+        "translators_desc": "Saviez-vous que iNaturalist a été traduit dans %{x_languages} presque entièrement par\n%{x_people} ? Voici tous les extraordinaires traducteurs qui\nont ajouté des traductions cette année, ainsi que le nombre de mots\nqu'ils ont traduits pour le %{website_link_tag}site%{link_tag_end}, nos applications iNaturalist\n%{iphone_link_tag}iOS%{link_tag_end} et\n%{android_link_tag}Android%{link_tag_end} ainsi que\n%{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir\ntoutes les personnes qui ont contribué à des traductions dans toutes les langues,\ny compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code\n%{view_all_web_link_tag}web%{link_tag_end} et\n%{view_all_mobile_link_tag}mobiles%{link_tag_end}.\n",
         "translators_desc_for_site": "Saviez-vous que %{site_name} a été traduit presque entièrement par\n%{x_people} personnes ? Voici tous les extraordinaires traducteurs qui\nont ajouté des traductions cette année, ainsi que le nombre de mots\nqu'ils ont traduits pour le site\n%{website_link_tag}%{link_tag_end}, les applications iNaturalist\n%{iphone_link_tag}iOS%{link_tag_end} et\n%{android_link_tag}Android%{link_tag_end} et\n%{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir\ntoutes les personnes qui ont contribué à des traductions dans toutes les langues,\ny compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code\n%{view_all_web_link_tag}web%{link_tag_end} et\n%{view_all_mobile_link_tag}mobiles%{link_tag_end}.\n",
         "translators_prompt": "Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.\n",
         "translators_title": "Traducteurs"
@@ -32736,6 +32923,8 @@ I18n.translations["fr"] = {
         "frequency": {
           "research": "Niveau de recherche",
           "verifiable": "Vérifiable",
+          "Alive or Dead=Alive": "Vivant",
+          "Alive or Dead=Dead": "Mort",
           "Plant Phenology=Budding": "Bourgeonnement",
           "Plant Phenology=Flower Budding": "Bourgeonnement floral",
           "Plant Phenology=Flowering": "Floraison",
@@ -32751,7 +32940,7 @@ I18n.translations["fr"] = {
           "unannotated": "Pas d'annotation"
         },
         "max_photos_desc": "Un taxon peut avoir seulement %{max} photos. Vous devrez enlever des photos\nexistantes pour en ajouter d’autres.\n",
-        "photo_chooser_modal_desc": "Faire glisser les photos d’ici vers la gauche, ou les faire glisser ici pour les réarranger.\n",
+        "photo_chooser_modal_desc": "Faire glisser les photos ici depuis la gauche, ou pour les réarranger.\n",
         "photo_chooser_modal_explanation": "À noter que la page du taxon affichera les photos de ce taxon\net de ses descendants. Les photos choisies pour ce\ntaxon seront cependant affichées en premier. La première photo sera\ncelle par défaut utilisée sur le site.\n",
         "trending_desc": "Taxons les plus observés lors du dernier mois",
         "trending_in_place_desc_html": "Taxons les plus observés dans le dernier mois à <a href=\"%{url}\">%{place}</a>",
@@ -35589,6 +35778,7 @@ I18n.translations["he"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "רשימות"
       }
     }
   },
@@ -35867,9 +36057,13 @@ I18n.translations["he"] = {
   "content_hidden_by_user_on_date_because_reason_html": "תוכן הוסתר על ידי %{user} בתאריך %{date} בגלל: \"%{reason}\"\n",
   "continue": "להמשיך",
   "controlled_term_definitions": {
+    "alive": "היצור חי ולא מראה סימנים של סכנת מוות מיידית",
     "cannot_be_determined": "לא ניתן לדעת מתצפית זו",
+    "dead": "היצור מת או מראה שימנים של מוות מיידי",
+    "flower_budding": "רואים ניצני פרחים אך סגורים",
     "flowering": "פרחים נראים, פתוחים, ועוד מחוברים לצמח",
-    "fruiting": "פירות נראים ועוד מחוברים לצמח"
+    "fruiting": "פירות נראים ועוד מחוברים לצמח",
+    "no_evidence_of_flowering": "המדיה לא נותנת מידע על מבנים מתרבים"
   },
   "controlled_term_labels": {
     "adult": "בוגר",
@@ -35880,12 +36074,14 @@ I18n.translations["he"] = {
     "dead": "מת",
     "egg": "ביצה",
     "female": "נקבה",
+    "flower_budding": "ניצן פרחים",
     "flowering": "פריחה",
     "fruiting": "יצירת פרי",
     "juvenile": "צעיר",
     "larva": "לרווה",
     "life_stage": "שלב חיים",
     "male": "זכר",
+    "no_evidence_of_flowering": "אין ראיות לפריחה",
     "nymph": "נימפה",
     "plant_phenology": "פנולוגיית צומח",
     "pupa": "גולם",
@@ -36080,6 +36276,7 @@ I18n.translations["he"] = {
   "edit_atlas": "ערוך אטלס",
   "edit_license": "עריכת רשיון",
   "edit_multiple_dates": "עריכת מספר תאריכים",
+  "edit_multiple_descriptions": "עריכת מספר תיאורים",
   "edit_multiple_locations": "עריכת מספר מיקומים",
   "edit_multiple_species": "עריכת מספר מינים",
   "edit_photos": "עריכת תמונות",
@@ -37634,6 +37831,197 @@ I18n.translations["he"] = {
   "zoom_out": "הקטן",
   "zoom_photo": "הגדל תמונה"
 };
+I18n.translations["hi"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "रवि",
+      "सोम",
+      "मंगल",
+      "बुध",
+      "गुरु",
+      "शुक्र",
+      "शनि"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "रविवार",
+      "सोमवार",
+      "मंगलवार",
+      "बुधवार",
+      "गुरुवार",
+      "शुक्रवार",
+      "शनिवार"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Mo",
+      "3": "Tu",
+      "4": "We",
+      "5": "Th",
+      "6": "Fr",
+      "7": "Sa"
+    },
+    "formats": {
+      "long": "%B %d, %Y"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "एक दिन",
+        "other": "%{count} दिन"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": ".",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "पूर्वाह्न",
+    "formats": {
+      "long": "%B %d, %Y %H:%M"
+    },
+    "pm": "अपराह्न"
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["hu"] = {
   "activerecord": {
     "attributes": {
@@ -38040,6 +38428,26 @@ I18n.translations["id"] = {
   "aka": "alias",
   "all": "Semua",
   "all_rank_added_to_the_database": {
+    "class": "Semua class dimasukkan ke database",
+    "epifamily": "Semua epifamily dimasukkan ke database",
+    "family": "Semua family dimasukkan ke database",
+    "genus": "Semua genus dimasukkan ke database",
+    "genushybrid": "Semua genushybrid dimasukkan ke database",
+    "infraclass": "Semua infraclass dimasukkan ke database",
+    "infraorder": "Semua infraorder dimasukkan ke database",
+    "order": "Semua order dimasukkan ke database",
+    "phylum": "Semua phylum dimasukkan ke database",
+    "subclass": "Semua subclass dimasukkan ke database",
+    "subfamily": "Semua subfamily dimasukkan ke database",
+    "subgenus": "Semua subgenus dimasukkan ke database",
+    "suborder": "Semua suborder dimasukkan ke database",
+    "subphylum": "Semua subphylum dimasukkan ke database",
+    "subtribe": "Semua subtribe dimasukkan ke database",
+    "superclass": "Semua superclass dimasukkan ke database",
+    "superfamily": "Semua superfamily dimasukkan ke database",
+    "superorder": "Semua superorder dimasukkan ke database",
+    "supertribe": "Semua supertribe dimasukkan ke database",
+    "tribe": "Semua tribe dimasukkan ke database"
   },
   "all_rights_reserved": "Hak cipta dilindungi undang-undang",
   "all_taxa": {
@@ -38066,10 +38474,15 @@ I18n.translations["id"] = {
     "reptiles": "reptil",
     "life": "kehidupan"
   },
+  "all_taxa_": "Semua Taksa",
+  "allow_curator_access": "Izinkan akses kurator",
   "allow_project_curators_to_view_your_private_coordinates": "Memungkinkan kurator proyek untuk melihat koordinat pribadi Anda",
   "amphibians": "Amfibi",
   "and": "dan",
+  "android": "Android",
   "animals": "Binatang",
+  "annotation": "Anotasi",
+  "annotations": "Anotasi",
   "any": "semua",
   "arachnids": "arakhnida",
   "are_you_sure?": "Apakah Anda yakin?",
@@ -38123,8 +38536,16 @@ I18n.translations["id"] = {
   "controlled_term_definitions": {
   },
   "controlled_term_labels": {
+    "adult": "Dewasa",
+    "alive": "Hidup",
+    "cannot_be_determined": "Tidak Dapat Ditentukan",
+    "dead": "Mati",
+    "egg": "Telur",
     "female": "Perempuan",
+    "fruiting": "Berbuah",
     "male": "Laki-laki",
+    "nymph": "Nimfa",
+    "plant_phenology": "Fenologi Tumbuhan",
     "sex": "Jenis Kelamin"
   },
   "copyright": {
@@ -38260,6 +38681,7 @@ I18n.translations["id"] = {
   "edit_atlas": "Mengedit Atlas",
   "edit_license": "Mengubah lisensi",
   "edit_multiple_dates": "Mengedit beberapa tanggal",
+  "edit_multiple_descriptions": "Mengedit beberapa deskripsi",
   "edit_multiple_locations": "Mengedit beberapa lokasi",
   "edit_multiple_species": "Mengedit beberapa spesies",
   "edit_photos": "Merubah foto",
@@ -38511,6 +38933,7 @@ I18n.translations["id"] = {
   "no_observations": "tidak ada pengamatan",
   "no_observations_from_this_place_yet": "Belum ada pengamatan dari tempat ini.",
   "no_observations_yet": "Belum ada pengamatan",
+  "no_photo": "Tidak ada foto",
   "no_photos": "Tidak ada foto",
   "no_places_available": "Tidak ada tempat yang tersedia",
   "no_range_data_available": "Tidak ada jarak data yang tersedia",
@@ -38670,12 +39093,18 @@ I18n.translations["id"] = {
     "new_zealand": "Selandia Baru",
     "north_africa": "Afrika Utara",
     "north_america": "Amerika Utara",
+    "north_korea": "Korea Utara",
+    "norway": "Norwegia",
     "palestine": "Palestina",
+    "papua_new_guinea": "Papua Nugini",
     "poland": "Polandia",
     "republic_of_congo": "Kongo Republik",
     "sao_tome_and_principe": "Sao Tome dan Principe",
     "saudi_arabia": "Arab Saudi",
+    "solomon_islands": "Solomon, Kepulauan",
+    "south_africa": "Afrika Selatan",
     "south_america": "Amerika Selatan",
+    "south_korea": "Korea Selatan",
     "spain": "Spanyol",
     "sweden": "Swedia",
     "syria": "Suriah",
@@ -38782,6 +39211,7 @@ I18n.translations["id"] = {
   "start_typing_taxon_name": "Mulai ketik nama takson",
   "stats": "Negara Bagian",
   "submitted": "dimasukkan",
+  "suggest_an_identification": "sarankan identifikasi",
   "table": "Tabel",
   "tagging": "Menandai...",
   "tags": "Tanda",
@@ -38823,6 +39253,7 @@ I18n.translations["id"] = {
     "errors": {
     },
     "tooltips": {
+      "add": "Tambah pengamatan"
     }
   },
   "user": "Pengguna",
@@ -38858,7 +39289,9 @@ I18n.translations["id"] = {
       },
       "new": {
         "errors": {
-        }
+        },
+        "project_details": "Rincian proyek",
+        "project_summary": "Ringkasan Proyek"
       },
       "show": {
       }
@@ -38874,11 +39307,19 @@ I18n.translations["id"] = {
       "index": {
       },
       "year": {
+        "translators_title": "Penerjemah"
       }
     },
     "taxa": {
       "show": {
         "frequency": {
+          "Alive or Dead=Dead": "Mati",
+          "Plant Phenology=Flowering": "Berbunga",
+          "Plant Phenology=Fruiting": "Berbuah",
+          "Life Stage=egg": "Telur",
+          "Life Stage=larva": "Larva",
+          "Life Stage=nymph": "Nimfa",
+          "Life Stage=adult": "Dewasa"
         }
       }
     },
@@ -40918,6 +41359,7 @@ I18n.translations["it"] = {
     "projects": {
       "collection": "Collezione",
       "edit": {
+        "admins_must_be_existing_members": "Gli amministratori devono essere membri esistenti del progetto.",
         "change_owner_alert": "Questo rimuoverà la tua possibilità di eliminare questo progetto o di trasferire nuovamente la proprietà. Vuoi procedere?\n",
         "make_owner": "Rendi Proprietario"
       },
@@ -41392,7 +41834,7 @@ I18n.translations["ja"] = {
   "a_member_of_taxon_html": "%{taxon} のメンバー",
   "about": "詳細",
   "about_charts": "図表について",
-  "about_community_taxa": "コミュニティー分類群について",
+  "about_community_taxa": "コミュニティ分類群について",
   "about_complete_taxa": "完全な分類群とは",
   "about_conservation_status": "保全状況について",
   "about_establishment_means": "定着方法について",
@@ -41420,7 +41862,7 @@ I18n.translations["ja"] = {
   "add_alive_or_dead_dead_annotation": "\"生死：死んでいる\"の注釈を追加する",
   "add_an_identification": "同定を追加",
   "add_annotations_for_x": "「%{x}」の注釈を追加",
-  "add_edit_flags": "フラッグの追加・編集",
+  "add_edit_flags": "フラグの追加・編集",
   "add_id": "同定を追加",
   "add_life_stage_adult_annotation": "“ライフステージ: 成体・成虫”の注釈を追加する",
   "add_life_stage_egg_annotation": "“ライフステージ: 卵”の注釈を追加する",
@@ -41428,8 +41870,8 @@ I18n.translations["ja"] = {
   "add_life_stage_pupa_annotation": "“ライフステージ: 蛹”の注釈を追加する",
   "add_link": "リンクを追加",
   "add_one_now": "今すぐ追加",
-  "add_plant_phenology_flowering_annotation": "\"植物季節学：開花\"の注釈を追加する",
-  "add_plant_phenology_fruiting_annotation": "\"植物季節学：結実\"の注釈を追加する",
+  "add_plant_phenology_flowering_annotation": "\"植物季節学：開花中（花あり）\"の注釈を追加する",
+  "add_plant_phenology_fruiting_annotation": "\"植物季節学：果実あり\"の注釈を追加する",
   "add_sex_female_annotation": "“性別: メス”の注釈を追加する",
   "add_sex_male_annotation": "“性別: オス”の注釈を追加する",
   "add_tag": "新規タグ",
@@ -41448,7 +41890,7 @@ I18n.translations["ja"] = {
   "adjust_brightness": "明るさを調節",
   "admin_s": "管理者",
   "agree_": "同意",
-  "agree_with_current_taxon": "現在の分類群に賛成",
+  "agree_with_current_taxon": "現在の分類群に賛成する",
   "aka": "別名",
   "all": "すべて",
   "all_flags_must_be_resolved": "すべてのフラグを解決する必要があります",
@@ -41474,12 +41916,12 @@ I18n.translations["ja"] = {
     "subphylum": "データベースに追加した亜門の合計",
     "subsection": "データベースに追加した亜節の合計",
     "subspecies": "データベースに追加した亜種の合計",
-    "subtribe": "データベースに追加した亜族の合計",
+    "subtribe": "データベースに追加した亜族/亜連の合計",
     "superclass": "データベースに追加した上綱の合計",
     "superfamily": "データベースに追加した上科の合計",
     "superorder": "データベースに追加した上目の合計",
-    "supertribe": "データベースに追加した上族の合計",
-    "tribe": "データベースに追加した族（連）の合計",
+    "supertribe": "データベースに追加した上族/上連の合計",
+    "tribe": "データベースに追加した族/連の合計",
     "variety": "データベースに追加した変種の合計"
   },
   "all_rights_reserved": "著作権を全て留保する",
@@ -41570,11 +42012,12 @@ I18n.translations["ja"] = {
   "are_you_sure_you_want_to_remove_this_observation_from_project": "%{project} からこの観測記録を削除して本当によろしいですか？\n",
   "asc": "昇順",
   "ascending": "昇順",
+  "atom": "Atom",
   "attention": "注意",
   "attribute": "属性",
   "back_to_suggestions": "提案に戻る",
   "back_to_x": "%{noun}に戻る",
-  "based_on_the_evidence_can_id_be_improved": "証拠に基づいてコミュニティー分類を確定しますか、改善しますか？\n",
+  "based_on_the_evidence_can_id_be_improved": "証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？\n",
   "be_the_first_to_fave_this_observation": "この観察記録の最初のお気に入り登録者になろう！",
   "birds": "鳥類",
   "black": "黒",
@@ -41629,9 +42072,9 @@ I18n.translations["ja"] = {
   "comment_": "コメント",
   "commercial_solicitation": "セールス、どこにも繋がらないリンクなど。",
   "community_curated": "コミュニティ管理",
-  "community_id_at_genus_level_or_lower": "層レベル以下のコミュニティー分類の有無",
+  "community_id_at_genus_level_or_lower": "層レベル以下のコミュニティ分類群の有無",
   "community_id_at_species_level_or_lower": "種以下の階級によるコミニュティ分類",
-  "community_id_heading": "コミュニティー分類",
+  "community_id_heading": "コミュニティ分類群",
   "compare": "比較",
   "comprehensive_list": "包括リスト",
   "computer_vision_suggestion": "コンピュータビジョンの提案",
@@ -41654,7 +42097,7 @@ I18n.translations["ja"] = {
     "teneral": "羽化したばかりで、まだ成熟していない成体・成虫"
   },
   "controlled_term_labels": {
-    "adult": "成虫",
+    "adult": "成体・成虫",
     "alive": "生存",
     "alive_or_dead": "生死",
     "budding": "出芽",
@@ -41663,13 +42106,13 @@ I18n.translations["ja"] = {
     "egg": "卵",
     "female": "メス",
     "flower_budding": "つぼみ",
-    "flowering": "開花",
-    "fruiting": "結実",
+    "flowering": "開花中",
+    "fruiting": "果実あり",
     "juvenile": "幼虫・幼体 (Juvenile)",
     "larva": "幼虫・幼生 (Larva)",
     "life_stage": "ライフステージ",
     "male": "オス",
-    "no_evidence_of_flowering": "開花の証拠なし",
+    "no_evidence_of_flowering": "開花していない（花なし）",
     "nymph": "幼虫・幼体・幼生・若虫 (Nymph)",
     "plant_phenology": "植物季節学",
     "pupa": "蛹",
@@ -41780,7 +42223,7 @@ I18n.translations["ja"] = {
     ]
   },
   "date_": "日付",
-  "date_added": "観察記録を追加した日付",
+  "date_added": "投稿日",
   "date_format": {
     "month": {
       "january": "1月",
@@ -41849,6 +42292,7 @@ I18n.translations["ja"] = {
   "edit_atlas": "地図を編集",
   "edit_license": "ライセンスを編集",
   "edit_multiple_dates": "複数の日付を編集",
+  "edit_multiple_descriptions": "複数の説明欄を編集",
   "edit_multiple_locations": "複数の場所を編集",
   "edit_multiple_species": "複数の種を編集",
   "edit_photos": "写真を編集",
@@ -41971,10 +42415,10 @@ I18n.translations["ja"] = {
     "inflections": {
     }
   },
-  "i_dont_know_but_i_am_sure_this_is_taxon": "私にはわかりませんが、これは%{taxon} だと思います",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "私にはわかりません。しかし%{taxon} だと思います。",
   "id_categories": {
     "tooltips": {
-      "improving": "この分類群の最初の提案は、後にコミュニティが同意したものです。これがコミュニティの分類群を洗練させるのに役立ちました。\n",
+      "improving": "この分類群の最初の提案は、後にコミュニティが同意したものです。この提案がコミュニティ分類群を洗練させるのに役立ちました。\n",
       "leading": "分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。\n",
       "maverick": "分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。\n"
     }
@@ -41982,11 +42426,11 @@ I18n.translations["ja"] = {
   "id_withdrawn": "同定の撤回",
   "identifications": "同定",
   "identifiers": "ID判定者",
-  "identify": "ID判定",
+  "identify": "同定する",
   "identify_observations": "観察記録をID判定",
   "identify_title": "ID判定",
   "ids_made_for_others": "他のユーザーへ提案したID",
-  "if_for_some_reason_a_user_doesnt_agree": "何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ研究用として使用可能になります。\n",
+  "if_for_some_reason_a_user_doesnt_agree": "何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ、研究用として使用可能になります。\n",
   "ignore_and_continue": "無視して続行",
   "import": "インポート",
   "improving": "改善",
@@ -42008,7 +42452,7 @@ I18n.translations["ja"] = {
   "introduced": "外来種",
   "introduced_in_place": "%{place}の外来種",
   "iphone": "iPhone",
-  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "この観察記録にはこれが%{taxon} だと同定するのに十分な情報がありますか？",
+  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "この観察記録には%{taxon} であると同定するのに十分な情報がありますか？",
   "it_can_now_be_used_for_research": "研究に利用できるようになり、他のサイトでも紹介されるようになります。",
   "item_flagged_notice_html": "これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、サイトの管理者のみに表示されます。間違いだと思われる場合は<a href=\"mailto:%{help_email}\" class=\"contact\">ご連絡ください</a>。<a href=\"%{manage_flags_path}\">フラグの管理</a>\n",
   "join": "参加",
@@ -42171,9 +42615,9 @@ I18n.translations["ja"] = {
       "range": "分布・生息区域"
     }
   },
-  "mark_all_as_reviewed": "このページすべてを既読にする",
+  "mark_all_as_reviewed": "このページすべてを確認済みにする",
   "mark_all_as_unreviewed": "すべてを未読にする",
-  "mark_as_reviewed": "既読にする",
+  "mark_as_reviewed": "確認済みにする",
   "media": "メディア",
   "media_type": "メディアの種類",
   "members": "メンバー一覧",
@@ -42200,7 +42644,7 @@ I18n.translations["ja"] = {
   },
   "monthly_supporter_since_date_html": "<a href=\"%{url}\">マンスリーサポーター</a>: %{date} から\n",
   "months": "月",
-  "more": "続き",
+  "more": "その他",
   "more_filters": "その他のフィルター",
   "more_import_options": "その他のインポート設定",
   "more_info": "詳細情報",
@@ -42220,7 +42664,7 @@ I18n.translations["ja"] = {
   "name": "名称",
   "name_or_slug": "名前またはURL（my-projectなど）",
   "names": "名称",
-  "native": "原生",
+  "native": "在来種",
   "native_to_place": "%{place}の在来種",
   "near_threatened": "近危急種/準絶滅危惧種",
   "nearby_observations_": "近隣の観察記録",
@@ -42244,7 +42688,7 @@ I18n.translations["ja"] = {
   "next_photo": "次の写真",
   "next_tab": "次のタブ",
   "no": "いいえ",
-  "no_but_it_is_a_member_of_taxon": "同定に必要な情報がありません。しかし %{taxon} です。",
+  "no_but_it_is_a_member_of_taxon": "同定に十分な情報が無いか、 %{taxon} の別の分類群です。",
   "no_identifications": "同定なし",
   "no_ids_have_been_suggested_yet": "同定はまだ提案されていません",
   "no_interaction_data_available": "相互作用データはありません",
@@ -42463,7 +42907,7 @@ I18n.translations["ja"] = {
     }
   },
   "placeholder": "プレースホルダー",
-  "places_added_by_members_of_the_community": "コミュニティーメンバーによって追加された場所",
+  "places_added_by_members_of_the_community": "コミュニティのメンバーによって追加された場所",
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
   "places_name": {
     "afghanistan": "アフガニスタン",
@@ -42756,8 +43200,8 @@ I18n.translations["ja"] = {
   "project_requirements": "プロジェクトの必要条件",
   "project_start_time_datetime": "開始時刻：%{datetime}",
   "projects": "プロジェクト",
-  "proposed_taxa_that_contradict_the_community_id": "コミュニティー鑑定を否定する種分類",
-  "proposed_taxa_that_support_the_community_id": "コミュニティIDに対応した分類群の提案",
+  "proposed_taxa_that_contradict_the_community_id": "コミュニティ同定を否定する分類群",
+  "proposed_taxa_that_support_the_community_id": "コミュニティ同定に対応した分類群の提案",
   "protozoans": "原生動物",
   "public_domain": "パブリックドメイン",
   "purple": "紫",
@@ -42786,9 +43230,9 @@ I18n.translations["ja"] = {
     "epifamily": "上科",
     "family": "科",
     "subfamily": "亜科",
-    "supertribe": "上族",
-    "tribe": "族",
-    "subtribe": "亜族",
+    "supertribe": "上族/上連",
+    "tribe": "族/連",
+    "subtribe": "亜族/亜連",
     "genus": "属",
     "genushybrid": "属間雑種",
     "subgenus": "亜属",
@@ -42830,8 +43274,8 @@ I18n.translations["ja"] = {
   "reset_brightness": "明るさをリセット",
   "reset_search_filters": "検索フィルターを解除",
   "restore": "復元",
-  "review_all": "すべてを確認済に",
-  "reviewed": "確認済",
+  "review_all": "すべてを確認済みに",
+  "reviewed": "確認済み",
   "running_total": "現在の総計",
   "satellite": "航空写真",
   "save": "保存",
@@ -42935,7 +43379,7 @@ I18n.translations["ja"] = {
   "taxon_merge": "分類群の統合",
   "taxon_split": "分類群分割",
   "taxon_swap": "分類群の入れ替え",
-  "taxonomic": "分類学上",
+  "taxonomic": "分類",
   "taxonomic_groups": "分類群グループ",
   "taxonomy": "分類",
   "taxonomy_details": "分類の詳細",
@@ -42944,8 +43388,8 @@ I18n.translations["ja"] = {
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "現在のフィルター設定に該当する最後の観察記録です",
   "the_below_items_are_needed_to_achieve": "<span className=\"bold\">研究用グレード</span>を達成するためには、以下の条件を満たす必要があります。\n",
-  "the_community_id_requires_at_least_two_identifications": "コミュニティーIDには最低2件の判定が必要です。",
-  "the_community_must_feel_that": "コミュニティーは、証拠に基づいたコミュニティー分類は最善だと確信する必要があります\n",
+  "the_community_id_requires_at_least_two_identifications": "コミュニティー同定には最低2件の同定が必要です。",
+  "the_community_must_feel_that": "コミュニティは、証拠に基づいたコミュニティ分類群は最善だと確信する必要があります\n",
   "the_world": "世界中",
   "there_were_problems_adding_taxa": "指定の分類群を追加する際にエラーが発生しました：%{errors}",
   "there_were_some_problems_with_these_files": "以下のファイルに問題があります：",
@@ -43020,11 +43464,11 @@ I18n.translations["ja"] = {
   "user1_user2_and_x_others_faved_this_observation": "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました",
   "user_disagrees_this_is_taxon": "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています",
   "user_faved_this_observation": "%{user}さんがこの観察記録をお気に入りに追加しました",
-  "user_has_opted_out_of_community_id": "利用者はコミュニティー分類の通知を受け取りません",
+  "user_has_opted_out_of_community_id": "利用者はコミュニティ分類群の通知を受け取りません",
   "username_or_user_id": "ユーザー名またはユーザーID",
   "users": "ユーザー",
   "verbing_x_of_y": "%{y}部の%{x}を%{verb}中...",
-  "verifiable": "確認できる",
+  "verifiable": "研究用+要同定",
   "view": "表示",
   "view_all": "すべて表示",
   "view_all_members": "メンバーをすべて表示",
@@ -43042,10 +43486,10 @@ I18n.translations["ja"] = {
         "ancestor_disagreements": "祖先の不一致数",
         "cumulative_count": "一致数",
         "disagreement_count": "不一致数",
-        "explanation": "<p>\nもしユーザーが何らかの理由でコミュニティの分類群に同意しない場合はそれを否定できます。その場合、そのユーザーの判定が他の観察やライフリストの更新へのリンクなどに使われます。またコミュニティーの同意が得られた場合にのみ、その観察は研究用に使用できます。\n</p>\n<p>\nしかしその場合でも、コミュニティの判定は表示されるため、判定の違いを誰でも確認できます。\n</p>\n",
+        "explanation": "<p>\nもしユーザーが何らかの理由でコミュニティ分類群に同意しない場合はそれを否定できます。その場合、そのユーザーの判定が他の観察やライフリストの更新へのリンクなどに使われます。またコミュニティの同意が得られた場合にのみ、その観察は研究用に使用できます。\n</p>\n<p>\nしかしその場合でも、コミュニティ同定は表示されるため、判定の違いを誰でも確認できます。\n</p>\n",
         "identification_count": "同定件数",
-        "you_have_opted_out": "コミュニティー判定の通知を解除しました",
-        "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません\n"
+        "you_have_opted_out": "コミュニティ同定の通知を解除しました",
+        "your_id_does_not_match": "あなたの同定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティ同定と一致しません\n"
       },
       "compare": {
       },
@@ -43058,7 +43502,7 @@ I18n.translations["ja"] = {
       },
       "show": {
         "ancestor_disagreements_desc": "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)",
-        "community_taxon_desc_html": "<p class=\"ui\">\nコミュニティ分類群（もしくはコミュニティ判定）とは\n特定の観察記録において%{site_name}コミュニティが\n考えている分類群が何かを表しています。もしコミュニティ分類群\nがどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。\n一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>が\nコミュニティ分類群となります。場合によっては、これは\n異なる分類群を複数含むより上位の分類群がコミュニティ分類群となることを\n意味します（例：あなたがキングヘビだと予想し、\n私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含む\nヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が\n正しいことが多いとわかっているため、反対派を\nやや優先する傾向にあります。\n</p>\n<p class=\"ui\">\n研究用レベルとなる観察記録には（他にも基準はありますが）コミュニティ\n分類群が必要です。特定の観察記録において同定の提案が\n1件のみの場合、コミュニティ分類群はありません。すべての\n観察記録で、同定の提案が1件でもあれば必ず観察\n分類群を伴います。観察分類群は、データパートナーと観察を共有したり、\nサイト上で同じ分類群の観察をリンクしたり、ライフリストを更新したりするときに\n使用する分類群です。ほとんどの場合、最終的に観察分類群はコミュニティ分類群と\n一致しますが、特にコミュニティが同定を決定する前では、その２つは異なる場合があります。\n例えば、あなたがヘビ亜目 Serpentesだと考えていて、私がキングヘビ属 <i>Lampropeltis</i> だと\n考えている場合は、観察分類群はキングヘビ属  <i>Lampropeltis</i> になります\n（私の同定にのみ支持される）。しかし、コミュニティ分類群はヘビ亜目 Serpentes となります\n（こちらは最低２人の同意が必要）。もし自分の観察記録で、あなたが何らかの理由でコミュニティ分類群に同意できない場合は、コミュニティ分類群を拒否することができます。つまり、観察分類群がコミュニティ分類群とはなりません（あなたが設定した分類群になります）。\nこれは、コミュニティがあなたに同意した場合のみ、観察記録が研究用となることを意味しています。\nコミュニティ分類群という考え方そのものを\n認められない場合、<a href=\"/users/edit\" target=\"_blank\">アカウント設定・プロフィール編集</a>を編集してコミュニティ分類群を採用しないことも可能です。\n</p>\n<p class=\"ui\">\n<strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について、・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>\n",
+        "community_taxon_desc_html": "<p class=\"ui\">\nコミュニティ分類群（もしくはコミュニティ同定）とは、特定の観察記録において%{site_name}コミュニティが考えている分類群を表しています。もしコミュニティ分類群がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>がコミュニティ分類群となります。場合によっては、異なる分類群を複数含む、より上位の分類群がコミュニティ分類群になります（例：あなたがキングヘビだと予想し、私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含むヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が正しい場合が多いことがわかっているため、反対派をやや優先する傾向にあります。\n</p>\n<p class=\"ui\">\n観察記録が研究用レベルになるには（他にも基準はありますが）コミュニティ分類群が必要です。特定の観察記録において同定の提案が1件のみの場合、コミュニティ分類群はありません。すべての観察記録で、同定の提案が1件でもあれば必ず観察分類群を伴います。観察分類群は、データパートナーと観察を共有したり、サイト上で同じ分類群の観察をリンクしたり、ライフリストを更新したりするときに使用する分類群です。ほとんどの場合、最終的に観察分類群はコミュニティ分類群と一致しますが、特にコミュニティが同定を決定する前では、その２つは異なる場合があります。例えば、あなたがヘビ亜目 Serpentesだと考えていて、私がキングヘビ属 <i>Lampropeltis</i> だと考えている場合は、観察分類群はキングヘビ属 <i>Lampropeltis</i> になります（私の同定にのみ支持される）。しかし、コミュニティ分類群はヘビ亜目 Serpentes となります（こちらは最低２人の同意が必要）。もし自分の観察記録で、あなたが何らかの理由でコミュニティ分類群に同意できない場合は、コミュニティ分類群を拒否することができます。つまり、観察分類群がコミュニティ分類群とはなりません（あなたが設定した分類群になります）。これは、コミュニティがあなたに同意した場合のみ、観察記録が研究用となることを意味しています。コミュニティ分類群という考え方そのものを認められない場合、<a href=\"/users/edit\" target=\"_blank\">アカウント設定・プロフィール編集</a>を編集してコミュニティ分類群を採用しないことも可能です。\n</p>\n<p class=\"ui\">\n<strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>\n",
         "cumulative_count_desc": "単一の分類群とその下位分類に対する同定の総数",
         "data_quality_assessment_desc_html": "データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。\n",
         "identification_count_desc": "単一の分類群に対する同定の件数",
@@ -43067,6 +43511,7 @@ I18n.translations["ja"] = {
     },
     "projects": {
       "edit": {
+        "admins_must_be_existing_members": "管理者はプロジェクトの既存のメンバーでなければなりません。"
       },
       "new": {
         "errors": {
@@ -43089,7 +43534,7 @@ I18n.translations["ja"] = {
         "avg_ttid": "TTIDの平均値",
         "med_ttcid": "TTCIDの中央値",
         "med_ttid": "TTIDの中央値",
-        "obs_cid_d_to_genus": "属レベル以下のコミュニティ判定を持つ観察記録"
+        "obs_cid_d_to_genus": "属レベル以下のコミュニティ同定がある観察記録"
       },
       "year": {
       }
@@ -43097,21 +43542,22 @@ I18n.translations["ja"] = {
     "taxa": {
       "show": {
         "about_establishment_desc": "「定着方法」とは、ある種がどのように現在の場所で棲息することになったかを示します。「外来種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固有種」とは、特定の場所にしか存在しないことを表します。\n",
-        "about_names_desc": "<p>\nほとんどの生き物には、話し言葉の中に「一般名」があります。これらの名前は通常、認識・発音しやすく、時間が経過しても安定していますが、多くの生物は同じ言語であっても、場所により複数の異なる名前を持っています。そのため、生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">二名法</a>のルールに準拠した、生物の分類群ごとに単一の「学名」を使用しています。しかし、多くの学名は誰も話さない言語であるラテン語に基づいているため、ほとんどの人にとっては一般名に比べて記憶に残りません。また、学名は生物の分類学的配置を反映することもあるため、科学者が生物間の進化関係についてより正確な理解を得たときに変更されることもあり、学名を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。\n</p>\n<p>\n古い格言がそれを要約しています。\"一般的な名前は場所によって変わり、科学的な名前は時と場合によって変わる。\n</p>\n<p>\n我々はこのような欠点に対応するために、可能な限り一般名と学名の両方を表示し、見る人の言語や地理的な好みに基づいて一般名を選択するようにしています。\n</p>\n",
+        "about_names_desc": "<p>\nほとんどの生き物には、話し言葉に「一般名」があります。一般名は通常、認識・発音しやすく、時間が経過してもあまり変化しません。一方、生物は同じ言語であっても、場所により複数の異なる名前をもつことがあります。そのため、生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">二名法</a>のルールに準拠した、生物の分類群ごとに単一の「学名」を使用しています。しかし、学名は基本的に誰も話さない言語であるラテン語に基づいているため、ほとんどの人にとっては一般名に比べて記憶に残りません。また、学名は生物の分類学的な扱いが反映されるため、科学者が生物間の進化関係についてより正確な理解を得たときに変更されることもあり、学名を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。\n</p>\n<p>\n古い格言がそれを要約しています。\"一般的な名前は場所によって変わり、科学的な名前は時と場合によって変わる。\n</p>\n<p>\n我々はこのような欠点に対応するために、可能な限り一般名と学名の両方を表示し、見る人の言語や地理的な好みに基づいて一般名を選択するようにしています。\n</p>\n",
         "frequency": {
           "research": "研究用",
-          "verifiable": "確認できる",
+          "verifiable": "研究用+要同定",
           "Life Stage=egg": "卵",
           "Life Stage=larva": "幼虫・幼生 (Larva)",
           "Life Stage=teneral": "脱皮直後",
           "Life Stage=nymph": "幼虫・幼体・幼生・若虫 (Nymph)",
           "Life Stage=pupa": "蛹",
-          "Life Stage=adult": "成虫"
+          "Life Stage=adult": "成体・成虫"
         }
       }
     },
     "users": {
       "edit": {
+        "licensing_desc_html": "あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name}では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href=\"http://www.gbif.org/\">地球規模生物多様性情報機構</a> (GBIF)のために作成したアーカイブには、著作権なし (CC0)、表示 (CC BY)、表示ー非営利 (CC BY-NC)の記録が含まれています。\n"
       }
     },
     "welcome": {
@@ -43124,12 +43570,15 @@ I18n.translations["ja"] = {
   "we_have_no_conservation_status_for_this_taxon": "この分類群の保護ステータス情報がありません",
   "we_have_no_establishment_data_for_this_taxon": "こちらの分類群の定着方法情報がありません。",
   "website": "ウェブサイト",
+  "were_pretty_sure_this_is_in_the_rank": "下の%{rank}だと確信しています",
   "whats_this?": "もっと詳しく",
   "white": "白",
   "who_helped_user_the_most": "%{user} さんの同定を最も助けたユーザー",
   "who_user_helped_the_most": "%{user} さんが最も同定を助けたユーザー",
   "wild": "野生",
+  "with_annotation": "注釈付き",
   "withdraw": "撤回",
+  "without_annotation": "注釈なし",
   "x_comments": {
     "other": "%{count}件のコメント"
   },
@@ -43182,7 +43631,7 @@ I18n.translations["ja"] = {
     "other": "<a href='%{url}'>%{count}件の観察記録</a>"
   },
   "x_observations_reviewed_html": {
-    "other": "<span class='count'>%{count}</span>件の観察記録を既読"
+    "other": "<span class='count'>%{count}</span>件の観察記録を確認済み"
   },
   "x_observers_html": {
     "other": "<span class=\"count\">%{count}</span> 観察者"
@@ -43215,6 +43664,7 @@ I18n.translations["ja"] = {
   "yesterday": "昨日",
   "you_appear_offline_try_again": "現在はオフラインのようです。インタネットに接続したらまたお試しください。\n",
   "you_must_select_at_least_one_taxon": "一つ以上の分類群を選択しなければなりません",
+  "you_retain_full_copyright": "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。",
   "you_sure_delete_comment?": "このコメントを削除して本当によろしいですか？",
   "you_sure_delete_this_observation": "この観察記録を削除して本当によろしいですか？",
   "your_default": "自分のデフォルト",
@@ -43761,6 +44211,7 @@ I18n.translations["ko"] = {
   "edit": "수정",
   "edit_license": "라이선스 수정",
   "edit_multiple_dates": "다수의 날짜 편집",
+  "edit_multiple_descriptions": "여러 설명 편집",
   "edit_multiple_locations": "다수의 장소 편집",
   "edit_multiple_species": "다수의 종 편집",
   "edit_photos": "사진 편집",
@@ -44704,7 +45155,7 @@ I18n.translations["ko"] = {
     "other": "동정 <span class=\"count\">%{count}</span> 개"
   },
   "x_identifiers_html": {
-    "other": "동정한 사용자 <span class=\"count\">%{count}</span> 명"
+    "other": "동정한 사용자 <span class=\"count\">%{count}</span>"
   },
   "x_matching_taxa_html": {
     "other": "<span class=\"count\">%{count}</span> 일치하는 분류군"
@@ -44734,7 +45185,7 @@ I18n.translations["ko"] = {
     "other": "검토한 관찰 <span class='count'>%{count}</span> 개"
   },
   "x_observers_html": {
-    "other": "관찰자 <span class=\"count\">%{count}</span> 명"
+    "other": "관찰자 <span class=\"count\">%{count}</span>"
   },
   "x_others": {
     "other": "외 %{count} 명"
@@ -45060,6 +45511,7 @@ I18n.translations["lb"] = {
   "edit_atlas": "Atlas änneren",
   "edit_license": "Lizenz änneren",
   "edit_multiple_dates": "Méi Datumen änneren",
+  "edit_multiple_descriptions": "Méi Beschreiwungen änneren",
   "edit_photos": "Fotoen änneren",
   "edit_project": "Projet änneren",
   "edit_your_settings_for_this_project": "Ännert Är Astellunge fir dëse Projet",
@@ -46221,6 +46673,7 @@ I18n.translations["lt"] = {
   "edit_atlas": "Redaguoti atlasą",
   "edit_license": "Redaguoti licenciją",
   "edit_multiple_dates": "Redaguoti kelias datas",
+  "edit_multiple_descriptions": "Redaguoti kelius aprašymus",
   "edit_multiple_locations": "Redaguoti kelias vietas",
   "edit_multiple_species": "Redaguoti kelias rūšis",
   "edit_photos": "Redaguoti nuotraukas",
@@ -48808,6 +49261,169 @@ I18n.translations["mk"] = {
   "yes": "Да",
   "your_observations": "Ваши набљудувања"
 };
+I18n.translations["mr"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Mo",
+      "3": "Tu",
+      "4": "We",
+      "5": "Th",
+      "6": "Fr",
+      "7": "Sa"
+    },
+    "formats": {
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "formats": {
+    }
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ms"] = {
   "activerecord": {
     "attributes": {
@@ -50957,6 +51573,7 @@ I18n.translations["nb"] = {
           "name_is_required": "Prosjektnavn er påkrevd",
           "summary_is_required": "Prosjektsammendrag er påkrevd"
         },
+        "include_annotated_observations": "Inkluder bare observasjoner som er kommentert med en bestemt egenskap (f.eks. livsstadium),\neller en bestemt egenskap og verdi (f.eks. livsstadium = voksen).\nDet er begrenset til ett merknadsfilter per prosjekt.\n",
         "leaderboards_among_individuals": "Topplister blant <strong>individer</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Topplister blant <strong>prosjekter</strong>\n",
         "multiple_project_administrators": "Flere prosjektadministratorer",
@@ -53202,6 +53819,7 @@ I18n.translations["nl"] = {
     "projects": {
       "collection": "Verzameling",
       "edit": {
+        "admins_must_be_existing_members": "Beheerders moeten bestaande deelnemers zijn in het project.",
         "change_owner_alert": "Hiermee verwijder jij jouw mogelijkheid om dit project te verwijderen of\nhet eigendom opnieuw over te dragen. Wilt je doorgaan?\n",
         "make_owner": "Eigenaar maken"
       },
@@ -54990,6 +55608,7 @@ I18n.translations["pl"] = {
   "edit_atlas": "Edytuj atlas",
   "edit_license": "Edytuj licencję",
   "edit_multiple_dates": "Edytuj wiele dat",
+  "edit_multiple_descriptions": "Edytuj wiele opisów",
   "edit_multiple_locations": "Edytuj wiele lokalizacji",
   "edit_multiple_species": "Edytuj wiele gatunków",
   "edit_photos": "Edytuj zdjęcia",
@@ -56493,6 +57112,7 @@ I18n.translations["pt"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Anotações"
       }
     }
   },
@@ -56501,6 +57121,8 @@ I18n.translations["pt"] = {
   "add_a_comment": "Adicionar um Comentário",
   "add_a_field": "Adicionar um Campo",
   "add_a_name": "Adicionar um Nome",
+  "add_alive_or_dead_alive_annotation": "Adicionar anotação \"Vivo ou Morto: Vivo\"",
+  "add_alive_or_dead_dead_annotation": "Adicionar anotação \"Vivo ou Morto: Morto\"",
   "add_an_identification": "Adicionar uma Identificação",
   "add_annotations_for_x": "Adicionar Anotações para \"%{x}\"",
   "add_edit_flags": "Adicionar/Editar Sinalizadores",
@@ -56522,7 +57144,13 @@ I18n.translations["pt"] = {
   "add_to_project": "Adicionar ao projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
+  "added_as_a_part_of_a_taxon_change_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">mudança de táxon</a>\n",
+  "added_as_a_part_of_a_taxon_merge_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">mesclagem de táxon</a>\n",
+  "added_as_a_part_of_a_taxon_split_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">divisão de táxon</a>\n",
+  "added_as_a_part_of_a_taxon_swap_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">substituição de táxon</a>\n",
   "added_by": "Adicionado por",
+  "added_on_datetime": "Adicionado em %{datetime}",
+  "adjust_brightness": "Ajustar o brilho",
   "admin_s": "Administrador(es)",
   "agree_": "Concordar",
   "agree_with_current_taxon": "Concordar com o táxon atual",
@@ -56531,6 +57159,7 @@ I18n.translations["pt"] = {
   "all_flags_must_be_resolved": "Todos os sinalizadores devem ser resolvidos",
   "all_rank_added_to_the_database": {
     "class": "Todas as classes foram adicionadas à base de dados",
+    "complex": "Todos os complexos adicionados ao banco de dados",
     "epifamily": "Todas as epifamílias foram acrescentadas à base de dados",
     "family": "Todas as famílias foram adicionadas à base de dados",
     "form": "Todas as formas foram adicionadas à base de dados",
@@ -56586,6 +57215,10 @@ I18n.translations["pt"] = {
     "x_plantae": {
       "one": "1 planta",
       "other": "%{count} plantas"
+    },
+    "x_animalia": {
+      "one": "%{count} animal",
+      "other": "%{count} animais"
     },
     "x_mollusca": {
       "one": "1 molusco",
@@ -56653,6 +57286,7 @@ I18n.translations["pt"] = {
   "are_you_sure_remove_photo": "Tem a certeza que pretende remover esta fotografia?",
   "are_you_sure_you_want_to_remove_all_tags": "Tem a certeza que quer eliminar todas as etiquetas?",
   "are_you_sure_you_want_to_remove_these_x_taxa?": "Tem a certeza que quer remover estes %{x} táxons?",
+  "asc": "Cresc",
   "ascending": "Ascendente",
   "atom": "Átomo",
   "attention": "Atenção",
@@ -56665,6 +57299,7 @@ I18n.translations["pt"] = {
   "black": "preto",
   "blue": "azul",
   "blue_butterfly_etc": "azul, borboleta, etc.",
+  "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
   "bounding_box": "Retângulo Envolvente",
   "brown": "castanho",
   "browse": "Pesquisar",
@@ -56702,6 +57337,7 @@ I18n.translations["pt"] = {
   },
   "check_above_for_errors": "Verificar erros anteriores",
   "check_back_soon": "Volte em breve!",
+  "checklist": "Lista de Verificação",
   "choose_a_field": "Escolher um campo",
   "choose_file": "Escolher ficheiros",
   "choose_files": "Escolher ficheiros",
@@ -56717,24 +57353,48 @@ I18n.translations["pt"] = {
   "community_id_heading": "ID da Comunidade",
   "compare": "Comparar",
   "comprehensive_list": "Lista compreensiva",
+  "computer_vision_suggestion": "Sugestão de visão por computador",
+  "computer_vision_suggestion_desc": "Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.\n",
   "confirm": "Confirmar",
   "conservation_status": "Estatuto de conservação",
+  "conservation_status_geoprivacy_desc": "Geoprivacidade padrão aplicada a todas as observações deste táxon neste local\n",
+  "contact_support": "Fale com o Suporte",
+  "content_hidden": "Conteúdo oculto",
+  "content_hidden_by_user_on_date_because_reason_html": "Conteúdo oculto por %{user} em %{date} porque: \"%{reason}\"\n",
   "continue": "Continuar",
   "controlled_term_definitions": {
+    "alive": "O organismo está vivo e não mostra sinais de morte iminente",
+    "cannot_be_determined": "Não pode ser determinado a partir da evidência fornecida",
+    "dead": "O organismo está morto ou mostra sinais de morte iminente",
+    "flower_budding": "Botões de flor são visíveis, mas não abertos",
+    "flowering": "Flores visíveis, abertas e ainda presas à planta",
+    "fruiting": "Frutos visíveis e ainda anexados à planta",
+    "no_evidence_of_flowering": "Os meios de comunicação não dão provas de estruturas reprodutivas",
+    "teneral": "Adulto que pupou recentemente mas ainda não alcançou sua forma final de adulto"
   },
   "controlled_term_labels": {
     "adult": "Adulto",
+    "alive": "Vivo",
+    "alive_or_dead": "Vivo ou Morto",
     "budding": "Gemulação",
+    "cannot_be_determined": "Indeterminado",
+    "dead": "Morto",
     "egg": "Ovo",
     "female": "Feminino",
+    "flower_budding": "Brotamento de Flores",
     "flowering": "Floração",
     "fruiting": "Frutificação",
     "juvenile": "Juvenil",
+    "larva": "Larva",
     "life_stage": "Estádio de Vida",
     "male": "Masculino",
+    "no_evidence_of_flowering": "Nenhuma evidência de floração",
     "nymph": "Ninfa",
     "plant_phenology": "Fenologia da Planta",
-    "sex": "Género"
+    "pupa": "Pupa",
+    "sex": "Género",
+    "subimago": "Subimago",
+    "teneral": "Teneral"
   },
   "convert": "Converter",
   "copyright": {
@@ -56754,10 +57414,12 @@ I18n.translations["pt"] = {
     "attribution_noncommercial_noderivs_license": "Licença de Atribuição – Uso Não Comercial – Não a Obras Derivadas (by-nc-nd)",
     "attribution_license": "Licença Atribuida",
     "attribution_sharealike_license": "Atribuição – Compartilhamento pela mesma Licença (by-sa)",
-    "attribution_noderivs_license": "Licença Atribuição – Não a Obras Derivadas (by-nd)"
+    "attribution_noderivs_license": "Licença Atribuição – Não a Obras Derivadas (by-nd)",
+    "gnu_free_documentation_license": "Licença de Documentação Livre GNU"
   },
   "copyright_info": "Informação sobre copyright",
   "copyright_info_and_more": "Informação de copyright e mais",
+  "copyright_infringement": "Violação de direitos autorais",
   "copyright_infringement_desc": "Viola direitos de autor ou foi criada por alguém que não é o observador e carece de atribuição",
   "create_an_atlas": "Criar um Atlas",
   "created_by": "Criado por",
@@ -56768,9 +57430,11 @@ I18n.translations["pt"] = {
   "curators": "Curadores",
   "current_flags": "Sinalizadores Atuais",
   "customize_location": "Personalizar a Localização",
+  "dashboard": "Painel de controle",
   "data_deficient": "informação insuficiente",
   "data_quality": "Qualidade dos Dados",
   "data_quality_assessment": "Avaliação da Qualidade dos Dados",
+  "data_used": "Dados utilizados:",
   "date": {
     "abbr_day_names": [
       "Dom",
@@ -56815,8 +57479,10 @@ I18n.translations["pt"] = {
       "7": "Sa"
     },
     "formats": {
+      "compact": "%b %e",
       "long": "%d de %B de %Y",
-      "month_day_year": "%d de %B de %Y"
+      "month_day_year": "%d de %B de %Y",
+      "month_year": "%B de %Y"
     },
     "month_names": [
       null,
@@ -56863,6 +57529,8 @@ I18n.translations["pt"] = {
   },
   "date_specified": "Data especificada",
   "date_time": "Data/Hora",
+  "date_to_date": "%{d1} - %{d2}",
+  "date_updated": "Data atualizada",
   "datetime": {
     "countdown_x_days": {
       "one": "dia",
@@ -56871,6 +57539,10 @@ I18n.translations["pt"] = {
     "countdown_x_hours": {
       "one": "hora",
       "other": "horas"
+    },
+    "countdown_x_minutes": {
+      "one": "min",
+      "other": "mins"
     },
     "countdown_x_seconds": {
       "one": "s",
@@ -56902,11 +57574,13 @@ I18n.translations["pt"] = {
   "download": "Transferir",
   "drag_and_drop_some_photos_or_sounds": "Arrastar e largar algumas fotografias ou sons",
   "drop_it": "Largue",
+  "duplicate_observation_flag_warning": "Para observações duplicadas, peça ao observador para resolver o problema em vez de adicionar uma marca, os curadores não podem excluir observações.\n",
   "duplicate_verb": "Duplicar",
   "edit": "Editar",
   "edit_atlas": "Editar Atlas",
   "edit_license": "Editar licença",
   "edit_multiple_dates": "Editar várias datas",
+  "edit_multiple_descriptions": "Editar várias descrições",
   "edit_multiple_locations": "Editar várias localizações",
   "edit_multiple_species": "Editar várias espécies",
   "edit_photos": "Editar fotografias",
@@ -56943,16 +57617,25 @@ I18n.translations["pt"] = {
   "exact_date": "Data exata",
   "exact_location": "Localização_exata",
   "examples_of_ranking_organizations": "Exemplos de Organizações de Classificação",
+  "except": "exceto",
+  "exclude_places": "Excluir Locais",
+  "exclude_projects": "Excluir Projetos",
+  "exclude_taxa": "Excluir Táxons",
+  "exclude_users": "Excluir Usuários",
+  "exclusion_filters": "Filtros de Exclusão",
   "exit_full_screen": "Sair do modo de ecrã inteiro",
   "export_observations": "Exportar observações",
   "exporting": "A exportar...",
   "extinct": "extinto",
   "extinct_in_the_wild": "extinto na natureza",
+  "facebook": "Facebook",
   "failed_to_find_your_location": "Falha ao procurar a sua localização.",
   "failed_to_save_record": "Não foi possível gravar o registo. Por favor, tente novamente mais tarde.",
   "faves": "Favoritos",
   "favorites": "Favoritos",
+  "feature_this_project_": "Apresentar este projeto",
   "featured": "destacado",
+  "featuring": "Apresentando",
   "fields_": "Campos",
   "fill_out_project_observation_fields": "Preencha os campos de observação do projeto",
   "filter_by_place": "Filtrar por local",
@@ -56972,7 +57655,9 @@ I18n.translations["pt"] = {
   "flag_for_curation": "Sinalizar para supervisão pelo curador",
   "flag_this_observation": "Sinalizar esta observação",
   "flag_this_photo": "Marcar esta fotografia",
+  "flag_this_sound": "Sinalizar este som",
   "flagged_": "Sinalizado",
+  "flagging_desc": "A sinalização chama a atenção dos curadores voluntários do site.\nPor favor, não sinalizar problemas que você pode resolver com identificações, os dados\nAvaliação de Qualidade ou conversando com a pessoa que fez o conteúdo.\n",
   "flags_with_count": "Sinalizadores (%{count})",
   "flickr_has_no_creative_commons": "O Flickr não tem fotos com licença Creative Commons deste sítio.",
   "fluid_layout": "Composição fluída",
@@ -56988,14 +57673,19 @@ I18n.translations["pt"] = {
   "gbif_occurrences": "Registos do GBIF",
   "generate_your_stats": "Gerar as Suas Estatísticas",
   "geoprivacy": "Geoprivacidade",
+  "geoprivacy_is_obscured": "A geoprivacidade é obscurecida",
+  "geoprivacy_is_obscured_desc": "O observador optou por obscurecer as coordenadas.",
   "geoprivacy_is_private": "A geoprivacidade é privada",
   "geoprivacy_is_private_desc": "O Observador escolheu ocultar as coordenadas.",
   "get_started": "Começar",
+  "give_monthly_caps": "DOAR MENSALMENTE",
+  "give_now_caps": "DOAR AGORA",
   "globally": "Globalmente",
   "go": "Ir",
   "go_back": "Voltar",
   "going_to_your_observations": "Indo para as suas observações...",
   "good_choice_for_sharing": "Boa alternativa para partilhar com os investigadores científicos",
+  "google": "Google",
   "grid": "Grelha",
   "grid_layout": "Composição de Grelha",
   "grid_tooltip": "Mostrar grelha",
@@ -57010,1517 +57700,11 @@ I18n.translations["pt"] = {
   "has_sounds": "Tem sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa selecção de espécies",
+  "hide_content": "Ocultar conteúdo",
+  "hide_desc": "Esconder conteúdo irá removê-lo da exibição pública, mas as pessoas ainda serão\ncapaz de ver que algo estava escondido, e curadores do site e autor de\no conteúdo ainda poderá ver o conteúdo oculto. Geralmente, isso\naplica-se apenas ao conteúdo escrito, por ex. se você ocultar o conteúdo de um\nidentificação, a identificação ainda é visível, mas o identificador\nobservações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir\nconteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para\nconteúdo censurável.\n",
   "hide_running_total": "Ocultar total acumulado",
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alto",
-  "history": "Histórico",
-  "i18n": {
-    "inflections": {
-    }
-  },
-  "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
-  "id_categories": {
-    "tooltips": {
-      "improving": "Primeira sugestão deste táxon que teve o acordo da comunidade. Isto ajudou a refinar o táxon comunitário.\n",
-      "leading": "O táxon provém do táxon da comunidade. Esta identificação pode levar à resposta correta.\n",
-      "maverick": "O táxon não é um descendente ou um ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon.\n"
-    }
-  },
-  "id_withdrawn": "ID retirada",
-  "identifications": "Identificações",
-  "identifiers": "Identificadores",
-  "identify": "Identificar",
-  "identify_observations": "Identificar as observações",
-  "identify_title": "Identificar",
-  "ids_by_taxon": "Identificações Por Táxon",
-  "ids_made_for_others": "Identificações feitas por outros",
-  "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão não concorda com o táxon comunitário, pode rejeitá-lo, o que significa que a sua identificação é a que será usada para ligar a outras observações, actualizar listas de vida, etc. Também significa que a sua observação só pode obter um grau de pesquisa quando a comunidade concordar consigo.\n",
-  "ignore_and_continue": "Ignorar e continuar",
-  "imperiled": "Em perigo",
-  "import": "Importar",
-  "improving": "A melhorar",
-  "in_progress": "em curso",
-  "in_the_past_week": "durante a semana passada",
-  "inactive_taxon": "táxon inativo",
-  "inappropriate_content": "Conteúdo inapropriado?",
-  "including": "a incluir",
-  "info": "Informação",
-  "input_taxon": "Introduzir táxon",
-  "insect_life_stage": "Estádios da Vida dos Insetos",
-  "insects": "insetos",
-  "interactions": "Interações",
-  "introduced": "introduzido",
-  "introduced_in_place": "Introduzido em %{place}",
-  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A evidência fornecida é suficiente para confirmar que é %{taxon}?",
-  "it_can_now_be_used_for_research": "Agora pode ser usado para pesquisa e apresentado noutros sítios",
-  "item_flagged_notice_html": "Isto foi sinalizado como spam e não está mais visível publicamente. Pode vê-lo porque o criou, ou você é um curador do site. Se acha que foi um erro, por favor\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacte-nos</a>.\n<a href=\"%{manage_flags_path}\">Gerir sinalizadores</a>\n",
-  "join": "Participe",
-  "join_project": "Entre neste projeto",
-  "join_this_project": "Entre neste projeto",
-  "joined!": "Aderiu!",
-  "journal": "Boletim",
-  "keep_editing": "Continuar a editar",
-  "keyboard_shortcuts": "Atalhos do teclado",
-  "kml_file_size_error": "KML deve ter menos de 1 MB de tamanho",
-  "labels": "Etiquetas",
-  "language_slash_type": "Língua / Tipo",
-  "large": "grande",
-  "last_observation": "Última observação",
-  "last_year": "Ano passado",
-  "lat": "Latitude",
-  "layers": "Camadas",
-  "leaderboard": "Colaboradores mais ativos",
-  "leading": "Principal",
-  "least_concern": "pouco preocupante",
-  "leave_a_comment": "Deixar um comentário",
-  "less": "Menos",
-  "lexicons": {
-    "scientific_names": "Nomes científicos",
-    "afrikaans": "Africanês",
-    "albanian": "Albanês",
-    "bengali": "Bengalês",
-    "catalan": "Catalão",
-    "chinese_simplified": "Chinês (Simplificado)",
-    "chinese_traditional": "Chinês (tradicional)",
-    "creole_french": "Crioulo (francês)",
-    "creole_portuguese": "crioulo (Português)",
-    "czech": "Checo",
-    "danish": "Dinamarquês",
-    "dutch": "Holandês",
-    "english": "Inglês",
-    "estonian": "Estónio",
-    "finnish": "Finlandês",
-    "french": "Francês",
-    "german": "Alemão",
-    "greek": "Grego",
-    "hawaiian": "Havaiano",
-    "hebrew": "Hebraico",
-    "hiligaynon": "Ilongo",
-    "icelandic": "Islandês",
-    "ilokano": "Ilocano",
-    "italian": "Italiano",
-    "japanese": "Japonês",
-    "korean": "Coreano",
-    "luxembourgish": "Luxemburguês",
-    "maltese": "Maltês",
-    "norwegian": "Norueguês",
-    "occitan": "Occitano",
-    "pangasinan": "Pangasinês",
-    "portuguese": "Português",
-    "romanian": "Romano",
-    "russian": "Russo",
-    "spanish": "Espanhol",
-    "swedish": "Sueco",
-    "tagalog": "Tagalo",
-    "tahitian": "Taitiano",
-    "tokelauan": "Toquelauano",
-    "turkish": "Turco",
-    "waray_waray": "Samarenho"
-  },
-  "life": "Vida",
-  "life_list": "Lista de vida de %{user}",
-  "list": "Lista",
-  "list_tooltip": "Mostra a vista de lista",
-  "lists": "Listas",
-  "loading": "A carregar...",
-  "loading_metadata": "A carregar metadados...",
-  "loading_suggestions": "A carregar sugestões...",
-  "locales": {
-    "ar": "Árabe",
-    "bg": "Búlgaro",
-    "br": "Bretão",
-    "ca": "Catalão",
-    "cs": "Checo",
-    "da": "Dinamarquês",
-    "de": "Alemão",
-    "el": "Grego",
-    "en": "Inglês",
-    "es": "Espanhol",
-    "es-MX": "Espanhol (México)",
-    "et": "Estoniano",
-    "eu": "Basco",
-    "fi": "Finlandês",
-    "fr": "Francês",
-    "gl": "Galego",
-    "id": "Indonésio",
-    "it": "Italiano",
-    "ja": "Japonês",
-    "ko": "Coreano",
-    "lb": "Luxemburguês",
-    "mk": "Macedónio",
-    "oc": "Occitano",
-    "pt-BR": "Português (Brasil)",
-    "ru": "Russo",
-    "sq": "Albanês",
-    "zh-CN": "Chinês (simplificado)",
-    "zh-TW": "Chinês (tradicional)"
-  },
-  "locality_notes": "Notas por localidade",
-  "location": "Localidade",
-  "location_is_accurate": "A localização está certa",
-  "location_is_obscured": "A localização está oculta",
-  "location_is_private": "A localização é privada",
-  "location_is_public": "A localização é pública",
-  "location_private": "Localização Privada",
-  "location_specified": "Localização específica",
-  "location_unknown": "Localização Desconhecida",
-  "log_in": "Entrar",
-  "log_scale_label": "Logarítmica",
-  "long": "Longitude",
-  "lookup": "Procurar",
-  "low": "baixa",
-  "make_this_your_default_license": "Definir como a sua licença de %{type} pré-definida",
-  "mammals": "mamíferos",
-  "manage_names": "Gerir nomes",
-  "map": "Mapa",
-  "map_legend": "legenda do mapa",
-  "map_marker_size": "tamanho do marcador do mapa",
-  "map_of_observations": "Mapa de Observações",
-  "map_tooltip": "Mostrar a vista do mapa",
-  "maps": {
-    "overlays": {
-      "all_observations": "Todas as observações",
-      "every_publicly_visible_observation": "Todas as observações visíveis para o público criadas na rede do iNaturalist",
-      "featured_observations": "Observações em destaque",
-      "gbif_network": "Rede do GBIF",
-      "gbif_network_description": "Registos de museus e de outros provedores de registos de ocorrência distribuídos pela Global Biodiversity Informatics Facility",
-      "observations": "Observações",
-      "place_boundary": "Definir o limite da área",
-      "checklist_places": "Lista de verificação de lugares",
-      "checklist_places_description": "Lugares onde este táxon foi listado",
-      "range": "Área de distribuição"
-    }
-  },
-  "mark_all_as_reviewed": "Marcar todos como revistos",
-  "mark_all_as_unreviewed": "Marcar todos como não revistos",
-  "mark_as_reviewed": "Marcar como revisto",
-  "media": "Multimédia",
-  "media_type": "Tipo de media",
-  "members": "Membros",
-  "messages": "Mensagens",
-  "misidentifications": "Identificações incorretas",
-  "misleading_or_illegal_content_html": "Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos \"conteúdo apropriado\" ver <a href=\"/help#inappropriate\">FAQ</a>.\n",
-  "mobile": "Móvel",
-  "mollusks": "moluscos",
-  "momentjs": {
-    "shortRelativeTime": {
-      "future": "em %s",
-      "m": "1 minuto",
-      "h": "1 hora",
-      "M": "1 mês",
-      "MM": "%d mês",
-      "y": "1a",
-      "yy": "%da"
-    }
-  },
-  "months": "Meses",
-  "more": "Mais",
-  "more_filters": "Mais filtros",
-  "more_from_x": "Mais de %{x}",
-  "more_import_options": "Mais opções de importação",
-  "more_info": "Mais informações",
-  "more_info_title": "Mais informações",
-  "more_photos": "Mais fotografias",
-  "most_comments_and_faves": "A maioria dos comentários e dos favoritos",
-  "most_observations": "A maioria das observações",
-  "most_observed_introduced_species": "Espécies introduzidas mais observadas",
-  "most_observed_species": "Espécies mais observadas",
-  "most_observed_threatened_species": "Espécies ameaçadas mais observadas",
-  "most_recent_observation_by_date_observed": "As observações mais recentes e verificáveis por data de observação",
-  "most_species": "A maioria das espécies",
-  "multiple": "múltiplo",
-  "multiple_select_option": "-- múltiplo --",
-  "must_be_observed_after": "deve ser observado depois de %{operand}\n",
-  "must_be_observed_before": "deve ser observado antes de %{operand}\n",
-  "name": "Nome",
-  "name_or_slug": "Nome ou URL, por exemplo meu-projeto",
-  "names": "Nomes",
-  "native": "autóctone",
-  "native_to_place": "Nativo de %{place}",
-  "near_threatened": "quase ameaçado",
-  "nearby_observations_": "Observações próximas",
-  "needs_id": "Precisa de identificação",
-  "needs_id_": "Precisa de identificação",
-  "new_and_noteworthy": "Novo e Notável",
-  "new_observation_field": "Novo campo de observação",
-  "new_observations": "Novas observações",
-  "new_users": "Novos utilizadores",
-  "newly_added": "Adicionado recentemente",
-  "next": "Seguinte",
-  "next_observation": "Próxima Observação",
-  "next_photo": "Próxima Foto",
-  "next_tab": "Separador Seguinte",
-  "no": "Não",
-  "no_but_it_is_a_member_of_taxon": "Não, mas é um membro de %{taxon}",
-  "no_identifications": "Sem Identificações",
-  "no_ids_have_been_suggested_yet": "Ainda sem identificação sugerida",
-  "no_interaction_data_available": "Dados sobre interações não disponíveis",
-  "no_its_as_good_as_it_can_be": "Não, é o melhor possível",
-  "no_license_all_rights_reserved": "Sem licenças (todos os direitos reservados)",
-  "no_matching_observations": "Não existem observações correspondentes.",
-  "no_misidentifications_yet": "Ainda sem identificação incorreta",
-  "no_more_results_found": "Nenhum resultado encontrado",
-  "no_more_taxa_to_load": "Não existem mais espécies ou grupos para carregar!",
-  "no_observations": "Não existem observações",
-  "no_observations_from_this_place_yet": "Ainda não existem observações neste local.",
-  "no_observations_yet": "Ainda não existem observações",
-  "no_photo": "Sem fotos",
-  "no_photos": "Sem fotos",
-  "no_places_available": "Não há lugares disponíveis",
-  "no_range_data_available": "Não existem dados disponíveis sobre a área de distribuição.",
-  "no_relevant_annotations": "Sem Anotações Relevantes",
-  "no_results_for": "Sem resultados para",
-  "no_results_found": "Nenhum resultado encontrado",
-  "no_sections_available": "Nenhuma seção disponível.",
-  "no_species_observed": "Nenhuma espécie observada",
-  "no_suggestions_available": "Sem Sugestões Disponíveis",
-  "no_summary_from_wikipedia": "Não existe resumo no Wikipédia",
-  "none": "Nenhum",
-  "none_found": "Não encontrado",
-  "not_evaluated": "Não avaliado",
-  "not_recorded": "Não registado",
-  "notes": "Notas",
-  "number": {
-    "format": {
-      "delimiter": ".",
-      "separator": ",",
-      "si": {
-      }
-    }
-  },
-  "number_selected": "# selecionado",
-  "obs": "Obs.",
-  "obs_id_d": "Obs. identificada",
-  "obscured": "Oculta",
-  "observation": "Observação",
-  "observation_": "observação",
-  "observation_date": "Data",
-  "observation_field_details": "Detalhes do campo de observação",
-  "observation_fields": "Campos de Observação",
-  "observation_requirements": "Requisitos de observação",
-  "observation_without_media": "Observação sem multimédia",
-  "observations": "Observações",
-  "observations_": "observações",
-  "observations_annotated_with_annotation": "Observações registadas com %{annotation}",
-  "observations_by_category": "Observações Por categoria",
-  "observations_in_this_project_must": "As observações deste projecto têm de seguir os critérios seguintes",
-  "observations_map": "Observações / Mapa",
-  "observations_of_relatives": "Observações de parentes",
-  "observations_this_year_vs_last_year": "Observações deste ano vs. último ano",
-  "observations_total": "Total de Observações",
-  "observations_with_this_field": "Observações com este campo",
-  "observations_with_this_field_and_value": "Observações com este campo e valor",
-  "observed": "Observado",
-  "observed_on": "Observado em",
-  "observers": "Observadores",
-  "of_identifiers": "identificadores",
-  "of_observations": "observações",
-  "of_observers": "observadores",
-  "of_places": "lugares",
-  "of_species": "espécies",
-  "of_this_taxon": "Deste táxon",
-  "offensive_inappropriate": "ofensivo / inapropriado",
-  "old_observation_form": "Formulário antigo de registo de observação (descontinuado)",
-  "open": "abrir",
-  "open_": "Abrir",
-  "or": "ou",
-  "orange": "laranja",
-  "order_by": "Ordenar por",
-  "organism_appears_captive_cultivated": "Organismo parece de cativeiro / cultivado",
-  "organism_is_wild": "O organismo é selvagem",
-  "other": "Outro(s)",
-  "other_species_commonly_misidentified_as_this_species": "Outras espécies que costumam ser confundidas com esta",
-  "other_species_commonly_misidentified_as_this_species_in_place_html": "Outras espécies que costumam ser confundidas com esta espécie em <a href=\"%{url}\">%{place}</a>",
-  "output_taxon": "Táxon resultante",
-  "overview": "Visão geral",
-  "per_day": "Por dia",
-  "per_month": "Por mês",
-  "per_week": "Por semana",
-  "person": "pessoa",
-  "photo": "Fotografia",
-  "photo_attribution": "Foto %{attribution}",
-  "photo_browser": "Navegador de Fotos",
-  "photo_licensing": "Licença da fotografia",
-  "photos_chosen_for_this_taxon": "Fotos escolhidas para este táxon",
-  "photos_from": "Fotos de",
-  "photos_of_taxon_html": "Fotos de %{taxon}",
-  "photos_or_sounds": "Fotografias ou sons",
-  "pink": "rosa",
-  "place": "Lugar",
-  "place_autocomplete_placeholder": "Parque Nacional Zion, Miami, etc.",
-  "place_geo": {
-    "geo_planet_place_types": {
-      "Aggregate": "Agregar",
-      "aggregate": "agregar",
-      "Airport": "Aeroporto",
-      "airport": "aeroporto",
-      "Building": "Edifício",
-      "building": "edifício",
-      "Canton": "Cantão",
-      "canton": "cantão",
-      "Colloquial": "Coloquial",
-      "colloquial": "coloquial",
-      "Commune": "Comuna",
-      "commune": "comuna",
-      "Continent": "Continente",
-      "continent": "continente",
-      "Country": "País",
-      "country": "país",
-      "County": "Município",
-      "county": "município",
-      "District": "Distrito",
-      "district": "Distrito",
-      "Division": "Divisão",
-      "division": "divisão",
-      "Drainage": "Drenagem",
-      "drainage": "drenagem",
-      "Estate": "Propriedade",
-      "estate": "propriedade",
-      "Historical_County": "Município histórico",
-      "historical_county": "município histórico",
-      "Historical_State": "Estado Histórico",
-      "historical_state": "estado Histórico",
-      "Historical_Town": "Cidade Histórica",
-      "historical_town": "cidade histórica",
-      "Intersection": "Intersecção",
-      "intersection": "intersecção",
-      "Island": "Ilha",
-      "island": "ilha",
-      "Land_Feature": "Característica do terreno",
-      "land_feature": "característica do terreno",
-      "Local_Administrative_Area": "Área Administrativa Local",
-      "local_administrative_area": "área administrativa local",
-      "Local_Authority": "Autoridade Local",
-      "local_authority": "autoridade local",
-      "Miscellaneous": "Diversos",
-      "miscellaneous": "diversos",
-      "Municipality": "Município",
-      "municipality": "Município",
-      "Nationality": "Nacionalidade",
-      "nationality": "nacionalidade",
-      "Nearby_Building": "Edifício nas proximidades",
-      "nearby_building": "edifício nas proximidades",
-      "Nearby_Intersection": "Interseção nas proximidades",
-      "nearby_intersection": "interseção nas proximidades",
-      "Open_Space": "Espaço Aberto",
-      "open_space": "espaço aberto",
-      "Parish": "Freguesia",
-      "parish": "freguesia",
-      "Prefecture_City": "Cidade-prefeitura",
-      "prefecture_city": "cidade-prefeitura",
-      "Point_of_Interest": "Ponto de interesse",
-      "point_of_interest": "ponto de interesse",
-      "Postal_Code": "Código postal",
-      "postal_code": "código postal",
-      "Province": "Província",
-      "province": "província",
-      "Region": "Região",
-      "region": "região",
-      "Republic": "República",
-      "republic": "República",
-      "Shire": "Condado",
-      "shire": "condado",
-      "Sports_Team": "Equipa desportiva",
-      "sports_team": "equipa desportiva",
-      "State": "Estado",
-      "state": "estado",
-      "Street": "Rua",
-      "street": "rua",
-      "Street_Segment": "Segmento de rua",
-      "street_segment": "segmento de rua",
-      "Subdivision": "Subdivisão",
-      "subdivision": "subdivisão",
-      "Suburb": "Subúrbio",
-      "suburb": "subúrbio",
-      "Territory": "Território",
-      "territory": "território",
-      "Time_Zone": "Fuso horário",
-      "time_zone": "fuso horário",
-      "Town": "Cidade",
-      "town": "cidade",
-      "Undefined": "Indefinido",
-      "undefined": "indefinido",
-      "Unknown": "Desconhecido",
-      "unknown": "Desconhecido",
-      "Zone": "Zona",
-      "zone": "zona"
-    }
-  },
-  "placeholder": "Carácter de preenchimento",
-  "places_added_by_members_of_the_community": "Lugares adicionados por membros da comunidade",
-  "places_maintained_by_site_admins": "Locais mantidos por administradores do site",
-  "places_name": {
-    "afghanistan": "Afeganistão",
-    "africa": "África",
-    "albania": "Albânia",
-    "algeria": "Argélia",
-    "angola": "Angola",
-    "antigua_and_barbuda": "Antígua e Barbuda",
-    "argentina": "Argentina",
-    "australia": "Austrália",
-    "austria": "Áustria",
-    "belgium": "Bélgica",
-    "bhutan": "Butão",
-    "bolivia": "Bolívia",
-    "bosnia_and_herzegovina": "Bósnia e Herzegovina",
-    "botswana": "Botsuana",
-    "brazil": "Brasil",
-    "bulgaria": "Bulgária",
-    "central_america": "América Central",
-    "china": "China",
-    "colombia": "Colômbia",
-    "costa_rica": "Costa Rica",
-    "cote_d_ivoire": "Costa de Marfim",
-    "croatia": "Croácia",
-    "cuba": "Cuba",
-    "cyprus": "Chipre",
-    "czech_republic": "República Checa",
-    "democratic_republic_of_the_congo": "República Democrática do Congo",
-    "denmark": "Dinamarca",
-    "dominican_republic": "República Dominicana",
-    "east_timor": "Timor-Leste",
-    "ecuador": "Equador",
-    "egypt": "Egito",
-    "equatorial_guinea": "Guiné Equatorial",
-    "eritrea": "Eritreia",
-    "estonia": "Estónia",
-    "ethiopia": "Etiópia",
-    "europe": "Europa",
-    "finland": "Finlândia",
-    "france": "França",
-    "gabon": "Gabão",
-    "gambia": "Gâmbia",
-    "georgia": "Geórgia",
-    "germany": "Alemanha",
-    "ghana": "Gana",
-    "gibraltar": "Gibraltar",
-    "greece": "Grécia",
-    "greenland": "Gronelândia",
-    "guadeloupe": "Guadalupe",
-    "guatemala": "Guatemala",
-    "guinea": "Guiné",
-    "guinea_bissau": "Guiné-Bissau",
-    "honduras": "Honduras",
-    "hong_kong": "Hong Kong",
-    "hungary": "Hungria",
-    "iceland": "Islândia",
-    "india": "Índia",
-    "indonesia": "Indonésia",
-    "iran": "Irão",
-    "iraq": "Iraque",
-    "ireland": "Irlanda",
-    "italy": "Itália",
-    "japan": "Japão",
-    "korea": "Coreia",
-    "libya": "Líbia",
-    "macao": "Macau",
-    "macedonia": "Macedónia",
-    "martinique": "Martinica",
-    "mexico": "México",
-    "monaco": "Mónaco",
-    "netherlands": "Países Baixos",
-    "new_guinea": "Nova Guiné",
-    "new_zealand": "Nova Zelândia",
-    "north_africa": "África do Norte",
-    "north_america": "América do Norte",
-    "norway": "Noruega",
-    "palestine": "Palestina",
-    "panama": "Panamá",
-    "poland": "Polónia",
-    "republic_of_congo": "República do Congo",
-    "russia": "Rússia",
-    "sao_tome_and_principe": "São Tomé e Príncipe",
-    "saudi_arabia": "Arábia Saudita",
-    "singapore": "Singapura",
-    "somalia": "Somália",
-    "south_africa": "África do Sul",
-    "south_america": "América do Sul",
-    "spain": "Espanha",
-    "sweden": "Suécia",
-    "switzerland": "Suíça",
-    "syria": "Síria",
-    "thailand": "Tailândia",
-    "trinidad_and_tobago": "Trinidade e Tobago",
-    "turkey": "Turquia",
-    "ukraine": "Ucrânia",
-    "united_kingdom": "Reino Unido",
-    "united_states": "Estados Unidos",
-    "vietnam": "Vietname",
-    "virgin_islands": "Ilhas Virgens",
-    "west_africa": "África Ocidental"
-  },
-  "places_of_interest": "Locais de interesse",
-  "plants": "plantas",
-  "please_allow_a_few_weeks_for_external_sites": "Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação",
-  "please_complete_the_following_to_add_project": "Por favor, preencha com a(s) seguinte(s) informação(ões) para adicionar a observação ao projeto:\n",
-  "popular": "popular",
-  "potential_disagreement": "Desacordo Potencial",
-  "prev": "Anterior",
-  "preview": "Pré-visualização",
-  "previous": "Anterior",
-  "previous_observation": "Observação Anterior",
-  "previous_photo": "Foto anterior",
-  "previous_tab": "Aba Anterior",
-  "private_": "Privado",
-  "proceed": "Avançar",
-  "profile": "Perfil",
-  "project": "Projeto",
-  "project_admins": {
-    "one": "Administrador do projecto",
-    "other": "Administradores do projecto"
-  },
-  "project_requirements": "Requisitos do Projeto",
-  "projects": "Projetos",
-  "proposed_taxa_that_contradict_the_community_id": "Taxa proposto que contradiz a identificação feita pela comunidade",
-  "proposed_taxa_that_support_the_community_id": "Taxa proposto que suporta a identificação feita pela comunidade",
-  "protozoans": "protozoários",
-  "public_domain": "Domínio Público",
-  "purple": "púrpura",
-  "quality_grade": "Grau de Qualidade",
-  "quality_grade_": "Grau de Qualidade",
-  "rank": "Classificação",
-  "rank_position": "Classificação",
-  "ranks": {
-    "kingdom": "reino",
-    "subkingdom": "sub-reino",
-    "phylum": "Filo",
-    "subphylum": "subfilo",
-    "superclass": "superclasse",
-    "class": "classe",
-    "subclass": "subclasse",
-    "infraclass": "infraclasse",
-    "superorder": "superordem",
-    "order": "ordem",
-    "suborder": "subordem",
-    "infraorder": "infraordem",
-    "family": "família",
-    "subfamily": "subfamília",
-    "supertribe": "supertribo",
-    "tribe": "tribo",
-    "genus": "género",
-    "genushybrid": "género híbrido",
-    "subgenus": "subgénero",
-    "section": "secção",
-    "subsection": "subsecção",
-    "hybrid": "híbrido",
-    "subspecies": "subespécie",
-    "variety": "variedade",
-    "form": "formulário",
-    "leaves": "folhas"
-  },
-  "ray_finned_fishes": "Peixes de barbatanas com raios",
-  "read_more": "Ler Mais",
-  "recent": "Recente(s)",
-  "recent_evidence_of_organism": "Evidência recente de um organismo",
-  "recent_observations_": "Observações recentes",
-  "red": "vermelho",
-  "redo_search_in_map": "Procurar novamente no mapa",
-  "regenerate_stats": "Volta a gerar as estatísticas",
-  "reject?": "Rejeitar?",
-  "relative_observations": "Observações Relacionadas",
-  "reload_timed_out": "O tempo expirou. Por favor, tente novamente mais tarde.",
-  "remove": "Remover",
-  "remove_from_project": "Remover do projeto",
-  "removing": "A remover...",
-  "reptiles": "répteis",
-  "request_failed": "Falha no Pedido",
-  "required_": "Obrigatório",
-  "research": "pesquisa",
-  "research_": "Pesquisar",
-  "research_grade": "Grau de Pesquisa",
-  "research_grade_qualification": "Qualificação do Grau de Pesquisa",
-  "research_grade_short_html": "G<span class='full'>rau de </span>P<span class='full'>esquisa</span>",
-  "reset_search_filters": "Reconfigurar os filtros de pesquisa",
-  "restore": "Restaurar",
-  "review_all": "Rever Todas",
-  "reviewed": "Revisto",
-  "rg_observations": "Observações GP",
-  "satellite": "satélite",
-  "save": "Guardar",
-  "save_photos": "Guardar fotos",
-  "saved": "Guardado",
-  "saving": "A guardar...",
-  "saving_verb": "A guardar",
-  "search": "Procurar",
-  "search_by_taxon_name_or_flickr_photo_id": "Procurar pelo nome do táxon ou identificação da foto do Flickr",
-  "search_by_taxon_name_or_observation_id": "Procurar pelo nome do táxon ou identificação da observação",
-  "search_external_name_providers": "Procurar fornecedores de nomes externos",
-  "search_for_a_location": "Procurar uma localização",
-  "search_remote": "Procura remota",
-  "search_species_": "À procura de espécie(s)...",
-  "seasonality": "Sazonalidade",
-  "seen_nearby": "Visto nas Proximidades",
-  "select": "Selecionar",
-  "select_all": "Selecionar tudo",
-  "select_at_least_one": "Selecionar pelo menos um",
-  "select_none": "Não selecionar nenhuma",
-  "select_observations_to_edit": "Selecionar as observações para editar...",
-  "select_options": "Selecionar opções",
-  "select_this_taxon": "Selecionar Este Táxon",
-  "selected_photos": "Fotos selecionadas",
-  "set_license": "Defina a licença",
-  "share": "Partilhar",
-  "show": "Mostrar",
-  "show_keyboard_shortcuts": "Mostrar as Teclas de Atalho do Teclado",
-  "show_relative_proportions_of_all_observations": "Mostrar a proporção relativa de todas as observações",
-  "show_taxa_from_everywhere": "Mostrar taxa de toda a parte",
-  "show_taxa_from_place": "Mostrar taxa de %{place}",
-  "show_total_counts": "Mostrar as contagens totais",
-  "show_uncountable_species": "Mostrar as espécies incontáveis",
-  "showing_taxa_from_everywhere": "A mostrar taxa de toda a parte",
-  "showing_taxa_from_place": "A mostrar taxa de %{place}",
-  "showing_x_of_y_listings": "A mostrar %{x} de %{y} listagens",
-  "sign_out": "Terminar Sessão",
-  "sign_up": "Registar-se",
-  "similar_species": "Espécies semelhantes",
-  "skip_to_next_page": "Ir para página seguinte",
-  "some_observations_failed_to_be_added": "Algumas observações não foram adicionadas aos projetos",
-  "some_observations_failed_to_save": "Não foi possível guardar algumas observações",
-  "some_rights_reserved": "alguns direitos reservados",
-  "something": "Alguma coisa",
-  "something_went_wrong_adding": "Algo correu mal ao adicionar ao adicionar essa espécie à sua lista",
-  "somewhere_on_earth": "algures na Terra",
-  "sort_by": "Ordenar por",
-  "sounds": {
-    "selected_sounds": "Sons selecionados",
-    "sounds": "Sons"
-  },
-  "source": "Fonte",
-  "source_": "Fonte:",
-  "source_list_": "Lista de Fontes",
-  "source_wikipedia": "Fonte: Wikipedia",
-  "spam": "spam",
-  "species": "Espécie(s)",
-  "species_by_category": "espécies por categoria",
-  "species_name_cap": "Nome da espécie",
-  "species_unknown": "Espécie desconhecida",
-  "specify_the_reason_youre_flagging": "Especificar a razão pela qual está a sinalizar este item",
-  "start": "Início",
-  "start_date_time": "Data / Hora de Início",
-  "stats": "Estatísticas",
-  "stats_for_this_year_have_not_been_generated": "As estatísticas para este ano não foram geradas.",
-  "status": "Estado",
-  "stop_testing": "Parar Teste",
-  "submit_observations": {
-    "one": "Submeter 1 observação",
-    "other": "Submeter %{count} observations"
-  },
-  "submitted": "Enviado",
-  "suggestions": "Sugestões",
-  "table": "Tabela",
-  "tagging": "A etiquetar...",
-  "tags": "Etiquetas",
-  "taxon_changes": "Alterações do táxon",
-  "taxon_map": {
-  },
-  "taxonomic": "Taxonómico",
-  "taxonomic_groups": "Grupos Taxonómicos",
-  "taxonomy": "Taxonomia",
-  "terms": "Termos",
-  "terrain": "terreno",
-  "that_was_the_last_observation_matching_the_current_filters": "Esta foi a última observação que corresponde com os filtros atuais.",
-  "the_world": "O Mundo",
-  "then_keybord_sequence": "depois",
-  "this_taxon_concept_is_inactive": "este conceito de táxon está inativo",
-  "this_taxon_has_no_default_photo": "Este táxon não tem foto predefinidaǃ",
-  "this_year": "Este Ano",
-  "threatened": "ameaçado",
-  "time": {
-    "am": "am",
-    "formats": {
-      "long": "%d de %B de %Y, %I:%M %p"
-    },
-    "pm": "pm"
-  },
-  "today": "Hoje",
-  "top_identifier": "Principal Identificador",
-  "top_identifiers": "Principais Identificadores",
-  "top_identifiers_of_taxon": "Principais Identificadores de %{taxon}",
-  "top_observer": "Principal Observador",
-  "top_observers": "Principais Observadores",
-  "top_species": "Principais Espécies",
-  "total_observations": "Número total de observações",
-  "total_species_observed": "Número Total de Espécies Observadas",
-  "translated_languages": "Idiomas traduzidos",
-  "trends": "Tendências",
-  "two_thirds": "dois terços",
-  "type_species_name": "Digitar o nome da espécie",
-  "umbrella_projects": "Projetos Umbrella",
-  "unfollow": "Deixar de seguir",
-  "unknown": "Desconhecido",
-  "unknown_error": "Erro desconhecido",
-  "update_observations": "Atualizar observações",
-  "update_search": "Atualizar pesquisa",
-  "uploader": {
-    "errors": {
-    },
-    "tooltips": {
-      "add": "Adicionar observação(ões)",
-      "photo_failed": "Falha ao carregar a foto",
-      "remove_observation": "Remover observação",
-      "remove_photo": "Remover a foto"
-    }
-  },
-  "user": "Utilizador",
-  "user_commented": "%{user} comentou",
-  "user_disagrees_this_is_taxon": "%{user} discorda que seja um(a) %{taxon}",
-  "user_suggested_an_id": "%{user} sugeriu uma identificação",
-  "username_or_user_id": "Nome de utilizador ou identificação do utilizador",
-  "users": "Utilizadores",
-  "verifiable_observations_by_observation_date": "Observações verificáveis por data de observação",
-  "view_flag": "Ver sinalizador",
-  "view_flags": "Ver sinalizadores",
-  "view_more": "Ver mais",
-  "view_observation": "Ver observação",
-  "view_observations_of_this_taxon_by": "Ver observações deste táxon por",
-  "views": {
-    "observations": {
-      "community_id": {
-      },
-      "compare": {
-      },
-      "export": {
-      },
-      "identify": {
-      },
-      "show": {
-      }
-    },
-    "projects": {
-      "edit": {
-      },
-      "new": {
-        "errors": {
-        },
-        "welcome_to_projects": "Bem-vindo ao projeto!"
-      },
-      "show": {
-      }
-    },
-    "shared": {
-      "blocked": {
-      },
-      "spam": {
-      }
-    },
-    "stats": {
-      "index": {
-      },
-      "year": {
-        "growth_title": "Crescimento"
-      }
-    },
-    "taxa": {
-      "show": {
-        "frequency": {
-        }
-      }
-    },
-    "users": {
-      "edit": {
-      }
-    },
-    "welcome": {
-      "index": {
-        "species_observed": "Espécies observadas"
-      }
-    }
-  },
-  "wild": "selvagem",
-  "x_comments": {
-    "one": "1 comentário",
-    "other": "%{count} comentários"
-  },
-  "x_faves": {
-    "one": "1 favorito",
-    "other": "%{count} favoritos"
-  },
-  "x_flagged": "%{x} sinalizado(a)",
-  "x_flagged_as_flag": "%{x} sinalizado(a) como %{flag}",
-  "x_identifications": {
-    "one": "1 identificação",
-    "other": "%{count} identificações"
-  },
-  "x_identifications_": {
-    "one": "1 identificação",
-    "other": "%{count} identificações"
-  },
-  "x_identifications_html": {
-    "one": "<span class=\"count\">1</span> identificação",
-    "other": "<span class=\"count\">%{count}</span> identificações"
-  },
-  "x_matching_taxa_html": {
-    "one": "<span class=\"count\">1</span> táxon correspondente",
-    "other": "<span class=\"count\">%{count}</span> táxons correspondentes"
-  },
-  "x_misidentifications_of_this_species": {
-    "one": "1 identificação incorreta desta espécie",
-    "other": "%{count} identificações incorretas desta espécie"
-  },
-  "x_new_species": {
-    "one": "1 Nova Espécie",
-    "other": "%{count} Novas Espécies"
-  },
-  "x_observations": {
-    "one": "1 observação",
-    "other": "%{count} observações"
-  },
-  "x_observations_": {
-    "one": "1 observação",
-    "other": "%{count} observações"
-  },
-  "x_observations_html": {
-    "one": "<span class='count'>1</span> observação",
-    "other": "<span class='count'>%{count}</span> observações"
-  },
-  "x_observations_link_html": {
-    "one": "<a href='%{url}'>1</a> observação",
-    "other": "<a href='%{url}'>%{count}</a> observações"
-  },
-  "x_observations_reviewed_html": {
-    "one": "<span class='count'>1</span> observação revista",
-    "other": "<span class='count'>%{count}</span> observações revistas"
-  },
-  "x_others": {
-    "one": "1 outro",
-    "other": "%{count} outros"
-  },
-  "x_people_helped_user_with_y_ids_html": "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>",
-  "x_photos": {
-    "one": "1 foto",
-    "other": "%{count} fotos"
-  },
-  "x_species": {
-    "one": "1 Espécie",
-    "other": "%{count} Espécies"
-  },
-  "x_species_html": {
-    "one": "<span class='count'>Uma</span> espécie",
-    "other": "<span class='count'>%{count}</span> espécies"
-  },
-  "x_species_link_html": {
-    "one": "<a href='%{url}'>1</a> espécie",
-    "other": "<a href='%{url}'>%{count}</a> espécies"
-  },
-  "x_suggestions_filtered_by_colon": {
-    "one": "Uma sugestão filtrada por:",
-    "other": "%{count} sugestões filtradas por:"
-  },
-  "yesterday": "Ontem",
-  "your_observations": "Suas observações",
-  "zoom_photo": "Ampliar Foto"
-};
-I18n.translations["pt-BR"] = {
-  "a_member_of_taxon_html": "um membro de %{taxon}",
-  "about": "Sobre",
-  "about_charts": "Sobre os Gráficos",
-  "about_community_taxa": "Sobre os táxons da comunidade",
-  "about_complete_taxa": "Sobre táxons completos",
-  "about_conservation_status": "Sobre o Status de Conservação",
-  "about_establishment_means": "Sobre Formas de Estabelecimento",
-  "about_names": "Sobre Nomes",
-  "about_this_bioblitz": "Sobre este bioblitz",
-  "acc": "Precisão exata - Acurácia (m)",
-  "account": "Conta",
-  "account_creation": "Criação de conta",
-  "accuracy": "Precisão (Acurácia)",
-  "accuracy_meters": "Precisão (Acurácia em metros)",
-  "action": "Ação",
-  "active": "Ativo",
-  "activerecord": {
-    "attributes": {
-      "observation": {
-      }
-    }
-  },
-  "activity": "Atividade",
-  "add": "Adicionar",
-  "add_a_comment": "Adicione um comentário",
-  "add_a_field": "Adicione um campo",
-  "add_a_name": "Adicione um nome",
-  "add_alive_or_dead_alive_annotation": "Adicionar anotação \"Vivo ou Morto: Vivo\"",
-  "add_alive_or_dead_dead_annotation": "Adicionar anotação \"Vivo ou Morto: Morto\"",
-  "add_an_identification": "Adicione uma identificação",
-  "add_annotations_for_x": "Adicionar anotações para \"%{x}\"",
-  "add_edit_flags": "Adicionar/Editar Etiquetas",
-  "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Adicionar \"Estágio de Vida: Adulto\" anotação",
-  "add_life_stage_egg_annotation": "Adicionar \"Estágio de Vida: Ovo\" anotação",
-  "add_life_stage_larva_annotation": "Adicionar \"Estágio de Vida: Larva\" anotação",
-  "add_life_stage_pupa_annotation": "Adicionar \"Estágio de Vida: Pupa\" anotação",
-  "add_link": "Adicionar Link",
-  "add_one_now": "Adicionar Uma Agora",
-  "add_plant_phenology_flowering_annotation": "Adicionar \"Fenologia\": Floração\" anotações",
-  "add_plant_phenology_fruiting_annotation": "Adicionar \"Fenologia\": Frutificação\" anotações",
-  "add_sex_female_annotation": "Adicionar \"Sexo: Fêmea\" anotação",
-  "add_sex_male_annotation": "Adicionar \"Sexo: Macho\" anotação",
-  "add_tag": "Adicionar marcação",
-  "add_tags": "Adicionar marcações",
-  "add_to_a_project": "Adicionar a um projeto",
-  "add_to_favorites": "Adicionar aos favoritos",
-  "add_to_project": "Adicione ao projeto",
-  "added": "Adicionado",
-  "added!": "Adicionado!",
-  "added_as_a_part_of_a_taxon_change_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">mudança de táxon</a>\n",
-  "added_as_a_part_of_a_taxon_merge_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">mesclagem de táxon</a>\n",
-  "added_as_a_part_of_a_taxon_split_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">divisão de táxon</a>\n",
-  "added_as_a_part_of_a_taxon_swap_html": "Adicionado como parte de uma\n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">substituição de táxon</a>\n",
-  "added_by": "Adicionado por",
-  "added_on_datetime": "Adicionado em %{datetime}",
-  "adjust_brightness": "Ajustar o brilho",
-  "admin_s": "Administrador(es)",
-  "agree_": "Concordo",
-  "agree_with_current_taxon": "Concordo com taxon atual",
-  "aka": "também conhecido como",
-  "all": "Todas",
-  "all_flags_must_be_resolved": "Todos os destaques devem ser identificados",
-  "all_rank_added_to_the_database": {
-    "class": "Todas as classes adicionadas à base de dados",
-    "complex": "Todos os complexos adicionados ao banco de dados",
-    "epifamily": "Todas as epifamílias adicionadas à base de dados",
-    "family": "Todas as famílias adicionadas à base de dados",
-    "form": "Todas as formas adicionadas à base de dados",
-    "genus": "Todos os gêneros adicionados à base de dados",
-    "genushybrid": "Todos os gêneros híbridos adicionados à base de dados",
-    "hybrid": "Todos os híbridos adicionados à base de dados",
-    "infraclass": "Todas as infraclasses adicionadas à base de dados",
-    "infraorder": "Todas as infraordens adicionadas à base de dados",
-    "order": "Todas as ordens adicionadas à base de dados",
-    "phylum": "Todos os filos adicionados à base de dados",
-    "section": "Todas as seções adicionadas à base de dados",
-    "species": "Todas as espécies adicionadas à base de dados",
-    "subclass": "Todas as subclasses adicionadas à base de dados",
-    "subfamily": "Todas as subfamílias adicionadas à base de dados",
-    "subgenus": "Todos os subgêneros adicionados à base de dados",
-    "suborder": "Todas as subordens adicionadas à base de dados",
-    "subphylum": "Todos os subfilos adicionados à base de dados",
-    "subsection": "Todas as subseções adicionadas à base de dados",
-    "subspecies": "Todas as subespécies adicionadas à base de dados",
-    "subtribe": "Todas as subtribos adicionadas à base de dados",
-    "superclass": "Todas as superclasses adicionadas à base de dados",
-    "superfamily": "Todas as superfamílias adicionadas à base de dados",
-    "superorder": "Todas as superordens adicionadas à base de dados",
-    "supertribe": "Todas as supertribos adicionadas à base de dados",
-    "tribe": "Todas as tribos adicionadas à base de dados",
-    "variety": "Todas as variedades adicionadas à base de dados"
-  },
-  "all_rights_reserved": "todos os direitos reservados",
-  "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Classe",
-      "phylum": "Filo",
-      "species": "Espécies",
-      "order": "Ordem"
-    },
-    "amphibians": "Anfíbios",
-    "animals": "Animais",
-    "arachnids": "Aracnídeos",
-    "birds": "Aves",
-    "chromista": "Chromista - algas pardas e parentes",
-    "fungi": "Fungos",
-    "fungi_including_lichens": "Fungos, incluindo Líquenes",
-    "insects": "Insetos",
-    "mammals": "Mamíferos",
-    "mollusks": "Moluscos",
-    "other_animals": "Outros Animais",
-    "plants": "Plantas",
-    "protozoans": "Protozoários",
-    "ray_finned_fishes": "Actinopterygii, grupo de peixes de barbatanas com raios.",
-    "reptiles": "Répteis",
-    "life": "Vida",
-    "x_plantae": {
-      "one": "1 planta",
-      "other": "%{count} plantas"
-    },
-    "x_animalia": {
-      "one": "%{count} animal",
-      "other": "%{count} animais"
-    },
-    "x_mollusca": {
-      "one": "1 molusco",
-      "other": "%{count} moluscos"
-    },
-    "x_amphibia": {
-      "one": "1 anfíbio",
-      "other": "%{count} anfíbios"
-    },
-    "x_mammalia": {
-      "one": "1 mamífero",
-      "other": "%{count} mamíferos"
-    },
-    "x_actinopterygii": {
-      "one": "1 peixes de barbatanas com raios",
-      "other": "%{count} peixes de barbatanas com raios"
-    },
-    "x_reptilia": {
-      "one": "1 réptil",
-      "other": "%{count} répteis"
-    },
-    "x_aves": {
-      "one": "1 ave",
-      "other": "%{count} aves"
-    },
-    "x_insecta": {
-      "one": "1 inseto",
-      "other": "%{count} insetos"
-    },
-    "x_arachnida": {
-      "one": "1 aracnídeo",
-      "other": "%{count} aracnídeos"
-    },
-    "x_fungi": {
-      "one": "1 fungo",
-      "other": "%{count} fungos"
-    },
-    "x_chromista": {
-      "one": "1 algas pardas e parentes",
-      "other": "%{count} algas pardas e parentes"
-    },
-    "x_protozoa": {
-      "one": "1 protozoário",
-      "other": "%{count} protozoários"
-    },
-    "x_other_animals": {
-      "one": "1 outro animal",
-      "other": "%{count} outros animais"
-    }
-  },
-  "all_taxa_": "Todos os táxons",
-  "allow_curator_access": "Permitir o acesso do administrador",
-  "allow_project_curators_to_view_your_private_coordinates": "Permitir o acesso às suas coordenadas ocultas pelos administradores do projeto",
-  "amphibians": "anfíbios",
-  "and": "e",
-  "android": "Android",
-  "animals": "Animais",
-  "annotation": "Anotação",
-  "annotations": "Anotações",
-  "any": "qualquer",
-  "any_": "Qualquer",
-  "arachnids": "arachinídeos",
-  "are_you_sure?": "Você tem certeza?",
-  "are_you_sure_leave_this_project": "Tem certeza que deseja sair deste projeto?",
-  "are_you_sure_remove_photo": "Tem certeza de que deseja remover esta foto?",
-  "are_you_sure_you_want_to_remove_all_tags": "Você confirma a remoção de todas as marcações?",
-  "are_you_sure_you_want_to_remove_these_x_taxa?": "Você confirma a exclusão destes %{x} táxons?",
-  "asc": "Cresc",
-  "ascending": "Ascendente",
-  "atom": "Átomo",
-  "attention": "Atenção",
-  "attribute": "Atributo",
-  "back_to_suggestions": "Voltar às sugestões",
-  "back_to_x": "Voltar para %{noun}",
-  "based_on_the_evidence_can_id_be_improved": "Com base nas evidências, o Táxon comunitário ainda pode ser confirmado ou melhorado?\n",
-  "be_the_first_to_fave_this_observation": "Seja o primeiro a adicionar esta observação aos favoritos!",
-  "birds": "aves",
-  "black": "preto",
-  "blue": "azul",
-  "blue_butterfly_etc": "azul, borboleta, etc.",
-  "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
-  "bounding_box": "Quadro Delimitador",
-  "brown": "marrom",
-  "browse": "Explorar",
-  "by_user": "Por %{user}",
-  "calendar": "Calendário",
-  "cancel": "Cancelar",
-  "captive": "Cativo",
-  "captive_cultivated": "Em cativeiro / Cultivada",
-  "casual": "casual",
-  "casual_": "Casual",
-  "categories": "Categorias",
-  "cc_0_description": "Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados.",
-  "cc_0_name": "Sem direitos de autor (CC0)",
-  "cc_by_description": "Esta licença permite que outros distribuam, remixem, adaptem ou criem obras derivadas, mesmo que para uso com fins comerciais, contanto que seja dado crédito pela criação original.",
-  "cc_by_name": "Atribuição (by)",
-  "cc_by_nc_description": "Esta licença permite que outros remixem, adaptem, e criem obras derivadas sobre a obra licenciada, sendo vedado o uso com fins comerciais. As novas obras devem conter menção ao autor nos créditos e também não podem ser usadas com fins comerciais, porém as obras derivadas não precisam ser licenciadas sob os mesmos termos desta licença.",
-  "cc_by_nc_name": "Atribuição – Uso Não Comercial (by-nc)",
-  "cc_by_nc_nd_description": "Esta licença é a mais restritiva dentre as nossas seis licenças principais, permitindo redistribuição. Ela é comumente chamada “propaganda grátis” pois permite que outros façam download das obras licenciadas e as compartilhem, contanto que mencionem o autor, mas sem poder modificar a obra de nenhuma forma, nem utilizá-la para fins comerciais.",
-  "cc_by_nc_nd_name": "Atribuição – Uso Não Comercial – Não a Obras Derivadas (by-nc-nd)",
-  "cc_by_nc_sa_description": "Esta licença permite que outros remixem, adaptem e criem obras derivadas sobre a obra original, desde que com fins não comerciais e contanto que atribuam crédito ao autor e licenciem as novas criações sob os mesmos parâmetros. Outros podem fazer o download ou redistribuir a obra da mesma forma que na licença anterior, mas eles também podem traduzir, fazer remixes e elaborar novas histórias com base na obra original. Toda nova obra feita a partir desta deverá ser licenciada com a mesma licença, de modo que qualquer obra derivada, por natureza, não poderá ser usada para fins comerciais.",
-  "cc_by_nc_sa_name": "Atribuição – Uso Não Comercial – Compartilhamento pela mesma Licença (by-nc-sa)",
-  "cc_by_nd_description": "Esta licença permite a redistribuição e o uso para fins comerciais e não comerciais, contanto que a obra seja redistribuída sem modificações e completa, e que os créditos sejam atribuídos ao autor.",
-  "cc_by_nd_name": "Atribuição – Não a Obras Derivadas (by-nd)",
-  "cc_by_sa_description": "Esta licença permite que outros remixem, adaptem, e criem obras derivadas ainda que para fins comerciais, contanto que o crédito seja atribuído ao autor e que essas obras sejam licenciadas sob os mesmos termos. Esta licença é geralmente comparada a licenças de software livre. Todas as obras derivadas devem ser licenciadas sob os mesmos termos desta. Dessa forma, as obras derivadas também poderão ser usadas para fins comerciais.",
-  "cc_by_sa_name": "Atribuição – Compartilhamento pela mesma Licença (by-sa)",
-  "change_types": {
-    "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa} foram agrupados em %{output_taxon}",
-    "input_taxa_will_be_merged_into_output_taxon_html": "%{input_taxa} serão agrupados em %{output_taxon}",
-    "input_taxon_was_dropped_html": "%{input_taxon} foi abandonado",
-    "input_taxon_was_replaced_by_output_taxon_html": "%{input_taxon} foi substituído por %{output_taxon}",
-    "input_taxon_was_split_into_output_taxa_html": "%{input_taxon} dividiu-se em %{output_taxa}",
-    "input_taxon_will_be_dropped_html": "%{input_taxon} será abandonado",
-    "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} será substituído por %{output_taxon}",
-    "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} será dividido em %{output_taxa}"
-  },
-  "check_above_for_errors": "Verifique erros acima",
-  "check_back_soon": "Verifique em breve!",
-  "checklist": "Lista de Verificação",
-  "choose_a_field": "Escolha um campo",
-  "choose_file": "Escolher arquivo",
-  "choose_files": "Escolher arquivos",
-  "choose_photos_for_this_taxon": "Escolhas fotos para este táxon",
-  "clear": "limpar",
-  "close": "Fechar",
-  "combine": "Fundir",
-  "comment_": "Comentário",
-  "commercial_solicitation": "Solicitação comercial, links sem vínculo, etc.",
-  "community_curated": "Supervisionado pela Comunidade",
-  "community_id_at_genus_level_or_lower": "Táxon Comunitário ao nível do gênero ou inferior",
-  "community_id_at_species_level_or_lower": "Táxon comunitário a nível de espécie ou inferior",
-  "community_id_heading": "Taxon comunitário",
-  "compare": "Comparar",
-  "comprehensive_list": "Lista completa",
-  "computer_vision_suggestion": "Sugestão de visão por computador",
-  "computer_vision_suggestion_desc": "Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.\n",
-  "confirm": "Confirmar",
-  "conservation_status": "Status de Conservação",
-  "conservation_status_geoprivacy_desc": "Geoprivacidade padrão aplicada a todas as observações deste táxon neste local\n",
-  "contact_support": "Fale com o Suporte",
-  "content_hidden": "Conteúdo oculto",
-  "content_hidden_by_user_on_date_because_reason_html": "Conteúdo oculto por %{user} em %{date} porque: \"%{reason}\"\n",
-  "continue": "Continuar",
-  "controlled_term_definitions": {
-    "alive": "O organismo está vivo e não mostra sinais de morte iminente",
-    "cannot_be_determined": "Não pode ser determinado a partir da evidência fornecida",
-    "dead": "O organismo está morto ou mostra sinais de morte iminente",
-    "flower_budding": "Botões de flor são visíveis, mas não abertos",
-    "flowering": "Flores visíveis, abertas e ainda presas à planta",
-    "fruiting": "Frutos visíveis e ainda anexados à planta",
-    "no_evidence_of_flowering": "Os meios de comunicação não dão provas de estruturas reprodutivas",
-    "teneral": "Adulto que pupou recentemente mas ainda não alcançou sua forma final de adulto"
-  },
-  "controlled_term_labels": {
-    "adult": "Adulto",
-    "alive": "Vivo",
-    "alive_or_dead": "Vivo ou Morto",
-    "budding": "Brotamento",
-    "cannot_be_determined": "Indeterminado",
-    "dead": "Morto",
-    "egg": "Ovo",
-    "female": "Fêmea",
-    "flower_budding": "Brotamento de Flores",
-    "flowering": "Floração",
-    "fruiting": "Frutificação",
-    "juvenile": "Juvenil",
-    "larva": "Larva",
-    "life_stage": "Estágio de Vida",
-    "male": "Macho",
-    "no_evidence_of_flowering": "Nenhuma evidência de floração",
-    "nymph": "Ninfa",
-    "plant_phenology": "Fenologia da Planta",
-    "pupa": "Pupa",
-    "sex": "Sexo",
-    "subimago": "Subimago",
-    "teneral": "Teneral"
-  },
-  "convert": "Converter",
-  "copyright": {
-    "some_rights_reserved": "alguns direitos reservados",
-    "some_rights_reserved_by": "(c) %{name}, alguns direitos reservados (%{license_short})",
-    "all_rights_reserved": "(c) %{name}, todos os direitos reservados",
-    "no_known_copyright_restrictions": "%{name}, sem restrições de direitos autorais conhecidas (%{license_name})",
-    "no_known_copyright_restrictions_text": "sem restrições conhecidas sobre os direitos de autor",
-    "no_rights_reserved": "Sem direitos reservados",
-    "no_rights_reserved_by": "(c) %{name}, sem direitos reservados (%{license_name})",
-    "anonymous": "anônimo",
-    "public_domain": "Domínio público",
-    "copyright": "Direitos autorais",
-    "no_copyright": "Sem direitos de autor (CC0)",
-    "attribution_noncommercial_sharealike_license": "Atribuição-Não Comercial - Compartilhável sob a Mesma Licença",
-    "attribution_noncommercial_license": "Licença Atribuição - Não Comercial",
-    "attribution_noncommercial_noderivs_license": "Licença de Atribuição – Uso Não Comercial – Não a Obras Derivadas (by-nc-nd)",
-    "attribution_license": "Licença Atribuida",
-    "attribution_sharealike_license": "Atribuição – Compartilhamento pela mesma Licença (by-sa)",
-    "attribution_noderivs_license": "Licença Atribuição – Não a Obras Derivadas (by-nd)",
-    "gnu_free_documentation_license": "Licença de Documentação Livre GNU"
-  },
-  "copyright_info": "Informação sobre copyright",
-  "copyright_info_and_more": "Informação sobre copyright e Mais",
-  "copyright_infringement": "Violação de direitos autorais",
-  "copyright_infringement_desc": "Viola o direito autoral ou foi criada por alguém que não é o observador e está sem atribuição",
-  "create_an_atlas": "Criar um Atlas",
-  "created_by": "Criado por",
-  "critically_endangered": "Criticamente em perigo",
-  "csv": "CSV",
-  "cumulative_ids": "Identificações acumuladas: %{count} de %{total}",
-  "curation": "Administração",
-  "curators": "Coordenadores",
-  "current_flags": "Marcações Atuais",
-  "customize_location": "Personalizar Localização",
-  "dashboard": "Painel de controle",
-  "data_deficient": "Dados insuficientes",
-  "data_quality": "Qualidade dos Dados",
-  "data_quality_assessment": "Avaliação da qualidade dos dados",
-  "data_used": "Dados utilizados:",
-  "date": {
-    "abbr_day_names": [
-      "Dom",
-      "Seg",
-      "Ter",
-      "Qua",
-      "Qui",
-      "Sex",
-      "Sab"
-    ],
-    "abbr_month_names": [
-      null,
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez"
-    ],
-    "day_names": [
-      "Domingo",
-      "Segunda-feira",
-      "Terça-feira",
-      "Quarta-feira",
-      "Quinta-feira",
-      "Sexta-feira",
-      "Sábado"
-    ],
-    "day_names_min": {
-      "1": "Do",
-      "2": "Se",
-      "3": "Te",
-      "4": "Qa",
-      "5": "Qi",
-      "6": "Sx",
-      "7": "Sáb"
-    },
-    "formats": {
-      "compact": "%b %e",
-      "long": "%d de %B de %Y",
-      "month_day_year": "%d de %B de %Y",
-      "month_year": "%B de %Y"
-    },
-    "month_names": [
-      null,
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro"
-    ]
-  },
-  "date_": "Data",
-  "date_added": "Data de inclusão",
-  "date_format": {
-    "month": {
-      "january": "Janeiro",
-      "february": "Fevereiro",
-      "march": "Março",
-      "april": "Abril",
-      "may": "Maio",
-      "june": "Junho",
-      "july": "Julho",
-      "august": "Agosto",
-      "september": "Setembro",
-      "october": "Outubro",
-      "november": "Novembro",
-      "december": "Dezembro"
-    }
-  },
-  "date_is_accurate": "Data é acurada",
-  "date_observed_": "Data da observação",
-  "date_picker": {
-    "closeText": "Fechar",
-    "currentText": "Hoje",
-    "prevText": "Anterior",
-    "nextText": "Próximo",
-    "range": "Intervalo"
-  },
-  "date_specified": "Data especificada",
-  "date_time": "Data/Hora",
-  "date_to_date": "%{d1} - %{d2}",
-  "date_updated": "Data atualizada",
-  "datetime": {
-    "countdown_x_days": {
-      "one": "dia",
-      "other": "dias"
-    },
-    "countdown_x_hours": {
-      "one": "hora",
-      "other": "horas"
-    },
-    "countdown_x_minutes": {
-      "one": "min",
-      "other": "mins"
-    },
-    "countdown_x_seconds": {
-      "one": "s",
-      "other": "s"
-    },
-    "distance_in_words": {
-      "x_days": {
-        "one": "1 dia",
-        "other": "%{count} dias"
-      }
-    }
-  },
-  "decrease_brightness": "Diminuir o brilho",
-  "default": "padrão",
-  "delete": "Apagar",
-  "deleting": "Excluindo...",
-  "deleting_verb": "Excluindo",
-  "desc": "Decresc",
-  "descending": "Descendente",
-  "description_slash_tags": "Descrição / Marcações",
-  "details": "Detalhes",
-  "did_you_mean": "Você quis dizer",
-  "disagree_": "Não concordo",
-  "discoveries": "Descobertas",
-  "do_not_show_this_message_again": "Não mostrar esta mensagem novamente",
-  "doh_something_went_wrong": "Ops, algo saiu errado.",
-  "doh_something_went_wrong_error": "Ah, algo deu errado: %{error}",
-  "done": "Concluído",
-  "download": "Baixar",
-  "drag_and_drop_some_photos_or_sounds": "Arrastar e largar algumas fotografias ou sons",
-  "drop_it": "Solte",
-  "duplicate_observation_flag_warning": "Para observações duplicadas, peça ao observador para resolver o problema em vez de adicionar uma marca, os curadores não podem excluir observações.\n",
-  "duplicate_verb": "Duplicar",
-  "edit": "Alterar",
-  "edit_atlas": "Editar Atlas",
-  "edit_license": "Editar licença",
-  "edit_multiple_dates": "Editar múltiplas datas",
-  "edit_multiple_locations": "Editar múltiplas localizações",
-  "edit_multiple_species": "Editar múltiplas espécies",
-  "edit_photos": "Alterar fotos",
-  "edit_project": "Editar projeto",
-  "edit_taxon": "Editar táxon",
-  "edit_your_default_settings": "Modifique suas configurações padrão",
-  "edit_your_global_project_settings": "Editar suas configurações globais de projeto",
-  "edit_your_settings_for_this_project": "Editar suas configurações para este projeto",
-  "editing_observations": {
-    "one": "Editando <span class=\"count\">1</span> observação:",
-    "other": "Editando <span class=\"count\">%{count}</span> observações:"
-  },
-  "eligible_for_research_grade": "Elegível para Nível de Pesquisa",
-  "encompassing_places": "Locais no entorno",
-  "end": "Fim",
-  "end_date_time": "Data/Hora final",
-  "endangered": "Em perigo",
-  "endemic": "Endêmica",
-  "endemic_to_x": "Endêmica de %{x}",
-  "establishment": {
-    "endemic": "Endêmica",
-    "establishment": "Estabelecimento",
-    "introduced": "Introduzida",
-    "invasive": "Invasora",
-    "managed": "Cultivada/Cativeiro",
-    "native": "Nativa",
-    "naturalised": "Naturalizada"
-  },
-  "establishment_means": "Meios de estabelecimento",
-  "event_in_progress": "Evento em andamento",
-  "everyone_": "Todos",
-  "evidence_of_organism": "Evidência de organismo",
-  "exact": "Exato",
-  "exact_date": "Data exata",
-  "exact_location": "Localização exata",
-  "examples_of_ranking_organizations": "Exemplos de Organizações de Classificação",
-  "except": "exceto",
-  "exclude_places": "Excluir Locais",
-  "exclude_projects": "Excluir Projetos",
-  "exclude_taxa": "Excluir Táxons",
-  "exclude_users": "Excluir Usuários",
-  "exclusion_filters": "Filtros de Exclusão",
-  "exit_full_screen": "Sair do modo tela inteira",
-  "export_observations": "Exportar observações",
-  "exporting": "Exportando...",
-  "extinct": "extinto",
-  "extinct_in_the_wild": "Extinto na natureza",
-  "facebook": "Facebook",
-  "failed_to_find_your_location": "Falha ao buscar localização.",
-  "failed_to_save_record": "Falha ao salvar registro. Tente novamente mais tarde.",
-  "faves": "Favoritos",
-  "favorites": "Favoritos",
-  "feature_this_project_": "Apresentar este projeto",
-  "featured": "Destacado",
-  "featuring": "Apresentando",
-  "fields_": "Campos",
-  "fill_out_project_observation_fields": "Preencha campos de observação do projeto",
-  "filter_by_place": "Filtrar por lugar",
-  "filter_by_taxon": "Filtrar por táxon",
-  "filters": "Filtros",
-  "find": "Procurar",
-  "find_observations": "Encontre observações",
-  "find_photos": "Encontre Fotos",
-  "find_your_current_location": "Buscar localização atual",
-  "finished": "Concluído",
-  "finished_with_page": "Página Concluída",
-  "first_observation": "Primeira Observação",
-  "first_observation_by_date_added": "Primeira observação por data adicionada",
-  "flag": "Alerta",
-  "flag_an_item": "Alerte sobre um ítem",
-  "flag_as_inappropriate": "Marcar como inapropriado",
-  "flag_for_curation": "Marque um alerta para moderação",
-  "flag_this_observation": "Marque com alerta esta observação",
-  "flag_this_photo": "Faça um alerta sobre esta foto",
-  "flag_this_sound": "Sinalizar este som",
-  "flagged_": "Marcado",
-  "flagging_desc": "A sinalização chama a atenção dos curadores voluntários do site.\nPor favor, não sinalizar problemas que você pode resolver com identificações, os dados\nAvaliação de Qualidade ou conversando com a pessoa que fez o conteúdo.\n",
-  "flags_with_count": "Linhas (%{count})",
-  "flickr_has_no_creative_commons": "Flickr não possui fotos com licença Creative Commons deste lugar.",
-  "fluid_layout": "Layout Fluído",
-  "follow": "Seguir",
-  "frequency": "Frequência",
-  "from_flickr_facebook_etc": "Do Flickr, Facebook, etc.",
-  "from_soundcloud": "Do Soundcloud",
-  "full_screen": "Tela cheia",
-  "fungi": {
-    "one": "Fungo",
-    "other": "Fungos"
-  },
-  "gbif_occurrences": "Registros GBIF",
-  "generate_your_stats": "Gerar suas estatísticas",
-  "geoprivacy": "Geoprivacidade",
-  "geoprivacy_is_obscured": "A geoprivacidade é obscurecida",
-  "geoprivacy_is_obscured_desc": "O observador optou por obscurecer as coordenadas.",
-  "geoprivacy_is_private": "A geoprivacidade é privada",
-  "geoprivacy_is_private_desc": "Observador optou por esconder as coordenadas.",
-  "get_started": "Começar",
-  "give_monthly_caps": "DOAR MENSALMENTE",
-  "give_now_caps": "DOAR AGORA",
-  "globally": "Globalmente",
-  "go": "Ir",
-  "go_back": "Voltar",
-  "going_to_your_observations": "Indo para suas observações...",
-  "good_choice_for_sharing": "Boa alternativa para compartilhar com pesquisadores científicos",
-  "google": "Google",
-  "grid": "Grade",
-  "grid_layout": "Layout de Grade",
-  "grid_tooltip": "Exibir grade",
-  "grouping": "Agrupando",
-  "has_id_supported_by_two_or_more": "Possui ID suportado por dois ou mais",
-  "has_one_or_more_faves": "Possui um ou mais favoritos",
-  "has_photo": "Tem foto",
-  "has_photo_and_sound": "Tem foto e som",
-  "has_photos": "Possui fotos",
-  "has_photos_or_sounds": "Possui fotos ou sons",
-  "has_sound": "Tem som",
-  "has_sounds": "Possui sons",
-  "heads_up": "Aviso",
-  "here_are_our_top_species_suggestions": "Aqui pode ver a nossa seleção de espécies",
-  "hide_content": "Ocultar conteúdo",
-  "hide_desc": "Esconder conteúdo irá removê-lo da exibição pública, mas as pessoas ainda serão\ncapaz de ver que algo estava escondido, e curadores do site e autor de\no conteúdo ainda poderá ver o conteúdo oculto. Geralmente, isso\naplica-se apenas ao conteúdo escrito, por ex. se você ocultar o conteúdo de um\nidentificação, a identificação ainda é visível, mas o identificador\nobservações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir\nconteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para\nconteúdo censurável.\n",
-  "hide_running_total": "Ocultar total Cumulativo",
-  "hide_uncountable_species": "Ocultar espécies incontáveis",
-  "high": "Alta",
   "history": "Histórico",
   "i18n": {
     "inflections": {
@@ -58598,86 +57782,86 @@ I18n.translations["pt-BR"] = {
   "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
-      "improving": "Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxiliou ao refinar o táxon da comunidade\n",
-      "leading": "Táxon proveniente do táxon da comunidade. Esta identificação pode estar seguindo rumo à resposta correta.\n",
-      "maverick": "Táxon não é um descendente ou ancestral da comunidade táxon, i.e. a comunidade não concorda com este táxon\n"
+      "improving": "Primeira sugestão deste táxon que teve o acordo da comunidade. Isto ajudou a refinar o táxon comunitário.\n",
+      "leading": "O táxon provém do táxon da comunidade. Esta identificação pode levar à resposta correta.\n",
+      "maverick": "O táxon não é um descendente ou um ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon.\n"
     }
   },
   "id_withdrawn": "ID retirada",
   "identifications": "Identificações",
   "identifiers": "Identificadores",
   "identify": "Identificar",
-  "identify_observations": "Identifique observações",
+  "identify_observations": "Identificar as observações",
   "identify_title": "Identificar",
-  "ids_by_taxon": "Identificações por táxon",
+  "ids_by_taxon": "Identificações Por Táxon",
   "ids_made_for_others": "Identificações feitas por outros",
-  "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão você não concordar com o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.\n",
+  "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão não concorda com o táxon comunitário, pode rejeitá-lo, o que significa que a sua identificação é a que será usada para ligar a outras observações, actualizar listas de vida, etc. Também significa que a sua observação só pode obter um grau de pesquisa quando a comunidade concordar consigo.\n",
   "ignore_and_continue": "Ignorar e continuar",
   "image_size_control": "Controle de tamanho da imagem",
   "imperiled": "Em perigo",
   "import": "Importar",
-  "improving": "Melhorando",
-  "in_progress": "em progresso",
-  "in_the_past_week": "Na semana passada",
-  "inactive_taxon": "Espécie ou grupo inativo",
+  "improving": "A melhorar",
+  "in_progress": "em curso",
+  "in_the_past_week": "durante a semana passada",
+  "inactive_taxon": "táxon inativo",
   "inappropriate_content": "Conteúdo inapropriado?",
   "include_places": "Incluir lugares",
   "include_projects": "Incluir Projetos",
   "include_taxa": "Incluir Táxons",
   "include_users": "Incluir Usuários",
-  "including": "incluindo",
+  "including": "a incluir",
   "increase_brightness": "Aumentar o brilho",
   "info": "Informação",
-  "input_taxon": "Táxon de entrada",
-  "insect_life_stage": "Estágio de Vida de Inseto",
+  "input_taxon": "Introduzir táxon",
+  "insect_life_stage": "Estádios da Vida dos Insetos",
   "insects": "insetos",
   "interactions": "Interações",
-  "introduced": "Introduzida",
+  "introduced": "introduzido",
   "introduced_in_place": "Introduzido em %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A evidência fornecida é suficiente para confirmar que é %{taxon}?",
-  "it_can_now_be_used_for_research": "Pode agora ser utilizada para pesquisa ou visualizada em outros sites",
-  "item_flagged_notice_html": "Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou você é um curador do site. Se você acha que foi um erro, por favor\n<a href=\"mailto:%{help_email}\" class=\"contact\">contact us</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
-  "join": "Faça parte",
+  "it_can_now_be_used_for_research": "Agora pode ser usado para pesquisa e apresentado noutros sítios",
+  "item_flagged_notice_html": "Isto foi sinalizado como spam e não está mais visível publicamente. Pode vê-lo porque o criou, ou você é um curador do site. Se acha que foi um erro, por favor\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacte-nos</a>.\n<a href=\"%{manage_flags_path}\">Gerir sinalizadores</a>\n",
+  "join": "Participe",
   "join_project": "Entre neste projeto",
   "join_this_project": "Entre neste projeto",
-  "joined!": "Participando!",
-  "journal": "Boletim Informativo",
-  "keep_editing": "Continuar editando",
-  "keyboard_shortcuts": "Atalhos de Teclado",
-  "kml_file_size_error": "KML deve ter menos que 1 MB de tamanho",
+  "joined!": "Aderiu!",
+  "journal": "Boletim",
+  "keep_editing": "Continuar a editar",
+  "keyboard_shortcuts": "Atalhos do teclado",
+  "kml_file_size_error": "KML deve ter menos de 1 MB de tamanho",
   "label_colon": "%{label}:",
   "labels": "Etiquetas",
-  "language_slash_type": "Idioma / Tipo",
+  "language_slash_type": "Língua / Tipo",
   "large": "grande",
   "last_observation": "Última observação",
-  "last_year": "Ano Passado",
-  "lat": "Lat",
+  "last_year": "Ano passado",
+  "lat": "Latitude",
   "latitude": "Latitude",
   "layers": "Camadas",
   "leaderboard": "Colaboradores mais ativos",
-  "leading": "Conduzindo",
-  "least_concern": "Pouco preocupante",
+  "leading": "Principal",
+  "least_concern": "pouco preocupante",
   "leave": "Sair",
-  "leave_a_comment": "Deixe um comentário",
+  "leave_a_comment": "Deixar um comentário",
   "less": "Menos",
   "lexicons": {
-    "scientific_names": "Nomes Científicos",
-    "afrikaans": "Africâner",
+    "scientific_names": "Nomes científicos",
+    "afrikaans": "Africanês",
     "albanian": "Albanês",
     "bengali": "Bengalês",
     "catalan": "Catalão",
     "cebuano": "Cebuano",
     "chinese_simplified": "Chinês (Simplificado)",
     "chinese_traditional": "Chinês (tradicional)",
-    "creole_french": "Crioulo (Francês)",
-    "creole_portuguese": "Crioulo (Português)",
+    "creole_french": "Crioulo (francês)",
+    "creole_portuguese": "crioulo (Português)",
     "czech": "Checo",
     "danish": "Dinamarquês",
     "davawenyo": "Davao Chavacano",
     "dutch": "Holandês",
     "english": "Inglês",
-    "estonian": "Estônio",
+    "estonian": "Estónio",
     "finnish": "Finlandês",
     "french": "Francês",
     "gela": "Gela",
@@ -58698,30 +57882,30 @@ I18n.translations["pt-BR"] = {
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norueguês",
     "occitan": "Occitano",
-    "pangasinan": "Pangasinán",
+    "pangasinan": "Pangasinês",
     "portuguese": "Português",
     "romanian": "Romano",
     "russian": "Russo",
     "spanish": "Espanhol",
     "swedish": "Sueco",
-    "tagalog": "Análogo",
+    "tagalog": "Tagalo",
     "tahitian": "Taitiano",
-    "tokelauan": "Tokelauano",
+    "tokelauan": "Toquelauano",
     "turkish": "Turco",
     "waray_waray": "Samarenho"
   },
   "life": "Vida",
-  "life_list": "Lista de Vida de %{user}",
+  "life_list": "Lista de vida de %{user}",
   "linear_scale_label": "Linear",
   "list": "Lista",
-  "list_tooltip": "Exibir visualização de lista",
+  "list_tooltip": "Mostra a vista de lista",
   "lists": "Listas",
-  "loading": "Carregando...",
-  "loading_metadata": "Carregando metadados ...",
-  "loading_suggestions": "Carregando sugestões...",
+  "loading": "A carregar...",
+  "loading_metadata": "A carregar metadados...",
+  "loading_suggestions": "A carregar sugestões...",
   "locales": {
     "ar": "Árabe",
-    "bg": "Húngaro",
+    "bg": "Búlgaro",
     "br": "Bretão",
     "ca": "Catalão",
     "cs": "Checo",
@@ -58733,20 +57917,20 @@ I18n.translations["pt-BR"] = {
     "es": "Espanhol",
     "es-AR": "Espanhol (Argentina)",
     "es-MX": "Espanhol (México)",
-    "et": "Estônio",
+    "et": "Estoniano",
     "eu": "Basco",
-    "fi": "Finlandés",
+    "fi": "Finlandês",
     "fr": "Francês",
     "fr-CA": "Francês (Canadá)",
     "gl": "Galego",
     "he": "Hebraico",
-    "id": "Indonesio",
+    "id": "Indonésio",
     "it": "Italiano",
     "ja": "Japonês",
     "ko": "Coreano",
     "lb": "Luxemburguês",
     "lt": "Lituano",
-    "mk": "Macedônio",
+    "mk": "Macedónio",
     "nb": "Norueguês Bokmahl",
     "nl": "Holandês",
     "oc": "Occitano",
@@ -58758,58 +57942,58 @@ I18n.translations["pt-BR"] = {
     "sq": "Albanês",
     "sv": "Sueco",
     "tr": "Turco",
-    "zh-CN": "Chinês (Simplificado)",
+    "zh-CN": "Chinês (simplificado)",
     "zh-TW": "Chinês (tradicional)"
   },
   "locality_notes": "Notas por localidade",
-  "location": "Localização",
-  "location_is_accurate": "Localização correta",
-  "location_is_obscured": "Localização oculta",
-  "location_is_private": "Localização privada",
-  "location_is_public": "Localização pública",
+  "location": "Localidade",
+  "location_is_accurate": "A localização está certa",
+  "location_is_obscured": "A localização está oculta",
+  "location_is_private": "A localização é privada",
+  "location_is_public": "A localização é pública",
   "location_private": "Localização Privada",
-  "location_specified": "Localização especifica",
+  "location_specified": "Localização específica",
   "location_unknown": "Localização Desconhecida",
   "lock_zoom_level": "Bloquear nível de zoom",
   "log_in": "Entrar",
-  "log_scale_label": "Registro",
-  "long": "Lon",
+  "log_scale_label": "Logarítmica",
+  "long": "Longitude",
   "longitude": "Longitude",
   "lookup": "Procurar",
-  "low": "Baixa",
-  "make_this_your_default_license": "Torne esta %{type} sua licença padrão",
+  "low": "baixa",
+  "make_this_your_default_license": "Definir como a sua licença de %{type} pré-definida",
   "mammals": "mamíferos",
-  "manage_names": "Gerencie nomes",
+  "manage_names": "Gerir nomes",
   "manage_your_relationships": "Gerenciar seus relacionamentos",
   "map": "Mapa",
   "map_legend": "legenda do mapa",
-  "map_marker_size": "tamanho do marcador no mapa",
+  "map_marker_size": "tamanho do marcador do mapa",
   "map_of_observations": "Mapa de Observações",
-  "map_tooltip": "Mostre a vista do mapa",
+  "map_tooltip": "Mostrar a vista do mapa",
   "maps": {
     "overlays": {
       "all_observations": "Todas as observações",
-      "every_publicly_visible_observation": "Toda observação criada publicamente visível na rede iNaturalist",
+      "every_publicly_visible_observation": "Todas as observações visíveis para o público criadas na rede do iNaturalist",
       "featured_observations": "Observações em destaque",
-      "gbif_network": "Rede de GBIF",
-      "gbif_network_description": "Registros dos museus e de outras ocorrências dos provedores distribuídos pela Instalação Informática de Biodiversidade Global",
+      "gbif_network": "Rede do GBIF",
+      "gbif_network_description": "Registos de museus e de outros provedores de registos de ocorrência distribuídos pela Global Biodiversity Informatics Facility",
       "observations": "Observações",
-      "place_boundary": "Colocar limite",
-      "checklist_places": "Checklist de lugares",
+      "place_boundary": "Definir o limite da área",
+      "checklist_places": "Lista de verificação de lugares",
       "checklist_places_description": "Lugares onde este táxon foi listado",
-      "range": "Área de Distribuição"
+      "range": "Área de distribuição"
     }
   },
-  "mark_all_as_reviewed": "Marcar Todos como Revisado",
-  "mark_all_as_unreviewed": "Marcar Todos como Não Revisado",
-  "mark_as_reviewed": "Marcar como revisado",
+  "mark_all_as_reviewed": "Marcar todos como revistos",
+  "mark_all_as_unreviewed": "Marcar todos como não revistos",
+  "mark_as_reviewed": "Marcar como revisto",
   "maverick": "Maverick",
-  "media": "Mídia",
+  "media": "Multimédia",
   "media_type": "Tipo de media",
   "members": "Membros",
   "messages": "Mensagens",
-  "misidentifications": "Identificações erradas",
-  "misleading_or_illegal_content_html": "Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de \"apropriado\", veja as <a href=\"/help#inappropriate\">Perguntas frequentes</a>.\n",
+  "misidentifications": "Identificações incorretas",
+  "misleading_or_illegal_content_html": "Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos \"conteúdo apropriado\" ver <a href=\"/help#inappropriate\">FAQ</a>.\n",
   "mobile": "Móvel",
   "mollusks": "moluscos",
   "momentjs": {
@@ -58817,9 +58001,9 @@ I18n.translations["pt-BR"] = {
       "future": "em %s",
       "past": "%s",
       "s": "1s",
-      "m": "1 min",
+      "m": "1 minuto",
       "mm": "%dmin",
-      "h": "1h",
+      "h": "1 hora",
       "hh": "%dh",
       "d": "1d",
       "dd": "%dd",
@@ -58841,67 +58025,67 @@ I18n.translations["pt-BR"] = {
   "more_from_x": "Mais de %{x}",
   "more_import_options": "Mais opções de importação",
   "more_info": "Mais informações",
-  "more_info_title": "Maiores informações",
-  "more_photos": "Mais Fotos",
+  "more_info_title": "Mais informações",
+  "more_photos": "Mais fotografias",
   "more_than_a_week_ago": "Mais de uma semana atrás",
   "most_comments_and_faves": "A maioria dos comentários e dos favoritos",
   "most_observations": "A maioria das observações",
-  "most_observed_introduced_species": "Espécies Introduzidas Mais Observadas",
+  "most_observed_introduced_species": "Espécies introduzidas mais observadas",
   "most_observed_species": "Espécies mais observadas",
   "most_observed_threatened_species": "Espécies ameaçadas mais observadas",
-  "most_recent_observation_by_date_observed": "Observação mais recente já verificada por data de observação",
+  "most_recent_observation_by_date_observed": "As observações mais recentes e verificáveis por data de observação",
   "most_species": "A maioria das espécies",
   "multiple": "múltiplo",
   "multiple_select_option": "-- múltiplo --",
-  "must_be_observed_after": "deve ser observado depois %{operand}\n",
-  "must_be_observed_before": "deve ser observado antes %{operand}\n",
+  "must_be_observed_after": "deve ser observado depois de %{operand}\n",
+  "must_be_observed_before": "deve ser observado antes de %{operand}\n",
   "name": "Nome",
-  "name_or_slug": "Nome ou URL, e.j. meu-projeto",
+  "name_or_slug": "Nome ou URL, por exemplo meu-projeto",
   "names": "Nomes",
-  "native": "nativa",
+  "native": "autóctone",
   "native_to_place": "Nativo de %{place}",
-  "near_threatened": "Quase ameaçado",
-  "nearby_observations_": "Observações Próximas",
+  "near_threatened": "quase ameaçado",
+  "nearby_observations_": "Observações próximas",
   "needs_id": "Precisa de identificação",
   "needs_id_": "Precisa de identificação",
   "new": "Novidades",
   "new_and_noteworthy": "Novo e Notável",
-  "new_observation_field": "Nova observação de campo",
+  "new_observation_field": "Novo campo de observação",
   "new_observations": "Novas observações",
   "new_observations_in_year": "Novas Observações em %{year}",
   "new_species_added_in_interval": "Novas espécies adicionadas em %{interval}",
   "new_species_added_in_interval_x_of_y": "Novas espécies adicionadas em %{interval} (Mostrando %{x} de%{y})",
-  "new_users": "Novos usuários",
+  "new_users": "Novos utilizadores",
   "new_users_in_year": "Novos usuários em %{year}",
-  "newly_added": "Recentemente adicionado",
+  "newly_added": "Adicionado recentemente",
   "newly_added_species": "Espécies recentemente adicionadas",
   "newly_observed_species": "Espécies recentemente observadas",
   "newly_observed_species_in_year": "Novas espécies adicionadas em %{year}",
-  "next": "Próximo",
+  "next": "Seguinte",
   "next_observation": "Próxima Observação",
   "next_photo": "Próxima Foto",
-  "next_tab": "Nova Aba",
+  "next_tab": "Separador Seguinte",
   "no": "Não",
   "no_but_it_is_a_member_of_taxon": "Não, mas é um membro de %{taxon}",
   "no_identifications": "Sem Identificações",
-  "no_ids_have_been_suggested_yet": "Nenhuma identificação foi sugerida",
+  "no_ids_have_been_suggested_yet": "Ainda sem identificação sugerida",
   "no_interaction_data_available": "Dados sobre interações não disponíveis",
   "no_its_as_good_as_it_can_be": "Não, é o melhor possível",
   "no_journal_posts_yet": "Nenhuma publicação do diário ainda",
   "no_license_all_rights_reserved": "Sem licenças (todos os direitos reservados)",
   "no_matching_observations": "Não existem observações correspondentes.",
-  "no_misidentifications_yet": "Nenhuma identificação incorreta",
+  "no_misidentifications_yet": "Ainda sem identificação incorreta",
   "no_more_results_found": "Nenhum resultado encontrado",
   "no_more_taxa_to_load": "Não existem mais espécies ou grupos para carregar!",
   "no_observations": "Não existem observações",
   "no_observations_from_this_place_yet": "Ainda não existem observações neste local.",
   "no_observations_yet": "Ainda não existem observações",
-  "no_photo": "Não existem fotos",
-  "no_photos": "Não existem fotos",
+  "no_photo": "Sem fotos",
+  "no_photos": "Sem fotos",
   "no_places_available": "Não há lugares disponíveis",
-  "no_range_data_available": "Não existe dados disponíveis sobre área de distribuição.",
+  "no_range_data_available": "Não existem dados disponíveis sobre a área de distribuição.",
   "no_relevant_annotations": "Sem Anotações Relevantes",
-  "no_results_for": "Não existem resultados para",
+  "no_results_for": "Sem resultados para",
   "no_results_found": "Nenhum resultado encontrado",
   "no_sections_available": "Nenhuma seção disponível.",
   "no_species_observed": "Nenhuma espécie observada",
@@ -58910,7 +58094,7 @@ I18n.translations["pt-BR"] = {
   "none": "Nenhum",
   "none_found": "Não encontrado",
   "not_evaluated": "Não avaliado",
-  "not_recorded": "Não registrado",
+  "not_recorded": "Não registado",
   "notes": "Notas",
   "number": {
     "format": {
@@ -58924,23 +58108,23 @@ I18n.translations["pt-BR"] = {
     }
   },
   "number_selected": "# selecionado",
-  "obs": "Obs",
+  "obs": "Obs.",
   "obs_cid_d": "Obs CID'd",
   "obs_id_d": "Obs. identificada",
-  "obscured": "Oculto",
+  "obscured": "Oculta",
   "observation": "Observação",
   "observation_": "observação",
   "observation_brief_taxon_from_place": "%{taxon} de %{place}",
   "observation_date": "Data",
-  "observation_field_details": "Detalhes de campo de observação",
+  "observation_field_details": "Detalhes do campo de observação",
   "observation_fields": "Campos de Observação",
-  "observation_requirements": "requisitos de observação",
+  "observation_requirements": "Requisitos de observação",
   "observation_without_media": "Observação sem multimédia",
   "observations": "Observações",
   "observations_": "observações",
-  "observations_annotated_with_annotation": "Observações registradas com %{annotation}",
-  "observations_by_category": "Observações por categoria",
-  "observations_in_this_project_must": "As observações deste projeto têm de seguir os critérios seguintes",
+  "observations_annotated_with_annotation": "Observações registadas com %{annotation}",
+  "observations_by_category": "Observações Por categoria",
+  "observations_in_this_project_must": "As observações deste projecto têm de seguir os critérios seguintes",
   "observations_map": "Observações / Mapa",
   "observations_of_relatives": "Observações de parentes",
   "observations_this_year_vs_last_year": "Observações deste ano vs. último ano",
@@ -58958,20 +58142,20 @@ I18n.translations["pt-BR"] = {
   "of_places": "lugares",
   "of_species": "espécies",
   "of_this_taxon": "Deste táxon",
-  "offensive_inappropriate": "Ofensivo / Inapropriado",
+  "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "Ok",
-  "old_observation_form": "Registro antigo de observações",
+  "old_observation_form": "Formulário antigo de registo de observação (descontinuado)",
   "open": "abrir",
   "open_": "Abrir",
   "open_street_map": "OpenStreetMap",
   "or": "ou",
   "orange": "laranja",
   "order_by": "Ordenar por",
-  "organism_appears_captive_cultivated": "Aparentemente o organismo é doméstico / cultivado",
-  "organism_is_wild": "Organismo selvagem",
-  "other": "Outro",
+  "organism_appears_captive_cultivated": "Organismo parece de cativeiro / cultivado",
+  "organism_is_wild": "O organismo é selvagem",
+  "other": "Outro(s)",
   "other_species_commonly_misidentified_as_this_species": "Outras espécies que costumam ser confundidas com esta",
-  "other_species_commonly_misidentified_as_this_species_in_place_html": "Outras espécies que costumam ser confundidas com esta em <a href=\"%{url}\">%{place}</a>",
+  "other_species_commonly_misidentified_as_this_species_in_place_html": "Outras espécies que costumam ser confundidas com esta espécie em <a href=\"%{url}\">%{place}</a>",
   "other_taxa_commonly_misidentified_as_this_complex": "Outros táxons comumente identificados erroneamente como este complexo",
   "other_taxa_commonly_misidentified_as_this_complex_in_place_html": "Outro táxons comumente identificado erroneamente como este complexo em <a href=\"%{url}\">%{place}</a>",
   "other_taxa_commonly_misidentified_as_this_genus": "Outros taxa comumente identificados erroneamente como este gênero",
@@ -58990,16 +58174,16 @@ I18n.translations["pt-BR"] = {
   "other_taxa_commonly_misidentified_as_this_subgenus_in_place_html": "Outro táxons comumente identificado erroneamente como este subgênero em <a href=\"%{url}\">%{place}</a>",
   "other_taxa_commonly_misidentified_as_this_subsection": "Outros táxons comumente identificados erroneamente como esta subseção",
   "other_taxa_commonly_misidentified_as_this_subsection_in_place_html": "Outro táxon comumente identificado erroneamente como este híbrido em <a href=\"%{url}\">%{place}</a>",
-  "output_taxon": "Taxón de saída",
+  "output_taxon": "Táxon resultante",
   "overview": "Visão geral",
   "per_day": "Por dia",
   "per_month": "Por mês",
   "per_week": "Por semana",
-  "person": "Pessoa",
-  "photo": "Foto",
+  "person": "pessoa",
+  "photo": "Fotografia",
   "photo_attribution": "Foto %{attribution}",
   "photo_browser": "Navegador de Fotos",
-  "photo_licensing": "Licença da foto",
+  "photo_licensing": "Licença da fotografia",
   "photos_chosen_for_this_taxon": "Fotos escolhidas para este táxon",
   "photos_from": "Fotos de",
   "photos_of_taxon_html": "Fotos de %{taxon}",
@@ -59011,28 +58195,28 @@ I18n.translations["pt-BR"] = {
   "place_autocomplete_placeholder": "Parque Nacional Zion, Miami, etc.",
   "place_geo": {
     "geo_planet_place_types": {
-      "Aggregate": "Conjunto",
-      "aggregate": "Agregado",
+      "Aggregate": "Agregar",
+      "aggregate": "agregar",
       "Airport": "Aeroporto",
       "airport": "aeroporto",
-      "Building": "Em construção",
-      "building": "Edifício",
-      "Canton": "Canton",
-      "canton": "Canton",
+      "Building": "Edifício",
+      "building": "edifício",
+      "Canton": "Cantão",
+      "canton": "cantão",
       "City Building": "Construção Urbana",
       "city building": "Construção urbana",
-      "Colloquial": "Informal",
-      "colloquial": "Coloquial",
-      "Commune": "Cidade",
-      "commune": "cidade",
+      "Colloquial": "Coloquial",
+      "colloquial": "coloquial",
+      "Commune": "Comuna",
+      "commune": "comuna",
       "Constituency": "Grupo constituinte",
       "constituency": "grupo constituinte",
       "Continent": "Continente",
       "continent": "continente",
       "Country": "País",
       "country": "país",
-      "County": "Região",
-      "county": "Município",
+      "County": "Município",
+      "county": "município",
       "Delegation": "Delegação",
       "delegation": "delegação",
       "Department_Segment": "Segmento de departamento",
@@ -59043,24 +58227,24 @@ I18n.translations["pt-BR"] = {
       "division": "divisão",
       "Drainage": "Drenagem",
       "drainage": "drenagem",
-      "Estate": "Estado",
-      "estate": "estado",
+      "Estate": "Propriedade",
+      "estate": "propriedade",
       "Governorate": "Distrito",
       "governorate": "distrito",
-      "Historical_County": "Região Histórica",
-      "historical_county": "Cidade Histórica",
+      "Historical_County": "Município histórico",
+      "historical_county": "município histórico",
       "Historical_State": "Estado Histórico",
-      "historical_state": "Estado Histórico",
+      "historical_state": "estado Histórico",
       "Historical_Town": "Cidade Histórica",
-      "historical_town": "Cidade Histórica",
-      "Intersection": "Interseção",
-      "intersection": "interseção",
+      "historical_town": "cidade histórica",
+      "Intersection": "Intersecção",
+      "intersection": "intersecção",
       "Island": "Ilha",
       "island": "ilha",
-      "Land_Feature": "Características básicas",
-      "land_feature": "Características básicas",
-      "Local_Administrative_Area": "Administração Local",
-      "local_administrative_area": "Administração local",
+      "Land_Feature": "Característica do terreno",
+      "land_feature": "característica do terreno",
+      "Local_Administrative_Area": "Área Administrativa Local",
+      "local_administrative_area": "área administrativa local",
       "Local_Authority": "Autoridade Local",
       "local_authority": "autoridade local",
       "Miscellaneous": "Diversos",
@@ -59069,24 +58253,24 @@ I18n.translations["pt-BR"] = {
       "municipality": "Município",
       "Nationality": "Nacionalidade",
       "nationality": "nacionalidade",
-      "Nearby_Building": "Prédio nas proximidades",
-      "nearby_building": "Prédio nas proximidades",
-      "Nearby_Intersection": "Interseção Próxima",
-      "nearby_intersection": "Interseção Próxima",
-      "Open_Space": "Área Aberta",
-      "open_space": "Área Aberta",
-      "Parish": "Distrito",
-      "parish": "Distrito",
+      "Nearby_Building": "Edifício nas proximidades",
+      "nearby_building": "edifício nas proximidades",
+      "Nearby_Intersection": "Interseção nas proximidades",
+      "nearby_intersection": "interseção nas proximidades",
+      "Open_Space": "Espaço Aberto",
+      "open_space": "espaço aberto",
+      "Parish": "Freguesia",
+      "parish": "freguesia",
       "Poblacion": "Poblacion",
       "poblacion": "poblacion",
       "Prefecture": "Prefeitura",
       "prefecture": "prefeitura",
-      "Prefecture_City": "Prefeitura",
-      "prefecture_city": "prefeitura",
+      "Prefecture_City": "Cidade-prefeitura",
+      "prefecture_city": "cidade-prefeitura",
       "Point_of_Interest": "Ponto de interesse",
-      "point_of_interest": "pontos de interesse",
-      "Postal_Code": "CEP",
-      "postal_code": "CEP",
+      "point_of_interest": "ponto de interesse",
+      "Postal_Code": "Código postal",
+      "postal_code": "código postal",
       "Province": "Província",
       "province": "província",
       "Regency": "Regência",
@@ -59094,44 +58278,44 @@ I18n.translations["pt-BR"] = {
       "Region": "Região",
       "region": "região",
       "Republic": "República",
-      "republic": "república",
+      "republic": "República",
       "Shire": "Condado",
       "shire": "condado",
-      "Sports_Team": "Clube Esportivo",
-      "sports_team": "clube esportivo",
+      "Sports_Team": "Equipa desportiva",
+      "sports_team": "equipa desportiva",
       "State": "Estado",
       "state": "estado",
       "Street": "Rua",
       "street": "rua",
-      "Street_Segment": "Trecho da rua",
-      "street_segment": "Trecho de rua",
+      "Street_Segment": "Segmento de rua",
+      "street_segment": "segmento de rua",
       "Subdivision": "Subdivisão",
       "subdivision": "subdivisão",
-      "Suburb": "Bairro",
-      "suburb": "bairro",
+      "Suburb": "Subúrbio",
+      "suburb": "subúrbio",
       "Sum": "Soma",
       "sum": "soma",
       "Supername": "Sobrenome",
       "supername": "Sobrenome",
       "Territory": "Território",
       "territory": "território",
-      "Time_Zone": "Fuso Horário",
-      "time_zone": "Fuso horário",
+      "Time_Zone": "Fuso horário",
+      "time_zone": "fuso horário",
       "Town": "Cidade",
       "town": "cidade",
-      "Undefined": "Não definido",
+      "Undefined": "Indefinido",
       "undefined": "indefinido",
       "Unknown": "Desconhecido",
-      "unknown": "desconhecido",
+      "unknown": "Desconhecido",
       "Village_block": "Bloco de vila",
       "village_block": "bloco de aldeia",
       "Zone": "Zona",
       "zone": "zona"
     }
   },
-  "placeholder": "Posição",
-  "places_added_by_members_of_the_community": "Locais adicionados por membros da comunidade",
-  "places_maintained_by_site_admins": "Locais mantidos por administradores",
+  "placeholder": "Carácter de preenchimento",
+  "places_added_by_members_of_the_community": "Lugares adicionados por membros da comunidade",
+  "places_maintained_by_site_admins": "Locais mantidos por administradores do site",
   "places_name": {
     "afghanistan": "Afeganistão",
     "africa": "África",
@@ -59163,7 +58347,7 @@ I18n.translations["pt-BR"] = {
     "bhutan": "Butão",
     "bolivia": "Bolívia",
     "bonaire_saint_eustatius_and_saba": "Bonaire, Santo Eustáquio e Saba",
-    "bosnia_and_herzegovina": "Bosnia e Herzegovina",
+    "bosnia_and_herzegovina": "Bósnia e Herzegovina",
     "botswana": "Botsuana",
     "bouvet_island": "Ilha Bouvet",
     "brazil": "Brasil",
@@ -59191,7 +58375,7 @@ I18n.translations["pt-BR"] = {
     "comoros": "Comores",
     "cook_islands": "Ilhas Cook",
     "costa_rica": "Costa Rica",
-    "cote_d_ivoire": "Costa do Marfim",
+    "cote_d_ivoire": "Costa de Marfim",
     "croatia": "Croácia",
     "cuba": "Cuba",
     "curacao": "Curaçao",
@@ -59208,7 +58392,7 @@ I18n.translations["pt-BR"] = {
     "el_salvador": "El Salvador",
     "equatorial_guinea": "Guiné Equatorial",
     "eritrea": "Eritreia",
-    "estonia": "Estônia",
+    "estonia": "Estónia",
     "ethiopia": "Etiópia",
     "europe": "Europa",
     "falkland_islands": "Ilhas Malvinas",
@@ -59226,7 +58410,7 @@ I18n.translations["pt-BR"] = {
     "ghana": "Gana",
     "gibraltar": "Gibraltar",
     "greece": "Grécia",
-    "greenland": "Groenlândia",
+    "greenland": "Gronelândia",
     "grenada": "Granada",
     "guadeloupe": "Guadalupe",
     "guam": "Guão",
@@ -59243,7 +58427,7 @@ I18n.translations["pt-BR"] = {
     "iceland": "Islândia",
     "india": "Índia",
     "indonesia": "Indonésia",
-    "iran": "Irã",
+    "iran": "Irão",
     "iraq": "Iraque",
     "ireland": "Irlanda",
     "isle_of_man": "Ilha do Homem",
@@ -59256,7 +58440,7 @@ I18n.translations["pt-BR"] = {
     "kazakhstan": "Cazaquistão",
     "kenya": "Quênia",
     "kiribati": "Kiribati",
-    "korea": "Coréia",
+    "korea": "Coreia",
     "kosovo": "Kosovo",
     "kuwait": "Kuwait",
     "kyrgyzstan": "Quirguistão",
@@ -59270,7 +58454,7 @@ I18n.translations["pt-BR"] = {
     "lithuania": "Lituânia",
     "luxembourg": "Luxemburgo",
     "macao": "Macau",
-    "macedonia": "Macedônia",
+    "macedonia": "Macedónia",
     "madagascar": "Madagáscar",
     "malawi": "Malawi",
     "malaysia": "Malásia",
@@ -59285,7 +58469,7 @@ I18n.translations["pt-BR"] = {
     "mexico": "México",
     "micronesia": "Micronésia",
     "moldova": "Moldávia",
-    "monaco": "Mônaco",
+    "monaco": "Mónaco",
     "mongolia": "Ilhas Marianas Setentrionais",
     "montenegro": "Montenegro",
     "montserrat": "Montserrat",
@@ -59319,7 +58503,7 @@ I18n.translations["pt-BR"] = {
     "peru": "Peru",
     "philippines": "Filipinas",
     "pitcairn_islands": "Ilhas Pitcairn",
-    "poland": "Polônia",
+    "poland": "Polónia",
     "portugal": "Portugal",
     "puerto_rico": "Porto Rico",
     "qatar": "Catar",
@@ -59338,12 +58522,12 @@ I18n.translations["pt-BR"] = {
     "samoa": "Samoa",
     "san_marino": "São Marinho",
     "sao_tome_and_principe": "São Tomé e Príncipe",
-    "saudi_arabia": "Arabia Saudita",
+    "saudi_arabia": "Arábia Saudita",
     "senegal": "Senegal",
     "serbia": "Sérvia",
     "seychelles": "Seicheles",
     "sierra_leone": "Serra Leoa",
-    "singapore": "Cingapura",
+    "singapore": "Singapura",
     "sint_maarten": "São Martinho",
     "slovakia": "Eslováquia",
     "slovenia": "Eslovênia",
@@ -59362,7 +58546,7 @@ I18n.translations["pt-BR"] = {
     "swaziland": "Suazilândia",
     "sweden": "Suécia",
     "switzerland": "Suíça",
-    "syria": "Siria",
+    "syria": "Síria",
     "taiwan": "Tailândia",
     "tajikistan": "Tajiquistão",
     "tanzania": "Tanzânia",
@@ -59370,9 +58554,9 @@ I18n.translations["pt-BR"] = {
     "togo": "Togo",
     "tokelau": "Toquelau",
     "tonga": "Tonga",
-    "trinidad_and_tobago": "Trindade e Tobago",
+    "trinidad_and_tobago": "Trinidade e Tobago",
     "tunisia": "Tunísia",
-    "turkey": "Turquía",
+    "turkey": "Turquia",
     "turkmenistan": "Turcomenistão",
     "turks_and_caicos_islands": "Ilhas Turcas e Caicos",
     "tuvalu": "Tuvalu",
@@ -59388,7 +58572,7 @@ I18n.translations["pt-BR"] = {
     "vanuatu": "Vanuatu",
     "vatican_city": "Cidade do Vaticano",
     "venezuela": "Venezuela",
-    "vietnam": "Vietnã",
+    "vietnam": "Vietname",
     "virgin_islands": "Ilhas Virgens",
     "wallis_and_futuna": "Wallis e Futuna",
     "west_africa": "África Ocidental",
@@ -59399,175 +58583,175 @@ I18n.translations["pt-BR"] = {
   },
   "places_of_interest": "Locais de interesse",
   "plants": "plantas",
-  "please_allow_a_few_weeks_for_external_sites": "Por favor, espere algumas semanas até que os sites externos sincronizem esta observação",
-  "please_complete_the_following_to_add_project": "Por favor complete o seguinte para adicionar esta observação ao projeto:\n",
+  "please_allow_a_few_weeks_for_external_sites": "Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação",
+  "please_complete_the_following_to_add_project": "Por favor, preencha com a(s) seguinte(s) informação(ões) para adicionar a observação ao projeto:\n",
   "please_explain_why_you_want_to_hide_this": "Por favor, explique por que você quer esconder isso",
   "please_explain_why_you_want_to_unhide_this": "Por favor, explique por que você quer mostrar isso",
-  "popular": "Popular",
+  "popular": "popular",
   "potential_disagreement": "Desacordo Potencial",
   "prev": "Anterior",
   "preview": "Pré-visualização",
   "preview_observations_with_these_observation_requirements": "Pré-visualizar observações com estes requisitos de observação",
   "previous": "Anterior",
-  "previous_observation": "Observações Prévias",
-  "previous_photo": "Foto Anterior",
+  "previous_observation": "Observação Anterior",
+  "previous_photo": "Foto anterior",
   "previous_tab": "Aba Anterior",
   "private_": "Privado",
   "proceed": "Avançar",
   "profile": "Perfil",
   "project": "Projeto",
   "project_admins": {
-    "one": "Administrador do projeto",
-    "other": "Administradores do projeto"
+    "one": "Administrador do projecto",
+    "other": "Administradores do projecto"
   },
   "project_journal": "Diário do Projeto",
   "project_members_only": "Apenas membros do projeto",
-  "project_requirements": "Requisitos do projeto",
+  "project_requirements": "Requisitos do Projeto",
   "project_start_time_datetime": "Horário de início: %{datetime}",
   "projects": "Projetos",
   "proposed_taxa_that_contradict_the_community_id": "Taxa proposto que contradiz a identificação feita pela comunidade",
   "proposed_taxa_that_support_the_community_id": "Taxa proposto que suporta a identificação feita pela comunidade",
   "protozoans": "protozoários",
   "public_domain": "Domínio Público",
-  "purple": "roxo",
-  "quality_grade": "Controle de qualidade",
-  "quality_grade_": "Controle de Qualidade",
+  "purple": "púrpura",
+  "quality_grade": "Grau de Qualidade",
+  "quality_grade_": "Grau de Qualidade",
   "random": "Aleatório",
   "rank": "Classificação",
   "rank_position": "Classificação",
   "ranks": {
     "stateofmatter": "Estado da matéria",
-    "kingdom": "Reino",
-    "subkingdom": "Subreino",
+    "kingdom": "reino",
+    "subkingdom": "sub-reino",
     "phylum": "Filo",
-    "subphylum": "Subfilo",
-    "superclass": "Superclasse",
-    "class": "Classe",
-    "subclass": "Subclasse",
-    "infraclass": "Infraclasse",
-    "superorder": "Superordem",
-    "order": "Ordem",
-    "suborder": "Subordem",
-    "infraorder": "Infraordem",
+    "subphylum": "subfilo",
+    "superclass": "superclasse",
+    "class": "classe",
+    "subclass": "subclasse",
+    "infraclass": "infraclasse",
+    "superorder": "superordem",
+    "order": "ordem",
+    "suborder": "subordem",
+    "infraorder": "infraordem",
     "subterclass": "Subclasse",
     "parvorder": "Parvorder",
     "zoosection": "Seção de zoológico",
     "zoosubsection": "Zoosubseção",
     "superfamily": "Superfamília",
     "epifamily": "Epifamília",
-    "family": "Família",
-    "subfamily": "Subfamília",
-    "supertribe": "Supertribo",
-    "tribe": "Tribo",
+    "family": "família",
+    "subfamily": "subfamília",
+    "supertribe": "supertribo",
+    "tribe": "tribo",
     "subtribe": "Subtribo",
-    "genus": "Gênero",
-    "genushybrid": "Gênero híbrido",
-    "subgenus": "Subgênero",
-    "section": "Seção",
-    "subsection": "Subseção",
+    "genus": "género",
+    "genushybrid": "género híbrido",
+    "subgenus": "subgénero",
+    "section": "secção",
+    "subsection": "subsecção",
     "complex": "Complexo",
     "species": "Espécies",
-    "hybrid": "Híbrido",
-    "subspecies": "Subespécies",
-    "variety": "Variedade",
-    "form": "Formulário",
+    "hybrid": "híbrido",
+    "subspecies": "subespécie",
+    "variety": "variedade",
+    "form": "formulário",
     "infrahybrid": "Infra-híbrido",
-    "leaves": "Folhas"
+    "leaves": "folhas"
   },
-  "ray_finned_fishes": "Actinopterygii, grupo de peixes de barbatanas com raios.",
-  "read_more": "Ler mais",
-  "recent": "Recente",
+  "ray_finned_fishes": "Peixes de barbatanas com raios",
+  "read_more": "Ler Mais",
+  "recent": "Recente(s)",
   "recent_evidence_of_organism": "Evidência recente de um organismo",
   "recent_observations_": "Observações recentes",
   "red": "vermelho",
-  "redo_search_in_map": "Refazer a pesquisa no mapa",
-  "regenerate_stats": "Regenerar estatísticas",
+  "redo_search_in_map": "Procurar novamente no mapa",
+  "regenerate_stats": "Volta a gerar as estatísticas",
   "reject?": "Rejeitar?",
   "relative_observations": "Observações Relacionadas",
-  "reload_timed_out": "O tempo expirou. Por favor, tente em alguns instantes novamente.",
+  "reload_timed_out": "O tempo expirou. Por favor, tente novamente mais tarde.",
   "remove": "Remover",
   "remove_from_featured": "Remover do destaque",
-  "remove_from_project": "Remova do projeto",
+  "remove_from_project": "Remover do projeto",
   "remove_observations": {
     "one": "Remover 1 observação?",
     "other": "Remover %{count} observações?"
   },
-  "removing": "Removendo...",
+  "removing": "A remover...",
   "reptiles": "répteis",
-  "request_failed": "Ops! Falha na solicitação",
+  "request_failed": "Falha no Pedido",
   "required_": "Obrigatório",
   "research": "pesquisa",
   "research_": "Pesquisar",
-  "research_grade": "Nível de Pesquisa",
-  "research_grade_qualification": "Qualificação à Nível de Pesquisa",
-  "research_grade_short_html": "P<span class='full'>esquisa </span>N<span class='full'>ível</span>",
+  "research_grade": "Grau de Pesquisa",
+  "research_grade_qualification": "Qualificação do Grau de Pesquisa",
+  "research_grade_short_html": "G<span class='full'>rau de </span>P<span class='full'>esquisa</span>",
   "reset_brightness": "Repor brilho",
-  "reset_search_filters": "Restabelecer filtros de pesquisa",
+  "reset_search_filters": "Reconfigurar os filtros de pesquisa",
   "restore": "Restaurar",
-  "review_all": "Revisar todas",
-  "reviewed": "Revisado",
-  "rg_observations": "NP Observações",
+  "review_all": "Rever Todas",
+  "reviewed": "Revisto",
+  "rg_observations": "Observações GP",
   "running_total": "Total acumulado",
   "satellite": "satélite",
-  "save": "Salvar",
-  "save_photos": "Salvar fotos",
-  "saved": "Salvo",
-  "saving": "Salvando...",
+  "save": "Guardar",
+  "save_photos": "Guardar fotos",
+  "saved": "Guardado",
+  "saving": "A guardar...",
   "saving_num_of_count_observations": {
     "one": "Salvando observação...",
     "other": "Salvando %{num} de %{count} observações..."
   },
-  "saving_verb": "Salvando",
+  "saving_verb": "A guardar",
   "scale_colon": "Escala:",
-  "search": "Pesquisar",
-  "search_by_taxon_name_or_flickr_photo_id": "Busca por nome taxonômico ou por ID de foto do Flickr.",
-  "search_by_taxon_name_or_observation_id": "Buscar por táxon or identificação de osbervação",
-  "search_external_name_providers": "Buscar em provedores externos",
-  "search_for_a_location": "Buscar por localização",
-  "search_remote": "Busca remota",
-  "search_species_": "Procurando por espécies...",
+  "search": "Procurar",
+  "search_by_taxon_name_or_flickr_photo_id": "Procurar pelo nome do táxon ou identificação da foto do Flickr",
+  "search_by_taxon_name_or_observation_id": "Procurar pelo nome do táxon ou identificação da observação",
+  "search_external_name_providers": "Procurar fornecedores de nomes externos",
+  "search_for_a_location": "Procurar uma localização",
+  "search_remote": "Procura remota",
+  "search_species_": "À procura de espécie(s)...",
   "seasonality": "Sazonalidade",
   "seek": "Seek",
-  "seen_nearby": "Visto nas proximidades",
+  "seen_nearby": "Visto nas Proximidades",
   "select": "Selecionar",
-  "select_all": "Selecionar todas",
-  "select_at_least_one": "Selecione pelo menos um",
-  "select_none": "Limpar seleção",
-  "select_observations_to_edit": "Selecione observações para editar...",
+  "select_all": "Selecionar tudo",
+  "select_at_least_one": "Selecionar pelo menos um",
+  "select_none": "Não selecionar nenhuma",
+  "select_observations_to_edit": "Selecionar as observações para editar...",
   "select_options": "Selecionar opções",
-  "select_this_taxon": "Selecione Este Táxon",
+  "select_this_taxon": "Selecionar Este Táxon",
   "selected_photos": "Fotos selecionadas",
-  "set_license": "Definir licença",
-  "share": "Compartilhar",
-  "show": "Exibir",
+  "set_license": "Defina a licença",
+  "share": "Partilhar",
+  "show": "Mostrar",
   "show_hidden_content": "Mostrar conteúdo oculto",
-  "show_keyboard_shortcuts": "Mostrar Teclas de Atalho",
+  "show_keyboard_shortcuts": "Mostrar as Teclas de Atalho do Teclado",
   "show_relative_proportions_of_all_observations": "Mostrar a proporção relativa de todas as observações",
   "show_running_total": "Mostrar total acumulado",
-  "show_taxa_from_everywhere": "Exibir táxons de todas as localidades",
-  "show_taxa_from_place": "Exibir táxons de %{place}",
+  "show_taxa_from_everywhere": "Mostrar taxa de toda a parte",
+  "show_taxa_from_place": "Mostrar taxa de %{place}",
   "show_total_counts": "Mostrar as contagens totais",
   "show_uncountable_species": "Mostrar as espécies incontáveis",
-  "showing_taxa_from_everywhere": "Exibir táxons de todas as localidades",
-  "showing_taxa_from_place": "Exibindo táxons de %{place}",
+  "showing_taxa_from_everywhere": "A mostrar taxa de toda a parte",
+  "showing_taxa_from_place": "A mostrar taxa de %{place}",
   "showing_x_of_y": "Mostrando %{x} de %{y}",
-  "showing_x_of_y_listings": "Mostrando %{x} de %{y} listagens",
-  "sign_out": "Sair",
-  "sign_up": "Criar conta",
-  "similar_species": "Espécies similares",
+  "showing_x_of_y_listings": "A mostrar %{x} de %{y} listagens",
+  "sign_out": "Terminar Sessão",
+  "sign_up": "Registar-se",
+  "similar_species": "Espécies semelhantes",
   "similar_taxa": "Taxa similar",
   "site_admin_tools": "Ferramentas de administração do site",
-  "skip_to_next_page": "Ir para a próxima página",
+  "skip_to_next_page": "Ir para página seguinte",
   "some_observations_failed_to_be_added": "Algumas observações não foram adicionadas aos projetos",
-  "some_observations_failed_to_save": "Não foi possível salvar algumas observações",
+  "some_observations_failed_to_save": "Não foi possível guardar algumas observações",
   "some_other_reason": "Alguma outra razão que você pode explicar depois.",
-  "some_rights_reserved": "Alguns direitos reservados",
+  "some_rights_reserved": "alguns direitos reservados",
   "something": "Alguma coisa",
-  "something_went_wrong_adding": "Houve um erro ao incluir esta espécie a sua lista",
-  "somewhere_on_earth": "Algum lugar na Terra",
+  "something_went_wrong_adding": "Algo correu mal ao adicionar ao adicionar essa espécie à sua lista",
+  "somewhere_on_earth": "algures na Terra",
   "sort_by": "Ordenar por",
   "sounds": {
-    "selected_sounds": "Selecione sons",
+    "selected_sounds": "Sons selecionados",
     "sound_has_been_flagged": "Este som foi sinalizado.",
     "sounds": "Sons"
   },
@@ -59575,41 +58759,41 @@ I18n.translations["pt-BR"] = {
   "source_": "Fonte:",
   "source_list_": "Lista de Fontes",
   "source_wikipedia": "Fonte: Wikipedia",
-  "spam": "Spam",
-  "species": "Espécies",
+  "spam": "spam",
+  "species": "Espécie(s)",
   "species_by_category": "espécies por categoria",
-  "species_name_cap": "Nome de espécie",
-  "species_unknown": "Espécies desconhecidas",
-  "specify_the_reason_youre_flagging": "Especifique o motivo pelo qual você está marcando este item",
+  "species_name_cap": "Nome da espécie",
+  "species_unknown": "Espécie desconhecida",
+  "specify_the_reason_youre_flagging": "Especificar a razão pela qual está a sinalizar este item",
   "standard": "Padrão",
-  "start": "Iniciar",
+  "start": "Início",
   "start_date_time": "Data / Hora de Início",
   "start_typing_taxon_name": "Comece a digitar o nome do táxon",
-  "stats": "Andamento",
+  "stats": "Estatísticas",
   "stats_for_this_year_have_not_been_generated": "As estatísticas para este ano não foram geradas.",
-  "status": "Status",
+  "status": "Estado",
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\"%{status}\" em %{place}",
   "stay_and_try_again": "Fique e tente novamente",
-  "stop_testing": "Parar Testes",
+  "stop_testing": "Parar Teste",
   "stop_trusting_this_person_with_your_private_coordinates": "Parar de confiar suas coordenadas ocultadas à esta pessoa",
   "store": "LOJA",
   "studies_that_used_inaturalist_data_in_year": "Estudos que usaram dados do iNaturalist em %{year}",
   "submit_observations": {
-    "one": "Submeter 1 observação?",
-    "other": "Submeter %{count} observações"
+    "one": "Submeter 1 observação",
+    "other": "Submeter %{count} observations"
   },
   "submitted": "Enviado",
   "suggest_an_identification": "Sugira uma identificação",
   "suggestions": "Sugestões",
   "supporting": "Suortando",
   "table": "Tabela",
-  "tagging": "Marcando...",
-  "tags": "Marcações",
+  "tagging": "A etiquetar...",
+  "tags": "Etiquetas",
   "taxa": "Táxons",
   "taxon": "Táxon",
   "taxon_autocomplete_placeholder": "Aves, monarca, etc.",
-  "taxon_changes": "Alterações de Táxon",
+  "taxon_changes": "Alterações do táxon",
   "taxon_drop": "queda de táxon",
   "taxon_geoprivacy": "Geoprivação de taxon",
   "taxon_is_threatened_coordinates_hidden": "Taxon está ameaçado, coordenadas ocultas por padrão",
@@ -59624,19 +58808,19 @@ I18n.translations["pt-BR"] = {
   "taxon_split": "Divisão de táxon",
   "taxon_stage": "Criar a partir do táxon",
   "taxon_swap": "Substituição de táxon",
-  "taxonomic": "Taxonômico",
-  "taxonomic_groups": "Grupos Taxonômicos",
+  "taxonomic": "Taxonómico",
+  "taxonomic_groups": "Grupos Taxonómicos",
   "taxonomy": "Taxonomia",
   "taxonomy_details": "Detalhes da taxonomia",
   "tell_us_why": "Oras, nos diga por que...",
   "terms": "Termos",
   "terrain": "terreno",
-  "that_was_the_last_observation_matching_the_current_filters": "Esta foi a última observação que coincide aos filtros atuais.",
+  "that_was_the_last_observation_matching_the_current_filters": "Esta foi a última observação que corresponde com os filtros atuais.",
   "the_below_items_are_needed_to_achieve": "Os items abaixo são necessários para alcançar <span className=\"bold\">Nível de Pesquisa:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "O ID da comunidade requer pelo menos duas identificações.",
   "the_community_must_feel_that": "A comunidade deve sentir que o táxon comunitário é o melhor que pode ser baseado na evidência\n",
   "the_world": "O Mundo",
-  "then_keybord_sequence": "então",
+  "then_keybord_sequence": "depois",
   "there_were_problems_adding_taxa": "Aconteceram problemas adicionando estes táxons: %{errors}",
   "there_were_some_problems_with_these_files": "Houve alguns problemas com esses arquivos:",
   "these_observations_have_not_been_uploaded_yet": "Estas observações ainda não foram carregadas.\n",
@@ -59651,10 +58835,10 @@ I18n.translations["pt-BR"] = {
   },
   "this_observation_is_research_grade": "Esta observação é Nível de Pesquisa!",
   "this_observation_was_created_using": "Esta observação foi criada com:",
-  "this_taxon_concept_is_inactive": "o conceito de táxons está inativo",
-  "this_taxon_has_no_default_photo": "Este táxon não tem foto padrão!",
+  "this_taxon_concept_is_inactive": "este conceito de táxon está inativo",
+  "this_taxon_has_no_default_photo": "Este táxon não tem foto predefinidaǃ",
   "this_year": "Este Ano",
-  "threatened": "Ameaçado",
+  "threatened": "ameaçado",
   "time": {
     "am": "manhã",
     "formats": {
@@ -59667,22 +58851,22 @@ I18n.translations["pt-BR"] = {
   "to_suggest_an_identification": "para sugerir uma identificação",
   "today": "Hoje",
   "too_many_results": "Muitos resultados",
-  "top_identifier": "Top Identificador",
+  "top_identifier": "Principal Identificador",
   "top_identifiers": "Principais Identificadores",
   "top_identifiers_of_taxon": "Principais Identificadores de %{taxon}",
-  "top_observer": "Top Observador",
+  "top_observer": "Principal Observador",
   "top_observers": "Principais Observadores",
-  "top_species": "Top Espécies",
+  "top_species": "Principais Espécies",
   "total": "Total",
-  "total_observations": "Total de observações",
-  "total_species_observed": "Número total de espécies observadas",
+  "total_observations": "Número total de observações",
+  "total_species_observed": "Número Total de Espécies Observadas",
   "translated_languages": "Idiomas traduzidos",
   "trending": "Tendências",
   "trends": "Tendências",
   "trust_this_person_with_your_private_coordinates": "Confiar nessa pessoa com suas coordenadas ocultadas",
   "twitter": "Twitter",
   "two_thirds": "dois terços",
-  "type_species_name": "Digite o nome da espécie",
+  "type_species_name": "Digitar o nome da espécie",
   "umbrella_projects": "Projetos Umbrella",
   "unfollow": "Deixar de seguir",
   "unhide_content": "Mostrar conteúdo",
@@ -59704,13 +58888,13 @@ I18n.translations["pt-BR"] = {
     },
     "resize_tip": "Se os seus arquivos de fotos forem muito grandes, tente recortá-los até um máximo de 2048 por 2048 pixels. Isso acontecerá com todas as fotos no servidor de qualquer maneira, e vai fazer um carregamento mais rápido.\n",
     "tooltips": {
-      "add": "Adicione observação(ões)",
+      "add": "Adicionar observação(ões)",
       "combine": "Combinar observações selecionadas",
       "duplicate": "Duplicar observações selecionadas",
-      "photo_failed": "Falha ao carregar foto",
+      "photo_failed": "Falha ao carregar a foto",
       "remove": "Remover as observações selecionadas",
       "remove_observation": "Remover observação",
-      "remove_photo": "Remover foto",
+      "remove_photo": "Remover a foto",
       "select_all": "Selecionar todas as observações",
       "upload_failed": "Carregamento falhou"
     }
@@ -59720,11 +58904,11 @@ I18n.translations["pt-BR"] = {
     "other": "Carregando %{num} de %{count} fotos..."
   },
   "use_name_as_a_placeholder": "Use <span class='ac-placeholder'>\"%{name}\"</span> como um marcador de posição\n",
-  "user": "Usuário",
+  "user": "Utilizador",
   "user1_and_user2_faved_this_observation": "%{user1} e %{user2} favoritaram esta observação",
   "user1_user2_and_x_others_faved_this_observation": "%{user1}, %{user2}, e %{x_others} favoritaram esta observação",
   "user_autocomplete_placeholder": "kueda, simon123, etc.",
-  "user_commented": "%{user} comentado",
+  "user_commented": "%{user} comentou",
   "user_disagrees_this_is_taxon": "%{user} discorda que seja um(a) %{taxon}",
   "user_disagrees_with_previous_finer_identifications": "%{user} discorda de identificações anteriores mais precisas",
   "user_faved_this_observation": "%{user} favoritou esta observação",
@@ -59734,8 +58918,8 @@ I18n.translations["pt-BR"] = {
   "user_trusts_you_with_their_private_coordinates": "%{user} confia em você com suas coordenadas ocultadas",
   "user_trusts_you_with_their_private_coordinates_desc": "O observador escolheu confiar em você com as coordenadas ocultadas de todas as suas observações.\n",
   "user_wrote_html": "<a href=\"%{url}\" target=\"_blank\">%{user}</a> escreveu,",
-  "username_or_user_id": "Nome de usuário ou identificação do usuário",
-  "users": "Usuários",
+  "username_or_user_id": "Nome de utilizador ou identificação do utilizador",
+  "users": "Utilizadores",
   "value": "Valor",
   "verbing_x_of_y": "%{verb} %{x} de %{y}...",
   "verifiable": "verificável",
@@ -59745,12 +58929,12 @@ I18n.translations["pt-BR"] = {
   "view_all": "Ver todas",
   "view_all_members": "Ver todos os membros",
   "view_field_options": "Ver Opções de Campo",
-  "view_flag": "Ver bandeira",
-  "view_flags": "Ver alertas",
+  "view_flag": "Ver sinalizador",
+  "view_flags": "Ver sinalizadores",
   "view_full_size_photo": "Ver foto em tamanho real",
   "view_license": "Ver licença",
   "view_moderation_history": "Ver histórico de moderação",
-  "view_more": "Exibir mais",
+  "view_more": "Ver mais",
   "view_more_unreviewed": "Ver mais não revisados",
   "view_observation": "Ver observação",
   "view_observations": "Ver observações",
@@ -60001,7 +59185,7 @@ I18n.translations["pt-BR"] = {
   "who_user_helped_the_most": "Quem %{user} ajudou mais",
   "why_the_coordinates_are_obscured": "Por que as coordenadas são obscurecidas",
   "why_you_can_see_the_coordinates": "Por que você pode ver as coordenadas",
-  "wild": "Selvagem",
+  "wild": "selvagem",
   "with_annotation": "Com anotação",
   "withdraw": "Retirar",
   "without_annotation": "Sem anotação",
@@ -60022,7 +59206,7 @@ I18n.translations["pt-BR"] = {
   },
   "x_identifications_": {
     "one": "1 identificação",
-    "other": "%{count} Identificações"
+    "other": "%{count} identificações"
   },
   "x_identifications_html": {
     "one": "<span class=\"count\">1</span> identificação",
@@ -60038,7 +59222,7 @@ I18n.translations["pt-BR"] = {
   },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> táxon correspondente",
-    "other": "<span class=\"count\">%{count}</span> taxa correspondente"
+    "other": "<span class=\"count\">%{count}</span> táxons correspondentes"
   },
   "x_misidentifications_of_species_in_this_rank": {
     "one": "1 erro de identificação de espécies neste %{rank}",
@@ -60061,24 +59245,24 @@ I18n.translations["pt-BR"] = {
     "other": "%{count} observações"
   },
   "x_observations_": {
-    "one": "1 Observação",
-    "other": "%{count} Observações"
+    "one": "1 observação",
+    "other": "%{count} observações"
   },
   "x_observations_failed": {
     "one": "1 falha na observação",
     "other": "%{count} falha nas observações"
   },
   "x_observations_html": {
-    "one": "<span class='count'>1</span> observações",
-    "other": "<span class='count'>%{count}</span> observaçõess"
+    "one": "<span class='count'>1</span> observação",
+    "other": "<span class='count'>%{count}</span> observações"
   },
   "x_observations_link_html": {
-    "one": "<a href='%{url}'>1 observação</a>",
-    "other": "<a href='%{url}'>%{count} observações</a>"
+    "one": "<a href='%{url}'>1</a> observação",
+    "other": "<a href='%{url}'>%{count}</a> observações"
   },
   "x_observations_reviewed_html": {
-    "one": "<span class='count'>1</span> observações revisadas",
-    "other": "<span class='count'>%{count}</span> observações revisadas"
+    "one": "<span class='count'>1</span> observação revista",
+    "other": "<span class='count'>%{count}</span> observações revistas"
   },
   "x_observers_html": {
     "one": "<span class=\"count\">%{count}</span> Observador",
@@ -60091,8 +59275,8 @@ I18n.translations["pt-BR"] = {
   "x_of_y": "%{x} de %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} de  %{y} pessoas  (mais de 2/3) concordam que é",
   "x_others": {
-    "one": "1 outra",
-    "other": "%{count} outras"
+    "one": "1 outro",
+    "other": "%{count} outros"
   },
   "x_people": {
     "one": "%{count} pessoa",
@@ -60108,16 +59292,16 @@ I18n.translations["pt-BR"] = {
     "other": "%{count} Espécies"
   },
   "x_species_html": {
-    "one": "<span class='count'>1</span> espécies",
+    "one": "<span class='count'>Uma</span> espécie",
     "other": "<span class='count'>%{count}</span> espécies"
   },
   "x_species_link_html": {
-    "one": "<a href='%{url}'>1 espécie</a>",
-    "other": "<a href='%{url}'>%{count} espécies</a>"
+    "one": "<a href='%{url}'>1</a> espécie",
+    "other": "<a href='%{url}'>%{count}</a> espécies"
   },
   "x_suggestions_filtered_by_colon": {
-    "one": "1 Sugestões Filtradas Por:",
-    "other": "%{count} Sugestões Filtradas Por:"
+    "one": "Uma sugestão filtrada por:",
+    "other": "%{count} sugestões filtradas por:"
   },
   "year_in_review": "Resumo do ano %{year}",
   "yellow": "amarelo",
@@ -60148,6 +59332,188 @@ I18n.translations["pt-BR"] = {
   "zoom_out": "Diminuir o Zoom",
   "zoom_photo": "Ampliar Foto"
 };
+I18n.translations["pt-BR"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Dom",
+      "Seg",
+      "Ter",
+      "Qua",
+      "Qui",
+      "Sex",
+      "Sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ],
+    "day_names": [
+      "Domingo",
+      "Segunda-feira",
+      "Terça-feira",
+      "Quarta-feira",
+      "Quinta-feira",
+      "Sexta-feira",
+      "Sábado"
+    ],
+    "formats": {
+      "long": "%d de %B de %Y"
+    },
+    "month_names": [
+      null,
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 dia",
+        "other": "%{count} dias"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ",",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "",
+    "formats": {
+      "long": "%d de %B de %Y, %H:%M"
+    },
+    "pm": ""
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ru"] = {
   "a_member_of_taxon_html": "член %{taxon}",
   "about": "Подробно",
@@ -60168,6 +59534,7 @@ I18n.translations["ru"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Примечания"
       }
     }
   },
@@ -60450,7 +59817,7 @@ I18n.translations["ru"] = {
   "controlled_term_definitions": {
     "alive": "Организм жив и не проявляет признаков неизбежной смерти",
     "cannot_be_determined": "Не может быть определен на основании представленных доказательств",
-    "dead": "Организм жив и не проявляет признаков неизбежной смерти",
+    "dead": "Организм жив или проявляет признаки неизбежной смерти",
     "flower_budding": "Цветочные почки видны, но не распустились",
     "flowering": "Цветы видны, распустились и все еще прикреплены к растению",
     "fruiting": "Плоды видны и все еще прикреплены к растению",
@@ -60675,6 +60042,7 @@ I18n.translations["ru"] = {
   "edit_atlas": "Редактировать атлас",
   "edit_license": "Редактировать лицензию",
   "edit_multiple_dates": "Редактировать несколько дат",
+  "edit_multiple_descriptions": "Редактировать множественные описания",
   "edit_multiple_locations": "Редактировать множественные местоположения",
   "edit_multiple_species": "Редактировать несколько видов",
   "edit_photos": "Редактировать фото",
@@ -61284,6 +60652,8 @@ I18n.translations["ru"] = {
   "photo_licensing": "Лицензия фото",
   "photos_chosen_for_this_taxon": "Фото, выбранные для этого таксона",
   "photos_from": "Фото из",
+  "photos_locked": "Отображается, когда фото были «заблокированы» для таксона, что означает, что лишь сотрудники могут редактировать фото по умолчанию этого таксона.",
+  "photos_locked_desc": "Лишь сотрудники могут изменять фото по умолчанию этого таксона",
   "photos_of_taxon_html": "Фото %{taxon}",
   "photos_or_sounds": "Фото или звуки",
   "pin_verb": "Закрепить",
@@ -62143,6 +61513,7 @@ I18n.translations["ru"] = {
     "projects": {
       "collection": "Коллекция",
       "edit": {
+        "admins_must_be_existing_members": "Администраторы должны быть существующими участниками проекта.",
         "change_owner_alert": "Это лишит вас возможности удалять этот проект или же передавать право собственности на него. Вы хотите продолжить?\n",
         "make_owner": "Сделать владельцем"
       },
@@ -62441,7 +61812,7 @@ I18n.translations["ru"] = {
     "other": "<span class='count'>%{count}</span> наблюдений"
   },
   "x_observations_link_html": {
-    "one": "<a href='%{url}'>1 наблюдение</a>",
+    "one": "<a href='%{url}'>%{count} наблюдение</a>",
     "few": "<a href='%{url}'>%{count} наблюдения</a>",
     "many": "<a href='%{url}'>%{count} наблюдений</a>",
     "other": "<a href='%{url}'>%{count} наблюдений</a>"
@@ -62920,6 +62291,7 @@ I18n.translations["sk"] = {
   "edit_atlas": "Upraviť atlas",
   "edit_license": "Upraviť licenciu",
   "edit_multiple_dates": "Upraviť viaceré dátumy",
+  "edit_multiple_descriptions": "Upraviť viaceré opisy",
   "edit_multiple_locations": "Upraviť viaceré lokácie",
   "edit_multiple_species": "Upraviť viaceré druhy",
   "edit_photos": "Upraviť fotky",
@@ -64642,6 +64014,7 @@ I18n.translations["sq"] = {
   "edit_atlas": "Ndrysho Atlasin",
   "edit_license": "Ndrysho licencën",
   "edit_multiple_dates": "Ndrysho datat e shumta",
+  "edit_multiple_descriptions": "Ndrysho përshkrimet e shumëfishta",
   "edit_multiple_locations": "Ndrysho vende të shumëfishta",
   "edit_multiple_species": "Redakto speciet e shumta",
   "edit_photos": "Ndrysho fotot",
@@ -65979,6 +65352,7 @@ I18n.translations["sv"] = {
   "edit_atlas": "Redigera Atlas",
   "edit_license": "Redigera licens",
   "edit_multiple_dates": "Redigera flera datum",
+  "edit_multiple_descriptions": "Redigera flera beskrivningar",
   "edit_multiple_locations": "Redigera flera platser",
   "edit_multiple_species": "Redigera flera arter",
   "edit_photos": "Redigera foton",
@@ -67423,6 +66797,7 @@ I18n.translations["sv"] = {
     "projects": {
       "collection": "Samling",
       "edit": {
+        "admins_must_be_existing_members": "Administratörer måste vara befintliga medlemmar i projektet.",
         "change_owner_alert": "Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra\näganderätt igen. Vill du fortsätta?\n",
         "make_owner": "Gör till ägare"
       },
@@ -67785,6 +67160,7 @@ I18n.translations["tr"] = {
   "activerecord": {
     "attributes": {
       "observation": {
+        "description": "Notlar"
       }
     }
   },
@@ -68254,6 +67630,7 @@ I18n.translations["tr"] = {
   "edit_atlas": "Atlas'ı Düzenle",
   "edit_license": "Lisansı Düzenle",
   "edit_multiple_dates": "Birden Çok Tarihi Düzenle",
+  "edit_multiple_descriptions": "Birden Çok Açıklama Düzenle",
   "edit_multiple_locations": "Birden Çok Konumu Düzenle",
   "edit_multiple_species": "Birden Çok Türü Düzenle",
   "edit_photos": "Fotoğrafları Düzenle",
@@ -68859,6 +68236,8 @@ I18n.translations["tr"] = {
   "photo_licensing": "Fotoğraf Lisansı",
   "photos_chosen_for_this_taxon": "Bu sınıf için seçilen fotoğraflar",
   "photos_from": "Şuradan fotoğraflar",
+  "photos_locked": "Fotoğraflar Kilitli",
+  "photos_locked_desc": "Bu sınıfın varsayılan fotoğraflarını yalnızca yetkili değiştirebilir",
   "photos_of_taxon_html": "%{taxon} Fotoğrafları",
   "photos_or_sounds": "Fotoğraflar veya sesler",
   "pin_verb": "Sabitle",
@@ -69696,6 +69075,9 @@ I18n.translations["tr"] = {
     "projects": {
       "collection": "Koleksiyon",
       "edit": {
+        "admins_must_be_existing_members": "Yöneticiler projenin var olan üyeleri olmalıdır.",
+        "change_owner_alert": "Bu, bu projeyi silme ya da sahipliği devretme yeteneğinizi kaldıracaktır. Devam etmek istiyor musunuz?\n",
+        "make_owner": "Sahip Yap"
       },
       "new": {
         "a_project_allows_you_to_gather": "Bir koleksiyon projesi, temel iNaturalist arama araçlarını kullanarak gözlem toplamanıza \nve görselleştirmenize olanak sağlar. Proje tarafından belirlenen parametreleri karşılayan \nher şey otomatik olarak eklenecektir.\n",
@@ -70616,7 +69998,7 @@ I18n.translations["zh-CN"] = {
   "captive": "捕获",
   "captive_cultivated": "捕获的 / 种植的",
   "casual": "非正式的",
-  "casual_": "便装",
+  "casual_": "非正式的",
   "categories": "分类",
   "cc_0_description": "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。",
   "cc_0_name": "无版权（CC0）",
@@ -70670,6 +70052,8 @@ I18n.translations["zh-CN"] = {
   },
   "controlled_term_labels": {
     "adult": "成人",
+    "alive": "活体",
+    "alive_or_dead": "活体或死亡",
     "budding": "发芽",
     "egg": "蛋",
     "female": "女",
@@ -70857,6 +70241,7 @@ I18n.translations["zh-CN"] = {
   "edit_atlas": "编辑地图集",
   "edit_license": "编辑许可协议",
   "edit_multiple_dates": "编辑多个日期",
+  "edit_multiple_descriptions": "编辑多个描述",
   "edit_multiple_locations": "编辑多个位置",
   "edit_multiple_species": "编辑多个物种",
   "edit_photos": "编辑照片",
@@ -70940,6 +70325,8 @@ I18n.translations["zh-CN"] = {
   "generate_your_stats": "生成您的统计",
   "geoprivacy": "位置隐私",
   "get_started": "入门",
+  "give_monthly_caps": "每月捐款",
+  "give_now_caps": "立即捐款",
   "globally": "全域",
   "go": "前往",
   "go_back": "返回",
@@ -71266,7 +70653,7 @@ I18n.translations["zh-CN"] = {
   "observations_total": "观察总计",
   "observations_with_this_field": "有此字段的观察",
   "observations_with_this_field_and_value": "有此字段和此值的观察",
-  "observed": "已观察",
+  "observed": "观察日期",
   "observed_on": "观察于",
   "observers": "观察者",
   "of_identifiers": "标识符",
@@ -71603,7 +70990,7 @@ I18n.translations["zh-CN"] = {
   "required_": "必选",
   "research": "研究",
   "research_": "研究",
-  "research_grade": "研究指导",
+  "research_grade": "研究级别",
   "research_grade_qualification": "研究成果资格",
   "research_grade_short_html": "研<span class='full'>究</span>指<span class='full'>导</span>",
   "reset_search_filters": "重置搜索过滤器",
@@ -71684,6 +71071,7 @@ I18n.translations["zh-CN"] = {
   "stats_for_this_year_have_not_been_generated": "该年的统计尚未生成。",
   "status": "状态",
   "stay_and_try_again": "停留并重试",
+  "store": "商店",
   "submit_observations": {
     "other": "提交 %{count} 次观察"
   },
@@ -71954,8 +71342,10 @@ I18n.translations["zh-CN"] = {
         "complete_taxon_desc": "“完整的”分类群具有它们所有的后代，现存的特定等级的分类群存在于该站点的数据库中。例如，当物种的分类单位完成时，我们可以说已经观察了多少物种，还有多少物种需要观察。物种的“完整”分类物种对物种的计数不包括“不可数”的物种，如灭绝物种或非活性物种概念，它们只包括物种，而不是亚种或品种的种内分类群。\n",
         "discoveries_desc": "此分类单元中最新被鉴定的物种",
         "frequency": {
-          "research": "研究指导",
+          "research": "研究级别",
           "verifiable": "可证实",
+          "Alive or Dead=Alive": "活体",
+          "Alive or Dead=Dead": "死亡",
           "Life Stage=egg": "蛋",
           "Life Stage=larva": "幼虫",
           "Life Stage=teneral": "幼体",
@@ -72780,6 +72170,7 @@ I18n.translations["zh-TW"] = {
   "edit_atlas": "編輯地圖集",
   "edit_license": "編輯許可協議",
   "edit_multiple_dates": "編輯多個日期",
+  "edit_multiple_descriptions": "編輯多項描述",
   "edit_multiple_locations": "編輯多個位置",
   "edit_multiple_species": "編輯多個物種",
   "edit_photos": "編輯照片",

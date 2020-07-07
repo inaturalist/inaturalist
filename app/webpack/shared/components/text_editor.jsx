@@ -42,30 +42,33 @@ class TextEditor extends React.Component {
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-bold" />}
                 template={text => `**${text}**`}
-                placeholder={I18n.t( "bold_text", { defaultValue: "bold text" } )}
+                placeholder={I18n.t( "bold_text" )}
                 newSelectionOffset={2}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
+                tip={I18n.t( "add_bold_text" )}
               />
               <TextEditorFormatButton
                 textarea={this.textarea.current}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-italic" />}
                 template={text => `*${text}*`}
-                placeholder={I18n.t( "italic_text", { defaultValue: "italic text" } )}
+                placeholder={I18n.t( "italic_text" )}
                 newSelectionOffset={1}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
+                tip={I18n.t( "add_italic_text" )}
               />
               <TextEditorFormatButton
                 textarea={this.textarea.current}
                 className="btn btn-default btn-xs"
                 label={<i className="icon-link" />}
                 template={text => `[${text}](url)`}
-                placeholder={I18n.t( "linked_text", { defaultValue: "linked text" } )}
+                placeholder={I18n.t( "linked_text" )}
                 newSelectionOffset={textLength => textLength + 3}
                 newSelectionOffsetLength={3}
                 disabled={preview}
+                tip={I18n.t( "add_a_link" )}
               />
             </div>
             <div className="btn-group block-controls" role="group" aria-label={I18n.t( "text_block_controls" )}>
@@ -84,6 +87,7 @@ class TextEditor extends React.Component {
                   return `\n\n${newTxt}`;
                 }}
                 disabled={preview}
+                tip={I18n.t( "insert_a_quote" )}
               />
               <TextEditorFormatButton
                 textarea={this.textarea.current}
@@ -100,6 +104,7 @@ class TextEditor extends React.Component {
                   return `\n\n${newTxt}`;
                 }}
                 disabled={preview}
+                tip={I18n.t( "add_a_bulleted_list" )}
               />
               <TextEditorFormatButton
                 textarea={this.textarea.current}
@@ -116,6 +121,7 @@ class TextEditor extends React.Component {
                   return `\n\n${newTxt}`;
                 }}
                 disabled={preview}
+                tip={I18n.t( "add_a_numbered_list" )}
               />
             </div>
             <div className="btn-group" role="group" aria-label={I18n.t( "preview" )}>
@@ -151,7 +157,7 @@ class TextEditor extends React.Component {
         </textarea>
         { maxLength && textareaChars > showCharsRemainingAt && (
           <div className="text-muted small chars-remaining">
-            { `${textareaChars} / ${maxLength}` }
+            { I18n.t( "x_of_y_short", { x: textareaChars, y: maxLength } )}
           </div>
         ) }
         { preview && (

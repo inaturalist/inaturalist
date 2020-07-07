@@ -272,11 +272,17 @@ en:
   add: Add
   add_a_batch_of_observations: Add a Batch of Observations
   add_a_batch_of_taxa: Add a Batch of Taxa
+  # Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Add a bulleted list
   add_a_comment: Add a Comment
   add_a_field: Add a Field
   add_a_flag: Add a Flag
+  # Tool tip for a button that adds a link to a text area
+  add_a_link: Add a link
   add_a_name: Add a Name
   add_a_new_change_group: Add a New Change Group
+  # Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Add a numbered list
   add_a_single_observation: Add a Single Observation.
   add_a_taxon: Add a Taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -299,6 +305,8 @@ en:
   # Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Add Project Asset
   add_batch: Add Batch
+  # Tool tip for a button that adds bold text to a text area
+  add_bold_text: Add bold text
   add_comma_separated_tags: "Add Comma-separated Tags"
   add_comment: Add a Comment
   add_conservation_status: Add Conservation Status
@@ -311,6 +319,8 @@ en:
   add_link: Add Link
   add_higher_level_taxon: Add a higher-level taxon (e.g. "birds")
   add_id: Add ID
+  # Tool tip for a button that adds italic text to a text area
+  add_italic_text: Add italic text
   add_new_lexicon: Add New Lexicon
   add_new_photos_by_their_ids: Add New Photos by Their Flickr Ids (must be Creative Commons!)
   add_new_place: Add a New Place
@@ -708,6 +718,8 @@ en:
   body: Body
   # Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  # Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: bold text
   bounding_box: Bounding Box
   breadcrumbs: Breadcrumbs
   # This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1761,6 +1773,8 @@ en:
   insects: insects
   insect_life_stage: Insect Life Stage
   instagram: Instagram
+  # Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Insert a quote
   interactions: Interactions
   internal_server_error: Internal Server Error
   internal_taxon_including_descendants: Internal taxon (including descendants)
@@ -1785,6 +1799,8 @@ en:
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
+  # Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: italic text
   item_flagged_notice_html: |
     This has been flagged as spam and is no longer
     publicly visible. You can see it because you created it, or you are a
@@ -1937,6 +1953,8 @@ en:
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
+  # Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linked text
   linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
@@ -4489,6 +4507,9 @@ en:
     one: "%{count} observation failed"
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
+  # This might be shown if there is a character limit in a text field, in which
+  # it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     zero: "%{x} of %{count} confirmed"
     one: "%{x} of %{count} confirmed"

@@ -9,12 +9,15 @@ const TextEditorFormatButton = ( {
   newSelectionOffset,
   newSelectionOffsetLength,
   disabled,
-  placeholder
+  placeholder,
+  tip
 } ) => (
   <button
     type="button"
     className={className}
     disabled={disabled}
+    title={tip}
+    aria-label={tip}
     onClick={( ) => {
       const { selectionStart } = textarea;
       if ( textarea.selectionStart !== undefined && textarea.selectionEnd !== undefined ) {
@@ -70,7 +73,14 @@ TextEditorFormatButton.propTypes = {
   newSelectionOffsetLength: PropTypes.oneOfType( [PropTypes.number, PropTypes.func] ),
 
   disabled: PropTypes.bool,
-  placeholder: PropTypes.string
+
+  // Text inserted into the textarea when the button is clicked but no text was
+  // selected
+  placeholder: PropTypes.string,
+
+  // title and aria-label attributes for the button. Should tell the user what
+  // clicking this button does
+  tip: PropTypes.string
 };
 
 TextEditorFormatButton.defaultProps = {
