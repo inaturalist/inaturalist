@@ -2351,6 +2351,8 @@ da:
   observations_by_you: "Observationer af dig"
   observations_by_you_on_date: "Observationer af dig den %{date}"
   observation_calendar_for: "Observationskalender for %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observationer kan maks. have %{limit} fotos
   observation_curation: Observation kuration
   observation_date: Dato
   observation_date?: Dato?

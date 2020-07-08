@@ -207,11 +207,17 @@ fi:
   add: Lisää
   add_a_batch_of_observations: Tallenna erä havaintoja
   add_a_batch_of_taxa: Lisää erä taksoneita
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Lisää lista ranskalaisin viivoin
   add_a_comment: Lisää kommentti
   add_a_field: Lisää kenttä
   add_a_flag: Lisää lippu
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Lisää linkki
   add_a_name: Lisää nimi
   add_a_new_change_group: Lisää uusi muutosryhmä
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Lisää numeroitu lista
   add_a_single_observation: Lisää yksittäinen havainto.
   add_a_taxon: Lisää taksoni
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -234,6 +240,8 @@ fi:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Lisää ominaisuus
   add_batch: Lisää erä
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Lisää lihavoitu teksti
   add_comma_separated_tags: "Lisää pilkulla erotellut merkinnät"
   add_comment: Lisää kommentti
   add_conservation_status: Lisää suojelutaso
@@ -246,6 +254,8 @@ fi:
   add_link: Lisää linkki
   add_higher_level_taxon: Lisää korkeamman tason taksoni (esim. "linnut")
   add_id: Lisää tunnistus
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Lisää kursivoitu teksti
   add_new_lexicon: Lisää uusi sanakirja
   add_new_photos_by_their_ids: Lisää uusia kuvia niiden Flickr ID'eillä (on oltava Creative Commons!)
   add_new_place: Lisää uusi paikka
@@ -642,6 +652,8 @@ fi:
   body: Leipäteksti
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: lihavoitu teksti
   bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1289,6 +1301,7 @@ fi:
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
+  failed_to_save_record_with_errors: "Tallennus epäonnistui: %{errors}"
   'false': 'Ei'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
@@ -1619,6 +1632,8 @@ fi:
   insects: hyönteiset
   insect_life_stage: Hyönteisen elinvaihe
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Lisää lainaus
   interactions: Vuorovaikutukset
   internal_server_error: Sisäinen palvelinvirhe
   internal_taxon_including_descendants: Sisäinen taksoni (mukaan lukien alemmat taksonit)
@@ -1643,6 +1658,8 @@ fi:
   is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
   it_can_now_be_used_for_research: Sitä voidaan nyt käyttää tutkimukseen ja julkaista muilla verkkosivustoilla
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursivoitu teksti
   item_flagged_notice_html: |
     Tämä on liputettu roskapostina eikä enää ole
     julkisesti nähtävissä. Voit nähdä sen, koska olet luonut sen, tai olet
@@ -1790,6 +1807,8 @@ fi:
   linked_facebook_howto: "Linkittääksesi Facebookin %{site_name}iin, klikkaa linkkiä oikealla ja kirjaudu Facebookiin."
   linked_facebook_password: "Emme ikinä pyydä Facebook-salasanaasi. (Mutta Facebook voi kysyä, joten tarkista osoitteesta että olet todella Facebook.com:issa.) Emme myöskään muuta Facebookissa olevia tietojasi, ellet erikseen halua sitä."
   linked_flickr: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Flickr-tiliisi."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linkin teksti
   linkedin: LinkedIn
   list: Luettelo
   list_deleted: Luettelo poistettu.
@@ -1876,6 +1895,10 @@ fi:
   location_specified: Sijainti määritetty
   locked_taxa_will_not_allow_new: Lukituille taksoneille ei voi lisätä alempia taksoneita. Jos lukitset Amphibian ja joku yrittää lisätä <i>Rana catesbeianan</i> ulkoisesta nimilähteestä, uusi taksoni luotaisiin, mutta sitä ei voisi luokitella sammakkoeläimeksi. Jos näin käy, lisätty taksoni täytyy merkitä kuraattorin tarkastettavaksi. Lukitsemista pitäisi käyttää vain taksoneille, joille ei enää tarvitse lisätä alempia taksoneita. Kuraattorit voivat ohittaa lukituksen muokkaamalla taksonia ja lisäämällä emotaksonin tunnisteen suoraan, mutta harkitse uuden taksonin liittämistä olemassaolevaan taksoniin.
   log_in: Kirjaudu sisään
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi kommentteja.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi tunnistuksia.
   log_scale_label: Loki
   login_slash_username: Kirjautumis / käyttäjänimi
   logo:
@@ -2278,6 +2301,8 @@ fi:
   observations_by_you: "Omat havainnot"
   observations_by_you_on_date: "Omat havainnot %{date}"
   observation_calendar_for: "Käyttäjän %{user} vuoden %{year} havainnointikalenteri"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Havainnoilla voi olla vain %{limit} kuvaa
   observation_curation: Havaintokuratointi
   observation_date: Päivämäärä
   observation_date?: Päivämäärä?
@@ -3176,6 +3201,7 @@ fi:
   resolved_by: Ratkaissut
   resolved_by_user_on_date_html: Ratkaissut %{user} %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sanoi,</span> "%{x}"'
+  restart: Käynnistä uudelleen
   restore: Palauta
   restoring: Palauttaa...
   results: tulokset
@@ -3479,6 +3505,7 @@ fi:
   take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   target_list_alert: Oletko varma, että olet yrittänyt havainnoida kaikkia lajiluettelosi lajeja? Huomaa, että kaikki luettelosi lajit, joita ei ole merkitty havaituksi, tulkitaan poissaoleviksi, joten on hyvin tärkeää, että lajiluettelosi vastaa täsmällisesti sitä lajiryhmää, jota ole yrittänyt havaita
+  task_deleted: Tehtävä poistettu
   taxa: Taksonit
   taxa_info: Taksonien tiedot
   taxa_needing_curation: Kuratointia tarvitsevat taksonit
@@ -3958,6 +3985,9 @@ fi:
     one: "1 havainto epäonnistui"
     other: "%{count} havaintoa epäonnistui"
   x_of_y: "%{x}/%{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x}/%{count} vahvistettu"
     other: "%{x}/%{count} vahvistettua"

@@ -207,11 +207,17 @@ tr:
   add: Ekle
   add_a_batch_of_observations: Toplu Gözlem Ekle
   add_a_batch_of_taxa: Toplu Sınıf Ekle
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Madde işaretli bir liste ekle
   add_a_comment: Bir Yorum Ekle
   add_a_field: Bir Alan Ekle
   add_a_flag: İşaret Ekle
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Bir bağlantı ekle
   add_a_name: Bir Ad Ekle
   add_a_new_change_group: Yeni Bir Değişim Grubu Ekle
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Numaralı bir liste ekle
   add_a_single_observation: Tek Gözlem Ekle.
   add_a_taxon: Bir Sınıf Ekle
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -234,6 +240,8 @@ tr:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Proje Varlığı Ekle
   add_batch: Toplu Ekle
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Kalın yazı ekle
   add_comma_separated_tags: "Virgülle Ayrılmış Etiket Ekle"
   add_comment: Bir Yorum Ekle
   add_conservation_status: Koruma Durumu Ekle
@@ -246,6 +254,8 @@ tr:
   add_link: Bağlantı Ekle
   add_higher_level_taxon: Üst düzey sınıf Ekle (örn. "kuşlar")
   add_id: Tanımlama Ekle
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Eğik yazı ekle
   add_new_lexicon: Yeni Sözlük Ekle
   add_new_photos_by_their_ids: Flickr Kimlikleriyle Yeni Fotoğraflar Ekle (Creative Commons olmalı!)
   add_new_place: Yeni Bir Alan Ekle
@@ -637,6 +647,8 @@ tr:
   body: Gövde
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: kalın yazı
   bounding_box: Sınır Alanı
   breadcrumbs: Gezinme ipuçları
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -693,6 +705,7 @@ tr:
   change_descriptions:
     split: Eski sınıf birçok yeni sınıfa bölündü
     merge: Birkaç eski sınıf yeni bir sınıfı içine aldı
+    swap: Girdi sınıfını çıktı sınıfıyla değiştirin
     drop: Sınıf kavramı tamamen geçersiz, tarihsel amaçlar ya da ortak uyumluluğu için korundu
     stage: Değişim grubunun bir parçası olarak serbest bırakmak için etkin olmayan bir konsept hazırlayın
   change_geoprivacy: 'Coğrafi Gizliliği Değiştir'
@@ -1296,6 +1309,7 @@ tr:
   failed_to_find_your_location: Konumunuz bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
   failed_to_save_record: "Kaydetme başarısız. Lütfen daha sonra tekrar deneyin."
+  failed_to_save_record_with_errors: "Kayıt ekleme başarısız oldu: %{errors}"
   'false': 'Yanlış'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriler
@@ -1639,6 +1653,8 @@ tr:
   insects: böcekler
   insect_life_stage: Böcek Yaşam Evresi
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Bir alıntı ekle
   interactions: Etkileşimler
   internal_server_error: İç Sunucu Hatası
   internal_taxon_including_descendants: İç sınıf (alt sınıfları içerir)
@@ -1663,6 +1679,8 @@ tr:
   is_this_offensive_html: 'Bu <a href="/help#inappropriate">uygunsuz</a>, gereksiz ya da rahatsız edici mi?'
   is_this_place_a_duplicate: Bu kopyalanmış bir yer mi?
   it_can_now_be_used_for_research: Şimdi araştırma için kullanılabilir ve diğer web sitelerinde öne çıkarılabilir
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: eğik yazı
   item_flagged_notice_html: |
     Bu gereksiz olarak işaretlendi ve artık herkes tarafından görülür değil. Bunu görebilirsiniz çünkü siz yarattınız ya da bir site sorumlususunuz. Bunun bir hata olduğunu düşünüyorsanız, lütfen <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
     <a href="%{manage_flags_path}">İşaretleri yönetme</a>
@@ -1811,6 +1829,8 @@ tr:
   linked_flickr_automatically: "Ayrıca, Flickr üzerinden %{site_name} sayfasına giriş yaparsanız, %{site_name} ve Flickr hesaplarınızı kendiliğinden yeniden bağlayacağımızı unutmayın. Flickr kullanıyorsanız, Flickr fotoğraflarını içe aktarabilmek isteyebilirsiniz, doğru mu?"
   linked_flickr_description: "%{site_name} hesabınızı Flickr hesabınıza bağlı tutmak, gözlemlerinize birden çok fotoğraf eklemenizi sağlar. Elbette, eğer %{site_name} ve Flickr'ı ayırmak istersen, seni durdurmayacağız, yalnızca fotoğraf ekleyemezsin. Bazen bu en iyisi için olabilir, %{site_name} adresine bağlamak istediğiniz yeni bir Flickr hesabı oluşturursan."
   linked_flickr_password_html: "<strong>Sizden Flickr şifrenizi asla istemeyeceğiz</strong> (ancak Flickr isteyebilir, düğmenin size gönderdiği URL'yi kontrol edin ve Flickr.com'dan olduğundan emin olun)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: bağlantılı yazı
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste silindi.
@@ -1899,6 +1919,10 @@ tr:
   location_specified: Belirtilmiş konum
   locked_taxa_will_not_allow_new: Kilitli sınıflar, yeni alt sınıfların kendisine eklenmesine izin vermez. Eğer Amphibia'yı kilitlediyseniz ve birisi <i>Rana catesbeiana'yı</i> dış bir sağlayıcıdan içe aktarmaya çalıştıysa, yeni sınıf oluşturulacak ancak bir yüzergezer olarak sınıflandırılamayacak. Bu olduğunda, yeni eklenen sınıfların, sorumlunun dikkat etmesi için işaretlenmesi gerekir. Bu, yalnızca alt sınıf olduğunu düşündüğümüz sınıflar için kullanılmalıdır. Sorumlu bunu sınıfları düzenleyerek ve doğrudan üst kimlik ekleyerek geçersiz kılabilir ancak bunun yerine yeni sınıfları var olanlarla birleştirmeyi düşünün.
   log_in: Oturum Aç
+  log_in_or_sign_up_to_add_comments_html: |
+    Yorum eklemek için <a href="/log_in">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Tanımlama eklemek için <a href="/log_in">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
   log_scale_label: Günlük
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
@@ -2319,6 +2343,8 @@ tr:
   observations_by_you: "Sizin gözlemleriniz"
   observations_by_you_on_date: "%{date} tarihindeki gözlemleriniz"
   observation_calendar_for: "%{year} yılında %{user} için Gözlem Takvimi"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Gözlemler yalnızca %{limit} fotoğafa sahip olabilir
   observation_curation: Gözlem Yönetme
   observation_date: Tarih
   observation_date?: Tarih ne?
@@ -3286,6 +3312,7 @@ tr:
   resolved_by: Çözen
   resolved_by_user_on_date_html: '%{user} tarafından %{date} tarihinde çözüldü'
   resolver_said_x_html: '<span class="meta">%{resolver}</span>"%{x}" dedi'
+  restart: Yeniden başlat
   restore: Geri yükle
   restoring: Geri yükleniyor...
   results: sonuçlar
@@ -3620,6 +3647,7 @@ tr:
   take_me_flickr!: Evet, beni Flickr'a götür!
   target_list_alert: Hedef listenizdeki tüm türleri gözlemlemeye çalıştığınızdan emin misiniz? Hedef listenizde gözlemlemediğiniz herhangi bir şeyin yokluk olarak yorumlanacağını unutmayın, bu nedenle hedef listenizin tespit etmeye çalıştığınız tür kümesini doğru şekilde yansıtması çok önemlidir
   target_list_warning: Hedef listenizde yer alan ve bu gezi çevresi ve sürecinde gözlemlemediğiniz herhangi bir şeyin bir yokluk olarak yorumlanacağını unutmayın. Hedef listenizin tespit etmeye çalıştığınız tür kümesini doğru şekilde yansıtması çok önemlidir. Hedef listenizdeki bir türü ya da hedef listenizdeki bir grubun kapsadığı her türü saptamadıysanız, lütfen onu kaldırın.
+  task_deleted: Görev silindi
   taxa: Sınıflar
   taxa_with_unknown_relationships: Bilinmeyen ilişkilerle sınıflar
   taxa_info: Sınıfların Bilgisi
@@ -4249,6 +4277,9 @@ tr:
     one: "%{count} gözlem başarısız oldu"
     other: "%{count} gözlem başarısız oldu"
   x_of_y: "%{x} / %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{count} / %{x} onaylandı"
     other: "%{count} / %{x} onaylandı"
@@ -4716,6 +4747,8 @@ tr:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
         create_a_query_desc_html: |
           Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. Sorgunuz <strong>200.000'den çok </strong> gözlem içermemelidir.
+        export_in_progress_notice_html: |
+          <a href="%{url}">Devam eden bir dışa aktarmanız</a> var. Başka bir dışa aktarma yapmak için işlemin tamamlanmasını beklemeniz gerekir.
         ident_by_user_desc_html: |
           %{user} tarafından geçerli tanımlama için sütunlar
         limit_alert: Dışa aktarmanız çok büyük olacak. 200.000'den az gözlem olana kadar filtrelerinizi değiştirin.
