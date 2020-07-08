@@ -683,7 +683,9 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
-      o.wait_for_index_refresh = true
+      # all observations will be indexed later, after all associated records
+      # have been created, just before responding
+      o.skip_indexing = true
       o.save
     end
     create_project_observations
@@ -699,6 +701,9 @@ class ObservationsController < ApplicationController
     else
       @observations.compact.each { |obs| errors = true unless obs.valid? }
     end
+    Observation.elastic_index!(
+      ids: @observations.compact.map( &:id ),
+      wait_for_index_refresh: true )
     respond_to do |format|
       format.html do
         unless errors
