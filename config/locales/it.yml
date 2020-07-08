@@ -695,6 +695,7 @@ it:
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
     merge: Diversi vecchi taxa uniti in un nuovo taxon
+    swap: Sostituisci il taxon in ingresso con il taxon in uscita
     drop: Taxon completamente invalido, mantenuto per scopi storici o compatibilità con i partner
     stage: Prepara un concetto inattivo per il rilascio come parte di un gruppo di modifiche
   change_geoprivacy: 'Cambia la geoprivacy'
@@ -1298,6 +1299,7 @@ it:
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
+  failed_to_save_record_with_errors: "Impossibile salvare il record: %{errors}"
   'false': 'Falso'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
@@ -2330,6 +2332,8 @@ it:
   observations_by_you: "Le mie osservazioni"
   observations_by_you_on_date: "Le tue osservazioni del %{date}"
   observation_calendar_for: "Calendario delle osservazioni di %{user} nel %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Le osservazioni possono avere solo %{limit} foto
   observation_curation: Curatela delle osservazioni
   observation_date: Data
   observation_date?: Data?
@@ -3297,6 +3301,7 @@ it:
   resolved_by: Risolto da
   resolved_by_user_on_date_html: Risolto da %{user} il %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} ha detto,</span> "%{x}"'
+  restart: Riavvia
   restore: Ripristina
   restoring: Ripristino in corso...
   results: risultati
@@ -3631,6 +3636,7 @@ it:
   take_me_flickr!: Si, vai a Flickr!
   target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato sarà interpretato come un'assenza, perciò è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare
   target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà interpretato come un'assenza. Per questo è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa in un gruppo della tua lista di obbiettivi, per favore rimuovila.
+  task_deleted: Attività eliminata
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
