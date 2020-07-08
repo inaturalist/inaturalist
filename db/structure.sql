@@ -8518,6 +8518,13 @@ CREATE INDEX index_project_users_on_user_id ON public.project_users USING btree 
 
 
 --
+-- Name: index_project_users_on_user_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_users_on_user_id_and_project_id ON public.project_users USING btree (user_id, project_id);
+
+
+--
 -- Name: index_projects_on_cached_slug; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10126,4 +10133,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200220211829');
 INSERT INTO schema_migrations (version) VALUES ('20200226211718');
 
 INSERT INTO schema_migrations (version) VALUES ('20200604181750');
+
+INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 
