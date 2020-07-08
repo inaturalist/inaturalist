@@ -8,8 +8,13 @@
     min-width: 370px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     width: 100%;
+
+    .ac-label {
+      width: 100%;
+    }
   }
   &.projects {
     max-height: 315px;
@@ -37,7 +42,7 @@
   height: 36px;
 }
 .ui-autocomplete .ac-thumb {
-  width: 44px;
+  width: 61px;
   display: inline-block;
   text-align: center;
   vertical-align: top;
@@ -49,7 +54,7 @@
 }
 
 .ui-autocomplete .ac-message .ac-thumb {
-  width: 34px;
+  width: 49px;
   padding-left: 5px;
 }
 .ui-autocomplete .ac-view {

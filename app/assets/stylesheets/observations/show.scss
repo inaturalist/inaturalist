@@ -525,9 +525,11 @@ a.UserImage,
       .ui-autocomplete {
         .ac-label {
           min-width: 320px;
+          width: 100%;
         }
         .ac.vision .ac-label {
           min-width: 300px;
+          width: 100%;
         }
       }
       textarea {
