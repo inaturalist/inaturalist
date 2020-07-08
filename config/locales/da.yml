@@ -191,11 +191,17 @@ da:
   add: Tilføj
   add_a_batch_of_observations: Tilføj et bundt observationer
   add_a_batch_of_taxa: Tilføj et bundt af taksa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Tilføj en punktliste
   add_a_comment: Tilføj en kommentar
   add_a_field: Tilføj et felt
   add_a_flag: Tilføj en markering
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Tilføj et link
   add_a_name: Tilføj et navn
   add_a_new_change_group: Tilføj en ny ændringsgruppe
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Tilføj en nummereret liste
   add_a_single_observation: Tilføj en enkelt observation.
   add_a_taxon: Tilføj en takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1295,6 +1301,7 @@ da:
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
+  failed_to_save_record_with_errors: "Mislykkedes at gemme post: %{errors}"
   'false': 'Falsk'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
@@ -3311,6 +3318,7 @@ da:
   resolved_by: Løst af
   resolved_by_user_on_date_html: Løst af %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sagde,</span> "%{x}"'
+  restart: Genstart
   restore: Gendan
   restoring: Gendanner...
   results: resultater
@@ -3647,6 +3655,7 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt, at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
   target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
+  task_deleted: Opgave slettet
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
