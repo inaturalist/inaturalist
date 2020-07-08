@@ -2479,6 +2479,8 @@ en:
   observations_by_you: "Observations by you"
   observations_by_you_on_date: "Observations by you on %{date}"
   observation_calendar_for: "Observation Calendar for %{user} in %{year}"
+  # The limit is currently 20
+  observations_can_only_have_n_photos: Observations can only have %{limit} photos
   observation_curation: Observation Curation
   observation_date: Date
   observation_date?: Date?
