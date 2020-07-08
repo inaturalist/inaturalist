@@ -9,8 +9,6 @@ class AddUniqueIndexToUserAndProjectOnProjectUsers < ActiveRecord::Migration
       ORDER BY count(*) desc"
     )
     rows.each do |r|
-      puts "\n--\n"
-
       ProjectUser.where( project_id: r["project_id"], user_id: r["user_id"] ).
         order( "LENGTH(role) desc NULLS LAST, created_at asc" ).each_with_index do |pu, index|
         next if index == 0
