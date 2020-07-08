@@ -224,6 +224,8 @@ da:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Tilføj aktiv
   add_batch: Tilføj bundt
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Tilføj fed tekst
   add_comma_separated_tags: "Tilføj kommaseparerede tags"
   add_comment: Tilføj en kommentar
   add_conservation_status: Tilføj bevaringsstatus
@@ -236,6 +238,8 @@ da:
   add_link: Tilføj link
   add_higher_level_taxon: Tilføj et taxon på et højere niveau (f.eks. "fugle")
   add_id: Tilføj ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Tilføj kursiv tekst
   add_new_lexicon: Tilføj nyt leksikon
   add_new_photos_by_their_ids: Tilføj nye fotos via Flickr ID'er (skal være Creative Commons!)
   add_new_place: Tilføj et nyt sted
@@ -632,6 +636,8 @@ da:
   body: Indhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fed tekst
   bounding_box: Geografisk område
   breadcrumbs: Brødkrummer
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -688,6 +694,7 @@ da:
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
     merge: Flere gamle taksa sammen i en ny takson
+    swap: Erstat input-takson med output-takson
     drop: Takson-konceptet er helt ugyldigt, og er opretholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt koncept for frigivelse som en del af en ændringsgruppe
   change_geoprivacy: 'Ændre geofortrolighed'
@@ -1648,6 +1655,8 @@ da:
   insects: insekter
   insect_life_stage: Insekt livsstadie
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Indsæt en citation
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
   internal_taxon_including_descendants: Intern takson (inklusiv forfædre)
@@ -1672,6 +1681,8 @@ da:
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_place_a_duplicate: Er dette sted en kopi?
   it_can_now_be_used_for_research: Den kan nu bruges til forskning og vises på andre web-sider
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv tekst
   item_flagged_notice_html: |
     Dette er blevet markeret som spam, og er ikke længere synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det eller du er sidekurator. Hvis du mener det er en fejl, så 
     <a href="mailto:%{help_email}" class="contact">kontakt os venligst</a>.
@@ -1822,6 +1833,8 @@ da:
   linked_flickr_automatically: "Husk også, at hvis du logger ind på %{site_name} via Flickr, vil vi automatisk genforbinde din %{site_name} og Flickr konti. Det virker rimeligt, at hvis du bruger Flickr, vil du gerne kunne importere Flickr foto´s, ikke?"
   linked_flickr_description: "Hvis du lader din %{site_name} konto være tilknyttet til din Flickr konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig, hvis du nogensinde vil have %{site_name} og Flickr til ikke at være tilknyttede, så stopper vi dig ikke, du kan bare ikke tilføje billeder derfra. Nogle gange kan det være det bedste, hvis du opretter en helt ny Flickr-konto, som du vil tilknytte %{site_name} til."
   linked_flickr_password_html: "<strong>Vi vil aldrig bede dig om din Flickr adgangskode</strong> (men Flickr vil, tjekke URL adressen, som knappen sender dig og sikre sig at det er Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linket tekst
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
@@ -1910,6 +1923,10 @@ da:
   location_specified: Stedet er specificeret
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje identifikationer.
   log_scale_label: Log
   login_slash_username: Login / brugernavn
   logo:
@@ -4312,6 +4329,9 @@ da:
     one: "1 observation fejlede"
     other: "%{count} observationer fejlede"
   x_of_y: "%{x} af %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x}/%{y}"
   x_of_count_confirmed:
     one: "%{x} of %{count} bekræftet"
     other: "%{x} of %{count} bekræftet"
@@ -4823,6 +4843,8 @@ da:
           Opret en observationsforespørgsel ligesom du ville gøre andre steder på
           webstedet. Du kan også klippe og indsætte en URL over observationer fra en anden
           del af webstedet. Din forespørgsel <strong>kan maksimalt returnere 200.000 observationer</strong>.
+        export_in_progress_notice_html: |
+          Du har en <a href="%{url}">eksport i gang</a>. Du er nødt til at afvente, at denne færdiggøres, inden du kan placere en ny eksoprt i køen.
         ident_by_user_desc_html: |
           Kolonner til den aktuelle identifikation af %{user}
         limit_alert: Din eksoprt bliver for stor. Ændr dine filtre indtil observationsantallet er lavere end 200.000.
