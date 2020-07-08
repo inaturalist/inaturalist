@@ -113,22 +113,9 @@ class LocalPhoto < Photo
       file.styles.keys.each do |style|
         metadata[:dimensions][style] = extract_dimensions(style)
       end
-      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(path || file.queued_for_write[:original].path)
-        metadata.merge!(exif.to_hash)
-        xmp = XMP.parse(exif)
-        if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
-          metadata[:dc] = {}
-          xmp.dc.attributes.each do |dcattr|
-            begin
-              metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
-            rescue ArgumentError
-              # XMP does this for some DC attributes, not sure why
-            rescue RuntimeError => e
-              raise e unless e.message =~ /Don't know how to handle/
-              # XMP seems to do this when it doesn't know how to handle a tag
-            end
-          end
-        end
+      if ( file_path = ( path || file.queued_for_write[:original].path ) )
+        exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
+        metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -138,6 +125,8 @@ class LocalPhoto < Photo
     rescue TypeError => e
       raise e unless e.message =~ /no implicit conversion of Integer into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue ExifMetadata::ExtractionError => e
+      Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
     self.metadata = metadata
