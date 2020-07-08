@@ -205,11 +205,17 @@ nl:
   add: Toevoegen
   add_a_batch_of_observations: Verzameling waarnemingen toevoegen
   add_a_batch_of_taxa: Verzameling taxa toevoegen
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Voeg een opsommingslijst toe
   add_a_comment: Reactie toevoegen
   add_a_field: Veld toevoegen
   add_a_flag: Melding toevoegen
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Voeg een link toe
   add_a_name: Naam toevoegen
   add_a_new_change_group: Nieuwe wijzigingengroep toevoegen
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Voeg een genummerde lijst toe
   add_a_single_observation: Voeg één waarneming toe
   add_a_taxon: Een taxon toevoegen
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -232,6 +238,8 @@ nl:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Projectbestand toevoegen
   add_batch: Batch toevoegen
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Vetgedrukte tekst toevoegen
   add_comma_separated_tags: "Door komma's gescheiden labels toevoegen"
   add_comment: Reactie toevoegen
   add_conservation_status: Natuurbeschermingsstatus toevoegen
@@ -244,6 +252,8 @@ nl:
   add_link: Voeg link toe
   add_higher_level_taxon: Taxon van hogere orde toevoegen (bv. "vogels")
   add_id: ID toevoegen
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Voeg cursieve tekst toe
   add_new_lexicon: Nieuw lexicon toevoegen
   add_new_photos_by_their_ids: Nieuwe foto's op basis van hun Flickr-ID's toevoegen (moet Creative Commons zijn!)
   add_new_place: Nieuwe plaats toevoegen
@@ -639,6 +649,8 @@ nl:
   body: Lichaam
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: dikgedrukte tekst
   bounding_box: Kaartuitsnede
   breadcrumbs: Broodkruimels
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -695,6 +707,7 @@ nl:
   change_descriptions:
     split: Oud taxon opgesplitst in meerdere nieuwe taxa
     merge: Meerdere oude taxa samengevoegd tot één nieuw taxon
+    swap: 1-op-1 naam wijziging
     drop: Taxonconcept volledig ongeldig, behouden voor historische doeleinden of voor partner-compatibiliteit
     stage: Bereid een inactief concept voor op publicatie als onderdeel van een groep wijzigingen
   change_geoprivacy: 'Wijzig geoprivacy'
@@ -1647,6 +1660,8 @@ nl:
   insects: insecten
   insect_life_stage: Levensstadium van het insect
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Citaat invoegen
   interactions: Interacties
   internal_server_error: Er is een interne fout opgetreden
   internal_taxon_including_descendants: Intern taxon (inclusief nakomelingen)
@@ -1671,6 +1686,8 @@ nl:
   is_this_offensive_html: 'Is dit <a href="/help#inappropriate">ongepast</a>, spam, of aanstootgevend?'
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: Cursieve tekst
   item_flagged_notice_html: |
     Dit is gemeld als spam en is niet langer
     publiekelijk zichtbaar. Jij kunt het wel zien omdat je het hebt gemaakt of omdat je een
@@ -4297,6 +4314,9 @@ nl:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
   x_of_y: "%{x} o=van %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} van %{count} bevestigd"
     other: "%{x} van %{count} bevestigd"
@@ -4759,6 +4779,9 @@ nl:
           site ook zou doen. Je kunt ook de waarnemingen-URL van een ander
           deel van de website knippen en plakken. Jouw query mag <strong>niet meer dan
           200.000 waarnemingen</strong> teruggeven.
+        export_in_progress_notice_html: |
+          Je hebt een <a href="%{url}">export in uitvoering</a>. Je zult
+          moeten wachten tot het voltooid is voordat je een andere export in de wachtrij kunt zetten.
         ident_by_user_desc_html: |
           Kolommen voor de huidige determinatie door %{user}
         limit_alert: Je export is te groot. Verander je filters totdat er minder dan 200.000 waarnemingen zijn.
