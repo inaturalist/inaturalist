@@ -1,5 +1,45 @@
 fr-CA:
   acc: 'Préc. (m)'
+  views:
+    emailer:
+      user_parent_confirmation:
+        content_html: |
+          <p>
+          Merci d'avoir créé un compte iNaturalist pour votre enfant! Le compte a été activé. Voici les détails que vous avez saisis et que nous avons enregistrés :
+          </p>
+          <ul>
+          <li><strong>Nom du parent ou du représentant légal :</strong>
+          %{parent_name}</li>
+          <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
+          <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
+          <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
+          <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
+          <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
+          </p>
+          <p>
+          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org. 
+          </p>
+    users:
+      edit:
+        blocking_desc_html: |
+          <p>
+          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
+          </p>
+          <p>
+          Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
+          enquêterons.
+          </p>
   date:
     abbr_month_names:
       - 
