@@ -100,7 +100,41 @@ class ObservationsController < ApplicationController
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
     if request.format.html? && !showing_partial
-      params = params
+      search_taxon = Taxon.find_by_id( params[:taxon_id] ) unless params[:taxon_id].blank?
+      search_place = unless params[:place_id].blank?
+        Place.find( params[:place_id] ) rescue nil
+      end
+      search_user = unless params[:user_id].blank?
+        User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] )
+      end
+      search_date = Date.parse( params[:on] ) unless params[:on].blank?
+      @shareable_description = if search_taxon
+        key = "observation_brief_taxon"
+        i18n_vars = {}
+        i18n_vars[:taxon] = search_taxon.common_name( locale: I18n.locale ).try(:name)
+        i18n_vars[:taxon] = search_taxon.name if i18n_vars[:taxon].blank?
+        if search_place
+          key += "_from_place"
+          i18n_vars[:place] = search_place.localized_name
+        end
+        if search_date
+          key += "_on_day"
+          i18n_vars[:day] = I18n.l( search_date, format: :long )
+        end
+        if search_user
+          key += "_by_user"
+          i18n_vars[:user] = search_user.try_methods(:name, :login)
+        end
+        I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+      elsif search_user
+        if search_date
+          I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )
+        else
+          I18n.t( :observations_by_user, user: search_user.try_methods(:name, :login) )
+        end
+      else
+        I18n.t( :x_site_is_a_social_network_for_naturalist, site: @site.name )
+      end
     else
       h = observations_index_search(params)
       params = h[:params]
