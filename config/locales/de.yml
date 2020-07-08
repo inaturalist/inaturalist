@@ -4668,6 +4668,9 @@ de:
           other: "%{count} einzigartig"
       export:
         choose_columns_desc: Wähle die Spalte die du exportieren willst
+        export_in_progress_notice_html: |
+          Du hast einen <a href="%{url}">Export im Gange</a>. Du musst erst warten, bis er
+          beendet ist, bevor du einen weiteren Export starten kannst.
         ident_by_user_desc_html: |
           Spalte für die aktuellen Bestimmungen nach %{user}
         limit_alert: Der Export wird zu groß sein. Ändere die Filter bis weniger als 200.000 Beobachtungen erfasst werden.
