@@ -196,11 +196,17 @@ fr:
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
   add_a_batch_of_taxa: Ajouter un grupe de taxons
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Ajouter une liste à puces
   add_a_comment: Ajouter un commentaire
   add_a_field: Ajouter un champ
   add_a_flag: Ajouter un signalement
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
   add_a_new_change_group: Ajouter un nouveau groupe de modifications
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Ajouter une liste numérotée
   add_a_single_observation: Ajouter une observation unique.
   add_a_taxon: Ajouter un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -223,6 +229,8 @@ fr:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Ajouter un actif
   add_batch: Ajouter un lot
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Ajouter un texte en gras
   add_comma_separated_tags: "Ajouter des balises séparées par des virgules"
   add_comment: Ajouter un commentaire
   add_conservation_status: Ajouter la situation quant à la conservation
@@ -235,6 +243,8 @@ fr:
   add_link: Ajouter un lien
   add_higher_level_taxon: Ajouter un taxon de plus haut rang (par ex. « oiseaux »)
   add_id: Ajouter une identification
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Ajouter un texte en italique
   add_new_lexicon: Ajouter un nouveau lexique
   add_new_photos_by_their_ids: Ajouter de nouvelles photos à partir de leur identifiant Flickr (la licence doit être Creative Commons !)
   add_new_place: Ajouter un nouveau lieu
@@ -1653,6 +1663,8 @@ fr:
   insects: insectes
   insect_life_stage: Stade de l'insecte
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Insérer une citation
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
   internal_taxon_including_descendants: Taxon interne (incluant les descendants)
@@ -1917,6 +1929,10 @@ fr:
   location_specified: Emplacement spécifié
   locked_taxa_will_not_allow_new: Les taxons verrouillés ne permettront pas l’ajout de nouveaux taxons descendants. Conséquemment, si vous verrouillez les amphibiens et que quelqu’un essaye d’importer <i>Rana catesbeiana</i> à partir d’un fournisseur externe de noms, le nouveau taxon sera créé, mais ne pourra pas être classé comme amphibien. Lorsque ça se produit, les taxons nouvellement ajoutés devront être signalés aux fins d’organisation. Cette action doit seulement être utilisée pour des taxons pour lesquels nous pensons déjà avoir tous les descendants. Un responsable de l’organisation peut annuler cette action en modifiant les taxons et en entrant directement les identifications de rang supérieur, mais il est préférable de fusionner les nouveaux taxons avec les taxons existants.
   log_in: Connexion
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -4270,6 +4286,9 @@ fr:
     one: "1 observation en échec"
     other: "%{count} observations en échec"
   x_of_y: "%{x} sur %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} sur %{count} confirmé"
     other: "%{x} sur %{count} confirmés"
@@ -4814,6 +4833,8 @@ fr:
           Créez une requête d’observation tout comme vous le feriez ailleurs sur le
           site. Vous pouvez aussi copier et coller une URL d’observations à partir d’un autre
           endroit du site. Votre requête <strong>ne doit pas retourner plus de 200.000 observations</strong>.
+        export_in_progress_notice_html: |
+          Vous avez un <a href="%{url}">export en cours</a>. Vous devrez attendre qu'il se termine avant de pouvoir en effectuer un autre.
         ident_by_user_desc_html: |
           Colonnes pour l'identification actuelle par %{user}
         limit_alert: Votre export sera trop gros. Changez vos filtres jusqu'à ce qu'il y ait moins de 200 000 observations.
