@@ -640,6 +640,8 @@ fr:
   body: Corps
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: texte en gras
   bounding_box: Zone surlignée
   breadcrumbs: Fil d'Ariane
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1314,6 +1316,7 @@ fr:
   failed_to_find_your_location: Échec à la localisation de votre position.
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
   failed_to_save_record: "Échec à la sauvegarde de l’enregistrement. Veuillez réessayer ultérieurement."
+  failed_to_save_record_with_errors: "Échec de l'enregistrement : %{errors}"
   'false': 'Non'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoris
@@ -1388,6 +1391,7 @@ fr:
   flag_for_identification_id_html: Signalement pour <a href="%{url}">Identification %{id}</a>
   flag_for_list_title_html: |
     Signalement de la liste: %{title}
+  flag_for_message_id_html: Signalement pour le <a href="%{url}">Message %{id}</a>
   flag_for_observation_title_html: |
     Signalement pour l'Observation : %{title}
   flag_for_photo_id_html: Signalement pour la <a href="%{url}">Photo %{id}</a>
@@ -1689,6 +1693,8 @@ fr:
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites web
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: texte en italique
   item_flagged_notice_html: |
     Ceci a été marqué comme pourriel et n’est plus
     visible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un
@@ -1841,6 +1847,8 @@ fr:
   linked_flickr_automatically: "N’oubliez pas que si vous vous connectez à %{site_name} au moyen de Flickr, nous relierons automatiquement vos comptes %{site_name} et Flickr. Si vous utilisez Flickr, c’est probable que vous voudrez importer des photos de Flickr, n’est-ce pas ?"
   linked_flickr_description: "En liant votre compte %{site_name} à votre compte Flickr, vous pourrez ajouter plusieurs photos à vos observations. Bien entendu, si vous pouvez séparer %{site_name} et Flickr, mais vous ne pourrez plus ajouter de photos. Parfois c’est préférable, comme si vous créez un nouveau compte Flickr que vous voulez lier à %{site_name}."
   linked_flickr_password_html: "<strong> Nous ne vous demanderons jamais votre mot de passe Flickr</strong> (mais Flickr pourrait vérifier l’URL que le bouton vous envoie pour s’assurer que c’est Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: texte lié
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste supprimée.
@@ -2064,6 +2072,12 @@ fr:
       yy: "%d a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
   month: Mois
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
@@ -2312,6 +2326,8 @@ fr:
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
   observation_brief_something_on_day: "Quelque chose le %{day}"
+  observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"
   observation_brief_something_on_day_by_user: "Quelque chose le %{day} par %{user}"
   observation_brief_something_by_user: "Quelque chose par %{user}"
   observation_brief_something_from_place: "Quelque chose de %{place}"
@@ -2569,6 +2585,10 @@ fr:
   people_following_user: "Personnes suivant %{user}"
   people_user_follows: "Personnes que %{user} suit"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: a ajouté une <a href="%{observation_url}">observation</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3311,6 +3331,7 @@ fr:
   resolved_by: Réglé par
   resolved_by_user_on_date_html: Résolu par %{user} le %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} a dit,</span> « %{x} »'
+  restart: Redémarrer
   restore: Rétablir
   restoring: Rétablissement…
   results: résultats
@@ -3452,6 +3473,7 @@ fr:
   showing_first_x: Affichage des %{x} premiers
   showing_taxa_from_everywhere: "Affichage des taxons de partout"
   showing_taxa_from_place: "Affichage des taxons de %{place}"
+  showing_x_of_y: Visualisation %{x} sur %{y}
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
   sign_in: S’identifier
   sign_in_with_provider: "Connectez-vous avec %{provider}"
@@ -3644,6 +3666,7 @@ fr:
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   target_list_alert: Êtes-vous sûr d'avoir tenté d'observer toutes les espèces couvertes par votre liste de cibles ? N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé sera interprété comme une absence; il est donc très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter.
   target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera interprété comme une absence. Il est très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter. Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
+  task_deleted: Tâche supprimée
   taxa: Taxons
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations des taxons
@@ -3724,6 +3747,7 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Responsables des taxons
   taxon_framework_complete: "Complet : Vrai"
+  taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
   taxon_framework_notes: Notes du cadre de taxon
   taxon_framework_relationship: Relation du cadre de taxon
   taxon_framework_relationship_number: "Relation du cadre du taxon %{number}"
@@ -4440,6 +4464,7 @@ fr:
   your_recent_projects: Vos projets récents
   your_relationships: Vos relations
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} vous demande d’accorder davantage de permissions à %{provider} pour continuer :"
+  your_subscriptions_to_this_place: Vos abonnements à cet endroit
   your_tags: Vos étiquettes
   yours: Votre
   youre_not_following_anyone: |-
@@ -5736,6 +5761,23 @@ fr:
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        donate_desc_html: |
+          Merci d'être généreux par votre temps, votre attention, votre expertise et vos
+          dons ! iNaturalist est une initiative conjointe sans but lucratif de la
+          California Academy of Sciences et de la National Geographic Society.
+          Il est géré par une
+          <a href="%{team_url}">petite équipe</a> qui
+          fait toute l'ingénierie de conception et de logiciel
+          pour le web, les mobiles et
+          <a href="%{seek_url}">Seek by iNaturalist</a>, en plus de gérer
+          le soutien de la communauté, les collaborations et les intégrations qui maintiennent
+          les choses en marche (et qui se développent rapidement !). Le programme repose sur de nombreuses
+          subventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %
+          contributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels
+          dont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en
+          plus de 30 devises pour soutenir les opérations principales d'iNaturalist.
+          Merci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande
+          d'iNaturalist !
         inaturalist_network: Réseau iNaturalist
         inaturalist_network_desc: |
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
@@ -6144,6 +6186,7 @@ fr:
           biodiversité</a> (SMIB), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
+        monthly_supporter: Soutiens mensuels
         monthly_supporter_desc_html: |
           Les parrains réguliers d’iNaturalist font des contributions mensualisées
           automatiques qui sont reçues par l’Académie des sciences de Californie
