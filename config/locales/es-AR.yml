@@ -159,8 +159,12 @@ es-AR:
   add_a_comment: Agregar un comentario
   add_a_field: Agregar un campo
   add_a_flag: Agregar una marca
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Añadir un enlace
   add_a_name: Agregar un nombre
   add_a_new_change_group: Agregar un nuevo grupo de cambio
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Añadir una lista numerada
   add_a_single_observation: Agregar una sola observación
   add_a_taxon: Agregar un taxón
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -195,6 +199,8 @@ es-AR:
   add_link: Agregar enlace
   add_higher_level_taxon: Agregar un taxón de más alto nivel (por ejemplo "aves")
   add_id: Agregar ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Añadir texto en cursiva
   add_new_lexicon: Agregar léxico nuevo
   add_new_photos_by_their_ids: Agregar nuevas fotos por sus identificadores en Flickr (¡Deben ser de Creative Commons!)
   add_new_place: Agregar un lugar nuevo
@@ -576,6 +582,8 @@ es-AR:
   blue: azul
   blue_butterfly_etc: "azul, mariposa, etc."
   body: Cuerpo
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: Texto negrita
   bounding_box: Contenedor
   breadcrumbs: Rastros de navegación
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1537,6 +1545,8 @@ es-AR:
   is_this_offensive_html: '¿Esto es <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
   it_can_now_be_used_for_research: Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: Texto cursiva
   item_flagged_notice_html: |
     Esto ha sido señalado como spam y ya no es
     visible públicamente. \ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, 
