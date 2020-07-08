@@ -1314,6 +1314,7 @@ nl:
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
+  failed_to_save_record_with_errors: "Opslaan record is mislukt: %{errors}"
   'false': 'Onwaar'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorieten
@@ -2350,6 +2351,8 @@ nl:
   observations_by_you: "Jouw waarnemingen"
   observations_by_you_on_date: "Jouw waarnemingen op %{date}"
   observation_calendar_for: "Waarnemingen kalender van %{user} in %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Waarnemingen kunnen maximaal %{limit} foto's bevatten
   observation_curation: Waarneming Beoordelen
   observation_date: Datum
   observation_date?: Datum?
@@ -3338,6 +3341,7 @@ nl:
   resolved_by: Opgelost door
   resolved_by_user_on_date_html: Opgelosd door %{user} op %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} zei,</span> "%{x}"'
+  restart: Herstart
   restore: Herstellen
   restoring: Aan het herstellen ...
   results: resultaten
@@ -3674,6 +3678,7 @@ nl:
   take_me_flickr!: Ja, breng me naar Flickr!
   target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die je gezocht hebt.
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
+  task_deleted: Taak verwijderd
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa met onbekende verwantschappen.
   taxa_info: Taxa-informatie
