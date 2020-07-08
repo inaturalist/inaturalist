@@ -2395,6 +2395,8 @@ sv:
   observations_by_you: "Observationer av dig"
   observations_by_you_on_date: "Observationer av dig på %{date}"
   observation_calendar_for: "Observationskalender för %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observationer kan bara ha %{limit} bilder
   observation_curation: Observationsförvaltning
   observation_date: Datum
   observation_date?: Datum?
