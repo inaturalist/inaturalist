@@ -8,10 +8,12 @@
     overflow: hidden;
     transition: height 2s;
     overflow-wrap: break-word;
-  }
-
-  .content img {
-    max-width: 100%;
+    img {
+      max-width: 100%;
+    }
+    > p:last-child {
+      margin-bottom: 0;
+    }
   }
   .btn-nostyle.linky {
     vertical-align: top;

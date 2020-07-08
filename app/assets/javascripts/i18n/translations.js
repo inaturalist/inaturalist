@@ -6413,15 +6413,20 @@ I18n.translations["cs"] = {
   },
   "activity": "Aktivita",
   "add": "Vložit",
+  "add_a_bulleted_list": "Přidat odrážkový seznam",
   "add_a_comment": "Vložit komentář",
   "add_a_field": "Vložit pole",
+  "add_a_link": "Přidat odkaz",
   "add_a_name": "Vložit jméno",
+  "add_a_numbered_list": "Přidat číslovaný seznam",
   "add_alive_or_dead_alive_annotation": "Přidat anotaci \"Živý nebo Mrtvý: Živý\"",
   "add_alive_or_dead_dead_annotation": "Přidat anotaci \"Živý nebo Mrtvý: Mrtvý\"",
   "add_an_identification": "Vložte identifikaci",
   "add_annotations_for_x": "Přidat poznámky pro \"%{x}\"",
+  "add_bold_text": "Přidat tučný text",
   "add_edit_flags": "Přidat/editovat vlajky",
   "add_id": "Vložit ID",
+  "add_italic_text": "Přidat text v kurzívě",
   "add_life_stage_adult_annotation": "Přidat anotaci „Stádium života: dospělý“",
   "add_life_stage_egg_annotation": "Přidat anotaci „Stádium života: vejce“",
   "add_life_stage_larva_annotation": "Přidat anotaci „Stádium života: larva“",
@@ -6624,6 +6629,7 @@ I18n.translations["cs"] = {
   "blue": "modrá",
   "blue_butterfly_etc": "modrý, motýl atd.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "tučný text",
   "bounding_box": "Ohraničení",
   "brown": "hnědá",
   "browse": "Procházet",
@@ -7154,12 +7160,14 @@ I18n.translations["cs"] = {
   "input_taxon": "Vstupní taxon",
   "insect_life_stage": "Stádium života hmyzu",
   "insects": "hmyz",
+  "insert_a_quote": "Vložit citaci",
   "interactions": "Interakce",
   "introduced": "zavedený",
   "introduced_in_place": "Zavlečen do %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Jsou předložené důkazy dostatečné k potvrzení, že toto je %{taxon}?",
   "it_can_now_be_used_for_research": "Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách",
+  "italic_text": "text v kurzívě",
   "item_flagged_notice_html": "Toto bylo označeno jako spam a není již viditelné. Vám se text zobrazuje, protože jste jeho autorem, nebo správce stránek.\nPokud se domníváte, že jde o chybu, <a href=\"mailto:%{help_email}\" class=\"contact\">napište nám</a>.\n<a href=\"%{manage_flags_path}\">Správa příznaků</a>\n",
   "join": "Přidat se",
   "join_project": "Zapojit se do tohoto projektu",
@@ -7236,6 +7244,7 @@ I18n.translations["cs"] = {
   "life": "Život",
   "life_list": "Seznam života uživatele %{user}",
   "linear_scale_label": "lineární",
+  "linked_text": "text odkazu",
   "list": "Seznam",
   "list_tooltip": "Zobrazit jako seznam",
   "lists": "Seznamy",
@@ -7295,6 +7304,8 @@ I18n.translations["cs"] = {
   "location_unknown": "Neznámá lokalita",
   "lock_zoom_level": "Zamknout úroveň přiblížení",
   "log_in": "Přihlásit se",
+  "log_in_or_sign_up_to_add_comments_html": "Pro přidávání komentářů se <a href=\"/log_in\">přihlaste</a> nebo <a href=\"/sign_up\">zaregistrujte</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Pro přidávání identifikací se <a href=\"/log_in\">přihlaste</a> nebo <a href=\"/sign_up\">zaregistrujte</a>.\n",
   "log_scale_label": "Protokol",
   "long": "zeměpisná délka",
   "longitude": "zeměpisná délka",
@@ -8711,6 +8722,7 @@ I18n.translations["cs"] = {
   },
   "x_of_y": "%{x} z %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} z %{y} lidí (více než 2/3) souhlasí, že ano",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} další",
     "few": "%{count} další",
@@ -8809,15 +8821,20 @@ I18n.translations["da"] = {
   },
   "activity": "Aktivitet",
   "add": "Tilføj",
+  "add_a_bulleted_list": "Tilføj en punktliste",
   "add_a_comment": "Tilføj en kommentar",
   "add_a_field": "Tilføj et felt",
+  "add_a_link": "Tilføj et link",
   "add_a_name": "Tilføj et navn",
+  "add_a_numbered_list": "Tilføj en nummereret liste",
   "add_alive_or_dead_alive_annotation": "Tilføj \"Levende eller Død: Levende\" anmærkning",
   "add_alive_or_dead_dead_annotation": "Tilføj \"Levende eller Død: Død\" anmærkning",
   "add_an_identification": "Tilføj en identifikation",
   "add_annotations_for_x": "Tilføj anmærkninger for \"%{x}\"",
+  "add_bold_text": "Tilføj fed tekst",
   "add_edit_flags": "Tilføj/redigér markeringer",
   "add_id": "Tilføj ID",
+  "add_italic_text": "Tilføj kursiv tekst",
   "add_life_stage_adult_annotation": "Tilføj noten \"Livsstadie: Voksen\"",
   "add_life_stage_egg_annotation": "Tilføj anmærkningen \"Livsstadie: Æg\"",
   "add_life_stage_larva_annotation": "Tilføj anmærkningen \"Livsstadie: Larve\"",
@@ -8992,6 +9009,7 @@ I18n.translations["da"] = {
   "blue": "blå",
   "blue_butterfly_etc": "blå, sommerfugl, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "fed tekst",
   "bounding_box": "Geografisk område",
   "brown": "brun",
   "browse": "Gennemse",
@@ -9508,12 +9526,14 @@ I18n.translations["da"] = {
   "input_taxon": "Input takson",
   "insect_life_stage": "Insekt livsstadie",
   "insects": "insekter",
+  "insert_a_quote": "Indsæt en citation",
   "interactions": "Interaktioner",
   "introduced": "indført",
   "introduced_in_place": "indført i %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}",
   "it_can_now_be_used_for_research": "Den kan nu bruges til forskning og vises på andre web-sider",
+  "italic_text": "kursiv tekst",
   "item_flagged_notice_html": "Dette er blevet markeret som spam, og er ikke længere synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det eller du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\" class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage flags</a>\n",
   "join": "Tilslut",
   "join_project": "Bliv medlem af dette projekt",
@@ -9590,6 +9610,7 @@ I18n.translations["da"] = {
   "life": "Liv",
   "life_list": "%{user}'s Livsliste",
   "linear_scale_label": "Lineær",
+  "linked_text": "linket tekst",
   "list": "Liste",
   "list_tooltip": "Vis listevisning",
   "lists": "Lister",
@@ -9649,6 +9670,8 @@ I18n.translations["da"] = {
   "location_unknown": "Sted ukendt",
   "lock_zoom_level": "Lås zoomniveau",
   "log_in": "Login",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Log ind</a> eller <a href=\"/sign_up\">opret konto</a> for at tilføje kommentarer.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Log ind</a> eller <a href=\"/sign_up\">opret konto</a> for at tilføje identifikationer.\n",
   "log_scale_label": "Log",
   "long": "Læn.",
   "longitude": "Længdegrad",
@@ -9817,6 +9840,7 @@ I18n.translations["da"] = {
   "observations_": "observationer",
   "observations_annotated_with_annotation": "Observationer anmærket med %{annotation}",
   "observations_by_category": "Observationer efter kategori",
+  "observations_can_only_have_n_photos": "Observationer kan maks. have %{limit} fotos",
   "observations_in_this_project_must": "Observationer i dette projekt skal leve op til følgende kriterier",
   "observations_map": "Observationer / Kort",
   "observations_of_relatives": "Observationer af familie",
@@ -11003,6 +11027,7 @@ I18n.translations["da"] = {
   },
   "x_of_y": "%{x} af %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} af %{y} personer (over 2/3) er enig i det er",
+  "x_of_y_short": "%{x}/%{y}",
   "x_others": {
     "one": "%{count} anden",
     "other": "%{count} andre"
@@ -11087,15 +11112,20 @@ I18n.translations["de"] = {
   },
   "activity": "Aktivität",
   "add": "Hinzufügen",
+  "add_a_bulleted_list": "Aufzählungsliste hinzufügen",
   "add_a_comment": "Kommentar hinzufügen",
   "add_a_field": "Feld hinzufügen",
+  "add_a_link": "Link einfügen",
   "add_a_name": "Namen hinzufügen",
+  "add_a_numbered_list": "Nummerierte Liste hinzufügen",
   "add_alive_or_dead_alive_annotation": "Annotation \"lebendig oder tot: lebendig\" hinzufügen",
   "add_alive_or_dead_dead_annotation": "Annotation \"lebendig oder tot: tot\" hinzufügen",
   "add_an_identification": "Bestimmung hinzufügen",
   "add_annotations_for_x": "Annotationen für \"%{x}\" hinzufügen",
-  "add_edit_flags": "Marker hinzufügen/bearbeiten",
+  "add_bold_text": "Text in Fettdruck",
+  "add_edit_flags": "Meldung hinzufügen/bearbeiten",
   "add_id": "ID hinzufügen",
+  "add_italic_text": "Text in Kursivdruck",
   "add_life_stage_adult_annotation": "Annotation \"Entwicklungssstadium: Adult\" hinzufügen",
   "add_life_stage_egg_annotation": "Vermerk \"Lebensstadium: Ei\" hinzufügen",
   "add_life_stage_larva_annotation": "Vermerk \"Lebensstadium: Larve\" hinzufügen",
@@ -11270,6 +11300,7 @@ I18n.translations["de"] = {
   "blue": "blau",
   "blue_butterfly_etc": "blau, Schmetterling, usw.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "Text in Fettschrift",
   "bounding_box": "Rahmen",
   "brown": "braun",
   "browse": "Durchsuchen",
@@ -11779,12 +11810,14 @@ I18n.translations["de"] = {
   "input_taxon": "Taxon eingeben",
   "insect_life_stage": "Entwicklungsstufe (Insekten)",
   "insects": "Insekten",
+  "insert_a_quote": "Zitat einfügen",
   "interactions": "Interaktionen",
   "introduced": "eingeführt",
   "introduced_in_place": "Eingeführt in %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Sind die Daten ausreichend, um zu bestätigen, dass es sich um %{taxon} handelt?",
   "it_can_now_be_used_for_research": "Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden",
+  "italic_text": "Kursiver Text",
   "item_flagged_notice_html": "Dies ist als Spam gemeldet worden und ist nicht mehr\nöffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href=\"mailto:%{help_email}\" class=\"contact\">kontaktiere uns</a>.\n<a href=\"%{manage_flags_path}\">Meldungen verwalten</a>\n",
   "join": "Beitreten",
   "join_project": "Diesem Projekt beitreten",
@@ -11860,6 +11893,7 @@ I18n.translations["de"] = {
   },
   "life": "Lebewesen",
   "life_list": "Life-Liste von %{user}",
+  "linked_text": "verlinkter Text",
   "list": "Liste",
   "list_tooltip": "Listen-Ansicht zeigen",
   "lists": "Listen",
@@ -11919,6 +11953,8 @@ I18n.translations["de"] = {
   "location_unknown": "Standort unbekannt",
   "lock_zoom_level": "Zoomstufe fixieren",
   "log_in": "Anmelden",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Einloggen</a> oder <a href=\"/sign_up\">registrieren</a> , um Kommentare hinzuzufügen.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Einloggen</a> oder <a href=\"/sign_up\">registrieren</a> , um Bestimmungen hinzuzufügen.\n",
   "long": "Länge",
   "longitude": "Längengrad",
   "lookup": "Nachschlagen",
@@ -13251,6 +13287,7 @@ I18n.translations["de"] = {
   },
   "x_of_y": "%{x} von %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} von %{y} Leute (mehr als 2/3) sind damit einverstanden",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} weitere Person",
     "other": "%{count} weitere Personen"
@@ -16463,6 +16500,7 @@ I18n.translations["en"] = {
   "observations_": "observations",
   "observations_annotated_with_annotation": "Observations annotated with %{annotation}",
   "observations_by_category": "Observations By category",
+  "observations_can_only_have_n_photos": "Observations can only have %{limit} photos",
   "observations_in_this_project_must": "Observations in this project must meet the following criteria",
   "observations_map": "Observations / Map",
   "observations_of_relatives": "Observations of relatives",
@@ -21622,11 +21660,14 @@ I18n.translations["es-AR"] = {
   "add": "Agregar",
   "add_a_comment": "Agregar un comentario",
   "add_a_field": "Agregar un campo",
+  "add_a_link": "Añadir un enlace",
   "add_a_name": "Agregar un nombre",
+  "add_a_numbered_list": "Añadir una lista numerada",
   "add_an_identification": "Agregar una identificación",
   "add_annotations_for_x": "Agregar anotaciones para «%{x}»",
   "add_edit_flags": "Agregar/editar etiquetas",
   "add_id": "Agregar ID",
+  "add_italic_text": "Añadir texto en cursiva",
   "add_life_stage_adult_annotation": "Agregar anotación \"Etapa de vida: adulto\"",
   "add_life_stage_egg_annotation": "Agregar anotación \"Etapa de vida: huevo\"",
   "add_life_stage_larva_annotation": "Agregar anotación \"Etapa de vida: larva\"",
@@ -21798,6 +21839,7 @@ I18n.translations["es-AR"] = {
   "black": "negro",
   "blue": "azul",
   "blue_butterfly_etc": "azul, mariposa, etc.",
+  "bold_text": "Texto negrita",
   "bounding_box": "Contenedor",
   "brown": "marrón",
   "browse": "Examinar",
@@ -22278,6 +22320,7 @@ I18n.translations["es-AR"] = {
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?",
   "it_can_now_be_used_for_research": "Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web",
+  "italic_text": "Texto cursiva",
   "item_flagged_notice_html": "Esto ha sido señalado como spam y ya no es\nvisible públicamente. \\ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, \n<a href=\"mailto:%{help_email}\" class=\"contact\">contáctanos </a>.\n<a href=\"%{manage_flags_path}\">Administra advertencias</a>\n",
   "join": "¡Únete a",
   "join_project": "Unirse a este proyecto",
@@ -28590,15 +28633,20 @@ I18n.translations["fi"] = {
   },
   "activity": "Toiminta",
   "add": "Lisää",
+  "add_a_bulleted_list": "Lisää lista ranskalaisin viivoin",
   "add_a_comment": "Lisää kommentti",
   "add_a_field": "Lisää kenttä",
+  "add_a_link": "Lisää linkki",
   "add_a_name": "Lisää nimi",
+  "add_a_numbered_list": "Lisää numeroitu lista",
   "add_alive_or_dead_alive_annotation": "Lisää \"elävä tai kuollut: elävä\" -merkintä",
   "add_alive_or_dead_dead_annotation": "Lisää \"elävä tai kuollut: kuollut\" -merkintä",
   "add_an_identification": "Lisää tunnistus",
   "add_annotations_for_x": "Lisää merkintä havainnolle \"%{x}\"",
+  "add_bold_text": "Lisää lihavoitu teksti",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunnistus",
+  "add_italic_text": "Lisää kursivoitu teksti",
   "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
   "add_life_stage_egg_annotation": "Lisää \"Life Stage: Egg\" selitys",
   "add_life_stage_larva_annotation": "Lisää \"Life Stage: Larva\" selitys",
@@ -28773,6 +28821,7 @@ I18n.translations["fi"] = {
   "blue": "sininen",
   "blue_butterfly_etc": "sininen, perhonen, jne.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "lihavoitu teksti",
   "bounding_box": "Rajoituslaatikko",
   "brown": "ruskea",
   "browse": "Selaa",
@@ -29251,12 +29300,14 @@ I18n.translations["fi"] = {
   "input_taxon": "Syötä taksoni",
   "insect_life_stage": "Hyönteisen elinvaihe",
   "insects": "hyönteiset",
+  "insert_a_quote": "Lisää lainaus",
   "interactions": "Vuorovaikutukset",
   "introduced": "Vieraslaji",
   "introduced_in_place": "Vieraslaji paikassa %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?",
   "it_can_now_be_used_for_research": "Sitä voidaan nyt käyttää tutkimukseen ja julkaista muilla verkkosivustoilla",
+  "italic_text": "kursivoitu teksti",
   "item_flagged_notice_html": "Tämä on liputettu roskapostina eikä enää ole\njulkisesti nähtävissä. Voit nähdä sen, koska olet luonut sen, tai olet\nsivuston kuraattori. Jos luulet, että tämä on erehdys,\n<a href=\"mailto:%{help_email}\" class=\"contact\"ota yhteyttä meihin</a>.\n<a href=\"%{manage_flags_path}\">Hallitse lippuja</a>\n",
   "join": "Liity",
   "join_project": "Liity tähän projektiin",
@@ -29332,6 +29383,7 @@ I18n.translations["fi"] = {
   "life": "Elämä",
   "life_list": "Käyttäjän %{user} pinnalista",
   "linear_scale_label": "Lineraarinen",
+  "linked_text": "linkin teksti",
   "list": "Luettelo",
   "list_tooltip": "Näytä luettelona",
   "lists": "Luettelot",
@@ -29391,6 +29443,8 @@ I18n.translations["fi"] = {
   "location_unknown": "Tuntematon sijainti",
   "lock_zoom_level": "Lukitse zoomaustaso",
   "log_in": "Kirjaudu sisään",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Kirjaudu</a> tai <a href=\"/sign_up\">rekisteröidy</a> lisätäksesi kommentteja.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Kirjaudu</a> tai <a href=\"/sign_up\">rekisteröidy</a> lisätäksesi tunnistuksia.\n",
   "log_scale_label": "Loki",
   "long": "Pituusaste",
   "longitude": "Pituusaste",
@@ -29553,6 +29607,7 @@ I18n.translations["fi"] = {
   "observations": "Havainnot",
   "observations_": "havainnot",
   "observations_by_category": "Havainnot luokittain",
+  "observations_can_only_have_n_photos": "Havainnoilla voi olla vain %{limit} kuvaa",
   "observations_in_this_project_must": "Tässä projektissa olevien havaintojen on täytettävä seuraavat kriteerit",
   "observations_map": "Havainnot / Kartta",
   "observations_of_relatives": "Havainnot lähisukuisista lajeista",
@@ -30639,6 +30694,7 @@ I18n.translations["fi"] = {
   },
   "x_of_y": "%{x}/%{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{y} tunnistajasta %{x} (eli yli 2/3) on samaa mieltä että se on",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "1 muu",
     "other": "%{count} muuta"
@@ -30883,15 +30939,20 @@ I18n.translations["fr"] = {
   },
   "activity": "Activité",
   "add": "Ajouter",
+  "add_a_bulleted_list": "Ajouter une liste à puces",
   "add_a_comment": "Ajouter un commentaire",
   "add_a_field": "Ajouter un champ",
+  "add_a_link": "Ajouter un lien",
   "add_a_name": "Ajouter un nom",
+  "add_a_numbered_list": "Ajouter une liste numérotée",
   "add_alive_or_dead_alive_annotation": "Ajouter l'annotation \"Vivant ou Mort : Vivant\"",
   "add_alive_or_dead_dead_annotation": "Ajouter l'annotation \"Vivant ou Mort : Mort\"",
   "add_an_identification": "Ajouter une identification",
   "add_annotations_for_x": "Ajouter des annotations pour « %{x} »",
+  "add_bold_text": "Ajouter un texte en gras",
   "add_edit_flags": "Ajouter / modifier les signalements",
   "add_id": "Ajouter une identification",
+  "add_italic_text": "Ajouter un texte en italique",
   "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : adulte\"",
   "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : oeuf\"",
   "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : larve\"",
@@ -31066,6 +31127,7 @@ I18n.translations["fr"] = {
   "blue": "bleu",
   "blue_butterfly_etc": "bleu, papillon, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "texte en gras",
   "bounding_box": "Zone surlignée",
   "brown": "brun",
   "browse": "Explorer",
@@ -31582,12 +31644,14 @@ I18n.translations["fr"] = {
   "input_taxon": "Entrer un taxon",
   "insect_life_stage": "Stade de l'insecte",
   "insects": "insectes",
+  "insert_a_quote": "Insérer une citation",
   "interactions": "Interactions",
   "introduced": "Introduite",
   "introduced_in_place": "Introduit dans %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Est-ce que l'information fournie est suffisante pour confirmer que ceci est %{taxon} ?",
   "it_can_now_be_used_for_research": "Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites web",
+  "italic_text": "texte en italique",
   "item_flagged_notice_html": "Ceci a été marqué comme pourriel et n’est plus\nvisible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un\nresponsable du site. Si vous pensez que c’est une erreur, veuillez\n<a href=\"mailto:%{help_email}\" class=\"contact\">nous contacter</a>.\n<a href=\"%{manage_flags_path}\">Gérer les signalements</a>\n",
   "join": "Joignez-vous à",
   "join_project": "Joignez-vous à ce projet",
@@ -31664,6 +31728,7 @@ I18n.translations["fr"] = {
   "life": "Êtres vivants",
   "life_list": "Liste des êtres vivants de %{user}",
   "linear_scale_label": "Linéaire",
+  "linked_text": "texte lié",
   "list": "Liste",
   "list_tooltip": "Afficher la vue de la liste",
   "lists": "Listes",
@@ -31723,6 +31788,8 @@ I18n.translations["fr"] = {
   "location_unknown": "Emplacement inconnu",
   "lock_zoom_level": "Verrouiller le niveau de zoom",
   "log_in": "Connexion",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des commentaires.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des identifications.\n",
   "log_scale_label": "Trace",
   "long": "Long.",
   "longitude": "Longitude",
@@ -31779,7 +31846,9 @@ I18n.translations["fr"] = {
       "y": "1an",
       "yy": "%d a"
     },
-    "datetime_with_zone": "D MMM YYYY · LT z"
+    "datetime_with_zone": "D MMM YYYY · LT z",
+    "datetime_with_zone_no_year": "D MMMM h:mm z",
+    "datetime_with_offset": "D MMM YYYY · LT Z"
   },
   "monthly_supporter_since_date_html": "<a href=\"%{url}\">Soutien mensuel</a> depuis %{date}\n",
   "months": "Mois",
@@ -32495,6 +32564,7 @@ I18n.translations["fr"] = {
   "show_uncountable_species": "Afficher les espèces indénombrables",
   "showing_taxa_from_everywhere": "Affichage des taxons de partout",
   "showing_taxa_from_place": "Affichage des taxons de %{place}",
+  "showing_x_of_y": "Visualisation %{x} sur %{y}",
   "showing_x_of_y_listings": "Affiche %{x} de %{y} listes",
   "sign_out": "Déconnexion",
   "sign_up": "Inscrivez-vous",
@@ -32883,6 +32953,7 @@ I18n.translations["fr"] = {
         "recent_w_7_obs": "Récent avec au moins sept observations"
       },
       "year": {
+        "donate_desc_html": "Merci d'être généreux par votre temps, votre attention, votre expertise et vos\ndons ! iNaturalist est une initiative conjointe sans but lucratif de la\nCalifornia Academy of Sciences et de la National Geographic Society.\nIl est géré par une\n<a href=\"%{team_url}\">petite équipe</a> qui\nfait toute l'ingénierie de conception et de logiciel\npour le web, les mobiles et\n<a href=\"%{seek_url}\">Seek by iNaturalist</a>, en plus de gérer\nle soutien de la communauté, les collaborations et les intégrations qui maintiennent\nles choses en marche (et qui se développent rapidement !). Le programme repose sur de nombreuses\nsubventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %\ncontributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels\ndont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en\nplus de 30 devises pour soutenir les opérations principales d'iNaturalist.\nMerci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande\nd'iNaturalist !\n",
         "donate_title": "Remerciements Spéciaux à Tous Nos Soutiens",
         "growth_by_country_desc_html": "Où y-a-t-il croissance ? Cette carte et ce graphe essaient de partager cette information par pays, ce qui est compliqué parce que la croissance par pays peut être très déséquilibrée. Ici nous avons choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique par défaut pour accentuer les différences avec les autres pays. Si un pays apparaît en noir cela signifie qu'il n'a pas contribué significativement au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou il n'a pas eu plus d'observations cet année que l'année dernière (passer le curseur sur un pays pour avoir plus de détails). <strong>\"% de la croissance totale\"</strong> signifie la part de la croissance mondiale provenant d'un pays particulier, par exemple s'il y a 20 observations en 2018 et 10 en 2017, cela représente 10 observations de croissance, et si 5 d'entre elles concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance. <strong>\"% de croissance\"</strong> représente le pourcentage d'observations de cette année dans ce pays par rapport aux observations de l'année dernière dans ce pays, donc si il a eu 10 observations sur le Laos l'an passé et 20 cette année, cela représente une croissance de 100%, et s'il y en a eu 0 l'an passé et 1 cette année, cela représente un pourcentage de croissance infinie.\n",
         "growth_by_country_title": "Croissance par pays",
@@ -33065,6 +33136,7 @@ I18n.translations["fr"] = {
   },
   "x_of_y": "%{x} sur %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} sur %{y} personnes (plus de 2/3) sont d’accord que c’est",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "1 autre",
     "other": "%{count} autres"
@@ -33124,16 +33196,39 @@ I18n.translations["fr"] = {
   "zoom_photo": "Élargir la photo"
 };
 I18n.translations["fr-CA"] = {
+  "about": "À propos",
+  "about_charts": "À propos des graphiques",
+  "about_community_taxa": "À propos des taxons de la communauté",
+  "about_names": "À propos des noms",
+  "about_this_bioblitz": "À propos de ce bioblitz",
+  "acc": "Préc. (m)",
+  "account": "Compte",
+  "account_creation": "Création de compte",
+  "accuracy": "Précision",
+  "accuracy_meters": "Précision (mètres)",
+  "action": "Action",
+  "active": "Actif",
   "activerecord": {
     "attributes": {
       "observation": {
       }
     }
   },
+  "activity": "Activité",
+  "add": "Ajouter",
+  "add_a_bulleted_list": "Ajouter une liste à puces",
+  "add_a_comment": "Ajouter un commentaire",
+  "add_a_field": "Ajouter un champ",
+  "add_a_link": "Ajouter un lien",
+  "add_a_name": "Ajouter un nom",
+  "add_a_numbered_list": "Ajouter une liste numérotée",
+  "add_bold_text": "Ajouter un texte en gras",
+  "add_italic_text": "Ajouter un texte en italique",
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
   },
+  "bold_text": "texte en gras",
   "change_types": {
   },
   "controlled_term_definitions": {
@@ -33228,8 +33323,14 @@ I18n.translations["fr-CA"] = {
     "tooltips": {
     }
   },
+  "insert_a_quote": "Insérer une citation",
+  "italic_text": "texte en italique",
+  "item_flagged_notice_html": "Ceci a été marqué comme pourriel et n’est plus\nvisible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un\nresponsable du site. Si vous pensez que c’est une erreur, veuillez\n<a href=\"mailto:%{help_email}\" class=\"contact\">nous contacter</a>.\n<a href=\"%{manage_flags_path}\">Gérer les signalements</a>\n",
+  "linked_text": "texte lié",
   "locales": {
   },
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des commentaires.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des identifications.\n",
   "maps": {
     "overlays": {
     }
@@ -33250,6 +33351,7 @@ I18n.translations["fr-CA"] = {
   },
   "taxon_map": {
   },
+  "this_job_failed_to_run": "Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}",
   "time": {
     "am": "am",
     "formats": {
@@ -33270,6 +33372,7 @@ I18n.translations["fr-CA"] = {
       "compare": {
       },
       "export": {
+        "well_email_you": "D'accord, nous vous enverrons un courriel quand ce sera prêt."
       },
       "identify": {
       },
@@ -33312,7 +33415,12 @@ I18n.translations["fr-CA"] = {
       "index": {
       }
     }
-  }
+  },
+  "x_comments": {
+    "one": "%{count} commentaire",
+    "other": "%{count} commentaires"
+  },
+  "x_of_y_short": "%{x} / %{y}"
 };
 I18n.translations["gd"] = {
   "activerecord": {
@@ -39450,15 +39558,20 @@ I18n.translations["it"] = {
   },
   "activity": "Attività",
   "add": "Aggiungi",
+  "add_a_bulleted_list": "Aggiungi un elenco puntato",
   "add_a_comment": "Aggiungi un commento",
   "add_a_field": "Aggiungi un campo",
+  "add_a_link": "Aggiungi un link",
   "add_a_name": "Aggiungi un nome",
+  "add_a_numbered_list": "Aggiungi un elenco numerato",
   "add_alive_or_dead_alive_annotation": "Aggiungi annotazione \"Vivo o Morto: Vivo\"",
   "add_alive_or_dead_dead_annotation": "Aggiungi annotazione \"Vivo o Morto: Morto\"",
   "add_an_identification": "Aggiungi un'identificazione",
   "add_annotations_for_x": "Aggiungi annotazione per %{x}",
+  "add_bold_text": "Aggiungi testo in grassetto",
   "add_edit_flags": "Aggiungi/Modifica contrassegni",
   "add_id": "Aggiungi ID",
+  "add_italic_text": "Aggiungi testo in corsivo",
   "add_life_stage_adult_annotation": "Aggiungi nota \"Stadio vitale: Adulto\"",
   "add_life_stage_egg_annotation": "Aggiungi nota \"Stadio vitale: Uovo\"",
   "add_life_stage_larva_annotation": "Aggiungi nota \"Stadio vitale: Larva\"",
@@ -39633,6 +39746,7 @@ I18n.translations["it"] = {
   "blue": "blu",
   "blue_butterfly_etc": "blu, farfalla, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "Grassetto",
   "bounding_box": "Riquadro di ricerca",
   "brown": "marrone",
   "browse": "Esplora",
@@ -40149,12 +40263,14 @@ I18n.translations["it"] = {
   "input_taxon": "Inserisci un taxon",
   "insect_life_stage": "Stadio vitale di insetto",
   "insects": "insetti",
+  "insert_a_quote": "Inserisci una citazione",
   "interactions": "Interazioni",
   "introduced": "Introdotta",
   "introduced_in_place": "Introdotto in %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "La prova fornita è sufficiente per confermare che questo è %{taxon}?",
   "it_can_now_be_used_for_research": "Ora può essere usata per la ricerca o messa in risalto su altri siti web",
+  "italic_text": "Italica",
   "item_flagged_notice_html": "Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href=\"mailto:%{help_email}\" class=\"contact\">contattaci</a>.\n<a href=\"%{manage_flags_path}\">Gestisci contrassegni</a>\n",
   "join": "Unisciti",
   "join_project": "Unisciti a questo progetto",
@@ -40231,6 +40347,7 @@ I18n.translations["it"] = {
   "life": "Forme di vita",
   "life_list": "Lista degli Esseri Viventi di %{user}",
   "linear_scale_label": "Lineare",
+  "linked_text": "testo collegato",
   "list": "Elenco",
   "list_tooltip": "Mostra la visualizzazione ad elenco",
   "lists": "Liste",
@@ -40290,6 +40407,8 @@ I18n.translations["it"] = {
   "location_unknown": "Posizione sconosciuta",
   "lock_zoom_level": "Blocca livello zoom",
   "log_in": "Accedi",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Accedi</a> o <a href=\"/sign_up\">iscriviti</a> per aggiungere commenti.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Accedi</a> o <a href=\"/sign_up\">iscriviti</a> per aggiungere identificazioni.\n",
   "log_scale_label": "Logaritmica",
   "long": "Lon",
   "longitude": "Longitudine",
@@ -40458,6 +40577,7 @@ I18n.translations["it"] = {
   "observations_": "osservazioni",
   "observations_annotated_with_annotation": "Osservazione annotata con %{annotation}",
   "observations_by_category": "Osservazioni Per categoria",
+  "observations_can_only_have_n_photos": "Le osservazioni possono avere solo %{limit} foto",
   "observations_in_this_project_must": "Le osservazioni in questo progetto devono soddisfare i seguenti criteri",
   "observations_map": "Osservazioni / Mappa",
   "observations_of_relatives": "Osservazioni di organismi imparentati",
@@ -41644,6 +41764,7 @@ I18n.translations["it"] = {
   },
   "x_of_y": "%{x} di %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} di %{y} persone (oltre 2/3) concordano che è",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "un altro",
     "other": "%{count} altri"
@@ -49643,13 +49764,17 @@ I18n.translations["nb"] = {
   "add": "Legg til",
   "add_a_comment": "Legg til en kommentar",
   "add_a_field": "Legg til et felt",
+  "add_a_link": "Legg til en lenke",
   "add_a_name": "Legg til et navn",
+  "add_a_numbered_list": "Legg til en nummerert liste",
   "add_alive_or_dead_alive_annotation": "Legg til merknad \"Levende eller død: levende\"",
   "add_alive_or_dead_dead_annotation": "Legg til merknad \"Levende eller død: død\"",
   "add_an_identification": "Legg til en identifikasjon",
   "add_annotations_for_x": "Legg til merknader for \"%{x}\"",
+  "add_bold_text": "Legg til fet tekst",
   "add_edit_flags": "Legg til/rediger markeringer",
   "add_id": "Legg til ID",
+  "add_italic_text": "Legg til kursiv tekst",
   "add_life_stage_adult_annotation": "Legg til merknaden \"Livsstadium: Voksen\"",
   "add_life_stage_egg_annotation": "Legg til merknaden \"Livsstadium: Egg\"",
   "add_life_stage_larva_annotation": "Legg til merknaden \"Livsstadium: Larve\"",
@@ -49824,6 +49949,7 @@ I18n.translations["nb"] = {
   "blue": "blå",
   "blue_butterfly_etc": "blå, sommerfugl, osv.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "fet tekst",
   "bounding_box": "Avgrensningsboks",
   "brown": "brun",
   "browse": "Bla gjennom",
@@ -50339,12 +50465,14 @@ I18n.translations["nb"] = {
   "input_taxon": "Inputtakson",
   "insect_life_stage": "Livsstadium insekt",
   "insects": "insekter",
+  "insert_a_quote": "Sett inn sitat",
   "interactions": "Interaksjoner",
   "introduced": "Introdusert",
   "introduced_in_place": "Introdusert i %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Er bevismaterialet nok for å bekrefte at dette er %{taxon}?",
   "it_can_now_be_used_for_research": "Det kan nå brukes i forskning og vises på andre nettsider",
+  "italic_text": "kursiv tekst",
   "item_flagged_notice_html": "Dette har blitt markert som spam og er ikke synlig lenger. Du kan se det fordi du opprettet det, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href=\"mailto:%{help_email}\" class=\"contact\">ta kontakt</a>. <a href=\"%{manage_flags_path}\">Forvalt markeringer</a>\n",
   "join": "Bli med",
   "join_project": "Bli med i dette prosjektet",
@@ -50421,6 +50549,7 @@ I18n.translations["nb"] = {
   "life": "Livet",
   "life_list": "Livsliste til %{user}",
   "linear_scale_label": "Lineær",
+  "linked_text": "lenket tekst",
   "list": "Liste",
   "list_tooltip": "Vis som liste",
   "lists": "Lister",
@@ -51549,6 +51678,7 @@ I18n.translations["nb"] = {
     "projects": {
       "collection": "Samling",
       "edit": {
+        "change_owner_alert": "Dette fjerner din evne til å slette dette prosjektet eller overføre\neierskap på nytt. Vil du fortsette?\n",
         "make_owner": "Gjør til eier"
       },
       "new": {
@@ -51826,6 +51956,7 @@ I18n.translations["nb"] = {
   },
   "x_of_y": "%{x} av %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} av %{y} personer (over 2/3) er enige i at det er",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} annen",
     "other": "%{count} andre"
@@ -51910,15 +52041,20 @@ I18n.translations["nl"] = {
   },
   "activity": "Activiteit",
   "add": "Toevoegen",
+  "add_a_bulleted_list": "Voeg een opsommingslijst toe",
   "add_a_comment": "Reactie toevoegen",
   "add_a_field": "Veld toevoegen",
+  "add_a_link": "Voeg een link toe",
   "add_a_name": "Naam toevoegen",
+  "add_a_numbered_list": "Voeg een genummerde lijst toe",
   "add_alive_or_dead_alive_annotation": "Aantekening \"Levend of dood: levend\" toevoegen",
   "add_alive_or_dead_dead_annotation": "Aantekening \"Levend of dood: dood\" toevoegen",
   "add_an_identification": "Determinatie toevoegen",
   "add_annotations_for_x": "Aantekeningen voor %{x} toevoegen",
+  "add_bold_text": "Vetgedrukte tekst toevoegen",
   "add_edit_flags": "Meldingen toevoegen/bewerken",
   "add_id": "ID toevoegen",
+  "add_italic_text": "Voeg cursieve tekst toe",
   "add_life_stage_adult_annotation": "Aantekening \"Levenstadium: Volwassen\" toevoegen",
   "add_life_stage_egg_annotation": "Aantekening \"Levenstadium: Ei\" toevoegen",
   "add_life_stage_larva_annotation": "Aantekening \"Levenstadium: Larve\" toevoegen",
@@ -52093,6 +52229,7 @@ I18n.translations["nl"] = {
   "blue": "blauw",
   "blue_butterfly_etc": "blauw, vlinder, enz.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "dikgedrukte tekst",
   "bounding_box": "Kaartuitsnede",
   "brown": "bruin",
   "browse": "Bladeren",
@@ -52609,12 +52746,14 @@ I18n.translations["nl"] = {
   "input_taxon": "Invoer taxon",
   "insect_life_stage": "Levensstadium van het insect",
   "insects": "insecten",
+  "insert_a_quote": "Citaat invoegen",
   "interactions": "Interacties",
   "introduced": "Geïntroduceerd",
   "introduced_in_place": "Geïntroduceerd in %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?",
   "it_can_now_be_used_for_research": "Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites",
+  "italic_text": "Cursieve tekst",
   "item_flagged_notice_html": "Dit is gemeld als spam en is niet langer\npubliekelijk zichtbaar. Jij kunt het wel zien omdat je het hebt gemaakt of omdat je een\nwebsite-curator bent. Als je denkt dat dit een vergissing is, neem dan \n<a href=\"mailto:%{help_email}\" class=\"contact\">contact met ons op</a>.\n<a href=\"%{manage_flags_path}\">Beheer meldingen</a>\n",
   "join": "Lid worden",
   "join_project": "Doe mee aan dit project",
@@ -52918,6 +53057,7 @@ I18n.translations["nl"] = {
   "observations_": "waarnemingen",
   "observations_annotated_with_annotation": "Waarnemingen met aantekening %{annotation}",
   "observations_by_category": "Waarnemingen per categorie",
+  "observations_can_only_have_n_photos": "Waarnemingen kunnen maximaal %{limit} foto's bevatten",
   "observations_in_this_project_must": "Waarnemingen in dit project moeten aan de volgende criteria voldoen",
   "observations_map": "Waarnemingen / Kaart",
   "observations_of_relatives": "Waarnemingen van verwanten",
@@ -54104,6 +54244,7 @@ I18n.translations["nl"] = {
   },
   "x_of_y": "%{x} o=van %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} ander persoon",
     "other": "%{count} anderen"
@@ -59514,6 +59655,198 @@ I18n.translations["pt-BR"] = {
     }
   }
 };
+I18n.translations["ro"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "Dum",
+      "Lun",
+      "Mar",
+      "Mie",
+      "Joi",
+      "Vin",
+      "Sâm"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Duminică",
+      "Luni",
+      "Marți",
+      "Miercuri",
+      "Joi",
+      "Vineri",
+      "Sâmbată"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Mo",
+      "3": "Tu",
+      "4": "We",
+      "5": "Th",
+      "6": "Fr",
+      "7": "Sa"
+    },
+    "formats": {
+      "long": "%d %B %Y"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 zi",
+        "few": "%{count} zile",
+        "other": "%{count} zile"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ".",
+      "separator": ",",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "",
+    "formats": {
+      "long": "%d %B %Y %H:%M"
+    },
+    "pm": ""
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ru"] = {
   "a_member_of_taxon_html": "член %{taxon}",
   "about": "Подробно",
@@ -59540,15 +59873,20 @@ I18n.translations["ru"] = {
   },
   "activity": "Активность",
   "add": "Добавить",
+  "add_a_bulleted_list": "Добавить нумерованный список",
   "add_a_comment": "Добавить комментарий",
   "add_a_field": "Добавить поле",
+  "add_a_link": "Добавить ссылку",
   "add_a_name": "Добавить имя",
+  "add_a_numbered_list": "Добавить нумерованный список",
   "add_alive_or_dead_alive_annotation": "Добавить значение \"Живой или мёртвый: живой\"",
   "add_alive_or_dead_dead_annotation": "Добавить значение \"Живой или мёртвый: мёртвый\"",
   "add_an_identification": "Добавить идентификацию",
   "add_annotations_for_x": "Добавить значения для \"%{x}\"",
+  "add_bold_text": "Добавить текст жирным шрифтом",
   "add_edit_flags": "Добавить/редактировать флаги",
   "add_id": "Добавить идентификацию",
+  "add_italic_text": "Добавить текст курсивом",
   "add_life_stage_adult_annotation": "Добавить значение \"Стадия жизни: Взрослый\"",
   "add_life_stage_egg_annotation": "Добавить значение \"Стадия жизни: Яйцо\"",
   "add_life_stage_larva_annotation": "Добавить значение \"Стадия жизни: Личинка\"",
@@ -59751,6 +60089,7 @@ I18n.translations["ru"] = {
   "blue": "синий",
   "blue_butterfly_etc": "синий, бабочка, и т.п.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "текст жирным шрифтом",
   "bounding_box": "Ограничительная рамка",
   "brown": "коричневый",
   "browse": "Просмотр",
@@ -60281,12 +60620,14 @@ I18n.translations["ru"] = {
   "input_taxon": "Входной таксон",
   "insect_life_stage": "Стадия жизни насекомого",
   "insects": "насекомые",
+  "insert_a_quote": "Вставить цитату",
   "interactions": "взаимодействия",
   "introduced": "Интродуцент",
   "introduced_in_place": "Интродуцирован в %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Достаточно ли доказательств, подтверждающих, что это %{taxon}?",
   "it_can_now_be_used_for_research": "Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах",
+  "italic_text": "текст курсивом",
   "item_flagged_notice_html": "Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы это создали или же вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,\n<a href=\"mailto:%{help_email}\" class=\"contact\">свяжитесь с нами</a>.\n<a href=\"%{manage_flags_path}\">Управление флагами</a>\n",
   "join": "Присоединиться",
   "join_project": "Присоединиться к этому проекту",
@@ -60363,6 +60704,7 @@ I18n.translations["ru"] = {
   "life": "Жизнь",
   "life_list": "Список жизни %{user}",
   "linear_scale_label": "Линейная",
+  "linked_text": "текст ссылки",
   "list": "Список",
   "list_tooltip": "Показать вид списка",
   "lists": "Списки",
@@ -60422,6 +60764,8 @@ I18n.translations["ru"] = {
   "location_unknown": "Местоположение неизвестно",
   "lock_zoom_level": "Блокировка уровня масштабирования",
   "log_in": "Вход",
+  "log_in_or_sign_up_to_add_comments_html": "Для добавления комментариев<a href=\"/log_in\">войдите</a> или <a href=\"/sign_up\">зарегистрируйтесь</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Для добавления идентификаций<a href=\"/log_in\">войдите</a> или <a href=\"/sign_up\">зарегистрируйтесь</a>.\n",
   "log_scale_label": "Логарифмическая",
   "long": "Долг",
   "longitude": "Долгота",
@@ -61837,6 +62181,7 @@ I18n.translations["ru"] = {
   },
   "x_of_y": "%{x} из %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} из %{y} человек (более 2/3) согласны с этим",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} другой",
     "few": "%{count} других",
@@ -64888,15 +65233,20 @@ I18n.translations["sv"] = {
   },
   "activity": "Aktivitet",
   "add": "Lägg till",
+  "add_a_bulleted_list": "Lägg till en punktlista",
   "add_a_comment": "Lägg till en kommentar",
   "add_a_field": "Lägg till ett fält",
+  "add_a_link": "Lägg till en länk",
   "add_a_name": "Lägg till ett namn",
+  "add_a_numbered_list": "Lägg till en numrerad lista",
   "add_alive_or_dead_alive_annotation": "Lägg till \"Levande eller Död: Levande\"-anteckning",
   "add_alive_or_dead_dead_annotation": "Lägg till \"Levande eller Död: Död\"-anteckning",
   "add_an_identification": "Lägg till bestämning",
   "add_annotations_for_x": "Lägg till noteringar för \"%{x}\"",
+  "add_bold_text": "Lägg till fet text",
   "add_edit_flags": "Lägg till/Ändra markeringar",
   "add_id": "Lägg till bestämning",
+  "add_italic_text": "Lägg till kursiv text",
   "add_life_stage_adult_annotation": "Lägg till notering \"Livsstadium: Adult\"",
   "add_life_stage_egg_annotation": "Lägg till notering \"Livsstadium: Ägg\"",
   "add_life_stage_larva_annotation": "Lägg till notering \"Livsstadium: Larv\"",
@@ -65071,6 +65421,7 @@ I18n.translations["sv"] = {
   "blue": "blå",
   "blue_butterfly_etc": "blå, fjäril, etc.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "fet text",
   "bounding_box": "Konturlinje",
   "brown": "brun",
   "browse": "Bläddra",
@@ -65587,12 +65938,14 @@ I18n.translations["sv"] = {
   "input_taxon": "Mata in taxon",
   "insect_life_stage": "Insektsstadium",
   "insects": "insekter",
+  "insert_a_quote": "Infoga ett citat",
   "interactions": "Interaktioner",
   "introduced": "Införd",
   "introduced_in_place": "Införd till %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Finns det stöd nog för att bekräfta att detta är %{taxon}?",
   "it_can_now_be_used_for_research": "Den kan nu användas för forskning och visas på andra webbplatser",
+  "italic_text": "kursiv text",
   "item_flagged_notice_html": "Denna observation har flaggats som spam och är inte längre\noffentligt synlig. Du kan se den eftersom du skapade den, eller är en\nwebbplatsförvaltare. Om du tror att detta är ett misstag, vänligen\n<a href=\"mailto:%{help_email}\" class=\"contact\">kontakta oss</a>.\n<a href=\"%{manage_flags_path}\">Hantera flaggor</a>\n",
   "join": "Gå med",
   "join_project": "Gå med detta projektet",
@@ -65669,6 +66022,7 @@ I18n.translations["sv"] = {
   "life": "Liv",
   "life_list": "%{user}s livslista",
   "linear_scale_label": "Linjärt",
+  "linked_text": "länkad text",
   "list": "Lista",
   "list_tooltip": "Visa listvy",
   "lists": "Listor",
@@ -65728,6 +66082,8 @@ I18n.translations["sv"] = {
   "location_unknown": "Plats okänd",
   "lock_zoom_level": "Lås zoomnivå",
   "log_in": "Logga in",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Logga in</a> eller <a href=\"/sign_up\">registrera dig</a> för att lägga till kommentarer.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Logga in</a> eller <a href=\"/sign_up\">registrera dig</a> för att lägga till bestämningar.\n",
   "log_scale_label": "Logg",
   "long": "Long",
   "longitude": "Longitud",
@@ -65896,6 +66252,7 @@ I18n.translations["sv"] = {
   "observations_": "observationer",
   "observations_annotated_with_annotation": "Observationer kommenterade med %{annotation}",
   "observations_by_category": "Observationer efter kategori",
+  "observations_can_only_have_n_photos": "Observationer kan bara ha %{limit} bilder",
   "observations_in_this_project_must": "Observationer i detta projekt måste uppfylla följande kriterier",
   "observations_map": "Observationer / Karta",
   "observations_of_relatives": "Observationer av närbesläktade",
@@ -67082,6 +67439,7 @@ I18n.translations["sv"] = {
   },
   "x_of_y": "%{x} av %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} av %{y} personer (över 2/3) håller med om det",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "1 annan",
     "other": "%{count} andra"
@@ -67166,15 +67524,20 @@ I18n.translations["tr"] = {
   },
   "activity": "Etkinlik",
   "add": "Ekle",
+  "add_a_bulleted_list": "Madde işaretli bir liste ekle",
   "add_a_comment": "Bir Yorum Ekle",
   "add_a_field": "Bir Alan Ekle",
+  "add_a_link": "Bir bağlantı ekle",
   "add_a_name": "Bir Ad Ekle",
+  "add_a_numbered_list": "Numaralı bir liste ekle",
   "add_alive_or_dead_alive_annotation": "\"Canlı ya da Ölü: Canlı\" açıklaması ekle",
   "add_alive_or_dead_dead_annotation": "\"Canlı ya da Ölü: Ölü\" açıklaması ekle",
   "add_an_identification": "Bir Tanımlama Ekle",
   "add_annotations_for_x": "\"%{x}\" için bir açıklama ekle",
+  "add_bold_text": "Kalın yazı ekle",
   "add_edit_flags": "İşaret Ekle/Düzenle",
   "add_id": "Tanımlama Ekle",
+  "add_italic_text": "Eğik yazı ekle",
   "add_life_stage_adult_annotation": "\"Yaşam Evresi: Yetişkin\" açıklaması ekle",
   "add_life_stage_egg_annotation": "\"Yaşam Evresi: Yumurta\" açıklaması ekle",
   "add_life_stage_larva_annotation": "\"Yaşam Evresi: Larva\" açıklaması ekle",
@@ -67349,6 +67712,7 @@ I18n.translations["tr"] = {
   "blue": "mavi",
   "blue_butterfly_etc": "mavi, kelebek vb.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
+  "bold_text": "kalın yazı",
   "bounding_box": "Sınır Alanı",
   "brown": "kahverengi",
   "browse": "Göz at",
@@ -67865,12 +68229,14 @@ I18n.translations["tr"] = {
   "input_taxon": "Sınıf girişi",
   "insect_life_stage": "Böcek Yaşam Evresi",
   "insects": "böcekler",
+  "insert_a_quote": "Bir alıntı ekle",
   "interactions": "Etkileşimler",
   "introduced": "Yerel Olmayan",
   "introduced_in_place": "%{place}'de tanıtıldı",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Bunun %{taxon} olduğunu doğrulamak için yeterli kanıt var mı?",
   "it_can_now_be_used_for_research": "Şimdi araştırma için kullanılabilir ve diğer web sitelerinde öne çıkarılabilir",
+  "italic_text": "eğik yazı",
   "item_flagged_notice_html": "Bu gereksiz olarak işaretlendi ve artık herkes tarafından görülür değil. Bunu görebilirsiniz çünkü siz yarattınız ya da bir site sorumlususunuz. Bunun bir hata olduğunu düşünüyorsanız, lütfen <a href=\"mailto:%{help_email}\" class=\"contact\">bizimle iletişime geçin</a>.\n<a href=\"%{manage_flags_path}\">İşaretleri yönetme</a>\n",
   "join": "Katıl",
   "join_project": "Bu projeye katılın",
@@ -67947,6 +68313,7 @@ I18n.translations["tr"] = {
   "life": "Yaşam",
   "life_list": "%{user} Kullanıcısının Yaşam Listesi",
   "linear_scale_label": "Doğrusal",
+  "linked_text": "bağlantılı yazı",
   "list": "Liste",
   "list_tooltip": "Liste görünümünü göster",
   "lists": "Listeler",
@@ -68006,6 +68373,8 @@ I18n.translations["tr"] = {
   "location_unknown": "Bilinmeyen Konum",
   "lock_zoom_level": "Yakınlaştırma düzeyini kilitleme",
   "log_in": "Oturum Aç",
+  "log_in_or_sign_up_to_add_comments_html": "Yorum eklemek için <a href=\"/log_in\">giriş yap</a> ya da <a href=\"/sign_up\">üye ol</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Tanımlama eklemek için <a href=\"/log_in\">giriş yap</a> ya da <a href=\"/sign_up\">üye ol</a>.\n",
   "log_scale_label": "Günlük",
   "long": "Boylam",
   "longitude": "Boylam",
@@ -68174,6 +68543,7 @@ I18n.translations["tr"] = {
   "observations_": "gözlemler",
   "observations_annotated_with_annotation": "%{annotation} açıklamalı gözlemler",
   "observations_by_category": "Kategoriye Göre Gözlemler",
+  "observations_can_only_have_n_photos": "Gözlemler yalnızca %{limit} fotoğafa sahip olabilir",
   "observations_in_this_project_must": "Bu projedeki gözlemler aşağıdaki kriterleri yerine getirmelidir",
   "observations_map": "Gözlemler / Harita",
   "observations_of_relatives": "Aile gözlemleri",
@@ -69360,6 +69730,7 @@ I18n.translations["tr"] = {
   },
   "x_of_y": "%{x} / %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{y} / %{x} insan (2/3'ü geçen) bunu kabul ediyor",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "%{count} diğer",
     "other": "%{count} diğer"
@@ -70992,7 +71363,7 @@ I18n.translations["zh-CN"] = {
   "research_": "研究",
   "research_grade": "研究级别",
   "research_grade_qualification": "研究成果资格",
-  "research_grade_short_html": "研<span class='full'>究</span>指<span class='full'>导</span>",
+  "research_grade_short_html": "研<span class='full'>究</span>级<span class='full'>别</span>",
   "reset_search_filters": "重置搜索过滤器",
   "restore": "恢复",
   "review_all": "复核全部",
@@ -71249,6 +71620,7 @@ I18n.translations["zh-CN"] = {
     "projects": {
       "collection": "收藏",
       "edit": {
+        "admins_must_be_existing_members": "管理员必须是项目的现有成员。"
       },
       "new": {
         "a_project_allows_you_to_gather": "集合项目允许您使用核心iNaturalist搜索工具收集和可视化观察。这消除了手动添加观察的需要，因为将自动包含满足项目设置的参数的所有内容。\n",

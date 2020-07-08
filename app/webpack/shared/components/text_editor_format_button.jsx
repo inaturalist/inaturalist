@@ -14,6 +14,7 @@ const TextEditorFormatButton = ( {
 } ) => (
   <button
     type="button"
+    tabIndex="-1"
     className={className}
     disabled={disabled}
     title={tip}

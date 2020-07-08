@@ -124,10 +124,11 @@ class TextEditor extends React.Component {
                 tip={I18n.t( "add_a_numbered_list" )}
               />
             </div>
-            <div className="btn-group" role="group" aria-label={I18n.t( "preview" )}>
+            <div className="btn-group pull-right" role="group" aria-label={I18n.t( "preview" )}>
               { preview ? (
                 <button
                   type="button"
+                  tabIndex="-1"
                   className="btn btn-primary btn-xs btn-edit"
                   onClick={( ) => this.setState( { preview: false } )}
                 >
@@ -136,6 +137,7 @@ class TextEditor extends React.Component {
               ) : (
                 <button
                   type="button"
+                  tabIndex="-1"
                   className="btn btn-default btn-xs btn-preview"
                   onClick={( ) => this.setState( { preview: true } )}
                 >
