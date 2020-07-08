@@ -1,4 +1,461 @@
 fr-CA:
+  x_comments:
+    one: '%{count} commentaire'
+    other: '%{count} commentaires'
+  a_community_for_naturalist: Une communauté pour naturalistes
+  about: À propos
+  about_blocking: À propos du blocage
+  about_charts: À propos des graphiques
+  about_community_taxa: À propos des taxons de la communauté
+  about_muting: À propos du mode muet
+  #Header for a section describing taxon names
+  about_names: À propos des noms
+  about_places: À propos des lieux
+  about_the_cc_licenses: À propos des licences Creative Commons
+  about_these_licenses: À propos de ces licences
+  about_this_bioblitz: À propos de ce bioblitz
+  about_this_map: À propos de cette carte
+  about_this_project: À propos de ce projet
+  about_trips_html: |
+    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
+  about_x: "À propos de %{x}"
+  acc: 'Préc. (m)'
+  account: Compte
+  account_creation: Création de compte
+  account_settings: Paramètres du compte
+  accept: accepter
+  accept_community_identifications: Accepter les identifications de la communauté
+  accuracy: Précision
+  accuracy_meters: Précision (mètres)
+  accuracy_of_the_coordinates: |
+    Précision des coordonnées en mètres. Vous pouvez modifier les coordonnées
+    en cliquant sur le lien « modifiez » ci-dessus ou en cliquant sur le
+    marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
+    cercle soit assez grand pour être certain que vous vous trouviez
+    à l’intérieur.
+  action: Action
+  actions: Actions
+  active: Actif
+  active_users: Utilisateurs actifs
+  activity: Activité
+  activity_settings: Paramètres d’activité
+  adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
+  add: Ajouter
+  add_a_batch_of_observations: Ajouter un groupe d’observations
+  add_a_batch_of_taxa: Ajouter un grupe de taxons
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Ajouter une liste à puces
+  add_a_comment: Ajouter un commentaire
+  add_a_field: Ajouter un champ
+  add_a_flag: Ajouter un signalement
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Ajouter un lien
+  add_a_name: Ajouter un nom
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Ajouter une liste numérotée
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Ajouter un texte en gras
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Ajouter un texte en italique
+  add_your_email_to_get: |
+    Ajoutez votre adresse courriel pour obtenir des commentaires de la communauté sur votre observation .
+    Si vous préférez ne pas l'ajouter, revenez consulter la page plus tard!
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: texte en gras
+  devise:
+    failure:
+      invalid: 'Courriel ou mot de passe invalide.'
+    passwords:
+      send_instructions: 'Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+      send_paranoid_instructions: "Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
+      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
+  dont_send_me_email: "Ne m’envoyez pas de courriel!"
+  email: Courriel
+  email_addresses_description: Adresses courriel séparées par des virgules, limitées à 60 tous les 30 jours.
+  email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
+  email_addresses_to_receive_invites: Adresses courriel pour recevoir les invitations
+  email_copyright: "Copyright &copy; %{x}, tous droits réservés"
+  email_settings: Paramètres de courriel
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Insérer une citation
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: texte en italique
+  item_flagged_notice_html: |
+    Ceci a été marqué comme pourriel et n’est plus
+    visible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un
+    responsable du site. Si vous pensez que c’est une erreur, veuillez
+    <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
+    <a href="%{manage_flags_path}">Gérer les signalements</a>
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: texte lié
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
+  no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
+  or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
+  parental_consent:
+    must_specify_email: Vous devez spécifier une adresse courriel
+    invalid_email: Format de courriel invalide
+  personal_message_description: Personne n’aime recevoir des courriels d’une machine! Pourquoi ne pas laisser savoir à vos amis que vous les invitez?
+  pi_consent_desc_html: |
+    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
+    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
+    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
+    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
+    comment nous les utilisons, veuillez voir notre
+    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
+    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
+  receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
+  search_by_name_or_email: Rechercher par nom ou par courriel
+  these_are_items_people_on: |
+    Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur « Suspendez l’utilisateur » en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un drapeau doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
+  this_job_failed_to_run: Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}
+  this_user_has_been_suspended_message: |
+    Si c’est votre compte et que vous pensez que ceci a été fait par erreur, veuillez <a href="mailto:%{email}">nous contacter</a>.
+  updates_notification_email_subject: "%{prefix} Nouvelles mises à jour du %{date}"
+  updates_suspension_email_subject: "%{prefix} Vos abonnements sont en attente"
+  unsubscribe_from_emails_like_this: Se désabonner des courriels comme celui-ci
+  username_or_email: Nom d’utilisateur ou courriel
+  we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse courriel.
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
+  youre_a_site_curator_which_means: |
+    Vous êtes un responsable de l’organisation du site, ce qui veut dire que vous vous êtes porté volontaire pour aider
+    à organiser nos données et à contrôler le contenu. Ne vous sentez pas obligé
+    de traiter tous les problèmes, mais si vous avez le temps d’en vérifier
+    certains, nous serions reconnaissants de toute aide que nous pourrions recevoir. Si
+    vous avez des questions sur le contenu organisé ou ne voulez plus
+    être un responsable de l’organisation, veuillez nous contacter à %{email}
+  your_activation_code_was_missing: "Votre code d’activation est manquant. Veuillez suivre l’URL de votre courriel."
+  your_email_address: Votre adresse courriel
+  views:
+    observations:
+      export:
+        export_in_progress_notice_html: |
+          Vous avez un <a href="%{url}">export en cours</a>. Vous devrez attendre qu'il se termine avant de pouvoir en effectuer un autre.
+        receive_an_email_with_your_data: Recevoir un courriel avec vos données
+        receive_an_email_with_your_data_help: Vous recevrez un courriel avec votre exportation en pièce jointe.
+        well_email_you: "D'accord, nous vous enverrons un courriel quand ce sera prêt."
+      show:
+        observation_flagged_notice_html: |
+          Cette observation a été marquée comme pourriel et n’est plus
+          visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
+          responsable du site. SI vous pensez que c’est une erreur, veuillez
+          <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
+          <a href="/observations/%{observation_id}/flags">Gérer les marques</a>
+    emailer:
+      bulk_import_success:
+        success_message: |
+          Vous avez réussi à importer en masse %{filename}. Vos observations
+          sont maintenant en cours de traitement et seront bientôt sur le site.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Veuillez vérifier l’orthographe de chaque entrée. Si votre orthographe est
+          correcte, merci de rechercher les espèces sur %{search_taxa_url}. Si le nom n’est pas encore dans la base de données %{site_name}, vous devez l’ajouter
+          avant votre envoi. Utilisez le formulaire au bas de la page de recherche pour importer de nouveaux noms. Si le nom est présent mais
+          s’applique à plusieurs taxons valides, essayez d’utiliser un nom plus ou moins
+          spécifique qui ne correspond qu’à un seul taxon.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Votre exportation des observations est prête. Il y a une copie jointe à ce courriel, ou vous pouvez
+          <a href="%{url}">télécharger votre exportation</a>.
+        your_observations_export_failed_html: |
+          L’export de vos observations a échoué. Allez sur
+          <a href="%{url}">la page d’export des observations</a> pour avoir une liste de toutes vos exportations.
+      parental_consent:
+        subject: Votre enfant aimerait utiliser iNaturalist
+        content_html: |
+          <p>
+          Votre enfant utilise l’application éducative <strong>Recherche par iNaturalist</strong> et
+          aimerait partager des données avec la plateforme scientifique citoyenne
+          iNaturalist. Comme publier ces données dévoile des informations permettant d’identifier
+          une personne, iNaturalist ne peut être utilisé par une personne de moins de treize ans
+          sans l’accord d’un parent.
+          </p>
+          <p>
+          <strong>Recherche par iNaturalist</strong> peut être utilisé sans créer de compte, et aucune
+          donnée d’identification personnelle ne sera partagée, mais votre enfant ne pourra pas contribuer
+          aux observations de iNaturalist. iNaturalist est un réseau scientifique citoyen où
+          les participants partagent des observations et des identifications de choses vivantes
+          pour apprendre mutuellement concernant la nature et générer des données de biodiversité pour
+          la science.
+          </p>
+          <p>
+          Si vous voulez accorder le droit à votre enfant d’utiliser iNaturalist,
+          nous avons besoin que vous fassiez ce qui suit :
+          </p>
+          <ol>
+          <li>
+          <p>
+          Créer un compte iNaturalist que votre enfant utilisera, en suivant ce lien :
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Après avoir créé le compte de votre enfant, nous vous demanderons de faire
+          un petit don nominal de 1$US avec une carte de crédit à iNaturalist
+          pour vérifier que vous êtes un adulte. Assurez-vous d’utiliser la même adresse
+          de messagerie que vous avez saisie dans le champ « courriel du parent » lors
+          de l’inscription, pour effectuer votre don.
+          </p>
+          </li>
+          <li>
+          <p>
+          Une fois le don reçu, nous vous enverrons un autre courriel vous indiquant que
+          le compte de votre enfant a été activé et que vous pouvez
+          utiliser le nom d’utilisateur et le mot de passe de iNaturalist que vous avez créés pour connecter
+          l’application Recherche de votre enfant.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist récupère les informations d’identification personnelle suivantes :
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>adresse de messagerie (privé) :</strong> tout compte de iNaturalist
+          a une adresse de messagerie associée avec elle, qui n’est pas
+          rendue publique.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>nom d’utilisateur (public, obligatoire) :</strong> tout compte de iNaturalist
+          a un nom d’utilisateur public et un numéro d’identification de l’utilisateur.
+          Ce nom d’utilisateur n’a pas besoin d’être similaire au véritable nom de
+          la personne, mais il peut être utilisé pour contacter la personne via des commentaires
+          publics et des messages directs en privé.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>adresse IP (privé, obligatoire) :</strong> iNaturalist
+          stocke, mais ne rend pas public, l’adresse IP de l’utilisateur, qui peut
+          être utilisée pour en déduire des informations d’identification personnelle comme
+          l’emplacement (avec une précision de niveau ville).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>image du profil (public, facultatif) :</strong> les comptes de iNaturalist
+          peuvent, en option, avoir des images de profil, qui sont souvent
+          des images de l’utilisateur.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>emplacement de l’observation (public ou privé,
+          obligatoire) :</strong> les observations de iNaturalist contiennent des informations
+          de localisation sur l’endroit où l’observation a été faite. Cela peut être
+          rendu public ou gardé privé, mais par défaut, c’est public.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist permet aussi aux utilisateurs de partager des images publiques, des commentaires
+          publics, et d’envoyer des messages privés associés à leur compte.
+          Il est possible que les utilisateurs puissent inclure des informations d’identification
+          personnelle dans ce contenu généré par l’utilisateur.
+          </p>
+          <p>
+          En savoir plus sur la politique de confidentialité de iNaturalist <a href="%{privacy_policy_url}">ici</a>.
+          </p>
+      photos_missing:
+        subject: Certaines photos ont besoin de réparation
+        we_have_been_housekeeping: |
+          Nous avons fait un peu de ménage et avons trouvé des photos connectées à vos observations
+          qui ne sont plus accessibles depuis leur source d’origine. Les photos sont hébergées
+          par %{providers}.
+        we_would_like_to_remove: |
+          Nous aimerions supprimer toutes les références brisées à des photos, dans un futur proche, mais nous ne voulons pas nous débarrasser de quoi que ce soit qui puise être enregistré. Il est possible que certaines de ces photos existent encore sur leurs hôtes externes et puissent être réparées. Certaines photos peuvent avoir été téléchargées en connectant votre <a href='%{account_url}'>compte de %{site_name}</a> à un autre
+          compte d’hébergeur de photo, et cette connexion a expiré et doit être rafraîchie.
+        you_can_attempt_repair: |
+          Vous pouvez tenter de réparer les photos en allant sur la page de la photo et en cliquant sur le lien
+          « %{repair_link_text} ». Si vous ne savez plus si la photo existe, vous pouvez choisir de
+          la supprimer.
+        please_address: |
+          Veuillez régler ces problèmes <b>dans les trente jours</b>. Après trente
+          jours nous commencerons à supprimer les photos cassées de iNaturalist. Toutes vos observations
+          seront conservées. Elles seront réexaminées une fois les photos supprimées, et il est possible
+          que certaines observations de niveau recherche deviennent ponctuelles, si elles n’ont plus de photo.
+        we_included_links: |
+          Nous avons inclus les liens vers les photos concernées ci-dessous.
+      user_parent_confirmation:
+        subject: Le compte iNaturalist de votre enfant a été activé
+        content_html: |
+          <p>
+          Merci d'avoir créé un compte iNaturalist pour votre enfant! Le compte a été activé. Voici les détails que vous avez saisis et que nous avons enregistrés :
+          </p>
+          <ul>
+          <li><strong>Nom du parent ou du représentant légal :</strong>
+          %{parent_name}</li>
+          <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
+          <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
+          <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
+          <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
+          <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
+          </p>
+          <p>
+          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org. 
+          </p>
+      users_updates_suspended:
+        message: |
+          Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
+          vos abonnements. Pour reprendre l’obtention des mises à jour de l’activité du site, veuillez
+          <a href="%{login_url}">vous connecter à votre compte</a> de nouveau.
+    projects:
+      invite:
+        description_html: |
+          <h3>À propos des Invitations</h3>
+          <p class="ui">
+          Invitez des gens à se joindre à votre projet est un peu différent que de demander
+          des observations des personnes. En invitant des gens,
+          </p>
+          <ol>
+          <li>un courriel leur sera envoyé les invitant à se joindre à votre projet</li>
+          <li>une invitation sera affichée dans leur tableau de bord</li>
+          <li>et ils pourront se joindre à votre projet s’il a été établi en mode invitation seulement</li>
+          </ol>
+          <p class="ui">
+          Seuls les responsables de l’organisation du projet peuvent inviter des gens à se joindre à un projet. Vous
+          devriez pouvoir chercher des gens en utilisant leur nom d’utilisateur iNat ou
+          leur adresse électronique <em>complète</em>, en supposant que nous avons cette information dans nos
+          dossiers.
+          </p>
+      updates_desc: |
+        Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Vous avez plusieurs options :</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
+          <p>
+          Par ex. le genre qui contient une espèce. Ensuite, un responsable
+          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
+          <p>
+          Beaucoup de responsables du site suivent les messages vers le forum.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
+          </strong>
+          <p>
+          Soyez patient·e, notre équipe d'assistance est restreinte.
+          </p>
+          </li>
+          </ul>
+    shared:
+      spam:
+        message_for_owner_and_curators_html: |
+          Cet enregistrement a été signalé comme pourriel et n’est plus visible
+          par tout le monde. Vous pouvez le voir, car vous l’avez créé ou parce que vous êtes un responsable de l’organisation
+          du site. Si vous pensez que c’est une erreur, veuillez
+          <a href="mailto:%{email}">nous contacter</a>.
+    users:
+      dashboard:
+        new_project_admin_html: |
+          Vous vous demandez pourquoi vous êtes désormais administrateur de ce projet ? Le précédent propriétaire
+          vous a soit affecté comme nouvel administrateur, soit a supprimé son compte
+          et %{site_name} vous a choisi parce que
+          vous êtes un gestionnaire de projet ou un
+          responsable de l’organisation du site. Si vous ne voulez pas être l’administrateur du projet, veuillez
+          contacter <a href="mailto:%{help_email}">%{help_email}</a>
+      delete:
+        settings_and_mute_html: |
+          Si ce site génère trop de notifications, envisagez de
+          <a href="/users/edit">modifier vos paramètres</a> pour vous désabonner de certaines
+          notifications ou arrêter de recevoir des courriels de notre part. Si vous avez
+          des problèmes avec une personne en particulier sur le site, envisagez de
+          <a href="/users/edit">les rendre muets</a> au lieu de supprimer votre
+          compte.
+      edit:
+        blocking_desc_html: |
+          <p>
+          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
+          </p>
+          <p>
+          Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
+          enquêterons.
+          </p>
+        inaturalist_network_affiliation_desc_html: |
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
+          <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
+          <p>
+           Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
+          </p>
+        monthly_supporter_desc_html: |
+          Les parrains réguliers d’iNaturalist font des contributions mensualisées
+          automatiques qui sont reçues par l’Académie des sciences de Californie
+          (Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les
+          opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
+          <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
+          Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
+          boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
+          exactement la même adresse courriel sur Donorbox que celle que vous
+          utilisez sur iNaturalist pour nous permettre de confirmer que vous êtes
+          un parrain mensualisé.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Commentaires
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifications
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Mentions
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Messages
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Notes de journal du projet
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Quand un projet ajoute vos observations
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Modifications par le superviseur du projet
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Modifications taxinomiques
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Observations de personnes que je suis
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Observations de taxons ou de lieux auxquels je suis abonné·e
+    user_parents:
+      confirm:
+        we_will_send_you_an_email: |
+          Nous vous enverrons un courriel dès que le compte de votre enfant sera activé.
+      new:
+        parent_email: Courriel du parent ou du représentant légal (privé)
+        step2_desc: |
+          Pour confirmer votre identité en tant qu’adulte, nous avons besoin que vous fournissiez un
+          don unique d’au moins 1 $ US à iNaturalist en utilisant une carte de crédit. C’est
+          la manière de vérifier une identité la moins intrusive qui nous permette
+          d’être en conformité avec les lois sur la vie privée. Assurez-vous d’utiliser la même adresse de messagerie
+          que celle que vous avez saisie comme « courriel du parent » à l’étape précédente.
+        step3_title: VEUILLEZ ATTENDRE LE COURRIEL DE CONFIRMATION
+        step3_desc: |
+          Une fois que nous avons fait correspondre le courriel utilisé dans le don avec le courriel que vous avez saisi
+          comme « courriel du parent », nous activerons le compte de l’enfant et enverrons
+          au parent un courriel avec les instructions de connexion. Ceci peut prendre 24
+          heures.
   date:
     abbr_month_names:
       - 
@@ -41,3 +498,26 @@ fr-CA:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      site:
+        logo_email_banner: Bannière courriel
+      user:
+        email: Courriel
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: doit ressembler à une adresse courriel
+              domain_is_not_supported: ce domaine n'est pas pris en charge
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                appartient à un utilisateur existant; si vous avez un compte, veuillez vous connecter
+                avant de continuer, ou utilisez une adresse de messagerie différente
+  doorkeeper:
+    scopes:
+      login: |
+        Accéder aux informations pertinentes pour se connecter, comme l’adresse de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur.

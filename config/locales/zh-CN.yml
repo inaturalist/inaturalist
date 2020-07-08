@@ -2549,7 +2549,7 @@ zh-CN:
   research: 研究
   research_: 研究
   research_grade: 研究级别
-  research_grade_short_html: "研<span class='full'>究</span>指<span class='full'>导</span>"
+  research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
   research_grade_observations_have: '“研究成绩”观察具有日期，照片，坐标和由社区支持的ID。点击查看数据质量评估。'
   research_grade_qualification: 研究成果资格
   reset_search_filters: 重置搜索过滤器
@@ -3113,6 +3113,7 @@ zh-CN:
   unresolve: 未解决
   unreview_all: 取消复核全部
   unsubscribe: 取消订阅
+  unsubscribe_from_emails_like_this: 取消订阅此类邮件
   unsuspend_user: 停用用户
   upcoming_bioblitzes: 即将到来的bioblitzes
   update: 更新
@@ -3871,6 +3872,7 @@ zh-CN:
         revoke_observations_desc: |
           如果您离开的唯一原因是阻止项目馆长查看您的私人坐标。
       edit:
+        admins_must_be_existing_members: 管理员必须是项目的现有成员。
         aggregation_pending: 聚合待定
         new_place_desc_html: |
           尝试浏览<a href="%{places_url}" target="_blank">我们现有的地点</a>，并确保您获得正确的地点名称。如果您找不到所需的地点，请考虑<a href="%{new_place_url}" target="_blank">创建新地点</a>，但请确保您不仅仅是复制了现有的地点。

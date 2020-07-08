@@ -295,11 +295,17 @@ cs:
   add: Vložit
   add_a_batch_of_observations: Vložit soubor sledování
   add_a_batch_of_taxa: Vložit soubor taxonů
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Přidat odrážkový seznam
   add_a_comment: Vložit komentář
   add_a_field: Vložit pole
   add_a_flag: Přidat značku
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Přidat odkaz
   add_a_name: Vložit jméno
   add_a_new_change_group: Přidat novou skupinu změn
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Přidat číslovaný seznam
   add_a_single_observation: Vložit jediné pozorování
   add_a_taxon: Vložit taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -322,6 +328,8 @@ cs:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Přidejte položku
   add_batch: Vložit skupinu
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Přidat tučný text
   add_comma_separated_tags: "Vložit tagy oddělené čárkou"
   add_comment: Vložit komentář
   add_conservation_status: vložit status ochrany
@@ -334,6 +342,8 @@ cs:
   add_link: Přidat odkaz
   add_higher_level_taxon: Vložit taxon vyššího řádu (např. "ptáci")
   add_id: Vložit ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Přidat text v kurzívě
   add_new_lexicon: Vložit nový pojem
   add_new_photos_by_their_ids: Vložit nové fotografie podle jejich ID na Flicekru (musí být pod licencí Creative Commons!)
   add_new_place: Vložit nové místo
@@ -757,6 +767,8 @@ cs:
   body: Tělo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: tučný text
   bounding_box: Ohraničení
   breadcrumbs: Strouhanka
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1767,6 +1779,8 @@ cs:
   insects: hmyz
   insect_life_stage: Stádium života hmyzu
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Vložit citaci
   interactions: Interakce
   internal_server_error: Interní chyba serveru
   internal_taxon_including_descendants: Vnitřní taxon (včetně potomků)
@@ -1791,6 +1805,8 @@ cs:
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, nebo urážlivé?'
   is_this_place_a_duplicate: Je toto místo duplikát?
   it_can_now_be_used_for_research: Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: text v kurzívě
   item_flagged_notice_html: |
     Toto bylo označeno jako spam a není již viditelné. Vám se text zobrazuje, protože jste jeho autorem, nebo správce stránek.
     Pokud se domníváte, že jde o chybu, <a href="mailto:%{help_email}" class="contact">napište nám</a>.
@@ -1940,6 +1956,8 @@ cs:
   linked_flickr_automatically: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Flickr, automaticky znovu propojíme váš účet na %{site_name} s účtem na Flickru. Zdá se rozumné, že pokud používáte Flickr, budete chtít importovat fotky z Flickru, že?"
   linked_flickr_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Flickru, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Flickr oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Flickru, s kterým chcete propojit %{site_name}."
   linked_flickr_password_html: "<strong>Nikdy vás nebudeme žádat o vaše heslo na Flickr</strong> (Flickr o něj však žádat může, zkontrolujte url a ověřte si, že se jedná o Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: text odkazu
   linkedin: LinkedIn
   list: Seznam
   list_deleted: Seznam byl smazán.
@@ -2028,6 +2046,10 @@ cs:
   location_specified: Umístění určeno
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
   log_in: Přihlásit se
+  log_in_or_sign_up_to_add_comments_html: |
+    Pro přidávání komentářů se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Pro přidávání identifikací se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
   log_scale_label: Protokol
   login_slash_username: Prihlášení / uživatelské jméno
   logo:
@@ -4448,6 +4470,9 @@ cs:
     many: "%{count} pozorování selhala"
     other: "%{count} pozorování selhala"
   x_of_y: "%{x} z %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} z %{count} potvrzeno"
     few: "%{x} z %{count} potvrzeno"
@@ -4946,8 +4971,8 @@ cs:
         choose_columns_desc: Vyberte sloupce, které chcete exportovat
         create_a_query_desc_html: |
           Vytvořte dotaz k pozorování stejným způsobem jako jinde na stránce. Také můžete zkopírovat a vložit URL pozorování z jiné části stránky. Výsledkem vašeho dotazu by <strong>nemělo být více než 200 000 pozorování </strong>.
-        export_in_progress_notice: |
-          Právě probíhá export. Budete muset počkat na dokončení,
+        export_in_progress_notice_html: |
+          Právě <a href="%{url}">probíhá export</a>. Budete muset počkat na dokončení,
           než budete moci vytvořit další export.
         ident_by_user_desc_html: |
           Sloupce k aktuální identifikaci uživatelem %{user}

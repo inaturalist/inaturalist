@@ -194,8 +194,12 @@ nb:
   add_a_comment: Legg til en kommentar
   add_a_field: Legg til et felt
   add_a_flag: Legg til en markering
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Legg til en lenke
   add_a_name: Legg til et navn
   add_a_new_change_group: Legg til en ny endringsgruppe
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Legg til en nummerert liste
   add_a_single_observation: Legg til en enkel observasjon.
   add_a_taxon: Legg til et takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -218,6 +222,8 @@ nb:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Legg til prosjektressurs
   add_batch: Legg til batch
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Legg til fet tekst
   add_comma_separated_tags: "Legg til kommaseparerte etiketter"
   add_comment: Legg til en kommentar
   add_conservation_status: Legg til bevaringsstatus
@@ -230,6 +236,8 @@ nb:
   add_link: Legg til lenke
   add_higher_level_taxon: Legg til et takson på et høyere nivå (f.eks. "fugler")
   add_id: Legg til ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Legg til kursiv tekst
   add_new_lexicon: Legg til nytt leksikon
   add_new_photos_by_their_ids: Legg til nye bilder med deres Flickr-ID-er (må være Creative Commons!)
   add_new_place: Legg til et nytt sted
@@ -621,6 +629,8 @@ nb:
   body: Innhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fet tekst
   bounding_box: Avgrensningsboks
   breadcrumbs: Brødsmulesti
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -677,6 +687,7 @@ nb:
   change_descriptions:
     split: Gammel taksonoppdeling i flere nye taksa
     merge: Flere gamle taksa slått sammen til ett nytt takson
+    swap: Erstatt inn-takson med ut-takson
     drop: Taksonkonsept helt ugyldig, beholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt konsept for frigivelse som en del av en endringsgruppe
   change_geoprivacy: 'Endre geosperring'
@@ -938,6 +949,7 @@ nb:
   create_a_query: Opprett en spørring
   create_an_account: Opprett en konto
   create_an_atlas: Opprett en atlas
+  create_export: Opprett eksport
   create_new_taxon: Opprett et nytt takson
   create_observations: Opprett observasjoner
   created: Opprettet
@@ -1080,9 +1092,13 @@ nb:
       signed_in: 'Pålogging vellykket.'
       signed_out: 'Avlogging vellykket.'
     passwords:
+      send_instructions: 'Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.'
+      updated: 'Passordet ditt ble endret. Du er nå logget inn.'
       updated_not_active: 'Endring av ditt passord var vellykket.'
+      send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
     registrations:
       signed_up: 'Velkommen! Registreringen var vellykket.'
+      updated: 'Du har oppdatert din konto.'
       destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
     mailer:
       confirmation_instructions:
@@ -1276,6 +1292,7 @@ nb:
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
+  failed_to_save_record_with_errors: "Kunne ikke lagre posten: %{errors}"
   'false': 'Usann'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
@@ -1297,6 +1314,7 @@ nb:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres av de som har opprettet dem og sidekuratorer
   fields_merged: Felter slått sammen
   file: Fil
+  file_size: Filstørrelse
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Fyll ut projektets observationsfelt
   fill_out_your_profile: fullfør din profil
@@ -1619,6 +1637,8 @@ nb:
   insects: insekter
   insect_life_stage: Livsstadium insekt
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Sett inn sitat
   interactions: Interaksjoner
   internal_server_error: Intern serverfeil
   internal_taxon_including_descendants: Internt takson (inkl. etterkommer-taksa)
@@ -1643,6 +1663,8 @@ nb:
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller støtende?'
   is_this_place_a_duplicate: Er dette stedet et duplikat?
   it_can_now_be_used_for_research: Det kan nå brukes i forskning og vises på andre nettsider
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv tekst
   item_flagged_notice_html: |
     Dette har blitt markert som spam og er ikke synlig lenger. Du kan se det fordi du opprettet det, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="%{manage_flags_path}">Forvalt markeringer</a>
   join: Bli med
@@ -1791,6 +1813,8 @@ nb:
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
   linked_flickr_password_html: "<strong>Vi kommer aldri til å be deg om ditt Flickr-passord</strong> (men Flickr kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: lenket tekst
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
@@ -3257,6 +3281,7 @@ nb:
   resolved_by: Løst av
   resolved_by_user_on_date_html: Løst av %{user} på %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sa,</span> "%{x}"'
+  restart: Start på nytt
   restore: Gjenopprett
   restoring: Gjenoppretter...
   results: resultater
@@ -3590,6 +3615,7 @@ nb:
   take_me_flickr!: Ja, ta meg til Flickr!
   target_list_alert: Er du sikker på at du har forsøkt å observere alle arter dekt av din målliste? Husk at alt som dekkes av din målliste som du ikke observerer blir regnet som et fravær, så det er veldig viktig at din målliste kommer nøyaktig overens med artene som du forsøkte å finne
   target_list_warning: Husk at alt på din målliste som du ikke observerte under din innenfor området blir sett på som et fravær. Det er veldig viktig at din målliste nøyaktig representerer artene du prøvde å finne. Hvis du ikke forsøkte å finne en art på din målliste eller alle arter i en gruppe på din målliste, vennligst fjern den.
+  task_deleted: Oppgave slettet
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukjente relasjoner
   taxa_info: Taksainfo
@@ -4213,6 +4239,9 @@ nb:
     one: "%{count} observasjon mislykkes"
     other: "%{count} observasjoner mislykkes"
   x_of_y: "%{x} av %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} av %{count} bekreftet"
     other: "%{x} av %{count} bekreftet"
@@ -4285,6 +4314,7 @@ nb:
   you_cant_do_that_for_the_default_check_list_place: Du kan ikke gjøre det med et steds standard sjekkliste!
   you_cant_flag_that: Du kan ikke markere det
   you_cant_leave_a_project_you_created: Du kan ikke forlate et prosjekt som du har opprettet.
+  you_cant_merge_standard_places: Du kan ikke slå sammen standardsteder
   you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere bilder lagret utenfor %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan ikke slette taksa som er del av taksonendringer eller som inneholder taksa som er del av taksonendringer
   you_curate_a_project_that_contains_this_observation: Du kuraterer et prosjekt som inneholder denne observasjonen
@@ -4629,6 +4659,7 @@ nb:
         choose_columns_desc: Velg kolonnene du vil eksportere
         ident_by_user_desc_html: |
           Kolonner for den nåværende identifikasjonen av %{user}
+        limit_alert: Eksporten din vil være for stor. Endre filtrene dine til det er færre enn 200 000 observasjoner.
         query_placeholder: "Velg spørrinsgparametre under eller lim in en observasjons-url"
         taxon_extras_help_html: "Merk: disse kolonner vil gjøre genereringen av din eksport tregere"
         geo_help_html: |
@@ -4986,6 +5017,9 @@ nb:
         bioblitz_desc_html: |
           <p>En bioblitz er en hendelse hvor deltakere prøver å observere så mange arter som mulig i et tidsrom. Det er en artig måte å introdusere folk til biodiversitet på, og samtidig samle verdifulle data.</p>
         change_admin_desc: Velg en av prosjektets kuratorer som den nye admin.
+        change_owner_alert: |
+          Dette fjerner din evne til å slette dette prosjektet eller overføre
+          eierskap på nytt. Vil du fortsette?
         cover_desc: "Valgfritt coverbilde som vises øverst på din prosjektside. Må ha en bredde av 950 piksler, høyde under 400 piksler."
         custom_project_fields_means: "Tilpass prosjektets coverbilde, legg til sideinnhold, og rediger css."
         end_time_desc: "Sluttidspunktet for din bioblitz. Må være under ett år etter starttidspunktet"
@@ -6016,6 +6050,11 @@ nb:
         observed_on: dato observert
       observation_field_value:
         value: 'verdi'
+      observations_export_flow_task:
+        #Date/time the task began processing
+        started_at: Startet
+        #Date/time the task finished processing
+        finished_at: Fullført
       post:
         title: Tittel
         body: Innhold
@@ -6163,6 +6202,10 @@ nb:
             observation_id:
               user_does_not_accept_fields_from_others: brukeren godtar ikke felt fra andre
               user_only_accepts_fields_from_site_curators: brukeren godtar kun felt fra sidekuratorer
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Eksporter kan ikke inneholde flere enn 200 000 observasjoner
         place:
           attributes:
             place_geometry:

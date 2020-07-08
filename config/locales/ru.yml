@@ -271,11 +271,17 @@ ru:
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
   add_a_batch_of_taxa: Добавить несколько таксонов
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Добавить нумерованный список
   add_a_comment: Добавить комментарий
   add_a_field: Добавить поле
   add_a_flag: Добавить флаг
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Добавить ссылку
   add_a_name: Добавить имя
   add_a_new_change_group: Добавить новую группу изменений
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Добавить нумерованный список
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -298,6 +304,8 @@ ru:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Добавить актив
   add_batch: Добавить пакетную загрузку
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Добавить текст жирным шрифтом
   add_comma_separated_tags: "Добавить теги, разделённые запятыми"
   add_comment: Добавить комментарий
   add_conservation_status: Добавить природоохранный статус
@@ -310,6 +318,8 @@ ru:
   add_link: Добавить ссылку
   add_higher_level_taxon: Добавить таксон высшего уровня (например, "птицы")
   add_id: Добавить идентификацию
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Добавить текст курсивом
   add_new_lexicon: Добавить новый язык
   add_new_photos_by_their_ids: Добавить новые фото по идентификаторам Flickr (фото должны иметь лицензию Creative Commons!)
   add_new_place: Добавить новое место
@@ -734,6 +744,8 @@ ru:
   body: 'Текст:'
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: текст жирным шрифтом
   bounding_box: Ограничительная рамка
   breadcrumbs: Панировочные сухари
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1743,6 +1755,8 @@ ru:
   insects: насекомые
   insect_life_stage: Стадия жизни насекомого
   instagram: Инстаграм
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Вставить цитату
   interactions: взаимодействия
   internal_server_error: Внутренняя ошибка сервера
   internal_taxon_including_descendants: Внутренний таксон (включая потомков)
@@ -1767,6 +1781,8 @@ ru:
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: текст курсивом
   item_flagged_notice_html: |
     Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы это создали или же вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
@@ -1917,6 +1933,8 @@ ru:
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
   linked_flickr_password_html: "<strong>Мы никогда не запрашиваем у вас пароль Flickr</strong>  (но Flickr может это сделать, проверьте ссылку, на которую направляет вас кнопка, и убедитесь, что это Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: текст ссылки
   linkedin: LinkedIn
   list: Список
   list_deleted: Список удалён.
@@ -2005,6 +2023,10 @@ ru:
   location_specified: Указано местоположение
   locked_taxa_will_not_allow_new: Заблокированные таксоны не позволяют добавлять к ним новые таксоны-потомки. Так, если вы заблокировали Земноводных, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как земноводное. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
   log_in: Вход
+  log_in_or_sign_up_to_add_comments_html: |
+    Для добавления комментариев<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Для добавления идентификаций<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
   logo:
@@ -4405,6 +4427,9 @@ ru:
     many: "Не удалось создать %{count} наблюдений"
     other: "Не удалось создать %{count} наблюдений"
   x_of_y: "%{x} из %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} из %{count} подтвержден"
     few: "%{x} из %{count} подтверждено"
@@ -4867,8 +4892,8 @@ ru:
           other: "уникальных %{count}"
       export:
         choose_columns_desc: Выберите столбцы, которые требуется экспортировать
-        export_in_progress_notice: |
-          Экспорт уже производится. Вам нужно дождаться его завершения, прежде чем создавать другую очередь экспорта.
+        export_in_progress_notice_html: |
+          Экспорт <a href="%{url}">уже производится</a>. Вам нужно будет дождаться его завершения, прежде чем вы сможете поставить в очередь еще один экспорт.
         ident_by_user_desc_html: |
           Столбцы для текущей идентификации %{user}
         limit_alert: Размер вашего экспорта слишком велик. Изменяйте фильтры до тех пор, пока не будет менее 200 000 наблюдений.

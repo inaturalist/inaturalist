@@ -208,11 +208,17 @@ sv:
   add: Lägg till
   add_a_batch_of_observations: Lägg till ett gäng observationer
   add_a_batch_of_taxa: Lägg till ett gäng med taxa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
   add_a_field: Lägg till ett fält
   add_a_flag: Lägg till en flagga
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Lägg till en länk
   add_a_name: Lägg till ett namn
   add_a_new_change_group: Lägg till en ny ändringsgrupp
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Lägg till en numrerad lista
   add_a_single_observation: Lägg till en enskild observation.
   add_a_taxon: Lägg till ett taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -235,6 +241,8 @@ sv:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Lägg till projektmaterial
   add_batch: Lägg till batch
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Lägg till fet text
   add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
   add_comment: Lägg till en kommentar
   add_conservation_status: Lägg till bevarandestatus
@@ -247,6 +255,8 @@ sv:
   add_link: Lägg till länk
   add_higher_level_taxon: Lägg till ett taxon på högre nivå (t.ex. "fåglar")
   add_id: Lägg till bestämning
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Lägg till kursiv text
   add_new_lexicon: Lägg till nytt lexikon
   add_new_photos_by_their_ids: Lägg till nya bilder via deras Flickr-Id (måste vara Creative Commons!)
   add_new_place: Lägg till en ny plats
@@ -643,6 +653,8 @@ sv:
   body: Innehåll
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fet text
   bounding_box: Konturlinje
   breadcrumbs: Brödsmulor
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -699,6 +711,7 @@ sv:
   change_descriptions:
     split: Gammalt taxon uppdelat i flera nya taxa
     merge: Flera gamla taxa hopslagna till ett nytt taxon
+    swap: Ersätt taxon med nytt
     drop: Icke accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
     stage: Förbered ett inaktivt koncept för release som del av en förändringsgrupp
   change_geoprivacy: 'Ändra geosekretess'
@@ -1318,6 +1331,7 @@ sv:
   failed_to_find_your_location: Kunde inte att hitta din plats.
   failed_to_repair_photo: "Kunde inte reparera bild: %{errors}"
   failed_to_save_record: "Det gick inte att spara posten. Försök igen senare."
+  failed_to_save_record_with_errors: "Lyckades inte spara posten: %{errors}"
   'false': 'Falskt'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriter
@@ -1680,6 +1694,8 @@ sv:
   insects: insekter
   insect_life_stage: Insektsstadium
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Infoga ett citat
   interactions: Interaktioner
   internal_server_error: Internt serverfel
   internal_taxon_including_descendants: Internt taxon (inklusive underliggande)
@@ -1704,6 +1720,8 @@ sv:
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna plats en dubblett?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv text
   item_flagged_notice_html: |
     Denna observation har flaggats som spam och är inte längre
     offentligt synlig. Du kan se den eftersom du skapade den, eller är en
@@ -1856,6 +1874,8 @@ sv:
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till en observation. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
   linked_flickr_password_html: "<strong>Vi kommer aldrig att be dig om ditt Flickr-lösenord</strong> (men Flickr kanske gör det, kontrollera webbadressen som knappen skickar dig och se till att det är Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: länkad text
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista raderad.
@@ -1944,6 +1964,10 @@ sv:
   location_specified: Plats angiven
   locked_taxa_will_not_allow_new: Man kan inte lägga till nya barn till låsta taxa. T.ex., om du har låst Amphibia och någon försöker importera <i>Rana catesbeiana</i> från en extern namnkälla, skulle ett nytt taxon skapas men inte kunna klassificeras som ett groddjur. När det händer bör detta nyligen tillagda taxon flaggas för att komma till en förvaltares kännedom. Låsning bör egentligen bara användas för taxa där vi tror att alla barn redan är tillagda. Förvaltare kan åsidosätta detta genom att redigera taxa och ange föräldra-ID direkt, men överväg att slå ihop nya taxa med befintliga istället.
   log_in: Logga in
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till bestämningar.
   log_scale_label: Logg
   login_slash_username: Logga in / användarnamn
   logo:
@@ -3374,6 +3398,7 @@ sv:
   resolved_by: Fixad av
   resolved_by_user_on_date_html: Löstes av %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sa,</span> "%{x}"'
+  restart: Starta om
   restore: Återställ
   restoring: Återställer...
   results: resultat
@@ -3716,6 +3741,7 @@ sv:
   take_me_flickr!: Ja, ta mig till Flickr!
   target_list_alert: Är du säker på att du försökt hitta alla arter som finns på din mållista? Kom ihåg att allt på mållistan som du inte angett kommer att tolkas som en nollobservation så det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta
   target_list_warning: Kom ihåg att allt som finns på din mållista som du inte uppgett från området under tidsperioden för denna utflykt kommer att tolkas som en nollobservation. Det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta. Om du inte försökte hitta en art, eller alla arter inom en grupp, på din mållista, ta då bort den från listan.
+  task_deleted: Uppgift raderad
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa med okända relationer
   taxa_info: Taxainfo
@@ -4393,6 +4419,9 @@ sv:
     one: "1 observation misslyckades"
     other: "%{count} observationer misslyckades"
   x_of_y: "%{x} av %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} av %{count} bekräftad"
     other: "%{x} av %{count} bekräftade"
@@ -4964,8 +4993,8 @@ sv:
         choose_columns_desc: Välj de kolumner du vill exportera
         create_a_query_desc_html: |
           Skapa en observationsfråga precis som du skulle göra på andra ställen på webbplatsen. Du kan också klippa och klistra in en observations-URL från en annan del av webbplatsen. Din fråga bör inte resultera i <strong>mer än 200 000 observationer</strong>.
-        export_in_progress_notice: |
-          Du har en pågående export. Du måste vänta tills den är klar innan du kan köa en annan export.
+        export_in_progress_notice_html: |
+          Du har en <a href="%{url}">pågående export</a>. Du måste vänta tills den är klar innan du kan lägga till ännu en export.
         ident_by_user_desc_html: |
           Kolumner för den aktuella bestämningen av %{user}
         limit_alert: Din export blir för stor. Ändra dina filter tills det finns färre än 200 000 observationer.

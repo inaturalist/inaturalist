@@ -192,11 +192,17 @@ de:
   add: Hinzufügen
   add_a_batch_of_observations: Einen Satz an Beobachtungen hinzufügen
   add_a_batch_of_taxa: Taxa-Batch hinzufügen
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Aufzählungsliste hinzufügen
   add_a_comment: Kommentar hinzufügen
   add_a_field: Feld hinzufügen
   add_a_flag: Jetzt melden
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Link einfügen
   add_a_name: Namen hinzufügen
   add_a_new_change_group: Neue Änderungsgruppe hinzufügen
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Nummerierte Liste hinzufügen
   add_a_single_observation: Einzelbeobachtung hinzufügen.
   add_a_taxon: Taxon hinzufügen
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -212,25 +218,29 @@ de:
     sex: Annotationen für "Geschlecht" hinzufügen
     plant_phenology: Annotationen zur "Pflanzenphänologie" hinzufügen
     life_stage: Annotationen zum "Entwicklungsstadium" hinzufügen
-  add_another_flag: Weiteren Marker hinzufügen
+  add_another_flag: Weitere Meldung hinzufügen
   add_another_photo: Weiteres Foto hinzufügen
   add_another_section: Weiteren Abschnitt hinzufügen
   add_another_subscription: Weiteres Abonnement hinzufügen
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Bestand hinzufügen
   add_batch: Batch hinzufügen
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Text in Fettdruck
   add_comma_separated_tags: "Komma-getrennte Stichwörter hinzufügen"
   add_comment: Kommentar hinzufügen
   add_conservation_status: Schutzstatus hinzufügen
   add_countries: Länder hinzufügen
   add_custom_project_fields: Benutzerdefinierte Projektfelder hinzufügen
-  add_edit_flags: Marker hinzufügen/bearbeiten
+  add_edit_flags: Meldung hinzufügen/bearbeiten
   add_editor: Autor hinzufügen
   add_description: "%{description_name} hinzufügen"
   add_from_your_observations: Aus eigenen Beobachtungen hinzufügen
   add_link: Link hinzufügen
   add_higher_level_taxon: Höheren Taxonrang (z.B. „Vögel“) hinzufügen
   add_id: ID hinzufügen
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Text in Kursivdruck
   add_new_lexicon: Neues Lexikon hinzufügen
   add_new_photos_by_their_ids: Neue Fotos durch die Flickr-IDs hinzufügen (muss Creative-Commons-Lizenz sein!)
   add_new_place: Neues Gebiet hinzufügen
@@ -621,6 +631,8 @@ de:
   body: Text
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: Text in Fettschrift
   bounding_box: Rahmen
   breadcrumbs: Brotkrumen
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -1273,6 +1285,7 @@ de:
   failed_to_find_your_location: Dein Standort konnte nicht gefunden werden.
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
   failed_to_save_record: "Speichern fehlgeschlagen. Bitte später erneut versuchen."
+  failed_to_save_record_with_errors: "Speichern fehlgeschlagen: %{errors}"
   'false': 'Falsch'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Stimmen
@@ -1336,7 +1349,7 @@ de:
   flag_as_non_spammer: Als Nicht-Spammer markieren
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
-  flag_description: Melde diesen Inhalt um Kuratoren wissen zu lassen, dass etwas nicht stimmt.
+  flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -1367,7 +1380,7 @@ de:
   flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt.</strong><span class="meta">gekennzeichnet</span>.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
-  flag_reason: "&ldquo;Ich melde @gender{n:dieses|f:diese|m:diesen|dies} %{record}, weil"
+  flag_reason: "&ldquo;I'm flagging this %{record} because"
   flag_resolution: Auflösung
   flag_saved: Meldung abgegeben.
   flag_saved_thanks_html: Meldung gespeichert. Danke! <a href="%{url}" class="readmore">Meldung ansehen</a>
@@ -1613,6 +1626,8 @@ de:
   insects: Insekten
   insect_life_stage: Entwicklungsstufe (Insekten)
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Zitat einfügen
   interactions: Interaktionen
   internal_server_error: Interner Serverfehler
   internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
@@ -1637,6 +1652,8 @@ de:
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: Kursiver Text
   item_flagged_notice_html: |
     Dies ist als Spam gemeldet worden und ist nicht mehr
     öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
@@ -1785,6 +1802,8 @@ de:
   linked_flickr_automatically: "Beachte auch, dass wenn du dich bei %{site_name} über Flickr einloggst, dass wir deinen %{site_name} und Flicker-Account automatisch neu verlinken. Es ist doch klar, dass wenn du Flickr benutzt, auch deine Flickr-Bilder importieren kannst, richtig?"
   linked_flickr_description: "Wenn du dein %{site_name}-Account mit deinem Flickr-Account verlinkt behältst, kannst du mehrere Bilder zu deinen Beobachtungen hinzufügen.  Natürlich, wenn du jemals willst, dass %{site_name} und Flickr nicht mehr verknüpft sein sollen, werden wir dich nicht aufhalten, du wirst einfach keine Bilder mehr hinzufügen können. Manchmal ist das am besten, wenn deu einen neuen Flickr-Account erstellt, mit dem du %{site_name} verlinken möchtest."
   linked_flickr_password_html: "<strong>Wir werden dich nie nach deinem Flickr-Passwort fragen</strong> (aber Flickr könnte, überprüfe die URL, die dir der Button sendet und stelle sicher, dass es Flickr.com ist)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: verlinkter Text
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste gelöscht.
@@ -1872,6 +1891,10 @@ de:
   location_specified: Standort festgelegt
   locked_taxa_will_not_allow_new: Gesperrte Taxa erlauben es nicht, neue nachkommende Taxa hinzuzufügen. Wenn du also Amphibia gesperrt hast und jemand versucht hat, <i>Rana catesbeiana</i> von einem externen Namensprovider zu importieren, würde das neue Taxon erstellt werden, aber es könnte nicht als Amphibie klassifiziert werden. Wenn dies geschieht, sollten die neu hinzugefügten Taxa für die Kontrolle durch den Kurator gemeldet werden.  Dies sollte nur für Taxa verwendet werden, für die wir glauben, dass wir bereits alle Nachkommen haben. Der Kurator kann dies außer Kraft setzen, indem er Taxa editiert und Eltern-IDs direkt eingibt, aber bitte erwäge statt dessen, neue Taxa in bestehende zu verschmelzen.
   log_in: Anmelden
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Kommentare hinzuzufügen.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Bestimmungen hinzuzufügen.
   login_slash_username: Login/Benutzername
   logo:
     logo: Logo
@@ -3246,6 +3269,7 @@ de:
   resolved_by: Geklärt durch
   resolved_by_user_on_date_html: Geklärt von %{user} am %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} meint,</span> "%{x}"'
+  restart: Neustart
   restore: Wiederherstellen
   restoring: Stelle wieder her …
   results: Ergebnisse
@@ -3584,6 +3608,7 @@ de:
   take_me_flickr!: Ja, bring mich zu Flickr!
   target_list_alert: Bist du sicher, dass du versucht hast, alle Arten zu beobachten, die von deiner Zielliste abgedeckt sind? Denke daran, dass alles, was von der Zielliste abgedeckt ist und nicht beobachtet wurde, als Abwesenheit interpretiert wird, so dass es sehr wichtig ist, dass die Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast
   target_list_warning: Denke daran, dass alles, was von der Zielliste abgedeckt wird, innerhalb des Radius und der Dauer dieser Reise nicht beobachtet wurde, als Abwesenheit interpretiert wird. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast. Wenn du nicht versucht hast, eine Art auf deiner Zielliste oder jede von einer Gruppe abgedeckte Art auf deiner Zielliste zu finden, diese bitte entfernen.
+  task_deleted: Aufgabe gelöscht
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa mit unbekannten Beziehungen
   taxa_info: Informationen über Taxa
@@ -4192,6 +4217,9 @@ de:
     one: "1 Beobachtung fehlgeschlagen"
     other: "%{count} Beobachtungen fehlgeschlagen"
   x_of_y: "%{x} von %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} von %{count} bestätigt"
     other: "%{x} von %{count} bestätigt"
@@ -4640,9 +4668,9 @@ de:
           other: "%{count} einzigartig"
       export:
         choose_columns_desc: Wähle die Spalte die du exportieren willst
-        export_in_progress_notice: |
-          Du hast einen Export im Gange. Du musst erst warten, bis er
-          beendet ist, bevor du einen weiteren Export erstellen kannst.
+        export_in_progress_notice_html: |
+          Du hast einen <a href="%{url}">Export im Gange</a>. Du musst erst warten, bis er
+          beendet ist, bevor du einen weiteren Export starten kannst.
         ident_by_user_desc_html: |
           Spalte für die aktuellen Bestimmungen nach %{user}
         limit_alert: Der Export wird zu groß sein. Ändere die Filter bis weniger als 200.000 Beobachtungen erfasst werden.

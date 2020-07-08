@@ -420,7 +420,7 @@ bg:
   back_to_all_species: Обратно към всички видове
   back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
-  back_to_flags_html: "&laquo; Обратно към флагове"
+  back_to_flags_html: "&laquo; Обратно към маркери"
   back_to_observation: Обратно към наблюдението
   back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
@@ -490,6 +490,7 @@ bg:
   change_descriptions:
     split: Старият таксон се разделя на няколко нови
     merge: Няколко стари таксона обединени в един нов таксон
+    swap: Промяна на име „едно към едно“
   change_geoprivacy: 'Промени геоповерителността'
   change_group: Група от промени
   change_icon: Промени иконата
@@ -914,13 +915,19 @@ bg:
   flag_as_non_spammer: Маркирай като не-спамър
   #Label for the date/time when a flag was created
   flag_created: Маркерът е създаден на
+  flag_description: Маркирайте това съдържание за да уведомите кураторите, че нещо не е наред с него.
   flag_for_curation: Маркирай за куриране
+  flag_for_taxon_title_html: |
+    Маркер за таксон: %{title}
+  flag_for_user_title_html: |
+    Маркер за потребител: %{title}
   flag_it!: Маркирай го!
   flag_marked_as_resolved_html: '<span class="meta">Маркерът е отбелязан като</span> <strong>резрешен.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Обект
   flag_reason: "&ldquo;Маркирам %{record} защото"
   flag_saved: Маркерът е запазен.
+  flag_saved_thanks_html: Маркерът е записан. Благодарим! <a href="%{url}" class="readmore">Виж маркера</a>
   flag_this_observation: Маркирай това наблюдение
   flag_this_photo: Маркирай тази снимка
   flagged: маркира
@@ -1458,6 +1465,7 @@ bg:
   new_and_noteworthy: Ново и интересно
   new_check_list: Нов видов списък
   new_check_list_for: "Създай нов видов списък за %{place} &raquo;"
+  new_flag_for: Нов маркер за
   new_guide: Ново ръководство
   new_journal_post: Нова публикация в дневника
   new_lexicon: Нова лексика
