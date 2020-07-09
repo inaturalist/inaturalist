@@ -171,6 +171,27 @@ describe TaxaController do
       expect(taxon.parent_id).to eq locked_parent.id
     end
 
+    describe "photos_locked" do
+      it "should not be updateable by curators" do
+        t = Taxon.make!
+        curator = make_curator
+        sign_in curator
+        expect( t ).not_to be_photos_locked
+        put :update, id: t.id, taxon: { photos_locked: true }
+        t.reload
+        expect( t ).not_to be_photos_locked
+      end
+      it "should do be updateable by staff" do
+        t = Taxon.make!
+        curator = make_admin
+        sign_in curator
+        expect( t ).not_to be_photos_locked
+        put :update, id: t.id, taxon: { photos_locked: true }
+        t.reload
+        expect( t ).to be_photos_locked
+      end
+    end
+
     describe "conservation statuses" do
       let(:taxon) { Taxon.make!( rank: Taxon::SPECIES ) }
       let(:user) { make_curator }
@@ -311,6 +332,32 @@ describe TaxaController do
       post :set_photos, format: :json, id: taxon.id, photos: [
         { id: photo.id, type: "LocalPhoto", native_photo_id: photo.id },
         { id: existing_tp.photo.id, type: "LocalPhoto", native_photo_id: existing_tp.photo.id }
+      ]
+      expect( response ).to be_ok
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo.id ).to eq photo.id
+    end
+    it "should not change anything if photos_locked and user is not an admin" do
+      taxon = Taxon.make!( photos_locked: true )
+      sign_in make_curator
+      photo = LocalPhoto.make!
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo ).to be_blank
+      post :set_photos, format: :json, id: taxon.id, photos: [
+        { id: photo.id, type: "LocalPhoto", native_photo_id: photo.id }
+      ]
+      expect( response ).not_to be_ok
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo ).to be_blank
+    end
+    it "should change photos if photos_locked and user is an admin" do
+      taxon = Taxon.make!( photos_locked: true )
+      sign_in make_admin
+      photo = LocalPhoto.make!
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo ).to be_blank
+      post :set_photos, format: :json, id: taxon.id, photos: [
+        { id: photo.id, type: "LocalPhoto", native_photo_id: photo.id }
       ]
       expect( response ).to be_ok
       es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]

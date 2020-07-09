@@ -76,7 +76,8 @@ UserAutocomplete.propTypes = {
     PropTypes.number
   ] ),
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  projectID: PropTypes.number
 };
 
 export default UserAutocomplete;

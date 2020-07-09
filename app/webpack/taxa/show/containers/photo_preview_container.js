@@ -9,7 +9,7 @@ function mapStateToProps( state ) {
     return { taxonPhotos: [] };
   }
   let layout = "gallery";
-  const taxonPhotos = state.taxon.taxonPhotos;
+  const { taxonPhotos } = state.taxon;
   if ( state.taxon.taxon.rank_level > 10 && taxonPhotos.length >= 9 ) {
     layout = "grid";
   }

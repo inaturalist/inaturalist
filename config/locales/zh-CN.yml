@@ -543,7 +543,7 @@ zh-CN:
   captive_cultivated: 捕获的 / 种植的
   card: 卡
   casual: 非正式的
-  casual_: 便装
+  casual_: 非正式的
   categories: 分类
   cc_0_description: "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。"
   cc_0_name: 无版权（CC0）
@@ -566,7 +566,6 @@ zh-CN:
   change_descriptions:
     split: 旧分类单元分成多个新分类单元
     merge: 若干旧分类单元合并成一个新的分类单元
-    swap: 一对一的名称修改
     drop: 分类单元概念完全无效，因历史目的或伙伴兼容性而维护
     stage: 准备一个待用的学说，并将其发布成为一个修改组的一部分
   change_geoprivacy: '更改位置隐私'
@@ -739,6 +738,8 @@ zh-CN:
     larva: 幼虫
     egg: 蛋
     juvenile: 青少年
+    alive_or_dead: 活体或死亡
+    alive: 活体
   controlled_term_definitions:
     cannot_be_determined: 无法根据已提供的证据确认。
   controls: 控制
@@ -915,6 +916,9 @@ zh-CN:
     您是线虫研究者吗？您是世界上顶尖的藤壶分类专家吗？您喜欢观察美丽的花朵吗？您可以在您的个人档案中写一些您的个人情况，您在帮助别人进行物种鉴定时，这帮助人们确定您的可信性。
   doesnt_have_default_photo: 尚无默认的照片。
   doh_something_went_wrong: 生气啊，发生了一些错误。
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: 捐款
   done: 完成
   dont_send_me_email: "不要向我发送任何电子邮件！"
   dont_use_double_quotes: 不要在其他地方使用双引号
@@ -947,6 +951,7 @@ zh-CN:
   edit_field: 编辑字段
   edit_license: 编辑许可协议
   edit_multiple_dates: 编辑多个日期
+  edit_multiple_descriptions: 编辑多个描述
   edit_multiple_locations: 编辑多个位置
   edit_multiple_species: 编辑多个物种
   edit_notes: 编辑注释
@@ -1148,6 +1153,10 @@ zh-CN:
   for_a_taxon: 用于一个分类
   formatting: 格式化
   forgot_your_password: 忘记密码？
+  forum: 论坛
+  forum_categories:
+    bug_reports: 报告错误
+    tutorials: 教程
   frequency: 频率
   from_a_place: 来自一个地方
   from_eol_collection: 来自EOL收藏
@@ -1170,6 +1179,8 @@ zh-CN:
   get_started: 入门
   getting_started_guide: 入门指导
   give_it_some_detail: 给它提供一些详情！
+  give_monthly_caps: 每月捐款
+  give_now_caps: 立即捐款
   global_names: 全域名称
   globally: 全域
   go: 前往
@@ -1304,6 +1315,7 @@ zh-CN:
   inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
   inat_user_profile: "%{site_name}：%{user}的详细资料"
+  inaturalist_is_a_joint_initiative: "%{site_name}由加利福尼亚州科学院与美国国家地理学会共同创办。"
   inaturalist_places: "%{site_name} 地点"
   info: 信息
   input_taxon: 输入分类单元
@@ -1920,7 +1932,7 @@ zh-CN:
   observations_with_this_field: 有此字段的观察
   observations_with_this_field_and_value: 有此字段和此值的观察
   observationcounts_refreshed: 观察计数已刷新
-  observed: 已观察
+  observed: 观察日期
   observed_by: 观察自
   observed_on: 观察于
   observer: 观察者
@@ -2536,8 +2548,8 @@ zh-CN:
   required_columns_in_order: 按序排列的需求列
   research: 研究
   research_: 研究
-  research_grade: 研究指导
-  research_grade_short_html: "研<span class='full'>究</span>指<span class='full'>导</span>"
+  research_grade: 研究级别
+  research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
   research_grade_observations_have: '“研究成绩”观察具有日期，照片，坐标和由社区支持的ID。点击查看数据质量评估。'
   research_grade_qualification: 研究成果资格
   reset_search_filters: 重置搜索过滤器
@@ -2796,6 +2808,9 @@ zh-CN:
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
   stop_following_user: "停止关注%{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: 商店
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
@@ -3098,6 +3113,7 @@ zh-CN:
   unresolve: 未解决
   unreview_all: 取消复核全部
   unsubscribe: 取消订阅
+  unsubscribe_from_emails_like_this: 取消订阅此类邮件
   unsuspend_user: 停用用户
   upcoming_bioblitzes: 即将到来的bioblitzes
   update: 更新
@@ -3485,8 +3501,8 @@ zh-CN:
           please_read_the_teachers_guide_html: |
             如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
     donate:
-      donate_short_desc: "帮助捐赠者支持捐赠！"
-      post_donate_social_media_text: 我支持主义者！你也应该检查一下。
+      donate_short_desc: "立即捐款显示您的支持！"
+      post_donate_social_media_text: 我支持iNaturalist，因为…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成为iNaturalist 的月捐支持者
     guides:
@@ -3636,8 +3652,6 @@ zh-CN:
         生物被<strong>栽培</strong>或被<strong>圈养</strong>？例如，它是在<strong>花园，动物园，水族馆</strong>还是由于其他原因<strong>因为人类希望它在那里所以才会出现</strong>？ 所有对生物的观察都是受欢迎的，但我们想弄清楚其中哪些不是野生/天然生长的。
       export:
         choose_columns_desc: 选择您想要导出的列
-        create_a_query_desc_html: |
-          像在网站上的其他地方一样创建观察查询。您还可以从网站的其他部分剪切和粘贴观察的URL。您必须指定<strong>分类</strong>，<strong>地点</strong>，<strong>用户</strong>，<strong>项目</strong>或<strong>搜索查询</strong>。
         ident_by_user_desc_html: |
           用于当前由%{user}做出鉴定的列
         query_placeholder: "选择下面的查询参数或粘贴观察的URL"
@@ -3858,6 +3872,7 @@ zh-CN:
         revoke_observations_desc: |
           如果您离开的唯一原因是阻止项目馆长查看您的私人坐标。
       edit:
+        admins_must_be_existing_members: 管理员必须是项目的现有成员。
         aggregation_pending: 聚合待定
         new_place_desc_html: |
           尝试浏览<a href="%{places_url}" target="_blank">我们现有的地点</a>，并确保您获得正确的地点名称。如果您找不到所需的地点，请考虑<a href="%{new_place_url}" target="_blank">创建新地点</a>，但请确保您不仅仅是复制了现有的地点。
@@ -4152,8 +4167,10 @@ zh-CN:
           “完整的”分类群具有它们所有的后代，现存的特定等级的分类群存在于该站点的数据库中。例如，当物种的分类单位完成时，我们可以说已经观察了多少物种，还有多少物种需要观察。物种的“完整”分类物种对物种的计数不包括“不可数”的物种，如灭绝物种或非活性物种概念，它们只包括物种，而不是亚种或品种的种内分类群。
         discoveries_desc: "此分类单元中最新被鉴定的物种"
         frequency:
-          research: 研究指导
+          research: 研究级别
           verifiable: 可证实
+          "Alive or Dead=Alive": 活体
+          "Alive or Dead=Dead": 死亡
           "Life Stage=egg": 蛋
           "Life Stage=larva": 幼虫
           "Life Stage=teneral": 幼体

@@ -139,6 +139,9 @@ const SplitTaxon = props => {
       sciNameClass += " secondary-name";
     }
     let { name } = taxon;
+    if ( taxon.rank === "stateofmatter" ) {
+      name = I18n.t( "all_taxa.life" );
+    }
     if ( taxon.rank_level < 10 ) {
       const namePieces = name.split( " " );
       let rankPiece;

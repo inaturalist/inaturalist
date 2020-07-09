@@ -60,6 +60,12 @@ describe "translations" do
       end
       variables = translation.scan( /%{.+?}/ )
       variables.each do |variable|
+        # Bit of a kludge, but a lot of our singular form translations look like
+        # "1 observation" in the source string when they should probably look
+        # like "%{count} observation". The localization libs handle the %{count}
+        # variable regardless, so this is not really a problem worth raising
+        # alarms about
+        next if en_key =~ /\.one/ && variable == "%{count}"
         unless data[en_key] =~ /#{variable.encode( "utf-8" )}/
           it "#{variable} should be present in the source string" do
             expect( data[en_key] ).to match /#{variable.encode( "utf-8" )}/

@@ -23,7 +23,7 @@ describe LifeList do
       expect(@list.taxon_ids).to include(@child.id)
   
       new_child = Taxon.make!(:parent => @taxon, rank: Taxon::SUBSPECIES)
-      obs.update_attributes(:taxon => new_child)
+      obs.update_attributes( taxon: new_child, editing_user_id: obs.user_id )
       @list.reload
       expect(@list.taxon_ids).not_to include(new_child.id)
   
@@ -149,7 +149,7 @@ describe LifeList do
       LifeList.refresh_with_observation(o)
       expect(@list.taxon_ids).to include(t1.id)
     
-      o.update_attributes(:taxon_id => t2.id)
+      o.update_attributes( taxon_id: t2.id, editing_user_id: o.user_id )
       expect(@list.user.observations.where(taxon_id: t1.id).first).to be_blank
       expect(@list.user.observations.where(taxon_id: t2.id).first).not_to be_blank
       LifeList.refresh_with_observation(o.id, :taxon_id_was => t1.id)

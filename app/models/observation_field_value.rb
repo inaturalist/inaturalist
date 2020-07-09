@@ -185,7 +185,8 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def index_observation
-    observation.wait_for_index_refresh = !!wait_for_obs_index_refresh
+    return if observation.skip_indexing
+    observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.try( :elastic_index! )
   end
 

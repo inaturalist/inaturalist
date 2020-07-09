@@ -2,7 +2,7 @@ class FlowTasksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_required, :only => [:index]
   before_filter :load_flow_task, :only => [:show, :destroy, :run]
-  before_filter :require_owner, :only => [:destroy, :run]
+  before_filter :require_owner, :only => [:destroy, :run, :show]
   
   def index
     @flow_tasks = FlowTask.order("id desc").paginate(:page => params[:page])
@@ -40,7 +40,7 @@ class FlowTasksController < ApplicationController
         end
         format.json { render :json => @flow_task }
       else
-        msg = "Failed to save task: " + @flow_task.errors.full_messages.to_sentence
+        msg = I18n.t(:failed_to_save_record_with_errors, errors: @flow_task.errors.full_messages.to_sentence )
         format.html do
           flash[:error] = msg
           redirect_back_or_default('/')
@@ -75,22 +75,22 @@ class FlowTasksController < ApplicationController
   
   def destroy
     @flow_task.destroy
-    flash[:notice] = "Flow task destroyed"
-    redirect_to flow_tasks_path
+    flash[:notice] = I18n.t( :task_deleted )
+    redirect_back_or_default flow_tasks_path
   end
   
   private
   
   def load_flow_task
     return true if @flow_task = FlowTask.find_by_id(params[:id])
-    flash[:error] = "That task doesn't exist"
+    flash[:error] = t( "views.shared.not_found.sorry_that_doesnt_exist" )
     redirect_to flow_tasks_path
     false
   end
 
   def require_owner
-    unless logged_in? && current_user.id == @flow_task.user_id
-      flash[:error] = "You don't have permission to do that"
+    unless logged_in? && ( current_user.id == @flow_task.user_id || current_user.is_admin? )
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to "/"
     end
   end

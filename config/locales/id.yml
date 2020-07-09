@@ -56,6 +56,8 @@ id:
     other: "<a href='%{url}'>%{count} spesies</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count} Saran Difilter Berdasarkan:"
+  x_taxa:
+    other: "%{count} Taksa"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> takson teramati"
   x_research_grade_observations_html:
@@ -76,6 +78,26 @@ id:
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
   a_member_of_taxon_html: "anggota dari %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Tentang
   about_blocking: Tentang pemblokiran
   about_charts: Tentang Grafik
@@ -184,6 +206,8 @@ id:
   add_life_stage_larva_annotation: 'Tambah catatan "Fase Hidup: Larva"'
   add_life_stage_juvenile_annotation: 'Tambah catatan "Fase Hidup: Juvenil"'
   add_life_stage_egg_annotation: 'Tambah catatan "Fase Hidup: Telur"'
+  #As in a Guide Section
+  add_section: Tambahkan Bagian
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
   add_some_now: Tambahkan beberapa sekarang
   add_tag: Tambah Penanda
@@ -222,6 +246,27 @@ id:
   all_photos: Semua foto
   all_places: "Semua tempat"
   all_projects: Semua proyek
+  all_rank_added_to_the_database:
+    phylum: Semua phylum dimasukkan ke database
+    subphylum: Semua subphylum dimasukkan ke database
+    superclass: Semua superclass dimasukkan ke database
+    class: Semua class dimasukkan ke database
+    subclass: Semua subclass dimasukkan ke database
+    infraclass: Semua infraclass dimasukkan ke database
+    superorder: Semua superorder dimasukkan ke database
+    order: Semua order dimasukkan ke database
+    suborder: Semua suborder dimasukkan ke database
+    infraorder: Semua infraorder dimasukkan ke database
+    superfamily: Semua superfamily dimasukkan ke database
+    epifamily: Semua epifamily dimasukkan ke database
+    family: Semua family dimasukkan ke database
+    subfamily: Semua subfamily dimasukkan ke database
+    supertribe: Semua supertribe dimasukkan ke database
+    tribe: Semua tribe dimasukkan ke database
+    subtribe: Semua subtribe dimasukkan ke database
+    genus: Semua genus dimasukkan ke database
+    genushybrid: Semua genushybrid dimasukkan ke database
+    subgenus: Semua subgenus dimasukkan ke database
   all_rights_reserved: Hak cipta dilindungi undang-undang
   all_taxa:
     rank:
@@ -245,6 +290,7 @@ id:
     ray_finned_fishes: ikan bersirip cahaya
     reptiles: reptil
     life: kehidupan
+  all_taxa_: Semua Taksa
   all_taxa_in_this_guide: Semua taksa dalam panduan ini
   all_taxonomic_groups: "&laquo; Semua grup taksonomi"
   all_updates: Semua Pembaruan
@@ -252,17 +298,24 @@ id:
   all_your_observations_will_default_to_this_time_zone: Semua pengamatan Anda otomatis akan masuk ke zona waktu ini kecuali Anda menentukan lain.
   #Option to allow any taxa on a list
   allow_any: mengizinkan semua
+  allow_curator_access: Izinkan akses kurator
   allow_project_curators_to_view_your_private_coordinates: Memungkinkan kurator proyek untuk melihat koordinat pribadi Anda
   allowed_establish_means_values: Nilai rata-rata pembuatan yang diizinkan
   allowed_html: HTML yang diizinkan
   allowed_occurrence_status_values: Status terjadinya nilai yang diizinkan
   allowed_values: Nilai yang diizinkan
+  almost_there_: Hampir Sampai...
   alphabetical: Alfabet
   alphabetical_order: Urutan abjad
+  already_have_an_account_log_in_html: Sudah memiliki akun? <strong>Masuk</strong>
   amphibians: Amfibi
+  ancestor_taxon: Takson Induk
   and: dan
   and_other_taxa: "& amp;Taxa Lainnya"
+  android: Android
   animals: Binatang
+  annotation: Anotasi
+  annotations: Anotasi
   announcement_was_successfully_created: Pengumuman berhasil dibuat.
   announcement_was_successfully_updated: Pengumuman berhasil diperbarui.
   announcements: Pengumuman
@@ -413,7 +466,6 @@ id:
   change_descriptions:
     split: Takson lama dibagi menjadi beberapa taksa baru
     merge: Beberapa taksa lama disatukan dalam satu takson baru
-    swap: 1-to-1 merubah nama
     drop: Konsep takson sangat tidak valid, dipelihara untuk tujuan sejarah atau kompatibilitas pasangan
     stage: Siapkan konsep aktif untuk rilis sebagai bagian dari kelompok perubahan
   change_geoprivacy: 'Ubah privasi geografi'
@@ -540,6 +592,14 @@ id:
     sex: Jenis Kelamin
     male: Laki-laki
     female: Perempuan
+    plant_phenology: Fenologi Tumbuhan
+    fruiting: Berbuah
+    adult: Dewasa
+    nymph: Nimfa
+    egg: Telur
+    alive: Hidup
+    dead: Mati
+    cannot_be_determined: Tidak Dapat Ditentukan
   controls: Kontrol
   coordinate_systems: Sistem koordinat
   coordinates: Koordinat
@@ -707,6 +767,7 @@ id:
   edit_field: Merubah halaman
   edit_license: Mengubah lisensi
   edit_multiple_dates: Mengedit beberapa tanggal
+  edit_multiple_descriptions: Mengedit beberapa deskripsi
   edit_multiple_locations: Mengedit beberapa lokasi
   edit_multiple_species: Mengedit beberapa spesies
   edit_notes: Merubah catatan
@@ -784,6 +845,7 @@ id:
   except: kecuali
   existing_flags: Tanda yang ada
   exit_full_screen: "Keluar dari layar penuh"
+  explore: Jelajahi
   export: Ekspor
   export_observations: Ekspor pengamatan
   export_with_private_coordinates: Ekspor dengan koordinat pribadi
@@ -1351,6 +1413,7 @@ id:
   no_one_has_added_any: Tidak ada orang yang ditambahkan pada setiap catatan untuk tempat ini
   no_one_has_been_invited_yet: Belum ada orang yang diundang
   no_one_posted_anything_yet: Belum ada orang yang memposting apapun!
+  no_photo: Tidak ada foto
   no_photos: Tidak ada foto
   no_places_available: Tidak ada tempat yang tersedia
   no_post_yet: Belum ada postingan!
@@ -1687,12 +1750,18 @@ id:
     new_zealand: Selandia Baru
     north_africa: Afrika Utara
     north_america: Amerika Utara
+    north_korea: Korea Utara
+    norway: Norwegia
     palestine: Palestina
+    papua_new_guinea: Papua Nugini
     poland: Polandia
     republic_of_congo: Kongo Republik
     sao_tome_and_principe: Sao Tome dan Principe
     saudi_arabia: Arab Saudi
+    solomon_islands: Solomon, Kepulauan
+    south_africa: Afrika Selatan
     south_america: Amerika Selatan
+    south_korea: Korea Selatan
     spain: Spanyol
     sweden: Swedia
     syria: Suriah
@@ -2087,6 +2156,7 @@ id:
   subscribe_to_this: Berlangganan pada ini
   subscriptions_arent_available_for: Langganan tidak tersedia untuk tempat tanpa batas.
   successfully_changed_your_password: Berhasil mengubah sandi Anda.
+  suggest_an_identification: sarankan identifikasi
   suggest_or_require_that: Menyarankan atau mengharuskan kontributor mengisi bidang ini untuk pengamatan yang merekatambahkan untuk proyek Anda.
   summary: Ringkasan
   suspend_user: menangguhkan pengguna
@@ -2266,6 +2336,9 @@ id:
   upload_a_csv_file_with_observation: |
     Unggah file CSV dengan data pengamatan. Jika Anda memiliki data dalam spreadsheet atau database, ini mungkin adalah cara untuk memulai.
   uploaded_by: Diunggah oleh
+  uploader:
+    tooltips:
+      add: Tambah pengamatan
   url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber daya eksternal"
   url_of_this_taxon_on_the_source_website: URL pada takson ini pada sumber website
   US_states: Negara Bagian Amerika Serikat
@@ -2334,6 +2407,7 @@ id:
   we_support_flickr: Saat ini kami mendukung Flickr untuk hosting gambar dan berharap untuk menambahkan gambar lain host lama.
   welcome: Selamat datang
   welcome_back: Selamat datang kemabli
+  welcome_back!: Selamat Datang Kembali!
   what: Apa
   what_did_you_see: Apa yang dilihat?
   what_did_you_see?: <em>Apa</em> yang dilihat?
@@ -2608,6 +2682,9 @@ id:
         invite_only_description: |
           Keanggotaan dalam proyek ini adalah dengan undangan saja. Jika Anda ingin bergabung, silahkan hubungi salah satu kurator di bawah ini dan meminta
           undangan.
+      new:
+        project_details: Rincian proyek
+        project_summary: Ringkasan Proyek
       project_user_curator_coordinate_access_labels:
         none: Tidak satupun
       curator_coordinate_access_label: |
@@ -2626,6 +2703,19 @@ id:
       not_found:
         sorry_that_doesnt_exist: Maaf, itu tidak ada!
         even_our_dedicated_search_mole_couldnt: Bahkan pencarian khusus kami tidak bisa menemukan apa-apa!
+    stats:
+      year:
+        translators_title: Penerjemah
+    taxa:
+      show:
+        frequency:
+          "Alive or Dead=Dead": Mati
+          "Plant Phenology=Flowering": Berbunga
+          "Plant Phenology=Fruiting": Berbuah
+          "Life Stage=egg": Telur
+          "Life Stage=larva": Larva
+          "Life Stage=nymph": Nimfa
+          "Life Stage=adult": Dewasa
     taxon_names:
       taxon:
         about_html: |
@@ -2637,6 +2727,12 @@ id:
         curators_can_see: |
           Hanya pengingat, kurator proyek dapat melihat pribadi dan dikaburkan koordinat pengamatan yang Anda tambahkan ke proyek ini.
       edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Komentar
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikasi
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Pesan
         project_addition_preferences:
           any: Apa saja
           joined: Proyek yang telah Anda bergabung
@@ -2872,6 +2968,8 @@ id:
         name_provider: Nama penyedia
         source_url: Sumber URL
         source_identifier: Sumber identifier
+      user:
+        email: Surel
     errors:
       models:
         guide:

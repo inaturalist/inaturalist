@@ -622,7 +622,6 @@ zh-TW:
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
     merge: 數個舊物種分類合併成一個新物種分類群
-    swap: 一對一的名稱修改
     drop: 在歷史用途或與合作者間兼容性的維護上，物種分類的概念完全無效
     stage: 準備一個無作用概念來作為更改群組時釋出的部份
   change_geoprivacy: '更改位置隱私設定'
@@ -1075,6 +1074,7 @@ zh-TW:
   edit_field: 編輯欄位
   edit_license: 編輯許可協議
   edit_multiple_dates: 編輯多個日期
+  edit_multiple_descriptions: 編輯多項描述
   edit_multiple_locations: 編輯多個位置
   edit_multiple_species: 編輯多個物種
   edit_notes: 編輯註解
@@ -4454,8 +4454,6 @@ zh-TW:
         vertical: 垂直方向
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
-        create_a_query_desc_html: |
-          創建一份觀察查詢，就像您會前往到網站的某處。您可剪貼來自於其它網站裡的觀察 URL。您必須指明出<strong>物種分類</strong>、<strong>地點</strong>、<strong>用戶</strong>、<strong>專案</strong>，或是<strong>搜尋查詢</strong>。
         ident_by_user_desc_html: |
           目前由 %{user} 所做鑑定的欄位
         query_placeholder: "挑選以下查詢參數或貼在一個觀察 URL 上"
@@ -5307,7 +5305,7 @@ zh-TW:
         monthly_supporter: 每月支助者
         monthly_supporter_desc_html: |
           iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
-          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS FIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
+          iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
         muting_desc_html: |
           <p>
           禁言某人會防止您接受到到對方的通知，包含評論您的觀察、

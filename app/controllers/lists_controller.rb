@@ -212,9 +212,9 @@ class ListsController < ApplicationController
     end
     
     respond_to_delayed_task(
-      :done => "List reloaded from observations",
-      :error => "Something went wrong reloading from observations",
-      :timeout => "Reload timed out, please try again later"
+      done: t(:list_reloaded_from_observations),
+      error: t(:doh_something_went_wrong),
+      timeout: t(:reload_timed_out)
     )
   end
   
@@ -230,9 +230,9 @@ class ListsController < ApplicationController
     end
     
     respond_to_delayed_task(
-      :done => "List rules re-applied",
-      :error => "Something went wrong re-applying list rules",
-      :timeout => "Re-applying list rules timed out, please try again later"
+      done: t(:list_rules_reapplied),
+      error: t(:doh_something_went_wrong),
+      timeout: t(:request_timed_out)
     )
   end
   

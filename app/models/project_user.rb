@@ -82,10 +82,14 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def update_project_observations_curator_coordinate_access
-    project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
-      po.set_curator_coordinate_access( force: true )
-      unless po.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+    Observation.search_in_batches( project_id: project_id, user_id: user_id ) do |batch|
+      Observation.preload_associations( batch, [:project_observations] )
+      project_observations = batch.collect{|o| o.project_observations.select{|po| po.project_id == project_id }}.flatten
+      project_observations.each do |po|
+        po.set_curator_coordinate_access( force: true )
+        unless po.save
+          Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+        end
       end
     end
   end

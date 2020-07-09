@@ -4,6 +4,11 @@ cs:
     few: '%{count} komentáře'
     many: '%{count} komentářů'
     other: '%{count} komentářů'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentář'
+    few: '<span class="count">%{count}</span> komentáře'
+    many: '<span class="count">%{count}</span> komentářů'
+    other: '<span class="count">%{count}</span> komentářů'
   x_faves:
     one: '%{count} oblíbený'
     few: '%{count} oblíbené'
@@ -290,11 +295,17 @@ cs:
   add: Vložit
   add_a_batch_of_observations: Vložit soubor sledování
   add_a_batch_of_taxa: Vložit soubor taxonů
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Přidat odrážkový seznam
   add_a_comment: Vložit komentář
   add_a_field: Vložit pole
   add_a_flag: Přidat značku
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Přidat odkaz
   add_a_name: Vložit jméno
   add_a_new_change_group: Přidat novou skupinu změn
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Přidat číslovaný seznam
   add_a_single_observation: Vložit jediné pozorování
   add_a_taxon: Vložit taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -317,6 +328,8 @@ cs:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Přidejte položku
   add_batch: Vložit skupinu
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Přidat tučný text
   add_comma_separated_tags: "Vložit tagy oddělené čárkou"
   add_comment: Vložit komentář
   add_conservation_status: vložit status ochrany
@@ -329,6 +342,8 @@ cs:
   add_link: Přidat odkaz
   add_higher_level_taxon: Vložit taxon vyššího řádu (např. "ptáci")
   add_id: Vložit ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Přidat text v kurzívě
   add_new_lexicon: Vložit nový pojem
   add_new_photos_by_their_ids: Vložit nové fotografie podle jejich ID na Flicekru (musí být pod licencí Creative Commons!)
   add_new_place: Vložit nové místo
@@ -752,6 +767,8 @@ cs:
   body: Tělo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: tučný text
   bounding_box: Ohraničení
   breadcrumbs: Strouhanka
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -808,7 +825,6 @@ cs:
   change_descriptions:
     split: Rozdělení starého taxonu do několika nových taxonů
     merge: Sloučení několika starých taxonů do jednoho nového taxonu
-    swap: Změna názvu 1 za 1
     drop: Koncept taxonu zcela neplatný, udržovaný pro historické účely nebo kompatibilitu s partnerem
     stage: Připravit neaktivní koncept pro spuštění v rámci skupiny změn
   change_geoprivacy: 'Změnit geosoukromí'
@@ -906,6 +922,7 @@ cs:
   comment_deleted: komentář smazán
   comments: Komentáře
   comments_by_me: Moje komentáře
+  comments_have_been_disabled: Komentáře byly zakázány
   comments_on: Komentáře o
   comments_on_my_observations: Komentáře k mým pozorováním
   commercial_solicitation: Komerční žádost, neplatné odkazy atd.
@@ -1064,6 +1081,7 @@ cs:
   create_a_query: Vytvořit dotaz
   create_an_account: Vytvořit účet
   create_an_atlas: Vytvořit atlas
+  create_export: Vytvořit export
   create_new_taxon: Vytvořit nový taxon
   create_observations: Založit pozorování
   created: Vytvořeno
@@ -1196,13 +1214,37 @@ cs:
   deviation: Odchylka
   devise:
     failure:
+      already_authenticated: 'Již jste přihlášeni.'
+      unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
+      invalid: 'Neplatný e-mail nebo heslo.'
+      invalid_token: 'Neplatný ověřovací token.'
       user:
         suspended: Váš účet byl pozastaven
+    sessions:
+      signed_in: 'Přihlášení proběhlo úspěšně.'
+      signed_out: 'Odhlášení proběhlo úspěšně.'
+    passwords:
+      send_instructions: 'Během několika minut obdržíte e-mail s pokyny pro obnovení hesla.'
+      updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.'
+      updated_not_active: 'Vaše heslo bylo úspěšně změněno.'
+      send_paranoid_instructions: "Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla."
+      no_token: "Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL."
+    registrations:
+      signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
+      updated: 'Účet byl úspěšně aktualizován.'
+      destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Pokyny k potvrzení'
+      reset_password_instructions:
+        subject: 'Pokyny pro obnovení hesla'
   discoveries: Objevy
   did_not_send_invitations_because: Pozvánka těmto nebyla odeslána, protože...
   did_you_mean: 'Mysleli jste'
   did_you_photos_flickr?: Nahráli jste nějaké fotografie na Flickr?
   disable: Odepřít
+  disable_comments: Zakázat komentáře
+  disable_comments_desc: Zabránit lidem přidávat nové komentáře
   disagree_: Nesouhlasím
   disconnect_provider: "Odpojit %{provider}"
   display_link_to_checklist: Zobrazit odkaz na seznam projektu ze stránky projektu
@@ -1261,6 +1303,7 @@ cs:
   edit_field: Editovat pole
   edit_license: Editovat licenci
   edit_multiple_dates: Editovat více dat
+  edit_multiple_descriptions: Editovat více popisků
   edit_multiple_locations: Editovat více míst
   edit_multiple_species: Editovat více druhů
   edit_notes: Editovat poznámky
@@ -1384,6 +1427,7 @@ cs:
   failed_to_find_your_location: Vaše lokalita nebyla nalezena.
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
   failed_to_save_record: "Nelze uložit záznam. Prosím, zkuste to znovu o chvíli později."
+  failed_to_save_record_with_errors: "Chyba při ukládání modelu: %{errors}"
   'false': 'Nepravda'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Oblíbené
@@ -1405,6 +1449,7 @@ cs:
   fields_can_only_be_edited_by_the_people_who: Pole mohou upravovat pouze osoby, které je vytvořily, a kurátoři stránek
   fields_merged: Sloučená pole
   file: Soubor
+  file_size: Velikost souboru
   file_should_be_in_the_following_format: "Soubor by měl být v následujícím formátu: název taxonu, popis"
   fill_out_project_observation_fields: Vyplnit pole pozorování v projektu
   fill_out_your_profile: vyplnit váš profil
@@ -1513,12 +1558,12 @@ cs:
   follow_user: "Sledovat %{user}"
   followed_projects: Sledované projekty
   followers: Sledovatelé
-  following: sledující
+  following: Sledovaní
   following_x_people:
-    one: 'Sledující 1 osobu'
-    few: 'Sledující %{count} lidí'
-    many: 'Sledující %{count} lidí'
-    other: 'Sledující %{count} lidi'
+    one: 'Sleduje 1 osobu'
+    few: 'Sleduje %{count} osob'
+    many: 'Sleduje %{count} osob'
+    other: 'Sleduje %{count} osob'
   for_a_taxon: pro taxon
   formatting: Formátování
   forgot_your_password: Zapomněli jste heslo?
@@ -1735,6 +1780,8 @@ cs:
   insects: hmyz
   insect_life_stage: Stádium života hmyzu
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Vložit citaci
   interactions: Interakce
   internal_server_error: Interní chyba serveru
   internal_taxon_including_descendants: Vnitřní taxon (včetně potomků)
@@ -1759,6 +1806,8 @@ cs:
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, nebo urážlivé?'
   is_this_place_a_duplicate: Je toto místo duplikát?
   it_can_now_be_used_for_research: Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: text v kurzívě
   item_flagged_notice_html: |
     Toto bylo označeno jako spam a není již viditelné. Vám se text zobrazuje, protože jste jeho autorem, nebo správce stránek.
     Pokud se domníváte, že jde o chybu, <a href="mailto:%{help_email}" class="contact">napište nám</a>.
@@ -1908,9 +1957,13 @@ cs:
   linked_flickr_automatically: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Flickr, automaticky znovu propojíme váš účet na %{site_name} s účtem na Flickru. Zdá se rozumné, že pokud používáte Flickr, budete chtít importovat fotky z Flickru, že?"
   linked_flickr_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Flickru, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Flickr oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Flickru, s kterým chcete propojit %{site_name}."
   linked_flickr_password_html: "<strong>Nikdy vás nebudeme žádat o vaše heslo na Flickr</strong> (Flickr o něj však žádat může, zkontrolujte url a ověřte si, že se jedná o Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: text odkazu
   linkedin: LinkedIn
   list: Seznam
   list_deleted: Seznam byl smazán.
+  list_reloaded_from_observations: Seznam znovu načten z pozorování
+  list_rules_reapplied: Pravidla seznamu byla znovu použita
   list_saved: Seznam byl uložen.
   list_tooltip: Zobrazit jako seznam
   list_updated: Seznam aktualizovánǃ
@@ -1994,6 +2047,10 @@ cs:
   location_specified: Umístění určeno
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
   log_in: Přihlásit se
+  log_in_or_sign_up_to_add_comments_html: |
+    Pro přidávání komentářů se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Pro přidávání identifikací se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
   log_scale_label: Protokol
   login_slash_username: Prihlášení / uživatelské jméno
   logo:
@@ -2159,7 +2216,7 @@ cs:
   most_observations: Nejvíce pozorování
   most_recent_observation_by_date_observed: Nejnovější ověřitelné pozorování podle data pozorování
   most_species: Nejvíce druhů
-  most_observed_species: Nejvíce pozorovaných druhů
+  most_observed_species: Nejvíce pozorované druhy
   most_observed_introduced_species: Nejvíce pozorovaných nepůvodních druhů
   most_observed_threatened_species: Nejvíce pozorovaných ohrožených druhů
   move_input_children_to_output?: Přesunout děti na výstup?
@@ -2675,6 +2732,9 @@ cs:
   photo_urls_repaired: URL fotky opravena
   photos_chosen_for_this_taxon: Fotky vybrané pro tento taxon
   photos_from: Fotky z
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotografie uzamčeny
+  photos_locked_desc: Pouze zaměstnanci mohou změnit výchozí fotografie pro tento taxon
   photos_of_taxon_html: "Fotky %{taxon}"
   photos_or_sounds: Fotky nebo zvuky
   photos_or_sounds?: Fotky nebo zvuky?
@@ -3207,6 +3267,9 @@ cs:
   project_settings: Nastavení projektu
   project_start_time_datetime: "Čas zahájení: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, který neobsahuje tato pozorování
+  project_type_description: |
+    Posouzení slouží ke spolupráci na souboru posouzení druhů, obvykle
+    za účelem posouzení důležitosti ochrany.
   project_user_cannot_be_found: Projektový uživatel nebyl nalezen
   project_user_was_invalid: "Projektový uživatel byl neplatný: %{project_user}"
   project_was_successfully_created: Projekt byl úspěšně vytvořen.
@@ -3295,6 +3358,7 @@ cs:
   receive_updates_from_this_project: Dostávat aktualizace z tohoto projektu
   recent: Nedávné
   recent_evidence_of_organism: Nedávné důkazy o organismu
+  recent_exports: Nedávné exporty
   recent_new_users: Noví uživatelé
   recent_observations: Nedávná pozorování
   recent_observations_: Nedávná pozorování
@@ -3390,6 +3454,7 @@ cs:
   resolved_by: Vyřešil/a
   resolved_by_user_on_date_html: 'Vyřešeno: %{user} v %{date}'
   resolver_said_x_html: '<span class="meta">%{resolver} řekl/a:</span> "%{x}"'
+  restart: Restart
   restore: Obnovit
   restoring: Obnovování...
   results: výsledky
@@ -3728,6 +3793,7 @@ cs:
   take_me_flickr!: Ano, chci jít na Flickr!
   target_list_alert: Jste si jisti, že jste se pokusili pozorovat všechny druhy, na které se vztahuje váš cílový seznam? Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali, bude interpretováno jako nepřítomnost, takže je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít.
   target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
+  task_deleted: Úkol smazán
   taxa: Taxony
   taxa_with_unknown_relationships: Taxony s neznámými vztahy
   taxa_info: Informace o taxonu
@@ -4090,6 +4156,7 @@ cs:
   unresolve: Nevyřešeno
   unreview_all: Označit všechny za nezkontrolované
   unsubscribe: Zrušit odebírání
+  unsubscribe_from_emails_like_this: Odhlásit se z odběru podobných e-mailů
   unsuspend_user: Zrušit vyloučení uživatele
   upcoming_bioblitzes: Nadcházející bioblitzy
   update: Aktualizovat
@@ -4406,6 +4473,9 @@ cs:
     many: "%{count} pozorování selhala"
     other: "%{count} pozorování selhala"
   x_of_y: "%{x} z %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} z %{count} potvrzeno"
     few: "%{x} z %{count} potvrzeno"
@@ -4483,6 +4553,7 @@ cs:
   you_cant_do_that_for_the_default_check_list_place: Tento krok nemůžete se základním seznamem místa provést!
   you_cant_flag_that: Toto nemůžete označit
   you_cant_leave_a_project_you_created: Nemůžete odejít z projektu, který jste vytvořili.
+  you_cant_merge_standard_places: Standardní místa nelze sloučit
   you_cant_rotate_photos_hostde_outside: "Nemůžete otáčet fotky uložené mimo %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Nemůžete odstranit taxony zapojené do změn taxonů nebo taxony, které se podílejí na změnách taxonu
   you_curate_a_project_that_contains_this_observation: Organizujete projekt, který obsahuje toto pozorování
@@ -4554,6 +4625,7 @@ cs:
   your_recent_projects: Vaše nedávné projekty
   your_relationships: Vaše vztahy
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} pro pokračování vyžaduje, abyste schválili další povolení od %{provider}:"
+  your_subscriptions_to_this_place: Vaše odběry k tomuto místu
   your_tags: Vaše štítky
   yours: Váš
   youre_not_following_anyone: |-
@@ -4901,11 +4973,13 @@ cs:
       export:
         choose_columns_desc: Vyberte sloupce, které chcete exportovat
         create_a_query_desc_html: |
-          Vytvořte dotaz k pozorování stejným způsobem jako jinde na stránce. Také můžete zkopírovat a vložit URL pozorování z jiné části stránky. Musíte uvést
-          <strong>taxon</strong>, <strong>místo</strong>, <strong>uživatele</strong>, 
-          <strong>projekt</strong> nebo <strong>zadání hledání</strong>.
+          Vytvořte dotaz k pozorování stejným způsobem jako jinde na stránce. Také můžete zkopírovat a vložit URL pozorování z jiné části stránky. Výsledkem vašeho dotazu by <strong>nemělo být více než 200 000 pozorování </strong>.
+        export_in_progress_notice_html: |
+          Právě <a href="%{url}">probíhá export</a>. Budete muset počkat na dokončení,
+          než budete moci vytvořit další export.
         ident_by_user_desc_html: |
           Sloupce k aktuální identifikaci uživatelem %{user}
+        limit_alert: Export bude příliš velký. Změňte filtrování, aby bylo výsledkem méně než 200 000 pozorování.
         query_placeholder: "Zvolte parametry dotazu níže nebo vložte URL pozorování"
         taxon_extras_help_html: "Poznámka: tyto sloupce zpomalí generování vašeho exportu"
         geo_help_html: |
@@ -5301,6 +5375,7 @@ cs:
         revoke_observations_desc: |
           Pokud odcházíte jen proto, že nechcete, aby kurátoři projektu viděli vaše soukromé souřadnice.
       edit:
+        admins_must_be_existing_members: Administrátoři musí být existujícími členy projektu.
         aggregation_pending: Seskupení ve frontě
         new_place_desc_html: |
           Zkuste si projít
@@ -5357,6 +5432,7 @@ cs:
           </p>
         rules:
           captive: žije v zajetí/pěstováno
+          coordinates_shareable_by_project_curators: mají viditelné souřadnice pro kurátory projektu
           georeferenced: mají souřadnice
           has_a_photo: mít fotku
           has_a_sound: mají zvuk
@@ -5919,7 +5995,7 @@ cs:
         monthly_supporter: Měsíční podporovatel
         monthly_supporter_desc_html: |
           měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy
-          IRS FIN 94-1156258) na podporu neziskových operací
+          IRS EIN 94-1156258) na podporu neziskových operací
           stránek iNaturalist a iNaturalist sítě.
           <a href="%{url}">Klikněte zde, abyste se stali Měsíčním podporovatelem</a>.
           Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
@@ -6501,11 +6577,21 @@ cs:
         occurrence_status_level: Úroveň statusu výskytu
         establishment_means: Způsob vzniku
       observation:
+        description: Poznámky
         geo_x: Východní směr
         geo_y: Nic
         observed_on: datum pozorování
       observation_field_value:
         value: 'Hodnota'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Ve frontě
+        #Date/time the task began processing
+        started_at: Spuštěno
+        #Date/time the task finished processing
+        finished_at: Dokončeno
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Vstupy
       post:
         title: Název
         body: Obsah
@@ -6663,6 +6749,13 @@ cs:
             observation_id:
               user_does_not_accept_fields_from_others: uživatel nepřijímá pole od ostatních
               user_only_accepts_fields_from_site_curators: uživatel přijímá pole pouze od kurátorů stránky
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Export nemůže obsahovat více než 200 000 pozorování
+              must_have_query: Dotaz nemůže být prázdný
+            user_id:
+              already_has_an_export_in_progress: export již probíhá
         place:
           attributes:
             place_geometry:
@@ -6671,6 +6764,8 @@ cs:
               contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
         post:
           attributes:
+            parent:
+              prefers_no_comments: neumožňuje nové komentáře
             user:
               must_be_on_site_long_enough: |
                 pro zveřejnění je nutná registrace před více než 24 hodinami. Objevuje se nám tady hodně spamů a tohle je způsob, jak se proti nim bránit. Můžete si uložit koncept, a když budete na stránce i příští den, budete ho moci zveřejnit.

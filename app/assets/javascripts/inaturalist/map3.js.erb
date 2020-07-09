@@ -1126,7 +1126,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   // iconic colors at close zooms
   if ( options.color === "iconic" ) {
     delete options.color;
-  } else {
+  } else if ( options.mapStyle !== "heatmap" ) {
     options.color = options.color || "#FF4500"; // default the points to the same color as the grid
   }
   if( options.taxon ) { options.taxon_id = options.taxon.id; }

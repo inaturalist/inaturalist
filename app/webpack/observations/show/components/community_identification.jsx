@@ -58,7 +58,14 @@ class CommunityIdentification extends React.Component {
   }
 
   communityIDOverridePanel( ) {
-    if ( !( this.userIsObserver && this.ownerID && this.communityIDIsRejected ) ) {
+    // We're not including the owner ID requirement here b/c if you want to
+    // opt-in to the CID, that shouldn't require an opinion of your own, e.g.
+    // you opted out, withdrew your ID, and now you want to cede to the
+    // community again
+    if ( !(
+      this.userIsObserver
+      && this.communityIDIsRejected
+    ) ) {
       return ( <div /> );
     }
     return (
@@ -120,6 +127,9 @@ class CommunityIdentification extends React.Component {
     // must be observer, IDer, must not have opted out already
     if ( !(
       this.userIsObserver
+      // The observer must have an ID b/c we don't want people rejecting the CID
+      // to make the obs not associated with *any* taxon. If you want to reject
+      // it, you need to have an opinion.
       && this.ownerID
       && observation.taxon
       && !this.observationOptedOut
@@ -589,7 +599,7 @@ class CommunityIdentification extends React.Component {
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
-            { loggedIn && !observation.communityTaxon ? (
+            { loggedIn && !observation.communityTaxon && (
               <a
                 href={compareLink}
                 className="linky compare-link"
@@ -602,7 +612,7 @@ class CommunityIdentification extends React.Component {
               >
                 { I18n.t( "compare" ) }
               </a>
-            ) : null }
+            ) }
             <button
               type="button"
               className="btn btn-nostyle linky"

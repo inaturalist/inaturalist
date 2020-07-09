@@ -2,6 +2,9 @@ es:
   x_comments:
     one: '1 comentario'
     other: '%{count} comentarios'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> comentario'
+    other: '<span class="count">%{count}</span> comentarios'
   x_faves:
     one: '1 favorito'
     other: '%{count} favoritos'
@@ -679,7 +682,6 @@ es:
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
     merge: Varios taxones antiguos fueron agrupados en un taxón nuevo
-    swap: Cambio de nombres 1-a-1
     drop: El concepto de taxón es completamente inválido, solo se mantiene por razones históricas o por compatibilidad con otros sitios
     stage: Prepara un concepto inactivo como parte de un cambio de taxonomía de un grupo de especies.
   change_geoprivacy: 'Cambiar geoprivacidad'
@@ -780,6 +782,7 @@ es:
   comment_deleted: Comentario eliminado
   comments: Comentarios
   comments_by_me: Mis comentarios
+  comments_have_been_disabled: Se han desactivado los comentarios
   comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar, etc.
@@ -940,6 +943,7 @@ es:
   create_a_query: Crea una consulta
   create_an_account: Crea una cuenta
   create_an_atlas: Crear un atlas
+  create_export: Crear exportación
   create_new_taxon: Crear un nuevo taxón
   create_observations: Crear observaciones
   created: Creado
@@ -1072,13 +1076,37 @@ es:
   deviation: Desviación
   devise:
     failure:
+      already_authenticated: 'Ya has iniciado sesión.'
+      unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
+      invalid: 'El correo electrónico o la contraseña no son válidos'
+      invalid_token: 'Token de autenticación inválido.'
       user:
         suspended: Tu cuenta ha sido suspendida
+    sessions:
+      signed_in: 'Sesión iniciada correctamente.'
+      signed_out: 'Has cerrado sesión correctamente.'
+    passwords:
+      send_instructions: 'Recibirás un correo con instrucciones sobre cómo modificar tu contraseña en unos pocos minutos.'
+      updated: 'Tu contraseña se ha modificado correctamente. Has iniciado sesión.'
+      updated_not_active: 'Tu contraseña se ha modificado correctamente.'
+      send_paranoid_instructions: "Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos."
+      no_token: "No puedes acceder esta página a no ser que provenga desde un correo electrónico de cambio de contraseña. Si vienes desde un correo electrónico de cambio de contraseña, por favor asegúrate de utilizar la dirección URL completa provista."
+    registrations:
+      signed_up: '¡Bienvenido/a! Te has registrado con éxito.'
+      updated: 'Has actualizado tu cuenta correctamente.'
+      destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instrucciones de confirmación'
+      reset_password_instructions:
+        subject: 'Instrucciones para restablecer la contraseña'
   discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas pues:'
   did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: '¿Has colocado fotos en Flickr?'
   disable: Deshabilitar
+  disable_comments: Desactivar comentarios
+  disable_comments_desc: Evitar que la gente añada nuevos comentarios
   disagree_: No aceptar
   disconnect_provider: "Desconectarse de %{provider}"
   display_link_to_checklist: Mostrar enlace a la lista del proyecto desde la página del proyecto
@@ -1138,6 +1166,7 @@ es:
   edit_field: Edita el campo
   edit_license: Modificar licencia
   edit_multiple_dates: Editar múltiples fechas
+  edit_multiple_descriptions: Editar múltiples descripciones
   edit_multiple_locations: Edita múltiples localizaciones
   edit_multiple_species: Editar múltiples grupos o especies
   edit_notes: Modifica notas
@@ -1174,6 +1203,7 @@ es:
   editing_project: Modificando %{project}
   editing_project_asset: Modificando activos del proyecto para
   editing_subscription_to_x_html: "Editando suscripción para %{x}"
+  editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificando vínculo del taxón
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
   editing_taxon_range: Modificando área del taxón
@@ -1279,6 +1309,7 @@ es:
   fields_can_only_be_edited_by_the_people_who: Los campos solo pueden ser editados por las personas que los crearon y los curadores del sitio.
   fields_merged: Campos combinados
   file: Archivo
+  file_size: Tamaño de archivo
   file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_project_observation_fields: Llena los campos de observación del proyecto
   fill_out_your_profile: completa tu perfil
@@ -1446,6 +1477,7 @@ es:
   got_it!: Entendido
   got_your_data_somewhere_else?: '¿Obtuviste tus datos en otro lugar? Podemos ayudarte.'
   graft: Injertar
+  graft_taxon: Insertar %{taxon}
   grafting_attemps_to_insert_this_taxon: Al injertar se trata de insertar este taxón en nuestro árbol taxonómico, encontrar un taxón padre existente o crear todos los taxones necesarios en el medio con el fin de adjuntarlo a un taxón de más alto nivel existente.
   grant_role: "Se a %{grant} el permiso de %{role}"
   grid: Cuadrícula
@@ -1779,6 +1811,8 @@ es:
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista eliminada.
+  list_reloaded_from_observations: Lista recargada de observaciones
+  list_rules_reapplied: Las reglas se han vuelto a aplicar.
   list_saved: Lista guardada.
   list_tooltip: Muestra la vista de lista
   list_updated: '¡Lista actualizada!'
@@ -2547,6 +2581,9 @@ es:
   photo_urls_repaired: Se repararon los URL de las fotos
   photos_chosen_for_this_taxon: Fotos elegidas para este taxón
   photos_from: Fotos de
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos bloqueadas
+  photos_locked_desc: Sólo el personal de la página puede cambiar las fotos por defecto para este taxón
   photos_of_taxon_html: "Fotos de %{taxon}"
   photos_or_sounds: Fotos o sonidos
   photos_or_sounds?: '¿Fotos o sonidos?'
@@ -3074,6 +3111,8 @@ es:
   project_settings: Configuración de proyectos
   project_start_time_datetime: "Hora de inicio: %{datetime}"
   project_that_does_not_contain_these_observations: Proyecto que no contenga estas observaciones
+  project_type_description: |
+    Las evaluaciones son para colaborar en un conjunto de evaluaciones de especies, generalmente para medir la importancia de la conservación.
   project_user_cannot_be_found: El usuario del proyecto no pudo ser encontrado
   project_user_was_invalid: "El usuario del proyecto no era válido: %{project_user}"
   project_was_successfully_created: El proyecto fue creado satisfactoriamente.
@@ -3162,6 +3201,7 @@ es:
   receive_updates_from_this_project: Recibir actualizaciones de este proyecto
   recent: Recientes
   recent_evidence_of_organism: Evidencia reciente de un organismo
+  recent_exports: Exportaciones recientes
   recent_new_users: Usuarios Nuevos recientes
   recent_observations: Observaciones recientes
   recent_observations_: Observaciones recientes
@@ -3305,6 +3345,8 @@ es:
   scale_colon: "Escala:"
   schemes: Esquemas
   schemes_including: Esquemas que incluyen a
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nombre científico
   search: Buscar
   search_all_fields: buscar todos los campos
   search_by_name_or_email: Búsqueda por nombre o email
@@ -3914,6 +3956,7 @@ es:
   unresolve: No resolver
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
+  unsubscribe_from_emails_like_this: Darse de baja de correos como este.
   unsuspend_user: Reactivar usuario
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar
@@ -4368,6 +4411,7 @@ es:
   your_recent_projects: Tus proyectos recientes
   your_relationships: Tus relaciones
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorice más permisos de %{provider} que proceden:"
+  your_subscriptions_to_this_place: Tus suscripciones a este lugar
   your_tags: Tus etiquetas
   yours: Tuyos
   youre_not_following_anyone: |-
@@ -4698,14 +4742,12 @@ es:
       export:
         choose_columns_desc: Elija las columnas que desea exportar
         create_a_query_desc_html: |
-          Crear una consulta de observación igual que lo haría en otro lugar
-          en el sitio. También puede cortar y pegar una URL observaciones
-          desde otra parte del sitio. Debe especificar un
-          <strong>taxón</strong>, <strong>lugar</strong>, <strong>de
-          usuario</strong>, <strong>proyecto</strong>, o <strong>consulta de
-          búsqueda</strong>.
+          Crear una consulta de observación como lo haría en otro lugar
+          en este sitio. También puede cortar y pegar una URL observaciones
+          desde otra parte del sitio. La búsqueda no devolverá más de <strong>200.000 observaciones</strong>.
         ident_by_user_desc_html: |
           Columnas para la identificación actual por %{user}
+        limit_alert: La exportación será demasiado grande. Hace falta modificar los filtros hasta que haya menos de 200 000 observaciones.
         query_placeholder: "Elija los parámetros de consulta a continuación o pegar en un URL observaciones"
         taxon_extras_help_html: "Nota: estas columnas alentarán la generación de tu exportación"
         geo_help_html: |
@@ -5076,6 +5118,7 @@ es:
         revoke_observations_desc: |
           Si la única razón por la abandonas el projecto es para impedir que los curadores del proyecto continuen viendo tus coordenadas privadas.
       edit:
+        admins_must_be_existing_members: Los administradores deben ser miembros del proyecto.
         aggregation_pending: Agregación pendiente
         new_place_desc_html: |
           Intenta buscar entre <a href="%{places_url}" target="_blank"> nuestros lugares existentes </a> y verifica que le estás dando el nombre correcto. Si realmente no puedes encontrar el lugar que desea, puedes <a href="%{new_place_url}" target="_blank"> crear un nuevo lugar </a>, pero asegúrate que no duplicas un sitio ya existente.
@@ -5084,6 +5127,9 @@ es:
           Un inventario rápido (maratón naturalista) es un evento donde los participantes tratan de observar tantas especies como sea posible en un período determinado de tiempo. Es una manera divertida de introducir a la gente a la biodiversidad, a la vez recogiendo valiosos datos.
           </p>
         change_admin_desc: Elija uno de los curadores del proyecto para que sea el nuevo administrador.
+        change_owner_alert: |
+          Esto eliminará tu capacidad para eliminar este proyecto o transferir
+          de nuevo la propiedad. ¿Quieres continuar?
         cover_desc: "Imagen de banner opcional que aparecerá en la parte superior de la\npágina del proyecto. Debe ser 950px de ancho, menos de 400px de\nalto."
         custom_project_fields_means: "Permite modificar el baner del proyecto, añadir contenido a la parte\nderecha del proyecto y poner un poco de estilo para una mejor visión."
         end_time_desc: "Hora final de tu maratón naturalista. Debe ser inferior a un año después de la hora de inicio"
@@ -5094,6 +5140,8 @@ es:
           Parece que este proyecto puede ser convertido a un <a href="%{url}">Proyecto de colección</a> nuevo.
         last_aggregated_at_desc: |
           Momento en que el agregador acabó de añadir observaciones a este proyecto
+        #Label for button to make another user the owner of a project
+        make_owner: Hacer propietario
         no_curators: |
           No hay curadores del proyecto. Si desea asignar a una nueva persona como administrador, primero debe unirse a este proyecto y entonces lo podrá hacer curador.
         observation_aggregation_desc_html: |
@@ -5672,7 +5720,7 @@ es:
           bajo una <a href=“https://creativecommons.org/licenses/by/3.0/deed.es“>licencia de Atribución No portada</a> (¡que autoreferencia!)
         monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
-          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS FIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
+          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
           <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
         muting_desc_html: |
           <p>
@@ -6006,9 +6054,11 @@ es:
       invalid: no es válido
       less_than: debe ser menor que %{count}
       less_than_or_equal_to: debe ser menor que o igual a %{count}
+      new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
       not_a_number: no es un número
       not_an_integer: debe ser un entero
       odd: debe ser impar
+      only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar su propietario
       record_invalid: 'La validación falló: %{errors}'
       requires_privilege_speech: |
         Debe tener tres observaciones verificables o tres identificaciones
@@ -6143,9 +6193,11 @@ es:
         invalid: no es válido
         less_than: debe ser menor que %{count}
         less_than_or_equal_to: debe ser menor o igual que %{count}
+        new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
         not_a_number: no es un número
         not_an_integer: debe ser un entero
         odd: debe ser impar
+        only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar el propietario del proyecto
         record_invalid: 'Falló la validación: %{errors}'
         requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
@@ -6196,11 +6248,21 @@ es:
         occurrence_status_level: Nivel de estatus de ocurrencia
         establishment_means: Medio de establecimiento
       observation:
+        description: Notas
         geo_x: Hacia el este
         geo_y: Hacia el norte
         observed_on: Fecha de observación
       observation_field_value:
         value: 'valor'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: En cola
+        #Date/time the task began processing
+        started_at: Iniciadas
+        #Date/time the task finished processing
+        finished_at: Finalizadas
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Entradas
       post:
         title: Título
         body: Texto
@@ -6283,9 +6345,11 @@ es:
         invalid: no es válido
         less_than: debe ser menor que %{count}
         less_than_or_equal_to: debe ser menor que o igual a %{count}
+        new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
         not_a_number: no es un número
         not_an_integer: debe ser un número entero
         odd: debe ser impar
+        only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar el propietario del proyecto
         record_invalid: 'Falló la validación: %{errors}'
         requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
@@ -6346,6 +6410,13 @@ es:
             observation_id:
               user_does_not_accept_fields_from_others: el usuario no acepta campos de otros
               user_only_accepts_fields_from_site_curators: el usuario solo acepta campos de los curadores del sitio
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Las exportaciones no pueden contener más de 200 000 observaciones
+              must_have_query: La consulta no puede quedar vacía
+            user_id:
+              already_has_an_export_in_progress: ya hay una exportación en curso
         place:
           attributes:
             place_geometry:
@@ -6354,6 +6425,8 @@ es:
               contains_too_many_observations: contiene demasiadas observaciones para importar
         post:
           attributes:
+            parent:
+              prefers_no_comments: no permite nuevos comentarios
             user:
               must_be_on_site_long_enough: |
                 debe de haberse registrado hace más de 24 horas para publicar. Tenemos gran cantidad de gente que introduce spam, y así los evitamos. De todas formas puedes guardar un borrador, y si estás usando el sitio en un día, podrás publicarlo.

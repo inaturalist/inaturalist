@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
-import PhotoChooserModal from "../components/photo_chooser_modal";
 import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
 import { DragDropContext as dragDropContext } from "react-dnd";
+import PhotoChooserModal from "../components/photo_chooser_modal";
 import { updatePhotos, hidePhotoChooser } from "../../shared/ducks/taxon";
 
 // https://gist.github.com/59naga/ed6714519284d36792ba
 const isTouchDevice = navigator.userAgent.match(
-  /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i ) !== null;
+  /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
+) !== null;
 
 function mapStateToProps( state ) {
-  const taxon = state.taxon.taxon;
+  const { taxon } = state.taxon;
   const chosen = state.taxon.taxonPhotos
     .filter( tp => tp.taxon.id === taxon.id )
     .map( tp => Object.assign( { }, tp.photo, {

@@ -85,6 +85,13 @@ describe Place, "creation" do
     p.save
     expect( p.slug ).to eq "foo"
   end
+
+  it "should not be valid without a place_geometry" do
+    p = Place.make
+    expect( p.place_geometry ).to be_blank
+    expect( p ).not_to be_valid
+    expect( p.errors[:place_geometry] ).not_to be_blank
+  end
 end
 
 describe Place, "updating" do

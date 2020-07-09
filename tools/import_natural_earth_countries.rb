@@ -38,8 +38,10 @@ system_call "unzip -d #{tmp_path} #{tmp_path}/#{filename}"
 # BASH
 
 Place.import_from_shapefile("#{work_path}/#{shapefile_name}", 
-    :name_column => name_column, 
-    :place_type => place_type, 
-    :skip_woeid => true,
-    :test => test,
-    :source => source)
+  name_column: name_column,
+  place_type: place_type,
+  admin_level: Place::COUNTRY_LEVEL,
+  skip_woeid: true,
+  test: test,
+  source: source
+)

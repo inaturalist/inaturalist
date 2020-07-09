@@ -2,6 +2,9 @@ it:
   x_comments:
     one: '1 commento'
     other: '%{count} commenti'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> commento'
+    other: '<span class="count">%{count}</span> commenti'
   x_faves:
     one: '1 preferito'
     other: '%{count} preferiti'
@@ -189,11 +192,17 @@ it:
   add: Aggiungi
   add_a_batch_of_observations: Aggiungi un Gruppo di Osservazioni
   add_a_batch_of_taxa: Aggiungi un Gruppo di Taxa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Aggiungi un elenco puntato
   add_a_comment: Aggiungi un commento
   add_a_field: Aggiungi un campo
   add_a_flag: Aggiungi un contrassegno
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Aggiungi un link
   add_a_name: Aggiungi un nome
   add_a_new_change_group: Aggiungi un Nuovo Gruppo di Modifiche
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Aggiungi un elenco numerato
   add_a_single_observation: Aggiungi una singola osservazione.
   add_a_taxon: Aggiungi un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -216,6 +225,8 @@ it:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aggiungi Risorsa di Progetto
   add_batch: Aggiungi in gruppo
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Aggiungi testo in grassetto
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
   add_comment: Aggiungi un commento
   add_conservation_status: Aggiungi stato di conservazione
@@ -228,6 +239,8 @@ it:
   add_link: Aggiungi collegamento
   add_higher_level_taxon: Aggiungi un livello tassonomico più alto (ad esempio, "uccelli")
   add_id: Aggiungi ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Aggiungi testo in corsivo
   add_new_lexicon: Aggiungi un nuovo lessico
   add_new_photos_by_their_ids: Aggiungi nuove foto con le loro ID Flickr (devono essere in Creative Commons!)
   add_new_place: Aggiungi un nuovo luogo
@@ -624,6 +637,8 @@ it:
   body: Corpo del messaggio
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: Grassetto
   bounding_box: Riquadro di ricerca
   breadcrumbs: Percorso di navigazione
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -680,7 +695,7 @@ it:
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
     merge: Diversi vecchi taxa uniti in un nuovo taxon
-    swap: modifica del nome 1-a-1
+    swap: Sostituisci il taxon in ingresso con il taxon in uscita
     drop: Taxon completamente invalido, mantenuto per scopi storici o compatibilità con i partner
     stage: Prepara un concetto inattivo per il rilascio come parte di un gruppo di modifiche
   change_geoprivacy: 'Cambia la geoprivacy'
@@ -781,6 +796,7 @@ it:
   comment_deleted: Commento cancellato
   comments: Commenti
   comments_by_me: I miei commenti
+  comments_have_been_disabled: I commenti sono stati disabilitati
   comments_on: Commenti su
   comments_on_my_observations: Commenti alle mie osservazioni
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
@@ -938,6 +954,7 @@ it:
   create_a_query: Crea una ricerca
   create_an_account: Crea un account
   create_an_atlas: Crea un Atlante
+  create_export: Crea Esportazione
   create_new_taxon: Crea un nuovo taxon
   create_observations: Crea delle osservazioni
   created: Creato
@@ -1070,13 +1087,37 @@ it:
   deviation: Scostamento
   devise:
     failure:
+      already_authenticated: 'Hai già eseguito l''accesso.'
+      unauthenticated: 'Per continuare è necessario accedere o registrarsi.'
+      invalid: 'E-mail o password non valida.'
+      invalid_token: 'Token di autenticazione non valido.'
       user:
         suspended: Il tuo account è stato sospeso
+    sessions:
+      signed_in: 'Accesso effettuato con successo.'
+      signed_out: 'Logout eseguito correttamente.'
+    passwords:
+      send_instructions: 'Entro qualche minuto riceverai un messaggio email con le istruzioni per reimpostare la tua password.'
+      updated: 'Password modificata correttamente. Hai eseguito l''accesso.'
+      updated_not_active: 'Password modificata correttamente.'
+      send_paranoid_instructions: "Se la tua email esiste nel nostro database, entro qualche minuto riceverai un messaggio email contenente un link per il ripristino della password"
+      no_token: "Non è possibile accedere a questa pagina a meno di esservi stati indirizzati da un'e-mail di reset della password. Se sei stato indirizzato su questa pagina da un'e-mail di reset della password, assicurati di aver utilizzato l'URL completo fornito."
+    registrations:
+      signed_up: 'Benvenuto! Ti sei registrato correttamente.'
+      updated: 'L''account è stato aggiornato correttamente.'
+      destroyed: 'Arrivederci! L''account è stato cancellato. Speriamo di rivederci presto.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Istruzioni per la conferma'
+      reset_password_instructions:
+        subject: 'Istruzioni per reimpostare la password'
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
   did_you_photos_flickr?: Hai caricato qualche foto su Flickr?
   disable: Disabilita
+  disable_comments: Disabilita commenti
+  disable_comments_desc: Impedisci alle persone di aggiungere nuovi commenti
   disagree_: Non d'accordo
   disconnect_provider: "Disconnettere %{provider}"
   display_link_to_checklist: Visualizza il link alla lista del progetto sulla pagina del progetto
@@ -1258,6 +1299,7 @@ it:
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
+  failed_to_save_record_with_errors: "Impossibile salvare il record: %{errors}"
   'false': 'Falso'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
@@ -1279,6 +1321,7 @@ it:
   fields_can_only_be_edited_by_the_people_who: I campi possono essere modificati solo da chi li ha creati e dai curatori del sito
   fields_merged: Campi uniti
   file: File
+  file_size: Dimensione file
   file_should_be_in_the_following_format: "Il file deve essere nel seguente formato: nome del taxon, descrizione"
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
   fill_out_your_profile: completa il tuo profilo
@@ -1599,6 +1642,8 @@ it:
   insects: insetti
   insect_life_stage: Stadio vitale di insetto
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Inserisci una citazione
   interactions: Interazioni
   internal_server_error: Errore interno del server
   internal_taxon_including_descendants: Taxon interno (inclusi discendenti)
@@ -1623,6 +1668,8 @@ it:
   is_this_offensive_html: 'Questo è <a href="/help#inappropriate">inappropriato</a>, spam, o offensivo?'
   is_this_place_a_duplicate: Questo luogo è un duplicato?
   it_can_now_be_used_for_research: Ora può essere usata per la ricerca o messa in risalto su altri siti web
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: Italica
   item_flagged_notice_html: |
     Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href="mailto:%{help_email}" class="contact">contattaci</a>.
     <a href="%{manage_flags_path}">Gestisci contrassegni</a>
@@ -1772,9 +1819,13 @@ it:
   linked_flickr_automatically: "Inoltre, ricordati che se tu accedi a %{site_name} via Flickr, automaticamente ricollegheremo i tuoi account %{site_name} e Flickr. Se usi Flickr è probabile che tu voglia poter importare le foto di Flickr, vero?"
   linked_flickr_description: "Mantenere il tuo account %{site_name} collegato a quello di Flickr ti permette di aggiungere foto multiple alle tue osservazioni. Se vuoi mantenere %{site_name} e Flickr separati, non è un problema, ma non ti sarà possibile aggiungere foto. In alcuni casi è addirittura preferibile, ad esempio quando crei un nuovo account Flickr che vuoi collegare a %{site_name}."
   linked_flickr_password_html: "<strong>Non ti chiederemo mai la password Flickr </strong> (ma Flickr potrebbe farlo, controlla l'url che ti invia il pulsante e assicurati che sia Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: testo collegato
   linkedin: LinkedIn
   list: Elenco
   list_deleted: Lista eliminata.
+  list_reloaded_from_observations: Elenco ricaricato dalle osservazioni
+  list_rules_reapplied: Le regole della lista sono state riapplicate
   list_saved: Lista salvata.
   list_tooltip: Mostra la visualizzazione ad elenco
   list_updated: Lista aggiornata!
@@ -1858,6 +1909,10 @@ it:
   location_specified: Posizione specificata
   locked_taxa_will_not_allow_new: I taxa bloccati non permettono l’aggiunta di taxa discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importare <i>Lithobates catesbeianus</i> da una fonte di nomi esterna, il nuovo taxon sarà creato ma non potrà essere classificato come un anfibio. Quando ciò accade, il nuovo taxon dovrebbe essere segnalato all’attenzione dei curatori. Questo blocco dovrebbe essere usato solo per i taxa che si ritengono completi di tutti i discendenti. Il curatore può annullare questa azione editando i taxa e inserendo direttamente gli ID di rango superiore, ma per favore assicurati che non sia meglio invece unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Accedi</a> o <a href="/sign_up">iscriviti</a> per aggiungere commenti.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Accedi</a> o <a href="/sign_up">iscriviti</a> per aggiungere identificazioni.
   log_scale_label: Logaritmica
   login_slash_username: Login / nome utente
   logo:
@@ -2277,6 +2332,8 @@ it:
   observations_by_you: "Le mie osservazioni"
   observations_by_you_on_date: "Le tue osservazioni del %{date}"
   observation_calendar_for: "Calendario delle osservazioni di %{user} nel %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Le osservazioni possono avere solo %{limit} foto
   observation_curation: Curatela delle osservazioni
   observation_date: Data
   observation_date?: Data?
@@ -2535,6 +2592,9 @@ it:
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Foto Bloccate
+  photos_locked_desc: Solo lo staff può cambiare le foto predefinite per questo taxon
   photos_of_taxon_html: "Foto di %{taxon}"
   photos_or_sounds: Foto o suoni
   photos_or_sounds?: Foto o suoni?
@@ -3147,6 +3207,7 @@ it:
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
   recent: Recenti
   recent_evidence_of_organism: Evidenze recenti della presenza dell'organismo
+  recent_exports: Esportazioni Recenti
   recent_new_users: Nuovi Utenti Recenti
   recent_observations: Osservazioni recenti
   recent_observations_: Osservazioni recenti
@@ -3240,6 +3301,7 @@ it:
   resolved_by: Risolto da
   resolved_by_user_on_date_html: Risolto da %{user} il %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} ha detto,</span> "%{x}"'
+  restart: Riavvia
   restore: Ripristina
   restoring: Ripristino in corso...
   results: risultati
@@ -3574,6 +3636,7 @@ it:
   take_me_flickr!: Si, vai a Flickr!
   target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato sarà interpretato come un'assenza, perciò è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare
   target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà interpretato come un'assenza. Per questo è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa in un gruppo della tua lista di obbiettivi, per favore rimuovila.
+  task_deleted: Attività eliminata
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
@@ -3897,6 +3960,7 @@ it:
   unresolve: Rimuovi la risoluzione
   unreview_all: Rimuovi tutte le revisioni
   unsubscribe: Cancella iscrizione
+  unsubscribe_from_emails_like_this: Annulla l'iscrizione ad email come queste
   unsuspend_user: Riammetti utente
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
@@ -4204,6 +4268,9 @@ it:
     one: "1 osservazione fallita"
     other: "%{count} osservazioni fallite"
   x_of_y: "%{x} di %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} di %{count} confermato"
     other: "%{x} di %{count} confermati"
@@ -4276,6 +4343,7 @@ it:
   you_cant_do_that_for_the_default_check_list_place: Non puoi farlo per una checklist predefinita di un luogo!
   you_cant_flag_that: Questo non lo puoi contrassegnare!
   you_cant_leave_a_project_you_created: Non puoi lasciare un progetto che hai creato!
+  you_cant_merge_standard_places: Non puoi unire i luoghi standard
   you_cant_rotate_photos_hostde_outside: "Non puoi ruotare le foto ospitate al di fuori di %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Non puoi eliminare i taxa coinvolti in modifiche di taxon o che contengono taxa coinvolti in modifiche di taxon
   you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene questa osservazione
@@ -4346,6 +4414,7 @@ it:
   your_recent_projects: I tuoi progetti recenti
   your_relationships: Le tue relazioni
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} ha bisogno che tu autorizzi maggiori operazioni da %{provider} per poter procedere:"
+  your_subscriptions_to_this_place: Le tue iscrizioni a questo luogo
   your_tags: Le tue etichette
   yours: Le tue
   youre_not_following_anyone: |-
@@ -4638,9 +4707,13 @@ it:
       export:
         choose_columns_desc: Scegli le colonne da esportare
         create_a_query_desc_html: |
-          Esegui una interrogazione per le osservazioni come faresti altrove nel sito. Puoi anche tagliare ed incollare l'URL delle osservazioni da un'altra parte del sito. Devi specificare <strong>taxon</strong>, <strong>luogo</strong>, <strong>utente</strong>, <strong>progetto</strong>, o <strong>interrogazione di ricerca</strong>.
+          Esegui una interrogazione per le osservazioni come faresti altrove nel sito. Puoi anche tagliare ed incollare l'URL delle osservazioni da un'altra parte del sito. La tua interrogazione deve restituire<strong>non più di 200'000 osservazioni</strong>.
+        export_in_progress_notice_html: |
+          Hai un'esportazione <a href="%{url}">in corso</a>. Dovrai
+          aspettare che finisca prima di poter mettere in coda un'altra esportazione.
         ident_by_user_desc_html: |
           Colonne per l'identificazione per %{user}
+        limit_alert: La tua esportazione sarà troppo grande. Cambia i tuoi filtri finché non ci saranno meno di 200.000 osservazioni.
         query_placeholder: "Scegli i parametri dell'interrogazione qui sotto o incolla l'URL della ricerca di osservazioni"
         taxon_extras_help_html: "Nota: queste colonne rallenteranno la creazione della tua esportazione"
         geo_help_html: |
@@ -5028,6 +5101,7 @@ it:
         revoke_observations_desc: |
           Se l'unica ragione per cui tu stai abbandonando il progetto è la volontà di impedire ai curatori di vedere le coordinate nascoste.
       edit:
+        admins_must_be_existing_members: Gli amministratori devono essere membri esistenti del progetto.
         aggregation_pending: In attesa di Aggregazione
         new_place_desc_html: |
           Cerca nei
@@ -5582,7 +5656,7 @@ it:
           Commons</a> (così metareferenziale!)
         monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
-          I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS FIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
+          I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS EIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
           <a href="%{url}">Fai clic qui per diventare un sostenitore mensile</a>.
           Quando avremo avuto conferma del tuo supporto potrai spuntare questa casella per visualizzare tale stato sul tuo profilo. Nota: dovrai usare esattamente lo stesso indirizzo e-mail che usi su iNaturalist anche su Donorbox per confermarci che sei diventato un sostenitore mensile.
         muting_desc_html: |
@@ -6086,6 +6160,15 @@ it:
         observed_on: osservata in data
       observation_field_value:
         value: 'valore'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: In coda
+        #Date/time the task began processing
+        started_at: Iniziata
+        #Date/time the task finished processing
+        finished_at: Terminata
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Input
       post:
         title: Titolo
         body: Corpo
@@ -6235,6 +6318,13 @@ it:
             observation_id:
               user_does_not_accept_fields_from_others: l'utente non accetta campi da altri
               user_only_accepts_fields_from_site_curators: l'utente accetta i campi solo dai curatori del sito
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Le esportazioni non possono contenere più di 200.000 osservazioni
+              must_have_query: La query non può essere vuota
+            user_id:
+              already_has_an_export_in_progress: ha già un'esportazione in corso
         place:
           attributes:
             place_geometry:
@@ -6243,6 +6333,8 @@ it:
               contains_too_many_observations: contiene troppe osservazioni da importare
         post:
           attributes:
+            parent:
+              prefers_no_comments: non consente nuovi commenti
             user:
               must_be_on_site_long_enough: |
                 devi essere registrato da più di 24 ore per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno userai ancora il sito, potrai pubblicare.

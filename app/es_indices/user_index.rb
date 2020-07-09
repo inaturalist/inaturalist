@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
         journal_posts_count: post_count,
         activity_count: obs_count + ident_count + post_count,
         universal_search_rank: obs_count,
-        roles: roles.map(&:name),
+        roles: roles.map(&:name).uniq,
         site_id: site_id
       })
     end

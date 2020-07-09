@@ -1,6 +1,8 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
+  x_comments_html:
+    other: '댓글 <span class="count">%{count}</span> 개'
   x_faves:
     other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
@@ -14,7 +16,7 @@ ko:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span> 명'
+    other: '동정한 사용자 <span class="count">%{count}</span>'
   x_journal_posts_html:
     other: '일지 포스팅 <span class="count">%{count}</span> 개'
   x_matching_taxa:
@@ -36,7 +38,7 @@ ko:
   x_observations_reviewed_html:
     other: "검토한 관찰 <span class='count'>%{count}</span> 개"
   x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span> 명'
+    other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
@@ -473,7 +475,6 @@ ko:
   change_descriptions:
     split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
     merge: 여러 개의 분류군을 하나의 분류군으로 통합
-    swap: 1대1 이름 변경
     drop: '완전히 유효하지 않은 분류군 개념: 역사적 목적이나 파트너 호환성을 위해 유지'
   change_geoprivacy: '위치보호 변경'
   change_group: 그룹 바꾸기
@@ -820,6 +821,7 @@ ko:
   edit_field: 분야 편집
   edit_license: 라이선스 수정
   edit_multiple_dates: 다수의 날짜 편집
+  edit_multiple_descriptions: 여러 설명 편집
   edit_multiple_locations: 다수의 장소 편집
   edit_multiple_species: 다수의 종 편집
   edit_notes: 메모 편집

@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
+  has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
   
   before_save :strip_title
   before_save :reset_last_aggregated_at
@@ -28,7 +29,7 @@ class Project < ActiveRecord::Base
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   before_update :set_updated_at_if_preferences_changed
-  after_save :add_admins
+  around_save :add_admins
 
   after_destroy :destroy_project_rules
 
@@ -903,8 +904,6 @@ class Project < ActiveRecord::Base
 
   def update_users_observations_counts(options = {})
     Project.transaction do
-      # set all counts to zero
-      project_users.update_all(observations_count: 0) unless options[:user_id]
       user_ids = options[:user_id] ? [ options[:user_id] ] :
         project_users.pluck(:user_id).uniq.sort
       user_ids.in_groups_of(500, false) do |uids|
@@ -1038,16 +1037,16 @@ class Project < ActiveRecord::Base
   end
 
   def add_admins
+    new = new_record?
+    yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
-      if admin_attr["_destroy"] == "true"
-        if pu = project_users.where( user_id: admin_attr["user_id"] ).first
-          pu.update_attributes( role: nil )
-        end
+      new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
+      if new
+        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update_attributes( role: new_role )
       else
-        pu = project_users.find_or_create_by( user_id: admin_attr["user_id"] )
-        pu.update_attributes( role: "manager" )
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update_attributes( role: new_role )     
       end
     end
     project_users.reload
@@ -1067,6 +1066,10 @@ class Project < ActiveRecord::Base
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
+  end
+
+  def within_umbrella_ids
+    return project_observation_rules_as_operand.map( &:ruler_id )
   end
 
   private

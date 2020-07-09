@@ -243,7 +243,7 @@ class Identification < ActiveRecord::Base
           observation.id, observation.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
-    observation.wait_for_index_refresh = !!wait_for_obs_index_refresh
+    observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
@@ -459,7 +459,7 @@ class Identification < ActiveRecord::Base
     unless options[:skip_indexing]
       Identification.elastic_index!( ids: idents.map(&:id) )
       o.reload
-      o.wait_for_index_refresh = !!options[:wait_for_obs_index_refresh]
+      o.wait_for_index_refresh ||= !!options[:wait_for_obs_index_refresh]
       o.elastic_index!
     end
   end

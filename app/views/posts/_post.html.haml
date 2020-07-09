@@ -22,16 +22,16 @@
       %span= t(:draft)
     = t(:by).downcase
     - if post.user
-      = link_to user_image(post.user), post.user
-      = link_to(post.user.login, observations_by_login_path(post.user.login))
+      = link_to user_image( post.user ), post.user
+      = link_to( post.user.login, observations_by_login_path( post.user.login ) )
     - else
-      deleted user
+      t(:deleted_user)
     - if post.observations.size > 0
       |
-      %span.count= post.observations.size
-      = t(:observations).downcase
-    |
-    %span.count= post.comments.size
-    = t(:comments).downcase
-    |
-    \#{link_to t(:leave_a_comment), post_url + "#new_comment"}
+      =t :x_observations_html, count: post.observations.size
+    - if post.comments.size > 0 || !post.prefers_no_comments?
+      |
+      =t :x_comments_html, count: post.comments.size
+    - unless post.prefers_no_comments?
+      |
+      = link_to t(:leave_a_comment), post_url + "#new_comment"

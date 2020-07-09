@@ -1026,6 +1026,14 @@ class Place < ActiveRecord::Base
     end
   end
 
+  def localized_name
+    if admin_level === COUNTRY_LEVEL
+      I18n.t( "places_name.#{name}", default: display_name )
+    else
+      display_name
+    end
+  end
+
   def self.param_to_array(places)
     if places.is_a?(Place)
       # single places become arrays

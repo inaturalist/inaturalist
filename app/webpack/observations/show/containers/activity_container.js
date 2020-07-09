@@ -24,7 +24,7 @@ function mapStateToProps( state ) {
   return {
     observation,
     config: state.config,
-    commentIDPanel: state.commentIDPanel
+    activeTab: state.commentIDPanel.activeTab
   };
 }
 

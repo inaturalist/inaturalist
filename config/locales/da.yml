@@ -2,6 +2,9 @@ da:
   x_comments:
     one: '1 kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoritter'
@@ -188,11 +191,17 @@ da:
   add: Tilføj
   add_a_batch_of_observations: Tilføj et bundt observationer
   add_a_batch_of_taxa: Tilføj et bundt af taksa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Tilføj en punktliste
   add_a_comment: Tilføj en kommentar
   add_a_field: Tilføj et felt
   add_a_flag: Tilføj en markering
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Tilføj et link
   add_a_name: Tilføj et navn
   add_a_new_change_group: Tilføj en ny ændringsgruppe
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Tilføj en nummereret liste
   add_a_single_observation: Tilføj en enkelt observation.
   add_a_taxon: Tilføj en takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -215,6 +224,8 @@ da:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Tilføj aktiv
   add_batch: Tilføj bundt
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Tilføj fed tekst
   add_comma_separated_tags: "Tilføj kommaseparerede tags"
   add_comment: Tilføj en kommentar
   add_conservation_status: Tilføj bevaringsstatus
@@ -227,6 +238,8 @@ da:
   add_link: Tilføj link
   add_higher_level_taxon: Tilføj et taxon på et højere niveau (f.eks. "fugle")
   add_id: Tilføj ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Tilføj kursiv tekst
   add_new_lexicon: Tilføj nyt leksikon
   add_new_photos_by_their_ids: Tilføj nye fotos via Flickr ID'er (skal være Creative Commons!)
   add_new_place: Tilføj et nyt sted
@@ -623,6 +636,8 @@ da:
   body: Indhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fed tekst
   bounding_box: Geografisk område
   breadcrumbs: Brødkrummer
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -679,7 +694,7 @@ da:
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
     merge: Flere gamle taksa sammen i en ny takson
-    swap: 1 til 1 navneændring
+    swap: Erstat input-takson med output-takson
     drop: Takson-konceptet er helt ugyldigt, og er opretholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt koncept for frigivelse som en del af en ændringsgruppe
   change_geoprivacy: 'Ændre geofortrolighed'
@@ -782,6 +797,7 @@ da:
   comment_deleted: Kommentar slettet
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
+  comments_have_been_disabled: Kommentarer er deaktiveret
   comments_on: Kommentarer til
   comments_on_my_observations: Kommentarer til mine observationer
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
@@ -942,6 +958,7 @@ da:
   create_a_query: Lav en forespørgsel
   create_an_account: Opret en konto
   create_an_atlas: Opret et atlas
+  create_export: Opret eksport
   create_new_taxon: Opret en ny takson
   create_observations: Opret observationer
   created: Oprettet
@@ -1076,13 +1093,37 @@ da:
   deviation: Afvigelse
   devise:
     failure:
+      already_authenticated: 'Du er allerede logget ind.'
+      unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
+      invalid: 'Ugyldig e-mail eller adgangskode.'
+      invalid_token: 'Ugyldig godkendelsestoken'
       user:
         suspended: Din konto er suspenderet
+    sessions:
+      signed_in: 'Du er nu logget ind.'
+      signed_out: 'Du er nu logget ud.'
+    passwords:
+      send_instructions: 'Du vil om et øjeblik modtage en e-mail med instruktioner til nulstilling af din adgangskode.'
+      updated: 'Din adgangskode er skiftet, og du er nu logget ind.'
+      updated_not_active: 'Du har nu skiftet din adgangskode.'
+      send_paranoid_instructions: "Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode."
+      no_token: "Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen."
+    registrations:
+      signed_up: 'Velkommen! Din registrering lykkedes.'
+      updated: 'Din kontoopdatering er nu gennemført.'
+      destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bekræftelsesinstruktioner'
+      reset_password_instructions:
+        subject: 'Instruktioner til adgangskodenulstilling'
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
   disable: Deaktiver
+  disable_comments: Deaktivér kommentarer
+  disable_comments_desc: Forhindr folk i at tilføje nye kommentarer
   disagree_: Uenig
   disconnect_provider: "Frakobl %{provider}"
   display_link_to_checklist: Vis link til projektliste fra projektside
@@ -1267,6 +1308,7 @@ da:
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
+  failed_to_save_record_with_errors: "Mislykkedes at gemme post: %{errors}"
   'false': 'Falsk'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
@@ -1288,6 +1330,7 @@ da:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres af de personer, der har oprettet dem og side-kuratorer
   fields_merged: Felterne blev lagt sammen
   file: Fil
+  file_size: Filstørrelse
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Udfyld projekt observationsfelter
   fill_out_your_profile: udfyld din profil
@@ -1612,6 +1655,8 @@ da:
   insects: insekter
   insect_life_stage: Insekt livsstadie
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Indsæt en citation
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
   internal_taxon_including_descendants: Intern takson (inklusiv forfædre)
@@ -1636,6 +1681,8 @@ da:
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_place_a_duplicate: Er dette sted en kopi?
   it_can_now_be_used_for_research: Den kan nu bruges til forskning og vises på andre web-sider
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv tekst
   item_flagged_notice_html: |
     Dette er blevet markeret som spam, og er ikke længere synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det eller du er sidekurator. Hvis du mener det er en fejl, så 
     <a href="mailto:%{help_email}" class="contact">kontakt os venligst</a>.
@@ -1786,9 +1833,13 @@ da:
   linked_flickr_automatically: "Husk også, at hvis du logger ind på %{site_name} via Flickr, vil vi automatisk genforbinde din %{site_name} og Flickr konti. Det virker rimeligt, at hvis du bruger Flickr, vil du gerne kunne importere Flickr foto´s, ikke?"
   linked_flickr_description: "Hvis du lader din %{site_name} konto være tilknyttet til din Flickr konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig, hvis du nogensinde vil have %{site_name} og Flickr til ikke at være tilknyttede, så stopper vi dig ikke, du kan bare ikke tilføje billeder derfra. Nogle gange kan det være det bedste, hvis du opretter en helt ny Flickr-konto, som du vil tilknytte %{site_name} til."
   linked_flickr_password_html: "<strong>Vi vil aldrig bede dig om din Flickr adgangskode</strong> (men Flickr vil, tjekke URL adressen, som knappen sender dig og sikre sig at det er Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linket tekst
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
+  list_reloaded_from_observations: Liste genindlæst fra observationer
+  list_rules_reapplied: Listeregler er blevet anvendt igen
   list_saved: Liste gemt.
   list_tooltip: Vis listevisning
   list_updated: Liste opdateret!
@@ -1872,6 +1923,10 @@ da:
   location_specified: Stedet er specificeret
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje identifikationer.
   log_scale_label: Log
   login_slash_username: Login / brugernavn
   logo:
@@ -2296,6 +2351,8 @@ da:
   observations_by_you: "Observationer af dig"
   observations_by_you_on_date: "Observationer af dig den %{date}"
   observation_calendar_for: "Observationskalender for %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observationer kan maks. have %{limit} fotos
   observation_curation: Observation kuration
   observation_date: Dato
   observation_date?: Dato?
@@ -2564,6 +2621,9 @@ da:
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
   photos_from: Foto´s fra
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos låst
+  photos_locked_desc: Kun medarbejdere kan ændre standardfotos til denne takson
   photos_of_taxon_html: "Foto´s af %{taxon}"
   photos_or_sounds: Fotos eller lyde
   photos_or_sounds?: Foto´s eller lyde
@@ -3183,6 +3243,7 @@ da:
   receive_updates_from_this_project: Modtag underretninger om dette projekt
   recent: Seneste
   recent_evidence_of_organism: Nylige beviser på en organisme
+  recent_exports: Seneste eksporter
   recent_new_users: Seneste nye brugere
   recent_observations: Seneste observationer
   recent_observations_: Seneste observationer
@@ -3276,6 +3337,7 @@ da:
   resolved_by: Løst af
   resolved_by_user_on_date_html: Løst af %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sagde,</span> "%{x}"'
+  restart: Genstart
   restore: Gendan
   restoring: Gendanner...
   results: resultater
@@ -3612,6 +3674,7 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt, at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
   target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
+  task_deleted: Opgave slettet
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
@@ -3957,6 +4020,7 @@ da:
   unresolve: Fjern løsning
   unreview_all: Fjern gennemgang for alle
   unsubscribe: Afmeld abonnement
+  unsubscribe_from_emails_like_this: Afmeld e-mailindhold som dette
   unsuspend_user: Bruger ikke længere suspenderet
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
@@ -3969,7 +4033,7 @@ da:
   update_search: Opdatér søgning
   update_selected_taxa: Opdatér valgte taksa
   update_subscription: Opdatér abonnement
-  update_subscription_preferences: opdatér abonnements præferencer
+  update_subscription_preferences: Opdatér abonnementspræferencer
   update_x_selected_taxa:
     one: "Opdatér 1 valgt takson"
     other: "Opdatér %{count} valgte taksa"
@@ -4267,6 +4331,9 @@ da:
     one: "1 observation fejlede"
     other: "%{count} observationer fejlede"
   x_of_y: "%{x} af %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x}/%{y}"
   x_of_count_confirmed:
     one: "%{x} of %{count} bekræftet"
     other: "%{x} of %{count} bekræftet"
@@ -4344,6 +4411,7 @@ da:
   you_cant_do_that_for_the_default_check_list_place: Det kan du ikke gøre med standard tjeklisten for et sted!
   you_cant_flag_that: Du kan ikke markere dette
   you_cant_leave_a_project_you_created: Du kan ikke forlade et projekt, du har oprettet.
+  you_cant_merge_standard_places: Du kan ikke flette standardsteder
   you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere foto´s lagret udenfor %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan ikke slette taksa involveret i takson-ændringer, eller som indeholder taksa involveret i takson-ændringer
   you_curate_a_project_that_contains_this_observation: Du er kurator på et projekt, som indeholder denne observation
@@ -4414,6 +4482,7 @@ da:
   your_recent_projects: Dine seneste projekter
   your_relationships: Dine forbindelser
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} har brug for at du godkender flere tilladelser fra %{provider} for at fortsætte:"
+  your_subscriptions_to_this_place: Dine abonnementer til dette sted
   your_tags: Dine tags
   yours: Dine
   youre_not_following_anyone: |-
@@ -4773,9 +4842,14 @@ da:
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
         create_a_query_desc_html: |
-          Lav en observations søgning ligesom du ville andre steder på siden. Du kan også kopiére og indsætte en observations URL fra et andet sted på websiden. Du skal angive en <strong>takson</strong>, <strong>et sted</strong>, <strong>en bruger</strong>, <strong>et projekt</strong> eller<strong> et søgeord</strong>.
+          Opret en observationsforespørgsel ligesom du ville gøre andre steder på
+          webstedet. Du kan også klippe og indsætte en URL over observationer fra en anden
+          del af webstedet. Din forespørgsel <strong>kan maksimalt returnere 200.000 observationer</strong>.
+        export_in_progress_notice_html: |
+          Du har en <a href="%{url}">eksport i gang</a>. Du er nødt til at afvente, at denne færdiggøres, inden du kan placere en ny eksoprt i køen.
         ident_by_user_desc_html: |
           Kolonner til den aktuelle identifikation af %{user}
+        limit_alert: Din eksoprt bliver for stor. Ændr dine filtre indtil observationsantallet er lavere end 200.000.
         query_placeholder: "Vælg søgeparametre nedenfor eller indsæt en observations URL"
         taxon_extras_help_html: "Bemærk: Disse kolonner vil sænke tempoet på genereringen af din eksport"
         geo_help_html: |
@@ -5250,6 +5324,7 @@ da:
         revoke_observations_desc: |
           Hvis den eneste grund til, at du smutter, er at stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
+        admins_must_be_existing_members: Admins skal være eksisterende projektmedlemmer.
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |
           Prøv at se
@@ -5978,10 +6053,10 @@ da:
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
         monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
-          iNaturalist månedlige supporters giver månedlige bidrag, som modtages af California Academy of Sciences (United
-          States IRS FIN 94-1156258) til støtte af nonprofit-driften af iNaturalist og iNaturalist-netværk sites.
-          <a href="%{url}">Klik her for at blive en månedlig supporter</a>.
-          Når vi har bekræftet din støtte, vil du kunne markere denne boks for at vise denne status på din profil. Bemærk: du skal bruge præcis den samme email-adresse på Donorbox, som du bruger på iNaturalist, for at vi kan bekræfte at du er blevet en månedlig supporter.
+          iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
+          States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
+          <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
@@ -6525,6 +6600,15 @@ da:
         observed_on: observationsdato
       observation_field_value:
         value: 'værdi'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Sat i kø
+        #Date/time the task began processing
+        started_at: Påbegyndt
+        #Date/time the task finished processing
+        finished_at: Færdiggjort
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Input
       post:
         title: Titel
         body: Indhold
@@ -6674,6 +6758,13 @@ da:
             observation_id:
               user_does_not_accept_fields_from_others: bruger accepterer ikke felter fra andre
               user_only_accepts_fields_from_site_curators: bruger accepterer kun felter fra side kuratorer
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Eksporter kan maksimalt indeholde 200.000 observationer
+              must_have_query: Forespørgselsindhold er obligatorisk
+            user_id:
+              already_has_an_export_in_progress: har allerede en anden eksport igang
         place:
           attributes:
             place_geometry:
@@ -6682,6 +6773,8 @@ da:
               contains_too_many_observations: indeholder for mange observationer til import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillader ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får

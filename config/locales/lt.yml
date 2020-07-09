@@ -4,6 +4,11 @@ lt:
     few: '%{count} komentarai'
     many: '%{count} komentarai'
     other: '%{count} komentarai(-ų)'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentaras'
+    few: '<span class="count">%{count}</span> komentarai'
+    many: '<span class="count">%{count}</span> komentarai'
+    other: '<span class="count">%{count}</span> komentarai'
   x_faves:
     one: '%{count} pamėgimas'
     few: '%{count} pamėgimai'
@@ -805,6 +810,7 @@ lt:
   comment_deleted: Komentaras ištrintas
   comments: Komentarai
   comments_by_me: Mano komentarai
+  comments_have_been_disabled: Komentarai buvo išjungti
   comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
@@ -1072,13 +1078,37 @@ lt:
   deviation: Nuokrypis
   devise:
     failure:
+      already_authenticated: 'Jūs jau esate prisijungęs.'
+      unauthenticated: 'Prieš tęsiant, Jums reikia prisijungti arba užsiregistruoti.'
+      invalid: 'Neteisingas el. paštas arba slaptažodis.'
+      invalid_token: 'Neteisingas autentifikavimo prieigos raktas.'
       user:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
+    sessions:
+      signed_in: 'Prisijungta sėkmingai.'
+      signed_out: 'Atsijungta sėkmingai.'
+    passwords:
+      send_instructions: 'Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.'
+      updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jūs dabar esate prisijungę.'
+      updated_not_active: 'Jūsų slaptažodis buvo sėkmingai pakeistas.'
+      send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
+      no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
+    registrations:
+      signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
+      updated: 'Jūsų paskyra sėkmingai atnaujinta.'
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Patvirtinimo instrukcijos'
+      reset_password_instructions:
+        subject: 'Atstatyti slaptažodžio instrukcijas'
   discoveries: Atradimai
   did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
   disable: Išjungti
+  disable_comments: Išjungti komentarus
+  disable_comments_desc: Neleisk žmonėms pridėti daugiau komentarų
   disagree_: Nesutikti
   disconnect_provider: "Atjungti %{provider}"
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
@@ -1130,6 +1160,7 @@ lt:
   edit_field: Redaguoti lauką
   edit_license: Redaguoti licenciją
   edit_multiple_dates: Redaguoti kelias datas
+  edit_multiple_descriptions: Redaguoti kelius aprašymus
   edit_multiple_locations: Redaguoti kelias vietas
   edit_multiple_species: Redaguoti kelias rūšis
   edit_notes: Redaguoti užrašus
@@ -1266,6 +1297,7 @@ lt:
   fields_can_only_be_edited_by_the_people_who: Laukai gali būti redaguojami tik tų žmonių, kurie juos sukūrė arba puslapio kuratorių
   fields_merged: Laukai sujungti
   file: Failas
+  file_size: Failo dydis
   file_should_be_in_the_following_format: "Failas turi būti tokio formato: taksono pavadinimas, aprašymas"
   fill_out_project_observation_fields: Užpildyti projekto stebėjimo laukus
   fill_out_your_profile: užbaigti savo profilį
@@ -1726,6 +1758,7 @@ lt:
   linkedin: LinkedIn
   list: Sąrašas
   list_deleted: Sąrašas ištrintas.
+  list_rules_reapplied: Sąrašo taisyklės atnaujintos
   list_saved: Sąrašas išsaugotas.
   list_tooltip: Rodyti sąraše
   list_updated: Sąrašas atnaujintas!
@@ -2319,6 +2352,9 @@ lt:
   photo_urls_repaired: Nuotraukos URL sutaisyti
   photos_chosen_for_this_taxon: Nuotraukos parinktos šiam taksonui
   photos_from: Nuotraukos iš
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Nuotraukos užrakintos
+  photos_locked_desc: Tik tinklalapio kūrėjai gali keisti šio taksono numatytasias nuotraukas
   photos_of_taxon_html: "%{taxon} nuotraukos"
   photos_or_sounds: Nuotraukos arba garsai
   photos_or_sounds?: Nuotraukos ar garsai?
@@ -4656,6 +4692,13 @@ lt:
         observed_on: stebėjimo data
       observation_field_value:
         value: 'reikšmė'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Eilėje
+        #Date/time the task began processing
+        started_at: Pradžia
+        #Date/time the task finished processing
+        finished_at: Pabaiga
       post:
         title: Pavadinimas
       project:
@@ -4761,6 +4804,10 @@ lt:
               is_too_large_to_edit: yra per didelis redagavimui
               is_too_large_to_import: per didelis importui
               contains_too_many_observations: turi per daug stebėjimų importui
+        post:
+          attributes:
+            parent:
+              prefers_no_comments: neleidžia pridėti naujų komentarų
         project_observation:
           attributes:
             user_id:

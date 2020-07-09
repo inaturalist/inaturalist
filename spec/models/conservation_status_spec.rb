@@ -166,6 +166,19 @@ describe ConservationStatus, "updating geoprivacy" do
     o.reload
     expect( o.latitude ).not_to be_blank
   end
+
+  it "should update the public_positional_accuracy in the observations index when unobscured" do
+    o = Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 )
+    expect( o.public_positional_accuracy ).to be > 10
+    es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+    expect( es_o.public_positional_accuracy ).to be > 10
+    cs.update_attributes( geoprivacy: Observation::OPEN )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o.public_positional_accuracy ).to be_nil
+    es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+    expect( es_o.public_positional_accuracy ).to be_nil
+  end
 end
 
 describe ConservationStatus, "updating place" do

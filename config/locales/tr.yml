@@ -2,6 +2,9 @@ tr:
   x_comments:
     one: '%{count} yorum'
     other: '%{count} yorum'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> yorum'
+    other: '<span class="count">%{count}</span> yorum'
   x_faves:
     one: '%{count} favori'
     other: '%{count} favori'
@@ -204,11 +207,17 @@ tr:
   add: Ekle
   add_a_batch_of_observations: Toplu Gözlem Ekle
   add_a_batch_of_taxa: Toplu Sınıf Ekle
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Madde işaretli bir liste ekle
   add_a_comment: Bir Yorum Ekle
   add_a_field: Bir Alan Ekle
   add_a_flag: İşaret Ekle
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Bir bağlantı ekle
   add_a_name: Bir Ad Ekle
   add_a_new_change_group: Yeni Bir Değişim Grubu Ekle
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Numaralı bir liste ekle
   add_a_single_observation: Tek Gözlem Ekle.
   add_a_taxon: Bir Sınıf Ekle
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -231,6 +240,8 @@ tr:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Proje Varlığı Ekle
   add_batch: Toplu Ekle
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Kalın yazı ekle
   add_comma_separated_tags: "Virgülle Ayrılmış Etiket Ekle"
   add_comment: Bir Yorum Ekle
   add_conservation_status: Koruma Durumu Ekle
@@ -243,6 +254,8 @@ tr:
   add_link: Bağlantı Ekle
   add_higher_level_taxon: Üst düzey sınıf Ekle (örn. "kuşlar")
   add_id: Tanımlama Ekle
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Eğik yazı ekle
   add_new_lexicon: Yeni Sözlük Ekle
   add_new_photos_by_their_ids: Flickr Kimlikleriyle Yeni Fotoğraflar Ekle (Creative Commons olmalı!)
   add_new_place: Yeni Bir Alan Ekle
@@ -634,6 +647,8 @@ tr:
   body: Gövde
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: kalın yazı
   bounding_box: Sınır Alanı
   breadcrumbs: Gezinme ipuçları
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -690,7 +705,7 @@ tr:
   change_descriptions:
     split: Eski sınıf birçok yeni sınıfa bölündü
     merge: Birkaç eski sınıf yeni bir sınıfı içine aldı
-    swap: 1'e 1 ad değişikliği
+    swap: Girdi sınıfını çıktı sınıfıyla değiştirin
     drop: Sınıf kavramı tamamen geçersiz, tarihsel amaçlar ya da ortak uyumluluğu için korundu
     stage: Değişim grubunun bir parçası olarak serbest bırakmak için etkin olmayan bir konsept hazırlayın
   change_geoprivacy: 'Coğrafi Gizliliği Değiştir'
@@ -791,6 +806,7 @@ tr:
   comment_deleted: Yorum silindi
   comments: Yorumlar
   comments_by_me: Yorumlarım
+  comments_have_been_disabled: Yorumlar devre dışı bırakıldı
   comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
@@ -948,6 +964,7 @@ tr:
   create_a_query: Bir Sorgu Oluştur
   create_an_account: Bir Hesap Oluştur
   create_an_atlas: Bir Atlas Oluştur
+  create_export: Dışa Aktarma Oluştur
   create_new_taxon: Yeni Bir Sınıf Oluştur
   create_observations: Gözlem Oluştur
   created: Oluşuturulma
@@ -1080,13 +1097,37 @@ tr:
   deviation: Uygunsuzluk
   devise:
     failure:
+      already_authenticated: 'Zaten giriş yaptınız.'
+      unauthenticated: 'Devam etmeden önce giriş yapmanız ya da kayıt olmanız gereklidir.'
+      invalid: 'Geçersiz e-posta ya da şifre.'
+      invalid_token: 'Geçersiz kimlik doğrulama belirteci.'
       user:
         suspended: Hesabınız askıya alındı
+    sessions:
+      signed_in: 'Başarıyla giriş yapıldı.'
+      signed_out: 'Başarıyla çıkış yapıldı.'
+    passwords:
+      send_instructions: 'Birkaç dakika içinde şifrenizi nasıl sıfırlayacağınıza dair talimatları içeren bir e-posta alacaksınız.'
+      updated: 'Şifreniz başarılı bir şekilde değiştirildi. Şu an oturumun açık.'
+      updated_not_active: 'Şifreniz başarılı bir şekilde değiştirildi.'
+      send_paranoid_instructions: "Eğer e-posta adresiniz veri tabanımızda mevcutsa, birkaç dakika içinde e-posta adresinize bir şifre kurtarma bağlantısı gönderilecektir."
+      no_token: "Bu sayfaya şifre sıfırlama e-postasından gelmeden erişemezsiniz. Şifre sıfırlama e-postasından geliyorsanız lütfen sağlanan tam URL'yi kullandığınızdan emin olun."
+    registrations:
+      signed_up: 'Hoş geldiniz! Başarılı bir şekilde oturum açtınız.'
+      updated: 'Hesabınız başarılı bir şekilde güncellendi.'
+      destroyed: 'Güle Güle! Hesabınız başarılı bir şekilde iptal edildi. Umarız sizinle yakında yine görüşürüz.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Onaylama talimatları'
+      reset_password_instructions:
+        subject: 'Şifre sıfırlama talimatları'
   discoveries: Keşifler
   did_not_send_invitations_because: Aşağıdakilere davetiye gönderilmedi çünkü...
   did_you_mean: 'Bunu mu demek istediniz'
   did_you_photos_flickr?: Flickr'a herhangi bir fotoğraf koydunuz mu?
   disable: Devre dışı bırak
+  disable_comments: Yorumları devre dışı bırak
+  disable_comments_desc: İnsanların yeni yorum eklemesini önleme
   disagree_: Katılmıyorum
   disconnect_provider: "%{provider} bağlantısını kes"
   display_link_to_checklist: Proje sayfasından proje listesine bağlantıyı göster
@@ -1145,6 +1186,7 @@ tr:
   edit_field: Alanı Düzenle
   edit_license: Lisansı Düzenle
   edit_multiple_dates: Birden Çok Tarihi Düzenle
+  edit_multiple_descriptions: Birden Çok Açıklama Düzenle
   edit_multiple_locations: Birden Çok Konumu Düzenle
   edit_multiple_species: Birden Çok Türü Düzenle
   edit_notes: Notları Düzenle
@@ -1181,6 +1223,7 @@ tr:
   editing_project: '%{project} Düzenleme'
   editing_project_asset: Şunun için Proje Varlığını Düzenleme
   editing_subscription_to_x_html: "Aboneliği %{x} olarak düzenleme"
+  editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Sınıf Bağlantısını Düzenleme
   editing_taxon_name_for_taxon_html: '%{taxon} için Sınıf Adı "%{name}"'' Düzenleme'
   editing_taxon_range: Sınıf Aralığını Düzenleme
@@ -1266,6 +1309,7 @@ tr:
   failed_to_find_your_location: Konumunuz bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
   failed_to_save_record: "Kaydetme başarısız. Lütfen daha sonra tekrar deneyin."
+  failed_to_save_record_with_errors: "Kayıt ekleme başarısız oldu: %{errors}"
   'false': 'Yanlış'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriler
@@ -1287,6 +1331,7 @@ tr:
   fields_can_only_be_edited_by_the_people_who: Alanlar yalnızca onları oluşturan kişiler ve site sorumluları tarafından düzenlenebilir
   fields_merged: Alanlar birleştirildi
   file: Dosya
+  file_size: Dosya boyutu
   file_should_be_in_the_following_format: "Dosya takip eden formatta olmalıdır: sınıf adı, açıklama"
   fill_out_project_observation_fields: Proje gözlem alanlarını doldurun
   fill_out_your_profile: profilinizi tamamlayın
@@ -1453,6 +1498,7 @@ tr:
   got_it!: Anlaşıldı!
   got_your_data_somewhere_else?: Verilerinizi başka bir yere mi aldınız? Yardımcı olabiliriz.
   graft: Aşılama
+  graft_taxon: '%{taxon} aşılama'
   grafting_attemps_to_insert_this_taxon: Aşılama bu sınıfı; sınıflandırma ağacımıza sokmaya, var olan bir ana sınıf bulmaya ya da bir üst düzey sınıfa eklemek için gerekli tüm sınıflar arasında oluşturmaya yarar.
   grant_role: "%{grant} %{role} rol"
   grid: Izgara
@@ -1607,6 +1653,8 @@ tr:
   insects: böcekler
   insect_life_stage: Böcek Yaşam Evresi
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Bir alıntı ekle
   interactions: Etkileşimler
   internal_server_error: İç Sunucu Hatası
   internal_taxon_including_descendants: İç sınıf (alt sınıfları içerir)
@@ -1631,6 +1679,8 @@ tr:
   is_this_offensive_html: 'Bu <a href="/help#inappropriate">uygunsuz</a>, gereksiz ya da rahatsız edici mi?'
   is_this_place_a_duplicate: Bu kopyalanmış bir yer mi?
   it_can_now_be_used_for_research: Şimdi araştırma için kullanılabilir ve diğer web sitelerinde öne çıkarılabilir
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: eğik yazı
   item_flagged_notice_html: |
     Bu gereksiz olarak işaretlendi ve artık herkes tarafından görülür değil. Bunu görebilirsiniz çünkü siz yarattınız ya da bir site sorumlususunuz. Bunun bir hata olduğunu düşünüyorsanız, lütfen <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
     <a href="%{manage_flags_path}">İşaretleri yönetme</a>
@@ -1779,9 +1829,13 @@ tr:
   linked_flickr_automatically: "Ayrıca, Flickr üzerinden %{site_name} sayfasına giriş yaparsanız, %{site_name} ve Flickr hesaplarınızı kendiliğinden yeniden bağlayacağımızı unutmayın. Flickr kullanıyorsanız, Flickr fotoğraflarını içe aktarabilmek isteyebilirsiniz, doğru mu?"
   linked_flickr_description: "%{site_name} hesabınızı Flickr hesabınıza bağlı tutmak, gözlemlerinize birden çok fotoğraf eklemenizi sağlar. Elbette, eğer %{site_name} ve Flickr'ı ayırmak istersen, seni durdurmayacağız, yalnızca fotoğraf ekleyemezsin. Bazen bu en iyisi için olabilir, %{site_name} adresine bağlamak istediğiniz yeni bir Flickr hesabı oluşturursan."
   linked_flickr_password_html: "<strong>Sizden Flickr şifrenizi asla istemeyeceğiz</strong> (ancak Flickr isteyebilir, düğmenin size gönderdiği URL'yi kontrol edin ve Flickr.com'dan olduğundan emin olun)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: bağlantılı yazı
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste silindi.
+  list_reloaded_from_observations: Gözlemlerden yeniden yüklenen liste
+  list_rules_reapplied: Liste kuralları yeniden uygulandı
   list_saved: Liste kaydedildi.
   list_tooltip: Liste görünümünü göster
   list_updated: Liste güncellendi!
@@ -1865,6 +1919,10 @@ tr:
   location_specified: Belirtilmiş konum
   locked_taxa_will_not_allow_new: Kilitli sınıflar, yeni alt sınıfların kendisine eklenmesine izin vermez. Eğer Amphibia'yı kilitlediyseniz ve birisi <i>Rana catesbeiana'yı</i> dış bir sağlayıcıdan içe aktarmaya çalıştıysa, yeni sınıf oluşturulacak ancak bir yüzergezer olarak sınıflandırılamayacak. Bu olduğunda, yeni eklenen sınıfların, sorumlunun dikkat etmesi için işaretlenmesi gerekir. Bu, yalnızca alt sınıf olduğunu düşündüğümüz sınıflar için kullanılmalıdır. Sorumlu bunu sınıfları düzenleyerek ve doğrudan üst kimlik ekleyerek geçersiz kılabilir ancak bunun yerine yeni sınıfları var olanlarla birleştirmeyi düşünün.
   log_in: Oturum Aç
+  log_in_or_sign_up_to_add_comments_html: |
+    Yorum eklemek için <a href="/log_in">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Tanımlama eklemek için <a href="/log_in">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
   log_scale_label: Günlük
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
@@ -2285,6 +2343,8 @@ tr:
   observations_by_you: "Sizin gözlemleriniz"
   observations_by_you_on_date: "%{date} tarihindeki gözlemleriniz"
   observation_calendar_for: "%{year} yılında %{user} için Gözlem Takvimi"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Gözlemler yalnızca %{limit} fotoğafa sahip olabilir
   observation_curation: Gözlem Yönetme
   observation_date: Tarih
   observation_date?: Tarih ne?
@@ -2543,6 +2603,9 @@ tr:
   photo_urls_repaired: Fotoğraf URL'leri düzeltildi
   photos_chosen_for_this_taxon: Bu sınıf için seçilen fotoğraflar
   photos_from: Şuradan fotoğraflar
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotoğraflar Kilitli
+  photos_locked_desc: Bu sınıfın varsayılan fotoğraflarını yalnızca yetkili değiştirebilir
   photos_of_taxon_html: "%{taxon} Fotoğrafları"
   photos_or_sounds: Fotoğraflar veya sesler
   photos_or_sounds?: Fotoğraflar veya sesler var mı?
@@ -3155,6 +3218,7 @@ tr:
   receive_updates_from_this_project: Bu projeden güncellemeleri al
   recent: Son
   recent_evidence_of_organism: Bir organizmanın son kanıtı
+  recent_exports: Son Dışa Aktarmalar
   recent_new_users: Son Katılan Yeni Kullanıcılar
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
@@ -3248,6 +3312,7 @@ tr:
   resolved_by: Çözen
   resolved_by_user_on_date_html: '%{user} tarafından %{date} tarihinde çözüldü'
   resolver_said_x_html: '<span class="meta">%{resolver}</span>"%{x}" dedi'
+  restart: Yeniden başlat
   restore: Geri yükle
   restoring: Geri yükleniyor...
   results: sonuçlar
@@ -3298,6 +3363,8 @@ tr:
   scale_colon: "Ölçek:"
   schemes: Şemalar
   schemes_including: Şemalar şunları içerir
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Bilimsel Ad
   search: Arama Yap
   search_all_fields: tüm alanları ara
   search_by_name_or_email: İsme veya e-postaya göre arama
@@ -3580,6 +3647,7 @@ tr:
   take_me_flickr!: Evet, beni Flickr'a götür!
   target_list_alert: Hedef listenizdeki tüm türleri gözlemlemeye çalıştığınızdan emin misiniz? Hedef listenizde gözlemlemediğiniz herhangi bir şeyin yokluk olarak yorumlanacağını unutmayın, bu nedenle hedef listenizin tespit etmeye çalıştığınız tür kümesini doğru şekilde yansıtması çok önemlidir
   target_list_warning: Hedef listenizde yer alan ve bu gezi çevresi ve sürecinde gözlemlemediğiniz herhangi bir şeyin bir yokluk olarak yorumlanacağını unutmayın. Hedef listenizin tespit etmeye çalıştığınız tür kümesini doğru şekilde yansıtması çok önemlidir. Hedef listenizdeki bir türü ya da hedef listenizdeki bir grubun kapsadığı her türü saptamadıysanız, lütfen onu kaldırın.
+  task_deleted: Görev silindi
   taxa: Sınıflar
   taxa_with_unknown_relationships: Bilinmeyen ilişkilerle sınıflar
   taxa_info: Sınıfların Bilgisi
@@ -3903,6 +3971,7 @@ tr:
   unresolve: Çözümü Kaldır
   unreview_all: Tümünü Görüntülenmemiş Yap
   unsubscribe: Abonelikten ayrıl
+  unsubscribe_from_emails_like_this: Bunun gibi e-posta listesinden çık
   unsuspend_user: Kullanıcıyı Askıdan Çıkar
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
@@ -3915,7 +3984,7 @@ tr:
   update_search: Aramayı Güncelle
   update_selected_taxa: Seçilen Sınıfları Güncelle
   update_subscription: Aboneliği Güncelle
-  update_subscription_preferences: Abonelik Tercihlerinizi Güncelleyin
+  update_subscription_preferences: Abonelik tercihlerinizi güncelleyin
   update_x_selected_taxa:
     one: "Seçilen 1 sınıfı güncelle"
     other: "Seçilen %{count} sınıfı güncelle"
@@ -4208,6 +4277,9 @@ tr:
     one: "%{count} gözlem başarısız oldu"
     other: "%{count} gözlem başarısız oldu"
   x_of_y: "%{x} / %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{count} / %{x} onaylandı"
     other: "%{count} / %{x} onaylandı"
@@ -4290,6 +4362,7 @@ tr:
   you_cant_do_that_for_the_default_check_list_place: Bir yerin varsayılan kontrol listesi için bunu yapamazsınız!
   you_cant_flag_that: Bunu işaretleyemezsiniz
   you_cant_leave_a_project_you_created: Oluşturduğunuz bir projeden ayrılamazsınız.
+  you_cant_merge_standard_places: Standart alanları birleştiremezsiniz
   you_cant_rotate_photos_hostde_outside: "%{site_name} dışında barındırılan fotoğrafları döndüremezsiniz."
   you_cannot_delete_taxa_involved_in_taxon_changes: Sınıf değişiklikleri içeren ve sınıf değişikliklerinde yer alan sınıfları silemezsin
   you_curate_a_project_that_contains_this_observation: Bu gözlemi içeren bir projenin sorumluluğunu yaptınız
@@ -4360,6 +4433,7 @@ tr:
   your_recent_projects: Son Projeleriniz
   your_relationships: İlişkilerin
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} devam etmek için %{provider} tarafından daha çok izine gerek duyuyor:"
+  your_subscriptions_to_this_place: Bu yere olan abonelikleriniz
   your_tags: Etiketleriniz
   yours: Seninki
   youre_not_following_anyone: |-
@@ -4672,9 +4746,12 @@ tr:
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
         create_a_query_desc_html: |
-          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. <strong>Sınıf</strong>, <strong>yer</strong>, <strong>kullanıcı</strong>, <strong>proje</strong> ya da <strong>arama sorgusu</strong> belirtmen gerekir.
+          Tıpkı sayfada başka bir yerde yaptığın gibi bir gözlem sorgusu oluştur. Ayrıca sayfanın başka bir yerinden bir gözlem URL'sini kesip yapıştırabilirsin. Sorgunuz <strong>200.000'den çok </strong> gözlem içermemelidir.
+        export_in_progress_notice_html: |
+          <a href="%{url}">Devam eden bir dışa aktarmanız</a> var. Başka bir dışa aktarma yapmak için işlemin tamamlanmasını beklemeniz gerekir.
         ident_by_user_desc_html: |
           %{user} tarafından geçerli tanımlama için sütunlar
+        limit_alert: Dışa aktarmanız çok büyük olacak. 200.000'den az gözlem olana kadar filtrelerinizi değiştirin.
         query_placeholder: "Aşağıdaki sorgu parametrelerinden birini seçin veya bir gözlem URL'ine yapıştırın"
         taxon_extras_help_html: "Not: Bu sütunlar dışa aktarımın oluşturulmasını yavaşlatır"
         geo_help_html: |
@@ -5160,6 +5237,7 @@ tr:
         revoke_observations_desc: |
           Ayrılmanızın tek sebebi proje sorumlularının gizli koordinatlarınızı görüntülemelerini engellemekse.
       edit:
+        admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut yerlerimize</a>
@@ -5174,6 +5252,8 @@ tr:
           tanıtmanın eğlenceli bir yoludur, aynı zamanda değerli veriler toplar.
           </p>
         change_admin_desc: Yeni yönetici olması için proje sorumlularından birini seçin.
+        change_owner_alert: |
+          Bu, bu projeyi silme ya da sahipliği devretme yeteneğinizi kaldıracaktır. Devam etmek istiyor musunuz?
         cover_desc: "Proje sayfanızın üstünde görünecek isteğe bağlı afiş resmi. Genişliği 950px, boyu 400px'den küçük olmalı."
         custom_project_fields_means: "Projenin afişini kişiselleştirin, yan içerik ekleyin, ve CSS'i düzenleyin."
         end_time_desc: "Bioblitzinizin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
@@ -5186,6 +5266,8 @@ tr:
           Görünüşe göre bu proje yeni bir <a href="%{url}">Koleksiyon Projesine</a> dönüştürülebilir.
         last_aggregated_at_desc: |
           Toplayıcı bu projeye en son gözlem eklemeyi bitirdiğinde zaman
+        #Label for button to make another user the owner of a project
+        make_owner: Sahip Yap
         no_curators: |
           Burada proje sorumlusu yok. Yönetici olarak yeni bir kişi atamak istiyorsanız, 
           önce bu projeye katılmalılar ve onları bir sorumlu yapmalısınız.
@@ -5910,12 +5992,12 @@ tr:
           Atıf lisansı</a> altında kullanılır (referans!)
         monthly_supporter: Aylık Destekçi
         monthly_supporter_desc_html: |
-          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin 
-          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy 
-          (ABD IRS FIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
+          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin
+          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy
+          (ABD IRS EIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
           <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>.
-          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu 
-          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için, 
+          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu
+          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,
           iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
         muting_desc_html: |
           <p>
@@ -6265,9 +6347,11 @@ tr:
       invalid: geçersiz
       less_than: '%{count} değerinden küçük olmalı'
       less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+      new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
       not_a_number: bir sayı değil
       not_an_integer: bir tam sayı olmalı
       odd: tek sayı olmalı
+      only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
       record_invalid: 'Doğrulama başarısız oldu: %{errors}'
       requires_privilege_speech: |
         başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
@@ -6401,9 +6485,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6454,11 +6540,21 @@ tr:
         occurrence_status_level: Oluşum Durumu Seviyesi
         establishment_means: Kuruluş Varlığı
       observation:
+        description: Notlar
         geo_x: Doğuya Doğru
         geo_y: Kuzeye Doğru
         observed_on: gözlenen tarih
       observation_field_value:
         value: 'değer'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Kuyrukta
+        #Date/time the task began processing
+        started_at: Başladı
+        #Date/time the task finished processing
+        finished_at: Bitti
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Girdiler
       post:
         title: Başlık
         body: İçerik
@@ -6541,9 +6637,11 @@ tr:
         invalid: geçersiz
         less_than: '%{count} değerinden küçük olmalı'
         less_than_or_equal_to: '%{count} değerinden küçük ya da eşit olmalı'
+        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalı
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
+        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
         requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
@@ -6606,6 +6704,13 @@ tr:
             observation_id:
               user_does_not_accept_fields_from_others: kullanıcı başkalarından alanları kabul etmiyor
               user_only_accepts_fields_from_site_curators: kullanıcı yalnızca sayfa sorumlularından alanları kabul eder
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Dışa aktarma 200.000'den çok gözlem içeremez
+              must_have_query: Sorgu boş olamaz
+            user_id:
+              already_has_an_export_in_progress: zaten bir dışa aktarma devam ediyor
         place:
           attributes:
             place_geometry:
@@ -6614,6 +6719,8 @@ tr:
               contains_too_many_observations: içe aktarılacak çok fazla gözlem var
         post:
           attributes:
+            parent:
+              prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |
                 yayınlamak için 24 saatten daha önce kayıt yaptırmış olmalısınız. İstenmeyen kullanımların önüne geçmek için böyle bir önlem aldık. Yine de bir taslak olarak kaydedebilirsiniz, ve bir gün içinde hala siteyi kullanıyor olursanız, yayınlayabilirsiniz.

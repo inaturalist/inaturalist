@@ -60,6 +60,7 @@ class ProjectForm extends React.Component {
               <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
+                { project.id && I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}
@@ -70,6 +71,7 @@ class ProjectForm extends React.Component {
                 }}
                 bootstrapClear
                 placeholder={I18n.t( "user_autocomplete_placeholder" )}
+                projectID={project.id}
               />
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">

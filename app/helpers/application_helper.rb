@@ -290,6 +290,8 @@ module ApplicationHelper
   
   def formatted_user_text(text, options = {})
     return text if text.blank?
+
+    text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
@@ -297,9 +299,6 @@ module ApplicationHelper
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
       text = text.gsub(/<\\?p>/, "\n\n")
-
-      # blockquotes should always start with a P
-      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
     end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
@@ -307,11 +306,11 @@ module ApplicationHelper
     text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
-    # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
+    # Ensure all tags are closed
+    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
     text.html_safe
   end
 
@@ -359,8 +358,9 @@ module ApplicationHelper
     h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
-  def markdown(text)
-    BlueCloth::new(text).to_html
+  def markdown( text )
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true )
+    @markdown.render( text )
   end
   
   def render_in_format(format, *args)

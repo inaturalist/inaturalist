@@ -33,6 +33,18 @@ shared_examples_for "a CommentsController" do
       observation.reload
       expect( observation.comments.size ).to eq 1
     end
+
+    it "should not work if the parent prefers no comments" do
+      user = User.make!
+      parent = Post.make!( prefers_no_comments: true, parent: user, user: user )
+      post :create, format: :json, comment: {
+        parent_type: "Post",
+        parent_id: parent.id,
+        body: "what a terrible post"
+      }
+      parent.reload
+      expect( parent.comments.size ).to eq 0
+    end
   end
 
   describe "update" do

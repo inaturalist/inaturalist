@@ -4,6 +4,11 @@ ru:
     few: '%{count} комментария'
     many: '%{count} комментариев'
     other: '%{count} комментария'
+  x_comments_html:
+    one: '<span class="count">%{count}</span>комментарий'
+    few: '<span class="count">%{count}</span>комментария'
+    many: '<span class="count">%{count}</span>комментариев'
+    other: '<span class="count">%{count}</span>комментариев'
   x_faves:
     one: '%{count} фаворит'
     few: '%{count} фаворита'
@@ -95,7 +100,7 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений"
     other: "<span class='count'>%{count}</span> наблюдений"
   x_observations_link_html:
-    one: "<a href='%{url}'>1 наблюдение</a>"
+    one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
     many: "<a href='%{url}'>%{count} наблюдений</a>"
     other: "<a href='%{url}'>%{count} наблюдений</a>"
@@ -266,11 +271,17 @@ ru:
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
   add_a_batch_of_taxa: Добавить несколько таксонов
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Добавить нумерованный список
   add_a_comment: Добавить комментарий
   add_a_field: Добавить поле
   add_a_flag: Добавить флаг
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Добавить ссылку
   add_a_name: Добавить имя
   add_a_new_change_group: Добавить новую группу изменений
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Добавить нумерованный список
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -293,6 +304,8 @@ ru:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Добавить актив
   add_batch: Добавить пакетную загрузку
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Добавить текст жирным шрифтом
   add_comma_separated_tags: "Добавить теги, разделённые запятыми"
   add_comment: Добавить комментарий
   add_conservation_status: Добавить природоохранный статус
@@ -305,6 +318,8 @@ ru:
   add_link: Добавить ссылку
   add_higher_level_taxon: Добавить таксон высшего уровня (например, "птицы")
   add_id: Добавить идентификацию
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Добавить текст курсивом
   add_new_lexicon: Добавить новый язык
   add_new_photos_by_their_ids: Добавить новые фото по идентификаторам Flickr (фото должны иметь лицензию Creative Commons!)
   add_new_place: Добавить новое место
@@ -729,6 +744,8 @@ ru:
   body: 'Текст:'
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: текст жирным шрифтом
   bounding_box: Ограничительная рамка
   breadcrumbs: Панировочные сухари
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -785,7 +802,6 @@ ru:
   change_descriptions:
     split: Старый таксон разделяется на несколько новых таксонов
     merge: Несколько старых таксонов объединились в один таксон
-    swap: Изменение имени один-к-одному
     drop: Концепция таксона полностью недействительна, поддерживается в исторических целях или для совместимости
     stage: Подготовьте неактивную концепцию для выпуска как часть изменяемой группы
   change_geoprivacy: 'Изменить настройку приватности местоположения'
@@ -885,6 +901,7 @@ ru:
   comment_deleted: Комментарий удалён
   comments: Комментарии
   comments_by_me: Мои комментарии
+  comments_have_been_disabled: Комментарии были отключены
   comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
   commercial_solicitation: Коммерческие предложения, ссылки в никуда и т. д.
@@ -992,7 +1009,7 @@ ru:
     cannot_be_determined: Нельзя определить
   controlled_term_definitions:
     alive: Организм жив и не проявляет признаков неизбежной смерти
-    dead: Организм жив и не проявляет признаков неизбежной смерти
+    dead: Организм жив или проявляет признаки неизбежной смерти
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
@@ -1045,6 +1062,7 @@ ru:
   create_a_query: Создать запрос
   create_an_account: Создать учётную запись
   create_an_atlas: Создать Атлас
+  create_export: Создать экспортный процесс
   create_new_taxon: Создать новый таксон
   create_observations: Создать наблюдения
   created: Создано
@@ -1177,13 +1195,37 @@ ru:
   deviation: Отклонение
   devise:
     failure:
+      already_authenticated: 'Вы уже вошли в систему.'
+      unauthenticated: 'Прежде чем продолжать, вам нужно войти в систему или зарегистрироваться'
+      invalid: 'Неверный email или пароль'
+      invalid_token: 'Неверный маркер аутентификации.'
       user:
         suspended: Ваш аккаунт был приостановлен
+    sessions:
+      signed_in: 'Вход успешно выполнен'
+      signed_out: 'Вы вышли из системы.'
+    passwords:
+      send_instructions: 'В течение нескольких минут Вы получите письмо с инструкциями по восстановлению пароля.'
+      updated: 'Ваш пароль был успешно изменен. Вы вошли в систему.'
+      updated_not_active: 'Ваш пароль был успешно изменен.'
+      send_paranoid_instructions: "Если ваш адрес email есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
+      no_token: "Эта страница доступна только при переходе с адреса электронной почты для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что Вы используете полную URL-ссылку."
+    registrations:
+      signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
+      updated: 'Вы успешно обновили свою учётную запись.'
+      destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Инструкции по подтверждению'
+      reset_password_instructions:
+        subject: 'Инструкции по восстановлению пароля'
   discoveries: Открытия
   did_not_send_invitations_because: Не отправил приглашения следующим, потому что...
   did_you_mean: 'Возможно, вы имеете в виду'
   did_you_photos_flickr?: Размещаете ли вы фото на Flickr?
   disable: Отключить
+  disable_comments: Отключить комментарии
+  disable_comments_desc: Запретить добавлять новые комментарии
   disagree_: Не согласен
   disconnect_provider: "Отключить %{provider}"
   display_link_to_checklist: Показывать ссылку на список проектов на странице проекта
@@ -1243,6 +1285,7 @@ ru:
   edit_field: Редактировать поле
   edit_license: Редактировать лицензию
   edit_multiple_dates: Редактировать несколько дат
+  edit_multiple_descriptions: Редактировать множественные описания
   edit_multiple_locations: Редактировать множественные местоположения
   edit_multiple_species: Редактировать несколько видов
   edit_notes: Редактировать примечания
@@ -1387,6 +1430,7 @@ ru:
   fields_can_only_be_edited_by_the_people_who: Поля могут редактироваться только людьми, которые их создали, и кураторами сайтов
   fields_merged: Поля объединены
   file: Файл
+  file_size: Размер файла
   file_should_be_in_the_following_format: "Файл должен иметь следующий формат: наименование таксона, описание"
   fill_out_project_observation_fields: Заполнить поля наблюдения проекта
   fill_out_your_profile: заполните ваш профиль
@@ -1497,7 +1541,7 @@ ru:
   followers: Подписчики
   following: Подписка
   following_x_people:
-    one: 'Подписан на 1 человека'
+    one: 'Подписан на %{count} человека'
     few: 'Подписан на %{count} человек'
     many: 'Подписан на %{count} человек'
     other: 'Подписан на %{count} человек'
@@ -1711,6 +1755,8 @@ ru:
   insects: насекомые
   insect_life_stage: Стадия жизни насекомого
   instagram: Инстаграм
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Вставить цитату
   interactions: взаимодействия
   internal_server_error: Внутренняя ошибка сервера
   internal_taxon_including_descendants: Внутренний таксон (включая потомков)
@@ -1735,6 +1781,8 @@ ru:
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: текст курсивом
   item_flagged_notice_html: |
     Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы это создали или же вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
@@ -1885,9 +1933,13 @@ ru:
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
   linked_flickr_password_html: "<strong>Мы никогда не запрашиваем у вас пароль Flickr</strong>  (но Flickr может это сделать, проверьте ссылку, на которую направляет вас кнопка, и убедитесь, что это Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: текст ссылки
   linkedin: LinkedIn
   list: Список
   list_deleted: Список удалён.
+  list_reloaded_from_observations: Список перезагружен из наблюдений
+  list_rules_reapplied: Правила списка были применены повторно
   list_saved: Список сохранен.
   list_tooltip: Показать вид списка
   list_updated: Список обновлён!
@@ -1971,6 +2023,10 @@ ru:
   location_specified: Указано местоположение
   locked_taxa_will_not_allow_new: Заблокированные таксоны не позволяют добавлять к ним новые таксоны-потомки. Так, если вы заблокировали Земноводных, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как земноводное. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
   log_in: Вход
+  log_in_or_sign_up_to_add_comments_html: |
+    Для добавления комментариев<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
+  log_in_or_sign_up_to_add_identifications_html: |
+    Для добавления идентификаций<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
   logo:
@@ -2611,6 +2667,10 @@ ru:
   people_following_user: "Люди, подписанные на %{user}"
   people_user_follows: "Люди, на которых подписан %{user}"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: добавить <a href="%{observation_url}">наблюдение</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -2644,6 +2704,9 @@ ru:
   photo_urls_repaired: URL фото восстановлены
   photos_chosen_for_this_taxon: Фото, выбранные для этого таксона
   photos_from: Фото из
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Отображается, когда фото были «заблокированы» для таксона, что означает, что лишь сотрудники могут редактировать фото по умолчанию этого таксона.
+  photos_locked_desc: Лишь сотрудники могут изменять фото по умолчанию этого таксона
   photos_of_taxon_html: "Фото %{taxon}"
   photos_or_sounds: Фото или звуки
   photos_or_sounds?: Фото или звуки?
@@ -3258,6 +3321,7 @@ ru:
   receive_updates_from_this_project: Получать обновления этого проекта
   recent: Последние
   recent_evidence_of_organism: Свежие свидетельства существования организма
+  recent_exports: Последние процессы экспорта
   recent_new_users: Последние новые пользователи
   recent_observations: Последние наблюдения
   recent_observations_: Последние наблюдения
@@ -4047,6 +4111,7 @@ ru:
   unresolve: Не разрешено
   unreview_all: Отметить все как непросмотренные
   unsubscribe: Отменить подписку
+  unsubscribe_from_emails_like_this: Отписаться от таких писем
   unsuspend_user: Разблокированный пользователь
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
@@ -4362,6 +4427,9 @@ ru:
     many: "Не удалось создать %{count} наблюдений"
     other: "Не удалось создать %{count} наблюдений"
   x_of_y: "%{x} из %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} из %{count} подтвержден"
     few: "%{x} из %{count} подтверждено"
@@ -4439,6 +4507,7 @@ ru:
   you_cant_do_that_for_the_default_check_list_place: Вы не можете сделать это с контрольным списком по умолчанию для данного места!
   you_cant_flag_that: Вы не можете помечать это
   you_cant_leave_a_project_you_created: Вы не можете покинуть созданный вами проект.
+  you_cant_merge_standard_places: Вы не можете объединять места в стандартной иерархии
   you_cant_rotate_photos_hostde_outside: "Вы не можете повернуть фото, размещённые за пределами %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Вы не можете удалить таксоны, участвующие в изменении таксонов или содержащие таксоны, участвующие в изменении таксонов
   you_curate_a_project_that_contains_this_observation: Вы курируете проект, который содержит это наблюдение
@@ -4509,6 +4578,7 @@ ru:
   your_recent_projects: Ваши последние проекты
   your_relationships: Ваши связи
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} требует, чтобы вы получили больше разрешений от %{provider}, чтобы продолжить:"
+  your_subscriptions_to_this_place: Ваши подписки на это место
   your_tags: Ваши теги
   yours: Ваш(и)
   youre_not_following_anyone: |-
@@ -4822,10 +4892,11 @@ ru:
           other: "уникальных %{count}"
       export:
         choose_columns_desc: Выберите столбцы, которые требуется экспортировать
-        create_a_query_desc_html: |
-          Создайте запрос наблюдений так же, как вы бы вы сделали это в другом месте на сайте. Можно также вырезать и вставить URL-адрес наблюдения из другой части сайта. Вы должны задать <strong>таксон</strong>, <strong>место</strong>, <strong>пользователя</strong>, <strong>проект</strong>, или <strong>строку поиска</strong>.
+        export_in_progress_notice_html: |
+          Экспорт <a href="%{url}">уже производится</a>. Вам нужно будет дождаться его завершения, прежде чем вы сможете поставить в очередь еще один экспорт.
         ident_by_user_desc_html: |
           Столбцы для текущей идентификации %{user}
+        limit_alert: Размер вашего экспорта слишком велик. Изменяйте фильтры до тех пор, пока не будет менее 200 000 наблюдений.
         query_placeholder: "Выберите ниже параметры запроса или вставьте URL наблюдений"
         taxon_extras_help_html: "Примечание. Эти столбцы будут замедлять генерацию вашего экспорта"
         geo_help_html: |
@@ -5206,6 +5277,7 @@ ru:
         revoke_observations_desc: |
           Если единственная причина, по которой вы покидаете проект, заключается в том, чтобы запретить просмотр кураторами проекта скрытых координат.
       edit:
+        admins_must_be_existing_members: Администраторы должны быть существующими участниками проекта.
         aggregation_pending: Ожидание агрегации
         new_place_desc_html: |
           Попробуйте просмотреть <a href="%{places_url}" target="_blank">наши имеющиеся места</a> и убедитесь, что вы правильно указали название места. Если вы действительно не можете найти нужное место, рассмотрите <a href="%{new_place_url}" target="_blank">создание нового места</a>, но, пожалуйста, убедитесь, что вы не дублируете существующее место.
@@ -5789,7 +5861,7 @@ ru:
           Описания и &copy; изображений лицензии %{year} Creative Commons, используемой по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a>
         monthly_supporter: Ежемесячная поддержка
         monthly_supporter_desc_html: |
-          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS FIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
+          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
           <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
           Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.
         muting_desc_html: |
@@ -6335,11 +6407,21 @@ ru:
         occurrence_status_level: Уровень статуса присутствия
         establishment_means: Способ возникновения
       observation:
+        description: Примечания
         geo_x: Движение на восток
         geo_y: Движение на север
         observed_on: дата наблюдения
       observation_field_value:
         value: 'значение'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: В очереди
+        #Date/time the task began processing
+        started_at: Начато
+        #Date/time the task finished processing
+        finished_at: Завершено
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Исходные данные
       post:
         title: Название
         body: Текст сообщения
@@ -6495,6 +6577,13 @@ ru:
             observation_id:
               user_does_not_accept_fields_from_others: пользователь не допускает заполнение полей другими людьми
               user_only_accepts_fields_from_site_curators: пользователь допускает заполнение полей только кураторами сайта
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Нельзя экспортировать более 200 000 наблюдений
+              must_have_query: Очередь не может быть пустой
+            user_id:
+              already_has_an_export_in_progress: экспорт уже производится
         place:
           attributes:
             place_geometry:
@@ -6503,6 +6592,8 @@ ru:
               contains_too_many_observations: содержит слишком много наблюдений для импорта
         post:
           attributes:
+            parent:
+              prefers_no_comments: не разрешать добавлять новые комментарии
             user:
               must_be_on_site_long_enough: |
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.

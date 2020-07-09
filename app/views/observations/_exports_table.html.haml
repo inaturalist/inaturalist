@@ -1,20 +1,38 @@
 %table
+  %thead
+    %th
+    %th=t :file_size
+    %th=t "activerecord.attributes.observations_export_flow_task.created_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.started_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.finished_at"
+    %th=t "activerecord.attributes.observations_export_flow_task.inputs"
+    %th
+  %tbody
   - for ft in flow_tasks
-    %tr
+    %tr{ id: "export-#{ft.id}", class: !ft.finished_at && !ft.error ? "notice" : "" }
       %td.inline.buttonrow.smallbuttons
         - if ft.export_output
           = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
         - elsif ft.error
-          = t(:failed)
-        - else
-          = ft.started_at ? t(:processing) : t(:queued)
-      %td
-        = ft.export_output ? number_to_human_size(ft.export_output.file.size, precision: 3) : nil
-      %td
-        - if ft.finished_at
-          = l ft.finished_at, :format => :long
+          =t :failed
         - elsif ft.started_at
-          = l ft.started_at, :format => :long
+          =t :processing
+        - elsif @recent_export_jobs_by_flow_task_id && @recent_export_jobs_by_flow_task_id[ft.id].blank?
+          %button{type: "button", class: "default button", onClick: "javascript:startFlowTask( { id: #{ft.id} } );return false;" }
+            =t :restart
+        - else
+          =t :queued
+      %td.nobr
+        = ft.export_output ? number_to_human_size(ft.export_output.file.size, precision: 3) : nil
+      %td.queued
+        - if ft.created_at
+          =l ft.created_at, format: :short
+      %td.started
+        - if ft.started_at
+          =l ft.started_at, format: :short
+      %td.finished
+        - if ft.finished_at
+          =l ft.finished_at, format: :short
       %td
         %div
           %strong=t :query
@@ -22,3 +40,5 @@
         %div
           %strong=t :columns
           = ft.export_columns.join(', ')
+      %td.inline.buttonrow.smallbuttons
+        = button_to t(:delete), flow_task_path( ft ), method: :delete, class: "pale button", data: { confirm: t(:are_you_sure?) }

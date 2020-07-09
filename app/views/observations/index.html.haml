@@ -1,5 +1,5 @@
 - content_for :title do
-  =t :observations
+  = @shareable_title = t(:observations)
 - content_for :extrajs do
   = javascript_include_tag "angular_includes_bundle"
   = javascript_include_tag "angular_bundle"
@@ -17,6 +17,10 @@
   = stylesheet_link_tag "observations/search"
 - content_for :extrahead do
   %base{ href: observations_path }
+  %meta{ property: "og:title", content: @shareable_title }
+  %meta{ property: "og:description", content: html_attributize( @shareable_description ) }
+  %meta{ property: "og:url", content: request.original_url }
+  %meta{ name: "twitter:card", content: "summary" }
 #main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
   .container.container-fixed
     .row.form
@@ -59,25 +63,25 @@
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
             .stat-title.ng-cloak
-              = t(:observations)
+              {{ shared.pluralWithoutCount( "x_observations_html", totalObservations ) }}
               %i.fa.fa-arrow-right{ "ng-hide": "viewing('observations')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('species') }", "ng-click": "changeView('species')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalSpecies ) }}"
             .stat-title.ng-cloak
-              = t(:species)
+              {{ shared.pluralWithoutCount( "x_species_html", totalSpecies ) }}
               %i.fa.fa-arrow-right{ "ng-hide": "viewing('species')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('identifiers') }", "ng-click": "changeView('identifiers')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalIdentifiers ) }}"
             .stat-title.ng-cloak
-              = t(:identifiers)
+              {{ shared.pluralWithoutCount( "x_identifiers_html", totalIdentifiers ) }}
               %i.fa.fa-arrow-right{ "ng-hide": "viewing('identifiers')" }
         .col-xs-2.statcol{ "ng-class": "{ active: viewing('observers') }", "ng-click": "changeView('observers')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
             .stat-title.ng-cloak
-              = t(:observers)
+              {{ shared.pluralWithoutCount( "x_observers_html", totalIdentifiers ) }}
               %i.fa.fa-arrow-right{ "ng-hide": "viewing('observers')" }
   #results
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }

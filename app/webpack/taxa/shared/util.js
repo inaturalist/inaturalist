@@ -48,30 +48,36 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
       license_name: I18n.t( "public_domain" )
     } );
   } else if ( photo.license_code === "cc0" ) {
-    s = I18n.t( "by_user", { user: userName } );
+    if ( userName === I18n.t( "unknown" ) ) {
+      s = "";
+    } else {
+      s = I18n.t( "by_user", { user: userName } );
+    }
   } else {
     s = `(c) ${userName}`;
   }
   let url;
   let rights = I18n.t( "all_rights_reserved" );
   if ( photo.license_code ) {
-    s += separator;
+    if ( s.length > 0 ) {
+      s += separator;
+    }
     if ( photo.license_code === "cc0" ) {
       url = "http://creativecommons.org/publicdomain/zero/1.0/";
       rights = `${I18n.t( "copyright.no_rights_reserved" )} (CC0)`;
     } else {
-      url = `http://creativecommons.org/licenses/${photo.license_code.replace( /cc\-?/, "" )}/4.0`;
+      url = `http://creativecommons.org/licenses/${photo.license_code.replace( /cc-?/, "" )}/4.0`;
       rights = `${I18n.t( "some_rights_reserved" )}
-        (${photo.license_code.replace( /cc\-?/, "CC " ).toUpperCase( )})`;
+        (${photo.license_code.replace( /cc-?/, "CC " ).toUpperCase( )})`;
     }
   }
-  return (
-    <span>
-      { s },
-      { " " }
-      { url ? <a href={url} title={photo.license_code}>{ rights }</a> : rights }
-    </span>
-  );
+  let final = s && s.length > 0 ? `${s} – ` : "";
+  if ( url ) {
+    final += `<a href=${url} title=${photo.license_code}>${rights}</a>`;
+  } else {
+    final += rights;
+  }
+  return final;
 };
 
 const commasAnd = items => {

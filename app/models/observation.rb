@@ -1079,28 +1079,32 @@ class Observation < ActiveRecord::Base
     return true if @skip_identifications
     return true unless taxon_id_changed?
     owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
+    owner_editing_own_obs = editing_user_id == user_id
     
-    # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
-      # If the owner doesn't have an identification for this obs, make one
-      attrs = {
-        user: user,
-        taxon: taxon,
-        observation: self,
-        skip_observation: true,
-        vision: owners_identification_from_vision_requested
-      }
-      owners_ident = if new_record?
-        self.identifications.build( attrs )
-      else
-        self.identifications.create( attrs )
-      end
-    elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where( user_id: user_id ).count > 1
-        owners_ident.update_attributes( current: false, skip_observation: true )
-      else
-        owners_ident.skip_observation = true
-        owners_ident.destroy
+    # Don't mess with the owner's ident if they owner didn't change anything
+    if owner_editing_own_obs || new_record?
+      # If there's a taxon we need to make sure the owner's ident agrees
+      if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
+        # If the owner doesn't have an identification for this obs, make one
+        attrs = {
+          user: user,
+          taxon: taxon,
+          observation: self,
+          skip_observation: true,
+          vision: owners_identification_from_vision_requested
+        }
+        owners_ident = if new_record?
+          self.identifications.build( attrs )
+        else
+          self.identifications.create( attrs )
+        end
+      elsif taxon.blank? && owners_ident && owners_ident.current?
+        if identifications.where( user_id: user_id ).count > 1
+          owners_ident.update_attributes( current: false, skip_observation: true )
+        else
+          owners_ident.skip_observation = true
+          owners_ident.destroy
+        end
       end
     end
     
@@ -1865,7 +1869,8 @@ class Observation < ActiveRecord::Base
         private_geom: o.private_geom,
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
-        taxon_geoprivacy: o.taxon_geoprivacy
+        taxon_geoprivacy: o.taxon_geoprivacy,
+        public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )

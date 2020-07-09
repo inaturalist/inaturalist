@@ -574,7 +574,6 @@ pt:
   change_descriptions:
     split: Taxon anterior dividido em vários taxa novos
     merge: Vários taxa anteriores agrupados num só taxon novo
-    swap: Alteração de único nome para outro
     drop: Conceito do táxon é completamente inválido, mas mantido por motivos históricos ou de compatibilidade entre parceiros
     stage: Prepara um conceito inactivo, a ser lançado como parte de uma alteração taxonómica de grupo
   change_geoprivacy: 'Alterar geoprivacidade'
@@ -943,6 +942,7 @@ pt:
   edit_field: Editar campo
   edit_license: Editar licença
   edit_multiple_dates: Editar várias datas
+  edit_multiple_descriptions: Editar várias descrições
   edit_multiple_locations: Editar várias localizações
   edit_multiple_species: Editar várias espécies
   edit_notes: Editar notas

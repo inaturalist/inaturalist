@@ -22,14 +22,14 @@
         ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login )
       )
     %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index show by_login ).include?( controller.action_name ) && !looking_at_own_observations || controller.class.name == "TaxaController" ? "active" : nil }
-      = link_to t(:explore).capitalize, observations_path
+      = link_to t(:explore), observations_path
     - if logged_in?
       %li.navtab{ class: looking_at_own_observations ? "active" : nil }
-        = link_to t(:your_observations).titleize, observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
+        = link_to t(:your_observations), observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
     %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
       .dropdown
         #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-          = link_to t(:community).capitalize, people_path
+          = link_to t(:community), people_path
           %i.fa.fa-angle-down
         %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
           %li= link_to t(:people), people_path
@@ -52,11 +52,11 @@
                     = truncate( project.title )
     - if logged_in?
       %li.navtab.header-md.header-lg{ class: controller.class.name == "ObservationsController" && %w( identify ).include?( controller.action_name ) ? "active" : nil }
-        = link_to t(:identify).titleize, identify_observations_path
+        = link_to t(:identify), identify_observations_path
     %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
       .dropdown
         #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-          = t(:more).capitalize
+          = t(:more)
           %i.fa.fa-angle-down
         %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
           - if logged_in?

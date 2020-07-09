@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :saved_locations
   apipie
 
-  resources :sites
+  resources :sites do
+    collection do
+      get :network
+    end
+  end
 
   uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )
   id_param_pattern = /(\d+([\w\-\%]*))|#{uuid_pattern}/
@@ -375,6 +379,7 @@ Rails.application.routes.draw do
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
+  resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
@@ -408,7 +413,7 @@ Rails.application.routes.draw do
   patch 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   get 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
-  get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
+  get 'taxa/:id/photos' => 'taxa#photos', as: :photos_of_taxon
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger

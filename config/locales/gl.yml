@@ -2,6 +2,9 @@ gl:
   x_comments:
     one: '%{count} comentario'
     other: '%{count} comentarios'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> comentario'
+    other: '<span class="count">%{count}</span> comentarios'
   x_faves:
     one: '%{count} favorito'
     other: '%{count} favoritos'
@@ -691,7 +694,6 @@ gl:
   change_descriptions:
     split: A especie ou grupo está separada
     merge: Varios taxons amoreados formando un novo taxon
-    swap: Intercambio de nomes, o vello polo novo
     drop: O concepto da especie ou grupo é totalmente inválido, só se mantén co obxectivo de levar unha cronoloxía ou compatibilidade con outros sitios
     stage: Prepara un concepto inactivo como parte dun cambio de taxonomía dun grupo de especies.
   change_geoprivacy: 'Cambiar xeoprivacidade'
@@ -794,6 +796,7 @@ gl:
   comment_deleted: O comentario borrouse
   comments: Comentarios
   comments_by_me: Os meus comentarios
+  comments_have_been_disabled: Inhabilitáronse os comentarios
   comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre as miñas observacións
   commercial_solicitation: Anuncia algo, os enlaces non son válidos, etc.
@@ -1083,13 +1086,30 @@ gl:
   deviation: Desviación
   devise:
     failure:
+      already_authenticated: 'Xa iniciaches a sesión.'
+      unauthenticated: 'Necesitas iniciar sesión ou darte de alta antes de continuar.'
+      invalid: 'Correo electrónico ou palabra chave inválida.'
       user:
         suspended: A túa conta foi suspensa
+    sessions:
+      signed_in: 'Iniciouse a sesión correctamente.'
+      signed_out: 'Pechouse a sesión correctamente.'
+    passwords:
+      send_instructions: 'Recibirás un correo electrónico con instruccións sobre como restaurar a túa palabra chave nuns intres.'
+      updated: 'Cambiouse a túa palabra chave correctamente. Agora xa estás rexistrado/a.'
+      updated_not_active: 'A túa palabra chave cambiouse correctamente.'
+      send_paranoid_instructions: "Se o teu enderezo de correo electónico está na nosa base de dados, recibirás un vínculo de recuperación da palabra chave no teu correo nuns minutos."
+      no_token: "Non podes acceder a esta páxina sen vir dun correo electrónico de restauro de palabra chave. Se vés dun correo de restauro de palabra chave, por favor, asegúrate de empregar a URL fornecida enteira."
+    registrations:
+      updated: 'Actualizaches a túa conta exitosamente.'
+      destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
   discoveries: Descubertas
   did_not_send_invitations_because: 'Non enviaremos invitacións aos teus amigos e amigas porque:'
   did_you_mean: 'Refíreste a?'
   did_you_photos_flickr?: Colocaches fotos en Flickr?
   disable: Desactivar
+  disable_comments: Inhabilitar comentarios
+  disable_comments_desc: Impide que xente engada comentarios novos
   disagree_: En Desacordo
   disconnect_provider: "Desconectarse de %{provider}"
   display_link_to_checklist: Mostrar ligazón á listaxe do proxecto dende a páxina do proxecto
@@ -1785,6 +1805,8 @@ gl:
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista eliminada.
+  list_reloaded_from_observations: Lista recagada dende as observacións
+  list_rules_reapplied: As regras da lista reaplicáronse
   list_saved: Lista gardada.
   list_tooltip: Mostrar vista de listaxe
   list_updated: '¡Lista actualizada!'
@@ -2547,6 +2569,9 @@ gl:
   photo_urls_repaired: A URL da foto foi reparada.
   photos_chosen_for_this_taxon: Fotos escollidas para este taxon
   photos_from: Fotos de
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Fotos Bloqueadas
+  photos_locked_desc: Soamente o persoal pode mudar as fotos predeterminadas para este taxon
   photos_of_taxon_html: "Fotos de %{taxon}"
   photos_or_sounds: Fotos ou sons
   photos_or_sounds?: '¿Fotos ou sons?'
@@ -4365,6 +4390,7 @@ gl:
   your_recent_projects: Os Teus Proxectos Recentes
   your_relationships: As Túas Relacións
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorices máis permisos de %{provider} que proceden:"
+  your_subscriptions_to_this_place: As túas subscricións a este lugar
   your_tags: As Túas Etiquetas
   yours: Teu
   youre_not_following_anyone: |-
@@ -4660,8 +4686,6 @@ gl:
           other: "%{count} únicos"
       export:
         choose_columns_desc: Escolle as columnas que queres exportar
-        create_a_query_desc_html: |
-          Crea unha consulta sobre observacións como farías noutro sitio calquera dentro do sitio web. Tamén podes cortar e colar a URL dunha observación doutra parte do sitio. Debes especificar un <strong>taxon</strong>, <strong>ubicación</strong>, <strong>usuario</strong>, <strong>proxecto</strong>, ou <strong>consulta de busca</strong>.
         ident_by_user_desc_html: |
           Columnas para a identificación actual de %{user}
         query_placeholder: "Escolle abaixo os parámetros de consulta ou cola a URL dunha observación"
@@ -5584,7 +5608,7 @@ gl:
           As descricións de licenzas e imaxes &copy;%{year} Creative Commons, usados baixo unha <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a> (que meta!)
         monthly_supporter: Patrocinador Mensual
         monthly_supporter_desc_html: |
-          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS FIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
+          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
           <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
           Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
@@ -6242,6 +6266,8 @@ gl:
               contains_too_many_observations: contén demasiadas observacións para importala
         post:
           attributes:
+            parent:
+              prefers_no_comments: non permite comentarios novos
             user:
               must_be_on_site_long_enough: |
                 deberás estar rexistrado hai máis de 24 horas para publicar. Obtemos moitos remitentes de spam, e isto é un xeito de lidar con eles. Aínda así podes gardar un borrador, se continuares a usa a páxina nun dia, serás quen de publicar.

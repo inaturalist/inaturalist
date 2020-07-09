@@ -126,6 +126,43 @@ base: &base
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: http://localhost:4000/v1
 
+    # # Path to the CA .crt file
+    # ca_file: "/path/to/certs/ca-bundle.crt"
+    # # Path to the certificates directory
+    # ca_path: "/path/to/certs/"
+
+    # # Options for interacting with orcid.org
+    # orcid:
+    #     client_id: YOUR_CLIENT_ID
+    #     client_secret: YOUR_CLIENT_SECRET
+
+    # # Options for interacting with donorbox.org donation platform
+    # donorbox:
+    #     email: you@domain.com
+    #     key: YOUR_DONORBOX_KEY
+
+
+    # Options for interacting with crowdin.com translation projects
+    # crowdin:
+    #     projects:
+    #         web:
+    #             identifier: inaturalistweb
+    #             key: 1234
+    #         mobile:
+    #             identifier: inaturalistios
+    #             key: 5678
+    #         seek:
+    #             identifier: seek
+    #             key: 4321
+
+    # # Sendgrid-specific options if using sendgrid.com to send email
+    # sendgrid:
+    #     # Unsubscribe groups configured on Sendgrid
+    #     asm_group_ids:
+    #         # The unsubscribe group used as a default for all emails sent from
+    #         # the web app
+    #         default: 1234
+
 development:
     <<: *base
 

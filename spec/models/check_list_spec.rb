@@ -143,6 +143,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt ).not_to be_auto_removable_from_check_list
     o = Observation.find( o.id )
     o.taxon = Taxon.make!
+    o.editing_user_id = o.user_id
     o.save
     without_delay { CheckList.refresh_with_observation( o, :taxon_id => o.taxon_id, :taxon_id_was => @taxon.id ) }
     @check_list.reload
@@ -298,7 +299,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt.observations_count ).to eq 3
     
     o2 = Observation.find( o2.id )
-    o2.update_attributes( taxon: Taxon.make! )
+    o2.update_attributes( taxon: Taxon.make!, editing_user_id: o2.user_id )
     without_delay { CheckList.refresh_with_observation( o2, :taxon_id_was => @taxon.id ) }
     lt = @check_list.listed_taxa.find_by_taxon_id( @taxon.id )
     expect( lt ).not_to be_blank

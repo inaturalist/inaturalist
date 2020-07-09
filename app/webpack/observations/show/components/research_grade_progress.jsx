@@ -191,14 +191,15 @@ class ResearchGradeProgress extends React.Component {
       outlinks = (
         <div className="outlinks">
           <span className="intro">
-            { I18n.t( "this_observation_is_featured_on_x_sites", {
-              count: observation.outlinks.length
-            } ) }
-            { grade !== "research" ? (
+            { I18n.t(
+              "this_observation_is_featured_on_x_sites",
+              { count: observation.outlinks.length }
+            ) }
+            { grade !== "research" && (
               <span className="intro-sub">
                 { I18n.t( "please_allow_a_few_weeks_for_external_sites" ) }
               </span>
-            ) : "" }
+            ) }
           </span>
           { observation.outlinks.map( ol => (
             <div className="outlink" key={`outlink-${ol.source}`}>

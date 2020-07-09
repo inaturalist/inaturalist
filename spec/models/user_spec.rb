@@ -991,6 +991,28 @@ describe User do
       o.reload
       expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
     end
+
+    it "should not create new identifications for the observer when set to true" do
+      user = User.make!( prefers_community_taxa: false )
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      o = Observation.make!( user: user )
+      owners_ident = Identification.make!( user: user, observation: o, taxon: family )
+      2.times do
+        Identification.make!( observation: o, taxon: species )
+      end
+      o.reload
+      expect( o.taxon ).to eq owners_ident.taxon
+      expect( o.community_taxon ).to eq species
+      expect( o.identifications.by( user ).count ).to eq 1
+      user.update_attributes( prefers_community_taxa: true )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.by( user ).count ).to eq 1
+      owners_ident.reload
+      expect( owners_ident ).to be_current
+    end
   end
 
   describe "active_ids" do
