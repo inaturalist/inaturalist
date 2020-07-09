@@ -19,6 +19,8 @@
   %base{ href: observations_path }
   %meta{ property: "og:title", content: @shareable_title }
   %meta{ property: "og:description", content: html_attributize( @shareable_description ) }
+  %meta{ property: "og:url", content: request.original_url }
+  %meta{ name: "twitter:card", content: "summary" }
 #main-container{ "ng-app": "ObservationSearch", "ng-controller": "SearchController" }
   .container.container-fixed
     .row.form

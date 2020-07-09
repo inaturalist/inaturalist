@@ -10,7 +10,11 @@ class Irwi::Formatters::Redcarpet
   end
 
   def format( text )
-    Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true, disable_indented_code_blocks: true ).render( text )
+    Redcarpet::Markdown.new( Redcarpet::Render::HTML,
+      tables: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true
+    ).render( text )
   end
 end
 

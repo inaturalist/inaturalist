@@ -5,8 +5,7 @@ class SitesController < ApplicationController
   before_filter :require_admin_of_viewed_site, except: [:index, :show, :network]
   before_filter :setup_pref_groups, only: [:new, :create, :edit, :update, :show]
 
-  layout "bootstrap", except: %w(network)
-  layout "bootstrap-container", only: %w(network)
+  layout "bootstrap"
 
   # GET /sites
   # GET /sites.json
@@ -90,6 +89,10 @@ class SitesController < ApplicationController
       format.html { redirect_to sites_url }
       format.json { head :no_content }
     end
+  end
+
+  def network
+    render layout: "bootstrap-container"
   end
 
   private
