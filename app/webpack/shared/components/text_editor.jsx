@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import mousetrap from "mousetrap";
 import TextEditorFormatButton from "./text_editor_format_button";
 import UserText from "./user_text";
 
@@ -17,9 +18,18 @@ class TextEditor extends React.Component {
   }
 
   componentDidMount( ) {
-    Mousetrap( this.textarea.current ).bind( 'mod+b', ( ) => { this.boldButton.button.current.click( ); } );
-    Mousetrap( this.textarea.current ).bind( 'mod+i', ( ) => { this.italicButton.button.current.click( ); } );
-    Mousetrap( this.textarea.current ).bind( 'mod+k', ( ) => { this.linkButton.button.current.click( ); } );
+    mousetrap( this.textarea.current ).bind( "mod+b", e => {
+      e.preventDefault();
+      this.boldButton.button.current.click( );
+    } );
+    mousetrap( this.textarea.current ).bind( "mod+i", e => {
+      e.preventDefault();
+      this.italicButton.button.current.click( );
+    } );
+    mousetrap( this.textarea.current ).bind( "mod+k", e => {
+      e.preventDefault();
+      this.linkButton.button.current.click( );
+    } );
   }
 
   render( ) {
@@ -52,7 +62,7 @@ class TextEditor extends React.Component {
                 label={<i className="fa fa-bold" />}
                 template={text => `**${text}**`}
                 placeholder={I18n.t( "bold_text" )}
-                ref={(button) => {this.boldButton = button;}}
+                ref={button => { this.boldButton = button; }}
                 newSelectionOffset={2}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
@@ -64,7 +74,7 @@ class TextEditor extends React.Component {
                 label={<i className="fa fa-italic" />}
                 template={text => `*${text}*`}
                 placeholder={I18n.t( "italic_text" )}
-                ref={(button) => {this.italicButton = button;}}
+                ref={button => { this.italicButton = button; }}
                 newSelectionOffset={1}
                 newSelectionOffsetLength={textLength => textLength}
                 disabled={preview}
@@ -76,7 +86,7 @@ class TextEditor extends React.Component {
                 label={<i className="icon-link" />}
                 template={text => `[${text}](url)`}
                 placeholder={I18n.t( "linked_text" )}
-                ref={(button) => {this.linkButton = button}}
+                ref={button => { this.linkButton = button; }}
                 newSelectionOffset={textLength => textLength + 3}
                 newSelectionOffsetLength={3}
                 disabled={preview}
