@@ -1409,6 +1409,7 @@ ru:
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
+  failed_to_save_record_with_errors: "Не удалось сохранить запись: %{errors}"
   'false': 'Нет'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
@@ -2446,6 +2447,8 @@ ru:
   observations_by_you: "Ваши наблюдения"
   observations_by_you_on_date: "Ваши наблюдения за %{date}"
   observation_calendar_for: "Календарь наблюдений %{user} в %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Наблюдения могут содержать только %{limit} фото
   observation_curation: Курирование наблюдений
   observation_date: Дата
   observation_date?: Дата?
@@ -3417,6 +3420,7 @@ ru:
   resolved_by: Обработано
   resolved_by_user_on_date_html: Разрешено %{user} %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} сказал,</span> "%{x}"'
+  restart: Перезапустить
   restore: Восстановить
   restoring: Восстановление...
   results: результаты
@@ -3754,6 +3758,7 @@ ru:
   take_me_flickr!: Да, свяжите меня с Flickr!
   target_list_alert: Вы уверены, что пытались наблюдать за всеми видами, включенными в ваш целевой список? Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали, будет интерпретироваться как отсутствие, поэтому очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить
   target_list_warning: Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали в радиусе и за время поездки, будет истолковано как отсутствие. Очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить. Если вы не пытались обнаружить вид из вашего целевого списка или каждый вид, входящий в группу в вашем целевом списке, удалите его.
+  task_deleted: Задача удалена
   taxa: Таксоны
   taxa_with_unknown_relationships: Таксоны с неизвестными связями
   taxa_info: Информация о таксонах
