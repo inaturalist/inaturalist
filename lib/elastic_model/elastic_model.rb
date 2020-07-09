@@ -120,7 +120,20 @@ module ElasticModel
       query[:bool][:must_not] = options[:inverse_filters]
     end
     elastic_hash = { query: { constant_score: { filter: query } } }
-    elastic_hash[:sort] = options[:sort] if options[:sort]
+    if options[:sort]
+      if options[:sort] === "random"
+        elastic_hash[:query] = {
+          function_score: {
+            query: { constant_score: { filter: query } },
+            random_score: {
+              field: "_seq_no"
+            }
+          }
+        }
+      else
+        elastic_hash[:sort] = options[:sort] if options[:sort]
+      end
+    end
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
     elastic_hash[:_source] = options[:source] if options[:source]

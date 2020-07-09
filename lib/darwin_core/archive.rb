@@ -226,7 +226,7 @@ module DarwinCore
         { taxon: :ancestor_taxa },
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
-        :identifications,
+        { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place }
       ]
 
@@ -542,7 +542,7 @@ module DarwinCore
         end
       end
 
-      [tmp_path]
+      tmp_path
     end
 
     def observations_in_batches(params, preloads, options = {}, &block)
