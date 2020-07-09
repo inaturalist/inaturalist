@@ -1,63 +1,74 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TextEditorFormatButton = ( {
-  textarea,
-  label,
-  template,
-  className,
-  newSelectionOffset,
-  newSelectionOffsetLength,
-  disabled,
-  placeholder,
-  tip
-} ) => (
-  <button
-    type="button"
-    tabIndex="-1"
-    className={className}
-    disabled={disabled}
-    title={tip}
-    aria-label={tip}
-    onClick={( ) => {
-      const { selectionStart } = textarea;
-      if ( textarea.selectionStart !== undefined && textarea.selectionEnd !== undefined ) {
-        let selection = textarea.value.substring(
-          textarea.selectionStart,
-          textarea.selectionEnd
-        );
-        if ( selection.length === 0 && placeholder ) {
-          selection = placeholder;
-        }
-        const selectionWithMarkup = template(
-          selection,
-          textarea.value.substring( 0, textarea.selectionStart )
-        );
-        const newSelectionOffsetVal = typeof ( newSelectionOffset ) === "function"
-          ? newSelectionOffset( selection.length )
-          : newSelectionOffset;
-        const newSelectionOffsetLengthVal = typeof ( newSelectionOffsetLength ) === "function"
-          ? newSelectionOffsetLength( selection.length )
-          : newSelectionOffsetLength;
-        textarea.value = textarea.value.substring( 0, textarea.selectionStart )
-          + selectionWithMarkup
-          + textarea.value.substring( textarea.selectionEnd, textarea.value.length );
-        const rangeStart = selectionStart + newSelectionOffsetVal;
-        const rangeEnd = selectionStart
-          + newSelectionOffsetVal
-          + (
-            newSelectionOffsetLengthVal === undefined
-              ? selectionWithMarkup.length
-              : newSelectionOffsetLengthVal
-          );
-        textarea.setSelectionRange( rangeStart, rangeEnd );
-      }
-      textarea.focus( );
-    }}
-  >
-    { label }
-  </button>
-);
+class TextEditorFormatButton extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.button = React.createRef();
+  }
+
+  render( ) {
+    const {
+      textarea,
+      label,
+      template,
+      className,
+      newSelectionOffset,
+      newSelectionOffsetLength,
+      disabled,
+      placeholder,
+      tip
+    } = this.props;
+    return (
+      <button
+        type="button"
+        tabIndex="-1"
+        className={className}
+        disabled={disabled}
+        title={tip}
+        aria-label={tip}
+        ref={this.button}
+        onClick={( ) => {
+          const { selectionStart } = textarea;
+          if ( textarea.selectionStart !== undefined && textarea.selectionEnd !== undefined ) {
+            let selection = textarea.value.substring(
+              textarea.selectionStart,
+              textarea.selectionEnd
+            );
+            if ( selection.length === 0 && placeholder ) {
+              selection = placeholder;
+            }
+            const selectionWithMarkup = template(
+              selection,
+              textarea.value.substring( 0, textarea.selectionStart )
+            );
+            const newSelectionOffsetVal = typeof ( newSelectionOffset ) === "function"
+              ? newSelectionOffset( selection.length )
+              : newSelectionOffset;
+            const newSelectionOffsetLengthVal = typeof ( newSelectionOffsetLength ) === "function"
+              ? newSelectionOffsetLength( selection.length )
+              : newSelectionOffsetLength;
+            textarea.value = textarea.value.substring( 0, textarea.selectionStart )
+              + selectionWithMarkup
+              + textarea.value.substring( textarea.selectionEnd, textarea.value.length );
+            const rangeStart = selectionStart + newSelectionOffsetVal;
+            const rangeEnd = selectionStart
+              + newSelectionOffsetVal
+              + (
+                newSelectionOffsetLengthVal === undefined
+                  ? selectionWithMarkup.length
+                  : newSelectionOffsetLengthVal
+              );
+            textarea.setSelectionRange( rangeStart, rangeEnd );
+          }
+          textarea.focus();
+        }}
+      >
+        {label}
+      </button>
+    );
+  }
+}
 
 TextEditorFormatButton.propTypes = {
   textarea: PropTypes.object.isRequired,
