@@ -2299,6 +2299,8 @@ de:
   observations_by_you: "Deine Beobachtungen"
   observations_by_you_on_date: "Deine Beobachtungen am %{date}"
   observation_calendar_for: "Beobachtungskalender von %{user} im Jahr %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Beobachtungen können nur höchstens %{limit} Fotos haben
   observation_curation: Beobachtungskuration
   observation_date: Datum
   observation_date?: Datum?
