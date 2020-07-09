@@ -11,7 +11,10 @@
     img {
       max-width: 100%;
     }
-    > p:last-child {
+    > p:last-child,
+    > ul:last-child,
+    > ol:last-child,
+    > blockquote:last-child {
       margin-bottom: 0;
     }
   }
