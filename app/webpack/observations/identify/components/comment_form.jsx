@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
-import INatTextArea from "./inat_text_area";
+import TextEditor from "../../../shared/components/text_editor";
 
 // The approach of getting the form values from the event object here is based
 // on some feedback from DrMike in https://discord.gg/0ZcbPKXt5bZ6au5t. It's
@@ -9,22 +9,34 @@ import INatTextArea from "./inat_text_area";
 // https://github.com/erikras/redux-form if this approach ends up getting
 // complicated.
 
-const CommentForm = ( { observation, onSubmitComment, className, key } ) => (
+const CommentForm = ( {
+  observation, onSubmitComment, className, content, key
+} ) => (
   <form
-    key={ key }
+    key={key}
     className={`CommentForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
       onSubmitComment( {
         parent_type: "Observation",
         parent_id: observation.id,
-        body: e.target.elements.body.value
+        body: content
       } );
-      $( e.target.elements.body ).val( null );
+      content = null;
     }}
   >
     <h3>{ I18n.t( "add_a_comment" ) }</h3>
-    <INatTextArea name="body" className="form-control" elementKey={ `${key}-inat-text-area` } mentions />
+    <div className="form-group">
+      <TextEditor
+        content={content}
+        key={`comment-editor-${observation.id}-${observation.comments.length}`}
+        maxLength={5000}
+        onBlur={e => { content = e.target.value; }}
+        placeholder={I18n.t( "leave_a_comment" )}
+        showCharsRemainingAt={4000}
+        textareaClassName="form-control"
+      />
+    </div>
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );
@@ -33,6 +45,7 @@ CommentForm.propTypes = {
   observation: PropTypes.object,
   onSubmitComment: PropTypes.func.isRequired,
   className: PropTypes.string,
+  content: PropTypes.string,
   key: PropTypes.string
 };
 
