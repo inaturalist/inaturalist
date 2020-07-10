@@ -263,7 +263,7 @@ ja:
     追加先：
     <a target="%{target}" class="%{class}" href="%{url}">分類群の入れ替え</a>
   added_by: '追加者:'
-  added_by_user_on_date_html: "%{date}に%{user}によって追加されました"
+  added_by_user_on_date_html: "%{user}さんが%{date}に追加しました"
   added_on_datetime: "追加日時%{datetime}"
   added_to_favorites_html: |
     <a href="%{url}">お気に入り</a>に追加しました
@@ -465,9 +465,9 @@ ja:
   are_you_sure_you_want_to_delete_this_post: この投稿を削除して本当によろしいですか？
   are_you_sure_you_want_to_delete_this_taxon_change: この分類群変更を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_all_tags: すべてのタグを外して本当によろしいですか？
-  are_you_sure_you_want_to_remove_curator: '%{user}からキュレーター管理の権限を取消しても本当によろしいですか？'
-  are_you_sure_you_want_to_remove_from_project: このプロジェクトから%{user}を退会させて本当によろしいですか？
-  are_you_sure_you_want_to_remove_manager: '%{user}から管理の権限を取消しても本当によろしいですか？'
+  are_you_sure_you_want_to_remove_curator: '%{user}さんからキュレーター管理の権限を取消しても本当によろしいですか？'
+  are_you_sure_you_want_to_remove_from_project: このプロジェクトから%{user}さんを退会させて本当によろしいですか？
+  are_you_sure_you_want_to_remove_manager: '%{user}さんから管理の権限を取消しても本当によろしいですか？'
   are_you_sure_you_want_to_remove_spammer: |
     このユーザーを信用して本当によろしいですか。これまで付いていたスパムフラグは解消されます。
   are_you_sure_you_want_to_remove_these_x_taxa?: "この%{x}個の分類群を削除して本当によろしいですか？"
@@ -512,7 +512,7 @@ ja:
   back: 戻る
   back_to_all_species: すべての種に戻る
   back_to_browsing_people: ユーザー閲覧へ戻る
-  back_to_calendar: "%{user}カレンダーに戻る"
+  back_to_calendar: "%{user}さんのカレンダーに戻る"
   back_to_editing_observation: 観測記録の編集に戻る
   back_to_friends: 友人に戻る
   back_to_flags_html: "&laquo; フラグに戻る"
@@ -532,7 +532,7 @@ ja:
   back_to_x: "%{noun}に戻る"
   back_to_x_assessment: "%{project}の評定に戻る"
   back_to_x_history: "%{x}の履歴へ戻る"
-  back_to_x_journal: "%{user}のジャーナルへ戻る"
+  back_to_x_journal: "%{user}さんのジャーナルへ戻る"
   back_to_x_blog: "%{x}のブログに戻る"
   back_to_your_dashboard: 自分のダッシュボードに戻る
   back_to_your_lists: 自分のリストに戻る
@@ -578,7 +578,7 @@ ja:
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
   by: '投稿者:'
   by_everyone: みんなの
-  by_user: "%{user}による"
+  by_user: "%{user}さんによる"
   by_you: 自分の
   calendar: カレンダー
   calendars_only_show_x_observations_at_time: カレンダーは一度に%{x} 個の観察記録のみを表示します
@@ -714,7 +714,7 @@ ja:
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
   commit: 確定
   committed: 確定済
-  committed_by_user_on_date_html: '%{user} が %{date} にコミットしました'
+  committed_by_user_on_date_html: '%{user} さんが %{date} にコミットしました'
   committed_on: '%{date} にコミットされました'
   committing: 確定中...
   community: コミュニティ
@@ -731,7 +731,7 @@ ja:
   comparing: 比較しています
   comparing_list_to_list: "%{list1} と%{list2}を比較しています"
   comparing_versions_x_and_y: "バージョン%{x}とバージョン %{y}を比較しています"
-  comparing_observations_from: "%{dates}の%{user}の観察記録を比較しています"
+  comparing_observations_from: "%{dates}の%{user}さんの観察記録を比較しています"
   compiled_by_name: "編集者：%{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完了
@@ -773,12 +773,12 @@ ja:
   content_author: コンテンツの作成者
   content_hidden: コンテンツ非表示
   content_hidden_by_user_on_date_because_reason_html: |
-    %{date} に%{user} がコンテンツを非表示にしました。理由："%{reason} "
+    %{date} に%{user}さんがコンテンツを非表示にしました。理由："%{reason} "
   content_type: コンテンツの種類
   user_hid_this_item_because_reason_html: |
-    %{user} は%{item} を非表示にしました。理由："%{reason} "
+    %{user}さんは%{item} を非表示にしました。理由："%{reason} "
   user_unhid_this_item_because_reason_html: |
-    %{user} は%{item} を表示しました。理由："%{reason} "
+    %{user}さんは%{item} を表示しました。理由："%{reason} "
   continue: 続行
   continue_to_site: '%{site_name} に進む'
   contributor_cannot_be_found: 提供者が見つかりません
@@ -862,7 +862,7 @@ ja:
   create_observations: 観測記録を作成
   created: 作成日時
   created_by: 作成者：
-  created_by_user_on_date: 作成者:%{user} 作成日:%{date}
+  created_by_user_on_date: 作成者:%{user}さん 作成日:%{date}
   created_on: '作成日:'
   creating_your_account: "アカウントを作成しています..."
   creative_commons_flickr_tagged: Flickrにタグ付けされたクリエイティブ・コモンズの写真があります
@@ -1160,8 +1160,8 @@ ja:
   evidence_of_organism: 生物の証拠
   facebook: Facebook
   facebook_account_information: あなたのFacebookアカウント情報
-  facebook_account_not_linked: "%{user}のFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
-  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user} はFacebookアカウントを再リンクする必要があります。"
+  facebook_account_not_linked: "%{user}さんのFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
+  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user}さんはFacebookアカウントを再リンクする必要があります。"
   facebook_needs_the_owner_of_that_photo_to: Facebookは、その写真の所有者が%{site_name_short} への接続を再確認する必要があります。
   facebook_options: Facebook設定
   failed_to_find_your_location: 現在地を特定できませんでした。
@@ -1272,7 +1272,7 @@ ja:
   flags: フラグ
   flags_explanation: "%{site_name} ユーザーはキュレーター管理者やスタッフに注意が必要であることをフラグを通して伝えることができます。"
   flags_for_x_html: '%{x} へのフラグ'
-  flags_on_users_content: "%{user}のコンテンツに付けられたフラグ"
+  flags_on_users_content: "%{user}さんのコンテンツに付けられたフラグ"
   flickr_account_information: あなたのFlickrアカウント情報
   flickr_has_no_creative_commons: Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません
   flickr_identity: Flickrアイデンティティー
@@ -1287,7 +1287,7 @@ ja:
   fluid: 可変
   follow: フォロー
   follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
-  follow_user: "%{user}をフォロー"
+  follow_user: "%{user}さんをフォロー"
   followers: フォロワー
   following: フォロー中
   following_x_people:
@@ -1388,7 +1388,7 @@ ja:
   here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
-  hi_user: "こんにちは、%{user}"
+  hi_user: "こんにちは、%{user}さん"
   #Verb, usually a button to hide an interface element
   hide: 非表示
   hide_content: コンテンツを非表示
@@ -1428,7 +1428,7 @@ ja:
   identification_user_short: 同定ユーザー
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
-  identifications_by: "%{user}の同定"
+  identifications_by: "%{user}さんの同定"
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -1637,7 +1637,7 @@ ja:
   license: ライセンス
   licensing: ライセンス
   life: 生命
-  life_list: "%{user}のライフリスト"
+  life_list: "%{user}さんのライフリスト"
   life_list_updated: ライフリスト更新しました！
   life_list_updated_we_also_saved_a: ライフリストが更新されました！この分類群の空の観察記録も保存されました。
   life_lists_automatically_fill: ライフリストとは、観察された分類群が自動的に更新されるリストのことです。上位階級の分類群を指定したライフリストもできます。（例えば、これまで観察したカラス上科の鳥類をまとめたリストなど）
@@ -1808,9 +1808,9 @@ ja:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     %{partial_inat_network_tag_html}iNaturalist Network</a>のメンバーで、%{cas_tag_html}と%{nat_geo_tag_html}の共同イニシアチブです。
   members: メンバー一覧
-  mentioned_you_in_noun_html: "%{user}があなたについて%{noun}を投稿しました"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} は%{noun} 上の%{x} で%{by} によってあなたを言及しました"
-  mentioned_you_in_an_x_on_noun_by_html: "%{user} は%{noun} 上の%{x} で%{by} によってあなたに言及しました"
+  mentioned_you_in_noun_html: "%{user} さんが %{noun} であなたをメンションしました"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたを言及しました"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたに言及しました"
   merge: 統合
   merge_it_with_another_place: 他の場所と統合
   merge_two_places_together: 2つの場所を結合します。チェックリストに載っているすべての種と地理データが統合されます。
@@ -1819,7 +1819,7 @@ ja:
   merging_places: 場所を統合しています
   message: メッセージ
   message_deleted: メッセージを削除しました
-  message_from_user_on_date: '%{user} から %{date} に'
+  message_from_user_on_date: '%{user}さんから %{date} に'
   messages: メッセージ
   misidentifications: 誤同定
   misleading_or_illegal_content_html: |
@@ -1938,7 +1938,7 @@ ja:
   new_observations: 新規観測記録
   new_observations_in_year: "%{year} の新規観察記録"
   new_observations_ellispsis: "新規観測記録..."
-  new_observations_from_place_html: "%{place}からの新着観測記録"
+  new_observations_from_place_html: "%{place}の新着観測記録"
   new_observations_may_take_up_to: 新しい観察記録がウィジェットに表示されるまで、最大%{widget_expiration} 分かかる場合があります。
   new_observations_of_x_html: "%{x}の新規観察記録"
   new_password: 新しいパスワード
@@ -1983,12 +1983,12 @@ ja:
   no_identifications: 同定なし
   no_identifications_added:
     current_user: まだ誰の観察記録にも同定を追加していません。
-    user: "%{user}は別のユーザーの観察記録に追加した同定がありません"
+    user: "%{user}さんは別のユーザーの観察記録に追加した同定がありません"
   no_ids_have_been_suggested_yet: 同定はまだ提案されていません
   no_interaction_data_available: 相互作用データはありません
   no_favorites_added:
     current_user: お気に入りに登録されている項目がありません
-    user: "%{user}はお気に入りに登録されている項目がありません"
+    user: "%{user}さんはお気に入りに登録されている項目がありません"
   no_license_all_rights_reserved: ライセンスなし（著作権を全て留保する）
   no_managers_set: 管理者が指定されていません
   no_matching_article_from_x: "%{x}に一致する記事がありません"
@@ -2087,18 +2087,18 @@ ja:
   observation_aggregation: 観察記録の集合体
   observation_brief_something_on_day: "%{day} の何か"
   observation_brief_something_on_day_at_time: "%{day} %{time} の何か"
-  observation_brief_something_on_day_at_time_by_user: "%{user} による %{day} %{time} の何か"
-  observation_brief_something_on_day_by_user: "%{user} による %{day} の何か"
-  observation_brief_something_by_user: "%{user} による何か"
+  observation_brief_something_on_day_at_time_by_user: "%{user}さんによる %{day} %{time} の何か"
+  observation_brief_something_on_day_by_user: "%{user}さんによる %{day} の何か"
+  observation_brief_something_by_user: "%{user}さんによる何か"
   observation_brief_something_from_place: "%{place} からの何か"
   observation_brief_taxon_from_place: "%{place} の %{taxon}"
-  observation_brief_taxon_from_place_by_user: "%{user} による %{place} からの %{taxon}"
+  observation_brief_taxon_from_place_by_user: "%{user}さんによる %{place} の %{taxon}"
   observations_by_app: アプリケーションによる観察記録
   observations_by_rank: 階級ごとの観察記録数
-  observations_by_user_on_date: "%{date}の%{user}の観察記録"
+  observations_by_user_on_date: "%{date}の%{user}さんの観察記録"
   observations_by_you: "自分の観測記録"
   observations_by_you_on_date: "%{date}のあなたの観察記録"
-  observation_calendar_for: "%{user}観察記録カレンダー（%{year}）"
+  observation_calendar_for: "%{user}さんの観察記録カレンダー（%{year}）"
   observation_curation: 観察記録キュレーション
   observation_date: 日付
   observation_date?: 日付？
@@ -2122,7 +2122,7 @@ ja:
   observations_added_by_x_html: "%{x}によって追加された観察記録"
   observations_annotated_with_annotation: "%{annotation} で注釈が付けられた観察記録"
   observations_by: 観察者：
-  observations_by_user: "%{user}の観察記録"
+  observations_by_user: "%{user}さんの観察記録"
   observations_deleted: 観察記録が削除されました
   observations_fields_are: |
     観察フィールドとは、観察記録に関わるさまざまな詳細データを記録する任意フィールドのことです。例えば、観察された個体数、生息環境などの説明、なんでも追加できます！プロジェクトでは、観察記録の記入フィールドの指定もできます。
@@ -2303,8 +2303,8 @@ ja:
   paste_in_a_bunch_of_names: たくさんの名称を、行ごとに一つずつを貼り付けた後、ボトンを押すとバッチで処理します
   paste_in_a_comma_separated_list: カンマ区切りで国名のリストを貼り付けてください
   people: ユーザー
-  people_following_user: "%{user}のフォロワー"
-  people_user_follows: "%{user}がフォローしているユーザー"
+  people_following_user: "%{user}さんのフォロワー"
+  people_user_follows: "%{user}さんがフォローしているユーザー"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
@@ -2760,7 +2760,7 @@ ja:
   please_hold_on_while_the_file_is_generated: ファイルが生成されるまでしばらくお待ちください。長いリストの場合、数分かかることがあります。
   popular: 人気
   position: 位置
-  possessive_user: "%{user}の"
+  possessive_user: "%{user}さんの"
   #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} によるジャーナル</a>からの投稿
   #Post is a noun
@@ -2841,7 +2841,7 @@ ja:
   projects_from_place: "%{place}からのプロジェクト"
   projects_in_x: "%{x}の中のプロジェクト"
   #"admins" is equivalent to "administrates"
-  projects_user_admins: プロジェクト %{user} 管理者
+  projects_user_admins: プロジェクト %{user}さん 管理者
   projects_you_admin: 自分の管理プロジェクト
   proposed_taxa_that_contradict_the_community_id: コミュニティ同定を否定する分類群
   proposed_taxa_that_support_the_community_id: コミュニティ同定に対応した分類群の提案
@@ -2997,7 +2997,7 @@ ja:
   resolve_this_flag: このフラグを解決済にする
   resolved: 解決済
   resolved_by: 解決済にしたユーザー：
-  resolved_by_user_on_date_html: '%{user} によって %{date} に解決済み'
+  resolved_by_user_on_date_html: '%{user}さんによって %{date} に解決済み'
   restore: 復元
   restoring: 復旧中...
   results: 結果
@@ -3268,7 +3268,7 @@ ja:
   still_needs_id?: コミュニティによる同定の確認・改善を許可しますか？
   still_working_on_classifying_taxon: この分類群は分類作業中です。しばらくしてからまた見てください。
   stop_editing: 編集をやめる
-  stop_following_user: "%{user}のフォローをやめる"
+  stop_following_user: "%{user}さんのフォローをやめる"
   stop_testing: テストをやめる
   studies_that_used_inaturalist_data_in_year: iNaturalistのデータを %{year} 年に使用した研究
   stuff_just_added: "あなたの新着追加項目"
@@ -3369,7 +3369,7 @@ ja:
   taxon_name_must_match_an_existing_taxon_in_our_database: 分類群名はデータベース内の既存の分類群と一致している必要があります
   taxon_observed_by_html: |
     によって観察された<a href="%{url}">%{taxon}</a>
-  taxon_observed_by_user: "%{user} によって観察された%{taxon}"
+  taxon_observed_by_user: "%{user}さんによって観察された%{taxon}"
   taxon_photos_updated: 分類群写真が更新されました！
   taxon_range: 分類群分布
   taxon_range_created_notice: 分類範囲が正常に作成されました。マップに表示されるまで数分お待ちください。
@@ -3433,8 +3433,8 @@ ja:
   the_title_of_the_wikipedia_article_we_use: |
     説明文に使っているWikipediaの記事のタイトルです。ウィキペディアのURLが 
     <code>http://en.wikipedia.org/wiki/Bird</code>の場合、この値は<code>Bird</code>となります。空欄の場合は、この分類群の学名を使用します（通常はこれで大丈夫です）。
-  the_user_x_has_been_suspended: "%{user}というユーザーは利用停止されました"
-  the_user_x_has_been_unsuspended: "%{user}というユーザーは利用停止の処分が解除されました"
+  the_user_x_has_been_suspended: "ユーザー%{user}は凍結されました"
+  the_user_x_has_been_unsuspended: "ユーザー%{user}は凍結解除されました"
   the_world: 世界中
   the_world_is_full_of_interesting_places: |
     世界には面白い場所がいっぱいあり、どれにも珍しく素晴らしい生き物が生きています。世界の反対側でも、近所でも、どこでも面白い生き物を見つけることができます。%{site_name}の「場所」機能で世界中の生き物を探すことができます。ぜひ探してみてください！
@@ -3605,33 +3605,33 @@ ja:
   user: ユーザー
   user1_and_user2_faved_this_observation: "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました"
   user1_user2_and_x_others_faved_this_observation: "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました"
-  user_added_a_x: "%{user}が%{x}を追加しました"
-  user_added_a_x_to_noun_by_html: "%{user}は%{by}の%{noun}に%{x}を追加しました"
-  user_added_a_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
-  user_added_an_identification_html: "%{user} さんが同定を追加しました"
-  user_added_an_observation_html: "%{user}が観察記録を追加しました"
-  user_added_an_x: "%{user}が%{x}を追加しました"
-  user_added_an_x_to_noun_html: "%{user}が%{noun}に%{x}を追加しました"
-  user_added_x_observations_html: "%{user}は%{x}件の観察記録を追加しました。"
-  user_commented_on: "%{user}はあなたの%{title}にコメントしました（%{time}）"
+  user_added_a_x: "%{user}さんが%{x}を追加しました"
+  user_added_a_x_to_noun_by_html: "%{user}さんは%{by}の%{noun}に%{x}を追加しました"
+  user_added_a_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
+  user_added_an_identification_html: "%{user}さんが同定を追加しました"
+  user_added_an_observation_html: "%{user}さんが観察記録を追加しました"
+  user_added_an_x: "%{user}さんが%{x}を追加しました"
+  user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
+  user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
+  user_commented_on: "%{user}さんがあなたの%{title}にコメントしました（%{time}）"
   user_disagrees_this_is_taxon: "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}さんが%{owner}さんの%{noun}をお気に入りに追加しました"
+  user_faved_a_noun_by_owner: "%{user}さんが%{owner}の%{noun}をお気に入りに追加しました"
   user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_has_opted_out_of_community_id: 利用者はコミュニティ分類群の通知を受け取りません
-  user_invited_you_to_join_html: "%{user}から招待が届いています："
-  user_invited_you_to_join_project: "%{user}から%{project}に参加するように招待されました"
-  user_invited_your_x_to_a_project_html: "%{user}があなたの%{x}をプロジェクトに招待しました"
-  user_is_a_naturalist: "%{user}はナチュラリストです！"
+  user_invited_you_to_join_html: "%{user}さんから招待が届いています："
+  user_invited_you_to_join_project: "%{user}さんから%{project}に参加するように招待されました"
+  user_invited_your_x_to_a_project_html: "%{user}さんがあなたの%{x}をプロジェクトに招待しました"
+  user_is_a_naturalist: "%{user}さんはナチュラリストです！"
   user_observed_on_on_date_in_place: |
-    %{user} が %{date} に %{place} で観察しました
+    %{user} さんが %{date} に %{place} で観察しました
   username: ユーザー名
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
   users_id: "%{user}さんのID"
-  users_latest_observations_on_site: "%{site}における%{user}の最新観察記録"
-  users_profile: "%{user}のプロフィール"
+  users_latest_observations_on_site: "%{site}における%{user}さんの最新観察記録"
+  users_profile: "%{user}さんのプロフィール"
   valid_options_are: 有効な選択肢：
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
   view: 表示
@@ -3662,10 +3662,12 @@ ja:
   view_observations: 観測記録を表示
   view_observation_flags: 観測記録フラグを表示
   view_observations_by_everyone: みんなの観察記録を表示
+  view_observations_of_this_taxon_by: この分類群の観察記録を見る
   view_on: 次のサイトで表示：
   view_on_flickr: Flickrで表示
   view_original: "オリジナルを表示"
   view_original_by: "%{photo}で%{by}のオリジナルを表示"
+  view_original_ccD_photo: "CCライセンスが与えられた%{owner}のオリジナル画像を表示"
   view_place: 場所を表示
   view_post: 投稿を表示
   view_projects_from_place: "%{place}のプロジェクトを表示"
@@ -3675,7 +3677,7 @@ ja:
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
   view_taxononomy_details_for_taxon: "%{taxon} の分類の詳細を表示"
   view_the_observation: 観察記録を表示
-  view_user_observations: "%{user}の観測記録を表示"
+  view_user_observations: "%{user}さんの観測記録を表示"
   view_your_dashboard: ダッシュボードを表示
   view_your_inbox: 受信箱を表示
   view_your_observations: あなたの観察記録を表示
