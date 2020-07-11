@@ -2,6 +2,9 @@ class QualityMetric < ActiveRecord::Base
 
   blockable_by lambda {|qm| qm.observation.user_id }
 
+  has_paper_trail if: Proc.new {|qm| qm.observation.user.prefers_history?},
+    only: [:observation_id, :metric, :agree]
+
   belongs_to :user
   belongs_to :observation
   

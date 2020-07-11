@@ -35,6 +35,8 @@ class Taxon < ActiveRecord::Base
   end
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at]
 
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes

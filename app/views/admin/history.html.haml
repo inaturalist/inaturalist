@@ -1,0 +1,57 @@
+%h2
+  History
+  - if @record
+    for
+    = link_to @record.try(:to_plain_s).try(:to_s), @record
+
+= form_tag url_for, method: :get, class: "form-inline" do
+  = select_tag :type, options_for_select( @models_with_history, selected: params[:type] ), class: "form-control"
+  = text_field_tag :id, params[:id], placeholder: "Record ID", class: "form-control"
+  = submit_tag "Make History", class: "btn btn-primary", title: "Truly, this will be the most consequential click of your life."
+- if @record
+  - if @versions.blank?
+    %p.no-content
+      No versions for that record
+  - else
+    %table.table
+      %thead
+        %tr
+          %th Version ID
+          %th=t :date_
+          %th=t :record_type
+          %th=t :event
+          %th=t :person
+          %th=t :changes
+      %tbody
+        - @versions.each do |v|
+          :ruby
+            event_class = "label label-"
+            event_class += case v.event
+            when "create" then "success"
+            when "update" then "warning"
+            when "destroy" then "danger"
+            else "default"
+            end
+          %tr
+            %td= v.id
+            %td=l v.created_at, format: :short
+            %td
+              = link_to v.item do
+                =t "activerecord.models.#{v.item_type}", default: t( v.item_type, default: v.item_type )
+            %td
+              %span{ class: event_class }= v.event
+            %td= link_to_user( User.find_by_id( v.whodunnit ) )
+            %td
+              - unless v.changeset.blank?
+                %table.table.table-striped.table-condensed
+                  %thead
+                    %tr
+                      %th{ style: "width: 33%" }=t :attribute
+                      %th{ style: "width: 33%" }=t :old
+                      %th{ style: "width: 33%" }=t :new
+                  %tbody
+                    - v.changeset.each do |a, changes|
+                      %tr
+                        %td=t "activerecord.models.attributes.#{@klass.name.underscore}.#{a}", default: a
+                        %td{ style: "text-decoration: line-through" }= changes[0]
+                        %td= changes[1]

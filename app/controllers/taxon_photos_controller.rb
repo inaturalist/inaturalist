@@ -1,10 +1,15 @@
 class TaxonPhotosController < ApplicationController
   before_filter :admin_required
+  before_filter :load_record, only: [:show]
   layout "bootstrap"
 
   def new
     @taxon = Taxon.find_by_id( params[:taxon_id] )
     @taxon_photo = TaxonPhoto.new( taxon: @taxon )
+  end
+
+  def show
+    redirect_to @taxon_photo.taxon
   end
 
   def create

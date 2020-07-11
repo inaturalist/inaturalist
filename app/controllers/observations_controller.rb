@@ -49,7 +49,7 @@ class ObservationsController < ApplicationController
                             :lifelist_by_login]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
-    :review, :taxon_summary, :observation_links ]
+    :review, :taxon_summary, :observation_links, :paper_trail ]
   before_filter :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
@@ -840,9 +840,12 @@ class ObservationsController < ApplicationController
         end
         
         if updated_photos.empty?
-          observation.photos.clear
+          observation.observation_photos.destroy_all
         else
-          observation.photos = ensure_photos_are_local_photos( updated_photos )
+          keeper_photos = ensure_photos_are_local_photos( updated_photos )
+          reject_obs_photos = observation.observation_photos.select{|op| keeper_photos.map(&:id).include?( op.photo_id )}
+          reject_obs_photos.each(&:destroy)
+          observation.photos = keeper_photos
         end
 
         Photo.subclasses.each do |klass|

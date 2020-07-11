@@ -49,6 +49,7 @@ RSpec.configure do |config|
       klass.__elasticsearch__.create_index!
       ElasticModel.wait_until_index_exists(klass.index_name)
     end
+    PaperTrail.enabled = false
   end
 
   config.before(:each) do

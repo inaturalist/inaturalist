@@ -1,4 +1,6 @@
 class ObservationPhoto < ActiveRecord::Base
+  has_paper_trail only: [:observation_id, :position, :photo_id], if: Proc.new {|op| op.observation.user.prefers_history?}
+
   belongs_to_with_uuid :observation, inverse_of: :observation_photos, counter_cache: false
   belongs_to :photo
 

@@ -54,5 +54,7 @@
           %td= record.updated_at
           %td
             = link_to("view", record) rescue nil
+            = " | "
+            = link_to "history", history_admin_path( type: record.class.name, id: record.id )
   - if @records.respond_to?(:total_pages)
     = will_paginate @records

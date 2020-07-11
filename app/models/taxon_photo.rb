@@ -1,4 +1,7 @@
 class TaxonPhoto < ActiveRecord::Base
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at]
+
   belongs_to :taxon
   belongs_to :photo
   

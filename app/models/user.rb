@@ -99,6 +99,7 @@ class User < ActiveRecord::Base
   preference :no_tracking, :boolean, default: false
   preference :identify_image_size, :string, default: nil
   preference :identify_side_bar, :boolean, default: false
+  preference :history, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -936,6 +937,9 @@ class User < ActiveRecord::Base
     deleted_observations = DeletedObservation.where( user_id: user_id )
     puts "Deleting #{deleted_observations.count} DeletedObservations"
     deleted_observations.delete_all
+
+    puts "Updating paper trail"
+    PaperTrail::Version.where( whodunnit: user_id.to_s ).update_all( whodunnit: "-1" )
 
     unless options[:skip_aws]
       s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )

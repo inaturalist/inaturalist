@@ -152,6 +152,50 @@ class AdminController < ApplicationController
     redirect_to :queries_admin
   end
 
+  def history
+    @models_with_history = [
+      Comment,
+      ConservationStatus,
+      Identification,
+      Observation,
+      ObservationPhoto,Taxon,
+      PlaceTaxonName,
+      QualityMetric,
+      Taxon,
+      TaxonName,
+      TaxonPhoto
+    ].map(&:name)
+    if params[:type] && params[:id] && @models_with_history.include?( params[:type] )
+      @klass = Object.const_get( params[:type] ) rescue nil
+      unless @klass
+        flash[:error] = "#{params[:type]} doesn't exist"
+        redirect_to action: "history"
+        return false
+      end
+      @record = @klass.find_by_id( params[:id] )
+      @record ||= @klass.find_by_uuid( params[:id] ) if @klass.column_names.include?( "uuid" )
+      @versions = @record ? @record.versions : PaperTrail::Version.where( item_type: params[:type], item_id: params[:id] )
+      @klass.reflections.select{|k,v| [:has_many, :has_one].include?( v.macro )}.each do |k, r|
+        if PaperTrail.request.enabled_for_model?( r.klass )
+          if @record
+            assoc_versions = if r.macro == :has_many
+              @record.send( k ).map{|assoc| assoc.versions.where( "created_at > ?", @record.created_at )}.flatten
+            else
+              @record.send( k )&.versions&.where( "created_at > ?", @record.created_at )
+            end
+            @versions += assoc_versions || []
+          end
+          final_versions_of_destroyed = PaperTrail::Version.
+            where( item_type: r.klass.name, event: "destroy" ).
+            where( "object_changes->'#{r.foreign_key}'->>0 = ?", params[:id].to_s )
+          @versions += PaperTrail::Version.where( item_type: r.klass.name, item_id: final_versions_of_destroyed.map(&:item_id) )
+        end
+      end
+      @versions = @versions.sort_by(&:id)
+    end
+    render layout: "admin"
+  end
+
   private
 
   def kill_postgresql_pid( pid )

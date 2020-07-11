@@ -7,6 +7,8 @@ class Identification < ActiveRecord::Base
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions
+  has_paper_trail only: [:body, :category, :current, :observation_id],
+    if: Proc.new {|i| i.observation.user.prefers_history?}
   belongs_to_with_uuid :observation
   belongs_to :user
   belongs_to_with_uuid :taxon
@@ -270,7 +272,7 @@ class Identification < ActiveRecord::Base
       if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
         species_guess = nil
       end
-      attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
+      attrs = {species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
           observation.id, self.user_id ] }
@@ -290,7 +292,7 @@ class Identification < ActiveRecord::Base
   def update_obs_stats
     return true unless observation
     return true if skip_observation || bulk_delete
-    observation.update_stats(:include => self)
+    observation.update_stats( include: self )
     true
   end
 

@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
                     comment_type: "comment"
   acts_as_votable
   has_moderator_actions
+  has_paper_trail ignore: [:id, :created_at, :updated_at],
+    if: Proc.new {|c| c.parent && c.parent.respond_to?(:user) && c.parent.user.prefers_history?}
   SUBSCRIBABLE = false
 
   # Uncomment to require speech privilege to make comments on anything other

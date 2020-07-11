@@ -825,10 +825,11 @@ class UsersController < ApplicationController
       /^preferred_*/,
       /^header_search_open$/
     ]
+    disallowed_patterns = [
+      /^prefers_history/
+    ]
     updates = params.select {|k,v|
-      allowed_patterns.detect{|p| 
-        k.match(p)
-      }
+      allowed_patterns.detect{|p| k.match(p)} && !disallowed_patterns.detect{|p| k =~ p }
     }.symbolize_keys
     updates.each do |k,v|
       v = true if v.yesish? && v != "1"

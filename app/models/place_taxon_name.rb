@@ -1,4 +1,6 @@
 class PlaceTaxonName < ActiveRecord::Base
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at]
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id

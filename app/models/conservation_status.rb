@@ -1,5 +1,8 @@
 #encoding: utf-8
 class ConservationStatus < ActiveRecord::Base
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at]
+
   belongs_to :taxon
   belongs_to :user
   belongs_to :place

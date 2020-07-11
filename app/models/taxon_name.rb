@@ -1,5 +1,7 @@
 #encoding: utf-8
 class TaxonName < ActiveRecord::Base
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at]
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'

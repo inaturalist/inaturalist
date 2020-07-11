@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_preferred_site
   before_filter :sign_out_spammers
   before_filter :set_session_oauth_application_id
+  before_action :set_paper_trail_whodunnit
 
   # /ping should skip all before filters and just render
   skip_filter *_process_action_callbacks.map(&:filter), only: :ping

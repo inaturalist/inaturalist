@@ -50,6 +50,9 @@ class Observation < ActiveRecord::Base
                     comment_type: "item-description",
                     automated: false
   include Ambidextrous
+  has_paper_trail on: [:create, :update, :destroy],
+    ignore: [:id, :created_at, :updated_at],
+    if: Proc.new {|o| o.user.prefers_history?}
   
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and

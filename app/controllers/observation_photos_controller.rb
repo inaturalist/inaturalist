@@ -1,12 +1,12 @@
 class ObservationPhotosController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:destroy]
+  before_filter :load_record, :only => [:show, :destroy]
   before_filter :require_owner, :only => [:destroy]
   
   def show
-    @observation_photo = ObservationPhoto.find_by_id(params[:id])
     respond_to do |format|
+      format.html { redirect_to @observation_photo.observation }
       format.json do
         render :json => @observation_photo.as_json(:include => {
           :photo => Photo.default_json_options

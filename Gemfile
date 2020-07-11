@@ -71,6 +71,7 @@ gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud
 gem "omniauth-twitter"
 gem "paperclip", "~> 6.1.0"
 gem "optimist"
+gem "paper_trail"
 gem "patron"
 gem "pg"
 gem "preferences", git: "https://github.com/kueda/preferences.git"

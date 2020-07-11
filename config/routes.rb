@@ -378,7 +378,7 @@ Rails.application.routes.draw do
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
-  resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
+  resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create, :show]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
@@ -515,6 +515,7 @@ Rails.application.routes.draw do
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get :deleted_users
+      get :history
       put :grant_user_privilege
       put :revoke_user_privilege
       put :restore_user_privilege
