@@ -4212,7 +4212,7 @@ nl:
   view_taxon_changes: Taxonwijzigingen weergeven
   view_taxon_framework_relationship: Bekijk de taxonkader-relatie
   view_taxon_page: Taxonpagina weergeven
-  view_taxon_page_for_this_x: "Taxonpagine voor @gender{n:dit|deze} %{x} weergeven"
+  view_taxon_page_for_this_x: "Taxonpagina voor %{x} weergeven"
   view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
   view_the: "De %{action}&#59; %{link} weergeven"
   view_the_observation: Bekijk de waarneming
@@ -5490,8 +5490,8 @@ nl:
         growth_in_year_obs: "Groei in %{year} (wrn)"
         growth_title: Groei
         new_species_desc: |
-          Soorten die dit jaar voor de eerste keer werden waargenomen op %{site_name}.
-          %{x} van <a href="%{url}">%{y}soorten</a> worden weergegeven.
+          Soorten die dit jaar voor het eerst werden waargenomen op %{site_name}.
+          %{x} van de <a href="%{url}">%{y} soorten</a> worden weergegeven.
         new_species_desc_html: |
           Soorten die dit jaar voor het eerst zijn toegevoegd.
           Klik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar 
