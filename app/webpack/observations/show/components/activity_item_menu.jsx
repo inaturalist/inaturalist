@@ -8,10 +8,12 @@ const ActivityItemMenu = ( {
   config,
   deleteComment,
   deleteID,
+  editing,
   restoreID,
   setFlaggingModalState,
   linkTarget,
   observation,
+  onEdit,
   trustUser,
   untrustUser,
   hideContent,
@@ -35,9 +37,10 @@ const ActivityItemMenu = ( {
             key={`id-edit-${item.id}`}
             eventKey="edit"
             href={`/identifications/${item.id}/edit`}
+            onClick={onEdit}
             target={linkTarget}
           >
-            { I18n.t( "edit" ) }
+            { editing ? I18n.t( "stop_editing" ) : I18n.t( "edit" ) }
           </MenuItem>
         ) );
       }
@@ -186,9 +189,10 @@ const ActivityItemMenu = ( {
         key={`comment-edit-${item.id}`}
         eventKey="edit"
         href={`/comments/${item.id}/edit`}
+        onClick={onEdit}
         target={linkTarget}
       >
-        { I18n.t( "edit" ) }
+        { editing ? I18n.t( "stop_editing" ) : I18n.t( "edit" ) }
       </MenuItem>
     ) );
     menuItems.push( (
@@ -331,9 +335,11 @@ const ActivityItemMenu = ( {
 ActivityItemMenu.propTypes = {
   item: PropTypes.object,
   observation: PropTypes.object,
+  onEdit: PropTypes.func,
   config: PropTypes.object,
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
+  editing: PropTypes.bool,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,

@@ -465,6 +465,13 @@ export function deleteComment( id ) {
   };
 }
 
+export function editComment( id, body ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    dispatch( callAPI( inatjs.comments.update, { id, body } ) );
+  };
+}
 
 export function confirmDeleteComment( id ) {
   return dispatch => {
@@ -552,7 +559,7 @@ export function addID( taxon, options = { } ) {
   };
 }
 
-export function deleteID( id ) {
+export function deleteID( id, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
@@ -560,7 +567,28 @@ export function deleteID( id ) {
       i.id === id ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.delete, { id } ) );
+    dispatch( callAPI( inatjs.identifications.delete, Object.assign( {}, { id }, options ) ) );
+  };
+}
+
+export function editID( id, body ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    dispatch( callAPI( inatjs.identifications.update, { id, body } ) );
+  };
+}
+
+export function confirmDeleteID( id ) {
+  return dispatch => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "you_sure_delete_identification?" ),
+      confirmText: "Yes",
+      onConfirm: ( ) => {
+        dispatch( deleteID( id, { delete: true } ) );
+      }
+    } ) );
   };
 }
 

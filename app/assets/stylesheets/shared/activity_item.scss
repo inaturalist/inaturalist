@@ -80,6 +80,9 @@ body > [role="dialog"] .ActivityItem {
       flex: 2;
       margin-right: 20px;
     }
+    .title_edit_text {
+      flex: 2;
+    }
     a.user {
       font-weight: bold;
       color: black;
@@ -155,6 +158,12 @@ body > [role="dialog"] .ActivityItem {
       .content {
         display: block;
         overflow: hidden;
+      }
+      .btn-group.edit-form-btns {
+        padding-top: 5px;
+        button {
+          margin-right: 5px;
+        }
       }
       .UserText {
         line-height: 20px;
