@@ -54,7 +54,7 @@ class ObservationPhoto < ActiveRecord::Base
       # if we want to search on text in the message, we need to use last_error
       # (or arguments, or backtrace)
       last_error: msg,
-      backtrace: caller,
+      backtrace: caller( 0 ).select{|l| l.index( Rails.root.to_s )}.map{|l| l.sub( Rails.root.to_s, "" )}.join( "\n" ),
       subtype: "ObservationPhoto#destroy",
       model: "ObservationPhoto",
       model_method: "destroy",
