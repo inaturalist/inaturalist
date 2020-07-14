@@ -176,13 +176,21 @@ bg:
   add: Добавяне
   add_a_batch_of_observations: Добавяне на множество наблюдения
   add_a_batch_of_taxa: Добавяне на множество таксони
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Добави списък с водещи символи
   add_a_comment: Добавяне на коментар
   add_a_field: Добавяне на поле
   add_a_flag: Добавяне на маркер
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Добави препратка
   add_a_name: Добавяне на име
   add_a_new_change_group: Добави нова група от промени
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Добави номериран списък
   add_a_single_observation: Добавяне на единично наблюдение.
   add_a_taxon: Добавяне на таксон
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Добавете <a target="_blank" href="%{url}">таксономична размяна</a> ако искате да промените името
   add_an_assessment: Добавяне на оценка
   add_an_identification: Добавяне на разпознаване
   add_an_observation: Добавяне на наблюдение
@@ -199,17 +207,22 @@ bg:
   add_another_section: Добавяне на друг раздел
   add_another_subscription: Добави друг абонамент
   add_batch: Добавяне групово
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Добави удебелен текст
   add_comma_separated_tags: "Добави етикети (разделени със запетаи)"
   add_comment: Добавяне на коментар
   add_conservation_status: Добави природозащитен статут
   add_countries: Добавяне на държави
   add_custom_project_fields: Добавяне на потребителски полета на проекта
+  add_edit_flags: Добави/редактирай маркери
   add_editor: Добави редактор
   add_description: "Добави %{description_name}"
   add_from_your_observations: Добавяне от своите наблюдения
   add_link: Добави препратка
   add_higher_level_taxon: Добавяне на родителски таксон (напр. „птици“)
   add_id: Добави разпознаване
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Добави курсив текст
   add_new_lexicon: Добави нова лексика
   add_new_photos_by_their_ids: Добави нови снимки чрез техния Flickr идентификатор (трябва да са с лиценз Creative Commons!)
   add_new_place: Добавяне на ново място
@@ -270,14 +283,50 @@ bg:
   adjust_brightness: Регулиране на яркост
   admin: Администратор
   admin_s: Администратор(и)
+  admin_only: Само за админи
+  admin_tools: Администраторски инструменти
   agree_: Съгласен
   agree?: Съгласни ли сте?
   agree_with_current_taxon: Съгласен съм с текущия таксон
+  agreeing: Съгласяване...
   all: Всичко
   all_comments: Всички коментари
+  all_flags_must_be_resolved: Всички маркери трябва да бъдат разрешени
+  all_life: Всичкият живот
+  all_names: Всички имена
   all_observations: Всички наблюдения
+  all_photos: Всички снимки
   all_places: "Всички места"
   all_projects: Всички проекти
+  all_rank_added_to_the_database:
+    phylum: Всички типове са добавени в базата данни
+    subphylum: Всички подтипове са добавени в базата данни
+    superclass: Всички надкласове са добавени в базата данни
+    class: Всички класове са добавени в базата данни
+    subclass: Всички подкласове са добавени в базата данни
+    infraclass: Всички инфракласове са добавени в базата данни
+    superorder: Всички надразреди са добавени в базата данни
+    order: Всички разреди са добавени в базата данни
+    suborder: Всички подразреди са добавени в базата данни
+    infraorder: Всички инфраразреди са добавени в базата данни
+    superfamily: Всички надсемейства са добавени в базата данни
+    epifamily: Всички еписемейства са добавени в базата данни
+    family: Всички семейства са добавени в базата данни
+    subfamily: Всички подсемейства са добавени в базата данни
+    supertribe: Всички надтрибуси са добавени в базата данни
+    tribe: Всички трибуси са добавени в базата данни
+    subtribe: Всички подтрибуси са добавени в базата данни
+    genus: Всички родове са добавени в базата данни
+    genushybrid: Всички родови хибриди са добавени в базата данни
+    subgenus: Всички подродове са добавени в базата данни
+    section: Всички секции са добавени в базата данни
+    subsection: Всички подсекции са добавени в базата данни
+    complex: Всички видови комплекси са добавени в базата данни
+    species: Всички видове са добавени в базата данни
+    hybrid: Всички хибриди са добавени в базата данни
+    subspecies: Всички подвидове са добавени в базата данни
+    variety: Всички вариетети са добавени в базата данни
+    form: Всички форми са добавени в базата данни
   all_rights_reserved: всички права запазени
   all_taxa:
     rank:
@@ -368,6 +417,9 @@ bg:
   any: без значение
   any_: Без значение
   anyone: Всеки
+  apply_to_selected: Приложи към избраното
+  apply_geoprivacy: Приложи геоповерителност
+  apply_darr: "Приложи &darr;"
   arachnids: паякообразни
   archives: Архиви
   are_you_really_sure_want_delete_this_user: Напълно ли сте сигурни, че искате да изтриете този потребител и цялото негово съдържание?
@@ -415,19 +467,25 @@ bg:
     natureserve: NatureServe
     cites: Конвенция CITES
   authorize: Разрешавам
+  automatic_short: Автоматично
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието ми при промяна на таксон
   back: Назад
   back_to_all_species: Обратно към всички видове
   back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
+  back_to_friends: Обратно към приятели
   back_to_flags_html: "&laquo; Обратно към маркери"
   back_to_observation: Обратно към наблюдението
   back_to_observation_fields: Обратно към полетата за наблюдения
   back_to_people: Обратно към хората
   back_to_places: Обратно към Места
   back_to_possessive_user_profile: "Обратно към профила на %{possuser}"
+  back_to_post: '&laquo; Обратно към публикацията'
   back_to_projects: Обратно към проекти
   back_to_suggestions: Назад към предложенията
+  back_to_taxon: "Обратно към %{defaulttaxon}"
+  back_to_taxon_changes: "Обратно към таксономични промени"
+  back_to_viewing: "Обратно към разглеждане на <i>%{taxon}</i>"
   back_to_x: "Обратно към %{noun}"
   back_to_x_history: "Обратно към историята на %{x}"
   back_to_x_journal: "Обратно към дневника на %{user}"
@@ -454,6 +512,8 @@ bg:
   blue: синьо
   blue_butterfly_etc: "червен, пеперуда и т.н."
   body: Съдържание
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: удебелен текст
   brief_caption: Кратко заглавие
   brown: кафяво
   browse_all_projects: Разгледай всички проекти
@@ -601,6 +661,8 @@ bg:
   content_hidden_by_user_on_date_because_reason_html: |
     Съдържанието е скрито от %{user} на %{date}, защото: „%{reason}“
   content_type: Тип на съдържанието
+  continue: Продължи
+  continue_to_site: Продължи към %{site_name}
   controlled_term_labels:
     sex: Пол
     male: Мъжки
@@ -651,7 +713,10 @@ bg:
   copyright_holder: Притежател на авторското право
   copyright_info: Информация за авторско право
   copyright_info_and_more: Информация за авторско право и други
+  copyright_infringement: Нарушение на авторски права
+  copyright_infringement_desc: Нарушава закон за авторско право или е създадено от човек различен от наблюдателя без това да е указано
   couldnt_change_your_password: "Не можахме да променим паролата Ви: %{e}"
+  couldnt_find_that_taxon: Таксонът не беше открит.
   countries: Държави
   create: Създай
   create_a_guide: Създай ръководство
@@ -661,6 +726,7 @@ bg:
   create_an_account: Създай акаунт
   create_an_atlas: Създай атлас
   create_new_taxon: Създай нов таксон
+  create_observations: Създай наблюдения
   created: Създадено
   created_by: Създадено от
   created_by_user_on_date: Създадено от %{user} на %{date}
@@ -670,6 +736,10 @@ bg:
   csv: CSV
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
+  curate_observations: Курирай наблюдения
+  curate_taxa: Курирай таксони
+  curate_user: Курирай потребител
+  curating: Куриране
   curation: Куриране
   curator: Куратор
   curators: Куратори
@@ -762,6 +832,11 @@ bg:
     failure:
       user:
         suspended: Вашият акаунт е запориран
+    passwords:
+      send_instructions: 'До няколко минути ще получите имейл с инструкции как да възстановите паролата си.'
+    mailer:
+      reset_password_instructions:
+        subject: 'Инструкции за възстановяване на паролата'
   disable: Изключване
   disable_comments: Изключи коментарите
   disable_comments_desc: Забрани на хората да добавят нови коментари
@@ -833,9 +908,12 @@ bg:
   enable_offline_access_for_mobile: Разреши извънмрежов достъп за мобилни устройства
   encompassing_places: Обхващащи места
   end: Край
+  end_date_time: Крайна дата / час
   endangered: Застрашен
   endemic: ендемичен
   endemic_to_x: "Ендемичен за %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   establishment:
     endemic: ендемичен
     establishment: Заселване
@@ -916,7 +994,27 @@ bg:
   #Label for the date/time when a flag was created
   flag_created: Маркерът е създаден на
   flag_description: Маркирайте това съдържание за да уведомите кураторите, че нещо не е наред с него.
+  flag_for_check_list_title_html: |
+    Маркер за видов списък: %{title}
+  flag_for_comment_id_html: Маркер за <a href="%{url}">коментар %{id}</a>
+  flag_for_comment_id_deleted: Маркер за коментар %{id} (изтрит)
   flag_for_curation: Маркирай за куриране
+  flag_for_guide_title_html: |
+    Маркер за ръководство: %{title}
+  flag_for_identification_id_html: Маркер за <a href="%{url}">разпознаване %{id}</a>
+  flag_for_life_list_title_html: |
+    Маркер за житейски списък: %{title}
+  flag_for_list_title_html: |
+    Маркер за списък: %{title}
+  flag_for_message_id_html: Маркер за <a href="%{url}">съобщение %{id}</a>
+  flag_for_observation_title_html: |
+    Маркер за наблюдение: %{title}
+  flag_for_photo_id_html: Маркер за <a href="%{url}">снимка %{id}</a>
+  flag_for_post_title_html: |
+    Маркер за публикация: %{title}
+  flag_for_project_title_html: |
+    Маркер за проект: %{title}
+  flag_for_sound_id_html: Маркер за <a href="%{url}">звук%{id}</a>
   flag_for_taxon_title_html: |
     Маркер за таксон: %{title}
   flag_for_user_title_html: |
@@ -938,6 +1036,7 @@ bg:
   flagger: Маркирал
   flags: Маркери
   flags_explanation: "Потребителите на %{site_name} могат да маркират неща когато сметнат нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите."
+  flags_for_x_html: Маркер за %{x}
   flags_on_users_content: "Маркери на съдържанието на %{user}"
   flickr_account_information: Информация за Вашия акаунт на Flickr
   flickr_tags: Flickr етикети
@@ -1077,6 +1176,8 @@ bg:
   info: Информация
   insects: насекоми
   instagram: Инстаграм
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Вмъкни цитат
   interactions: Взаимодействия
   internal_server_error: Вътрешна грешка на сървъра
   introduced: Интродуциран
@@ -1093,7 +1194,10 @@ bg:
   iphone: iPhone
   is_not_following_anyone: не следва никого.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Наличните свидетелства достатъчни ли са за да се потвърди, че това е %{taxon}?
+  is_this_offensive_html: '<a href="/help#inappropriate">Неуместно</a>, спам или обидно ли е това?'
   it_can_now_be_used_for_research: Сега може да се използва в научни изследвания и да се показва на други сайтове
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: курсив текст
   join: Включи се
   join_and_add_an_observation_to_project_html: Присъединете се и добавете наблюдение към %{project}
   join_project: Включи се в проекта
@@ -1212,6 +1316,8 @@ bg:
   linked_facebook: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук."
   linked_flickr: "Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr."
   linked_flickr_description: "Когато акаунтите Ви на %{site_name} и Flickr са свързани, ще можете да добавяте множество снимки от Flickr към наблюденията си. Разбира се, ако решите да прекратите връзката между акаунтите, няма да Ви спираме, но тогава няма да можете да добавяте снимки от Flickr. Прекратяването на връзката може да е необходимо и ако искате да свържете друг (нов) Flickr акаунт към %{site_name}."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: текст на препратката
   linkedin: LinkedIn
   list: Списък
   list_deleted: Списъкът е изтрит.
@@ -1291,6 +1397,10 @@ bg:
   location_is_private: Местоположението е поверителено
   location_specified: Указано местонахождение
   log_in: Влизане
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/log_in">Влезте</a> или <a href="/sign_up">се регистрирайте</a> за да добавяте коментари.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/log_in">Влезте</a> или <a href="/sign_up">се регистрирайте</a> за да добавяте разпознавания.
   login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
@@ -1592,6 +1702,8 @@ bg:
   observations_by_you: "Наблюдения от Вас"
   observations_by_you_on_date: "Наблюдения от Вас на %{date}"
   observation_calendar_for: "Календар на наблюденията на %{user} за %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Наблюденията могат да съдържат до %{limit} снимки
   observation_curation: Куриране на наблюдения
   observation_date: Дата
   observation_date?: Дата?
@@ -2290,6 +2402,7 @@ bg:
   research_grade_short_html: "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>"
   research_grade_observations_have: 'Наблюденията от "Изследователско качество" имат дата, снимка, координати и ID потвърдено от общността. Щракнете за да видите оценката на качеството на данните.'
   research_grade_qualification: Годност за Изследователско качество
+  reset_filters_short: Нулирай
   reset_brightness: Възстанови яркостта
   reset_search_filters: Нулирай филтрите за търсене
   resolved_by: Коригирано от
@@ -2342,6 +2455,8 @@ bg:
   search_for_species: Търси видове
   search_list: Търси в списъка
   search_projects: Търси проекти
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Търси според причина
   search_results_for: Резултати от търсенето за
   search_results_for_query: 'Резултати от търсенето за "%{query}"'
   search_species: Търси видове
@@ -2353,7 +2468,7 @@ bg:
   searching: "Търсене..."
   seasonality: Сезонност
   second_person_possessive_plural: "Вашите %{noun}"
-  second_person_possessive_singular: "Вашите %{noun}"
+  second_person_possessive_singular: "@gender{m:Вашият|f:Вашата|n:Вашето} %{noun}"
   seen_nearby: Видяно наоколо
   select: Избери
   select_all: Избери всички
@@ -2725,6 +2840,7 @@ bg:
   use_well_formed_csv: |
     Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
   user: Потребител
+  user_added_a_flag_html: "%{user} добави маркер"
   user_added_a_x: "%{user} добави %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} добави %{x} към %{noun} от %{by}"
@@ -2782,6 +2898,7 @@ bg:
   view_check_list_page: Виж видовия списък
   view_contributions: Виж приносите
   view_field_options: Виж възможните полета
+  view_flags_for_x_html: "Виж маркерите за %{x}"
   view_full_observation: Виж цялото наблюдение
   view_invitation: Виж поканата
   view_journal: Виж дневника
@@ -2871,6 +2988,9 @@ bg:
   x_journal_archives_for_y: "Дневникът на %{user} • Архиви за"
   x_journal_middot: "Дневникът на %{user} •;"
   x_journal_new_post: "Дневникът на %{user} • Нова публикация"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_observed:
     one: "%{x} от %{count} наблюдавано"
     other: "%{x} от %{count} наблюдавани"
@@ -2895,6 +3015,7 @@ bg:
     <strong>Вие</strong> станахте управител на %{project}
   you_are_already_a_member_of_this_project: "Вече членувате в този проект!"
   you_are_no_longer_following_x: "Вече не следвате %{friend}."
+  you_are_subscribed_to_comments_on_this_flag: Абонирани сте за коментари към този маркер.
   you_arent_a_member_of_that_project: Вие не членувате в този проект.
   you_arent_following_that_person: "Не следвате този човек."
   you_can_choose_observations_associated: Можете да изберете наблюдения, които да свържете с тази публикация в дневника.
@@ -3011,6 +3132,9 @@ bg:
         agreement: Съгласие
         algorithm_summary: Резюме на алгоритъма
         disagreement: Несъгласие
+      export:
+        export_in_progress_notice_html: |
+          В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
       field_descriptions:
         time_zone: Часова зона на наблюдението
         taxon_geoprivacy: "Приложена е най-консервативната геоповерителност заради природозащитния статут на таксона от текущото разпознаване."
@@ -3033,6 +3157,8 @@ bg:
       show:
         data_quality_assessment_desc_html: |
           Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
+        flagged_photos_desc_html: |
+          Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>Можете да редактирате това поле, защото е създадено от Вас или защото сте куратор на сайта. Ако сте куратор, моля следвайте тези напътствия:
@@ -3047,6 +3173,10 @@ bg:
       users_updates_suspended:
         message: |
           От известно време не сте били активни в %{site_name}, затова преустановихме вашите абонаменти за обновления. За да възобновите получаването на обновления за активността на сайта, моля <a href="%{login_url}">влезте в акаунта си</a> отново.
+    photos:
+      show:
+        view_original_html: |
+          Можете да видите оригинала тук: <a href="%{url}">%{url}</a>. Моля, оставете маркерите за нарушение на авторски права неразрешени, ако снимката наистина е в нарушение.
     places:
       kml_field_desc: |
         KML файл с границите на мястото. Можете да направите такъв файл с помощта на Google Maps, Google Earth или друго ГИС приложение. Трябва да съдържа поне един полигон и да е под 1 MB (5 MB за куратори).
