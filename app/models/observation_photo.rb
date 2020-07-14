@@ -58,7 +58,7 @@ class ObservationPhoto < ActiveRecord::Base
       subtype: "ObservationPhoto#destroy",
       model: "ObservationPhoto",
       model_method: "destroy",
-      model_method_id: "ObservationPhoto::destroy::#{op.id}"
+      model_method_id: "ObservationPhoto::destroy::#{id}"
     )
     true
   end
