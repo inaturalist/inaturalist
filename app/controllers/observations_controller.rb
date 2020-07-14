@@ -840,9 +840,12 @@ class ObservationsController < ApplicationController
         end
         
         if updated_photos.empty?
-          observation.photos.clear
+          observation.observation_photos.destroy_all
         else
-          observation.photos = ensure_photos_are_local_photos( updated_photos )
+          keeper_photos = ensure_photos_are_local_photos( updated_photos )
+          reject_obs_photos = observation.observation_photos.select{|op| keeper_photos.map(&:id).include?( op.photo_id )}
+          reject_obs_photos.each(&:destroy)
+          observation.photos = keeper_photos
         end
 
         Photo.subclasses.each do |klass|

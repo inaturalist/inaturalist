@@ -11,7 +11,8 @@ class ObservationPhoto < ActiveRecord::Base
   after_commit :set_observation_quality_grade,
                :set_observation_photos_count,
                on: :create
-  after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
+  after_destroy :destroy_orphan_photo, :set_observation_quality_grade,
+    :set_observation_photos_count, :log_destruction
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -41,6 +42,24 @@ class ObservationPhoto < ActiveRecord::Base
     return true if observation.bulk_delete
     Observation.where(id: observation_id).update_all(
       observation_photos_count: ObservationPhoto.where(:observation_id => observation_id).count)
+    true
+  end
+
+  # Temporary logging while we try to figure out a disappearing photos bug
+  def log_destruction
+    msg = "ObservationPhoto #{id} destroyed. user_id: #{observation.user_id}, observation_id: #{observation_id}, photo_id: #{photo_id}"
+    Rails.logger.debug "[INFO #{Time.now}] #{msg}"
+    Logstasher.write_hash(
+      # last_error is a text field, while error_message is a keyword field, so
+      # if we want to search on text in the message, we need to use last_error
+      # (or arguments, or backtrace)
+      last_error: msg,
+      backtrace: caller,
+      subtype: "ObservationPhoto#destroy",
+      model: "ObservationPhoto",
+      model_method: "destroy",
+      model_method_id: "ObservationPhoto::destroy::#{op.id}"
+    )
     true
   end
 
