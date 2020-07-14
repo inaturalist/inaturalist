@@ -874,6 +874,18 @@ describe User do
       keeper.reload
       expect( keeper.project_users.count ).to eq 1
     end
+
+    describe "matching identifications on the same observation" do
+      let(:observation) { Observation.make! }
+      let(:keeper_ident) { Identification.make!( observation: observation, user: keeper ) }
+      let(:reject_ident) { Identification.make!( observation: observation, user: reject, taxon: keeper_ident.taxon ) }
+      it "should destroy the reject's identification" do
+        expect( reject_ident.user_id ).not_to eq keeper_ident.user_id
+        keeper.merge( reject )
+        Delayed::Worker.new.work_off
+        expect( Identification.find_by_id( reject_ident.id ) ).to be_blank
+      end
+    end
   end
 
   describe "suggest_login" do

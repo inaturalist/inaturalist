@@ -21,6 +21,10 @@ module ActiveRecord
             reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
           end
         rescue ActiveRecord::RecordNotUnique => e
+          # Note that in the case where the reject will be destroyed, this will
+          # probably result in some of these records being lost. Implementing a
+          # merge_duplicates method on the model in question is probably the
+          # best mitigation
         end
 
         if reflection.klass.respond_to?(:merge_duplicates)
