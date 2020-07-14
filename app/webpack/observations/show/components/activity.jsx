@@ -203,6 +203,8 @@ class Activity extends React.Component {
               className="upstacked"
               textareaClassName="form-control"
               onBlur={e => syncRemarks( e.target.value )}
+              maxLength={5000}
+              showCharsRemainingAt={4000}
             />
           </div>
         </div>

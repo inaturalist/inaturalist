@@ -16,6 +16,7 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
+  validates_length_of :body, within: 0..Comment::MAX_LENGTH, on: :create, allow_blank: true
   
   before_create :replace_inactive_taxon
 
