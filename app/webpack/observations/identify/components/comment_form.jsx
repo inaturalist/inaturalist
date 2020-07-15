@@ -35,6 +35,7 @@ const CommentForm = ( {
         placeholder={I18n.t( "leave_a_comment" )}
         showCharsRemainingAt={4000}
         textareaClassName="form-control"
+        mentions
       />
     </div>
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>

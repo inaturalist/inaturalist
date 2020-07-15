@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import mousetrap from "mousetrap";
+import ReactDOM from "react-dom";
 import TextEditorFormatButton from "./text_editor_format_button";
 import UserText from "./user_text";
 
@@ -18,6 +19,8 @@ class TextEditor extends React.Component {
   }
 
   componentDidMount( ) {
+    const { mentions } = this.props;
+
     mousetrap( this.textarea.current ).bind( "mod+b", e => {
       e.preventDefault();
       this.boldButton.button.current.click( );
@@ -30,6 +33,11 @@ class TextEditor extends React.Component {
       e.preventDefault();
       this.linkButton.button.current.click( );
     } );
+
+    if ( mentions ) {
+      const domNode = ReactDOM.findDOMNode( this );
+      $( this.textarea.current, domNode ).textcompleteUsers( );
+    }
   }
 
   render( ) {
@@ -200,6 +208,7 @@ TextEditor.propTypes = {
   maxLength: PropTypes.number,
   content: PropTypes.string,
   placeholder: PropTypes.string,
+  mentions: PropTypes.bool,
   className: PropTypes.string,
   textareaClassName: PropTypes.string,
   showCharsRemainingAt: PropTypes.number,
@@ -207,7 +216,8 @@ TextEditor.propTypes = {
 };
 
 TextEditor.defaultProps = {
-  showCharsRemainingAt: 0
+  showCharsRemainingAt: 0,
+  mentions: false
 };
 
 export default TextEditor;

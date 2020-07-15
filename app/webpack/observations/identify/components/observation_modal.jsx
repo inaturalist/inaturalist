@@ -36,11 +36,6 @@ class ObservationModal extends React.Component {
     };
   }
 
-  componentDidMount( ) {
-    const domNode = ReactDOM.findDOMNode( this );
-    $( ".IdentificationForm textarea,.CommentForm textarea", domNode ).textcompleteUsers( );
-  }
-
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
@@ -802,7 +797,7 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer chooseTaxon={ chooseSuggestedTaxon } />
+                  <SuggestionsContainer chooseTaxon={chooseSuggestedTaxon} />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (

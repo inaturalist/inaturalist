@@ -69,6 +69,7 @@ const IdentificationForm = ( {
         onBlur={e => { content = e.target.value; }}
         placeholder={I18n.t( "tell_us_why" )}
         textareaClassName="form-control"
+        mentions
       />
     </div>
     { blind ? (
