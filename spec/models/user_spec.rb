@@ -856,6 +856,15 @@ describe User do
       expect(keeper.friendships.map(&:friend_id)).not_to include(keeper.id)
     end
 
+    it "should remove duplicate friendships" do
+      friend = User.make!
+      f_reject = Friendship.make!( user: reject, friend: friend )
+      f_keeper = Friendship.make!( user: keeper, friend: friend )
+      keeper.merge( reject )
+      expect( Friendship.find_by_id( f_reject.id ) ).to be_blank
+      expect( Friendship.find_by_id( f_keeper.id ) ).not_to be_blank
+    end
+
     it "should queue a job to do the slow stuff" do
       Delayed::Job.delete_all
       stamp = Time.now
