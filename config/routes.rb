@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :sites do
     collection do
       get :network
+      get :affiliation
     end
   end
 
