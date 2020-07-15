@@ -849,7 +849,7 @@ describe User do
       expect(keeper.life_list.taxon_ids).to include(t.id)
     end
 
-    it "should remove self frienships" do
+    it "should remove self friendships" do
       f = Friendship.make!(:user => reject, :friend => keeper)
       keeper.merge(reject)
       expect(Friendship.find_by_id(f.id)).to be_blank
@@ -879,11 +879,19 @@ describe User do
       let(:observation) { Observation.make! }
       let(:keeper_ident) { Identification.make!( observation: observation, user: keeper ) }
       let(:reject_ident) { Identification.make!( observation: observation, user: reject, taxon: keeper_ident.taxon ) }
-      it "should destroy the reject's identification" do
+      it "should withdraw the reject's identification" do
         expect( reject_ident.user_id ).not_to eq keeper_ident.user_id
         keeper.merge( reject )
         Delayed::Worker.new.work_off
-        expect( Identification.find_by_id( reject_ident.id ) ).to be_blank
+        reject_ident.reload
+        expect( reject_ident ).not_to be_current
+      end
+      it "should not destroy the reject's other identifications" do
+        expect( reject_ident.user_id ).not_to eq keeper_ident.user_id
+        other_ident = Identification.make!( user: reject )
+        keeper.merge( reject )
+        Delayed::Worker.new.work_off
+        expect( Identification.find_by_id( other_ident.id ) ).not_to be_blank
       end
     end
   end

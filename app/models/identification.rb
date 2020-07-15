@@ -712,4 +712,36 @@ class Identification < ActiveRecord::Base
     Identification.elastic_index!( ids: ident_ids )
   end
 
+  def self.merge_future_duplicates( reject, keeper )
+    Rails.logger.debug "[DEBUG] Identification.merge_future_duplicates, reject: #{reject}, keeper: #{keeper}"
+    unless reject.is_a?( keeper.class )
+      raise "reject and keeper must by of the same class"
+    end
+    unless reject.is_a?( User )
+      raise "Identification.merge_future_duplicates only works for observations right now"
+    end
+    k, reflection = reflections.detect{|k,r| r.klass == reject.class && r.macro == :belongs_to }
+    sql = <<-SQL
+      SELECT
+        observation_id,
+        array_agg(id) AS ids
+      FROM
+        identifications
+      WHERE
+        current
+        AND #{reflection.foreign_key} IN (#{reject.id},#{keeper.id})
+      GROUP BY
+        observation_id
+      HAVING
+        count(*) > 1
+    SQL
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      idents = Identification.where( id: to_merge_ids )
+      if reject_ident = idents.detect{|i| i.send(reflection.foreign_key) == reject.id }
+        reject_ident.update_attributes( current: false )
+      end
+    end
+  end
+
 end
