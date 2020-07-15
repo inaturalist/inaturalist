@@ -2048,9 +2048,9 @@ cs:
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
   log_in: Přihlásit se
   log_in_or_sign_up_to_add_comments_html: |
-    Pro přidávání komentářů se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+    Pro přidávání komentářů se <a href="/login">přihlaste</a> nebo <a href="/signup">zaregistrujte</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Pro přidávání identifikací se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+    Pro přidávání identifikací se <a href="/login">přihlaste</a> nebo <a href="/signup">zaregistrujte</a>.
   log_scale_label: Protokol
   login_slash_username: Prihlášení / uživatelské jméno
   logo:
