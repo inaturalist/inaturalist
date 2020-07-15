@@ -1841,6 +1841,8 @@ nl:
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
   linked_flickr_password_html: "<strong>We vragen nooit naar je Flickr-wachtwoord</strong> (maar Flickr kan dat wel doen, controleer dat de url die de knop je stuurt Flickr.com is)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: gekoppelde tekst
   linkedin: LinkedIn
   list: Lijst
   list_deleted: Lijst verwijderd.
