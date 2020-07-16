@@ -2145,6 +2145,7 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, deel van het internationale iNaturalist
     netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
