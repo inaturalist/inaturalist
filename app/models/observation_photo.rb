@@ -11,10 +11,12 @@ class ObservationPhoto < ActiveRecord::Base
   after_commit :set_observation_quality_grade,
                :set_observation_photos_count,
                on: :create
-  after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
+  after_destroy :destroy_orphan_photo, :set_observation_quality_grade,
+    :set_observation_photos_count
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
+  include LogsDestruction
 
   def to_s
     "<ObservationPhoto #{id} observation_id: #{observation_id} photo_id: #{photo_id}>"

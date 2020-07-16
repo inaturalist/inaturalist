@@ -77,7 +77,14 @@
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
-                <%=t :network_affiliation_prompt_from_inat_html, site_name: session[:potential_site][:name], place: session[:potential_site][:place_name] %>
+                <%= t(
+                  "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
+                  default: t( :network_affiliation_prompt_from_inat_html,
+                    site_name: session[:potential_site][:name],
+                    place: session[:potential_site][:place_name],
+                    vow_or_con: session[:potential_site][:place_name].first.downcase
+                  )
+                ) %>
                 <span class="nobr">
                   <%= link_to t(:yes), user_path( current_user,  user: { site_id: session[:potential_site][:id] }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                   <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>

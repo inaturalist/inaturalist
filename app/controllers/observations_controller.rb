@@ -822,27 +822,33 @@ class ObservationsController < ApplicationController
     @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s
       
-      # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
       # fields, e.g. when removing something from ID please
       if !params[:ignore_photos] && !is_mobile_app?
         # Get photos
-        updated_photos = []
+        keeper_photos = []
         old_photo_ids = observation.photo_ids
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next if klass_key.blank?
           if params[klass_key] && params[klass_key][fieldset_index]
-            updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
+            keeper_photos += retrieve_photos(params[klass_key][fieldset_index],
               :user => current_user, :photo_class => klass, :sync => true)
           end
         end
-        
-        if updated_photos.empty?
-          observation.photos.clear
+
+        if keeper_photos.empty?
+          observation.observation_photos.destroy_all
         else
-          observation.photos = ensure_photos_are_local_photos( updated_photos )
+          keeper_photos = ensure_photos_are_local_photos( keeper_photos )
+          reject_obs_photos = observation.observation_photos.select{|op| !keeper_photos.map(&:id).include?( op.photo_id )}
+          reject_obs_photos.each(&:destroy)
+          keeper_photos.each do |p|
+            if p.new_record? || !observation.observation_photos.detect{|op| op.photo_id == p.id }
+              observation.observation_photos.build( photo: p )
+            end
+          end
         end
 
         Photo.subclasses.each do |klass|

@@ -2046,9 +2046,9 @@ en:
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Log in</a> or <a href="/sign_up">sign up</a> to add comments.
+    <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add comments.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Log in</a> or <a href="/sign_up">sign up</a> to add identifications.
+    <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_scale_label: Log
   login_slash_username: Login / username
   logo:
@@ -2266,10 +2266,18 @@ en:
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
+  # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
     Network, is focused on biodiversity and people in %{place}. Would you like to change your
     account affiliation from iNaturalist.org to %{site_name}?
+  # Special version for network_affiliation_prompt_from_inat_html, which cannot
+  # be properly translated into Finnish with the %{place} variable. Please don't
+  # feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, part of the international iNaturalist
+    Network, is focused on biodiversity and people in Finland. Would you like to
+    change your account affiliation from iNaturalist.org to iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?

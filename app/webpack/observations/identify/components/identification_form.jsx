@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import TextEditor from "../../../shared/components/text_editor";
 
@@ -69,6 +68,7 @@ const IdentificationForm = ( {
         onBlur={e => { content = e.target.value; }}
         placeholder={I18n.t( "tell_us_why" )}
         textareaClassName="form-control"
+        mentions
       />
     </div>
     { blind ? (
@@ -90,7 +90,12 @@ const IdentificationForm = ( {
         </label>
       </div>
     ) : null }
-    <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
+    <button
+      type="submit"
+      className="btn btn-primary"
+    >
+      { I18n.t( "save" ) }
+    </button>
   </form>
 );
 

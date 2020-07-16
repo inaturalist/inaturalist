@@ -2915,9 +2915,9 @@ class Observation < ActiveRecord::Base
     scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
       filter_scope : self.all
     if filter_ids = options.delete(:ids)
-      if filter_ids.length > 1000
+      if filter_ids.length > 200
         # call again for each batch, then return
-        filter_ids.each_slice(1000) do |slice|
+        filter_ids.each_slice(200) do |slice|
           update_observations_places(options.merge(ids: slice))
         end
         return

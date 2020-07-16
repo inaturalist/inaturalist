@@ -159,6 +159,21 @@ describe ObservationsController do
         expect( past_o.license ).to eq Observation::CC_BY
       end
     end
+
+    it "should allow updating with more than one photo" do
+      o = Observation.make!
+      sign_in o.user
+      expect( o.photos.size ).to eq 0
+      fixture_file_upload('observations.csv', 'text/csv')
+      put :update, id: o.id, observation: { description: "+2 photos" }, local_photos: {
+        o.id.to_s => [
+          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" ),
+          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" )
+        ]
+      }
+      o.reload
+      expect( o.photos.size ).to eq 2
+    end
   end
 
   describe "show" do
@@ -213,11 +228,6 @@ describe ObservationsController do
         expect( og_desc[:content] ).to match /#{o.taxon.common_name.name}/
       end
     end
-  end
-  
-  describe "import_photos" do
-    # to test this we need to mock a flickr response
-    it "should import photos that are already entered as taxon photos"
   end
 
   describe "by_login_all", "page cache" do

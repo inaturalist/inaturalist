@@ -15,7 +15,8 @@ class Comment < ActiveRecord::Base
   belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user
 
-  validates_length_of :body, within: 1..5000
+  MAX_LENGTH = 5000
+  validates_length_of :body, within: 1..MAX_LENGTH
   validates_presence_of :parent
   validate :parent_prefers_comments
 

@@ -21,6 +21,7 @@ import {
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
     dispatch( action( ) );
+    if ( options.callback ) { options.callback( ); }
     return false;
   }, options.eventType );
 };
@@ -128,11 +129,19 @@ const annotationShortcuts = [
   }
 ];
 
+const focusCommentIDInput = ( ) => {
+  $( ".CommentForm,.IdentificationForm" )
+    .not( ".collapse" )
+    .find( "textarea,input:visible" )
+    .first( )
+    .focus( );
+};
+
 const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "right", showNextObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "left", showPrevObservation, dispatch, { eventType: "keyup" } );
-  bindShortcut( "i", addIdentification, dispatch );
-  bindShortcut( "c", addComment, dispatch );
+  bindShortcut( "i", addIdentification, dispatch, { callback: focusCommentIDInput } );
+  bindShortcut( "c", addComment, dispatch, { callback: focusCommentIDInput } );
   bindShortcut( "x", toggleCaptive, dispatch, { eventType: "keyup" } );
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );

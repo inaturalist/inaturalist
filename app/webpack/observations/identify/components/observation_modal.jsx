@@ -340,7 +340,11 @@ class ObservationModal extends React.Component {
 
     const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      $( ":input:visible:first", form ).focus( );
+      if ( $( form ).hasClass( "IdentificationForm" ) ) {
+        $( ":input:visible:first", form ).focus( );
+      } else {
+        $( "textarea:visible:first", form ).focus( );
+      }
       // Note that you need to scroll the element that can actually scroll.
       // There are a lot of nested divs here, so make sure you're scrolling the
       // right one
@@ -802,7 +806,7 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer chooseTaxon={ chooseSuggestedTaxon } />
+                  <SuggestionsContainer chooseTaxon={chooseSuggestedTaxon} />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
