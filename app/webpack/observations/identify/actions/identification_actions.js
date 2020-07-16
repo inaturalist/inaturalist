@@ -84,7 +84,18 @@ function agreeWithCurrentObservation( ) {
       return null;
     }
     const currentObservation = s.currentObservation.observation;
-    if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {
+    const { currentUser } = s.config;
+    if (
+      !currentObservation
+      || !currentObservation.id
+      || !currentObservation.taxon
+      || currentObservation.quality_grade === "research"
+      || currentObservation.user.id === currentUser.id
+      || (
+        currentObservation.communityTaxon
+        && currentObservation.communityTaxon.rank_level <= 10
+      )
+    ) {
       return null;
     }
     dispatch( agreeingWithObservation( ) );
