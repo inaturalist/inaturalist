@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
-import INatTextArea from "./inat_text_area";
+import TextEditor from "../../../shared/components/text_editor";
 
 const IdentificationForm = ( {
   observation: o,
   onSubmitIdentification,
   className,
+  content,
   blind,
   key
 } ) => (
@@ -40,7 +41,7 @@ const IdentificationForm = ( {
       const params = {
         observation_id: o.id,
         taxon_id: idTaxon.id,
-        body: e.target.elements.body.value,
+        body: content,
         blind
       };
       if ( blind && isDisagreement( ) && e.target.elements.disagreement ) {
@@ -55,18 +56,22 @@ const IdentificationForm = ( {
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
       $( "input[name='taxon_name']", e.target ).blur( );
-      $( e.target.elements.body ).val( null );
+      content = null;
     }}
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete bootstrapClear />
-    <INatTextArea
-      type="textarea"
-      name="body"
-      className="form-control"
-      elementKey={`${key}-inat-text-area`}
-      mentions
-    />
+    <div className="form-group">
+      <TextEditor
+        className="upstacked"
+        content={content}
+        key={`comment-editor-${o.id}-${o.identifications.length}`}
+        onBlur={e => { content = e.target.value; }}
+        placeholder={I18n.t( "tell_us_why" )}
+        textareaClassName="form-control"
+        mentions
+      />
+    </div>
     { blind ? (
       <div className="form-group disagreement-group">
         <label>
@@ -94,6 +99,7 @@ IdentificationForm.propTypes = {
   observation: PropTypes.object,
   onSubmitIdentification: PropTypes.func.isRequired,
   className: PropTypes.string,
+  content: PropTypes.string,
   blind: PropTypes.bool,
   key: PropTypes.string
 };

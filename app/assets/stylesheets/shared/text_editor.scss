@@ -4,7 +4,7 @@
   &.with-preview {
     textarea,
     .chars-remaining {
-      display: none;
+      display: none !important;
     }
   }
   .preview {

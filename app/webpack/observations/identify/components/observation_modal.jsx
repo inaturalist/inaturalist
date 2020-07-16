@@ -797,7 +797,7 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer chooseTaxon={ chooseSuggestedTaxon } />
+                  <SuggestionsContainer chooseTaxon={chooseSuggestedTaxon} />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
