@@ -1922,7 +1922,7 @@ de:
   make_a_taxon_swap_instead?: Stattdessen einen TaxonSwap durchführen?
   make_curator: Kurator machen
   make_it_a_life_list?: Zu einer Life-Liste machen?
-  make_manager: Manager machen
+  make_manager: Zum Manager machen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
   make_this_your_default_license: "Mach dies zu deiner Standard-%{type}-Lizenz."
   make_this_the_primary_listing: "Dies zur primären Auflistung machen"
@@ -1932,8 +1932,8 @@ de:
   manage_your_projects: Deine Projekte verwalten
   manage_your_project_invitations: Deine Projekt-Einladungen verwalten
   manage_your_relationships: Deine Beziehungen verwalten
-  manager: Verwalten
-  managers: Verwalter
+  manager: Manager
+  managers: Manager
   managers_can_do: Manager können alles tun, was Kuratoren können, Projekteinstellungen bearbeiten und Projektjournalbeiträge schreiben.
   managing_projects: Projekte verwalten
   map: Karte
@@ -2101,9 +2101,16 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_to_be_identified: Muss bestimmt werden
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, konzentriert sich auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
     Kontos von iNaturalist.org auf %{site_name} ändern?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, Teil des internationalen iNaturalist-Netzwerks, konzentriert sich auf Artenvielfalt und Personen in Finnland. Möchtest du die Zugehörigkeit deines
+    Kontos von iNaturalist.org auf iNaturalist Suomi ändern?
   network_affiliation_prompt_from_other_site_html: |
     Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
     <strong>%{site_name}</strong> ändern?
@@ -2177,7 +2184,7 @@ de:
     user: "%{user} hat keine Favoriten hinzugefügt."
   no_journal_posts_yet: Noch keine Beiträge bisher..
   no_license_all_rights_reserved: Keine Lizenz (alle Rechte vorbehalten)
-  no_managers_set: Keine Verwalter festgelegt
+  no_managers_set: Noch keine Manager festgelegt.
   no_matching_article_from_x: "Keine passenden Artikel für %{x}"
   no_matching_invitations: Keine übereinstimmenden Einladungen
   no_matching_observations: Keine übereinstimmenden Beobachtungen.
