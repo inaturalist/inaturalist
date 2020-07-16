@@ -1534,12 +1534,10 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      if place_guess_changed? && place_guess == private_place_guess
-        self.place_guess = nil
-      elsif !place_guess.blank? && place_guess != public_place_guess
+      if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
         self.private_place_guess = place_guess
-        self.place_guess = nil
       end
+      self.place_guess = nil
     elsif coordinates_obscured?
       if place_guess_changed?
         if place_guess == private_place_guess

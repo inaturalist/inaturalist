@@ -47,6 +47,14 @@ class Map extends React.Component {
       geoprivacyIconClass = "icon-no-location";
       geoprivacyLabel = I18n.t( "location_unknown" );
     }
+    let placeGuess = I18n.t( "unknown" );
+    if ( observation ) {
+      if ( !observation.private_geojson && observation.geoprivacy === "private" ) {
+        placeGuess = I18n.t( "private_" );
+      } else {
+        placeGuess = observation.private_place_guess || observation.place_guess;
+      }
+    }
     if ( !observation || !observation.latitude ) {
       return (
         <div className="Map">
@@ -62,7 +70,7 @@ class Map extends React.Component {
               title={geoprivacyTitle}
               alt={geoprivacyTitle}
             />
-            <div className="place-guess">{ observation && observation.place_guess }</div>
+            <div className="place-guess">{ placeGuess }</div>
             <div className="details_menu">
               <Dropdown
                 id="grouping-control"
@@ -139,7 +147,6 @@ class Map extends React.Component {
       );
     }
     let placeGuessElement;
-    let placeGuess = observation.private_place_guess || observation.place_guess;
     if ( placeGuess ) {
       let showMore;
       const obscured = observation.obscured && !observation.private_geojson

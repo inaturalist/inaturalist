@@ -150,6 +150,27 @@ Some notes:
   </div>
   <div class="place attribute">
     <h4 class="label"><%=t :place %></h4>
+    <% if observation.coordinates_obscured? %>
+      <% if observation.geoprivacy == "private" %>
+        <i
+          class="geoprivacy-icon icon-icn-location-private"
+          title="<%=t :location_is_private %>"
+          alt="<%=t :location_is_private %>"
+        ></i>
+      <% else %>
+        <i
+          class="geoprivacy-icon icon-icn-location-obscured"
+          title="<%=t :location_is_obscured %>"
+          alt="<%=t :location_is_obscured %>"
+        ></i>
+      <% end %>
+    <% elsif observation.latitude %>
+      <i
+        class="fa fa-map-marker"
+        title="<%=t :location_is_public %>"
+        alt="<%=t :location_is_public %>"
+      ></i>
+    <% end %>
     <%= observation_place_guess observation, :truncate_coordinates => true %>
   </div>
   <% unless observation.created_at.blank? -%>
