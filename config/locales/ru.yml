@@ -2241,6 +2241,7 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_to_be_identified: Нуждается в идентификации
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть сети iNaturalist
     Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
