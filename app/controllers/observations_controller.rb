@@ -837,7 +837,7 @@ class ObservationsController < ApplicationController
               :user => current_user, :photo_class => klass, :sync => true)
           end
         end
-        
+
         if keeper_photos.empty?
           observation.observation_photos.destroy_all
         else
@@ -845,7 +845,7 @@ class ObservationsController < ApplicationController
           reject_obs_photos = observation.observation_photos.select{|op| !keeper_photos.map(&:id).include?( op.photo_id )}
           reject_obs_photos.each(&:destroy)
           keeper_photos.each do |p|
-            unless observation.observation_photos.detect{|op| op.photo_id == p.id }
+            if p.new_record? || !observation.observation_photos.detect{|op| op.photo_id == p.id }
               observation.observation_photos.build( photo: p )
             end
           end
