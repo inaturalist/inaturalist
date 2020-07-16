@@ -1754,7 +1754,7 @@ cs:
   improving: Zlepšování
   in_n: "v %{n}"
   in_place_x: v %{place}
-  inaturalist_network_affiliation: Přidružení k síti iNaturalist
+  inaturalist_network_affiliation: Příslušnost k síti iNaturalist
   #Label for messages you've received
   inbox: doručená pošta
   include_places: Zahrnout místa
@@ -2266,12 +2266,13 @@ cs:
   needs_id_: Nutné ID
   needs_id_expandable_html: "<span class='full'>Nutné </span>ID"
   needs_to_be_identified: Musí být identifikován
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>součást mezinárodní sítě iNaturalist se
+    <strong>%{site_name}</strong>, součást mezinárodní sítě iNaturalist, se
     zaměřuje na biologickou rozmanitost a lidi v %{place}. Chtěli byste změnit
-    přičlenění k účtu z iNaturalist.org na %{site_name}?
+    příslušnost svého účtu z iNaturalist.org na %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
-    Chtěli byste změnit přičlenění z <strong>%{other_site_name}</strong> na
+    Chtěli byste změnit příslušnost z <strong>%{other_site_name}</strong> na
     <strong>%{site_name}</strong>?
   new: Nový
   new_and_noteworthy: Nové a pozoruhodné
