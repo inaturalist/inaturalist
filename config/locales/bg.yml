@@ -1567,6 +1567,7 @@ bg:
   needs_id_: Нуждае се от разпознаване
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
   needs_to_be_identified: Нуждае се от разпознаване
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от iNaturalist.org на %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
