@@ -2002,6 +2002,7 @@ el:
   needs_id_: Χρειάζεται ID
   needs_id_expandable_html: "<span class='full'>Χρειάζεται </span>ID"
   needs_to_be_identified: Πρέπει να αναγνωριστεί
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, μέρος του διεθνούς δικτύου του iNaturalist, επικεντρώνεται στη βιοποικιλότητα και στους ανθρώπους σε %{place}. Θα θέλατε να αλλάξετε την υπαγωγή του λογαριασμού σας από το iNaturalist.org στο %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
