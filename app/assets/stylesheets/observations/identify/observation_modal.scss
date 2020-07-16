@@ -748,4 +748,16 @@ body > [role="dialog"] .ObservationModal {
   .brightness-2-8 .image-gallery-image img { filter: brightness(2.8); }
   .brightness-3   .image-gallery-image img { filter: brightness(3.0); }
 
+  .IdentificationForm {
+    .TaxonAutocomplete > .form-group {
+      margin-bottom: 10px;
+    }
+  }
+
+  .TextEditor {
+    textarea {
+      margin-top: 10px;
+    }
+  }
+
 }

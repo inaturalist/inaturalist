@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
 import TextEditor from "../../../shared/components/text_editor";
 
 // The approach of getting the form values from the event object here is based
@@ -38,7 +37,12 @@ const CommentForm = ( {
         mentions
       />
     </div>
-    <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
+    <button
+      type="submit"
+      className="btn btn-primary"
+    >
+      { I18n.t( "save" ) }
+    </button>
   </form>
 );
 
