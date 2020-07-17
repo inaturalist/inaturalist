@@ -347,7 +347,7 @@ class TaxonAutocomplete extends React.Component {
 
   taxonAutocompleteSource( request, callback ) {
     const {
-      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID
+      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
     const params = {
       q: request.term,
@@ -360,6 +360,21 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( observedByUserID ) {
       params.observed_by_user_id = observedByUserID;
+    }
+    if ( config && config.testingApiV2 ) {
+      params.fields = {
+        default_photo: {
+          square_url: true
+        },
+        iconic_taxon_id: true,
+        iconic_taxon_name: true,
+        is_active: true,
+        matched_term: true,
+        name: true,
+        preferred_common_name: true,
+        rank: true,
+        rank_level: true
+      }
     }
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];

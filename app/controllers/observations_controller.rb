@@ -2522,7 +2522,12 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    scope = Observation.where(id: params[:id] || params[:observation_id])
+    obs_id = params[:id] || params[:observation_id]
+    scope = if obs_id.to_s =~ BelongsToWithUuid::UUID_PATTERN
+      Observation.where( uuid: obs_id )
+    else
+      scope = Observation.where( id: obs_id )
+    end
     includes = [ :quality_metrics,
       :flags,
       { photos: :flags },

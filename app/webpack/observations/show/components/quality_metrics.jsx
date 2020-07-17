@@ -216,7 +216,10 @@ class QualityMetrics extends React.Component {
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
     const xIcon = ( <i className="fa fa-times check" /> );
-    const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
+    const hasMedia = (
+      ( observation.photos ? observation.photos.length : 0 )
+      + ( observation.sounds ? observation.sounds.length : 0 )
+    ) > 0;
     const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
     const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
     const mostAgree = observation.identifications_most_agree;
@@ -267,8 +270,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location_specified" ) }
               </td>
-              <td className="agree">{ observation.location || observation.obscured ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location || observation.obscured ? null : xIcon }</td>
+              <td className="agree">{ observation.geojson || observation.obscured ? checkIcon : null }</td>
+              <td className="disagree">{ observation.geojson || observation.obscured ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">

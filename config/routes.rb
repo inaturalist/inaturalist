@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  id_param_pattern = %r(\d+([\w\-\%]*))
+  uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )
+  id_param_pattern = /(\d+([\w\-\%]*))|#{uuid_pattern}/
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
 
