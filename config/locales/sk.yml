@@ -1233,8 +1233,8 @@ sk:
   kml_file_size_error: "KML musí byť menší ako 1 MB"
   labels: Štítky
   label_to_group_a_batch_of_taxon_changes: Spoločný štítok pre súbor zmien taxónov
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Súkromná lokalita
-  location_unknown: Neznáma lokalita
   language_slash_type: Jazyk / Typ
   #Large photo size
   large: veľký
@@ -1621,7 +1621,6 @@ sk:
   newly_added: Novo pridané
   newly_added_species: Novo pridané druhy
   newly_observed_species: Novo pozorované druhy
-  news: Novinky
   next: Ďalej
   next_observation: Ďalšie pozorovanie
   next_page: Ďalšia strana
@@ -2473,7 +2472,6 @@ sk:
   remember_me: Zapamätať si ma
   remove: Odstrániť
   remove_all_tags: Odstrániť všetky tag
-  remove_boundary: Odstrániť hranicu
   remove_comma_separated_tags: "Odstrániť tagy oddelené čiarkami"
   remove_conservation_status: odstrániť status ochrany
   remove_from: Odstrániť z
@@ -2886,7 +2884,6 @@ sk:
   the_community_id_requires_at_least_two_identifications: Komunitné ID vyžaduje aspoň dve identifikácie.
   the_community_must_feel_that: |
     Komunita sa musí zhodnúť, že komunitný taxón je na základe dôkazov najlepší aký môže byť
-  the_past: minulý
   the_people_of_inat: "Ľudia z %{site_name}"
   the_user_x_has_been_suspended: "Užívateľ %{user} bol vylúčený"
   the_user_x_has_been_unsuspended: "Vylúčenie užívateľa %{user} bolo zrušené"
