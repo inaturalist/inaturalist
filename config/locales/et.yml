@@ -1430,8 +1430,8 @@ et:
   kml_file_size_error: "KML peab olema vähem kui 1 MB suur"
   labels: Sildid
   label_to_group_a_batch_of_taxon_changes: Silt, millega grupeeritakse taksonimuudatuste kogumit
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Asukoht privaatne
-  location_unknown: Asukoht teadmata
   language_slash_type: Keel / Tüüp
   #Large photo size
   large: suur
@@ -1838,7 +1838,6 @@ et:
   newly_added: Äsjalisatud
   newly_added_species: Uued liigid
   newly_observed_species: Äsjavaadeldud liigid
-  news: Uudised
   next: Edasi
   next_observation: Järgmine vaatlus
   next_page: Järgmine lehekülg
@@ -2684,7 +2683,6 @@ et:
   remember_me: Jäta mind meelde
   remove: Eemalda
   remove_all_tags: Eemalda kõik märksõnad
-  remove_boundary: Eemalda piirjoon
   remove_comma_separated_tags: "Eemalda komaga eraldatud märkõnad"
   remove_conservation_status: eemalda kaitsestaatus
   remove_from: Eemalda
@@ -3189,7 +3187,6 @@ et:
     Määramismasin on tööriist, mis aitab sul oma vaatluseid määratleda lähtuvalt koha %{site_name} kontrollnimekirjast. Kui masinale antakse kõrgema taseme takson ja koht (nt Eesti imetajad), otsitakse selle koha kontrollnimekirjades olevaid taksoneid. Enamik koha %{site_name} kontrollnimekirju pole lõplikud, aga kui mõni neist on täielik (st see loetleb <em>kõiki</em> mõne taksoni esindajaid selles kohas), siis annab määramismasin sellest ka teada.
   the_name_of_the_taxon_including_space: Taksoni nimi koos liigi ja infraliigiga.
   the_observation_was_already_added_to_that_project: Vaatlus on sellesse projekti juba lisatud.
-  the_past: minevik
   the_people_of_inat: "Lehe %{site_name} kasutajad"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Allolevaid liike ei leitud %{site_name} andmebaasist.
