@@ -1587,8 +1587,8 @@ zh-TW:
   label_colon: "%{label}："
   labels: 符號
   label_to_group_a_batch_of_taxon_changes: 分組批量物種分類更改符號
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: 位置為私有的
-  location_unknown: 位置不明
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: 鎖定縮放等級
@@ -2052,7 +2052,6 @@ zh-TW:
   newly_added_species: 新進的添加物種
   newly_observed_species: 新進的觀察物種
   newly_observed_species_in_year: "在 %{year} 年新加入的物種"
-  news: 最新消息
   next: 下一個
   next_observation: 下一個觀察
   next_page: 下一頁
@@ -3114,7 +3113,6 @@ zh-TW:
   remember_me: 記住我
   remove: 移除
   remove_all_tags: 移除所有標籤
-  remove_boundary: 移除邊界
   remove_comma_separated_tags: "移除逗號分隔式標籤"
   remove_conservation_status: 移除保育狀態
   remove_from: 移除自
@@ -3638,7 +3636,6 @@ zh-TW:
   the_following_photos_have_been_tagged: "以下照片已被標記為："
   the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
   the_observation_was_already_added_to_that_project: 觀察已準備添加至專案。
-  the_past: 過去
   the_people_of_inat: "%{site_name} 的成員"
   the_species_listed_below_were_not_found_in_the_site_database: |
     以下列出的物種未能在 %{site_name} 資料庫裡找出。
