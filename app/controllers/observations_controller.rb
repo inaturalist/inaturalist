@@ -821,6 +821,7 @@ class ObservationsController < ApplicationController
     extra_msg = nil
     @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s
+      observation.skip_indexing = true
       
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
@@ -897,6 +898,10 @@ class ObservationsController < ApplicationController
         end
       end
     end
+
+    Observation.elastic_index!(
+      ids: @observations.compact.map( &:id ),
+      wait_for_index_refresh: true )
 
     respond_to do |format|
       if errors
@@ -1098,7 +1103,11 @@ class ObservationsController < ApplicationController
   def edit_batch
     observation_ids = params[:o].is_a?(String) ? params[:o].split(',') : []
     @observations = Observation.where("id in (?) AND user_id = ?", observation_ids, current_user).
-      includes(:quality_metrics, {:observation_photos => :photo}, :taxon)
+      includes(
+        :quality_metrics, :observation_field_values, :sounds, :taggings,
+        { observation_photos: :photo },
+        { taxon: { taxon_photos: :photo } },
+      )
     @observations.map do |o|
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
@@ -2514,6 +2523,7 @@ class ObservationsController < ApplicationController
     includes = [ :quality_metrics,
       :flags,
       { photos: :flags },
+      :sounds,
       :identifications,
       :projects,
       { taxon: :taxon_names }

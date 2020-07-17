@@ -8,6 +8,8 @@ import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
 
+/* global LIFE_TAXON */
+
 class Map extends React.Component {
   constructor( ) {
     super( );
@@ -107,7 +109,7 @@ class Map extends React.Component {
         "user",
         "map_scale"
       ] );
-      if ( observation.taxon ) {
+      if ( observation.taxon && ( LIFE_TAXON && observation.taxon.id !== LIFE_TAXON.id ) ) {
         obsForMap.taxon = Object.assign( { }, observation.taxon, {
           forced_name: ReactDOMServer.renderToString(
             <SplitTaxon
