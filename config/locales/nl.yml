@@ -1722,8 +1722,8 @@ nl:
   label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label om een batch van taxonwijzigingen te groeperen
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Locatie privé
-  location_unknown: Locatie onbekend
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomniveau vergrendelen
@@ -2196,7 +2196,6 @@ nl:
   newly_added_species: Nieuw toegevoegde soorten
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
-  news: Nieuws
   next: Volgende
   next_observation: Volgende waarneming
   next_page: Volgende pagina
@@ -3290,7 +3289,6 @@ nl:
   remember_me: Instellingen onthouden
   remove: Verwijderen
   remove_all_tags: Alle labels verwijderen
-  remove_boundary: Grens verwijderen
   remove_comma_separated_tags: "Door komma's gescheiden labels verwijderen"
   remove_conservation_status: verwijder Natuurbeschermingstatus
   remove_from: Verwijder van
@@ -3846,7 +3844,6 @@ nl:
     dat taxon op een plaats bevat, dan zal de Identotron dat vermelden.
   the_name_of_the_taxon_including_space: De naam van het taxon, inclusief de ruimte voor soorten en infraspecies.
   the_observation_was_already_added_to_that_project: De waarneming werd reeds aan dit project toegevoegd.
-  the_past: het verleden
   the_people_of_inat: "De mensen van %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     De onderstaande soorten zijn niet gevonden in de %{site_name}-database.
