@@ -1839,8 +1839,8 @@ cs:
   label_colon: "%{label}:"
   labels: Štítky
   label_to_group_a_batch_of_taxon_changes: Společný štítek pro soubor změn taxonů
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Soukromá lokalita
-  location_unknown: Neznámá lokalita
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zamknout úroveň přiblížení
@@ -2271,6 +2271,11 @@ cs:
     <strong>%{site_name}</strong>, součást mezinárodní sítě iNaturalist, se
     zaměřuje na biologickou rozmanitost a lidi v %{place}. Chtěli byste změnit
     příslušnost svého účtu z iNaturalist.org na %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, součást mezinárodní sítě iNaturalist, se zaměřuje na biologickou rozmanitost a obyvatele Finska. Přejete si změnit příslušnost svého účtu z iNaturalist.org na iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Chtěli byste změnit příslušnost z <strong>%{other_site_name}</strong> na
     <strong>%{site_name}</strong>?
@@ -2318,7 +2323,6 @@ cs:
   newly_added_species: Nově přidané druhy
   newly_observed_species: Nově pozorované druhy
   newly_observed_species_in_year: "Nově přidané druhy v %{year}"
-  news: Novinky
   next: Další
   next_observation: Další pozorování
   next_page: Další stránka
@@ -3399,7 +3403,6 @@ cs:
   remember_me: Zapamatovat si mě
   remove: Odstranit
   remove_all_tags: Odstranit všechny tagy
-  remove_boundary: Přesunout hranici
   remove_comma_separated_tags: "Odstranit tagy oddělené čárkami"
   remove_conservation_status: odstranit status ochrany
   remove_from: Odstranit z
@@ -3985,7 +3988,6 @@ cs:
     v tomto místě, něco jako průvodce dynamickým polem pro celou planetu. Většina kontrolních seznamů je v procesu, ale pokud je nějaký komplexní, tj. uvádí <em>všechny</em> zástupce svého taxonu na místě, tak Identotron zobrazí upozornění.
   the_name_of_the_taxon_including_space: Název taxonu, včetně prostoru pro druhy a infradruhy.
   the_observation_was_already_added_to_that_project: Pozorování už bylo k tomuto projektu přidáno.
-  the_past: minulý
   the_people_of_inat: "Lidé z %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Níže uvedené druhy nebyly v databázi %{site_name} nalezeny.
