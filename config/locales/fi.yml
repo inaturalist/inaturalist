@@ -1692,8 +1692,8 @@ fi:
   kml_file_size_error: "KML:n on oltava kooltaan pienempi kuin 1 MT"
   label_colon: "%{label}:"
   labels: Merkinnät
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Yksityinen sijainti
-  location_unknown: Tuntematon sijainti
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lukitse zoomaustaso
@@ -2155,7 +2155,6 @@ fi:
   newly_added_species: Äskettäin lisätyt lajit
   newly_observed_species: Äskettäin havaitut lajit
   newly_observed_species_in_year: "Lisättyjä uusia lajeja vuonna %{year}"
-  news: Uutiset
   next: Seuraava
   next_observation: Seuraava havainto
   next_page: Seuraava sivu
@@ -3149,7 +3148,6 @@ fi:
   remember_me: Muista minut
   remove: Poista
   remove_all_tags: Poista kaikki merkinnät
-  remove_boundary: Poista raja
   remove_comma_separated_tags: "Poista pilkulla erotellut merkinnät"
   remove_conservation_status: poista suojelustatus
   remove_from: Poista kohteesta
@@ -3605,7 +3603,6 @@ fi:
   the_identotron_is_a_tool_to: |
     Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
   the_observation_was_already_added_to_that_project: Havainto on jo lisätty tähän projektiin.
-  the_past: menneisyys
   the_people_of_inat: "%{site_name} -käyttäjät"
   the_user_x_has_been_suspended: "Käyttäjä %{user} on hyllytetty"
   the_user_x_has_been_unsuspended: "Käyttäjän %{user} hyllytys on peruutettu"
