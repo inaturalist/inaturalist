@@ -10,6 +10,13 @@ var application =  angular.module( "ObservationSearch", [
   "truncate"
 ]);
 
+// used for displaying HTML returned from methods
+application.filter( "sanitize", [ "$sce", function( $sce ) {
+  return function( safeHTML ) {
+    return $sce.trustAsHtml( safeHTML );
+  };
+}]);
+
 // Load translations for moment if available
 // http://stackoverflow.com/a/22965260
 var shortRelativeTime = ( I18n.t( "momentjs" ) || {} ).shortRelativeTime;

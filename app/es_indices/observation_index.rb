@@ -968,6 +968,8 @@ class Observation < ActiveRecord::Base
       { cached_votes_total: sort_order }
     when "id", "observations.id"
       { id: sort_order }
+    when "random"
+      "random"
     else
       { created_at: sort_order }
     end

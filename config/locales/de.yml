@@ -1892,9 +1892,9 @@ de:
   locked_taxa_will_not_allow_new: Gesperrte Taxa erlauben es nicht, neue nachkommende Taxa hinzuzufügen. Wenn du also Amphibia gesperrt hast und jemand versucht hat, <i>Rana catesbeiana</i> von einem externen Namensprovider zu importieren, würde das neue Taxon erstellt werden, aber es könnte nicht als Amphibie klassifiziert werden. Wenn dies geschieht, sollten die neu hinzugefügten Taxa für die Kontrolle durch den Kurator gemeldet werden.  Dies sollte nur für Taxa verwendet werden, für die wir glauben, dass wir bereits alle Nachkommen haben. Der Kurator kann dies außer Kraft setzen, indem er Taxa editiert und Eltern-IDs direkt eingibt, aber bitte erwäge statt dessen, neue Taxa in bestehende zu verschmelzen.
   log_in: Anmelden
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Kommentare hinzuzufügen.
+    <a href="/login">Einloggen</a> oder <a href="/signup">registrieren</a> , um Kommentare hinzuzufügen.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Bestimmungen hinzuzufügen.
+    <a href="/login">Einloggen</a> oder <a href="/signup">registrieren</a> , um Bestimmungen hinzuzufügen.
   login_slash_username: Login/Benutzername
   logo:
     logo: Logo
@@ -2299,6 +2299,8 @@ de:
   observations_by_you: "Deine Beobachtungen"
   observations_by_you_on_date: "Deine Beobachtungen am %{date}"
   observation_calendar_for: "Beobachtungskalender von %{user} im Jahr %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Beobachtungen können nur höchstens %{limit} Fotos haben
   observation_curation: Beobachtungskuration
   observation_date: Datum
   observation_date?: Datum?

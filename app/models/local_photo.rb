@@ -1,5 +1,6 @@
 #encoding: utf-8
 class LocalPhoto < Photo
+  include LogsDestruction
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   

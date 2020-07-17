@@ -6,6 +6,7 @@
 @import "../../shared/record_chooser_popover";
 @import "../../shared/activity_item";
 @import "../../shared/taxon_autocomplete";
+@import "../../shared/text_editor";
 
 .ObservationModal,
 body > [role="dialog"] .ObservationModal {
@@ -746,5 +747,17 @@ body > [role="dialog"] .ObservationModal {
   .brightness-2-6 .image-gallery-image img { filter: brightness(2.6); }
   .brightness-2-8 .image-gallery-image img { filter: brightness(2.8); }
   .brightness-3   .image-gallery-image img { filter: brightness(3.0); }
+
+  .IdentificationForm {
+    .TaxonAutocomplete > .form-group {
+      margin-bottom: 10px;
+    }
+  }
+
+  .TextEditor {
+    textarea {
+      margin-top: 10px;
+    }
+  }
 
 }

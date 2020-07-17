@@ -365,7 +365,7 @@ class PlacesController < ApplicationController
         return
       end
 
-      if !@place.admin_level.nil? || !@merge_target.admin_level.nil?
+      if !current_user.is_admin? && ( !@place.admin_level.nil? || !@merge_target.admin_level.nil? )
         flash[:error] = t(:you_cant_merge_standard_places)
         return
       end

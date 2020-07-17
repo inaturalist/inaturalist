@@ -1835,8 +1835,12 @@ en:
   label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
+  # Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Location Private
-  location_unknown: Location Unknown
+  # Label shown when a location has not been entered. Originally "unknown" in
+  # English but we switched to "missing" to convey that a complete observation
+  # *should* have a location
+  location_unknown: Missing Location
   # Option to lock the zoom level for maps on Identify so the zoom level remains
   # the same as you move from one observation to another
   lock_zoom_level: Lock zoom level
@@ -2046,9 +2050,9 @@ en:
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Log in</a> or <a href="/sign_up">sign up</a> to add comments.
+    <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add comments.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Log in</a> or <a href="/sign_up">sign up</a> to add identifications.
+    <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_scale_label: Log
   login_slash_username: Login / username
   logo:
@@ -2153,6 +2157,8 @@ en:
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
     our definition of "appropriate," see the 
     <a href="/help#inappropriate">FAQ</a>.
+  # Label shown when a date has not been entered
+  missing_date: Missing Date
   mobile: Mobile
   mollusks: mollusks
   momentjs:
@@ -2266,10 +2272,18 @@ en:
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
+  # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
     Network, is focused on biodiversity and people in %{place}. Would you like to change your
     account affiliation from iNaturalist.org to %{site_name}?
+  # Special version for network_affiliation_prompt_from_inat_html, which cannot
+  # be properly translated into Finnish with the %{place} variable. Please don't
+  # feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, part of the international iNaturalist
+    Network, is focused on biodiversity and people in Finland. Would you like to
+    change your account affiliation from iNaturalist.org to iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?
@@ -2318,7 +2332,6 @@ en:
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
   newly_observed_species_in_year: "Newly Added Species In %{year}"
-  news: News
   next: Next
   next_observation: Next Observation
   next_page: Next page
@@ -3431,7 +3444,6 @@ en:
   remember_me: Remember me
   remove: Remove
   remove_all_tags: Remove all tags
-  remove_boundary: Remove boundary
   remove_comma_separated_tags: "Remove comma-separated tags"
   remove_conservation_status: remove conservation status
   remove_from: Remove from
@@ -4003,7 +4015,6 @@ en:
      its taxon in a place, the Identotron will show a notice.
   the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
   the_observation_was_already_added_to_that_project: The observation was already added to that project.
-  the_past: the past
   the_people_of_inat: "The People of %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     The species listed below were not found in the %{site_name} database.

@@ -521,7 +521,7 @@ shared_examples_for "an ObservationsController" do
       expect( ofv.value ).to eq "bar"
     end
 
-    it "should updating existing observation_field_values by observation_field_id" do
+    it "should update existing observation_field_values by observation_field_id" do
       ofv = ObservationFieldValue.make!( value: "foo", observation: o)
       put :update, format: :json, id: ofv.observation_id, observation: {
         observation_field_values_attributes: {
@@ -536,7 +536,7 @@ shared_examples_for "an ObservationsController" do
       expect( ofv.value ).to eq "bar"
     end
 
-    it "should updating existing observation_field_values by observation_field_id even if they're project fields" do
+    it "should update existing observation_field_values by observation_field_id even if they're project fields" do
       pof = ProjectObservationField.make!
       po = make_project_observation( project: pof.project, user: user)
       ofv = ObservationFieldValue.make!(
@@ -729,22 +729,54 @@ shared_examples_for "an ObservationsController" do
 
     describe "existing photos" do
       let(:o) { make_research_grade_observation( user: user ) }
-      it "should leave them alone if included" do
-        without_delay do
-          put :update, format: :json, id: o.id, local_photos: { o.id.to_s => [ o.photos.first.id ] }, observation: { description: "foo" }
-        end
+      it "should be left alone if included" do
+        op = o.observation_photos.first
+        put :update, format: :json, id: o.id, local_photos: { o.id.to_s => [ o.photos.first.id ] }, observation: { description: "foo" }
+        Delayed::Worker.new.work_off
         o.reload
         expect( o.photos ).not_to be_blank
+        reloaded_op = ObservationPhoto.find_by_id( op.id )
+        expect( reloaded_op ).not_to be_blank
+        expect( reloaded_op.photo_id ).to eq op.photo_id
+        expect( reloaded_op.photo ).not_to be_blank
       end
-      it "should delete them if omitted" do
-        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+      it "should be left alone if included with a new photo" do
+        op = o.observation_photos.first
+        new_p = LocalPhoto.make!( user: o.user )
+        put :update, format: :json, id: o.id, local_photos: {
+          o.id.to_s => [ o.photos.first.id, new_p.id ] },
+          observation: { description: "foo" }
+        Delayed::Worker.new.work_off
         o.reload
-        expect( o.photos ).to be_blank
+        expect( o.photos.size ).to eq 2
+        reloaded_op = ObservationPhoto.find_by_id( op.id )
+        expect( reloaded_op ).not_to be_blank
+        expect( reloaded_op.photo_id ).to eq op.photo_id
+        expect( reloaded_op.photo ).not_to be_blank
       end
-      it "should delete corresponding ObservationPhotos if omitted" do
-        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
-        o.reload
-        expect( o.observation_photos ).to be_blank
+      describe "if omitted" do
+        it "should be deleted" do
+          op = o.observation_photos.first
+          put :update, format: :json, id: o.id, observation: { description: "foo" }
+          Delayed::Worker.new.work_off
+          o.reload
+          expect( o.photos ).to be_blank
+          expect( ObservationPhoto.find_by_id( op.id ) ).to be_blank
+        end
+        it "should delete corresponding ObservationPhotos" do
+          without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+          o.reload
+          expect( o.observation_photos ).to be_blank
+        end
+        it "should not be deleted if they are not orphaned, but ObservationPhotos should" do
+          other_o = Observation.make!( user: o.user )
+          other_op = ObservationPhoto.make!( observation: other_o, photo: o.photos.first )
+          put :update, format: :json, id: o.id, observation: { description: "foo" }
+          Delayed::Worker.new.work_off
+          reloaded_other_op = other_op.reload
+          expect( reloaded_other_op.photo ).not_to be_blank
+          expect( Photo.find_by_id( other_op.photo_id ) ).not_to be_blank
+        end
       end
     end
 

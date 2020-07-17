@@ -77,7 +77,7 @@
               <%= link_to observation.observed_on.year, 
                 observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
             <% else %>
-              <%=t :the_past %>
+              <%=t :missing_date %>
             <% end -%>
           </span>
           <% if observation.num_identifications_by_others > 0 -%>

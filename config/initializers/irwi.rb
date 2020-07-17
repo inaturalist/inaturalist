@@ -13,7 +13,8 @@ class Irwi::Formatters::Redcarpet
     Redcarpet::Markdown.new( Redcarpet::Render::HTML,
       tables: true,
       disable_indented_code_blocks: true,
-      lax_spacing: true
+      lax_spacing: true,
+      no_intra_emphasis: true
     ).render( text )
   end
 end

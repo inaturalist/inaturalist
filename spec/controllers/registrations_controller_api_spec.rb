@@ -55,6 +55,17 @@ describe Users::RegistrationsController, "create" do
     expect( json["errors"] ).not_to be_blank
   end
 
+  it "should return 422 when invalid" do
+    post :create, format: :json, user: {
+      login: "zapphytest2",
+      password: "zomgbar",
+      password_confirmation: "zomgbar"
+    }
+    json = JSON.parse( response.body )
+    pp json
+    expect( response.response_code ).to eq 422
+  end
+
   it "should not have duplicate email errors when email taken" do
     existing = User.make!
     user = User.make( email: existing.email )

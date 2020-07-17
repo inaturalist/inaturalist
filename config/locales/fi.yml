@@ -1896,9 +1896,9 @@ fi:
   locked_taxa_will_not_allow_new: Lukituille taksoneille ei voi lisätä alempia taksoneita. Jos lukitset Amphibian ja joku yrittää lisätä <i>Rana catesbeianan</i> ulkoisesta nimilähteestä, uusi taksoni luotaisiin, mutta sitä ei voisi luokitella sammakkoeläimeksi. Jos näin käy, lisätty taksoni täytyy merkitä kuraattorin tarkastettavaksi. Lukitsemista pitäisi käyttää vain taksoneille, joille ei enää tarvitse lisätä alempia taksoneita. Kuraattorit voivat ohittaa lukituksen muokkaamalla taksonia ja lisäämällä emotaksonin tunnisteen suoraan, mutta harkitse uuden taksonin liittämistä olemassaolevaan taksoniin.
   log_in: Kirjaudu sisään
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi kommentteja.
+    <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi kommentteja.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi tunnistuksia.
+    <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi tunnistuksia.
   log_scale_label: Loki
   login_slash_username: Kirjautumis / käyttäjänimi
   logo:
@@ -3189,7 +3189,7 @@ fi:
   research: tutkimus
   research_: Tutkimus
   research_grade: Tutkimustaso
-  research_grade_short_html: "T<span class='full'>utkimus</span>a<span class='full'>ste</span>"
+  research_grade_short_html: "T<span class='full'>utkimus</span><span class='full'>taso</span>"
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
   reset_filters_short: Palauta

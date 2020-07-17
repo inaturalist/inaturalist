@@ -1534,12 +1534,10 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      if place_guess_changed? && place_guess == private_place_guess
-        self.place_guess = nil
-      elsif !place_guess.blank? && place_guess != public_place_guess
+      if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
         self.private_place_guess = place_guess
-        self.place_guess = nil
       end
+      self.place_guess = nil
     elsif coordinates_obscured?
       if place_guess_changed?
         if place_guess == private_place_guess
@@ -2915,9 +2913,9 @@ class Observation < ActiveRecord::Base
     scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
       filter_scope : self.all
     if filter_ids = options.delete(:ids)
-      if filter_ids.length > 1000
+      if filter_ids.length > 200
         # call again for each batch, then return
-        filter_ids.each_slice(1000) do |slice|
+        filter_ids.each_slice(200) do |slice|
           update_observations_places(options.merge(ids: slice))
         end
         return

@@ -88,7 +88,7 @@ const App = ( {
   } else if ( observation.observed_on ) {
     formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
-    formattedDateObserved = I18n.t( "not_recorded" );
+    formattedDateObserved = I18n.t( "missing_date" );
   }
   const description = observation.description ? (
     <Row>

@@ -359,7 +359,12 @@ module ApplicationHelper
   end
   
   def markdown( text )
-    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML, tables: true )
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML,
+      tables: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      no_intra_emphasis: true
+    )
     @markdown.render( text )
   end
   

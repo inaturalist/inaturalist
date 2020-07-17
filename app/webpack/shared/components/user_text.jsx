@@ -161,6 +161,7 @@ UserText.propTypes = {
 };
 
 UserText.defaultProps = {
+  className: "",
   moreToggle: true,
   markdown: true
 };
