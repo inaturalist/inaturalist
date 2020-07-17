@@ -780,7 +780,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
+    payload.merge!( { session: session } )
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
