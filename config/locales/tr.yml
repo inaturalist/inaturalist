@@ -1711,8 +1711,8 @@ tr:
   label_colon: "%{label}:"
   labels: Etiketler
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Özel Konum
-  location_unknown: Bilinmeyen Konum
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Yakınlaştırma düzeyini kilitleme
@@ -2194,7 +2194,6 @@ tr:
   newly_added_species: Yeni Eklenmiş Türler
   newly_observed_species: Yeni Gözlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
-  news: Haberler
   next: Sonraki
   next_observation: Sonraki Gözlem
   next_page: Sonraki sayfa
@@ -3265,7 +3264,6 @@ tr:
   remember_me: Beni hatırla
   remove: Kaldır
   remove_all_tags: Tüm etiketleri kaldır
-  remove_boundary: Sınırı kaldır
   remove_comma_separated_tags: "Virgülle ayrılmış etiketleri kaldır"
   remove_conservation_status: koruma durumunu kaldır
   remove_from: Şuradan kaldır
@@ -3815,7 +3813,6 @@ tr:
     Identotron, %{site_name} kontrol listesi verilerine dayanarak gözlemleri tanımlamanıza yardımcı olacak bir araçtır. Daha yüksek düzeyli bir sınıf ve bir yer (örneğin Hindistan'ın memelileri) girin, %{site_name} tüm gezegene dinamik bir alan rehberi gibi, o yerde o sınıfla eşleşen girişleri kontrol listelerinde arayacaktır. Kontrol listelerinin çoğu sürmekte olan çalışmalardır ancak kapsamlı bir tanesi varsa yani sınıflarının <em>tüm</em> temsilcilerini bir yerde listeliyorsa, Identotron bir bildirim gösterecektir.
   the_name_of_the_taxon_including_space: Sınıfın adı, türler ve infra türler için boşluğu da içerir.
   the_observation_was_already_added_to_that_project: Gözlem, zaten bu projeye eklenmiş.
-  the_past: geçmiş
   the_people_of_inat: "%{site_name}'in İnsanları"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Aşağıda listelenen türler %{site_name} veritabanında bulunamadı.
