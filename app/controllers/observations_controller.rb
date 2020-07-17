@@ -96,10 +96,13 @@ class ObservationsController < ApplicationController
     end
     params = request.params
     showing_partial = (params[:partial] && PARTIALS.include?(params[:partial]))
+    # Humans should see this, but scrapers like social media sites and curls
+    # will set Accept: */*
+    human_or_scraper = request.format.html? || request.format == "*/*"
     # the new default /observations doesn't need any observations
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
-    if request.format.html? && !showing_partial
+    if human_or_scraper && !showing_partial
       search_taxon = Taxon.find_by_id( params[:taxon_id] ) unless params[:taxon_id].blank?
       search_place = unless params[:place_id].blank?
         Place.find( params[:place_id] ) rescue nil
