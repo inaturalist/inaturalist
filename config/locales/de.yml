@@ -1684,8 +1684,8 @@ de:
   kml_file_size_error: "KML muss kleiner als 1 MB sein"
   label_colon: "%{label}:"
   labels: Etikett
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Standort privat
-  location_unknown: Standort unbekannt
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomstufe fixieren
@@ -2156,7 +2156,6 @@ de:
   newly_added_species: Kürzlich hinzugefügte Arten
   newly_observed_species: Kürzlich beobachtete Arten
   newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
-  news: News
   next: Weiter
   next_observation: Nächste Beobachtung
   next_page: Nächste Seite
@@ -3224,7 +3223,6 @@ de:
   remember_me: Angemeldet bleiben
   remove: Entfernen
   remove_all_tags: Alle Stichwörter entfernen
-  remove_boundary: Grenze entfernen
   remove_comma_separated_tags: "Komma-getrennte Stichwörter entfernen"
   remove_conservation_status: Konservierungsstatus entfernen
   remove_from: Entfernen aus
@@ -3782,7 +3780,6 @@ de:
     gibt, die umfassend ist, d.h. es enthält <em>sämtliche</em> Vertreter von
     einem Taxon an einem Ort, wird Identotron eine Nachricht anzeigen.
   the_observation_was_already_added_to_that_project: Die Beobachtung wurde bereits zu diesem Projekt hinzugefügt.
-  the_past: in der Vergangenheit
   the_people_of_inat: "Die Menschen von %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Die unten aufgeführten Arten wurden in der %{site_name}-Datenbank nicht gefunden.
