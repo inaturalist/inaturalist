@@ -1626,8 +1626,8 @@ he:
   kml_file_size_error: "KML חייב להיות קטן מ 1MB"
   label_colon: "%{label}:"
   labels: תגיות
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: מיקום פרטי
-  location_unknown: מיקום לא ידוע
   #Large photo size
   large: גדול
   last_active_with_date: "פעילות אחרונה: %{date}"
@@ -2023,7 +2023,6 @@ he:
   newly_added_species: מינים חדשים שנוספו
   newly_observed_species: מינים חדשים שנצפו
   newly_observed_species_in_year: "מינים חדשים שנוספו ב %{year}"
-  news: חדשות
   next: הבא
   next_observation: תצפית הבאה
   next_page: לעמוד הבא
@@ -2942,7 +2941,6 @@ he:
   remember_me: זיכרו אותי
   remove: הסרה
   remove_all_tags: הסרת כל התגיות
-  remove_boundary: הסרת גבול
   remove_comma_separated_tags: "הסרת תגיות (מופרדות בפסיקים)"
   remove_conservation_status: הסרת סטטוס שימור
   remove_from: הסרה מ
@@ -3319,7 +3317,6 @@ he:
     דברים הבאים דרושים לקבל <span className="bold">דרגת מחקר:</span>
   the_following_observations_could: "לא ניתן היה להוסיף את התצפיות הבאות ל%{link}"
   the_following_photos_have_been_tagged: "התמונות הבאות תויגו:"
-  the_past: בעבר
   the_people_of_inat: "האנשים של %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     מינים אלו לא מופיעים בבסיס הנתונים של %{site_name}
