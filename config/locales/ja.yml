@@ -1541,8 +1541,8 @@ ja:
   label_colon: "%{label}"
   labels: ラベル
   label_to_group_a_batch_of_taxon_changes: 分類群の変更を一括してグループ化するためのラベル
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: 位置情報は非公開
-  location_unknown: 不明な位置
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: ズームレベルを固定
@@ -1964,7 +1964,6 @@ ja:
   newly_added_species: 新たに追加された種
   newly_observed_species: 新たに観察された種
   newly_observed_species_in_year: "%{year} に新たに追加された種"
-  news: ニュース
   next: 次
   next_observation: 次の観察記録
   next_page: 次のページ
@@ -2947,7 +2946,6 @@ ja:
   remember_me: ログイン状態を保持
   remove: 削除
   remove_all_tags: すべてのタグを削除
-  remove_boundary: 境界を取り除く
   remove_comma_separated_tags: "カンマ区切りタグを削除"
   remove_conservation_status: 保全状況を削除
   remove_from: 次から取り除く：
@@ -3427,7 +3425,6 @@ ja:
   the_following_observations_could: "次の観察記録は%{link}に追加できませんでした"
   the_following_photos_have_been_tagged: "次の写真はタグ付けされました"
   the_observation_was_already_added_to_that_project: この観察記録はすでにプロジェクトに追加されています。
-  the_past: 過去
   the_people_of_inat: "%{site_name}のユーザー紹介"
   the_species_listed_below_were_not_found_in_the_site_database: |
     以下の種は%{site_name}データベースで見つかりませんでした。
