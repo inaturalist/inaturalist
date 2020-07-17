@@ -49,7 +49,7 @@ class Map extends React.Component {
       geoprivacyIconClass = "icon-no-location";
       geoprivacyLabel = I18n.t( "location_unknown" );
     }
-    let placeGuess = I18n.t( "unknown" );
+    let placeGuess = I18n.t( "location_unknown" );
     if ( observation ) {
       if ( !observation.private_geojson && observation.geoprivacy === "private" ) {
         placeGuess = I18n.t( "private_" );

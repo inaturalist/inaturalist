@@ -86,7 +86,7 @@ module ObservationsHelper
       if observation.geoprivacy == Observation::PRIVATE
         content_tag(:span, t(:private_))
       else
-        content_tag(:span, t(:unknown))
+        content_tag(:span, t(:location_unknown))
       end
     elsif !display_lat.blank?
       link_to( display_place_guess.html_safe, observations_path( lat: observation.latitude, lng: observation.longitude ) ) +
@@ -94,7 +94,7 @@ module ObservationsHelper
     elsif observation.geoprivacy == Observation::PRIVATE
       content_tag(:span, t(:private_))
     else
-      content_tag(:span, t(:unknown))
+      content_tag(:span, t(:location_unknown))
     end
   end
 

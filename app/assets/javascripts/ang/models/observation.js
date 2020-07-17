@@ -71,7 +71,7 @@ iNatModels.Observation.prototype.displayPlace = function( ) {
   if (this.location) {
     return this.location;
   }
-  return I18n.t( "unknown" );
+  return I18n.t( "location_unknown" );
 };
 
 iNatModels.Observation.prototype.qualityGrade = function( ) {

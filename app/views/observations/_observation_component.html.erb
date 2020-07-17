@@ -139,7 +139,7 @@ Some notes:
         <%= link_to observation.observed_on.year, 
           observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
       <% else %>
-        <%=t :the_past %>
+        <%=t :missing_date %>
       <% end -%>
     </span>
     <% if observation.time_observed_at %>
