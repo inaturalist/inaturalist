@@ -1724,6 +1724,10 @@ nl:
   label_to_group_a_batch_of_taxon_changes: Label om een batch van taxonwijzigingen te groeperen
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Locatie privé
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Locatie ontbreekt
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomniveau vergrendelen
@@ -1931,6 +1935,10 @@ nl:
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Taxa die op slot zijn gezet staan niet toe dat er nieuwe onderliggende taxa aan worden toegevoegd. Als je Reptilia op slot zet en iemand probeert <i>Zootoca carniolica</i> te importeren van een externe naamaanbieder, dan wordt het nieuwe taxon aangemaakt, maar kan het niet worden geclassificeerd als een reptiel. Wanneer dit gebeurt, moeten de nieuw toegevoegde taxa worden gemeld aan de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan we denken dat we alle onderliggende taxa al hebben. Curatoren kunnen dit omzeilen door taxa rechtstreeks te bewerken en ouder-ID's in te voeren, maar overweeg alsjeblieft nieuwe taxa samen te voegen met bestaande.
   log_in: Aanmelden
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om reacties toe te voegen.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om determinaties toe te voegen.
   log_scale_label: Logboek
   login_slash_username: Login / gebruikersnaam
   logo:
@@ -2033,6 +2041,8 @@ nl:
   misleading_or_illegal_content_html: |
     Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
     <a href="/help#inappropriate">Veelgestelde vragen (FAQ)</a>.
+  #Label shown when a date has not been entered
+  missing_date: Datum ontbreekt
   mobile: Mobiel
   mollusks: weekdieren
   momentjs:
@@ -2149,6 +2159,12 @@ nl:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, deel van het internationale iNaturalist
     netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, deel van het internationale iNaturalist
+    netwerk, is gericht op biodiversiteit en mensen in Finland. Wilt je je account verbinden aan iNaturalist Suomi in plaats van iNaturalist.org?
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
