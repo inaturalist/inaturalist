@@ -1713,6 +1713,10 @@ tr:
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Özel Konum
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Eksik Konum
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Yakınlaştırma düzeyini kilitleme
@@ -2024,6 +2028,8 @@ tr:
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
+  #Label shown when a date has not been entered
+  missing_date: Eksik Tarih
   mobile: Mobil
   mollusks: yumuşakçalar
   momentjs:
