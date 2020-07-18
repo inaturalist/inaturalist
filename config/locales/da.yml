@@ -1716,6 +1716,10 @@ da:
   label_to_group_a_batch_of_taxon_changes: Mærke til at grupperer et bundt af takson ændringer
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Fortrolig lokalitet
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Placering mangler
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomniveau
@@ -2029,6 +2033,8 @@ da:
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
     <a href="/help#inappropriate"> FAQ </a>.
+  #Label shown when a date has not been entered
+  missing_date: Dato mangler
   mobile: Mobil
   mollusks: bløddyr
   momentjs:
