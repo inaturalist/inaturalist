@@ -54,9 +54,7 @@ class TextEditor extends React.Component {
     let textareaOnChange;
     if ( maxLength ) {
       textareaOnChange = e => {
-        if ( e.target.value.length > showCharsRemainingAt ) {
-          this.setState( { textareaChars: e.target.value.length } );
-        }
+        this.setState( { textareaChars: e.target.value.length } );
       };
     }
     return (
