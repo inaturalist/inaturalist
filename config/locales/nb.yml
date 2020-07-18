@@ -191,6 +191,8 @@ nb:
   add: Legg til
   add_a_batch_of_observations: Legg til en batch med observasjoner
   add_a_batch_of_taxa: Legg til en batch med taksa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Legg til en unummerert liste
   add_a_comment: Legg til en kommentar
   add_a_field: Legg til et felt
   add_a_flag: Legg til en markering
@@ -903,6 +905,7 @@ nb:
     fruiting: Frukt synlig og fortsatt knyttet til planten
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
     teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
+    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
   controls: Kontrollpanel
   convert: Konverter
   coordinate_systems: Koordinatsystemer
@@ -1096,6 +1099,7 @@ nb:
       updated: 'Passordet ditt ble endret. Du er nå logget inn.'
       updated_not_active: 'Endring av ditt passord var vellykket.'
       send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
+      no_token: "Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen."
     registrations:
       signed_up: 'Velkommen! Registreringen var vellykket.'
       updated: 'Du har oppdatert din konto.'
@@ -2317,6 +2321,8 @@ nb:
   observations_by_you: "Observasjoner av deg"
   observations_by_you_on_date: "Observasjoner av deg på %{date}"
   observation_calendar_for: "Observasjonskalender for %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observasjoner kan bare ha %{limit} bilder
   observation_curation: Kuratering av observasjoner
   observation_date: Dato
   observation_date?: Dato?
@@ -3188,6 +3194,7 @@ nb:
   receive_updates_from_this_project: Få oppdateringer om dette prosjektet
   recent: Siste
   recent_evidence_of_organism: Nylig bevis av en organisme
+  recent_exports: Nylige eksporter
   recent_new_users: Siste nye brukere
   recent_observations: Siste observasjoner
   recent_observations_: Siste observasjoner
@@ -6053,6 +6060,8 @@ nb:
         started_at: Startet
         #Date/time the task finished processing
         finished_at: Fullført
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Inputs
       post:
         title: Tittel
         body: Innhold
@@ -6204,6 +6213,9 @@ nb:
           attributes:
             base:
               must_have_reasonable_number_of_rows: Eksporter kan ikke inneholde flere enn 200 000 observasjoner
+              must_have_query: Spørringen kan ikke være tom
+            user_id:
+              already_has_an_export_in_progress: har allerede en pågående eksport
         place:
           attributes:
             place_geometry:
