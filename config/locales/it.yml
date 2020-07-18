@@ -1702,6 +1702,10 @@ it:
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di modifiche dei taxa
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Posizione privata
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Posizione Mancante
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Blocca livello zoom
@@ -2014,6 +2018,8 @@ it:
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
     Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Data Mancante
   mobile: Cellulare
   mollusks: molluschi
   momentjs:
@@ -2129,6 +2135,11 @@ it:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account verso %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da iNaturalist.org ad iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Vuoi spostare l'affiliazione dell'account da <strong>%{other_site_name}</strong> verso
     <strong>%{site_name}</strong>?
