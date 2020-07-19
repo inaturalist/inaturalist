@@ -2129,6 +2129,8 @@ ru:
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Отсутствует дата
   mobile: Мобильный
   mollusks: Моллюски
   momentjs:
@@ -2245,6 +2247,11 @@ ru:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть сети iNaturalist
     Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, фокусируется на биоразнообразии и людях в Финляндии. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
