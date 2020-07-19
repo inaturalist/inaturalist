@@ -1907,6 +1907,10 @@ nb:
   location_specified: Plassering oppgitt
   locked_taxa_will_not_allow_new: Låste taksa vil ikke la nye underliggende taksa bli lagt til seg. Så hvis du har låst Amphibia og noen prøver å importere <i>Rana catesbeiana</i> fra en ekstern navneleverandør, vil det nye taksonet bli opprettet men kan det ikke klassifiseres som en amfibie. Når det skjer, bør de nye taksa bli flagget slik at en kurator kan se på de. Dette bør bare brukes for taksa der vi tror at vi allerede har alle underliggende taksa. Kuratorer kan overstyre dette ved å redigere taksa og legge inn foreldretakson-ID-er manuelt, men vennligst vurder å slå sammen nye taksa med eksisterende i stedet.
   log_in: Logg inn
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Logg på</a> eller <a href="/signup">registrer deg</a> for å legge til kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Logg på</a> eller <a href="/signup">registrer deg</a> for å legge til bestemmelser.
   log_scale_label: Log
   login_slash_username: Login / brukernavn
   logo:
@@ -2005,6 +2009,8 @@ nb:
   misleading_or_illegal_content_html: |
     Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les
     mer om vår definisjon av "passende" i svarene på <a href="/help#inappropriate">ofte stilte spørsmål</a>.
+  #Label shown when a date has not been entered
+  missing_date: Mangler dato
   mobile: Mobil
   mollusks: bløtdyr
   momentjs:
@@ -3943,6 +3949,7 @@ nb:
   unresolve: Fjern løsning
   unreview_all: Fjern revisjon for alle
   unsubscribe: Meld av
+  unsubscribe_from_emails_like_this: Avslutt abonnement på e-poster som dette
   unsuspend_user: Opphev suspenderingen til bruker
   upcoming_bioblitzes: Kommende bioblitzer
   update: Oppdater
