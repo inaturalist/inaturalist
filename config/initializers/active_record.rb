@@ -21,10 +21,12 @@ module ActiveRecord
             reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
           end
         rescue ActiveRecord::RecordNotUnique => e
-          # Note that in the case where the reject will be destroyed, this will
-          # probably result in some of these records being lost. Implementing a
-          # merge_duplicates method on the model in question is probably the
-          # best mitigation
+          raise e unless reflection.klass.respond_to?(:merge_future_duplicates)
+          Rails.logger.debug(
+            "[DEBUG] Failed to merge associated for #{k} with update_all, " + 
+            "falling back to #{reflection.klass.name}.merge_future_duplicates"
+          )
+          reflection.klass.merge_future_duplicates( reject, self )
         end
 
         if reflection.klass.respond_to?(:merge_duplicates)

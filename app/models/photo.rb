@@ -171,7 +171,6 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    Rails.logger.debug "[DEBUG] subtype: #{subtype}"
     t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
       "Google"
     end

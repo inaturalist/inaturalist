@@ -16,7 +16,7 @@
   .row
     .col-md-6
       = f.text_field :title
-      = f.text_area :body, class: "form-control", label: t(:description), placeholder: t(:describe_your_trip, default: "Describe your trip!" ), maxlength: Post::MAX_LENGTH
+      = f.text_area :body, class: "form-control", label: t(:description), placeholder: t(:describe_your_trip, default: "Describe your trip!" )
       .row
         .col-md-6= f.text_field :distance, :label => t( :distance_traveled )
         .col-md-6= f.text_field :number, :label => t( :number_of_observers )

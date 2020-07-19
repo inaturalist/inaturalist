@@ -1,3 +1,4 @@
+/* eslint-disable */
 var iNatModels = iNatModels || { };
 
 iNatModels.Observation = function( attrs ) {
@@ -35,14 +36,42 @@ iNatModels.Observation.prototype.hasSound = function( ) {
   return (this.sounds && this.sounds.length > 0);
 };
 
+iNatModels.Observation.prototype.placeIcon = function( ) {
+  if ( this.obscured ) {
+    if ( this.geoprivacy === "private" ) {
+      return "<i class='geoprivacy-icon icon-icn-location-private' title='"
+        + I18n.t( "location_is_private" )
+        + "' alt='"
+        + I18n.t( "location_is_private" )
+        + "' />";
+    }
+    return "<i class='geoprivacy-icon icon-icn-location-obscured' title='"
+      + I18n.t( "location_is_obscured" )
+      + "' alt='"
+      + I18n.t( "location_is_obscured" )
+      + "' />";
+  }
+  if ( this.location ) {
+    return "<i class='fa fa-map-marker' title='"
+      + I18n.t( "location_is_public" )
+      + "' alt='"
+      + I18n.t( "location_is_public" )
+      + "' />";
+  }
+  return "";
+}
+
 iNatModels.Observation.prototype.displayPlace = function( ) {
+  if ( this.geoprivacy === "private" && !this.location ) {
+    return I18n.t( "private_" );
+  }
   if (this.place_guess) {
     return this.place_guess;
-  } else if (this.latitude) {
-    return [this.latitude, this.longitude].join(',')
-  } else {
-    return I18n.t('unknown');
   }
+  if (this.location) {
+    return this.location;
+  }
+  return I18n.t( "location_unknown" );
 };
 
 iNatModels.Observation.prototype.qualityGrade = function( ) {

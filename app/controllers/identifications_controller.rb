@@ -212,7 +212,7 @@ class IdentificationsController < ApplicationController
           redirect_to @identification.observation
         end
         format.json do
-          render statys: :unprocessable_entity, json: { error: msg }
+          render status: :unprocessable_entity, json: { error: msg }
         end
       end
       return

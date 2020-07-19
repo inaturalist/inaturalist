@@ -55,6 +55,7 @@ class Place < ActiveRecord::Base
     end
     {
       id: id,
+      uuid: uuid,
       slug: slug,
       name: name,
       display_name: display_name,

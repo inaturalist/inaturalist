@@ -33,4 +33,9 @@ class Friendship < ActiveRecord::Base
     true
   end
 
+  def self.merge_future_duplicates( reject, keeper )
+    reject.friendships.where( friend_id: keeper.friendships.pluck(:friend_id) ).delete_all
+    reject.friendships.update_all( user_id: keeper.id )
+  end
+
 end

@@ -217,6 +217,9 @@ class ObservationFieldValue < ActiveRecord::Base
           value !~ /[0-9]/
       controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
       controlled_value = ControlledTerm.first_term_by_label( "Fruiting" )
+    elsif observation_field.name =~ /life stage/i && value == "teneral"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Life Stage" )
+      controlled_value = ControlledTerm.first_term_by_label( "Teneral" )
     elsif ( observation_field.name =~ /dead or alive/i ||
             observation_field.name =~ /alive( or |\/)dead/i ||
             observation_field.name =~ /was it alive/i ||

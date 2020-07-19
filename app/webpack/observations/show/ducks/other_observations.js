@@ -1,3 +1,4 @@
+import _ from "lodash";
 import inatjs from "inaturalistjs";
 
 const SET_EARLIER_USER_OBSERVATIONS = "obs-show/other_observations/SET_EARLIER_USER_OBSERVATIONS";
@@ -12,7 +13,37 @@ const OTHER_OBSERVATIONS_DEFAULT_STATE = {
   moreFromClade: { }
 };
 
+const OTHER_OBSERVATION_FIELDS = {
+  id: true,
+  photos: {
+    id: true,
+    uuid: true,
+    url: true,
+    license_code: true
+  },
+  taxon: {
+    default_photo: {
+      attribution: true,
+      license_code: true,
+      url: true
+    },
+    id: true,
+    is_active: true,
+    name: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  user: {
+    login: true
+  },
+  uuid: true
+};
+
 export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, action ) {
+  if ( action.data && action.data.params && action.data.params.fields ) {
+    delete action.data.params.fields;
+  }
   switch ( action.type ) {
     case SET_EARLIER_USER_OBSERVATIONS:
       return Object.assign( { }, state, { earlierUserObservations: action.observations } );
@@ -59,11 +90,12 @@ export function setMoreFromClade( data ) {
 export function fetchNearby( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const observation = s.observation;
-    if ( !observation || !observation.latitude || !observation.longitude ) { return null; }
+    const { testingApiV2 } = s.config;
+    const { observation } = s;
+    if ( !observation || !observation.geojson ) { return null; }
     const baseParams = {
-      lat: observation.latitude,
-      lng: observation.longitude,
+      lat: observation.geojson.coordinates[1],
+      lng: observation.geojson.coordinates[0],
       verifiable: true,
       radius: 50,
       order_by: "observed_on",
@@ -71,74 +103,78 @@ export function fetchNearby( ) {
       locale: I18n.locale,
       ttl: -1
     };
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
+      photos: true,
+      not_id: observation.uuid,
+      per_page: 6,
+      details: "all"
+    } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setNearby( { params: baseParams, observations: response.results } ) );
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
   };
 }
 
 export function fetchMoreFromClade( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const observation = s.observation;
-    if ( !observation || !observation.latitude || !observation.longitude ||
-         !observation.taxon ) { return null; }
+    const { observation, config } = getState( );
+    const { testingApiV2 } = config;
+    if (
+      !observation
+      || !observation.geojson
+      || !observation.taxon
+    ) { return null; }
     let searchTaxon = observation.taxon.id;
     if ( observation.taxon.rank_level <= 10 ) {
-      searchTaxon = observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] ||
-        observation.taxon.id;
+      searchTaxon = _.find( observation.taxon.ancestors, a => a.rank === "genus" ) || observation.taxon.id;
     }
     const baseParams = {
       taxon_id: searchTaxon,
       order_by: "votes",
-      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      preferred_place_id: config.preferredPlace ? config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
     };
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
+      photos: true, not_id: observation.uuid, per_page: 6, details: "all"
+    } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
   };
 }
 
 export function fetchMoreFromThisUser( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const observation = s.observation;
+    const { testingApiV2 } = s.config;
+    const { observation } = s;
     if ( !observation || !observation.user ) { return null; }
-    // TODO: this needs to be smarter
-    let params = {
+    const baseParams = {
       user_id: observation.user.id,
       order_by: "id",
-      order: "desc",
-      id_below: observation.id,
       per_page: 6,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
     };
-    return inatjs.observations.search( params ).then( responseBefore => {
-      params = {
-        user_id: observation.user.id,
-        order_by: "id",
-        order: "asc",
-        id_above: observation.id,
-        per_page: 6,
-        details: "all",
-        preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
-        locale: I18n.locale,
-        ttl: -1
-      };
-      return inatjs.observations.search( params ).then( responseAfter => {
+    if ( testingApiV2 ) {
+      baseParams.fields = OTHER_OBSERVATION_FIELDS;
+    }
+    const prevParams = Object.assign( {}, baseParams, { order: "desc", id_below: observation.id } );
+    const nextParams = Object.assign( {}, baseParams, { order: "asc", id_above: observation.id } );
+    return inatjs.observations.search( prevParams ).then(
+      responseBefore => inatjs.observations.search( nextParams ).then( responseAfter => {
         dispatch( setEarlierUserObservations( responseBefore.results ) );
         dispatch( setLaterUserObservations( responseAfter.results ) );
-      } ).catch( e => { } );
-    } ).catch( e => { } );
+      } ).catch( ( ) => { } )
+    ).catch( ( ) => { } );
   };
 }
-

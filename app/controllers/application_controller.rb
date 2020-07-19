@@ -146,9 +146,11 @@ class ApplicationController < ActionController::Base
     if current_user.latitude && current_user.longitude
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
-        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id) ).first
+        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
+      Rails.logger.debug "[DEBUG] potential_place: #{potential_place}"
       return true unless potential_place
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
+      Rails.logger.debug "[DEBUG] potential_site: #{potential_site}"
       if potential_site
         session[:potential_site] = {
           id: potential_site.id,
@@ -778,7 +780,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
+    payload.merge!( { session: session } )
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end

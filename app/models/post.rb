@@ -45,8 +45,7 @@ class Post < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_and_belongs_to_many :observations, -> { uniq }
 
-  MAX_LENGTH = 5000
-  validates_length_of :title, in: 1..MAX_LENGTH
+  validates_length_of :title, in: 1..2000
   validates_presence_of :parent
   validate :user_must_be_on_site_long_enough
   

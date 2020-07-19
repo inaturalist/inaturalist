@@ -919,6 +919,15 @@ $photo-count-line-width: 1px;
   display: block;
 }
 
+#result-table {
+  .place {
+    .geoprivacy-icon {
+      position: relative;
+      top: -2px;
+    }
+  }
+}
+
 #taxa-grid .thumbnail { overflow: visible; }
 #taxa-grid .tooltip-inner { min-width: 200px; }
 #filters .tooltip-inner { white-space: nowrap; }

@@ -148,7 +148,7 @@ class Activity extends React.Component {
     const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
       if ( !p.url || p.preview ) { return null; }
       const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\./i ) ) {
+      if ( mediumUrl && mediumUrl.match( /\/medium\./i ) ) {
         return p;
       }
       return null;
@@ -161,7 +161,7 @@ class Activity extends React.Component {
       ? (
         <div className="form-group">
           <TextEditor
-            key={`comment-editor-${observation.id}-${observation.comments.length}`}
+            key={`comment-editor-${observation.id}-${_.size( observation.comments )}`}
             placeholder={I18n.t( "leave_a_comment" )}
             textareaClassName="form-control"
             maxLength={5000}
@@ -198,11 +198,13 @@ class Activity extends React.Component {
           />
           <div className="form-group">
             <TextEditor
-              key={`comment-editor-${observation.id}-${observation.identifications.length}`}
+              key={`comment-editor-${observation.id}-${_.size( observation.identifications )}`}
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"
               onBlur={e => syncRemarks( e.target.value )}
+              maxLength={5000}
+              showCharsRemainingAt={4000}
             />
           </div>
         </div>
