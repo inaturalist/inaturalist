@@ -1757,6 +1757,10 @@ sv:
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Privat plats
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Saknar plats
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
@@ -1965,9 +1969,9 @@ sv:
   locked_taxa_will_not_allow_new: Man kan inte lägga till nya barn till låsta taxa. T.ex., om du har låst Amphibia och någon försöker importera <i>Rana catesbeiana</i> från en extern namnkälla, skulle ett nytt taxon skapas men inte kunna klassificeras som ett groddjur. När det händer bör detta nyligen tillagda taxon flaggas för att komma till en förvaltares kännedom. Låsning bör egentligen bara användas för taxa där vi tror att alla barn redan är tillagda. Förvaltare kan åsidosätta detta genom att redigera taxa och ange föräldra-ID direkt, men överväg att slå ihop nya taxa med befintliga istället.
   log_in: Logga in
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Logga in</a> eller <a href="/signup">registrera dig</a> för att lägga till kommentarer.
+    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till kommentarer.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Logga in</a> eller <a href="/signup">registrera dig</a> för att lägga till bestämningar.
+    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till bestämningar.
   log_scale_label: Logg
   login_slash_username: Logga in / användarnamn
   logo:
@@ -2072,6 +2076,8 @@ sv:
     Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om
     vår definition av "lämplig", se vår
     <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Saknar datum
   mobile: Mobil
   mollusks: blötdjur
   momentjs:
