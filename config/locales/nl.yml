@@ -4334,7 +4334,7 @@ nl:
   x_observations_failed:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
-  x_of_y: "%{x} o=van %{y}"
+  x_of_y: "%{x} van %{y}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
