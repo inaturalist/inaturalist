@@ -1677,8 +1677,8 @@ pt:
   label_colon: "%{label}:"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Etiqueta para agrupar mudanças em espécies
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localização Privada
-  location_unknown: Localização Desconhecida
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Bloquear nível de zoom
@@ -2095,6 +2095,7 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte da rede internacional iNaturalist ,
     está focada na biodiversidade e nas pessoas de %{place}. Gostaria de mudar sua
@@ -2146,7 +2147,6 @@ pt:
   newly_added_species: Espécies recentemente adicionadas
   newly_observed_species: Espécies recentemente observadas
   newly_observed_species_in_year: "Novas espécies adicionadas em %{year}"
-  news: Notícias
   next: Próximo
   next_observation: Próxima Observação
   next_page: Próxima página
@@ -3213,7 +3213,6 @@ pt:
   remember_me: Lembre-me
   remove: Remover
   remove_all_tags: Remova todas as marcações
-  remove_boundary: Remover limites
   remove_comma_separated_tags: "Remover marcações separadas por vírgulas"
   remove_conservation_status: remover estado de conservação
   remove_from: Remova de
@@ -3761,7 +3760,6 @@ pt:
   the_following_photos_have_been_tagged: "As seguintes imagens foram marcadas:"
   the_name_of_the_taxon_including_space: O nome do táxon, incluindo o espaço para espécie e infraespécie.<br/><br/> <strong>Exemplo:</strong><br/>
   the_observation_was_already_added_to_that_project: Esta observação já foi adicionada neste projeto.
-  the_past: o passado
   the_people_of_inat: "As pessoas de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     As espécies listadas abaixo não foram encontradas no banco de dados de %{site_name}.

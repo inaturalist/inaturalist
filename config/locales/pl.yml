@@ -1637,8 +1637,8 @@ pl:
   kml_file_size_error: "plik KML musi mieć mniej niż 1 MB"
   label_colon: "%{label}:"
   labels: Etykiety
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Lokalizacja prywatna
-  location_unknown: Lokalizacja nieznana
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zablokuj poziom powiększenia
@@ -2050,7 +2050,6 @@ pl:
   newly_added_species: Nowo dodane gatunki
   newly_observed_species: Nowo zaobserwowane gatunki
   newly_observed_species_in_year: "Nowo dodane gatunki w %{year}"
-  news: Aktualności
   next: Następne
   next_observation: Następna obserwacja
   next_page: Następna strona

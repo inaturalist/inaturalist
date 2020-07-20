@@ -1711,8 +1711,12 @@ tr:
   label_colon: "%{label}:"
   labels: Etiketler
   label_to_group_a_batch_of_taxon_changes: Sınıf değişiklikleri yığınını gruplandırmak için etiket
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Özel Konum
-  location_unknown: Bilinmeyen Konum
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Eksik Konum
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Yakınlaştırma düzeyini kilitleme
@@ -1920,9 +1924,9 @@ tr:
   locked_taxa_will_not_allow_new: Kilitli sınıflar, yeni alt sınıfların kendisine eklenmesine izin vermez. Eğer Amphibia'yı kilitlediyseniz ve birisi <i>Rana catesbeiana'yı</i> dış bir sağlayıcıdan içe aktarmaya çalıştıysa, yeni sınıf oluşturulacak ancak bir yüzergezer olarak sınıflandırılamayacak. Bu olduğunda, yeni eklenen sınıfların, sorumlunun dikkat etmesi için işaretlenmesi gerekir. Bu, yalnızca alt sınıf olduğunu düşündüğümüz sınıflar için kullanılmalıdır. Sorumlu bunu sınıfları düzenleyerek ve doğrudan üst kimlik ekleyerek geçersiz kılabilir ancak bunun yerine yeni sınıfları var olanlarla birleştirmeyi düşünün.
   log_in: Oturum Aç
   log_in_or_sign_up_to_add_comments_html: |
-    Yorum eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
+    Yorum eklemek için <a href="/login">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Tanımlama eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
+    Tanımlama eklemek için <a href="/login">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
   log_scale_label: Günlük
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
@@ -2024,6 +2028,8 @@ tr:
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
+  #Label shown when a date has not been entered
+  missing_date: Eksik Tarih
   mobile: Mobil
   mollusks: yumuşakçalar
   momentjs:
@@ -2136,10 +2142,17 @@ tr:
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
   needs_to_be_identified: Tanımlanması gerekenler
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, uluslararası iNaturalist Ağı'nın bir parçasıdır, 
     biyoçeşitliliğe ve %{place}'deki insalara odaklanır. Hesap bağlantınızı iNaturalist.org'dan %{site_name}'e 
     değiştirmek ister misiniz?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, uluslararası iNaturalist Ağı'nın bir parçasıdır, 
+    biyoçeşitliliğe ve Finlandiya'daki insalara odaklanır. Hesap bağlantınızı iNaturalist.org'dan iNaturalist Suomi'ye geçirmek ister misiniz?
   network_affiliation_prompt_from_other_site_html: |
     Üyeliğinizi <strong>%{other_site_name}</strong>'den <strong>%{site_name}</strong>'e 
     değiştirmek ister misiniz?
@@ -2187,7 +2200,6 @@ tr:
   newly_added_species: Yeni Eklenmiş Türler
   newly_observed_species: Yeni Gözlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
-  news: Haberler
   next: Sonraki
   next_observation: Sonraki Gözlem
   next_page: Sonraki sayfa
@@ -3164,7 +3176,7 @@ tr:
   rank_position: Düzey
   rank_restrictions: Düzey kısıtlamaları
   ranks:
-    stateofmatter: Sorunun durumu
+    stateofmatter: İçeriğin durumu
     kingdom: Alem
     subkingdom: Alt Alem
     phylum: Şube
@@ -3177,7 +3189,7 @@ tr:
     order: Takım
     suborder: Alt Takım
     infraorder: İnfra Takım
-    subterclass: Gizli sınıf
+    subterclass: Subter Sınıf
     parvorder: Geçiş Takımı
     zoosection: Zoosection
     zoosubsection: Zoosubsection
@@ -3258,7 +3270,6 @@ tr:
   remember_me: Beni hatırla
   remove: Kaldır
   remove_all_tags: Tüm etiketleri kaldır
-  remove_boundary: Sınırı kaldır
   remove_comma_separated_tags: "Virgülle ayrılmış etiketleri kaldır"
   remove_conservation_status: koruma durumunu kaldır
   remove_from: Şuradan kaldır
@@ -3808,7 +3819,6 @@ tr:
     Identotron, %{site_name} kontrol listesi verilerine dayanarak gözlemleri tanımlamanıza yardımcı olacak bir araçtır. Daha yüksek düzeyli bir sınıf ve bir yer (örneğin Hindistan'ın memelileri) girin, %{site_name} tüm gezegene dinamik bir alan rehberi gibi, o yerde o sınıfla eşleşen girişleri kontrol listelerinde arayacaktır. Kontrol listelerinin çoğu sürmekte olan çalışmalardır ancak kapsamlı bir tanesi varsa yani sınıflarının <em>tüm</em> temsilcilerini bir yerde listeliyorsa, Identotron bir bildirim gösterecektir.
   the_name_of_the_taxon_including_space: Sınıfın adı, türler ve infra türler için boşluğu da içerir.
   the_observation_was_already_added_to_that_project: Gözlem, zaten bu projeye eklenmiş.
-  the_past: geçmiş
   the_people_of_inat: "%{site_name}'in İnsanları"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Aşağıda listelenen türler %{site_name} veritabanında bulunamadı.

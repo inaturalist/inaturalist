@@ -1648,8 +1648,8 @@ lt:
   kml_file_size_error: "KML turi būti ne didesnis negu 1 MB"
   label_colon: "%{label}:"
   labels: Etiketės
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Vieta yra privati
-  location_unknown: Vieta nežinoma
   language_slash_type: Kalba / Tipas
   #Large photo size
   large: didelė
@@ -2070,7 +2070,6 @@ lt:
   newly_added: Naujai pridėta
   newly_added_species: Naujai pridėtos rūšys
   newly_observed_species: Naujai stebėtos rūšys
-  news: Naujienos
   next: Kitas
   next_observation: Kitas stebėjimas
   next_page: Kitas puslapis
@@ -2946,7 +2945,6 @@ lt:
   remember_me: Prisiminti mane
   remove: Pašalinti
   remove_all_tags: Pašalinti visas žymes
-  remove_boundary: Panaikinti ribas
   remove_comma_separated_tags: "Panaikinti kableliais arskirtas žymes"
   remove_conservation_status: panaikinti apsaugos statusą
   remove_from: Panaikinti iš
@@ -3452,7 +3450,6 @@ lt:
   the_following_observations_could: "Šie stebėjimai negalėjo būti įdėti į %{link}"
   the_following_photos_have_been_tagged: "Šios nuotraukos buvo pažymėtos:"
   the_observation_was_already_added_to_that_project: Šis stebėjimas jau buvo pridėtas prie šio projekto.
-  the_past: praeitis
   the_people_of_inat: "%{site_name} žmonės"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Rūšys, išvardintos žemiau, nebuvo rastos %{site_name} duomenų bazėje.
