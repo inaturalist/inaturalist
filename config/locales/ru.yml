@@ -426,7 +426,7 @@ ru:
   all_rank_added_to_the_database:
     phylum: Все типы добавлены в базу данных
     subphylum: Все подтипы добавлены в базу данных
-    superclass: Все суперклассы добавлены в базу данных
+    superclass: Все надклассы добавлены в базу данных
     class: Все классы добавлены в базу данных
     subclass: Все подклассы добавлены в базу данных
     infraclass: Все инфраклассы добавлены в базу данных
@@ -1815,8 +1815,8 @@ ru:
   label_colon: "%{label}:"
   labels: Метки
   label_to_group_a_batch_of_taxon_changes: Метка для группировки пакета изменений таксона
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Местоположение является конфиденциальным
-  location_unknown: Местоположение неизвестно
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Блокировка уровня масштабирования
@@ -2025,9 +2025,9 @@ ru:
   locked_taxa_will_not_allow_new: Заблокированные таксоны не позволяют добавлять к ним новые таксоны-потомки. Так, если вы заблокировали Земноводных, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как земноводное. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
   log_in: Вход
   log_in_or_sign_up_to_add_comments_html: |
-    Для добавления комментариев<a href="/login">войдите</a> или <a href="/signup">зарегистрируйтесь</a>.
+    Для добавления комментариев<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Для добавления идентификаций<a href="/login">войдите</a> или <a href="/signup">зарегистрируйтесь</a>.
+    Для добавления идентификаций<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
   logo:
@@ -2129,6 +2129,8 @@ ru:
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Отсутствует дата
   mobile: Мобильный
   mollusks: Моллюски
   momentjs:
@@ -2241,9 +2243,15 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_to_be_identified: Нуждается в идентификации
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть сети iNaturalist
     Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, фокусируется на биоразнообразии и людях в Финляндии. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
@@ -2291,7 +2299,6 @@ ru:
   newly_added_species: Недавно добавленные виды
   newly_observed_species: Новые недавно наблюдаемые виды
   newly_observed_species_in_year: "Новые виды в %{year}"
-  news: Новости
   next: Далее
   next_observation: Следующее наблюдение
   next_page: Следующая страница
@@ -3364,7 +3371,6 @@ ru:
   remember_me: Запомнить меня
   remove: Удалить
   remove_all_tags: Удалить все теги
-  remove_boundary: Удалить границу
   remove_comma_separated_tags: "Удалить теги, разделенные запятыми"
   remove_conservation_status: удалить природоохранный статус
   remove_from: Удалить из
@@ -3949,7 +3955,6 @@ ru:
     Идентотрон - это средство, которое помогает вам идентифицировать наблюдения на основе контрольных списков %{site_name}.  При заданном более высоком уровне таксона и месте (например, млекопитающие Индии), %{site_name} будет искать в контрольных списках записи, соответствующие наличию данного таксона в данном месте, это нечто вроде динамического полевого руководства по всей планете. Большинство контрольных списков находятся в стадии разработки, но если есть полный список, т. е. в нем перечислены <em>все</em> представители этого таксона в данном месте, Идентотрон выдаст уведомление.
   the_name_of_the_taxon_including_space: Наименование таксона, включая место для вида и подвида.
   the_observation_was_already_added_to_that_project: Наблюдение уже добавлено к этому проекту.
-  the_past: прошлое
   the_people_of_inat: "Люди %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Перечисленные ниже виды не найдены в базе данных %{site_name}.

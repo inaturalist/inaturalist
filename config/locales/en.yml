@@ -1835,8 +1835,12 @@ en:
   label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
+  # Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Location Private
-  location_unknown: Location Unknown
+  # Label shown when a location has not been entered. Originally "unknown" in
+  # English but we switched to "missing" to convey that a complete observation
+  # *should* have a location
+  location_unknown: Missing Location
   # Option to lock the zoom level for maps on Identify so the zoom level remains
   # the same as you move from one observation to another
   lock_zoom_level: Lock zoom level
@@ -2153,6 +2157,8 @@ en:
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
     our definition of "appropriate," see the 
     <a href="/help#inappropriate">FAQ</a>.
+  # Label shown when a date has not been entered
+  missing_date: Missing Date
   mobile: Mobile
   mollusks: mollusks
   momentjs:
@@ -2326,7 +2332,6 @@ en:
   newly_added_species: Newly Added Species
   newly_observed_species: Newly Observed Species
   newly_observed_species_in_year: "Newly Added Species In %{year}"
-  news: News
   next: Next
   next_observation: Next Observation
   next_page: Next page
@@ -3439,7 +3444,6 @@ en:
   remember_me: Remember me
   remove: Remove
   remove_all_tags: Remove all tags
-  remove_boundary: Remove boundary
   remove_comma_separated_tags: "Remove comma-separated tags"
   remove_conservation_status: remove conservation status
   remove_from: Remove from
@@ -4011,7 +4015,6 @@ en:
      its taxon in a place, the Identotron will show a notice.
   the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
   the_observation_was_already_added_to_that_project: The observation was already added to that project.
-  the_past: the past
   the_people_of_inat: "The People of %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     The species listed below were not found in the %{site_name} database.

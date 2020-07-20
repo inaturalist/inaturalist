@@ -428,10 +428,9 @@ class CommunityIdentification extends React.Component {
           disabled={!canAgree}
           onClick={( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); }}
         >
-          {
-            userAgreedToThis
-              ? ( <div className="loading_spinner" /> )
-              : ( <i className="fa fa-check" /> )
+          { userAgreedToThis
+            ? <div className="loading_spinner" />
+            : <i className="fa fa-check" />
           }
           { " " }
           { I18n.t( "agree_" ) }
@@ -522,16 +521,14 @@ class CommunityIdentification extends React.Component {
                       <div className="about stacked maverick">
                         <i className="fa fa-bolt" />
                         { " " }
-                        { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }
-                        { ":" }
+                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_contradict_the_community_id" ) } ) }
                       </div>
                     );
                     maverickEncountered = true;
                   } else if ( !supportingEncountered ) {
                     about = (
                       <div className="about supporting stacked">
-                        { I18n.t( "proposed_taxa_that_support_the_community_id" ) }
-                        { ":" }
+                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_support_the_community_id" ) } ) }
                       </div>
                     );
                     supportingEncountered = true;

@@ -18,10 +18,13 @@ class ResearchGradeProgress extends React.Component {
     let remainingCriteria = { };
     const passedCriteria = { };
     remainingCriteria.date = !observation.observed_on;
-    remainingCriteria.media = ( observation.photos.length + observation.sounds.length ) === 0;
+    remainingCriteria.media = (
+      ( observation.photos ? observation.photos.length : 0 )
+      + ( observation.sounds ? observation.sounds.length : 0 )
+    ) === 0;
     remainingCriteria.rank = ( observation.taxon && observation.taxon.rank_level > 10 );
     remainingCriteria.ids = !observation.identifications_most_agree;
-    remainingCriteria.location = !( observation.location || observation.obscured );
+    remainingCriteria.location = !( observation.geojson || observation.obscured );
     const votesFor = { };
     const votesAgainst = { };
     _.each( qualityMetrics, ( values, metric ) => {
@@ -78,7 +81,7 @@ class ResearchGradeProgress extends React.Component {
                   </div>
                 </div>
                 <div className="or">
-                  { `- ${I18n.t( "or" )} -`}
+                  { `- ${I18n.t( "or" )} -` }
                 </div>
                 <div className="reason">
                   <div className="reason_icon">

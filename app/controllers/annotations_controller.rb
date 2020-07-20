@@ -18,6 +18,7 @@ class AnnotationsController < ApplicationController
         if @annotation.errors.any?
           head :bad_request
         else
+          @annotation.reload
           render :json => @annotation.as_json
         end
       end

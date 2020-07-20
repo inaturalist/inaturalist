@@ -1714,8 +1714,12 @@ da:
   label_colon: "%{label}"
   labels: Mærkater
   label_to_group_a_batch_of_taxon_changes: Mærke til at grupperer et bundt af takson ændringer
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Fortrolig lokalitet
-  location_unknown: Sted ukendt
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Placering mangler
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomniveau
@@ -1924,9 +1928,9 @@ da:
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje kommentarer.
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje kommentarer.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje identifikationer.
+    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje identifikationer.
   log_scale_label: Log
   login_slash_username: Login / brugernavn
   logo:
@@ -2029,6 +2033,8 @@ da:
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
     <a href="/help#inappropriate"> FAQ </a>.
+  #Label shown when a date has not been entered
+  missing_date: Dato mangler
   mobile: Mobil
   mollusks: bløddyr
   momentjs:
@@ -2141,10 +2147,18 @@ da:
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
   needs_to_be_identified: Behøver en identifikation
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
     kontotilknytning fra iNaturalist.org til %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, en del af det internationale iNaturalist
+    Network, er fokuseret på biodiversitet og folk i Finland. Ønsker du at skifte din
+    kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
@@ -2192,7 +2206,6 @@ da:
   newly_added_species: Nyligt tilføjede arter
   newly_observed_species: Nyligt observerede arter
   newly_observed_species_in_year: "Nyligt tilføjede arter i %{year}"
-  news: Nyheder
   next: Næste
   next_observation: Næste observation
   next_page: Næste side
@@ -3283,7 +3296,6 @@ da:
   remember_me: Husk mig
   remove: Fjern
   remove_all_tags: Fjern alle tags
-  remove_boundary: Fjern omrids permanent
   remove_comma_separated_tags: "Fjern kommaseparerede tags"
   remove_conservation_status: fjern samtalestatus
   remove_from: Fjern fra
@@ -3845,7 +3857,6 @@ da:
     dens taxon et sted, vil Identotron vise en meddelelse.
   the_name_of_the_taxon_including_space: Taksonens navn, inklusiv pladsen til arter og infra arter.
   the_observation_was_already_added_to_that_project: Observationen var allerede tilføjet til dette projekt
-  the_past: fortiden
   the_people_of_inat: "Personerne i %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     De arter, der er anført nedenfor, blev ikke fundet i %{site_name} databasen

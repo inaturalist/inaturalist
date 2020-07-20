@@ -475,6 +475,7 @@ namespace :inaturalist do
       /^message_from_user_/,
       /^most_agree$/,
       /^most_disagree$/,
+      /^network_affiliation_prompt_from_inat_to_inaturalist_suomi_html/,
       /^observation_field_type_/,
       /^open$/,
       /^other_taxa_commonly_misidentified_as_this_/,

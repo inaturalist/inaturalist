@@ -958,8 +958,8 @@ eu:
   just_added!: Oraintxe gehitu zara!
   labels: Etiketak
   label_to_group_a_batch_of_taxon_changes: Espezie edo talde aldaketak elkartzeko etiketaren izena
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Kokapen pribatua
-  location_unknown: Kokapen ezezaguna
   #Large photo size
   large: handia
   last_confirmed_observation: Azken oharra baieztatuta
@@ -1629,7 +1629,6 @@ eu:
   remember_me: Gogora iezadazu
   remove: Kendu
   remove_all_tags: Kendu etiketa guztiak
-  remove_boundary: Mugak kendu
   remove_comma_separated_tags: "Kendu komaz bereizitako etiketak"
   remove_from: 'Hemendik kendu:'
   remove_curator: Administratzailea kendu
@@ -1924,7 +1923,6 @@ eu:
   the_following_photos_have_been_tagged: "Argazki hauek etiketatuak izan dira"
   the_name_of_the_taxon_including_space: Taxoiaren izena, espezieentzako eta infraespezieentzako tartea barne.
   the_observation_was_already_added_to_that_project: Behaketa duela gutxi gehitu da proiektura.
-  the_past: iragana
   the_people_of_inat: "Hemengo jendea: %{site_name}"
   the_title_of_the_wikipedia_article_we_use: |
     Deskribapenerako erabiltzen dugun Wikipediako artikuluaren izenburua. Wikipediarako esteka hau baldin bada: <code>http: //en.wikipedia.org/wiki/Bird</code>, orduan, balio honek <code>Hegaztia</code> izan behar du. Hutsik uzten bada, taxon honen izen zientifikoa erabiliko da (oro har, funtzionatzen du).

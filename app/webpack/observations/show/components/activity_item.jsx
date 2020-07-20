@@ -185,7 +185,13 @@ class ActivityItem extends React.Component {
       const buttons = [];
       let canAgree = false;
       let userAgreedToThis;
-      if ( loggedIn && item.current && item.firstDisplay && item.user.id !== config.currentUser.id ) {
+      if (
+        loggedIn
+        && item.current
+        && item.firstDisplay
+        && item.user.id !== config.currentUser.id
+        && ( item.taxon && item.taxon.is_active )
+      ) {
         if ( currentUserID ) {
           canAgree = currentUserID.taxon.id !== taxon.id;
           userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;

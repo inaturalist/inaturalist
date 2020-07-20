@@ -43,8 +43,8 @@
             {{ o.user.login }}
         %td{ :class => "{{ params.order_by == 'observed_on' ? 'sorting' : '' }}", title: "{{ shared.t('observed_on_datetime', { datetime: o.time_observed_at || o.observed_on }) }}" }
           %inat-calendar-date{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", time: "o.time_observed_at" }
-        %td
-          %i.fa.fa-map-marker
+        %td.place
+          %span{ "ng-bind-html": "o.placeIcon() | sanitize" }
           {{ o.displayPlace( ) }}
         %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}", title: "{{ shared.t('added_on_datetime', { datetime: o.created_at } ) }}" }
           %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", time: "o.created_at",  }

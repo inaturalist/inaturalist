@@ -1722,8 +1722,12 @@ nl:
   label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label om een batch van taxonwijzigingen te groeperen
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Locatie privé
-  location_unknown: Locatie onbekend
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Locatie ontbreekt
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomniveau vergrendelen
@@ -1841,6 +1845,8 @@ nl:
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
   linked_flickr_password_html: "<strong>We vragen nooit naar je Flickr-wachtwoord</strong> (maar Flickr kan dat wel doen, controleer dat de url die de knop je stuurt Flickr.com is)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: gekoppelde tekst
   linkedin: LinkedIn
   list: Lijst
   list_deleted: Lijst verwijderd.
@@ -1929,6 +1935,10 @@ nl:
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Taxa die op slot zijn gezet staan niet toe dat er nieuwe onderliggende taxa aan worden toegevoegd. Als je Reptilia op slot zet en iemand probeert <i>Zootoca carniolica</i> te importeren van een externe naamaanbieder, dan wordt het nieuwe taxon aangemaakt, maar kan het niet worden geclassificeerd als een reptiel. Wanneer dit gebeurt, moeten de nieuw toegevoegde taxa worden gemeld aan de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan we denken dat we alle onderliggende taxa al hebben. Curatoren kunnen dit omzeilen door taxa rechtstreeks te bewerken en ouder-ID's in te voeren, maar overweeg alsjeblieft nieuwe taxa samen te voegen met bestaande.
   log_in: Aanmelden
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om reacties toe te voegen.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om determinaties toe te voegen.
   log_scale_label: Logboek
   login_slash_username: Login / gebruikersnaam
   logo:
@@ -2031,6 +2041,8 @@ nl:
   misleading_or_illegal_content_html: |
     Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
     <a href="/help#inappropriate">Veelgestelde vragen (FAQ)</a>.
+  #Label shown when a date has not been entered
+  missing_date: Datum ontbreekt
   mobile: Mobiel
   mollusks: weekdieren
   momentjs:
@@ -2143,9 +2155,16 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, deel van het internationale iNaturalist
     netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, deel van het internationale iNaturalist
+    netwerk, is gericht op biodiversiteit en mensen in Finland. Wilt je je account verbinden aan iNaturalist Suomi in plaats van iNaturalist.org?
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
@@ -2193,7 +2212,6 @@ nl:
   newly_added_species: Nieuw toegevoegde soorten
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
-  news: Nieuws
   next: Volgende
   next_observation: Volgende waarneming
   next_page: Volgende pagina
@@ -3287,7 +3305,6 @@ nl:
   remember_me: Instellingen onthouden
   remove: Verwijderen
   remove_all_tags: Alle labels verwijderen
-  remove_boundary: Grens verwijderen
   remove_comma_separated_tags: "Door komma's gescheiden labels verwijderen"
   remove_conservation_status: verwijder Natuurbeschermingstatus
   remove_from: Verwijder van
@@ -3843,7 +3860,6 @@ nl:
     dat taxon op een plaats bevat, dan zal de Identotron dat vermelden.
   the_name_of_the_taxon_including_space: De naam van het taxon, inclusief de ruimte voor soorten en infraspecies.
   the_observation_was_already_added_to_that_project: De waarneming werd reeds aan dit project toegevoegd.
-  the_past: het verleden
   the_people_of_inat: "De mensen van %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     De onderstaande soorten zijn niet gevonden in de %{site_name}-database.
@@ -4318,7 +4334,7 @@ nl:
   x_observations_failed:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
-  x_of_y: "%{x} o=van %{y}"
+  x_of_y: "%{x} van %{y}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"

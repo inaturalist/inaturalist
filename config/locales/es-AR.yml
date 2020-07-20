@@ -1577,8 +1577,8 @@ es-AR:
   label_colon: "%{label}:"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nombre de la etiqueta para agrupar los cambios de especie o grupo
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localización privada
-  location_unknown: Ubicación desconocida
   language_slash_type: Idioma / Tipo
   #Large photo size
   large: gran
@@ -2021,7 +2021,6 @@ es-AR:
   newly_added: Añadido Recientemente
   newly_added_species: Especie Añadida recientemente
   newly_observed_species: Especie Observada recientemente
-  news: Noticias
   next: Siguiente
   next_observation: Siguiente observación
   next_page: Página siguiente
@@ -3054,7 +3053,6 @@ es-AR:
   remember_me: Recordarme
   remove: Quitar
   remove_all_tags: Retire todas las etiquetas
-  remove_boundary: Quitar límites
   remove_comma_separated_tags: "Quita las etiquetas separadas por comas"
   remove_conservation_status: Eliminar estado de conservación
   remove_from: Quitar de
@@ -3590,7 +3588,6 @@ es-AR:
     El identotrón es una herramienta para identificar observaciones basadas en las listas de comprobación de %{site_name}. Dada una clase y un lugar (ej. mamíferos y la India), %{site_name} buscará por listas de comprobación que coincidan con ese taxón en ese lugar, es como una guía de campo dinámica del planeta entero. En la mayoría de las listas de comprobación aún se esta trabajando, pero si existe alguna lista que sea exhaustiva, es decir que liste <em>todos</em> los taxones representativos de ese lugar, el identotrón mostrará un aviso.
   the_name_of_the_taxon_including_space: El nombre de especie/grupo, incluyendo el espacio para especies e infraespecies.
   the_observation_was_already_added_to_that_project: La observación fue añadida recientemente al proyecto.
-  the_past: el pasado
   the_people_of_inat: "La gente de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Las especies enumeradas a continuación no se encontraron en la base de datos de %{site_name}.

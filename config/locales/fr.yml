@@ -698,6 +698,7 @@ fr:
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
     merge: Plusieurs anciens taxons agrégés dans un nouveau taxon
+    swap: Remplacer le taxon d'entrée par le taxon de sortie
     drop: Le concept de taxon est non valide mais conservé à des fins historiques ou de compatibilité avec le partenaire
     stage: Préparer un concept inactif pour publication dans un groupe de modifications
   change_geoprivacy: 'Modifier la géoconfidentialité'
@@ -1728,8 +1729,8 @@ fr:
   label_colon: "%{label} :"
   labels: Étiquettes
   label_to_group_a_batch_of_taxon_changes: Apposer une étiquette pour regrouper un lot de modifications de taxons
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Emplacement privé
-  location_unknown: Emplacement inconnu
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Verrouiller le niveau de zoom
@@ -1938,9 +1939,9 @@ fr:
   locked_taxa_will_not_allow_new: Les taxons verrouillés ne permettront pas l’ajout de nouveaux taxons descendants. Conséquemment, si vous verrouillez les amphibiens et que quelqu’un essaye d’importer <i>Rana catesbeiana</i> à partir d’un fournisseur externe de noms, le nouveau taxon sera créé, mais ne pourra pas être classé comme amphibien. Lorsque ça se produit, les taxons nouvellement ajoutés devront être signalés aux fins d’organisation. Cette action doit seulement être utilisée pour des taxons pour lesquels nous pensons déjà avoir tous les descendants. Un responsable de l’organisation peut annuler cette action en modifiant les taxons et en entrant directement les identifications de rang supérieur, mais il est préférable de fusionner les nouveaux taxons avec les taxons existants.
   log_in: Connexion
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2042,6 +2043,8 @@ fr:
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
+  #Label shown when a date has not been entered
+  missing_date: Date manquante
   mobile: Portable
   mollusks: mollusques
   momentjs:
@@ -2149,6 +2152,12 @@ fr:
   needs_id_: Nécessite un ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
+    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi ?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
@@ -2196,7 +2205,6 @@ fr:
   newly_added_species: Espèces ajoutées récemment
   newly_observed_species: Nouvelles espèces observées
   newly_observed_species_in_year: "Espèces nouvellement ajoutées dans %{year}"
-  news: Actualités
   next: Suivant
   next_observation: Observation suivante
   next_page: Page suivante
@@ -3279,7 +3287,6 @@ fr:
   remember_me: Souvenez-vous de moi
   remove: Supprimer
   remove_all_tags: Supprimer toutes les étiquettes
-  remove_boundary: Supprimer la frontière
   remove_comma_separated_tags: "Supprimer les étiquettes séparées par des virgules"
   remove_conservation_status: supprimer la situation quant à la conservation
   remove_from: Supprimer de
@@ -3832,7 +3839,6 @@ fr:
     son taxon dans un endroit, l'Identotron montrera un avis.
   the_name_of_the_taxon_including_space: Le nom du taxon, y compris le champ pour l’espèce et la sous-espèce.
   the_observation_was_already_added_to_that_project: L’observation a déjà été ajoutée à ce projet.
-  the_past: le passé
   the_people_of_inat: "Les gens d’%{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Les espèces de la liste ci-dessous n'ont pas été trouvées dans la base de données  d’%{site_name}.

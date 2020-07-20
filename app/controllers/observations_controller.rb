@@ -96,10 +96,13 @@ class ObservationsController < ApplicationController
     end
     params = request.params
     showing_partial = (params[:partial] && PARTIALS.include?(params[:partial]))
+    # Humans should see this, but scrapers like social media sites and curls
+    # will set Accept: */*
+    human_or_scraper = request.format.html? || request.format == "*/*"
     # the new default /observations doesn't need any observations
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
-    if request.format.html? && !showing_partial
+    if human_or_scraper && !showing_partial
       search_taxon = Taxon.find_by_id( params[:taxon_id] ) unless params[:taxon_id].blank?
       search_place = unless params[:place_id].blank?
         Place.find( params[:place_id] ) rescue nil
@@ -821,6 +824,7 @@ class ObservationsController < ApplicationController
     extra_msg = nil
     @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s
+      observation.skip_indexing = true
       
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
@@ -897,6 +901,10 @@ class ObservationsController < ApplicationController
         end
       end
     end
+
+    Observation.elastic_index!(
+      ids: @observations.compact.map( &:id ),
+      wait_for_index_refresh: true )
 
     respond_to do |format|
       if errors
@@ -1098,7 +1106,11 @@ class ObservationsController < ApplicationController
   def edit_batch
     observation_ids = params[:o].is_a?(String) ? params[:o].split(',') : []
     @observations = Observation.where("id in (?) AND user_id = ?", observation_ids, current_user).
-      includes(:quality_metrics, {:observation_photos => :photo}, :taxon)
+      includes(
+        :quality_metrics, :observation_field_values, :sounds, :taggings,
+        { observation_photos: :photo },
+        { taxon: { taxon_photos: :photo } },
+      )
     @observations.map do |o|
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
@@ -2510,10 +2522,16 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    scope = Observation.where(id: params[:id] || params[:observation_id])
+    obs_id = params[:id] || params[:observation_id]
+    scope = if obs_id.to_s =~ BelongsToWithUuid::UUID_PATTERN
+      Observation.where( uuid: obs_id )
+    else
+      scope = Observation.where( id: obs_id )
+    end
     includes = [ :quality_metrics,
       :flags,
       { photos: :flags },
+      :sounds,
       :identifications,
       :projects,
       { taxon: :taxon_names }
