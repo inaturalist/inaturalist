@@ -1914,9 +1914,9 @@ it:
   locked_taxa_will_not_allow_new: I taxa bloccati non permettono l’aggiunta di taxa discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importare <i>Lithobates catesbeianus</i> da una fonte di nomi esterna, il nuovo taxon sarà creato ma non potrà essere classificato come un anfibio. Quando ciò accade, il nuovo taxon dovrebbe essere segnalato all’attenzione dei curatori. Questo blocco dovrebbe essere usato solo per i taxa che si ritengono completi di tutti i discendenti. Il curatore può annullare questa azione editando i taxa e inserendo direttamente gli ID di rango superiore, ma per favore assicurati che non sia meglio invece unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Accedi</a> o <a href="/signup">iscriviti</a> per aggiungere commenti.
+    <a href="/log_in">Accedi</a> o <a href="/sign_up">iscriviti</a> per aggiungere commenti.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Accedi</a> o <a href="/signup">iscriviti</a> per aggiungere identificazioni.
+    <a href="/log_in">Accedi</a> o <a href="/sign_up">iscriviti</a> per aggiungere identificazioni.
   log_scale_label: Logaritmica
   login_slash_username: Login / nome utente
   logo:
