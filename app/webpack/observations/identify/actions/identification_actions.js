@@ -89,12 +89,8 @@ function agreeWithCurrentObservation( ) {
       !currentObservation
       || !currentObservation.id
       || !currentObservation.taxon
-      || currentObservation.quality_grade === "research"
       || currentObservation.user.id === currentUser.id
-      || (
-        currentObservation.communityTaxon
-        && currentObservation.communityTaxon.rank_level <= 10
-      )
+      || ( currentObservation.taxon && !currentObservation.taxon.is_active )
     ) {
       return null;
     }

@@ -95,8 +95,7 @@ const ActivityItem = ( {
       && item.current
       && item.firstDisplay
       && item.user.id !== config.currentUser.id
-      && item.category === "leading"
-      && observation.quality_grade !== "research"
+      && ( item.taxon && item.taxon.is_active )
     ) {
       if ( currentUserID ) {
         canAgree = currentUserID.taxon.id !== taxon.id;

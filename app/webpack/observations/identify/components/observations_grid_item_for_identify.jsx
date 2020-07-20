@@ -42,12 +42,7 @@ const ObservationsGridItemForIdentify = ( {
   );
   let showAgree = observation.taxon
     && observation.taxon.rank_level <= 10
-    && observation.quality_grade !== "research"
     && observation.user.id !== currentUser.id
-    && (
-      !observation.communityTaxon
-      || observation.communityTaxon.rank_level > 10
-    )
     && observation.taxon.is_active;
   if ( currentUser && currentUser.id === observation.user.id ) {
     showAgree = false;
