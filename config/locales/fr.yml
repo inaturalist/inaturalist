@@ -1939,9 +1939,9 @@ fr:
   locked_taxa_will_not_allow_new: Les taxons verrouillés ne permettront pas l’ajout de nouveaux taxons descendants. Conséquemment, si vous verrouillez les amphibiens et que quelqu’un essaye d’importer <i>Rana catesbeiana</i> à partir d’un fournisseur externe de noms, le nouveau taxon sera créé, mais ne pourra pas être classé comme amphibien. Lorsque ça se produit, les taxons nouvellement ajoutés devront être signalés aux fins d’organisation. Cette action doit seulement être utilisée pour des taxons pour lesquels nous pensons déjà avoir tous les descendants. Un responsable de l’organisation peut annuler cette action en modifiant les taxons et en entrant directement les identifications de rang supérieur, mais il est préférable de fusionner les nouveaux taxons avec les taxons existants.
   log_in: Connexion
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
