@@ -4998,6 +4998,12 @@ en:
           You flagged this conversation on %{date}. The flag will persist even
           if you delete your copy of this conversation, so it is safe to do so
           if you no longer want to see this.
+        privacy_notice_html: |
+          While messages are private between you and the recipient, iNaturalist
+          staff can view these messages as well, and will do so when messages
+          have been flagged for moderation. If you require truly private
+          communication, please look into other communcation mechanisms that
+          support strong encryption.
     oauth:
       authorizations:
         new:
