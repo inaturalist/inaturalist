@@ -656,6 +656,10 @@ export function editComment( id, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newComments = state.observation.comments.map( c => (
+      c.id === id ? Object.assign( { }, c, { body } ) : c
+    ) );
+    dispatch( setAttributes( { comments: newComments } ) );
     dispatch( callAPI( inatjs.comments.update, { id, body } ) );
   };
 }
@@ -750,9 +754,14 @@ export function deleteID( id, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newIdentifications = _.map( state.observation.identifications, i => (
-      i.id === id ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
-    ) );
+    let newIdentifications;
+    if ( options.delete ) {
+      newIdentifications = state.observation.identifications.filter( i => ( i.id !== id ) );
+    } else {
+      newIdentifications = _.map( state.observation.identifications, i => (
+        i.id === id ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
+      ) );
+    }
     dispatch( setAttributes( { identifications: newIdentifications } ) );
     dispatch( callAPI( inatjs.identifications.delete, Object.assign( {}, { id }, options ) ) );
   };
@@ -762,6 +771,10 @@ export function editID( id, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newIdentifications = state.observation.identifications.map( i => (
+      i.id === id ? Object.assign( { }, i, { body } ) : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
     dispatch( callAPI( inatjs.identifications.update, { id, body } ) );
   };
 }

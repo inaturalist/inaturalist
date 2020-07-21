@@ -42,6 +42,11 @@ class ActivityItem extends React.Component {
     this.setState( { editing: !editing } );
   }
 
+  /*
+    Optional prop passed to child TextEditor, called on textarea change.
+    Used here to keep ActivityItem state of content in sync with child TextEditors
+    and parent Activity.
+   */
   changeHandler( content ) {
     this.setState( { content } );
   }
