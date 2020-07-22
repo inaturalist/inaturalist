@@ -123,6 +123,8 @@ class User < ActiveRecord::Base
   has_many :deleted_photos
   has_many :deleted_sounds
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
+  has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
+    class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
   has_many :friendships, dependent: :destroy
   has_many :friendships_as_friend, class_name: "Friendship",
     foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
