@@ -21,7 +21,7 @@ cs:
     other: "<span class='count'>%{count}</span> vyřešeny"
   x_identifications:
     one: '%{count} identifikace'
-    few: '%{count} identifikací'
+    few: '%{count} identifikace'
     many: '%{count} identifikací'
     other: '%{count} identifikací'
   x_identifications_html:
@@ -31,7 +31,7 @@ cs:
     other: '<span class="count">%{count}</span> identifikací'
   x_identifications_:
     one: '%{count} identifikace'
-    few: '%{count} Identifikací'
+    few: '%{count} Identifikace'
     many: '%{count} Identifikací'
     other: '%{count} Identifikací'
   #Number of people who have added identifications
@@ -46,7 +46,7 @@ cs:
     other: '<span class="count">%{count}</span> Identifikátory'
   x_languages:
     one: "%{count} jazyk"
-    few: "%{count} jazyků"
+    few: "%{count} jazyky"
     many: "%{count} jazyků"
     other: "%{count} jazyků"
   #Count of number of taxa that represent the first addition to a life list
@@ -67,23 +67,23 @@ cs:
   x_matching_taxa:
     one: '%{count} odpovídající taxon'
     few: '%{count} odpovídající taxony'
-    many: '%{count} odpovídající taxony'
-    other: '%{count} odpovídající taxony'
+    many: '%{count} odpovídajících taxonů'
+    other: '%{count} odpovídajících taxonů'
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> odpovídající taxon'
     few: '<span class="count">%{count}</span> odpovídající taxony'
-    many: '<span class="count">%{count}</span> odpovídající taxony'
-    other: '<span class="count">%{count}</span> odpovídající taxony'
+    many: '<span class="count">%{count}</span> odpovídajících taxonů'
+    other: '<span class="count">%{count}</span> odpovídajících taxonů'
   x_misidentifications_of_this_species:
     one: "%{count} chybná identifikace tohoto druhu"
     few: "%{count} chybné identifikace tohoto druhu"
-    many: "%{count} chybné identifikace tohoto druhu"
-    other: "%{count} chybné identifikace tohoto druhu"
+    many: "%{count} chybných identifikací tohoto druhu"
+    other: "%{count} chybných identifikací tohoto druhu"
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} nesprávná identifikace druhů v tomto %{rank}"
     few: "%{count} nesprávné identifikace druhů v tomto %{rank}"
-    many: "%{count} nesprávné identifikace druhů v tomto %{rank}"
-    other: "%{count} nesprávné identifikace druhů v tomto %{rank}"
+    many: "%{count} nesprávných identifikací druhů v tomto %{rank}"
+    other: "%{count} nesprávných identifikací druhů v tomto %{rank}"
   x_observations:
     one: "%{count} pozorování"
     few: "%{count} pozorování"
@@ -112,64 +112,64 @@ cs:
   x_observers_html:
     one: '<span class="count">%{count}</span> Pozorovatel'
     few: '<span class="count">%{count}</span> Pozorovatelé'
-    many: '<span class="count">%{count}</span> Pozorovatelé'
-    other: '<span class="count">%{count}</span> Pozorovatelé'
+    many: '<span class="count">%{count}</span> Pozorovatelů'
+    other: '<span class="count">%{count}</span> Pozorovatelů'
   x_others:
     one: "%{count} další"
     few: "%{count} další"
-    many: "%{count} další"
+    many: "%{count} dalších"
     other: "%{count} další"
   x_people:
     one: "%{count} člověk"
-    few: "%{count} lidí"
+    few: "%{count} lidé"
     many: "%{count} lidí"
-    other: "%{count} lidé"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>"
+    other: "%{count} lidí"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} lidí</strong> pomohlo %{user} s <strong>%{y} ID</strong>"
   x_photos:
-    one: "1 fotografie"
-    few: "%{count} fotek"
-    many: "%{count} fotek"
-    other: "%{count} fotek"
+    one: "%{count} fotografie"
+    few: "%{count} fotografie"
+    many: "%{count} fotografií"
+    other: "%{count} fotografií"
   x_new_species:
-    one: "1 nový druh"
+    one: "%{count} nový druh"
     few: "%{count} nové druhy"
     many: "%{count} nových druhů"
     other: "%{count} nových druhů"
   x_new_users:
     one: '%{count} nový uživatel'
     few: '%{count} noví uživatelé'
-    many: '%{count} noví uživatelé'
-    other: '%{count} noví uživatelé'
+    many: '%{count} nových uživatelů'
+    other: '%{count} nových uživatelů'
   x_species:
-    one: '1 druh'
+    one: '%{count} druh'
     few: '%{count} druhy'
-    many: '%{count} druhy'
-    other: '%{count} druhy'
+    many: '%{count} druhů'
+    other: '%{count} druhů'
   x_species_html:
     one: "<span class='count'>%{count}</span> druh"
-    few: "<span class='count'>%{count}</span> druhů"
+    few: "<span class='count'>%{count}</span> druhy"
     many: "<span class='count'>%{count}</span> druhů"
-    other: "<span class='count'>%{count}</span> druhy"
+    other: "<span class='count'>%{count}</span> druhů"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} druh</a>"
-    few: "<a href='%{url}'>%{count} druhů</a>"
+    few: "<a href='%{url}'>%{count} druhy</a>"
     many: "<a href='%{url}'>%{count} druhů</a>"
-    other: "<a href='%{url}'>%{count} druhy</a>"
+    other: "<a href='%{url}'>%{count} druhů</a>"
   x_suggestions_filtered_by_colon:
-    one: "%{count} návrh fitrován podle:"
-    few: "%{count} návrhů fitrováno podle:"
-    many: "%{count} návrhů fitrováno podle:"
-    other: "%{count} návrhy fitrovány podle:"
+    one: "%{count} návrh filtrován podle:"
+    few: "%{count} návrhy filtrovány podle:"
+    many: "%{count} návrhů filtrováno podle:"
+    other: "%{count} návrhů filtrováno podle:"
   x_taxa:
-    one: "taxon"
-    few: "taxonů"
-    many: "taxonů"
-    other: "taxony"
+    one: "%{count} taxon"
+    few: "%{count} taxony"
+    many: "%{count} taxonů"
+    other: "%{count} taxonů"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> pozorovaný taxon"
-    few: "<span class='count'>%{count}</span> pozorovaných taxonů"
+    few: "<span class='count'>%{count}</span> pozorované taxony"
     many: "<span class='count'>%{count}</span> pozorovaných taxonů"
-    other: "<span class='count'>%{count}</span> pozorované taxony"
+    other: "<span class='count'>%{count}</span> pozorovaných taxonů"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
     few: "<span class='count'>%{count}</span> pozorování na úrovni výzkumného stupně"
@@ -182,25 +182,25 @@ cs:
     other: "<span class='count'>%{count}</span> ID pozorování na úrovni výzkumného stupně druhu nebo nižší"
   x_sounds:
     one: "%{count} zvuk"
-    few: "%{count} zvuků"
+    few: "%{count} zvuky"
     many: "%{count} zvuků"
-    other: "%{count} zvuky"
+    other: "%{count} zvuků"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> kurátorský taxon"
     few: "<span class='count'>%{count}</span> kurátorských taxonů"
     many: "<span class='count'>%{count}</span> kurátorských taxonů"
     other: "<span class='count'>%{count}</span> kurátorský taxon"
   x_taxa_matching_current_filters:
-    one: "%{count} párování taxonu aktuálními filtry"
-    few: "%{count} párování taxonů aktuálními filtry"
-    many: "%{count} párování taxonů aktuálními filtry"
-    other: "%{count} párování taxonů aktuálními filtry"
+    one: "%{count} taxon odpovídající aktuálním filtrům"
+    few: "%{count} taxony odpovídající aktuálním filtrům"
+    many: "%{count} taxonů odpovídajících aktuálním filtrům"
+    other: "%{count} taxonů odpovídajících aktuálním filtrům"
   x_taxon_changes_added_html:
     one: "<span class='count'>%{count}</span> změna taxonu přidána"
-    few: "<span class='count'>%{count}</span> změn taxonů přidáno"
+    few: "<span class='count'>%{count}</span> změny taxonů přidány"
     many: "<span class='count'>%{count}</span> změn taxonů přidáno"
     other: "<span class='count'>%{count}</span> změny taxonu přidány"
-  _100_day_trends: 100 denní trend
+  _100_day_trends: 100denní trend
   _percent_ID_d: "% identifikováno"
   a_community_for_naturalist: Komunita naturalistů
   a_default_taxon_name_will_automatically_created: |
