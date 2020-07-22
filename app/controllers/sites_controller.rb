@@ -2,7 +2,8 @@ class SitesController < ApplicationController
   before_filter :authenticate_user!, except: %w(network affiliation)
   before_filter :load_site, only: [:show, :edit, :update, :destroy]
   before_filter :admin_or_any_site_admin_required, only: [:index, :show]
-  before_filter :require_admin_of_viewed_site, except: [:index, :show, :network]
+  before_filter :require_admin_of_viewed_site, except: [:index, :show,
+    :network, :affiliation]
   before_filter :setup_pref_groups, only: [:new, :create, :edit, :update, :show]
 
   layout "bootstrap"
