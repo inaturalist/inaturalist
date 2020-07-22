@@ -669,6 +669,7 @@ class ObservationsController < ApplicationController
           o.species_guess = photo_o.species_guess if o.species_guess.blank?
         end
         o.photos = ensure_photos_are_local_photos( photos )
+        o.will_be_saved_with_photos = true
       end
 
       # Same logic we use for photos: try to avoid deleting sounds if they

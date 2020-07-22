@@ -34,9 +34,9 @@ class ObservationPhoto < ActiveRecord::Base
     # presumably this will happen when the obs is saved
     return true if observation.new_record?
 
-    # If the observation *is* a new record but was *just* saved, setting the
+    # If the observation will be saved after this record is created, setting
     # quality grade should also not be necessary
-    return true if observation.created_at.to_i == observation.updated_at.to_i
+    return true if observation.will_be_saved_with_photos
 
     # For some reason the observation's after_commit callbacks seem to fire
     # after the ObservationPhoto is saved, so if you don't set the quality_grade
