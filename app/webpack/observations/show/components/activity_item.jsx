@@ -27,7 +27,7 @@ class ActivityItem extends React.Component {
 
     this.state = {
       editing: false,
-      content: item.body
+      textareaContent: item.body
     };
   }
 
@@ -37,9 +37,12 @@ class ActivityItem extends React.Component {
   }
 
   onEdit( e ) {
-    const { editing } = this.state;
-    e.preventDefault( );
-    this.setState( { editing: !editing } );
+    const { inlineEditing } = this.props;
+    if ( inlineEditing ) {
+      const { editing } = this.state;
+      e.preventDefault( );
+      this.setState( { editing: !editing } );
+    }
   }
 
   /*
@@ -47,17 +50,17 @@ class ActivityItem extends React.Component {
     Used here to keep ActivityItem state of content in sync with child TextEditors
     and parent Activity.
    */
-  changeHandler( content ) {
-    this.setState( { content } );
+  changeHandler( textareaContent ) {
+    this.setState( { textareaContent } );
   }
 
   editItemForm( ) {
     const { item } = this.props;
-    const { content, editing } = this.state;
+    const { textareaContent, editing } = this.state;
     return (
       <div className="form-group edit-comment-id">
         <TextEditor
-          content={content}
+          content={textareaContent}
           changeHandler={this.changeHandler}
           key={`comment-editor-${item.id}`}
           placeholder={this.isID ? I18n.t( "tell_us_why" ) : I18n.t( "leave_a_comment" )}
@@ -96,11 +99,11 @@ class ActivityItem extends React.Component {
 
   updateItem( ) {
     const { item, editComment, editID } = this.props;
-    const { content, editing } = this.state;
+    const { textareaContent, editing } = this.state;
     if ( this.isID ) {
-      editID( item.id, content );
+      editID( item.id, textareaContent );
     } else {
-      editComment( item.id, content );
+      editComment( item.id, textareaContent );
     }
     this.setState( { editing: !editing } );
   }
@@ -219,7 +222,8 @@ class ActivityItem extends React.Component {
               className="btn btn-default btn-sm"
               onClick={e => {
                 if ( onClickCompare ) {
-                  return onClickCompare( e, taxon, observation, { currentUser: config.currentUser } );
+                  return onClickCompare( e, taxon, observation,
+                    { currentUser: config.currentUser } );
                 }
                 return true;
               }}
@@ -613,6 +617,7 @@ class ActivityItem extends React.Component {
 }
 
 ActivityItem.propTypes = {
+  inlineEditing: PropTypes.bool,
   item: PropTypes.object,
   config: PropTypes.object,
   currentUserID: PropTypes.object,

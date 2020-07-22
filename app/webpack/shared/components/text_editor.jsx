@@ -41,11 +41,16 @@ class TextEditor extends React.Component {
     }
   }
 
+  componentDidUpdate( prevProps, prevState ) {
+    const { changeHandler } = this.props;
+    const { content } = this.state;
+    if ( changeHandler && prevState.content !== content ) { changeHandler( content ); }
+  }
+
   render( ) {
     const {
       maxLength,
       placeholder,
-      changeHandler,
       className,
       textareaClassName,
       showCharsRemainingAt,
@@ -53,7 +58,6 @@ class TextEditor extends React.Component {
     } = this.props;
     const { textareaChars, preview, content } = this.state;
     const textareaOnChange = e => {
-      if ( changeHandler ) { changeHandler( e.target.value ); }
       this.setState( { content: e.target.value } );
       if ( maxLength ) {
         if ( e.target.value.length > showCharsRemainingAt ) {
@@ -68,6 +72,7 @@ class TextEditor extends React.Component {
             <div className="btn-group format-controls" role="group" aria-label={I18n.t( "text_formatting_controls" )}>
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-bold" />}
                 template={text => `**${text}**`}
@@ -80,6 +85,7 @@ class TextEditor extends React.Component {
               />
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-italic" />}
                 template={text => `*${text}*`}
@@ -92,6 +98,7 @@ class TextEditor extends React.Component {
               />
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="icon-link" />}
                 template={text => `[${text}](url)`}
@@ -106,6 +113,7 @@ class TextEditor extends React.Component {
             <div className="btn-group block-controls" role="group" aria-label={I18n.t( "text_block_controls" )}>
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-quote-right" />}
                 template={( text, prevTxt ) => {
@@ -123,6 +131,7 @@ class TextEditor extends React.Component {
               />
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-list-ul" />}
                 template={( text, prevTxt ) => {
@@ -140,6 +149,7 @@ class TextEditor extends React.Component {
               />
               <TextEditorFormatButton
                 textarea={this.textarea}
+                textareaOnChange={val => { this.setState( { content: val } ); }}
                 className="btn btn-default btn-xs"
                 label={<i className="fa fa-list-ol" />}
                 template={( text, prevTxt ) => {

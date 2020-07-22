@@ -7,16 +7,59 @@ class TextEditorFormatButton extends React.Component {
     this.button = React.createRef();
   }
 
-  render( ) {
+  handleClick( ) {
     const {
       textarea,
-      label,
       template,
-      className,
       newSelectionOffset,
       newSelectionOffsetLength,
-      disabled,
       placeholder,
+      textareaOnChange
+    } = this.props;
+    if ( textarea && textarea.current ) {
+      const currentText = textarea.current;
+      const { selectionStart, selectionEnd } = currentText;
+      if ( selectionStart !== undefined && selectionEnd !== undefined ) {
+        let selection = currentText.value.substring(
+          selectionStart,
+          selectionEnd
+        );
+        if ( selection.length === 0 && placeholder ) {
+          selection = placeholder;
+        }
+        const selectionWithMarkup = template(
+          selection,
+          currentText.value.substring( 0, selectionStart )
+        );
+        const newSelectionOffsetVal = typeof ( newSelectionOffset ) === "function"
+          ? newSelectionOffset( selection.length )
+          : newSelectionOffset;
+        const newSelectionOffsetLengthVal = typeof ( newSelectionOffsetLength ) === "function"
+          ? newSelectionOffsetLength( selection.length )
+          : newSelectionOffsetLength;
+        currentText.value = currentText.value.substring( 0, selectionStart )
+          + selectionWithMarkup
+          + currentText.value.substring( selectionEnd, currentText.value.length );
+        if ( textareaOnChange ) { textareaOnChange( currentText.value ); }
+        const rangeStart = selectionStart + newSelectionOffsetVal;
+        const rangeEnd = selectionStart
+          + newSelectionOffsetVal
+          + (
+            newSelectionOffsetLengthVal === undefined
+              ? selectionWithMarkup.length
+              : newSelectionOffsetLengthVal
+          );
+        currentText.setSelectionRange( rangeStart, rangeEnd );
+      }
+      currentText.focus();
+    }
+  }
+
+  render( ) {
+    const {
+      label,
+      className,
+      disabled,
       tip
     } = this.props;
     return (
@@ -28,41 +71,7 @@ class TextEditorFormatButton extends React.Component {
         title={tip}
         aria-label={tip}
         ref={this.button}
-        onClick={( ) => {
-          const { selectionStart } = textarea;
-          if ( textarea.selectionStart !== undefined && textarea.selectionEnd !== undefined ) {
-            let selection = textarea.value.substring(
-              textarea.selectionStart,
-              textarea.selectionEnd
-            );
-            if ( selection.length === 0 && placeholder ) {
-              selection = placeholder;
-            }
-            const selectionWithMarkup = template(
-              selection,
-              textarea.value.substring( 0, textarea.selectionStart )
-            );
-            const newSelectionOffsetVal = typeof ( newSelectionOffset ) === "function"
-              ? newSelectionOffset( selection.length )
-              : newSelectionOffset;
-            const newSelectionOffsetLengthVal = typeof ( newSelectionOffsetLength ) === "function"
-              ? newSelectionOffsetLength( selection.length )
-              : newSelectionOffsetLength;
-            textarea.value = textarea.value.substring( 0, textarea.selectionStart )
-              + selectionWithMarkup
-              + textarea.value.substring( textarea.selectionEnd, textarea.value.length );
-            const rangeStart = selectionStart + newSelectionOffsetVal;
-            const rangeEnd = selectionStart
-              + newSelectionOffsetVal
-              + (
-                newSelectionOffsetLengthVal === undefined
-                  ? selectionWithMarkup.length
-                  : newSelectionOffsetLengthVal
-              );
-            textarea.setSelectionRange( rangeStart, rangeEnd );
-          }
-          textarea.focus();
-        }}
+        onClick={( ) => { this.handleClick( ); }}
       >
         {label}
       </button>
@@ -72,6 +81,7 @@ class TextEditorFormatButton extends React.Component {
 
 TextEditorFormatButton.propTypes = {
   textarea: PropTypes.object.isRequired,
+  textareaOnChange: PropTypes.func,
   label: PropTypes.oneOfType( [PropTypes.string, PropTypes.element] ).isRequired,
   template: PropTypes.func.isRequired,
   className: PropTypes.string,

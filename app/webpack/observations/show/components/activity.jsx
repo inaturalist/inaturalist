@@ -242,6 +242,7 @@ class Activity extends React.Component {
               key={`activity-${item.id}`}
               item={item}
               currentUserID={currentUserID}
+              inlineEditing
               {...this.props}
             />
           ) ) }
