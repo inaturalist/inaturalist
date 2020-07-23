@@ -1700,6 +1700,10 @@ nb:
   label_to_group_a_batch_of_taxon_changes: Etikett for å gruppere en batch med taksonendringer
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Posisjon privat
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Mangler posisjon
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
@@ -4589,6 +4593,8 @@ nb:
       show:
         flag_notice_html: |
           Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
+        privacy_notice_html: |
+          Mens meldinger er private mellom deg og mottakeren, kan iNaturalist ansatte se disse meldingene også, og vil gjøre det når meldinger har blitt markert for moderering. Hvis du trenger ordentlig privat kommunikasjon, vennligst se på andre kommunikasjonsmekanismer som støtter sterk kryptering.
     oauth:
       authorizations:
         new:
@@ -6063,6 +6069,8 @@ nb:
       observation_field_value:
         value: 'verdi'
       observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: I køen
         #Date/time the task began processing
         started_at: Startet
         #Date/time the task finished processing
