@@ -825,6 +825,7 @@ cs:
   change_descriptions:
     split: Rozdělení starého taxonu do několika nových taxonů
     merge: Sloučení několika starých taxonů do jednoho nového taxonu
+    swap: Nahradit vstupní taxon výstupním taxonem
     drop: Koncept taxonu zcela neplatný, udržovaný pro historické účely nebo kompatibilitu s partnerem
     stage: Připravit neaktivní koncept pro spuštění v rámci skupiny změn
   change_geoprivacy: 'Změnit geosoukromí'
@@ -1841,6 +1842,10 @@ cs:
   label_to_group_a_batch_of_taxon_changes: Společný štítek pro soubor změn taxonů
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Soukromá lokalita
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Chybějící poloha
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zamknout úroveň přiblížení
@@ -2221,7 +2226,7 @@ cs:
   most_observed_species: Nejvíce pozorované druhy
   most_observed_introduced_species: Nejvíce pozorovaných nepůvodních druhů
   most_observed_threatened_species: Nejvíce pozorovaných ohrožených druhů
-  move_input_children_to_output?: Přesunout děti na výstup?
+  move_input_children_to_output?: Přesunout potomky do výstupu?
   multiple: vícero
   multiple_select_option: '-- vícero --'
   multiple_taxa_for_taxon_change: "Několik taxonů (vstup pro záměnu/sloučení, výstup pro rozdělení)"
@@ -2481,6 +2486,8 @@ cs:
   observations_by_you: "Vaše pozorování"
   observations_by_you_on_date: "Vaše pozorování ze dne %{date}"
   observation_calendar_for: "Kalendář pozorování uživatele %{user} v roce %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Pozorování mohou mít pouze %{limit} fotografií
   observation_curation: Správa pozorování
   observation_date: Datum
   observation_date?: Datum?
@@ -4867,6 +4874,8 @@ cs:
         flag_notice_html: |
           Označili jste tuto konverzaci na %{date}. Vlajka bude přetrvávat i
           pokud odstraníte kopii této konverzace, takže je bezpečné tak činit, pokud už to nechcete vidět.
+        privacy_notice_html: |
+          Ačkoliv zprávy mezi vámi a příjemcem jsou soukromé, zaměstnanci iNaturalist mohou tyto zprávy rovněž zobrazit, a učiní tak, pokud je zpráva označena k moderaci. Pokud potřebujete skutečně soukromou komunikaci, podívejte se prosím po jiných komunikačních kanálech, které podporují silné šifrování.
     oauth:
       authorizations:
         new:
