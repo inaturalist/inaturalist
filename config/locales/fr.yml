@@ -4759,6 +4759,11 @@ fr:
           Vous avez signalé cette conversation le %{date}. Le drapeau sera maintenu même
           si vous supprimez votre copie de cette conversation, donc il n'y a pas de risque à le faire
           si vous ne voulez plus voir celle-ci.
+        privacy_notice_html: |
+          Bien que les messages soient privés entre vous et le destinataire, l'équipe d'iNaturalist
+          peut également voir ces messages et les consultera lorsque les messages
+          seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
+          veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     oauth:
       authorizations:
         new:
