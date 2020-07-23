@@ -617,6 +617,7 @@ class User < ActiveRecord::Base
     Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
+    User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
     LifeList.reload_from_observations( user.life_list_id )
@@ -1265,6 +1266,23 @@ class User < ActiveRecord::Base
     User.where( id: user_id ).update_all( observations_count: count )
     user.reload
     user.elastic_index!
+  end
+
+  def self.update_species_counter_cache( user, options={ } )
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    return unless user
+    count = INatAPIService.observations_species_counts( user_id: user.id, per_page: 0 ).total_results rescue 0
+    unless user.species_count == count
+      User.where( id: user.id ).update_all( species_count: count )
+      unless options[:skip_indexing]
+        user.reload
+        user.elastic_index!
+      end
+    end
   end
 
   def to_plain_s

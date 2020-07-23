@@ -4915,7 +4915,8 @@ CREATE TABLE public.users (
     donorbox_plan_type character varying,
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    species_count integer DEFAULT 0
 );
 
 
@@ -10131,6 +10132,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200130191142');
 INSERT INTO schema_migrations (version) VALUES ('20200220211829');
 
 INSERT INTO schema_migrations (version) VALUES ('20200226211718');
+
+INSERT INTO schema_migrations (version) VALUES ('20200318193130');
 
 INSERT INTO schema_migrations (version) VALUES ('20200604181750');
 

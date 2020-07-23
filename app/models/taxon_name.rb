@@ -130,6 +130,7 @@ class TaxonName < ActiveRecord::Base
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
+    "romanian"              => "ro",
     "russian"               => "ru",
     "scientific_names"      => "sci",
     "slovak"                => "sk",
