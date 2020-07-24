@@ -87,7 +87,7 @@
                 ) %>
                 <span class="nobr">
                   <%= link_to t(:yes), user_path( current_user,  user: { site_id: session[:potential_site][:id] }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
-                  <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:learn_more), affiliation_sites_path, class: "btn btn-default btn-xs" %>
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
               </div>
@@ -100,7 +100,7 @@
                 <%=t :network_affiliation_prompt_from_other_site_html, site_name: @site.name, other_site_name: ( current_user.site || Site.default ).name %>
                 <span class="nobr">
                   <%= link_to t(:yes), user_path( current_user,  user: { site_id: @site.id }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
-                  <%= link_to t(:learn_more), wiki_page_url( "network" ), class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:learn_more), affiliation_sites_path, class: "btn btn-default btn-xs" %>
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
               </div>
