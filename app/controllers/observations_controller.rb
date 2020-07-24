@@ -7,12 +7,7 @@ class ObservationsController < ApplicationController
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :of,
-    :expires_in => 1.day,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| c.request.format != :html }
-  cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
-  
+
   rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
       return render_404
@@ -223,37 +218,6 @@ class ObservationsController < ApplicationController
       end
       format.json { render json: { error: msg } }
       format.all { @observations = [] }
-    end
-  end
-  
-  def of
-    if request.format == :html
-      redirect_to observations_path(:taxon_id => params[:id])
-      return
-    end
-    unless @taxon = Taxon.find_by_id(params[:id].to_i)
-      render_404 && return
-    end
-    @observations = Observation.of(@taxon).
-      includes([ :user,
-                    :iconic_taxon,
-                    { :taxon => :taxon_descriptions },
-                    { :observation_photos => :photo } ]).
-      order("observations.id desc").
-      limit(500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
-    respond_to do |format|
-      format.json do
-        render :json => @observations.to_json(
-          :methods => [ :user_login, :iconic_taxon_name, :obs_image_url],
-          :include => [ { :user => { :only => :login } },
-                        :taxon, :iconic_taxon ] )
-        end
-      format.geojson do
-        render :json => @observations.to_geojson(:except => [
-          :geom, :latitude, :longitude, :map_scale, 
-          :num_identification_agreements, :num_identification_disagreements, 
-          :delta, :location_is_exact])
-      end
     end
   end
 

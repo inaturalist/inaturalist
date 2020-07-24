@@ -272,7 +272,6 @@ Rails.application.routes.draw do
   get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }
   get "observations/project/:id.:format" => "observations#project", as: :observations_for_project
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
-  get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
 
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
