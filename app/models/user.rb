@@ -239,7 +239,7 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
-  before_save :whitelist_licenses
+  before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
   before_save :set_pi_consent_at
@@ -412,7 +412,7 @@ class User < ActiveRecord::Base
     true
   end
   
-  def whitelist_licenses
+  def allow_some_licenses
     self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
     self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
     self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )

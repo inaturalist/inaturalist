@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :whitelist_params
+  before_filter :permit_params
   around_filter :set_time_zone
   around_filter :logstash_catchall
   before_filter :return_here, :only => [:index, :show, :by_login]
@@ -745,7 +745,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def whitelist_params
+  def permit_params
     params.permit!
   end
 

@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_filter :load_registration_form_data, only: [:new, :create]
 
-  def whitelist_params
+  def permit_params
     if params[:user]
       params.require(:user).permit(
         :birthday,
@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource(whitelist_params)
+    build_resource(permit_params)
     resource.site = @site
 
     requestor_ip = Logstasher.ip_from_request_env(request.env)
