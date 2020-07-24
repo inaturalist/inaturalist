@@ -986,7 +986,6 @@ export function voteMetric( metric, params = { } ) {
     const newMetrics = _.filter( state.qualityMetrics, qm => (
       !( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric )
     ) ).concat( [{
-      observation_id: state.observation.id,
       metric,
       agree: ( params.agree !== "false" ),
       created_at: moment( ).format( ),
@@ -994,8 +993,9 @@ export function voteMetric( metric, params = { } ) {
       api_status: "saving"
     }] );
     dispatch( setQualityMetrics( newMetrics ) );
-
-    const payload = Object.assign( { }, { id: state.observation.id, metric }, params );
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = Object.assign( { }, { id: obsID, metric }, params );
     dispatch(
       callAPI(
         inatjs.observations.setQualityMetric,
@@ -1019,8 +1019,9 @@ export function unvoteMetric( metric ) {
         : qm
     ) );
     dispatch( setQualityMetrics( newMetrics ) );
-
-    const payload = { id: state.observation.id, metric };
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = { id: obsID, metric };
     dispatch(
       callAPI(
         inatjs.observations.deleteQualityMetric,
