@@ -55,7 +55,7 @@ describe CheckList, "creation" do
     obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
     place = make_place_with_geom
     place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
-    Delayed::Worker.new.work_off
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     expect( place.check_list.taxa ).to include obs.taxon
   end
 end

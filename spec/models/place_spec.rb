@@ -53,7 +53,7 @@ describe Place, "creation" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    Delayed::Worker.new.work_off
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     p.reload
     expect(p.check_list.taxa).to include t
   end
@@ -62,7 +62,7 @@ describe Place, "creation" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    Delayed::Worker.new.work_off
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     p.reload
     lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
     expect( lt.last_observation_id ).not_to be_blank
