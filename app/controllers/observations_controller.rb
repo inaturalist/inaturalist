@@ -7,6 +7,7 @@ class ObservationsController < ApplicationController
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
+  cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
 
   rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
