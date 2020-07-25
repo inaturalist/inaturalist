@@ -71,7 +71,7 @@ class ActivityItem extends React.Component {
         <div className="btn-group edit-form-btns">
           <button
             type="button"
-            className="btn btn-default btn-sm"
+            className="btn btn-primary btn-sm"
             onClick={( ) => this.updateItem( )}
           >
             { this.isID ? I18n.t( "save_identification" ) : I18n.t( "save_comment" ) }
@@ -86,7 +86,7 @@ class ActivityItem extends React.Component {
           { this.isID && (
             <button
               type="button"
-              className="btn btn-default btn-sm"
+              className="btn btn-link btn-sm pull-right"
               onClick={( ) => this.deleteIdentification( )}
             >
               { I18n.t( "delete" ) }
@@ -570,13 +570,6 @@ class ActivityItem extends React.Component {
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
-              {editing && (
-                <span className="title_edit_text">
-                  <strong>
-                    {I18n.t( "editing" )}
-                  </strong>
-                </span>
-              )}
               {headerItems}
               <time
                 className="time"
