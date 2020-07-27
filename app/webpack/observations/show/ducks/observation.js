@@ -273,6 +273,9 @@ export function renderObservation( observation, options = { } ) {
 
 export function fetchObservation( uuid, options = { } ) {
   return ( dispatch, getState ) => {
+    if ( !uuid ) {
+      return;
+    }
     const s = getState( );
     const { testingApiV2 } = s.config;
     const params = {
@@ -457,7 +460,7 @@ export function fetchObservation( uuid, options = { } ) {
       };
       params.fields = fields;
     }
-    return inatjs.observations.fetch( uuid, params ).then( response => {
+    inatjs.observations.fetch( uuid, params ).then( response => {
       dispatch( renderObservation( response.results[0], options ) );
     } ).catch( e => console.log( e ) );
   };
