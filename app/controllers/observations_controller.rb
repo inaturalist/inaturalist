@@ -672,7 +672,7 @@ class ObservationsController < ApplicationController
     end
     Observation.elastic_index!(
       ids: @observations.compact.map( &:id ),
-      wait_for_index_refresh: true )
+      wait_for_index_refresh: !params[:skip_refresh] )
     respond_to do |format|
       format.html do
         unless errors
