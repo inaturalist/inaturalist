@@ -4274,7 +4274,7 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
-  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
+  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
   what_did_you_see: Wat heb je gezien?
@@ -4713,6 +4713,8 @@ nl:
       show:
         flag_notice_html: |
           Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
+        privacy_notice_html: |
+          De berichten tussen jou en de ontvanger zijn privé, maar iNaturalist kan deze berichten ook bekijken en zal dit doen wanneer berichten zijn gemarkeerd voor moderatie. Als je echt privécommunicatie nodig hebt, kijk dan naar andere communicatiemechanismen met een sterke versleuteling.
     oauth:
       authorizations:
         new:
