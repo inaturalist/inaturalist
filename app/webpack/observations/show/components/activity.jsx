@@ -242,6 +242,7 @@ class Activity extends React.Component {
               key={`activity-${item.id}`}
               item={item}
               currentUserID={currentUserID}
+              inlineEditing
               {...this.props}
             />
           ) ) }
@@ -266,8 +267,11 @@ Activity.propTypes = {
   addID: PropTypes.func,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
+  editComment: PropTypes.func,
   deleteFlag: PropTypes.func,
   deleteID: PropTypes.func,
+  confirmDeleteID: PropTypes.func,
+  editID: PropTypes.func,
   restoreID: PropTypes.func,
   review: PropTypes.func,
   setActiveTab: PropTypes.func,

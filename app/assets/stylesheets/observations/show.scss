@@ -78,6 +78,15 @@
   }
 }
 
+@mixin editor-textarea {
+  textarea {
+    min-height: 125px;
+    resize: vertical;
+    border-radius: 3px;
+    background: $light-grey;
+  }
+}
+
 body {
   min-width: 980px;
 }
@@ -487,6 +496,10 @@ a.UserImage,
       }
     }
   }
+  .edit-comment-id {
+    @include editor-textarea;
+    padding-top: 1em;
+  }
   .comment_id_panel {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -532,12 +545,7 @@ a.UserImage,
           width: 100%;
         }
       }
-      textarea {
-        min-height: 125px;
-        resize: vertical;
-        border-radius: 3px;
-        background: $light-grey;
-      }
+      @include editor-textarea;
       .id_tab {
         input[type="text"] {
           border-radius: 0px 3px 3px 0px;

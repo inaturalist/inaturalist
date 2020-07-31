@@ -36,6 +36,11 @@ class ObservationModal extends React.Component {
     };
   }
 
+  componentDidMount( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".IdentificationForm textarea,.CommentForm textarea", domNode ).textcompleteUsers( );
+  }
+
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
