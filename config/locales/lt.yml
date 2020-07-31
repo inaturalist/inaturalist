@@ -250,11 +250,17 @@ lt:
   add: Pridėti
   add_a_batch_of_observations: Pridėti stebėjimų seriją
   add_a_batch_of_taxa: Pridėti taksonų seriją
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Pridėti suženklintą sąrašą
   add_a_comment: Pridėti komentarą
   add_a_field: Pridėti lauką
   add_a_flag: Pridėti žymę
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Pridėti nuorodą
   add_a_name: Pridėti pavadinimą
   add_a_new_change_group: Pridėti naują kaitos grupė
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Pridėti sunumeruotą sąrašą
   add_a_single_observation: Pridėti vieną stebėjimą.
   add_a_taxon: Pridėti taksoną
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -277,6 +283,8 @@ lt:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Pridėti Projekto Priedų
   add_batch: Pridėti grupę
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Pridėti paryškintą tekstą
   add_comma_separated_tags: "Pridėti kableliais arskirtas žymes"
   add_comment: Pridėti komentarą
   add_conservation_status: Pridėti apsaugos statusą
@@ -289,6 +297,8 @@ lt:
   add_link: Pridėti Nuorodą
   add_higher_level_taxon: Pridėti aukštesnio lygio taksoną (pvz. "paukščiai")
   add_id: Pridėti ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Pridėti pakreiptą tekstą
   add_new_lexicon: Pridėti naują žodyną
   add_new_photos_by_their_ids: Pridėti naujų nuotraukų pagal jų Flickr Id (būtinas Creative Commons!)
   add_new_place: Pridėti naują vietą
@@ -696,6 +706,8 @@ lt:
   body: Tekstas
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: paryškintasis tekstas
   bounding_box: Ribiniai matmenys
   breadcrumbs: Kelio žymos
   brief_caption: Trumpa antraštė
@@ -1276,6 +1288,7 @@ lt:
   failed_to_find_your_location: Nepavyko rasti jūsų vietos.
   failed_to_repair_photo: "Nepavyko pataisyti nuotraukos: %{errors}"
   failed_to_save_record: "Nepavyko įrašyti įrašo. Prašome pabandyti vėliau."
+  failed_to_save_record_with_errors: "Nepavyko išsaugoti įrašo: %{errors}"
   'false': 'Ne'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Pamėgimai
@@ -1598,6 +1611,8 @@ lt:
   insects: vabzdžiai
   insect_life_stage: Vabzdžio gyvenimo ciklo stadija
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Įterpti citatą
   interactions: Sąveikos
   internal_server_error: Vidinė Serverio Klaida
   introduced: Introdukuotas
@@ -1620,6 +1635,8 @@ lt:
   is_this_offensive_html: 'Ar tai <a href="/help#inappropriate"> yra nepriimtina</a>, šlamštas arba įžeidžiantis turinys?'
   is_this_place_a_duplicate: Ar ši vieta yra dublikatas?
   it_can_now_be_used_for_research: Tai dabar gali būti naudojama moksliniams tyrimams ir rodoma kituose tinklalapiuose
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: pakreiptas tekstas
   item_flagged_notice_html: |
     Tai buvo pažymėta kaip šlamštas ir nebėra viešai matoma. Jūs tai galite matyti, nes sukūrėte tai, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{help_email}" class="contact">susisiekite su mumis</a>. <a href="%{manage_flags_path}">Valdykite žymes</a>
   join: Jungtis
@@ -1755,6 +1772,8 @@ lt:
   linked_flickr_automatically: "Taip pat atminkite, kad jeigu prisijungsite prie %{site_name} per Flickr, mes automatiškai susiesime jūsų %{site_name} su Flickr paskyra. Racionalu manyti, jog jeigu naudojate Flickr, turbūt norėsite importuoti Flickr nuotraukas, tiesa?"
   linked_flickr_description: "Kai jūsų %{site_name} ir Flickr paskyros susietos, galite pridėti kelias nuotraukas prie stebėjimų. Žinoma, jeigu kada nors norėsite atsieti %{site_name} ir Flickr, mes jūsų nesustabdysime, tiesiog nebegalėsite pridėti nuotraukų. Kartais tai gali būti naudinga, pavyzdžiui, jeigu sukuriate naują Flickr paskyrą, kurią norite susieti su %{site_name}."
   linked_flickr_password_html: "<strong>Mes niekada neprašysime jūsų Flickr slaptažodžio</strong> (bet Flickr gali prašyti. Patikrinkite url, kad įsitikintumėte, jog tai tikrai Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: nuorodos tekstas
   linkedin: LinkedIn
   list: Sąrašas
   list_deleted: Sąrašas ištrintas.
@@ -1837,6 +1856,10 @@ lt:
   location_is_private: Vieta yra privati
   location_specified: Vieta nurodyta
   log_in: Prisijungti
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Prisijunkite</a> arba <a href="/signup">prisiregistruokite</a>, kad galėtumėte pridėti komentarus.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Prisijunkite</a> arba <a href="/signup">prisiregistruokite</a>, kad galėtumėte pridėti identifikacijas.
   log_scale_label: Įrašas
   login_slash_username: Prisijungimo / vartotojo vardas
   logo:
@@ -2188,6 +2211,8 @@ lt:
   observations_by_app: Stebėjimai pagal programėlę
   observations_by_rank: Stebėjimai pagal rangą
   observations_by_you: "Jūsų stebėjimai"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Stebėjimai gali turėti tik %{limit} nuotraukų
   observation_curation: Stebėjimo kuravimas
   observation_date: Data
   observation_date?: Data?
@@ -2996,6 +3021,7 @@ lt:
   resolved_by: 'Išsprendė:'
   resolved_by_user_on_date_html: Išsprendė %{user}, %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} pasakė,</span> „%{x}“'
+  restart: Paleisti iš naujo
   restore: Atkurti
   restoring: Atkuriama...
   results: rezultatai
@@ -3295,6 +3321,7 @@ lt:
   tags: Žymės
   take_me_facebook: Taip, perkelkite mane į Facebook!
   take_me_flickr!: Taip, perkelkite mane į Flickr!
+  task_deleted: Užduotis ištrinta
   taxa: Taksonai
   taxa_info: Taksonų informacija
   taxa_needing_curation: Taksonams reikia kuravimo
@@ -3581,6 +3608,7 @@ lt:
   #Undo the action of resolving a flag
   unresolve: Neišspręsti
   unsubscribe: Atšaukti prenumeratą
+  unsubscribe_from_emails_like_this: Atšaukti tokių elektroninių laiškų prenumeratą
   upcoming_bioblitzes: Artėjantys bioblicai
   update: Atnaujinti
   update_observations: Atnaujinti stebėjimus
@@ -3836,6 +3864,9 @@ lt:
   x_does_not_exist: "„%{x}“ neegzistuoja"
   x_flagged: "%{x} pažymėtas"
   x_flagged_as_flag: "%{x} pažymėtas kaip %{flag}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} iš %{count} patvirtintas"
     few: "%{x} iš %{count} patvirtinti"
@@ -4105,6 +4136,7 @@ lt:
         remove_observations_label: |
           Ištrinti visus savo stebėjimus iš šio projekto
       edit:
+        admins_must_be_existing_members: Administratoriais gali būti tik projekto nariai.
         bioblitz_desc_html: |
           <p>
           Bioblicas yra renginys, kuriame dalyviai bando surasti kiek galima daugiau rūšių per tam tikrą laiko tarpą. Tai smagus būdas žmones supažindinti su biologine įvairove ir tuo pačiu surinkti naudingų duomenų.
@@ -4696,6 +4728,8 @@ lt:
         started_at: Pradžia
         #Date/time the task finished processing
         finished_at: Pabaiga
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Įvesties duomenys
       post:
         title: Pavadinimas
       project:
@@ -4795,6 +4829,10 @@ lt:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinatės negali būti 0,0"
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_query: Užklausa negali būti tuščia
         place:
           attributes:
             place_geometry:
