@@ -3984,6 +3984,11 @@ en:
   terms_service: Terms of Service
   terrain: terrain
   text: Text
+  # Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Text block controls
+  # Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Text formatting controls
+  text_editing_controls: Text editing controls
   thanks!: Thanks!
   thanks_from_all_of_us_here_at: Thanks from all of us here at
   that_photo_doesnt_exist: That photo doesn't exist.
@@ -4149,7 +4154,10 @@ en:
   top_observer: Top Observer
   top_observers: Top Observers
   top_species: Top Species
-  tos_privacy_guidelines_label: I agree to the <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>, and I have reviewed the <a href="/pages/community+guidelines">Community Guidelines</a>.
+  tos_privacy_guidelines_label: |
+    I agree to the <a href="/terms" target="_blank">Terms of Service</a> and
+    <a href="/privacy" target="_blank">Privacy Policy</a>, and I have reviewed
+    the <a href="/pages/community+guidelines" target="_blank">Community Guidelines</a>.
   total: Total
   totals: Totals
   total_members: Total members
@@ -4460,6 +4468,9 @@ en:
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
   welcome_to_x_project: "Welcome to %{project}"
+  # Label for the most probable taxon in the automated suggestions. @gender
+  # should work here. %{rank} is usually genus or a higher-level rank like
+  # family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
   what: What

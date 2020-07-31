@@ -153,7 +153,7 @@ class ActivityItem extends React.Component {
     const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
     let contents;
     let header;
-    let className;
+    let className = "comment";
     if ( item.hidden && this.isID && ( !canSeeHidden || !config.showHidden ) ) {
       return (
         <div className="ActivityItem">
@@ -190,6 +190,7 @@ class ActivityItem extends React.Component {
       </a>
     );
     if ( this.isID ) {
+      className = "identification";
       const buttons = [];
       let canAgree = false;
       let userAgreedToThis;
@@ -286,8 +287,11 @@ class ActivityItem extends React.Component {
           </div>
         );
       } else if ( !item.hidden || canSeeHidden ) {
-        idBody = editing ? this.editItemForm( )
-          : ( <UserText text={item.body} className="id_body" /> );
+        if ( editing ) {
+          idBody = this.editItemForm( );
+        } else if ( item.body && item.body.length > 0 ) {
+          idBody = <UserText text={item.body} className="id_body" />;
+        }
       }
       contents = (
         <div className="identification">
