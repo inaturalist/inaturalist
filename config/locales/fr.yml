@@ -4254,6 +4254,9 @@ fr:
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue aux guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Nous sommes quasiment sûrs qu'il se trouve dans les %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Nous sommes désolés, mais votre importation en vrac de %{filename} a échoué."
   what: Quoi
@@ -4345,8 +4348,6 @@ fr:
   'yes': "Oui"
   yes_find_them!: "Oui, trouvez-les!"
   yes_i_want_to_join: Oui, je veux me joindre
-  yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
-  yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
   yes_reject_it: Oui, refusez le
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
