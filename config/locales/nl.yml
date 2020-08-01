@@ -4274,6 +4274,9 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
@@ -4361,8 +4364,6 @@ nl:
   'yes': "Ja"
   yes_find_them!: "Ja, vind ze!"
   yes_i_want_to_join: Ja, ik wil meedoen
-  yes_license_my_childs_observations: Ja, zet een licentie op de foto's, geluiden en waarnemingen van mijn kind, zodat wetenschappers haar gegevens kunnen gebruiken.
-  yes_license_my_observations_so_scientists_can_use: Ja, zet een licentie op mijn foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken.
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
@@ -4445,6 +4446,7 @@ nl:
   you_sure_delete_asset?: Weet je zeker dat je dit projectbestand wilt verwijderen?
   you_sure_delete_check_list: "Weet je zeker dat je deze lijst wilt verwijderen? Sommige mensen hebben er misschien veel werk in gestopt..."
   you_sure_delete_comment?: Weet je zeker dat je deze reactie wilt verwijderen?
+  you_sure_delete_identification?: Weet je zeker dat je deze determinatie wilt verwijderen?
   you_sure_delete_custom_field?: Weet je zeker dat je deze aangepaste velden wilt verwijderen?
   you_sure_delete_flag?: Weet je zeker dat je deze melding wilt verwijderen?
   you_sure_delete_project?: Weet je zeker dat je dit project wilt verwijderen?
