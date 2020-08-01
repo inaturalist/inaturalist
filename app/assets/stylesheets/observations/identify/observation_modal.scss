@@ -44,8 +44,8 @@ body > [role="dialog"] .ObservationModal {
     .btn-primary:hover,
     .btn-primary:active,
     .btn-primary:focus {
-      background-color: $inat-green;
-      border-color: $inat-green;
+      background-color: darken($inat-green, 3%);
+      border-color: darken($inat-green, 15%);
     }
   }
   
