@@ -3818,6 +3818,9 @@ lt:
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
   what: Kas
@@ -3934,6 +3937,7 @@ lt:
   you_need_to_select_some_observations_first: Pirma turite pasirinkti stebėjimus.
   you_sure_delete_check_list: "Ar tikrai norite tai ištrinti? Gali būti, jog žmonės į tai įdėjo daug darbo..."
   you_sure_delete_comment?: Ar tikrai norite ištrinti šį komentarą?
+  you_sure_delete_identification?: Ar tikrai norite ištrinti šią identifikaciją?
   you_sure_delete_flag?: Ar tikrai norite ištrinti šią žymę?
   you_sure_delete_project?: Ar tikrai norite ištrinti šį projektą?
   you_sure_delete_this_observation: "Ar tikrai norite ištrinti šį stebėjimą?"
