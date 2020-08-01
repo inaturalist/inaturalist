@@ -3342,6 +3342,9 @@ pl:
   welcome_to_inat: "Witamy na %{site_name}!"
   welcome_to_guides: "Witamy w przewodnikach %{site_name}!"
   welcome_to_x_project: "Witamy w %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Jesteśmy pewni, że należy to do %{rank}
   what: Co
   what_did_you_see: Co zaobserwowałeś?
@@ -3400,8 +3403,6 @@ pl:
   'yes': "Tak"
   yes_find_them!: "Tak, znajdź je!"
   yes_i_want_to_join: Tak, chcę dołączyć
-  yes_license_my_childs_observations: Tak, licencjonuj zdjęcia, nagrania dźwiękowe i obserwacje mojego dziecka, aby naukowcy mogli korzystać z tych danych.
-  yes_license_my_observations_so_scientists_can_use: Tak, licencjonuj moje zdjęcia, nagrania dźwiękowe i obserwacje, aby naukowcy mogli korzystać z tych danych.
   yesterday: Wczoraj
   you: ty
   you_: Ty
