@@ -4419,6 +4419,9 @@ cs:
   welcome_to_inat: "Vítejte na %{site_name}!"
   welcome_to_guides: "Vítejte v průvodcích %{site_name}!"
   welcome_to_x_project: "Vítejte v projektu %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Jsme si celkem jistí, že toto je v %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Omlouváme se, ale váš hromadný import z %{filename} se nezdařil."
   what: Co
@@ -4515,8 +4518,6 @@ cs:
   'yes': "Ano"
   yes_find_them!: "Ano, najít!"
   yes_i_want_to_join: Ano, chci se připojit
-  yes_license_my_childs_observations: Ano, poskytnout licenci k fotkám mého dítěte, zvukům a pozorováním, aby mohli vědci moje data využívat.
-  yes_license_my_observations_so_scientists_can_use: Ano, poskytnout licenci k mým fotkám, zvukům a pozorováním, aby mohli vědci mé údaje využívat!
   yes_reject_it: Ano, odmítnout
   yes_show_this_in_the_box: Ano, zobrazit toto ve velkém boxu v horní části/taxonech
   yesterday: Včera
