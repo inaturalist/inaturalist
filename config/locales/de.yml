@@ -3878,6 +3878,10 @@ de:
   top_observer: Top-Beobachter
   top_observers: Top-Beobachter
   top_species: Top-Arten
+  tos_privacy_guidelines_label: |
+    Ich stimme den <a href="/terms" target="_blank">Nutzungsbedingungen</a> und der
+    <a href="/privacy" target="_blank">Datenschutzerklärung</a>zu, und ich habe
+    die <a href="/pages/community+guidelines" target="_blank">Community-Richtlinien</a> verstanden.
   total: Gesamt
   totals: Insgesamt
   total_members: Mitglieder insgesamt
@@ -4167,6 +4171,9 @@ de:
   welcome_to_inat: "Willkommen bei %{site_name}!"
   welcome_to_guides: "Willkommen bei %{site_name}-Guides!"
   welcome_to_x_project: "Willkommen bei %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Wir schlagen vor dass es in dieser %{rank} sein könnte
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
@@ -4252,8 +4259,6 @@ de:
   'yes': "Ja"
   yes_find_them!: "Ja, findet sie!"
   yes_i_want_to_join: Ja, ich möchte beitreten
-  yes_license_my_childs_observations: Ja, lizenzieren Sie die Fotos, Geräusche und Beobachtungen meines Kindes, damit Wissenschaftler die Daten verwenden können.
-  yes_license_my_observations_so_scientists_can_use: Ja, lizenziere meine Fotos, Tonaufnahmen und Beobachtungen so, dass Wissenschaftler meine Daten verwenden können.
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
@@ -4336,6 +4341,7 @@ de:
   you_retain_full_copyright_over_your_content: "Das volle Urheberrecht an deinen Inhalten verbleibt bei dir, abgesehen von den Rechten, die %{site_name} in unseren Allgemeinen Geschäftsbedingungen gewährt werden."
   you_sure_delete_check_list: "Bist du sicher, dass du diese Liste löschen möchtest? Andere Leute haben möglicherweise viel Arbeit in sie gesteckt..."
   you_sure_delete_comment?: Sicher, dass Du diesen Kommentar löschen willst?
+  you_sure_delete_identification?: Möchtest du diese Bestimmung wirklich löschen?
   you_sure_delete_custom_field?: Bist du sicher, dass du diese benutzerdefinierten Felder löschen möchtest?
   you_sure_delete_flag?: Bist du sicher, dass du diese Meldung löschen willst?
   you_sure_delete_project?: Sicher, dass Du dieses Projekt löschen möchtest?
