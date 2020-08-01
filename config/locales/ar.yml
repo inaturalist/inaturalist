@@ -3609,6 +3609,9 @@ ar:
   welcome_to_inat: "مرحبا بك في %{site_name}!"
   welcome_to_guides: "مرحبا بك في دليل %{site_name}!"
   welcome_to_x_project: "مرحبا بك في %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: نحن متأكدون من أن هذا في %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "عذرا، أخفق الاستيراد الضخم ل%{filename}."
   what: ماذا
@@ -3687,8 +3690,6 @@ ar:
   'yes': "نعم"
   yes_find_them!: "نعم، اعثر عليهم!"
   yes_i_want_to_join: نعم، أريد الانضمام
-  yes_license_my_childs_observations: نعم، قم بترخيص صور وأصوات وملاحظات طفلي حتى يتمكن العلماء من استخدام البيانات.
-  yes_license_my_observations_so_scientists_can_use: نعم، رخص صوري وأصواتي وملاحظاتي حتى يمكن للعلماء استخدام بياناتي.
   yes_reject_it: نعم، ارفض ذلك
   yes_show_this_in_the_box: نعم، إظهار هذا في مربع كبير في الجزء العلوي من / الأصناف
   yesterday: أمس
