@@ -4185,6 +4185,9 @@ gl:
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_guides: "¡Benvido ás Guías de %{site_name}!"
   welcome_to_x_project: "Benvido ao proxecto %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estamos case seguros de que isto está nos %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Descúlpanos, pero a túa importación en masa de %{filename} fallou."
   what: Que
@@ -4269,8 +4272,6 @@ gl:
   'yes': "Si"
   yes_find_them!: "Si, atópaas!"
   yes_i_want_to_join: Si, desexo unirme
-  yes_license_my_childs_observations: Si, crear unha licenza das fotos, sons e observacións do meu fillo ou filla, de xeito que os científicos poidan usar os dados.
-  yes_license_my_observations_so_scientists_can_use: Si, crear unha licenza das miñas fotos e observacións para que os científicos poidan empregar os meus datos!
   yes_reject_it: Si, rexeitao
   yes_show_this_in_the_box: Si, mostra isto no recadro superior sobre os taxóns
   yesterday: Onte
