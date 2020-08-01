@@ -371,6 +371,15 @@ class TaxonName < ActiveRecord::Base
         nil
       end
     end.compact
+    ext_names.each do |ext_name|
+      matching_tn_exists = ext_name.taxon.taxon_names.detect do |tn|
+        tn.is_valid? && tn.name === ext_name.taxon.name
+      end
+      if !ext_name.valid? && ext_name.errors[:name] && matching_tn_exists
+        ext_name.update_attributes( is_valid: false )
+      end
+    end
+    ext_names
   end
   
   def self.find_single(name, options = {})
