@@ -1402,7 +1402,7 @@ class Observation < ActiveRecord::Base
             owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
             community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
           ) || (
-            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            owners_identification.taxon.rank_level <= Taxon::GENUS_LEVEL &&
             community_taxon == owners_identification.taxon &&
             voted_out_of_needs_id?
           )

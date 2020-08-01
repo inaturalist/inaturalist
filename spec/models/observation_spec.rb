@@ -1224,6 +1224,18 @@ describe Observation do
           o.reload
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a subgenus and voted out of needs_id" do
+          subgenus = Taxon.make!( name: "Pyrobombus", rank: Taxon::SUBGENUS )
+          o = make_research_grade_candidate_observation( taxon: subgenus, user: u )
+          Identification.make!( observation: o, taxon: subgenus )
+          o.reload
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.community_taxon ).to eq subgenus
+          expect( o.taxon ).to eq subgenus
+          expect( o ).to be_voted_out_of_needs_id
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
