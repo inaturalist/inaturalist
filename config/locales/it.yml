@@ -3783,6 +3783,11 @@ it:
   terms_service: Termini del servizio
   terrain: terreno
   text: Testo
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Controlli di blocco testo
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Controlli di formattazione testo
+  text_editing_controls: Controlli di modifica testo
   thanks!: Grazie!
   thanks_from_all_of_us_here_at: Grazie da tutti noi a
   that_photo_doesnt_exist: La foto non esiste.
@@ -3916,6 +3921,10 @@ it:
   top_observer: Il miglior osservatore
   top_observers: Migliori osservatori
   top_species: Specie più osservata
+  tos_privacy_guidelines_label: |
+    Accetto i <a href="/terms" target="_blank">Termini di Servizio</a> e l'
+    <a href="/privacy" target="_blank">Informativa sulla privacy</a>, e ho esaminato
+    le <a href="/pages/community+guidelines" target="_blank">Linee Guida della Comunità</a>.
   total: Totale
   totals: Totali
   total_members: Totale membri
@@ -4215,6 +4224,9 @@ it:
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
   welcome_to_x_project: "Benvenuto/a nel progetto %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
@@ -4303,8 +4315,8 @@ it:
   'yes': "Sì"
   yes_find_them!: "Sì, trovali!"
   yes_i_want_to_join: Sì, voglio partecipare
-  yes_license_my_childs_observations: Si, applica la licenza alle foto, ai suoni e alle osservazioni di mio figlio affinchè gli scienziati possano usufruire dei suoi dati.
-  yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire dei miei dati.
+  yes_license_my_childs_observations: Si, applica la licenza alle foto, ai suoni e alle osservazioni di mio figlio affinchè gli scienziati possano usufruire dei suoi dati (raccomandato).
+  yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire dei miei dati (raccomandato).
   yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
@@ -4386,6 +4398,7 @@ it:
   you_sure_delete_asset?: Sei sicuro di voler cancellare questa Risorsa di Progetto?
   you_sure_delete_check_list: "Sei sicuro di voler cancellare questa lista? Alcune persone potrebbero averci lavorato parecchio..."
   you_sure_delete_comment?: Sei sicuro di voler cancellare questo commento?
+  you_sure_delete_identification?: Sei sicuro di che voler eliminare questa identificazione?
   you_sure_delete_custom_field?: Sei sicuro di voler cancellare questo campo personalizzato?
   you_sure_delete_flag?: Sei sicuro di voler cancellare questo contrassegno?
   you_sure_delete_project?: Sei sicuro di voler cancellare questo progetto?
@@ -4631,6 +4644,8 @@ it:
       show:
         flag_notice_html: |
           Hai contrassegnato questa conversazione il %{date}. Il contrassegno persisterà anche se cancelli la tua copia di questa conversazione, quindi puoi farlo tranquillamente se non vuoi più vederlo.
+        privacy_notice_html: |
+          Mentre i messaggi sono privati tra te ed il destinatario, anche lo staff di iNaturalist può visionare questi messaggi, e lo farà quando i messaggi sono stati contrassegnati per la moderazione. Se hai bisogno di una comunicazione realmente privata, sei pregato di cercare altri sistemi di comunicazione che supportano una forte crittografia.
     oauth:
       authorizations:
         new:
