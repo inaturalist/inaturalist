@@ -3516,6 +3516,9 @@ es-MX:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
@@ -3589,7 +3592,6 @@ es-MX:
   'yes': "Sí"
   yes_find_them!: "¡Si encuéntralas!"
   yes_i_want_to_join: Si, quiero participar
-  yes_license_my_observations_so_scientists_can_use: Si, ¡doy licencia sobre mis fotos y observaciones para que los investigadores puedan utilizar mis datos!
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Si, muestra esto en la caja  grande por arriba de /grupos (taxa)
   yesterday: Ayer
