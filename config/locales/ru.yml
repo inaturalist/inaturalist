@@ -4372,6 +4372,9 @@ ru:
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
   welcome_to_x_project: "Добро пожаловать в %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
@@ -4467,8 +4470,6 @@ ru:
   'yes': "Да"
   yes_find_them!: "Да, найдите их!"
   yes_i_want_to_join: Да, я хочу присоединиться
-  yes_license_my_childs_observations: Да, лицензируйте фото, звуки и наблюдения моего ребенка таким образом, чтобы ученые могли использовать данные.
-  yes_license_my_observations_so_scientists_can_use: Да, лицензируйте мои фото, звуки и наблюдения таким образом, чтобы ученые могли использовать мои данные.
   yes_reject_it: Да, отклоните это
   yes_show_this_in_the_box: Да, покажите это в большом прямоугольнике наверху /таксона
   yesterday: Вчера
