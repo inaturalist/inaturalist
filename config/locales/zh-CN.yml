@@ -3300,6 +3300,9 @@ zh-CN:
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
   welcome_to_x_project: "欢迎来到 %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: 我们很确定这个的排名是在%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "我们很抱歉，但您的 %{filename} 的大量导入工作已失败。"
   what: 什么
@@ -3368,7 +3371,6 @@ zh-CN:
   'yes': "是"
   yes_find_them!: "是的，找到他们！"
   yes_i_want_to_join: 是的，我想加入
-  yes_license_my_observations_so_scientists_can_use: 是的，授权我的图片、声音和观察，这样科学家可以使用我的数据！
   yes_reject_it: 好的，拒绝它
   yes_show_this_in_the_box: 是的，它会在/taxa顶部的大框中显示
   yesterday: 昨天
