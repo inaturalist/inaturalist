@@ -3809,6 +3809,11 @@ fr:
   terms_service: Conditions d’utilisation
   terrain: terrain
   text: Texte
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Contrôles des blocs de texte
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Outils de mise en forme
+  text_editing_controls: Contrôles de modification de texte
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
   that_photo_doesnt_exist: Cette photo n’existe pas.
@@ -3955,6 +3960,10 @@ fr:
   top_observer: Meilleurs observateurs
   top_observers: Meilleurs observateurs
   top_species: Espèces favorites
+  tos_privacy_guidelines_label: |
+    J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et
+    <a href="/privacy" target="_blank">la politique de confidentialité</a>, et j'ai passé en revue
+    les <a href="/pages/community+guidelines" target="_blank">Règles de la Communauté</a>.
   total: Score total
   totals: Totaux
   total_members: Total des membres
@@ -4436,6 +4445,7 @@ fr:
   you_sure_delete_asset?: Êtes-vous certain de vouloir supprimer ce bien?
   you_sure_delete_check_list: "Êtes-vous certain de vouloir supprimer cette liste? Certaines personnes y ont peut-être beaucoup travaillé..."
   you_sure_delete_comment?: Êtes-vous certain de vouloir supprimer ce commentaire?
+  you_sure_delete_identification?: Êtes-vous sûr de vouloir supprimer cette identification ?
   you_sure_delete_custom_field?: Êtes-vous certain de vouloir supprimer ces champs personnalisés?
   you_sure_delete_flag?: Êtes-vous certain de vouloir supprimer ce signalement ?
   you_sure_delete_project?: Êtes-vous certain de vouloir supprimer ce projet?
@@ -4513,7 +4523,7 @@ fr:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Prévoyez-vous d’utiliser %{site_name} dans la salle de classe ?
           community_guidelines_html: |
-            <a href="%{url}">Regardez les lignes directrices de la communauté</a> pour des conseils sur la manière de garder iNaturalist comme un endroit amical et convivial.
+            <a href="%{url}">Regardez les règles de la communauté</a> pour des conseils sur comment faire en sorte qu'iNaturalist reste un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
