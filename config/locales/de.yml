@@ -290,7 +290,7 @@ de:
   add_tags_to_selected_taxa: Stichwörter zu ausgewählten Taxa hinzufügen
   add_taxa: Taxa hinzufügen
   add_taxon_batch_to: "Taxon-Batch zu %{list} hinzufügen"
-  add_taxon_range: Taxonbereich hinzufügen
+  add_taxon_range: Verbreitungsgebiet hinzufügen
   add_taxonomic_tags_to: "Taxonomie-Tags zu ausgewählten Flickr-Bildern hinzufügen &raquo;"
   add_to_a_scheme: Zu einer Vorlage hinzufügen
   add_to_a_project: Zu einem Projekt hinzufügen
@@ -458,7 +458,7 @@ de:
   alphabetical_order: Alphabetische Reihenfolge
   already_have_an_account_log_in_html: Hast du schon einen Account? <strong>Anmelden</strong>
   amphibians: Amphibien
-  ancestor_taxon: Vorfahrentaxon
+  ancestor_taxon: Höheres Taxon
   and: und
   and_other_taxa: "&amp; Andere Taxa"
   android: Android
@@ -701,7 +701,7 @@ de:
     split: Aufteilen
     merge: Zusammenführen
     swap: Tauschen
-    stage: Phase
+    stage: Vorbereitungsphase
     drop: Löschen
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_from: abspalten von
@@ -1025,8 +1025,8 @@ de:
     currentText: Heute
     prevText: Zurück
     nextText: Weiter
-    range: Bereich
-  date_range: Datumsbereich
+    range: Zeitraum
+  date_range: Zeitraum
   date_specified: Datum angegeben
   date_time: Datum/Zeit
   #Express a date range. d1 and d2 could be any expression of dates, so better
@@ -1179,7 +1179,7 @@ de:
   edit_taxon: Taxon bearbeiten
   edit_taxon_framework: Taxon-Framework bearbeiten
   edit_taxon_link: Taxonlink bearbeiten
-  edit_taxon_range: Taxonbereich bearbeiten
+  edit_taxon_range: Verbreitungsgebiet bearbeiten
   edit_the_observation: Die Beobachtung bearbeiten
   edit_your_account_and_profile_html: "Bearbeite dein Konto & Profil"
   edit_your_default_settings: "Deine Standardeinstellungen bearbeiten"
@@ -1202,7 +1202,7 @@ de:
   editing_taxon: '%{taxon} bearbeiten'
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
-  editing_taxon_range: Taxonbereich bearbeiten
+  editing_taxon_range: Verbreitungsgebiet bearbeiten
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
@@ -1951,12 +1951,12 @@ de:
       place_boundary: Gebietsgrenzen
       checklist_places: Gebiete mit Checklisten
       checklist_places_description: Orte an denen das Taxon aufgelistet wurde
-      range: Bereich
+      range: Verbreitungsgebiet
   map_tooltip: Kartenansicht anzeigen
   mark_as_reviewed: Als "begutachtet" markieren
   mark_all_as_reviewed: Alle als "begutachtet" markieren
   mark_all_as_unreviewed: Alle als "nicht begutachtet" markieren
-  matching_species_will_shown_up_here: Entsprechende Arten werden hier erscheinen. Die Karten zeigen einen Bereich an, wenn %{place} eine Beobachtung für diese Art hat.
+  matching_species_will_shown_up_here: Entsprechende Arten werden hier erscheinen. Die Karten zeigen das Verbreitungsgebiet an, falls %{place} eine Beobachtung für diese Art hat.
   maverick: Ausreißer
   media: Medien
   media_type: Medientyp
@@ -2384,7 +2384,7 @@ de:
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
   occurrence_status_descriptions:
-    absent: Tritt nicht im Bereich auf
+    absent: Kommt nicht im Gebiet vor
     common: Tritt häufig auf
     doubtful: Kommt vielleicht vor, aber es gibt Zweifel an den Belegen
     irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
@@ -3126,7 +3126,7 @@ de:
   radius: Radius (m)
   radius_value: "Radius (m): %{radius}"
   random: Zufällig
-  range: Bereich
+  range: Zeitraum
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
@@ -3686,7 +3686,7 @@ de:
   taxonomy: Taxonomie
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht werden, um Aufzeichnungen zu aktualisieren.
   taxon_deleted: Taxon gelöscht.
-  taxon_doesnt_have_a_range: Das Taxon hat keinen Bereich
+  taxon_doesnt_have_a_range: Das Taxon hat kein eingetragenes Verbreitungsgebiet
   taxon_drop: Taxon-Löschung
   taxon_id: Taxon-ID
   taxon_ids: Taxon-IDs
@@ -3713,7 +3713,7 @@ de:
     <a href="%{url}">%{taxon}</a> beobachtet von
   taxon_observed_by_user: "%{taxon} beobachtet von %{user}"
   taxon_photos_updated: Taxon-Bilder aktualisiert!
-  taxon_range: Taxon-Bereich
+  taxon_range: Verbreitungsgebiet
   taxon_range_created_notice: Verbreitungsgebiet des Taxons wurde erfolgreich erstellt. Bitte warte ein paar Minuten, damit es auf den Karten angezeigt wird.
   taxon_range_updated_notice: Verbreitungsgebiet des Taxons wurde erfolgreich aktualisiert. Bitte warte ein paar Minuten, damit die Änderungen auf den Karten sichtbar werden.
   taxon_ranks: Taxonränge
@@ -3955,7 +3955,7 @@ de:
     Lade eine CSV-Datei mit Beobachtungsdaten hoch. Wenn deine Daten in einer
     Tabelle oder Datenbank enthalten sind, ist dies wahrscheinlich der richtige Weg.
   upload_photo: Foto hochladen
-  upload_range: Verbreitung hochladen
+  upload_range: Verbreitungsgebiet hochladen
   uploaded_by: Hochgeladen von
   uploader:
     errors:
