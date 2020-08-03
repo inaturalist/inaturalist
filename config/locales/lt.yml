@@ -4649,8 +4649,8 @@ lt:
       two_words_connector: ' ir '
       words_connector: ', '
   time:
-    am: ryto
-    pm: vakaro
+    am: am
+    pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
