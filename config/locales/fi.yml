@@ -1968,7 +1968,7 @@ fi:
   medium: keskikokoinen
   meet: Tapaa
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist Network -verkoston</a> jäsen
+    <a href="%{url}">iNaturalist-verkoston</a> jäsen
   members: Jäsenet
   membership_model: Jäsenyysmalli
   mentioned_you_in_noun_html: "%{user} mainitsi sinut kohteessa %{noun}"
@@ -1999,6 +1999,8 @@ fi:
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa
     määritelmästämme "sopivasta", katso 
     <a href="/help#inappropriate">UKK</a>.
+  #Label shown when a date has not been entered
+  missing_date: Puuttuva päivämäärä
   mobile: Mobiili
   mollusks: nilviäiset
   momentjs:
@@ -2112,6 +2114,11 @@ fi:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi %{site_name}:een kansainvälisen sivuston sijasta?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong> on osa kansainvälistä iNaturalist-verkostoa, ja on mukautettu suomalaiseen käyttöön. Haluatko liittää tilisi iNaturalist Suomeen kansainvälisen iNaturalist.org:in sijasta?
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
