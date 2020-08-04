@@ -2114,6 +2114,10 @@ en:
       range: Range
   map_tooltip: Show map view
   mark_as_reviewed: Mark As Reviewed
+  # Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Marking an observation as reviewed means you will not see it again by
+    default in Identify. It will still be visible to other people in Identify.
   mark_all_as_reviewed: Mark All As Reviewed
   mark_all_as_unreviewed: Mark All As Unreviewed
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.

@@ -1032,9 +1032,12 @@ h3, h4 {
   }
   .review {
     float: right;
-    line-height: 34px;
+    position: relative;
+    top: 2px;
     input {
-      margin-right: 5px;
+      position: relative;
+      top: 2px;
+      left: -5px;
     }
   }
   .ac-select-thumb i {

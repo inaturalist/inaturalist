@@ -119,6 +119,7 @@ class TaxonName < ActiveRecord::Base
     "italian"               => "it",
     "japanese"              => "ja",
     "korean"                => "ko",
+    "latvian"               => "lv",
     "lithuanian"            => "lt",
     "luxembourgish"         => "lb",
     "macedonian"            => "mk",
@@ -136,7 +137,8 @@ class TaxonName < ActiveRecord::Base
     "slovak"                => "sk",
     "spanish"               => "es",
     "swedish"               => "sv",
-    "turkish"               => "tr"
+    "turkish"               => "tr",
+    "vietnamese"            => "vi"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
