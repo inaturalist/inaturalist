@@ -344,7 +344,12 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: {
+        "Identification::revisit_curator_identification": [ observation_id, user_id ]
+      }
+    ).run_revisit_curator_identification( self.observation_id, self.user_id )
     true
   end
 
