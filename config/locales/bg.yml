@@ -2951,6 +2951,9 @@ bg:
   website: Уебсайт
   welcome_back: Добре дошли отново
   welcome_to_guides: "Добре дошли в Ръководствата на %{site_name}!"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what_did_you_see: Какво наблюдавахте?
   what_do_you_think: Какво мислите?
@@ -3002,7 +3005,6 @@ bg:
   'yes': "Да"
   yes_find_them!: "Да, намери ги!"
   yes_i_want_to_join: Да, искам да се присъединя
-  yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
   you: Вас
   you_: Вас

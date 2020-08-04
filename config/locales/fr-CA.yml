@@ -155,21 +155,63 @@ fr-CA:
   add_a_numbered_list: Ajouter une liste numérotée
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Ajouter un texte en gras
+  add_link: Ajouter un lien
   add_higher_level_taxon: Ajouter un taxon de plus haut rang (par ex. « oiseaux »)
   add_id: Ajouter une identification
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Ajouter un texte en italique
   add_new_lexicon: Ajouter un nouveau lexique
+  add_new_photos_by_their_ids: Ajouter de nouvelles photos à partir de leur identifiant Flickr (la licence doit être Creative Commons!)
+  add_new_place: Ajouter un nouveau lieu
+  add_new_rule: Ajouter une nouvelle règle
   add_new_source: "Ajouter une nouvelle source…"
   add_new_taxon_name: Ajouter un nouveau nom de taxon
+  add_observations_by_checking_off: Ajouter des observations en cochant les espèces dans une liste.
+  add_observations_project: Ajouter des observations à ce projet
+  #Prompt to add a new journal post
+  add_one: En ajouter une!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: En ajouter une
+  add_photos: Ajouter des photos
+  add_place: Ajouter un lieu
+  add_alive_or_dead_alive_annotation: 'Ajouter l''annotation « Vivant ou Mort : Vivant »'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation « Vivant ou Mort : Indéterminé »'
+  add_alive_or_dead_dead_annotation: 'Ajouter l''annotation « Vivant ou Mort : Mort »'
+  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale : bourgeonnement »'
+  add_plant_phenology_flower_budding_annotation: 'Ajouter l''annotation « Phénologie végétale : fleur en bourgeon »'
+  add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
+  add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits »'
+  add_life_stage_egg_annotation: 'Ajoute l''annotation « Stade d''évolution : œuf »'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Ajouter un lien'
+  #As in a Guide Section
+  add_section: Ajouter une section
+  add_several_observations_at_once: Ajouter plusieurs observations à la fois
+  add_sex_female_annotation: 'Ajouter l''annotation « Sexe : femelle »'
+  add_sex_male_annotation: 'Ajouter l''annotation « Sexe : mâle »'
+  add_sex_cannot_be_determined_annotation: 'Ajouter l''annotation « Sexe : indéterminé »'
+  add_some_now: En ajouter maintenant
+  add_tag: Ajouter une balise
+  add_tags: Ajouter des balises
+  add_tags_to_selected_taxa: Ajouter des balises aux taxons sélectionnés
   add_taxa: Ajouter des taxons
   add_taxon_batch_to: "Ajouter un lot de taxons à %{list}"
   add_taxon_range: Ajouter une aire de répartition
   add_taxonomic_tags_to: "Ajouter des étiquettes taxinomiques aux photos Flickr sélectionnées &raquo;"
   add_to_a_scheme: Ajouter à un programme
+  add_to_a_project: Ajouter à un projet
+  add_to_calendar: Ajouter au calendrier
+  add_to_checklist: Ajouter à la liste de vérification
+  add_to_favorites: Ajouter aux favoris
+  add_to_list: Ajouter à la liste
+  add_to_project: Ajouter au projet
+  add_to_your_life_list: Ajouter à votre liste des êtres vivants!
+  add_to_your_list: Ajouter à votre liste
   add_your_email_to_get: |
     Ajoutez votre adresse courriel pour obtenir des commentaires de la communauté sur votre observation .
     Si vous préférez ne pas l'ajouter, revenez consulter la page plus tard!
+  add_your_own_observations_at: "Ajoutez vos propres observations à %{site_name}"
   added: Ajouté
   added!: Ajouté!
   added_as_a_part_of_a_taxon_change_html: |
@@ -178,6 +220,43 @@ fr-CA:
   added_as_a_part_of_a_taxon_merge_html: |
     Ajouté dans le cadre d'une 
     <a target="%{target}" class="%{class}" href="%{url}">fusion de taxon</a>
+  adding: "Ajout en cours…"
+  adjust_brightness: Ajuster la luminosité
+  admin: Admin
+  all_rights_reserved: tous droits réservés
+  all_taxa:
+    rank:
+      kingdom: Règne
+      class: Classe
+      phylum: Embranchement
+      species: Espèces
+      order: Ordre
+    amphibians: Amphibiens
+    animals: Animaux
+    arachnids: Arachnides
+    birds: Oiseaux
+    chromista: Chromistes
+    fungi: Champignons
+    fungi_including_lichens: Champignons y compris les lichens
+    insects: Insectes
+    mammals: Mammifères
+    mollusks: Mollusques
+    other_animals: Autres animaux
+    plants: Plantes
+    protozoans: Protozoaires
+    ray_finned_fishes: Poissons à nageoires rayonnées
+    reptiles: Reptiles
+    life: Êtres vivants
+    x_plantae:
+      one: "%{count} plante"
+      other: "%{count} plantes"
+    x_animalia:
+      one: "%{count} animal"
+      other: "%{count} animaux"
+  all_taxa_: Tous les taxons
+  all_taxa_in_this_guide: Tous les taxons dans ce guide
+  all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
+  all_updates: Toutes les mises à jour
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
     Êtes-vous sûr·e de vouloir supprimer ce taxon? Il a répertorié des taxons et des identifications
   #As in the Atom Syndication Format:
@@ -370,6 +449,14 @@ fr-CA:
           </table>
           <p>
           La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette) <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
+    messages:
+      show:
+        privacy_notice_html: |
+          Alors que les messages sont privés entre vous et le destinataire, l'équipe d'iNaturalist
+          peut également voir ces messages et le fera lorsque les messages
+          sont signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
+          veuillez considérer d'autres mécanismes de communication qui
+          prennent en charge un chiffrement fort.
     observations:
       export:
         export_in_progress_notice_html: |

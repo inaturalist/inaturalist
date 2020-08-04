@@ -3931,6 +3931,11 @@ ru:
   terms_service: Условия использования
   terrain: местность
   text: Текст
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Элементы управления текстовым блоком
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Управление форматированием текста
+  text_editing_controls: Управление редактированием текста
   thanks!: Спасибо!
   thanks_from_all_of_us_here_at: Спасибо от всех нас, примкнувших к
   that_photo_doesnt_exist: Это фото не существует.
@@ -4068,6 +4073,9 @@ ru:
   top_observer: Лучший Наблюдатель
   top_observers: Лучшие наблюдатели
   top_species: Больше всего видов
+  tos_privacy_guidelines_label: |
+    Я согласен <a href="/terms" target="_blank">условиями предоставления услуг</a> и
+    <a href="/privacy" target="_blank">политикой конфиденциальности</a>, а также ознакомился с <a href="/pages/community+guidelines" target="_blank">правилами сообщества</a>.
   total: Всего
   totals: Всего
   total_members: Общее число членов
@@ -4372,6 +4380,9 @@ ru:
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
   welcome_to_x_project: "Добро пожаловать в %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
@@ -4551,6 +4562,7 @@ ru:
   you_sure_delete_asset?: Вы уверены, что хотите удалить этот актив?
   you_sure_delete_check_list: "Вы уверены, что хотите удалить этот список? Возможно, некоторые люди вложили в него много труда..."
   you_sure_delete_comment?: Вы уверены, что хотите удалить данный комментарий?
+  you_sure_delete_identification?: Вы уверены, что хотите удалить эту идентификацию?
   you_sure_delete_custom_field?: Вы уверены, что хотите удалить эти настраиваемые поля?
   you_sure_delete_flag?: Вы уверены, что хотите удалить этот флаг?
   you_sure_delete_project?: Вы уверены, что хотите удалить этот проект?
@@ -4804,6 +4816,8 @@ ru:
       show:
         flag_notice_html: |
           Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
+        privacy_notice_html: |
+          Хотя сообщения являются конфиденциальными между вами и получателем, сотрудники iNaturalist также могут просматривать эти сообщения и будут делать это, когда сообщения будут помечены для модерации. Если вам требуется действительно личное общение, пожалуйста, изучите другие механизмы связи, которые поддерживают надежное шифрование.
     oauth:
       authorizations:
         new:
