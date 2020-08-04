@@ -4277,7 +4277,7 @@ nl:
   #Label for the most probable taxon in the automated suggestions. @gender
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
-  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
+  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
   what_did_you_see: Wat heb je gezien?
