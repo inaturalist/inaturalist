@@ -1731,6 +1731,10 @@ fr:
   label_to_group_a_batch_of_taxon_changes: Apposer une étiquette pour regrouper un lot de modifications de taxons
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Emplacement privé
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Localisation manquante
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Verrouiller le niveau de zoom
@@ -2081,6 +2085,10 @@ fr:
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Mois
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
@@ -4357,6 +4365,8 @@ fr:
   'yes': "Oui"
   yes_find_them!: "Oui, trouvez-les!"
   yes_i_want_to_join: Oui, je veux me joindre
+  yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
+  yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
   yes_reject_it: Oui, refusez le
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
@@ -6678,6 +6688,23 @@ fr:
       words_connector: ','
   time:
     am: am
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%I:%M %p"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%l:%M %p"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -6802,6 +6829,7 @@ fr:
         prefers_check_lists: Listes de contrôle autorisées?
         woeid: WOEID
       site:
+        logo: Logo textuel
         logo_email_banner: Bannière email
       source:
         title: Titre
