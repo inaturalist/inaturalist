@@ -4367,6 +4367,9 @@ sv:
   welcome_to_inat: "Välkommen till %{site_name}!"
   welcome_to_guides: "Välkommen till %{site_name} guider!"
   welcome_to_x_project: "Välkommen till %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Vi är ganska säkra på att detta tillhör %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklagar, men din bulkimport av %{filename} misslyckades."
   what: Vad
@@ -4458,8 +4461,6 @@ sv:
   'yes': "Ja"
   yes_find_them!: "Ja, hitta dem!"
   yes_i_want_to_join: Ja, jag vill gå med
-  yes_license_my_childs_observations: Ja, licensiera mitt barns bilder, ljud och observationer så att forskare kan använda uppgifterna.
-  yes_license_my_observations_so_scientists_can_use: Ja, licensiera mina bilder, ljud och observationer så att forskare kan använda uppgifterna.
   yes_reject_it: Ja, avvisa det
   yes_show_this_in_the_box: Ja, visa detta i den stora rutan högst upp i /taxa
   yesterday: I går

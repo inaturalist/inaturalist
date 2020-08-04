@@ -4180,6 +4180,9 @@ ca:
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
   welcome_to_x_project: "Benvingut al projecte %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
@@ -4264,8 +4267,6 @@ ca:
   'yes': "Sí­"
   yes_find_them!: "Sí, troba-les!"
   yes_i_want_to_join: Sí, desitjo unir-m’hi
-  yes_license_my_childs_observations: Sí, llicencia les meves fotos i observacions perquè els científics puguin usar les meves dades
-  yes_license_my_observations_so_scientists_can_use: Sí, crea una llicència de les meves fotos, sons i observacions perquè els científics puguin usar les meves dades
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir

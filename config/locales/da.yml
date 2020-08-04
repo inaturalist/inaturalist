@@ -3827,6 +3827,11 @@ da:
   terms_service: Servicevilkår
   terrain: terræn
   text: Tekst
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstblokkontroller
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstformateringskontroller
+  text_editing_controls: Tekstredigeringskontroller
   thanks!: Tak!
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
   that_photo_doesnt_exist: Dette foto eksisterer ikke.
@@ -3978,6 +3983,10 @@ da:
   top_observer: Top observatør
   top_observers: Top observatører
   top_species: Top arter
+  tos_privacy_guidelines_label: |
+    Jeg accepterer <a href="/terms" target="_blank">Tjenestevilkår</a> og
+    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemset
+    <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
   total_members: Samlet antal medlemmer
@@ -4281,6 +4290,9 @@ da:
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
   welcome_to_x_project: "Velkommen til %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
   what: Hvad
@@ -4368,8 +4380,8 @@ da:
   'yes': "Ja"
   yes_find_them!: "Ja, find dem!"
   yes_i_want_to_join: Ja, jeg ønsker at blive medlem
-  yes_license_my_childs_observations: Ja, licensér mit barns fotos, lyde og observationer, så forskere kan bruge data.
-  yes_license_my_observations_so_scientists_can_use: Ja, licensér mine billeder, lyde og observationer, så forskere kan bruge mine data.
+  yes_license_my_childs_observations: Ja, licensér mit barns fotos, lyde og observationer, så forskere kan bruge dataene (anbefales).
+  yes_license_my_observations_so_scientists_can_use: Ja, licensér mine fotos, lyde og observationer, så forskere kan bruge mine data (anbefales).
   yes_reject_it: Ja, afvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boks øverst på/taksa
   yesterday: I går
@@ -4456,6 +4468,7 @@ da:
   you_sure_delete_asset?: Er du sikker på at du vil slette dette aktiv?
   you_sure_delete_check_list: "Er du sikker på, at du vil slette denne liste? Nogle personer kan have lagt meget arbejde i den ..."
   you_sure_delete_comment?: Er du sikker på, at du vil slette denne kommentar?
+  you_sure_delete_identification?: Sikker på, at du vil slette denne identifikation?
   you_sure_delete_custom_field?: Er du sikker på, at du vil slette disse brugerdefinerede felter?
   you_sure_delete_flag?: Er du sikker på, at du vil slette denne markering?
   you_sure_delete_project?: Er du sikker på, at du vil slette dette projekt?
@@ -4762,6 +4775,11 @@ da:
         flag_notice_html: |
           Du satte d. %{date} et flag for denne samtale. Flaget forbliver sat, selv hvis du sletter din kopi af denne samtale, så det er sikkert at gøre det,
           hvis du ikke længere vil se dette.
+        privacy_notice_html: |
+          Selvom beskeder mellem dig og modtageren er private, kan iNaturalist-personale også se disse beskeder, og de vil gøre det, når beskeder er blevet
+          markeret til moderering. Har du behov for reel privat
+          kommunikation, så undersøg andre kommunikationsmuligheder, som
+          understøtter stærk kryptering.
     oauth:
       authorizations:
         new:

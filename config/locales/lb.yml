@@ -2,12 +2,18 @@ lb:
   x_comments:
     one: '1 Bemierkung'
     other: '%{count} Bemierkungen'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> Kommentar'
+    other: '<span class="count">%{count}</span> Kommentarer'
   x_identifications:
     one: '1 Identifikatioun'
     other: '%{count} Identifikatiounen'
   x_identifications_:
     one: '1 Identifikatioun'
     other: '%{count} Identifikatiounen'
+  x_languages:
+    one: "%{count} Sprooch"
+    other: "%{count} Sproochen"
   x_observations:
     one: "1 Observatioun"
     other: "%{count} Observatiounen"
@@ -39,12 +45,21 @@ lb:
   x_species:
     one: '1 Aart'
     other: '%{count} Aarten'
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} Aart</a>"
+    other: "<a href='%{url}'>%{count} Aarten</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Suggestioun gefiltert no:"
     other: "%{count} Suggestiounen gefiltert no:"
   x_taxa:
     one: "%{count} Taxon"
     other: "%{count} Taxa"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> Taxon observéiert"
+    other: "<span class='count'>%{count}</span> Taxa observéiert"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> Recherche-Grade Observatioun"
+    other: "<span class='count'>%{count}</span> Recherche-Grade Observatiounen"
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -106,6 +121,8 @@ lb:
   add_another_section: En aneren Abschnitt derbäisetzen
   add_another_subscription: En anert Abonnement derbäisetzen
   add_batch: E Saz derbäisetzen
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Fett Text afügen
   add_comment: Eng Bemierkung derbäisetzen
   add_conservation_status: Schutzstatus derbäisetzen
   add_countries: Länner derbäisetzen
@@ -114,6 +131,8 @@ lb:
   add_from_your_observations: Aus Ären Observatiounen derbäisetzen
   add_link: Link derbäisetzen
   add_id: ID bäisetzen
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Kursiven Text afügen
   add_new_lexicon: Neie Lexikon derbäisetzen
   add_new_place: Eng nei Plaz derbäisetzen
   add_new_rule: Eng nei Reegel derbäisetzen
@@ -243,7 +262,7 @@ lb:
   and: a(n)
   android: Android
   animals: Déieren
-  annotation: Notiz
+  annotation: Annotatioun
   annotations: Notizen
   announcement_was_successfully_created: Ukënnegung gouf ugeluecht.
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
@@ -329,6 +348,8 @@ lb:
   blog_widget: Blog Widget
   blue: blo
   blue_butterfly_etc: "blo, Päiperlek, asw."
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fetten Text
   breadcrumbs: Broutgrimmelen
   brown: brong
   browse_all_projects: All Projeten duerchsichen
@@ -532,6 +553,9 @@ lb:
   do_not_show_this_message_again: Dëse Message net,méi weisen
   doh_something_went_wrong: Ups, da ass eppes schif gaang.
   doh_something_went_wrong_error: "Ups et ass Eppes schif gaangen: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: SPENDEN
   done: Fäerdeg
   dont_send_me_email: "Schéckt mir keng E-Mailen!"
   double_click_to_finish: (duebele Klick fir ofzeschléissen)
@@ -705,6 +729,8 @@ lb:
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
   insects: Insekten
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Zitat afügen
   interactions: Interaktiounen
   internal_server_error: Interne Feeler um Server
   invitation: Invitatioun
@@ -714,6 +740,8 @@ lb:
   invite_your_friends: Invitéiert Är Frënn
   is_now: ass elo
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiven Text
   join: Matmaachen
   join_project: Bei dësem Projet matmaachen
   join_the_largest_group_of_naturalists_in_the_world: Gitt Member vum gréissten Naturaliste-Grupp op der Welt!
@@ -784,6 +812,8 @@ lb:
   life: Liewen
   link_your_google_account: Verbannt Äre Google Benotzerkont
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: verlinkten Text
   list: Lëscht
   list_deleted: Lëscht geläscht.
   list_saved: Lëscht gespäichert.
@@ -874,6 +904,8 @@ lb:
   momentjs:
     shortRelativeTime:
       future: "an %s"
+      #Short text representing 1 minute in the past
+      m: "1 min"
       #Short text representing %d minutes in the past
       mm: "%d Méint"
       #Short text representing 1 hour in the past
@@ -1008,6 +1040,7 @@ lb:
   observations_by_you_on_date: "Observatioune vun Iech de(n) %{date}"
   observation_date: Datum
   observation_date?: Datum?
+  observation_field_type_text: Text
   observation_rules: Observatiouns Regelen
   observation_was_deleted: Observatioun gouf geläscht.
   observation_without_media: Observatioun ouni Medien
@@ -1129,6 +1162,10 @@ lb:
       street: Strooss
       Subdivision: Ënnerdeelung
       subdivision: Ënnerdeelung
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: Sum
       Territory: Territoire
       territory: Territoire
       Time_Zone: Zäitzon
@@ -1354,6 +1391,9 @@ lb:
   show_more: Méi weisen
   show_observation_photos: Fotoe vun der Observatioun weisen
   show_off_your_recent_observations: Weist Är rezent Observatiounen op Ärem Blog oder Ärer Websäit!
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Uweisen vun deenen %{x} Éischten
   sign_in_with_provider: "Alogge mat %{provider}"
   sign_out: Ofmellen
   sign_up: Mellt Iech un
@@ -1372,6 +1412,8 @@ lb:
   source_: 'Quell:'
   source_wikipedia: "Quell: Wikipedia"
   source_list_: "Lëscht vun de Quellen"
+  source_eg:
+    in_text: 'z.B. Greene, 2000'
   sources: Quellen
   species_by_category: Aarten no Kategorie
   species_unknown: Aart onbekannt
@@ -1405,6 +1447,7 @@ lb:
   taxonomy_details_for: Taxonomesch Detailer fir
   tell_the_world_a_little_about_yourself: Zielt eis eppes vun Iech
   tell_us_why: Sot eis firwat...
+  text: Text
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
   that_project_doesnt_exist: "Dee Projet gëtt et net."
@@ -1534,6 +1577,9 @@ lb:
   x_deleted: "%{x} geläscht"
   x_does_not_exist: "\"%{x}\" gëtt et net"
   x_of_y: "%{x} vu(n) %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} vu(n) %{y}"
   x_project_stats: "%{project} Statistiken"
   x_sent_you_a_new_message_on_y_html: "%{x} huet Iech op %{y} en neie Message geschéckt:"
   year: Joer
@@ -1569,7 +1615,7 @@ lb:
   your_email_address: Är E-Mailadress
   your_membership: Är Memberschaft
   your_name_was_saved: Ären Numm gouf gespäichert.
-  your_observations: Är Bemierkungen
+  your_observations: Är Observatiounen
   your_projects: Är Projeten
   your_google_account: Äre Google Benotzerkont
   your_google_account_info: D'Informatioun vun Ärem Google-Benotzerkont
@@ -1582,6 +1628,8 @@ lb:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Plangt Dir %{site_name} bei Iech an der Klass ze benotzen?
+    donate:
+      post_donate_social_media_text: Ech ënnerstëtzen iNaturalist well ...
     guides:
       pdf_layouts:
         book: Buch
@@ -1589,6 +1637,9 @@ lb:
       from: Vum
       to: Fir
       subject: Sujet
+      show:
+        privacy_notice_html: |
+          Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
     oauth:
       authorizations:
         new:
@@ -1649,6 +1700,8 @@ lb:
         obs_1_day: "Observatiounen (1 Dag)"
         TTCID_desc: Zäit bis een eng Bestëmmung vun engem aneren kritt déi dem Community-Taxon entsprécht.
         TTID_desc: Zäit bis een eng Bestëmmung vun engem aneren kritt
+      year:
+        growth_by_country_title: Wuesstem no Land
     taxa:
       show:
         about_conservation_status_desc: |
@@ -1829,6 +1882,8 @@ lb:
         description: Beschreiwung
       place:
         name: Numm
+      source:
+        in_text: Am Text
       taxon:
         name: Numm
       user:

@@ -4011,6 +4011,9 @@ el:
   welcome_to_inat: "Καλώς ήρθατε στο %{site_name}!"
   welcome_to_guides: "Καλώς ήρθατε στους Οδηγούς του %{site_name}!"
   welcome_to_x_project: "Καλώς ήρθατε στο %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
   what: Τι
@@ -4096,8 +4099,6 @@ el:
   'yes': "Ναι"
   yes_find_them!: "Ναι, βρείτε τα!"
   yes_i_want_to_join: Ναι, θέλω να εγγραφτώ
-  yes_license_my_childs_observations: Ναι, να δώσετε άδεια στις φωτογραφίες, ήχους και παρατηρήσεις του παιδιού μου ώστε οι επιστήμονες να μπορούν να χρησιμοποιούν τα δεδομένα.
-  yes_license_my_observations_so_scientists_can_use: Ναι, να δώσετε άδεια στις φωτογραφίες, ήχους και παρατηρήσεις μου ώστε οι επιστήμονες να μπορούν να χρησιμοποιούν τα δεδομένα.
   yes_reject_it: Ναι, απορρίψτε το
   yes_show_this_in_the_box: Ναι, να προβάλλεται αυτό στο μεγάλο κουτί στην κορυφή /taxa
   yesterday: Εχθές

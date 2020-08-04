@@ -267,11 +267,17 @@ he:
   add: הוספה
   add_a_batch_of_observations: הוספת תצפיות מרובות
   add_a_batch_of_taxa: הוספת טקסונים מרובים
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: הוספת רשימת תבליטים
   add_a_comment: הוספת תגובה
   add_a_field: הוספת שדה
   add_a_flag: הוספת דגל
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: הוספת קישור
   add_a_name: הוספת שם
   add_a_new_change_group: הוספת קבוצת שינוי חדשה
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: הוספת רשימה ממוספרת
   add_a_single_observation: הוספת תצפית אחת.
   add_a_taxon: הוספת טקסון
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -294,6 +300,8 @@ he:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: הוספת נכס
   add_batch: להוסיף כמה
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: הוסף טקסט עבה
   add_comma_separated_tags: "הוספת תגיות (מופרדות בפסיקים)"
   add_comment: הוספת תגובה
   add_conservation_status: הוספת סטטוס שימור
@@ -306,6 +314,8 @@ he:
   add_link: הוספת קישור
   add_higher_level_taxon: הוספת טקסון ברמה גבוהה יותר (למשל "ציפורים")
   add_id: הוספת מזהה (ID)
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: הוסף טקסט נטוי
   add_new_lexicon: הוספת לקסיקון חדש
   add_new_photos_by_their_ids: הוספת תמונות חדשות באמצעות מזהי ה־Flickr שלהן (התמונות חייבות להיות ברישיון Creative Commons!)
   add_new_place: הוספת מקום חדש
@@ -726,6 +736,8 @@ he:
   body: גוף
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong>%{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: טקסט עבה
   bounding_box: תיבת מסגרת
   breadcrumbs: סימני דרך
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -3302,6 +3314,7 @@ he:
   terms_service: תנאי השירות
   terrain: קרקע
   text: טקסט
+  text_editing_controls: בקרי עריכת טקסט
   thanks!: תודה!
   thanks_from_all_of_us_here_at: תודה מכולנו
   that_photo_doesnt_exist: תמונה זו אינה קיימת
@@ -3573,6 +3586,9 @@ he:
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
   welcome_to_x_project: "ברוכים הבאים ל%{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: אנחנו יחסית בטוחים שזה בתוך ה%{rank}
   what: מה
   what_did_you_see: מה ראית?

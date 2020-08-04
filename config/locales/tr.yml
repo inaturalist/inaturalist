@@ -4227,6 +4227,9 @@ tr:
   welcome_to_inat: "%{site_name}'e hoş geldiniz!"
   welcome_to_guides: "%{site_name} Rehberlerine Hoş geldiniz!"
   welcome_to_x_project: "%{project}'e hoş geldiniz"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Bunun %{rank} içinde olduğundan oldukça eminiz
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Üzgünüz, %{filename} toplu içe aktarma işlemin başarısız oldu."
   what: Ne
@@ -4313,8 +4316,6 @@ tr:
   'yes': "Evet"
   yes_find_them!: "Evet, onları bul!"
   yes_i_want_to_join: Evet, katılmak istiyorum
-  yes_license_my_childs_observations: Evet, çocuğumun fotoğraflarını, seslerini ve gözlemlerini lisansla, böylece bilim insanları verileri kullanabilir.
-  yes_license_my_observations_so_scientists_can_use: Evet, fotoğraflarımı, seslerimi ve gözlemlerimi lisansla, böylece bilim insanları verilerimi kullanabilir.
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
   yesterday: Dün

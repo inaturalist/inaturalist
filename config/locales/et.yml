@@ -3533,6 +3533,9 @@ et:
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
   welcome_to_x_project: "Teretulemast projekti %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
@@ -3607,7 +3610,6 @@ et:
   'yes': "Jah"
   yes_find_them!: "Jah, leia need!"
   yes_i_want_to_join: Jah, soovin liituda
-  yes_license_my_observations_so_scientists_can_use: Jah, litsenseerige mu fotosid, helisid ja vaatlusid, et teadlased saaksid mu andmeid kasutada!
   yes_reject_it: Jah, lükka tagasi
   yes_show_this_in_the_box: Jah, näita seda taksoni päises olevas suures kastis
   yesterday: Eile
