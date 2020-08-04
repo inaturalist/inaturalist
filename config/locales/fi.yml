@@ -1694,6 +1694,10 @@ fi:
   labels: Merkinnät
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Yksityinen sijainti
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Puuttuva sijainti
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lukitse zoomaustaso
@@ -1823,6 +1827,7 @@ fi:
   list_was_successfully_created: Luettelo luotiin onnistuneesti.
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
+  listed_taxon_updated: Listattu taksoni päivitetty
   listing_lists: Luettelointiluettelot
   listing_project_assets: Luettelo projektitiedostoista
   listing_taxa: Taksonien luettelointi
@@ -1949,13 +1954,14 @@ fi:
   maps:
     overlays:
       all_observations: Kaikki havainnot
-      every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka luotu iNaturalist Network -verkossa
+      every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka on luotu iNaturalist-verkossa
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
       gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
       observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
+      checklist_places_description: Paikat, joissa tämä taksoni on listattu
       range: Väli
   map_tooltip: Näytä karttanäkymä
   mark_as_reviewed: Merkitse tarkastetuksi
@@ -3588,6 +3594,11 @@ fi:
   terms_service: Käyttöehdot
   terrain: maasto
   text: Teksti
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstikappaleen muotoilu
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstin muotoilu
+  text_editing_controls: Tekstin muokkaus
   thanks!: Kiitos!
   thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta täällä sivustolla
   that_photo_doesnt_exist: Kuvaa ei ole olemassa.
@@ -3684,6 +3695,8 @@ fi:
   top_observer: Paras havainnoija
   top_observers: Eniten havainnoineet
   top_species: Kaikkein edustavimmat lajit
+  tos_privacy_guidelines_label: |
+    Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">yksityisyyskäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
   total: Yhteensä
   totals: Yhteensä
   total_members: Jäseniä yhteensä
@@ -4018,6 +4031,8 @@ fi:
   'yes': "Kyllä"
   yes_find_them!: "Kyllä, hae ne!"
   yes_i_want_to_join: Kyllä, haluan liittyä
+  yes_license_my_childs_observations: Kyllä, lisensoi lapseni ottamat valokuvat, äänitteet ja havainnot niin että tutkijat voivat käyttää niitä.
+  yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
   you: sinä
@@ -4079,6 +4094,7 @@ fi:
   you_sure_delete_asset?: Haluatko varmasti poistaa tämän omaisuuden?
   you_sure_delete_check_list: "Haluatko varmasti poistaa tämän luettelon? Jotkut ihmiset ovat saattaneet tehdä paljon työtä sen eteen..."
   you_sure_delete_comment?: Haluatko varmasti poistaa tämän kommentin?
+  you_sure_delete_identification?: Haluatko varmasti poistaa tämän tunnistuksen?
   you_sure_delete_custom_field?: Haluatko varmasti poistaa nämä mukautetut kentät?
   you_sure_delete_flag?: Haluatko varmasti poistaa tämän lipun?
   you_sure_delete_project?: Haluatko varmasti poistaa tämän projektin?
@@ -4254,6 +4270,8 @@ fi:
       show:
         flag_notice_html: |
           Olet tehnyt huomautuksen (liputtanut) tähän keskusteluun päivämäärällä %{date}. Huomautus (lippu) säilyy järjestelmässä vaikka poistaisin oman kopion tästä keskustelusta, joten voit turvallisesti poistaa sen omasta näkymästäsi, jos haluat.
+        privacy_notice_html: |
+          Viestin näkevät sinä, vastaanottaja sekä iNaturalistin ylläpitäjät. Ylläpitäjät lukevat viestin, mikäli se merkitään tarkistusta vaativaksi (moderoitavaksi). Jos haluat viestiä täysin yksityisesti, käytä jotakin muuta viestintäkanavaa, jossa viestin voi salata.
     oauth:
       authorizations:
         new:
@@ -4901,7 +4919,7 @@ fi:
         TTID_desc: Aika saada tunnistus joltakulta
         website_desc_html: |
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
-          tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
+          tai <a href="%{url}">iNaturalist-verkon</a> verkkosivustojen kautta
       year:
         inaturalist_network: iNaturalist-verkosto
         include_usa: Sisällytä Yhdysvallat
