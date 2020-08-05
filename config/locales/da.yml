@@ -1992,6 +1992,9 @@ da:
       range: Område
   map_tooltip: Vis kortvisning
   mark_as_reviewed: Markér som gennemgået
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Markering af en observation som gennemgået betyder, at du som udgangspunkt ikke vil se den igen i Identificér. Den er dog stadig synlig for andre under Identificér.
   mark_all_as_reviewed: Markér alle som gennemgået
   mark_all_as_unreviewed: Markér alle som ikke gennemgået
   matching_species_will_shown_up_here: Matchende arter vil dukke op her. Kortene vil vise et område, hvis %{place} har en for den pågældende art.
