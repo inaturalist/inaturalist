@@ -2000,6 +2000,9 @@ nl:
       range: Bereik
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Een waarneming als nagekeken markeren betekent dat je het standaard niet opnieuw zult zien bij het determineren. Het is nog steeds zichtbaar voor anderen bij het determineren.
   mark_all_as_reviewed: Alles als nagekeken markeren
   mark_all_as_unreviewed: Alles als niet nagekeken markeren
   matching_species_will_shown_up_here: Overeenkomende soorten worden hier weergegeven. De kaarten tonen een bereik als %{place} er één heeft voor die soort.
@@ -3832,6 +3835,11 @@ nl:
   terms_service: Gebruiksvoorwaarden
   terrain: terrein
   text: Tekst
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstblok-elementen
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstvormgevings-elementen
+  text_editing_controls: Tekstbewerkings-elementen
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
   that_photo_doesnt_exist: Die foto bestaat niet.
@@ -3975,6 +3983,10 @@ nl:
   top_observer: Top Waarnemer
   top_observers: Top Waarnemers
   top_species: Top Soorten
+  tos_privacy_guidelines_label: |
+    Ik ga akkoord met de <a href="/terms" target="_blank">gebruiksvoorwaarden</a> en het
+    <a href="/privacy" target="_blank">privacybeleid</a>, en ik heb
+    de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
   totals: totalen
   total_members: Totaal aantal leden
@@ -4364,6 +4376,8 @@ nl:
   'yes': "Ja"
   yes_find_them!: "Ja, vind ze!"
   yes_i_want_to_join: Ja, ik wil meedoen
+  yes_license_my_childs_observations: Ja, licentieer de foto's, geluiden en waarnemingen van mijn kind, zodat wetenschappers de gegevens kunnen gebruiken (aanbevolen).
+  yes_license_my_observations_so_scientists_can_use: Ja, licentieer mijn foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken (aanbevolen).
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
