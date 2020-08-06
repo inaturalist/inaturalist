@@ -1954,6 +1954,10 @@ de:
       range: Verbreitungsgebiet
   map_tooltip: Kartenansicht anzeigen
   mark_as_reviewed: Als "begutachtet" markieren
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Wenn du eine Beobachtung als 'überprüft' markierst, wirst du sie nicht mehr 
+    standardmäßig im ID-Modul sehen. Für andere Personen wird sie aber weiterhin sichtbar sein.
   mark_all_as_reviewed: Alle als "begutachtet" markieren
   mark_all_as_unreviewed: Alle als "nicht begutachtet" markieren
   matching_species_will_shown_up_here: Entsprechende Arten werden hier erscheinen. Die Karten zeigen das Verbreitungsgebiet an, falls %{place} eine Beobachtung für diese Art hat.

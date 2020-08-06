@@ -2007,6 +2007,9 @@ fr:
       range: Aire de répartition
   map_tooltip: Afficher la vue de la carte
   mark_as_reviewed: Marquer comme relu
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Marquer une observation comme revue signifie qu'elle n'apparaîtra plus par défaut dans l'onglet "Identifier". Par contre elle sera toujours visible pour identification par d'autres personnes.
   mark_all_as_reviewed: Marquer l’ensemble comme relu
   mark_all_as_unreviewed: Marquer tout comme non relu
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe à %{place}.

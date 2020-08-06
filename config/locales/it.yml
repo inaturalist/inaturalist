@@ -1978,6 +1978,10 @@ it:
       range: Areale
   map_tooltip: Mostra la visualizzazione a mappa
   mark_as_reviewed: Contrassegna come revisionata
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Contrassegnare un'osservazione come revisionata significa che non la vedrai più
+    in maniera predefinita nella sezione "Identifica". Sarà ancora visibile alle altre persone nella sezione "Identifica".
   mark_all_as_reviewed: Segna tutto come revisionato
   mark_all_as_unreviewed: Contrassegna tutto come non controllato
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per la specie.
