@@ -178,10 +178,10 @@ class Suggestions extends React.Component {
       query.source === "checklist"
       && response
       && response.results.length > 0
-      && _.uniq( response.results.map( r => r.sourceKey ) ).length === 1
-      && response.results[0].sourceDetails.listedTaxon.list.comprehensive
+      && response.comprehensiveness
+      && response.comprehensiveness.list
     ) {
-      comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
+      comprehensiveList = response.comprehensiveness.list;
     }
     let defaultPlaces = observation.places;
     if ( query.place && query.place.ancestors ) {
@@ -205,8 +205,9 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["frequency", "taxonomy"]}
-                defaultChoice="frequency"
+                choices={["default", "taxonomy"]}
+                choiceLabels={{ default: "default_" }}
+                defaultChoice="default"
                 preIconClass={false}
                 postIconClass="fa fa-angle-down"
                 hideClear
@@ -297,16 +298,19 @@ class Suggestions extends React.Component {
                     href={`/lists/${comprehensiveList.id}`}
                   >
                     { comprehensiveList.title }
-                    { " "}
-                    { comprehensiveList.source ? (
-                      <span>
-                        { "(" }
-                        { I18n.t( "label_colon", { label: I18n.t( "source_" ) } )}
-                        { " " }
-                        { comprehensiveList.source.in_text }
-                        { ")" }
-                      </span>
-                    ) : null }
+                    { " " }
+                    { comprehensiveList.source && (
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: `(${
+                            I18n.t( "bold_label_colon_value_html", {
+                              label: I18n.t( "source" ),
+                              value: comprehensiveList.source.in_text
+                            } )
+                          })`
+                        }}
+                      />
+                    ) }
                   </a>
                 </div>
               ) : null }

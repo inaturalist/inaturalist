@@ -261,6 +261,7 @@ namespace :inaturalist do
       "date_format.month",
       "date_picker",
       "date_updated",
+      "default_",
       "desc",
       "edit_license",
       "endemic",
