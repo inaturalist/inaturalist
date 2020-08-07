@@ -1577,8 +1577,8 @@ es-AR:
   label_colon: "%{label}:"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nombre de la etiqueta para agrupar los cambios de especie o grupo
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localización privada
-  location_unknown: Ubicación desconocida
   language_slash_type: Idioma / Tipo
   #Large photo size
   large: gran
@@ -2021,7 +2021,6 @@ es-AR:
   newly_added: Añadido Recientemente
   newly_added_species: Especie Añadida recientemente
   newly_observed_species: Especie Observada recientemente
-  news: Noticias
   next: Siguiente
   next_observation: Siguiente observación
   next_page: Página siguiente
@@ -3054,7 +3053,6 @@ es-AR:
   remember_me: Recordarme
   remove: Quitar
   remove_all_tags: Retire todas las etiquetas
-  remove_boundary: Quitar límites
   remove_comma_separated_tags: "Quita las etiquetas separadas por comas"
   remove_conservation_status: Eliminar estado de conservación
   remove_from: Quitar de
@@ -3590,7 +3588,6 @@ es-AR:
     El identotrón es una herramienta para identificar observaciones basadas en las listas de comprobación de %{site_name}. Dada una clase y un lugar (ej. mamíferos y la India), %{site_name} buscará por listas de comprobación que coincidan con ese taxón en ese lugar, es como una guía de campo dinámica del planeta entero. En la mayoría de las listas de comprobación aún se esta trabajando, pero si existe alguna lista que sea exhaustiva, es decir que liste <em>todos</em> los taxones representativos de ese lugar, el identotrón mostrará un aviso.
   the_name_of_the_taxon_including_space: El nombre de especie/grupo, incluyendo el espacio para especies e infraespecies.
   the_observation_was_already_added_to_that_project: La observación fue añadida recientemente al proyecto.
-  the_past: el pasado
   the_people_of_inat: "La gente de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Las especies enumeradas a continuación no se encontraron en la base de datos de %{site_name}.
@@ -3976,6 +3973,9 @@ es-AR:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
@@ -4056,8 +4056,6 @@ es-AR:
   'yes': "Sí"
   yes_find_them!: "¡Sí, encuéntrelas!"
   yes_i_want_to_join: Sí, deseo unirme
-  yes_license_my_childs_observations: Sí, hacer una licencia de mis fotos, sonidos y observaciones para que los científicos puedan usar los datos
-  yes_license_my_observations_so_scientists_can_use: Sí; dar licencia a científicos para que puedan utilizar mis fotografías, sonidos y observaciones.
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer

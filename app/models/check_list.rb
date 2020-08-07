@@ -186,7 +186,11 @@ class CheckList < List
           listed_taxon.destroy
         end
       end
-      Taxon.elastic_index!(scope: Taxon.where(id: batch.map(&:taxon_id).uniq))
+      batch.map( &:taxon_id ).uniq.each do |taxon_id|
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_id }).
+          elastic_index!(ids: [taxon_id])
+      end
     end
     true
   end

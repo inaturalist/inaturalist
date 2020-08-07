@@ -1221,7 +1221,6 @@ bg:
   label_colon: "%{label}:"
   labels: Етикети
   label_to_group_a_batch_of_taxon_changes: Етикет за групиране на множество таксономични промени
-  location_unknown: Неизвестно местоположение
   language_slash_type: Език / Тип
   #Large photo size
   large: голям
@@ -1398,9 +1397,9 @@ bg:
   location_specified: Указано местонахождение
   log_in: Влизане
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Влезте</a> или <a href="/signup">се регистрирайте</a> за да добавяте коментари.
+    <a href="/log_in">Влезте</a> или <a href="/sign_up">се регистрирайте</a> за да добавяте коментари.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Влезте</a> или <a href="/signup">се регистрирайте</a> за да добавяте разпознавания.
+    <a href="/log_in">Влезте</a> или <a href="/sign_up">се регистрирайте</a> за да добавяте разпознавания.
   login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
@@ -1567,6 +1566,7 @@ bg:
   needs_id_: Нуждае се от разпознаване
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
   needs_to_be_identified: Нуждае се от разпознаване
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от iNaturalist.org на %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
@@ -1597,7 +1597,6 @@ bg:
   new_taxon_name_for: Ново име на таксон за
   new_users: Нови потребители
   new_users_w_7_obs: Нови потребители със 7 набл.
-  news: Новини
   next: След.
   next_observation: Следващо наблюдение
   next_page: След. страница
@@ -2731,7 +2730,6 @@ bg:
   the_below_items_are_needed_to_achieve: |
     Долните елементи са необходими за достигане на <span className="bold">Изследователско качество:</span>
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
-  the_past: миналото
   the_people_of_inat: "Хората на %{site_name}"
   the_user_x_has_been_suspended: "Потребителят %{user} беше запориран"
   the_user_x_has_been_unsuspended: "Потребителят %{user} беше възстановен"
@@ -2953,6 +2951,9 @@ bg:
   website: Уебсайт
   welcome_back: Добре дошли отново
   welcome_to_guides: "Добре дошли в Ръководствата на %{site_name}!"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what_did_you_see: Какво наблюдавахте?
   what_do_you_think: Какво мислите?
@@ -3004,7 +3005,6 @@ bg:
   'yes': "Да"
   yes_find_them!: "Да, намери ги!"
   yes_i_want_to_join: Да, искам да се присъединя
-  yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
   you: Вас
   you_: Вас

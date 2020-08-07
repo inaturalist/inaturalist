@@ -1722,8 +1722,12 @@ nl:
   label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label om een batch van taxonwijzigingen te groeperen
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Locatie privé
-  location_unknown: Locatie onbekend
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Locatie ontbreekt
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomniveau vergrendelen
@@ -1841,6 +1845,8 @@ nl:
   linked_flickr_automatically: "Bedenk ook dat wanneer je op %{site_name} inlogt via Flickr, we je %{site_name}- en Flickraccounts automatisch opnieuw koppelen. Het lijkt ons redelijk dat je, als je Flickr gebruikt, je Flickrfoto's wilt kunnen importeren, toch?"
   linked_flickr_description: "Door je account op %{site_name} aan je Flickr-account gekoppeld te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te voegen. Uiteraard is het geen probleem als je %{site_name} en Flickr wilt opsplitsen, wij zullen je niet tegenhouden, je zal dan alleen geen foto's meer kunnen toevoegen. Dat is soms misschien het beste, zoals wanneer je een nieuw Flickr-account aanmaakt om aan %{site_name} te koppelen."
   linked_flickr_password_html: "<strong>We vragen nooit naar je Flickr-wachtwoord</strong> (maar Flickr kan dat wel doen, controleer dat de url die de knop je stuurt Flickr.com is)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: gekoppelde tekst
   linkedin: LinkedIn
   list: Lijst
   list_deleted: Lijst verwijderd.
@@ -1929,6 +1935,10 @@ nl:
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Taxa die op slot zijn gezet staan niet toe dat er nieuwe onderliggende taxa aan worden toegevoegd. Als je Reptilia op slot zet en iemand probeert <i>Zootoca carniolica</i> te importeren van een externe naamaanbieder, dan wordt het nieuwe taxon aangemaakt, maar kan het niet worden geclassificeerd als een reptiel. Wanneer dit gebeurt, moeten de nieuw toegevoegde taxa worden gemeld aan de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan we denken dat we alle onderliggende taxa al hebben. Curatoren kunnen dit omzeilen door taxa rechtstreeks te bewerken en ouder-ID's in te voeren, maar overweeg alsjeblieft nieuwe taxa samen te voegen met bestaande.
   log_in: Aanmelden
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om reacties toe te voegen.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om determinaties toe te voegen.
   log_scale_label: Logboek
   login_slash_username: Login / gebruikersnaam
   logo:
@@ -1990,6 +2000,9 @@ nl:
       range: Bereik
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Een waarneming als nagekeken markeren betekent dat je het standaard niet opnieuw zult zien bij het determineren. Het is nog steeds zichtbaar voor anderen bij het determineren.
   mark_all_as_reviewed: Alles als nagekeken markeren
   mark_all_as_unreviewed: Alles als niet nagekeken markeren
   matching_species_will_shown_up_here: Overeenkomende soorten worden hier weergegeven. De kaarten tonen een bereik als %{place} er één heeft voor die soort.
@@ -2031,6 +2044,8 @@ nl:
   misleading_or_illegal_content_html: |
     Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
     <a href="/help#inappropriate">Veelgestelde vragen (FAQ)</a>.
+  #Label shown when a date has not been entered
+  missing_date: Datum ontbreekt
   mobile: Mobiel
   mollusks: weekdieren
   momentjs:
@@ -2143,9 +2158,16 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, deel van het internationale iNaturalist
     netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, deel van het internationale iNaturalist
+    netwerk, is gericht op biodiversiteit en mensen in Finland. Wilt je je account verbinden aan iNaturalist Suomi in plaats van iNaturalist.org?
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
@@ -2193,7 +2215,6 @@ nl:
   newly_added_species: Nieuw toegevoegde soorten
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
-  news: Nieuws
   next: Volgende
   next_observation: Volgende waarneming
   next_page: Volgende pagina
@@ -3287,7 +3308,6 @@ nl:
   remember_me: Instellingen onthouden
   remove: Verwijderen
   remove_all_tags: Alle labels verwijderen
-  remove_boundary: Grens verwijderen
   remove_comma_separated_tags: "Door komma's gescheiden labels verwijderen"
   remove_conservation_status: verwijder Natuurbeschermingstatus
   remove_from: Verwijder van
@@ -3815,6 +3835,11 @@ nl:
   terms_service: Gebruiksvoorwaarden
   terrain: terrein
   text: Tekst
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstblok-elementen
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstvormgevings-elementen
+  text_editing_controls: Tekstbewerkings-elementen
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
   that_photo_doesnt_exist: Die foto bestaat niet.
@@ -3843,7 +3868,6 @@ nl:
     dat taxon op een plaats bevat, dan zal de Identotron dat vermelden.
   the_name_of_the_taxon_including_space: De naam van het taxon, inclusief de ruimte voor soorten en infraspecies.
   the_observation_was_already_added_to_that_project: De waarneming werd reeds aan dit project toegevoegd.
-  the_past: het verleden
   the_people_of_inat: "De mensen van %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     De onderstaande soorten zijn niet gevonden in de %{site_name}-database.
@@ -3959,6 +3983,10 @@ nl:
   top_observer: Top Waarnemer
   top_observers: Top Waarnemers
   top_species: Top Soorten
+  tos_privacy_guidelines_label: |
+    Ik ga akkoord met de <a href="/terms" target="_blank">gebruiksvoorwaarden</a> en het
+    <a href="/privacy" target="_blank">privacybeleid</a>, en ik heb
+    de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
   totals: totalen
   total_members: Totaal aantal leden
@@ -4258,6 +4286,9 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
@@ -4318,7 +4349,7 @@ nl:
   x_observations_failed:
     one: "%{count} waarneming mislukt"
     other: "%{count} waarnemingen mislukt"
-  x_of_y: "%{x} o=van %{y}"
+  x_of_y: "%{x} van %{y}"
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
@@ -4345,8 +4376,8 @@ nl:
   'yes': "Ja"
   yes_find_them!: "Ja, vind ze!"
   yes_i_want_to_join: Ja, ik wil meedoen
-  yes_license_my_childs_observations: Ja, zet een licentie op de foto's, geluiden en waarnemingen van mijn kind, zodat wetenschappers haar gegevens kunnen gebruiken.
-  yes_license_my_observations_so_scientists_can_use: Ja, zet een licentie op mijn foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken.
+  yes_license_my_childs_observations: Ja, licentieer de foto's, geluiden en waarnemingen van mijn kind, zodat wetenschappers de gegevens kunnen gebruiken (aanbevolen).
+  yes_license_my_observations_so_scientists_can_use: Ja, licentieer mijn foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken (aanbevolen).
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
@@ -4429,6 +4460,7 @@ nl:
   you_sure_delete_asset?: Weet je zeker dat je dit projectbestand wilt verwijderen?
   you_sure_delete_check_list: "Weet je zeker dat je deze lijst wilt verwijderen? Sommige mensen hebben er misschien veel werk in gestopt..."
   you_sure_delete_comment?: Weet je zeker dat je deze reactie wilt verwijderen?
+  you_sure_delete_identification?: Weet je zeker dat je deze determinatie wilt verwijderen?
   you_sure_delete_custom_field?: Weet je zeker dat je deze aangepaste velden wilt verwijderen?
   you_sure_delete_flag?: Weet je zeker dat je deze melding wilt verwijderen?
   you_sure_delete_project?: Weet je zeker dat je dit project wilt verwijderen?
@@ -4697,6 +4729,8 @@ nl:
       show:
         flag_notice_html: |
           Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
+        privacy_notice_html: |
+          De berichten tussen jou en de ontvanger zijn privé, maar iNaturalist kan deze berichten ook bekijken en zal dit doen wanneer berichten zijn gemarkeerd voor moderatie. Als je echt privécommunicatie nodig hebt, kijk dan naar andere communicatiemechanismen met een sterke versleuteling.
     oauth:
       authorizations:
         new:

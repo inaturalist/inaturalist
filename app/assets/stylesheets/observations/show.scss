@@ -1,21 +1,16 @@
-@import "../colors";
-@import "../shared/split_taxon";
-@import "../shared/annotations";
-@import "../shared/observation_fields";
-@import "../shared/quality_metrics";
-@import "../shared/loading_spinner";
-@import "../shared/activity_item";
-@import "../shared/taxon_autocomplete";
-@import "../shared/user_with_icon";
-@import "../users/user_popover";
-@import "../users/user_image";
+@import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../shared/disagreement_alert";
 @import "../shared/flash_message";
-@import "../shared/modals";
-@import "../shared/text_editor";
-@import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
-@import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 @import "../shared/full_screen_modal";
+@import "../shared/loading_spinner";
+@import "../shared/modals";
+@import "../shared/observation_fields";
+@import "../shared/quality_metrics";
+@import "../shared/split_taxon";
+@import "../shared/user_with_icon";
+@import "../users/user_image";
+@import "../users/user_popover";
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
 
@@ -75,6 +70,15 @@
         }
       }
     }
+  }
+}
+
+@mixin editor-textarea {
+  textarea {
+    min-height: 125px;
+    resize: vertical;
+    border-radius: 3px;
+    background: $light-grey;
   }
 }
 
@@ -487,6 +491,14 @@ a.UserImage,
       }
     }
   }
+  .edit-comment-id {
+    @include editor-textarea;
+  }
+  .identification {
+    .edit-comment-id {
+      padding-top: 1em;
+    }
+  }
   .comment_id_panel {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
@@ -532,12 +544,7 @@ a.UserImage,
           width: 100%;
         }
       }
-      textarea {
-        min-height: 125px;
-        resize: vertical;
-        border-radius: 3px;
-        background: $light-grey;
-      }
+      @include editor-textarea;
       .id_tab {
         input[type="text"] {
           border-radius: 0px 3px 3px 0px;
@@ -1025,9 +1032,12 @@ h3, h4 {
   }
   .review {
     float: right;
-    line-height: 34px;
+    position: relative;
+    top: 2px;
     input {
-      margin-right: 5px;
+      position: relative;
+      top: 2px;
+      left: -5px;
     }
   }
   .ac-select-thumb i {

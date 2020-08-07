@@ -28,29 +28,8 @@
     .g-recaptcha{ data: { sitekey: @site.google_recaptcha_key, callback: "recaptchaCallback" }, style: "text-align: center" }
     - if u.errors && !u.errors[:recaptcha].blank?
       .error= u.errors[:recaptcha].to_sentence
-#licensing.form-group.checkbox
-  %label
-    %input#license-all{ type: "checkbox", checked: true }
-    #license-fields.hidden
-      = f.check_box :preferred_observation_license, { checked: true }, Observation::CC_BY_NC
-      = f.check_box :preferred_photo_license, { checked: true }, Observation::CC_BY_NC
-      = f.check_box :preferred_sound_license, { checked: true }, Observation::CC_BY_NC
-    %span
-      - if child
-        =t :yes_license_my_childs_observations
-      - else 
-        =t :yes_license_my_observations_so_scientists_can_use
-      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
-        =t :learn_more
-#pi-consent.form-group.checkbox
-  %label
-    = f.check_box :pi_consent, required: true
-    %span
-      - if child
-        =t :pi_consent_child_label
-      - else 
-        =t :pi_consent_label
-      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:pi_consent_desc_html, privacy_url: privacy_policy_url, terms_url: terms_of_service_url ), placement: "top" }, title: t(:pi_consent_desc_title) }
-        =t :learn_more
+= render "users/registrations/licensing", f: f, child: child
+= render "users/registrations/pi_consent", f: f, child: child
+= render "users/registrations/tos_privacy_guidelines", f: f
 .form-group.hidden
   = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }

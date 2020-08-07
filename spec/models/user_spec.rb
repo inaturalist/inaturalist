@@ -903,6 +903,16 @@ describe User do
         expect( Identification.find_by_id( other_ident.id ) ).not_to be_blank
       end
     end
+
+    it "should update flaggable_user_id" do
+      o = Observation.make!( user: reject )
+      f = Flag.make!( flaggable: o )
+      expect( f.flaggable_user_id ).to eq reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      f.reload
+      expect( f.flaggable_user_id ).to eq keeper.id
+    end
   end
 
   describe "suggest_login" do

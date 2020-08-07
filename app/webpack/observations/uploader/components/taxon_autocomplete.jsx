@@ -166,7 +166,10 @@ class TaxonAutocomplete extends React.Component {
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
-            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", { rank: item.rank } );
+            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+              rank: item.rank,
+              gender: item.rank
+            } );
             ul.append( `<li class='category'>${label}:</li>` );
           } else if ( !speciesCategoryShown ) {
             const label = I18n.t( "here_are_our_top_species_suggestions" );

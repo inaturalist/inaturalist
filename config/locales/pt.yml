@@ -1346,8 +1346,8 @@ pt:
   kml_file_size_error: "KML deve ter menos de 1 MB de tamanho"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Etiqueta para agrupar um lote de alterações do táxon
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localização Privada
-  location_unknown: Localização Desconhecida
   language_slash_type: Língua / Tipo
   #Large photo size
   large: grande
@@ -1721,7 +1721,6 @@ pt:
   new_users: Novos utilizadores
   new_users_w_7_obs: Utentes novos com 7 Obs
   newly_added: Adicionado recentemente
-  news: Notícias
   next: Seguinte
   next_observation: Próxima Observação
   next_page: Página seguinte
@@ -2435,7 +2434,6 @@ pt:
   remember_me: Memorizar-me
   remove: Remover
   remove_all_tags: Remova todas as etiquetas
-  remove_boundary: Remover limites
   remove_comma_separated_tags: "Remover etiquetas separadas por vírgulas"
   remove_conservation_status: remover o estatuto de conservação
   remove_from: Remover de
@@ -2764,7 +2762,6 @@ pt:
   the_admin_is_the_person_who: |
     O administrador é a pessoa que criou o projeto. Ele faz tudo que os gestores e os curadores fazem, mas é o único que pode eliminar o projeto.
   the_observation_was_already_added_to_that_project: A observação já foi adicionada a este projeto.
-  the_past: o passado
   the_world: O Mundo
   then_keybord_sequence: depois
   there_were_problems_adding_that_observation_to_this_project: "Houve problemas ao adicionar essa observação a este projeto:"
@@ -2895,7 +2892,6 @@ pt:
   x_flagged: "%{x} sinalizado(a)"
   x_flagged_as_flag: "%{x} sinalizado(a) como %{flag}"
   yes_i_want_to_join: Sim, quero participar
-  yes_license_my_observations_so_scientists_can_use: Sim, crie uma licença para as minhas imagens, sons e observações para que os cientistas possam utilizar os meus dados!
   yesterday: Ontem
   you_cant_flag_that: Não pode sinalizar isso
   you_sure_delete_flag?: Tem a certeza que quer eliminar este sinalizador?

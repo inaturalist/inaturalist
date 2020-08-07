@@ -1682,8 +1682,8 @@ ca:
   label_colon: "%{label}:"
   labels: Etiquetes
   label_to_group_a_batch_of_taxon_changes: Nom de l'etiqueta per agrupar un lot de canvis als tàxons
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Ubicació Privada
-  location_unknown: Ubicació desconeguda
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Bloquejar el nivell de zoom
@@ -2103,6 +2103,7 @@ ca:
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_to_be_identified: Ha de ser identificat
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist
     dedicada en la biodiversidad i les personas de %{place}. Vols canviar l'afiliació del teu compte d'iNaturalist.org a %{site_name}?
@@ -2153,7 +2154,6 @@ ca:
   newly_added_species: Espècies afegides recentment
   newly_observed_species: Espècies observades recentment
   newly_observed_species_in_year: "Noves Espècies afegides el %{year}"
-  news: Notícies
   next: Següent
   next_observation: Propera observació
   next_page: Pàgina següent
@@ -3224,7 +3224,6 @@ ca:
   remember_me: Recordeu-me
   remove: Elimina
   remove_all_tags: Eliminar totes les etiquetes
-  remove_boundary: Elimina límits
   remove_comma_separated_tags: "Eliminar les etiquetes separades per comes"
   remove_conservation_status: elimina l'estat de conservació
   remove_from: Elimina de
@@ -3773,7 +3772,6 @@ ca:
     L'Identotron és una eina que us ajuda a identificar observacions basades en les llistes de %{site_name}. Donat un nivell taxonòmic superior i un lloc (p. ex. mamífers i la Índia), %{site_name} buscarà en llistes de verificació que hagin identificat el tàxon en aquest lloc, com una guia dinàmica d'espècies de tot el planeta. La majoria de llistes de verificació estan en desenvolupament, però hi ha alguna que és exhaustiva, per exemple llista <em>tots</em> els representants d'un tàxon en un lloc, l'Identotron mostrarà un avís.
   the_name_of_the_taxon_including_space: El nom del tàxon, incloent-hi l'espai per a les espècies i infraespècies.
   the_observation_was_already_added_to_that_project: L'observació es va afegir recentment al projecte.
-  the_past: el passat
   the_people_of_inat: "Els usuaris d’%{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Les espècies que s'indiquen a continuació no s'han trobar a la base de dades de %{site_name}.
@@ -4182,6 +4180,9 @@ ca:
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
   welcome_to_x_project: "Benvingut al projecte %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
@@ -4266,8 +4267,6 @@ ca:
   'yes': "Sí­"
   yes_find_them!: "Sí, troba-les!"
   yes_i_want_to_join: Sí, desitjo unir-m’hi
-  yes_license_my_childs_observations: Sí, llicencia les meves fotos i observacions perquè els científics puguin usar les meves dades
-  yes_license_my_observations_so_scientists_can_use: Sí, crea una llicència de les meves fotos, sons i observacions perquè els científics puguin usar les meves dades
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir

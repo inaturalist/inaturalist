@@ -1597,8 +1597,8 @@ el:
   label_colon: "%{label}:"
   labels: Ετικέτες
   label_to_group_a_batch_of_taxon_changes: Ετικέτα για να ομαδοποιήσετε μια παρτίδα από αλλαγές ταξινομικής βαθμίδας
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Η τοποθεσία είναι ιδιωτική
-  location_unknown: Η τοποθεσία είναι άγνωστη
   language_slash_type: Γλώσσα / Τύπος
   #Large photo size
   large: μεγάλο
@@ -2002,6 +2002,7 @@ el:
   needs_id_: Χρειάζεται ID
   needs_id_expandable_html: "<span class='full'>Χρειάζεται </span>ID"
   needs_to_be_identified: Πρέπει να αναγνωριστεί
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, μέρος του διεθνούς δικτύου του iNaturalist, επικεντρώνεται στη βιοποικιλότητα και στους ανθρώπους σε %{place}. Θα θέλατε να αλλάξετε την υπαγωγή του λογαριασμού σας από το iNaturalist.org στο %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
@@ -2050,7 +2051,6 @@ el:
   newly_added_species: Νεοπροστεθέν είδος
   newly_observed_species: Νεοπαρατηρηθέν είδος
   newly_observed_species_in_year: "Νεοπροστεθέντα είδη το %{year}"
-  news: Νέα
   next: Επόμενο
   next_observation: Επόμενη παρατήρηση
   next_page: Επόμενη σελίδα
@@ -3097,7 +3097,6 @@ el:
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
   remove_all_tags: Αφαίρεση όλων των ετικετών
-  remove_boundary: Αφαίρεση συνόρου
   remove_comma_separated_tags: "Αφαίρεση των διαχωρισμένων με κόμμα ετικετών"
   remove_conservation_status: Κατάργηση κατάστασης συνομιλίας
   remove_from: Αφαίρεση από
@@ -3629,7 +3628,6 @@ el:
   the_following_photos_have_been_tagged: "Οι παρακάτω φωτογραφίες έχουν επισημανθεί:"
   the_name_of_the_taxon_including_space: Το όνομα της ταξινομικής βαθμίδας, συμπεριλαμβανομένης της καταχώρησης των ειδών και των υποειδών.
   the_observation_was_already_added_to_that_project: Η παρατήρηση είχε ήδη προστεθεί σε αυτό το πρότζεκτ.
-  the_past: στο παρελθόν
   the_people_of_inat: "Τα Άτομα του %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Τα παρακάτω είδη δεν βρέθηκαν στη βάση δεδομένων του %{site_name}.
@@ -4013,6 +4011,9 @@ el:
   welcome_to_inat: "Καλώς ήρθατε στο %{site_name}!"
   welcome_to_guides: "Καλώς ήρθατε στους Οδηγούς του %{site_name}!"
   welcome_to_x_project: "Καλώς ήρθατε στο %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
   what: Τι
@@ -4098,8 +4099,6 @@ el:
   'yes': "Ναι"
   yes_find_them!: "Ναι, βρείτε τα!"
   yes_i_want_to_join: Ναι, θέλω να εγγραφτώ
-  yes_license_my_childs_observations: Ναι, να δώσετε άδεια στις φωτογραφίες, ήχους και παρατηρήσεις του παιδιού μου ώστε οι επιστήμονες να μπορούν να χρησιμοποιούν τα δεδομένα.
-  yes_license_my_observations_so_scientists_can_use: Ναι, να δώσετε άδεια στις φωτογραφίες, ήχους και παρατηρήσεις μου ώστε οι επιστήμονες να μπορούν να χρησιμοποιούν τα δεδομένα.
   yes_reject_it: Ναι, απορρίψτε το
   yes_show_this_in_the_box: Ναι, να προβάλλεται αυτό στο μεγάλο κουτί στην κορυφή /taxa
   yesterday: Εχθές

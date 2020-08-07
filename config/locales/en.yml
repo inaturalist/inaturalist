@@ -2117,6 +2117,10 @@ en:
       range: Range
   map_tooltip: Show map view
   mark_as_reviewed: Mark As Reviewed
+  # Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Marking an observation as reviewed means you will not see it again by
+    default in Identify. It will still be visible to other people in Identify.
   mark_all_as_reviewed: Mark All As Reviewed
   mark_all_as_unreviewed: Mark All As Unreviewed
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
@@ -3555,6 +3559,7 @@ en:
   scientific_name: Scientific Name
   search: Search
   search_all_fields: search all fields
+  search_by_name: Search by name
   search_by_name_or_email: Search by name or email
   search_by_taxon_name_or_observation_id: Search by taxon name or observation ID
   search_by_taxon_name_or_flickr_photo_id: Search by taxon name or Flickr photo ID
@@ -3987,6 +3992,11 @@ en:
   terms_service: Terms of Service
   terrain: terrain
   text: Text
+  # Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Text block controls
+  # Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Text formatting controls
+  text_editing_controls: Text editing controls
   thanks!: Thanks!
   thanks_from_all_of_us_here_at: Thanks from all of us here at
   that_photo_doesnt_exist: That photo doesn't exist.
@@ -4152,6 +4162,10 @@ en:
   top_observer: Top Observer
   top_observers: Top Observers
   top_species: Top Species
+  tos_privacy_guidelines_label: |
+    I agree to the <a href="/terms" target="_blank">Terms of Service</a> and
+    <a href="/privacy" target="_blank">Privacy Policy</a>, and I have reviewed
+    the <a href="/pages/community+guidelines" target="_blank">Community Guidelines</a>.
   total: Total
   totals: Totals
   total_members: Total members
@@ -4462,6 +4476,9 @@ en:
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
   welcome_to_x_project: "Welcome to %{project}"
+  # Label for the most probable taxon in the automated suggestions. @gender
+  # should work here. %{rank} is usually genus or a higher-level rank like
+  # family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
   what: What
@@ -4559,8 +4576,8 @@ en:
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
-  yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data.
-  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data.
+  yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data (recommended).
+  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data (recommended).
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
@@ -4656,6 +4673,7 @@ en:
   you_sure_delete_asset?: Are you sure you want to delete this Project Asset?
   you_sure_delete_check_list: "Are you sure you want to delete this list? Some people may have put a lot of work into it..."
   you_sure_delete_comment?: Are you sure you want to delete this comment?
+  you_sure_delete_identification?: Are you sure you want to delete this identification?
   you_sure_delete_custom_field?: Are you sure you want to delete these custom fields? 
   you_sure_delete_flag?: Are you sure you want to delete this flag?
   you_sure_delete_project?: Are you sure you want to delete this project?
@@ -5001,6 +5019,12 @@ en:
           You flagged this conversation on %{date}. The flag will persist even
           if you delete your copy of this conversation, so it is safe to do so
           if you no longer want to see this.
+        privacy_notice_html: |
+          While messages are private between you and the recipient, iNaturalist
+          staff can view these messages as well, and will do so when messages
+          have been flagged for moderation. If you require truly private
+          communication, please look into other communication mechanisms that
+          support strong encryption.
     oauth:
       authorizations:
         new:

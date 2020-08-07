@@ -670,7 +670,6 @@ I18n.translations["ar"] = {
   "location_is_public": "الموقع عام",
   "location_private": "الموقع خاص",
   "location_specified": "الموقع محدد",
-  "location_unknown": "الموقع غير معروف",
   "log_in": "تسجيل الدخول",
   "log_scale_label": "سجل",
   "long": "خط الطول",
@@ -1344,6 +1343,8 @@ I18n.translations["ar"] = {
   "running_total": "مجموع التشغيل",
   "satellite": "القمر الصناعي",
   "save": "حفظ",
+  "save_comment": "حفظ التعليق",
+  "save_identification": "حفظ الهوية",
   "save_photos": "حفظ الصور",
   "saved": "تم الحفظ",
   "saving": "جارٍ الحفظ...",
@@ -1417,6 +1418,7 @@ I18n.translations["ar"] = {
   "stats_for_this_year_have_not_been_generated": "لم يتم إنشاء إحصاءات لهذا العام.",
   "status": "الحالة",
   "stay_and_try_again": "البقاء والمحاولة مرة أخرى",
+  "stop_editing": "إيقاف التحرير",
   "stop_testing": "وقف الاختبار",
   "stop_trusting_this_person_with_your_private_coordinates": "توقف عن ثقة هذا الشخص بإحداثياتك المخفية",
   "studies_that_used_inaturalist_data_in_year": "الدراسات التي استخدمت بيانات إيناتوراليست في %{year}",
@@ -2565,10 +2567,9 @@ I18n.translations["bg"] = {
   "location_is_private": "Местоположението е поверителено",
   "location_is_public": "Местоположението е публично",
   "location_specified": "Указано местонахождение",
-  "location_unknown": "Неизвестно местоположение",
   "log_in": "Влизане",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Влезте</a> или <a href=\"/signup\">се регистрирайте</a> за да добавяте коментари.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Влезте</a> или <a href=\"/signup\">се регистрирайте</a> за да добавяте разпознавания.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Влезте</a> или <a href=\"/sign_up\">се регистрирайте</a> за да добавяте коментари.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Влезте</a> или <a href=\"/sign_up\">се регистрирайте</a> за да добавяте разпознавания.\n",
   "long": "г.д.",
   "longitude": "Геогр. дължина",
   "lookup": "Потърси",
@@ -3172,6 +3173,8 @@ I18n.translations["bg"] = {
   "reviewed": "Рецензиран",
   "satellite": "сателит",
   "save": "Съхраняване",
+  "save_comment": "Запази коментара",
+  "save_identification": "Запази разпознаването",
   "save_photos": "Запази снимките",
   "saved": "Запазено",
   "saving": "Запазване...",
@@ -5019,7 +5022,6 @@ I18n.translations["ca"] = {
   "location_is_public": "La ubicació és pública",
   "location_private": "Ubicació Privada",
   "location_specified": "Ubicació especificada",
-  "location_unknown": "Ubicació desconeguda",
   "lock_zoom_level": "Bloquejar el nivell de zoom",
   "log_in": "Inicieu sessió",
   "log_scale_label": "Registre",
@@ -5762,6 +5764,8 @@ I18n.translations["ca"] = {
   "running_total": "Acumulat total",
   "satellite": "satèl·lit",
   "save": "Desa",
+  "save_comment": "Desa comentari",
+  "save_identification": "Desa identificació",
   "save_photos": "Desa fotos",
   "saved": "Desat",
   "saving": "Desant...",
@@ -5843,6 +5847,7 @@ I18n.translations["ca"] = {
   "status_globally": "\"%{status}\" Globalment",
   "status_in_place": "\"%{status}\" a %{place}",
   "stay_and_try_again": "Romandre i provar de nou",
+  "stop_editing": "Atura la modificació",
   "stop_testing": "Atureu la prova",
   "stop_trusting_this_person_with_your_private_coordinates": "Deixeu de compartir les vostres coordenades ocultes amb aquesta persona",
   "store": "BOTIGA",
@@ -7348,11 +7353,11 @@ I18n.translations["cs"] = {
   "location_is_public": "Místo je veřejné",
   "location_private": "Soukromá lokalita",
   "location_specified": "Umístění určeno",
-  "location_unknown": "Neznámá lokalita",
+  "location_unknown": "Chybějící poloha",
   "lock_zoom_level": "Zamknout úroveň přiblížení",
   "log_in": "Přihlásit se",
-  "log_in_or_sign_up_to_add_comments_html": "Pro přidávání komentářů se <a href=\"/login\">přihlaste</a> nebo <a href=\"/signup\">zaregistrujte</a>.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "Pro přidávání identifikací se <a href=\"/login\">přihlaste</a> nebo <a href=\"/signup\">zaregistrujte</a>.\n",
+  "log_in_or_sign_up_to_add_comments_html": "Pro přidávání komentářů se <a href=\"/log_in\">přihlaste</a> nebo <a href=\"/sign_up\">zaregistrujte</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Pro přidávání identifikací se <a href=\"/log_in\">přihlaste</a> nebo <a href=\"/sign_up\">zaregistrujte</a>.\n",
   "log_scale_label": "Protokol",
   "long": "zeměpisná délka",
   "longitude": "zeměpisná délka",
@@ -7391,6 +7396,7 @@ I18n.translations["cs"] = {
   "messages": "Zprávy",
   "misidentifications": "Zprávy",
   "misleading_or_illegal_content_html": "Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atd. Podrobnosti k naší definici toho, co je „vhodné“ najdete na\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "Chybějící datum",
   "mobile": "Mobilní",
   "mollusks": "měkkýši",
   "momentjs": {
@@ -7521,6 +7527,7 @@ I18n.translations["cs"] = {
   "observations_": "pozorování",
   "observations_annotated_with_annotation": "Anotace pozorování %{annotation}",
   "observations_by_category": "Pozorování podle kategorie",
+  "observations_can_only_have_n_photos": "Pozorování mohou mít pouze %{limit} fotografií",
   "observations_in_this_project_must": "Pozorování v tomto projektu musí splňovat následující kritéria",
   "observations_map": "Pozorování / Mapa",
   "observations_of_relatives": "Pozorování příbuzných",
@@ -8097,6 +8104,8 @@ I18n.translations["cs"] = {
   "running_total": "Spuštění celkem",
   "satellite": "satelitní",
   "save": "Uložit",
+  "save_comment": "Uložit komentář",
+  "save_identification": "Uložit identifikaci",
   "save_photos": "Uložit fotky",
   "saved": "Uloženo",
   "saving": "Ukládá se…",
@@ -8180,6 +8189,7 @@ I18n.translations["cs"] = {
   "status_globally": "%{status} globálně",
   "status_in_place": "%{status} v %{place}",
   "stay_and_try_again": "Zůstat a zkusit znovu",
+  "stop_editing": "Přestat editovat",
   "stop_testing": "Zastavit testování",
   "stop_trusting_this_person_with_your_private_coordinates": "Přestat věřit této osobě se skrytými souřadnicemi",
   "store": "OBCHOD",
@@ -8661,13 +8671,13 @@ I18n.translations["cs"] = {
   "x_flagged_as_flag": "%{x} označeno jako %{flag}",
   "x_identifications": {
     "one": "%{count} identifikace",
-    "few": "%{count} identifikací",
+    "few": "%{count} identifikace",
     "many": "%{count} identifikací",
     "other": "%{count} identifikací"
   },
   "x_identifications_": {
     "one": "%{count} identifikace",
-    "few": "%{count} Identifikací",
+    "few": "%{count} Identifikace",
     "many": "%{count} Identifikací",
     "other": "%{count} Identifikací"
   },
@@ -8685,30 +8695,30 @@ I18n.translations["cs"] = {
   },
   "x_languages": {
     "one": "%{count} jazyk",
-    "few": "%{count} jazyků",
+    "few": "%{count} jazyky",
     "many": "%{count} jazyků",
     "other": "%{count} jazyků"
   },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">%{count}</span> odpovídající taxon",
     "few": "<span class=\"count\">%{count}</span> odpovídající taxony",
-    "many": "<span class=\"count\">%{count}</span> odpovídající taxony",
-    "other": "<span class=\"count\">%{count}</span> odpovídající taxony"
+    "many": "<span class=\"count\">%{count}</span> odpovídajících taxonů",
+    "other": "<span class=\"count\">%{count}</span> odpovídajících taxonů"
   },
   "x_misidentifications_of_species_in_this_rank": {
     "one": "%{count} nesprávná identifikace druhů v tomto %{rank}",
     "few": "%{count} nesprávné identifikace druhů v tomto %{rank}",
-    "many": "%{count} nesprávné identifikace druhů v tomto %{rank}",
-    "other": "%{count} nesprávné identifikace druhů v tomto %{rank}"
+    "many": "%{count} nesprávných identifikací druhů v tomto %{rank}",
+    "other": "%{count} nesprávných identifikací druhů v tomto %{rank}"
   },
   "x_misidentifications_of_this_species": {
     "one": "%{count} chybná identifikace tohoto druhu",
     "few": "%{count} chybné identifikace tohoto druhu",
-    "many": "%{count} chybné identifikace tohoto druhu",
-    "other": "%{count} chybné identifikace tohoto druhu"
+    "many": "%{count} chybných identifikací tohoto druhu",
+    "other": "%{count} chybných identifikací tohoto druhu"
   },
   "x_new_species": {
-    "one": "1 nový druh",
+    "one": "%{count} nový druh",
     "few": "%{count} nové druhy",
     "many": "%{count} nových druhů",
     "other": "%{count} nových druhů"
@@ -8716,8 +8726,8 @@ I18n.translations["cs"] = {
   "x_new_users": {
     "one": "%{count} nový uživatel",
     "few": "%{count} noví uživatelé",
-    "many": "%{count} noví uživatelé",
-    "other": "%{count} noví uživatelé"
+    "many": "%{count} nových uživatelů",
+    "other": "%{count} nových uživatelů"
   },
   "x_observations": {
     "one": "%{count} pozorování",
@@ -8758,8 +8768,8 @@ I18n.translations["cs"] = {
   "x_observers_html": {
     "one": "<span class=\"count\">%{count}</span> Pozorovatel",
     "few": "<span class=\"count\">%{count}</span> Pozorovatelé",
-    "many": "<span class=\"count\">%{count}</span> Pozorovatelé",
-    "other": "<span class=\"count\">%{count}</span> Pozorovatelé"
+    "many": "<span class=\"count\">%{count}</span> Pozorovatelů",
+    "other": "<span class=\"count\">%{count}</span> Pozorovatelů"
   },
   "x_of_count_confirmed": {
     "one": "%{x} z %{count} potvrzeno",
@@ -8773,45 +8783,45 @@ I18n.translations["cs"] = {
   "x_others": {
     "one": "%{count} další",
     "few": "%{count} další",
-    "many": "%{count} další",
+    "many": "%{count} dalších",
     "other": "%{count} další"
   },
   "x_people": {
     "one": "%{count} člověk",
-    "few": "%{count} lidí",
+    "few": "%{count} lidé",
     "many": "%{count} lidí",
-    "other": "%{count} lidé"
+    "other": "%{count} lidí"
   },
-  "x_people_helped_user_with_y_ids_html": "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>",
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} lidí</strong> pomohlo %{user} s <strong>%{y} ID</strong>",
   "x_photos": {
-    "one": "1 fotografie",
-    "few": "%{count} fotek",
-    "many": "%{count} fotek",
-    "other": "%{count} fotek"
+    "one": "%{count} fotografie",
+    "few": "%{count} fotografie",
+    "many": "%{count} fotografií",
+    "other": "%{count} fotografií"
   },
   "x_species": {
-    "one": "1 druh",
+    "one": "%{count} druh",
     "few": "%{count} druhy",
-    "many": "%{count} druhy",
-    "other": "%{count} druhy"
+    "many": "%{count} druhů",
+    "other": "%{count} druhů"
   },
   "x_species_html": {
     "one": "<span class='count'>%{count}</span> druh",
-    "few": "<span class='count'>%{count}</span> druhů",
+    "few": "<span class='count'>%{count}</span> druhy",
     "many": "<span class='count'>%{count}</span> druhů",
-    "other": "<span class='count'>%{count}</span> druhy"
+    "other": "<span class='count'>%{count}</span> druhů"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>%{count} druh</a>",
-    "few": "<a href='%{url}'>%{count} druhů</a>",
+    "few": "<a href='%{url}'>%{count} druhy</a>",
     "many": "<a href='%{url}'>%{count} druhů</a>",
-    "other": "<a href='%{url}'>%{count} druhy</a>"
+    "other": "<a href='%{url}'>%{count} druhů</a>"
   },
   "x_suggestions_filtered_by_colon": {
-    "one": "%{count} návrh fitrován podle:",
-    "few": "%{count} návrhů fitrováno podle:",
-    "many": "%{count} návrhů fitrováno podle:",
-    "other": "%{count} návrhy fitrovány podle:"
+    "one": "%{count} návrh filtrován podle:",
+    "few": "%{count} návrhy filtrovány podle:",
+    "many": "%{count} návrhů filtrováno podle:",
+    "other": "%{count} návrhů filtrováno podle:"
   },
   "year_in_review": "Rok kontroly %{year}",
   "yellow": "žlutý",
@@ -9714,11 +9724,11 @@ I18n.translations["da"] = {
   "location_is_public": "Stedet er offentligt",
   "location_private": "Fortrolig lokalitet",
   "location_specified": "Stedet er specificeret",
-  "location_unknown": "Sted ukendt",
+  "location_unknown": "Placering mangler",
   "lock_zoom_level": "Lås zoomniveau",
   "log_in": "Login",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Log ind</a> eller <a href=\"/signup\">opret konto</a> for at tilføje kommentarer.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Log ind</a> eller <a href=\"/signup\">opret konto</a> for at tilføje identifikationer.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Log ind</a> eller <a href=\"/sign_up\">opret konto</a> for at tilføje kommentarer.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Log ind</a> eller <a href=\"/sign_up\">opret konto</a> for at tilføje identifikationer.\n",
   "log_scale_label": "Log",
   "long": "Læn.",
   "longitude": "Længdegrad",
@@ -9757,6 +9767,7 @@ I18n.translations["da"] = {
   "messages": "Beskeder",
   "misidentifications": "Fejlidentifikationer",
   "misleading_or_illegal_content_html": "Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af \"passende\", se\n<a href=\"/help#inappropriate\"> FAQ </a>.\n",
+  "missing_date": "Dato mangler",
   "mobile": "Mobil",
   "mollusks": "bløddyr",
   "momentjs": {
@@ -10460,6 +10471,8 @@ I18n.translations["da"] = {
   "running_total": "Igangværende total",
   "satellite": "satellit",
   "save": "Gem",
+  "save_comment": "Gem kommentar",
+  "save_identification": "Gem identifikation",
   "save_photos": "Gem foto´s",
   "saved": "Gemt",
   "saving": "Gemmer...",
@@ -10541,6 +10554,7 @@ I18n.translations["da"] = {
   "status_globally": "\"%{status}\" Global",
   "status_in_place": "\"%{status}\" i %{place}",
   "stay_and_try_again": "Bliv og prøv igen",
+  "stop_editing": "Stop redigering",
   "stop_testing": "Stop test",
   "stop_trusting_this_person_with_your_private_coordinates": "Stol ikke længere på denne person angående dine skjulte koordinater",
   "store": "BUTIK",
@@ -11997,11 +12011,10 @@ I18n.translations["de"] = {
   "location_is_public": "Standort ist öffentlich",
   "location_private": "Standort privat",
   "location_specified": "Standort festgelegt",
-  "location_unknown": "Standort unbekannt",
   "lock_zoom_level": "Zoomstufe fixieren",
   "log_in": "Anmelden",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Einloggen</a> oder <a href=\"/signup\">registrieren</a> , um Kommentare hinzuzufügen.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Einloggen</a> oder <a href=\"/signup\">registrieren</a> , um Bestimmungen hinzuzufügen.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Einloggen</a> oder <a href=\"/sign_up\">registrieren</a> , um Kommentare hinzuzufügen.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Einloggen</a> oder <a href=\"/sign_up\">registrieren</a> , um Bestimmungen hinzuzufügen.\n",
   "long": "Länge",
   "longitude": "Längengrad",
   "lookup": "Nachschlagen",
@@ -12039,6 +12052,7 @@ I18n.translations["de"] = {
   "messages": "Nachrichten",
   "misidentifications": "Fehlbestimmungen",
   "misleading_or_illegal_content_html": "Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von \"angemessen\", siehe die \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "Fehlendes Datum",
   "mobile": "Mobil",
   "mollusks": "Mollusken",
   "momentjs": {
@@ -12739,6 +12753,8 @@ I18n.translations["de"] = {
   "running_total": "Gesamtzahl",
   "satellite": "Satellit",
   "save": "Speichern",
+  "save_comment": "Kommentar speichern",
+  "save_identification": "Bestimmung speichern",
   "save_photos": "Fotos speichern",
   "saved": "Gespeichert",
   "saving": "Speichere…",
@@ -12820,6 +12836,7 @@ I18n.translations["de"] = {
   "status_globally": "%{status} Global",
   "status_in_place": "\"%{status}\" in %{place}",
   "stay_and_try_again": "Bleibe und versuch's noch mal",
+  "stop_editing": "Bearbeitung beenden",
   "stop_testing": "Testen beenden",
   "stop_trusting_this_person_with_your_private_coordinates": "Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an",
   "store": "Store",
@@ -14198,7 +14215,6 @@ I18n.translations["el"] = {
   "location_is_public": "Η τοποθεσία είναι δημόσια",
   "location_private": "Η τοποθεσία είναι ιδιωτική",
   "location_specified": "Η τοποθεσία είναι ορισμένη",
-  "location_unknown": "Η τοποθεσία είναι άγνωστη",
   "log_in": "Σύνδεση",
   "log_scale_label": "Καταγραφή",
   "long": "Γεω. Μη.",
@@ -14919,6 +14935,8 @@ I18n.translations["el"] = {
   "running_total": "Τρέχον σύνολο",
   "satellite": "δορυφόρος",
   "save": "Αποθήκευση",
+  "save_comment": "Αποθήκευση σχολίου",
+  "save_identification": "Αποθήκευση ταυτοποίησης",
   "save_photos": "Αποθήκευση φωτογραφιών",
   "saved": "Αποθηκεύθηκε",
   "saving": "Γίνεται αποθήκευση…",
@@ -15000,6 +15018,7 @@ I18n.translations["el"] = {
   "status_globally": "%{status} Καθολικά",
   "status_in_place": "%{status} σε %{place}",
   "stay_and_try_again": "Μείνετε και προσπαθήστε ξανά",
+  "stop_editing": "Σταματήστε τη επεξεργασία",
   "stop_testing": "Τέλος δοκιμής",
   "stop_trusting_this_person_with_your_private_coordinates": "Σταματήστε να εμπιστεύεστε αυτό το άτομο με τις κρυμμένες συντεταγμένες",
   "store": "Κατάστημα",
@@ -16412,6 +16431,7 @@ I18n.translations["en"] = {
   "mark_all_as_reviewed": "Mark All As Reviewed",
   "mark_all_as_unreviewed": "Mark All As Unreviewed",
   "mark_as_reviewed": "Mark As Reviewed",
+  "mark_as_reviewed_desc": "Marking an observation as reviewed means you will not see it again by\ndefault in Identify. It will still be visible to other people in Identify.\n",
   "maverick": "Maverick",
   "media": "Media",
   "media_type": "Media Type",
@@ -17123,6 +17143,8 @@ I18n.translations["en"] = {
   "running_total": "Running Total",
   "satellite": "satellite",
   "save": "Save",
+  "save_comment": "Save comment",
+  "save_identification": "Save identification",
   "save_photos": "Save photos",
   "saved": "Saved",
   "saving": "Saving...",
@@ -17204,6 +17226,7 @@ I18n.translations["en"] = {
   "status_globally": "\"%{status}\" Globally",
   "status_in_place": "\"%{status}\" in %{place}",
   "stay_and_try_again": "Stay and try again",
+  "stop_editing": "Stop Editing",
   "stop_testing": "Stop Testing",
   "stop_trusting_this_person_with_your_private_coordinates": "Stop trusting this person with your hidden coordinates",
   "store": "STORE",
@@ -17244,6 +17267,9 @@ I18n.translations["en"] = {
   "tell_us_why": "Tell us why...",
   "terms": "Terms",
   "terrain": "terrain",
+  "text_block_controls": "Text block controls",
+  "text_editing_controls": "Text editing controls",
+  "text_formatting_controls": "Text formatting controls",
   "that_was_the_last_observation_matching_the_current_filters": "That was the last observation matching the current filters.",
   "the_below_items_are_needed_to_achieve": "The below items are needed to achieve <span className=\"bold\">Research Grade:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "The Community ID requires at least two identifications.",
@@ -17839,6 +17865,7 @@ I18n.translations["en"] = {
   "you_must_select_at_least_one_taxon": "You must select at least one taxon",
   "you_retain_full_copyright": "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service.",
   "you_sure_delete_comment?": "Are you sure you want to delete this comment?",
+  "you_sure_delete_identification?": "Are you sure you want to delete this identification?",
   "you_sure_delete_this_observation": "Are you sure you want to delete this observation?",
   "your_browser_does_not_support_the_audio_element": "Your browser does not support the audio element.",
   "your_default": "your default",
@@ -18183,6 +18210,7 @@ I18n.translations["eo"] = {
   "add": "Aldoni",
   "add_a_comment": "Aldoni Komenton",
   "add_a_field": "Aldoni Kampon",
+  "add_a_link": "Aldoni ligilon",
   "add_a_name": "Aldoni Nomon",
   "add_an_identification": "Aldoni Identigon",
   "add_edit_flags": "Aldoni/Redakti Flagojn",
@@ -19141,6 +19169,7 @@ I18n.translations["eo"] = {
   "reviewed": "Reviziita",
   "satellite": "satelito",
   "save": "Konservi",
+  "save_comment": "Konservi komenton",
   "save_photos": "Konservi fotojn",
   "saved": "Konservita",
   "saving": "Konservante...",
@@ -20267,7 +20296,6 @@ I18n.translations["es"] = {
   "location_is_public": "La ubicación es pública",
   "location_private": "Localización privada",
   "location_specified": "Ubicación especificada",
-  "location_unknown": "Ubicación desconocida",
   "lock_zoom_level": "Bloquear nivel de zoom",
   "log_in": "Acceder",
   "log_scale_label": "Registro",
@@ -21010,6 +21038,8 @@ I18n.translations["es"] = {
   "running_total": "Total acumulado",
   "satellite": "satélite",
   "save": "Guardar",
+  "save_comment": "Guardar comentario",
+  "save_identification": "Guardar identificación",
   "save_photos": "Guardar fotos",
   "saved": "Guardado",
   "saving": "Guardando...",
@@ -21091,6 +21121,7 @@ I18n.translations["es"] = {
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\"%{status}\" en %{place}",
   "stay_and_try_again": "Permanecer e intentar de nuevo",
+  "stop_editing": "Detener modificación",
   "stop_testing": "Detén prueba",
   "stop_trusting_this_person_with_your_private_coordinates": "No confiar a esta persona mis coordenadas privadas",
   "store": "TIENDA",
@@ -22502,7 +22533,6 @@ I18n.translations["es-AR"] = {
   "location_is_public": "La ubicación es pública",
   "location_private": "Localización privada",
   "location_specified": "Ubicación especificada",
-  "location_unknown": "Ubicación desconocida",
   "log_in": "Acceder",
   "log_scale_label": "Registro",
   "long": "Longitud",
@@ -23213,6 +23243,8 @@ I18n.translations["es-AR"] = {
   "running_total": "Total acumulado",
   "satellite": "satélite",
   "save": "Guardar",
+  "save_comment": "Guardar comentario",
+  "save_identification": "Guardar identificación",
   "save_photos": "Guardar fotos",
   "saved": "Guardado",
   "saving": "Guardando...",
@@ -23293,6 +23325,7 @@ I18n.translations["es-AR"] = {
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\"%{status}\" en %{place}",
   "stay_and_try_again": "Permanecer e intentar de nuevo",
+  "stop_editing": "Detener modificación",
   "stop_testing": "Detén prueba",
   "stop_trusting_this_person_with_your_private_coordinates": "No confiar a esta persona mis coordenadas privadas",
   "store": "TIENDA",
@@ -24706,7 +24739,6 @@ I18n.translations["es-MX"] = {
   "location_is_public": "La ubicación es pública",
   "location_private": "Localización privada",
   "location_specified": "Ubicación especificada",
-  "location_unknown": "Ubicación desconocida",
   "log_in": "Empieza la sesión",
   "log_scale_label": "Registro",
   "long": "Longitud",
@@ -25284,6 +25316,8 @@ I18n.translations["es-MX"] = {
   "running_total": "Total acumulado",
   "satellite": "satélite",
   "save": "Guardar",
+  "save_comment": "Guardar comentario",
+  "save_identification": "Guarda la identificación",
   "save_photos": "Guardar las fotos",
   "saved": "Guardado",
   "saving": "Guardando...",
@@ -25361,6 +25395,7 @@ I18n.translations["es-MX"] = {
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\"%{status}\" en %{place}",
   "stay_and_try_again": "Permanecer e intentar de nuevo",
+  "stop_editing": "Detén la edición",
   "stop_testing": "Detener prueba",
   "stop_trusting_this_person_with_your_private_coordinates": "No confiar a esta persona mis coordenadas privadas",
   "studies_that_used_inaturalist_data_in_year": "Estudios que utilizaron datos de iNaturalist en %{year}",
@@ -26554,7 +26589,6 @@ I18n.translations["et"] = {
   "location_is_public": "Asukoht on avalik",
   "location_private": "Asukoht privaatne",
   "location_specified": "Asukoht määratud",
-  "location_unknown": "Asukoht teadmata",
   "log_in": "Logi sisse",
   "log_scale_label": "Logi",
   "long": "Pikkus",
@@ -27141,6 +27175,8 @@ I18n.translations["et"] = {
   "running_total": "Hetke koguarv",
   "satellite": "satelliit",
   "save": "Salvesta",
+  "save_comment": "Salvesta kommentaar",
+  "save_identification": "Salvesta määratlus",
   "save_photos": "Salvesta fotod",
   "saved": "Salvestatud",
   "saving": "Salvestan...",
@@ -27215,6 +27251,7 @@ I18n.translations["et"] = {
   "stats_for_this_year_have_not_been_generated": "Selle aasta statistikat pole veel loodud.",
   "status": "Staatus",
   "stay_and_try_again": "Proovi uuesti",
+  "stop_editing": "Lõpeta muutmine",
   "stop_testing": "Lõpeta testimine",
   "stop_trusting_this_person_with_your_private_coordinates": "Lõpeta sellele isikule oma peidetud koordinaatide näitamine",
   "studies_that_used_inaturalist_data_in_year": "Uurimused, mis kasutasid aastal %{year} iNaturalisti andmeid",
@@ -28209,7 +28246,6 @@ I18n.translations["eu"] = {
   "location": "Herria",
   "location_is_accurate": "Kokapena zehatza da",
   "location_private": "Kokapen pribatua",
-  "location_unknown": "Kokapen ezezaguna",
   "log_in": "Saioa hasi",
   "long": "Longitudea",
   "longitude": "Longitudea",
@@ -28466,6 +28502,8 @@ I18n.translations["eu"] = {
   "rg_observations": "RG Behaketak",
   "satellite": "satelitea",
   "save": "Gorde",
+  "save_comment": "Aipamena gorde",
+  "save_identification": "Identifikazioa gorde",
   "save_photos": "Argazkiak gorde",
   "saved": "Gordeta",
   "saving": "Gordetzen...",
@@ -28502,6 +28540,7 @@ I18n.translations["eu"] = {
   "start": "Hasiera",
   "stats": "Estatistikak",
   "status": "Estatua",
+  "stop_editing": "Aldaketa eten",
   "submitted": "Bidalita",
   "suggest_an_identification": "Identifikazio bat gomendatu",
   "suggestions": "Iradokizunak",
@@ -29491,11 +29530,10 @@ I18n.translations["fi"] = {
   "location_is_public": "Sijainti on julkinen",
   "location_private": "Yksityinen sijainti",
   "location_specified": "Sijainti määritetty",
-  "location_unknown": "Tuntematon sijainti",
   "lock_zoom_level": "Lukitse zoomaustaso",
   "log_in": "Kirjaudu sisään",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Kirjaudu</a> tai <a href=\"/signup\">rekisteröidy</a> lisätäksesi kommentteja.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Kirjaudu</a> tai <a href=\"/signup\">rekisteröidy</a> lisätäksesi tunnistuksia.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Kirjaudu</a> tai <a href=\"/sign_up\">rekisteröidy</a> lisätäksesi kommentteja.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Kirjaudu</a> tai <a href=\"/sign_up\">rekisteröidy</a> lisätäksesi tunnistuksia.\n",
   "log_scale_label": "Loki",
   "long": "Pituusaste",
   "longitude": "Pituusaste",
@@ -30207,6 +30245,8 @@ I18n.translations["fi"] = {
   "running_total": "Kumulatiivinen summa",
   "satellite": "satelliitti",
   "save": "Tallenna",
+  "save_comment": "Tallenna kommentti",
+  "save_identification": "Tallenna tunnistus",
   "save_photos": "Tallenna valokuvat",
   "saved": "Tallennettu",
   "saving": "Tallennetaan...",
@@ -30283,6 +30323,7 @@ I18n.translations["fi"] = {
   "stats": "Tilastot",
   "status": "Tila",
   "stay_and_try_again": "Jää ja yritä uudelleen",
+  "stop_editing": "Lopeta editointi",
   "stop_testing": "Lopeta testaaminen",
   "stop_trusting_this_person_with_your_private_coordinates": "Älä enää jaa piilotettuja koordinaattejasi tälle henkilölle",
   "store": "KAUPPA",
@@ -31836,11 +31877,10 @@ I18n.translations["fr"] = {
   "location_is_public": "L’emplacement est public",
   "location_private": "Emplacement privé",
   "location_specified": "Emplacement spécifié",
-  "location_unknown": "Emplacement inconnu",
   "lock_zoom_level": "Verrouiller le niveau de zoom",
   "log_in": "Connexion",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Connectez-vous</a> ou <a href=\"/signup\">inscrivez-vous</a> pour ajouter des commentaires.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Connectez-vous</a> ou <a href=\"/signup\">inscrivez-vous</a> pour ajouter des identifications.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des commentaires.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des identifications.\n",
   "log_scale_label": "Trace",
   "long": "Long.",
   "longitude": "Longitude",
@@ -31879,6 +31919,7 @@ I18n.translations["fr"] = {
   "messages": "Messages",
   "misidentifications": "Identifications erronées",
   "misleading_or_illegal_content_html": "Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.\n",
+  "missing_date": "Date manquante",
   "mobile": "Portable",
   "mollusks": "mollusques",
   "momentjs": {
@@ -32576,6 +32617,8 @@ I18n.translations["fr"] = {
   "running_total": "Total actuel",
   "satellite": "satellite",
   "save": "Enregistrer",
+  "save_comment": "Enregistrer le commentaire",
+  "save_identification": "Enregistrer l’identification",
   "save_photos": "Enregistrer les photos",
   "saved": "Enregistré",
   "saving": "Enregistrement en cours…",
@@ -32657,6 +32700,7 @@ I18n.translations["fr"] = {
   "status_globally": "\"%{status}\" Global",
   "status_in_place": "\"%{status}\" à %{place}",
   "stay_and_try_again": "Rester et réessayer",
+  "stop_editing": "Arrêter la modification",
   "stop_testing": "Arrêter le test",
   "stop_trusting_this_person_with_your_private_coordinates": "Arrêtez de confier à cette personne vos coordonnées masquées",
   "store": "BOUTIQUE",
@@ -33275,11 +33319,17 @@ I18n.translations["fr-CA"] = {
   "add_a_name": "Ajouter un nom",
   "add_a_numbered_list": "Ajouter une liste numérotée",
   "add_bold_text": "Ajouter un texte en gras",
+  "add_id": "Ajouter une identification",
   "add_italic_text": "Ajouter un texte en italique",
+  "added": "Ajouté",
+  "added!": "Ajouté!",
+  "added_as_a_part_of_a_taxon_change_html": "Ajouté dans le cadre d'un \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">changement de taxon</a>\n",
+  "added_as_a_part_of_a_taxon_merge_html": "Ajouté dans le cadre d'une \n<a target=\"%{target}\" class=\"%{class}\" href=\"%{url}\">fusion de taxon</a>\n",
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
   },
+  "atom": "Atom",
   "bold_text": "texte en gras",
   "change_types": {
   },
@@ -33365,6 +33415,7 @@ I18n.translations["fr-CA"] = {
       }
     }
   },
+  "drop_it": "Le déposer",
   "establishment": {
   },
   "i18n": {
@@ -33376,17 +33427,19 @@ I18n.translations["fr-CA"] = {
     }
   },
   "insert_a_quote": "Insérer une citation",
+  "it_can_now_be_used_for_research": "Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web",
   "italic_text": "texte en italique",
   "item_flagged_notice_html": "Ceci a été marqué comme pourriel et n’est plus\nvisible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un\nresponsable du site. Si vous pensez que c’est une erreur, veuillez\n<a href=\"mailto:%{help_email}\" class=\"contact\">nous contacter</a>.\n<a href=\"%{manage_flags_path}\">Gérer les signalements</a>\n",
   "linked_text": "texte lié",
   "locales": {
   },
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Connectez-vous</a> ou <a href=\"/signup\">inscrivez-vous</a> pour ajouter des commentaires.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Connectez-vous</a> ou <a href=\"/signup\">inscrivez-vous</a> pour ajouter des identifications.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des commentaires.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Connectez-vous</a> ou <a href=\"/sign_up\">inscrivez-vous</a> pour ajouter des identifications.\n",
   "maps": {
     "overlays": {
     }
   },
+  "missing_date": "Date manquante",
   "momentjs": {
   },
   "number": {
@@ -33403,6 +33456,7 @@ I18n.translations["fr-CA"] = {
   },
   "taxon_map": {
   },
+  "these_observations_have_not_been_uploaded_yet": "Ces observations n'ont pas encore été téléversées.\n",
   "this_job_failed_to_run": "Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}",
   "time": {
     "am": "am",
@@ -33413,9 +33467,25 @@ I18n.translations["fr-CA"] = {
   },
   "uploader": {
     "errors": {
+      "file_too_big": "Le fichier ne doit pas dépasser %{megabytes} Mo",
+      "unsupported_file_type": "Type de fichier non pris en charge. Sont acceptés : JPG, PNG, GIF, WAV, AAC, MP3, et MP4 (seulement audio)"
     },
+    "resize_tip": "Les fichiers de photos sont trop grands, essayez de les réduire à un maximum de 2048 × 2048 pixels. Ceci concerne toutes les photos du serveur et fera un téléversement plus rapide.\n",
     "tooltips": {
+      "add": "Ajouter les observations",
+      "combine": "Combiner les observations sélectionnées",
+      "duplicate": "Dupliquer les observations sélectionnées",
+      "photo_failed": "Échec du téléversement de la photo",
+      "remove": "Supprimer les observations sélectionnées",
+      "remove_observation": "Supprimer l’observation",
+      "remove_photo": "Supprimer la photo",
+      "select_all": "Sélectionner toutes les observations",
+      "upload_failed": "Échec du téléversement"
     }
+  },
+  "uploading_num_of_count_photos": {
+    "one": "Téléversement d’une photo…",
+    "other": "Téléversement de %{num} sur %{count} photos…"
   },
   "views": {
     "observations": {
@@ -33435,10 +33505,13 @@ I18n.translations["fr-CA"] = {
       "edit": {
       },
       "new": {
+        "are_you_ready_to_duplicate": "Êtes-vous prêt·e à sortir de cette page pour dupliquer ce projet? Veuillez noter que l'icône du projet\net sa bannière ne seront pas dupliqués, et devront être rechargés dans le projet\ndupliqué.\n",
         "errors": {
-        }
+        },
+        "you_can_learn_more_html": "Vous pouvez en savoir plus sur la gestion des projets\n<a href=\"https://www.inaturalist.org/pages/managing-projects\">ici</a>\nou lire l’historique des projets sur\n<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">notre blogue</a>.\n"
       },
       "show": {
+        "make_sure_you_have_read_about_the_differences": "Assurez-vous d'avoir lu les différences dans notre <a href=\"%{url}\" target=\"_blank\">billet de blogue au sujet des Projets collection</a>.\n"
       }
     },
     "shared": {
@@ -33451,6 +33524,10 @@ I18n.translations["fr-CA"] = {
       "index": {
       },
       "year": {
+        "donate_desc_html": "Merci d'être généreux par votre temps, votre attention, votre expertise et vos\ndons! iNaturalist est une initiative conjointe sans but lucratif de la\nCalifornia Academy of Sciences et de la National Geographic Society.\nIl est géré par une\n<a href=\"%{team_url}\">petite équipe</a> qui\nfait toute l'ingénierie de conception et de logiciel\npour le web, les mobiles et\n<a href=\"%{seek_url}\">Seek by iNaturalist</a>, en plus de gérer\nle soutien de la communauté, les collaborations et les intégrations qui maintiennent\nles choses en marche (et qui se développent rapidement!). Le programme repose sur de nombreuses\nsubventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %\ncontributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels\ndont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en\nplus de 30 devises pour soutenir les opérations principales d'iNaturalist.\nMerci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande\nd'iNaturalist!\n",
+        "new_species_desc_html": "Espèces ajoutées pour la première fois cette année.\nCliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.\nVous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur\ndans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre\nles espèces dont l'observation est vérifiable en fonction du mois où elles ont été téléversées sur %{site_name} (et non pas le mois de leur observation). Il n'inclut pas\nde taxons de niveau supérieur ou inférieur, donc une observation identifiée comme\nMammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>\n<i>arctos</i> comptera seulement comme <i>Canis lupus</i>.\n",
+        "translators_desc": "Saviez-vous que iNaturalist a été traduit dans %{x_languages} presque entièrement par\n%{x_people}? Voici tous les extraordinaires traducteurs qui\nont ajouté des traductions cette année, ainsi que le nombre de mots\nqu'ils ont traduits pour le %{website_link_tag}site%{link_tag_end}, nos applications iNaturalist\n%{iphone_link_tag}iOS%{link_tag_end} et\n%{android_link_tag}Android%{link_tag_end} ainsi que\n%{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir\ntoutes les personnes qui ont contribué à des traductions dans toutes les langues,\ny compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code\n%{view_all_web_link_tag}web%{link_tag_end} et\n%{view_all_mobile_link_tag}mobiles%{link_tag_end}.\n",
+        "translators_desc_for_site": "Saviez-vous que %{site_name} a été traduit presque entièrement par\n%{x_people} personnes? Voici tous les extraordinaires traducteurs qui\nont ajouté des traductions cette année, ainsi que le nombre de mots\nqu'ils ont traduits pour le site\n%{website_link_tag}%{link_tag_end}, les applications iNaturalist\n%{iphone_link_tag}iOS%{link_tag_end} et\n%{android_link_tag}Android%{link_tag_end} et\n%{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir\ntoutes les personnes qui ont contribué à des traductions dans toutes les langues,\ny compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code\n%{view_all_web_link_tag}web%{link_tag_end} et\n%{view_all_mobile_link_tag}mobiles%{link_tag_end}.\n"
       }
     },
     "taxa": {
@@ -33468,11 +33545,109 @@ I18n.translations["fr-CA"] = {
       }
     }
   },
+  "website": "Site Web",
   "x_comments": {
     "one": "%{count} commentaire",
     "other": "%{count} commentaires"
   },
-  "x_of_y_short": "%{x} / %{y}"
+  "x_faves": {
+    "one": "%{count} favori",
+    "other": "%{count} favoris"
+  },
+  "x_identifications": {
+    "one": "%{count} identification",
+    "other": "%{count} identifications"
+  },
+  "x_identifications_": {
+    "one": "%{count} Identification",
+    "other": "%{count} Identifications"
+  },
+  "x_identifications_html": {
+    "one": "<span class=\"count\">%{count}</span> identification",
+    "other": "<span class=\"count\">%{count}</span> identifications"
+  },
+  "x_identifiers_html": {
+    "one": "<span class=\"count\">%{count}</span> identificateur",
+    "other": "<span class=\"count\">%{count}</span> Identificateurs"
+  },
+  "x_languages": {
+    "one": "%{count} langue",
+    "other": "%{count} langues"
+  },
+  "x_matching_taxa_html": {
+    "one": "<span class=\"count\">%{count}</span> taxon correspondant",
+    "other": "<span class=\"count\">%{count}</span> taxons correspondants"
+  },
+  "x_misidentifications_of_species_in_this_rank": {
+    "one": "%{count} mauvaise identification d’espèce dans ce %{rank}",
+    "other": "%{count} mauvaises identifications d’espèces dans ce %{rank}"
+  },
+  "x_misidentifications_of_this_species": {
+    "one": "%{count} mauvaise identification de cette espèce",
+    "other": "%{count} mauvaises identifications de cette espèce"
+  },
+  "x_new_species": {
+    "one": "%{count} nouvelle espèce",
+    "other": "%{count} nouvelles espèces"
+  },
+  "x_new_users": {
+    "one": "%{count} nouvel utilisateur",
+    "other": "%{count} nouveaux utilisateurs"
+  },
+  "x_observations": {
+    "one": "%{count} observation",
+    "other": "%{count} observations"
+  },
+  "x_observations_": {
+    "one": "%{count} observation",
+    "other": "%{count} observations"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>%{count}</span> observation",
+    "other": "<span class='count'>%{count}</span> observations"
+  },
+  "x_observations_link_html": {
+    "one": "<a href='%{url}'>%{count} observation</a>",
+    "other": "<a href='%{url}'>%{count} observations</a>"
+  },
+  "x_observations_reviewed_html": {
+    "one": "<span class='count'>%{count}</span> observation vérifiée",
+    "other": "<span class='count'>%{count}</span> observations vérifiées"
+  },
+  "x_observers_html": {
+    "one": "<span class=\"count\">%{count}</span> Observateur",
+    "other": "<span class=\"count\">%{count}</span> Observateurs"
+  },
+  "x_of_y_short": "%{x} / %{y}",
+  "x_others": {
+    "one": "%{count} autre",
+    "other": "%{count} autres"
+  },
+  "x_people": {
+    "one": "%{count} personne",
+    "other": "%{count} personnes"
+  },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} personnes</strong> ont aidé %{user} sur <strong>%{y} ID</strong>",
+  "x_photos": {
+    "one": "%{count} photo",
+    "other": "%{count} photos"
+  },
+  "x_species": {
+    "one": "%{count} espèce",
+    "other": "%{count} espèces"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>%{count}</span> espèce",
+    "other": "<span class='count'>%{count}</span> espèces"
+  },
+  "x_species_link_html": {
+    "one": "<a href='%{url}'>%{count} espèce</a>",
+    "other": "<a href='%{url}'>%{count} espèces</a>"
+  },
+  "x_suggestions_filtered_by_colon": {
+    "one": "%{count} suggestion filtrée par :",
+    "other": "%{count} suggestions filtrées par :"
+  }
 };
 I18n.translations["gd"] = {
   "activerecord": {
@@ -34504,7 +34679,6 @@ I18n.translations["gl"] = {
   "location_is_public": "A ubicación é pública",
   "location_private": "Ubicación Privada",
   "location_specified": "Ubicación especificada",
-  "location_unknown": "Ubicación descoñecida",
   "lock_zoom_level": "Bloquear nivel de zoom",
   "log_in": "Iniciar sesión",
   "log_scale_label": "Rexistro",
@@ -35247,6 +35421,8 @@ I18n.translations["gl"] = {
   "running_total": "Total Acumulado",
   "satellite": "satélite",
   "save": "Gardar",
+  "save_comment": "Gardar comentario",
+  "save_identification": "Gardar identificación",
   "save_photos": "Gardar fotos",
   "saved": "Gardado",
   "saving": "Gardando...",
@@ -35328,6 +35504,7 @@ I18n.translations["gl"] = {
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\" %{status}\" en %{place}",
   "stay_and_try_again": "Quedar e tentalo outra vez",
+  "stop_editing": "Deter modificación",
   "stop_testing": "Deter o Test",
   "stop_trusting_this_person_with_your_private_coordinates": "Deixar de confiar nesta persoa cás túas coordenadas ocultas",
   "store": "TENDA",
@@ -36782,7 +36959,6 @@ I18n.translations["he"] = {
   "location_is_public": "מיקום ציבורי",
   "location_private": "מיקום פרטי",
   "location_specified": "המיקום צויין",
-  "location_unknown": "מיקום לא ידוע",
   "log_in": "כניסה לחשבון",
   "log_scale_label": "יומן",
   "long": "קו אורך",
@@ -37455,6 +37631,8 @@ I18n.translations["he"] = {
   "running_total": "סך הכל",
   "satellite": "לוויין",
   "save": "שמירה",
+  "save_comment": "שמירת הערה",
+  "save_identification": "שמירת זיהוי",
   "save_photos": "שמירת תמונות",
   "saved": "נשמר",
   "saving": "שומר...",
@@ -37521,6 +37699,7 @@ I18n.translations["he"] = {
   "status": "סטטוס",
   "status_globally": "%{status} גלובלי",
   "status_in_place": "%{status} ב%{place}",
+  "stop_editing": "סיום עריכה",
   "stop_testing": "סיום בחינה",
   "store": "לחנות",
   "studies_that_used_inaturalist_data_in_year": "מחקרים שהשתמשו בנתוני iNaturalist בשנת %{year}",
@@ -39025,7 +39204,6 @@ I18n.translations["id"] = {
   "location": "Lokasi",
   "location_is_private": "Lokasi privat",
   "location_is_public": "Lokasi publik",
-  "location_unknown": "Lokasi Tidak Diketahui",
   "log_in": "Masuk",
   "long": "Bujur",
   "longitude": "Garis Bujur",
@@ -39332,6 +39510,8 @@ I18n.translations["id"] = {
   "reviewed": "telah dilihat kembali",
   "satellite": "satelit",
   "save": "Simpan",
+  "save_comment": "Simpan komentar",
+  "save_identification": "Simpan identifikasi",
   "save_photos": "Simpan foto",
   "saving": "Menyimpan...",
   "saving_verb": "Menyimpan",
@@ -39370,6 +39550,7 @@ I18n.translations["id"] = {
   "start": "Mulai",
   "start_typing_taxon_name": "Mulai ketik nama takson",
   "stats": "Negara Bagian",
+  "stop_editing": "Berhenti Editing",
   "submitted": "dimasukkan",
   "suggest_an_identification": "sarankan identifikasi",
   "table": "Tabel",
@@ -40456,11 +40637,11 @@ I18n.translations["it"] = {
   "location_is_public": "La posizione è pubblica",
   "location_private": "Posizione privata",
   "location_specified": "Posizione specificata",
-  "location_unknown": "Posizione sconosciuta",
+  "location_unknown": "Posizione Mancante",
   "lock_zoom_level": "Blocca livello zoom",
   "log_in": "Accedi",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Accedi</a> o <a href=\"/signup\">iscriviti</a> per aggiungere commenti.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Accedi</a> o <a href=\"/signup\">iscriviti</a> per aggiungere identificazioni.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/log_in\">Accedi</a> o <a href=\"/sign_up\">iscriviti</a> per aggiungere commenti.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/log_in\">Accedi</a> o <a href=\"/sign_up\">iscriviti</a> per aggiungere identificazioni.\n",
   "log_scale_label": "Logaritmica",
   "long": "Lon",
   "longitude": "Longitudine",
@@ -40499,6 +40680,7 @@ I18n.translations["it"] = {
   "messages": "Messaggi",
   "misidentifications": "Identificazioni erronee",
   "misleading_or_illegal_content_html": "Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "Data Mancante",
   "mobile": "Cellulare",
   "mollusks": "molluschi",
   "momentjs": {
@@ -41202,6 +41384,8 @@ I18n.translations["it"] = {
   "running_total": "Totale attuale",
   "satellite": "satellite",
   "save": "Salva",
+  "save_comment": "Salva il commento",
+  "save_identification": "Salva l'identificazione",
   "save_photos": "Salva le foto",
   "saved": "Salvato",
   "saving": "Salvataggio...",
@@ -41283,6 +41467,7 @@ I18n.translations["it"] = {
   "status_globally": "\"%{status}\" a livello Globale",
   "status_in_place": "\"%{status}\" in %{place}",
   "stay_and_try_again": "Rimani e prova ancora",
+  "stop_editing": "Termina la modifica",
   "stop_testing": "Termina il test",
   "stop_trusting_this_person_with_your_private_coordinates": "Smetti di rivelare a questa persona le tue coordinate nascoste",
   "store": "NEGOZIO",
@@ -42758,7 +42943,6 @@ I18n.translations["ja"] = {
   "location_is_public": "位置情報は公開中",
   "location_private": "位置情報は非公開",
   "location_specified": "指定した位置",
-  "location_unknown": "不明な位置",
   "lock_zoom_level": "ズームレベルを固定",
   "log_in": "ログイン",
   "log_scale_label": "ログ",
@@ -43452,6 +43636,8 @@ I18n.translations["ja"] = {
   "running_total": "現在の総計",
   "satellite": "航空写真",
   "save": "保存",
+  "save_comment": "コメントを保存",
+  "save_identification": "同定を保存",
   "save_photos": "写真を保存",
   "saved": "保存しました",
   "saving": "保存中...",
@@ -43530,6 +43716,7 @@ I18n.translations["ja"] = {
   "status_globally": "世界中で「%{status}」",
   "status_in_place": "%{place} で「%{status}」",
   "stay_and_try_again": "滞在して、もう一度試してみてください。",
+  "stop_editing": "編集をやめる",
   "stop_testing": "テストをやめる",
   "studies_that_used_inaturalist_data_in_year": "iNaturalistのデータを %{year} 年に使用した研究",
   "submit_observations": {
@@ -44595,7 +44782,6 @@ I18n.translations["ko"] = {
   "location_is_private": "위치가 비공개이다",
   "location_is_public": "위치가 공개되어있다",
   "location_private": "위치 비공개",
-  "location_unknown": "위치 알 수 없음",
   "log_in": "로그인",
   "log_scale_label": "로그",
   "long": "경도",
@@ -45100,6 +45286,7 @@ I18n.translations["ko"] = {
   "reviewed": "검토함",
   "rg_observations": "연구 자료 등급 관찰",
   "save": "저장",
+  "save_comment": "댓글 저장",
   "save_photos": "사진 저장하기",
   "saved": "저장됨",
   "saving": "저장 중...",
@@ -45142,6 +45329,7 @@ I18n.translations["ko"] = {
   "start_date_time": "시작 날짜 / 시간",
   "status": "상태",
   "stay_and_try_again": "동일 장소에서 다시 시도하세요",
+  "stop_editing": "그만 편집하기",
   "stop_testing": "테스트 중지",
   "store": "스토어",
   "submitted": "업로드 날짜",
@@ -45396,6 +45584,7 @@ I18n.translations["lb"] = {
   "a_member_of_taxon_html": "e Member vu(n) %{taxon}",
   "about": "Iwwer",
   "about_charts": "Iwwer Diagrammer",
+  "about_conservation_status": "Iwert den Erhalungszoustand",
   "about_names": "Iwwer Nimm",
   "about_this_bioblitz": "Iwwer dëse Bioblitz",
   "account": "Benotzerkont",
@@ -45413,9 +45602,11 @@ I18n.translations["lb"] = {
   "add": "Derbäisetzen",
   "add_a_comment": "Eng Bemierkung derbäisetzen",
   "add_a_field": "E Feld derbäisetzen",
+  "add_a_link": "Link derbäisetzen",
   "add_a_name": "En Numm derbäisetzen",
   "add_an_identification": "Eng Bestëmmung derbäisetzen",
   "add_annotations_for_x": "Annotatioune fir %{x} derbäisetzen",
+  "add_id": "ID bäisetzen",
   "add_life_stage_adult_annotation": "Setz d'Informatioun \"Liewesstadium: Ausgewuess\" derbäi",
   "add_life_stage_egg_annotation": "Setzt d'Informatioun \"Liewensstadium: Ee\" derbäi",
   "add_life_stage_larva_annotation": "Setzt d'Informatioun \"Liewensstadium: Larv\" derbäi",
@@ -45441,6 +45632,7 @@ I18n.translations["lb"] = {
     "hybrid": "All Hybriden an d'Datebank derbäigesat",
     "phylum": "All Phyla an d'Datebank derbäigesat",
     "subphylum": "All Ënner-Phyla an d'Datebank derbäigesat",
+    "subspecies": "Eng Ënneraart an d'Datebank bäigesat",
     "superclass": "All Superklassen an d'Datebank derbäigesat"
   },
   "all_taxa": {
@@ -45496,8 +45688,10 @@ I18n.translations["lb"] = {
       "other": "%{count} aner Déieren"
     }
   },
+  "all_taxa_": "All Taxa",
   "amphibians": "Amphibien",
   "and": "a(n)",
+  "android": "Android",
   "animals": "Déieren",
   "annotation": "Notiz",
   "annotations": "Notizen",
@@ -45507,7 +45701,9 @@ I18n.translations["lb"] = {
   "are_you_sure_leave_this_project": "Sidd Dir sécher datt Dir dëse Projet verloosse wëllt?",
   "are_you_sure_remove_photo": "Sidd Dir sécher datt Dir dës Foto ewechhuele wëllt?",
   "ascending": "vu kleng op grouss",
+  "atom": "Atom",
   "attention": "Opgepasst",
+  "attribute": "Attribut",
   "back_to_suggestions": "Zréck bei d'Proposen",
   "back_to_x": "Zréck op %{noun}",
   "birds": "Vigel",
@@ -45519,6 +45715,7 @@ I18n.translations["lb"] = {
   "calendar": "Kalenner",
   "cancel": "Ofbriechen",
   "captive": "A Gefaangenschaft",
+  "captive_cultivated": "Gefaangen / Kultivéiert",
   "casual_": "Geleeëntlech",
   "categories": "Kategorien",
   "cc_by_name": "Attributioun",
@@ -45533,8 +45730,10 @@ I18n.translations["lb"] = {
   "close": "Zoumaachen",
   "combine": "Combinéieren",
   "comment_": "Bemierkung",
+  "community_id_heading": "Communautéits-Taxon",
   "compare": "Vergläichen",
   "confirm": "Confirméieren",
+  "conservation_status": "Erhalungszoustand",
   "continue": "Virufueren",
   "controlled_term_definitions": {
   },
@@ -45542,8 +45741,10 @@ I18n.translations["lb"] = {
     "adult": "Erwuessen",
     "egg": "Ee",
     "female": "Weiblech",
+    "life_stage": "Liewensstadium",
     "male": "Männlech",
     "plant_phenology": "Phenologie vun der Planz",
+    "pupa": "Popp",
     "sex": "Geschlecht"
   },
   "convert": "Ëmwandelen",
@@ -45556,6 +45757,9 @@ I18n.translations["lb"] = {
   "copyright_info_and_more": "Copyright Info a Méi",
   "copyright_infringement": "Copyright-Verletzung",
   "create_an_atlas": "En Atlas uleeën",
+  "csv": "CSV",
+  "cumulative_ids": "Kumulativ IDs: %{count} vun %{total}",
+  "curation": "Kuratioun",
   "current_flags": "Aktuell Markéierungen",
   "data_quality": "Datequalitéit",
   "date": {
@@ -45645,6 +45849,7 @@ I18n.translations["lb"] = {
     "range": "Beräich"
   },
   "date_time": "Datum/Zäit",
+  "date_to_date": "%{d1} - %{d2}",
   "date_updated": "Datum aktualiséiert",
   "datetime": {
     "countdown_x_days": {
@@ -45688,6 +45893,7 @@ I18n.translations["lb"] = {
   "edit_multiple_descriptions": "Méi Beschreiwungen änneren",
   "edit_photos": "Fotoen änneren",
   "edit_project": "Projet änneren",
+  "edit_taxon": "Taxon editéieren",
   "edit_your_settings_for_this_project": "Ännert Är Astellunge fir dëse Projet",
   "end": "Schluss",
   "endangered": "Bedréit",
@@ -45695,6 +45901,7 @@ I18n.translations["lb"] = {
   "endemic_to_x": "Endemesch zu %{x}",
   "establishment": {
     "endemic": "endemesch",
+    "native": "Nativ",
     "naturalised": "Naturaliséiert"
   },
   "everyone_": "Jiddwereen",
@@ -45713,12 +45920,15 @@ I18n.translations["lb"] = {
   "finished_with_page": "Fäerdeg mat der Säit",
   "first_observation": "Éischt Observatioun",
   "first_observation_by_date_added": "Éischt Observatioun nom Datum derbäigesat",
+  "flag": "Mellen",
   "flag_as_inappropriate": "Als onpassend markéieren",
+  "flag_for_curation": "Mellen fir Kuratioun",
   "flag_this_photo": "Dës Foto markéieren",
   "flagged_": "Markéiert",
   "follow": "Iwwerwaachen",
   "frequency": "Frequenz",
   "from_flickr_facebook_etc": "Vu Flickr, Facebook, asw.",
+  "from_soundcloud": "Vun Soundcloud",
   "full_screen": "Ganzen Ecran",
   "generate_your_stats": "Generéiert Är Statistiken",
   "get_started": "Fir unzefänken",
@@ -45743,12 +45953,18 @@ I18n.translations["lb"] = {
     }
   },
   "identifications": "Identifikatiounen",
+  "identifiers": "Bestëmmer",
   "identify": "Identifizéieren",
+  "identify_observations": "Observatiounen bestëmmen",
+  "identify_title": "Bestëmmen",
+  "ids_by_taxon": "IDs no Taxon",
+  "ids_made_for_others": "IDs fir een aneren gemaach",
   "ignore_and_continue": "Ignoréieren a virufueren",
   "import": "Importéieren",
   "improving": "Verbesseren",
   "in_progress": "am Gaang",
   "in_the_past_week": "An der leschter Woch",
+  "inappropriate_content": "Onubruechte Contenu?",
   "including": "inklusiv",
   "info": "Informatioun",
   "insects": "Insekten",
@@ -45763,6 +45979,8 @@ I18n.translations["lb"] = {
   "large": "grouss",
   "last_observation": "Lescht Observatioun",
   "last_year": "Lescht Joer",
+  "leaderboard": "Féierungstabel",
+  "leading": "Richtungsweisend",
   "leave": "Fortgoen",
   "less": "Manner",
   "lexicons": {
@@ -45844,8 +46062,8 @@ I18n.translations["lb"] = {
   "location_is_private": "Plaz ass privat",
   "location_is_public": "D'Plaz ass ëffentlech",
   "location_private": "Plaz ass privat",
-  "location_unknown": "Plaz onbekannt",
   "log_in": "Aloggen",
+  "lookup": "Noschloen",
   "low": "Niddreg",
   "make_this_your_default_license": "Maacht heirauser Är Standard-%{type}-Lizenz",
   "mammals": "Mamendéieren",
@@ -45855,6 +46073,7 @@ I18n.translations["lb"] = {
   "maps": {
     "overlays": {
       "all_observations": "All Observatiounen",
+      "gbif_network": "GBIF Netzwierk",
       "observations": "Observatiounen",
       "range": "Beräich"
     }
@@ -45888,12 +46107,16 @@ I18n.translations["lb"] = {
   "more_photos": "Méi Fotoen",
   "more_than_a_week_ago": "Viru méi wéi enger Woch",
   "most_observations": "Meescht Observatiounen",
+  "most_observed_species": "Meescht observeiert Aarten",
   "most_observed_threatened_species": "Bedroten Aarten déi am dacksten observéiert goufen",
+  "most_species": "Meescht Aarten",
   "multiple": "méi",
   "multiple_select_option": "-- méi --",
   "name": "Numm",
   "names": "Nimm",
+  "native_to_place": "Einheimesch an %{place}",
   "needs_id_": "Brauch eng ID",
+  "new": "Nei",
   "new_and_noteworthy": "Nei & Bemierkenswäert",
   "new_observations": "Nei Observatiounen",
   "new_users": "Nei Benotzer",
@@ -45931,6 +46154,7 @@ I18n.translations["lb"] = {
     }
   },
   "number_selected": "# erausgesicht",
+  "obscured": "Verschleiert",
   "observation": "Observatioun",
   "observation_": "Observatioun",
   "observation_date": "Datum",
@@ -45939,15 +46163,19 @@ I18n.translations["lb"] = {
   "observations_": "Observatiounen",
   "observations_by_category": "Observatioune Pro Kategorie",
   "observations_map": "Observatiounen / Kaart",
+  "observations_total": "Observatiounen Total",
   "observed": "Observéiert",
   "observers": "Observateuren",
+  "of_identifiers": "Bestëmmer",
   "of_observations": "Observatiounen",
   "of_places": "Plazen",
   "of_species": "Aarten",
+  "of_this_taxon": "Vun desem Taxon",
   "open": "opmaachen",
   "open_": "Opmaachen",
   "or": "oder",
   "other": "Anerer",
+  "output_taxon": "Output-Taxon",
   "overview": "Iwwersiicht",
   "per_day": "Pro Dag",
   "per_month": "Pro Mount",
@@ -46104,6 +46332,7 @@ I18n.translations["lb"] = {
   "popular": "Beléift",
   "potential_disagreement": "Potentiellen Desaccord",
   "prev": "Vireg",
+  "preview": "Virschau",
   "previous": "Vireg",
   "previous_observation": "Vireg Observatioun",
   "previous_photo": "Vireg Foto",
@@ -46112,6 +46341,8 @@ I18n.translations["lb"] = {
   "profile": "Profil",
   "project": "Projet",
   "projects": "Projeten",
+  "quality_grade": "Qualitéitsgrad",
+  "quality_grade_": "Qualitéitsgrad",
   "random": "Zoufall",
   "rank_position": "Klassement",
   "ranks": {
@@ -46121,10 +46352,12 @@ I18n.translations["lb"] = {
     "subgenus": "Ënneraart",
     "section": "Abschnitt",
     "complex": "Komplex",
+    "species": "Aarten",
     "leaves": "Blieder"
   },
   "read_more": "Liest méi",
   "recent": "Rezent",
+  "recent_observations_": "Rezent Observatiounen",
   "red": "rout",
   "redo_search_in_map": "Nach eng Kéier op der Kaart sichen",
   "regenerate_stats": "Statistiken nei generéieren",
@@ -46134,6 +46367,7 @@ I18n.translations["lb"] = {
   "request_failed": "Ufro huet net funktionéiert",
   "required_": "Obligatoresch",
   "research_": "Recherche",
+  "research_grade": "Recherche Grade",
   "reset_search_filters": "Sichfilteren zrécksetzen",
   "restore": "Restauréieren",
   "review_all": "All nokucken",
@@ -46141,10 +46375,13 @@ I18n.translations["lb"] = {
   "rg_observations": "RG Observatiounen",
   "satellite": "Satellit",
   "save": "Späicheren",
+  "save_comment": "Bemierkung späicheren",
   "save_photos": "Fotoe späicheren",
   "saved": "Gespäichert",
   "saving": "Späicheren...",
   "search": "Sichen",
+  "search_species_": "Aart sichen...",
+  "seasonality": "Saisonalitéit",
   "seen_nearby": "Nobäi gesinn",
   "select": "Eraussichen",
   "select_all": "Alles uwielen",
@@ -46152,8 +46389,10 @@ I18n.translations["lb"] = {
   "select_options": "Optiounen auswielen",
   "share": "Deelen",
   "show": "Weisen",
+  "show_keyboard_shortcuts": "Tastatur-Shortcuts weisen",
   "sign_out": "Ofmellen",
   "sign_up": "Mellt Iech un",
+  "site_admin_tools": "Säiten Administratortoolen",
   "some_observations_failed_to_save": "Verschidden Observatioune konnten net gespäichert ginn",
   "sort_by": "Zortéieren no",
   "sounds": {
@@ -46163,22 +46402,32 @@ I18n.translations["lb"] = {
   "source_list_": "Lëscht vun de Quellen",
   "source_wikipedia": "Quell: Wikipedia",
   "species_by_category": "Aarten no Kategorie",
+  "species_unknown": "Aart onbekannt",
   "start": "Ufank",
   "stats": "Statistiken",
   "stats_for_this_year_have_not_been_generated": "D'Statistike fir dëst Joer goufen net generéiert.",
+  "status": "Status",
   "stay_and_try_again": "Bleiwen an nach emol probéieren",
   "suggestions": "Virschléi",
   "supporting": "Ënnerstëtzen",
   "table": "Tabell",
+  "taxa": "Taxa",
+  "taxon_changes": "Taxon Ännerung",
+  "taxon_geoprivacy": "Taxon Geoprivatsphäre",
   "taxon_map": {
   },
+  "taxon_schemes": "Taxon Schemen",
+  "taxonomy": "Taxonomie",
+  "taxonomy_details": "Taxonomesch Detailer",
   "tell_us_why": "Sot eis firwat...",
   "the_world": "D'Welt",
   "then_keybord_sequence": "da(nn)",
+  "this_bioblitz_beings_in": "Dësen Bioblëtz fänkt un an",
   "this_is_your_observation": "Dëst ass Är Observatioun",
   "this_is_your_observation_desc": "Dir kënnt ëmmer d'Koordinate vun Ären Observatioune gesinn.",
   "this_observation": "Dës Observatioun",
   "this_year": "Dëst Joer",
+  "threatened": "Bedrot",
   "time": {
     "am": "moies",
     "formats": {
@@ -46188,8 +46437,12 @@ I18n.translations["lb"] = {
   },
   "today": "Haut",
   "too_many_results": "Ze vill Resultater",
+  "top_identifier": "Top Bestëmmer",
+  "top_observer": "Top Observateuren",
+  "total_observations": "Total Observatiounen",
   "translated_languages": "Iwwersat Sproochen",
   "trends": "Tendenzen",
+  "two_thirds": "2/3tel",
   "unknown": "Onbekannt",
   "unknown_error": "Onbekannte Feeler",
   "update_observations": "Observatiounen aktualiséieren",
@@ -46205,6 +46458,7 @@ I18n.translations["lb"] = {
     }
   },
   "user": "Benotzer",
+  "user_autocomplete_placeholder": "kueda, simon123, etc.",
   "users": "Benotzer",
   "value": "Wäert",
   "view": "Weisen",
@@ -46223,6 +46477,11 @@ I18n.translations["lb"] = {
         "agreement": "Accord"
       },
       "compare": {
+        "combined": "Combinéiert",
+        "horizontal": "Horizontal",
+        "interval": "Intervall",
+        "total_taxa": "Total Taxa",
+        "vertical": "Vertikal"
       },
       "export": {
         "well_email_you": "Ok, mir schécken Iech eng E-Mail wann et prett ass."
@@ -46270,6 +46529,7 @@ I18n.translations["lb"] = {
     },
     "taxa": {
       "show": {
+        "about_conservation_status_desc": "Den Erhalungszoustand resuméiert de Risiko vum Ausstierwe vun engem Grupp vun Organismen\n",
         "frequency": {
           "verifiable": "Iwwerpréifbar",
           "Life Stage=egg": "Ee",
@@ -46300,7 +46560,9 @@ I18n.translations["lb"] = {
   "who_user_helped_the_most": "Wien dem %{user} am Meeschte gehollef huet",
   "why_you_can_see_the_coordinates": "Firwat Dir d'Koordinate gesi kënnt",
   "wild": "Wëll",
+  "with_annotation": "Mat Annotatiounen",
   "withdraw": "Zréckzéien",
+  "without_annotation": "Ouni Annotatiounen",
   "worldwide": "Weltwäit",
   "x_comments": {
     "one": "1 Bemierkung",
@@ -46313,6 +46575,14 @@ I18n.translations["lb"] = {
   "x_identifications_": {
     "one": "1 Identifikatioun",
     "other": "%{count} Identifikatiounen"
+  },
+  "x_new_species": {
+    "one": "%{count} Nei Aart",
+    "other": "%{count} Nei Aarten"
+  },
+  "x_new_users": {
+    "one": "%{count} Neie Benotzer",
+    "other": "%{count} Nei Benotzer"
   },
   "x_observations": {
     "one": "1 Observatioun",
@@ -46335,9 +46605,22 @@ I18n.translations["lb"] = {
     "one": "1 anerer",
     "other": "%{count} anerer"
   },
+  "x_people": {
+    "one": "%{count} Persounen",
+    "other": "%{count} Persounen"
+  },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} Leit </strong> hunn dem User %{user} mat <strong>%{y}IDs</strong> gehollef",
+  "x_photos": {
+    "one": "%{count} Foto",
+    "other": "%{count} Fotoen"
+  },
   "x_species": {
     "one": "1 Aart",
     "other": "%{count} Aarten"
+  },
+  "x_suggestions_filtered_by_colon": {
+    "one": "%{count} Suggestioun gefiltert no:",
+    "other": "%{count} Suggestiounen gefiltert no:"
   },
   "year_in_review": "Joer %{year} am Réckbléck",
   "yellow": "giel",
@@ -47201,7 +47484,6 @@ I18n.translations["lt"] = {
   "location_is_public": "Vieta yra vieša",
   "location_private": "Vieta yra privati",
   "location_specified": "Vieta nurodyta",
-  "location_unknown": "Vieta nežinoma",
   "log_in": "Prisijungti",
   "log_scale_label": "Įrašas",
   "long": "Ilg.",
@@ -47903,6 +48185,8 @@ I18n.translations["lt"] = {
   "rg_observations": "ID stebėjimai",
   "satellite": "palydovas",
   "save": "Išsaugoti",
+  "save_comment": "Išsaugoti komentarą",
+  "save_identification": "Saugoti identifikaciją",
   "save_photos": "Saugoti nuotraukas",
   "saved": "Išsaugota",
   "saving": "Išsaugoma...",
@@ -47980,6 +48264,7 @@ I18n.translations["lt"] = {
   "status_globally": "„%{status}“ visame pasaulyje",
   "status_in_place": "%{status} %{place}",
   "stay_and_try_again": "Pasilikite ir bandykite dar kartą",
+  "stop_editing": "Nutraukti redagavimą",
   "stop_testing": "Nutraukti testavimą",
   "stop_trusting_this_person_with_your_private_coordinates": "Nebepatikėkite šiam žmogui paslėptų koordinačių",
   "store": "PIRKTI",
@@ -49255,6 +49540,8 @@ I18n.translations["mk"] = {
   "remove_from_project": "Отстрани од проектот",
   "satellite": "сателитска",
   "save": "Зачувај",
+  "save_comment": "Зачувај коментар",
+  "save_identification": "Зачувај препознавање",
   "saving": "Зачувувам...",
   "search": "Пребарај",
   "search_remote": "Пребарај далечински",
@@ -49286,6 +49573,7 @@ I18n.translations["mk"] = {
   "species_unknown": "Непознат вид",
   "start": "Почни",
   "start_typing_taxon_name": "Почнете да пишувате име на таксонот...",
+  "stop_editing": "Запри со уредување",
   "submitted": "Поднесено",
   "table": "Табела",
   "tagging": "Означувам...",
@@ -49815,6 +50103,7 @@ I18n.translations["nb"] = {
   },
   "activity": "Aktivitet",
   "add": "Legg til",
+  "add_a_bulleted_list": "Legg til en unummerert liste",
   "add_a_comment": "Legg til en kommentar",
   "add_a_field": "Legg til et felt",
   "add_a_link": "Legg til en lenke",
@@ -50068,6 +50357,7 @@ I18n.translations["nb"] = {
   "continue": "Fortsett",
   "controlled_term_definitions": {
     "alive": "Organisme lever og viser ikke tegn på en snarlig død",
+    "cannot_be_determined": "Kan ikke bestemmes ut fra beviset som er lagt frem",
     "dead": "Organisme er død eller viser tegn på en snarlig død",
     "flower_budding": "Blomsterknopper er synlige men ikke åpne",
     "flowering": "Blomster synlige, åpne, og fortsatt knyttet til planten",
@@ -50659,9 +50949,11 @@ I18n.translations["nb"] = {
   "location_is_public": "Plassering er offentlig",
   "location_private": "Posisjon privat",
   "location_specified": "Plassering oppgitt",
-  "location_unknown": "Posisjon ukjent",
+  "location_unknown": "Mangler posisjon",
   "lock_zoom_level": "Lås zoomnivå",
   "log_in": "Logg inn",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Logg på</a> eller <a href=\"/signup\">registrer deg</a> for å legge til kommentarer.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Logg på</a> eller <a href=\"/signup\">registrer deg</a> for å legge til bestemmelser.\n",
   "log_scale_label": "Log",
   "long": "Lgrad",
   "longitude": "Lengdegrad",
@@ -50700,6 +50992,7 @@ I18n.translations["nb"] = {
   "messages": "Meldinger",
   "misidentifications": "Feilidentifikasjoner",
   "misleading_or_illegal_content_html": "Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les\nmer om vår definisjon av \"passende\" i svarene på <a href=\"/help#inappropriate\">ofte stilte spørsmål</a>.\n",
+  "missing_date": "Mangler dato",
   "mobile": "Mobil",
   "mollusks": "bløtdyr",
   "momentjs": {
@@ -50830,6 +51123,7 @@ I18n.translations["nb"] = {
   "observations_": "observasjoner",
   "observations_annotated_with_annotation": "Observasjoner med merknaden %{annotation}",
   "observations_by_category": "Observasjoner per kategori",
+  "observations_can_only_have_n_photos": "Observasjoner kan bare ha %{limit} bilder",
   "observations_in_this_project_must": "Observasjoner i dette prosjektet må oppfylle følgende krav",
   "observations_map": "Observasjoner / kart",
   "observations_of_relatives": "Observasjoner av slektninger",
@@ -51402,6 +51696,8 @@ I18n.translations["nb"] = {
   "running_total": "Løpende total",
   "satellite": "satellitt",
   "save": "Lagre",
+  "save_comment": "Lagre kommentar",
+  "save_identification": "Lagre identifikasjon",
   "save_photos": "Lagre bilder",
   "saved": "Lagret",
   "saving": "Lagrer...",
@@ -51483,6 +51779,7 @@ I18n.translations["nb"] = {
   "status_globally": "Globalt \"%{status}\"",
   "status_in_place": "\"%{status}\" i %{place}",
   "stay_and_try_again": "Bli og prøv igjen",
+  "stop_editing": "Stopp redigering",
   "stop_testing": "Stopp testing",
   "stop_trusting_this_person_with_your_private_coordinates": "Slutt å stol på denne personen med dine skjulte koordinater",
   "store": "BUTIKK",
@@ -52883,6 +53180,7 @@ I18n.translations["nl"] = {
   "life": "Leven",
   "life_list": "Levenslijst van %{user}",
   "linear_scale_label": "Lineair",
+  "linked_text": "gekoppelde tekst",
   "list": "Lijst",
   "list_tooltip": "Toon lijstweergave",
   "lists": "Lijsten",
@@ -52939,9 +53237,11 @@ I18n.translations["nl"] = {
   "location_is_public": "Locatie is openbaar",
   "location_private": "Locatie privé",
   "location_specified": "Locatie opgegeven",
-  "location_unknown": "Locatie onbekend",
+  "location_unknown": "Locatie ontbreekt",
   "lock_zoom_level": "Zoomniveau vergrendelen",
   "log_in": "Aanmelden",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Log in</a> of <a href=\"/signup\">meld je aan</a> om reacties toe te voegen.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Log in</a> of <a href=\"/signup\">meld je aan</a> om determinaties toe te voegen.\n",
   "log_scale_label": "Logboek",
   "long": "Lon",
   "longitude": "Lengtegraad",
@@ -52980,6 +53280,7 @@ I18n.translations["nl"] = {
   "messages": "Berichten",
   "misidentifications": "Onjuiste determinaties",
   "misleading_or_illegal_content_html": "Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van \"geschikt\", zie de\n<a href=\"/help#inappropriate\">Veelgestelde vragen (FAQ)</a>.\n",
+  "missing_date": "Datum ontbreekt",
   "mobile": "Mobiel",
   "mollusks": "weekdieren",
   "momentjs": {
@@ -53683,6 +53984,8 @@ I18n.translations["nl"] = {
   "running_total": "Lopend Totaal",
   "satellite": "satelliet",
   "save": "Opslaan",
+  "save_comment": "Reactie opslaan",
+  "save_identification": "Determinatie opslaan",
   "save_photos": "Foto's opslaan",
   "saved": "Opgeslagen",
   "saving": "Aan het opslaan...",
@@ -53764,6 +54067,7 @@ I18n.translations["nl"] = {
   "status_globally": "Wereldwijd \"%{status}\"",
   "status_in_place": "\"%{status}\" in %{place}",
   "stay_and_try_again": "Blijf en probeer het opnieuw",
+  "stop_editing": "Stop bewerken",
   "stop_testing": "Stop testing",
   "stop_trusting_this_person_with_your_private_coordinates": "Vertrouw deze persoon je verborgen coördinaten niet meer toe",
   "store": "WINKEL",
@@ -54295,7 +54599,7 @@ I18n.translations["nl"] = {
     "one": "%{x} van %{count} bevestigd",
     "other": "%{x} van %{count} bevestigd"
   },
-  "x_of_y": "%{x} o=van %{y}",
+  "x_of_y": "%{x} van %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is",
   "x_of_y_short": "%{x} / %{y}",
   "x_others": {
@@ -56152,7 +56456,6 @@ I18n.translations["pl"] = {
   "location_is_public": "Lokalizacja jest publiczna",
   "location_private": "Lokalizacja prywatna",
   "location_specified": "Lokalizacja określona",
-  "location_unknown": "Lokalizacja nieznana",
   "lock_zoom_level": "Zablokuj poziom powiększenia",
   "log_in": "Zaloguj się",
   "log_scale_label": "Dziennik",
@@ -56796,6 +57099,8 @@ I18n.translations["pl"] = {
   "rg_observations": "Obserwacje RG",
   "satellite": "satelita",
   "save": "Zapisz",
+  "save_comment": "Zapisz komentarz",
+  "save_identification": "Zapisz oznaczenie",
   "save_photos": "Zapisz zdjęcia",
   "saved": "Zapisano",
   "saving": "Zapisywanie...",
@@ -56853,6 +57158,7 @@ I18n.translations["pl"] = {
   "stats": "Statystyki",
   "stats_for_this_year_have_not_been_generated": "Statystyki dla tego roku nie zostały wygenerowane.",
   "status": "Status",
+  "stop_editing": "Przestań edytować",
   "stop_testing": "Przestań testować",
   "store": "SKLEP",
   "studies_that_used_inaturalist_data_in_year": "Prace, które wykorzystywały dane z iNaturalist w roku %{year}",
@@ -58147,7 +58453,6 @@ I18n.translations["pt"] = {
   "location_is_public": "A localização é pública",
   "location_private": "Localização Privada",
   "location_specified": "Localização específica",
-  "location_unknown": "Localização Desconhecida",
   "lock_zoom_level": "Bloquear nível de zoom",
   "log_in": "Entrar",
   "log_scale_label": "Logarítmica",
@@ -58888,6 +59193,8 @@ I18n.translations["pt"] = {
   "running_total": "Total acumulado",
   "satellite": "satélite",
   "save": "Guardar",
+  "save_comment": "Guardar comentário",
+  "save_identification": "Guardar identificação",
   "save_photos": "Guardar fotos",
   "saved": "Guardado",
   "saving": "A guardar...",
@@ -58969,6 +59276,7 @@ I18n.translations["pt"] = {
   "status_globally": "\"%{status}\" Globalmente",
   "status_in_place": "\"%{status}\" em %{place}",
   "stay_and_try_again": "Fique e tente novamente",
+  "stop_editing": "Pare de Editar",
   "stop_testing": "Parar Teste",
   "stop_trusting_this_person_with_your_private_coordinates": "Parar de confiar suas coordenadas ocultadas à esta pessoa",
   "store": "LOJA",
@@ -59993,7 +60301,7 @@ I18n.translations["ru"] = {
     "subsection": "Все подсекции добавлены в базу данных",
     "subspecies": "Все подвиды добавлены в базу данных",
     "subtribe": "Все подтрибы добавлены в базу данных",
-    "superclass": "Все суперклассы добавлены в базу данных",
+    "superclass": "Все надклассы добавлены в базу данных",
     "superfamily": "Все надсемейства добавлены в базу данных",
     "superorder": "Все надотряды добавлены в базу данных",
     "supertribe": "Все супертрибы добавлены в базу данных",
@@ -60814,11 +61122,10 @@ I18n.translations["ru"] = {
   "location_is_public": "Местоположение является общедоступным",
   "location_private": "Местоположение является конфиденциальным",
   "location_specified": "Указано местоположение",
-  "location_unknown": "Местоположение неизвестно",
   "lock_zoom_level": "Блокировка уровня масштабирования",
   "log_in": "Вход",
-  "log_in_or_sign_up_to_add_comments_html": "Для добавления комментариев<a href=\"/login\">войдите</a> или <a href=\"/signup\">зарегистрируйтесь</a>.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "Для добавления идентификаций<a href=\"/login\">войдите</a> или <a href=\"/signup\">зарегистрируйтесь</a>.\n",
+  "log_in_or_sign_up_to_add_comments_html": "Для добавления комментариев<a href=\"/log_in\">войдите</a> или <a href=\"/sign_up\">зарегистрируйтесь</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Для добавления идентификаций<a href=\"/log_in\">войдите</a> или <a href=\"/sign_up\">зарегистрируйтесь</a>.\n",
   "log_scale_label": "Логарифмическая",
   "long": "Долг",
   "longitude": "Долгота",
@@ -60857,6 +61164,7 @@ I18n.translations["ru"] = {
   "messages": "Сообщения",
   "misidentifications": "Ошибочные идентификации",
   "misleading_or_illegal_content_html": "Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "Отсутствует дата",
   "mobile": "Мобильный",
   "mollusks": "Моллюски",
   "momentjs": {
@@ -61564,6 +61872,8 @@ I18n.translations["ru"] = {
   "running_total": "Текущий итог",
   "satellite": "спутниковый",
   "save": "Сохранить",
+  "save_comment": "Сохранить комментарий",
+  "save_identification": "Сохранить идентификацию",
   "save_photos": "Сохранить фото",
   "saved": "Сохранено",
   "saving": "Сохраняется…",
@@ -61647,6 +61957,7 @@ I18n.translations["ru"] = {
   "status_globally": "Глобальный \"%{status}\"",
   "status_in_place": "\"%{status}\" в %{place}",
   "stay_and_try_again": "Остановитесь и попробуйте ещё раз",
+  "stop_editing": "Завершить редактирование",
   "stop_testing": "Остановить тестирование",
   "stop_trusting_this_person_with_your_private_coordinates": "Перестать доверять этому человеку ваши скрытые координаты",
   "store": "Магазин",
@@ -62949,7 +63260,6 @@ I18n.translations["sk"] = {
   "location_is_public": "Miesto je verejné",
   "location_private": "Súkromná lokalita",
   "location_specified": "Miesto určené",
-  "location_unknown": "Neznáma lokalita",
   "log_in": "Prihlásiť sa",
   "log_scale_label": "Protokol",
   "long": "Zem. dĺžka",
@@ -63561,6 +63871,8 @@ I18n.translations["sk"] = {
   "rg_observations": "VS pozorovania",
   "satellite": "satelitný",
   "save": "Uložiť",
+  "save_comment": "Uložiť komentár",
+  "save_identification": "Uložiť identifikáciu",
   "save_photos": "Uložiť fotky",
   "saved": "Uložené",
   "saving": "Ukladanie...",
@@ -63633,6 +63945,7 @@ I18n.translations["sk"] = {
   "status_globally": "\"%{status}\" globálne",
   "status_in_place": "\"%{status}\" v %{place}",
   "stay_and_try_again": "Zostať a skúsiť znova",
+  "stop_editing": "Přestať editovať",
   "stop_testing": "Prestať testovať",
   "stop_trusting_this_person_with_your_private_coordinates": "Prestať veriť tejto osobe so skrytými súradnicami",
   "studies_that_used_inaturalist_data_in_year": "Štúdie používajúce iNaturalist dáta v %{year}",
@@ -64649,7 +64962,6 @@ I18n.translations["sq"] = {
   "location_is_public": "Lokacioni është publik",
   "location_private": "Lokacioni privat",
   "location_specified": "lokacioni është i specifikuar",
-  "location_unknown": "Lokacioni i panjohur",
   "log_in": "Hyr",
   "longitude": "Gjatësia gjeografike",
   "lookup": "Kërko",
@@ -65079,6 +65391,8 @@ I18n.translations["sq"] = {
   "reviewed": "Rishikuar",
   "satellite": "satelit",
   "save": "Ruaj",
+  "save_comment": "Ruaje komentin",
+  "save_identification": "Ruaje identifikimin",
   "save_photos": "Ruaji fotografitë",
   "saved": "E ruajtur",
   "saving": "Duke ruajtur...",
@@ -65147,6 +65461,7 @@ I18n.translations["sq"] = {
   "stats_for_this_year_have_not_been_generated": "Statistikat për këtë vit nuk janë gjeneruar",
   "status": "Statusi",
   "stay_and_try_again": "Rri dhe provo përsëri",
+  "stop_editing": "Ndalo redaktimin",
   "submit_observations": {
     "one": "Dërgo 1 vëzhgim?",
     "other": "Dërgo %{count} vëzhgimet?"
@@ -66133,11 +66448,11 @@ I18n.translations["sv"] = {
   "location_is_public": "Platsen är offentlig",
   "location_private": "Privat plats",
   "location_specified": "Plats angiven",
-  "location_unknown": "Plats okänd",
+  "location_unknown": "Saknar plats",
   "lock_zoom_level": "Lås zoomnivå",
   "log_in": "Logga in",
-  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Logga in</a> eller <a href=\"/signup\">registrera dig</a> för att lägga till kommentarer.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Logga in</a> eller <a href=\"/signup\">registrera dig</a> för att lägga till bestämningar.\n",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Logga in</a> eller <a href=\"/sign_up\">registrera dig</a> för att lägga till kommentarer.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Logga in</a> eller <a href=\"/sign_up\">registrera dig</a> för att lägga till bestämningar.\n",
   "log_scale_label": "Logg",
   "long": "Long",
   "longitude": "Longitud",
@@ -66176,6 +66491,7 @@ I18n.translations["sv"] = {
   "messages": "Meddelanden",
   "misidentifications": "Felbestämningar",
   "misleading_or_illegal_content_html": "Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om\nvår definition av \"lämplig\", se vår\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "Saknar datum",
   "mobile": "Mobil",
   "mollusks": "blötdjur",
   "momentjs": {
@@ -66879,6 +67195,8 @@ I18n.translations["sv"] = {
   "running_total": "Ackumulerat",
   "satellite": "satellit",
   "save": "Spara",
+  "save_comment": "Spara kommentar",
+  "save_identification": "Spara identifiering",
   "save_photos": "Spara foton",
   "saved": "Sparades",
   "saving": "Sparar...",
@@ -66960,6 +67278,7 @@ I18n.translations["sv"] = {
   "status_globally": "%{status} Globalt",
   "status_in_place": "%{status} i %{place}",
   "stay_and_try_again": "Stanna kvar och försök igen",
+  "stop_editing": "Sluta redigera",
   "stop_testing": "Sluta testa",
   "stop_trusting_this_person_with_your_private_coordinates": "Sluta lita på den här personen vad gäller dina dolda koordinater",
   "store": "BUTIK",
@@ -68424,11 +68743,11 @@ I18n.translations["tr"] = {
   "location_is_public": "Konum halka açık",
   "location_private": "Özel Konum",
   "location_specified": "Belirtilmiş konum",
-  "location_unknown": "Bilinmeyen Konum",
+  "location_unknown": "Eksik Konum",
   "lock_zoom_level": "Yakınlaştırma düzeyini kilitleme",
   "log_in": "Oturum Aç",
-  "log_in_or_sign_up_to_add_comments_html": "Yorum eklemek için <a href=\"/login\">giriş yap</a> ya da <a href=\"/signup\">üye ol</a>.\n",
-  "log_in_or_sign_up_to_add_identifications_html": "Tanımlama eklemek için <a href=\"/login\">giriş yap</a> ya da <a href=\"/signup\">üye ol</a>.\n",
+  "log_in_or_sign_up_to_add_comments_html": "Yorum eklemek için <a href=\"/login\">giriş yap</a> ya da <a href=\"/sign_up\">üye ol</a>.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "Tanımlama eklemek için <a href=\"/login\">giriş yap</a> ya da <a href=\"/sign_up\">üye ol</a>.\n",
   "log_scale_label": "Günlük",
   "long": "Boylam",
   "longitude": "Boylam",
@@ -68467,6 +68786,7 @@ I18n.translations["tr"] = {
   "messages": "Mesajlar",
   "misidentifications": "Yanlış tanımlamalar",
   "misleading_or_illegal_content_html": "Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. \"Uygun\" tanımımızla ilgili daha çoğu için <a href=\"/help#inappropriate\">SSS'ye</a>bakın.\n",
+  "missing_date": "Eksik Tarih",
   "mobile": "Mobil",
   "mollusks": "yumuşakçalar",
   "momentjs": {
@@ -69096,7 +69416,7 @@ I18n.translations["tr"] = {
   "rank": "Düzey",
   "rank_position": "Düzey",
   "ranks": {
-    "stateofmatter": "Sorunun durumu",
+    "stateofmatter": "İçeriğin durumu",
     "kingdom": "Alem",
     "subkingdom": "Alt Alem",
     "phylum": "Şube",
@@ -69109,7 +69429,7 @@ I18n.translations["tr"] = {
     "order": "Takım",
     "suborder": "Alt Takım",
     "infraorder": "İnfra Takım",
-    "subterclass": "Gizli sınıf",
+    "subterclass": "Subter Sınıf",
     "parvorder": "Geçiş Takımı",
     "zoosection": "Zoosection",
     "zoosubsection": "Zoosubsection",
@@ -69170,6 +69490,8 @@ I18n.translations["tr"] = {
   "running_total": "Toplam Bulunan",
   "satellite": "uydu",
   "save": "Kaydet",
+  "save_comment": "Yorumu kaydet",
+  "save_identification": "Tanımlamayı kaydet",
   "save_photos": "Fotoğrafları kaydet",
   "saved": "Kaydedildi",
   "saving": "Kaydediliyor...",
@@ -69251,6 +69573,7 @@ I18n.translations["tr"] = {
   "status_globally": "\"%{status}\" Küresel",
   "status_in_place": "%{place} içindeki \"%{status}\"",
   "stay_and_try_again": "Bekle ve yeniden dene",
+  "stop_editing": "Düzenlemeyi Durdur",
   "stop_testing": "Denemeyi Durdur",
   "stop_trusting_this_person_with_your_private_coordinates": "Bu kişiye gizli koordinatlarınız ile güvenmeyi bırakın",
   "store": "MAĞAZA",
@@ -70931,7 +71254,6 @@ I18n.translations["zh-CN"] = {
   "location_is_public": "位置是公开的",
   "location_private": "位置是私有的",
   "location_specified": "位置被指定",
-  "location_unknown": "位置未知",
   "log_in": "登录",
   "long": "经度",
   "longitude": "经度",
@@ -71425,6 +71747,8 @@ I18n.translations["zh-CN"] = {
   "rg_observations": "RG观察",
   "satellite": "卫星",
   "save": "保存",
+  "save_comment": "保存评论",
+  "save_identification": "保存身份证明",
   "save_photos": "保存照片",
   "saved": "已提交",
   "saving": "正在保存...",
@@ -71496,6 +71820,7 @@ I18n.translations["zh-CN"] = {
   "stats_for_this_year_have_not_been_generated": "该年的统计尚未生成。",
   "status": "状态",
   "stay_and_try_again": "停留并重试",
+  "stop_editing": "停止编辑",
   "store": "商店",
   "submit_observations": {
     "other": "提交 %{count} 次观察"
@@ -72967,7 +73292,6 @@ I18n.translations["zh-TW"] = {
   "location_is_public": "位置為公開的",
   "location_private": "位置為私有的",
   "location_specified": "位置指定",
-  "location_unknown": "位置不明",
   "lock_zoom_level": "鎖定縮放等級",
   "log_in": "登入",
   "log_scale_label": "日誌",
@@ -73705,6 +74029,8 @@ I18n.translations["zh-TW"] = {
   "running_total": "運行總計",
   "satellite": "衛星",
   "save": "儲存",
+  "save_comment": "儲存評論",
+  "save_identification": "儲存鑑定",
   "save_photos": "儲存照片",
   "saved": "已儲存",
   "saving": "儲存中...",
@@ -73785,6 +74111,7 @@ I18n.translations["zh-TW"] = {
   "status_globally": "全球 %{status}",
   "status_in_place": "在 %{place} 為 %{status}",
   "stay_and_try_again": "延遲並重試",
+  "stop_editing": "停止編輯",
   "stop_testing": "停止測試",
   "stop_trusting_this_person_with_your_private_coordinates": "停止以您的隱藏座標來信任此人",
   "store": "商店",

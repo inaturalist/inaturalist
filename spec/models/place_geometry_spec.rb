@@ -44,7 +44,7 @@ describe PlaceGeometry, "validation" do
       # observations_places are updated in a delayed job, so the count
       # will still be 0 until the DJ queue is processes
       expect(p.observations_places.length).to eq 0
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       p.reload
       expect(p.observations_places.length).to be >= 1
       expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
@@ -63,7 +63,7 @@ describe PlaceGeometry, "validation" do
       o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
       expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
       p.save_geom(GeoRuby::SimpleFeatures::Geometry.from_ewkt("MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))"))
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
     end
   end

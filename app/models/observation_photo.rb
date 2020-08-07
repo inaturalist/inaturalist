@@ -30,7 +30,14 @@ class ObservationPhoto < ActiveRecord::Base
   def set_observation_quality_grade
     return true unless observation
     return true if observation.bulk_delete
-    return true if observation.new_record? # presumably this will happen when the obs is saved
+
+    # presumably this will happen when the obs is saved
+    return true if observation.new_record?
+
+    # If the observation will be saved after this record is created, setting
+    # quality grade should also not be necessary
+    return true if observation.will_be_saved_with_photos
+
     # For some reason the observation's after_commit callbacks seem to fire
     # after the ObservationPhoto is saved, so if you don't set the quality_grade
     # on this instance of the observation, it will fail to index properly

@@ -698,6 +698,7 @@ fr:
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
     merge: Plusieurs anciens taxons agrégés dans un nouveau taxon
+    swap: Remplacer le taxon d'entrée par le taxon de sortie
     drop: Le concept de taxon est non valide mais conservé à des fins historiques ou de compatibilité avec le partenaire
     stage: Préparer un concept inactif pour publication dans un groupe de modifications
   change_geoprivacy: 'Modifier la géoconfidentialité'
@@ -1728,8 +1729,12 @@ fr:
   label_colon: "%{label} :"
   labels: Étiquettes
   label_to_group_a_batch_of_taxon_changes: Apposer une étiquette pour regrouper un lot de modifications de taxons
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Emplacement privé
-  location_unknown: Emplacement inconnu
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Localisation manquante
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Verrouiller le niveau de zoom
@@ -1938,9 +1943,9 @@ fr:
   locked_taxa_will_not_allow_new: Les taxons verrouillés ne permettront pas l’ajout de nouveaux taxons descendants. Conséquemment, si vous verrouillez les amphibiens et que quelqu’un essaye d’importer <i>Rana catesbeiana</i> à partir d’un fournisseur externe de noms, le nouveau taxon sera créé, mais ne pourra pas être classé comme amphibien. Lorsque ça se produit, les taxons nouvellement ajoutés devront être signalés aux fins d’organisation. Cette action doit seulement être utilisée pour des taxons pour lesquels nous pensons déjà avoir tous les descendants. Un responsable de l’organisation peut annuler cette action en modifiant les taxons et en entrant directement les identifications de rang supérieur, mais il est préférable de fusionner les nouveaux taxons avec les taxons existants.
   log_in: Connexion
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2002,6 +2007,9 @@ fr:
       range: Aire de répartition
   map_tooltip: Afficher la vue de la carte
   mark_as_reviewed: Marquer comme relu
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Marquer une observation comme revue signifie qu'elle n'apparaîtra plus par défaut dans l'onglet "Identifier". Par contre elle sera toujours visible pour identification par d'autres personnes.
   mark_all_as_reviewed: Marquer l’ensemble comme relu
   mark_all_as_unreviewed: Marquer tout comme non relu
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe à %{place}.
@@ -2042,6 +2050,8 @@ fr:
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
+  #Label shown when a date has not been entered
+  missing_date: Date manquante
   mobile: Portable
   mollusks: mollusques
   momentjs:
@@ -2078,6 +2088,10 @@ fr:
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Mois
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
@@ -2149,6 +2163,12 @@ fr:
   needs_id_: Nécessite un ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
+    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi ?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
@@ -2196,7 +2216,6 @@ fr:
   newly_added_species: Espèces ajoutées récemment
   newly_observed_species: Nouvelles espèces observées
   newly_observed_species_in_year: "Espèces nouvellement ajoutées dans %{year}"
-  news: Actualités
   next: Suivant
   next_observation: Observation suivante
   next_page: Page suivante
@@ -3279,7 +3298,6 @@ fr:
   remember_me: Souvenez-vous de moi
   remove: Supprimer
   remove_all_tags: Supprimer toutes les étiquettes
-  remove_boundary: Supprimer la frontière
   remove_comma_separated_tags: "Supprimer les étiquettes séparées par des virgules"
   remove_conservation_status: supprimer la situation quant à la conservation
   remove_from: Supprimer de
@@ -3802,6 +3820,11 @@ fr:
   terms_service: Conditions d’utilisation
   terrain: terrain
   text: Texte
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Contrôles des blocs de texte
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Outils de mise en forme
+  text_editing_controls: Contrôles de modification de texte
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
   that_photo_doesnt_exist: Cette photo n’existe pas.
@@ -3832,7 +3855,6 @@ fr:
     son taxon dans un endroit, l'Identotron montrera un avis.
   the_name_of_the_taxon_including_space: Le nom du taxon, y compris le champ pour l’espèce et la sous-espèce.
   the_observation_was_already_added_to_that_project: L’observation a déjà été ajoutée à ce projet.
-  the_past: le passé
   the_people_of_inat: "Les gens d’%{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Les espèces de la liste ci-dessous n'ont pas été trouvées dans la base de données  d’%{site_name}.
@@ -3949,6 +3971,10 @@ fr:
   top_observer: Meilleurs observateurs
   top_observers: Meilleurs observateurs
   top_species: Espèces favorites
+  tos_privacy_guidelines_label: |
+    J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et
+    <a href="/privacy" target="_blank">la politique de confidentialité</a>, et j'ai passé en revue
+    les <a href="/pages/community+guidelines" target="_blank">Règles de la Communauté</a>.
   total: Score total
   totals: Totaux
   total_members: Total des membres
@@ -4248,6 +4274,9 @@ fr:
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue aux guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Nous sommes quasiment sûrs qu'il se trouve dans les %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Nous sommes désolés, mais votre importation en vrac de %{filename} a échoué."
   what: Quoi
@@ -4429,6 +4458,7 @@ fr:
   you_sure_delete_asset?: Êtes-vous certain de vouloir supprimer ce bien?
   you_sure_delete_check_list: "Êtes-vous certain de vouloir supprimer cette liste? Certaines personnes y ont peut-être beaucoup travaillé..."
   you_sure_delete_comment?: Êtes-vous certain de vouloir supprimer ce commentaire?
+  you_sure_delete_identification?: Êtes-vous sûr de vouloir supprimer cette identification ?
   you_sure_delete_custom_field?: Êtes-vous certain de vouloir supprimer ces champs personnalisés?
   you_sure_delete_flag?: Êtes-vous certain de vouloir supprimer ce signalement ?
   you_sure_delete_project?: Êtes-vous certain de vouloir supprimer ce projet?
@@ -4506,7 +4536,7 @@ fr:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Prévoyez-vous d’utiliser %{site_name} dans la salle de classe ?
           community_guidelines_html: |
-            <a href="%{url}">Regardez les lignes directrices de la communauté</a> pour des conseils sur la manière de garder iNaturalist comme un endroit amical et convivial.
+            <a href="%{url}">Regardez les règles de la communauté</a> pour des conseils sur comment faire en sorte qu'iNaturalist reste un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
@@ -4753,6 +4783,11 @@ fr:
           Vous avez signalé cette conversation le %{date}. Le drapeau sera maintenu même
           si vous supprimez votre copie de cette conversation, donc il n'y a pas de risque à le faire
           si vous ne voulez plus voir celle-ci.
+        privacy_notice_html: |
+          Bien que les messages soient privés entre vous et le destinataire, l'équipe d'iNaturalist
+          peut également voir ces messages et les consultera lorsque les messages
+          seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
+          veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     oauth:
       authorizations:
         new:
@@ -6656,6 +6691,23 @@ fr:
       words_connector: ','
   time:
     am: am
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%I:%M %p"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%l:%M %p"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -6780,6 +6832,7 @@ fr:
         prefers_check_lists: Listes de contrôle autorisées?
         woeid: WOEID
       site:
+        logo: Logo textuel
         logo_email_banner: Bannière email
       source:
         title: Titre

@@ -642,7 +642,7 @@ class UsersController < ApplicationController
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
-    @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    @display_user.assign_attributes( permit_params ) unless permit_params.blank?
     place_id_changed = @display_user.place_id_changed?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
     prefers_no_site_changed = @display_user.prefers_no_site_changed?
@@ -1135,7 +1135,7 @@ protected
     Hash[user_counts.select{ |uc| uc[:user] }[0...5].map{ |uc| [ uc[:user], uc[:count] ]}]
   end
 
-  def whitelist_params
+  def permit_params
     return if params[:user].blank?
     params.require(:user).permit(
       :description,

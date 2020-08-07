@@ -40,7 +40,9 @@ const ObservationsGridItemForIdentify = ( {
       </Button>
     </OverlayTrigger>
   );
-  let showAgree = observation.taxon && observation.taxon.rank_level <= 10
+  let showAgree = observation.taxon
+    && observation.taxon.rank_level <= 10
+    && observation.user.id !== currentUser.id
     && observation.taxon.is_active;
   if ( currentUser && currentUser.id === observation.user.id ) {
     showAgree = false;

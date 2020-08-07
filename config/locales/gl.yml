@@ -1684,8 +1684,8 @@ gl:
   label_colon: "%{label}:"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nome da etiqueta para agrupar os cambios de especie ou grupo
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Ubicación Privada
-  location_unknown: Ubicación descoñecida
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Bloquear nivel de zoom
@@ -2103,6 +2103,7 @@ gl:
   needs_id_: Precisa identificación
   needs_id_expandable_html: "<span class='full'>Precisa </span>identificación"
   needs_to_be_identified: Necesita ser identificado
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte da Rede Internacional iNaturalist, está enfocada na biodiversidade e na xente de %{place}. ¿Gustaríache mudar a afiliación da túa conta de iNaturalist.org a %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
@@ -2151,7 +2152,6 @@ gl:
   newly_added_species: Especies Engadidas Recentemente
   newly_observed_species: Especies Observadas Recentemente
   newly_observed_species_in_year: "Especies Engadidas Recentemente En %{year}"
-  news: Novas
   next: Seguinte
   next_observation: Observación Seguinte
   next_page: Páxina seguinte
@@ -3226,7 +3226,6 @@ gl:
   remember_me: Lémbrame
   remove: Quitar
   remove_all_tags: Eliminar tódalas etiquetas
-  remove_boundary: Quitar límites
   remove_comma_separated_tags: "Eliminar as etiquetas separadas por coma"
   remove_conservation_status: eliminar o estado de conservación
   remove_from: Quitar de
@@ -3777,7 +3776,6 @@ gl:
     O Identrotrón é unha ferramenta para axudarte a identificar observacións baseada nos dados da listaxe de comprobación de %{site_name}. Dado un nivel de taxon superior e un lugar (p.e. mamíferos da India), %{site_name} buscará listaxes de comprobación que coincidan con ese taxon e lugar, como se fose unha guía de campo dinámica para o planeta enteiro. A meirande parte das listas de comprobación son traballos inacabados, pero se hai unha é completa, p.e. listando <em>todos</em> os representantes do seu taxon nun lugar, o Identotrón mostrará un aviso.
   the_name_of_the_taxon_including_space: O nome do taxón, incluíndo o espazo para as especies e infraespecies.<br/><br/> <strong>Exemplo. </strong><br/>
   the_observation_was_already_added_to_that_project: A observación engadiuse recentemente ao proxecto.
-  the_past: o pasado
   the_people_of_inat: "A xente de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     As especies listadas abaixo non foron atopadas na base de dados de %{site_name}.
@@ -4187,6 +4185,9 @@ gl:
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_guides: "¡Benvido ás Guías de %{site_name}!"
   welcome_to_x_project: "Benvido ao proxecto %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Estamos case seguros de que isto está nos %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Descúlpanos, pero a túa importación en masa de %{filename} fallou."
   what: Que
@@ -4271,8 +4272,6 @@ gl:
   'yes': "Si"
   yes_find_them!: "Si, atópaas!"
   yes_i_want_to_join: Si, desexo unirme
-  yes_license_my_childs_observations: Si, crear unha licenza das fotos, sons e observacións do meu fillo ou filla, de xeito que os científicos poidan usar os dados.
-  yes_license_my_observations_so_scientists_can_use: Si, crear unha licenza das miñas fotos e observacións para que os científicos poidan empregar os meus datos!
   yes_reject_it: Si, rexeitao
   yes_show_this_in_the_box: Si, mostra isto no recadro superior sobre os taxóns
   yesterday: Onte

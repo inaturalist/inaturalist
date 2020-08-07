@@ -1384,7 +1384,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
             var iwOpts = { };
             if( options.minzoom && o.data.geoprivacy != "obscured" && !o.data.private_location ) {
               // if we're showing points and the marker isn't obscured then leave
-              // a small margin under the infowidow so it show above the marker
+              // a small margin under the infowindow so it show above the marker
               iwOpts.pixelOffset = new google.maps.Size(0, -11);
             } else {
               iwOpts.pixelOffset = new google.maps.Size(0, 0);

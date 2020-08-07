@@ -119,6 +119,7 @@ class TaxonName < ActiveRecord::Base
     "italian"               => "it",
     "japanese"              => "ja",
     "korean"                => "ko",
+    "latvian"               => "lv",
     "lithuanian"            => "lt",
     "luxembourgish"         => "lb",
     "macedonian"            => "mk",
@@ -130,12 +131,14 @@ class TaxonName < ActiveRecord::Base
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
+    "romanian"              => "ro",
     "russian"               => "ru",
     "scientific_names"      => "sci",
     "slovak"                => "sk",
     "spanish"               => "es",
     "swedish"               => "sv",
-    "turkish"               => "tr"
+    "turkish"               => "tr",
+    "vietnamese"            => "vi"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
@@ -370,6 +373,15 @@ class TaxonName < ActiveRecord::Base
         nil
       end
     end.compact
+    ext_names.each do |ext_name|
+      matching_tn_exists = ext_name.taxon.taxon_names.detect do |tn|
+        tn.is_valid? && tn.name === ext_name.taxon.name
+      end
+      if !ext_name.valid? && ext_name.errors[:name] && matching_tn_exists
+        ext_name.update_attributes( is_valid: false )
+      end
+    end
+    ext_names
   end
   
   def self.find_single(name, options = {})

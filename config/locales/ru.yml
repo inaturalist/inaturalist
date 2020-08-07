@@ -426,7 +426,7 @@ ru:
   all_rank_added_to_the_database:
     phylum: Все типы добавлены в базу данных
     subphylum: Все подтипы добавлены в базу данных
-    superclass: Все суперклассы добавлены в базу данных
+    superclass: Все надклассы добавлены в базу данных
     class: Все классы добавлены в базу данных
     subclass: Все подклассы добавлены в базу данных
     infraclass: Все инфраклассы добавлены в базу данных
@@ -1815,8 +1815,8 @@ ru:
   label_colon: "%{label}:"
   labels: Метки
   label_to_group_a_batch_of_taxon_changes: Метка для группировки пакета изменений таксона
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Местоположение является конфиденциальным
-  location_unknown: Местоположение неизвестно
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Блокировка уровня масштабирования
@@ -2025,9 +2025,9 @@ ru:
   locked_taxa_will_not_allow_new: Заблокированные таксоны не позволяют добавлять к ним новые таксоны-потомки. Так, если вы заблокировали Земноводных, а кто-то попытался импортировать <i>Rana catesbeiana</i> от внешнего поставщика имён, новый таксон будет создан, но он не может быть классифицирован как земноводное. Если это произойдёт, вновь добавленные таксоны должны быть отмечены флажком для куратора. В реальности это должно быть использовано только для таксонов, для которых, как мы считаем, уже есть все потомки. Куратор может переопределить это, отредактировав таксоны и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо этого о слиянии новых таксонов с существующими.
   log_in: Вход
   log_in_or_sign_up_to_add_comments_html: |
-    Для добавления комментариев<a href="/login">войдите</a> или <a href="/signup">зарегистрируйтесь</a>.
+    Для добавления комментариев<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Для добавления идентификаций<a href="/login">войдите</a> или <a href="/signup">зарегистрируйтесь</a>.
+    Для добавления идентификаций<a href="/log_in">войдите</a> или <a href="/sign_up">зарегистрируйтесь</a>.
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
   logo:
@@ -2129,6 +2129,8 @@ ru:
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Отсутствует дата
   mobile: Мобильный
   mollusks: Моллюски
   momentjs:
@@ -2241,9 +2243,15 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_to_be_identified: Нуждается в идентификации
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть сети iNaturalist
     Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, фокусируется на биоразнообразии и людях в Финляндии. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
@@ -2291,7 +2299,6 @@ ru:
   newly_added_species: Недавно добавленные виды
   newly_observed_species: Новые недавно наблюдаемые виды
   newly_observed_species_in_year: "Новые виды в %{year}"
-  news: Новости
   next: Далее
   next_observation: Следующее наблюдение
   next_page: Следующая страница
@@ -3364,7 +3371,6 @@ ru:
   remember_me: Запомнить меня
   remove: Удалить
   remove_all_tags: Удалить все теги
-  remove_boundary: Удалить границу
   remove_comma_separated_tags: "Удалить теги, разделенные запятыми"
   remove_conservation_status: удалить природоохранный статус
   remove_from: Удалить из
@@ -3925,6 +3931,11 @@ ru:
   terms_service: Условия использования
   terrain: местность
   text: Текст
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Элементы управления текстовым блоком
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Управление форматированием текста
+  text_editing_controls: Управление редактированием текста
   thanks!: Спасибо!
   thanks_from_all_of_us_here_at: Спасибо от всех нас, примкнувших к
   that_photo_doesnt_exist: Это фото не существует.
@@ -3949,7 +3960,6 @@ ru:
     Идентотрон - это средство, которое помогает вам идентифицировать наблюдения на основе контрольных списков %{site_name}.  При заданном более высоком уровне таксона и месте (например, млекопитающие Индии), %{site_name} будет искать в контрольных списках записи, соответствующие наличию данного таксона в данном месте, это нечто вроде динамического полевого руководства по всей планете. Большинство контрольных списков находятся в стадии разработки, но если есть полный список, т. е. в нем перечислены <em>все</em> представители этого таксона в данном месте, Идентотрон выдаст уведомление.
   the_name_of_the_taxon_including_space: Наименование таксона, включая место для вида и подвида.
   the_observation_was_already_added_to_that_project: Наблюдение уже добавлено к этому проекту.
-  the_past: прошлое
   the_people_of_inat: "Люди %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Перечисленные ниже виды не найдены в базе данных %{site_name}.
@@ -4063,6 +4073,9 @@ ru:
   top_observer: Лучший Наблюдатель
   top_observers: Лучшие наблюдатели
   top_species: Больше всего видов
+  tos_privacy_guidelines_label: |
+    Я согласен <a href="/terms" target="_blank">условиями предоставления услуг</a> и
+    <a href="/privacy" target="_blank">политикой конфиденциальности</a>, а также ознакомился с <a href="/pages/community+guidelines" target="_blank">правилами сообщества</a>.
   total: Всего
   totals: Всего
   total_members: Общее число членов
@@ -4367,6 +4380,9 @@ ru:
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
   welcome_to_x_project: "Добро пожаловать в %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
@@ -4546,6 +4562,7 @@ ru:
   you_sure_delete_asset?: Вы уверены, что хотите удалить этот актив?
   you_sure_delete_check_list: "Вы уверены, что хотите удалить этот список? Возможно, некоторые люди вложили в него много труда..."
   you_sure_delete_comment?: Вы уверены, что хотите удалить данный комментарий?
+  you_sure_delete_identification?: Вы уверены, что хотите удалить эту идентификацию?
   you_sure_delete_custom_field?: Вы уверены, что хотите удалить эти настраиваемые поля?
   you_sure_delete_flag?: Вы уверены, что хотите удалить этот флаг?
   you_sure_delete_project?: Вы уверены, что хотите удалить этот проект?
@@ -4799,6 +4816,8 @@ ru:
       show:
         flag_notice_html: |
           Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
+        privacy_notice_html: |
+          Хотя сообщения являются конфиденциальными между вами и получателем, сотрудники iNaturalist также могут просматривать эти сообщения и будут делать это, когда сообщения будут помечены для модерации. Если вам требуется действительно личное общение, пожалуйста, изучите другие механизмы связи, которые поддерживают надежное шифрование.
     oauth:
       authorizations:
         new:

@@ -1692,8 +1692,12 @@ fi:
   kml_file_size_error: "KML:n on oltava kooltaan pienempi kuin 1 MT"
   label_colon: "%{label}:"
   labels: Merkinnät
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Yksityinen sijainti
-  location_unknown: Tuntematon sijainti
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Puuttuva sijainti
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lukitse zoomaustaso
@@ -1823,6 +1827,7 @@ fi:
   list_was_successfully_created: Luettelo luotiin onnistuneesti.
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
+  listed_taxon_updated: Listattu taksoni päivitetty
   listing_lists: Luettelointiluettelot
   listing_project_assets: Luettelo projektitiedostoista
   listing_taxa: Taksonien luettelointi
@@ -1896,9 +1901,9 @@ fi:
   locked_taxa_will_not_allow_new: Lukituille taksoneille ei voi lisätä alempia taksoneita. Jos lukitset Amphibian ja joku yrittää lisätä <i>Rana catesbeianan</i> ulkoisesta nimilähteestä, uusi taksoni luotaisiin, mutta sitä ei voisi luokitella sammakkoeläimeksi. Jos näin käy, lisätty taksoni täytyy merkitä kuraattorin tarkastettavaksi. Lukitsemista pitäisi käyttää vain taksoneille, joille ei enää tarvitse lisätä alempia taksoneita. Kuraattorit voivat ohittaa lukituksen muokkaamalla taksonia ja lisäämällä emotaksonin tunnisteen suoraan, mutta harkitse uuden taksonin liittämistä olemassaolevaan taksoniin.
   log_in: Kirjaudu sisään
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi kommentteja.
+    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi kommentteja.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi tunnistuksia.
+    <a href="/log_in">Kirjaudu</a> tai <a href="/sign_up">rekisteröidy</a> lisätäksesi tunnistuksia.
   log_scale_label: Loki
   login_slash_username: Kirjautumis / käyttäjänimi
   logo:
@@ -1949,13 +1954,14 @@ fi:
   maps:
     overlays:
       all_observations: Kaikki havainnot
-      every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka luotu iNaturalist Network -verkossa
+      every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka on luotu iNaturalist-verkossa
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
       gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
       observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
+      checklist_places_description: Paikat, joissa tämä taksoni on listattu
       range: Väli
   map_tooltip: Näytä karttanäkymä
   mark_as_reviewed: Merkitse tarkastetuksi
@@ -1968,7 +1974,7 @@ fi:
   medium: keskikokoinen
   meet: Tapaa
   member_of_the_inaturalist_network_html: |
-    <a href="%{url}">iNaturalist Network -verkoston</a> jäsen
+    <a href="%{url}">iNaturalist-verkoston</a> jäsen
   members: Jäsenet
   membership_model: Jäsenyysmalli
   mentioned_you_in_noun_html: "%{user} mainitsi sinut kohteessa %{noun}"
@@ -1999,6 +2005,8 @@ fi:
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa
     määritelmästämme "sopivasta", katso 
     <a href="/help#inappropriate">UKK</a>.
+  #Label shown when a date has not been entered
+  missing_date: Puuttuva päivämäärä
   mobile: Mobiili
   mollusks: nilviäiset
   momentjs:
@@ -2109,8 +2117,14 @@ fi:
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi %{site_name}:een kansainvälisen sivuston sijasta?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong> on osa kansainvälistä iNaturalist-verkostoa, ja on mukautettu suomalaiseen käyttöön. Haluatko liittää tilisi iNaturalist Suomeen kansainvälisen iNaturalist.org:in sijasta?
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
@@ -2154,7 +2168,6 @@ fi:
   newly_added_species: Äskettäin lisätyt lajit
   newly_observed_species: Äskettäin havaitut lajit
   newly_observed_species_in_year: "Lisättyjä uusia lajeja vuonna %{year}"
-  news: Uutiset
   next: Seuraava
   next_observation: Seuraava havainto
   next_page: Seuraava sivu
@@ -3148,7 +3161,6 @@ fi:
   remember_me: Muista minut
   remove: Poista
   remove_all_tags: Poista kaikki merkinnät
-  remove_boundary: Poista raja
   remove_comma_separated_tags: "Poista pilkulla erotellut merkinnät"
   remove_conservation_status: poista suojelustatus
   remove_from: Poista kohteesta
@@ -3582,6 +3594,11 @@ fi:
   terms_service: Käyttöehdot
   terrain: maasto
   text: Teksti
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstikappaleen muotoilu
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstin muotoilu
+  text_editing_controls: Tekstin muokkaus
   thanks!: Kiitos!
   thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta täällä sivustolla
   that_photo_doesnt_exist: Kuvaa ei ole olemassa.
@@ -3604,7 +3621,6 @@ fi:
   the_identotron_is_a_tool_to: |
     Identotron on työkalu, jonka avulla voit määrittää havaintoja %{site_name} lajiluettelon tietojen avulla. Jos annat ylemmän taksonin ja paikan (esimerkiksi nisäkkäät Intiassa), %{site_name} yrittää etsiä osumia kyseisestä paikasta, toimien ikään kuin dynaamisena kenttäoppaana, joka kattaa koko planeetan. Useimmat lajiluettelot ovat työn alla. Identotron näyttää huomatuksen kaikkien kattavien lajiluetteloiden osalta, eli luetteloista, jotka kattavat <em>kaikki</em> alueen taksonit.
   the_observation_was_already_added_to_that_project: Havainto on jo lisätty tähän projektiin.
-  the_past: menneisyys
   the_people_of_inat: "%{site_name} -käyttäjät"
   the_user_x_has_been_suspended: "Käyttäjä %{user} on hyllytetty"
   the_user_x_has_been_unsuspended: "Käyttäjän %{user} hyllytys on peruutettu"
@@ -3679,6 +3695,8 @@ fi:
   top_observer: Paras havainnoija
   top_observers: Eniten havainnoineet
   top_species: Kaikkein edustavimmat lajit
+  tos_privacy_guidelines_label: |
+    Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">yksityisyyskäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
   total: Yhteensä
   totals: Yhteensä
   total_members: Jäseniä yhteensä
@@ -3933,6 +3951,9 @@ fi:
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Olemme melko varmoja, että se on osa %{rank}a
   what: Mitä
   what_did_you_see: Mitä näet?
@@ -4073,6 +4094,7 @@ fi:
   you_sure_delete_asset?: Haluatko varmasti poistaa tämän omaisuuden?
   you_sure_delete_check_list: "Haluatko varmasti poistaa tämän luettelon? Jotkut ihmiset ovat saattaneet tehdä paljon työtä sen eteen..."
   you_sure_delete_comment?: Haluatko varmasti poistaa tämän kommentin?
+  you_sure_delete_identification?: Haluatko varmasti poistaa tämän tunnistuksen?
   you_sure_delete_custom_field?: Haluatko varmasti poistaa nämä mukautetut kentät?
   you_sure_delete_flag?: Haluatko varmasti poistaa tämän lipun?
   you_sure_delete_project?: Haluatko varmasti poistaa tämän projektin?
@@ -4248,6 +4270,8 @@ fi:
       show:
         flag_notice_html: |
           Olet tehnyt huomautuksen (liputtanut) tähän keskusteluun päivämäärällä %{date}. Huomautus (lippu) säilyy järjestelmässä vaikka poistaisin oman kopion tästä keskustelusta, joten voit turvallisesti poistaa sen omasta näkymästäsi, jos haluat.
+        privacy_notice_html: |
+          Viestin näkevät sinä, vastaanottaja sekä iNaturalistin ylläpitäjät. Ylläpitäjät lukevat viestin, mikäli se merkitään tarkistusta vaativaksi (moderoitavaksi). Jos haluat viestiä täysin yksityisesti, käytä jotakin muuta viestintäkanavaa, jossa viestin voi salata.
     oauth:
       authorizations:
         new:
@@ -4895,7 +4919,7 @@ fi:
         TTID_desc: Aika saada tunnistus joltakulta
         website_desc_html: |
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
-          tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
+          tai <a href="%{url}">iNaturalist-verkon</a> verkkosivustojen kautta
       year:
         inaturalist_network: iNaturalist-verkosto
         include_usa: Sisällytä Yhdysvallat

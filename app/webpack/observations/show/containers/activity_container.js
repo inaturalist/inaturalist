@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import Activity from "../components/activity";
 import {
-  addComment, confirmDeleteComment, addID, deleteID, restoreID,
+  addComment, confirmDeleteComment, editComment,
+  addID, deleteID, confirmDeleteID, editID, restoreID,
   review, unreview
 } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
@@ -35,8 +36,11 @@ function mapDispatchToProps( dispatch ) {
     },
     addComment: body => { dispatch( addComment( body ) ); },
     deleteComment: id => { dispatch( confirmDeleteComment( id ) ); },
+    editComment: ( id, body ) => { dispatch( editComment( id, body ) ); },
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
     deleteID: id => { dispatch( deleteID( id ) ); },
+    confirmDeleteID: id => { dispatch( confirmDeleteID( id ) ); },
+    editID: ( id, body ) => { dispatch( editID( id, body ) ); },
     restoreID: id => { dispatch( restoreID( id ) ); },
     createFlag: ( className, id, flag, body ) => {
       dispatch( createFlag( className, id, flag, body ) );

@@ -2,7 +2,13 @@ import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { Button, Tabs, Tab } from "react-bootstrap";
+import {
+  Button,
+  OverlayTrigger,
+  Tab,
+  Tabs,
+  Tooltip
+} from "react-bootstrap";
 import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
@@ -107,25 +113,42 @@ class Activity extends React.Component {
       review,
       unreview
     } = this.props;
-    return config && config.currentUser ? (
-      <div className="review">
-        <input
-          type="checkbox"
-          id="reviewed"
-          name="reviewed"
-          checked={_.includes( observation.reviewed_by, config.currentUser.id )}
-          onChange={( ) => {
-            if ( $( "#reviewed" ).is( ":checked" ) ) {
-              review( );
-            } else {
-              unreview( );
-            }
-          }}
-        />
-        <label htmlFor="reviewed">
-          { I18n.t( "mark_as_reviewed" ) }
-        </label>
-      </div> ) : null;
+    return config && config.currentUser && (
+      <OverlayTrigger
+        placement="top"
+        trigger={["hover", "focus"]}
+        delayShow={1000}
+        overlay={(
+          <Tooltip id="mark-as-reviewed-tooltip">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "mark_as_reviewed_desc" )
+              }}
+            />
+          </Tooltip>
+        )}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+      >
+        <div className="review">
+          <label>
+            <input
+              type="checkbox"
+              id="reviewed"
+              name="reviewed"
+              checked={_.includes( observation.reviewed_by, config.currentUser.id )}
+              onChange={( ) => {
+                if ( $( "#reviewed" ).is( ":checked" ) ) {
+                  review( );
+                } else {
+                  unreview( );
+                }
+              }}
+            />
+            { I18n.t( "mark_as_reviewed" ) }
+          </label>
+        </div>
+      </OverlayTrigger>
+    );
   }
 
   render( ) {
@@ -242,6 +265,7 @@ class Activity extends React.Component {
               key={`activity-${item.id}`}
               item={item}
               currentUserID={currentUserID}
+              inlineEditing
               {...this.props}
             />
           ) ) }
@@ -266,8 +290,11 @@ Activity.propTypes = {
   addID: PropTypes.func,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
+  editComment: PropTypes.func,
   deleteFlag: PropTypes.func,
   deleteID: PropTypes.func,
+  confirmDeleteID: PropTypes.func,
+  editID: PropTypes.func,
   restoreID: PropTypes.func,
   review: PropTypes.func,
   setActiveTab: PropTypes.func,

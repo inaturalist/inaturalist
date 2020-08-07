@@ -6,7 +6,7 @@ require "optimist"
 
 SEEK_LOCALES = [
   "af", "ar", "ca", "cs", "da", "de", "en", "es", "fi", "fr",
-  "he", "it", "ja", "nl", "nb", "ru", "sv", "tr", "zh"
+  "he", "it", "ja", "nl", "nb", "ro", "ru", "sv", "tr", "zh"
 ]
 
 OPTS = Optimist::options do

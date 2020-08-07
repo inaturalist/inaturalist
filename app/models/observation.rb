@@ -57,7 +57,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh,
-    :skip_identification_indexing
+    :skip_identification_indexing, :will_be_saved_with_photos
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -397,7 +397,9 @@ class Observation < ActiveRecord::Base
     :update_user_counter_caches_after_destroy, :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
-  
+
+  after_update :update_user_counter_caches_after_update
+
   ##
   # Named scopes
   # 
@@ -1400,7 +1402,7 @@ class Observation < ActiveRecord::Base
             owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
             community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
           ) || (
-            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            owners_identification.taxon.rank_level <= Taxon::GENUS_LEVEL &&
             community_taxon == owners_identification.taxon &&
             voted_out_of_needs_id?
           )
@@ -2133,13 +2135,40 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches_after_update
+    # run a species count if this is a new taxon to the user,
+    # or the previous taxon no longer exists
+    if taxon_id_changed? && (
+      ( taxon_id &&
+        !Observation.where( user_id: user_id, taxon_id: taxon_id ).where( "id != ?", id ).exists? ) ||
+      ( taxon_id_was &&
+        !Observation.where( user_id: user_id, taxon_id: taxon_id_was ).where( "id != ?", id ).exists? )
+    )
+      update_user_species_counter_cache_later
+    end
+    true
+  end
+
   def update_user_counter_caches
     return if bulk_delete
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 1.minute.from_now
     ).update_observations_counter_cache( user_id )
+    # this is only called on create and delete. Run a species count if this is
+    # the first obs of this taxon on create or last obs of this taxon on delete
+    if taxon_id &&
+      !Observation.where( user_id: user_id, taxon_id: taxon_id ).where( "id != ?", id ).exists?
+      update_user_species_counter_cache_later
+    end
     true
+  end
+
+  def update_user_species_counter_cache_later
+    User.delay(
+      unique_hash: { "User::update_species_counter_cache": user_id },
+      run_at: 1.minute.from_now
+    ).update_species_counter_cache( user_id )
   end
 
   def delete_observations_places
