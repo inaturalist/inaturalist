@@ -197,6 +197,7 @@ export function updateQuery( query ) {
       const params = { no_geom: true };
       if ( testingApiV2 ) {
         params.fields = {
+          admin_level: true,
           id: true,
           uuid: true,
           name: true,

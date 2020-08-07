@@ -35,6 +35,7 @@ export function fetchObservationPlaces( ) {
     if ( testingApiV2 ) {
       params.fields = {
         admin_level: true,
+        bbox_area: true,
         display_name: true,
         id: true,
         name: true,
