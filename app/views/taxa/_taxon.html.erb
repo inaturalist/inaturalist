@@ -29,7 +29,7 @@
   if js_link
     taxon_json ||= json_escape(taxon_to_json(taxon, :iconic_taxon => iconic_taxon).html_safe)
   end
-  photo ||= taxon.taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
+  photo ||= taxon.default_photo
   after_image ||= nil
 -%>
 
