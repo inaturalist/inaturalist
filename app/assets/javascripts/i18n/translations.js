@@ -15976,6 +15976,7 @@ I18n.translations["en"] = {
   },
   "decrease_brightness": "Decrease Brightness",
   "default": "default",
+  "default_": "Default",
   "delete": "Delete",
   "deleting": "Deleting...",
   "deleting_verb": "Deleting",
