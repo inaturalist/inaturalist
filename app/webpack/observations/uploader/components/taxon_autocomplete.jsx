@@ -366,6 +366,7 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( config && config.testingApiV2 ) {
       params.fields = {
+        ancestor_ids: true,
         default_photo: {
           square_url: true
         },
@@ -377,7 +378,7 @@ class TaxonAutocomplete extends React.Component {
         preferred_common_name: true,
         rank: true,
         rank_level: true
-      }
+      };
     }
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
