@@ -98,7 +98,7 @@
       <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
       <%= submit_tag t(:save_and_add_another), :class => 'button', :style => "display:none", :id => "add_another_button" %>
       <%= link_to_function t(:save_and_add_another), "$('#add_another_button').click()", :class => "button" %>
-      <%= link_to(t(:cancel), session[:return_to], :class => 'button') %>
+      <%= link_to(t(:cancel), params[:copy] ? observation_path(params[:copy]) : session[:return_to], :class => 'button') %>
     </div>
   <% end %>
 </div>
