@@ -171,6 +171,21 @@ class ObservationFieldInput extends React.Component {
     return label;
   }
 
+  inlineAdd( ) {
+    const { noAdd } = this.props;
+    return noAdd ? "" : (
+      <span className="input-group-btn">
+        <button
+          className="btn btn-default"
+          type="submit"
+          disabled={this.saveDisabled( )}
+        >
+          { this.saveLabel( ) }
+        </button>
+      </span>
+    );
+  }
+
   saveDisabled( ) {
     const { editing } = this.props;
     const { modified } = this.state;
@@ -194,19 +209,8 @@ class ObservationFieldInput extends React.Component {
   }
 
   taxonInput( ) {
-    const { noAdd, config } = this.props;
+    const { config } = this.props;
     const { observationFieldTaxon } = this.state;
-    const add = noAdd ? "" : (
-      <span className="input-group-btn">
-        <button
-          className="btn btn-default"
-          type="submit"
-          disabled={this.saveDisabled( )}
-        >
-          { this.saveLabel( ) }
-        </button>
-      </span>
-    );
     return (
       <div className="input-group">
         <TaxonAutocomplete
@@ -232,14 +236,13 @@ class ObservationFieldInput extends React.Component {
           placeholder={I18n.t( "species_name_cap" )}
           config={config}
         />
-        { add }
+        { this.inlineAdd( ) }
       </div>
     );
   }
 
   datetimeInput( datatype ) {
     /* global TIMEZONE */
-    const { noAdd } = this.props;
     const { observationFieldSelectedDate, observationFieldValue } = this.state;
     let mode;
     if ( datatype === "time" ) {
@@ -253,17 +256,6 @@ class ObservationFieldInput extends React.Component {
     } else if ( datatype === "date" ) {
       format = "YYYY/MM/DD";
     }
-    const add = noAdd ? "" : (
-      <span className="input-group-btn">
-        <button
-          className="btn btn-default"
-          type="submit"
-          disabled={this.saveDisabled( )}
-        >
-          { this.saveLabel( ) }
-        </button>
-      </span>
-    );
     return (
       <div className="input-group">
         <DateTimeFieldWrapper
@@ -305,36 +297,42 @@ class ObservationFieldInput extends React.Component {
           }}
           placeholder={I18n.t( "date_time" )}
         />
-        { add }
+        { this.inlineAdd( ) }
       </div>
     );
   }
 
   dnaInput( ) {
+    const { observationFieldValue } = this.state;
     return (
       <textarea
         name="value"
         className="form-control"
-        defaultValue={this.state.observationFieldValue}
+        defaultValue={observationFieldValue}
         onChange={this.onChangeHandler}
       />
     );
   }
 
-  defaultInput( ) {
-    const { noAdd } = this.props;
+  numericInput( ) {
     const { observationFieldValue } = this.state;
-    const add = noAdd ? "" : (
-      <span className="input-group-btn">
-        <button
-          className="btn btn-default"
-          type="submit"
-          disabled={this.saveDisabled( )}
-        >
-          { this.saveLabel( ) }
-        </button>
-      </span>
+    return (
+      <div className="input-group">
+        <input
+          type="number"
+          name="value"
+          step="any"
+          defaultValue={observationFieldValue}
+          className="form-control"
+          onChange={this.onChangeHandler}
+        />
+        { this.inlineAdd( ) }
+      </div>
     );
+  }
+
+  defaultInput( ) {
+    const { observationFieldValue } = this.state;
     return (
       <div className="input-group">
         <input
@@ -344,7 +342,7 @@ class ObservationFieldInput extends React.Component {
           className="form-control"
           onChange={this.onChangeHandler}
         />
-        { add }
+        { this.inlineAdd( ) }
       </div>
     );
   }
@@ -373,6 +371,8 @@ class ObservationFieldInput extends React.Component {
       if ( field.allowed_values ) {
         input = this.selectInput( field );
         submit = standaloneSubmit;
+      } else if ( field.datatype === "numeric" ) {
+        input = this.numericInput( );
       } else if ( field.datatype === "taxon" ) {
         input = this.taxonInput( );
       } else if ( field.datatype === "dna" ) {
@@ -420,7 +420,7 @@ class ObservationFieldInput extends React.Component {
         disabled={disabled}
       /> );
     return (
-      <form onSubmit={ this.submitFieldValue } className="ObservationFieldInput">
+      <form onSubmit={this.submitFieldValue} className="ObservationFieldInput">
         { fieldChooser }
         { observationFieldInput }
       </form>
