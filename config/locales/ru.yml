@@ -3,7 +3,7 @@ ru:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} комментария'
+    other: '%{count} комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span>комментарий'
     few: '<span class="count">%{count}</span>комментария'
@@ -1602,8 +1602,8 @@ ru:
   got_it!: Понятно!
   got_your_data_somewhere_else?: Ваши данные где-то ещё? Мы можем помочь.
   graft: Привязка
-  graft_taxon: Нарастить %{taxon}
-  grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в наше таксономическое дерево, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
+  graft_taxon: Привязать %{taxon}
+  grafting_attemps_to_insert_this_taxon: Попытки привязать этот таксон к нашему таксономическому дереву, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
   grant_role: "%{grant} %{role} роль"
   grid: Плитка
   grid_layout: Разметка по сетке
@@ -1731,7 +1731,7 @@ ru:
   improving: Улучшение
   in_n: "в %{n}"
   in_place_x: в %{place}
-  inaturalist_network_affiliation: Присоединившиеся к сети iNaturalist
+  inaturalist_network_affiliation: Принадлежность к сети iNaturalist
   #Label for messages you've received
   inbox: Входящие
   include_places: Включить места
@@ -4107,7 +4107,7 @@ ru:
   umbrella_projects: Зонтичные проекты
   unblock: Разблокировать
   unclassified: Неклассифицированные
-  ungrafted_taxa: Непривитые таксоны
+  ungrafted_taxa: Непривязанные таксоны
   unhide_content: Отобразить контент
   unhide_desc: |
     Отображение раскроет этот контент для публичного просмотра. Кураторы имеют возможность впоследствии скрыть это опять.
@@ -4352,7 +4352,7 @@ ru:
   video_tutorials: Видеопособия
   visually_similar: Визуально похожие
   vulnerable: Уязвимый
-  w00t_no_ungrafted_taxa: w00t!  Нет привитых таксонов!
+  w00t_no_ungrafted_taxa: w00t!  Нет непривязанных таксонов!
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
