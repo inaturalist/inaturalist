@@ -195,6 +195,12 @@ class Identification < ActiveRecord::Base
       return true
     end
 
+    # Can't disagree if no current identifications
+    if observation.identifications.current.empty?
+      self.disagreement = nil
+      return true
+    end
+
     # Can't disagree when suggesting an ungrafted taxon
     if !taxon.grafted? && !taxon.children.exists?
       self.disagreement = nil
