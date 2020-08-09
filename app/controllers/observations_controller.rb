@@ -403,9 +403,6 @@ class ObservationsController < ApplicationController
       copy_obs.observation_sounds.each do |os|
         @observation.observation_sounds.build( sound: os.sound )
       end
-      copy_obs.observation_field_values.each do |ofv|
-        @observation.observation_field_values.build(:observation_field => ofv.observation_field, :value => ofv.value)
-      end
     end
     
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
