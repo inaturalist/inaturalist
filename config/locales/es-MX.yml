@@ -845,6 +845,7 @@ es-MX:
   date_time: Fecha/Hora
   date_updated: Fecha de actualización
   day: Día
+  #Default option
   default: Predeterminada
   default_invite_comment: "¡Excelente foto! Debes subirla a  %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licencia predeterminada de observación
@@ -2021,21 +2022,6 @@ es-MX:
     updates_by_you_panel_body: '¡Recuerda! , en la pestaña ''Todas las actualizaciones'' recibirás actualizaciones no sólo de tu contenido, sino también el contenido de las personas que te sigue, así como las especies o lugares en los que estes suscrito.'
     youve_got_updates_panel_title: '¡Tienes actualizaciones!'
     youve_got_updates_panel_body_p1: Mantener el mismo criterio sobre las actualizaciones en ...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li>
-      <strong>Tu contenido:</strong> La actividad en tus observaciones podría incluir comentarios , identificaciones o favoritos de la comunidad de NaturaLista. Además recibirás notificaciones cuando alguien añada tus observaciones a algun proyecto de su interes.
-      </li>
-      <li>
-      <strong>Gente:</strong> Nuevas observaciones o notas en el diario de gente que te sigue.
-      </li>
-      <li>
-      <strong>Especies, proyectos y lugares:</strong> Nuevas observaciones de ciertas especies o lugares a los que estás suscrito. Adicionalmente puedes unirte a proyectos para estar al corriente cuando publiquen notas en el diario.
-      </li>
-      <li>
-      <strong>Acerca de las discusiones:</strong> Comentar o añadir identificaciones en el contenido de alguien más, automáticamente te suscribe a cualquier nueva actividad de dicho contenido. Usa la herramienta 'Administra las suscripciones' para dejar de recibir notificaciones.
-      </li>
-      </ul>
   one_by_one: "Uno per uno"
   one_of_your_lists: "una de tus listas..."
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
@@ -2971,11 +2957,6 @@ es-MX:
   subscribe_to_a_place: Suscríbete a lugares
   subscribe_to_observations_in_a_taxon: Suscríbete a todas las observaciones publicadas de una especie o grupo (por ejemplo 'escorpiones').
   subscribe_to_observations_in_a_place: Suscríbete a todas las observaciones publicadas en este lugar. También puede agregar un filtro para una especie o grupo (por ejemplo 'escorpiones de tijuana')
-  subscribe_to_places_to: |
-    Suscríbete a lugares para recibir actualizaciones acerca de nuevas
-    observaciones, personas que sigues y cosas que has comentado. En la herramienta "Administra las suscripciones"
-    puedes ver a que te has suscrito y a que no, y si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
-    quieras tener en tus preferencias.
   subscribe_to_this: Suscribir a este
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Suscribir</a>
@@ -3775,39 +3756,6 @@ es-MX:
           %{site_name} mapas en los que se muestran cuando un límite se ha
           establecido (por ejemplo, la vista "tarjeta", las páginas del taxón,
           etc.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Carga un archivo CSV que contiene las etiquetas de los taxa en esta guía. El archivo CSV debe tener este aspecto:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nombre</th>
-          <th>color</th>
-          <th>Número de manos</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>El Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bípedo</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>rojo|negro</td>
-          <td>0</td>
-          <td>quadrípedo</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          La primera fila empieza con "Nombre", seguido de las etiquetas de propiedades/categorías. A continuación, cada una de las siguientes filas empieza con el nombre de taxón, seguido por las etiquetas correspondientes a las características de la parte superior de la columna. En este ejemplo, en <i>Homo sapiens</i> se presentan las  etiquetas <code>bípedo</code> y <code>Número de manos=2</code>,
-          y en <i>Vulpes vulpes</i> se indican <code>quadrípedo</code>,
-          <code>color=rojo</code>, <code>color=black</code>, y
-          <code>número de manos=0</code>. Los espacios en blanco serán ignorados, y se pueden agregar varias líneas por taxón. También puedes agregar varios
-          valores de cada celda separados por el carácter barra vertical (|).
-          </p>
         licensing_explanation: |
           Obtención de la licencia de contenido concede a otras personas el
           derecho a copiar y modificar sin pedir su permiso. Esto hace que sea
@@ -3837,21 +3785,6 @@ es-MX:
       mobile_downloads_tip_html: |
         <span class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</span>
         Esta guía se puede descargar en el aplicación para el iPhone para uso sin conexión.
-      mobile_downloads_help_html: |
-        <p class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</p>
-        <p>
-        Esto creará un archivo descargable de todos los datos y los medios
-        de comunicación asociados con esta guía para que los usuarios de
-        iPhone pueden ver todo el contenido de la guía y sin una conexión a
-        Internet. Tomará unos minutos para generar el archivo, pero una vez
-        que esto se habilita el archivo se actualizará cada vez que cambie
-        esta guía.
-        </p>
-        <p class="alert error status">
-        Por favor <strong>no permiten descargas móviles fuera de línea a
-        menos que realmente la intención de utilizarlos.</strong> Ellos
-        representan una carga considerable para nuestro sistema.
-        </p>
       pdf_layouts:
         grid: cuadrícula
         book: libro
@@ -3915,13 +3848,6 @@ es-MX:
         disagreement_count: Cantidad de desacuerdos
         identification_count: Cantidad de identificaciones
         score: Puntuación
-        explanation: |
-          <p>
-          Si por algún motivo un usuario no está de acuerdo con el taxón comunitario, lo pueden rechazar, lo que significa que su ID será la usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que su observación únicamente puede pasar a ser de grado de investigación si la comunidad está de acuerdo.
-          </p>
-          <p>
-          Aun así, la identificación de la comunidad se seguirá mostrando, por lo que todos pueden ver que se ha sugerido una identificación diferente IDs.
-          </p>
         you_have_opted_out: Decidiste aceptar identificaciones comunitarias
         opt_in_for_this_observation: Optar por esta observación
         your_id_does_not_match: |
@@ -4014,16 +3940,6 @@ es-MX:
         allow_curator_coordinate_access_desc_html: |
           Permite a los curadores del proyecto ver las coordenadas privadas de esta observación.
         ancestor_disagreements_desc: "nº de taxones identificados que estan entre los ancestros de un taxón pero que fueron creados después de la primera identificación usando este taxón"
-        community_taxon_desc_html: |
-          <p class="ui">
-          El taxón comunitario (o la identificación por la comunidad) representa qué taxón %{site_name} la comunidad piensa que es representado en una observación. Si estás interesado en cómo seleccionamos un taxón comunitario consulta las notas sobre el algoritmo de abajo, pero en general, tratamos de <strong>elegir un taxón con un acuerdo de más de 2/3 de los identificadores. A veces esto significa que la elección de un nivel superior de taxón que contiene un número de desacuerdos (por ejemplo, tú piensas que es una culebra rey y yo creo es la serpiente de cascabel, así NaturaLista elige el suborden Serpentes que contiene a todas las serpientes). El algoritmo también favorece ligeramente la disidencia, porque hemos encontrado que los disidentes a menudo tienen razón.
-          </p>
-          <p class="ui">
-          El taxón comunitario es el taxón que utilizamos a la hora de compartir observaciones con socios, enlazando las observaciones de un mismo taxón en el sitio, actualizando tu lista de vida, etc. Si por alguna razón no estás de acuerdo con el taxón comunitario puedes rechazarlo, lo que significa que tú identificación es la que se utiliza para vincular a otras observaciones, actualización tu lista de vida, etc. También significa que tú observación sólo puede tener grado de investigación cuando la comunidad está de acuerdo <em>contigo</em>. Si no te gusta la idea de taxón comunitario, puedes optar para salirte de ellos totalmente <a href="/users/editar" target="_blank">editando tu configuración</a>.
-          </p>
-          <p class="ui">
-          <strong>El algoritmo:</strong> para todos los taxa identificados y los taxa que contienen (por ejemplo, género <i>Homo</i> contiene <i>Homo sapiens</i>), toma la puntuación
-          de cada uno como el cociente entre el número acumulado de  identificaciones para cada taxón sobre la suma de las identificaciones acumuladas, el número más conservador de identificaciones añadido después de la primera identificación para ese taxón, y el número de identificaciones que son completamente diferentes (por ejemplo, identificaciones de taxa que no contienen el taxón que se está evaluando). Para los taxa identificados con un valor sobre 2/3 y por lo menos con 2 identificaciones, selecciona el taxón con el rango más bajo.
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
@@ -4033,32 +3949,6 @@ es-MX:
           Algunas de estas fotos se han marcado por su contenido inapropiado o porque violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto, los curadores del proyecto podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a> del proyecto.
-        quality_assessment_help_html: |
-          <p>
-            La evaluación de la calidad de los datos es un resumen de la precisión de una observación. Todas las observaciones comienzan con el grado de   <strong>"casual"</strong> y alcanzan el grado de   <strong>"investigación"</strong> cuando: 
-          </p>
-          <ul>
-            <li>
-              La comunidad de %{site_name} <strong> está de acuerdo con la identificación de un observador</strong>, toda vez que una identificación
-              "en acuerdo" concuerde exactamente o es un clase o especie descendiente de la identificación del observador. Por ejemplo, si Scott dice que es un
-              mamífero y Ken-ichi dice que es un <em>Homo sapiens</em>, entonces Ken-
-              ichi está de acuerdo con Scott.
-            </li>
-            <li>La observación <strong>tiene una fecha</strong></li>
-           \ <li>La observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas de latitud y longitud)</li>
-            <li>La observación <strong>tiene una foto</strong></li>
-          </ul>
-          <p>Las observaciones volverán al grado "casual" si las condiciones  anteriores no se cumplen o:</p>
-          <ul>
-            <li>
-              La comunidad de %{site_name} acuerda que la <strong>ubicación no parece ser acertada</strong> (es decir, monos en medio del océano, hipopótamos en edificios, etc.)
-            </li>
-            <li>
-              La comunidad de %{site_name} acuerda que el
-           \   <strong>organismo no estaba en cautiverio o fue cultivado(a) </strong> (no estaba en un jardín, zoológico, acuario o alguna otra situación en la que
-              sólo estaba presente porque los seres humanos la destinaron a estar allí)
-            </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -4067,22 +3957,6 @@ es-MX:
         user_stats_desc: |
           Las estadísticas de usuarios se limitan a un máximo de los primeros 500 por conteo de observaciones o por conteo de especies, así que la lista total generalmente es de más de 500, ya que las dos listas probablemente no contienen a los mismos usuarios. Un valor marcado '*' significa que no estuvo en los primeros 500 para esa estadística.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Puedes editar este campo de observación, porque lo has creado o
-        porque eres un curador del sitio. Si eres un curador sitio, por
-        favor, sigue estas directrices
-        </p>
-        <ol>
-        <li>No hagas cambios de nombres arbitrarios (por ejemplo, cambio de "comer" a la "libación")</li>
-        <li>
-        Ten en cuenta que los campos de observación se pueden utilizar para las observaciones de cualquier taxón, así que trata de no utilizar la terminología específica del taxón
-        </li>
-        <li>No elimines los campos que la gente está utilizando</li>
-        <li>
-        No traducir nombres de campo existentes en diferentes idiomas. Inglés es la lengua franca de este sitio. Si realmente quieres un campo que encapsula el mismo concepto pero en otro idioma, por favor crea un nuevo campo de observación.
-        </li>
-        </ol>
       dna_help: |
         Para permitir la función de localizar el código de barras BOLD DNA, asegúrate que el nombre de tu campo incluye las palabras "COI", "COX1", "ITS", o "matK," correspondientes al gene que este campo busca.
       merge:
@@ -4182,10 +4056,6 @@ es-MX:
         aggregation_pending: Agregación pendiente
         new_place_desc_html: |
           Intenta buscar entre <a href="%{places_url}" target="_blank"> nuestros lugares existentes </a> y verifica que le estás dando el nombre correcto. Si realmente no puedes encontrar el lugar que desea, puedes <a href="%{new_place_url}" target="_blank"> crear un nuevo lugar </a>, pero asegúrate que no duplicas un sitio ya existente.
-        bioblitz_desc_html: |
-          <p>
-          Un inventario rápido es un evento donde se juntan a todas las personas que participan en cierto lugar y en un determinado periodo de tiempo para hacer un conteo de observaciones de especies. Es una forma divertida e interesante de introducir a la gente la biodiversidad al mismo tiempo que se colectan datos. A diferencia de los proyectos normales, los inventarios rápidos acumulan las estadísticas de las observaciones hechas en un tiempo y lugar específico, así que no las observaciones no necesitan añadirse al proyecto para cambiar las estadísticas del proyecto.
-          </p>
         change_admin_desc: Elija uno de los curadores del proyecto para que sea el nuevo administrador.
         cover_desc: "La imagen del banner es opcional y aparecerá en la parte superior de la\npágina del proyecto. Debe ser de 950px de ancho y menos de 400px de\nalto."
         custom_project_fields_means: "Permite modificar el baner del proyecto, añadir contenido a la parte\nderecha del proyecto y poner un poco de estilo para una mejor visión."
@@ -4202,43 +4072,6 @@ es-MX:
           Momento en que el agregador acabó de añadir observaciones a este proyecto
         no_curators: |
           No hay curadores del proyecto. Si desea asignar a una nueva persona como administrador, primero debe unirse a este proyecto y entonces lo podrá hacer curador.
-        observation_aggregation_desc_html: |
-          <p class="description">
-            El adjuntador de observaciones automaticamente añadira todas tus 
-            observaciones a tu proyecto de acuerdo al polígono y las reglas 
-            de tu proyecto. Dado que no existe una forma de quitar varias 
-            observaciones de un proyecto a la vez, esto es potencialmente peligroso, 
-            así que asegurate haber puesto los límites y las reglas del lugar correctas,
-            o terminarás con muchos datos fuera de lugar.
-          </p>
-          <p class="description">
-            El adjuntador solo funcionará si las siguientes condiciones se cumplen: 
-          </p>
-          <ol>
-           \ <li class="readable description">
-              Tu proyecto esta verificado
-           \ </li>
-            <li class="readable description">
-              Tu proyecto esta asociado a un polígono de tamaño chico o mediano 
-              (como del tamaño de Texas o Ucrania) o tu proyecto solo acepta 
-              observaciones de ciertos grupos o especies
-            </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description"> Los recursos asociados a tu proyecto son archivos que tienen ciertas reglas especiales: </p>
-          <ol class="description">
-          <li>
-          archivos que terminan en <code>.logo.jpg</code>,
-          <code>.logo.png</code>, etc será utilizado como logotipo del
-          proyecto en la página del proyecto en lugar del icono de
-          proyecto
-          </li>
-          <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Puedes crear un lista personalizada de taxa del proyecto y enlazarla al proyecto. Esto puede ser útil para restringir las observaciones que se añaden al proyecto a aquellas que se ajusten a los taxa en la lista a través de una regla 'debe ser un taxón de la lista del proyecto'.
-          </p>
         rules:
           captive: be capturada/cultivada
           georeferenced: tiene coordenadas
@@ -4260,23 +4093,6 @@ es-MX:
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
         you_can_preview: |
           Puedes ver la vista previa de cómo se verá tu Proyecto de Colección haciendo <a href="%{url}">click aquí</a>.
-      invite:
-        description_html: |
-          <h3>Acerca de las invitaciones</h3>
-          <p class="ui">
-           \ Invitar ala comunidad a los proyectos es un poco diferente que 
-            invitar observaciones individuales. Invitar a la comunidad otorga
-          </p>
-          <ol>
-           \ <li>Enviarles un correo indicandoles i se quieren unir</li>
-            <li>Enviar una notificación en tablero</li>
-            <li>Permitirles unirse a tu proyecto si esta configurado como "Solo inivitar"</li>
-          </ol>
-          <p class="ui">
-           \ Solo los curadores del proyecto pueden invitar invitar a otras 
-            personas para unirse. Podrías buscar a más comunidad por su nombre de 
-            usuario o su correo <em>completo</em>, asumiendo que ya esta registrado.
-          </p>
       join:
         invite_only_description: |
           Miembros de este proyecto estan solo por invitación. Si deseas unirte,
@@ -4339,21 +4155,6 @@ es-MX:
           <a href="https://www.naturalista.mx/pages/proyectos">aquí</a> o leer el historial de proyectos en <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nuestro blog</a>.
         you_have_not_defined_any_observation_requirements: |
           No has definido ningún requisito para las observación. Asegúrate de seleccionar uno o más taxa (p. ej. aves, coníferas), sitios (p. ej. Brasil, Yellowstone), usuarios, y/o fechas para definir las observaciones que quieres incluir en tu proyecto.
-      project_location_privacy_notice_html: |
-        <p>
-          Ten en cuenta que los curadores del proyecto podrán ver cualquier 
-          coordenada oscurecida o privada de tus observaciones a menos que 
-          quites este permios, y ellos podrán añadir cualquiera de tus 
-          observaciones al proyecto a menos que <a href="/users/edit">
-         \ cambies la configuracióon </a>. Además puedes otorgar o quitar 
-          acceso a tus obversaciones en este proyecto de acuerdo a las
-          opciones básicas.
-        </p>
-        <p>
-         \ Si estas preocupado por la privacidad de las coordenadas, no te
-          unas a este proyecto a menos que confies en los curadores 
-          del proyecto.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ti
         any: Curadores del proyecto
@@ -4371,25 +4172,8 @@ es-MX:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |
-          <p>
-            De manera diferente a los projectos normales, los proyectos Maratón naturalista muestran estadísticas de los eventos por <em>todas</em> las observaciones aunadas al lugar y el período de tiempo, no solo las observaciones que la comunidad intencionalmente ha añadido. Esto es para quitar el obstáculo de añadir observaciones solo para obtener las estadísticas en tiempo real. Con esto, las observaciones no estarán disponibles para exportar o mostrar en otras vistas del proyecto, como las contribuciones de los miembros o las búsquedas de las observaciones del proyecto desde las aplicaciones moviles, hasta que los participantes del proyecto añadan observaciones relevantes como en un proyecto normal.
-          </p>
-          <p>
-           \ Observa que mientras este proyecto muestre estadísticas de observaciones que no han sido deliberadamente añadidas ha este mismo, no les permitirá a los curadores ver coordenadas privadas o oscurecidas de dichas observaciones \  o asumiendo que los observadores han aceptado los términos del proyecto. Si eres un curador del proyecto y necesitas acceder a las coordendas privadas, necesitarás que los miembros acepten los términos del proyecto, o si 
-           \ buscas que tus observaciones cuenten como el listado del proyecto, asegúrate que tus participantes y sus observaciones se unan al proyecto como en los proyectos normales.
-          </p>
         click_here_to_convert_this_project: |
           Selecciona aquí para convertir este proyecto a un Proyecto de colección.
-        no_journal_blurb_html: |
-          <p>
-          El diario del proyecto es una forma de comunicarse entre los miembros
-          del proyecto. Puedes usarlo para hacer anuncios, establecer prioridades o
-          platicar sobre los resultados del proyecto.
-          </p>
-          <p>
-          Para empezar, <a href="%{url}" class="readmore">crea un comentario</a>
-          </p>
         curated_checklist_desc: |
           Esta es la lista curada y el conteo de las especies o grupos añadidos explicitamente 
           a este proyecto, no todas las observaciones registradas en el tiempo y lugar 
@@ -4402,32 +4186,6 @@ es-MX:
       updates_desc: |
         Recibir notificaciones acerca de este proyecto en tu tablero y en los 
         correos diarios.
-    search:
-      index:
-        no_taxa_options_html: |
-          p>Tienes algunas opciones:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Agregar una marca a un taxón de nivel superior</strong>
-          <p>
-          Por ejemplo, el género que contiene a la especie. Con un poco de suerte, un conservador amistoso agregará el taxón si es posible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacta con el Foro</a></strong>
-          <p>
-          Muchos curadores siguen los correos del Foro.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacto de Soporte</a>
-          </strong>
-          <p>
-          Por favor, ten paciencia, no tenemos personal de soporte dedicado en forma exclusiva.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Has sido bloqueado
@@ -4511,10 +4269,6 @@ es-MX:
         complete_rank_desc_html: |
           Rango en el qué este taxón está completo, p. ej. si esta familia contiene todo sus géneros pero no todas sus especies, esto estaría indicado a "género." La respuesta por defecto es especie.
       show:
-        about_names_desc: |
-          <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos sin ocasionar confusión. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
-          <p>Como resume el antiguo dicho: «Los nombre comunes cambian de sitio en sitio, los científicos de cuando en cuando».</p>
-          <p>Afrontamos esta cuestión citando los nombres comunes y científicos si es posible, y eligiendo los nombres comunes de acuedo con el idioma y las preferencias geográficas del lector.</p>
         about_conservation_status_desc: |
           El estado de conservación sintetiza el riesgo de extinción de un grupo de organismos.
         about_establishment_desc: |
@@ -4567,12 +4321,6 @@ es-MX:
           El nombre del taxón con el rango. Para rangos infraespecificos, rango se  inserta después del binomio.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li>Trata de añadir nombres que se han utilizado en otros lugares. Por favor, no inventes nuevos nombres.</li>
-          <li>No agregues nombres duplicados, por ejemplo, no menciones a numerosos halcones "halcón"</li>
-          <li>Para taxa superiores de nivel, trata de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
-          </ul>
         places_help_html: |
           Añade un nombre para un lugar para darle prioridad para los sitios y los usuarios de ese lugar. Si hay varios nombres por lugar se puede dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
           <strong>no agregues nombres de todos los lugares donde se utiliza el nombre</strong>, sólo para los lugares que entran en conflicto con otros lugares.
@@ -4628,34 +4376,12 @@ es-MX:
         you_must_enter_confirmation_code_in_the_form: |
           Introduce "%{confirmation_code}" en la aplicación para eliminar tu cuenta
       edit:
-        blocking_desc_html: |
-          <p>
-          El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar contigo.
-          </p>
-          <p>
-          El bloqueo es para situaciones en donde no puedes llevarte con alguna personas y no dejan de molestarte, a pesar de tus mejores esfuerzos de aclarar las discusiones de forma civilizada. No es una forma para esconderte de la gente, para prevenir identificaciones de gente de la cual no confías en sus identificaciones, o de salirte de las identificaciones de la comunidad (hay otras maneras para eso). Así que el bloqueo funciona de las dos maneras: si bloqueas a alguien, no podrá interactuar contigo, ni tu podrás interactuar con ellos. Si lo utilizas erróneamente para prevenir que alguien identifique tus observaciones, no podrás tampoco identificar sus observaciones.
-          </p>
-          <p>
-          Solamente puedes bloquear a tres personas. Pensamos que este es un número razonable y previene el abuso del bloqueo. Si piensan que tienes que bloquear a mas gente, por favor <a href="mailto:%{help_email}">contáctanos</a>.
-          </p>
-          <p>
-          Si alguien te está molestando %{site_name},
-          <a href="mailto:%{help_email}">contáctanos </a>. Si esto representa una violación a nuestros Términos de Servicio o representa comportamiento que consideramos es inapropiado en nuestro sitio, investigaremos.
-          </p>
         common_names_desc: |
           Mostrar los nombres comunes. Desactiva la opción si quieres ver solo los científicos.
           Observa que puedes controlar cuáles nombres comunes ves al modificar la configuración de idioma y región.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>La <a href="%{url}" target="_blank">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>
-
-          <p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>
-
-          <p>
-          Nota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.
-          </p>
         licensing_desc_html: |
           La licencia de tu contenido permite a otra gente el uso legal sin
           pedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.
@@ -4663,13 +4389,6 @@ es-MX:
           con otros socios como <a href="http://www.gbif.org/">Global 
           Biodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, 
           que reúne y distriuye información sobre biodiversidad en todo el mundo.
-        muting_desc_html: |
-          <p>
-          Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
-          </p>
-          <p>
-          Puedes silenciar a todos los que quieras, pero ten en cuenta que te estarás perdiendo de notificaciones importantes, como cambios en la identificación de la comunidad sobre tus observaciones.
-          </p>
         name_place_help_html: |
           Priorizar los nombres vernáculos utilizados en este lugar.
         place_preference_changed_notice_html: |
@@ -4702,16 +4421,6 @@ es-MX:
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente es un spammer, lo que significa que no tienen observaciones o identificaciones pero sí una descripción de perfil. </dd><dt>Auto Spam</dt><dd> Spammer que fue marcado automáticamente como spammer por el sistema. </dd><dt>Manual Spam</dt><dd> Spammer que fue marcado manualmente como spammer por un curador del sitio. </dd><dt>False Positives</dt><dd> Usuarios que fueron marcados como spammers pero las marcas fueron resueltas por los curadores del sitio porque no eran realmente spammers.</dd></dl>
-        recent_users_desc_html: |
-          <p>
-          Queremos dar la bienvenida a nuevos usuarios, pero también queremos combatir
-          spammers. Esperamos que esta herramienta ayude a lograr los dos objetivos. Estamos marcando automáticamente a muchos usuarios como spammers usando <a
-          href="https://akismet.com/">Akismet</a>, pero Akismet no es perfecto,
-          así que si quieres dedicar unos minutos a marcar las nuevas cuentas como
-          spammers o no spammers, esto nos ayudaría.
-          </p>
-
-          Traducción realizada con el traductor www.DeepL.com/Translator
       show:
         take_a_chance_to_review_html: 'Aprovecha a revisar <a href="%{link}">nuestras directrices</a>.'
         this_user_was_banned: Este usuario fue suspendido
