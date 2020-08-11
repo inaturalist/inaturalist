@@ -274,17 +274,6 @@ describe LocalPhoto, "flagging" do
       expect(lp.send("#{size}_url")).to be =~ /copyright/
     end
   end
-  # I don't know how to test this now that we reprocess files when repairing - kueda 20160715
-  # it "should change the URLs back when resolved" do
-  #   f = Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
-  #   lp.reload
-  #   expect( lp.original_url ).to be =~ /copyright/
-  #   f.update_attributes(:resolved => true, :resolver => User.make!)
-  #   lp.reload
-  #   %w(original large medium small thumb square).each do |size|
-  #     expect(lp.send("#{size}_url")).not_to be =~ /copyright/
-  #   end
-  # end
   it "should not change the URLs back unless the flag was for copyright" do
     f1 = Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
     f2 = Flag.make!(:flaggable => lp, :flag => Flag::SPAM)
@@ -295,8 +284,59 @@ describe LocalPhoto, "flagging" do
       expect(lp.send("#{size}_url")).to be =~ /copyright/
     end
   end
-  it "should change make associated observations casual grade when flagged"
-  it "should change make associated observations research grade when resolved"
+  it "should change make associated observations casual grade when flagged" do
+    o = make_research_grade_candidate_observation
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
+  end
+
+  # I don't know how to test this now that we reprocess files when repairing - kueda 20160715
+  # I added more things I can't test ~~kueda 20200811
+  # describe "resolution" do
+  #   let(:o) {
+  #     o = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "yesterday" )
+  #     p = LocalPhoto.make( user: o.user )
+  #     p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+  #     o.photos << p
+  #     Observation.set_quality_grade( o.id )
+  #     o.reload
+  #     o
+  #   }
+  #   let(:flag) { Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
+  #   before do
+  #     @obs = flag.flaggable.observation_photos.first.observation
+  #     Delayed::Worker.new.work_off
+  #     @obs.reload
+  #     expect( @obs.quality_grade ).to eq Observation::CASUAL
+  #   end
+  #   it "should change the URLs back when resolved" do
+  #     photo = flag.flaggable
+  #     expect( photo.original_url ).to be =~ /copyright/
+  #     flag.update_attributes( resolved: true, resolver: User.make! )
+  #     photo.reload
+  #     %w(original large medium small thumb square).each do |size|
+  #       expect( lp.send( "#{size}_url" ) ).not_to be =~ /copyright/
+  #     end
+  #   end
+  #   it "should revert quality grade" do
+  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     Delayed::Worker.new.work_off
+  #     expect( flag ).to be_resolved
+  #     @obs.reload
+  #     expect( @obs.quality_grade ).to eq Observation::NEEDS_ID
+  #   end
+  #   it "should not revert quality grade if there's another unresolved copyright flag" do
+  #     other_flag = Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
+  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     Delayed::Worker.new.work_off
+  #     expect( flag ).to be_resolved
+  #     @obs.reload
+  #     expect( @obs.quality_grade ).to eq Observation::CASUAL
+  #   end
+  # end
   it "should re-index the observation" do
     o = make_research_grade_observation
     original_last_indexed_at = o.last_indexed_at
