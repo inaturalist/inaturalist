@@ -863,6 +863,7 @@ zh-CN:
   date_specified: 已指定日期
   date_time: 日期/时间
   day: 日
+  #Default option
   default: 默认
   default_invite_comment: "好照片！您应该将其发布至%{site_name}：{{INVITE_LINK}}"
   default_observation_license: 默认观察协议
@@ -1977,13 +1978,6 @@ zh-CN:
     updates_by_you_panel_body: 请记住，在“全部更新”标签中，您不仅会收到有关您自己内容的更新，还会收到您关注的人的内容，以及通过右侧订阅工具订阅过的那些类别和地点。
     youve_got_updates_panel_title: 您获得了更新！
     youve_got_updates_panel_body_p1: 随时关注以下更新...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-         <li> <strong>您的内容：</strong>您的观察活动，例如来自%{site_name}社区的评论、标识或faves。当有人将您的观察结果添加到项目中，或使用其它字段对其进行注释时，您也会收到更新。</li>
-         <li> <strong>用户：</strong>您关注的人的新观察记录或日记帖子。</li>
-         <li> <strong>生物、项目和地点：</strong>来自您订阅的特定生物或地点的新观察结果。 您还可以加入项目，以便在发布项目日记帐帖子时进行更新。</li>
-         <li> <strong>您参与的讨论：</strong>在其他人的内容中评论或添加标识会自动为您订阅此内容的任何新活动。使用“管理您的订阅”工具来停止接收更新。</li>
-      </ul>
   one_by_one: "一个接一个"
   one_of_your_lists: "您的列表中的一个..."
   only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
@@ -2822,8 +2816,6 @@ zh-CN:
   subscribe_to_a_place: 订阅地点
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
-  subscribe_to_places_to: |
-    订阅地点来接收在那里进行的新观察的更新。您关注的人和您评论的内容的更新也通过订阅进行管理，另外，如果您想查看订阅的内容并取消订阅内容，可以点击下方的“管理所有订阅”。您还可以在此页面取消订阅网站上的任何内容。
   subscribe_to_this: 订阅此
   subscribe_to_x_from_this_y_html: |
     从此%{y}<a href="#" onclick="$(this).parents('form:first').submit(); return false;">订阅</a>至%{x}。
@@ -3528,35 +3520,6 @@ zh-CN:
           <a href="http://eol.org/" target="_blank">网络生命大百科（EOL）</a>是一个有关地球上生命的信息存储库。在EOL您可以创建物种<a href="http://eol.org/info/252" target="_blank">收藏</a>。如果您希望从EOL收藏导入物种，请在此粘贴那个收藏的URL。
         guide_place_desc: |
           当搜索地点时，将您的指南与地点相关联会让人们找到它，并且如果设置了边界（例如“卡片”查看、分类单元页面等）的话，将在 %{site_name} 上的地图中适当位置显示地点边界
-        import_tags_from_csv_help_html: |
-          <p>
-          上传包含用于此指南的分类群标签的CSV文件。您的CSV文件看起来应该像这样：
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>名字</th>
-          <th>颜色</th>
-          <th>手臂数量</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>智人</td>
-          <td></td>
-          <td>2</td>
-          <td>两足动物</td>
-          </tr>
-          <tr>
-          <td>火狐</td>
-          <td>红|黑</td>
-          <td>0</td>
-          <td>四肢动物</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          第一行以“名字”开头，后跟标签谓词/类别。然后每个后续行以分类单元的名称开头，后跟相应谓词的标签在列的顶部。在此示例中，<i>智人</i>获取标签<code>两足动物</code>和<code>手臂数量=2</code>，<i>火狐</i>获取<code>四肢动物</code>，<code>颜色=红</code>，<code>颜色=黑</code>，<code>手臂数量=0</code>。空白将被忽略，您可以为每个分类添加多行。您还可以为每个单元格添加由管道字符分隔的多个值。
-          </p>
         licensing_explanation: |
           许可您的内容授予其他人复制和修改内容的权利，而无需征得您的许可。它使分享您的工作变得更加容易，如果您使用来自使用Creative Commons ShareAlike许可证（如维基百科）的其他来源的第三方内容，您在法律上有义务使用类似的许可。以下是所有知识共享许可及其含义的概述：
         paste_note_html: |
@@ -3575,11 +3538,6 @@ zh-CN:
         这可能需要一段时间，因此请在几分钟后尝试刷新此页面。
       mobile_downloads_tip_html: |
         此指南可以被下载到移动应用供离线使用。
-      mobile_downloads_help_html: |
-        <p>这将创建一个可供下载的，与此指南有关的所有数据和媒体存档，这样移动应用程序用户可以查看所有指南中的内容，而不需要网络连接。生成存档需要几分钟时间，但一旦启用此存档，只要您更改本指南，存档就会更新。</p>
-        <p class="alert status">
-        请<strong>不要启用离线移动下载，除非您确实打算使用它们。</strong>它们会对我们的系统造成相当大的负担。
-        </p>
       pdf_layouts:
         grid: 网格
         book: 图书
@@ -3635,13 +3593,6 @@ zh-CN:
         disagreement_count: 分歧统计
         identification_count: 识别计数
         score: 分数
-        explanation: |
-          <p>
-          如果由于某种原因用户不同意社区分类，他们可以拒绝它，这意味着他们的ID只能用于链接到其他观察，更新生物清单等。这也意味着他们的观察只能在当社区同意的时候才可以达到研究级别。
-          </p>
-          <p>
-          但是，社区ID仍会被显示，因此所有人都可以看到已建议的不同ID。
-          </p>
         you_have_opted_out: 您已选择退出社区标识
         opt_in_for_this_observation: 选择加入此观察
         your_id_does_not_match: |
@@ -3720,16 +3671,6 @@ zh-CN:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
         ancestor_disagreements_desc: "在分类单元的祖先中确定的分类群的编号，它在使用该分类单元进行第一次识别后创建的"
-        community_taxon_desc_html: |
-          <p class="ui">
-          社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
-          </p>
-          <p class="ui">
-          社区分类单元是我们在与数据合作伙伴共享观察时使用的分类单元，将相同分类单元的观察链接在网站上，更新您的生活列表等。如果由于某种原因您不同意社区分类单元，您可以拒绝它，这意味着您的ID只能用于链接到其他观察，更新生物清单等。这也意味着只有当社区同意<em>您</em>时，您的观察才能被评为研究级别。如果您不喜欢社区分类群的整体想法，可以通过<a href="/users/edit" target="_blank">修改设置</a>来完全退出。
-          </p>
-          <p class="ui">
-          <strong>算法：</strong>对于所有已识别的分类群和包含它们的分类群（例如，属<i>Homo</i>包含<i>Homo sapiens</i>），将每个分类作为该分类单元的累计ID数量超过累积ID的总和，在该分类单元的第一个ID之后添加的更保守的ID数量，以及完全不同的ID数量（即，不包含分类单元的分类单元的ID得分）。对于分数超过2/3且至少有2个标识的已识别分类群，请选择排名最低的分类单元。
-          </p>
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
@@ -3741,56 +3682,6 @@ zh-CN:
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
-        quality_assessment_help_html: |
-          <p>
-          数据质量评估是观察准确性的总结。所有观察均以<strong>“随意”</strong>级别开始，并在以下情形时变更为<strong>“需要ID”</strong>级别：
-          </p>
-
-          <ul>
-          <li>此观察<strong>具有日期</strong></li>
-          <li>此观察<strong>有地理位置定位</strong>（即，有经纬度信息）</li>
-          <li>此观察<strong>有照片或录音</strong></li>
-          <li>此观察<strong>并非人造物</strong></li>
-          </ul>
-          <p>
-          在以下情形时，观察变更为<strong>"研究级别"</strong>：
-          </p>
-          <ul>
-          <li>
-          %{site_name}<strong>的社区同意物种级别或更低的ID</strong>，即，超过2/3的分类者同意该分类单元时
-          </li>
-          </ul>
-          <p>
-          如果上述条件未得到满足或社群不同意，观察将恢复至<strong>“随意”</strong>
-          </p>
-          <ul>
-          <li>
-          <strong>位置看起来不准确</strong>（例如海洋中的猴子，办公楼的河马等）
-          </li>
-          <li>
-          <strong>生物体并不是野生/纯天然的</strong>（例如，由人类或智能外星人驯化或培养）
-          </li>
-          <li>
-          观察<strong>没有提供有机体的证据</strong>，例如，景观、水景、岩石等的图像
-          </li>
-          <li>
-          观察<strong>没有提供最近（约100年内）是有机体的证据</strong>（例如化石，但是足迹、粪便和枯叶都可以）
-          </li>
-          <li>
-          观察不再需要ID<em>并且</em>社区已有ID是更高级的家族
-          </li>
-          <li>
-          观察者选择退出社区ID，并且社区ID分类单元并非是与观察者ID相关的分类单元的祖先或后代
-          </li>
-          </ul>
-          <p>
-          如果这不够复杂，还有一些系统获得投票的情形：
-          </p>
-          <ul>
-          <li>
-          如果在包含该观察的最小的县、州或国家级行政单位中存在至少10个属或更低的其他观察，并且其中80％或以上被标记为非野生/非纯天然，则系统将投票认为此观察不是野生/纯天然的。
-          </li>
-          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
@@ -3798,14 +3689,6 @@ zh-CN:
         user_stats_desc: |
           用户统计已限于根据观察计数或物种计数最多500条，因此总共列出的人时常略多于500个，这是因为两个列表可能不包含相同用户。标记“*”的值意味着它未出现在那个统计数据的前500名。
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>您可以编辑此观察字段，因为您创建了它，或者您是网站馆长。如果您是网站馆长，请遵守以下规则</p>
-        <ol>
-        <li>不要任意做出名称更改（例如把“吃”改成“油桃”）</li>
-        <li>请记住，观察字段可被用于任何分类单元的观察，因此请尝试不要使用特定用于分类学的术语</li>
-        <li>不要删除人们正在使用的字段</li>
-        <li>不要翻译现有字段名称至不同语言。英语是此网站的通用语。如果您真希望添加一个描述相同概念，但语言不同的字段，请新建一个观察字段。</li>
-        </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
       merge:
@@ -3875,10 +3758,6 @@ zh-CN:
         aggregation_pending: 聚合待定
         new_place_desc_html: |
           尝试浏览<a href="%{places_url}" target="_blank">我们现有的地点</a>，并确保您获得正确的地点名称。如果您找不到所需的地点，请考虑<a href="%{new_place_url}" target="_blank">创建新地点</a>，但请确保您不仅仅是复制了现有的地点。
-        bioblitz_desc_html: |
-          <p>
-          bioblitz是一个活动，参与者试图在一段时间内观察尽可能多的物种。这是一种向人们介绍生物多样性同时收集有价值数据的有趣方式。
-          </p>
         change_admin_desc: 选择一位项目馆长作为新管理员。
         cover_desc: "可选的横幅图片，将显示在项目页面的顶部。宽度必须是950px，高度必须低于400px。"
         custom_project_fields_means: "自定义项目标志，添加一些内容，及编辑CSS。"
@@ -3892,34 +3771,6 @@ zh-CN:
           聚合器上次完成向此项目添加观察的时间
         no_curators: |
           这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
-        observation_aggregation_desc_html: |
-          <p class="description">
-          观察聚合将根据项目规则自动为项目添加合适的观察。由于一次无法从项目中删除许多观察，这可能存在危险，因此请确保您已选择了所需的地点和分类规则，否则最终您可能不得不手动删除大量不合适的观察。
-          </p>
-          <p class="description">
-          聚合器仅在满足以下条件时才有效：
-          </p>
-          <ol>
-          <li class="readable description">
-          您的项目与中小型地方（接近德克萨斯州或乌克兰的大小）相关联
-          </li>
-          <li class="readable description">
-          或者您的项目仅接受某些分类单元的观察
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">项目资产只是一些与项目关联的文件，具有一些特殊规则：
-          </p>
-          <ol class="description">
-          <li>以.logo.jpg，.logo.png等结尾的文件将用作项目页面上的项目徽标，而不是项目图标</li>
-          <li>KML和KMZ文件将添加到项目页面上的地图中</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          您可以创建定制分类项目列表，并链接至您的项目。This can be useful to restrict observations added to your
-          project to those matching taxa on your list via the "must be taxon
-          on the project list" rule.
-          </p>
         rules:
           captive: 被驯服/培养
           georeferenced: 有坐标
@@ -3940,20 +3791,6 @@ zh-CN:
           信任项目意味着项目管理者可以添加项目资产和自定义项目属性（例如标题HTML，CSS）。访问自定义项目属性意味着项目管理者有可能会添加恶意Javascript，因此请只信任具有负责任和技术能力的管理者的项目。
         you_can_preview: |
           您可以通过<a href="%{url}">点击此处</a>来预览项目的收藏项目。
-      invite:
-        description_html: |
-          <h3>关于邀请函</h3>
-          <p class="ui">
-          邀请人们加入您的项目与邀请个人观察有点不同。邀请人们将会
-          </p>
-          <ol>
-          <li>向他们发送一封电子邮件以邀请他们加入您的项目</li>
-          <li>在他们的控制面板上显示邀请</li>
-          <li>使他们能够加入您的项目，如果您的项目被设定为仅限邀请的话</li>
-          </ol>
-          <p class="ui">
-          只有项目馆长才能邀请人们加入项目。您应该能够通过他们的iNat用户名或他们的<em>完整的</em>电子邮件地址搜索人员，假设我们已将其存档。
-          </p>
       join:
         invite_only_description: |
           该项目的成员资格仅限受邀者。如果您想加入，请联系以下其中一位馆长并请求邀请。
@@ -4010,13 +3847,6 @@ zh-CN:
         welcome_to_projects: 欢迎来到项目！
         you_have_not_defined_any_observation_requirements: |
           您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。
-      project_location_privacy_notice_html: |
-        <p>
-        请注意项目馆长将能够在此项目中查看您观察的任何私人或模糊位置，除非您撤销该权限，并且除非您<a href="/users/edit">更改您的设置</a>，他们还可以将您的任何观察加入此项目。您还可以根据具体情况授予或撤销对项目观察的访问权限。
-        </p>
-        <p>
-        如果您担心位置隐私，除非您信任项目馆长，否则不要加入项目。
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: 是的，但只在我自行添加观察至项目时。
         any: 是的，无论是谁将观察添加到项目中都无所谓。
@@ -4030,22 +3860,8 @@ zh-CN:
       show:
         are_you_sure_you_want_to_convert: |
           您确定要转换词项目至一个收藏项目么？
-        bioblitz_results_desc_html: |
-          <p>
-          与常规项目不同，bioblitzes显示来自某个地点和时间段内<em>所有</em>观察的事件统计数据，而不仅仅是人们有意添加到项目中的观察。这是为了消除向项目添加观察的障碍，只是为了实时驱动统计数据。请注意，观察将不可用于导出或显示在各种项目视图上，例如网站上的成员贡献或移动应用程序中的项目观察搜索，除非项目团队和参与者积极地添加与正常项目中相关的观察。
-          </p>
-          <p>
-          请注意，虽然此类项目显示未有意添加到项目中的观测统计数据，但它不允许馆长查看这些观测的私人或模糊坐标，或假设观察者已同意项目术语。如果您是项目馆长并且需要访问私人坐标，则需要您的参与者同意项目条款，或者您希望将观察计入策划项目清单，确保您的参与者加入项目并添加他们的观察至一个正常的项目中。
-          </p>
         click_here_to_convert_this_project: |
           单击此处将此项目转换为收藏项目。
-        no_journal_blurb_html: |
-          <p>
-          您的项目日记是与其他项目成员交流的工具。您可以使用它发布公告，设置优先级，或讨论有关您项目中找到的东西。
-          </p>
-          <p>
-          要开始入门，请<a href="%{url}" class="readmore">创建一个帖子</a>
-          </p>
         curated_checklist_desc: |
           这是策划的清单及添加到该项目中的来自观察的分类群计数，而不是在此事件的地点和时间记录的所有观察。
         make_sure_you_have_read_about_the_differences: |
@@ -4054,32 +3870,6 @@ zh-CN:
           这是该项目作为一个收集项目时的样子的预览。
       updates_desc: |
         在您的控制面板与每日更新邮件中接收有关此项目的更新。
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>你有几个选择：</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>将标志添加到更高级别的分类单元中</strong>
-          <p>
-          例如，属于一个物种的属。希望友好的馆长会添加分类单元，如果他们可被添加。
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">联系反馈组</a></strong>
-          <p>
-          许多网站馆长会跟踪反馈组的电子邮件。
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">联系支持</a>
-          </strong>
-          <p>
-          请耐心等待，我们没有很多专门的支持人员。
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: 您已被封禁
@@ -4140,16 +3930,6 @@ zh-CN:
         complete_rank_desc_html: |
           该分类单元完成的等级，例如，如果这个家族包含其所有属，但不包括其所有物种，那么这将被设定为“属”。物种是默认的。
       show:
-        about_names_desc: |
-          <p>
-          大多数类型的生物在口语中都有“常见名称”。这些名字通常是可识别的，容易发音，并且随着时间的推移而变得稳定，但即使是在同一个语言中，许多生物在不同的地方会有几个不同名字，这给讨论这些生物体而不混淆带来了困难。对于符合<a href="https://zh.wikipedia.org/wiki/二名法">生物命名规则</a>的每一类生物 ，科学家通过使用单一的“科学名称”处理这个问题，但这些名字往往是以拉丁语（一种没人说的语言）为基础的，所以他们不像许多人用的常见名字那么好记。科学名称同时也会反映生物的分类，所以当科学家研究出不同的生物体之间更准确的进化理论的时候，这些名字会改变，并降低了名字在交流中的可用性，甚至在那些科学名称的人之间也是如此。
-          </p>
-          <p>
-          一句老格言总结：“常见名字随地方改变而改变，科学名称随时间改变而改变。”
-          </p>
-          <p>
-          我们试图通过在任何地方通过同时展示常见名字和科学名字来解决这些缺点，并基于观众的语言和地理偏好来选择性展示常见名称。
-          </p>
         about_conservation_status_desc: |
           保护状况总结了一组生物灭绝的风险。
         about_establishment_desc: |
@@ -4194,27 +3974,6 @@ zh-CN:
           分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>尝试添加已在其他地方使用过的名称。请不要发明新名字。</p></li>
-          <li><p>不要添加重复的名称，例如，不要为很多种类的鹰命名为“鹰”</p></li>
-          <li><p>对于更高级别的分类群，尝试使用包含所有后代的名称，如“苍鹭和同类”或“荒地家族”</p></li>
-          <li>
-          <p>
-          不要添加不是名称的信息，例如，有关您如何使用该名称的括号信息
-          </p>
-          </li>
-          <li>
-          <p>
-          新词典应该是英文的。请不要添加“French，Français”之类的翻译语言名称，因为这样我们很难或不可能为使用不同语言的网站的用户显示本地化名称。
-          </p>
-          </li>
-          <li>
-          <p>
-          与翻译语言相关的常用名称将显示为该语言的默认通用名称（除非受到地点首选项、名称排序等的影响）。<a class="readmore" href="/pages/translate">了解有关翻译的详情</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           为地点添加名称，以便为该地点的站点和用户提供优先级。如果每个地点有多个名称，您可以优先考虑<a href="%{url}">此处</a>。请<strong>不要</strong>为每个使用该名称的地点添加名称，仅适用于与其他地点发生冲突的地点。
       taxon:
@@ -4232,34 +3991,12 @@ zh-CN:
         curators_can_see: |
           只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       edit:
-        blocking_desc_html: |
-          <p>
-          屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动
-          </p>
-          <p>
-          屏蔽是为了解决您不能和某些人相处，尽管您尽了最大的努力以文明的方式解决争端，他们也还是会纠缠您。这不是一种隐藏身份，以防止您的身份被人您不信任的人识别或注销社区 ID（有另一个设置专门做这个的）。因此，屏蔽工作方式如下：如果您屏蔽了某人他们不能与您互动，但您也不能和他们互动。如果您误用它来防止别人识别您的观察，您也将阻止您自己识别别人的观察。
-          </p>
-          <p>
-          您只能屏蔽三个人。我们认为这是合理的：符合屏蔽的需要，同时防止滥用屏蔽。如果您觉得需要屏蔽更多人请<a href="mailto:%{help_email}">与我们联系</a>。
-          </p>
-          <p>
-          如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
-          </p>
         common_names_desc: |
           显示常用名。如果您只希望查看学名则可以禁用。注意您可以通过更改您的地域和地点设置，控制您想看到的常用名。
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
-        inaturalist_network_affiliation_desc_html: |
-          <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
-        muting_desc_html: |
-          <p>
-          禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
-          </p>
-          <p>
-          您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
-          </p>
         name_place_help_html: |
           排序用于这一地区常用名的优先级。
         place_preference_changed_notice_html: |
