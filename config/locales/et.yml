@@ -900,6 +900,7 @@ et:
   date_specified: Kuupäev määratud
   date_time: Kuupäev/kellaaeg
   day: Päev
+  #Default option
   default: vaikimisi
   default_invite_comment: "Hea foto! Peaksid selle postitama lehele %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Vaikimisi vaatluslitsents
@@ -2064,13 +2065,6 @@ et:
     updates_by_you_panel_body: Pea meeles sakis 'Kõik täiendused' näed sa lisaks enda sisuga seotud täiendustele ka värsket infot kõigi jälgitavate inimeste, liikide või kohtade kohta, mida oled paremal olevasse jälgimise tööriista lisanud.
     youve_got_updates_panel_title: Sul on uudiseid!
     youve_got_updates_panel_body_p1: Jälgi uudiseid...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Sinu sisu:</strong> Sinu vaatlustega seotud teiste %{site_name} kasutajate tegevused nagu kommentaarid, määratlused ja lemmikuks kuulutamised. Samuti antakse sulle teada, kui su vaatlus lisatakse mõnda projekti või sellele lisatakse uusi andmeid.</li>
-      <li><strong>Inimesed:</strong> Sinu jälgitavate inimeste uued vaatlused ja päevikukanded.</li>
-      <li><strong>Organismid, projektid ja kohad:</strong> Jälgitavate liikide või kohtadega seotud uued vaatlused. Samuti võid ühineda projektidega, et saada teada, kui nad uusi päevikukandeid postitavad.</li>
-      <li><strong>Sinuga seotud vestlused:</strong> Kellegi teise sisu kommenteerimisel või määratlemisel pannaks sind automaatselt selle sisuga seotud täiendusi jälgima. Kasuta 'Halda oma jälgimisi' tööriista, kui ei soovi neid täiendusi enam näha.</li>
-      </ul>
   one_by_one: "Ükshaaval"
   one_of_your_lists: "ühes nimekirjas..."
   only_a_project_manager_can_add: Ainult projekti haldaja saab jagada kuraatori staatust
@@ -3010,8 +3004,6 @@ et:
   subscribe_to_a_place: Jälgi kohta
   subscribe_to_observations_in_a_taxon: Jälgi kõiki mõne organismide grupi (nt 'skorpionid') lisatud vaatluseid.
   subscribe_to_observations_in_a_place: Jälgi kõiki selles kohas tehtud vaatluseid. Saab kasutada koos taksoni filtriga (nt 'Texase skorpionid').
-  subscribe_to_places_to: |
-    Jälgi mõnda kohta, et saada teateid seal tehtud vaatlustest. Ka sinu poolt jälgitavate inimeste ja sinu kommenteeritud asjade jälgimine toimub siit kaudu. Kui soovid näha, mida jälgid või mõnda jälgimist lõpetada, vajuta nupu "Halda jälgimisi". Kõigi asjade jälgimist peaks saama lõpetada ka nende endi lehelt.
   subscribe_to_this: Jälgi seda
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Jälgi</a> seda %{x} sellest %{y}.
@@ -3775,35 +3767,6 @@ et:
           <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL, Elu Entsoklüpeedia)</a> on planeedil Maa oleva eluga seotud informatsiooni kogum. EOLis saad luua liikide <a href="http://eol.org/info/252" target="_blank">kollektsioone</a>. Kui soovid mõnes EOLi kollektsioonis olevaid liike importida, lisa siia selle kollektsiooni URL.
         guide_place_desc: |
           Seostades oma juhendi mõne kohaga, leiavad inimesed selle seda kohta otsides üles ning koha piirjoont näidatakse lehe %{site_name} kaartidel, kui piirkond on määratletud (nt "kaardi" vaates", taksonilehtedel, jne).
-        import_tags_from_csv_help_html: |
-          <p>
-          Lae üles selles juhendis sisalduvate märksõnadega CSV-fail. Fail peaks välja nägema selline:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nimi</th>
-          <th>värvus</th>
-          <th>Käte arv</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>kahejalgne</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>punane|must</td>
-          <td>0</td>
-          <td>neljajalgne</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Esimene rida algab "Nimega", millele järgnevad märksõnade kategoorias. Iga järgnev rida algab taksoni nimega, millele järgnevad tulba päises olevatele kategooriatele vastavad märksõnad. Antud näites saab <i>Homo sapiens</i> endale märksõnad <code>kahejalgne</code> ja <code>Käte arv=2</code> ning <i>Vulpes Vulpes</i> märksõnad <code>neljajalgne</code>,  <code>värvus=punane</code>, <code>värvus=must</code> ja <code>Käte arv=0</code>. Tühjad lahtrid jäetakse vahele ning iga taksoni puhul võib olla mitu rida. Ühte lahtrisse saab ka lisada mitu püstkriipsuga eraldatud väärtust.
-          </p>
         licensing_explanation: |
           Enda loodud sisu litsenseerimine annab teistele inimestele võimaluse seda kopeerida ja muuta ilma sinult luba küsimata. See muudab sinu tehtud töö jagamise lihtsamaks ning kui kasutatakse litsentsiga Creative Commons Samatingimuslik varustatud asju (nagu Wikipedia), siis on kohustus kasutada ka tulemi puhul sarnast litsentsi. Järgneb ülevaade Creative Commons litsentsidest ja sellest, mida need tähendavad:
         paste_note_html: |
@@ -3822,11 +3785,6 @@ et:
         See võib natuke aega võta, nii et värskenda mõne minuti pärast lehte.
       mobile_downloads_tip_html: |
         Selle juhendi saab moobili rakenduste jaoks levita kasutamiseks alla laadida.
-      mobile_downloads_help_html: |
-        <p>See loob kogu antud juhendiga seotud andmete ja meediaga allalaetava arhiivi, mida mobiili rakenduse kasutajad saavad ilma interneti kasutamata täielikult kasutada. Arhiivi loomine võtab paar minutit, kuid peale selle sisse lülitamist uuendatakse arhiivi iga kord, kui juhendis midagi muudad.</p>
-        <p class="alert status">
-        Palun <strong>ära luba internetita mobiilset allalaadimist, kui sa seda tegelikult ei kasuta.</strong> Need koormavad tõsiselt meie süsteemi.
-        </p>
       pdf_layouts:
         grid: ruudustik
         book: raamat
@@ -3881,13 +3839,6 @@ et:
         disagreement_count: Erimeelsuste arv
         identification_count: Määratluste arv
         score: Skoor
-        explanation: |
-          <p>
-          Kui kasutaja mingil põhjusel ei nõustu kogukondliku taksoniga, saavad nad selle tagasi lükata, mis tähendab, et teiste vaatlustega seostamiseks, elunimekirjade täiendamiseks, jne kasutatakse nende endi pakutud määratlust. Samas tähendab see ka seda, et see vaatlus saab teaduskõlbulikuks alles siis, kui kogukond sellega nõustub.
-          </p>
-          <p>
-          Samas näidatakse kogukondlikku määratlust edasi, et kõik erinevad pakutud määratlused oleksid nähtavad.
-          </p>
         you_have_opted_out: Sa ei soovi kogukondlike määratlusi
         opt_in_for_this_observation: Kasuta selle vaatluse puhul
         your_id_does_not_match: |
@@ -3967,16 +3918,6 @@ et:
         allow_curator_coordinate_access_desc_html: |
           Luba projektide kuraatoritel näha selle vaatluse peidetud koordinaate.
         ancestor_disagreements_desc: "Määratletud taksonite hulk, milles sisalduvad antud taksoni ülemtaksonid, kuid mis ei nõustu antud taksoniga (st \"Ma arvan, et tegu on selle perekonnnaga, kuid ei usu, et tegu on selle liigiga\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Kogukondlik takson (ehk kogukondlik määratlus) tähistab seda, mida lehe %{site_name} kogukond mingi vaatluse kohta arvab. Kui sind huvitab, kuidas me kogukondliku taksoni valime, vaata allpool olevaid algorütmi kohta käivaid märkuseid. Üldiselt proovime <strong>valida taksoni, millega enam kui 2/3 määratlejatest nõustuvad</strong>. Mõnikord tähendab see seda, et peame valima kõrgema tasema taksoni, milles sisalduvad arvamuste vastuolud (nt kui sina arvad, et tegu on kuningmaoga, ja mina arvan, et tegu on lõgismaoga, valib iNat alamseltsi Serpentes, mis sisaldab kõik madusid). Algorütm eelistab vähesel määral ebakõla, sest oleme avastanud, et mittenõustujatel on sageli õigus.
-          </p>
-          <p class="ui">
-          Teaduskõlbulik vaatlus peab (muuhulgas) omama ka kogukondlikku taksonit. Kui vaatlusel on vaid üks määratlus, siis sel puudub kogukondlik takson. Kõiigil vaatlustel, millel on vähemalt üks määratlus, on olemas ka vaatluse takson. Vaatluse taksonit kasutame vaatluste jagamisel andmepartneritega, vaatluste seostamiseks sama taksoniga, sinu elunimekirja täiendamiseks, jne. Enamasti saab vaatluse taksonist ka kogukondlik takson, kuid mõnikord need erinevad, sest kogukond pole veel jõudnud määratluse osas üksmeelele. Kui sina näiteks arvad, et tegu on maoga (alamselts Serpentes) ning mina arvan, et tegu on kuningmaoga (perekond <i>Lampropeltis</i>), siis on vaatlustaksoniks kuningmadu (mis põhineb ainult minu määratlusel), kuid kogukondlikuks taksoniks on Serpentes (sest see tugineb vähemalt kahel määratlusel). Kui sa mingil põhjusel ei nõustu kogukondliku taksoniga, saad selle endale kuuluvate vaatluste puhul tagasi lükata, mis tähendab, et kogukondlikut taksonit ei panna kunagi vaatlustaksonit (selleks on siis su enda määratlus). Samuti tähendab see seda, et su vaatlus muutub teaduskõlbulikuks vaid siis, kui kogukond <em>sinuga</em> nõustub. Kui sulle mõte kogukondlikest taksonitest ei meeldi, võid neist täielikult keelduda <a href="/users/edit" target="_blank">muutes enda sätteid</a>.
-          </p>
-          <p class="ui">
-          <strong>Algorütm:</strong> kõigile määratletud taksonitele ja neid sisalduvatele taksonitele (st perekond <em>Homo</em> sisaldab liiki <em>Homo sapiens</em>) antakse skoor. Selleks on "nõustujate" (selle taksoni määratluste osa kõigist määratlustest), "mittenõustujate" (määratluste arv, mis on täiesti erinevad - st pakutud taksonis ei sisaldu hinnatav takson) ja "alamtaksoni osas mittenõustujate" (konservatiivsemad määratlused, mis ei nõustu täpsema taksoniga) suhtarv. Taksonite hulgast, mille skoor on suurem kui 2/3 ja millel on vähemalt 2 määratlejat, valitakse kõige madalama skooriga takson.
-          </p>
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
@@ -3986,40 +3927,6 @@ et:
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
         join_project_desc_html: |
           Projektiga liitudes saavad projekti kuraatorid näha nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
-        quality_assessment_help_html: |
-          <p>
-          Andmete kvaliteedihinnang on vaatluse täpsuse kokkuvõte. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning muutuvad <strong>"vajab määramist"</strong> vaatlusteks kui
-          </p>
-
-          <ul>
-          <li>vaatlusel <strong>on kuupäev</strong></li>
-          <li>vaatlusel <strong>on asukoha andmed</strong> (st laius- ja pikkuskraadid)</li>
-          <li>vaatlusel <strong>on fotod või helid</strong></li>
-          <li>vaatlus <strong>ei ole inimesest</strong></li>
-          </ul>
-          <p>
-          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong> kui
-          </p>
-          <ul>
-          <li>%{site_name} <strong>kogukond nõustub liigitäpsuse või täpsema määratlusega</strong>, st kui 2/3 määratlejatest nõustuvad mingi taksoniga</li>
-          </ul>
-          <p>
-          Vaatlus muutub uuesti <strong>"juhuvaatluseks"</strong>, kui ülalolevad tingimused pole täidetud või kogukond arvab,
-          </p>
-          <ul>
-          <li>et <strong>asukoht ei näi olevat täpne</strong> (nt ahvid keset ookeani, jõehobud kontorihoones, jne)</li>
-          <li>et <strong>organism pole metsik/kohandunud</strong> (nt inimeste poolt vangistatud või kasvatatud või sisaldab intelligentseid tulnukaid)</li>
-          <li>et vaatlus <strong>ei sisalda mingi organismi olemasolu tundemärke</strong>, nt pildid maastikest, veekogudest, kividest, jne</li>
-          <li>et vaatlus <strong>ei sisalda hiljutisi (~100 aastat) märke organismi kohalolust</strong> (nt kivistised, kuid väljaheited, jäljed ja kuivanud lehed sobivad)</li>
-          <li>vaatlus ei vaja edasist määratlemist <em>ning</em> kogukondlik määratlus on vähemalt sugukonna tasemel</li>
-          <li>vaatleja ei ole soovinud kogukondliku määratlust ning kogukondlik määratlus ei ole vaatleja määratluse täpsem versioon</li>
-          </ul>
-          <p>
-          Ja kui see pole veel piisavalt keeruline, siis eksisteerivad ka olukorrad, kus süsteem ise saab otsustada:
-          </p>
-          <ul>
-          <li>Süsteem otsustab, et vaatlus pole metsik/kohandunud, kui väikseimas maakonna, osariigi või riigi tüüpi kohas, milles see vaatlus on tehtud, on vähemalt 10 teist liigi või täpsema taseme vaatlust, mis sisaldavad sama organismi, ning 80% neist on märgitud mitte metsikuks või kohandunuks.</li>
-          </ul>
         score_desc: "skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite ebakõlad)"
         observation_flagged_notice_html: |
           Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
@@ -4028,14 +3935,6 @@ et:
         user_stats_desc: |
           Kasutajate statistika on piiratud top 500ga vaatluste või liikide arvu järgi, mis tähendab, et enamasti näidatakse natuke üle viiesaja kasutaja, sest need kaks nimekirja ei sisalda enamasti samu kasutajaid. '*' märgitud väärtus tähendab, et kasutaja on selle väärtuse top 500 sees.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>Saad seda vaatlusvälja muuta, kuna oled selle looja või lehe kuraator. Kui oled lehe kuraator, järgi palun allolevaid juhiseid</p>
-        <ol>
-        <li>Ära tee ebaolulisi nime muutuseid (nt muutes sõna "söök" sõnaks "nektar")</li>
-        <li>Pea meeles, et vaatlusvälju saab kasutada kõigi taksonite vaatluste puhul, nii et proovi mitte kasutada mingile taksonile eripärast terminoloogiat</li>
-        <li>Ära kustuta välju, mida inimesed kasutavad</li>
-        <li>Ära tõlgi olemasolevaid välju erinvatesse keeltesse. Selle lehe peamine keel on inglise keel. Kui sa tõesti soovid välja, mis sisaldaks sama mõtet aga oleks mõnes teises keeles, siis loo palun uus vaatlusväli.</li>
-        </ol>
       dna_help: |
         Et lülitada sisse BOLD DNA triipkoodide võrdlemise võimalus, peab su välja nime sisaldama sõnu "COI", "COX1", "ITS" või "matK", mis vastab geenile, millega see väli tegeleb.
       merge:
@@ -4119,10 +4018,6 @@ et:
         aggregation_pending: Koondamine on ootel
         new_place_desc_html: |
           Vaata esmalt <a href="%{places_url}" target="_blank">olemasolevaid kohti</a> ja kontrolli, kas sinu sisestatud kohanimi on ikka õige. Kui sa ka siis ei suuda soovitud kohta leida või proovida <a href="%{new_place_url}" target="_blank">uue koha loomist</a>, aga ole palun kindel, et tegu pole olemasoleva koha duplikaadiga.
-        bioblitz_desc_html: |
-          <p>
-          Välkvaatlus on üritus, mille puhul osalejad proovivad kindla aja jooksul vaadelda võimalikult palju liike. See on lõbus viis, millega tutvustada inimestele elu mitmekesisust, kogudes samal ajal olulisi andmeid.
-          </p>
         change_admin_desc: Vali üks projekti kuraatoritest uuest administraatoriks.
         cover_desc: "Projekti päises ilmuv valikuline bänneripilt. Peab olema 950 pikslit lai ja vähemalt 400 pikslit kõrge."
         custom_project_fields_means: "Muuda projekti bännerit, lisa sisu külgtulpadesse ja redigeeri CSSi."
@@ -4136,31 +4031,6 @@ et:
           Aeg, kui projekti lisati viimased vaatlused
         no_curators: |
           Projektil ei ole kuraatoreid. Kui soovid määrata uue kasutaja projekti administraatoriks, peavad nad esmalt projektiga liituma ja sa pead tegema neist kuraatorid.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Vaatluste koondamine lisab projekti vastavalt selle reeglitele automaatselt sobivad vaatlused. Kuna projektist ei saa korraga suurt hulka vaatluseid eemalda, võib see olla ohtlik, seega ole kindel, et oled valinud kõik soovitud koha ja taksonite reeglid või muidu võib lisanduda suur hulk ebasobivaid vaatluseid, mida pead siis käsitsi eemaldama.
-          </p>
-          <p class="description">
-          Koondamine toimub vaid siis, kui projekt vastab järgnevatele nõuetele:
-          </p>
-          <ol>
-          <li class="readable description">
-          Projektil peab olema vähemalt üks 'vaatlus peab olema tehtud kohas' reegel, mille puhul koht on väikese või keskmise suurusega (umbes Texase või Ukraina suurune)
-          </li>
-          <li class="readable description">
-          VÕI on projektil vähemalt üks 'peab olema taksonis' reegel
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Projekti lisad on lihtsalt sellega seotud failid, mille puhul kehtivad mõned spetsiaalsed reeglid:</p>
-          <ol class="description">
-          <li>Sõnadega .logo.jpg, .logo.png, jne lõppevaid faile kasutatakse projekti lehel projekti ikooni asemel logona</li>
-          <li>KML- ja KMZ-failid lisatakse projekti lehel olevale kaardile</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Võid teha projekti jaoks spetsiaalse taksonite nimekirja ja selle projektiga seostada. Seeläbi saad piirata projektile lisatavaid vaatluseid kasutades reeglit "peab olema projekti nimekirja takson".
-          </p>
         rules:
           captive: olema vangistatud/kultiveeritud
           georeferenced: omama koordinaate
@@ -4181,20 +4051,6 @@ et:
           Projekti usaldamine on seotud sellega, et projektide haldajad saavad projekte täiendada lisade ning atribuutidega (nt bänneri HTML, CSS). Ligipääs nendele lisadele tähendab seda, et projekti haldajatel on teoorias võimalik täiendada koodi kuritahtliku Javascriptiga, seega tuleks usaldada ainult projekte, mille haldajad on nii usaldusväärsed kui tehniliselt kompetentsed.
         you_can_preview: |
           Saad näha eelvaadet sellest, milline su projekt näeks välja kogumisprojektina, <a href="%{url}">vajutades siia</a>.
-      invite:
-        description_html: |
-          <h3>Kutsetest</h3>
-          <p class="ui">
-          Inimeste kutsumine projekti on natuke teistsugune, kui üksikute vaatluste kutsumine. Inimeste kutsumise puhul
-          </p>
-          <ol>
-          <li>Saadetakse neile e-kiri kutsega projektiga liituma</li>
-          <li>Näitab neile kutset ka nende töölaual</li>
-          <li>Lubab neil sinu projektiga liituda, kui projekt on mõeldud vaid kutsututele</li>
-          </ol>
-          <p class="ui">
-          Vaid projekti kuraatorid saavad inimesi projekti kutsuda. Inimesi peaks saama otsida nende iNat kasutajatunnuse või nende <em>täieliku</em> e-posti aadressi abil, kui viimane meil andmebaasis olemas on.
-          </p>
       join:
         invite_only_description: |
           Selle projektis on vaid kutsutud liikmed. Kui soovid liituda, kontakteeru palun mõne alloleva kuraatoriga ning küsi endale kutset.
@@ -4251,13 +4107,6 @@ et:
         welcome_to_projects: Teretulemast projektide maailma!
         you_have_not_defined_any_observation_requirements: |
           Sa ei ole määranud ühtegi vaatlusnõuet. Vali üks või enam taksonit (nt linnud, okaspuud), kohta (nt Eesti, Saaremaa), kasutajat ja/või kuupäeva, et panna paika, mida sa soovid selle projekti alla koondada.
-      project_location_privacy_notice_html: |
-        <p>
-        Pea meeles, et ainult projekti kuraatorid näevad selles projektis sinu privaatseid või varjatud asukohti, kui sa ise seda spetsiaalselt keelanud pole, ning nad saavad sellesse projekti lisada kõiki sinu vaatlusi kui sa oma <a href="/users/edit">sätteid ei muuda</a>. Saad ka iga vaatluse puhul eraldi koordinaate peita või näidata.
-        </p>
-        <p>
-        Kui sa oled asukoha privaatsuse pärast mures, ära liitu projektidega, kui sa just nende kuraatoreid ei usalda.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Jah, aga ainult siis, kui ma ise vaatluse projekti lisan.
         any: Jah, ükskõik kes vaatluse projekti lisab.
@@ -4271,22 +4120,8 @@ et:
       show:
         are_you_sure_you_want_to_convert: |
           Oled sa kindel, et soovid projekti muuta kogumisprojektiks?
-        bioblitz_results_desc_html: |
-          <p>
-          Erinevalt tavalistest projektidest näitavad välkvaatlused statistikat <em>kõikide</em> teatud koha ja ajaperioodi vaatluste kohta, mitte ainult nende vaatluste kohta, mis on projekti tahtlikult lisatud. Seetõttu ei pea reaalajas statistika saamiseks eraldi käsitsi vaatluste lisamisega vaeva nägema. Pane tähele, et vaatlused pole eksporditavad või erinevatel projekti alamlehtedel (liikmete panus kodulehel või vaatluste otsing mobiiliäppides) nähtavad kui projekti meeskond ja osalejad pole vastavaid vaatluseid ise lisanud nagu see toimub tavaliste projektide puhul.
-          </p>
-          <p>
-          Pane tähele, et kuigi seda tüübi projekti näitavad statistikat vaatluste kohta, mida pole tahtlikult lisatud, ei tähenda see samas, et kuraatorid näeksid nende vaatluste priivatseid või varjatud koordinaate, või usuksid, et vaatlejad on nõustunud projekti tingimustega. Kui oles projekti kuraator ning vajad ligipääsu privaatsetele koordinaatidele, pead paluma liikmetelt, et nad nõustuksid projekti tingimustega. Kui soovid, et vaatlused ilmuksid kureeritud projekti kontrollnimekirja, pead paluma osalejatelt, et nad projektiga liituksid ja lisaksid vaatluseid nagu tavaliste projektide puhulgi.
-          </p>
         click_here_to_convert_this_project: |
           Vajuta siia, et muuta projekt kogumisprojektiks.
-        no_journal_blurb_html: |
-          <p>
-          Projekti päevik on tööriist, mille abil saad suhelda oma projekti liikmetega. Saad teha teadaandeid, määrata prioriteete või tutvustada oma projekti tulemusi.
-          </p>
-          <p>
-          Alustamiseks <a href="%{url}" class="readmore">loo päevikukanne</a>
-          </p>
         curated_checklist_desc: |
           See on antud projekti reaalselt lisatud vaatluste kureeritud kontrollnimekiri ja taksonite loend. See ei vasta kõigile selles kohas ja sellel ajal tehtud vaatlustele.
         make_sure_you_have_read_about_the_differences: |
@@ -4295,32 +4130,6 @@ et:
           See on eelvaade, mis näitab milline antud projekt näeks välja kogumisprojektina.
       updates_desc: |
         Saa teateid selle projekti kohta oma töölauale ning igapäevase uudiste e-kirjaga.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Sul on paar valikut:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lisa märkus kõrgema taseme taksonile</strong>
-          <p>
-          Näiteks liiki sisaldav perekond. Loodetavasti lisab mõni sõbralik kuraator taksoni, kui selle lisamine on võimalik.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontakteeru foorumiga</a></strong>
-          <p>
-          Palju lehe kuraatorid jälgivad ka foorumit.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Võta ühendust toega</a>
-          </strong>
-          <p>
-          Ole palun kannatlik, kuna meie tugipersonal pole eriti suur.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Sind on blokeeritud
@@ -4397,16 +4206,6 @@ et:
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
       show:
-        about_names_desc: |
-          <p>
-          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooria puhul, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele samavõrd meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
-          </p>
-          <p>
-          Vana ütlus võtab selle kokku: "Rahvapärased nimed muutuvad kohast kohta ja teaduslikud nimed ajast aega."
-          </p>
-          <p>
-          Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
-          </p>
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
         about_establishment_desc: |
@@ -4458,15 +4257,6 @@ et:
           Taksoni nimi koos kategooriaga. Infraliikide kategooriate puhul lisatakse kategooria binaarset nimetust.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Proovi lisada nimesid, mida kasutatakse ka mujal. Palun ära leiuta uusi nimesid.</p></li>
-          <li><p>Palun ära lisa korduvaid nimesid, st ära nimeta mitmet kulli lihtsalt "kulliks"</p></li>
-          <li><p>Kõrgema taseme taksonite puhul proovi kasutada nimesid, mis viitaksid kõigile alamtaksonitele, nt "roosilased" või "suitsupääsukesed"</p></li>
-          <li><p>Ära lisa infot, mis ei ole nime osa, nt sulgudes infot selle kohta, kuidas sinu arust tuleks nime kasutada</p></li>
-          <li><p>Uute sõnaraamatute nimed peaksid olema inglise keeles. Palun ära lisa tõlgitud keelte nimesid nagu "Estonian, eesti", sest see muudab erinevates keeltes lehte kasutavate inimeste jaoks kohalike nimede kuvamise keeruliseks või isegi võimatuks</p></li>
-          <li><p>Tõlgitud keelega seotud rahvapärased nimed ilmuvad tolles keeles vaikimisi nimedena (kui prioriteeti ei määra koha eelistus, nimede järjekord, vms). <a class="readmore" href="/pages/translate">Loe lähemalt tõlkimise kohta</a></p></li>
-          </ul>
         places_help_html: |
           Pane nimi kokku mõne kohaga, et see oleks tolle kohaga seotud kasutajatel ja lehtedel eelistatud. Kui ühes kohas on palju nimesid, saad nende järjekorda määrata <a href="%{url}">siin</a>. Palun <strong>ära</strong> pane nime kokku IGA seda kasutava kohaga, vaid ainult nendega, mille puhul kasutus teistest erineb.
       taxon:
@@ -4484,42 +4274,12 @@ et:
         curators_can_see: |
           Pea meeles, et projekti kuraatorid näevad nende vaatluste priivatseid ja varjatud koordinaate, mida sa projekti lisad.
       edit:
-        blocking_desc_html: |
-          <p>
-          Kellegi blokeerimisel ei saa nad enam sulle sõnumeid saata, sinu vaatluseid kommenteerida, sinu vaatluseid määratleda ega mingil muul moel sinuga lehel %{site_name} suhelda. Samuti eemaldab see nende vaatlused sinu otsingutulemustest ning sinu vaatlused nende otsingutulemustest. Kuid see ei muuda sind nende jaoks nähtamatuks. Nad näevad sinu vaatluseid ja profiili edasi, kuid ei saa sinuga lihtsalt suhelda.
-          </p>
-          <p>
-          Blokeerimine on mõeldud olukordadeks, kui saa ei saa kellegagi läbi ning nad ei suuda sind rahule jätta hoolimata kõigist katsetest vaidluseid tsiviliseeritult lahendada. See ei ole mõeldud enda peitmiseks, selleks, et vältida määratlusi inimestelt, keda sa ei usalda, või et keelduda kogukondlikest määratlustest (selle jaoks on eraldi säte). Seega töötab blokeerimine kahetiselt: kui sa kellegi blokeerid, ei saa nad sinuga suhelda, kuid samuti ei saa ka sina nendega suhelda. Kui kasutad seda võimalust selleks, et keegi sinu vaatluseid ei määratleks, ei saa ka sina nende vaatlusi määratleda.
-          </p>
-          <p>
-          Blokeerida saab kuni kolm inimest. Usume, et tegu on mõistliku numbriga, mis katab ära blokeerimist vajavad inimesed, kuid ei luba ka blokeerimist kuritarvitada. Kui sulle näib, et peaksid blokeerima rohkem inimesi, siis <a href="mailto:%{help_email}">võta meiega palun ühendust</a>.
-          </p>
-          <p>
-          Kui keegi ahistab või jälitab sind lehel %{site_name}, siis <a href="mailto:%{help_email}">palun anna meile sellest teada</a>. Kui tegemist on meie teenuse osutamise tingimuste rikkumisega või kätkeb muud käitumist, mida me enda lehel sobilikuks ei pea, siis me ka uurime seda täpsemalt.
-          </p>
         common_names_desc: |
           Näita rahvapäraseid nimesid. Lülita see välja, kui soovid näha ainult teaduslikke nimesid. Pane tähele, et saad määrata, milliseid rahvapäraseid nimesid näed, muutes keele ja koha sätteid.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Kui meelt muudada, võid alati <a href='/users/edit'>muuta oma sätteid</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist Võrgustik</a> on kogum kohalikke interneti lehekülgi, mida ühendab globaalne iNaturalist-i kogukond. Võrgustikku kuuluvaid lehekülgi toetavad kohalikud institutsioonid, mis on sõlminud iNaturalistiga lepingu, mille eesmärgiks on arendada kohalikku kasutamist ning aidata kaasa kohalikule looduslikule mitmekesisusele. Neil on ligipääs oma riigis asuvatele koordinatele, mida avalikult ohustatud liikide kaitsmise eesmärgil varjatakse.
-          </p>
-          <p>
-          Sinu kasutajatunnus ja salasõna toimivad kõigil iNaturalist Võrgustiku lehtedel. Kui sa otsustad liituda mõne kohaliku leheküljega, näeb seda juhatav institutsioon sinu e-posti aadressi (ainult selleks, et sinuga lehel toimuva osas suhelda) ning pääseb ligi sinu vaatluste tõelistele koordinaatidele, mis on varjatud või privaatsed.
-          </p>
-          <p>
-          Märkus: palun ära vaheta eksperimendi korras niisama oma kohalikku lehte, kui sul on enam kui 1000 vaatlust.
-          </p>
         licensing_desc_html: |
           Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.
-        muting_desc_html: |
-          <p>
-          Kellegi vaigistamisel ei saa sa enam teateid nende tegevuse kohta nagu sinu vaatluste kommenteerimine, sulle sõnumite saatmine, sinu mainimine, jne. Vaigistamisega saad kedagi ignoreerida, ilma et sa neil midagi teha keelaks.
-          </p>
-          <p>
-          Võid vaigistada nii palju inimesi kui soovid, kuid pea meeles, et võid niimoodi ilma jääda olulistest teavitustest nagu näiteks määratlused, mis muudavad sinu vaatluste kogukondlikku määratlust.
-          </p>
         name_place_help_html: |
           Eelista selles kohas kasutatavaid rahvapäraseid nimesid.
         place_preference_changed_notice_html: |
@@ -4544,10 +4304,6 @@ et:
       recent:
         about_recent_users: Info
         definitions_html: <dl> <dt>Eeldatavasti rämpspost</dt> <dd> Kasutaja, kes on eeldatavasti rämpspostitaja, mis tähendab, et neil pole vaatlusi või määratlusi, kuid nende profiil sisaldab kirjeldust. </dd> <dt>Automaatne rämpspost</dt> <dd> Rämpspostitaja, kelle märgistas vastavalt süsteem ise. </dd> <dt>Manuaalne rämspost</dt> <dd> Rämspostitaja, kelle märgistas vastavalt mõni lehe kuraator. </dd> <dt>Valepositiivne</dt> <dd> Kasutajad, kes märgiti rämpspostitajateks, kuid kelle märkus kustutati lehe kuraatorite poolt, sest nad tegelikult polnud seda. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Tervitame uusi kasutajaid, kuid soovime samas võidelda ka rämpspostitajate vastu. Loodetavasti aitab see tööriist mõlemat. Märgime <a href="https://akismet.com/">Akismet-i</a> abil paljud kasutajad rämpspostitajateks, kuid Akismet pole täiuslik. Kui soovid annetada paar minutit oma ajast, et märkida uusi kasutajaid rämspostitajateks ja päris kontoteks, oleks sellest palju abi.
-          </p>
       show:
         take_a_chance_to_review_html: 'Vaata näiteks <a href="%{link}">meie juhiseid</a>.'
         this_user_was_banned: See kasutaja on deaktiveeritud
