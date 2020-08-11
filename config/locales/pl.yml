@@ -244,8 +244,6 @@ pl:
   about_this_bioblitz: O tym bioblitz
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
-  about_trips_html: |
-    <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_x: "O %{x}"
   acc: 'Dokładność (m)'
   account: Konto
@@ -1095,6 +1093,7 @@ pl:
   date_updated: Data ostatniej aktualizacji
   day: Dzień
   decrease_brightness: Zmniejsz jasność
+  #Default option
   default: domyślny
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
@@ -3736,10 +3735,6 @@ pl:
       recent:
         about_recent_users: O
         definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Chcemy powitać nowych użytkowników, ale chcemy również walczyć ze spamerami. Mamy nadzieję, że to narzędzie pomoże w obu przypadkach. Automatycznie oznaczamy wielu użytkowników jako spamerów używając <a href="https://akismet.com/">Akismet</a>, ale Akismet nie jest idealny, więc jeśli chcesz poświęcić kilka minut na oznaczanie nowych kont jako spamerów lub nie spamerów, to by nam to pomogło.
-          </p>
       show:
         this_user_was_banned: Ten użytkownik został zawieszony
     user_parents:
