@@ -127,8 +127,6 @@ zh-TW:
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
-  about_trips_html: |
-    <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
   about_x: "關於 %{x}"
   acc: '精確度 (公尺)'
   account: 帳號
@@ -966,6 +964,7 @@ zh-TW:
   date_updated: 日期更新
   day: 日
   decrease_brightness: 減少亮度
+  #Default option
   default: 預設
   default_invite_comment: "很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}"
   default_observation_license: 預設觀察許可協議
@@ -2326,13 +2325,6 @@ zh-TW:
     updates_by_you_panel_body: 請記住，在「所有更新」頁籤裡您除了會收到包含您所持有內容的更新外，還會收到來自於您透過右側工具所訂閱的專注人物、物種分類群或地點方面的更新項目。
     youve_got_updates_panel_title: 您獲得了更新！
     youve_got_updates_panel_body_p1: 隨時注意以下更新...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>您的內容：</strong>在您觀察上的行動，像是評論、鑑定，以及將來自於 %{site_name} 社群事物列為最愛。當有人添加您的觀察至專案時、或是在額外欄位對此註解時，您將會收到相關更新訊息。</li>
-      <li><strong>人物：</strong>來自於您所關注人物的新觀察或日誌發佈文章。</li>
-      <li><strong>生物、專案與地點：</strong>來自於您所訂閱的特定生物或地點的新觀察。您也可選擇加入專案來當發佈專案日誌文章時，收到更新內容。</li>
-      <li><strong>討論您熱衷的事物：</strong>向其他人內容做出評論或添加鑑定時，會自動為您訂閱此內容的新活動。可使用「管理您的訂閱」工具來停止接收更新。</li>
-      </ul>
   one_by_one: "一個接一個"
   one_of_your_lists: "您的清單之一..."
   only_a_project_manager_can_add: 僅有專案負責人可添加專案策展人狀態
@@ -3463,8 +3455,6 @@ zh-TW:
   subscribe_to_comments_on_this_post_html: "%{tag_start}訂閱%{tag_end} 此貼文的評論"
   subscribe_to_observations_in_a_taxon: 訂閱所有物種或生物群組的已發佈觀察（例如：「蠍子」）。
   subscribe_to_observations_in_a_place: 訂閱所有此地點的已發佈觀察。您也可添加選用的物種分類篩選（例如：「來自於德州的蠍子」）。
-  subscribe_to_places_to: |
-    向地點作出訂閱，可接收有關在此發生的新觀察更新內容。來自於您所關注人物、和您所評論過事物的更新內容也可透過訂閱來管理，因此若您想知道您有訂閱、或取消訂閱過哪些項目，都可透過點擊下列「管理您所有的訂閱」來了解。您也可檢視該頁面來取消訂閱網站上任何事物。
   subscribe_to_this: 訂閱此
   subscribe_to_x_from_this_y_html: |
     對來自此%{y}的%{x}<a href="#" onclick="$(this).parents('form:first').submit(); return false;">訂閱</a>。
@@ -4247,19 +4237,6 @@ zh-TW:
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
-        desc_html: |
-          <p class="lead">
-          <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
-          </p>
-          <p class="lead">
-          我們希望能讓 iNaturalist 持續開放給各位自由使用，但在運作方面我們需要資金。若您喜愛 iNaturalist，歡迎考慮成為固定每月的贊助者。定期的捐款能協助確保讓 iNaturalist 透過可預期的收益，來持續擴充其基礎設備與人員。
-          </p>
-          <p class="lead">
-          您的慈善捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。若您有意做出單筆捐款，請點擊<a href="%{donate_url}">此</a>。
-          </p>
-          <p class="text-muted">
-          iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
-          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -4291,35 +4268,6 @@ zh-TW:
           <a href="http://eol.org/" target="_blank">生命大百科（EOL）</a>是個貯藏有關地球上生物資訊的地方。在生命大百科上您可創建有關物種的<a href="http://eol.org/info/252" target="_blank">收藏</a>。如果您想要匯入來自於生命大百科的物種，請在此貼上該收藏的 URL 位置。
         guide_place_desc: |
           將您的指南與地點做關聯，來讓人們搜尋地點時能找到您的觀察。若設定了邊界（例如：「卡片」檢視、物種分類頁面等等）將會在 %{site_name} 上的地圖顯示時一同出現地點邊界。
-        import_tags_from_csv_help_html: |
-          <p>
-          上傳包含指南裡物種分類標籤的 CSV 檔案。您的 CSV 檔案應該要像是：
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Name</th>
-          <th>color</th>
-          <th>Number of hands</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bipedal</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>red|black</td>
-          <td>0</td>
-          <td>quadripedal</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          第一行以「Name」（名稱）開頭，後續接上標籤謂詞/分類。第二行之後都以物種分類名稱為開頭，之後接上對應到上方第一行欄位謂詞的標籤。在此範例中，<i>Homo sapiens</i>（智人）這一行有著標籤<code>bipedal</code>（雙足動物）與<code>Number of hands=2</code>（手數目=2），下一行中<i>Vulpes vulpes</i>（赤狐）有著<code>quadripedal</code>（四足動物）、<code>color=red</code>（色彩=紅色）、<code>color=black</code>（色彩=黑色），以及<code>Number of hands=0</code>（手數目=0）。在空白部份方面會自動忽略。您可替各物種分類添加多行內容，也可以在儲存格裡添加透過豎線字元分隔的多項內容值。
-          </p>
         licensing_explanation: |
           授權您的內容給予其他人擁有權利來複製及更改；而不必需向您請求許可。這樣做可以更容易來分享您的成果，而且如果當您想合併來自於其它使用姓名標示-相同方式分享授權條款的來源（例如像是維基百科）之第三方內容，您有法律義務要使用類似的授權條款。以下有全部創用CC授權條款的概要與含義：
         paste_note_html: |
@@ -4338,15 +4286,6 @@ zh-TW:
         這需要花費一些時間，因此幾分鐘後再重整此頁面。
       mobile_downloads_tip_html: |
         此指南可下載至移動應用程式供離線使用。
-      mobile_downloads_help_html: |
-        <p>這將會產生出相關此指南之全部資料與多媒體的可下載歸檔，
-        因此使用行動應用程式的用戶可不必透過網路，來檢視在指南裡的
-        所有內容。這將會花費幾分鐘來產生歸檔，當啟用後您對此指南
-        進行更改時歸檔將會自動更新內容。</p>
-        <p class="alert status">
-        請<strong>不要啟用離線行動下載，除非您真的有意使用它們。</strong>
-        因為這會對我們的系統造成很大負擔。
-        </p>
       pdf_layouts:
         grid: 網格
         book: 書籍
@@ -4419,15 +4358,6 @@ zh-TW:
         disagreement_count: 不一致次數
         identification_count: 鑑定次數
         score: 分數
-        explanation: |
-          <p>
-          假如用戶因某些原因不認同社群物種分類，他們雖然可以拒絕掉，
-          但這代表著要用他們的鑑定來連結到其它觀察，或更新生物清單等等。
-          這也代表著他們的觀察內容僅能在社群同意後，才能成為研究等級。
-          </p>
-          <p>
-          然而社群鑑定仍會繼續顯示出，因此可能會看到所提議的各種不同鑑定。
-          </p>
         you_have_opted_out: 您已選擇退出社群鑑定
         opt_in_for_this_observation: 用於此觀察的選項
         your_id_does_not_match: |
@@ -4534,16 +4464,6 @@ zh-TW:
         allow_curator_coordinate_access_desc_html: |
           允許專案策展人來檢視此觀察的隱藏座標。
         ancestor_disagreements_desc: "# 已鑑定物種分類群來自於某一物種分類的祖先，但不同意分類（例如：我同意它歸在這個屬；但不同意它的物種）"
-        community_taxon_desc_html: |
-          <p class="ui">
-          社群分類群（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。若您對於我們如何挑選社群分類群方面有興趣，請查看下方演算法的備註，而通常我們是採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到包含有不一致物種分類的較高層級分類群（例如：您認為對象應是王蛇，但我認為是響尾蛇，因此 iNat 最後會挑選包含所有蛇類的亞目）。演算法在意見分歧時有著好處，因為我們發現在過往情況下異議者通常會是對的。
-          </p>
-          <p class="ui">
-          研究等級觀察（在其它標準中）必須要有社群分類群，如果觀察僅有一個鑑定，這不會含有社群分類群。所有至少帶有一個鑑定的觀察，都會含有觀察分類群。觀察分類群是我們在分享觀察給資料合作者、在網站上連結同名稱分類群觀察、更新您的生物清單等等情況時所用。在大部份情況之下，觀察的分類最終會被設定在社群分類群；但有時會有所不同，特別是在社群確認好鑑定之前。如果您認為某個生物是一條蛇（蛇亞目），而我認為是一條王蛇（<i>王蛇</i>屬），該觀察分類群會被歸在王蛇下（僅有我個人的鑑定支持）；但社群分類群會歸在蛇下（由至少兩個或以上的鑑定所支持）。若基於某些原因，您不願意認同社群分類群，您可以在您的觀察上拒絕它，這代表著該觀察分類群將不會設定在社群分類群（而是您自己的鑑定）。這也代表著您的觀察內容在社群認同<em>您</em>之前，無法成為研究等級。若您不喜歡社群物種分類的想法，您可以透過<a href="/users/edit" target="_blank">編輯您的設定</a>來完全排除掉。
-          </p>
-          <p class="ui">
-          <strong>演算法：</strong>對於所有已鑑定，以及包含它們本身的物種分類（例如：<i>人</i>屬包含著<i>智人</i>），會在「一致」的數量 - 分類群的累計鑑定超過累計鑑定總和、「不一致」的數量 - 鑑定完全不同的總和（例：不包含被計分分類群的物種分類鑑定）、以及「祖先不一致」 - 不同意較佳分類群的更謹慎鑑定數量，以上用比率來計分。對於已鑑定且計分有超過 2/3，以及至少 2 個鑑定的物種分類，請挑選最低級別的分類群。
-          </p>
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
@@ -4555,58 +4475,6 @@ zh-TW:
           一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
         join_project_desc_html: |
           加入專案將會給予專案策展人可查看任何在專案裡觀察之隱藏座標的權限，並意味著您同意專案的<a href="%{url}" target="_blank">條款</a>。
-        quality_assessment_help_html: |
-          <p>
-          資料品質評估是一項觀察準確程度的摘要。所有觀察
-          最初是從<strong>「粗略」</strong>等級開始，而成為<strong>「需要鑑定」</strong>的狀態是當
-          </p>
-
-          <ul>
-          <li>觀察<strong>擁有日期</strong></li>
-          <li>觀察<strong>具備地理參考</strong>（註：擁有經/緯度）</li>
-          <li>觀察<strong>擁有照片或聲音</strong></li>
-          <li>觀察<strong>內容不是人類</strong></li>
-          </ul>
-          <p>
-          觀察要成為<strong>「研究等級」</strong>是當
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>，註：當超過三分之二鑑定人同意同一項物種分類
-          </li>
-          </ul>
-          <p>
-          觀察會被列為<strong>「粗略」</strong>，是當不符合以上條件情況或是社群認為
-          </p>
-          <ul>
-          <li>
-          <strong>位置不精準</strong>（例如：猴子位在海洋裡，或是河馬位在辦公大樓等等）
-          </li>
-          <li>
-          <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）
-          </li>
-          <li>
-          觀察內容<strong>沒有呈現出是生物的證明</strong>，例如：僅是風景、水景、岩石之類的圖片。
-          </li>
-          <li>
-          觀察內容<strong>沒有呈現出是近代（大約一百年內）生物的證明</strong> （例如：化石，但如果是痕跡、排泄物，或枯葉是可以的）
-          </li>
-          <li>
-          觀察已不需要鑑定<em>並且</em>社群鑑定是在科級別以上
-          </li>
-          <li>
-          觀察者退出社群鑑定，並且社群鑑定不屬於關連到觀察者鑑定的物種分類之原型或派生
-          </li>
-          </ul>
-          <p>
-          如果不夠深入，會有系統投票的情況：
-          </p>
-          <ul>
-          <li>
-          若在最小的郡或州裡有至少十個屬級別或以下級別的其它觀察，或是與同等於國家層級地點包含著此觀察與
-          80% 或以上的這些觀察，有被標記為非野生/歸化的情況，系統將會投票觀察是否非野生/歸化的生物。
-          </li>
-          </ul>
         score_desc: "分數 = 累積次數 /（累積次數 + 不一致次數 + 祖先不一致次數）"
         observation_flagged_notice_html: |
           此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
@@ -4616,14 +4484,6 @@ zh-TW:
         user_stats_desc: |
           用戶統計被限制依觀察計數，或物種計數的最多前 500 個，因此所列出總數通常會略多於 500，這是因為兩份清單不一定包含相同用戶。被標註為「*」代表著這並沒有出現在前 500 個裡。
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>您可編輯此觀察欄位是因為您創建了它，或著因為您是網站策展人。若您是網站策展人，請遵守下列規定</p>
-        <ol>
-        <li>請不要隨意更改名稱，例如把「食物」(eating)改成「採蜜」(nectaring)</li>
-        <li>請留意觀察欄位比用於任何物種分類的觀察，因此請不要使用特定物種分類術語</li>
-        <li>請不要刪除人們正在使用的欄位</li>
-        <li>請不要將現有欄位名稱翻譯成不同語言。英語是此網站的通用語言。如果您想要個概念相同，但以不同語言呈現的欄位，請新建一個觀察欄位。</li>
-        </ol>
       dna_help: |
         要啟用 BOLD DNA 條碼符合功能，請確定您的欄位名稱包含「COI」、「COX1」、「ITS」、 或「matK,」字詞來對應欄位目標的基因。
       merge:
@@ -4643,74 +4503,6 @@ zh-TW:
           您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
       parental_consent:
         subject: 您的兒女想使用 iNaturalist
-        content_html: |
-          <p>
-          您的兒女目前使用 <strong>Seek by iNaturalist</strong>
-          教育應用程式，並且想與 iNaturalist 公眾科學平台分享資料。因為發佈到 iNaturalist 會揭示出個人身份資訊，未經父母同意、且年齡低於 13 歲之個人資訊 iNaturalist 是不能使用的。
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> 可以不必建立帳號便可使用，並且無需分享個人身份資訊；但您的兒女會無法貢獻觀察給 iNaturalist。iNaturalist 是個參與者能夠分享觀察、鑑定生物來互相指教有關自然方面、以及產生用於科學之生物多樣性資料的公眾科學社交網路。
-          </p>
-          <p>
-          若您同意讓您的兒女使用 iNaturalist，我們需要您進行以下事項：
-          </p>
-          <ol>
-          <li>
-          <p>
-          透過以下連結建立將給您兒女使用的 iNaturalist 帳號：
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          在您建立完您兒女的帳號後，我們會要求您以信用卡做出 $1 美元的小額捐款給 iNaturalist，以確認您確實為一名成人。請確認當作出捐款時，是使用您在輸入「父母電子郵件」欄位時的相同電子郵件地址。
-          </p>
-          </li>
-          <li>
-          <p>
-          一旦我們處理完捐款後，我們會發送給您另一封電子郵件來通知您兒女的帳號已啟用完成，而您可以使用您所建立的 iNaturalist 使用者名稱和密碼來登入您兒女的 Seek 應用程式。
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist 收集以下個人身份資訊：
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>電子郵件地址（非公開）：</strong>每個 iNaturalist
-          帳號都會有一個相關的電子郵件地址，並且不會將其公開。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>使用者名稱（公開，為必要）：</strong>每個 iNaturalist 帳號都會有公開的使用者名稱與使用者是別號碼。使用者名稱不必得和個人真實名稱相似，但會用來透過公開評論和私訊來聯絡該人。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP 位址（非公開，為必要）：</strong>iNaturalist 會儲存使用者的 IP；但不會將其公開，這會用來獲取像是位置之類的個人識別資訊（可識別到所在都市的準確度）。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>個人檔案圖片（公開，為選用）：</strong>iNaturalist
-          的帳號可以讓使用者選擇使用能代表著他個人的圖片。
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>觀察位置（公開或非公開）：</strong>iNaturalist 上的觀察會含有關於建立出該觀察所的位置資訊。這可弄成為公開或保持非公開，而預設是將其公開。
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist 允許使用者分享公開圖片、公開評論、以及關聯他們帳號的私訊。
-          在該使用者所產生的內容裡，來包含他個人的識別資訊也是可能的。
-          </p>
-          <p>
-          請點擊<a href="%{privacy_policy_url}">此</a>了解更多 iNaturalist 的隱私政策。
-          </p>
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: |
@@ -4725,24 +4517,6 @@ zh-TW:
           我們已包含下列受影響照片的連結。
       user_parent_confirmation:
         subject: 您兒女的 iNaturalist 帳號已啟用
-        content_html: |
-          <p>
-          感謝您為您的兒女建立 iNaturalist 帳號！該帳號現已啟用，在此是您之前所輸入而我們記錄下來的內容：
-          </p>
-          <ul>
-          <li><strong>父母或法定監護人名稱：</strong> %{parent_name}</li>
-          <li><strong>父母或法定監護人電子郵件：</strong> %{parent_email}</li>
-          <li><strong>兒女的名稱：</strong> %{child_name}</li>
-          <li><strong>兒女的生日：</strong> %{child_birthday}</li>
-          <li><strong>兒女帳號電子郵件：</strong> %{child_email}</li>
-          <li><strong>兒女帳號名稱：</strong> %{child_username}</li>
-          </ul>
-          <p>
-          請從您兒女的 Seek 應用程式來透過輕觸在選單上的「iNaturalist」按鈕，然後輕觸在螢幕底部的「以 iNaturalist 登入」進行登入。
-          </p>
-          <p>
-          您兒女將能夠使用 Seek 應用程式來發佈觀察到他們的 iNaturalist 帳號，並可在 iNaturalist.org 上看見。
-          </p>
       users_updates_suspended:
         message: |
           您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
@@ -4799,11 +4573,6 @@ zh-TW:
         aggregation_pending: 等待聚集
         new_place_desc_html: |
           嘗試看看<a href="%{places_url}" target="_blank">我們的現有地點</a>並確認您有獲得正確地點名稱。若您無法找出您所要的地點，可以考慮<a href="%{new_place_url}" target="_blank">創建一個新地點</a>，但請確認不會弄出與現有地點重複的內容。
-        bioblitz_desc_html: |
-          <p>
-          bioblitz 是讓參與者試著在時間期間內找出最多觀察的活動。
-          這是介紹讓人們在相同時間來多樣性收藏可用資料的有趣方法。
-          </p>
         change_admin_desc: 選擇一位專案策展人來當新管理員。
         cover_desc: "選用的頁面橫幅圖片會出現在您專案頁面的頂端。其中寬度必須符合 950 像素、高度則需小於 400 像素。"
         custom_project_fields_means: "自定義專案的頁面橫幅、添加側邊內容，以及編輯 CSS。"
@@ -4817,36 +4586,6 @@ zh-TW:
           添加觀察至此專案的最後聚集結束時間
         no_curators: |
           這裡沒有專案策展人，如果您想要分配新人來作為管理員，他們必須先加入此專案並且您要讓他們成為策展人。
-        observation_aggregation_desc_html: |
-          <p class="description">
-          觀察聚集會依您著專案規則所指定，來自動添加符合的觀察至您的專案。
-          因沒有辦法從專案裡一次移除多筆觀察，請確認您已挑選您所想要的地點
-          與物種分類規則，否則這會是潛在的風險，會導致您最後可能得手動移除
-          不合適的觀察。
-          </p>
-          <p class="description">
-          聚集在有符合以下條件才會運作：
-          </p>
-          <ol>
-          <li class="readable description">
-          對於範圍介於中小型的地點，您的專案至少要有一個「需在地點裡觀察」規則（大約是德州或烏克蘭大小）
-          </li>
-          <li class="readable description">
-          或者是您的專案至少要有一個「需在物種分類中」規則
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">專案可用物件是與您專案相關聯的檔案，並需符合一些特殊規則：</p>
-          <ol class="description">
-          <li>以「.logo.jpg」、「.logo.png」等等作為結尾的檔案，會被用來取代專案頁面上的圖示來作為標誌</li>
-          <li>KML 與 KMZ 檔案會被添加在專案頁面上的地圖</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          您可創建自定義物種分類專案清單並連結至您的專案。
-          這在添加觀察至您的專案時，限制需經由「必須是在專案清單上的物種分類」
-          規則以符合是您清單上的物種分類時很有用。
-          </p>
         rules:
           captive: 被捕獲/培育
           coordinates_shareable_by_project_curators: 專案策展人的可共享座標
@@ -4868,20 +4607,6 @@ zh-TW:
           託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的 Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
         you_can_preview: |
           您可以透過<a href="%{url}">點擊於此</a>來預覽您的專案成為收藏專案時的模樣。
-      invite:
-        description_html: |
-          <h3>關於邀請</h3>
-          <p class="ui">
-          邀請人們至您的專案與邀請個體觀察略有不同。邀請人們將會
-          </p>
-          <ol>
-          <li>寄送電子郵件來邀請他們至您的專案</li>
-          <li>顯示邀請在他們的控制面板上</li>
-          <li>允許他們來加您的入專案在被設定為僅邀請條件下</li>
-          </ol>
-          <p class="ui">
-          僅有專案策展人可邀請人們來加入專案。若我們已有相關檔案，您應能透過 iNat 用戶名稱或<em>完整</em>的電郵位址來搜尋人們。
-          </p>
       join:
         invite_only_description: |
           此專案的成員資格僅限於有獲得邀請。若您想加入，請聯絡下列任一策展人來請求一份邀請。
@@ -4954,16 +4679,6 @@ zh-TW:
           name_already_taken: 專案名稱已被採用
           cannot_have_more_than_x_project_rules: 不能多於 %{x} 個專案規則
           summary_is_required: 專案摘要文字為必要
-      project_location_privacy_notice_html: |
-        <p>
-        請注意，在您未撤回相關權限情況下，專案策展人可查看在專案裡
-        任何您觀察的私有、遮蔽位置。另外在您未<a href="/users/edit">更改您的設定</a>情況下，
-        專案策展人可在專案裡添加您任何的觀察。另外您也可逐一授予或
-        撤回對於專案觀察的存取權限。
-        </p>
-        <p>
-        若您擔心有關位置隱私方面，除非您信任專案策展人否則請不要加入專案。
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: 是的，但僅在我自行添加觀察至專案。
         any: 是的，不論誰添加觀察至專案裡。
@@ -4977,30 +4692,8 @@ zh-TW:
       show:
         are_you_sure_you_want_to_convert: |
           您確定要將此專案轉換成收藏專案？
-        bioblitz_results_desc_html: |
-          <p>
-          不同於一般常規專案，bioblitz 顯示來自於<em>所有</em>帶有地點與時間期間的
-          觀察之活動狀態，而非純粹是人們有意添加至專案的觀察。這是移除當添加觀察至專案時
-          驅動即時統計的障礙。請注意若專案團隊以及參與者沒有像是在參與專案般地積極添加相關
-          觀察，觀察內容將不適用於匯出，或顯示於像是成員在網站上的貢獻，行動應用程式上的
-          專案觀察搜尋之類多項專案檢視。
-          </p>
-          <p>
-          請注意，當此類型專案的統計狀況裡顯示出有觀察並未有意要被添加至專案時，這些觀察會
-          不允許策展人來查看它們私有或遮蔽座標，也代表著觀察者未同意專案的條款。若您是專案
-          策展人且您需要存取私有座標，您需要您的參與者同意專案條款，或是您想要觀察計入策展
-          專案清單時，請確定您的參與者有加入專案且願意添加他們的觀察。
-          </p>
         click_here_to_convert_this_project: |
           點擊此將此專案轉換成收藏專案。
-        no_journal_blurb_html: |
-          <p>
-          您的專案發佈文章是與其它專案成員一同交流的工具。您可用來
-          發佈公告、設定優先項目或討論有關您專案裡所發現事物。
-          </p>
-          <p>
-          要開始使用，請<a href="%{url}" class="readmore">創建一篇發佈文章</a>
-          </p>
         curated_checklist_desc: |
           此為來自於明確添加至此專案之觀察的物種分類群計數、以及策展清單，並非來自所有記錄於地點和此活動時刻的觀察。
         make_sure_you_have_read_about_the_differences: |
@@ -5009,32 +4702,6 @@ zh-TW:
           此為此專案成為收藏專案時的模樣預覽。
       updates_desc: |
         在您的控制面板與每日更新電郵裡接收有關此專案之更新。
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>您可以有以下選擇：</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>添加標籤至較高層級的物種分類</strong>
-          <p>
-          例如：屬底下包含著種。若這已被添加，希望能有友善的策展人幫忙添加該物種分類。
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">聯絡論壇</a></strong>
-          <p>
-          許多網站策展人有保持關注發送至論壇的訊息。
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">聯絡支援</a>
-          </strong>
-          <p>
-          這點請耐心等候，因為我們並沒有特別多位的專門支援人員。
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: 您已被封鎖
@@ -5118,21 +4785,6 @@ zh-TW:
         complete_rank_desc_html: |
           在此完成的物種分類級別，例如：假如科有包含到所有的屬，但不在所有物種裡，預設物種這將會設定「屬」。
       show:
-        about_names_desc: |
-          <p>
-          多數生物的分類在語言裡擁有「通用名稱」。這些名稱通常是易於辨別、容易唸出、長期下識用，
-          但即使是在使用同一種語言的情形下，也會有多數生物在不同地點裡各擁有不同名稱的情況。這些在溝通有關這些生物時產生困難。因此科學家透過採取符合<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95">二名法</a>的單一「學名」在任一生物分類上來處理問題，
-          但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人這些不像通用名稱那般好記。
-          學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上
-          更精準的理論時做出更改，但也因此降低在溝通上的實用性，即使是在了解學名的人士上。
-          </p>
-          <p>
-          古老的格言總結出：「通用名稱的變更來自於地點，學名的變更來自於時間。」
-          </p>
-          <p>
-          我們嘗試以透過同時顯示通用名稱與學名來解決這些情況，並基於所使用的語言和視圖上的地理資料
-          偏好設定來挑選出通用名稱。
-          </p>
         about_conservation_status_desc: |
           保育狀態總結出一群生物的滅絕風險。
         about_establishment_desc: |
@@ -5195,29 +4847,6 @@ zh-TW:
           此級別的物種分類名稱。對於特定的級別，是插入在雙名之後。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li><P>嘗試添加有在其它地方被使用到的名稱。請不要自行原創新名稱。</P></li>
-          <li><P>請不要添加重複性質的名稱，例如：用複數的「老鷹們」來命名「老鷹」</P></li>
-          <li><P>對於更高層級的物種分類，嘗試使用能包含到所有派生的名稱，例如「鷺科動物」或「杜鵑花科」</P></li>
-          <li>
-          <P>
-          請不要添加無關名稱的訊息，例如：在名稱後面用圓括號備註您對於該名稱看法的訊息
-          </P>
-          </li>
-          <li>
-          <p>
-          新詞彙應採用英文。請不要添加翻譯過的語言名稱，例如像「French，法文」，
-          因為這會在使用不同語言的人們在利用此網站時，我們會很難或無法顯示在地化名稱。
-          </p>
-          </li>
-          <li>
-          <p>
-          與翻譯語言所關聯的俗名會作為該語言的預設俗名（除了地點偏好設定之外的名稱排序，以及其它等等）。
-          <a class="readmore" href="/pages/translate">了解更多有關翻譯</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           替地點添加名稱時，請以網站或來自於該地點的用戶作為優先考慮。如果地點擁有多種名稱您可以<a href="%{url}">此</a>為優先。請<strong>不要</strong>為地點添加已使用的名稱，除非該地點與其它地點有撞名情況。
       taxon:
@@ -5257,31 +4886,6 @@ zh-TW:
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
         about_third_party_tracking: 關於第三方的追蹤
-        blocking_desc_html: |
-          <p>
-            封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
-            或是在 %{site_name} 上與您互動。這也會讓您與對方在進行搜尋時，
-            處理結果不會顯示出彼此的觀察。然而，這並不代表您對於他們是
-            無法察覺的，他們仍可以有辦法找出您的觀察，以及檢視您的個人檔案，
-           \ 只是無法與您做出互動。
-          </p>
-          <p>
-            封鎖是為了儘管您已經盡力以文明方式來解決爭議，但對方仍不罷休且
-            無法相處情形下的解決方式。這不是一種用來隱藏自己，防止來自於您
-           \ 所不信任人們的鑑定，或是選擇排除掉社群鑑定（有其它設定可以這樣做）
-            的方式。因此封鎖是運作在：若您封鎖了某人，對方會無法對您互動，
-           \ 而您也無法與他互動的如此結果。如果您不小心誤用此功能，會讓某人
-            無法鑑定您的觀察，也會出現您無法向對方的觀察做出鑑定之情況。 
-          </p>
-          <p>
-           \ 您最多僅可封鎖三名使用者，這是我們評估能符合需求，且避免濫用此功能
-            最適宜的數量。若認為有需要封禁更多人的情況，請<a href="mailto:%{help_email}">聯絡我們</a>。
-          </p>
-          <p>
-           \ 如果有人在 %{site_name} 網站上對您做出騷擾或是跟蹤的跡象，<a href="mailto:%{help_email}">請讓我們知道</a>。
-           \ 若有出現違反我們的服務條款，或是其它不適合在我們網站上所做出的行為，
-            我們將會進行調查。
-          </p>
         common_names_desc: |
           顯示通用名稱。若您想要檢視學名的話請停用。
           註：您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
@@ -5289,32 +4893,12 @@ zh-TW:
           在我的個人檔案上顯示每月贊助者狀態
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           若您改變想法，您可以隨時<a href='/users/edit'>編輯您的設定</a>。
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist 網路</a>是將有完整連結至全球 iNaturalist 社群之本地網站的聚集。這些網路站台是由有與 iNaturalist 簽屬協議，來促進在本地上使用以及助於本地生物多樣性的本地機構所支援。他們具有可取得來自於他們國家、為了保護受威脅物種避免被公開檢視而遮蔽的實際座標。
-          </p>
-          <p>
-          您的使用者名稱和密碼在所有隸屬 iNaturalist 網路下站台皆可運作。如果您挑選了網路站台分部，運作各站台的本地機構可取用您的電子郵件地址（僅會通知您有關站台上的活動），以及存取公開遮蔽或私有觀察的實際座標位置。
-          </p>
-          <p>
-          註：若您已經做出超過 1000 筆的觀察，請不要出於實驗性質更改您的分部
-          </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
         monthly_supporter: 每月支助者
         monthly_supporter_desc_html: |
           iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
           iNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href="%{url}">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。
-        muting_desc_html: |
-          <p>
-          禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
-          傳遞給您的訊息，或是有提及到您的等等內容。禁言可協助
-          您忽略某人，但不會阻止他們做出其它行動。
-          </p>
-          <p>
-          禁言人數多寡可依您所需來決定，但請留意您可能會因此錯失
-          重要通知，比如鑑定內容有切換社群鑑定在您的觀察上。
-          </p>
         name_place_help_html: |
           在此地點優先採用通用名稱。
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5366,26 +4950,11 @@ zh-TW:
       recent:
         about_recent_users: 關於
         definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。 </dd> <dt>自動垃圾訊息</dt> <dd> 被系統自動標記為濫發垃圾訊息者的人。 </dd> <dt>手動垃圾訊息</dt> <dd> 由網站策展人手動標記為濫發垃圾訊息者的人。 </dd> <dt>誤判</dt> <dd> 由網站策展人處理掉誤標，本身並非濫發垃圾訊息者但被誤標的使用者。 </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          我們歡迎新來的使用者，同時也會防範濫發垃圾訊息的人。希望此工具對以上情況有幫助。我們使用 <a
-          href="https://akismet.com/">Akismet</a> 將許多使用者自動標記為濫發垃圾訊息者，但 Akismet 並非完美，因此若您花個幾分鐘來決定新帳號是否為濫發垃圾訊息者，這會很有幫助的。
-          </p>
       show:
         take_a_chance_to_review_html: '來試試看<a href="%{link}">我們的指南</a>。'
         this_user_was_banned: 此用戶已被停用
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          感謝成為 iNaturalist 的捐款者！我們會使用您現有的捐款來確認您的身份，而您不需要再做進一步的操作。<strong>您兒女的帳號現已啟用。</strong>
-          </p>
-          <p>
-          請從您兒女的 Seek 應用程式來透過輕觸在選單上的「iNaturalist」按鈕，然後輕觸在螢幕底部的「以 iNaturalist 登入」進行登入。
-          </p>
-          <p>
-          您兒女將能夠使用 Seek 應用程式來發佈觀察到他們的 iNaturalist 帳號，並可在 iNaturalist.org 上看見。
-          </p>
         thanks_for_creating_a_minor_account: 感謝建立次要帳號！
         we_will_send_you_an_email: |
           一旦您兒女的帳號啟用後，我們會發送您一封電子郵件。
