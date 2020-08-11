@@ -116,8 +116,6 @@ fr-CA:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  about_trips_html: |
-    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
   about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
@@ -419,36 +417,6 @@ fr-CA:
             <a href="%{url}">Regardez les lignes directrices de la communauté</a> pour des conseils sur la manière de garder iNaturalist comme un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
-    guides:
-      edit:
-        import_tags_from_csv_help_html: |
-          <p>
-          Téléversez un fichier CSV contenant des champs pour les taxons de ce guide. Votre fichier CSV doit ressembler à ceci :
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nom</th>
-          <th>Couleur</th>
-          <th>Nombre de mains</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bipède</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>rouge|noir</td>
-          <td>0</td>
-          <td>quadrupède</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette) <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
     messages:
       show:
         privacy_notice_html: |
@@ -516,104 +484,6 @@ fr-CA:
           <a href="%{url}">la page d’export des observations</a> pour avoir une liste de toutes vos exportations.
       parental_consent:
         subject: Votre enfant aimerait utiliser iNaturalist
-        content_html: |
-          <p>
-          Votre enfant utilise l’application éducative <strong>Recherche par iNaturalist</strong> et
-          aimerait partager des données avec la plateforme scientifique citoyenne
-          iNaturalist. Comme publier ces données dévoile des informations permettant d’identifier
-          une personne, iNaturalist ne peut être utilisé par une personne de moins de treize ans
-          sans l’accord d’un parent.
-          </p>
-          <p>
-          <strong>Recherche par iNaturalist</strong> peut être utilisé sans créer de compte, et aucune
-          donnée d’identification personnelle ne sera partagée, mais votre enfant ne pourra pas contribuer
-          aux observations de iNaturalist. iNaturalist est un réseau scientifique citoyen où
-          les participants partagent des observations et des identifications de choses vivantes
-          pour apprendre mutuellement concernant la nature et générer des données de biodiversité pour
-          la science.
-          </p>
-          <p>
-          Si vous voulez accorder le droit à votre enfant d’utiliser iNaturalist,
-          nous avons besoin que vous fassiez ce qui suit :
-          </p>
-          <ol>
-          <li>
-          <p>
-          Créer un compte iNaturalist que votre enfant utilisera, en suivant ce lien :
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Après avoir créé le compte de votre enfant, nous vous demanderons de faire
-          un petit don nominal de 1$US avec une carte de crédit à iNaturalist
-          pour vérifier que vous êtes un adulte. Assurez-vous d’utiliser la même adresse
-          de messagerie que vous avez saisie dans le champ « courriel du parent » lors
-          de l’inscription, pour effectuer votre don.
-          </p>
-          </li>
-          <li>
-          <p>
-          Une fois le don reçu, nous vous enverrons un autre courriel vous indiquant que
-          le compte de votre enfant a été activé et que vous pouvez
-          utiliser le nom d’utilisateur et le mot de passe de iNaturalist que vous avez créés pour connecter
-          l’application Recherche de votre enfant.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist récupère les informations d’identification personnelle suivantes :
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>adresse de messagerie (privé) :</strong> tout compte de iNaturalist
-          a une adresse de messagerie associée avec elle, qui n’est pas
-          rendue publique.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>nom d’utilisateur (public, obligatoire) :</strong> tout compte de iNaturalist
-          a un nom d’utilisateur public et un numéro d’identification de l’utilisateur.
-          Ce nom d’utilisateur n’a pas besoin d’être similaire au véritable nom de
-          la personne, mais il peut être utilisé pour contacter la personne via des commentaires
-          publics et des messages directs en privé.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>adresse IP (privé, obligatoire) :</strong> iNaturalist
-          stocke, mais ne rend pas public, l’adresse IP de l’utilisateur, qui peut
-          être utilisée pour en déduire des informations d’identification personnelle comme
-          l’emplacement (avec une précision de niveau ville).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>image du profil (public, facultatif) :</strong> les comptes de iNaturalist
-          peuvent, en option, avoir des images de profil, qui sont souvent
-          des images de l’utilisateur.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>emplacement de l’observation (public ou privé,
-          obligatoire) :</strong> les observations de iNaturalist contiennent des informations
-          de localisation sur l’endroit où l’observation a été faite. Cela peut être
-          rendu public ou gardé privé, mais par défaut, c’est public.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist permet aussi aux utilisateurs de partager des images publiques, des commentaires
-          publics, et d’envoyer des messages privés associés à leur compte.
-          Il est possible que les utilisateurs puissent inclure des informations d’identification
-          personnelle dans ce contenu généré par l’utilisateur.
-          </p>
-          <p>
-          En savoir plus sur la politique de confidentialité de iNaturalist <a href="%{privacy_policy_url}">ici</a>.
-          </p>
       photos_missing:
         subject: Certaines photos ont besoin de réparation
         we_have_been_housekeeping: |
@@ -636,25 +506,6 @@ fr-CA:
           Nous avons inclus les liens vers les photos concernées ci-dessous.
       user_parent_confirmation:
         subject: Le compte iNaturalist de votre enfant a été activé
-        content_html: |
-          <p>
-          Merci d'avoir créé un compte iNaturalist pour votre enfant! Le compte a été activé. Voici les détails que vous avez saisis et que nous avons enregistrés :
-          </p>
-          <ul>
-          <li><strong>Nom du parent ou du représentant légal :</strong>
-          %{parent_name}</li>
-          <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
-          <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
-          <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
-          <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
-          <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
-          </p>
-          <p>
-          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org. 
-          </p>
       users_updates_suspended:
         message: |
           Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
@@ -668,24 +519,6 @@ fr-CA:
       new:
         coordinates_desc: Vous devez préciser des coordonnées si vous n'avez pas tracé une frontière ou téléversé un KML.
     projects:
-      invite:
-        description_html: |
-          <h3>À propos des Invitations</h3>
-          <p class="ui">
-          Invitez des gens à se joindre à votre projet est un peu différent que de demander
-          des observations des personnes. En invitant des gens,
-          </p>
-          <ol>
-          <li>un courriel leur sera envoyé les invitant à se joindre à votre projet</li>
-          <li>une invitation sera affichée dans leur tableau de bord</li>
-          <li>et ils pourront se joindre à votre projet s’il a été établi en mode invitation seulement</li>
-          </ol>
-          <p class="ui">
-          Seuls les responsables de l’organisation du projet peuvent inviter des gens à se joindre à un projet. Vous
-          devriez pouvoir chercher des gens en utilisant leur nom d’utilisateur iNat ou
-          leur adresse électronique <em>complète</em>, en supposant que nous avons cette information dans nos
-          dossiers.
-          </p>
       new:
         are_you_ready_to_duplicate: |
           Êtes-vous prêt·e à sortir de cette page pour dupliquer ce projet? Veuillez noter que l'icône du projet
@@ -697,56 +530,10 @@ fr-CA:
           ou lire l’historique des projets sur
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">notre blogue</a>.
       show:
-        bioblitz_results_desc_html: |
-          <p>
-          À la différence des projets normaux, les bioblitz affichent les statistiques de l’activité ci-dessous à partir de
-          <em>toutes</em> les observations dans un lieu et pendant une période de temps, pas seulement
-          les observations que les gens ont volontairement ajoutées au projet.
-          Le but est d’éliminer le besoin de se joindre à un projet pour contribuer
-          à ces statistiques d’activité.
-          </p>
-          <p>
-          Prenez note que tandis que ce type de projet affiche des statistiques pour les observations qui
-          n’ont pas été délibérément ajoutées au projet, il ne permet pas
-          aux responsables du projet de voir les coordonnées privées ou masquées de ces
-          observations ou de supposer que les observateurs ont accepté les conditions du
-          projet. Si vous êtes un responsable de l’organisation de projet et que vous voulez accéder aux coordonnées
-          privées, il faut que vos participants acceptent les conditions
-          du projet, ou si vous voulez que les observations soient comptées dans la liste de contrôle du projet,
-          assurez-vous que vos participants se joignent au projet et ajoutent leurs
-          observations comme ils le feraient pour un projet normal.
-          </p>
         make_sure_you_have_read_about_the_differences: |
           Assurez-vous d'avoir lu les différences dans notre <a href="%{url}" target="_blank">billet de blogue au sujet des Projets collection</a>.
       updates_desc: |
         Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Vous avez plusieurs options :</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
-          <p>
-          Par ex. le genre qui contient une espèce. Ensuite, un responsable
-          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
-          <p>
-          Beaucoup de responsables du site suivent les messages vers le forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
-          </strong>
-          <p>
-          Soyez patient·e, notre équipe d'assistance est restreinte.
-          </p>
-          </li>
-          </ul>
     shared:
       spam:
         message_for_owner_and_curators_html: |
@@ -829,28 +616,6 @@ fr-CA:
           <a href="/users/edit">les rendre muets</a> au lieu de supprimer votre
           compte.
       edit:
-        blocking_desc_html: |
-          <p>
-          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
-          </p>
-          <p>
-          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
-          </p>
-          <p>
-          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
-          </p>
-          <p>
-          Si quelqu'un vous harcèle ou vous traque sur %{site_name},
-          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
-          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
-          enquêterons.
-          </p>
-        inaturalist_network_affiliation_desc_html: |
-          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
-          <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
-          <p>
-           Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
-          </p>
         monthly_supporter_desc_html: |
           Les parrains réguliers d’iNaturalist font des contributions mensualisées
           automatiques qui sont reçues par l’Académie des sciences de Californie
