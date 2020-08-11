@@ -887,6 +887,9 @@ lb:
       observations: Observatiounen
       range: Beräich
   mark_as_reviewed: Als nogekuckt markéieren
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Eng Observatioun als iwwerpréift  markéieren heescht datt Dir se net méi per Defaut beim Identifizéiere gesitt. Si wäert nach ëmmer fir aner Persoune siichtbar an identifizéierbar sinn.
   mark_all_as_reviewed: All als nogekuckt markéieren
   media: Medien
   media_type: Medientyp
@@ -1370,6 +1373,7 @@ lb:
   saved: Gespäichert
   saving: "Späicheren..."
   search: Sichen
+  search_by_name: No engem Numm sichen
   search_observations: "Observatioune sichen"
   search_projects: Projeten duerchsichen
   search_species_: Aart sichen...
