@@ -26,10 +26,13 @@ const SplitTaxon = props => {
   const keyBase = objectToComparable( props );
   let title = "";
   if ( taxon ) {
+    title = taxon.name;
     if ( taxon.rank && taxon.rank_level > 10 ) {
-      title += I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } );
+      title = I18n.t( "rank_sciname", {
+        rank: I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ),
+        sciname: taxon.name
+      } );
     }
-    title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
       const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       if ( user && user.prefers_scientific_name_first ) {

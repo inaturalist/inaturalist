@@ -412,7 +412,7 @@
     }
     else {
       if (typeof($.string) != 'undefined') {
-        $(formatted).prepend(I18n.t('all_taxa.rank.' + $.string(taxon.rank).str.toLowerCase(), { defaultValue: $.string(taxon.rank).capitalize().str}) + ' ');
+        $(formatted).prepend(I18n.t('ranks.' + $.string(taxon.rank).str.toLowerCase(), { defaultValue: $.string(taxon.rank).capitalize().str}) + ' ');
       } else {
         $(formatted).prepend(taxon.rank + ' ');
       }

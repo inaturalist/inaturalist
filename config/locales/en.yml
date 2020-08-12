@@ -455,12 +455,6 @@ en:
     form: All forms added to the database
   all_rights_reserved: all rights reserved
   all_taxa:
-    rank:
-      kingdom: Kingdom
-      class: Class
-      phylum: Phylum
-      species: Species
-      order: Order
     amphibians: Amphibians
     animals: Animals
     arachnids: Arachnids
@@ -3356,6 +3350,9 @@ en:
   rank: Rank
   rank_position: Rank
   rank_restrictions: Rank restrictions
+  # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  # Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
       stateofmatter: State of matter
       kingdom: Kingdom
