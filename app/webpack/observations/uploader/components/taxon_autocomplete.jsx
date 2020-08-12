@@ -7,7 +7,6 @@ import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
 
 let searchInProgress;
-/* global iNatModels */
 
 class TaxonAutocomplete extends React.Component {
   static returnVisionResults( response, callback ) {
@@ -214,7 +213,7 @@ class TaxonAutocomplete extends React.Component {
       }
     } );
     if ( initialSelection ) {
-      this.inputElement( ).trigger( "assignSelection", [ initialSelection, { initial: true } ] );
+      this.inputElement( ).trigger( "assignSelection", [initialSelection, { initial: true }] );
     }
     this._mounted = true;
   }
@@ -580,9 +579,11 @@ TaxonAutocomplete.propTypes = {
   onChange: PropTypes.func,
   small: PropTypes.bool,
   placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   allowPlaceholders: PropTypes.bool,
   noThumbnail: PropTypes.bool,
   afterSelect: PropTypes.func,
