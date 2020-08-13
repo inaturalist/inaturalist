@@ -7425,6 +7425,10 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+              should_match_english_translation: should match English translation, did you mean "%{suggested}"?
+              should_only_contain_latin_script: |
+                should only contain Latin characters, punctuation, and spaces.
+                The following characters are not permitted: "%{problem_chars}".
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon

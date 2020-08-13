@@ -16,6 +16,8 @@ class TaxonName < ActiveRecord::Base
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
+  validate :english_lexicon_if_exists
+  validate :latin_character_set
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
@@ -412,5 +414,28 @@ class TaxonName < ActiveRecord::Base
     name = name.gsub(/\w[\.,]+.*/, '')
     name = name.gsub(/\s+[A-Z].*/, '')
     name.strip
+  end
+
+  private
+
+  def english_lexicon_if_exists
+    en_lexicons = I18n.with_locale(:en) { I18n.t(:lexicons) }.values
+    translated_lexicons = I18n.available_locales.map { |loc| I18n.with_locale(loc) { I18n.t(:lexicons) } }
+    non_en_lexicons = (translated_lexicons.collect(&:values).flatten.uniq - en_lexicons).map!{ |l| l.downcase.strip }
+
+    if non_en_lexicons.include?(lexicon.downcase.strip)
+      suggested = translated_lexicons.find { |h| h.has_value?(lexicon) }.key(lexicon)
+      errors.add(:lexicon, :should_match_english_translation, suggested: suggested.to_s.titleize)
+    end
+  end
+
+  # Since any new lexicon should only be in English, we should restrict to Latin character set
+  # This includes circumflexes, carons, etc. to support loanwords
+  def latin_character_set
+    latin_chars = %r{[\p{Latin}\p{Punct}\p{Space}\p{Digit}]}
+    unless lexicon.chars.all?{ |c| c.match(latin_chars) }
+      problem_chars = lexicon.chars.select{ |c| !c.match(latin_chars) }.join(", ")
+      errors.add(:lexicon, :should_only_contain_latin_script, problem_chars: problem_chars)
+    end
   end
 end
