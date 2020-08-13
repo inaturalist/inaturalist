@@ -1236,6 +1236,18 @@ describe Observation do
           expect( o ).to be_voted_out_of_needs_id
           expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
         end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a subfamily and voted out of needs_id" do
+          subfamily = Taxon.make!( name: "Hydropsychinae", rank: Taxon::SUBFAMILY )
+          o = make_research_grade_candidate_observation( taxon: subfamily, user: u )
+          Identification.make!( observation: o, taxon: subfamily )
+          o.reload
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.community_taxon ).to eq subfamily
+          expect( o.taxon ).to eq subfamily
+          expect( o ).to be_voted_out_of_needs_id
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
