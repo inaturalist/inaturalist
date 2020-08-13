@@ -121,7 +121,6 @@ class Identification < ActiveRecord::Base
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
   }
-  scope :older_than, -> (date) { where("created_at < ?", date) }
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, -> { where(:current => true) }
   scope :outdated, -> { where(:current => false) }
@@ -180,8 +179,12 @@ class Identification < ActiveRecord::Base
     end
     unless previous_observation_taxon_id
       working_created_at = created_at || Time.now
-      previous_ident = observation.identifications.by(user_id).older_than(working_created_at).current.select(&:persisted?).last
-      previous_ident ||= observation.identifications.by(user_id).older_than(working_created_at).select(&:persisted?).last
+      previous_ident = observation.identifications.select do |i|
+        i.persisted? && i.current && i.created_at < working_created_at && i.user_id == user_id
+      end.last
+      previous_ident ||= observation.identifications.select do |i|
+        i.persisted? && i.created_at < working_created_at && i.user_id == user_id
+      end.last
       self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
     end
     true

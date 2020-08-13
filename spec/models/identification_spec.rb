@@ -1047,7 +1047,7 @@ describe Identification, "disagreement" do
     expect( i ).not_to be_disagreement
   end
   it "should not be automatically set to true if no other identifications are current" do
-    o = make_research_grade_candidate_observation
+    o = Identification.make!( current: false ).observation
     Identification.make!( observation: o, taxon: @Calypte_anna )
     o.identifications.each { |i| i.update( current: false ) }
     i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
