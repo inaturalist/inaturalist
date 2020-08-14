@@ -371,12 +371,6 @@ da:
     form: Alle former tilføjet databasen
   all_rights_reserved: alle rettigheder forbeholdes
   all_taxa:
-    rank:
-      kingdom: Rige
-      class: Klasse
-      phylum: Række
-      species: Arter
-      order: Orden
     amphibians: Padder
     animals: Dyr
     arachnids: Spindlere
@@ -3198,6 +3192,9 @@ da:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
