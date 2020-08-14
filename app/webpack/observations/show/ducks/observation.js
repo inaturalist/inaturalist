@@ -348,6 +348,7 @@ export function fetchObservation( uuid, options = { } ) {
         },
         community_taxon: taxonFields,
         created_at: true,
+        description: true,
         faves: {
           user: userFields
         },
@@ -408,6 +409,7 @@ export function fetchObservation( uuid, options = { } ) {
           prefers_community_taxon: true
         },
         private_geojson: true,
+        private_place_guess: true,
         private_place_ids: true,
         project_observations: {
           preferences: {
