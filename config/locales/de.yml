@@ -373,12 +373,6 @@ de:
     form: Alle Formen zur Datenbank hinzugefügt
   all_rights_reserved: Alle Rechte vorbehalten
   all_taxa:
-    rank:
-      kingdom: Reich
-      class: Klasse
-      phylum: Stamm
-      species: Art
-      order: Ordnung
     amphibians: Amphibien
     animals: Tiere
     arachnids: Spinnentiere
@@ -3128,6 +3122,9 @@ de:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: eingeordnet als
     kingdom: Reich
