@@ -183,11 +183,13 @@ input.failed, textarea.failed {
       color: #333;
     }
   }
-  .ac-thumb i.icon {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    margin: 3px;
+  .ac-thumb {
+    i.icon {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 3px;
+    }
   }
 }
 

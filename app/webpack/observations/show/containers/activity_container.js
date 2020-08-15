@@ -38,10 +38,10 @@ function mapDispatchToProps( dispatch ) {
     deleteComment: id => { dispatch( confirmDeleteComment( id ) ); },
     editComment: ( id, body ) => { dispatch( editComment( id, body ) ); },
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
-    deleteID: id => { dispatch( deleteID( id ) ); },
-    confirmDeleteID: id => { dispatch( confirmDeleteID( id ) ); },
-    editID: ( id, body ) => { dispatch( editID( id, body ) ); },
-    restoreID: id => { dispatch( restoreID( id ) ); },
+    deleteID: uuid => { dispatch( deleteID( uuid ) ); },
+    confirmDeleteID: uuid => { dispatch( confirmDeleteID( uuid ) ); },
+    editID: ( uuid, body ) => { dispatch( editID( uuid, body ) ); },
+    restoreID: uuid => { dispatch( restoreID( uuid ) ); },
     createFlag: ( className, id, flag, body ) => {
       dispatch( createFlag( className, id, flag, body ) );
     },

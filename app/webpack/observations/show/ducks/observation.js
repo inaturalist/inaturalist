@@ -431,6 +431,7 @@ export function fetchObservation( uuid, options = { } ) {
         //   metric: true,
         //   user: Object.assign( { }, userFields, { id: true } )
         // },
+        reviewed_by: true,
         sounds: {
           file_url: true,
           file_content_type: true,
@@ -604,7 +605,7 @@ export function review( ) {
       ] )
     } ) );
 
-    const payload = { id: state.observation.id };
+    const payload = { uuid: state.observation.uuid };
     dispatch( callAPI( inatjs.observations.review, payload ) );
   };
 }
@@ -616,7 +617,7 @@ export function unreview( ) {
     const newReviewedBy = _.without( state.observation.reviewed_by, state.config.currentUser.id );
     dispatch( setAttributes( { reviewed_by: newReviewedBy } ) );
 
-    const payload = { id: state.observation.id };
+    const payload = { uuid: state.observation.uuid };
     dispatch( callAPI( inatjs.observations.unreview, payload ) );
   };
 }
@@ -637,46 +638,51 @@ export function addComment( body ) {
     );
 
     const payload = {
-      parent_type: "Observation",
-      parent_id: state.observation.uuid,
-      body
+      comment: {
+        parent_type: "Observation",
+        parent_id: state.observation.uuid,
+        body
+      }
     };
     dispatch( callAPI( inatjs.comments.create, payload ) );
   };
 }
 
-export function deleteComment( id ) {
+export function deleteComment( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newComments = _.map( state.observation.comments, c => (
-      c.id === id ? Object.assign( { }, c, { api_status: "deleting" } ) : c
+      c.uuid === uuid ? Object.assign( { }, c, { api_status: "deleting" } ) : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
-    dispatch( callAPI( inatjs.comments.delete, { id } ) );
+    dispatch( callAPI( inatjs.comments.delete, { uuid } ) );
   };
 }
 
-export function editComment( id, body ) {
+export function editComment( uuid, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newComments = state.observation.comments.map( c => (
-      c.id === id ? Object.assign( { }, c, { body } ) : c
+      c.uuid === uuid ? Object.assign( { }, c, { body } ) : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
-    dispatch( callAPI( inatjs.comments.update, { id, body } ) );
+    dispatch( callAPI( inatjs.comments.update, {
+      uuid,
+      comment: { body }
+    } ) );
   };
 }
 
-export function confirmDeleteComment( id ) {
+export function confirmDeleteComment( uuid ) {
   return dispatch => {
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "you_sure_delete_comment?" ),
       confirmText: "Yes",
       onConfirm: ( ) => {
-        dispatch( deleteComment( id ) );
+        dispatch( deleteComment( uuid ) );
       }
     } ) );
   };
@@ -706,11 +712,13 @@ export function doAddID( taxon, confirmForm, options = { } ) {
     } ) );
 
     const payload = {
-      observation_id: state.observation.id,
-      taxon_id: taxon.id,
-      body: options.body,
-      vision: !!taxon.isVisionResult,
-      disagreement: options.disagreement
+      identification: {
+        observation_id: state.observation.id,
+        taxon_id: taxon.id,
+        body: options.body,
+        vision: !!taxon.isVisionResult,
+        disagreement: options.disagreement
+      }
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
@@ -755,57 +763,62 @@ export function addID( taxon, options = { } ) {
   };
 }
 
-export function deleteID( id, options = { } ) {
+export function deleteID( uuid, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     let newIdentifications;
     if ( options.delete ) {
-      newIdentifications = state.observation.identifications.filter( i => ( i.id !== id ) );
+      newIdentifications = state.observation.identifications.filter( i => ( i.uuid !== uuid ) );
     } else {
       newIdentifications = _.map( state.observation.identifications, i => (
-        i.id === id ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
+        i.uuid === uuid ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
       ) );
     }
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.delete, Object.assign( {}, { id }, options ) ) );
+    dispatch( callAPI( inatjs.identifications.delete, Object.assign( {}, { uuid }, options ) ) );
   };
 }
 
-export function editID( id, body ) {
+export function editID( uuid, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = state.observation.identifications.map( i => (
-      i.id === id ? Object.assign( { }, i, { body } ) : i
+      i.uuid === uuid ? Object.assign( { }, i, { body } ) : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.update, { id, body } ) );
+    dispatch( callAPI( inatjs.identifications.update, { uuid, identification: { body } } ) );
   };
 }
 
-export function confirmDeleteID( id ) {
+export function confirmDeleteID( uuid ) {
   return dispatch => {
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "you_sure_delete_identification?" ),
       confirmText: "Yes",
       onConfirm: ( ) => {
-        dispatch( deleteID( id, { delete: true } ) );
+        dispatch( deleteID( uuid, { delete: true } ) );
       }
     } ) );
   };
 }
 
-export function restoreID( id ) {
+export function restoreID( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = _.map( state.observation.identifications, i => (
-      i.id === id ? Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
+      i.uuid === uuid ? Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.update, { id, current: true } ) );
+    dispatch( callAPI( inatjs.identifications.update, {
+      uuid,
+      identification: {
+        current: true
+      }
+    } ) );
   };
 }
 

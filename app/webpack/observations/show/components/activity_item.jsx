@@ -62,7 +62,7 @@ class ActivityItem extends React.Component {
         <TextEditor
           content={textareaContent}
           changeHandler={this.changeHandler}
-          key={`comment-editor-${item.id}`}
+          key={`comment-editor-${item.uuid}`}
           placeholder={this.isID ? I18n.t( "tell_us_why" ) : I18n.t( "leave_a_comment" )}
           textareaClassName="form-control"
           maxLength={5000}
@@ -101,9 +101,9 @@ class ActivityItem extends React.Component {
     const { item, editComment, editID } = this.props;
     const { textareaContent, editing } = this.state;
     if ( this.isID ) {
-      editID( item.id, textareaContent );
+      editID( item.uuid, textareaContent );
     } else {
-      editComment( item.id, textareaContent );
+      editComment( item.uuid, textareaContent );
     }
     this.setState( { editing: !editing } );
   }
@@ -111,7 +111,7 @@ class ActivityItem extends React.Component {
   deleteIdentification( ) {
     const { item, confirmDeleteID } = this.props;
     const { editing } = this.state;
-    confirmDeleteID( item.id );
+    confirmDeleteID( item.uuid );
     this.setState( { editing: !editing } );
   }
 
@@ -203,7 +203,7 @@ class ActivityItem extends React.Component {
       ) {
         if ( currentUserID ) {
           canAgree = currentUserID.taxon.id !== taxon.id;
-          userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
+          userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.uuid === item.uuid;
         } else {
           canAgree = true;
         }
@@ -215,7 +215,7 @@ class ActivityItem extends React.Component {
         }
         buttons.push( (
           <a
-            key={`id-compare-${item.id}`}
+            key={`id-compare-${item.uuid}`}
             href={`/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}`}
           >
             <button
@@ -240,7 +240,7 @@ class ActivityItem extends React.Component {
         buttons.push( (
           <button
             type="button"
-            key={`id-agree-${item.id}`}
+            key={`id-agree-${item.uuid}`}
             className="btn btn-default btn-sm"
             onClick={() => {
               addID( taxon, { agreedTo: item } );
@@ -335,7 +335,7 @@ class ActivityItem extends React.Component {
       );
       headerItems.push(
         <OverlayTrigger
-          key={`hidden-tooltip-${item.id}`}
+          key={`hidden-tooltip-${item.uuid}`}
           container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="top"
           trigger="click"
@@ -343,7 +343,7 @@ class ActivityItem extends React.Component {
           delayShow={200}
           overlay={(
             <Popover
-              id={`hidden-${item.id}`}
+              id={`hidden-${item.uuid}`}
               className="unhide-popover"
             >
               <span
@@ -357,7 +357,7 @@ class ActivityItem extends React.Component {
               />
               <div className="upstacked text-muted">
                 <a
-                  href={`/${this.isID ? "identifications" : "comments"}/${item.id}/flags`}
+                  href={`/${this.isID ? "identifications" : "comments"}/${item.uuid}/flags`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="linky"
@@ -394,9 +394,9 @@ class ActivityItem extends React.Component {
     if ( unresolvedFlags.length > 0 ) {
       panelClass = "flagged";
       headerItems.push(
-        <span key={`flagged-${item.id}`} className="item-status">
+        <span key={`flagged-${item.uuid}`} className="item-status">
           <a
-            href={`/${this.isID ? "identifications" : "comments"}/${item.id}/flags`}
+            href={`/${this.isID ? "identifications" : "comments"}/${item.uuid}/flags`}
             rel="nofollow noopener noreferrer"
             target="_blank"
           >
@@ -412,7 +412,7 @@ class ActivityItem extends React.Component {
       if ( item.category === "maverick" ) {
         panelClass = "maverick";
         idCategory = (
-          <span key={`maverick-${item.id}`} className="item-status ident-category">
+          <span key={`maverick-${item.uuid}`} className="item-status ident-category">
             <i className="fa fa-bolt" />
             {" "}
             {I18n.t( "maverick" )}
@@ -422,7 +422,7 @@ class ActivityItem extends React.Component {
       } else if ( item.category === "improving" ) {
         panelClass = "improving";
         idCategory = (
-          <span key={`improving-${item.id}`} className="item-status ident-category">
+          <span key={`improving-${item.uuid}`} className="item-status ident-category">
             <i className="fa fa-trophy" />
             {" "}
             {I18n.t( "improving" )}
@@ -432,7 +432,7 @@ class ActivityItem extends React.Component {
       } else if ( item.category === "leading" ) {
         panelClass = "leading";
         idCategory = (
-          <span key={`leading-${item.id}`} className="item-status ident-category">
+          <span key={`leading-${item.uuid}`} className="item-status ident-category">
             <i className="icon-icn-leading-id" />
             {" "}
             {I18n.t( "leading" )}
@@ -443,12 +443,12 @@ class ActivityItem extends React.Component {
       if ( idCategory ) {
         headerItems.push(
           <OverlayTrigger
-            key={`ident-category-tooltip-${item.id}`}
+            key={`ident-category-tooltip-${item.uuid}`}
             container={$( "#wrapper.bootstrap" ).get( 0 )}
             placement="top"
             delayShow={200}
             overlay={(
-              <Tooltip id={`tooltip-${item.id}`}>
+              <Tooltip id={`tooltip-${item.uuid}`}>
                 {idCategoryTooltipText}
               </Tooltip>
             )}
@@ -461,7 +461,7 @@ class ActivityItem extends React.Component {
     if ( item.vision ) {
       headerItems.push(
         <OverlayTrigger
-          key={`itent-vision-${item.id}`}
+          key={`itent-vision-${item.uuid}`}
           container={$( "#wrapper.bootstrap" ).get( 0 )}
           trigger="click"
           rootClose
@@ -469,7 +469,7 @@ class ActivityItem extends React.Component {
           delayShow={200}
           overlay={(
             <Popover
-              id={`vision-popover-${item.id}`}
+              id={`vision-popover-${item.uuid}`}
               title={I18n.t( "computer_vision_suggestion" )}
             >
               {I18n.t( "computer_vision_suggestion_desc" )}
@@ -484,7 +484,7 @@ class ActivityItem extends React.Component {
     }
     if ( item.taxon && !item.current ) {
       headerItems.push(
-        <span key={`ident-withdrawn-${item.id}`} className="item-status">
+        <span key={`ident-withdrawn-${item.uuid}`} className="item-status">
           <i className="fa fa-ban" />
           {" "}
           {I18n.t( "id_withdrawn" )}
@@ -561,8 +561,8 @@ class ActivityItem extends React.Component {
         />
       );
     }
-    const elementID = this.isID ? `activity_identification_${item.id}` : `activity_comment_${item.id}`;
-    const itemURL = this.isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
+    const elementID = this.isID ? `activity_identification_${item.uuid}` : `activity_comment_${item.uuid}`;
+    const itemURL = this.isID ? `/identifications/${item.uuid}` : `/comments/${item.uuid}`;
     return (
       <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
         <div className="icon">
