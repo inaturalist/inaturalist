@@ -211,7 +211,13 @@ class Photo < ActiveRecord::Base
   end
 
   def flagged_with(flag, options = {})
-    if flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    other_unresolved_copyright_flags_exist = flags.detect do |f|
+      f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT
+    end
+    # For copyright flags, we need to change the photo URLs when flagged, and
+    # reset them when there are no more copyright flags
+    if flag_is_copyright && !other_unresolved_copyright_flags_exist
       if options[:action] == "created"
         styles = %w(original large medium small thumb square)
         updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]

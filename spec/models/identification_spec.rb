@@ -1046,6 +1046,13 @@ describe Identification, "disagreement" do
     i.reload
     expect( i ).not_to be_disagreement
   end
+  it "should not be automatically set to true if no other identifications are current" do
+    o = Identification.make!( current: false ).observation
+    Identification.make!( observation: o, taxon: @Calypte_anna )
+    o.identifications.each { |i| i.update( current: false ) }
+    i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+    expect( i ).not_to be_disagreement
+  end
 
   describe "implicit disagreement" do
     it "should set disagreement to true" do

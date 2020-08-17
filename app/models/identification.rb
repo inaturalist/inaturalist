@@ -179,8 +179,12 @@ class Identification < ActiveRecord::Base
     end
     unless previous_observation_taxon_id
       working_created_at = created_at || Time.now
-      previous_ident = observation.identifications.select{|i| i.persisted? && i.current && i.created_at < working_created_at }.last
-      previous_ident ||= observation.identifications.select{|i| i.persisted? && i.created_at < working_created_at }.last
+      previous_ident = observation.identifications.select do |i|
+        i.persisted? && i.current && i.created_at < working_created_at && i.user_id == user_id
+      end.last
+      previous_ident ||= observation.identifications.select do |i|
+        i.persisted? && i.created_at < working_created_at && i.user_id == user_id
+      end.last
       self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
     end
     true
@@ -191,6 +195,12 @@ class Identification < ActiveRecord::Base
 
     # Can't disagree with nothing or roots
     if !previous_observation_taxon || !previous_observation_taxon.grafted?
+      self.disagreement = nil
+      return true
+    end
+
+    # Can't disagree if no current identifications
+    if observation.identifications.current.empty?
       self.disagreement = nil
       return true
     end

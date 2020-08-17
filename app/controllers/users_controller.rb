@@ -228,7 +228,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_4"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -238,7 +238,7 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications(:per => 'year')
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_#{@site.name}_4"
+    @curators_key = "users_index_curators_#{I18n.locale}_site_#{@site.id}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500).includes(:roles).order( "updated_at DESC" )
       @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
@@ -265,7 +265,7 @@ class UsersController < ApplicationController
     @month = params[:month].to_i unless params[:month].blank?
     @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_#{@year}_#{@month}"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_#{@year}_#{@month}"
     unless fragment_exist?(@leaderboard_key)
       if params[:month].blank?
         @most_observations = most_observations(:per => 'year', :year => @year)
