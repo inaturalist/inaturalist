@@ -171,7 +171,7 @@ class Activity extends React.Component {
     const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
       if ( !p.url || p.preview ) { return null; }
       const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /\/medium\./i ) ) {
+      if ( mediumUrl && mediumUrl.match( /\/medium[./]/i ) ) {
         return p;
       }
       return null;
@@ -209,7 +209,9 @@ class Activity extends React.Component {
             perPage={6}
             resetOnChange={false}
             visionParams={
-              visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
+              visionEligiblePhotos.length > 0
+                ? { observationID: observation.id, observationUUID: observation.uuid }
+                : null
             }
             config={config}
             onKeyDown={e => {

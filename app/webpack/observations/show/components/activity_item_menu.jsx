@@ -34,9 +34,9 @@ const ActivityItemMenu = ( {
       if ( !item.hidden ) {
         menuItems.push( (
           <MenuItem
-            key={`id-edit-${item.id}`}
+            key={`id-edit-${item.uuid}`}
             eventKey="edit"
-            href={`/identifications/${item.id}/edit`}
+            href={`/identifications/${item.uuid}/edit`}
             onClick={onEdit}
             target={linkTarget}
           >
@@ -47,7 +47,7 @@ const ActivityItemMenu = ( {
       if ( item.current ) {
         menuItems.push( (
           <MenuItem
-            key={`id-delete-${item.id}`}
+            key={`id-delete-${item.uuid}`}
             eventKey="delete"
           >
             { I18n.t( "withdraw" ) }
@@ -56,7 +56,7 @@ const ActivityItemMenu = ( {
       } else {
         menuItems.push( (
           <MenuItem
-            key={`id-restore-${item.id}`}
+            key={`id-restore-${item.uuid}`}
             eventKey="restore"
           >
             { I18n.t( "restore" ) }
@@ -66,7 +66,7 @@ const ActivityItemMenu = ( {
     } else if ( loggedInUser ) {
       menuItems.push( (
         <MenuItem
-          key={`id-flag-${item.id}`}
+          key={`id-flag-${item.uuid}`}
           eventKey="flag"
         >
           { I18n.t( "flag" ) }
@@ -75,7 +75,7 @@ const ActivityItemMenu = ( {
       if ( viewerIsCurator && !item.hidden && !_.isEmpty( item.body ) ) {
         menuItems.push( (
           <MenuItem
-            key={`identification-hide-${item.id}`}
+            key={`identification-hide-${item.uuid}`}
             eventKey="hide-identification"
           >
             { I18n.t( "hide_content" ) }
@@ -85,7 +85,7 @@ const ActivityItemMenu = ( {
       if ( viewerIsAdmin && item.hidden ) {
         menuItems.push( (
           <MenuItem
-            key={`identification-unhide-${item.id}`}
+            key={`identification-unhide-${item.uuid}`}
             eventKey="unhide-identification"
           >
             { I18n.t( "unhide_content" ) }
@@ -96,7 +96,7 @@ const ActivityItemMenu = ( {
     if ( item.flags && item.flags.length > 0 ) {
       menuItems.push( (
         <MenuItem
-          key={`id-view-flags-${item.id}`}
+          key={`id-view-flags-${item.uuid}`}
           eventKey="view-flags-for-identification"
         >
           { I18n.t( "view_flags" ) }
@@ -108,7 +108,7 @@ const ActivityItemMenu = ( {
     const searchLinks = [];
     if ( loggedInUser ) {
       searchLinks.push( (
-        <div className="search" key={`id-search-you-${item.id}`}>
+        <div className="search" key={`id-search-you-${item.uuid}`}>
           <a
             href={`/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}`}
             target={linkTarget}
@@ -121,7 +121,7 @@ const ActivityItemMenu = ( {
     }
     if ( !( loggedInUser && loggedInUser.id === item.user.id ) ) {
       searchLinks.push( (
-        <div className="search" key={`id-search-user-${item.id}`}>
+        <div className="search" key={`id-search-user-${item.uuid}`}>
           <a
             href={`/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}`}
             target={linkTarget}
@@ -133,7 +133,7 @@ const ActivityItemMenu = ( {
       ) );
     }
     searchLinks.push( (
-      <div className="search" key={`id-search-all-${item.id}`}>
+      <div className="search" key={`id-search-all-${item.uuid}`}>
         <a
           href={`/observations?taxon_id=${item.taxon.id}`}
           target={linkTarget}
@@ -144,10 +144,10 @@ const ActivityItemMenu = ( {
       </div>
     ) );
     if ( !_.isEmpty( menuItems ) ) {
-      menuItems.push( ( <MenuItem divider key={`id-menu-divider-${item.id}`} /> ) );
+      menuItems.push( ( <MenuItem divider key={`id-menu-divider-${item.uuid}`} /> ) );
     }
     menuItems.push(
-      <li key={`id-menu-links-${item.id}`} className="search-links">
+      <li key={`id-menu-links-${item.uuid}`} className="search-links">
         <div className="text-muted">
           { I18n.t( "label_colon", { label: I18n.t( "view_observations_of_this_taxon_by" ) } ) }
         </div>
@@ -155,9 +155,9 @@ const ActivityItemMenu = ( {
       </li>
     );
     if ( loggedInUser ) {
-      menuItems.push( ( <MenuItem divider key={`id-identify-menu-divider-${item.id}`} /> ) );
+      menuItems.push( ( <MenuItem divider key={`id-identify-menu-divider-${item.uuid}`} /> ) );
       menuItems.push(
-        <li key={`id-identify-menu-links-${item.id}`} className="search-links">
+        <li key={`id-identify-menu-links-${item.uuid}`} className="search-links">
           <div className="text-muted">
             { I18n.t( "label_colon", { label: I18n.t( "identify_observations" ) } ) }
           </div>
@@ -186,9 +186,9 @@ const ActivityItemMenu = ( {
     // Item is a comment and the viewer is the author of that comment
     menuItems.push( (
       <MenuItem
-        key={`comment-edit-${item.id}`}
+        key={`comment-edit-${item.uuid}`}
         eventKey="edit"
-        href={`/comments/${item.id}/edit`}
+        href={`/comments/${item.uuid}/edit`}
         onClick={onEdit}
         target={linkTarget}
       >
@@ -197,7 +197,7 @@ const ActivityItemMenu = ( {
     ) );
     menuItems.push( (
       <MenuItem
-        key={`comment-delete-${item.id}`}
+        key={`comment-delete-${item.uuid}`}
         eventKey="delete"
       >
         { I18n.t( "delete" ) }
@@ -207,7 +207,7 @@ const ActivityItemMenu = ( {
     // Item is a comment and viewer is logged in
     menuItems.push( (
       <MenuItem
-        key={`comment-flag-${item.id}`}
+        key={`comment-flag-${item.uuid}`}
         eventKey="flag"
       >
         { I18n.t( "flag" ) }
@@ -216,7 +216,7 @@ const ActivityItemMenu = ( {
     if ( viewerIsCurator && !item.hidden ) {
       menuItems.push( (
         <MenuItem
-          key={`comment-hide-${item.id}`}
+          key={`comment-hide-${item.uuid}`}
           eventKey="hide-comment"
         >
           { I18n.t( "hide_content" ) }
@@ -226,7 +226,7 @@ const ActivityItemMenu = ( {
     if ( viewerIsAdmin && item.hidden ) {
       menuItems.push( (
         <MenuItem
-          key={`comment-unhide-${item.id}`}
+          key={`comment-unhide-${item.uuid}`}
           eventKey="unhide-comment"
         >
           { I18n.t( "unhide_content" ) }
@@ -237,7 +237,7 @@ const ActivityItemMenu = ( {
   if ( item.flags && item.flags.length > 0 ) {
     menuItems.push( (
       <MenuItem
-        key={`comment-view-flags-${item.id}`}
+        key={`comment-view-flags-${item.uuid}`}
         eventKey="view-flags-for-comment"
       >
         { I18n.t( "view_flags" ) }
@@ -254,12 +254,12 @@ const ActivityItemMenu = ( {
     && observation
     && observation.user.id === loggedInUser.id
   ) {
-    menuItems.push( ( <MenuItem divider key={`trust-divider-${item.id}`} /> ) );
+    menuItems.push( ( <MenuItem divider key={`trust-divider-${item.uuid}`} /> ) );
     loggedInUser.trusted_user_ids = loggedInUser.trusted_user_ids || [];
     if ( loggedInUser.trusted_user_ids.indexOf( item.user.id ) >= 0 ) {
       menuItems.push( (
         <MenuItem
-          key={`remove-trust-${item.id}`}
+          key={`remove-trust-${item.uuid}`}
           eventKey="remove-trust"
           className="search"
         >
@@ -270,7 +270,7 @@ const ActivityItemMenu = ( {
     } else {
       menuItems.push( (
         <MenuItem
-          key={`add-trust-${item.id}`}
+          key={`add-trust-${item.uuid}`}
           eventKey="add-trust"
           className="search"
         >
@@ -280,7 +280,7 @@ const ActivityItemMenu = ( {
       ) );
     }
     menuItems.push( (
-      <li key={`comment-delete-${item.id}`} className="search">
+      <li key={`comment-delete-${item.uuid}`} className="search">
         <a href="/relationships" target="_blank">
           <i className="icon-people" />
           { I18n.t( "manage_your_relationships" ) }
@@ -297,9 +297,9 @@ const ActivityItemMenu = ( {
             if ( key === "flag" ) {
               setFlaggingModalState( { item, show: true } );
             } else if ( key === "view-flags-for-comment" ) {
-              window.open( `/comments/${item.id}/flags`, "_blank" );
+              window.open( `/comments/${item.uuid}/flags`, "_blank" );
             } else if ( key === "view-flags-for-identification" ) {
-              window.open( `/identifications/${item.id}/flags`, "_blank" );
+              window.open( `/identifications/${item.uuid}/flags`, "_blank" );
             } else if ( key === "add-trust" ) {
               trustUser( item.user );
             } else if ( key === "remove-trust" ) {
@@ -307,11 +307,11 @@ const ActivityItemMenu = ( {
             } else if ( key === "manage-relationships" ) {
               window.open( "/relationships", "_blank" );
             } else if ( isID && key === "delete" ) {
-              deleteID( item.id );
+              deleteID( item.uuid );
             } else if ( isID && key === "restore" ) {
-              restoreID( item.id );
+              restoreID( item.uuid );
             } else if ( key === "delete" ) {
-              deleteComment( item.id );
+              deleteComment( item.uuid );
             } else if ( key === "hide-comment" || key === "hide-identification" ) {
               hideContent( item );
             } else if ( key === "unhide-comment" || key === "unhide-identification" ) {

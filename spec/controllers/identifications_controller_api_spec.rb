@@ -145,6 +145,13 @@ shared_examples_for "an IdentificationsController" do
       expect(json['taxon_id']).to eq identification.taxon_id
     end
 
+    it "should work with a UUID" do
+      expect {
+        put :update, format: :json, id: identification.uuid, identification: { body: "i must eat them all" }
+        identification.reload
+      }.to change( identification, :body )
+    end
+
     it "should mark other identifications as not current if restoring" do
       # puts "creating new ident"
       i2 = Identification.make!( user: user, observation: identification.observation )

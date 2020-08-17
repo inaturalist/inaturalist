@@ -1,3 +1,5 @@
+$img-width: 40px;
+$img-margin: 3px;
 .linky {
   color: #36C;
 }
@@ -42,7 +44,7 @@
   height: 36px;
 }
 .ui-autocomplete .ac-thumb {
-  width: 61px;
+  width: $img-width + $img-margin * 2;
   display: inline-block;
   text-align: center;
   vertical-align: top;
@@ -66,9 +68,9 @@
   display: inline-block;
 }
 .ui-autocomplete .ac-thumb img {
-  width: 40px;
-  height: 40px;
-  margin: 3px;
+  width: $img-width;
+  height: $img-width;
+  margin: $img-margin;
   display: block;
 }
 .ui-autocomplete .ac-message .ac-thumb img {

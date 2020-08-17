@@ -196,7 +196,7 @@ class TextEditor extends React.Component {
           placeholder={placeholder}
           onChange={textareaOnChange}
           onBlur={onBlur}
-          value={content}
+          value={content || ""}
         />
         { maxLength && textareaChars > showCharsRemainingAt && (
           <div className="text-muted small chars-remaining">

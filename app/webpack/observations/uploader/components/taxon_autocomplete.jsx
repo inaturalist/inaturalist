@@ -8,6 +8,21 @@ import { Glyphicon } from "react-bootstrap";
 
 let searchInProgress;
 
+const TAXON_FIELDS = {
+  ancestor_ids: true,
+  default_photo: {
+    square_url: true
+  },
+  iconic_taxon_id: true,
+  iconic_taxon_name: true,
+  is_active: true,
+  matched_term: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
+
 class TaxonAutocomplete extends React.Component {
   static returnVisionResults( response, callback ) {
     const visionTaxa = _.map( response.results.slice( 0, 8 ), r => {
@@ -320,20 +335,25 @@ class TaxonAutocomplete extends React.Component {
   }
 
   visionAutocompleteSource( callback ) {
-    const { visionParams } = this.props;
+    const { config, visionParams } = this.props;
     if ( this.cachedVisionResponse ) {
       TaxonAutocomplete.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
+      const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
       if ( visionParams.image ) {
-        inaturalistjs.computervision.score_image( visionParams ).then( r => {
+        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) ).then( r => {
           this.cachedVisionResponse = r;
           TaxonAutocomplete.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for photo", e] );
         } );
         callback( ["loadingSuggestions"] );
-      } else if ( visionParams.observationID ) {
-        const params = { id: visionParams.observationID };
+      } else if ( visionParams.observationID || visionParams.observationUUID ) {
+        let { observationID, observationUUID } = visionParams;
+        if ( config.testingApiV2 && observationUUID ) {
+          observationID = observationUUID;
+        }
+        const params = Object.assign( baseParams, { id: observationID } );
         this.fetchingVision = true;
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
@@ -364,20 +384,7 @@ class TaxonAutocomplete extends React.Component {
       params.observed_by_user_id = observedByUserID;
     }
     if ( config && config.testingApiV2 ) {
-      params.fields = {
-        ancestor_ids: true,
-        default_photo: {
-          square_url: true
-        },
-        iconic_taxon_id: true,
-        iconic_taxon_name: true,
-        is_active: true,
-        matched_term: true,
-        name: true,
-        preferred_common_name: true,
-        rank: true,
-        rank_level: true
-      };
+      params.fields = TAXON_FIELDS;
     }
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
