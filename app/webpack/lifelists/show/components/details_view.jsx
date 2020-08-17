@@ -140,14 +140,17 @@ const DetailsView = ( {
       </div>
     );
   }
+  let taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
+    <span
+      className="fa fa-times"
+      onClick={( ) => setDetailsTaxon( null )}
+    />
+  );
   return (
     <div className="Details">
       { lifelist.detailsTaxon ? (
         <h3>
-          <span
-            className="fa fa-times"
-            onClick={( ) => setDetailsTaxon( null )
-          } />
+          { taxonClear }
           <SplitTaxon taxon={lifelist.detailsTaxon} noInactive />
         </h3>
       ) : (
@@ -156,7 +159,7 @@ const DetailsView = ( {
         </h3>
       )}
       { stats }
-      { lifelist.detailsView === "unobservedSpecies" && (
+      { lifelist.detailsView !== "observatioins" && (
         <div className="search-options">
           <div className="place-search">
             <span className="glyphicon glyphicon-search ac-select-thumb" />

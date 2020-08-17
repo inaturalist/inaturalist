@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { connect } from "react-redux";
 import SpeciesNoAPI from "../components/species_noapi";
 import {
@@ -9,7 +10,8 @@ function mapStateToProps( state ) {
   return {
     config: state.config,
     lifelist: state.lifelist,
-    detailsTaxon: state.lifelist.detailsTaxon
+    detailsTaxon: state.lifelist.detailsTaxon,
+    search: _.get( state.inatAPI, "speciesPlace" )
   };
 }
 

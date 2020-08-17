@@ -11,16 +11,13 @@ class Species extends Component {
 
   render( ) {
     const {
-      search, fetchFirstPage, fetchNextPage, config, lifelist, zoomToTaxon
+      search, fetchNextPage, config, lifelist, zoomToTaxon
     } = this.props;
     let view;
     const loading = !search || ( !search.searchResponse && !search.loaded );
     const species = loading ? null : search.searchResponse.results || [];
     if ( loading ) {
       view = ( <div className="loading_spinner huge" /> );
-      if ( search && !search.loading ) {
-        fetchFirstPage( );
-      }
     } else {
       view = _.map( species, s => {
         const onClick = e => {
@@ -84,7 +81,6 @@ class Species extends Component {
 Species.propTypes = {
   config: PropTypes.object,
   search: PropTypes.object,
-  fetchFirstPage: PropTypes.func,
   fetchNextPage: PropTypes.func,
   lifelist: PropTypes.object,
   zoomToTaxon: PropTypes.func

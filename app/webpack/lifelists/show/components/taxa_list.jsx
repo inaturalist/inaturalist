@@ -111,10 +111,8 @@ class TaxaList extends React.Component {
       } else {
         nodeShouldDisplay = nodeIsDescendant;
       }
-    } else if ( lifelist.listViewRankFilter === "children" ) {
+    } else if ( lifelist.listViewRankFilter === "default" ) {
       nodeShouldDisplay = node => node.parent_id === ( openTaxon ? openTaxon.id : 0 );
-    } else if ( lifelist.listViewRankFilter === "major" ) {
-      nodeShouldDisplay = node => node.rank_level % 10 === 0;
     } else if ( lifelist.listViewRankFilter === "kingdoms" ) {
       nodeShouldDisplay = node => node.rank_level === 70;
     } else if ( lifelist.listViewRankFilter === "phylums" ) {
@@ -152,9 +150,9 @@ class TaxaList extends React.Component {
       );
     }
     let sortMethod;
-    if ( lifelist.listViewSort === "name" ) {
+    if ( lifelist.treeSort === "name" ) {
       sortMethod = t => t.name;
-    } else if ( lifelist.listViewSort === "taxonomic" ) {
+    } else if ( lifelist.treeSort === "taxonomic" ) {
       sortMethod = t => t.left;
     } else {
       sortMethod = t => -1 * t.descendant_obs_count;
@@ -174,144 +172,13 @@ class TaxaList extends React.Component {
   }
 
   render( ) {
-    const {
-      lifelist, openTaxon, setListViewRankFilter, setListViewSort
-    } = this.props;
+    const { lifelist, openTaxon } = this.props;
     if ( !lifelist.taxa || !lifelist.children ) { return ( <span /> ); }
-    let rankLabel = "Show: Children";
-    if ( lifelist.listViewRankFilter === "all" ) {
-      rankLabel = "Show: All ranks";
-    } else if ( lifelist.listViewRankFilter === "major" ) {
-      rankLabel = "Show: Major Ranks";
-    } else if ( lifelist.listViewRankFilter === "kingdoms" ) {
-      rankLabel = "Show: Kingdoms";
-    } else if ( lifelist.listViewRankFilter === "phylums" ) {
-      rankLabel = "Show: Phylums";
-    } else if ( lifelist.listViewRankFilter === "classes" ) {
-      rankLabel = "Show: Classes";
-    } else if ( lifelist.listViewRankFilter === "orders" ) {
-      rankLabel = "Show: Orders";
-    } else if ( lifelist.listViewRankFilter === "families" ) {
-      rankLabel = "Show: Families";
-    } else if ( lifelist.listViewRankFilter === "genera" ) {
-      rankLabel = "Show: Genera";
-    } else if ( lifelist.listViewRankFilter === "species" ) {
-      rankLabel = "Show: Species";
-    } else if ( lifelist.listViewRankFilter === "leaves" ) {
-      rankLabel = "Show: Leaves";
-    }
-    const rankOptions = (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="rankDropdown"
-        >
-          { rankLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="rankDropdown">
-          <li
-            className={lifelist.listViewRankFilter === "children" ? "selected" : null}
-            onClick={( ) => setListViewRankFilter( "children" )}
-          >
-            Children
-          </li>
-          <li
-            className={lifelist.listViewRankFilter === "all" ? "selected" : null}
-            onClick={( ) => setListViewRankFilter( "all" )}
-          >
-            All ranks
-          </li>
-          <li
-            className={lifelist.listViewRankFilter === "major" ? "selected" : null}
-            onClick={( ) => setListViewRankFilter( "major" )}
-          >
-            Major Ranks
-          </li>
-          { [{ filter: "kingdoms", label: "Kingdoms", rank_level: 70 },
-            { filter: "phylums", label: "Phylums", rank_level: 60 },
-            { filter: "classes", label: "Classes", rank_level: 50 },
-            { filter: "orders", label: "Orders", rank_level: 40 },
-            { filter: "families", label: "Families", rank_level: 30 },
-            { filter: "genera", label: "Genera", rank_level: 20 },
-            { filter: "species", label: "Species", rank_level: 10 }].map( r => (
-              <li
-                disabled={openTaxon && openTaxon.rank_level <= r.rank_level}
-                className={lifelist.listViewRankFilter === r.filter ? "selected" : null}
-                key={`rank-filter-${r.filter}`}
-                onClick={e => {
-                  if ( openTaxon && openTaxon.rank_level <= r.rank_level ) {
-                    e.preventDefault( );
-                    e.stopPropagation( );
-                    return;
-                  }
-                  setListViewRankFilter( r.filter );
-                }}
-              >
-                { r.label }
-              </li>
-          ) )}
-          <li
-            className={lifelist.listViewRankFilter === "leaves" ? "selected" : null}
-            onClick={( ) => setListViewRankFilter( "leaves" )}
-          >
-            Leaves
-          </li>
-        </ul>
-      </div>
-    );
-    let sortLabel = "Sort: Total Observations";
-    if ( lifelist.listViewSort === "name" ) {
-      sortLabel = "Sort: Name";
-    } else if ( lifelist.listViewSort === "taxonomic" ) {
-      sortLabel = "Sort: Taxonomic";
-    }
-    const sortOptions = (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="sortDropdown"
-        >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
-          <li
-            className={lifelist.listViewSort === "obsDesc" ? "selected" : null}
-            onClick={( ) => setListViewSort( "obsDesc" )}
-          >
-            Total Observations
-          </li>
-          <li
-            className={lifelist.listViewSort === "name" ? "selected" : null}
-            onClick={( ) => setListViewSort( "name" )}
-          >
-            Name
-          </li>
-          <li
-            className={lifelist.listViewSort === "taxonomic" ? "selected" : null}
-            onClick={( ) => setListViewSort( "taxonomic" )}
-          >
-            Taxonomic
-          </li>
-        </ul>
-      </div>
-    );
     return (
-      <div className="Details">
-        <div className="search-options">
-          { sortOptions }
-          { rankOptions }
-        </div>
-        <div id="TaxaList">
-          <ul className="list">
-            { this.showNode( openTaxon ) }
-          </ul>
-        </div>
+      <div id="TaxaList">
+        <ul className="list">
+          { this.showNode( openTaxon ) }
+        </ul>
       </div>
     );
   }
@@ -325,8 +192,6 @@ TaxaList.propTypes = {
   setDetailsTaxon: PropTypes.func,
   setDetailsView: PropTypes.func,
   setListViewScrollPage: PropTypes.func,
-  setListViewSort: PropTypes.func,
-  setListViewRankFilter: PropTypes.func,
   setListViewOpenTaxon: PropTypes.func
 };
 

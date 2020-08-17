@@ -1,9 +1,8 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import TaxaTreeContainer from "../containers/taxa_tree_container";
-import TaxaListContainer from "../containers/taxa_list_container";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
+import TreeViewContainer from "../containers/tree_view_container";
 import DetailsViewContainer from "../containers/details_view_container";
 
 /* global inaturalist */
@@ -35,14 +34,13 @@ class App extends React.Component {
         </div>
         <div className="FlexGrid">
           <div className="FlexCol tree-col">
-            <h2>Explore</h2>
             <div className="view-selectors">
               <button
                 type="button"
                 className={`btn pill-button ${lifelist.navView === "tree" ? "selected" : ""}`}
                 onClick={( ) => setNavView( "tree" )}
               >
-                <span className="fa fa-align-left" />
+                <span className="icon-treeview" />
                 Tree View
               </button>
               <button
@@ -53,9 +51,16 @@ class App extends React.Component {
                 <span className="fa fa-bars" />
                 List View
               </button>
+              <button
+                type="button"
+                className={`btn pill-button ${lifelist.navView === "simplified" ? "selected" : ""}`}
+                onClick={( ) => setNavView( "simplified" )}
+              >
+                <span className="fa fa-bars" />
+                Simplified View
+              </button>
             </div>
             <div className="iconic-taxa-selectors">
-              <span className="jump-to">Jump to:</span>
               { _.map( _.sortBy( inaturalist.ICONIC_TAXA, "name" ), t => (
                 <button
                   type="button"
@@ -86,13 +91,9 @@ class App extends React.Component {
               config={config}
               placeholder={I18n.t( "taxon_autocomplete_placeholder" )}
             />
-            { lifelist.navView === "tree"
-              ? ( <TaxaTreeContainer /> )
-              : ( <TaxaListContainer /> )
-            }
+            <TreeViewContainer />
           </div>
           <div className="FlexCol details-col">
-            <h2>View</h2>
             <div className="view-selectors">
               <button
                 type="button"

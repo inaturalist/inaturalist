@@ -51,7 +51,11 @@
     border: 1px solid #e7e7e7;
     letter-spacing: 0.02em;
     background: inherit;
-    .fa {
+    .icon-treeview {
+      float: left;
+      line-height: 16px;
+    }
+    .fa, .icon-treeview {
       margin-right: 6px;
       color: $inat-green;
     }
@@ -59,7 +63,7 @@
       border: none;
       background: $inat-green;
       color: white;
-      .fa {
+      .fa, .icon-treeview {
         color: white;
       }
     }
@@ -98,11 +102,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     background: inherit;
     display: inline-block;
     border-radius: 20px;
-    font-size: 23px;
+    font-size: 25px;
     padding: 1px 1px;
     color: #979797;
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     margin-left: 4px;
     outline: none;
@@ -201,6 +205,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       vertical-align: inherit;
       font-size: 11px;
     }
+  }
+  .icon-collapse, .icon-expand, .icon-focus {
+    font-size: 12px;
+    line-height: 12px;
+    vertical-align: text-top;
   }
   & > .fa-chevron-down {
     margin-left: 2px;
@@ -373,17 +382,23 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 
+.tree {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
 .tree, .tree > * ul, #TaxaList > * ul.children {
   padding: 0;
   list-style: none;
   position: relative;
 }
 
-.tree > * ul, #TaxaList > * ul.children {
+.tree > * ul.nested, #TaxaList > * ul.children {
   margin: 0 0 0 1em;
 }
 
-.tree:before, .tree ul:before, #TaxaList ul.children:before {
+.tree ul.nested:before, #TaxaList ul.children:before {
   content: "";
   display: block;
   width: 0;
@@ -395,14 +410,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree li, #TaxaList li.child {
+.tree ul.nested li, #TaxaList li.child {
   margin: 0;
   padding: 0 1em;
   line-height: 1.5em;
   position: relative;
 }
 
-.tree li:before, #TaxaList li.child:before {
+.tree ul.nested li:before, #TaxaList li.child:before {
   content: "";
   display: block;
   width: 10px;
@@ -415,7 +430,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree li:last-child:before, #TaxaList li.child:last-child:before {
+.tree ul.nested li:last-child:before, #TaxaList li.child:last-child:before {
   background: white;
   height: auto;
   top: .75em;
@@ -479,6 +494,13 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       li {
         padding: 3px 20px;
         cursor: pointer;
+        &:not(:first-child) {
+          margin-top: 2px;
+        }
+        &.divider {
+          padding: 0;
+          margin: 10px 0;
+        }
         &.selected, &:hover {
           background-color: #f5f5f5;
         }
