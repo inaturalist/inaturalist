@@ -3281,6 +3281,9 @@ cs:
   rank: Klasifikace
   rank_position: Klasifikace
   rank_restrictions: Omezení klasifikace
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Stav věci
     kingdom: Říše
