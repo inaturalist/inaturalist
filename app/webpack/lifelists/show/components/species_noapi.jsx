@@ -11,12 +11,22 @@ class SpeciesNoAPI extends Component {
 
   secondaryNodeList( ) {
     const {
-      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon
+      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, search
     } = this.props;
     let nodeShouldDisplay;
     const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
       ? ( ) => true
       : node => node.left >= detailsTaxon.left && node.right <= detailsTaxon.right;
+    const nodeIsInPlace = node => {
+      if ( lifelist.speciesPlaceFilter
+          && search
+          && search.searchResponse
+          && search.loaded
+          && !_.includes( search.searchResponse.results, node.id ) ) {
+        return false;
+      }
+      return true;
+    };
     if ( lifelist.speciesViewRankFilter === "all" ) {
       if ( !detailsTaxon || detailsTaxon === "root" ) {
         nodeShouldDisplay = nodeIsDescendant;
@@ -49,13 +59,12 @@ class SpeciesNoAPI extends Component {
     }
     if ( !nodeShouldDisplay ) return null;
     const secondaryNodes = _.filter( lifelist.taxa,
-      t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) );
+      t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && nodeIsInPlace( t ) );
     let moreButton;
-    console.log([lifelist.speciesViewScrollPage, _.size( secondaryNodes ), Math.ceil( _.size( secondaryNodes ) ) / lifelist.speciesViewPerPage ])
     if ( lifelist.speciesViewScrollPage < (
       Math.ceil( _.size( secondaryNodes ) ) / lifelist.speciesViewPerPage ) ) {
       moreButton = (
-        <div className="more">
+        <div className="more" key={`more-${lifelist.speciesViewScrollPage}`}>
           <button
             type="button"
             className="btn btn-sm btn-default"
@@ -75,12 +84,12 @@ class SpeciesNoAPI extends Component {
     } else if ( lifelist.speciesViewSort === "taxonomic" ) {
       sortMethod = t => t.left;
     } else {
-      sortMethod = t => -1 * t.descendant_obs_count;
+      sortMethod = [t => -1 * t.descendant_obs_count, "left"];
     }
     const secondaryNodesToDisplay = _.slice( _.sortBy( secondaryNodes, sortMethod ), 0,
       lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage );
     return (
-      <div className="SpeciesGrid">
+      <div className="SpeciesGrid" key={`grid-${lifelist.speciesViewRankFilter}-${lifelist.speciesPlaceFilter}-${detailsTaxon && detailsTaxon.id}`}>
         { _.map( secondaryNodesToDisplay, s => {
           const onClick = e => {
             if ( zoomToTaxon ) {
@@ -118,15 +127,11 @@ class SpeciesNoAPI extends Component {
 
   render( ) {
     const {
-      lifelist, detailsTaxon, setRankFilter, setSort
+      lifelist, detailsTaxon, setRankFilter, setSort, search
     } = this.props;
     if ( !lifelist.taxa || !lifelist.children ) { return ( <span /> ); }
     let rankLabel = "Show: Children";
-    if ( lifelist.speciesViewRankFilter === "all" ) {
-      rankLabel = "Show: All ranks";
-    } else if ( lifelist.speciesViewRankFilter === "major" ) {
-      rankLabel = "Show: Major Ranks";
-    } else if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
+    if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
       rankLabel = "Show: Kingdoms";
     } else if ( lifelist.speciesViewRankFilter === "phylums" ) {
       rankLabel = "Show: Phylums";
@@ -160,18 +165,6 @@ class SpeciesNoAPI extends Component {
             onClick={( ) => setRankFilter( "children" )}
           >
             Children
-          </li>
-          <li
-            className={lifelist.speciesViewRankFilter === "all" ? "selected" : null}
-            onClick={( ) => setRankFilter( "all" )}
-          >
-            All ranks
-          </li>
-          <li
-            className={lifelist.speciesViewRankFilter === "major" ? "selected" : null}
-            onClick={( ) => setRankFilter( "major" )}
-          >
-            Major Ranks
           </li>
           { [{ filter: "kingdoms", label: "Kingdoms", rank_level: 70 },
             { filter: "phylums", label: "Phylums", rank_level: 60 },
@@ -244,13 +237,20 @@ class SpeciesNoAPI extends Component {
         </ul>
       </div>
     );
+    const loading = ( lifelist.speciesPlaceFilter && ( !search || ( !search.searchResponse && !search.loaded ) ) );
+    let view;
+    if ( loading ) {
+      view = ( <div className="loading_spinner huge" /> );
+    } else {
+      view = this.secondaryNodeList( );
+    }
     return (
       <div className="Details">
         <div className="search-options">
           { sortOptions }
           { rankOptions }
         </div>
-        { this.secondaryNodeList( ) }
+        { view }
       </div>
     );
   }
@@ -258,6 +258,7 @@ class SpeciesNoAPI extends Component {
 
 SpeciesNoAPI.propTypes = {
   config: PropTypes.object,
+  search: PropTypes.object,
   lifelist: PropTypes.object,
   detailsTaxon: PropTypes.object,
   setScrollPage: PropTypes.func,

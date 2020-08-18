@@ -3667,6 +3667,36 @@ CREATE TABLE public.site_admins (
 
 
 --
+-- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.simplified_tree_milestone_taxa (
+    id integer NOT NULL,
+    taxon_id integer
+);
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
 -- Name: site_admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5744,6 +5774,13 @@ ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.ses
 
 
 --
+-- Name: simplified_tree_milestone_taxa id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa ALTER COLUMN id SET DEFAULT nextval('public.simplified_tree_milestone_taxa_id_seq'::regclass);
+
+
+--
 -- Name: site_admins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6686,6 +6723,14 @@ ALTER TABLE ONLY public.saved_locations
 
 ALTER TABLE ONLY public.sessions
     ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simplified_tree_milestone_taxa simplified_tree_milestone_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa
+    ADD CONSTRAINT simplified_tree_milestone_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -10193,6 +10238,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200226211718');
 INSERT INTO schema_migrations (version) VALUES ('20200318193130');
 
 INSERT INTO schema_migrations (version) VALUES ('20200604181750');
+
+INSERT INTO schema_migrations (version) VALUES ('20200706035032');
 
 INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 

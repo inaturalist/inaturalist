@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import TaxaTree from "../components/taxa_list";
 import {
   setListViewScrollPage, setDetailsTaxon, setDetailsView,
-  setListViewOpenTaxon, setListViewRankFilter, setListViewSort
+  setListViewOpenTaxon, setListViewRankFilter, setTreeSort
 } from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
@@ -20,7 +20,7 @@ function mapDispatchToProps( dispatch ) {
     setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
     setListViewOpenTaxon: taxon => dispatch( setListViewOpenTaxon( taxon ) ),
     setListViewRankFilter: value => dispatch( setListViewRankFilter( value ) ),
-    setListViewSort: value => dispatch( setListViewSort( value ) ),
+    setTreeSort: value => dispatch( setTreeSort( value ) ),
     setDetailsView: view => dispatch( setDetailsView( view ) )
   };
 }

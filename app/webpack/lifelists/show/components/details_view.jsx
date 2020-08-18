@@ -140,14 +140,17 @@ const DetailsView = ( {
       </div>
     );
   }
+  let taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
+    <span
+      className="fa fa-times"
+      onClick={( ) => setDetailsTaxon( null )}
+    />
+  );
   return (
     <div className="Details">
       { lifelist.detailsTaxon ? (
         <h3>
-          <span
-            className="fa fa-times"
-            onClick={( ) => setDetailsTaxon( null )
-          } />
+          { taxonClear }
           <SplitTaxon taxon={lifelist.detailsTaxon} noInactive />
         </h3>
       ) : (
@@ -156,25 +159,23 @@ const DetailsView = ( {
         </h3>
       )}
       { stats }
-      { lifelist.detailsView === "unobservedSpecies" && (
-        <div className="search-options">
-          <div className="place-search">
-            <span className="glyphicon glyphicon-search ac-select-thumb" />
-            <PlaceAutocomplete
-              resetOnChange={false}
-              initialPlaceID={lifelist.speciesPlaceFilter}
-              bootstrapClear
-              afterSelect={result => {
-                setSpeciesPlaceFilter( result.item.id );
-              }}
-              afterUnselect={( ) => {
-                setSpeciesPlaceFilter( null );
-              }}
-            />
-          </div>
-          { searchOptions }
+      <div className="search-options">
+        <div className="place-search">
+          <span className="glyphicon glyphicon-search ac-select-thumb" />
+          <PlaceAutocomplete
+            resetOnChange={false}
+            initialPlaceID={lifelist.speciesPlaceFilter}
+            bootstrapClear
+            afterSelect={result => {
+              setSpeciesPlaceFilter( result.item.id );
+            }}
+            afterUnselect={( ) => {
+              setSpeciesPlaceFilter( null );
+            }}
+          />
         </div>
-      ) }
+        { lifelist.detailsView !== "observations" && ( searchOptions ) }
+      </div>
       { view }
     </div>
   );

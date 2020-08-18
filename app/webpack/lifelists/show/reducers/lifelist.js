@@ -7,7 +7,11 @@ import {
 const SET_ATTRIBUTES = "lifelists-show/SET_ATTRIBUTES";
 
 const observationsSearch = searchWrapper( "observations" );
+const speciesPlaceSearch = searchWrapper( "speciesPlace" );
 const unobservedSpeciesSearch = searchWrapper( "unobservedSpecies" );
+
+/* global MILESTONE_TAXON_IDS */
+const milestoneTaxa = _.keyBy( MILESTONE_TAXON_IDS );
 
 const RANK_FILTER_RANK_LEVELS = {
   kingdoms: 70,
@@ -23,7 +27,9 @@ export default function reducer( state = {
   loading: true,
   user: null,
   openTaxa: [],
-  navView: "tree",
+  simplifiedOpenTaxa: [],
+  treeScrollIndex: 50,
+  navView: "simplified",
   detailsView: "species",
   detailsTaxon: null,
   detailsTaxonExact: false,
@@ -31,13 +37,17 @@ export default function reducer( state = {
   observationSort: "dateDesc",
   speciesPlaceFilter: null,
   listViewOpenTaxon: null,
-  listViewRankFilter: "children",
+  listViewRankFilter: "default",
   listViewScrollPage: 1,
   listViewPerPage: 100,
+  treeSort: "taxonomic",
+  treeMode: "tree",
+  treeIndent: true,
   speciesViewRankFilter: "leaves",
   speciesViewScrollPage: 1,
   speciesViewPerPage: 50,
   speciesViewSort: "obsDesc"
+
 }, action ) {
   switch ( action.type ) {
     case SET_ATTRIBUTES:
@@ -110,6 +120,8 @@ export function setDetailsView( view ) {
       dispatch( observationsSearch.fetchFirstPage( ) );
     } else if ( view === "unobservedSpecies" ) {
       dispatch( unobservedSpeciesSearch.fetchFirstPage( ) );
+    } else if ( view === "species" ) {
+      dispatch( speciesPlaceSearch.fetchFirstPage( ) );
     }
   };
 }
@@ -122,6 +134,26 @@ export function setListViewScrollPage( page ) {
   };
 }
 
+export function setTreeScrollIndex( scrollIndex ) {
+  return dispatch => {
+    dispatch( setAttributes( {
+      treeScrollIndex: scrollIndex
+    } ) );
+  };
+}
+
+export function setTreeMode( treeMode ) {
+  return dispatch => {
+    dispatch( setAttributes( { treeMode } ) );
+  };
+}
+
+export function setTreeIndent( indent ) {
+  return dispatch => {
+    dispatch( setAttributes( { treeIndent: indent } ) );
+  };
+}
+
 export function setListViewOpenTaxon( taxon ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
@@ -129,7 +161,7 @@ export function setListViewOpenTaxon( taxon ) {
       listViewOpenTaxon: taxon
     } ) );
     dispatch( setListViewScrollPage( 1 ) );
-    if ( lifelist.navView === "list" && taxon ) {
+    if ( lifelist.treeMode === "list" && taxon ) {
       const ancestry = [taxon.id];
       let parent = lifelist.taxa[taxon.parent_id];
       while ( parent ) {
@@ -137,6 +169,7 @@ export function setListViewOpenTaxon( taxon ) {
         parent = lifelist.taxa[parent.parent_id];
       }
       dispatch( setAttributes( { openTaxa: ancestry } ) );
+      dispatch( setAttributes( { simplifiedOpenTaxa: ancestry } ) );
     }
   };
 }
@@ -144,15 +177,17 @@ export function setListViewOpenTaxon( taxon ) {
 export function setListViewRankFilter( value ) {
   return dispatch => {
     dispatch( setAttributes( {
-      listViewRankFilter: value
+      listViewRankFilter: value,
+      listViewScrollPage: 1
     } ) );
   };
 }
 
-export function setListViewSort( value ) {
+export function setTreeSort( value ) {
   return dispatch => {
     dispatch( setAttributes( {
-      listViewSort: value
+      treeSort: value,
+      listViewScrollPage: 1
     } ) );
   };
 }
@@ -160,7 +195,8 @@ export function setListViewSort( value ) {
 export function setSpeciesViewRankFilter( value ) {
   return dispatch => {
     dispatch( setAttributes( {
-      speciesViewRankFilter: value
+      speciesViewRankFilter: value,
+      speciesViewScrollPage: 1
     } ) );
   };
 }
@@ -218,6 +254,41 @@ export function updateObservationsSearch( reload = false ) {
   };
 }
 
+export function updateSpeciesPlaceSearch( reload = false ) {
+  return ( dispatch, getState ) => {
+    const { lifelist } = getState( );
+    if ( lifelist.speciesPlaceFilter ) {
+      dispatch( speciesPlaceSearch.initializeSearch( {
+        method: "observations",
+        action: "taxa",
+        force: true,
+        searchParams: {
+          user_id: lifelist.user.id,
+          place_id: lifelist.speciesPlaceFilter
+        },
+        resultsModify: results => {
+          const allTaxa = _.keyBy( results );
+          _.each( results, r => {
+            const lifelistTaxon = lifelist.taxa[r];
+            if ( lifelistTaxon ) {
+              _.each( lifelistTaxon.ancestors, a => {
+                allTaxa[a] = true;
+              } );
+            }
+          } );
+          return _.map( _.keys( allTaxa ), Number );
+        }
+      } ) );
+      if ( reload ) {
+        dispatch( speciesPlaceSearch.fetchFirstPage( ) );
+      }
+    } else {
+      dispatch( speciesPlaceSearch.initializeSearch( { } ) );
+    }
+    dispatch( setSpeciesViewScrollPage( 1 ) );
+  };
+}
+
 export function updateUnobservedSpeciesSearch( reload = false ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
@@ -260,12 +331,14 @@ export function setObservationSort( sort ) {
 }
 
 export function setSpeciesPlaceFilter( placeID ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const { lifelist } = getState( );
     dispatch( setAttributes( {
       speciesPlaceFilter: placeID
     } ) );
-    dispatch( updateObservationsSearch( ) );
-    dispatch( updateUnobservedSpeciesSearch( ) );
+    dispatch( updateObservationsSearch( lifelist.detailsView === "observations" ) );
+    dispatch( updateSpeciesPlaceSearch( lifelist.detailsView === "species" ) );
+    dispatch( updateUnobservedSpeciesSearch( lifelist.detailsView === "unobservedSpecies" ) );
   };
 }
 
@@ -280,7 +353,8 @@ export function setDetailsTaxon( taxon, options = { } ) {
     lifelist.detailsTaxonExact = options.without_descendants;
     dispatch( setAttributes( {
       detailsTaxon: taxon,
-      detailsTaxonExact: options.without_descendants
+      detailsTaxonExact: options.without_descendants,
+      speciesViewScrollPage: 1
     } ) );
     dispatch( updateObservationsSearch( lifelist.detailsView === "observations" ) );
     dispatch( updateUnobservedSpeciesSearch( lifelist.detailsView === "unobservedSpecies" ) );
@@ -316,6 +390,10 @@ export function setDetailsTaxon( taxon, options = { } ) {
 export function toggleTaxon( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
+    dispatch( setAttributes( {
+      listViewOpenTaxon: taxon
+    } ) );
+    if ( !taxon ) { return; }
     if ( options.feature ) {
       const nextOpenIDs = [taxon.id];
       let branchID = taxon.id;
@@ -378,9 +456,9 @@ export function fetchUser( user, options ) {
     let searchParams = { user_id: user.id };
     let featuredTaxonID;
     if ( urlParams.filter ) {
+      delete searchParams.user_id;
       searchParams = Object.assign( { }, urlParams, searchParams );
       featuredTaxonID = searchParams.taxon_id;
-      delete searchParams.taxon_id;
     } else if ( urlParams.taxon_id ) {
       featuredTaxonID = urlParams.taxon_id;
     }
@@ -397,59 +475,87 @@ export function fetchUser( user, options ) {
         children[r.parent_id].push( r.id );
       } );
       const taxa = _.fromPairs( _.map( response.results, r => ( [r.id, r] ) ) );
-      const descendantsRecursive = ( taxonID, ticker ) => {
+      const milestoneChildren = { };
+      const descendantsRecursive = ( taxonID, ticker, milestoneTaxonID, ancestors = [] ) => {
         let descendantCount = 0;
         let idsToOpen = [];
+        let hasMilestoneChildren;
         _.each( _.sortBy( children[taxonID], id => taxa[id].name ), childID => {
           let thisDescendantCount = 0;
           taxa[childID].left = ticker;
           ticker += 1;
+          let nextMilestoneTaxonID = milestoneTaxonID;
+          let milestoneLeaf = false;
+          if ( !milestoneTaxa[childID]
+            && milestoneTaxa[milestoneTaxonID]
+            && taxa[childID].rank_level % 10 === 0
+          ) {
+            milestoneLeaf = true;
+          }
+          if ( taxa[childID].rank_level === 70
+            || taxa[childID].rank_level === 10
+            || milestoneTaxa[childID]
+            || milestoneLeaf
+          ) {
+            milestoneChildren[milestoneTaxonID] = milestoneChildren[milestoneTaxonID] || [];
+            milestoneChildren[milestoneTaxonID].push( childID );
+          } else {
+            taxa[childID].nearestMilestoneTaxonID = milestoneTaxonID;
+          }
+          if ( milestoneTaxonID === 0 || milestoneTaxa[childID] || milestoneLeaf ) {
+            nextMilestoneTaxonID = childID;
+          }
           if ( children[childID] ) {
             const {
               childTicker,
               childDescendantCount,
-              childIDsToOpen
-            } = descendantsRecursive( childID, ticker );
-            idsToOpen = childIDsToOpen;
+              childIDsToOpen,
+              childHasMilestoneChildren
+            } = descendantsRecursive( childID, ticker,
+              nextMilestoneTaxonID, ancestors.concat( [childID] ) );
+            idsToOpen = idsToOpen.concat( childIDsToOpen );
             ticker = childTicker;
             thisDescendantCount += childDescendantCount;
             descendantCount += childDescendantCount;
+            hasMilestoneChildren = hasMilestoneChildren || childHasMilestoneChildren;
             taxa[childID].descendantCount = thisDescendantCount;
+            if ( milestoneTaxa[childID] && !milestoneLeaf ) {
+              idsToOpen.push( childID );
+            }
           } else {
             descendantCount += 1;
             taxa[childID].descendantCount = 1;
           }
           taxa[childID].right = ticker;
+          taxa[childID].ancestors = ancestors;
           ticker += 1;
         } );
-        if ( _.size( children[taxonID] ) === 1 ) {
-          idsToOpen.push( children[taxonID][0] );
-        } else {
-          idsToOpen = [];
-        }
         return {
           childTicker: ticker,
           childDescendantCount: descendantCount,
-          childIDsToOpen: idsToOpen
+          childIDsToOpen: idsToOpen,
+          chilHasMilestoneChildren: hasMilestoneChildren
         };
       };
       delete taxa[LIFE_TAXON.id];
-      const { childIDsToOpen } = descendantsRecursive( 0, 0 );
+      const { childIDsToOpen } = descendantsRecursive( 0, 0, 0 );
       const leavesCount = _.sum( _.map( children[0], id => taxa[id].descendantCount ) );
       const observationsCount = _.sum( _.map( children[0], id => taxa[id].descendant_obs_count ) );
       dispatch( setAttributes( {
         leavesCount,
         observationsCount,
+        milestoneChildren,
         children,
         taxa,
         user,
         observationsWithoutTaxon: response.count_without_taxon
       } ) );
-      if ( !_.isEmpty( childIDsToOpen ) ) {
+      if ( _.isEmpty( childIDsToOpen ) ) {
+        dispatch( setAttributes( { openTaxa: _.map( _.keys( taxa ), i => Number( i ) ) } ) );
+      } else {
         dispatch( setAttributes( { openTaxa: childIDsToOpen } ) );
-        dispatch( setDetailsTaxon( taxa[_.first( childIDsToOpen )], { reloadSearch: true } ) );
-        dispatch( setListViewOpenTaxon( taxa[_.first( childIDsToOpen )] ) );
-      } else if ( featuredTaxonID ) {
+      }
+      if ( featuredTaxonID ) {
         dispatch( zoomToTaxon( featuredTaxonID ) );
       } else {
         dispatch( setDetailsTaxon( null, { reloadSearch: true } ) );
