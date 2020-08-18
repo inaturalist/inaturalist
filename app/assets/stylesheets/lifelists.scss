@@ -102,11 +102,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     background: inherit;
     display: inline-block;
     border-radius: 20px;
-    font-size: 25px;
+    font-size: 23px;
     padding: 1px 1px;
     color: #979797;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     text-align: center;
     margin-left: 4px;
     outline: none;
@@ -437,7 +437,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   bottom: 0;
 }
 
-.tree li:last-child {
+.tree ul.nested li:last-child {
   margin-bottom: 10px;
 }
 

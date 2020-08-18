@@ -164,7 +164,7 @@ class TaxaList extends React.Component {
         <ul className="children">
           { _.map( secondaryNodesToDisplay, t => this.showNode( t, true ) ) }
         </ul>
-        <div className="more">
+        <div className="more" key={`more-${lifelist.listViewScrollPage}-${openTaxon ? openTaxon.id : null}`}>
           { moreButton }
         </div>
       </div>
@@ -175,7 +175,7 @@ class TaxaList extends React.Component {
     const { lifelist, openTaxon } = this.props;
     if ( !lifelist.taxa || !lifelist.children ) { return ( <span /> ); }
     return (
-      <div id="TaxaList">
+      <div id="TaxaList" key={`tree-${lifelist.treeSort}-${lifelist.listViewRankFilter}`}>
         <ul className="list">
           { this.showNode( openTaxon ) }
         </ul>

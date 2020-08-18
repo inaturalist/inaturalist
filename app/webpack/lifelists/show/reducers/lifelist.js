@@ -177,7 +177,8 @@ export function setListViewOpenTaxon( taxon ) {
 export function setListViewRankFilter( value ) {
   return dispatch => {
     dispatch( setAttributes( {
-      listViewRankFilter: value
+      listViewRankFilter: value,
+      listViewScrollPage: 1
     } ) );
   };
 }
@@ -185,7 +186,8 @@ export function setListViewRankFilter( value ) {
 export function setTreeSort( value ) {
   return dispatch => {
     dispatch( setAttributes( {
-      treeSort: value
+      treeSort: value,
+      listViewScrollPage: 1
     } ) );
   };
 }

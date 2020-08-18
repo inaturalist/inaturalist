@@ -159,25 +159,23 @@ const DetailsView = ( {
         </h3>
       )}
       { stats }
-      { lifelist.detailsView !== "observatioins" && (
-        <div className="search-options">
-          <div className="place-search">
-            <span className="glyphicon glyphicon-search ac-select-thumb" />
-            <PlaceAutocomplete
-              resetOnChange={false}
-              initialPlaceID={lifelist.speciesPlaceFilter}
-              bootstrapClear
-              afterSelect={result => {
-                setSpeciesPlaceFilter( result.item.id );
-              }}
-              afterUnselect={( ) => {
-                setSpeciesPlaceFilter( null );
-              }}
-            />
-          </div>
-          { searchOptions }
+      <div className="search-options">
+        <div className="place-search">
+          <span className="glyphicon glyphicon-search ac-select-thumb" />
+          <PlaceAutocomplete
+            resetOnChange={false}
+            initialPlaceID={lifelist.speciesPlaceFilter}
+            bootstrapClear
+            afterSelect={result => {
+              setSpeciesPlaceFilter( result.item.id );
+            }}
+            afterUnselect={( ) => {
+              setSpeciesPlaceFilter( null );
+            }}
+          />
         </div>
-      ) }
+        { lifelist.detailsView !== "observations" && ( searchOptions ) }
+      </div>
       { view }
     </div>
   );
