@@ -7429,9 +7429,6 @@ en:
                 should be in English, but currently it matches the %{suggested_locale} translation of "%{suggested}".
                 Use "%{suggested}" if that is what you meant and it will be translated when you view the site in
                 that language.
-              should_only_contain_latin_script: |
-                should only contain Latin characters, punctuation, and spaces.
-                The following characters are not permitted: "%{problem_chars}".
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
