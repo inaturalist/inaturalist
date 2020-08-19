@@ -45,7 +45,7 @@ export default function reducer( state = {
   treeIndent: true,
   speciesViewRankFilter: "leaves",
   speciesViewScrollPage: 1,
-  speciesViewPerPage: 50,
+  speciesViewPerPage: 100,
   speciesViewSort: "obsDesc"
 
 }, action ) {
@@ -267,16 +267,19 @@ export function updateSpeciesPlaceSearch( reload = false ) {
           place_id: lifelist.speciesPlaceFilter
         },
         resultsModify: results => {
-          const allTaxa = _.keyBy( results );
+          const allTaxa = {};
           _.each( results, r => {
-            const lifelistTaxon = lifelist.taxa[r];
+            allTaxa[r.taxon_id] = allTaxa[r.taxon_id] || 0;
+            allTaxa[r.taxon_id] += r.count;
+            const lifelistTaxon = lifelist.taxa[r.taxon_id];
             if ( lifelistTaxon ) {
               _.each( lifelistTaxon.ancestors, a => {
-                allTaxa[a] = true;
+                allTaxa[a] = allTaxa[a] || 0;
+                allTaxa[a] += r.count;
               } );
             }
           } );
-          return _.map( _.keys( allTaxa ), Number );
+          return allTaxa;
         }
       } ) );
       if ( reload ) {
@@ -437,13 +440,13 @@ export function zoomToTaxon( taxonID, options = { } ) {
         parent = lifelist.taxa[parent.parent_id];
       }
       dispatch( setAttributes( { openTaxa: ancestry } ) );
-      dispatch( setDetailsTaxon( lifelist.taxa[taxon.id] ) );
       dispatch( setListViewOpenTaxon( lifelist.taxa[taxon.id] ) );
       if ( options.detailsView ) {
         dispatch( setDetailsView( options.detailsView ) );
       } else if ( lifelist.detailsView === "unobservedSpecies" ) {
         dispatch( setDetailsView( "species" ) );
       }
+      dispatch( setDetailsTaxon( lifelist.taxa[taxon.id] ) );
     }
   };
 }

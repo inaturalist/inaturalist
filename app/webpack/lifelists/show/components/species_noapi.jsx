@@ -4,11 +4,6 @@ import PropTypes from "prop-types";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
 class SpeciesNoAPI extends Component {
-  constructor( props, context ) {
-    super( props, context );
-    let asdf = "ASdf";
-  }
-
   secondaryNodeList( ) {
     const {
       lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, search
@@ -17,15 +12,15 @@ class SpeciesNoAPI extends Component {
     const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
       ? ( ) => true
       : node => node.left >= detailsTaxon.left && node.right <= detailsTaxon.right;
-    const nodeIsInPlace = node => {
+    const obsCount = node => {
       if ( lifelist.speciesPlaceFilter
           && search
           && search.searchResponse
           && search.loaded
-          && !_.includes( search.searchResponse.results, node.id ) ) {
-        return false;
+      ) {
+        return search.searchResponse.results[node.id] || 0;
       }
-      return true;
+      return node.descendant_obs_count;
     };
     if ( lifelist.speciesViewRankFilter === "all" ) {
       if ( !detailsTaxon || detailsTaxon === "root" ) {
@@ -59,7 +54,7 @@ class SpeciesNoAPI extends Component {
     }
     if ( !nodeShouldDisplay ) return null;
     const secondaryNodes = _.filter( lifelist.taxa,
-      t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && nodeIsInPlace( t ) );
+      t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && obsCount( t ) );
     let moreButton;
     if ( lifelist.speciesViewScrollPage < (
       Math.ceil( _.size( secondaryNodes ) ) / lifelist.speciesViewPerPage ) ) {
@@ -84,7 +79,7 @@ class SpeciesNoAPI extends Component {
     } else if ( lifelist.speciesViewSort === "taxonomic" ) {
       sortMethod = t => t.left;
     } else {
-      sortMethod = [t => -1 * t.descendant_obs_count, "left"];
+      sortMethod = [t => -1 * obsCount( t ), "left"];
     }
     const secondaryNodesToDisplay = _.slice( _.sortBy( secondaryNodes, sortMethod ), 0,
       lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage );
@@ -112,7 +107,7 @@ class SpeciesNoAPI extends Component {
                       onClick={onClick}
                       href={`/observations?user_id=${lifelist.user.login}&taxon_id=${s.id}&place_id=any&verifiable=any`}
                     >
-                      { I18n.t( "x_observations", { count: s.descendant_obs_count } ) }
+                      { I18n.t( "x_observations", { count: obsCount( s ) } ) }
                     </a>
                   </div>
                 )}
