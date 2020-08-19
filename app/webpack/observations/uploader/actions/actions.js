@@ -438,7 +438,7 @@ const actions = class actions {
     return function ( dispatch ) {
       util.isOnline( online => {
         if ( online ) {
-          dispatch( actions.submitCheckNoPhotoNoID( ) );
+          dispatch( actions.submitCheckNoPhotoOrNoID( ) );
         } else {
           dispatch( actions.setState( {
             confirmModal: {
@@ -453,16 +453,14 @@ const actions = class actions {
     };
   }
 
-  static submitCheckNoPhotoNoID( ) {
+  static submitCheckNoPhotoOrNoID( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
         if (
           !failed
-          && _.size( c.files ) === 0
-          && !c.taxon_id
-          && !c.species_guess
+          && ( _.size( c.files ) === 0 || ( !c.taxon_id && !c.species_guess ) )
         ) {
           failed = true;
         }
@@ -473,7 +471,7 @@ const actions = class actions {
             show: true,
             cancelText: I18n.t( "go_back" ),
             confirmText: I18n.t( "continue" ),
-            message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
+            message: I18n.t( "you_are_submitting_obs_without_photos_or_names" ),
             onConfirm: () => {
               setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
             }
