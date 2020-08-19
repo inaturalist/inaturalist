@@ -1299,6 +1299,9 @@ lb:
   random: Zoufall
   range: Beräich
   rank_position: Klassement
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: Kinnekräich
     subclass: Ënnerklass
