@@ -3672,6 +3672,11 @@ en:
   site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
   some_agree: some agree
+  some_observations_are_missing_media_or_identifications: |
+    Some observations are missing media or identifications.
+    Observations without media will not be visible by default in searches, and those without any identification may not
+    be seen by experts looking for specific taxa. Even a very coarse identification like "plants" can help a plant
+    expert find your observation.
   some_observations_failed_to_be_added: Some observations failed to be added to projects
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
@@ -4605,10 +4610,6 @@ en:
   you_are_setting_this_project_to_aggregate: |
     You are setting this project to aggregate all observations matching the
     following rules: %{rules} Do you want to proceed?
-  you_are_submitting_obs_without_photos_or_names: |
-    You are submitting observations without photos or taxon names. Observations
-    without this information are often impossible to identify and will not be
-    visible by default in observation searches.
   you_are_submitting_obs_with_no_date_or_no_location: |
     You are submitting observations without dates or locations. Observations
     without this information are often impossible to identify and will not be

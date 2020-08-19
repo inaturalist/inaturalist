@@ -471,7 +471,7 @@ const actions = class actions {
             show: true,
             cancelText: I18n.t( "go_back" ),
             confirmText: I18n.t( "continue" ),
-            message: I18n.t( "you_are_submitting_obs_without_photos_or_names" ),
+            message: I18n.t( "some_observations_are_missing_media_or_identifications" ),
             onConfirm: () => {
               setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
             }
