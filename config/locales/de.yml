@@ -3131,6 +3131,9 @@ de:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: eingeordnet als
     kingdom: Reich
@@ -3227,7 +3230,7 @@ de:
   remove: Entfernen
   remove_all_tags: Alle Stichwörter entfernen
   remove_comma_separated_tags: "Komma-getrennte Stichwörter entfernen"
-  remove_conservation_status: Konservierungsstatus entfernen
+  remove_conservation_status: Schutzkategorie entfernen
   remove_from: Entfernen aus
   remove_curator: Kurator entfernen
   remove_curator_status: Kuratorstatus entfernen
