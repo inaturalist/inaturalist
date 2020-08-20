@@ -3201,6 +3201,9 @@ da:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
