@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 
 class ConfirmModal extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.cancel = this.cancel.bind( this );
@@ -13,48 +12,61 @@ class ConfirmModal extends Component {
   }
 
   close( ) {
-    if ( _.isFunction( this.props.onClose ) ) {
-      this.props.onClose( );
+    const { onClose, updateState } = this.props;
+    if ( _.isFunction( onClose ) ) {
+      onClose( );
     }
-    this.props.updateState( { confirmModal: { show: false } } );
+    updateState( { confirmModal: { show: false } } );
   }
 
   confirm( ) {
+    const { onConfirm } = this.props;
     this.close( );
-    if ( _.isFunction( this.props.onConfirm ) ) {
-      this.props.onConfirm( );
+    if ( _.isFunction( onConfirm ) ) {
+      onConfirm( );
     }
   }
 
   cancel( ) {
+    const { onCancel } = this.props;
     this.close( );
-    if ( _.isFunction( this.props.onCancel ) ) {
-      this.props.onCancel( );
+    if ( _.isFunction( onCancel ) ) {
+      onCancel( );
     }
   }
 
   render( ) {
-    const { show } = this.props;
+    const {
+      cancelText,
+      confirmClass,
+      confirmText,
+      hideCancel,
+      message,
+      show
+    } = this.props;
     let cancel;
-    if ( !this.props.hideCancel ) {
+    if ( !hideCancel ) {
       cancel = (
-        <Button bsStyle="default" onClick={ this.cancel }>
-          { this.props.cancelText || I18n.t( "cancel" ) }
+        <Button
+          bsStyle="default"
+          onClick={this.cancel}
+        >
+          { cancelText || I18n.t( "cancel" ) }
         </Button>
       );
     }
     return (
-      <Modal show={ show } className="confirm" onHide={ this.close }>
+      <Modal show={show} className="confirm" onHide={this.close}>
         <Modal.Body>
           <div className="text">
-            { this.props.message }
+            { message }
           </div>
         </Modal.Body>
         <Modal.Footer>
-         <div className="buttons">
+          <div className="buttons">
             { cancel }
-            <Button bsStyle={ this.props.confirmClass || "primary" } onClick={ this.confirm }>
-              { this.props.confirmText || I18n.t( "confirm" ) }
+            <Button bsStyle={confirmClass || "primary"} onClick={this.confirm}>
+              { confirmText || I18n.t( "confirm" ) }
             </Button>
           </div>
         </Modal.Footer>
