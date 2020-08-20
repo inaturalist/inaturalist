@@ -471,7 +471,8 @@ const actions = class actions {
             show: true,
             cancelText: I18n.t( "go_back" ),
             confirmText: I18n.t( "continue" ),
-            message: I18n.t( "some_observations_are_missing_media_or_identifications" ),
+            title: I18n.t( "some_observations_are_missing_media_or_identifications" ),
+            message: I18n.t( "some_observations_are_missing_media_or_identifications_desc" ),
             onConfirm: () => {
               setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
             }

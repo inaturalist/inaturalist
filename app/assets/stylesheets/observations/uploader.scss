@@ -832,11 +832,16 @@ input.failed, textarea.failed {
       width: 450px;
       margin-top: 150px;
     }
+    .modal-header {
+      h4 {
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
     .text {
       line-height: 28px;
       font-size: 1.3em;
       display: inline-block;
-      margin-left: 10px;
     }
     .modal-footer {
       padding: 10px;

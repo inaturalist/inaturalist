@@ -42,7 +42,8 @@ class ConfirmModal extends Component {
       confirmText,
       hideCancel,
       message,
-      show
+      show,
+      title
     } = this.props;
     let cancel;
     if ( !hideCancel ) {
@@ -57,6 +58,11 @@ class ConfirmModal extends Component {
     }
     return (
       <Modal show={show} className="confirm" onHide={this.close}>
+        { title && (
+          <Modal.Header>
+            <h4>{ title }</h4>
+          </Modal.Header>
+        ) }
         <Modal.Body>
           <div className="text">
             { message }
@@ -85,7 +91,8 @@ ConfirmModal.propTypes = {
   confirmText: PropTypes.string,
   confirmClass: PropTypes.string,
   updateState: PropTypes.func,
-  hideCancel: PropTypes.bool
+  hideCancel: PropTypes.bool,
+  title: PropTypes.string
 };
 
 export default ConfirmModal;

@@ -3673,10 +3673,12 @@ en:
   site_taxon_page: "%{site_name} taxon page"
   some_agree: some agree
   some_observations_are_missing_media_or_identifications: |
-    Some observations are missing media or identifications.
-    Observations without media will not be visible by default in searches, and those without any identification may not
-    be seen by experts looking for specific taxa. Even a very coarse identification like "plants" can help a plant
-    expert find your observation.
+    Some observations are missing media or identifications
+  some_observations_are_missing_media_or_identifications_desc: |
+    Observations without media will not be visible by default in searches, and
+    those without any identification may not be seen by experts looking for
+    specific taxa. Even a very coarse identification like "plants" can help a
+    plant expert find your observation.
   some_observations_failed_to_be_added: Some observations failed to be added to projects
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
