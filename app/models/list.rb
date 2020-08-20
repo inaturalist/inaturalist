@@ -58,7 +58,7 @@ class List < ActiveRecord::Base
   def add_taxon(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon.id))
+    ListedTaxon.create( options.merge( list: self, taxon: taxon ) )
   end
   
   #
@@ -228,11 +228,9 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv_cache_key(options = {})
-    if options[:view] = "taxonomic"
-      "generate_csv_taxonomic_#{id}"
-    else
-      "generate_csv_#{id}"
-    end
+    key = (options[:view] == "taxonomic") ? "generate_csv_taxonomic_#{id}" : "generate_csv_#{id}"
+    key << "_#{options[:user_id]}" if options[:user_id]
+    key
   end
 
   def is_a_users_default_lifelist?

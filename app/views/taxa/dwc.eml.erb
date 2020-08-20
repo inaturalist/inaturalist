@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eml:eml
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dc="http://purl.org/dc/terms/"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0.1/eml-gbif-profile.xsd"
+    xml:lang="en"
+    packageId="iNaturalist.observations.eml.<%= Time.now.to_i %>"
+    system="http://gbif.org"
+    scope="system">
+  <dataset>
+    <alternateIdentifier><![CDATA[<%=raw @uri %>]]></alternateIdentifier>
+    <title xml:lang="en">
+      iNaturalist Taxonomy
+    </title>
+
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "creator", data: @creator %>
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "metadataProvider", data: @metadata_provider %>
+
+    <pubDate><%= Date.today.to_s %></pubDate>
+
+    <!-- This is the RESOURCE language and not the metadata language which is at the bottom -->
+    <language>en_US</language>
+    <abstract>
+      <para>
+        Taxonomy from iNaturalist.org, an online social network of people sharing biodiversity information to help each other learn about nature. iNaturalist is a joint initiative of the California Academy of Sciences and the National Geographic Society.
+      </para>
+    </abstract>
+    <intellectualRights>
+      <para>
+        <% if @license %>
+        This archive is licensed under a
+        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        </ulink>.
+        <% end %>
+        Taxonomic information should not represent creative work and thus may not be subject to intellectual property restrictions in many jurisdictions.
+      </para>
+    </intellectualRights>
+    <!-- The distributionType URL is generally meant for informational purposes, and the "function" attribute should be set to "information". -->
+    <distribution scope="document">
+      <online>
+        <url function="information"><%= @uri %></url>
+      </online>
+    </distribution>
+    <coverage>
+      <% if @extent %>
+      <geographicCoverage>
+        <geographicDescription>Bounding Box</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate><%= [@extent.top_left.lon, -180].max %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= [@extent.bottom_right.lon, 180].min %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= [@extent.top_left.lat, 90].min %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= [@extent.bottom_right.lat, -90].max %></southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <% end %>
+
+      <% unless @taxa.blank? %>
+      <taxonomicCoverage>
+        <generalTaxonomicCoverage>
+          For information about iNaturalist's taxonomy, see https://www.inaturalist.org/pages/curator+guide.
+        </generalTaxonomicCoverage>
+      <% unless @taxa.blank? %>
+      <% @taxa.each do |taxon| %>
+        <taxonomicClassification>
+          <taxonRankName><%= taxon.rank %></taxonRankName>
+          <taxonRankValue><%= taxon.name %></taxonRankValue>
+        </taxonomicClassification>
+      <% end %>
+      <% end %>
+      </taxonomicCoverage>
+      <% end %>
+    </coverage>
+
+    <purpose>
+      <para>
+        iNaturalist.org is a website where anyone can record their observations from nature. Members record observations for numerous reasons, including participation in citizen science projects, school projects, and personal fulfillment. Volunteer curators synthesize a single taxonomy from a variety of sources, attempting to adhere to external authorities when appropriate ones can be found. See
+        <ulink url="https://www.inaturalist.org/pages/curator+guide">
+          <citetitle>Curator's Guide</citetitle>
+        </ulink> for curatorial policies and guidance.
+      </para>
+    </purpose>
+
+    <% if @freq %>
+      <maintenance>
+        <description>
+          Taxa are constantly being added to, changed, and removed on iNaturalist. This archive only represents the state of the taxonomy and the time it was exported.
+        </description>
+        <maintenanceUpdateFrequency><%= @freq %></maintenanceUpdateFrequency>
+      </maintenance>
+    <% end %>
+
+    <%= render "observations/gbif_eml_agent.eml.erb", tag: "contact", data: @contact %>
+
+    <methods>
+      <qualityControl>
+        <description>
+          <para>
+            Volunteer iNaturalist users curate the iNaturalist taxonomy. Staff provide guidance and policy via the
+            <ulink url="https://www.inaturalist.org/pages/curator+guide">
+              <citetitle>Curator's Guide</citetitle>
+            </ulink>
+          </para>
+        </description>
+      </qualityControl>
+    </methods>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+        <!-- eml file creation date -->
+        <dateStamp><%= Time.now.iso8601 %></dateStamp>
+        <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
+        <hierarchyLevel> dataset </hierarchyLevel>
+        <!-- URL of the logo associated with a resource -->
+        <resourceLogoUrl><%= FakeView.asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>

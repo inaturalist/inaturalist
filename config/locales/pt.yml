@@ -91,7 +91,6 @@ pt:
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   a_flag_for_x: "um sinalizador para %{x}"
-  a_member_of: "Um membro de"
   a_member_of_taxon_html: "um membro de %{taxon}"
   about: Acerca de
   about_blocking: Sobre Bloquear
@@ -237,7 +236,6 @@ pt:
   admin_s: Administrador(es)
   admin_only: Apenas administradores
   admin_tools: Ferramentas de Administração
-  agree: concordar
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
@@ -459,7 +457,6 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
-  at_time: "às %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -577,7 +574,6 @@ pt:
   change_descriptions:
     split: Taxon anterior dividido em vários taxa novos
     merge: Vários taxa anteriores agrupados num só taxon novo
-    swap: Alteração de único nome para outro
     drop: Conceito do táxon é completamente inválido, mas mantido por motivos históricos ou de compatibilidade entre parceiros
     stage: Prepara um conceito inactivo, a ser lançado como parte de uma alteração taxonómica de grupo
   change_geoprivacy: 'Alterar geoprivacidade'
@@ -637,7 +633,6 @@ pt:
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um local
   choose_a_taxon: Escolha um taxon (opcional)
-  choose_cc_licensed_photos_html: 'Escolha <a href="http://creativecommons.org/">abrir</a>-fotos licenciadas de outros sites ou carregue das observações de %{site_name}. Tente escolher imagens que <em>mostrem características que possibilitem a identificação</em> e sejam <em>bonitas com ícones</em>.  A <em>primeira será a padrão</em>.'
   choose_columns: Escolha colunas
   choose_file: Escolher ficheiros
   choose_files: Escolher ficheiros
@@ -1147,7 +1142,6 @@ pt:
   forgot_your_password: Esqueceu-se da sua palavra-passe?
   forum: Fórum
   frequency: Frequência
-  from: De
   from_a_place: de um local
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
@@ -1155,8 +1149,6 @@ pt:
   from_photos: Das fotografias
   from_place: De um local
   from_soundcloud: Do Soundcloud
-  from_your_site_observations: "Observações de %{site_name}"
-  from_licensed_site_observations: "Observações licenciadas por %{site_name}"
   full_screen: Ecrã inteiro
   fungi:
     one: fungo
@@ -1354,8 +1346,8 @@ pt:
   kml_file_size_error: "KML deve ter menos de 1 MB de tamanho"
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Etiqueta para agrupar um lote de alterações do táxon
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localização Privada
-  location_unknown: Localização Desconhecida
   language_slash_type: Língua / Tipo
   #Large photo size
   large: grande
@@ -1729,7 +1721,6 @@ pt:
   new_users: Novos utilizadores
   new_users_w_7_obs: Utentes novos com 7 Obs
   newly_added: Adicionado recentemente
-  news: Notícias
   next: Seguinte
   next_observation: Próxima Observação
   next_page: Página seguinte
@@ -1932,7 +1923,6 @@ pt:
   official_blog: Blogue oficial
   offline_access_enabled: Acesso offline permitido
   old_observation_form: Formulário antigo de registo de observação (descontinuado)
-  on_date: "em %{date}"
   on_day: "no"
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
@@ -1989,7 +1979,6 @@ pt:
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
   or_if_you_dont_want_email: "Ou se simplesmente não quer nenhum email..."
-  or_upload: Ou carregar
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2008,7 +1997,6 @@ pt:
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam ser confundidas com esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies que costumam ser confundidas com esta espécie em <a href="%{url}">%{place}</a>
   our_blog: O nosso blogue
-  out_of_range: Fora de alcance
   output_taxon: Táxon resultante
   overview: Visão geral
   owner: Proprietário
@@ -2351,8 +2339,6 @@ pt:
   project_rules: Regras do Projeto
   project_settings: Definições do Projeto
   project_that_does_not_contain_these_observations: Projeto que não inclui essas observações
-  project_type_description: |
-    Avaliações e bioblitz são um tipo especial de projetos. As avaliações são uma forma de colaboração num conjunto de avaliações de espécies, em geral para medir a sua importância para a conservação. Os bioblitz são eventos com um começo e um fim especificados.
   project_user_cannot_be_found: Não foi encontrado o utilizador do projecto
   project_user_was_invalid: "Utilizador do projeto não é válido: %{project_user}"
   project_was_successfully_created: O projeto foi criado com sucesso.
@@ -2448,7 +2434,6 @@ pt:
   remember_me: Memorizar-me
   remove: Remover
   remove_all_tags: Remova todas as etiquetas
-  remove_boundary: Remover limites
   remove_comma_separated_tags: "Remover etiquetas separadas por vírgulas"
   remove_conservation_status: remover o estatuto de conservação
   remove_from: Remover de
@@ -2777,7 +2762,6 @@ pt:
   the_admin_is_the_person_who: |
     O administrador é a pessoa que criou o projeto. Ele faz tudo que os gestores e os curadores fazem, mas é o único que pode eliminar o projeto.
   the_observation_was_already_added_to_that_project: A observação já foi adicionada a este projeto.
-  the_past: o passado
   the_world: O Mundo
   then_keybord_sequence: depois
   there_were_problems_adding_that_observation_to_this_project: "Houve problemas ao adicionar essa observação a este projeto:"
@@ -2863,6 +2847,7 @@ pt:
   user_commented: "%{user} comentou"
   user_commented_on: "%{user} comentou o seu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} adicionou %{noun} por %{owner} como favorito"
   user_is_a_naturalist: "%{user} é um naturalista!"
   user_muted: Utilizador silenciado
@@ -2872,10 +2857,8 @@ pt:
   username_or_email: Nome de utilizador ou email
   username_or_user_id: Nome de utilizador ou identificação do utilizador
   users: Utilizadores
-  users_comment_html: "Comentário de <a href='%{url}'>%{user}</a>"
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> ao projeto %{project_title}
   users_id: "Identificação de %{user}"
-  users_identification_short_html: "Identificação de <a href='%{url}'>%{user}</a>"
   users_latest_observations_on_site: "Últimas observações de %{user} no %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
@@ -2909,7 +2892,6 @@ pt:
   x_flagged: "%{x} sinalizado(a)"
   x_flagged_as_flag: "%{x} sinalizado(a) como %{flag}"
   yes_i_want_to_join: Sim, quero participar
-  yes_license_my_observations_so_scientists_can_use: Sim, crie uma licença para as minhas imagens, sons e observações para que os cientistas possam utilizar os meus dados!
   yesterday: Ontem
   you_cant_flag_that: Não pode sinalizar isso
   you_sure_delete_flag?: Tem a certeza que quer eliminar este sinalizador?

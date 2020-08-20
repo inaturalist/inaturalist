@@ -34,7 +34,7 @@ class QualityMetric < ActiveRecord::Base
     return unless observation
     if o = Observation.find_by_id( observation_id )
       o.skip_quality_metrics = true
-      o.wait_for_index_refresh = !!wait_for_obs_index_refresh
+      o.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
       o.save
     end
     true

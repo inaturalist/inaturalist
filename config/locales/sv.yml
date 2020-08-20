@@ -2,6 +2,9 @@ sv:
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoriter'
@@ -123,7 +126,6 @@ sv:
   a_default_taxon_name_will_automatically_created: |
     Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
-  a_member_of: "En medlem av"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -206,11 +208,17 @@ sv:
   add: Lägg till
   add_a_batch_of_observations: Lägg till ett gäng observationer
   add_a_batch_of_taxa: Lägg till ett gäng med taxa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
   add_a_field: Lägg till ett fält
   add_a_flag: Lägg till en flagga
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Lägg till en länk
   add_a_name: Lägg till ett namn
   add_a_new_change_group: Lägg till en ny ändringsgrupp
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Lägg till en numrerad lista
   add_a_single_observation: Lägg till en enskild observation.
   add_a_taxon: Lägg till ett taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -233,6 +241,8 @@ sv:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Lägg till projektmaterial
   add_batch: Lägg till batch
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Lägg till fet text
   add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
   add_comment: Lägg till en kommentar
   add_conservation_status: Lägg till bevarandestatus
@@ -245,6 +255,8 @@ sv:
   add_link: Lägg till länk
   add_higher_level_taxon: Lägg till ett taxon på högre nivå (t.ex. "fåglar")
   add_id: Lägg till bestämning
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Lägg till kursiv text
   add_new_lexicon: Lägg till nytt lexikon
   add_new_photos_by_their_ids: Lägg till nya bilder via deras Flickr-Id (måste vara Creative Commons!)
   add_new_place: Lägg till en ny plats
@@ -333,7 +345,6 @@ sv:
   admin_s: Administratör(er)
   admin_only: Endast admin.
   admin_tools: Admin-verktyg
-  agree: håller med
   agree_: Håller med
   agree?: Håller med?
   agree_with_current_taxon: Håller med om aktuellt taxon
@@ -570,7 +581,6 @@ sv:
   assessments: bedömningar
   associations: Kopplingar
   atlas_for_taxon_html: Atlas för %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -643,6 +653,8 @@ sv:
   body: Innehåll
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fet text
   bounding_box: Konturlinje
   breadcrumbs: Brödsmulor
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -699,7 +711,7 @@ sv:
   change_descriptions:
     split: Gammalt taxon uppdelat i flera nya taxa
     merge: Flera gamla taxa hopslagna till ett nytt taxon
-    swap: 1-till-1 namnändring
+    swap: Ersätt taxon med nytt
     drop: Icke accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
     stage: Förbered ett inaktivt koncept för release som del av en förändringsgrupp
   change_geoprivacy: 'Ändra geosekretess'
@@ -773,7 +785,6 @@ sv:
   choose_a_list_above: Välj en lista ovan.
   choose_a_place: Välj en plats
   choose_a_taxon: Välj en taxon (valfritt)
-  choose_cc_licensed_photos_html: 'Välj <a href="http://creativecommons.org/">öppna</a>-licensierade foton från andra webbplatser eller välj från %{site_name}-observationer. Försök att välja bilder som <em>visar diagnostiska egenskaper</em> och <em>ser bra ut som ikoner</em>. Den <em>första är standard</em>.'
   choose_columns: Välj kolumner
   choose_file: Välj fil
   choose_files: Välj filer
@@ -808,6 +819,7 @@ sv:
   comment_deleted: Kommentar raderad
   comments: Kommentarer
   comments_by_me: Kommentarer av mig
+  comments_have_been_disabled: Kommentarer har inaktiverats
   comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mina observationer
   commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
@@ -966,6 +978,7 @@ sv:
   create_a_query: Skapa en fråga
   create_an_account: Skapa ett konto
   create_an_atlas: Skapa en Atlas
+  create_export: Skapa export
   create_new_taxon: Skapa ett nytt taxon
   create_observations: Skapa observationer
   created: Skapades
@@ -1102,13 +1115,37 @@ sv:
   deviation: Avvikelse
   devise:
     failure:
+      already_authenticated: 'Du är redan inloggad.'
+      unauthenticated: 'Du måste logga in eller registrera dig för att kunna fortsätta.'
+      invalid: 'Ogiltig e-postadress eller lösenord.'
+      invalid_token: 'Ogiltig autentiseringstoken.'
       user:
         suspended: Ditt konto har blivit avstängt
+    sessions:
+      signed_in: 'Du är nu inloggad.'
+      signed_out: 'Du är nu utloggad.'
+    passwords:
+      send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
+      updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
+      updated_not_active: 'Ditt lösenord har ändrats.'
+      send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
+      no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
+    registrations:
+      signed_up: 'Välkommen! Du har lyckats registrera dig.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruktioner för bekräftelse'
+      reset_password_instructions:
+        subject: 'Instruktioner för återställning av lösenord'
   discoveries: Upptäckter
   did_not_send_invitations_because: Skickade inte inbjudningar till följande eftersom...
   did_you_mean: 'Menade du'
   did_you_photos_flickr?: Har du lagt några bilder på Flickr?
   disable: Inaktivera
+  disable_comments: Inaktivera kommentarer
+  disable_comments_desc: Förhindra personer från att lägga till nya kommentarer
   disagree_: Håller inte med
   disconnect_provider: "Koppla från %{provider}"
   display_link_to_checklist: Visa länk till projektlistan från projektsidan
@@ -1208,6 +1245,7 @@ sv:
   editing_project: Redigerar %{project}
   editing_project_asset: Redigerar projekttillgång för
   editing_subscription_to_x_html: "Redigerar prenumeration på %{x}"
+  editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
   editing_taxon_range: Redigerar taxonintervall
@@ -1293,6 +1331,7 @@ sv:
   failed_to_find_your_location: Kunde inte att hitta din plats.
   failed_to_repair_photo: "Kunde inte reparera bild: %{errors}"
   failed_to_save_record: "Det gick inte att spara posten. Försök igen senare."
+  failed_to_save_record_with_errors: "Lyckades inte spara posten: %{errors}"
   'false': 'Falskt'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriter
@@ -1301,6 +1340,7 @@ sv:
   favorites: "Favoriter"
   feature_this_project_: "Uppmärksamma detta projekt"
   featured: Uppmärksammat
+  #Title for a button or section describing the "featured" status of a project
   featuring: Uppmärksammat
   feedback: Återkoppling
   #Plural noun, as in Atom and RSS feeds
@@ -1314,6 +1354,7 @@ sv:
   fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av dem som skapade dem samt webbplatsens förvaltare
   fields_merged: Fält sammanslagna
   file: Fil
+  file_size: Filstorlek
   file_should_be_in_the_following_format: "Filen ska ha följande format: taxonnamn, beskrivning"
   fill_out_project_observation_fields: Fyll i projektobservationsfält
   fill_out_your_profile: slutför din profil
@@ -1443,7 +1484,6 @@ sv:
     Forumet är en plats för diskussioner om iNat, inklusive hjälp & support,
     funktionsförfrågningar, felrapporter, tillkännagivanden med mera.
   frequency: Frekvens
-  from: Från
   from_a_place: från en plats
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
@@ -1451,8 +1491,6 @@ sv:
   from_photos: Från foton
   from_place: Från plats
   from_soundcloud: Från Soundcloud
-  from_your_site_observations: "Från %{site_name}-observationer"
-  from_licensed_site_observations: "Från licensierade %{site_name}-observationer"
   full_screen: Helskärm
   fungi:
     one: svamp
@@ -1484,6 +1522,7 @@ sv:
   got_it!: Uppfattat!
   got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
   graft: Ympa
+  graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
   grant_role: "%{grant} %{role} roll"
   grid: Rutnät
@@ -1655,6 +1694,8 @@ sv:
   insects: insekter
   insect_life_stage: Insektsstadium
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Infoga ett citat
   interactions: Interaktioner
   internal_server_error: Internt serverfel
   internal_taxon_including_descendants: Internt taxon (inklusive underliggande)
@@ -1679,6 +1720,8 @@ sv:
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna plats en dubblett?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv text
   item_flagged_notice_html: |
     Denna observation har flaggats som spam och är inte längre
     offentligt synlig. Du kan se den eftersom du skapade den, eller är en
@@ -1712,8 +1755,12 @@ sv:
   label_colon: "%{label}:"
   labels: Etiketter
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Privat plats
-  location_unknown: Plats okänd
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Saknar plats
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
@@ -1831,9 +1878,13 @@ sv:
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till en observation. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
   linked_flickr_password_html: "<strong>Vi kommer aldrig att be dig om ditt Flickr-lösenord</strong> (men Flickr kanske gör det, kontrollera webbadressen som knappen skickar dig och se till att det är Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: länkad text
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista raderad.
+  list_reloaded_from_observations: Lista omladdad utifrån observationer
+  list_rules_reapplied: Listans regler har åter tillämpats
   list_saved: Lista sparad.
   list_tooltip: Visa listvy
   list_updated: Listan uppdaterad!
@@ -1917,6 +1968,10 @@ sv:
   location_specified: Plats angiven
   locked_taxa_will_not_allow_new: Man kan inte lägga till nya barn till låsta taxa. T.ex., om du har låst Amphibia och någon försöker importera <i>Rana catesbeiana</i> från en extern namnkälla, skulle ett nytt taxon skapas men inte kunna klassificeras som ett groddjur. När det händer bör detta nyligen tillagda taxon flaggas för att komma till en förvaltares kännedom. Låsning bör egentligen bara användas för taxa där vi tror att alla barn redan är tillagda. Förvaltare kan åsidosätta detta genom att redigera taxa och ange föräldra-ID direkt, men överväg att slå ihop nya taxa med befintliga istället.
   log_in: Logga in
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till bestämningar.
   log_scale_label: Logg
   login_slash_username: Logga in / användarnamn
   logo:
@@ -2021,6 +2076,8 @@ sv:
     Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om
     vår definition av "lämplig", se vår
     <a href="/help#inappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Saknar datum
   mobile: Mobil
   mollusks: blötdjur
   momentjs:
@@ -2049,14 +2106,18 @@ sv:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
   month: Månad
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
@@ -2129,10 +2190,17 @@ sv:
   needs_id_: Behöver best.
   needs_id_expandable_html: "<span class='full'>Behöver </span>ID"
   needs_to_be_identified: Behöver bestämmas
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
     nätverket, fokuserar på biologisk mångfald och människor i %{place}. Vill du ändra din
     kontotillhörighet från iNaturalist.org till %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, en del av det internationella iNaturalist-nätverket, fokuserar på biologisk mångfald och människor i Finland. Vill du
+    ändra din kontoanknytning från iNaturalist.org till iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Vill du ändra din tillhörighet från <strong>%{other_site_name}</strong> till
     <strong>%{site_name}</strong>?
@@ -2180,7 +2248,6 @@ sv:
   newly_added_species: Nytillagda arter
   newly_observed_species: Nyligen observerade arter
   newly_observed_species_in_year: "Nytillagda arter under %{year}"
-  news: Nyheter
   next: Nästa
   next_observation: Nästa observation
   next_page: Nästa sida
@@ -2340,6 +2407,8 @@ sv:
   observations_by_you: "Observationer av dig"
   observations_by_you_on_date: "Observationer av dig på %{date}"
   observation_calendar_for: "Observationskalender för %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observationer kan bara ha %{limit} bilder
   observation_curation: Observationsförvaltning
   observation_date: Datum
   observation_date?: Datum?
@@ -2454,7 +2523,6 @@ sv:
   offline_access_enabled: Offline-åtkomst aktiverad
   old_observation_form: Gammalt observationsformulär (utfasat)
   ok: "OK"
-  on_date: "den %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: Låt oss komma igång genom att posta några observationer
@@ -2521,7 +2589,6 @@ sv:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
   or_if_you_dont_want_email: "Eller om du helt enkelt inte vill ha någon e-post..."
-  or_upload: Eller ladda upp
   orange: orange
   order: Ordning
   order_by: Sortera efter
@@ -2560,7 +2627,6 @@ sv:
   other_taxa_commonly_misidentified_as_this_subsection: Andra taxa som ofta felbestäms som denna undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andra taxa som ofta felbestäms till denna undersektion i <a href="%{url}">%{place}</a>
   our_blog: Vår blogg
-  out_of_range: Utanför intervallet
   output_taxon: Uttaxon
   overview: Översikt
   overlapping_downstream_taxon_frameworks_html: "Överlappande underliggande taxonkontexter: %{count}"
@@ -2618,6 +2684,9 @@ sv:
   photo_urls_repaired: Fotoadresser reparerade
   photos_chosen_for_this_taxon: Utvalda bilder för detta taxon
   photos_from: Bilder från
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Bilder låsta
+  photos_locked_desc: Endast personal kan ändra standardbilderna för detta taxon
   photos_of_taxon_html: "Foton av %{taxon}"
   photos_or_sounds: Foton eller ljud
   photos_or_sounds?: Bild eller ljud?
@@ -3249,6 +3318,7 @@ sv:
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   recent: Senaste
   recent_evidence_of_organism: Färska tecken på en organism
+  recent_exports: Senaste exporter
   recent_new_users: Senaste nya användare
   recent_observations: Senaste observationerna
   recent_observations_: Senaste Observationerna
@@ -3288,7 +3358,6 @@ sv:
   remember_me: Kom ihåg mig
   remove: Ta bort
   remove_all_tags: Ta bort alla taggningar
-  remove_boundary: Ta bort gräns
   remove_comma_separated_tags: "Ta bort kommaseparerade taggningar"
   remove_conservation_status: ta bort bevarandestatus
   remove_from: Ta bort från
@@ -3342,6 +3411,7 @@ sv:
   resolved_by: Fixad av
   resolved_by_user_on_date_html: Löstes av %{user} den %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sa,</span> "%{x}"'
+  restart: Starta om
   restore: Återställ
   restoring: Återställer...
   results: resultat
@@ -3392,6 +3462,8 @@ sv:
   scale_colon: "Skala:"
   schemes: Sammanställning
   schemes_including: Sammanställningar som inkluderar
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vetenskapligt namn
   search: Sök
   search_all_fields: sök alla fält
   search_by_name_or_email: Sök efter namn eller e-post
@@ -3682,6 +3754,7 @@ sv:
   take_me_flickr!: Ja, ta mig till Flickr!
   target_list_alert: Är du säker på att du försökt hitta alla arter som finns på din mållista? Kom ihåg att allt på mållistan som du inte angett kommer att tolkas som en nollobservation så det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta
   target_list_warning: Kom ihåg att allt som finns på din mållista som du inte uppgett från området under tidsperioden för denna utflykt kommer att tolkas som en nollobservation. Det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta. Om du inte försökte hitta en art, eller alla arter inom en grupp, på din mållista, ta då bort den från listan.
+  task_deleted: Uppgift raderad
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa med okända relationer
   taxa_info: Taxainfo
@@ -3854,7 +3927,6 @@ sv:
     Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
   the_observation_was_already_added_to_that_project: Observationen hade redan lagts till i det projektet.
-  the_past: det förflutna
   the_people_of_inat: "Människor av %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Arterna som listas nedan hittades inte i %{site_name}-databasen.
@@ -4040,6 +4112,7 @@ sv:
   unresolve: Ångra lösning
   unreview_all: Avgranska alla
   unsubscribe: Avsluta prenumerationen
+  unsubscribe_from_emails_like_this: Avregistrera dig från sådan här e-post
   unsuspend_user: Återaktivera användare
   upcoming_bioblitzes: Kommande bioblitzer
   update: Uppdatera
@@ -4147,6 +4220,7 @@ sv:
   user_commented_on: "%{user} kommenterade på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
   user_faved_this_observation: "%{user} favoritmarkerade denna observation"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
@@ -4180,11 +4254,9 @@ sv:
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
-  users_comment_html: "<a href='%{url}'>%{user}</a>s kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>s ID"
   users_latest_observations_on_site: "%{user}senaste observationer på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
@@ -4295,6 +4367,9 @@ sv:
   welcome_to_inat: "Välkommen till %{site_name}!"
   welcome_to_guides: "Välkommen till %{site_name} guider!"
   welcome_to_x_project: "Välkommen till %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Vi är ganska säkra på att detta tillhör %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklagar, men din bulkimport av %{filename} misslyckades."
   what: Vad
@@ -4359,6 +4434,9 @@ sv:
     one: "1 observation misslyckades"
     other: "%{count} observationer misslyckades"
   x_of_y: "%{x} av %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} av %{count} bekräftad"
     other: "%{x} av %{count} bekräftade"
@@ -4383,8 +4461,6 @@ sv:
   'yes': "Ja"
   yes_find_them!: "Ja, hitta dem!"
   yes_i_want_to_join: Ja, jag vill gå med
-  yes_license_my_childs_observations: Ja, licensiera mitt barns bilder, ljud och observationer så att forskare kan använda uppgifterna.
-  yes_license_my_observations_so_scientists_can_use: Ja, licensiera mina bilder, ljud och observationer så att forskare kan använda uppgifterna.
   yes_reject_it: Ja, avvisa det
   yes_show_this_in_the_box: Ja, visa detta i den stora rutan högst upp i /taxa
   yesterday: I går
@@ -4443,6 +4519,7 @@ sv:
   you_cant_do_that_for_the_default_check_list_place: Du kan inte göra det med en plats standardchecklista!
   you_cant_flag_that: Du kan inte flagga det
   you_cant_leave_a_project_you_created: Du kan inte lämna ett projekt som du har skapat.
+  you_cant_merge_standard_places: Du kan inte slå ihop standardplatser
   you_cant_rotate_photos_hostde_outside: "Du kan inte rotera bilder lagrade utanför %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan inte ta bort taxa som ingår i taxonändringar eller som innehåller taxa som ingår i taxonändringar
   you_curate_a_project_that_contains_this_observation: Du förvaltar ett projekt där denna observation ingår
@@ -4515,6 +4592,7 @@ sv:
   your_recent_projects: Dina senaste projekt
   your_relationships: Dina relationer
   your_site_needs_your_to_authorize_more_permissions_from_provider: "För att %{site_name} ska kunna fortsätta måste du auktorisera ökad behörighet till %{provider}:"
+  your_subscriptions_to_this_place: Dina prenumerationer här
   your_tags: Dina taggningar
   yours: Din
   youre_not_following_anyone: |-
@@ -4538,6 +4616,14 @@ sv:
         som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt
         enkelt detta tomt.
+    content_freeze:
+      content_freeze: Låsning av innehåll
+      during_this_time: |
+        När innehållet är låst kan vissa typer av innehåll inte skapas, förstöras eller ändras.
+      this_functionality_will_return: |
+        Denna funktionalitet återinrättas så snart låsningen av innehållet är borta.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi förväntar oss att denna funktionalitet är tillbaka den %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4815,6 +4901,8 @@ sv:
           Du flaggade den här konversationen på %{date}. Flaggan kommer att bestå även
           om du tar bort din kopia av denna konversation, så det är säkert att göra det
           om du inte längre vill se detta.
+        privacy_notice_html: |
+          Även om meddelanden mellan dig och mottagaren är privata, kan iNaturalist-personal också läsa dessa meddelanden, och kommer att göra det när meddelanden har flaggats för moderering. Om du behöver verkligt privat kommunikation, se dig om efter andra kommunikationssätt som stöder stark kryptering.
     oauth:
       authorizations:
         new:
@@ -4919,13 +5007,12 @@ sv:
       export:
         choose_columns_desc: Välj de kolumner du vill exportera
         create_a_query_desc_html: |
-          Skapa en observationsfråga precis som du skulle göra på andra ställen på
-          webbplatsen. Du kan också klippa och klistra in en observations-URL från
-          en annan del av webbplatsen. Du måste ange ett/en
-          <strong>taxon</strong>, <strong>plats</strong>, <strong>användare</strong>,
-          <strong>projekt</strong>eller <strong>sökfråga</strong>.
+          Skapa en observationsfråga precis som du skulle göra på andra ställen på webbplatsen. Du kan också klippa och klistra in en observations-URL från en annan del av webbplatsen. Din fråga bör inte resultera i <strong>mer än 200 000 observationer</strong>.
+        export_in_progress_notice_html: |
+          Du har en <a href="%{url}">pågående export</a>. Du måste vänta tills den är klar innan du kan lägga till ännu en export.
         ident_by_user_desc_html: |
           Kolumner för den aktuella bestämningen av %{user}
+        limit_alert: Din export blir för stor. Ändra dina filter tills det finns färre än 200 000 observationer.
         query_placeholder: "Välj parametrar nedan eller klistra in i en observations-URL"
         taxon_extras_help_html: "Obs: dessa kolumner kommer att göra genereringen av din export långsammare"
         geo_help_html: |
@@ -5432,16 +5519,6 @@ sv:
         Vi har inte behörighet att komma åt de bilderna just nu. Du kan
         behöva koppla bort och återansluta kontot i
         <a href="/users/edit">-inställningarna</a> för att ge oss ytterligare behörighet.
-      inviter:
-        automatically_add_to_project: Lägg automatiskt till i projektet
-        automatically_id_the_new_obs_as: Bestäm automatiskt nya obsar till
-        dont_forget_the_invite_link_placeholder: "glöm inte platshållaren {{INVITE_LINK}}"
-        invite_other_photographers_to_inat: "Bjud in andra fotografer till %{site_name}"
-        invite_your_friends_description: |
-          Du kan göra det superenkelt för människor på Facebook och Flickr att lägga till sina
-          bilder som %{site_name}-observationer. Lämna bara en kommentar som inkluderar denna
-          speciella inbjudnings-URL nedan. Du kan också förhandsvälja ett taxon och ett projekt för
-          den nya observationen.
       show:
         view_original_html: |
           Du kan se originalet på <a href="%{url}">%{url}</a>.
@@ -5509,6 +5586,7 @@ sv:
         revoke_observations_desc: |
           Om den enda anledningen till att du lämnar är för att hindra projektförvaltare från att se dina dolda koordinater.
       edit:
+        admins_must_be_existing_members: Administratörer måste vara befintliga medlemmar i projektet.
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
@@ -5525,6 +5603,9 @@ sv:
           som man samlar in värdefulla data.
           </p>
         change_admin_desc: Välj den av projektförvaltarna som ska bli den nya administratören.
+        change_owner_alert: |
+          Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra
+          äganderätt igen. Vill du fortsätta?
         cover_desc: "Valfri banner-bild som visas högst upp på din projektsida. Måste vara 950px bred, mindre än 400px hög."
         custom_project_fields_means: "Anpassa projektets banner, lägg till sidoinnehåll och redigera CSS."
         end_time_desc: "Sluttid för din bioblitz. Måste vara mindre än ett år efter starttiden"
@@ -5538,6 +5619,8 @@ sv:
           Det verkar som om detta projekt kan konverteras till ett nytt <a href="%{url}">Samlingsprojekt</a>.
         last_aggregated_at_desc: |
           Tid när aggregeraren senast lade till observationer till detta projekt
+        #Label for button to make another user the owner of a project
+        make_owner: Gör till ägare
         no_curators: |
           Det finns inga projektetförvaltare. Om du vill tilldela en ny person rollen som
           administratör, måste denne först gå med i projektet och sedan måste du
@@ -5815,6 +5898,10 @@ sv:
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
         this_is_a_preview: |
           Detta är en förhandsvisning av hur detta projekt skulle se ut som ett Samlingsprojekt.
+        this_project_has_not_defined_requirements: |
+          Detta projekt har inte definierat några observationskrav. Projekt måste välja ett eller
+          flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum
+          för att börja visa observationer.
       updates_desc: |
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om
         dagens uppdateringar.
@@ -6397,14 +6484,10 @@ sv:
           Commons Erkännande-licens</a> (så meta!)
         monthly_supporter: Månatlig bidragsgivare
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag
-          till California Academy of Sciences (United States IRS FIN 94-1156258)
-          för att stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-
-          nätverkets webbplatser.
+          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
-          När vi har bekräftat ditt stöd kommer du att kunna markera denna
-          ruta för att visa denna status på din profil. Obs: du måste använda
-          exakt samma e-postadress på Donorbox som du gör på iNaturalist
+          När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
+          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist
           för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
         muting_desc_html: |
           <p>
@@ -6792,9 +6875,11 @@ sv:
       invalid: är ogiltig
       less_than: måste vara mindre än %{count}
       less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
       not_a_number: är inte ett nummer
       not_an_integer: måste vara ett heltal
       odd: måste vara udda
+      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
       record_invalid: 'Validering misslyckades: %{errors}'
       requires_privilege_speech: |
         måste ha tre verifierbara observationer eller tre bestämningar
@@ -6929,9 +7014,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte ett nummer
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
@@ -6982,11 +7069,21 @@ sv:
         occurrence_status_level: Nivå för förekomststatus
         establishment_means: Invandringshistoria
       observation:
+        description: Anteckningar
         geo_x: Östlig
         geo_y: Nordlig
         observed_on: observerat datum
       observation_field_value:
         value: 'Värde'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Köad
+        #Date/time the task began processing
+        started_at: Startad
+        #Date/time the task finished processing
+        finished_at: Slutförd
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Indata
       post:
         title: Rubrik
         body: Innehåll
@@ -7069,9 +7166,11 @@ sv:
         invalid: är ogiltig
         less_than: måste vara mindre än %{count}
         less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
+        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
         requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
@@ -7134,6 +7233,13 @@ sv:
             observation_id:
               user_does_not_accept_fields_from_others: användare accepterar inte fält från andra
               user_only_accepts_fields_from_site_curators: användaren accepterar bara fält från webbplatsen förvaltare
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Exporter kan inte ha mer än 200 000 observationer
+              must_have_query: Frågan får inte vara tom
+            user_id:
+              already_has_an_export_in_progress: har redan en pågående export
         place:
           attributes:
             place_geometry:
@@ -7142,6 +7248,8 @@ sv:
               contains_too_many_observations: innehåller för många observationer för import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillåter inte nya kommentarer
             user:
               must_be_on_site_long_enough: |
                 måste ha registrerat sig för mer än 24 timmar sedan för att publicera.

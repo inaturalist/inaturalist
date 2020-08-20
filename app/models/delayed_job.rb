@@ -54,7 +54,7 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def host
-    locked_by.match(/ host:([^ ]*)/)[1] if locked_by
+    locked_by.match(/ host:([^ ]*)/).try(:[], 1) if locked_by
   end
 
   def pid

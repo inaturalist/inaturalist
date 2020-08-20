@@ -90,10 +90,14 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def update_project_observations_curator_coordinate_access
-    project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
-      po.set_curator_coordinate_access( force: true )
-      unless po.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+    Observation.search_in_batches( project_id: project_id, user_id: user_id ) do |batch|
+      Observation.preload_associations( batch, [:project_observations] )
+      project_observations = batch.collect{|o| o.project_observations.select{|po| po.project_id == project_id }}.flatten
+      project_observations.each do |po|
+        po.set_curator_coordinate_access( force: true )
+        unless po.save
+          Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+        end
       end
     end
   end
@@ -211,6 +215,37 @@ class ProjectUser < ActiveRecord::Base
       puts "pu: #{pu}, merging #{to_merge_ids}" if debug
       rejects = ProjectUser.where( id: to_merge_ids[1..-1] )
       rejects.destroy_all
+    end
+  end
+
+  def self.merge_future_duplicates( reject, keeper )
+    Rails.logger.debug "[DEBUG] ProjectUser.merge_future_duplicates, reject: #{reject}, keeper: #{keeper}"
+    unless reject.is_a?( keeper.class )
+      raise "reject and keeper must by of the same class"
+    end
+    unless reject.is_a?( User )
+      raise "ProjectUser.merge_future_duplicates only works for observations right now"
+    end
+    k, reflection = reflections.detect{|k,r| r.klass == reject.class && r.macro == :belongs_to }
+    sql = <<-SQL
+      SELECT
+        project_id,
+        array_agg(id) AS ids
+      FROM
+        project_users
+      WHERE
+        #{reflection.foreign_key} IN (#{reject.id},#{keeper.id})
+      GROUP BY
+        project_id
+      HAVING
+        count(*) > 1
+    SQL
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      project_users = ProjectUser.where( id: to_merge_ids )
+      if reject_pu = project_users.detect{|i| i.send(reflection.foreign_key) == reject.id }
+        reject_pu.destroy
+      end
     end
   end
 end

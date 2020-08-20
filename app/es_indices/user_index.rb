@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
       indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
       indexes :observations_count, type: "integer"
+      indexes :species_count, type: "integer"
       indexes :orcid, type: "keyword"
       indexes :roles, type: "keyword"
       indexes :site_id, type: "short"
@@ -54,8 +55,9 @@ class User < ActiveRecord::Base
         identifications_count: ident_count,
         journal_posts_count: post_count,
         activity_count: obs_count + ident_count + post_count,
+        species_count: species_count,
         universal_search_rank: obs_count,
-        roles: roles.map(&:name),
+        roles: roles.map(&:name).uniq,
         site_id: site_id
       })
     end

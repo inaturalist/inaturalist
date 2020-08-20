@@ -36,6 +36,11 @@ class ObservationModal extends React.Component {
     };
   }
 
+  componentDidMount( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".IdentificationForm textarea,.CommentForm textarea", domNode ).textcompleteUsers( );
+  }
+
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
@@ -123,6 +128,9 @@ class ObservationModal extends React.Component {
           {
             label: I18n.t( "observations_without_media" ),
             verifiable: false,
+            captive: false,
+            photos: false,
+            sounds: false,
             disabled: !currentUserPrefersMedialessObs,
             onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } ),
             observation_id: observation.obscured && observation.private_geojson && obsForMap.id
@@ -284,7 +292,7 @@ class ObservationModal extends React.Component {
           );
         } else {
           player = (
-            <audio key={soundKey} controls preload="none">
+            <audio key={soundKey} controls preload="none" controlsList="nodownload">
               <source src={s.file_url} type={s.file_content_type} />
               { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
             </audio>
@@ -332,7 +340,11 @@ class ObservationModal extends React.Component {
 
     const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      $( ":input:visible:first", form ).focus( );
+      if ( $( form ).hasClass( "IdentificationForm" ) ) {
+        $( ":input:visible:first", form ).focus( );
+      } else {
+        $( "textarea:visible:first", form ).focus( );
+      }
       // Note that you need to scroll the element that can actually scroll.
       // There are a lot of nested divs here, so make sure you're scrolling the
       // right one
@@ -794,7 +806,7 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer chooseTaxon={ chooseSuggestedTaxon } />
+                  <SuggestionsContainer chooseTaxon={chooseSuggestedTaxon} />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (

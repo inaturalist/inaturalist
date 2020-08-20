@@ -22,6 +22,7 @@ class SharedForm extends React.Component {
 
   render( ) {
     const {
+      config,
       project,
       setDescription,
       setTitle,
@@ -38,7 +39,7 @@ class SharedForm extends React.Component {
             <Col xs={12}>
               <h1>
                 { I18n.t( "views.projects.new.project_details" ) }
-                { project.id && (
+                { project.id && config.currentUser.id === project.user.id && (
                   <button
                     type="button"
                     className="btn-white delete"
@@ -334,6 +335,7 @@ class SharedForm extends React.Component {
 }
 
 SharedForm.propTypes = {
+  config: PropTypes.object,
   project: PropTypes.object,
   onFileDrop: PropTypes.func,
   setDescription: PropTypes.func,

@@ -7,7 +7,21 @@ import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
 
 let searchInProgress;
-/* global iNatModels */
+
+const TAXON_FIELDS = {
+  ancestor_ids: true,
+  default_photo: {
+    square_url: true
+  },
+  iconic_taxon_id: true,
+  iconic_taxon_name: true,
+  is_active: true,
+  matched_term: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
 
 class TaxonAutocomplete extends React.Component {
   static returnVisionResults( response, callback ) {
@@ -65,11 +79,13 @@ class TaxonAutocomplete extends React.Component {
           <Glyphicon glyph="search" />
         </div>
         <div className="ac-label">
-          <span className="title" dangerouslySetInnerHTML={
-            { __html: I18n.t( "use_name_as_a_placeholder", { name: string } ) } }
+          <span
+            className="title"
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "use_name_as_a_placeholder", { name: string } )
+            }}
           />
           <span className="subtitle" />
-          <a href="#" />
         </div>
       </div>
     );
@@ -86,8 +102,45 @@ class TaxonAutocomplete extends React.Component {
             { I18n.t( "search_external_name_providers" ) }
           </span>
           <span className="subtitle" />
-          <a href="#" />
         </div>
+      </div>
+    );
+  }
+
+  static resultTemplate( r ) {
+    if ( r.type === "placeholder" ) {
+      return TaxonAutocomplete.placeholderTemplate( r.title );
+    }
+    if ( r.type === "search_external" ) {
+      return TaxonAutocomplete.searchExternalTemplate( );
+    }
+    const photo = TaxonAutocomplete.itemPhoto( r ) || TaxonAutocomplete.itemIcon( r );
+    let className = "ac";
+    let extraSubtitle;
+    if ( r.isVisionResult ) {
+      className += " vision";
+      const subtitles = [];
+      if ( r.visionScore ) {
+        subtitles.push( I18n.t( "visually_similar" ) );
+      }
+      if ( r.frequencyScore ) {
+        subtitles.push( I18n.t( "seen_nearby" ) );
+      }
+      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
+    }
+    return ReactDOMServer.renderToString(
+      <div className={className} data-taxon-id={r.id}>
+        <div className="ac-thumb has-photo">
+          { photo }
+        </div>
+        <div className="ac-label">
+          <span className="title">{ r.title }</span>
+          <span className="subtitle">{ r.subtitle }</span>
+          { extraSubtitle }
+        </div>
+        <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
+          <div className="ac-view">{ I18n.t( "view" ) }</div>
+        </a>
       </div>
     );
   }
@@ -101,7 +154,7 @@ class TaxonAutocomplete extends React.Component {
     this.inputElement = this.inputElement.bind( this );
     this.inputValue = this.inputValue.bind( this );
     this.template = this.template.bind( this );
-    this.resultTemplate = this.resultTemplate.bind( this );
+    this.resultTemplate = TaxonAutocomplete.resultTemplate.bind( this );
     this.placeholderTemplate = TaxonAutocomplete.placeholderTemplate.bind( this );
     this.searchExternalTemplate = TaxonAutocomplete.searchExternalTemplate.bind( this );
     this.searchExternalElement = this.searchExternalElement.bind( this );
@@ -127,7 +180,10 @@ class TaxonAutocomplete extends React.Component {
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
-            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", { rank: item.rank } );
+            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+              rank: item.rank,
+              gender: item.rank
+            } );
             ul.append( `<li class='category'>${label}:</li>` );
           } else if ( !speciesCategoryShown ) {
             const label = I18n.t( "here_are_our_top_species_suggestions" );
@@ -151,11 +207,11 @@ class TaxonAutocomplete extends React.Component {
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
-    this.inputElement( ).bind( "assignSelection", ( e, t ) => {
+    this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
       if ( !t.title ) {
         t.title = this.resultTitle( t );
       }
-      this.updateWithSelection( t );
+      this.updateWithSelection( t, options );
     } );
     this.inputElement( ).unbind( "resetSelection" );
     this.inputElement( ).bind( "resetSelection", ( ) => {
@@ -172,7 +228,7 @@ class TaxonAutocomplete extends React.Component {
       }
     } );
     if ( initialSelection ) {
-      this.inputElement( ).trigger( "assignSelection", initialSelection );
+      this.inputElement( ).trigger( "assignSelection", [initialSelection, { initial: true }] );
     }
     this._mounted = true;
   }
@@ -245,8 +301,8 @@ class TaxonAutocomplete extends React.Component {
     }
   }
 
-  updateWithSelection( item ) {
-    const { onSelectReturn, afterSelect } = this.props;
+  updateWithSelection( item, options = { } ) {
+    const { onSelectReturn, afterSelect, noThumbnail } = this.props;
     if ( onSelectReturn ) {
       onSelectReturn( { item } );
       return;
@@ -258,39 +314,46 @@ class TaxonAutocomplete extends React.Component {
     // set the hidden taxon_id
     this.idElement( ).val( item.id );
     // set the selection's thumbnail image
-    if ( item.default_photo ) {
-      this.thumbnailElement( ).css( {
-        "background-image": `url('${item.default_photo.square_url}')`,
-        "background-repeat": "no-repeat",
-        "background-size": "cover",
-        "background-position": "center"
-      } );
-      this.thumbnailElement( ).html( "" );
-    } else {
-      this.thumbnailElement( ).css( { "background-image": "none" } );
-      this.thumbnailElement( ).html(
-        ReactDOMServer.renderToString( TaxonAutocomplete.itemIcon( item ) )
-      );
+    if ( !noThumbnail ) {
+      if ( item.default_photo ) {
+        this.thumbnailElement( ).css( {
+          "background-image": `url('${item.default_photo.square_url}')`,
+          "background-repeat": "no-repeat",
+          "background-size": "cover",
+          "background-position": "center"
+        } );
+        this.thumbnailElement( ).html( "" );
+      } else {
+        this.thumbnailElement( ).css( { "background-image": "none" } );
+        this.thumbnailElement( ).html(
+          ReactDOMServer.renderToString( TaxonAutocomplete.itemIcon( item ) )
+        );
+      }
     }
     this.inputElement( ).selection = item;
-    if ( afterSelect ) { afterSelect( { item } ); }
+    if ( afterSelect && !options.initial ) { afterSelect( { item } ); }
   }
 
   visionAutocompleteSource( callback ) {
-    const { visionParams } = this.props;
+    const { config, visionParams } = this.props;
     if ( this.cachedVisionResponse ) {
       TaxonAutocomplete.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
+      const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
       if ( visionParams.image ) {
-        inaturalistjs.computervision.score_image( visionParams ).then( r => {
+        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) ).then( r => {
           this.cachedVisionResponse = r;
           TaxonAutocomplete.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for photo", e] );
         } );
         callback( ["loadingSuggestions"] );
-      } else if ( visionParams.observationID ) {
-        const params = { id: visionParams.observationID };
+      } else if ( visionParams.observationID || visionParams.observationUUID ) {
+        let { observationID, observationUUID } = visionParams;
+        if ( config.testingApiV2 && observationUUID ) {
+          observationID = observationUUID;
+        }
+        const params = Object.assign( baseParams, { id: observationID } );
         this.fetchingVision = true;
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
@@ -306,7 +369,7 @@ class TaxonAutocomplete extends React.Component {
 
   taxonAutocompleteSource( request, callback ) {
     const {
-      perPage, searchExternal, showPlaceholder, notIDs
+      perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
     const params = {
       q: request.term,
@@ -316,6 +379,12 @@ class TaxonAutocomplete extends React.Component {
     };
     if ( notIDs ) {
       params.not_id = notIDs.slice( 0, 750 ).join( "," );
+    }
+    if ( observedByUserID ) {
+      params.observed_by_user_id = observedByUserID;
+    }
+    if ( config && config.testingApiV2 ) {
+      params.fields = TAXON_FIELDS;
     }
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
@@ -425,50 +494,13 @@ class TaxonAutocomplete extends React.Component {
     return name;
   }
 
-  resultTemplate( r ) {
-    if ( r.type === "placeholder" ) {
-      return TaxonAutocomplete.placeholderTemplate( r.title );
-    }
-    if ( r.type === "search_external" ) {
-      return TaxonAutocomplete.searchExternalTemplate( );
-    }
-    const photo = TaxonAutocomplete.itemPhoto( r ) || TaxonAutocomplete.itemIcon( r );
-    let className = "ac";
-    let extraSubtitle;
-    if ( r.isVisionResult ) {
-      className += " vision";
-      const subtitles = [];
-      if ( r.visionScore ) {
-        subtitles.push( I18n.t( "visually_similar" ) );
-      }
-      if ( r.frequencyScore ) {
-        subtitles.push( I18n.t( "seen_nearby" ) );
-      }
-      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
-    }
-    return ReactDOMServer.renderToString(
-      <div className={className} data-taxon-id={r.id}>
-        <div className="ac-thumb has-photo">
-          { photo }
-        </div>
-        <div className="ac-label">
-          <span className="title">{ r.title }</span>
-          <span className="subtitle">{ r.subtitle }</span>
-          { extraSubtitle }
-        </div>
-        <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
-          <div className="ac-view">{ I18n.t( "view" ) }</div>
-        </a>
-      </div>
-    );
-  }
-
   template( r, fieldValue, options = {} ) {
+    const { config } = this.props;
     const result = _.clone( r );
     const scinameFirst = (
-      this.props.config &&
-      this.props.config.currentUser &&
-      this.props.config.currentUser.prefers_scientific_name_first
+      config
+      && config.currentUser
+      && config.currentUser.prefers_scientific_name_first
     );
     if ( !result.title ) {
       result.title = this.resultTitle( result );
@@ -492,35 +524,57 @@ class TaxonAutocomplete extends React.Component {
     }
     const addition = TaxonAutocomplete.differentMatchedTerm( r, fieldValue );
     if ( addition ) {
-      result.title = <span>{ result.title } { addition }</span>;
+      result.title = (
+        <span>
+          { result.title }
+          { " " }
+          { addition }
+        </span>
+      );
     }
     if ( result.rank && ( result.rank_level > 10 || !result.subtitle ) ) {
       const rank = I18n.t( `ranks.${result.rank}`, { defaultValue: result.rank } );
-      result.subtitle = <span>{ rank } { result.subtitle }</span>;
+      result.subtitle = (
+        <span>
+          { rank }
+          { " " }
+          { result.subtitle }
+        </span>
+      );
     }
-    return this.resultTemplate( result, fieldValue, options );
+    return TaxonAutocomplete.resultTemplate( result, fieldValue, options );
   }
 
   render( ) {
-    const smallClass = this.props.small ? "input-sm" : "";
+    const {
+      small,
+      value,
+      onChange,
+      placeholder,
+      onKeyDown
+    } = this.props;
+    const smallClass = small ? "input-sm" : "";
     return (
       <div className="form-group TaxonAutocomplete">
         <input type="hidden" name="taxon_id" />
-        <div className={ `ac-chooser input-group ${this.props.small && "small"}` }>
-          <div className={ `ac-select-thumb input-group-addon ${smallClass}` }>
+        <div className={`ac-chooser input-group ${small && "small"}`}>
+          <div className={`ac-select-thumb input-group-addon ${smallClass}`}>
             <Glyphicon glyph="search" />
           </div>
           <input
             type="text"
             name="taxon_name"
-            value={ this.props.value }
-            className={ `form-control ${smallClass}` }
-            onChange={ this.props.onChange }
-            placeholder={ this.props.placeholder || I18n.t( "species_name_cap" ) }
+            value={value}
+            className={`form-control ${smallClass}`}
+            onChange={onChange}
+            placeholder={placeholder || I18n.t( "species_name_cap" )}
             autoComplete="off"
+            onKeyDown={onKeyDown}
           />
-          <Glyphicon className="searchclear" glyph="remove-circle"
-            onClick={ () => this.inputElement( ).trigger( "resetAll" ) }
+          <Glyphicon
+            className="searchclear"
+            glyph="remove-circle"
+            onClick={() => this.inputElement( ).trigger( "resetAll" )}
           />
         </div>
       </div>
@@ -532,10 +586,13 @@ TaxonAutocomplete.propTypes = {
   onChange: PropTypes.func,
   small: PropTypes.bool,
   placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
   searchExternal: PropTypes.bool,
   showPlaceholder: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   allowPlaceholders: PropTypes.bool,
+  noThumbnail: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   onSelectReturn: PropTypes.func,
@@ -544,8 +601,10 @@ TaxonAutocomplete.propTypes = {
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
   notIDs: PropTypes.array,
+  observedByUserID: PropTypes.number,
   perPage: PropTypes.number,
-  config: PropTypes.object
+  config: PropTypes.object,
+  onKeyDown: PropTypes.func
 };
 
 export default TaxonAutocomplete;

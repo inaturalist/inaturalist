@@ -108,7 +108,6 @@ et:
   a_default_taxon_name_will_automatically_created: |
     Vaikimisi taksoni nimi luuakse automaatselt sellele määratud teaduslikust nimetusest. Kui oled uue taksoni salvestanud, saad lisada teisi nimesid (rahvapärased nimetused, aegunud nimetused, jne).
   a_flag_for_x: "märkus %{x} kohta"
-  a_member_of: "Kuulub:"
   a_member_of_taxon_html: "taksoni %{taxon} liige"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -280,7 +279,6 @@ et:
   admin_s: Admin(id)
   admin_only: Ainult administraatoritele
   admin_tools: Admintööriistad
-  agree: nõustun
   agree_: Nõustun
   agree?: Nõustud?
   agree_with_current_taxon: Kinnita praegu valitud takson
@@ -476,7 +474,6 @@ et:
   assessment_x: "hinnang %{assessment}"
   assessments: hinnangud
   associations: Seosed
-  at_time: "kell %{time}"
   attached_taxon: Lisatud takson
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -541,6 +538,8 @@ et:
   blue: sinine
   blue_butterfly_etc: "sinine, sajajalgne, jne"
   body: Tekst
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   bounding_box: Piirkast
   breadcrumbs: Hierarhia
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -570,6 +569,7 @@ et:
   cant_merge_a_taxon_with_itself: Taksonit ei saa ühendada iseendaga.
   captive: Vangistatud
   captive_cultivated: Vangistatud / kultiveeritud
+  captive_observations: Vangistatuks määratud vaatlused
   card: Kaart
   casual: juhuvaatlus
   casual_: Juhuvaatlus
@@ -595,7 +595,6 @@ et:
   change_descriptions:
     split: Vana takson on jagatud mitmeks uueks taksoniks
     merge: Mitu vana taksonit on liidetud üheks uueks taksoniks
-    swap: Üks-ühele nimevahetus
     drop: Takson on täiesti vale ning seda säilitakse ainult ajaloolistel eesmärkidel või partneritega ühildumiseks
     stage: Valmista mitteaktiivne mõiste ette muutustegrupis avalikustamiseks
   change_geoprivacy: 'Muuda asukoha privaatsust'
@@ -663,7 +662,6 @@ et:
   choose_a_list_above: Vali ülalt nimekiri.
   choose_a_place: Vali koht
   choose_a_taxon: Vali takson (valikuline)
-  choose_cc_licensed_photos_html: 'Vali teistelt lehekülgedele <a href="http://creativecommons.org/">avatud</a> litsentsiga fotod või vali lehe %{site_name} vaatluste hulgast. Proovi valida pilte <em>iseloomulikke omadusi</em> ja <em>näevad ikoonidena head välja</em>.  Esimesele pildile <em>antakse vaikimisi esindusfunktsioon</em>.'
   choose_columns: Vali tulbad
   choose_file: Vali fail
   choose_files: Vali failid
@@ -751,6 +749,7 @@ et:
     iucn: Samaväärne IUCNi punase nimestiku kood
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
+  content_hidden: Sisu on peidetud
   continue: Jätka
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
@@ -773,6 +772,8 @@ et:
     juvenile: Nooruk
     alive_or_dead: Elus või surnud
     alive: Elus
+    dead: Surnud
+    cannot_be_determined: Ei saa kindlaks teha
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
     dead: Organism on surnud või on naha peatse surma märgid
@@ -1115,6 +1116,7 @@ et:
   favorites: "Lemmikud"
   feature_this_project_: "Tõsta projekt esile"
   featured: Esiletõstetud
+  #Title for a button or section describing the "featured" status of a project
   featuring: Esiletõstetud
   feedback: Tagasiside
   #Plural noun, as in Atom and RSS feeds
@@ -1212,7 +1214,6 @@ et:
   formatting: Vorming
   forgot_your_password: Unustasid salasõna?
   frequency: Sagedus
-  from: Kellelt
   from_a_place: kohast
   from_eol_collection: EOL-i kollektsioonist
   from_flickr_facebook_etc: Lehtedelt Flickr, Facebook, jms.
@@ -1220,8 +1221,6 @@ et:
   from_photos: Fotodest
   from_place: Kohast
   from_soundcloud: SoundCloudist
-  from_your_site_observations: "Lehe %{site_name} vaatlustest"
-  from_licensed_site_observations: "Lehe %{site_name} litsenseeritud vaatlustest"
   full_screen: Täisekraan
   fungi:
     one: seen
@@ -1431,8 +1430,8 @@ et:
   kml_file_size_error: "KML peab olema vähem kui 1 MB suur"
   labels: Sildid
   label_to_group_a_batch_of_taxon_changes: Silt, millega grupeeritakse taksonimuudatuste kogumit
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Asukoht privaatne
-  location_unknown: Asukoht teadmata
   language_slash_type: Keel / Tüüp
   #Large photo size
   large: suur
@@ -1725,10 +1724,14 @@ et:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D h:mma z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
   month: Kuu
   months: Kuud
   more: Veel
@@ -1835,7 +1838,6 @@ et:
   newly_added: Äsjalisatud
   newly_added_species: Uued liigid
   newly_observed_species: Äsjavaadeldud liigid
-  news: Uudised
   next: Edasi
   next_observation: Järgmine vaatlus
   next_page: Järgmine lehekülg
@@ -2043,7 +2045,6 @@ et:
   official_blog: Ametlik blogi
   offline_access_enabled: Offline-ligipääs lubatud
   old_observation_form: Vana vaatlusvorm (mittekasutatav)
-  on_date: "kuupäeval %{date}"
   on_day: "kuupäeval"
   onboarding:
     observe_panel_title: Alustame mõne vaatluse lisamisega
@@ -2105,7 +2106,6 @@ et:
   or_all_caps: VÕI
   or_choose_high_level_taxa: "... või vali mõni kõrgema taseme takson"
   or_if_you_dont_want_email: "Või kui sa ei taha e-posti..."
-  or_upload: Või lae üles
   orange: oranž
   order: Järjestus
   order_by: Järjesta
@@ -2126,7 +2126,6 @@ et:
   other_species_commonly_misidentified_as_this_species: Selle liigiga sageli segamini aetavad liigid
   other_species_commonly_misidentified_as_this_species_in_place_html: Kohas <a href="%{url}">%{place}</a> selle liigiga sageli segamini aetavad liigid
   our_blog: Meie blogi
-  out_of_range: Pole piirkonnas
   output_taxon: Väljundtakson
   overview: Ülevaade
   owner: Omanik
@@ -2562,8 +2561,6 @@ et:
   project_rules: Projekti reeglid
   project_settings: Projekti sätted
   project_that_does_not_contain_these_observations: Projekt, mis ei sisalda neid vaatlusid
-  project_type_description: |
-    Hinnagud ja välkvaatlused on erilised projektitüübid. Hinnanguid saab kasutada liigi arvukuse hindamiseks, mis on tavaliselt oluline kaitsestaatuse määramisel. Välkvaatlused on sündmused, millel on kindel algus ja lõpp.
   project_user_cannot_be_found: Projekti kasutajat ei leitud
   project_user_was_invalid: "Projekti kasutaja oli vigane: %{project_user}"
   project_was_successfully_created: Projekti loomine õnnestus.
@@ -2686,7 +2683,6 @@ et:
   remember_me: Jäta mind meelde
   remove: Eemalda
   remove_all_tags: Eemalda kõik märksõnad
-  remove_boundary: Eemalda piirjoon
   remove_comma_separated_tags: "Eemalda komaga eraldatud märkõnad"
   remove_conservation_status: eemalda kaitsestaatus
   remove_from: Eemalda
@@ -2753,6 +2749,7 @@ et:
   rules_for_becoming_a_member: Liikmeks saamise reeglid
   rules_for_becoming_memner: Liikmeks saamise reeglid
   rules_types:
+    must_be_captive: peab olema vangistatud / kultiveeritud
     must_be_georeferenced: peab olema asukoha andmetega
     must_be_identified: peab olema määratletud
     must_be_on_list: peab olema nimekirjas
@@ -3190,7 +3187,6 @@ et:
     Määramismasin on tööriist, mis aitab sul oma vaatluseid määratleda lähtuvalt koha %{site_name} kontrollnimekirjast. Kui masinale antakse kõrgema taseme takson ja koht (nt Eesti imetajad), otsitakse selle koha kontrollnimekirjades olevaid taksoneid. Enamik koha %{site_name} kontrollnimekirju pole lõplikud, aga kui mõni neist on täielik (st see loetleb <em>kõiki</em> mõne taksoni esindajaid selles kohas), siis annab määramismasin sellest ka teada.
   the_name_of_the_taxon_including_space: Taksoni nimi koos liigi ja infraliigiga.
   the_observation_was_already_added_to_that_project: Vaatlus on sellesse projekti juba lisatud.
-  the_past: minevik
   the_people_of_inat: "Lehe %{site_name} kasutajad"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Allolevaid liike ei leitud %{site_name} andmebaasist.
@@ -3410,6 +3406,7 @@ et:
   user_commented: "%{user} kommenteeris"
   user_commented_on: "Kasutaja %{user} kommenteeris sinu %{title} (%{time})"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
   user_flagged_as_a_non_spammer_html: "Kasutaja %{user} on märgitud mitte-rämpspostitajaks"
   user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"
@@ -3431,11 +3428,9 @@ et:
   username_or_email: Kasutajatunnus või e-posti aadress
   username_or_user_id: Kasutajatunnus või kasutaja ID
   users: Kasutajad
-  users_comment_html: "<a href='%{url}'>%{user}</a> kommentaar"
   users_contributions_to_project_html: Kasutaja <a href="%{url}">%{login}</a> panus projekti %{project_title}
   users_highlights_and_stats_from_year_on_site: "Kasutaja %{user} %{year}. aasta tipud ja statistika lehel %{site}"
   users_id: "%{user} ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> määratlus"
   users_latest_observations_on_site: "Kasutaja %{user} viimased vaatlused lehel %{site}"
   users_profile: "%{user} profiil"
   users_projects: "%{user} projektid"
@@ -3538,6 +3533,9 @@ et:
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
   welcome_to_x_project: "Teretulemast projekti %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
@@ -3612,7 +3610,6 @@ et:
   'yes': "Jah"
   yes_find_them!: "Jah, leia need!"
   yes_i_want_to_join: Jah, soovin liituda
-  yes_license_my_observations_so_scientists_can_use: Jah, litsenseerige mu fotosid, helisid ja vaatlusid, et teadlased saaksid mu andmeid kasutada!
   yes_reject_it: Jah, lükka tagasi
   yes_show_this_in_the_box: Jah, näita seda taksoni päises olevas suures kastis
   yesterday: Eile
@@ -3900,9 +3897,6 @@ et:
         Oli see organism <strong>kasvatatud</strong> või <strong>vangistatud</strong>? Näiteks <strong>aias, loomaaias, akvaariumis</strong> või mõnes muus kohas, kus lihtsalt <strong>inimesed soovisid, et see seal oleks</strong>? Kõik eluslooduse vaatlused on teretulnud, kuid me sooviksime teada, kui miski ei ole metsik või on elukohaga kohandunud.
       export:
         choose_columns_desc: Vali eksporditavad tulbad
-        create_a_query_desc_html: |
-          Loo vaatluspäring nagu igalpool mujal meie leheküljel. Võid siia sisestada ka mõnest teisest lehe osast pärit vaatluste URLi. Pea määrama <strong>taksoni</strong>, <strong>koha</strong>, <strong>kasutaja</strong>, 
-          <strong>projekti</strong> või <strong>otsingupäringu</strong>.
         ident_by_user_desc_html: |
           Kasutaja %{user} praeguse määratluse tulbad
         query_placeholder: "Vali altpoolt päringu parameetrid või lisa vaatluse URL"
@@ -4075,13 +4069,6 @@ et:
         message: |
           Sa pole mõnda aega olnud lehel %{site_name} aktiivne, nii et oleme katkestanud sinu jälgimised. Et jätkuvalt saada teateid lehel toimuvast, palun <a href="%{login_url}">logi uuesti sisse</a>.
     photos:
-      inviter:
-        automatically_add_to_project: Lisa automaatselt projekti
-        automatically_id_the_new_obs_as: Määratle uus vaatlus automaatselt kui
-        dont_forget_the_invite_link_placeholder: "ära unusta {{INVITE_LINK}} (kutse lingi) kohahoidjat"
-        invite_other_photographers_to_inat: "Kutsu teisi fotograafe lehele %{site_name}"
-        invite_your_friends_description: |
-          Saad muuta väga lihtsaks Facebooki ja Flickri fotode lisamise %{site_name} vaatlustele. Jäta lihtsalt kommentaar, milles sisaldub allolev spetsiaalne kutse-URL. Saad uue vaatluse jaoks ka taksoni ja projekti ette ära valida.
       show:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun märgi autoriõiguste rikkumise märkused lahendatuks, kui see foto neid ei riku.
@@ -4176,7 +4163,6 @@ et:
           </p>
         rules:
           captive: olema vangistatud/kultiveeritud
-          coordinates_shareable_by_project_curators: projekti kuraatorid saavad koordinaate jagada
           georeferenced: omama koordinaate
           has_a_photo: omama fotot
           has_a_sound: omam heli

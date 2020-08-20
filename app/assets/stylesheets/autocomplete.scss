@@ -1,3 +1,5 @@
+$img-width: 40px;
+$img-margin: 3px;
 .linky {
   color: #36C;
 }
@@ -6,9 +8,15 @@
   padding: 0px;
   .ac {
     min-width: 370px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     width: 100%;
+
+    .ac-label {
+      width: 100%;
+    }
   }
   &.projects {
     max-height: 315px;
@@ -36,7 +44,7 @@
   height: 36px;
 }
 .ui-autocomplete .ac-thumb {
-  width: 44px;
+  width: $img-width + $img-margin * 2;
   display: inline-block;
   text-align: center;
   vertical-align: top;
@@ -48,7 +56,7 @@
 }
 
 .ui-autocomplete .ac-message .ac-thumb {
-  width: 34px;
+  width: 49px;
   padding-left: 5px;
 }
 .ui-autocomplete .ac-view {
@@ -60,9 +68,9 @@
   display: inline-block;
 }
 .ui-autocomplete .ac-thumb img {
-  width: 40px;
-  height: 40px;
-  margin: 3px;
+  width: $img-width;
+  height: $img-width;
+  margin: $img-margin;
   display: block;
 }
 .ui-autocomplete .ac-message .ac-thumb img {
@@ -111,20 +119,16 @@
 }
 .ac-result.taxon .ac-label {
   display: inline-block;
-  width: 258px;
 }
 .ui-autocomplete .identification .ac-label {
   display: inline-block;
-  width: 450px;
 }
 .ui-autocomplete .user .ac-label {
   display: inline-block;
-  width: 450px;
 }
 .ui-autocomplete .ac-message .ac-label {
   padding: 0 0 0 12px;
   line-height: 36px;
-  width: 300px;
 }
 .ui-autocomplete .ac-message .ac-label .title {
   overflow: hidden;
@@ -185,11 +189,12 @@
   vertical-align: middle;
 }
 .ac-result.place .ac-label {
-  max-width: 400px;
+  max-width: 100%;
 }
 .ac-result.place .title {
   float: left;
   margin-right: 8px;
+  max-width: 100%;
 }
 .ac-result.place .type {
   float: left;

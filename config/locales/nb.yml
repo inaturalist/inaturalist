@@ -2,6 +2,9 @@ nb:
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentar'
+    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '%{count} favorittpoeng'
     other: '%{count} favorittpoeng'
@@ -123,7 +126,6 @@ nb:
   a_default_taxon_name_will_automatically_created: |
     Et standard taksonnavn vil automatisk bli laget ut fra taksonets vitenskapelige navn. Når du har lagret det nye taksonet, vil du kunne legge til andre navn her (lokalnavn, utdaterte vitenskapelige navn, osv.).
   a_flag_for_x: "en markering for %{x}"
-  a_member_of: "Et medlem av"
   a_member_of_taxon_html: "et medlem av %{taxon}"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -189,11 +191,17 @@ nb:
   add: Legg til
   add_a_batch_of_observations: Legg til en batch med observasjoner
   add_a_batch_of_taxa: Legg til en batch med taksa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Legg til en unummerert liste
   add_a_comment: Legg til en kommentar
   add_a_field: Legg til et felt
   add_a_flag: Legg til en markering
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Legg til en lenke
   add_a_name: Legg til et navn
   add_a_new_change_group: Legg til en ny endringsgruppe
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Legg til en nummerert liste
   add_a_single_observation: Legg til en enkel observasjon.
   add_a_taxon: Legg til et takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -216,6 +224,8 @@ nb:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Legg til prosjektressurs
   add_batch: Legg til batch
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Legg til fet tekst
   add_comma_separated_tags: "Legg til kommaseparerte etiketter"
   add_comment: Legg til en kommentar
   add_conservation_status: Legg til bevaringsstatus
@@ -228,6 +238,8 @@ nb:
   add_link: Legg til lenke
   add_higher_level_taxon: Legg til et takson på et høyere nivå (f.eks. "fugler")
   add_id: Legg til ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Legg til kursiv tekst
   add_new_lexicon: Legg til nytt leksikon
   add_new_photos_by_their_ids: Legg til nye bilder med deres Flickr-ID-er (må være Creative Commons!)
   add_new_place: Legg til et nytt sted
@@ -254,6 +266,7 @@ nb:
   add_plant_phenology_flower_budding_annotation: 'Legg til merknaden "Plantefenologi: blomsterknopper"'
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Legg til merknaden "Plantefenologi: Fruktbærende"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Legg til merknaden "Plantefenologi: Ingen bevis for blomstring"'
   add_life_stage_adult_annotation: 'Legg til merknaden "Livsstadium: Voksen"'
   add_life_stage_teneral_annotation: 'Legg til merknaden "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Legg til merknaden "Livsstadium: subimago"'
@@ -269,6 +282,7 @@ nb:
   add_several_observations_at_once: Legg til flere observasjoner på en gang.
   add_sex_female_annotation: 'Legg til merknaden "Kjønn: Hunkjønn"'
   add_sex_male_annotation: 'Legg til merknaden "Kjønn: Hankjønn"'
+  add_sex_cannot_be_determined_annotation: 'Legg til merknad "Kjønn: kan ikke bestemmes"'
   add_some_now: Legg til enkelte nå
   add_tag: Legg til etikett
   add_tags: Legg til etiketter
@@ -311,7 +325,6 @@ nb:
   admin_s: Administrator(er)
   admin_only: Kun administratorer
   admin_tools: Administrasjonsverktøy
-  agree: enig
   agree_: Enig
   agree?: Enig?
   agree_with_current_taxon: Enig i det aktuelle taksonet
@@ -526,6 +539,8 @@ nb:
     Er du sikker på at du anser denne brukeren som respektabel? Alle spam-markeringer på deres innhold vil bli løst.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Er du sikker på at du vil fjerne disse %{x} taksa?"
   are_you_sure_you_want_to_remove_this_invitation: Er du sikker på at du vil fjerne denne invitasjonen?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Er du sikker på at du vil fjerne denne observasjonen fra %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Er du sikker på at du vil fjerne dette taksonet fra sjekklisten til %{place}?"
   associated_observations: Tilknyttede observasjoner
   associated_taxa: Tilknyttede taksa
@@ -544,7 +559,6 @@ nb:
   assessments: vurderinger
   associations: Tilknytninger
   atlas_for_taxon_html: Atlas for %{taxon}
-  at_time: "kl. %{time}"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -617,6 +631,8 @@ nb:
   body: Innhold
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: fet tekst
   bounding_box: Avgrensningsboks
   breadcrumbs: Brødsmulesti
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -647,6 +663,7 @@ nb:
   cant_merge_a_taxon_with_itself: Kan ikke slå sammen et takson med seg selv.
   captive: I fangenskap
   captive_cultivated: I fangenskap / dyrket
+  captive_observations: Observasjoner i fangenskap
   card: Kort
   casual: uformell
   casual_: Uformell
@@ -672,7 +689,7 @@ nb:
   change_descriptions:
     split: Gammel taksonoppdeling i flere nye taksa
     merge: Flere gamle taksa slått sammen til ett nytt takson
-    swap: 1-til-1-navneendring
+    swap: Erstatt inn-takson med ut-takson
     drop: Taksonkonsept helt ugyldig, beholdt til historiske formål eller partnerkompatibilitet
     stage: Forbered et inaktivt konsept for frigivelse som en del av en endringsgruppe
   change_geoprivacy: 'Endre geosperring'
@@ -744,7 +761,6 @@ nb:
   choose_a_list_above: Velg en liste ovenfor.
   choose_a_place: Velg et sted
   choose_a_taxon: Velg et takson (valgfritt)
-  choose_cc_licensed_photos_html: 'Velg bilder med en <a href="http://creativecommons.org/">åpen</a> lisens fra andre sider eller velg fra %{site_name}-observasjoner. Prøv å velge bilder som <em>viser diagnostiske egenskaper</em> og <em>ser bra ut som ikoner</em>. Det <em>første blir standardbildet</em>.'
   choose_columns: Velg kolonner
   choose_file: Velg fil
   choose_files: Velg filer
@@ -777,6 +793,7 @@ nb:
   comment_deleted: Kommentar slettet
   comments: Kommentarer
   comments_by_me: Mine kommentarer
+  comments_have_been_disabled: Kommentarer er deaktivert
   comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mine observasjoner
   commercial_solicitation: Kommersielle meldinger, lenker til ingenting, osv.
@@ -827,6 +844,7 @@ nb:
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
   connecting_to_facebook: "Kobler til Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Å koble din konto på %{site_name} til kontoer på andre sider lar deg logge på %{site_name} ved å bruke dine påloggingsopplysninger fra disse sidene."
+  cannot_be_changed_during_a_content_freeze: Kan ikke endres under frysing av innhold
   conservation_status: Bevaringsstatus
   conservation_status_descriptions:
     status: Statuskode, nivå, osv. Vennligst bruk en kort kode som E eller CR hvis det finnes, men hvis ikke, vennligst bruk hele statusen, f.eks. truet eller kritisk truet.
@@ -870,6 +888,7 @@ nb:
     teneral: Teneral
     subimago: Subimago
     pupa: Puppe
+    no_evidence_of_flowering: Ingen bevis for blomstring
     nymph: Nymfe
     larva: Larve
     egg: Egg
@@ -884,7 +903,9 @@ nb:
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
+    no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
     teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
+    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
   controls: Kontrollpanel
   convert: Konverter
   coordinate_systems: Koordinatsystemer
@@ -931,6 +952,7 @@ nb:
   create_a_query: Opprett en spørring
   create_an_account: Opprett en konto
   create_an_atlas: Opprett en atlas
+  create_export: Opprett eksport
   create_new_taxon: Opprett et nytt takson
   create_observations: Opprett observasjoner
   created: Opprettet
@@ -1063,13 +1085,37 @@ nb:
   deviation: Avvik
   devise:
     failure:
+      already_authenticated: 'Du allerede er logget på.'
+      unauthenticated: 'Du må logge inn eller registrere deg før du fortsetter.'
+      invalid: 'Ugyldig e-post eller passord.'
+      invalid_token: 'Ugyldig autoriseringsnøkkel.'
       user:
         suspended: Din konto har blitt suspendert
+    sessions:
+      signed_in: 'Pålogging vellykket.'
+      signed_out: 'Avlogging vellykket.'
+    passwords:
+      send_instructions: 'Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.'
+      updated: 'Passordet ditt ble endret. Du er nå logget inn.'
+      updated_not_active: 'Endring av ditt passord var vellykket.'
+      send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
+      no_token: "Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen."
+    registrations:
+      signed_up: 'Velkommen! Registreringen var vellykket.'
+      updated: 'Du har oppdatert din konto.'
+      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruksjoner for bekreftelse'
+      reset_password_instructions:
+        subject: 'Instruksjoner for å tilbakestille passord'
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt noen bilder på Flickr?
   disable: Deaktiver
+  disable_comments: Deaktiver kommentarer
+  disable_comments_desc: Hindre at folk legger inn nye kommentarer
   disagree_: Uenig
   disconnect_provider: "Koble fra %{provider}"
   display_link_to_checklist: Vis lenke til prosjektliste fra prosjektside
@@ -1128,7 +1174,7 @@ nb:
   edit_field: Rediger felt
   edit_license: Rediger lisens
   edit_multiple_dates: Rediger flere datoer
-  edit_multiple_descriptions: Rediger flere beskrivelser
+  edit_multiple_descriptions: Rediger flere notater
   edit_multiple_locations: Rediger flere lokaliteter
   edit_multiple_species: Rediger flere arter
   edit_notes: Rediger notater
@@ -1165,6 +1211,7 @@ nb:
   editing_project: Redigerer %{project}
   editing_project_asset: Redigere prosjektressurs for
   editing_subscription_to_x_html: "Redigerer abonnement på %{x}"
+  editing_taxon: Redigerer %{taxon}
   editing_taxon_link: Redigerer taksonlenke
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
   editing_taxon_range: Redigerer taksonutbredelse
@@ -1249,6 +1296,7 @@ nb:
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
+  failed_to_save_record_with_errors: "Kunne ikke lagre posten: %{errors}"
   'false': 'Usann'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
@@ -1257,6 +1305,7 @@ nb:
   favorites: "Favoritter"
   feature_this_project_: "Fremhev dette prosjektet"
   featured: Fremhevet
+  #Title for a button or section describing the "featured" status of a project
   featuring: Fremhever
   feedback: Tilbakemelding
   #Plural noun, as in Atom and RSS feeds
@@ -1269,6 +1318,7 @@ nb:
   fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres av de som har opprettet dem og sidekuratorer
   fields_merged: Felter slått sammen
   file: Fil
+  file_size: Filstørrelse
   file_should_be_in_the_following_format: "Filen skal være i følgende format: taksonnavn, beskrivelse"
   fill_out_project_observation_fields: Fyll ut projektets observationsfelt
   fill_out_your_profile: fullfør din profil
@@ -1398,7 +1448,6 @@ nb:
   forum_desc: |
     Forumet er et sted hvor selve iNat kan diskuteres, inkludert hjelp & brukerstøtte, etterspurt funksjonalitet, feilrapportering, kunngjøringer, og mer.
   frequency: Frekvens
-  from: Fra
   from_a_place: fra et sted
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, osv.
@@ -1406,8 +1455,6 @@ nb:
   from_photos: Fra bilder
   from_place: Fra sted
   from_soundcloud: Fra Soundcloud
-  from_your_site_observations: "Fra %{site_name}-observasjoner"
-  from_licensed_site_observations: "Fra lisensierte %{site_name}-observasjoner"
   full_screen: Fullskjerm
   fungi:
     one: sopp
@@ -1439,6 +1486,7 @@ nb:
   got_it!: Skjønner!
   got_your_data_somewhere_else?: Har du dataene dine et annet sted? Vi kan hjelpe.
   graft: Pod
+  graft_taxon: Pod %{taxon}
   grafting_attemps_to_insert_this_taxon: Poding forsøker å integrere dette taksonet i vårt taksonomiske tre, finne et eksisterende foreldretakson eller opprette alle taksa i mellom for å knytte det opp mot et takson på et høyere nivå.
   grant_role: "%{grant} %{role}-rolle"
   grid: Raster
@@ -1548,6 +1596,7 @@ nb:
   ignore_and_continue: Ignorer og fortsett
   ignore_times: Ignorer klokkeslett
   image_must_be_exactly: bildet må være nøyaktig 950 piksler bred og maksimalt 400 piksler høy
+  image_size_control: Bildestørrelse-styring
   imperiled: I fare
   import: Importer
   import_all_photos_as_observations: Importer alle bilder som observasjoner
@@ -1592,6 +1641,8 @@ nb:
   insects: insekter
   insect_life_stage: Livsstadium insekt
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Sett inn sitat
   interactions: Interaksjoner
   internal_server_error: Intern serverfeil
   internal_taxon_including_descendants: Internt takson (inkl. etterkommer-taksa)
@@ -1616,6 +1667,8 @@ nb:
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller støtende?'
   is_this_place_a_duplicate: Er dette stedet et duplikat?
   it_can_now_be_used_for_research: Det kan nå brukes i forskning og vises på andre nettsider
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: kursiv tekst
   item_flagged_notice_html: |
     Dette har blitt markert som spam og er ikke synlig lenger. Du kan se det fordi du opprettet det, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="%{manage_flags_path}">Forvalt markeringer</a>
   join: Bli med
@@ -1645,8 +1698,15 @@ nb:
   label_colon: "%{label}:"
   labels: Etiketter
   label_to_group_a_batch_of_taxon_changes: Etikett for å gruppere en batch med taksonendringer
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Posisjon privat
-  location_unknown: Posisjon ukjent
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Mangler posisjon
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Lås zoomnivå
   language_slash_type: Språk / type
   #Large photo size
   large: stor
@@ -1761,9 +1821,13 @@ nb:
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
   linked_flickr_password_html: "<strong>Vi kommer aldri til å be deg om ditt Flickr-passord</strong> (men Flickr kan kanskje gjøre det, sjekk at url'en som knappen sender deg er Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: lenket tekst
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
+  list_reloaded_from_observations: Listen ble lastet inn på nytt fra observasjoner
+  list_rules_reapplied: Listeregler har blitt tilpasset på nytt
   list_saved: Liste lagret.
   list_tooltip: Vis som liste
   list_updated: Liste oppdatert!
@@ -1847,6 +1911,10 @@ nb:
   location_specified: Plassering oppgitt
   locked_taxa_will_not_allow_new: Låste taksa vil ikke la nye underliggende taksa bli lagt til seg. Så hvis du har låst Amphibia og noen prøver å importere <i>Rana catesbeiana</i> fra en ekstern navneleverandør, vil det nye taksonet bli opprettet men kan det ikke klassifiseres som en amfibie. Når det skjer, bør de nye taksa bli flagget slik at en kurator kan se på de. Dette bør bare brukes for taksa der vi tror at vi allerede har alle underliggende taksa. Kuratorer kan overstyre dette ved å redigere taksa og legge inn foreldretakson-ID-er manuelt, men vennligst vurder å slå sammen nye taksa med eksisterende i stedet.
   log_in: Logg inn
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Logg på</a> eller <a href="/signup">registrer deg</a> for å legge til kommentarer.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Logg på</a> eller <a href="/signup">registrer deg</a> for å legge til bestemmelser.
   log_scale_label: Log
   login_slash_username: Login / brukernavn
   logo:
@@ -1908,6 +1976,9 @@ nb:
       range: Utbredelse
   map_tooltip: Vis som kart
   mark_as_reviewed: Marker som revidert
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Å merke en observasjon som revidert, betyr at du vanligvis ikke vil se den igjen under identifisering. Den vil fortsatt være synlig for andre personer under identifisering.
   mark_all_as_reviewed: Marker alle som revidert
   mark_all_as_unreviewed: Marker alle som urevidert
   matching_species_will_shown_up_here: Matchende arter vises her. Kartene vil vise en distribusjon hvis %{place} har en for den arten.
@@ -1929,7 +2000,11 @@ nb:
   mentioned_you_in_a_x_on_noun_html: "%{user} har nevnt deg i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} har nevnt deg i en %{x} på %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} har nevnt deg i en %{x} på %{noun} av %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} har nevnt deg i 1 %{x} på %{noun} av %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} har nevnt deg i 1 %{x} på %{noun} av deg"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} har nevnt deg i en %{x} på %{noun} av %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} har nevnt deg i 1 %{x} på %{noun} av %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} har nevnt deg i 1 %{x} på %{noun} av deg"
   merge: Slå sammen
   merge_it_with_another_place: Slå sammen med et annet sted
   merge_two_places_together: Slå sammen to steder. Alle arter op sjekklistene vil bli slått sammen, samt all geografiske data.
@@ -1945,6 +2020,8 @@ nb:
   misleading_or_illegal_content_html: |
     Misvisende eller ulovlig innhold, rasistiske eller upassende utsagn, osv. Les
     mer om vår definisjon av "passende" i svarene på <a href="/help#inappropriate">ofte stilte spørsmål</a>.
+  #Label shown when a date has not been entered
+  missing_date: Mangler dato
   mobile: Mobil
   mollusks: bløtdyr
   momentjs:
@@ -1973,14 +2050,18 @@ nb:
       'y': "1å"
       #Short text representing %d years in the past
       yy: "%då"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
-    #Note that this should display a time zone code and not an offset, so
-    #please use z and not Z
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D. MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM, YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D. MMMM, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D. MMMM"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig supporter</a> siden %{date}
@@ -2053,8 +2134,14 @@ nb:
   needs_id_: Trenger ID
   needs_id_expandable_html: "<span class='full'>Trenger </span>ID"
   needs_to_be_identified: Trenger å bli identifisert
+  #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i %{place}. Ønsker du å endre din kontotilknytning fra iNaturalist.org til %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i Finland. Ønsker du å endre din kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du å endre din tilknytning fra <strong>%{other_site_name}</strong> til <strong>%{site_name}</strong>?
   new: Ny
@@ -2101,7 +2188,6 @@ nb:
   newly_added_species: Nye arter lagt til
   newly_observed_species: Nye arter observert
   newly_observed_species_in_year: "Nye arter lagt til i %{year}"
-  news: Nyheter
   next: Neste
   next_observation: Neste observasjon
   next_page: Neste side
@@ -2128,6 +2214,7 @@ nb:
   no_favorites_added:
     current_user: Du har ikke lagt til favoritter ennå.
     user: "%{user} har ikke lagt til favoritter."
+  no_journal_posts_yet: Ingen journalinnlegg ennå
   no_license_all_rights_reserved: Ingen lisens (alle rettigheter forbeholdt)
   no_managers_set: Ingen managere valgt
   no_matching_article_from_x: "Ingen matchende artikkel fra %{x}"
@@ -2147,7 +2234,7 @@ nb:
   no_observations: Ingen observasjoner
   no_observations_from_this_place_yet: Ingen observasjoner fra dette stedet ennå.
   no_observations_matching_those_ids: Ingen observasjoner med treff for disse ID-er.
-  no_observations_submitted: "Ingen observasjoner sendt inn!"
+  no_observations_submitted: "Ingen observasjoner lagt inn!"
   no_observations_yet: Ingen observasjoner ennå
   no_one_has_added_any: Ingen har lagt til noen notater for dette stedet
   no_one_has_been_invited_yet: Ingen har blitt invitert ennå
@@ -2256,6 +2343,8 @@ nb:
   observations_by_you: "Observasjoner av deg"
   observations_by_you_on_date: "Observasjoner av deg på %{date}"
   observation_calendar_for: "Observasjonskalender for %{user} i %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Observasjoner kan bare ha %{limit} bilder
   observation_curation: Kuratering av observasjoner
   observation_date: Dato
   observation_date?: Dato?
@@ -2356,7 +2445,6 @@ nb:
   offline_access_enabled: Offline tilgang aktivert
   old_observation_form: Gammelt observasjonsskjema (foreldret)
   ok: "Ok"
-  on_date: "på %{date}"
   on_day: "på"
   onboarding:
     observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
@@ -2415,7 +2503,6 @@ nb:
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller velg fra noen høyere taksa"
   or_if_you_dont_want_email: "Eller hvis du ikke ønsker noe som helst e-post..."
-  or_upload: Eller last opp
   orange: oransje
   order: Sorter
   order_by: Sorter etter
@@ -2454,7 +2541,6 @@ nb:
   other_taxa_commonly_misidentified_as_this_subsection: Andre arter som ofte blir feilidentifisert som denne underseksjonen
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andre arter som ofte blir feilidentifisert som denne underseksjonen i <a href="%{url}">%{place}</a>
   our_blog: Bloggen vår
-  out_of_range: Utenfor utbredelsen
   output_taxon: Outputtakson
   overview: Oversikt
   overlapping_downstream_taxon_frameworks_html: "Overlappende underliggende taksonrammeverk: %{count}"
@@ -2512,6 +2598,9 @@ nb:
   photo_urls_repaired: Bilde-URL-er reparert
   photos_chosen_for_this_taxon: Bilder valgt for dette taksonet
   photos_from: Bilder fra
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Bilder låst
+  photos_locked_desc: Bare ansatte kan endre standardbildene for dette taksonet
   photos_of_taxon_html: "Bilder av %{taxon}"
   photos_or_sounds: Bilder eller lyd
   photos_or_sounds?: Bilder eller lyder?
@@ -2550,16 +2639,32 @@ nb:
       building: bygning
       Canton: Kanton
       canton: kanton
+      City Building: Bygning i by
+      city building: bygning i by
       Colloquial: Uformelt
       colloquial: uformelt
       Commune: Kommune
       commune: kommune
+      Constituency: Valgkrets
+      constituency: valgkrets
       Continent: Kontinent
       continent: kontinent
       Country: Land
       country: land
       County: County
       county: county
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegasjon
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegasjon
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Avdelingssegment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: avdelingssegment
       District: Distrikt
       district: distrikt
       Division: Divisjon
@@ -2600,6 +2705,12 @@ nb:
       open_space: åpent område
       Parish: Sogn
       parish: sogn
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefektur
+      prefecture: prefektur
       Prefecture_City: Prefekturby
       prefecture_city: prefekturby
       Point_of_Interest: Punkt av interesse
@@ -2608,6 +2719,8 @@ nb:
       postal_code: postnummer
       Province: Provins
       province: provins
+      Regency: Regentskap
+      regency: regentskap
       Region: Region
       region: region
       Republic: Republikk
@@ -2626,6 +2739,10 @@ nb:
       subdivision: underdivisjon
       Suburb: Forstad
       suburb: forstad
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Supernavn
       supername: supernavn
       Territory: Territorium
@@ -2638,6 +2755,8 @@ nb:
       undefined: udefinert
       Unknown: Ukjent
       unknown: ukjent
+      Village_block: Landsbyblokk
+      village_block: landsbyblokk
       Zone: Sone
       zone: sone
   place_guess: sted gjett
@@ -2948,6 +3067,7 @@ nb:
   present: tilstedeværende
   press: Presse
   preview: Forhåndsvisning
+  preview_observations_with_these_observation_requirements: Forhåndsvis observasjoner med disse observasjonskrav
   preview_of_synced_observation: "<strong>Forhåndsvisning</strong> av synkronisert observasjon. <a href=\"%{url}\">Angre?</a>"
   preview_personal_message: "Jeg hadde likt det om du ble med på %{site}, et nettsted hvor du kan registrere dine observasjoner av planter og dyr, hold oversikt over din livsliste, og lær om den naturlige verden!"
   preview_your_message: Forhåndsvis din beskjed
@@ -2987,6 +3107,7 @@ nb:
   project_group_description: Gruppen prosjektet hører til
   project_home: Prosjekt hjem
   project_icon: Prosjektikon
+  project_journal: Journal for prosjekt
   project_id_or_url_slug: Prosjekt ID eller URL-slug, f.eks. 333 eller mitt-prosjekt
   project_invitations: 'Prosjektinvitasjoner'
   project_list: Prosjektliste
@@ -2996,6 +3117,7 @@ nb:
   project_curators_added_some_of_your_observations_html: |
     Kuratorer til <a href="%{url}">%{project}</a> har lagt til noen av dine observasjoner
   project_members: "Medlemmer av %{project}"
+  project_members_only: Kun for prosjekt-medlemmer
   project_membership_model_description: Er prosjektet ditt åpent til alle, eller kun til personer som du inviterer?
   project_observations: Prosjektets observasjoner
   project_post: Projektinnlegg
@@ -3005,7 +3127,7 @@ nb:
   project_start_time_datetime: "Starttid: %{datetime}"
   project_that_does_not_contain_these_observations: Prosjekt som ikke inneholder disse observasjoner
   project_type_description: |
-    Vurderinger og bioblitzer er det spesielle typer prosjekter. Vurderinger er for å samarbeide om et sett med artsvurderinger, vanligvis for å peile bevaringsprioritet. Bioblitzer er arrangement med en bestemt start og slutt.
+    Vurderinger er for å samarbeide om et sett med artsvurderinger, vanligvis for å peile bevaringsprioritet.
   project_user_cannot_be_found: Prosjektbruker ble ikke funnet
   project_user_was_invalid: "Prosjektbruker er ugyldig: %{project_user}"
   project_was_successfully_created: Prosjektet ble opprettet.
@@ -3094,6 +3216,7 @@ nb:
   receive_updates_from_this_project: Få oppdateringer om dette prosjektet
   recent: Siste
   recent_evidence_of_organism: Nylig bevis av en organisme
+  recent_exports: Nylige eksporter
   recent_new_users: Siste nye brukere
   recent_observations: Siste observasjoner
   recent_observations_: Siste observasjoner
@@ -3133,7 +3256,6 @@ nb:
   remember_me: Husk meg
   remove: Fjern
   remove_all_tags: Fjern alle etiketter
-  remove_boundary: Fjern grense
   remove_comma_separated_tags: "Fjern kommaseparerte etiketter"
   remove_conservation_status: fjern bevaringsstatus
   remove_from: Fjern fra
@@ -3187,6 +3309,7 @@ nb:
   resolved_by: Løst av
   resolved_by_user_on_date_html: Løst av %{user} på %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} sa,</span> "%{x}"'
+  restart: Start på nytt
   restore: Gjenopprett
   restoring: Gjenoppretter...
   results: resultater
@@ -3202,6 +3325,7 @@ nb:
   rules_for_becoming_a_member: Regler for å bli medlem
   rules_for_becoming_memner: Regler for å bli medlem
   rules_types:
+    must_be_captive: må være i fangenskap / dyrket
     must_be_georeferenced: må være georeferert
     must_be_identified: må være identifisert
     must_be_on_list: må være på liste
@@ -3236,8 +3360,11 @@ nb:
   scale_colon: "Skala:"
   schemes: Skjema
   schemes_including: Skjema som inkluderer
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Vitenskapelig navn
   search: Søk
   search_all_fields: søk i alle felt
+  search_by_name: Søk etter navn
   search_by_name_or_email: Søk etter navn eller e-post
   search_by_taxon_name_or_observation_id: Søk etter taksonnavn eller observasjons-id
   search_by_taxon_name_or_flickr_photo_id: Søk etter taksonnavn eller Flickr bilde-id
@@ -3320,6 +3447,9 @@ nb:
   show_taxa_from_place: "Vis taksa fra %{place}"
   show_total_counts: Vis totale antall
   show_uncountable_species: Vis arter som ikke kan telles
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Viser første %{x}
   showing_taxa_from_everywhere: "Viser taksa fra overalt"
   showing_taxa_from_place: "Viser taksa fra %{place}"
   showing_x_of_y: Viser %{x} av %{y}
@@ -3474,9 +3604,9 @@ nb:
   submission_model: Innsendingsmodell
   submission_model_description: Hvem kan legge til observasjoner i ditt prosjekt?
   submit_observations:
-    one: Send 1 observasjon
-    other: Send %{count} observasjoner
-  submitted: Sendt
+    one: Legg inn 1 observasjon
+    other: Legg inn %{count} observasjoner
+  submitted: Lagt inn
   subscribe_to_a_taxon: Abonner på et takson
   subscribe_to_a_place: Abonner på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne markeringen"
@@ -3514,6 +3644,7 @@ nb:
   take_me_flickr!: Ja, ta meg til Flickr!
   target_list_alert: Er du sikker på at du har forsøkt å observere alle arter dekt av din målliste? Husk at alt som dekkes av din målliste som du ikke observerer blir regnet som et fravær, så det er veldig viktig at din målliste kommer nøyaktig overens med artene som du forsøkte å finne
   target_list_warning: Husk at alt på din målliste som du ikke observerte under din innenfor området blir sett på som et fravær. Det er veldig viktig at din målliste nøyaktig representerer artene du prøvde å finne. Hvis du ikke forsøkte å finne en art på din målliste eller alle arter i en gruppe på din målliste, vennligst fjern den.
+  task_deleted: Oppgave slettet
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukjente relasjoner
   taxa_info: Taksainfo
@@ -3649,6 +3780,11 @@ nb:
   terms_service: Tjenestevilkår
   terrain: terreng
   text: Tekst
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Tekstblokk-elementer
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Tekstformaterings-elementer
+  text_editing_controls: Tekstredigerings-elementer
   thanks!: Takk!
   thanks_from_all_of_us_here_at: Takk fra oss alle i
   that_photo_doesnt_exist: Det bildet finnes ikke.
@@ -3673,7 +3809,6 @@ nb:
     Identotron er et verktøy som hjelper deg med å identifisere observasjoner basert på sjekklistedata fra %{site_name}. Gitt et høyere takson og et sted (f.eks. pattedyr i India), sjekker %{site_name} for listeoppføringer som matcher det taksonet på det stedet, litt som en dynamisk feltguide til hele planeten. De jobbes fortsatt med de fleste sjekklister, men hvis det finnes en som er fullstendig, dvs. at den inneholder <em>alle</em> representanter av sitt takson på et sted, vil Identotron vise en melding.
   the_name_of_the_taxon_including_space: Navnet til taksonet, inklusiv plassen til arter og infra-arter.
   the_observation_was_already_added_to_that_project: Observasjonen var allerede lagt til det prosjektet.
-  the_past: fortiden
   the_people_of_inat: "Folkene bak %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Artene oppført under ble ikke funnet i %{site_name}-databasen.
@@ -3783,6 +3918,10 @@ nb:
   top_observer: Topp-observatør
   top_observers: Topp-observatører
   top_species: Topp-arter
+  tos_privacy_guidelines_label: |
+    Jeg godtar <a href="/terms" target="_blank">tjenestevilkårene</a> og
+    <a href="/privacy" target="_blank">personvernerklæringen</a>, og jeg har gått gjennom
+    <a href="/pages/community+guidelines" target="_blank">samfunnets retningslinjer</a>.
   total: Totalt
   totals: Totaler
   total_members: Samlet antall medlemmer
@@ -3836,6 +3975,7 @@ nb:
   unresolve: Fjern løsning
   unreview_all: Fjern revisjon for alle
   unsubscribe: Meld av
+  unsubscribe_from_emails_like_this: Avslutt abonnement på e-poster som dette
   unsuspend_user: Opphev suspenderingen til bruker
   upcoming_bioblitzes: Kommende bioblitzer
   update: Oppdater
@@ -3876,6 +4016,7 @@ nb:
     tooltips:
       add: Legg til observasjon(er)
       combine: Kombiner valgte observasjoner
+      duplicate: Dupliser valgte observasjoner
       photo_failed: Bildeopplastingen mislykkes
       remove: Fjern valgte observasjoner
       remove_observation: Fjern observasjon
@@ -3910,6 +4051,8 @@ nb:
   user_added_a_project_invitation_html: "%{user} har lagt til en prosjektinvitasjon"
   user_added_a_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
   user_added_a_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
   user_added_a_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_an_identification_html: "%{user} har lagt til en identifikasjon"
   user_added_an_observation_field_html: '%{user} har lagt til en verdi for "%{field_name}" i en observasjon av %{owner}'
@@ -3917,6 +4060,8 @@ nb:
   user_added_an_observation_html: "%{user} har lagt til en observasjon"
   user_added_an_x: "%{user} har lagt til @gender{f:ei|n:et|en} %{x}"
   user_added_an_x_to_noun_by_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun} av %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} har lagt til 1 %{x} på %{noun} av %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
   user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
   user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert
@@ -3930,6 +4075,7 @@ nb:
   user_commented_on: "%{user} har kommentert på @gender{n:ditt|din} %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i at dette er %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig i tidligere finere identifikasjoner"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} har favorittisert %{noun} av %{owner}"
   user_faved_this_observation: "%{user} har lagt til denne observasjonen til sine favoritter"
   user_flagged_as_a_non_spammer_html: "%{user} markert som ikke-spammer"
@@ -3962,11 +4108,9 @@ nb:
   username_or_email: Brukernavn eller e-post
   username_or_user_id: Brukernavn eller bruker id
   users: Brukere
-  users_comment_html: "<a href='%{url}'>%{user}</a> sin kommentar"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> sine bidrag til %{project_title}
   users_highlights_and_stats_from_year_on_site: "%{user}s høydepunkter og statistikker fra %{year} på %{site}"
   users_id: "%{user}s id"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a> sin ID"
   users_latest_observations_on_site: "%{user}s siste observasjoner på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s prosjekter"
@@ -4074,6 +4218,9 @@ nb:
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
   welcome_to_x_project: "Velkommen til %{project}"
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
   were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
   what: Hva
@@ -4137,6 +4284,9 @@ nb:
     one: "%{count} observasjon mislykkes"
     other: "%{count} observasjoner mislykkes"
   x_of_y: "%{x} av %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} av %{count} bekreftet"
     other: "%{x} av %{count} bekreftet"
@@ -4160,8 +4310,8 @@ nb:
   'yes': "Ja"
   yes_find_them!: "Ja, finn dem!"
   yes_i_want_to_join: Ja, jeg vil bli med
-  yes_license_my_childs_observations: Ja, lisensier mitt barns bilder, lyder, og observasjoner slik at forskere kan bruke dataene.
-  yes_license_my_observations_so_scientists_can_use: Ja, lisensier mine bilder, lyder, og observasjoner slik at forskere kan bruke mine data.
+  yes_license_my_childs_observations: Ja, lisensier mitt barns bilder, lyder, og observasjoner slik at forskere kan bruke dataene (anbefalt).
+  yes_license_my_observations_so_scientists_can_use: Ja, lisensier mine bilder, lyder, og observasjoner slik at forskere kan bruke dataene mine (anbefalt).
   yes_reject_it: Ja, avvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boksen øverst på /taksa
   yesterday: I går
@@ -4209,6 +4359,7 @@ nb:
   you_cant_do_that_for_the_default_check_list_place: Du kan ikke gjøre det med et steds standard sjekkliste!
   you_cant_flag_that: Du kan ikke markere det
   you_cant_leave_a_project_you_created: Du kan ikke forlate et prosjekt som du har opprettet.
+  you_cant_merge_standard_places: Du kan ikke slå sammen standardsteder
   you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere bilder lagret utenfor %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan ikke slette taksa som er del av taksonendringer eller som inneholder taksa som er del av taksonendringer
   you_curate_a_project_that_contains_this_observation: Du kuraterer et prosjekt som inneholder denne observasjonen
@@ -4242,6 +4393,7 @@ nb:
   you_sure_delete_asset?: Er du sikker på at du vil slette denn projektressursen?
   you_sure_delete_check_list: "Er du sikker på at du vil slette denne listen? Noen personer kan ha lagt mye arbeid inn i den..."
   you_sure_delete_comment?: Er du sikker på at du vil slette denne kommentaren?
+  you_sure_delete_identification?: Er du sikker på at du vil slette denne identifikasjonen?
   you_sure_delete_custom_field?: Er du sikker på at du vil slette disse brukerdefinerte felter?
   you_sure_delete_flag?: Er du sikker på at du vil slette denne markeringen?
   you_sure_delete_project?: Er du sikker på at du vil slette dette prosjektet?
@@ -4279,6 +4431,7 @@ nb:
   your_recent_projects: Dine siste prosjekter
   your_relationships: Dine relasjoner
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} trenger din godkjenning for flere tillatelser fra %{provider} for å fortsette:"
+  your_subscriptions_to_this_place: Dine abonnementer på dette stedet
   your_tags: Dine etiketter
   yours: Dine
   youre_not_following_anyone: |-
@@ -4293,6 +4446,14 @@ nb:
     announcements:
       locales_desc: |
         Klikk mens du holder cmd- eller shift-knappen for å velge flere. Å ikke velge minst en vil vise kunngjøringen for alle brukere uansett lokalisering. Å velge et språk uten en region vil *ikke* nå lokaliseringer med regioner, hvis du f.eks. velger "en" vil det ikke vises for personer som har valgt "en-US". Hvis du vil nå begge, velge begge. Hvis du vil vise en kunngjøring for alle medlemmer av en side, la dette stå tomt.
+    content_freeze:
+      content_freeze: Frysing av innhold
+      during_this_time: |
+        Under frysing av innhold kan ikke enkelte typer innhold ikke opprettes, destrueres eller modifiseres.
+      this_functionality_will_return: |
+        Denne funksjonaliteten vil komme tilbake så snart frysingen av innhold er over.
+      we_expect_this_functionality_will_return_by_date: |
+        Vi forventer at denne funksjonaliteten kommer tilbake før %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4462,6 +4623,8 @@ nb:
       show:
         flag_notice_html: |
           Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
+        privacy_notice_html: |
+          Mens meldinger er private mellom deg og mottakeren, kan iNaturalist ansatte se disse meldingene også, og vil gjøre det når meldinger har blitt markert for moderering. Hvis du trenger ordentlig privat kommunikasjon, vennligst se på andre kommunikasjonsmekanismer som støtter sterk kryptering.
     oauth:
       authorizations:
         new:
@@ -4543,10 +4706,13 @@ nb:
       export:
         choose_columns_desc: Velg kolonnene du vil eksportere
         create_a_query_desc_html: |
-          Opprett en observasjonsspørring akkurat som du ville ha gjort andre steder på siden. Du kan også klippe og lime en observasjons-url fra en annen del av siden. Du må spesifisere et <strong>takson</strong>, <strong>sted</strong>, en <strong>bruker</strong>,
-          et <strong>prosjekt</strong>, eller en <strong>søkespørring</strong>.
+          Opprett en observasjonsspørring akkurat som du ville ha gjort andre steder på siden. Du kan også klippe og lime en observasjons-url fra en annen del av siden. Spørringen din bør returnere <strong>maks 200 000 observasjoner</strong>.
+        export_in_progress_notice_html: |
+          Du har pågående <a href="%{url}">eksportjobb</a>. Du må
+          vente på at den skal bli ferdig før du kan sette en ny eksport i køen.
         ident_by_user_desc_html: |
           Kolonner for den nåværende identifikasjonen av %{user}
+        limit_alert: Eksporten din vil være for stor. Endre filtrene dine til det er færre enn 200 000 observasjoner.
         query_placeholder: "Velg spørrinsgparametre under eller lim in en observasjons-url"
         taxon_extras_help_html: "Merk: disse kolonner vil gjøre genereringen av din eksport tregere"
         geo_help_html: |
@@ -4562,6 +4728,49 @@ nb:
         taking_a_while: "Dette tar en stund. Vennligst prøv ett av valgene under."
         date_range_help: "Maks og min observasjonsdatoer i ÅÅÅÅ-MM-DD format, f.eks. 2015-01-17"
         created_on_help: "Dato observasjoner ble opprettet, ikke observert, f.eks. 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Alternativer</h3>
+          <p>
+          Store eksportjobber bremser infrastrukturen vår og gjør det vanskeligere for oss
+          å legge ut nye endringer. Her er noen alternativer til vurdering:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF tar inn mesteparten av våre observasjoner av forskningskvalitet med som er lisensierte,
+          og deres eksportverktøy er utmerket. GBIF eksporter kommer også
+          med en <a href="https://www.doi.org/">DOI</a> som du kan sitere hvis
+          du publiserer forskning basert på data du eksporterer, og disse
+          siteringer er veldig nyttige for oss for å se
+          hvordan iNat data blir brukt.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          Arkiv (DwC-A) for GBIF</a>: dette er <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          filen som vi genererer for GBIF, så det bør ikke inneholde
+          noe som ikke er i GBIF, men hvis du vil ha hele arkivet
+          kan du laste det ned. Det er en veldig stor zip-fil som inneholder
+          registreringer som CSV. Oppdateres ukentlig.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
+          Utfordring ved FGVC 2017</a>: lenker til 675 000 lisensierte
+          iNaturalist-bilder av 5 089 arter for bruk i maskinlæring. Opprettet juni 2017, ikke oppdatert.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Unik identifikator for denne observasjonen"
         species_guess: "Skriv navnet til observatøren lagt inn for det observerte taksonet"
@@ -4851,13 +5060,6 @@ nb:
     photos:
       forbidden_notice_html: |
         Vi har ikke tillatelse til å få tilgang til disse bilder akkurat nå. Du må kanskje koble fra og til kontoen i dine <a href="/users/edit">innstillinger</a> for å gi oss ytterlige tillatelser.
-      inviter:
-        automatically_add_to_project: Legg til i prosjekt automatisk
-        automatically_id_the_new_obs_as: ID den nye observasjonen automatisk som
-        dont_forget_the_invite_link_placeholder: "ikke glem {{INVITE_LINK}} plassholderen"
-        invite_other_photographers_to_inat: "Inviter andre fotografer til %{site_name}"
-        invite_your_friends_description: |
-          Du kan gjøre det superenkelt for folk på Facebook og Flickr å legge til sine bilder som observasjoner på %{site_name}. Bare legg igjen en kommentar med denne spesiale invitasjons-URL-en nedenfor. Du kan også forhåndsvelge et takson og prosjekt for den nye observasjonen.
       show:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vennligst ikke marker markeringer om brudd av opphavsrett som løst hvis dette bildet er brudd på opphavsrett.
@@ -4905,12 +5107,16 @@ nb:
         revoke_observations_desc: |
           Hvis den eneste grunnen til at du forlater prosjektet er å sørge for at kuratorene ikke kan se dine skjulte koordinater.
       edit:
+        admins_must_be_existing_members: Administratorer må være eksisterende medlemmer av prosjektet.
         aggregation_pending: Avventer aggregering
         new_place_desc_html: |
           Prøv å se gjennom <a href="%{places_url}" target="_blank">våre eksisterende steder</a> og sjekk at du skriver navnet til stedet riktig. Hvis du virkelig ikke finner stedet du vil ha, vurder å <a href="%{new_place_url}" target="_blank">opprette et nytt sted</a>, men vennligst forsikre deg om at du ikke bare lager en duplikat av et eksisterende sted.
         bioblitz_desc_html: |
           <p>En bioblitz er en hendelse hvor deltakere prøver å observere så mange arter som mulig i et tidsrom. Det er en artig måte å introdusere folk til biodiversitet på, og samtidig samle verdifulle data.</p>
         change_admin_desc: Velg en av prosjektets kuratorer som den nye admin.
+        change_owner_alert: |
+          Dette fjerner din evne til å slette dette prosjektet eller overføre
+          eierskap på nytt. Vil du fortsette?
         cover_desc: "Valgfritt coverbilde som vises øverst på din prosjektside. Må ha en bredde av 950 piksler, høyde under 400 piksler."
         custom_project_fields_means: "Tilpass prosjektets coverbilde, legg til sideinnhold, og rediger css."
         end_time_desc: "Sluttidspunktet for din bioblitz. Må være under ett år etter starttidspunktet"
@@ -4921,6 +5127,8 @@ nb:
           Det ser ut som dette prosjektet kan konverteres til et nytt <a href="%{url}">samlingsprosjekt</a>.
         last_aggregated_at_desc: |
           Tidspunkt når aggregatoren sist ble ferdig med å legge til observasjoner til dette prosjektet
+        #Label for button to make another user the owner of a project
+        make_owner: Gjør til eier
         no_curators: |
           Det er ingen prosjektkuratorer. Hvis du vil sette en ny person som admin, må de først bli medlem i dette prosjektet og må du gjøre vedkommende til en kurator.
         observation_aggregation_desc_html: |
@@ -4996,6 +5204,10 @@ nb:
           Er du klar for å forlate denne siden for å duplisere dette prosjektet? Vennligst merk at prosjektikonet og coverbilde ikke dupliseres, og vil måtte lastes opp på nytt i det dupliserte prosjektet.
         are_you_sure_you_want_to_delete: Er du sikker på at du vil slette dette prosjektet?
         can_be_included_in_multiple: Kan være inkludert i flere paraplyprosjekter
+        check_the_box_to_include_member_observations: |
+          Merk av i boksen nedenfor for å kun inkludere observasjoner gjort av brukere som er med i dette prosjektet.
+          Bruk filteret ekskluder brukere overnfor for å ekskludere observasjoner fra spesifikke brukere,
+          inkludert prosjekteieren og administratorer.
         click_through_to_individual_projects: Klikk videre til individuelle prosjekter
         collection_projects: Samlingsprosjekter
         collection_project_features: "Egenskaper av samlingsprosjekt:"
@@ -5007,6 +5219,10 @@ nb:
         do_you_need_features_from_traditional: |
           Trenger du funksjonalitet fra tradisjonelle prosjekter, som tilgang til sanne koordinater, egendefinerte observasjonsfelt, eller å legge til individuelle observasjoner som ikke kan filtreres automatisk?
         duplicate_project: Dupliser prosjekt
+        include_annotated_observations: |
+          Inkluder bare observasjoner som er kommentert med en bestemt egenskap (f.eks. livsstadium),
+          eller en bestemt egenskap og verdi (f.eks. livsstadium = voksen).
+          Det er begrenset til ett merknadsfilter per prosjekt.
         leaderboards_among_individuals: Topplister blant <strong>individer</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Topplister blant <strong>prosjekter</strong>
@@ -5018,6 +5234,11 @@ nb:
           Merk: disse brukere vil kunne redigere ALLE prosjektdetaljer inklusivt admins.
         note_you_can_delete_the_time: |
           (Merk: du kan slette tidssonen og nøyaktige klokkeslett hvis du ønsker å inkludere hele dager.)
+        note_about_unselected_filters: |
+          Merk: Hvis du ikke velger taksa, steder eller brukere, vil alle bli inkludert som standard.
+        only_display_member_observations: |
+          Vis bare observasjoner fra prosjektmedlemmer (personer som har blitt med i prosjektet)
+        optionally_filter_media: Filtrer eventuelt for observasjoner med bilder, lyder eller begge deler.
         or_drag_and_drop: (eller dra og slipp)
         please_specify_the_requirements: |
           Vennligst oppgi kravene for observasjonene som skal legges til dette prosjektet.
@@ -5034,11 +5255,29 @@ nb:
         project_summary_help: |
           Gi en kortfattet forklaring av ditt prosjekt. Omtrent de første 200 tegn vil være synlige til høyre for coverbildet på prosjektsiden, så sett det beste øverst!
         project_summary_placeholder: Oppdag og følg med på fuglene i Slottsparken...
+        select_native_to_include: |
+          Velg "Hjemmehørende" for å kun inkludere taksa som er angitt som "Hjemmehørende" på
+          stedene i prosjektet. Velg "Introdusert" for å kun inkludere taksa som har blitt
+          angitt som "Introdusert" på stedene i prosjektet
+        select_quality_grade: |
+          Velg minst én kvalitetsgrad. Ytterligere forklaring for hver kvalitetsgrad finnes på
+          vår <a href="%{url}">FAQ side</a>.
         show_projects_as_flags: Vis prosjekter som markeringer på kart
+        specify_project_filters: |
+          Angi filtre for observasjoner som skal inkluderes i prosjektet ditt.
+          Du kan velge flere arter (eller taksa), steder, datoer eller andre kriterier for
+          observasjoner som automatisk skal inkluderes.
         start_and_end_times_for_bioblitzes: Start- og slutt-datoer/tider (for bioblitz-aktige arrangement)
         traditional_projects_cannot_be_copied: Tradisjonelt prosjekt kan ikke kopieres
         umbrella_project_features: "Egenskaper for paraplyprosjekt:"
         unique_url_for_outreach: Unik URL for promotering
+        use_this_for_a_time_limited_event: |
+          Bruk dette for en tidsbegrenset hendelse, bioblitz, eller sesongmessige prosjekter. Velg en enkelt
+          dato, intervall eller hvilke måneder av året observasjonene må gjøres i
+          (uavhengig av år). Dersom du benytter seksjonen for datointervall, må du sørge for at du har valgt
+          riktige tider og tidssoner, eller slett teksten til tid/tidssone for å inkludere
+          observasjoner som er gjort når som helst på hele den dagen. Du kan la startdato eller sluttdato
+          stå tomt hvis du bare vil begrense prosjektet med en dato.
         users_can_follow_your_project: Brukere kan følge oppdateringer for ditt prosjekt via journalinnlegg
         use_this_link_to_create_html: |
           Bruk <a href="%{url}">denne lenken</a> for å opprette et tradisjonelt prosjekt isteden.
@@ -5102,6 +5341,10 @@ nb:
           Sørg for at du har lest om forskjellene i vårt <a href="%{url}" target="_blank">blogg-innlegg om samlingsprosjekter</a>.
         this_is_a_preview: |
           Dette er en forhåndsvisning av hvordan prosjektet ville se ut som et samlingsprosjekt.
+        this_project_has_not_defined_requirements: |
+          Dette prosjektet har ikke definert noen observasjonskrav. Prosjekter må velge en eller
+          flere taksa (f.eks. fugler, koniferer), steder (f.eks. Brasil, Yellowstone), brukere og/eller datoer
+          for å begynne å vise observasjoner.
       updates_desc: |
         Få oppdateringer om dette prosjektet i din oversikt og i den daglige e-posten med oppdateringer.
     search:
@@ -5166,6 +5409,7 @@ nb:
         obs_desc: Opprettet i foreg. 7 dager
         obs_id_d_desc: Opprettet i foreg. 7 dager og har en ID (kan være observatørens)
         observations_1_week_moving_window: Observasjoner (1 løpende uke)
+        observers_desc: La til en observasjon på denne dagen
         other_desc_html: Laget med andre applikasjoner <a href="%{url}">laget av utviklere</a>
         recent_desc: Påmeldt i foreg. 7 dager
         recent_w_0_obs: Nylig m/ 0 obs
@@ -5257,6 +5501,11 @@ nb:
           Denne grafen viser antallet observasjoner av dette taksonet gruppert per måned. Husk at dette er antall observasjoner, så det påvirkes både av hvor organismen kan observeres og når folk gidder å observere de. Så en fugl kan virke veldig aktiv i mai, men det kan også være fordi flere folk ser på fugler i mai som bruker å overse den arten i senere måneder. På samme måte, hvis du ser flere øyenstikkere i juni enn i januar, er det sannsynligvis fordi vi har flere folk som observerer de på den nordlige halvkulen enn på den sørlige, og ikke fordi øyenstikkere er mer aktive i juli, så sjekk kartet når du jobber med slike grafer. Det er alltid en god idé å være skeptisk til disse grafer når det er lave antall observasjoner og/eller store avvik mellom antallet "verifiserbare" og observasjoner av "forskningskvalitet".
         charts_help_history: |
           Denne grafen viser antallet observasjoner av dette taksonet per måned over de siste ti år. Igjen, det er påvirket av antallet personer som observerer, men det vil vise deg uvanlige topper i observasjoner, og hvis det virker flatt eller minkende til tross for et voksende antall observatører, kan det tyde på en endring i forekomster.
+        charts_help_other: |
+          Vi viser også sesongs-grafer for observasjons-annoteringer.
+          Annoteringer er en måte å legge til metadata til observasjoner ved hjelp av
+          en kontrollert ordliste med begrep, f.eks. om en observasjon avbilder
+          en plante som blomstrer eller bærer frukt.
         charts_help_relative_observations: |
           Å vise forekomst som en relativ andel av alle observasjoner hjelper å jevne ut effekten av generell vekst av siden. Hvis siden for eksempel vokser ettersom vi får inn flere observasjoner med hvert år som går, får vi flere observasjoner av hvert takson, og det sier ingenting om det er flere individer av det taksonet å observere, kun at det er flere som observerer det. Å vise relative antall betyr at hvis det er 100 observasjoner sammenlagt, men 20 av det taksonet, det relative antallet blir 0,2 (20 / 100). Hvis folk observerer 2000 observasjoner året etter og 400 av dette taksonet, er det relative antallet fortsatt 0,2 (400/2000). Dette kan gi noen avvik når det er veldig få observatører i et område, eller for taksa som observeres veldig sjeldent, men det er også tilfellet for vanlige antall.
         complete_taxon_desc: |
@@ -5271,6 +5520,7 @@ nb:
           "Plant Phenology=Flower Budding": Blomsterknopper
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
+          "Plant Phenology=No Evidence of Flowering": Ingen bevis
           "Life Stage=egg": Egg
           "Life Stage=larva": Larve
           "Life Stage=teneral": Teneral
@@ -5424,7 +5674,7 @@ nb:
         monthly_supporter: Månedlig supporter
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
-          States IRS FIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
+          States IRS EIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
           <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
         muting_desc_html: |
           <p>
@@ -5728,9 +5978,11 @@ nb:
       invalid: er ugyldig
       less_than: må være mindre enn %{count}
       less_than_or_equal_to: må være mindre enn eller lik %{count}
+      new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
       not_a_number: er ikke et tall
       not_an_integer: må være et helt tall
       odd: må være oddetall
+      only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
       record_invalid: 'Verifisering mislykket: %{errors}'
       requires_privilege_speech: |
         må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
@@ -5864,9 +6116,11 @@ nb:
         invalid: er ugyldig
         less_than: må være mindre enn %{count}
         less_than_or_equal_to: må være mindre enn eller lik %{count}
+        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
+        only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
         record_invalid: 'Verifisering mislykket: %{errors}'
         requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
@@ -5917,11 +6171,21 @@ nb:
         occurrence_status_level: Forekomststatus-nivå
         establishment_means: Etableringsmåter
       observation:
+        description: Notater
         geo_x: Østverdi
         geo_y: Nordverdi
         observed_on: dato observert
       observation_field_value:
         value: 'verdi'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: I køen
+        #Date/time the task began processing
+        started_at: Startet
+        #Date/time the task finished processing
+        finished_at: Fullført
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Inputs
       post:
         title: Tittel
         body: Innhold
@@ -5945,7 +6209,7 @@ nb:
         start_time: Starttid
         last_aggregated_at: Observasjoner sist aggregert
       project_observation:
-        user_id: Innsender
+        user_id: Lagt inn av
       place:
         code: Kode
         display_name: Visningsnavn
@@ -6004,9 +6268,11 @@ nb:
         invalid: er ugyldig
         less_than: må være mindre enn %{count}
         less_than_or_equal_to: må være mindre enn eller lik %{count}
+        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
+        only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
         record_invalid: 'Verifisering mislykket: %{errors}'
         requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
@@ -6067,6 +6333,13 @@ nb:
             observation_id:
               user_does_not_accept_fields_from_others: brukeren godtar ikke felt fra andre
               user_only_accepts_fields_from_site_curators: brukeren godtar kun felt fra sidekuratorer
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Eksporter kan ikke inneholde flere enn 200 000 observasjoner
+              must_have_query: Spørringen kan ikke være tom
+            user_id:
+              already_has_an_export_in_progress: har allerede en pågående eksport
         place:
           attributes:
             place_geometry:
@@ -6075,6 +6348,8 @@ nb:
               contains_too_many_observations: inneholder for mange observasjoner til import
         post:
           attributes:
+            parent:
+              prefers_no_comments: tillater ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |
                 må ha registrert over 24 timer siden for å publisere. Vi får en del spammere, og dette er en litt teit måte å håndtere de. Du kan fortsatt lagre et utkast, og hvis du fortsatt bruker siden en dag senere, kan du publisere.

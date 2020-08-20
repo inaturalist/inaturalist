@@ -108,7 +108,7 @@ const ObsCard = class ObsCard {
     return newMetadata;
   }
 
-  save( dispatch ) {
+  save( dispatch, options = { } ) {
     if ( this.blank( ) ) {
       dispatch( actions.updateObsCard( this, { saveState: "saved" } ) );
       return;
@@ -135,6 +135,7 @@ const ObsCard = class ObsCard {
       project_id: _.map( this.projects, "id" ),
       uploader: true
     };
+    if ( !options.refresh ) { params.skip_refresh = true; }
     if ( this.taxon_id ) { params.observation.taxon_id = this.taxon_id; }
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
     if ( this.date && !util.dateInvalid( this.date ) ) {
@@ -180,6 +181,10 @@ const ObsCard = class ObsCard {
       }
       this.saveTries = 0;
       let errors = [I18n.t( "unknown_error" )];
+      if ( !e.response ) {
+        dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+        return;
+      }
       e.response.json( )
         .then( errorJSON => {
           if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {

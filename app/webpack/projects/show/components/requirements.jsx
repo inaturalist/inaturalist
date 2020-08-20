@@ -10,7 +10,7 @@ function dateToString( date, spansYears = false ) {
   if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
     format = spansYears
       ? I18n.t( "momentjs.datetime_with_zone" )
-      : I18n.t( "momentjs.datetime_with_zone_without_year" );
+      : I18n.t( "momentjs.datetime_with_zone_no_year" );
     return moment( date, "YYYY-MM-DD HH:mm Z" )
       .parseZone( ).tz( TIMEZONE ).format( format );
   }

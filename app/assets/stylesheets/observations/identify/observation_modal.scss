@@ -1,11 +1,12 @@
 @import "../../colors";
-@import "../../shared/user_text";
+@import "../../shared/activity_item";
 @import "../../shared/annotations";
 @import "../../shared/observation_fields";
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
-@import "../../shared/activity_item";
 @import "../../shared/taxon_autocomplete";
+@import "../../shared/text_editor";
+@import "../../shared/user_text";
 
 .ObservationModal,
 body > [role="dialog"] .ObservationModal {
@@ -43,8 +44,8 @@ body > [role="dialog"] .ObservationModal {
     .btn-primary:hover,
     .btn-primary:active,
     .btn-primary:focus {
-      background-color: $inat-green;
-      border-color: $inat-green;
+      background-color: darken($inat-green, 3%);
+      border-color: darken($inat-green, 15%);
     }
   }
   
@@ -746,5 +747,17 @@ body > [role="dialog"] .ObservationModal {
   .brightness-2-6 .image-gallery-image img { filter: brightness(2.6); }
   .brightness-2-8 .image-gallery-image img { filter: brightness(2.8); }
   .brightness-3   .image-gallery-image img { filter: brightness(3.0); }
+
+  .IdentificationForm {
+    .TaxonAutocomplete > .form-group {
+      margin-bottom: 10px;
+    }
+  }
+
+  .TextEditor {
+    textarea {
+      margin-top: 10px;
+    }
+  }
 
 }

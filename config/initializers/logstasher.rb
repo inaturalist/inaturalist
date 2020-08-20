@@ -64,7 +64,7 @@ module Logstasher
   def self.payload_from_session(session)
     return { } unless session.is_a?(ActionDispatch::Request::Session)
     { session: session.to_hash.select{ |k,v|
-      [ :session_id, :_csrf_token ].include?(k.to_sym) } }
+      [ :session_id, :_csrf_token, :oauth_application_id ].include?(k.to_sym) } }
   end
 
   def self.payload_from_user(user)

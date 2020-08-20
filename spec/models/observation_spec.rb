@@ -642,7 +642,7 @@ describe Observation do
       t2 = Taxon.make!
       o = Observation.make!(:taxon => t1)
       old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-      o.update_attributes(:taxon => t2)
+      o.update_attributes( taxon: t2, editing_user_id: o.user_id )
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).not_to be_blank
     end
@@ -651,7 +651,7 @@ describe Observation do
       t1 = Taxon.make!
       o = Observation.make!(:taxon => t1)
       old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-      o.update_attributes(:taxon => nil)
+      o.update_attributes( taxon: nil, editing_user_id: o.user_id )
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).to be_blank
     end
@@ -728,6 +728,7 @@ describe Observation do
       taxon = Taxon.make!(:iconic_taxon => Taxon.make!(:is_iconic => true))
       expect(taxon.iconic_taxon).not_to be_blank
       obs.taxon = taxon
+      obs.editing_user_id = obs.user_id
       obs.save!
       expect(obs.iconic_taxon.name).to eq taxon.iconic_taxon.name
     end
@@ -738,6 +739,7 @@ describe Observation do
       obs = Observation.make!(:taxon => taxon)
       expect(obs.iconic_taxon).not_to be_blank
       obs.taxon = nil
+      obs.editing_user_id = obs.user_id
       obs.save!
       obs.reload
       expect(obs.iconic_taxon).to be_blank
@@ -746,7 +748,7 @@ describe Observation do
     it "should add a new taxon to the user's life list" do
       o = without_delay { Observation.make!(taxon: Taxon.make!) }
       expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
       o.reload
       expect( o.user.life_list.taxa ).to include o.taxon
     end
@@ -755,7 +757,7 @@ describe Observation do
       o = without_delay { Observation.make!(taxon: Taxon.make!) }
       old_taxon = o.taxon
       expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
       o.reload
       expect( o.user.life_list.taxa ).not_to include old_taxon
     end
@@ -765,7 +767,7 @@ describe Observation do
       o1 = without_delay { Observation.make!(taxon: o.taxon, user: o.user) }
       old_taxon = o.taxon
       expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes(taxon: Taxon.make!) }
+      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
       o.reload
       expect( o.user.life_list.taxa ).to include old_taxon
     end
@@ -776,7 +778,7 @@ describe Observation do
       po = ProjectObservation.make!(:observation => o, :project => pu.project)
       Delayed::Job.delete_all
       stamp = Time.now
-      o.update_attributes(:taxon => Taxon.make!)
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).not_to be_blank
@@ -797,7 +799,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       3.times do
-        o.update_attributes(:taxon => Taxon.make!)
+        o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(1)
@@ -809,7 +811,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       3.times do
-        o.update_attributes(:taxon => Taxon.make!)
+        o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(1)
@@ -832,7 +834,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       o = Observation.find(o.id)
-      o.update_attributes(:taxon => Taxon.make!)
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /CheckList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
@@ -845,7 +847,7 @@ describe Observation do
       o = po.observation
       Delayed::Job.delete_all
       stamp = Time.now
-      o.update_attributes(:taxon => Taxon.make!)
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /ProjectList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
@@ -919,7 +921,7 @@ describe Observation do
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
         o = Observation.find(o.id)
-        o.update_attributes(:taxon => new_taxon)
+        o.update_attributes( taxon: new_taxon, editing_user_id: o.user_id )
         expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
     
@@ -1222,6 +1224,30 @@ describe Observation do
           o.reload
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a subgenus and voted out of needs_id" do
+          subgenus = Taxon.make!( name: "Pyrobombus", rank: Taxon::SUBGENUS )
+          o = make_research_grade_candidate_observation( taxon: subgenus, user: u )
+          Identification.make!( observation: o, taxon: subgenus )
+          o.reload
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.community_taxon ).to eq subgenus
+          expect( o.taxon ).to eq subgenus
+          expect( o ).to be_voted_out_of_needs_id
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a subfamily and voted out of needs_id" do
+          subfamily = Taxon.make!( name: "Hydropsychinae", rank: Taxon::SUBFAMILY )
+          o = make_research_grade_candidate_observation( taxon: subfamily, user: u )
+          Identification.make!( observation: o, taxon: subfamily )
+          o.reload
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.community_taxon ).to eq subfamily
+          expect( o.taxon ).to eq subfamily
+          expect( o ).to be_voted_out_of_needs_id
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
@@ -1248,7 +1274,7 @@ describe Observation do
         cs = ConservationStatus.make!(:place => p, :taxon => t)
         o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
         expect(o).not_to be_coordinates_obscured
-        o.update_attributes(:taxon => t)
+        o.update_attributes( taxon: t, editing_user_id: o.user_id )
         expect(o).to be_coordinates_obscured
       end
 
@@ -1258,7 +1284,7 @@ describe Observation do
         cs = ConservationStatus.make!(:place => p, :taxon => t)
         o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
         expect(o).not_to be_coordinates_obscured
-        o.update_attributes(:taxon => t)
+        o.update_attributes( taxon: t, editing_user_id: o.user_id )
         expect(o).not_to be_coordinates_obscured
       end
 
@@ -1269,7 +1295,7 @@ describe Observation do
         global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
         o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
         expect(o).not_to be_coordinates_obscured
-        o.update_attributes(:taxon => t)
+        o.update_attributes( taxon: t, editing_user_id: o.user_id )
         expect(o).to be_coordinates_obscured
       end
 
@@ -1280,7 +1306,7 @@ describe Observation do
         cs_global = ConservationStatus.make!(:taxon => t, :geoprivacy => Observation::OPEN)
         o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
         expect(o).not_to be_coordinates_obscured
-        o.update_attributes(:taxon => t)
+        o.update_attributes( taxon: t, editing_user_id: o.user_id )
         expect(o).not_to be_coordinates_obscured
       end
 
@@ -1356,7 +1382,7 @@ describe Observation do
       o = Observation.make!
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
-      o.update_attributes(:taxon => t)
+      o.update_attributes( taxon: t, editing_user_id: o.user_id )
       Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
       expect(t.observations_count).to eq(1)
@@ -1367,7 +1393,7 @@ describe Observation do
       p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
       t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
-      o.update_attributes(:taxon => t)
+      o.update_attributes( taxon: t, editing_user_id: o.user_id )
       Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq 1
@@ -1381,7 +1407,7 @@ describe Observation do
       o = without_delay {Observation.make!(:taxon => t)}
       t.reload
       expect(t.observations_count).to eq(1)
-      o = without_delay {o.update_attributes(:taxon => nil)}
+      o = without_delay {o.update_attributes( taxon: nil, editing_user_id: o.user_id )}
       t.reload
       expect(t.observations_count).to eq(0)
     end
@@ -1392,7 +1418,7 @@ describe Observation do
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
-      o = without_delay {o.update_attributes(:taxon => nil)}
+      o = without_delay {o.update_attributes( taxon: nil, editing_user_id: o.user_id )}
       p.reload
       expect(p.observations_count).to eq(0)
     end
@@ -1510,6 +1536,7 @@ describe Observation do
     it "should choose a taxon if the guess corresponds to a unique taxon" do
       taxon = Taxon.make!
       @observation.taxon = nil
+      @observation.editing_user_id = @observation.user_id
       @observation.species_guess = taxon.name
       @observation.save
       expect(@observation.taxon_id).to eq taxon.id
@@ -1522,6 +1549,7 @@ describe Observation do
       TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       @observation.taxon = nil
+      @observation.editing_user_id = @observation.user_id
       @observation.species_guess = common_name
       @observation.save
       expect(@observation.taxon_id).to eq taxon.id
@@ -1539,6 +1567,7 @@ describe Observation do
       expect(child.ancestors).not_to include(taxon2)
       expect(Taxon.joins(:taxon_names).where("taxon_names.name = ?", common_name).count).to eq(3)
       @observation.taxon = nil
+      @observation.editing_user_id = @observation.user_id
       @observation.species_guess = common_name
       @observation.save
       expect(@observation.taxon_id).to be_blank
@@ -1551,6 +1580,7 @@ describe Observation do
       TaxonName.make!(:taxon => taxon, :name => common_name.downcase, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       @observation.taxon = nil
+      @observation.editing_user_id = @observation.user_id
       @observation.species_guess = common_name
       @observation.save
       expect(@observation.taxon_id).to eq taxon.id
@@ -1961,7 +1991,7 @@ describe Observation do
   
     it "should be unset if the taxon changes to something unthreatened" do
       observation = Observation.make!( defaults )
-      observation.update_attributes( taxon: Taxon.make! )
+      observation.update_attributes( taxon: Taxon.make!, editing_user_id: observation.user_id )
       observation.reload
       expect( observation.taxon ).not_to be_threatened
       expect( observation.owners_identification.taxon ).not_to be_threatened
@@ -1983,7 +2013,7 @@ describe Observation do
       ].each do |place_guess|
         observation = Observation.make!( place_guess: place_guess )
         expect( observation.latitude ).not_to be_blank
-        observation.update_attributes( taxon: cs.taxon )
+        observation.update_attributes( taxon: cs.taxon, editing_user_id: observation.user_id )
         expect( observation.place_guess.to_s ).to eq ""
       end
     end
@@ -2743,7 +2773,7 @@ describe Observation do
     #   o = without_delay {Observation.make!}
     #   Update.count.should eq 0
     #   without_delay do
-    #     o.update_attributes(:taxon => t)
+    #     o.update_attributes( taxon: t, editing_user_id: o.user_id )
     #   end
     #   u = Update.last
     #   u.should_not be_blank
@@ -2942,8 +2972,8 @@ describe Observation do
     it "should mark duplicate identifications as not current" do
       t = Taxon.make!
       without_delay do
-        reject.update_attributes(:taxon => t)
-        keeper.update_attributes(:taxon => t)
+        reject.update_attributes( taxon: t, editing_user_id: reject.user_id )
+        keeper.update_attributes( taxon: t, editing_user_id: keeper.user_id )
       end
       keeper.merge(reject)
       idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
@@ -3158,7 +3188,7 @@ describe Observation do
       i1 = Identification.make!(:observation => o, :taxon => @Animalia)
       expect(o.community_taxon).to be_blank
       o = Observation.find(o.id)
-      o.update_attributes(:taxon => @Plantae)
+      o.update_attributes( taxon: @Plantae, editing_user_id: o.user_id )
       expect(o.community_taxon).not_to be_blank
       expect(o.identifications.count).to eq 2
     end
@@ -3853,8 +3883,8 @@ describe Observation do
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
     it "should not assume null taxa are the same" do
-      @obs.update_attributes(taxon: nil)
-      @dupe.update_attributes(taxon: nil)
+      @obs.update_attributes( taxon: nil, editing_user_id: @obs.user_id )
+      @dupe.update_attributes( taxon: nil, editing_user_id: @dupe.user_id )
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank

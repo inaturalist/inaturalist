@@ -30,6 +30,8 @@ class TaxonRange < ActiveRecord::Base
   
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
+  attr_accessor :geom_processed
+
   def validate_geometry
     if geom && geom.num_points < 3
       errors.add(:geom, " must have more than 2 points")
@@ -43,6 +45,7 @@ class TaxonRange < ActiveRecord::Base
   end
   
   def derive_missing_values
+    return if self.geom_processed
     if (geom && !range.path )
       delay( priority: USER_INTEGRITY_PRIORITY ).create_kml_attachment
     elsif (!geom && range.path)
@@ -86,6 +89,7 @@ class TaxonRange < ActiveRecord::Base
           factory = RGeo::Cartesian.simple_factory( srid: 0 )
           self.geom = factory.multi_polygon([geom])
         end
+        self.geom_processed = true
         self.save
       end
       f.close

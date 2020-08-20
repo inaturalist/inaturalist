@@ -16,6 +16,7 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
+  validates_length_of :body, within: 0..Comment::MAX_LENGTH, on: :create, allow_blank: true
   
   before_create :replace_inactive_taxon
 
@@ -178,8 +179,12 @@ class Identification < ActiveRecord::Base
     end
     unless previous_observation_taxon_id
       working_created_at = created_at || Time.now
-      previous_ident = observation.identifications.select{|i| i.persisted? && i.current && i.created_at < working_created_at }.last
-      previous_ident ||= observation.identifications.select{|i| i.persisted? && i.created_at < working_created_at }.last
+      previous_ident = observation.identifications.select do |i|
+        i.persisted? && i.current && i.created_at < working_created_at && i.user_id == user_id
+      end.last
+      previous_ident ||= observation.identifications.select do |i|
+        i.persisted? && i.created_at < working_created_at && i.user_id == user_id
+      end.last
       self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
     end
     true
@@ -190,6 +195,12 @@ class Identification < ActiveRecord::Base
 
     # Can't disagree with nothing or roots
     if !previous_observation_taxon || !previous_observation_taxon.grafted?
+      self.disagreement = nil
+      return true
+    end
+
+    # Can't disagree if no current identifications
+    if observation.identifications.current.empty?
       self.disagreement = nil
       return true
     end
@@ -243,7 +254,7 @@ class Identification < ActiveRecord::Base
           observation.id, observation.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
-    observation.wait_for_index_refresh = !!wait_for_obs_index_refresh
+    observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
@@ -343,7 +354,12 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: {
+        "Identification::revisit_curator_identification": [ observation_id, user_id ]
+      }
+    ).run_revisit_curator_identification( self.observation_id, self.user_id )
     true
   end
 
@@ -459,7 +475,7 @@ class Identification < ActiveRecord::Base
     unless options[:skip_indexing]
       Identification.elastic_index!( ids: idents.map(&:id) )
       o.reload
-      o.wait_for_index_refresh = !!options[:wait_for_obs_index_refresh]
+      o.wait_for_index_refresh ||= !!options[:wait_for_obs_index_refresh]
       o.elastic_index!
     end
   end
@@ -581,6 +597,7 @@ class Identification < ActiveRecord::Base
     scope = scope.includes( { observation: :observations_places }, :user )
     scope = scope.where( "identifications.created_at < ?", Time.now )
     observation_ids = []
+    ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       new_ident = Identification.new(
@@ -589,7 +606,8 @@ class Identification < ActiveRecord::Base
         user_id: ident.user_id,
         taxon_change: taxon_change,
         disagreement: false,
-        skip_set_disagreement: true
+        skip_set_disagreement: true,
+        skip_indexing: true
       )
       if ident.disagreement && ident.previous_observation_taxon && ( current_synonym = ident.previous_observation_taxon.current_synonymous_taxon )
         new_ident.disagreement = true
@@ -599,17 +617,23 @@ class Identification < ActiveRecord::Base
       new_ident.skip_observation = true
       new_ident.save
       observation_ids << ident.observation_id
+      ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
     Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-        ident.update_attributes( skip_set_previous_observation_taxon: true, previous_observation_taxon: taxon_change.output_taxon )
+        ident.update_attributes(
+          skip_set_previous_observation_taxon: true,
+          previous_observation_taxon: taxon_change.output_taxon,
+          skip_indexing: true
+        )
         observation_ids << ident.observation_id
       elsif taxon_change.is_a?( TaxonSplit )
-        ident.update_attributes( disagreement: false )
+        ident.update_attributes( disagreement: false, skip_indexing: true )
         observation_ids << ident.observation_id
       end
+      ident_ids << ident.id
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
@@ -628,10 +652,20 @@ class Identification < ActiveRecord::Base
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
         obs.save
-        Identification.update_categories_for_observation( obs, skip_reload: true )
+        Identification.update_categories_for_observation( obs, skip_reload: true, skip_indexing: true )
+        ident_ids += obs.identification_ids
       end
-      Observation.elastic_index!( ids: obs_ids )
     end
+    # Get observations that may have received new identifications from this
+    # change from a previous attempt to commit records for this change, in case
+    # a previous attempt hit an error and stopped before indexing some records
+    observation_ids += Identification.connection.execute(
+      "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
+    ).select {|r| r["observation_id"].to_i }
+    observation_ids.uniq!
+    ident_ids.uniq!
+    Identification.elastic_index!( ids: ident_ids )
+    Observation.elastic_index!( ids: observation_ids )
   end
 
   def self.update_disagreement_identifications_for_taxon( taxon )
@@ -667,6 +701,60 @@ class Identification < ActiveRecord::Base
         batch_start_id = ids.last
       rescue
         results_remaining = false
+      end
+    end
+  end
+
+  def self.reindex_for_taxon( taxon_id )
+    page = 1
+    ident_ids = []
+    while true
+      r = Identification.elastic_search(
+        source: {
+          includes: ["id"],
+        },
+        filters: [
+          { terms: { "taxon.id" => [taxon_id] } }
+        ],
+        track_total_hits: true
+      ).page( page ).per_page( 1000 )
+      break unless r.response && r.response.hits && r.response.hits.hits
+      new_ident_ids = r.response.hits.hits.map(&:_id)
+      break if new_ident_ids.blank?
+      ident_ids += new_ident_ids
+      page += 1
+    end
+    Identification.elastic_index!( ids: ident_ids )
+  end
+
+  def self.merge_future_duplicates( reject, keeper )
+    Rails.logger.debug "[DEBUG] Identification.merge_future_duplicates, reject: #{reject}, keeper: #{keeper}"
+    unless reject.is_a?( keeper.class )
+      raise "reject and keeper must by of the same class"
+    end
+    unless reject.is_a?( User )
+      raise "Identification.merge_future_duplicates only works for observations right now"
+    end
+    k, reflection = reflections.detect{|k,r| r.klass == reject.class && r.macro == :belongs_to }
+    sql = <<-SQL
+      SELECT
+        observation_id,
+        array_agg(id) AS ids
+      FROM
+        identifications
+      WHERE
+        current
+        AND #{reflection.foreign_key} IN (#{reject.id},#{keeper.id})
+      GROUP BY
+        observation_id
+      HAVING
+        count(*) > 1
+    SQL
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      idents = Identification.where( id: to_merge_ids )
+      if reject_ident = idents.detect{|i| i.send(reflection.foreign_key) == reject.id }
+        reject_ident.update_attributes( current: false )
       end
     end
   end

@@ -23,7 +23,8 @@ class Photo < ActiveRecord::Base
   before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses,
-             :index_observations
+             :index_observations,
+             :index_taxa
   after_destroy :create_deleted_photo
 
   SQUARE = 75
@@ -31,6 +32,8 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
+
+  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
 
   def original_url
     self["original_url"] && self["original_url"].with_fixed_https
@@ -148,7 +151,11 @@ class Photo < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: observations)
+    Observation.elastic_index!( scope: observations )
+  end
+
+  def index_taxa
+    Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 
   def editable_by?(user)
@@ -164,7 +171,6 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    Rails.logger.debug "[DEBUG] subtype: #{subtype}"
     t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
       "Google"
     end
@@ -205,7 +211,13 @@ class Photo < ActiveRecord::Base
   end
 
   def flagged_with(flag, options = {})
-    if flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    other_unresolved_copyright_flags_exist = flags.detect do |f|
+      f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT
+    end
+    # For copyright flags, we need to change the photo URLs when flagged, and
+    # reset them when there are no more copyright flags
+    if flag_is_copyright && !other_unresolved_copyright_flags_exist
       if options[:action] == "created"
         styles = %w(original large medium small thumb square)
         updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
@@ -326,7 +338,7 @@ class Photo < ActiveRecord::Base
     if head = fetch_head(remote_photo_url)
       # image must return 200 and have a valid image mime-type
       return head.code == "200" &&
-        head.to_hash["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+        head.to_hash["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
     end
     false
   end
@@ -352,7 +364,7 @@ class Photo < ActiveRecord::Base
     if %w(301 302 303 307 308).include?( head.code ) && headers["location"]
       return valid_remote_photo_url( headers["location"][0], depth: depth + 1 )
     end
-    if head.code == "200" && headers["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+    if head.code == "200" && headers["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
       return remote_photo_url
     end
     false

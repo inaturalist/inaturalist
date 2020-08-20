@@ -3667,6 +3667,36 @@ CREATE TABLE public.site_admins (
 
 
 --
+-- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.simplified_tree_milestone_taxa (
+    id integer NOT NULL,
+    taxon_id integer
+);
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
 -- Name: site_admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -4097,7 +4127,8 @@ CREATE TABLE public.taxa (
     complete_rank character varying,
     complete boolean,
     taxon_framework_relationship_id integer,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    photos_locked boolean DEFAULT false
 );
 
 
@@ -4914,7 +4945,8 @@ CREATE TABLE public.users (
     donorbox_plan_type character varying,
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    species_count integer DEFAULT 0
 );
 
 
@@ -4935,6 +4967,41 @@ CREATE SEQUENCE public.users_id_seq
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.versions (
+    id integer NOT NULL,
+    item_type character varying NOT NULL,
+    item_id bigint NOT NULL,
+    event character varying NOT NULL,
+    whodunnit character varying,
+    created_at timestamp without time zone,
+    object_changes json
+);
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.versions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 
 
 --
@@ -5707,6 +5774,13 @@ ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.ses
 
 
 --
+-- Name: simplified_tree_milestone_taxa id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa ALTER COLUMN id SET DEFAULT nextval('public.simplified_tree_milestone_taxa_id_seq'::regclass);
+
+
+--
 -- Name: site_admins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5935,6 +6009,13 @@ ALTER TABLE ONLY public.user_privileges ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
 
 
 --
@@ -6645,6 +6726,14 @@ ALTER TABLE ONLY public.sessions
 
 
 --
+-- Name: simplified_tree_milestone_taxa simplified_tree_milestone_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa
+    ADD CONSTRAINT simplified_tree_milestone_taxa_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: site_admins site_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6906,6 +6995,14 @@ ALTER TABLE ONLY public.user_privileges
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -8517,6 +8614,13 @@ CREATE INDEX index_project_users_on_user_id ON public.project_users USING btree 
 
 
 --
+-- Name: index_project_users_on_user_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_users_on_user_id_and_project_id ON public.project_users USING btree (user_id, project_id);
+
+
+--
 -- Name: index_projects_on_cached_slug; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9214,6 +9318,13 @@ CREATE INDEX index_users_on_uri ON public.users USING btree (uri);
 --
 
 CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
+
+
+--
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
 
 
 --
@@ -10123,4 +10234,16 @@ INSERT INTO schema_migrations (version) VALUES ('20200130191142');
 INSERT INTO schema_migrations (version) VALUES ('20200220211829');
 
 INSERT INTO schema_migrations (version) VALUES ('20200226211718');
+
+INSERT INTO schema_migrations (version) VALUES ('20200318193130');
+
+INSERT INTO schema_migrations (version) VALUES ('20200604181750');
+
+INSERT INTO schema_migrations (version) VALUES ('20200706035032');
+
+INSERT INTO schema_migrations (version) VALUES ('20200708223315');
+
+INSERT INTO schema_migrations (version) VALUES ('20200710004607');
+
+INSERT INTO schema_migrations (version) VALUES ('20200710004608');
 

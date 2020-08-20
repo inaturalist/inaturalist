@@ -290,6 +290,7 @@ class Site < ActiveRecord::Base
 
   # iOS app ID. Used to display header notice about app in mobile views
   preference :ios_app_id, :string
+  preference :ios_app_webcredentials, :string
 
   # If you'd prefer the default taxon ranges to come from a particular Source, set the source ID here
   # taxon_range_source_id: 7538
@@ -349,7 +350,7 @@ class Site < ActiveRecord::Base
   end
 
   def to_s
-    "<Site #{id} #{url}>"
+    "<Site #{id} #{name} #{url}>"
   end
 
   def contact

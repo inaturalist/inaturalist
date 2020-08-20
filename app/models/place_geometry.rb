@@ -106,8 +106,10 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def update_observations_places_later
-    Place.delay(unique_hash: { "Place::update_observations_places": place_id }).
-      update_observations_places(place_id)
+    Place.delay(
+      unique_hash: { "Place::update_observations_places": place_id },
+      run_at: 5.minutes.from_now,
+      queue: "slow" ).update_observations_places( place_id )
   end
 
   def simplified_geom

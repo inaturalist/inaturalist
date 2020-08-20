@@ -3,7 +3,7 @@ class IdentificationsController < ApplicationController
   before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_user_by_login, :only => [:by_login]
   load_only = [ :show, :edit, :update, :destroy ]
-  before_filter :load_identification, :only => load_only
+  before_filter :load_record, only: load_only
   blocks_spam :only => load_only, :instance => :identification
   check_spam only: [:create, :update], instance: :identification
   before_filter :require_owner, :only => [:edit, :update, :destroy]
@@ -212,7 +212,7 @@ class IdentificationsController < ApplicationController
           redirect_to @identification.observation
         end
         format.json do
-          render statys: :unprocessable_entity, json: { error: msg }
+          render status: :unprocessable_entity, json: { error: msg }
         end
       end
       return
@@ -354,10 +354,6 @@ class IdentificationsController < ApplicationController
       return redirect_to(params[:return_to])
     end
     redirect_to @identification.observation
-  end
-  
-  def load_identification
-    render_404 unless @identification = Identification.find_by_id(params[:id])
   end
   
   def require_owner

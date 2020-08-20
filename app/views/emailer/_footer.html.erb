@@ -102,6 +102,14 @@
                               <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
                               <br>
                               <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
+                              <br/>
+                              <%-
+                                # Sendgrid unsubscribe template tag
+                                # https://sendgrid.com/docs/ui/sending-email/index-suppressions/
+                              -%>
+                              <a href="{{asm_group_unsubscribe_raw_url}}" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;">
+                                <%= t(:unsubscribe_from_emails_like_this) %>
+                              </a>
                             </td>
                           </tr>
                         </table>
@@ -125,7 +133,7 @@
                         <td style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #505050;font-family: Helvetica;font-size: 10px;line-height: 150%;padding-top: 10px;padding-right: 0px;padding-bottom: 10px;padding-left: 0px;text-align: center;" align="center"> 
                           <%= I18n.t(
                             :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-                            partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/pages/network\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">",
+                            partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">",
                             cas_tag_html: "<a href=\"https://calacademy.org\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">California Academy of Sciences</a>",
                             nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\" style=\"-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;\">National Geographic Society</a>"
                             ).html_safe %>

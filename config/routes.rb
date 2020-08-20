@@ -2,9 +2,15 @@ Rails.application.routes.draw do
   resources :saved_locations
   apipie
 
-  resources :sites
+  resources :sites do
+    collection do
+      get :network
+      get :affiliation
+    end
+  end
 
-  id_param_pattern = %r(\d+([\w\-\%]*))
+  uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )
+  id_param_pattern = /(\d+([\w\-\%]*))|#{uuid_pattern}/
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
 
@@ -44,7 +50,6 @@ Rails.application.routes.draw do
   resources :guide_photos
   resources :guide_taxa do
     member do
-      get :edit_photos
       post :update_photos
       post :sync
     end
@@ -267,9 +272,7 @@ Rails.application.routes.draw do
   get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }
   get "observations/project/:id.:format" => "observations#project", as: :observations_for_project
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
-  get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
-  
 
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
@@ -376,6 +379,7 @@ Rails.application.routes.draw do
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
+  resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
@@ -409,8 +413,7 @@ Rails.application.routes.draw do
   patch 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   get 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
-  get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
-  get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
+  get 'taxa/:id/photos' => 'taxa#photos', as: :photos_of_taxon
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
@@ -633,6 +636,12 @@ Rails.application.routes.draw do
     end
   end
   resources :moderator_actions, only: [:create]
+
+  resources :lifelists do
+    collection do
+      get ":login", to: "lifelists#by_login"
+    end
+  end
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 

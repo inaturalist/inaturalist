@@ -85,7 +85,8 @@ class Taxon < ActiveRecord::Base
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon  # deprecated, remove when we're sure transition to taxon frameworks is complete
-  
+  has_one :simplified_tree_milestone_taxon, dependent: :destroy
+
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
@@ -100,6 +101,7 @@ class Taxon < ActiveRecord::Base
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
+             :reindex_identifications_after_save,
              :handle_after_move,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
@@ -315,6 +317,9 @@ class Taxon < ActiveRecord::Base
     where( "places.admin_level < 2" ).
     pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
+    "aba",
+    "america",
+    "asa",
     "bee hive",
     "canon",
     "caterpillar",
@@ -465,6 +470,20 @@ class Taxon < ActiveRecord::Base
     errors.add( :parent_id, I18n.t( "cannot_be_changed_during_a_content_freeze" ) )
   end
 
+  def reindex_identifications_after_save
+    return if new_record?
+    reindex_needed = %w(rank rank_level iconic_taxon_id ancestry).detect do |a|
+      send("#{a}_changed?")
+    end
+    if reindex_needed
+      Identification.delay(
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Identification::reindex_for_taxon": id }
+      ).reindex_for_taxon( id )
+    end
+  end
+
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
@@ -568,7 +587,9 @@ class Taxon < ActiveRecord::Base
 
   def index_observations
     return if skip_observation_indexing
-    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+    # changing some fields doesn't require reindexing observations
+    return if ( changes.keys - ["taxon_framework_relationship_id", "updater_id", "updated_at"] ).empty?
+    Observation.elastic_index!( scope: observations.select( :id ), delay: true )
   end
 
   def normalize_rank

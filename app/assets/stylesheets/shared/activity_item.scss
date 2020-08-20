@@ -151,10 +151,24 @@ body > [role="dialog"] .ActivityItem {
     }
     .contents {
       padding: 15px;
-      line-height: 1;
+      line-height: 0;
       .content {
         display: block;
         overflow: hidden;
+      }
+      .edit-comment-id {
+        margin-bottom: 0;
+        .btn-group.edit-form-btns {
+          padding-top: 5px;
+          width: 100%;
+          button {
+            text-transform: capitalize;
+            margin-right: 5px;
+          }
+          .btn-link {
+            color: $text-grey;
+          }
+        }
       }
       .UserText {
         line-height: 20px;

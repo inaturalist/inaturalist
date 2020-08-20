@@ -2,11 +2,18 @@ import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { Button, Tabs, Tab } from "react-bootstrap";
+import {
+  Button,
+  OverlayTrigger,
+  Tab,
+  Tabs,
+  Tooltip
+} from "react-bootstrap";
 import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../../shared/components/user_image";
+import TextEditor from "../../../shared/components/text_editor";
 import ActivityItem from "./activity_item";
 
 class Activity extends React.Component {
@@ -60,8 +67,22 @@ class Activity extends React.Component {
     );
   }
 
+  postIdentification( ) {
+    const { addID } = this.props;
+    const input = $( ".id_tab input[name='taxon_name']" );
+    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    if ( selectedTaxon ) {
+      addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+      input.trigger( "resetSelection" );
+      input.val( "" );
+      input.data( "uiAutocomplete" ).selectedItem = null;
+      $( ".id_tab textarea" ).val( "" );
+      $( ".comment_tab textarea" ).val( "" );
+    }
+  }
+
   doneButton( ) {
-    const { config, addComment, addID } = this.props;
+    const { config, addComment } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -73,17 +94,10 @@ class Activity extends React.Component {
               if ( comment ) {
                 addComment( $( ".comment_tab textarea" ).val( ) );
                 $( ".comment_tab textarea" ).val( "" );
-              }
-            } else {
-              const input = $( ".id_tab input[name='taxon_name']" );
-              const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-              if ( selectedTaxon ) {
-                addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                input.trigger( "resetSelection" );
-                input.val( "" );
-                input.data( "uiAutocomplete" ).selectedItem = null;
                 $( ".id_tab textarea" ).val( "" );
               }
+            } else {
+              this.postIdentification( );
             }
           }
         }
@@ -99,32 +113,49 @@ class Activity extends React.Component {
       review,
       unreview
     } = this.props;
-    return config && config.currentUser ? (
-      <div className="review">
-        <input
-          type="checkbox"
-          id="reviewed"
-          name="reviewed"
-          checked={_.includes( observation.reviewed_by, config.currentUser.id )}
-          onChange={( ) => {
-            if ( $( "#reviewed" ).is( ":checked" ) ) {
-              review( );
-            } else {
-              unreview( );
-            }
-          }}
-        />
-        <label htmlFor="reviewed">
-          { I18n.t( "mark_as_reviewed" ) }
-        </label>
-      </div> ) : null;
+    return config && config.currentUser && (
+      <OverlayTrigger
+        placement="top"
+        trigger={["hover", "focus"]}
+        delayShow={1000}
+        overlay={(
+          <Tooltip id="mark-as-reviewed-tooltip">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "mark_as_reviewed_desc" )
+              }}
+            />
+          </Tooltip>
+        )}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+      >
+        <div className="review">
+          <label>
+            <input
+              type="checkbox"
+              id="reviewed"
+              name="reviewed"
+              checked={_.includes( observation.reviewed_by, config.currentUser.id )}
+              onChange={( ) => {
+                if ( $( "#reviewed" ).is( ":checked" ) ) {
+                  review( );
+                } else {
+                  unreview( );
+                }
+              }}
+            />
+            { I18n.t( "mark_as_reviewed" ) }
+          </label>
+        </div>
+      </OverlayTrigger>
+    );
   }
 
   render( ) {
     const {
       observation,
       config,
-      commentIDPanel,
+      activeTab,
       setActiveTab
     } = this.props;
     if ( !observation ) { return ( <div /> ); }
@@ -140,34 +171,34 @@ class Activity extends React.Component {
     const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
       if ( !p.url || p.preview ) { return null; }
       const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\./i ) ) {
+      if ( mediumUrl && mediumUrl.match( /\/medium[./]/i ) ) {
         return p;
       }
       return null;
     } ) );
+    // couldn't find a great way to do this within React
+    const syncRemarks = text => {
+      $( ".id_tab textarea, .comment_tab textarea" ).val( text );
+    };
     const commentContent = loggedIn
       ? (
         <div className="form-group">
-          <textarea
+          <TextEditor
+            key={`comment-editor-${observation.id}-${_.size( observation.comments )}`}
             placeholder={I18n.t( "leave_a_comment" )}
-            className="form-control"
+            textareaClassName="form-control"
+            maxLength={5000}
+            showCharsRemainingAt={4000}
+            onBlur={e => syncRemarks( e.target.value )}
           />
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_add_comments" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_comments_html" )
+          }}
+        />
       );
     const idContent = loggedIn
       ? (
@@ -178,37 +209,42 @@ class Activity extends React.Component {
             perPage={6}
             resetOnChange={false}
             visionParams={
-              visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
+              visionEligiblePhotos.length > 0
+                ? { observationID: observation.id, observationUUID: observation.uuid }
+                : null
             }
             config={config}
+            onKeyDown={e => {
+              const key = e.keyCode || e.which;
+              if ( key === 13 ) {
+                this.postIdentification( );
+              }
+            }}
           />
           <div className="form-group">
-            <textarea
+            <TextEditor
+              key={`comment-editor-${observation.id}-${_.size( observation.identifications )}`}
               placeholder={I18n.t( "tell_us_why" )}
-              className="form-control"
+              className="upstacked"
+              textareaClassName="form-control"
+              onBlur={e => syncRemarks( e.target.value )}
+              maxLength={5000}
+              showCharsRemainingAt={4000}
             />
           </div>
         </div>
       ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_suggest_an_identification" ) }
-          { "." }
-        </span>
+        <span
+          className="log-in"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_identifications_html" )
+          }}
+        />
       );
     const tabs = (
       <Tabs
         id="comment-id-tabs"
-        activeKey={commentIDPanel.activeTab}
+        activeKey={activeTab}
         onSelect={key => {
           setActiveTab( key );
         }}
@@ -231,6 +267,7 @@ class Activity extends React.Component {
               key={`activity-${item.id}`}
               item={item}
               currentUserID={currentUserID}
+              inlineEditing
               {...this.props}
             />
           ) ) }
@@ -249,14 +286,17 @@ class Activity extends React.Component {
 Activity.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
-  commentIDPanel: PropTypes.object,
+  activeTab: PropTypes.string,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
+  editComment: PropTypes.func,
   deleteFlag: PropTypes.func,
   deleteID: PropTypes.func,
+  confirmDeleteID: PropTypes.func,
+  editID: PropTypes.func,
   restoreID: PropTypes.func,
   review: PropTypes.func,
   setActiveTab: PropTypes.func,

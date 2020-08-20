@@ -29,6 +29,31 @@ const actions = class actions {
     };
   }
 
+  static fileCounts( files ) {
+    return {
+      photos: _.filter( files, f => /^image\//.test( f.type ) ).length,
+      sounds: _.filter( files, f => /^audio\//.test( f.type ) ).length
+    };
+  }
+
+  static enforceLimit( src, dest ) {
+    const cardFileDropLimit = 20;
+    const obeysLimit = ( src + dest <= cardFileDropLimit );
+    return function ( dispatch ) {
+      if ( !obeysLimit ) {
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            message: I18n.t( "observations_can_only_have_n_photos", { limit: cardFileDropLimit } ),
+            confirmText: I18n.t( "ok" ),
+            hideCancel: true
+          }
+        } ) );
+      }
+      return obeysLimit;
+    };
+  }
+
   static appendFiles( files ) {
     return { type: types.APPEND_FILES, files };
   }
@@ -150,6 +175,10 @@ const actions = class actions {
   static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( obsCard.files );
+      const { photos: droppedPhotos, sounds: droppedSounds } = actions.fileCounts( droppedFiles );
+      if ( !dispatch( actions.enforceLimit( droppedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( droppedSounds, targetSounds ) ) ) { return; }
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -219,7 +248,18 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-
+      const targetFiles = obsCards[targetID].files;
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( targetFiles );
+      let { remainingPhotos, remainingSounds } = { remainingPhotos: 0, remainingSounds: 0 };
+      _.each( obsCards, c => {
+        if ( c.id !== targetID ) {
+          const { photos: toAddPhotos, sounds: toAddSounds } = actions.fileCounts( c.files );
+          remainingPhotos += toAddPhotos;
+          remainingSounds += toAddSounds;
+        }
+      } );
+      if ( !dispatch( actions.enforceLimit( remainingPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( remainingSounds, targetSounds ) ) ) { return; }
       let i = 0;
       const startTime = new Date( ).getTime( );
       _.each( obsCards, c => {
@@ -290,7 +330,8 @@ const actions = class actions {
                   "sort",
                   "sound",
                   "type",
-                  "uploadState"
+                  "uploadState",
+                  "visionThumbnail"
                 ] ), {
                   id: serialId,
                   cardID: newCard.id
@@ -305,7 +346,8 @@ const actions = class actions {
                   "preview",
                   "sort",
                   "sound",
-                  "type"
+                  "type",
+                  "visionThumbnail"
                 ] ), {
                   id: serialId,
                   cardID: newCard.id,
@@ -355,6 +397,10 @@ const actions = class actions {
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( toObsCard.files );
+      const { photos: movedPhotos, sounds: movedSounds } = actions.fileCounts( [photo.file] );
+      if ( !dispatch( actions.enforceLimit( movedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( movedSounds, targetSounds ) ) ) { return; }
       const time = new Date( ).getTime( );
       dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
@@ -496,7 +542,7 @@ const actions = class actions {
       } );
       dispatch( { type: types.SET_STATE, attrs: { saveCounts: stateCounts } } );
       if ( nextToSave && stateCounts.saving < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToSave.save( dispatch );
+        nextToSave.save( dispatch, { refresh: stateCounts.pending === 1 } );
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {

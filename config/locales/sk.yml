@@ -6,7 +6,6 @@ sk:
   a_default_taxon_name_will_automatically_created: |
     Z vedeckého názvu tohto taxónu bude automaticky vytvorený štandardný taxonomický názov. Hneď ako tento nový taxón uložíte, budete sem môcť pridávať ďalšie názvy (všeobecné názvy, zastarané vedecké názvy atď.).
   a_flag_for_x: "značka pre %{x}"
-  a_member_of: "Člen"
   a_member_of_taxon_html: "člen %{taxon}"
   about: O projekte
   about_blocking: O blokovaní
@@ -157,7 +156,6 @@ sk:
   admin_s: Administrátori
   admin_only: Iba administrátor
   admin_tools: Správcovske nástroje
-  agree: Súhlasím
   agree_: Súhlasím
   agree?: Súhlasíte?
   agree_with_current_taxon: Súhlas s aktuálnym taxónom
@@ -316,7 +314,6 @@ sk:
   assessment_x: "%{assessment} hodnotenie"
   assessments: hodnotenia
   associations: Asociácie
-  at_time: "v %{time}"
   attached_taxon: Pripojený taxón
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -435,7 +432,6 @@ sk:
   change_descriptions:
     split: Rozdelenie starého taxónu do niekoľko nových taxónov
     merge: Zlúčenie niekoľko starých taxonov do jedného nového taxónu
-    swap: Zmena názvu 1 za 1
     drop: Koncept taxónu úplne neplatný, udržiavaný na historické účely alebo kompatibilitu s partnerom
     stage: Pripraviť neaktívny koncept pre spustenie v rámci skupiny zmien
   change_geoprivacy: 'Zmeniť geosúkromie'
@@ -932,6 +928,7 @@ sk:
   favorites: "Obľúbené"
   feature_this_project_: "Odporučiť tento projekt"
   featured: Odporúčané
+  #Title for a button or section describing the "featured" status of a project
   featuring: Odporúčané
   feedback: Spätná väzba
   #Plural noun, as in Atom and RSS feeds
@@ -1036,7 +1033,6 @@ sk:
   forum_desc: |
     Fórum je miestom, kde môžete diskutovať o samotnom iNat, vrátane pomoci a podpory, požadavok na funkcie, hlásenie chýb, reklám  a ďalších informácií.
   frequency: Frekvencia
-  from: Od
   from_a_place: z miesta
   from_eol_collection: Z kolekcie EOL
   from_flickr_facebook_etc: Z Facebooku, Flickr atď.
@@ -1044,8 +1040,6 @@ sk:
   from_photos: Z fotiek
   from_place: Z miesta
   from_soundcloud: Zo Soundcloud
-  from_your_site_observations: "Z pozorovaní %{site_name}"
-  from_licensed_site_observations: "Z pozorovaní %{site_name} s licenciou"
   full_screen: Celá obrazovka
   gbif_occurrences: Výskyty GBIF
   generate_taxonomic_tags_for_flickr: Generovať taxonomické tagy pre vaše fotky na Flickr.
@@ -1239,8 +1233,8 @@ sk:
   kml_file_size_error: "KML musí byť menší ako 1 MB"
   labels: Štítky
   label_to_group_a_batch_of_taxon_changes: Spoločný štítok pre súbor zmien taxónov
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Súkromná lokalita
-  location_unknown: Neznáma lokalita
   language_slash_type: Jazyk / Typ
   #Large photo size
   large: veľký
@@ -1627,7 +1621,6 @@ sk:
   newly_added: Novo pridané
   newly_added_species: Novo pridané druhy
   newly_observed_species: Novo pozorované druhy
-  news: Novinky
   next: Ďalej
   next_observation: Ďalšie pozorovanie
   next_page: Ďalšia strana
@@ -1828,7 +1821,6 @@ sk:
   official_blog: Oficiálny blog
   offline_access_enabled: Offline prístup povolený
   old_observation_form: Pôvodný formulár pozorovania (zastaraný)
-  on_date: "dňa %{date}"
   on_day: "dňa"
   onboarding:
     observe_panel_title: Začneme odoslaním nejakých pozorovaní
@@ -1869,7 +1861,6 @@ sk:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: ALEBO
-  or_upload: Alebo nahrať
   orange: oranžový
   order: Zoradiť
   order_by: Zoradiť podľa
@@ -1892,7 +1883,6 @@ sk:
   other_taxa_commonly_misidentified_as_this_rank: Ďalšie taxóny bežne chybne označené ako tento %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Ostatné taxóny bežne chybne označené ako %{rank}v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
-  out_of_range: Mimo rozsah
   output_taxon: Výstupný taxón
   overview: Prehľad
   owner: Vlastník
@@ -2482,7 +2472,6 @@ sk:
   remember_me: Zapamätať si ma
   remove: Odstrániť
   remove_all_tags: Odstrániť všetky tag
-  remove_boundary: Odstrániť hranicu
   remove_comma_separated_tags: "Odstrániť tagy oddelené čiarkami"
   remove_conservation_status: odstrániť status ochrany
   remove_from: Odstrániť z
@@ -2895,7 +2884,6 @@ sk:
   the_community_id_requires_at_least_two_identifications: Komunitné ID vyžaduje aspoň dve identifikácie.
   the_community_must_feel_that: |
     Komunita sa musí zhodnúť, že komunitný taxón je na základe dôkazov najlepší aký môže byť
-  the_past: minulý
   the_people_of_inat: "Ľudia z %{site_name}"
   the_user_x_has_been_suspended: "Užívateľ %{user} bol vylúčený"
   the_user_x_has_been_unsuspended: "Vylúčenie užívateľa %{user} bolo zrušené"

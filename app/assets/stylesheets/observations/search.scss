@@ -90,8 +90,8 @@
   color: white;
   display: block;
   position: absolute;
-  left: 0;
-  bottom: 0;
+  right: 0;
+  top: 0;
   background-color: rgba( 0, 0, 0, 0.7 );
   padding: 10px;
   font-size: 24px;
@@ -187,13 +187,13 @@ inat-taxon.split-taxon .secondary-name {
 
 #result-grid inat-taxon.split-taxon .display-name {
   font-size: 18px;
-  line-height: 18px;
+  line-height: 22px;
 }
 #result-grid inat-taxon.split-taxon .has-com-name .secondary-name {
-  line-height: 26px;
+  line-height: 24px;
 }
 #result-grid inat-taxon.split-taxon .no-com-name .display-name {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 #result-table inat-taxon.split-taxon .secondary-name {
   margin-bottom: 15px;
@@ -917,6 +917,15 @@ $photo-count-line-width: 1px;
 #result-table .date,
 #result-table .time {
   display: block;
+}
+
+#result-table {
+  .place {
+    .geoprivacy-icon {
+      position: relative;
+      top: -2px;
+    }
+  }
 }
 
 #taxa-grid .thumbnail { overflow: visible; }

@@ -60,6 +60,9 @@ const SuggestionRow = ( {
         label: I18n.t( "observations_without_media" ),
         color: COLORS.maroon,
         verifiable: false,
+        captive: false,
+        photos: false,
+        sounds: false,
         disabled: !currentUserPrefersMedialessObs,
         onChange: e => updateCurrentUser( {
           prefers_medialess_obs_maps: e.target.checked

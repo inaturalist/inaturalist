@@ -95,36 +95,36 @@ class CheckList < List
     super(taxon, options)
   end
   
-  # This is a loaded gun.  Please fire with discretion.
-  def add_intersecting_taxa(options = {})
-    return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
-    if place.straddles_date_line?
-      raise "Can't add intersecting taxa for places that span the dateline. Maybe it would work if we switched from geometries to geographies."
-    end
-    ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
-    if options[:ancestor] && ancestor.blank?
-      return nil
-    end
-    scope = Taxon.intersecting_place(place)
-    scope = scope.descendants_of(ancestor) if ancestor
-    scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
-      add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 
-        :skip_update_cache_columns => options[:skip_update_cache_columns],
-        :skip_sync_with_parent => options[:skip_sync_with_parent])
-    end
-  end
-  
   def add_observed_taxa(options = {})
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    Observation.where("observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
-                  Observation::RESEARCH_GRADE).
-                select("DISTINCT ON (observations.taxon_id) observations.id, observations.taxon_id, observations.user_id").
-                order("observations.taxon_id").
-                includes(:taxon, :user).
-                joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").each do |observation|
-      add_taxon(observation.taxon, options)
+    observed_taxon_ids = []
+    search_params = {
+      place_id: place_id,
+      quality_grade: Observation::RESEARCH_GRADE,
+      taxon_geoprivacy: "open",
+      geoprivacy: "open"
+    }
+    if taxon
+      search_params[:taxon_id] = taxon.id
+    end
+    Observation.search_in_batches( search_params ) do |batch|
+      observed_taxon_ids += batch.map(&:taxon_id)
+      observed_taxon_ids.uniq!
+    end
+    # Don't index the taxon with each new ListedTaxon. Instead do it in batches
+    # and give ES a break
+    options_without_indexing = options.merge(
+      skip_index_taxon: true,
+      place: place
+    )
+    observed_taxon_ids.in_groups_of( 500 ) do |taxon_ids|
+      taxa = Taxon.where( id: taxon_ids )
+      taxa.each do |taxon|
+        add_taxon( taxon, options_without_indexing )
+      end
+      Taxon.elastic_index!( ids: taxon_ids )
     end
   end
   
@@ -186,7 +186,11 @@ class CheckList < List
           listed_taxon.destroy
         end
       end
-      Taxon.elastic_index!(scope: Taxon.where(id: batch.map(&:taxon_id).uniq))
+      batch.map( &:taxon_id ).uniq.each do |taxon_id|
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_id }).
+          elastic_index!(ids: [taxon_id])
+      end
     end
     true
   end

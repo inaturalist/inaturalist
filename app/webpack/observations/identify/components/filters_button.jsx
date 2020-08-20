@@ -636,7 +636,7 @@ class FiltersButton extends React.Component {
           <select
             id="params-without-term-id"
             className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
-            defaultValue={params.without_term_id}
+            defaultValue={params.without_term_id || params.term_id}
             onChange={e => {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
@@ -654,7 +654,7 @@ class FiltersButton extends React.Component {
               </option>
             ) ) }
           </select>
-          { rejectedTerm ? (
+          { ( rejectedTerm || chosenTerm ) && (
             <div className="term-value">
               <big>=</big>
               <select
@@ -666,14 +666,14 @@ class FiltersButton extends React.Component {
                 <option value="">
                   { I18n.t( "any_" ) }
                 </option>
-                { rejectedTerm.values.map( t => (
+                { ( rejectedTerm || chosenTerm ).values.map( t => (
                   <option value={t.id} key={`without-term-value-id-${t.id}`}>
                     { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
                   </option>
                 ) ) }
               </select>
             </div>
-          ) : null }
+          ) }
         </div>
         <div className="form-group recent-users-form-group">
           <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>

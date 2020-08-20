@@ -2,10 +2,12 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
-import Observation from "./observation";
 import InfiniteScroll from "react-infinite-scroller";
+import Observation from "./observation";
 
-const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, scrollIndex } ) => {
+const ObservationsFlexGridView = ( {
+  config, observations, hasMore, loadMore, scrollIndex, maxWidth
+} ) => {
   if ( _.isEmpty( observations ) ) { return ( <span /> ); }
   const index = scrollIndex || 30;
   const loader = ( <div key="observations-flex-grid-view-loading" className="loading_spinner huge" /> );
@@ -13,15 +15,15 @@ const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, sc
     <div className="ObservationFlexGridView">
       <Grid>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <InfiniteScroll
-              loadMore={ loadMore }
-              hasMore={ hasMore }
-              loader={ loader }
+              loadMore={loadMore}
+              hasMore={hasMore}
+              loader={loader}
             >
               <div className="ObservationsGrid" key="observations-flex-grid">
                 { observations.slice( 0, index ).map( o => {
-                  let itemDim = 235;
+                  const itemDim = maxWidth || 235;
                   let width = itemDim;
                   const dims = o.photos.length > 0 && o.photos[0].dimensions( );
                   if ( dims ) {
@@ -32,10 +34,10 @@ const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, sc
                   return (
                     <Observation
                       key={`obs-${o.id}`}
-                      observation={ o }
-                      width={ width }
-                      height={itemDim }
-                      config={ config }
+                      observation={o}
+                      width={width}
+                      height={itemDim}
+                      config={config}
                     />
                   );
                 } )
@@ -50,10 +52,9 @@ const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, sc
 };
 
 ObservationsFlexGridView.propTypes = {
+  maxWidth: PropTypes.number,
   config: PropTypes.object,
-  setConfig: PropTypes.func,
   hasMore: PropTypes.bool,
-  infiniteScrollObservations: PropTypes.func,
   loadMore: PropTypes.func,
   scrollIndex: PropTypes.number,
   observations: PropTypes.array

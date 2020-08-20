@@ -2,7 +2,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 200
+  DEFAULT_ES_BATCH_SIZE = 50
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -343,7 +343,9 @@ class Observation < ActiveRecord::Base
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
-        photos_count: photos.any? ? photos.length : nil,
+        photos_count: photos.any? ? photos.select{|p|
+          p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
+        }.length : nil,
         sounds_count: sounds.any? ? sounds.length : nil,
         photo_licenses: photos.map(&:index_license_code).compact.uniq,
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
@@ -966,6 +968,8 @@ class Observation < ActiveRecord::Base
       { cached_votes_total: sort_order }
     when "id", "observations.id"
       { id: sort_order }
+    when "random"
+      "random"
     else
       { created_at: sort_order }
     end

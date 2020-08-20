@@ -1,5 +1,6 @@
 #encoding: utf-8
 class LocalPhoto < Photo
+  include LogsDestruction
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   
@@ -68,7 +69,7 @@ class LocalPhoto < Photo
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
   validates_presence_of :user, unless: :subtype
-  validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+  validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, or GIF"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
@@ -113,22 +114,9 @@ class LocalPhoto < Photo
       file.styles.keys.each do |style|
         metadata[:dimensions][style] = extract_dimensions(style)
       end
-      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(path || file.queued_for_write[:original].path)
-        metadata.merge!(exif.to_hash)
-        xmp = XMP.parse(exif)
-        if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
-          metadata[:dc] = {}
-          xmp.dc.attributes.each do |dcattr|
-            begin
-              metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
-            rescue ArgumentError
-              # XMP does this for some DC attributes, not sure why
-            rescue RuntimeError => e
-              raise e unless e.message =~ /Don't know how to handle/
-              # XMP seems to do this when it doesn't know how to handle a tag
-            end
-          end
-        end
+      if ( file_path = ( path || file.queued_for_write[:original].path ) )
+        exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
+        metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -138,6 +126,8 @@ class LocalPhoto < Photo
     rescue TypeError => e
       raise e unless e.message =~ /no implicit conversion of Integer into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue ExifMetadata::ExtractionError => e
+      Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
     self.metadata = metadata
@@ -326,7 +316,7 @@ class LocalPhoto < Photo
       # still a high chance of encoding weirdness happening
       words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
       words = words.reject do |word|
-        word.size == 1 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+        word.size < 4 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
       # the combination that includes all words. Note that a combination

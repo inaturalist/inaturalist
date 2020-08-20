@@ -35,13 +35,11 @@ function addObservations(observations) {
                 $('<img/>').attr('src', o.user.user_icon_url)
               ),
               $('<a class="obstext">').attr('href', '/observations/'+o.id).append(
-                $('<span class="username">').html(o.user.name),
-                ' ',
-                $('<span class="taxonname">').html(o.taxon.default_name.name),
-                ' ',
-                I18n.t('from').toLowerCase(),
-                ' ',
-                $('<span class="location">').html(o.place_guess)
+                $( '<span class="username">' ).html( o.user.name ),
+                I18n.t( "observation_brief_taxon_from_place", {
+                  taxon: $( "<span class='taxonname'>" ).html( o.taxon.default_name.name ).prop( "outerHTML" ),
+                  place: $( "<span class='location'>" ).html( o.place_guess ).prop( "outerHTML" )
+                } )
               )
             )
           )

@@ -2,6 +2,28 @@ require File.expand_path("../../spec_helper", __FILE__)
 
 describe ObservationsExportFlowTask do
   elastic_models( Observation, Identification )
+  describe "validation" do
+    it "should not allow exports of more than 200,000 observations" do
+      ft = ObservationsExportFlowTask.make
+      allow( ft ).to receive(:observations_count).and_return( 300000 )
+      ft.inputs.build( extra: { query: "photos=true" } )
+      expect( ft ).not_to be_valid
+    end
+    it "should not allow a new export if an existing one has not run yet" do
+      ft = make_observations_export_flow_task
+      expect( ft ).to be_valid
+      extra_ft = ObservationsExportFlowTask.make( user: ft.user )
+      extra_ft.inputs.build( extra: { query: "photos=true" } )
+      expect( extra_ft ).not_to be_valid
+    end
+    it "should allow a new export if an existing one has not run yet but has an error" do
+      ft = make_observations_export_flow_task( error: "something went terribly wrong" )
+      expect( ft ).to be_valid
+      extra_ft = ObservationsExportFlowTask.make( user: ft.user )
+      extra_ft.inputs.build( extra: { query: "photos=true" } )
+      expect( extra_ft ).to be_valid
+    end
+  end
   describe "run" do
     before do
       # not sure why the before(:each) in spec_helper may not have run yet here

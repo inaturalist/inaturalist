@@ -11,6 +11,7 @@ import {
   combineReducers
 } from "redux";
 import moment from "moment";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
@@ -92,7 +93,28 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
 }
 
 /* global INITIAL_OBSERVATION_ID */
-store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
+let obsId = INITIAL_OBSERVATION_ID;
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
+  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    /* global INITIAL_OBSERVATION_UUID */
+    obsId = INITIAL_OBSERVATION_UUID;
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    // For some reason this seems to set it everywhere...
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
+}
+
+store.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,
   callback: ( ) => {

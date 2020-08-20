@@ -965,7 +965,7 @@ var html = (function (html4) {
   };
   
   // Schemes on which to defer to uripolicy. Urls with other schemes are denied
-  var WHITELISTED_SCHEMES = /^(?:https?|mailto|data)$/i;
+  var ALLOWED_SCHEMES = /^(?:https?|mailto|data)$/i;
 
   var decimalEscapeRe = /^#(\d+)$/;
   var hexEscapeRe = /^#x([0-9A-Fa-f]+)$/;
@@ -1209,7 +1209,7 @@ var html = (function (html4) {
             }
             attribs.push(attribName, decodedValue);
           } else if (m[4]) {
-            if (eflags !== void 0) {  // False if not in whitelist.
+            if (eflags !== void 0) {  // False if not permited.
               if (openTag) {
                 if (handler.startTag) {
                   handler.startTag(tagName, attribs, param);
@@ -1428,7 +1428,7 @@ var html = (function (html4) {
                 if (!parsedUri) {
                   value = null;
                 } else if (!parsedUri[1] ||
-                    WHITELISTED_SCHEMES.test(parsedUri[1])) {
+                    ALLOWED_SCHEMES.test(parsedUri[1])) {
                   value = opt_uriPolicy && opt_uriPolicy(value);
                 } else {
                   value = null;

@@ -3,15 +3,16 @@ import _ from "lodash";
 import moment from "moment-timezone";
 
 // Light wrapper around fetch to ensure credentials are always passed through
-const fetch = ( url, options = {} ) =>
-  baseFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
+const fetch = ( url, options = {} ) => baseFetch( url, Object.assign( {}, options, {
+  credentials: "same-origin"
+} ) );
 
 function updateSession( params ) {
   const data = new FormData( );
   data.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
-  for ( const key in params ) {
-    data.append( key, params[key] );
-  }
+  _.forEach( params, ( value, key ) => {
+    data.append( key, value );
+  } );
   fetch( "/users/update_session", {
     method: "PUT",
     body: data
@@ -23,9 +24,10 @@ function updateSession( params ) {
 function objectToComparable( object = {} ) {
   return _.map( _.keys( object ).sort( ), k => {
     const v = object[k];
-    if ( typeof( v ) === "object" ) {
+    if ( typeof ( v ) === "object" ) {
       return `(${k}-${objectToComparable( v )})`;
-    } else if ( _.isNil( v ) ) {
+    }
+    if ( _.isNil( v ) ) {
       return `(${k}-)`;
     }
     return `(${k}-${v})`;
@@ -42,18 +44,13 @@ function resizeUpload( file, opts, callback ) {
       // Resize the image
       const canvas = document.createElement( "canvas" );
       const maxDimension = 400;
-      let width = image.width;
-      let height = image.height;
-      if ( width > height ) {
-        if ( width > maxDimension ) {
-          height *= maxDimension / width;
-          width = maxDimension;
-        }
-      } else {
-        if ( height > maxDimension ) {
-          width *= maxDimension / height;
-          height = maxDimension;
-        }
+      let { width, height } = image;
+      if ( width > height && width > maxDimension ) {
+        height *= maxDimension / width;
+        width = maxDimension;
+      } else if ( height > maxDimension ) {
+        width *= maxDimension / height;
+        height = maxDimension;
       }
       canvas.width = width * 2;
       canvas.height = height * 2;

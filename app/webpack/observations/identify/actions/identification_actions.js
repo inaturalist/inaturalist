@@ -84,7 +84,14 @@ function agreeWithCurrentObservation( ) {
       return null;
     }
     const currentObservation = s.currentObservation.observation;
-    if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {
+    const { currentUser } = s.config;
+    if (
+      !currentObservation
+      || !currentObservation.id
+      || !currentObservation.taxon
+      || currentObservation.user.id === currentUser.id
+      || ( currentObservation.taxon && !currentObservation.taxon.is_active )
+    ) {
       return null;
     }
     dispatch( agreeingWithObservation( ) );

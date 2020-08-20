@@ -39,14 +39,14 @@ EOS
   opt :taxon, "Only export observations of this taxon", type: :string, short: "-t"
   opt :project, "Only export observations from this project", type: :string, short: "-o"
   opt :core,
-    "Core type. Options: occurrence, taxon. Default: occurrence.",
+    "Core type. Options: occurrence, taxon",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
-    Path to metadata template. Default: observations/dwc.eml.erb. \"skip\" will skip EML file generation.
-  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m", default: "observations/dwc.eml.erb"
-  opt :descriptor, "Path to descriptor template. Default: observations/dwc.descriptor.builder",
+    Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
+  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m"
+  opt :descriptor, "Path to descriptor template",
     type: :string, short: "-r", default: "observations/dwc.descriptor.builder"
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia

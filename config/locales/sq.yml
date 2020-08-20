@@ -28,7 +28,6 @@ sq:
     Kur tashme keni ruajtur kete takson, ju do jeni ne gjendje te shtoni emra tjere ketu
     (emra te pergjithshem, apo emra shkencor qe tashme jane vjeteruar, etj)
   a_flag_for_x: "një shënim për %{x}"
-  a_member_of: "Një anëtar i"
   a_member_of_taxon_html: "një anëtar i %{taxon}"
   about: Për
   about_blocking: Për bllokimin
@@ -172,7 +171,6 @@ sq:
   admin: Administrator
   admin_s: Administrator(ët)
   admin_tools: Veglat e administrimit
-  agree: pajtohem
   agree_: Pajtohem
   agree?: Pajtoheni?
   agree_with_current_taxon: Pajtohem me taxon e tanishëm
@@ -362,7 +360,6 @@ sq:
   assessment_x: "%{assessment} vlerësim"
   assessments: vlerësimet
   associations: Shoqatat
-  at_time: "në %{time}"
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
@@ -472,7 +469,6 @@ sq:
   change_descriptions:
     split: Taxoni i vjetër u nda në taxa të reja të shumëfishta
     merge: Disa taxa të vjetra u hodhën në një taxon të ri
-    swap: Ndryshimi i emrit 1 në 1
     drop: Koncepti i taksonit krejtësisht i pavlefshëm, i mbajtur për qëllime historike ose përputhshmëri me partnerin
     stage: Përgatitni një koncept joaktiv për ta lëshuar si pjesë e një grup ndryshimi
   change_geoprivacy: 'Ndrysho gjeoprivatësinë'
@@ -533,7 +529,6 @@ sq:
   choose_a_list_above: Zgjidhni një listë më lart.
   choose_a_place: Zgjidhni një vend
   choose_a_taxon: Zgjidhni një taxon (opsionale)
-  choose_cc_licensed_photos_html: 'Zgjidh <a href="http://creativecommons.org/">open</a>-fotografi të licencuara nga faqet tjera apo zgjidh nga vëzhgimet e %{site_name}. Provo të zgjedhësh pamje të cilat <em>shfaqin tipare diagnostike</em> dhe <em>duken mirë si ikona</em>. E <em>para është e paracaktuar</em>.'
   choose_columns: Zgjidh shtyllat
   choose_file: Zgjidh skedarin
   choose_files: Zgjidh dosjet
@@ -1038,7 +1033,6 @@ sq:
   formatting: Formatimi
   forgot_your_password: Keni harruar fjalëkalimin?
   frequency: Shpeshtësia
-  from: Prej
   from_a_place: nga një vend
   from_eol_collection: Nga koleksioni EOL
   from_flickr_facebook_etc: Nga Flickr, Facebook, etc.
@@ -1046,8 +1040,6 @@ sq:
   from_photos: Nga fotot
   from_place: nga një vend
   from_soundcloud: Nga Soundcloud
-  from_your_site_observations: "Nga %{site_name} vëzhgimet"
-  from_licensed_site_observations: "Nga %{site_name} vëzhgimet e licencuara"
   full_screen: Ekran i plotë
   gbif_occurrences: Dukuritë e GBIF
   generate_taxonomic_tags_for_flickr: Gjeneroni etiketat taksonomike për fotot tuaja në Flickr.
@@ -1238,8 +1230,8 @@ sq:
   kml_file_size_error: "KML duhet të jetë më i vogël sesa 1 MB në madhësi"
   labels: Etiketat
   label_to_group_a_batch_of_taxon_changes: Etiketoni grupimin e një grumbulli ndryshimesh të taksonit
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Lokacioni privat
-  location_unknown: Lokacioni i panjohur
   language_slash_type: Gjuha/Lloji
   #Large photo size
   large: e madhe
@@ -1600,7 +1592,6 @@ sq:
   new_updates_in_the_last_24_hours_from: "Përditësime të reja në 24 orëshin e fundit nga %{site_name}"
   new_users: Përdorues i ri
   new_users_w_7_obs: Përdorues të rinj w/ 7 Obs
-  news: Lajme
   next: Tjetër
   next_observation: Vëzhgimi i ardhshëm
   next_page: Faqja tjetër
@@ -1803,7 +1794,6 @@ sq:
   offline_access_enabled: Qasja pa internet e mundesuar
   old_observation_form: Formë e vjeter vëzhgimi (e zhvlerësuar)
   ok: "Në rregull"
-  on_date: "më %{date}"
   on_day: "në"
   onboarding:
     observe_panel_title: Le të fillojmë duke postuar ca vëzhgime
@@ -1860,7 +1850,6 @@ sq:
   or: ose
   or_choose_high_level_taxa: "...ose zgjidh nga ndonjë taxa e nivelit më të lartë"
   or_if_you_dont_want_email: "Apo, ne qofte se nuk deshironi mesazhet..."
-  or_upload: Ose ngarko
   orange: Portokalli
   order: Rendit
   order_by: Rendit sipas
@@ -1880,7 +1869,6 @@ sq:
   other_species_commonly_misidentified_as_this_species: Lloje të tjera zakonisht janë ngatërruar si këto lloje
   other_species_commonly_misidentified_as_this_species_in_place_html: Lloje të tjera zakonisht janë ngatërruar si këto lloje në <a href="%{url}">%{place}</a>
   our_blog: Blogu ynë
-  out_of_range: Jashtë sferës
   output_taxon: Taxoni i nxjerrë
   overview: Pamje e përgjithshme
   owner: Pronar
@@ -2287,7 +2275,6 @@ sq:
   remember_me: Më mbaj mend
   remove: Largo
   remove_all_tags: Largo të gjitha etiketat
-  remove_boundary: Largo kufirin
   remove_comma_separated_tags: "Largo etiketat e ndara me presje"
   remove_conservation_status: largo statusin e konzervimit
   remove_from: Largo nga

@@ -278,7 +278,7 @@ module ApplicationHelper
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
-    sanitize( text, tags: %w(a b strong i em) ).html_safe
+    sanitize( text, tags: %w(a b strong i em), attributes: %w(href rel target) ).html_safe
   end
   
   def remaining_paragraphs_of_text(text,split)
@@ -290,6 +290,8 @@ module ApplicationHelper
   
   def formatted_user_text(text, options = {})
     return text if text.blank?
+
+    text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
@@ -297,9 +299,6 @@ module ApplicationHelper
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
       text = text.gsub(/<\\?p>/, "\n\n")
-
-      # blockquotes should always start with a P
-      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
     end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
@@ -307,11 +306,11 @@ module ApplicationHelper
     text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
-    # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
+    # Ensure all tags are closed
+    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
     text.html_safe
   end
 
@@ -359,8 +358,14 @@ module ApplicationHelper
     h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
-  def markdown(text)
-    BlueCloth::new(text).to_html
+  def markdown( text )
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML,
+      tables: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
+      no_intra_emphasis: true
+    )
+    @markdown.render( text )
   end
   
   def render_in_format(format, *args)
@@ -1007,6 +1012,28 @@ module ApplicationHelper
   def bootstrapTargetID
      return rand(36**8).to_s(36)
   end
+
+  def lowercase_equivalent_model_name_for( klass )
+    class_name_key = klass.to_s.underscore
+    class_name = class_name_key.humanize.downcase
+    potential_keys = [
+      "activerecord.models.#{class_name_key.camelcase}",
+      class_name_key,
+      "#{class_name_key}_"
+    ]
+    # Find the key that is lowercase in English, b/c we're maddeningly
+    # inconsistent about this
+    lowercase_key = potential_keys.detect do |k|
+      en_t = I18n.t( k, locale: "en", default: nil )
+      en_t && en_t[0].downcase == en_t[0]
+    end
+    lowercase_model_name = if lowercase_key
+      I18n.t( lowercase_key, default: nil )
+    end
+    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= class_name
+    lowercase_model_name
+  end
     
   def update_tagline_for(update, options = {})
     resource = update.resource
@@ -1015,11 +1042,7 @@ module ApplicationHelper
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     class_name_key = update.resource.class.to_s.underscore
-    class_name = class_name_key.humanize.downcase
-
-    resource_txt = t( "activerecord.models.#{class_name_key.camelcase}",
-      default: t( class_name_key, default: class_name_key )
-    ).downcase
+    resource_txt = lowercase_equivalent_model_name_for( update.resource.class )
     resource_link = if options[:skip_links]
       resource_txt
     else
@@ -1044,7 +1067,8 @@ module ApplicationHelper
     if notifier.is_a?(ActsAsVotable::Vote)
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
-        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase
+        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
+        gender: class_name_key
       ).html_safe
       s = t(:user_faved_a_noun_by_owner, 
         user: notifier_user.login, 
@@ -1178,7 +1202,7 @@ module ApplicationHelper
     opts = {}
     if update.notification == "activity" && notifier_user
       notifier_class_name_key = notifier.class.to_s.underscore
-      notifier_class_name = t(notifier_class_name_key).downcase
+      notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
@@ -1473,7 +1497,7 @@ module ApplicationHelper
   def branding_statement
     I18n.t(
       :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/pages/network\">",
+      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\">",
       cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
       nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
     ).html_safe
@@ -1506,6 +1530,30 @@ module ApplicationHelper
   
   def current_url(new_params)
    url_for params.merge(new_params)
+  end
+
+  def errors_for_hidden_fields( record, options = {} )
+    hidden_fields = options[:hidden_fields]
+    hidden_fields ||= record.errors.messages.keys - ( options[:visible_fields] || [] )
+    hidden_errors = record.errors.messages.slice( *hidden_fields )
+    return if hidden_errors.blank?
+    content_tag(:div, class: "alert alert-warning" ) do
+      s = content_tag(:h4, I18n.t( "errors.template.body" ) )
+      s += content_tag(:ul) do
+        hidden_errors.inject( "" ) do |memo, pair|
+          k, errors = pair
+          memo << errors.inject( "" ) do |memo, e|
+            memo << content_tag( :li, I18n.t( "errors.format",
+              attribute: I18n.t( "activerecord.attributes.#{record.class.name.underscore}.#{k}" ),
+              message: e
+            ) )
+            memo.html_safe
+          end
+          memo.html_safe
+        end
+      end
+      s.html_safe
+    end
   end
 
 end

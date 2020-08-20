@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :admin_required, :only => [:user]
-  before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
   check_spam only: [:create, :update], instance: :comment
   
@@ -188,10 +188,6 @@ class CommentsController < ApplicationController
       flash[:error] = "#{t(:we_had_trouble_saving_comment)} #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
-  end
-
-  def load_comment
-    render_404 unless @comment = Comment.find_by_id(params[:id] || params[:comment_id])
   end
   
   def owner_required

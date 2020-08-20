@@ -48,3 +48,5 @@
                     :class => "btn btn-link"
                   - if @flaggable_message
                     = link_to t(:flag), new_flag_path("message_id" => @flaggable_message), :class => "flaglink btn btn-link"
+                  = link_to_dialog t(:privacy), link: { class: "btn btn-link" } do
+                    =t "views.messages.show.privacy_notice_html"

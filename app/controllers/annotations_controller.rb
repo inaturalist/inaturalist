@@ -1,7 +1,7 @@
 class AnnotationsController < ApplicationController
   before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
   before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
-  before_filter :load_annotation, only: [:update, :destroy]
+  before_filter :load_record, only: [:update, :destroy]
 
   def create
     p = annotation_params(params[:annotation])
@@ -18,6 +18,7 @@ class AnnotationsController < ApplicationController
         if @annotation.errors.any?
           head :bad_request
         else
+          @annotation.reload
           render :json => @annotation.as_json
         end
       end
@@ -38,12 +39,6 @@ class AnnotationsController < ApplicationController
   end
 
   private
-  def load_annotation
-    @annotation =
-      Annotation.find_by_uuid(params[:id]) ||
-      Annotation.find_by_id(params[:id])
-    render_404 unless @annotation
-  end
 
   def annotation_params(p)
     p[:user_id] ||= current_user.id

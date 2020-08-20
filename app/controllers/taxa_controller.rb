@@ -17,14 +17,14 @@ class TaxaController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
-  before_filter :authenticate_user!, :only => [:edit_photos, :update_photos,
+  before_filter :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
-    :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
+    :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_filter :taxon_curator_required, :only => [:edit, :update,
@@ -88,7 +88,7 @@ class TaxaController < ApplicationController
             taxon_obs_params[:site_id] = @site.id
           end
           Observation.page_of_results(taxon_obs_params).first
-        end.compact
+        end.compact.select{|o| o.taxon}
         Observation.preload_associations(@featured_taxa_obs, [:user, :taxon])
         
         flash[:notice] = @status unless @status.blank?
@@ -809,11 +809,6 @@ class TaxaController < ApplicationController
     end
   end
   
-  def edit_photos
-    @photos = @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
-    render :layout => false
-  end
-  
   def add_places
     unless params[:tab].blank?
       @places = case params[:tab]
@@ -900,6 +895,20 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
+    if @taxon.photos_locked? && !current_user.is_admin?
+      respond_to do |format|
+        format.json do
+          render status: :forbidden, json: {
+            error: t(:you_dont_have_permission_to_edit_those_photos)
+          }
+        end
+        format.any do
+          flash[:error] = t(:you_dont_have_permission_to_edit_those_photos)
+          redirect_back_or_default( taxon_path( @taxon ) )
+        end
+      end
+      return
+    end
     photos = retrieve_photos
     errors = photos.map do |p|
       p.valid? ? nil : p.errors.full_messages
@@ -955,6 +964,16 @@ class TaxaController < ApplicationController
   # sets them as the photos, respecting their position.
   #
   def set_photos
+    if @taxon.photos_locked? && !current_user.is_admin?
+      respond_to do |format|
+        format.json do
+          render status: :forbidden, json: {
+            error: t(:you_dont_have_permission_to_edit_those_photos)
+          }
+        end
+      end
+      return
+    end
     photos = ( params[:photos] || [] ).map { |photo|
       subclass = LocalPhoto
       if photo[:type]
@@ -1617,11 +1636,16 @@ class TaxaController < ApplicationController
 
     # Assign the current user to any new conservation statuses
     if params[:taxon][:conservation_statuses_attributes]
-      params[:taxon][:conservation_statuses_attributes].each do |cs_id, status|
-        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == cs_id }
-          params[:taxon][:conservation_statuses_attributes][cs_id][:user_id] = current_user.id
+      params[:taxon][:conservation_statuses_attributes].each do |position, status|
+        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
+          params[:taxon][:conservation_statuses_attributes][position][:user_id] = current_user.id
         end
       end
+    end
+
+    if !current_user.is_admin? && params[:taxon][:photos_locked] &&
+        params[:taxon][:photos_locked] != @taxon.photos_locked
+      params[:taxon].delete(:photos_locked)
     end
     true
   end

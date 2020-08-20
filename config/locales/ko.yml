@@ -1,6 +1,8 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
+  x_comments_html:
+    other: '댓글 <span class="count">%{count}</span> 개'
   x_faves:
     other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
@@ -14,7 +16,7 @@ ko:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span> 명'
+    other: '동정한 사용자 <span class="count">%{count}</span>'
   x_journal_posts_html:
     other: '일지 포스팅 <span class="count">%{count}</span> 개'
   x_matching_taxa:
@@ -36,7 +38,7 @@ ko:
   x_observations_reviewed_html:
     other: "검토한 관찰 <span class='count'>%{count}</span> 개"
   x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span> 명'
+    other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
@@ -69,7 +71,6 @@ ko:
   a_default_taxon_name_will_automatically_created: |
     학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   a_flag_for_x: "%{x}을 위한 플래그"
-  a_member_of: "소속:"
   a_member_of_taxon_html: "%{taxon}에 속함"
   about: 소개
   about_blocking: 차단에 대하여
@@ -216,7 +217,6 @@ ko:
   admin_s: 관리자
   admin_only: 관리자 전용
   admin_tools: 관리자 도구
-  agree: 동의
   agree_: 동의
   agree?: 동의하십니까?
   agree_with_current_taxon: 현재 분류군에 동의
@@ -371,7 +371,6 @@ ko:
   assessment_x: "%{assessment} 평가"
   assessments: 평가
   associations: 협회
-  at_time: "%{time} 시간에"
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -476,7 +475,6 @@ ko:
   change_descriptions:
     split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
     merge: 여러 개의 분류군을 하나의 분류군으로 통합
-    swap: 1대1 이름 변경
     drop: '완전히 유효하지 않은 분류군 개념: 역사적 목적이나 파트너 호환성을 위해 유지'
   change_geoprivacy: '위치보호 변경'
   change_group: 그룹 바꾸기
@@ -1016,7 +1014,6 @@ ko:
     feature_requests: 기능 요청
     news_and_updates: 소식 및 업데이트
   frequency: 주기
-  from: '게시한 사용자:'
   from_a_place: 어떤 장소로부터
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
@@ -1024,8 +1021,6 @@ ko:
   from_photos: 사진들로부터
   from_place: 장소로부터
   from_soundcloud: 사운드클라우드로부터
-  from_your_site_observations: "%{site_name} 관찰로부터"
-  from_licensed_site_observations: "인증된 %{site_name} 관찰로부터"
   full_screen: 전체 화면
   gbif_occurrences: GBIF 발생건들
   generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
@@ -1039,7 +1034,7 @@ ko:
   globally: 세계적으로
   go: 가기
   go_back: 돌아가기
-  going_to_your_observations: 내 관찰들로 가기
+  going_to_your_observations: 내 관찰들로 가는 중...
   good_choice_for_sharing: 과학자들과 공유하는 것은 좋은 선택입니다
   google: 구글
   got_it!: 알겠습니다!
@@ -1152,7 +1147,7 @@ ko:
   inviteonly: 초대로만 가능
   invited_x: "%{x}을(를) 초대했습니다."
   iphone: 아이폰
-  is_not_following_anyone: 은 아무도 팔로잉하고 있지 않다.
+  is_not_following_anyone: 은 아무도 팔로잉하고 있지 않습니다.
   is_this_offensive_html: '이것이 <a href="/help#inappropriate">부적절</a>하거나, 스팸, 또는 불쾌합니까?'
   is_this_place_a_duplicate: 이 장소는 중복되었나요?
   it_can_now_be_used_for_research: 이제 연구를 위해 사용하거나 다른 웹사이트에 실을 수 있습니다
@@ -1178,8 +1173,8 @@ ko:
   keyboard_shortcuts: 단축 키
   kml_file_size_error: "KML은 1MB보다 크기가 작아야 합니다."
   labels: 라벨
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: 위치 비공개
-  location_unknown: 위치 알 수 없음
   language_slash_type: 언어 / 유형
   #Large photo size
   large: 크게
@@ -1424,6 +1419,7 @@ ko:
   ne_lat: NE 위도
   ne_lon: NE 경도
   near_threatened: 준위협(NT)
+  nearby_observations_: 근처에서 관찰된 생물
   needs_id: ID가 필요합니다.
   needs_id_: ID가 필요합니다
   needs_to_be_identified: 동정 필요
@@ -1462,7 +1458,6 @@ ko:
   newly_added: 새로 추가됨
   newly_added_species: 새로 추가된 종
   newly_observed_species: 새롭게 관찰된 종
-  news: 새 소식
   next: 다음
   next_observation: 다음 관찰
   next_page: 다음 페이지
@@ -2116,6 +2111,7 @@ ko:
   restore: 복구
   restoring: 복구 중...
   reviewed: 검토함
+  rg_observations: 연구 자료 등급 관찰
   rules_for_adding_observations: 관찰을 추가할 때의 규칙
   save: 저장
   save_all: 모두 저장
@@ -2234,7 +2230,7 @@ ko:
   subscribe_to_places_to: |
     장소에 대한 알림을 설정해서 그 장소의 새로운 관찰에 대한 알림을 받아보세요. 팔로우하는 사용자들과 댓글 또한 알림 설정을 통하여 관리되기 때문에, 알림을 설정한 항목을 확인하거나 알림을 취소하고 싶을 때는 아래의 '알림 관리' 항목을 클릭하세요. 또한, iNaturalist의 대부분 항목에 대한 알림을 취소할 수 있습니다.
   subscriptions: 알림 받기
-  suggest_an_identification: 동정 제안하기
+  suggest_an_identification: 동정하기
   suggestions: 제안
   support_inaturalist: iNaturalist 지원
   sync: 동기화하시겠습니까?
@@ -2333,14 +2329,11 @@ ko:
   username_or_email: 사용자 이름이나 이메일
   username_or_user_id: 사용자 이름이나 사용자 ID
   users: 사용자
-  users_comment_html: "<a href='%{url}'>%{user}</a>님의 댓글"
   users_id: "%{user}의 ID"
-  users_identification_short_html: "<a href='%{url}'>%{user}</a>님의 동정"
   users_profile: "%{user}의 프로필"
   users_projects: "%{user}님의 프로젝트"
   valid_options_are: '유효한 옵션:'
   value: 값
-  view: 보기
   view_all: 모두 보기
   view_all_members: 모든 회원 보기
   view_all_n: "모든 %{n}개 보기"
@@ -2405,7 +2398,6 @@ ko:
   year_month: 년/월
   yellow: 노랑
   'yes': "예"
-  yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리, 관찰을 라이선스하겠습니다!
   yesterday: 어제
   you: 나
   you_: 나

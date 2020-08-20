@@ -15,7 +15,7 @@ class Flag < ActiveRecord::Base
     COPYRIGHT_INFRINGEMENT
   ]
   belongs_to :flaggable, polymorphic: true
-  belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id"
+  belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id", inverse_of: :flags_as_flaggable_user
 
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
@@ -101,7 +101,7 @@ class Flag < ActiveRecord::Base
       flag: flag,
       comment: comment,
       user_id: user_id,
-      resolver_id: user_id,
+      resolver_id: resolver_id,
       resolved: resolved,
       created_at: created_at,
       updated_at: updated_at

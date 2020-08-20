@@ -317,7 +317,6 @@ $(document).ready(function() {
       $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
         $( this ).html( data );
         $( "#messagessubnav" ).data( "loaded", true );
-        setMessagesCount( 0, { skipAnimation: true } );
       } );
     }
   } );
@@ -997,6 +996,21 @@ function getMessagesCount() {
   $.getJSON('/messages/count.json', function(data) {
     setMessagesCount(data.count)
   })
+}
+
+function getHeaderCounts() {
+  var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+  $.ajax({
+    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    headers: {
+      Authorization: apiToken
+    },
+    success: function( data ) {
+      setUpdatesCount( data.updates_count );
+      setMessagesCount( data.messages_count );
+    }
+  });
+
 }
 
 $.fn.subscriptionSettings = function() {

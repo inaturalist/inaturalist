@@ -53,7 +53,7 @@ describe Place, "creation" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    Delayed::Worker.new.work_off
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     p.reload
     expect(p.check_list.taxa).to include t
   end
@@ -62,7 +62,7 @@ describe Place, "creation" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    Delayed::Worker.new.work_off
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     p.reload
     lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
     expect( lt.last_observation_id ).not_to be_blank
@@ -84,6 +84,13 @@ describe Place, "creation" do
     p = make_place_with_geom( name: "föö" )
     p.save
     expect( p.slug ).to eq "foo"
+  end
+
+  it "should not be valid without a place_geometry" do
+    p = Place.make
+    expect( p.place_geometry ).to be_blank
+    expect( p ).not_to be_valid
+    expect( p.errors[:place_geometry] ).not_to be_blank
   end
 end
 
@@ -383,6 +390,13 @@ describe Place, "save_geom" do
       without_delay { p.save_geom(geom) }
       p.reload
       expect( p.check_list.taxon_ids ).to include o.taxon_id
+    end
+    it "should not add taxa observed outside the place to the checklist" do
+      expect( p.check_list.taxon_ids ).to be_empty
+      o = make_research_grade_observation(latitude: 5, longitude: 5)
+      without_delay { p.save_geom(geom) }
+      p.reload
+      expect( p.check_list.taxon_ids ).not_to include o.taxon_id
     end
     it "should not remove existing user-added listed taxa to the checklist" do
       t = Taxon.make!

@@ -43,6 +43,13 @@ function( $http, $rootScope, $filter ) {
     return I18n.l( format, moment( value ) );
   };
 
+  var pluralWithoutCount = function( key, count ) {
+    var s = I18n.t( key, { count: count } );
+    s = s.replace( /\<span.*?\>.+?\<\/span\>/g, "" );
+    s = s.replace( count, "" );
+    return s;
+  }
+
   var taxonStatusTitle = function( taxon ) {
     if( !taxon.conservation_status ) { return; }
     var title = $filter( "capitalize" )( taxon.conservationStatus( ), "title" );
@@ -130,6 +137,7 @@ function( $http, $rootScope, $filter ) {
     numberWithCommas: numberWithCommas,
     t: t,
     l: l,
+    pluralWithoutCount: pluralWithoutCount,
     taxonStatusTitle: taxonStatusTitle,
     taxonMeansTitle: taxonMeansTitle,
     backgroundIf: backgroundIf,
@@ -151,7 +159,7 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     link: function(scope, elt, attr) {
       scope.dateString = function() {
         if( !scope.date ) {
-          return shared.t('unknown');
+          return shared.t( "missing_date" );
         }
         var date = moment(scope.date),
             now = moment(new Date()),

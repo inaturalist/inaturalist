@@ -13,7 +13,9 @@ class Message < ActiveRecord::Base
   belongs_to :from_user, :class_name => "User"
   belongs_to :to_user, :class_name => "User"
 
-  validates_presence_of :user, :from_user_id, :to_user_id
+  validates_presence_of :user
+  validates :from_user_id, presence: true, numericality: { greater_than: 0 }
+  validates :to_user_id, presence: true, numericality: { greater_than: 0 }
   validate :validate_to_not_from
   validates :body, :presence => true
   before_create :set_read_at, :set_subject_for_reply
@@ -65,6 +67,13 @@ class Message < ActiveRecord::Base
       Message.where(id: id).update_all(thread_id: id)
     end
     true
+  end
+
+  def thread_flags
+    Flag.where( flaggable_type: "Message" ).
+      joins( "JOIN messages ON messages.id = flags.flaggable_id" ).
+      where( "messages.thread_id = ?", thread_id ).
+      where( "flags.user_id = ?", user_id )
   end
 
   def set_subject_for_reply

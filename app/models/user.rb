@@ -123,7 +123,11 @@ class User < ActiveRecord::Base
   has_many :deleted_photos
   has_many :deleted_sounds
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
+  has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
+    class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
   has_many :friendships, dependent: :destroy
+  has_many :friendships_as_friend, class_name: "Friendship",
+    foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
 
   def followees
     User.where( "friendships.user_id = ?", id ).
@@ -234,8 +238,8 @@ class User < ActiveRecord::Base
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
-  before_save :set_time_zone
-  before_save :whitelist_licenses
+  before_validation :set_time_zone
+  before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
   before_save :set_pi_consent_at
@@ -408,7 +412,7 @@ class User < ActiveRecord::Base
     true
   end
   
-  def whitelist_licenses
+  def allow_some_licenses
     self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
     self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
     self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )
@@ -613,6 +617,7 @@ class User < ActiveRecord::Base
     Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
+    User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
     LifeList.reload_from_observations( user.life_list_id )
@@ -1261,6 +1266,23 @@ class User < ActiveRecord::Base
     User.where( id: user_id ).update_all( observations_count: count )
     user.reload
     user.elastic_index!
+  end
+
+  def self.update_species_counter_cache( user, options={ } )
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    return unless user
+    count = INatAPIService.observations_species_counts( user_id: user.id, per_page: 0 ).total_results rescue 0
+    unless user.species_count == count
+      User.where( id: user.id ).update_all( species_count: count )
+      unless options[:skip_indexing]
+        user.reload
+        user.elastic_index!
+      end
+    end
   end
 
   def to_plain_s

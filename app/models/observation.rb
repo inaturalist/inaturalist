@@ -57,7 +57,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh,
-    :skip_identification_indexing
+    :skip_identification_indexing, :will_be_saved_with_photos
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -397,7 +397,9 @@ class Observation < ActiveRecord::Base
     :update_user_counter_caches_after_destroy, :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
-  
+
+  after_update :update_user_counter_caches_after_update
+
   ##
   # Named scopes
   # 
@@ -1079,28 +1081,32 @@ class Observation < ActiveRecord::Base
     return true if @skip_identifications
     return true unless taxon_id_changed?
     owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
+    owner_editing_own_obs = editing_user_id == user_id
     
-    # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
-      # If the owner doesn't have an identification for this obs, make one
-      attrs = {
-        user: user,
-        taxon: taxon,
-        observation: self,
-        skip_observation: true,
-        vision: owners_identification_from_vision_requested
-      }
-      owners_ident = if new_record?
-        self.identifications.build( attrs )
-      else
-        self.identifications.create( attrs )
-      end
-    elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where( user_id: user_id ).count > 1
-        owners_ident.update_attributes( current: false, skip_observation: true )
-      else
-        owners_ident.skip_observation = true
-        owners_ident.destroy
+    # Don't mess with the owner's ident if they owner didn't change anything
+    if owner_editing_own_obs || new_record?
+      # If there's a taxon we need to make sure the owner's ident agrees
+      if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
+        # If the owner doesn't have an identification for this obs, make one
+        attrs = {
+          user: user,
+          taxon: taxon,
+          observation: self,
+          skip_observation: true,
+          vision: owners_identification_from_vision_requested
+        }
+        owners_ident = if new_record?
+          self.identifications.build( attrs )
+        else
+          self.identifications.create( attrs )
+        end
+      elsif taxon.blank? && owners_ident && owners_ident.current?
+        if identifications.where( user_id: user_id ).count > 1
+          owners_ident.update_attributes( current: false, skip_observation: true )
+        else
+          owners_ident.skip_observation = true
+          owners_ident.destroy
+        end
       end
     end
     
@@ -1291,7 +1297,7 @@ class Observation < ActiveRecord::Base
   
   def appropriate?
     return false if flagged?
-    return false if observation_photos_count > 0 && photos.detect{ |p| p.flagged? }
+    return false if photos.detect{ |p| p.flagged? }
     true
   end
   
@@ -1396,7 +1402,7 @@ class Observation < ActiveRecord::Base
             owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
             community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
           ) || (
-            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            owners_identification.taxon.rank_level < Taxon::FAMILY_LEVEL &&
             community_taxon == owners_identification.taxon &&
             voted_out_of_needs_id?
           )
@@ -1560,12 +1566,10 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      if place_guess_changed? && place_guess == private_place_guess
-        self.place_guess = nil
-      elsif !place_guess.blank? && place_guess != public_place_guess
+      if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
         self.private_place_guess = place_guess
-        self.place_guess = nil
       end
+      self.place_guess = nil
     elsif coordinates_obscured?
       if place_guess_changed?
         if place_guess == private_place_guess
@@ -1895,7 +1899,8 @@ class Observation < ActiveRecord::Base
         private_geom: o.private_geom,
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
-        taxon_geoprivacy: o.taxon_geoprivacy
+        taxon_geoprivacy: o.taxon_geoprivacy,
+        public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
@@ -2160,13 +2165,40 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches_after_update
+    # run a species count if this is a new taxon to the user,
+    # or the previous taxon no longer exists
+    if taxon_id_changed? && (
+      ( taxon_id &&
+        !Observation.where( user_id: user_id, taxon_id: taxon_id ).where( "id != ?", id ).exists? ) ||
+      ( taxon_id_was &&
+        !Observation.where( user_id: user_id, taxon_id: taxon_id_was ).where( "id != ?", id ).exists? )
+    )
+      update_user_species_counter_cache_later
+    end
+    true
+  end
+
   def update_user_counter_caches
     return if bulk_delete
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 1.minute.from_now
     ).update_observations_counter_cache( user_id )
+    # this is only called on create and delete. Run a species count if this is
+    # the first obs of this taxon on create or last obs of this taxon on delete
+    if taxon_id &&
+      !Observation.where( user_id: user_id, taxon_id: taxon_id ).where( "id != ?", id ).exists?
+      update_user_species_counter_cache_later
+    end
     true
+  end
+
+  def update_user_species_counter_cache_later
+    User.delay(
+      unique_hash: { "User::update_species_counter_cache": user_id },
+      run_at: 1.minute.from_now
+    ).update_species_counter_cache( user_id )
   end
 
   def delete_observations_places
@@ -2940,9 +2972,9 @@ class Observation < ActiveRecord::Base
     scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
       filter_scope : self.all
     if filter_ids = options.delete(:ids)
-      if filter_ids.length > 1000
+      if filter_ids.length > 200
         # call again for each batch, then return
-        filter_ids.each_slice(1000) do |slice|
+        filter_ids.each_slice(200) do |slice|
           update_observations_places(options.merge(ids: slice))
         end
         return

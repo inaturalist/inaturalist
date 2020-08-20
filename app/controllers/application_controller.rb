@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :whitelist_params
+  before_filter :permit_params
   around_filter :set_time_zone
   around_filter :logstash_catchall
   before_filter :return_here, :only => [:index, :show, :by_login]
@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_preferred_place
   before_filter :check_preferred_site
   before_filter :sign_out_spammers
+  before_filter :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
   skip_filter *_process_action_callbacks.map(&:filter), only: :ping
@@ -145,9 +146,11 @@ class ApplicationController < ActionController::Base
     if current_user.latitude && current_user.longitude
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
-        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id) ).first
+        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
+      Rails.logger.debug "[DEBUG] potential_place: #{potential_place}"
       return true unless potential_place
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
+      Rails.logger.debug "[DEBUG] potential_site: #{potential_site}"
       if potential_site
         session[:potential_site] = {
           id: potential_site.id,
@@ -692,6 +695,21 @@ class ApplicationController < ActionController::Base
     response.headers['X-Per-Page'] = collection.per_page.to_s
   end
 
+  def set_session_oauth_application_id
+    if doorkeeper_token && doorkeeper_token.accessible? && (a = doorkeeper_token.try(:application))
+      session["oauth_application_id"] = a.id
+    elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
+      jwt_claims = begin
+        ::JsonWebToken.decode(token)
+      rescue JWT::DecodeError => e
+        nil
+      end
+      if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
+        session["oauth_application_id"] = oauth_application_id
+      end
+    end
+  end
+
   # Encapsulates common pattern for actions that start a bg task get called 
   # repeatedly to check progress
   # Key is required, and a block that assigns a new Delayed::Job to @job
@@ -727,7 +745,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def whitelist_params
+  def permit_params
     params.permit!
   end
 
@@ -762,7 +780,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
+    payload.merge!( { session: session } )
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end

@@ -29,7 +29,7 @@ const SimilarTab = ( {
               taxon={result.taxon}
               key={`similar-taxon-${result.taxon.id}`}
               badgeText={(
-                <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=any&verifiable=any`}>
+                <a href={`/observations?ident_taxon_id_exclusive=${result.taxon.id},${taxon.id}&place_id=${place ? place.id : "any"}&verifiable=any`}>
                   { result.count }
                 </a>
               )}

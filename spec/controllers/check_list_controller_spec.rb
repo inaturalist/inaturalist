@@ -12,28 +12,28 @@ describe CheckListsController, "show" do
     before do
       @lt_canna.update_attributes(:occurrence_status_level => ListedTaxon::ABSENT)
       @lt_canna.reload
-      @lt_canna.should be_absent
+      expect( @lt_canna ).to be_absent
     end
 
     it "should work for not_absent" do
       get :show, :id => @list.id, :occurrence_status => "not_absent"
       listed_taxa = assigns(:listed_taxa)
-      listed_taxa.should include @lt_pregilla
-      listed_taxa.should_not include @lt_canna
+      expect( listed_taxa ).to include @lt_pregilla
+      expect( listed_taxa ).not_to include @lt_canna
     end
 
     it "should work for any" do
       get :show, :id => @list.id, :occurrence_status => "any"
       listed_taxa = assigns(:listed_taxa)
-      listed_taxa.should include @lt_pregilla
-      listed_taxa.should include @lt_canna
+      expect( listed_taxa ).to include @lt_pregilla
+      expect( listed_taxa ).to include @lt_canna
     end
 
     it "should work for absent" do
       get :show, :id => @list.id, :occurrence_status => "absent"
       listed_taxa = assigns(:listed_taxa)
-      listed_taxa.should_not include @lt_pregilla
-      listed_taxa.should include @lt_canna
+      expect( listed_taxa ).not_to include @lt_pregilla
+      expect( listed_taxa ).to include @lt_canna
     end
   end
 end

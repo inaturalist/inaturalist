@@ -42,7 +42,8 @@ import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
-// import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import FlashMessage from "./flash_message";
 
 moment.locale( "en", {
   relativeTime: {
@@ -87,12 +88,18 @@ const App = ( {
   } else if ( observation.observed_on ) {
     formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
-    formattedDateObserved = I18n.t( "not_recorded" );
+    formattedDateObserved = I18n.t( "missing_date" );
   }
   const description = observation.description ? (
     <Row>
       <Col xs={12}>
-        <h3>{ I18n.t( "description" ) }</h3>
+        <h3>
+          {
+            I18n.t( "notes", {
+              defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+            } )
+          }
+        </h3>
         <UserText text={observation.description} />
       </Col>
     </Row> ) : "";
@@ -106,6 +113,14 @@ const App = ( {
 
   return (
     <div id="ObservationShow">
+      { config && config.testingApiV2 && (
+        <FlashMessage
+          key="testing_apiv2"
+          title="Testing API V2"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1"
+          type="warning"
+        />
+      ) }
       <FlashMessagesContainer
         item={observation}
         manageFlagsPath={`/observations/${observation.id}/flags`}
@@ -297,6 +312,14 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
+      { config && config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
+        <TestGroupToggle
+          group="apiv2"
+          joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+          joinedStatus="Joined API V2 test"
+          user={config.currentUser}
+        />
+      ) }
     </div>
   );
 };

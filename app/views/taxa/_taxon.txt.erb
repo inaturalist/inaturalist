@@ -5,9 +5,9 @@ comname = capitalize_name( comname ) if comname
 no_common ||= false
 viewer ||= defined?( current_user ) ? current_user : nil
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
-  sciname = '%s' % taxon.name
+  sciname = taxon.name
 else
-  sciname = '%s %s' % [t("all_taxa.rank.#{taxon.rank}", :default => taxon.rank).capitalize, taxon.name]
+  sciname = t(:rank_sciname, rank: t( "ranks.#{taxon.rank}", default: taxon.rank ), name: taxon.name )
 end
 name = if comname.blank? || no_common
   sciname

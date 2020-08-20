@@ -1,0 +1,594 @@
+@import "./shared/loading_spinner";
+@import "./shared/split_taxon";
+@import "./users/user_image";
+@import "./shared/taxon_autocomplete";
+
+#bodywrapper {
+  // background: #ddd;
+  min-height: auto;
+  height: 100%;
+  margin-bottom: -15px;
+}
+
+#bodywrapper:after {
+  height: 0;
+}
+
+#wrapper.bootstrap {
+  position: inherit;
+}
+
+#initial-loading {
+  width: 100%;
+}
+
+#app {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  display: flex;
+}
+
+#Lifelist {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-width: 980px;
+  padding: 0px 30px;
+  .lifelist-title button.export {
+    float: right;
+    vertical-align: middle;
+    border-radius: 20px;
+  }
+  .view-selectors {
+    padding: 5px 0 15px;
+  }
+  .pill-button {
+    border-radius: 20px;
+    border: 1px solid #e7e7e7;
+    letter-spacing: 0.02em;
+    background: inherit;
+    .icon-treeview {
+      float: left;
+      line-height: 16px;
+    }
+    .fa, .icon-treeview {
+      margin-right: 6px;
+      color: $inat-green;
+    }
+    &.selected {
+      border: none;
+      background: $inat-green;
+      color: white;
+      .fa, .icon-treeview {
+        color: white;
+      }
+    }
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+  }
+}
+
+.bootstrap h2 {
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
+  outline: none;
+}
+
+.bootstrap .more button.btn {
+  border-radius: 20px;
+  padding: 5px 15px;
+  i.fa {
+    margin-right: 5px;
+  }
+}
+
+.iconic-taxa-selectors {
+  margin-bottom: 10px;
+  .jump-to {
+    display: inline-block;
+    margin-bottom: 5px;
+    vertical-align: middle;
+  }
+  .iconic-taxon-icon {
+    border: 1px solid #e7e7e7;
+    background: inherit;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 23px;
+    padding: 1px 1px;
+    color: #979797;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    margin-left: 4px;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+    &.selected {
+      color: $inat-green;
+      border: 1px solid #aaa;
+    }
+    &[disabled] {
+      opacity: 0.2;
+      cursor: default;
+    }
+  }
+}
+
+.FlexGrid {
+  display: flex;
+  flex: 1;
+  background: #fff;
+  overflow: hidden;
+}
+
+.FlexCol {
+  &.tree-col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 633px;
+    padding-right: 20px;
+  }
+  &.details-col {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 50%;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+    .Details {
+      height: 80%;
+    }
+  }
+  .loading_spinner {
+    margin: 0px auto;
+    margin-top: 60px;
+    display: flex;
+  }
+  h3 {
+    text-align: center;
+    margin-top: 5px;
+    .fa {
+      font-size: 13px;
+      font-weight: 100;
+      line-height: 24px;
+      vertical-align: text-top;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+  #TaxaTree, #TaxaList, .ObservationsGrid, .ObservationsTab, .SpeciesGrid {
+    height: 100%;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+
+#TaxaList ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+
+.name-row {
+  white-space: nowrap;
+  & > .name-label, & > .fa, & > span {
+    cursor: pointer;
+  }
+  & > .fa.disabled {
+    cursor: default;
+    color: #ddd;
+  }
+  & > .fa {
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  & > .fa-binoculars {
+    font-size: 12px;
+    vertical-align: text-top;
+  }
+  & > span {
+    margin-left: 5px;
+    color: #979797;
+    &[class*=" icon-"]:before {
+      vertical-align: inherit;
+      font-size: 11px;
+    }
+  }
+  .icon-collapse, .icon-expand, .icon-focus {
+    font-size: 12px;
+    line-height: 12px;
+    vertical-align: text-top;
+  }
+  & > .fa-chevron-down {
+    margin-left: 2px;
+  }
+  .descendants {
+    color: $inat-green;
+  }
+}
+.name-label {
+  display: inline-block;
+  &.featured {
+    font-weight: 600;
+    color: $inat-green;
+  }
+  &.featured-ancestor {
+    font-weight: 600;
+  }
+}
+.bootstrap .badge.green {
+  padding: 3px 7px 1px 7px;
+  vertical-align: inherit;
+  background-color: $inat-green;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.Details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  .stats {
+    text-align: center;
+    margin-bottom: 10px;
+    .loading_spinner {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+  .stat {
+    padding: 0 15px;
+    display: block;
+    &.clicky{
+      cursor: pointer;
+    }
+    &:not(:first-child) {
+      margin-top: 3px;
+    }
+    .attr {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    &.selected .attr {
+      font-weight: 800;
+    }
+    .value {
+      margin-left: 3px;
+    }
+  }
+  .flex-container {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.more {
+  width: 100%;
+  margin: 30px 0px;
+  text-align: center;
+  .loading_spinner {
+    margin-top: 0px;
+    width: 30px;
+    height: 30px;
+    border-width: 6px;
+  }
+}
+
+.taxon-image {
+  width: 25px;
+  height: 25px;
+  margin: 1px;
+}
+
+.ObservationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .ObservationsGridCell {
+    flex-grow: 1;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    min-width: 100px;
+    margin-right: auto;
+  }
+  .Observation {
+    position: relative;
+    .quality {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      &.research {
+        background: $inat-green;
+        color: white;
+      }
+      .full {
+        display: none;
+      }
+    }
+    .photo {
+      background: #ccc;
+      text-align: center;
+      i {
+        color: white;
+        font-size: 180px;
+      }
+    }
+    .caption {
+      background: #464646;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      position: relative;
+      padding-right: 86px;
+      white-space: nowrap;
+      .display-name {
+        font-size: 17px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .secondary-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .UserImage {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        border: 2px solid white;
+        height: 45px;
+        width: 45px;
+        i.icon-person {
+          font-size: 36px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .meta {
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+        color: white;
+        .count {
+          i {
+            margin-right: 1px;
+          }
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+.tree {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree, .tree > * ul, #TaxaList > * ul.children {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree > * ul.nested, #TaxaList > * ul.children {
+  margin: 0 0 0 1em;
+}
+
+.tree ul.nested:before, #TaxaList ul.children:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+  color: #ddd;
+}
+
+.tree ul.nested li, #TaxaList li.child {
+  margin: 0;
+  padding: 0 1em;
+  line-height: 1.5em;
+  position: relative;
+}
+
+.tree ul.nested li:before, #TaxaList li.child:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  position: absolute;
+  top: .75em;
+  left: 0;
+  color: #ddd;
+}
+
+.tree ul.nested li:last-child:before, #TaxaList li.child:last-child:before {
+  background: white;
+  height: auto;
+  top: .75em;
+  bottom: 0;
+}
+
+.tree ul.nested li:last-child {
+  margin-bottom: 10px;
+}
+
+
+
+.bootstrap .form-group.TaxonAutocomplete, .bootstrap .place-search {
+  .ac-select-thumb {
+    float: left;
+    border: none;
+    background: inherit;
+    text-align: left;
+    width: 23px;
+    color: #979797;
+    margin: 0;
+  }
+  input.form-control.ui-autocomplete-input {
+    border-radius: 20px;
+  }
+}
+
+.bootstrap .search-options {
+  display: flex;
+  margin-bottom: 10px;
+  min-height: 34px;
+  .place-search {
+    display: inline-block;
+    margin-right: 20px;
+    flex-grow: 1;
+    .PlaceAutocomplete .form-group {
+      margin-bottom: 0;
+    }
+  }
+  .dropdown {
+    margin-left: auto;
+    line-height: 33px;
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+    button.btn {
+      border-radius: 20px;
+      background: #ddd;
+      border: none;
+      font-weight: 700;
+      padding: 5px 12px;
+      .caret {
+        margin-left: 5px;
+      }
+    }
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+      white-space: nowrap;
+      line-height: 22px;
+      li {
+        padding: 3px 20px;
+        cursor: pointer;
+        &:not(:first-child) {
+          margin-top: 2px;
+        }
+        &.divider {
+          padding: 0;
+          margin: 10px 0;
+        }
+        &.selected, &:hover {
+          background-color: #f5f5f5;
+        }
+        &[disabled] {
+          cursor: default;
+          color: #ccc;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+.ui-autocomplete {
+  .ac-result, .category {
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    .ac-label {
+      color: #333;
+    }
+  }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
+}
+
+.SpeciesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .result {
+    flex-grow: 1;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    min-width: 160px;
+    max-width: 300px;
+    margin-right: 0;
+    .thumbnail {
+      padding: 0;
+      margin-bottom: 0;
+      position: relative;
+      .overlay {
+        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        color: white;
+        width: 100%;
+        line-height: 30px;
+        padding: 0 9px;
+        margin-top: -30px;
+        a {
+          color: white;
+        }
+      }
+      .display-name {
+        display: block;
+        font-weight: 700;
+        color: inherit;
+        font-size: 16px;
+      }
+      .caption {
+        height: 58px;
+        .display-name, .secondary-name {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      &.TaxonThumbnail .photo {
+        line-height: 170px !important;
+        font-size: 170px;
+        text-align: center;
+        background-color: #ccc;
+        color: white;
+      }
+    }
+  }
+}
+
+@media (min-width: 1345px) {
+  .FlexCol {
+    &.tree-col {
+      min-width: 633px;
+      width: 633px;
+    }
+    &.details-col {
+      width: 100%;
+    }
+  }
+}

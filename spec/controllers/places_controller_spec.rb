@@ -28,6 +28,19 @@ describe PlacesController do
       expect( p.place_geometry ).to_not be_nil
     end
 
+    it "fails with invalid geojson" do
+      sign_in user
+      expect {
+        post :create,
+          place: {
+            name: "Test geojson",
+            latitude: 30,
+            longitude: 30
+          },
+          geojson: test_place_geojson(:invalid)
+      }.not_to change( Place, :count )
+    end
+
     it "does not allow non admins to create huge places" do
       sign_in user
       place_count = Place.count
@@ -129,6 +142,29 @@ describe PlacesController do
       p.reload
       expect( p.name ).to eq "the new name"
     end
+
+    it "does not allow removal of the geometry with blank geojson" do
+      p = make_place_with_geom( user: user )
+      put :update, id: p.id,
+        place: {
+          name: "something else"
+        },
+        geojson: ""
+      expect( response ).not_to be_success
+      p.reload
+      expect( p.place_geometry ).not_to be_blank
+    end
+    it "does not allow removal of the geometry with old remove_geom" do
+      p = make_place_with_geom( user: user )
+      put :update, id: p.id,
+        place: {
+          name: "something else"
+        },
+        remove_geom: true
+      expect( response ).to be_redirect
+      p.reload
+      expect( p.place_geometry ).not_to be_blank
+    end
   end
 
   describe "destroy" do
@@ -210,6 +246,25 @@ describe PlacesController do
       keeper.reload
       expect(keeper.place_type).to eq reject_place_type
     end
+    it "should be impossible if the keeper is a standard place" do
+      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
+      post :merge, id: reject.slug, with: keeper.id
+      expect( Place.find_by_id( keeper.id ) ).not_to be_blank
+      expect( Place.find_by_id( reject.id ) ).not_to be_blank
+    end
+    it "should be impossible if the reject is a standard place" do
+      reject.update_attributes( admin_level: Place::STATE_LEVEL )
+      post :merge, id: reject.slug, with: keeper.id
+      expect( Place.find_by_id( keeper.id ) ).not_to be_blank
+      expect( Place.find_by_id( reject.id ) ).not_to be_blank
+    end
+    it "should be possible if the keeper is a standard place and the user is on staff" do
+      sign_in make_admin
+      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
+      post :merge, id: reject.slug, with: keeper.id
+      expect( Place.find_by_id( keeper.id ) ).not_to be_blank
+      expect( Place.find_by_id( reject.id ) ).to be_blank
+    end
   end
 end
 
@@ -238,6 +293,8 @@ def test_place_geojson(size = :default)
     [[ [0,0], [0,1], [1,1], [1,0], [0,0] ]]
   elsif size == :huge
     [[ [0,0], [0,60], [60,60], [60,0], [0,0] ]]
+  elsif size == :invalid
+    [[ [0,0], [0,1] ]]
   end
   {
     type: "FeatureCollection",

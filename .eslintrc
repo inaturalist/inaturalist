@@ -1,17 +1,15 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
   "env": {
     "browser": true,
     "node": true,
     "jquery": true,
-    "es6": true
+    "es6": false
   },
   "rules": {
     "arrow-parens": [2, "as-needed"],
     "comma-dangle": [2, "never"],
     "func-names": 0,
-    "prefer-destructuring": [2, { "object": true, "array": false }],
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"]
   }

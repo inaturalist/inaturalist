@@ -13,17 +13,22 @@ describe Users::RegistrationsController, "create" do
   it "should create a user" do
     u = User.make
     expect {
-      post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
+      post :create, user: {
+        login: u.login,
+        password: "zomgbar",
+        password_confirmation: "zomgbar",
+        email: u.email
+      }
     }.to change(User, :count).by(1)
   end
 
   it "should return json about the user" do
     u = User.make
-    post :create, :format => :json, :user => {
-      :login => u.login, 
-      :password => "zomgbar", 
-      :password_confirmation => "zomgbar", 
-      :email => u.email
+    post :create, format: :json, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
     }
     expect {
       json = JSON.parse(response.body)
@@ -32,42 +37,58 @@ describe Users::RegistrationsController, "create" do
 
   it "should not return the password" do
     u = User.make
-    post :create, :format => :json, :user => {
-      :login => u.login, 
-      :password => "zomgbar", 
-      :password_confirmation => "zomgbar", 
-      :email => u.email
+    post :create, format: :json, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
     }
     expect( response.body ).not_to be =~ /zomgbar/
   end
 
   it "should show errors when invalid" do
-    post :create, :format => :json, :user => {
-      :password => "zomgbar", 
-      :password_confirmation => "zomgbar"
+    post :create, format: :json, user: {
+      password: "zomgbar",
+      password_confirmation: "zomgbar"
     }
-    json = JSON.parse(response.body)
-    expect( json['errors'] ).not_to be_blank
+    json = JSON.parse( response.body )
+    expect( json["errors"] ).not_to be_blank
+  end
+
+  it "should return 422 when invalid" do
+    post :create, format: :json, user: {
+      login: "zapphytest2",
+      password: "zomgbar",
+      password_confirmation: "zomgbar"
+    }
+    json = JSON.parse( response.body )
+    pp json
+    expect( response.response_code ).to eq 422
   end
 
   it "should not have duplicate email errors when email taken" do
     existing = User.make!
-    user = User.make(:email => existing.email)
-    post :create, :format => :json, :user => {
-      :login => user.login,
-      :email => user.email,
-      :password => "zomgbar", 
-      :password_confirmation => "zomgbar"
+    user = User.make( email: existing.email )
+    post :create, format: :json, user: {
+      login: user.login,
+      email: user.email,
+      password: "zomgbar",
+      password_confirmation: "zomgbar"
     }
-    json = JSON.parse(response.body)
-    expect( json['errors'].uniq.size ).to eq json['errors'].size
+    json = JSON.parse( response.body )
+    expect( json["errors"].uniq.size ).to eq json["errors"].size
   end
 
   it "should assign a user to a site" do
-    @site = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
+    @site = Site.make!( url: "test.host" ) # hoping the test host is the same across platforms...
     u = User.make
-    post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
-    expect( User.find_by_login(u.login).site ).to eq @site
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
+    }
+    expect( User.find_by_login( u.login ).site ).to eq @site
   end
 
   it "should assign a user to a site using inat_site_id param" do
@@ -151,5 +172,18 @@ describe Users::RegistrationsController, "create" do
     expect( new_u.preferred_photo_license ).to eq Observation::CC_BY_NC
     expect( new_u.preferred_sound_license ).to eq Observation::CC_BY_NC
     expect( new_u.preferred_observation_license ).to eq Observation::CC_BY_NC
+  end
+
+  it "should create a user with a blank time_zone" do
+    u = User.make
+    expect {
+      post :create, user: {
+        login: u.login,
+        password: "zomgbar",
+        password_confirmation: "zomgbar",
+        email: u.email,
+        time_zone: ""
+      }
+    }.to change( User, :count ).by( 1 )
   end
 end

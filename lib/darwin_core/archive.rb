@@ -8,8 +8,12 @@ module DarwinCore
     def initialize(opts = {})
       @opts = opts
       @opts[:path] ||= "dwca.zip"
-      @opts[:core] ||= "occurrence"
-      @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+      @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
+      @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
+        File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+      else
+        File.join(Rails.root, "app", "views", "taxa", "dwc.eml.erb")
+      end
       @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
@@ -22,8 +26,8 @@ module DarwinCore
       @logger.level = Logger::DEBUG if @opts[:debug]
 
       # Make a unique dir to put our files
-      @work_path = Dir.mktmpdir
-      FileUtils.mkdir_p @work_path, :mode => 0755
+      @opts[:work_path] = Dir.mktmpdir
+      FileUtils.mkdir_p @opts[:work_path], :mode => 0755
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
@@ -69,7 +73,7 @@ module DarwinCore
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
       if @opts[:with_taxa]
         logger.info "Making taxa extension..."
-        paths << make_api_all_taxon_data
+        paths += make_api_all_taxon_data
       end
       archive_path = make_archive(*paths)
       logger.debug "Archive: #{archive_path}"
@@ -110,7 +114,7 @@ module DarwinCore
       m = DarwinCore::Metadata.new( @opts.merge(
         observations_params: observations_params
       ) )
-      tmp_path = File.join(@work_path, "metadata.eml.xml")
+      tmp_path = File.join(@opts[:work_path], "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
         f << m.render(:file => @opts[:metadata])
       end
@@ -125,38 +129,40 @@ module DarwinCore
           when "EolMedia"
             extensions << {
               :row_type => "http://eol.org/schema/media/Document",
-              :file_location => "media.csv",
+              :files => ["media.csv"],
               :terms => DarwinCore::EolMedia::TERMS
             }
           when "SimpleMultimedia"
             extensions << {
               row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
-              file_location: "media.csv",
+              files: ["media.csv"],
               terms: DarwinCore::SimpleMultimedia::TERMS
             }
           when "ObservationFields"
             extensions << {
               row_type: "http://www.inaturalist.org/observation_fields",
-              file_location: "observation_fields.csv",
+              files: ["observation_fields.csv"],
               terms: DarwinCore::ObservationFields::TERMS
             }
           when "ProjectObservations"
             extensions << {
               row_type: "http://www.inaturalist.org/project_observations",
-              file_location: "project_observations.csv",
+              files: ["project_observations.csv"],
               terms: DarwinCore::ProjectObservations::TERMS
             }
           when "User"
             extensions << {
               row_type: "http://www.inaturalist.org/user",
-              file_location: "users.csv",
+              files: ["users.csv"],
               terms: DarwinCore::User::TERMS
             }
+          when "VernacularNames"
+            extensions << DarwinCore::VernacularName.descriptor
           end
         end
       end
       d = DarwinCore::Descriptor.new(core: @opts[:core], extensions: extensions, ala: @opts[:ala])
-      tmp_path = File.join(@work_path, "meta.xml")
+      tmp_path = File.join(@opts[:work_path], "meta.xml")
       open(tmp_path, 'w') do |f|
         f << d.render(:file => @opts[:descriptor])
       end
@@ -169,7 +175,7 @@ module DarwinCore
         @opts[:extensions].each do |ext|
           ext = ext.underscore.downcase
           logger.info "Making #{ext} extension..."
-          paths << send("make_#{ext}_data")
+          paths += send("make_#{ext}_data")
         end
       end
       paths
@@ -213,14 +219,14 @@ module DarwinCore
       end
       headers = DarwinCore::Occurrence.term_names( terms )
       fname = "observations.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       fake_view = FakeView.new
       
       preloads = [
         { taxon: :ancestor_taxa },
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
-        :identifications,
+        { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place }
       ]
 
@@ -251,13 +257,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_taxon_data
       headers = DarwinCore::Taxon::TERM_NAMES
       fname = "taxa.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       scope = ::Taxon.select( "DISTINCT ON (taxa.id) taxa.*" )
       
@@ -301,13 +307,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_eol_media_data
       headers = DarwinCore::EolMedia::TERM_NAMES
       fname = "media.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       licenses = @opts[:photo_licenses].map do |license_code|
         Photo.license_number_for_code(license_code)
       end
@@ -347,13 +353,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_simple_multimedia_data
       headers = DarwinCore::SimpleMultimedia::TERM_NAMES
       fname = "media.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       media_licenses = @opts[:photo_licenses].map(&:downcase)
@@ -404,13 +410,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_observation_fields_data
       headers = DarwinCore::ObservationFields::TERM_NAMES
       fname = "observation_fields.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ { observation_field_values: :observation_field } ]
@@ -430,13 +436,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_project_observations_data
       headers = DarwinCore::ProjectObservations::TERM_NAMES
       fname = "project_observations.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ { project_observations: :project } ]
@@ -455,13 +461,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_user_data
       headers = DarwinCore::User::TERM_NAMES
       fname = "users.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ :user ]
@@ -476,13 +482,17 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
+    end
+
+    def make_vernacular_names_data
+      DarwinCore::VernacularName.data( @opts )
     end
 
     def make_api_all_taxon_data
       headers = [ "taxonID", "scientificName", "parentNameUsageID", "taxonRank" , "vernacularName", "wikipedia_url" ]
       fname = "taxa.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
 
       params = { is_active: true }
       last_id = 0
@@ -564,9 +574,9 @@ module DarwinCore
 
     def make_archive(*args)
       fname = "dwca.zip"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       fnames = args.map{|f| File.basename(f)}
-      system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
+      system "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join(' ')}"
       tmp_path
     end
   end

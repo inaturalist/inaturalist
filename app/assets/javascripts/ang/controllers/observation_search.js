@@ -10,6 +10,13 @@ var application =  angular.module( "ObservationSearch", [
   "truncate"
 ]);
 
+// used for displaying HTML returned from methods
+application.filter( "sanitize", [ "$sce", function( $sce ) {
+  return function( safeHTML ) {
+    return $sce.trustAsHtml( safeHTML );
+  };
+}]);
+
 // Load translations for moment if available
 // http://stackoverflow.com/a/22965260
 var shortRelativeTime = ( I18n.t( "momentjs" ) || {} ).shortRelativeTime;
@@ -1374,7 +1381,15 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     }
     var ll = o.location.split(",");
     var latLng = new google.maps.LatLng( ll[0], ll[1] );
-    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );
+    var iwOpts = { };
+    if( $scope.map.zoom > 9 && o.geoprivacy != "obscured" && !o.obscured ) {
+      // if we're showing points and the marker isn't obscured then leave
+      // a small margin under the infowindow so it show above the marker
+      iwOpts.pixelOffset = new google.maps.Size( 0, -11 );
+    } else {
+      iwOpts.pixelOffset = new google.maps.Size( 0, 0 );
+    }
+    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id, iwOpts );
   });
   $rootScope.$on( "hideInfowindow", function( event, o ) {
     $scope.snippetInfoWindowObservation = null;

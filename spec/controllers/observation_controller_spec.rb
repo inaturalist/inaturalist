@@ -159,6 +159,21 @@ describe ObservationsController do
         expect( past_o.license ).to eq Observation::CC_BY
       end
     end
+
+    it "should allow updating with more than one photo" do
+      o = Observation.make!
+      sign_in o.user
+      expect( o.photos.size ).to eq 0
+      fixture_file_upload('observations.csv', 'text/csv')
+      put :update, id: o.id, observation: { description: "+2 photos" }, local_photos: {
+        o.id.to_s => [
+          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" ),
+          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" )
+        ]
+      }
+      o.reload
+      expect( o.photos.size ).to eq 2
+    end
   end
 
   describe "show" do
@@ -213,11 +228,6 @@ describe ObservationsController do
         expect( og_desc[:content] ).to match /#{o.taxon.common_name.name}/
       end
     end
-  end
-  
-  describe "import_photos" do
-    # to test this we need to mock a flickr response
-    it "should import photos that are already entered as taxon photos"
   end
 
   describe "by_login_all", "page cache" do
@@ -318,7 +328,8 @@ describe ObservationsController do
         @observation.update_attributes(
           latitude: 1.2345,
           longitude: 1.2345,
-          taxon: make_threatened_taxon
+          taxon: make_threatened_taxon,
+          editing_user_id: @observation.user_id
         )
         expect( @observation ).to be_coordinates_obscured
         expect( @project_observation ).to be_prefers_curator_coordinate_access
@@ -483,6 +494,23 @@ describe ObservationsController do
       obs_to_review.reload
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
       expect(obs_to_review.observation_reviews.first.reviewed).to eq false
+    end
+  end
+
+  describe "export" do
+    let(:user) { User.make! }
+    before do
+      sign_in user
+    end
+    it "should assign flow_task_id that belongs to the current user" do
+      flow_task = make_observations_export_flow_task( user: user )
+      get :export, flow_task_id: flow_task.id
+      expect( assigns(:flow_task) ).to eq flow_task
+    end
+    it "should not assign flow_task_id that belongs to another user" do
+      flow_task = make_observations_export_flow_task
+      get :export, flow_task_id: flow_task.id
+      expect( assigns(:flow_task) ).to be_blank
     end
   end
 

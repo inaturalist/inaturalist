@@ -1934,7 +1934,7 @@ user-icon .icon-person:before {
         img {
           width: 28px;
           height: 28px;
-          margin: 10px 0 0 0;
+          margin: 0;
           border: 1px solid #ddd;
           border-radius: 1px;
         }
@@ -1944,7 +1944,7 @@ user-icon .icon-person:before {
         .fa {
           width: auto;
           height: 30px;
-          margin: 10px 0 0 0;
+          margin: 5px 0 0 0;
         }
       }
       .ac-label {
@@ -1976,7 +1976,6 @@ user-icon .icon-person:before {
       }
       &.ac-result-Taxon {
         .no-photo {
-          display: inline-block;
           width: 28px;
           height: 28px;
           border: 1px solid #ddd;
@@ -1994,14 +1993,12 @@ user-icon .icon-person:before {
       }
       &.ac-result-Project {
         .no-photo {
-          margin-top: 9px;
-          display: inline-block;
           width: 28px;
           height: 28px;
           border: 1px solid #ddd;
           border-radius: 1px;
           background-color: #aaa;
-          line-height: 23px;
+          line-height: 25px;
           i {
             font-size: 16px;
             color: white;
@@ -2017,13 +2014,12 @@ user-icon .icon-person:before {
         }
       }
       div.usericon {
-        display: inline-block;
         border-radius: 50%;
         width: 28px;
         height: 28px;
         border: 1px solid #ddd;
         background-color: #aaa;
-        line-height: 20px;
+        line-height: 23px;
         i {
           font-size: 20px;
           color: white;
