@@ -1464,29 +1464,30 @@ class Observation < ActiveRecord::Base
       if curator_coordinate_access_allowed_for_traditional
         return true
       end
-      curator_coordinate_access_allowed_for_collection = collection_projects.detect do |cp|
-        pu = user.project_users.where( project_id: cp.id ).first
-        if pu && pu.prefers_curator_coordinate_access_for &&
-            pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
-          if GEOPRIVACIES.include?( geoprivacy ) &&
-              pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
-            false
-          elsif GEOPRIVACIES.include?( taxon_geoprivacy ) &&
-              ![
-                ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
-                ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
-              ].include?( pu.prefers_curator_coordinate_access_for )
-            false
-          else
-            true
-          end
-        else
+    end
+    cps = collection_projects( authenticate: viewer )
+    curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
+      pu = user.project_users.where( project_id: cp.id ).first
+      if pu && pu.prefers_curator_coordinate_access_for &&
+          pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
+        if GEOPRIVACIES.include?( geoprivacy ) &&
+            pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
           false
+        elsif GEOPRIVACIES.include?( taxon_geoprivacy ) &&
+            ![
+              ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+              ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+            ].include?( pu.prefers_curator_coordinate_access_for )
+          false
+        else
+          true
         end
+      else
+        false
       end
-      if curator_coordinate_access_allowed_for_collection
-        return true
-      end
+    end
+    if curator_coordinate_access_allowed_for_collection
+      return true
     end
     false
   end
@@ -3174,17 +3175,17 @@ class Observation < ActiveRecord::Base
     UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 
-  def in_collection_projects?( projects )
+  def in_collection_projects?( projects, api_parmas = {} )
     project_ids = projects.map{|project| project.is_a?( Project ) ? project.id : project}.uniq.compact.map(&:to_i)
-    r = INatAPIService.get("/observations/#{id}", include_new_projects: true )
+    r = INatAPIService.get("/observations/#{id}", api_params.merge( include_new_projects: true ) )
     if r && r.results && api_obs = r.results[0]
       return ( api_obs["non_traditional_projects"] || [] ).detect{|po| project_ids.include?( po["project"]["id"].to_i )}
     end
     nil
   end
 
-  def collection_projects
-    r = INatAPIService.get("/observations/#{id}", include_new_projects: true )
+  def collection_projects( api_params = {} )
+    r = INatAPIService.get( "/observations/#{id}", api_params.merge( include_new_projects: true ) )
     if r && r.results && api_obs = r.results[0]
       project_ids = ( api_obs["non_traditional_projects"] || [] ).collect do |po|
         po["project"]["id"].to_i
