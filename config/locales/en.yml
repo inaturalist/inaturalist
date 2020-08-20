@@ -7425,6 +7425,10 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+              should_match_english_translation: |
+                should be in English, but currently it matches the %{suggested_locale} translation of "%{suggested}".
+                Use "%{suggested}" if that is what you meant and it will be translated when you view the site in
+                that language.
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon

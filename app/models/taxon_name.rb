@@ -16,6 +16,7 @@ class TaxonName < ActiveRecord::Base
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
+  validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
@@ -412,5 +413,32 @@ class TaxonName < ActiveRecord::Base
     name = name.gsub(/\w[\.,]+.*/, '')
     name = name.gsub(/\s+[A-Z].*/, '')
     name.strip
+  end
+  
+  def self.find_lexicons_by_translation(translation)
+    lex_by_loc = I18n.available_locales.each_with_object({}) do |loc, hash|
+      hash[loc] = I18n.with_locale(loc) { I18n.t(:lexicons) }
+    end
+    match_loc, match_lexes = lex_by_loc.reject{|l| l.match("en") }
+                                 .transform_values { |loc| loc.transform_values { |lex| lex.downcase.strip } }
+                                 .find { |_loc, lexes| lexes.values.include?(translation.downcase.strip) }
+    
+    { locale: match_loc, lexicons: match_lexes }
+  end
+
+  private
+
+  def english_lexicon_if_exists
+    en_lexicons = I18n.with_locale(:en) { I18n.t(:lexicons) }.values
+    translated_lexicons = I18n.available_locales.map { |loc| I18n.with_locale(loc) { I18n.t(:lexicons) } }
+    non_en_lexicons = (translated_lexicons.collect(&:values).flatten.uniq - en_lexicons).map!{ |l| l.downcase.strip }
+    match = TaxonName.find_lexicons_by_translation(lexicon)
+
+    if non_en_lexicons.include?(lexicon.downcase.strip)
+      errors.add(:lexicon, :should_match_english_translation, {
+        suggested:  I18n.with_locale(:en) { I18n.t("lexicons.#{match[:lexicons].key(lexicon.downcase.strip)}")},
+        suggested_locale: I18n.t("locales.#{match[:locale]}")
+      })
+    end
   end
 end
