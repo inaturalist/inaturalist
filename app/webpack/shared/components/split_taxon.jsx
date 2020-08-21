@@ -30,7 +30,7 @@ const SplitTaxon = props => {
     if ( taxon.rank && taxon.rank_level > 10 ) {
       title = I18n.t( "rank_sciname", {
         rank: I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ),
-        sciname: taxon.name
+        name: taxon.name
       } );
     }
     if ( taxon.preferred_common_name ) {
