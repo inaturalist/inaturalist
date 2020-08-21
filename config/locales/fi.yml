@@ -390,12 +390,6 @@ fi:
     form: Kaikki muodot lisätty tietokantaan
   all_rights_reserved: Kaikki oikeudet pidätetään
   all_taxa:
-    rank:
-      kingdom: Kunta
-      class: Luokka
-      phylum: Pääjakso
-      species: Laji
-      order: Lahko
     amphibians: Sammakkoeläimet
     animals: Eläimet
     arachnids: Hämähäkkieläimet
@@ -1054,6 +1048,7 @@ fi:
   date_updated: Päivityspäiväys
   day: Päivä
   decrease_brightness: Vähennä kirkkautta
+  #Default option
   default: oletus
   default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
@@ -4050,10 +4045,6 @@ fi:
   you_are_no_longer_following_x: "Et enää seuraa ystävää %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Olet asettamassa tätä projektia kokoamaan kaikki havainnot, jotka täsmäävät seuraaviin sääntöihin: %{rules} Haluatko jatkaa?
-  you_are_submitting_obs_without_photos_and_names: |
-    Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä. Havainnot 
-    ilman näitä tietoja ovat usein mahdottomia tunnistaa eivätkä ne tule olemaan 
-    näkyvillä oletusarvoisesti havaintohauissa.
   you_are_subscribed_to_comments_on_this_flag: Olet nyt tilannut kommentit tästä lipusta.
   you_are_subscribed_to_comments_on_this_post: Olet tilannut tähän julkaisuun liittyvät kommentit.
   you_are_subscribed_to_observations_from_this_place: Olet tilannut tähän paikkaan liittyvät kommentit.

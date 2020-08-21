@@ -418,12 +418,6 @@ lt:
     form: Visos formos pridėtos į duomenų bazę
   all_rights_reserved: Visos teisės saugomos
   all_taxa:
-    rank:
-      kingdom: Karalystė
-      class: Klasė
-      phylum: Tipas
-      species: Rūšys
-      order: Būrys
     amphibians: Varliagyviai
     animals: Gyvūnai
     arachnids: Voragyviai
@@ -1049,6 +1043,7 @@ lt:
   date_updated: Data atnaujinta
   day: Diena
   decrease_brightness: Sumažinti ryškumą
+  #Default option
   default: numatytas
   default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Numatytoji stebėjimo licencija
@@ -3908,8 +3903,6 @@ lt:
     <strong>jūs</strong> dabar esate %{project} vadovas
   you_are_already_a_member_of_this_project: "Jūs jau esate šio projekto narys!"
   you_are_no_longer_following_x: "Jūs nebesekate %{friend}."
-  you_are_submitting_obs_without_photos_and_names: |
-    Jūs pateikiate stebėjimus, kurie yra be nuotraukų ir taksonų pavadinimų. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_subscribed_to_comments_on_this_flag: Jūs užsiprenumeravote šios žymės komentarus.

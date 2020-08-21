@@ -379,12 +379,6 @@ fr:
     form: Toutes les formes ajoutées à la base de données
   all_rights_reserved: tous droits réservés
   all_taxa:
-    rank:
-      kingdom: Règne
-      class: Classe
-      phylum: Embranchement
-      species: Espèces
-      order: Ordre
     amphibians: Amphibiens
     animals: Animaux
     arachnids: Arachnides
@@ -1056,7 +1050,10 @@ fr:
   date_updated: Date mise à jour
   day: Jour
   decrease_brightness: Diminuer la luminosité
+  #Default option
   default: par défaut
+  #Default option
+  default_: Choix par défaut
   default_invite_comment: "Belle photo! Vous devriez la publier sur %{site_name} : {{INVITE_LINK}}"
   default_observation_license: Licence par défaut des observations
   default_photo_license: Licence des photos par défaut
@@ -3406,6 +3403,7 @@ fr:
   scientific_name: Nom scientifique
   search: Rechercher
   search_all_fields: chercher tous les champs
+  search_by_name: Recherche par nom
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
   search_by_taxon_name_or_observation_id: Recherche par nom de taxon ou ID d'observation
   search_by_taxon_name_or_flickr_photo_id: Recherche par nom de taxon ou d'identité photo Flickr
@@ -4400,8 +4398,6 @@ fr:
   you_are_setting_this_project_to_aggregate: |
     Vous paramétrez ce projet pour agréger toutes les observations correspondant aux
     règles suivantes : %{rules} Voulez-vous continuer ?
-  you_are_submitting_obs_without_photos_and_names: |
-    Vous soumettez des observations sans photos ni noms de taxon. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Vous soumettez des observations sans date ou lieu. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_subscribed_to_comments_on_this_flag: Vous êtes abonné aux commentaires sur ce signalement.

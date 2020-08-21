@@ -269,12 +269,6 @@ id:
     subgenus: Semua subgenus dimasukkan ke database
   all_rights_reserved: Hak cipta dilindungi undang-undang
   all_taxa:
-    rank:
-      kingdom: Kerajaan
-      class: Kelas
-      phylum: Filum
-      species: Spesies
-      order: Ordo
     amphibians: Amfibi
     animals: Binatang
     arachnids: Arakhnida
@@ -695,6 +689,7 @@ id:
   date_time: Tanggal/Waktu
   date_updated: Tanggal pemutakhiran
   day: Hari
+  #Default option
   default: baku
   default_invite_comment: "Foto bagus!  Anda seharusnya memasang ini di %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Lisensi pengamatan standar

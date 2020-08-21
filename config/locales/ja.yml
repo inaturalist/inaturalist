@@ -318,12 +318,6 @@ ja:
     form: データベースに追加した形態の合計
   all_rights_reserved: 著作権を全て留保する
   all_taxa:
-    rank:
-      kingdom: 界
-      class: 綱
-      phylum: 門
-      species: 種
-      order: 目
     amphibians: 両生類
     animals: 動物
     arachnids: クモ綱
@@ -948,6 +942,7 @@ ja:
   date_updated: 更新日
   day: 日
   decrease_brightness: 輝度を下げる
+  #Default option
   default: 既定
   default_invite_comment: "いい写真ですね！よかったら、%{site_name}に投稿してみませんか？\n{{INVITE_LINK}}"
   default_observation_license: デフォルトの観察記録ライセンス

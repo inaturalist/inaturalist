@@ -361,12 +361,6 @@ ca:
     form: Totes les formes s'han afegit a la base de dades
   all_rights_reserved: tots els drets reservats
   all_taxa:
-    rank:
-      kingdom: Regne
-      class: Classe
-      phylum: Fílum
-      species: Espècie
-      order: Ordre
     amphibians: Amfibis
     animals: Animals
     arachnids: 'Aràcnids: Aranyes, alacrans i altres'
@@ -1030,6 +1024,7 @@ ca:
   date_updated: Data d’actualització
   day: Dia
   decrease_brightness: Reduïu brillantor
+  #Default option
   default: Predeterminada
   default_invite_comment: "Gran foto! Podeu enviar-la a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Llicència per a les vostres observacions:'
@@ -4291,9 +4286,6 @@ ca:
   you_are_no_longer_following_x: "Ja no seguiu a %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Esteu fent que aquest projecte incorpori totes les observacions que coincideixen amb les regles següents: %{rules}, voleu continuar?
-  you_are_submitting_obs_without_photos_and_names: |
-    Esteu enviant observacions sense fotos ni un nom de tàxon.
-    Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
   you_are_subscribed_to_comments_on_this_flag: Esteu subscrit als comentaris d'aquesta marca.

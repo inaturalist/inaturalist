@@ -169,12 +169,6 @@ eu:
   all_projects: Proiektu guztiak
   all_rights_reserved: eskubide guztiak erreserbatuta
   all_taxa:
-    rank:
-      kingdom: Erreinua
-      class: Klasea
-      phylum: Filuma
-      species: Espeziea
-      order: Ordena
     amphibians: Anfibioak
     animals: Animaliak
     arachnids: Armiarmak, eskorpioiak eta ahaideak
@@ -596,6 +590,7 @@ eu:
     nextText: Hurrengoa
   date_time: Data/Ordua
   day: Eguna
+  #Default option
   default: Lehenetsia
   default_invite_comment: "Argazki bikaina! Hona bidali behar duzu: %{site_name} {{INVITE_LINK}}"
   default_observation_license: 'Zure oharretarako lizentzia:'

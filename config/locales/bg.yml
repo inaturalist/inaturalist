@@ -329,12 +329,6 @@ bg:
     form: Всички форми са добавени в базата данни
   all_rights_reserved: всички права запазени
   all_taxa:
-    rank:
-      kingdom: Царство
-      class: Клас
-      phylum: Тип
-      species: Вид
-      order: Разред
     amphibians: Земноводни
     animals: Животни
     arachnids: Паякообразни
@@ -800,6 +794,7 @@ bg:
   date_updated: Дата на обновяване
   day: Ден
   decrease_brightness: Намали яркостта
+  #Default option
   default: по подразбиране
   default_invite_comment: "Страхотна снимка! Трябва да я публикувате на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Лиценз на наблюдение по подразбиране

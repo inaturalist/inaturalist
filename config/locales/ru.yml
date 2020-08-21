@@ -3,7 +3,7 @@ ru:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} комментария'
+    other: '%{count} комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span>комментарий'
     few: '<span class="count">%{count}</span>комментария'
@@ -454,12 +454,6 @@ ru:
     form: Все формы добавлены в базу данных
   all_rights_reserved: Все права защищены
   all_taxa:
-    rank:
-      kingdom: Царство
-      class: Класс
-      phylum: Тип
-      species: Вид
-      order: Отряд
     amphibians: Земноводные
     animals: Животные
     arachnids: Паукообразные
@@ -1153,6 +1147,7 @@ ru:
   date_updated: Обновленная дата
   day: День
   decrease_brightness: Уменьшить яркость
+  #Default option
   default: по умолчанию
   default_invite_comment: "Отличное фото! Вы должны разместить его на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Лицензия наблюдения по умолчанию
@@ -1601,8 +1596,8 @@ ru:
   got_it!: Понятно!
   got_your_data_somewhere_else?: Ваши данные где-то ещё? Мы можем помочь.
   graft: Привязка
-  graft_taxon: Нарастить %{taxon}
-  grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в наше таксономическое дерево, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
+  graft_taxon: Привязать %{taxon}
+  grafting_attemps_to_insert_this_taxon: Попытки привязать этот таксон к нашему таксономическому дереву, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
   grant_role: "%{grant} %{role} роль"
   grid: Плитка
   grid_layout: Разметка по сетке
@@ -1730,7 +1725,7 @@ ru:
   improving: Улучшение
   in_n: "в %{n}"
   in_place_x: в %{place}
-  inaturalist_network_affiliation: Присоединившиеся к сети iNaturalist
+  inaturalist_network_affiliation: Принадлежность к сети iNaturalist
   #Label for messages you've received
   inbox: Входящие
   include_places: Включить места
@@ -4106,7 +4101,7 @@ ru:
   umbrella_projects: Зонтичные проекты
   unblock: Разблокировать
   unclassified: Неклассифицированные
-  ungrafted_taxa: Непривитые таксоны
+  ungrafted_taxa: Непривязанные таксоны
   unhide_content: Отобразить контент
   unhide_desc: |
     Отображение раскроет этот контент для публичного просмотра. Кураторы имеют возможность впоследствии скрыть это опять.
@@ -4351,7 +4346,7 @@ ru:
   video_tutorials: Видеопособия
   visually_similar: Визуально похожие
   vulnerable: Уязвимый
-  w00t_no_ungrafted_taxa: w00t!  Нет привитых таксонов!
+  w00t_no_ungrafted_taxa: w00t!  Нет непривязанных таксонов!
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
@@ -4504,9 +4499,6 @@ ru:
   you_are_no_longer_following_x: "Вы больше не подписаны на %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Вы настроили этот проект на совокупность всех наблюдений, соответствующих следующим правилам: %{rules} Вы хотите продолжить?
-  you_are_submitting_obs_without_photos_and_names: |
-    Вы отправляете наблюдения без фото и наименований таксонов.
-    Наблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Вы отправляете наблюдения без дат или местоположений. Наблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.
   you_are_subscribed_to_comments_on_this_flag: Вы подписаны на комментарии к этому флагу.

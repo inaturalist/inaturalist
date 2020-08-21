@@ -446,12 +446,6 @@ he:
     form: כל הטפסים הוספו לבסיס הנתונים
   all_rights_reserved: כל הזכויות שמורות
   all_taxa:
-    rank:
-      kingdom: ממלכה
-      class: מחלקה
-      phylum: מערכה
-      species: מין
-      order: סדר
     amphibians: דו־חיים
     animals: בעלי־חיים
     arachnids: עכבישניים
@@ -1125,6 +1119,7 @@ he:
   date_to_date: "%{d1} - %{d2}"
   date_updated: תעריך עידכון
   day: יום
+  #Default option
   default: ברירת המחדל
   default_invite_comment: "תמונה נהדרת! צריך להעלות אותה ל%{site_name}{{INVITE_LINK}}"
   default_observation_license: רשיון ברירת המחדל של התצפית
@@ -3660,9 +3655,6 @@ he:
     כעת <strong>את/ה</strong> אוצר/ת של %{project}
   you_are_now_a_manager_for_project_html: |
     כעת <strong>את/ה</strong> מנהל/ת ב %{project}
-  you_are_submitting_obs_without_photos_and_names: |
-    הנכם שולחים תצפיות ללא תמונות ושמות טקסונומיים.
-    יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.
   you_are_submitting_obs_with_no_date_or_no_location: |
     הנכם שולחים תצפיות ללא תאריכים או מיקומים. יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.
   you_are_subscribed_to_comments_on_this_flag: הינך מנוי לדגל זה.
