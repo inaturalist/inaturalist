@@ -1,3 +1,4 @@
+/* eslint-disable */
 function applyBatch(inputNames) {
   $.each(inputNames, function() {
     var checkedInput, input = $('#batchform :input[name="observation['+this+']"]')
@@ -79,4 +80,5 @@ function batchObservationFields() {
 
 $(document).ready(function() {
   $('.observation_fields_form_fields').observationFieldsForm()
+  $.fn.soundSelector.bindMaxFileSizeValidation( $( ".observation_sounds" ) );
 })
