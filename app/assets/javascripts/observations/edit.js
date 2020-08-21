@@ -1,3 +1,4 @@
+/* eslint-disable */
 $(document).ready(function() {
   $('.species_guess').taxonAutocomplete({
     idEl: $("#observation_taxon_id"),
