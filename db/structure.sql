@@ -996,6 +996,47 @@ ALTER SEQUENCE public.custom_projects_id_seq OWNED BY public.custom_projects.id;
 
 
 --
+-- Name: data_partners; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.data_partners (
+    id integer NOT NULL,
+    name character varying,
+    url character varying,
+    partnership_url character varying,
+    frequency character varying,
+    dwc_params json,
+    dwc_frequency character varying,
+    dwc_last_export_at timestamp without time zone,
+    api_request_url character varying,
+    description text,
+    requirements text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: data_partners_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.data_partners_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_partners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.data_partners_id_seq OWNED BY public.data_partners.id;
+
+
+--
 -- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3654,19 +3695,6 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
--- Name: site_admins; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.site_admins (
-    id integer NOT NULL,
-    user_id integer,
-    site_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3694,6 +3722,19 @@ CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
 --
 
 ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
+-- Name: site_admins; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.site_admins (
+    id integer NOT NULL,
+    user_id integer,
+    site_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -5326,6 +5367,13 @@ ALTER TABLE ONLY public.custom_projects ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: data_partners id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_partners ALTER COLUMN id SET DEFAULT nextval('public.data_partners_id_seq'::regclass);
+
+
+--
 -- Name: delayed_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6211,6 +6259,14 @@ ALTER TABLE ONLY public.countries_simplified_1
 
 ALTER TABLE ONLY public.custom_projects
     ADD CONSTRAINT custom_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_partners data_partners_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_partners
+    ADD CONSTRAINT data_partners_pkey PRIMARY KEY (id);
 
 
 --
@@ -10246,4 +10302,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
+
+INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 

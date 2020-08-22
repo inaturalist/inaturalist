@@ -1,0 +1,17 @@
+.row
+  .col-xs-12
+    %h2 Data Partners
+    %table.table
+      %thead
+        %tr
+          %th
+            Name
+          %th
+            Actions
+      %tbody
+        - for dp in @data_partners
+          %tr
+            %td= link_to dp.name, dp
+            %td
+              = link_to t(:edit), edit_data_partner_path( dp ), class: "btn btn-default btn-sm"
+    = link_to t(:new), new_data_partner_path, class: "btn btn-default"

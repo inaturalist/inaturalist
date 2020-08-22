@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    %h2= @data_partner.name
+    = formatted_user_text @data_partner.description
+    %h3=t :requirements
+    = formatted_user_text @data_partner.requirements
+    %h3=t :dwc_frequency
+    = @data_partner.dwc_frequency
+    %h3=t :partnership
+    = link_to @data_partner.partnership_url, @data_partner.partnership_url

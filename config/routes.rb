@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :data_partners
   resources :saved_locations
   apipie
 
