@@ -237,7 +237,7 @@ LEAF_CLASS_HASH = taxon_ids.zip( indexes ).to_h
 CSV.open( "#{export_dir_fullpath}/taxonomy_data.csv", "wb" ) do |csv|
   csv << ["parent_taxon_id", "taxon_id", "rank_level", "leaf_class_id", "name"]
   export_taxonomy.each do |row|
-    csv << [ row[:ancestors].last, row[:id], row[:rank_level].to_i, LEAF_CLASS_HASH[row[:id]], row[:name] ]
+    csv << [ row[:ancestors].last, row[:id], row[:rank_level].to_f, LEAF_CLASS_HASH[row[:id]], row[:name] ]
   end
 end; nil
 
