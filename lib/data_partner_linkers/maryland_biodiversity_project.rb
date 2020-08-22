@@ -5,14 +5,18 @@ module DataPartnerLinkers
       page = 1
       start_time = Time.now
       obs_ids_to_index = []
+      per_page = 500
       while true
         logger.info "Requesting #{url}, page: #{page}"
-        resp = RestClient.get( url, params: { page: page, per_page: 500 } )
+        resp = RestClient.get( url, params: { page: page, per_page: per_page } )
         json = JSON.parse( resp )
         break if json.size == 0
         obs_ids = json.map{|r| r["inat_id"] }
-        existing_observation_links = ObservationLink.where( observation_id: obs_ids ).to_a
-        observations = Observation.page_of_results( id: obs_ids )
+        existing_observation_links = ObservationLink.where(
+          observation_id: obs_ids,
+          href_name: @data_partner.name
+        ).to_a
+        observations = Observation.page_of_results( id: obs_ids, per_page: per_page )
         logger.debug "#{obs_ids.size} obs IDs in MBP batch #{page} starting with #{obs_ids.first}"
         logger.debug "#{existing_observation_links.size} existing links"
         logger.debug "#{observations.size} obs extant"
@@ -29,7 +33,7 @@ module DataPartnerLinkers
             ol = ObservationLink.new(
               observation: observation,
               href: href,
-              href_name: "Maryland Biodiversity Project",
+              href_name: @data_partner.name,
               rel: "alternate"
             )
             ol.save unless @opts[:debug]
