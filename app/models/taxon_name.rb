@@ -9,7 +9,7 @@ class TaxonName < ActiveRecord::Base
   has_many :places, :through => :place_taxon_names
   validates_presence_of :taxon
   validates_length_of :name, :within => 1..256, :allow_blank => false
-  validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id], message: :already_exists
+  validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id], message: :already_exists, case_sensitive: false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
