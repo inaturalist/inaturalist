@@ -7429,7 +7429,9 @@ en:
                 should be in English, but currently it matches the %{suggested_locale} translation of "%{suggested}".
                 Use "%{suggested}" if that is what you meant and it will be translated when you view the site in
                 that language.
+              should_be_in_english: should be in English
             name:
+              already_exists: already exists for this taxon in this lexicon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
               must_match_the_taxon_if_valid: |

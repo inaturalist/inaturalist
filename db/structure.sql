@@ -4428,7 +4428,8 @@ CREATE TABLE public.taxon_names (
     name_provider character varying(255),
     creator_id integer,
     updater_id integer,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    parameterized_lexicon character varying
 );
 
 
@@ -10246,4 +10247,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
+
+INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
