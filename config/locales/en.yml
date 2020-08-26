@@ -1211,6 +1211,13 @@ en:
         subject: 'Confirmation instructions'
       reset_password_instructions:
         subject: 'Reset password instructions'
+  devise_reset_password_instructions_hello_email: Hello %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Someone has requested a link to change your password. You can do this through the link below.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    If you didn't request this, please ignore this email.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Your password won't change until you access the link above and create a new one.
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
