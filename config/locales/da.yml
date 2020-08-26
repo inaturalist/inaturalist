@@ -6858,6 +6858,10 @@ da:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke indeholde kommaer eller skråstreger
+              should_match_english_translation: |
+                skal være på engelsk, men pt. matcher det %{suggested_locale}-oversættelsen af "%{suggested}".
+                Benyt "%{suggested}", hvis det er, hvad du mente, og det vil blive oversat, når du ser webstedet på
+                dét sprog.
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det videnskabelige navn på en art i dette leksikon
