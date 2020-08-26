@@ -1012,7 +1012,11 @@ CREATE TABLE public.data_partners (
     description text,
     requirements text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    logo_file_name character varying,
+    logo_content_type character varying,
+    logo_file_size bigint,
+    logo_updated_at timestamp without time zone
 );
 
 
@@ -10304,4 +10308,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
 
 INSERT INTO schema_migrations (version) VALUES ('20200822002822');
+
+INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
