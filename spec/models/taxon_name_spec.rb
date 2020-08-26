@@ -80,9 +80,14 @@ describe TaxonName, 'creation' do
   end
 
   it "should not be valid with a non-English translation of a lexicon" do
-    tn = TaxonName.make(lexicon: "简体中文", name: "common")
+    tn = TaxonName.make(lexicon: I18n.with_locale(:"zh-CN") { I18n.t("lexicons.finnish") }, name: "common")
     expect(tn).to_not be_valid
-    expect(tn.errors.messages[:lexicon].count).to eq 2
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_match_english_translation", 
+             suggested: I18n.with_locale(:en) { I18n.t("lexicons.finnish") }, 
+             suggested_locale: I18n.t("locales.zh-CN")
+      )
+    )
   end
   
   it "should parameterize and store lexicon" do
@@ -93,7 +98,9 @@ describe TaxonName, 'creation' do
   it "should not parameterize and store lexicon with invalid characters" do
     tn = TaxonName.make(lexicon: "测试", name: "common")
     expect(tn).to_not be_valid
-    expect(tn.errors.messages[:lexicon].count).to eq 1
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_be_in_english")
+    )
   end
   
   it "should not validate presence of a parameterizable lexicon if lexicon not present" do
