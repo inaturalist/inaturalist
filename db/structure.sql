@@ -3654,19 +3654,6 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
--- Name: site_admins; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.site_admins (
-    id integer NOT NULL,
-    user_id integer,
-    site_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3694,6 +3681,19 @@ CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
 --
 
 ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
+-- Name: site_admins; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.site_admins (
+    id integer NOT NULL,
+    user_id integer,
+    site_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
