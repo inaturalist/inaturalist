@@ -18,22 +18,28 @@ class FlagsController < ApplicationController
   PARTIALS = %w(dialog)
 
   def index
-    if request.path != "/flags" && @model && @object = @model.find_by_id(params[@param])
-      # The default acts_as_flaggable index route
-      @object = @object.becomes(Photo) if @object.is_a?(Photo)
-      @object = @object.becomes(Sound) if @object.is_a?(Sound)
-      @flags = @object.flags.includes(:user, :resolver).
-        paginate(page: params[:page]).
-        order(id: :desc)
-      @unresolved = @flags.select {|f| not f.resolved }
-      @resolved = @flags.select {|f| f.resolved }
-      @moderator_actions = if @object.respond_to?(:moderator_actions)
-        @object.moderator_actions.limit( 100 ).to_a
+    if request.path != "/flags" && @model
+      if @model.respond_to?(:find_by_uuid)
+        @object = @model.find_by_uuid( params[@param] )
       end
-      respond_to do |format|
-        format.html { render layout: "bootstrap" }
+      @object ||= @model.find_by_id( params[@param] )
+      if @object
+        # The default acts_as_flaggable index route
+        @object = @object.becomes(Photo) if @object.is_a?(Photo)
+        @object = @object.becomes(Sound) if @object.is_a?(Sound)
+        @flags = @object.flags.includes(:user, :resolver).
+          paginate(page: params[:page]).
+          order(id: :desc)
+        @unresolved = @flags.select {|f| not f.resolved }
+        @resolved = @flags.select {|f| f.resolved }
+        @moderator_actions = if @object.respond_to?(:moderator_actions)
+          @object.moderator_actions.limit( 100 ).to_a
+        end
+        respond_to do |format|
+          format.html { render layout: "bootstrap" }
+        end
+        return
       end
-      return
     end
     # a real index of all flags, which can be filtered by flag type
     @flag_type = params[:flag].to_s.tr("_", " ")
