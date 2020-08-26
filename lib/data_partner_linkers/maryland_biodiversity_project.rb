@@ -29,7 +29,7 @@ module DataPartnerLinkers
             existing.touch unless @opts[:debug]
             old_count += 1
             logger.info "\tobservation link already exists, skipping"
-          elsif observation = observations.detect{|o| o.id == observation_id }
+          elsif observation = observations.detect{|o| o.id == observation_id.to_i }
             ol = ObservationLink.new(
               observation: observation,
               href: href,
