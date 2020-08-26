@@ -30,11 +30,11 @@ class DataPartner < ActiveRecord::Base
   validates :url, presence: true
   validates :description, presence: true
 
-  def sync_observation_links
+  def sync_observation_links( options = {} )
     # Might return an instance of something like DataPartnerLinker::Gbif which
     # knows how to use the partnership_url to configure a GBIF export we can use
     # to make obs links
-    if linker = DataPartnerLinkers.linker_for( self )
+    if linker = DataPartnerLinkers.linker_for( self, options )
       linker.run
     end
   end
@@ -46,8 +46,8 @@ class DataPartner < ActiveRecord::Base
     update_attributes!( dwc_last_export_at: Time.now )
   end
 
-  def self.sync_observation_links
-    DataPartner.find_each {|dp| dp.sync_observation_links }
+  def self.sync_observation_links( options = {} )
+    DataPartner.find_each {|dp| dp.sync_observation_links( options ) }
   end
 
   def self.generate_dwcs
