@@ -6862,7 +6862,9 @@ da:
                 skal være på engelsk, men pt. matcher det %{suggested_locale}-oversættelsen af "%{suggested}".
                 Benyt "%{suggested}", hvis det er, hvad du mente, og det vil blive oversat, når du ser webstedet på
                 dét sprog.
+              should_be_in_english: skal være på engelsk
             name:
+              already_exists: findes allerede for denne takson i dette leksikon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det videnskabelige navn på en art i dette leksikon
               must_match_the_taxon_if_valid: |
