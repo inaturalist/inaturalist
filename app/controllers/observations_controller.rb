@@ -311,7 +311,9 @@ class ObservationsController < ApplicationController
           I18n.t( "something" )
         end
         @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable, viewer: current_user )
-        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
+        unless @observation.description.blank?
+          @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
+        end
 
         @skip_application_js = true
         @flash_js = true
