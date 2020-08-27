@@ -90,3 +90,6 @@
     .col-xs-12
       #comments.column.span-18
         = render :partial => "comments/comments", :object => @taxon_change
+        - if logged_in?
+          .upstacked
+            = render "subscriptions/subscription", resource: @taxon_change
