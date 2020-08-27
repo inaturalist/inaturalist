@@ -6343,7 +6343,9 @@ de:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: soll keine Kommata oder Schrägstriche enthalten
+              should_be_in_english: sollte in Englisch sein
             name:
+              already_exists: existiert bereits für dieses Taxon in diesem Lexikon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 darf nicht mit dem wissenschaftlichen Namen einer Art für dieses Lexikon übereinstimmen
               must_match_the_taxon_if_valid: |
