@@ -1114,6 +1114,13 @@ da:
         subject: 'Bekræftelsesinstruktioner'
       reset_password_instructions:
         subject: 'Instruktioner til adgangskodenulstilling'
+  devise_reset_password_instructions_hello_email: Hej %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Nogen har anmodet om et link til skift af din adgangskode. Du kan gøre dette via linket nedenfor.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
@@ -3660,6 +3667,10 @@ da:
   subscribe_to_a_place: Abonnér på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne markering"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne post"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til dette taksonniveau"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonombytning"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonsammenfletning"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til dette taksonopdeling"
   subscribe_to_observations_in_a_taxon: Abonnér på alle observationer indsendt af en art eller gruppe af organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonnér på alle observationer indsendt inden for dette sted. Du kan også tilføje et valgfrit takson filter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -4422,6 +4433,10 @@ da:
     Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
   you_are_subscribed_to_comments_on_this_flag: Du abonnerer på kommentarer til denne markering.
   you_are_subscribed_to_comments_on_this_post: Du abonnerer på kommentarer til denne post.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Du abonnerer på kommentarer til dette taksonniveau.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Du abonnerer på kommentarer til denne taksonombytning.
+  you_are_subscribed_to_comments_on_this_taxon_merge: Du abonnerer på kommentarer til denne taksonsammenfletning
+  you_are_subscribed_to_comments_on_this_taxon_split: Du abonnerer på kommentarer til dette taksonopdeling
   you_are_subscribed_to_observations_from_this_place: Du abonnerer på kommentarer fra dette sted.
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: "Du følger ikke denne person."
