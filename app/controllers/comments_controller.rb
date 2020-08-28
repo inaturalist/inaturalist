@@ -35,7 +35,13 @@ class CommentsController < ApplicationController
     @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id))
     @extra_ids = Identification.where(observation_id: @comments.map(&:parent_id)).includes(:observation)
     @extra_comments_and_ids = [@extra_comments,@extra_ids].flatten
-    @comments_by_parent_id = @extra_comments_and_ids.sort_by{|c| c.created_at}.group_by{|c| (c.respond_to? :observation_id) ? [c.observation.class.to_s,c.observation_id].join("_") : [c.parent.class.to_s,c.parent_id].join("_") }
+    @comments_by_parent_id = @extra_comments_and_ids.sort_by(&:created_at).group_by do |c|
+      if c.respond_to? :observation_id
+        [c.observation.class.to_s, c.observation_id].join( "_" )
+      else
+        [c.parent.class.to_s, c.parent_id].join( "_" )
+      end
+    end
     respond_to do |format|
       format.html do
         if params[:partial]

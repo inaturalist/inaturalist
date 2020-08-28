@@ -34,6 +34,22 @@
 //    }
 //
 (function($){
+  var MAX_FILE_SIZE = 20971520; // 20 MB in bytes
+
+  function bindMaxFileSizeValidation( wrapper ) {
+    $( ".photo_file_field input:file", wrapper ).not( ".max-file-sized" ).change( function( e ) {
+      $( e.currentTarget ).addClass( "max-file-sized" );
+      var files = e.currentTarget.files;
+      for( var k in files ) {
+        if ( files[k].size > MAX_FILE_SIZE) {
+          alert( I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } ) );
+          $( e.currentTarget ).val( null );
+          break;
+        }
+      }
+    } );
+  }
+
   $.fn.photoSelector = function(options) {
     var options = $.extend(true, {}, $.fn.photoSelector.defaults, options);
     
@@ -64,6 +80,8 @@
     
     // Insert all existing content into the container
     $(container).append(existing);
+
+    bindMaxFileSizeValidation( wrapper );
     
     // Fill with photos
     if (options.queryOnLoad) {
@@ -560,6 +578,8 @@
         if (options.baseURL && options.baseURL.match(/local_photo/)) {
           $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
           $(wrapper).find('.local_photos').show()
+          // Prevent adding files that are too big
+          bindMaxFileSizeValidation( wrapper );
         } else {
           if ( options.baseURL && options.baseURL.match( /picasa/ ) ) {
             $('.nextlink, .allNone, .photoSelectorSearch', wrapper).show( );

@@ -324,12 +324,6 @@ et:
     form: Kõik vormid lisatud andmebaasi
   all_rights_reserved: kõig õigused kaitstud
   all_taxa:
-    rank:
-      kingdom: Riik
-      class: Klass
-      phylum: Hõimkond
-      species: Liik
-      order: Selts
     amphibians: Kahepaiksed
     animals: Loomad
     arachnids: Ämblikulaadsed
@@ -900,6 +894,7 @@ et:
   date_specified: Kuupäev määratud
   date_time: Kuupäev/kellaaeg
   day: Päev
+  #Default option
   default: vaikimisi
   default_invite_comment: "Hea foto! Peaksid selle postitama lehele %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Vaikimisi vaatluslitsents
@@ -3628,8 +3623,6 @@ et:
   you_are_no_longer_following_x: "Sa ei jälgi enam kasutajat %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Määrad selle projekti koguma kõiki vaatlusi, mis vastavad reeglitele: %{rules} Soovid sa jätkata?
-  you_are_submitting_obs_without_photos_and_names: |
-    Lisad vaatluseid ilma fotode ja taksoni nimedeta. Nende vaatluste täpne määratlemine saab olema väga keeruline, mistõttu pole need vaatlusotsingutes vaikimisi nähtavad.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Lisad vaatluseid ilma kuupäevade või asukohtadeta. Ilma selle infota vaatluseid on sageli võimatu määratleda ning seetõttu pole nad vaikimisi vaatlusotsingutes nähtavad.
   you_arent_a_member_of_that_project: Sa pole selle projekti liige.

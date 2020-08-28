@@ -83,6 +83,11 @@ class EmailerPreview < ActionMailer::Preview
     Emailer.user_parent_confirmation( UserParent.last )
   end
 
+  def reset_password_instructions
+    @user ||= User.first
+    DeviseMailer.devise_mail( @user, :reset_password_instructions )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

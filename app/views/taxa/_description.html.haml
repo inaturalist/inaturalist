@@ -68,14 +68,17 @@
           ==References==
         {{Reflist}}
         WIKI
+        parent_title = if @taxon.parent
+          @taxon.parent.wikipedia_title.blank? ? @taxon.parent.name : @taxon.parent.wikipedia_title
+        end
         box = <<-WIKI
           {{automatic taxobox
           | taxon = #{@taxon.name}
           | rank = #{@taxon.rank}
-          | parent = #{@taxon.parent ? ( @taxon.parent.wikipedia_title.blank? ? @taxon.parent.name : @taxon.parent.wikipedia_title ) : "" }
+          #{"| parent = #{parent_title}" if parent_title}
           }}
         WIKI
-        if @taxon.species?
+        if @taxon.species? && @taxon.genus
           box = <<-WIKI
             {{Speciesbox
             | parent = #{@taxon.genus.name}

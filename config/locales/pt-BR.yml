@@ -2,6 +2,9 @@ pt:
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> comentário'
+    other: '<span class="count">%{count}</span> comentários'
   x_faves:
     one: '1 favorito'
     other: '%{count} favoritos'
@@ -361,12 +364,6 @@ pt:
     form: Todas as formas adicionadas à base de dados
   all_rights_reserved: todos os direitos reservados
   all_taxa:
-    rank:
-      kingdom: Reino
-      class: Classe
-      phylum: Filo
-      species: Espécies
-      order: Ordem
     amphibians: Anfíbios
     animals: Animais
     arachnids: Aracnídeos
@@ -1022,6 +1019,7 @@ pt:
   date_updated: Data atualizada
   day: Dia
   decrease_brightness: Diminuir o brilho
+  #Default option
   default: padrão
   default_invite_comment: "Ótima foto! Você deveria publicar ela no %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licença padrão para suas observações
@@ -4226,6 +4224,9 @@ pt:
     one: "1 falha na observação"
     other: "%{count} falha nas observações"
   x_of_y: "%{x} de %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_count_confirmed:
     one: "%{x} de %{count} foi confirmado"
     other: "%{x} de %{count} foram confirmados"
@@ -4249,6 +4250,7 @@ pt:
   'yes': "Sim"
   yes_find_them!: "Sim, encontre-os!"
   yes_i_want_to_join: Sim, eu desejo entrar
+  yes_license_my_childs_observations: Sim, licencie fotos, sons e observações do meu filho para que os cientistas possam usar os dados (recomendado).
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
@@ -4273,8 +4275,6 @@ pt:
   you_are_no_longer_following_x: "Você não está mais seguindo %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Você está configurando este projeto para agregar todas as observações na plataforma que combinem com a seguinte regra: %{rules} Gostaria de continuar?
-  you_are_submitting_obs_without_photos_and_names: |
-    Você está enviando observações sem fotos e nomes de táxons. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Você está enviando observações sem datas ou locais. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.
   you_are_subscribed_to_comments_on_this_flag: Você está inscrito nos comentários deste alerta.
@@ -4368,6 +4368,7 @@ pt:
   your_recent_projects: Seus projetos recentes
   your_relationships: Seus relacionamentos
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} precisa que você autorize mais permissões do %{provider} para continuar:"
+  your_subscriptions_to_this_place: Suas subscrições neste local
   your_tags: Suas etiquetas
   yours: Suas
   youre_not_following_anyone: |-
@@ -4546,6 +4547,9 @@ pt:
         show_messages_to_user: Mostrar mensagens de %{user}
         speech_privilege_notice: |
           Você poderá enviar novas mensagens depois de adicionar três observações verificáveis ou três identificações para os outros. Para agora você pode ler e responder a mensagem que outras pessoas lhe enviam.
+      show:
+        privacy_notice_html: |
+          Enquanto as mensagens são privadas entre você e o destinatário, a equipe do iNaturalist pode ver essas mensagens também, e o fará quando mensagens tiverem sido marcadas para moderação. Se você precisa de uma comunicação verdadeiramente privada, por favor procure outros mecanismos de comunicação que suportem uma criptografia forte.
     oauth:
       authorizations:
         new:

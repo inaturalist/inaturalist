@@ -6,7 +6,7 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :admin_required
-  before_filter :return_here, :only => [:stats, :index, :user_content]
+  before_filter :return_here, only: [:stats, :index, :user_content, :user_detail]
 
   layout "application"
 

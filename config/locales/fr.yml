@@ -379,12 +379,6 @@ fr:
     form: Toutes les formes ajoutées à la base de données
   all_rights_reserved: tous droits réservés
   all_taxa:
-    rank:
-      kingdom: Règne
-      class: Classe
-      phylum: Embranchement
-      species: Espèces
-      order: Ordre
     amphibians: Amphibiens
     animals: Animaux
     arachnids: Arachnides
@@ -446,7 +440,7 @@ fr:
   all_taxa_: Tous les taxons
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
-  all_updates: Toutes les mises à jour
+  all_updates: Toutes les actualités
   all_your_observations_will_default_this_time_zone: Toutes vos observations seront automatiquement assignées à ce fuseau horaire, sauf si vous spécifiez une autre préférence.
   all_your_observations_will_default_to_this_time_zone: Toutes vos observations seront automatiquement assignées à ce fuseau horaire, sauf si vous spécifiez une autre préférence.
   #Option to allow any taxa on a list
@@ -906,10 +900,10 @@ fr:
     larva: Larve
     egg: Oeuf
     juvenile: Juvénile
-    alive_or_dead: Mort ou vif
-    alive: En vie
+    alive_or_dead: Vivant ou mort
+    alive: Vivant
     dead: Mort
-    cannot_be_determined: Ne peut être déterminé
+    cannot_be_determined: Indéterminé
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     dead: L'organisme est mort ou montre des signes de mort imminente
@@ -1022,18 +1016,18 @@ fr:
       november: '%{day} novembre %{year}'
       december: '%{day} décembre %{year}'
     month:
-      january: Janvier
-      february: Février
-      march: Mars
-      april: Avril
-      may: Mai
-      june: Juin
-      july: Juillet
-      august: Août
-      september: Septembre
-      october: Octobre
-      november: Novembre
-      december: Décembre
+      january: janvier
+      february: février
+      march: mars
+      april: avril
+      may: mai
+      june: juin
+      july: juillet
+      august: août
+      september: septembre
+      october: octobre
+      november: novembre
+      december: décembre
   date_is_accurate: La date est correcte
   date_joined: Date d’adhésion
   date_observed: Date observée
@@ -1056,7 +1050,10 @@ fr:
   date_updated: Date mise à jour
   day: Jour
   decrease_brightness: Diminuer la luminosité
+  #Default option
   default: par défaut
+  #Default option
+  default_: Choix par défaut
   default_invite_comment: "Belle photo! Vous devriez la publier sur %{site_name} : {{INVITE_LINK}}"
   default_observation_license: Licence par défaut des observations
   default_photo_license: Licence des photos par défaut
@@ -1183,7 +1180,7 @@ fr:
   each_place_displays_all_species_inat_knows: "Chaque page de lieu affiche toutes les espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations sur leur abondance, leur statut de conservation et le nom de la première personne ayant observé cette espèce dans ce lieu selon %{site_name}. Vous pouvez filtrer les espèces par groupe taxinomique, par couleur, selon leur statut de conservation ou par recherche habituelle."
   edit: Modifier
   edit_a_batch_of_observations: Modifier un lot d’observations
-  edit_account_settings_and_profile: "Modifier les paramètres &amp; profil d’un compte"
+  edit_account_settings_and_profile: "Modifier les paramètres &amp; le profil"
   edit_assessment: Modifier l’évaluation
   edit_atlas: Modifier un atlas
   edit_atlas_for_taxon_html: Modifier l'Atlas pour %{taxon}
@@ -1446,7 +1443,7 @@ fr:
   follow_user: "Suivre %{user}"
   followed_projects: Projets suivis
   followers: Abonnés
-  following: Suivant
+  following: Suivi
   following_x_people:
     one: '1 personne suivie'
     other: '%{count} personnes suivies'
@@ -1489,7 +1486,7 @@ fr:
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé?
   get_started: Commencer
-  getting_started_guide: Guide pour commencer
+  getting_started_guide: Guide pour le débutant
   give_it_some_detail: Fournissez des détails !
   give_monthly_caps: DONNER MENSUELLEMENT
   give_now_caps: DONNER MAINTENANT
@@ -1500,7 +1497,7 @@ fr:
   going_to_your_observations: Aller à vos observations…
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
   google: Google
-  got_it!: C’est bon !
+  got_it!: Ok !
   got_your_data_somewhere_else?: Avez-vous obtenu vos données ailleurs ? Nous pouvons vous aider.
   graft: Greffer
   graft_taxon: Rattacher %{taxon}
@@ -1521,7 +1518,7 @@ fr:
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
-  has_id_supported_by_two_or_more: Possède un ID établi par au moins deux
+  has_id_supported_by_two_or_more: A un ID établi par au moins deux personnes
   has_one_or_more_faves: A un ou plusieurs favoris
   has_photo: A une photo
   has_photos: A des photos
@@ -1610,7 +1607,7 @@ fr:
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
   ids: "IDs"
-  ids_made_for_others: Identifications faites pour d’autres
+  ids_made_for_others: Identifications réalisées pour d’autres utilisateurs
   if_for_some_reason_a_user_doesnt_agree: |
     Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est
     d’accord avec vous.
@@ -1681,7 +1678,7 @@ fr:
   invite_more: Inviter plus
   invite_people: Inviter des gens
   invite_people_to_project: "Inviter des gens à se joindre à %{project}"
-  invite_someone_to: "Inviter quelqu’un à %{name} !"
+  invite_someone_to: "Inviter quelqu’un sur %{name} !"
   invite_your_friends: Inviter vos amis
   invite_your_friends_description: "Aidez-nous à accroître et à améliorer la communauté %{site_name} en invitant vos amis à se joindre !"
   #Type of project where people can only join after they have been invited
@@ -1764,8 +1761,8 @@ fr:
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
-  learn_more: Apprenez-en davantage
-  learn_more_raquo: "Apprenez-en davantage &raquo;"
+  learn_more: En apprendre d'avantage
+  learn_more_raquo: "En apprendre d'avantage &raquo;"
   learn_what_these_licenses_mean: Apprenez-en davantage sur ce que veulent dire ces licences
   least_concern: Préoccupation mineure
   leave: Quitter
@@ -1997,11 +1994,11 @@ fr:
     overlays:
       all_observations: Toutes les observations
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
-      featured_observations: Observations mises en valeur
+      featured_observations: Notre sélection
       gbif_network: Réseau SMIB
       gbif_network_description: Enregistrements de musées et autres fournisseurs de présences distribués par le Système mondial d’informations sur la biodiversité
       observations: Observations
-      place_boundary: Frontière du lieu
+      place_boundary: Limites géographiques du lieu
       checklist_places: Lieux de la liste de contrôle
       checklist_places_description: Lieux où ce taxon a été répertorié
       range: Aire de répartition
@@ -2262,7 +2259,7 @@ fr:
   no_observations: Pas d'observations
   no_observations_from_this_place_yet: Aucune observation dans ce lieu jusqu’à présent.
   no_observations_matching_those_ids: Aucune observation correspondant à ces identifications.
-  no_observations_submitted: "Aucune observation soumise!"
+  no_observations_submitted: "Aucune observation enregistrée!"
   no_observations_yet: Aucune observation jusqu’à présent
   no_one_has_added_any: Personne n’a ajouté de note pour ce lieu
   no_one_has_been_invited_yet: Personne n’a encore été invité
@@ -2372,7 +2369,7 @@ fr:
   observations_by_user_on_date: "Observations de %{user} le %{date}"
   observations_by_you: "Vos observations"
   observations_by_you_on_date: "Observations de vous le %{date}"
-  observation_calendar_for: "Calendrier d’observation pour %{user} en %{year}"
+  observation_calendar_for: "Calendrier des observations pour %{user} en %{year}"
   #The limit is currently 20
   observations_can_only_have_n_photos: Les observations ne peuvent avoir que %{limit} photos
   observation_curation: Organisation d’observations
@@ -2426,9 +2423,9 @@ fr:
   observations_map: Observations/carte
   observation_must_dotdotdot: L’observation doit…
   observations_near_a_place_are: |
-    Les observations « proches » d’un lieu se retrouvent à l’intérieur d’un rectangle autour des frontières du lieu en question, ce qui peut donner lieu à des résultats inexacts pour les lieux qui ne sont pas en forme de rectangle. Il s’agit d’une limitation de notre base de données que nous travaillons à résoudre.
+    Les observations « proches » d’un lieu se retrouvent à l’intérieur d’un rectangle autour des limites géographiques du lieu en question, ce qui peut donner lieu à des résultats inexacts pour les lieux qui ne sont pas en forme de rectangle. Il s’agit d’une limitation de notre base de données que nous sommes en train de résoudre.
   observations_needing_curation: Observations nécessitant une organisation
-  observations_observed_this_month: Observations <em>observées</em> ce mois, mais non ajoutées ce mois. Sortez dehors!
+  observations_observed_this_month: Observations <em>observées</em> ce mois-ci, mais non ajoutées. Allez faire un tour dans la nature!
   observations_of_relatives: Observations de semblables
   observations_of_taxon: "Observations de %{taxon_name}"
   observations_per_month: Observations/mois
@@ -2492,18 +2489,18 @@ fr:
     follow_panel_title_local: Suivre quelques naturalistes proches
     follow_panel_title_global: Suivre quelques naturalistes actifs
     follow_panel_body: Si vous visitez ces profils et cliquez sur le bouton de suivi, vous allez être informé lorsqu’ils publieront des observations
-    following_panel_title: Garder la trace des gens, des taxons et des lieux
+    following_panel_title: Suivez des gens, des taxons et des lieux
     following_panel_body: |
       Sur %{site_name}, vous pouvez suivre les gens pour garder trace des
       observations qu’ils ont publiées. Vous pouvez aussi vous inscrire à certaines
       espèces pour garder trace des nouvelles observations de celles-ci, ou faire
       la même chose avec les lieux.
     comments_panel_title: Curieux de connaître quelles sortes de discussions ont lieu sur %{site_name} ?
-    comments_panel_body: "<p>%{site_name} est entièrement dédié au partage et à la discussion d’observations de choses vivantes. Ci-dessous certaines discussions en cours actuellement (Note : Vous êtes abonné automatiquement à toute discussion à laquelle vous avez contribué par des commentaires ou des identifications. Gérez ces mises à jour dans la section 'Abonnements' sur la droite).</p>"
+    comments_panel_body: "<p>%{site_name} est entièrement dédié au partage et à la discussion d’observations d'êtres vivants. Ci-dessous certaines discussions en cours actuellement (Note : Vous êtes abonné automatiquement à toute discussion à laquelle vous avez contribué par des commentaires ou des identifications. Gérez ces mises à jour dans la section 'Abonnements' sur la droite).</p>"
     updates_by_you_panel_title: Cet onglet est un moyen rapide de filtrer uniquement les mises à jour de votre contenu.
     updates_by_you_panel_body: Souvenez-vous, dans l’onglet 'Toutes les mises à jour', vous recevrez toutes les mises à jour, pas seulement de votre propre contenu, mais aussi du contenu des gens que vous suivez et des taxons ou lieux auxquels vous vous êtes inscrits en utilisant l’outil d’abonnements sur la droite.
-    youve_got_updates_panel_title: Vous avez des mises à jour !
-    youve_got_updates_panel_body_p1: Rester à jour avec les mises à jour sur ce qui suit…
+    youve_got_updates_panel_title: Il y a du nouveau !
+    youve_got_updates_panel_body_p1: Tenez vous au courant des derniers développements sur les points suivants…
     youve_got_updates_panel_body_p2: |
       <ul>
       <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet, ou annotez-le avec des champs supplémentaires.</li>
@@ -2537,7 +2534,7 @@ fr:
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet peut supprimer ce projet.
   only_you: Seulement vous
   open: Ouvert
-  open_: Ouvrir
+  open_: Ouverte
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
   optional: facultatif
@@ -2809,7 +2806,7 @@ fr:
       zone: zone
   place_guess: lieu au hasard
   place_imported: Lieu importé!
-  place_must_have_a_boundary_defined: Le lieu doit avoir une frontière définie.
+  place_must_have_a_boundary_defined: Le lieu doit avoir une limite géographique définie.
   place_name: Nom du lieu
   place_notes: Notes sur le lieu
   place_too_big_for_check_list: |
@@ -2903,7 +2900,7 @@ fr:
     fiji: Fidji
     finland: Finlande
     france: France
-    french_guiana: Guinée Française
+    french_guiana: Guyane française
     french_polynesia: Polynésie Française
     french_southern_territories: Territoires Français du Sud
     gabon: Gabon
@@ -2921,7 +2918,7 @@ fr:
     guernsey: Guernesey
     guinea: Guinée
     guinea_bissau: Guinée-Bissau
-    guyana: Guyane
+    guyana: Guyana
     haiti: Haïti
     heard_island_and_mcdonald_islands: Îles Heard-et-MacDonald
     honduras: Honduras
@@ -3109,7 +3106,7 @@ fr:
   posted_by: Publié par
   posted_on: Publié le
   posts: Notes
-  potential_disagreement: Désapprobation potentielle
+  potential_disagreement: Désaccord potentiel
   powered_by: Optimisé par
   powered_by_inaturalist_open_source_software_html: 'Hébergé par la plateforme open source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>'
   present: présent
@@ -3137,7 +3134,7 @@ fr:
   processing3p: "Traitement en cours…"
   profile: Profil
   profile_visibility_desc: |
-    Dans l'effort de vouloir combattre les spams sur %{site_name}, les profils des utilisateurs ne sont visibles publiquement uniquement après qu'un utilisateur a contribué à plusieurs observations Research Grade.
+    Afin de combattre les spams sur %{site_name}, les profils des utilisateurs sont seulement visibles publiquement après qu'ils aient contribué à plusieurs observations de niveau "Research Grade".
   project: Projet
   project_admins:
     one: Administrateur projet
@@ -3265,8 +3262,8 @@ fr:
   recent_post: Note récente
   recent_atom_observations_by: "Observations récentes de %{login} (Atom)"
   recent_observations_by: "Observations récentes de %{login}"
-  recently_active: Actif récemment
-  recently_created: Récemment créé
+  recently_active: Actifs récemment
+  recently_created: Créé récemment
   recently_finished: Récemment terminé
   recently_observed: Récemment observé
   recently_resolved: Récemment résolu
@@ -3326,7 +3323,7 @@ fr:
   repair_broken_urls: Réparer les URL cassées
   repair_doesnt_work_for_that_kind_of_photo: La réparation ne fonctionne pas pour ce type de photo
   repair_external_photos: Réparer les photos externes
-  replace_boundary_with_kml: Remplacer la frontière par format KML
+  replace_boundary_with_kml: Remplacer la limite géographique par celle du fichier KML
   replace_parentesis: (remplacez)
   reply: Répondre
   reptiles: reptiles
@@ -3406,6 +3403,7 @@ fr:
   scientific_name: Nom scientifique
   search: Rechercher
   search_all_fields: chercher tous les champs
+  search_by_name: Recherche par nom
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
   search_by_taxon_name_or_observation_id: Recherche par nom de taxon ou ID d'observation
   search_by_taxon_name_or_flickr_photo_id: Recherche par nom de taxon ou d'identité photo Flickr
@@ -3518,6 +3516,8 @@ fr:
   site_stats: Statistiques du site
   site_taxon_page: "Page de taxon d’%{site_name}"
   some_agree: quelques personnes sont d’accord
+  some_observations_are_missing_media_or_identifications: |
+    Certaines observations n'ont pas de photo ou d'identification
   some_observations_failed_to_be_added: Certaines observations n’ont pas pu être ajoutées aux projets
   some_observations_failed_to_save: Certaines observations n’ont pas pu être sauvegardées
   some_of_those_photos_couldnt_be_saved: "Certaines de ces photos n’ont pas pu être enregistrées : %{error}"
@@ -3642,12 +3642,12 @@ fr:
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
   subject_affecting_stuff_html: "%{subject} touchant %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} a validé @vow_or_con{vow:un} %{thing} concernant %{stuff}"
-  submission_model: Modèle de soumission
+  submission_model: Modèle d'enregistrement
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit_observations:
     one: Soumettre 1 observation
     other: Soumettre %{count} observations
-  submitted: Soumis
+  submitted: Enregistré
   subscribe_to_a_taxon: S’abonner à un taxon
   subscribe_to_a_place: S’abonner à un lieu
   subscribe_to_comments_on_this_flag_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce signalement"
@@ -3689,7 +3689,7 @@ fr:
   task_deleted: Tâche supprimée
   taxa: Taxons
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
-  taxa_info: Informations des taxons
+  taxa_info: Informations sur les taxons
   taxa_needing_curation: Taxons nécessitant une organisation
   taxa_observed: taxons observés
   taxa_to_include: Taxons à inclure
@@ -3855,7 +3855,7 @@ fr:
     son taxon dans un endroit, l'Identotron montrera un avis.
   the_name_of_the_taxon_including_space: Le nom du taxon, y compris le champ pour l’espèce et la sous-espèce.
   the_observation_was_already_added_to_that_project: L’observation a déjà été ajoutée à ce projet.
-  the_people_of_inat: "Les gens d’%{site_name}"
+  the_people_of_inat: "Les utilisateurs d’%{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Les espèces de la liste ci-dessous n'ont pas été trouvées dans la base de données  d’%{site_name}.
   the_title_of_the_wikipedia_article_we_use: |
@@ -3896,7 +3896,7 @@ fr:
     Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur 'Suspendez l’utilisateur' en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un drapeau doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
   these_are_taxa_that: |
     Voici les taxons que %{site} ne peut pas ajouter de façon automatique à notre arbre taxinomique pour une raison donnée. Vous pouvez les ajouter à l’arbre en modifiant le taxon et en choisissant un enregistrement parent. Par exemple, le parent de ''Homo sapiens'' serait le genre ''Homo''. Vous pouvez aussi vouloir vérifier s’il y a des taxons synonymes et les fusionner.
-  these_folks_kindly_volunteer_to: Ces gens se sont aimablement portés volontaires pour maintenir notre taxinomie et gérer les autres problèmes.
+  these_folks_kindly_volunteer_to: Ces utilisateurs ont eu la gentillesse de se porter volontaires pour maintenir notre taxinomie et gérer les problèmes courants.
   these_observations_have_not_been_uploaded_yet: |
     Ces observations n’ont pas encore été téléversées.
   they_already_have_iNat_accounts: "… ils ont déjà des comptes sur %{site_name}"
@@ -4070,12 +4070,12 @@ fr:
       add: Ajouter les observations
       combine: Combiner les observations sélectionnées
       duplicate: Dupliquer les observations sélectionnées
-      photo_failed: Échec du téléversement de la photo
+      photo_failed: Échec de l'upload de la photo
       remove: Supprimer les observations sélectionnées
       remove_observation: Supprimer l’observation
       remove_photo: Supprimer la photo
       select_all: Sélectionner toutes les observations
-      upload_failed: Échec du téléversement
+      upload_failed: Échec de l'upload
   uploading_num_of_count_photos:
     one: Téléversement d’une photo…
     other: Téléversement de %{num} sur %{count} photos…
@@ -4370,7 +4370,7 @@ fr:
   yes_i_want_to_join: Oui, je veux me joindre
   yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
-  yes_reject_it: Oui, refusez le
+  yes_reject_it: Oui, le refuser
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
   you: vous
@@ -4400,8 +4400,6 @@ fr:
   you_are_setting_this_project_to_aggregate: |
     Vous paramétrez ce projet pour agréger toutes les observations correspondant aux
     règles suivantes : %{rules} Voulez-vous continuer ?
-  you_are_submitting_obs_without_photos_and_names: |
-    Vous soumettez des observations sans photos ni noms de taxon. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Vous soumettez des observations sans date ou lieu. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_subscribed_to_comments_on_this_flag: Vous êtes abonné aux commentaires sur ce signalement.
@@ -4416,7 +4414,7 @@ fr:
     administrateur, mais il ne devrait pas être nécessaire de le faire.
   you_can_only_destroy_taxa_you_created: "Vous ne pouvez détruire que les taxons que vous avez créés, et vous ne pouvez pas détruire des taxons qui sont utilisés dans des modifications de taxon."
   you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
-  you_can_show_the_boundary_of: Vous pouvez afficher la frontière du lieu sur votre page de projet s’il en a une.
+  you_can_show_the_boundary_of: Vous pouvez afficher les limites géographiques du lieu sur votre page de projet s’il en a une.
   you_can_sign_free_at: "Vous pouvez demander un compte gratuit sur %{site_name} à"
   you_cant_compare_a_list_with_nothing: Vous ne pouvez pas comparer une liste avec rien!
   you_cant_delete_a_project_list: "Vous ne pouvez pas supprimer une liste de projet"
@@ -4641,8 +4639,8 @@ fr:
           collez l’URL de cette collection ici.
         guide_place_desc: |
           En liant votre guide à un lieu, vous permettrez aux gens de le trouver en
-          cherchant des lieux et permettra aussi d’afficher les frontières du lieu sur
-          les cartes d’%{site_name} où ils sont affichés si une frontière a été établie
+          cherchant des lieux et permettra aussi d’afficher les limites géographiques du lieu sur
+          les cartes d’%{site_name} où ils sont affichés si une limite a été définie
           (par ex. vue « carte », pages de taxon, etc.)
         import_tags_from_csv_help_html: |
           <p>
@@ -5362,13 +5360,13 @@ fr:
           viole les droits d’auteur.
     places:
       kml_field_desc: |
-        KML de la frontière du lieu. Vous pouvez en faire un en utilisant Google Maps, Google
+        KML de la frontière du lieu. Vous pouvez en créer un en utilisant Google Maps, Google
         Earth ou la plupart des applications du SIG. Doit contenir au moins un polygone et être
         inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une zone plus petite que
         l’état du Texas.
       edit:
         complex_boundary_note_html: |
-          Cette frontière est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
+          Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
           <a href="%{url}">télécharger le KML</a>, le modifier dans l’application SIG de votre choix et
           uploader directement votre KML modifié.
         admin_level_desc: |
@@ -5376,8 +5374,8 @@ fr:
           d’équivalents aux É.-U., 0 = pays, 1 = état, 2 = comté, 3 = ville
       new:
         check_list_note: "Remarque : les listes de contrôle seront désactivées automatiquement pour les lieux très vastes."
-        coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé une frontière ou téléversé un KML.
-        map_instruction: Utilisez l’outil polygone pour tracer la frontière du lieu.
+        coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou uploadé un KML.
+        map_instruction: Utilisez l’outil polygone pour tracer la limite géographique du lieu.
     posts:
       formatting_none_help: "Aucun HTML inséré, utilise uniquement les balises que vous saisissez."
       formatting_simple_help: "Lier automatiquement les Url et insérer des sauts de lignes."
@@ -6427,7 +6425,7 @@ fr:
           pour aider les scientifiques à trouver et utiliser vos données. Tout ce que vous avez à faire c'est
           d’observer.
         nature_at_your_fingertips: La nature au bout de vos doigts
-        keep_track: Garder la trace
+        keep_track: Suivi des observations
         record_your_encounters: |
           Enregistrer vos rencontres avec d’autres organismes et maintenez des listes de vie, tout cela dans le cloud.
         create_useful_data: Créer des données utiles
@@ -6464,7 +6462,7 @@ fr:
       - Fév
       - Mar
       - Avr
-      - Mai
+      - mai
       - Jun
       - Jui
       - Aoû
@@ -6505,18 +6503,18 @@ fr:
       month_day_year: '%B %d, %Y'
     month_names:
       - 
-      - Janvier
-      - Février
-      - Mars
-      - Avril
-      - Mai
-      - Juin
-      - Juillet
-      - Août
-      - Septembre
-      - Octobre
-      - Novembre
-      - Décembre
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
   datetime:
     distance_in_words:
       about_x_hours:
@@ -6813,8 +6811,8 @@ fr:
         map_type: Type de carte
         zoom_level: Niveau de zoom
         preferred_membership_model: Modèle d’adhésion préféré
-        preferred_submission_model: Modèle de soumission préféré
-        prefers_place_boundary_visible: Afficher les limites du lieu sur la carte
+        preferred_submission_model: Modèle d'enregistrement préféré
+        prefers_place_boundary_visible: Afficher les limites géographiques du lieu sur la carte
         tracking_codes: Codes de suivi
         source_url: URL source
         start_time: Heure de début

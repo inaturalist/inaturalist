@@ -387,12 +387,6 @@ nl:
     form: Alle vormen aan de database toegevoegd
   all_rights_reserved: alle rechten voorbehouden
   all_taxa:
-    rank:
-      kingdom: Rijk
-      class: Klasse
-      phylum: Stam
-      species: Soort
-      order: Orde
     amphibians: Amfibieën
     animals: Dieren
     arachnids: Spinachtigen
@@ -1060,6 +1054,7 @@ nl:
   date_updated: Laatst Bijgewerkt
   day: Dag
   decrease_brightness: Helderheid verminderen
+  #Default option
   default: standaard
   default_invite_comment: "Mooie foto! Post ze op %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standaard waarnemingslicentie
@@ -4403,8 +4398,6 @@ nl:
   you_are_no_longer_following_x: "Je volgt niet langer %{friend}"
   you_are_setting_this_project_to_aggregate: |
     Je stelt dit project in om alle waarnemingen te verzamelen die voldoen aan de volgende regels: %{rules} Wil je doorgaan?
-  you_are_submitting_obs_without_photos_and_names: |
-    Je bent waarnemingen zonder foto's en taxonnamen aan het verzenden. Waarnemingen zonder deze informatie zijn niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_submitting_obs_with_no_date_or_no_location: |
     U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_subscribed_to_comments_on_this_flag: Je bent geabonneerd op reacties op deze melding.

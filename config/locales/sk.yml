@@ -201,12 +201,6 @@ sk:
     form: Všetky formy pridané do databázy
   all_rights_reserved: všetky práva vyhradené
   all_taxa:
-    rank:
-      kingdom: Ríša
-      class: Trieda
-      phylum: Kmeň
-      species: Druh
-      order: Rad
     amphibians: Obojživelníci
     animals: Zvieratá
     arachnids: Pavúkovce
@@ -723,6 +717,7 @@ sk:
   date_updated: Dátum aktualizovaný
   day: Deň
   decrease_brightness: Znížiť jas
+  #Default option
   default: štandardne
   default_invite_comment: "Super fotka! Mali by ste ju zverejniť na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Štandardná licencia pozorovania

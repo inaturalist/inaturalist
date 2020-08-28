@@ -477,12 +477,6 @@ cs:
     form: Všechny formy přidány do databáze
   all_rights_reserved: Všechna práva vyhrazena
   all_taxa:
-    rank:
-      kingdom: Říše
-      class: Třída
-      phylum: Kmen
-      species: Druh
-      order: Řád
     amphibians: Obojživelníci
     animals: Zvířata
     arachnids: Pavoukovci
@@ -1173,7 +1167,10 @@ cs:
   date_updated: Datum aktualizováno
   day: Den
   decrease_brightness: Snížit jas
+  #Default option
   default: výchozí
+  #Default option
+  default_: Výchozí
   default_invite_comment: "Super fotka! Měli byste ji zveřejnit na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Výchozí licence pozorování
   default_photo_license: Výchozí fotografická licence
@@ -4545,9 +4542,6 @@ cs:
   you_are_no_longer_following_x: "Už nesledujete %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Nastavujete tento projekt tak, aby seskupil všechna pozorování, která splňují následující pravidla: %{rules} Chcete pokračovat?
-  you_are_submitting_obs_without_photos_and_names: |
-    Nahráváte pozorování bez fotografií a názvů taxonů.
-    U takových pozorování bude velmi těžké je přesně identifikovat.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Nahráváte pozorování bez lokací a datumů.
   you_are_subscribed_to_comments_on_this_flag: Jste přihlášeni k odběru komentářů k tomuto listu.

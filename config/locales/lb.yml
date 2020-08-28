@@ -208,12 +208,6 @@ lb:
     hybrid: All Hybriden an d'Datebank derbäigesat
     subspecies: Eng Ënneraart an d'Datebank bäigesat
   all_taxa:
-    rank:
-      kingdom: Kinnekräich
-      class: Klass
-      phylum: Stamm
-      species: Aarten
-      order: Ordnung
     amphibians: Amphibien
     animals: Déieren
     arachnids: Spannendéieren
@@ -517,6 +511,7 @@ lb:
   date_to_date: "%{d1} - %{d2}"
   date_updated: Datum aktualiséiert
   day: Dag
+  #Default option
   default: Standard
   default_invite_comment: "Schéi Foto! Dir misst déi op %{site_name} publizéieren: {{INVITE_LINK}}"
   definitions: Definitiounen
@@ -886,6 +881,9 @@ lb:
       observations: Observatiounen
       range: Beräich
   mark_as_reviewed: Als nogekuckt markéieren
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Eng Observatioun als iwwerpréift  markéieren heescht datt Dir se net méi per Defaut beim Identifizéiere gesitt. Si wäert nach ëmmer fir aner Persoune siichtbar an identifizéierbar sinn.
   mark_all_as_reviewed: All als nogekuckt markéieren
   media: Medien
   media_type: Medientyp
@@ -1301,6 +1299,9 @@ lb:
   random: Zoufall
   range: Beräich
   rank_position: Klassement
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: Kinnekräich
     subclass: Ënnerklass
@@ -1369,6 +1370,7 @@ lb:
   saved: Gespäichert
   saving: "Späicheren..."
   search: Sichen
+  search_by_name: No engem Numm sichen
   search_observations: "Observatioune sichen"
   search_projects: Projeten duerchsichen
   search_species_: Aart sichen...

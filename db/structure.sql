@@ -3654,19 +3654,6 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
--- Name: site_admins; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.site_admins (
-    id integer NOT NULL,
-    user_id integer,
-    site_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3694,6 +3681,19 @@ CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
 --
 
 ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
+-- Name: site_admins; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.site_admins (
+    id integer NOT NULL,
+    user_id integer,
+    site_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -4428,7 +4428,8 @@ CREATE TABLE public.taxon_names (
     name_provider character varying(255),
     creator_id integer,
     updater_id integer,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    parameterized_lexicon character varying
 );
 
 
@@ -10246,4 +10247,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
+
+INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 

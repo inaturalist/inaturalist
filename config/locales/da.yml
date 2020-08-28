@@ -373,12 +373,6 @@ da:
     form: Alle former tilføjet databasen
   all_rights_reserved: alle rettigheder forbeholdes
   all_taxa:
-    rank:
-      kingdom: Rige
-      class: Klasse
-      phylum: Række
-      species: Arter
-      order: Orden
     amphibians: Padder
     animals: Dyr
     arachnids: Spindlere
@@ -1049,7 +1043,10 @@ da:
   date_updated: Opdateringsdato
   day: Dag
   decrease_brightness: Mindsk lysstyrke
+  #Default option
   default: standard
+  #Default option
+  default_: Standard
   default_invite_comment: "Godt billede! Du bør sende det til %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standard observations licens
   default_photo_license: Standard foto licens
@@ -3204,6 +3201,9 @@ da:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
@@ -3520,6 +3520,11 @@ da:
   site_stats: Side statistik
   site_taxon_page: "%{site_name} takson side"
   some_agree: nogle er enige
+  some_observations_are_missing_media_or_identifications: |
+    Nogle observationer mangler medier eller identifikationer
+  some_observations_are_missing_media_or_identifications_desc: |
+    Observationer uden medier vil som standard ikke være synlige i søgninger, og dem uden identifikation må ikke ses af eksperter på udkig efter
+    specifikke taksa. Selv en meget grov identifikation såsom "planter" kan hjælpe en planteekspert med at finde din observation.
   some_observations_failed_to_be_added: Nogle observationer kunne ikke tilføjes til projekter
   some_observations_failed_to_save: Nogle observationer kunne ikke gemmes
   some_of_those_photos_couldnt_be_saved: "Nogle af disse fotos kunne ikke gemmes:%{error}"
@@ -4412,9 +4417,6 @@ da:
   you_are_setting_this_project_to_aggregate: |
     Du indstiller dette projekt til at samle alle observationer, der matcher
     følgende regler: %{rules} Vil du fortsætte?
-  you_are_submitting_obs_without_photos_and_names: |
-    Du indsender observationer uden fotos og taksonnavne.
-    Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Du indsender observationer uden dato eller sted.
     Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
@@ -6856,6 +6858,10 @@ da:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke indeholde kommaer eller skråstreger
+              should_match_english_translation: |
+                skal være på engelsk, men pt. matcher det %{suggested_locale}-oversættelsen af "%{suggested}".
+                Benyt "%{suggested}", hvis det er, hvad du mente, og det vil blive oversat, når du ser webstedet på
+                dét sprog.
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det videnskabelige navn på en art i dette leksikon

@@ -280,12 +280,6 @@ pt:
     form: Todas as formas foram adicionadas à base de dados
   all_rights_reserved: Todos os direitos reservados.
   all_taxa:
-    rank:
-      kingdom: Reino
-      class: Classe
-      phylum: Filo
-      species: Espécie
-      order: Ordem
     amphibians: Anfíbios
     animals: Animais
     arachnids: Aracnídeos
@@ -851,6 +845,7 @@ pt:
   date_time: Data/Hora
   day: Dia
   decrease_brightness: Reduzir a Luminosidade
+  #Default option
   default: predefinido(/a)
   default_invite_comment: "Que foto espetacular! Você devia publicá-la em %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licença padrão para suas observações

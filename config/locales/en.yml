@@ -1211,6 +1211,13 @@ en:
         subject: 'Confirmation instructions'
       reset_password_instructions:
         subject: 'Reset password instructions'
+  devise_reset_password_instructions_hello_email: Hello %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Someone has requested a link to change your password. You can do this through the link below.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    If you didn't request this, please ignore this email.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Your password won't change until you access the link above and create a new one.
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
@@ -3672,6 +3679,13 @@ en:
   site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
   some_agree: some agree
+  some_observations_are_missing_media_or_identifications: |
+    Some observations are missing media or identifications
+  some_observations_are_missing_media_or_identifications_desc: |
+    Observations without media will not be visible by default in searches, and
+    those without any identification may not be seen by experts looking for
+    specific taxa. Even a very coarse identification like "plants" can help a
+    plant expert find your observation.
   some_observations_failed_to_be_added: Some observations failed to be added to projects
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
@@ -3807,6 +3821,11 @@ en:
   subscribe_to_a_place: Subscribe to a Place
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Subscribe%{tag_end} to comments on this flag"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Subscribe%{tag_end} to comments on this post"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon stage"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon swap"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon merge"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon split"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon drop"
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
   subscribe_to_places_to: |
@@ -4605,16 +4624,17 @@ en:
   you_are_setting_this_project_to_aggregate: |
     You are setting this project to aggregate all observations matching the
     following rules: %{rules} Do you want to proceed?
-  you_are_submitting_obs_without_photos_and_names: |
-    You are submitting observations without photos and taxon names. Observations
-    without this information are often impossible to identify and will not be
-    visible by default in observation searches.
   you_are_submitting_obs_with_no_date_or_no_location: |
     You are submitting observations without dates or locations. Observations
     without this information are often impossible to identify and will not be
     visible by default in observation searches.
   you_are_subscribed_to_comments_on_this_flag: You are subscribed to comments on this flag.
   you_are_subscribed_to_comments_on_this_post: You are subscribed to comments on this post.
+  you_are_subscribed_to_comments_on_this_taxon_stage: You are subscribed to comments on this taxon stage
+  you_are_subscribed_to_comments_on_this_taxon_swap: You are subscribed to comments on this taxon swap
+  you_are_subscribed_to_comments_on_this_taxon_merge: You are subscribed to comments on this taxon merge
+  you_are_subscribed_to_comments_on_this_taxon_split: You are subscribed to comments on this taxon split
+  you_are_subscribed_to_comments_on_this_taxon_drop: You are subscribed to comments on this taxon drop
   you_are_subscribed_to_observations_from_this_place: You are subscribed to comments from this place.
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."
@@ -7422,7 +7442,13 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+              should_match_english_translation: |
+                should be in English, but currently it matches the %{suggested_locale} translation of "%{suggested}".
+                Use "%{suggested}" if that is what you meant and it will be translated when you view the site in
+                that language.
+              should_be_in_english: should be in English
             name:
+              already_exists: already exists for this taxon in this lexicon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
               must_match_the_taxon_if_valid: |

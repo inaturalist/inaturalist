@@ -375,12 +375,6 @@ de:
     form: Alle Formen zur Datenbank hinzugefügt
   all_rights_reserved: Alle Rechte vorbehalten
   all_taxa:
-    rank:
-      kingdom: Reich
-      class: Klasse
-      phylum: Stamm
-      species: Art
-      order: Ordnung
     amphibians: Amphibien
     animals: Tiere
     arachnids: Spinnentiere
@@ -1037,7 +1031,10 @@ de:
   date_updated: Aktualisierungsdatum
   day: Tag
   decrease_brightness: Helligkeit reduzieren
+  #Default option
   default: Standard
+  #Default option
+  default_: Standard
   default_invite_comment: "Super Foto! Du solltest es hier posten: %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
@@ -3134,6 +3131,9 @@ de:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeschränkungen
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: eingeordnet als
     kingdom: Reich
@@ -3230,7 +3230,7 @@ de:
   remove: Entfernen
   remove_all_tags: Alle Stichwörter entfernen
   remove_comma_separated_tags: "Komma-getrennte Stichwörter entfernen"
-  remove_conservation_status: Konservierungsstatus entfernen
+  remove_conservation_status: Schutzkategorie entfernen
   remove_from: Entfernen aus
   remove_curator: Kurator entfernen
   remove_curator_status: Kuratorstatus entfernen
@@ -3450,6 +3450,8 @@ de:
   site_stats: Seitenstatistik
   site_taxon_page: "%{site_name} Taxonseite"
   some_agree: einige stimmen zu
+  some_observations_are_missing_media_or_identifications: |
+    Bei einigen Beobachtungen fehlt die Bestimmung oder Fotos/Audios.
   some_observations_failed_to_be_added: Das Hinzufügen einiger Beobachtungen zum Projekt ist fehlgeschlagen
   some_observations_failed_to_save: Einige Beobachtungen konnten nicht gespeichert werden.
   some_of_those_photos_couldnt_be_saved: "Einige dieser Bilder konnten nicht gespeichert werden: %{error}"
@@ -4287,8 +4289,6 @@ de:
   you_are_setting_this_project_to_aggregate: |
     Du stellst dieses Projekt so ein, dass alle Beobachtungen, die den folgenden Regeln entsprechen, zusammengeführt werden: %{rules}
     Wollen Sie fortfahren?
-  you_are_submitting_obs_without_photos_and_names: |
-    Du willst Beobachtungen ohne Fotos und Taxonnamen hinzufügen. Beobachtungen ohne diese Informationen sind oft unmöglich zu identifizieren und werden bei Suchanfragen standardmäßig nicht angezeigt.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Du willst Beobachtungen ohne Datum oder Koordinaten hinzufügen. Beobachtungen
     ohne diese Informationen sind oft unmöglich zu identifizieren und sind

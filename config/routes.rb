@@ -373,7 +373,7 @@ Rails.application.routes.draw do
   post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  resources :comments do
+  resources :comments, constraints: { id: id_param_pattern } do
     resources :flags
   end
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
@@ -630,7 +630,7 @@ Rails.application.routes.draw do
       post :score
     end
   end
-  resources :user_parents, only: [:index, :new, :create] do
+  resources :user_parents, only: [:index, :new, :create, :destroy] do
     member do
       get :confirm
     end

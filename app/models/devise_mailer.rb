@@ -4,6 +4,7 @@ class DeviseMailer < Devise::Mailer
   include Shared::MailerModule
   
   def devise_mail( record, action, opts={ } )
+    set_x_smtpapi_headers_for_action( action )
     user = if record.is_a?( User )
       record
     elsif record.respond_to?( :user )
@@ -32,6 +33,34 @@ class DeviseMailer < Devise::Mailer
     else
       super( record, action, opts )
     end
+  end
+
+  private
+  def set_x_smtpapi_headers_for_action( action )
+    asm_group_id = nil
+    if CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids
+      asm_group_id = if action.to_s == "confirmation_instructions"
+        # Treat the initial welcome email as a default "transactional" email
+        # like the daily updates so that when people click the unsubscribe link,
+        # they don't unsubscribe from password reset emails
+        CONFIG.sendgrid.asm_group_ids.default
+      else
+        # The "account" unsubscribe group should apply to all other devise
+        # emails, like password resets
+        CONFIG.sendgrid.asm_group_ids.account
+      end
+    end
+    @x_smtpapi_headers = {
+      # This is an identifier specifying the Sendgrid Unsubscribe Group this
+      # email belongs to. This assumes we're using one for all email sent from
+      # the webapp
+      asm_group_id: asm_group_id,
+      # We're having Sendgrid perform this substitution because ERB freaks out
+      # when you put tags like this in a template
+      sub: {
+        "{{asm_group_unsubscribe_raw_url}}" => ['<%asm_group_unsubscribe_raw_url%>'.html_safe]
+      }
+    }
   end
 
 end
