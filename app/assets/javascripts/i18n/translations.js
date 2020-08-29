@@ -88,13 +88,6 @@ I18n.translations["ar"] = {
   },
   "all_rights_reserved": "جميع الحقوق محفوظة",
   "all_taxa": {
-    "rank": {
-      "kingdom": "مملكة",
-      "class": "صف",
-      "phylum": "شعبة",
-      "species": "نوع",
-      "order": "رتبة"
-    },
     "amphibians": "برمائيات",
     "animals": "حيوانات",
     "arachnids": "عناكب",
@@ -1789,7 +1782,6 @@ I18n.translations["ar"] = {
   "you_are_not_editing_any_guides_add_one_html": "أنت لا تقوم بتحرير أي أدلة، <a href=\"/guides/new\">إضافة واحد</a>\n",
   "you_are_setting_this_project_to_aggregate": "أنت بصدد إعداد هذا المشروع لتجميع كل الملاحظات التي تطابق \nالقواعد التالية:%{rules} هل تريد المتابعة؟\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "أنت تقدم ملاحظات بدون تواريخ أو مواقع، غالبا \nما يتعذر تحديد الملاحظات بدون هذه المعلومات ولن تكون \nمرئية افتراضيا في عمليات البحث عن الملاحظات.\n",
-  "you_are_submitting_obs_without_photos_and_names": "أنت تقدم ملاحظات بدون صور وأسماء الفئات، غالبا \nما يتعذر تحديد الملاحظات بدون هذه المعلومات ولن تكون \nمرئية افتراضيا في عمليات البحث عن الملاحظات.\n",
   "you_curate_a_project_that_contains_this_observation": "أنت تشرف على مشروع يحتوي على هذه الملاحظة",
   "you_curate_a_project_that_contains_this_observation_desc": "يمكنك مشاهدة إحداثيات غامضة عند تنظيم مشروع يحتوي على \nملاحظة وقد اختار المراقب مشاركة إحداثيات مع القيمين \nعلى هذا المشروع.\n",
   "you_faved_this": "أنت فضلت هذا!",
@@ -1904,13 +1896,6 @@ I18n.translations["bg"] = {
   },
   "all_rights_reserved": "всички права запазени",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Царство",
-      "class": "Клас",
-      "phylum": "Тип",
-      "species": "Вид",
-      "order": "Разред"
-    },
     "amphibians": "Земноводни",
     "animals": "Животни",
     "arachnids": "Паякообразни",
@@ -3639,13 +3624,6 @@ I18n.translations["br"] = {
   },
   "all_rights_reserved": "Pep gwir miret strizh",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Rouantelezh",
-      "class": "Rummad",
-      "phylum": "Skourrad",
-      "species": "Spesadoù",
-      "order": "Urzh"
-    },
     "amphibians": "Divelfenneged",
     "animals": "Loened",
     "arachnids": "Araknid",
@@ -4185,15 +4163,20 @@ I18n.translations["ca"] = {
   },
   "activity": "Activitat",
   "add": "Afegiu",
+  "add_a_bulleted_list": "Afegir una llista amb punts",
   "add_a_comment": "Afegiu un comentari",
   "add_a_field": "Afegiu un camp",
+  "add_a_link": "Afegeix un enllaç",
   "add_a_name": "Afegiu un nom",
+  "add_a_numbered_list": "Afegeix una llista numerada",
   "add_alive_or_dead_alive_annotation": "Afegir anotació \"Viu o Mort: Viu\"",
   "add_alive_or_dead_dead_annotation": "Afegir anotació \"Viu o Mort: Mort\"",
   "add_an_identification": "Afegiu una identificació",
   "add_annotations_for_x": "Afegiu observacions de \"%{x}\"",
+  "add_bold_text": "Afegir text en negreta",
   "add_edit_flags": "Afegir/Editar etiquetes",
   "add_id": "Afegiu ID",
+  "add_italic_text": "Afegeix text en cursiva",
   "add_life_stage_adult_annotation": "Afegiu nota \"Estat del Cicle biològic: Adult\"",
   "add_life_stage_egg_annotation": "Afegiu nota \"Estat del Cicle biològic: Ou\"",
   "add_life_stage_larva_annotation": "Afegiu nota \"Estat del Cicle biològic: Larva\"",
@@ -4256,13 +4239,6 @@ I18n.translations["ca"] = {
   },
   "all_rights_reserved": "tots els drets reservats",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Regne",
-      "class": "Classe",
-      "phylum": "Fílum",
-      "species": "Espècie",
-      "order": "Ordre"
-    },
     "amphibians": "Amfibis",
     "animals": "Animals",
     "arachnids": "Aràcnids: Aranyes, alacrans i altres",
@@ -4368,6 +4344,7 @@ I18n.translations["ca"] = {
   "blue": "blau",
   "blue_butterfly_etc": "blau, papallona, etc.",
   "bold_label_colon_value_html": "<strong>%{label}</strong>%{value}",
+  "bold_text": "text en negreta",
   "bounding_box": "Contenidor",
   "brown": "marró",
   "browse": "Navega",
@@ -4626,6 +4603,7 @@ I18n.translations["ca"] = {
   },
   "decrease_brightness": "Reduïu brillantor",
   "default": "Predeterminada",
+  "default_": "Per defecte",
   "delete": "Elimina",
   "deleting": "Esborrant...",
   "deleting_verb": "Eliminant",
@@ -4884,12 +4862,14 @@ I18n.translations["ca"] = {
   "input_taxon": "Introduir tàxon",
   "insect_life_stage": "Etapa vital de l'insecte",
   "insects": "Insectes",
+  "insert_a_quote": "Insereix una cita",
   "interactions": "Interaccions",
   "introduced": "Introduïda",
   "introduced_in_place": "Introduït a %{place}",
   "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Aquesta evidència és suficient per confirmar que és %{taxon}?",
   "it_can_now_be_used_for_research": "Ara pot ser utilitzat per a recerca i mostrat en altres pàgines web",
+  "italic_text": "text en cursiva",
   "item_flagged_notice_html": "Això ha estat marcat com spam i ja no és visible pel públic. El podeu veure perquè en sou el creador, o sou un\nsupervisor del lloc. Si penseu que això és una errada, si us plau\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacteu amb nosaltres</a>.\n<a href=\"%{manage_flags_path}\">Gestioneu etiquetes</a>\n",
   "join": "Uniu-vos a",
   "join_project": "Uniu-vos a aquest projecte",
@@ -4966,6 +4946,7 @@ I18n.translations["ca"] = {
   "life": "Vida",
   "life_list": "Llista de vida de %{user}",
   "linear_scale_label": "Lineal",
+  "linked_text": "text enllaçat",
   "list": "Llista",
   "list_tooltip": "Mostrar la vista de llista",
   "lists": "Llistes",
@@ -5022,8 +5003,11 @@ I18n.translations["ca"] = {
   "location_is_public": "La ubicació és pública",
   "location_private": "Ubicació Privada",
   "location_specified": "Ubicació especificada",
+  "location_unknown": "No hi ha ubicació",
   "lock_zoom_level": "Bloquejar el nivell de zoom",
   "log_in": "Inicieu sessió",
+  "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Inicieu sessió</a> o <a href=\"/signup\">Registreu-vos</a> per afegir comentaris.\n",
+  "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Inicieu sessió</a> o <a href=\"/signup\">Registreu-vos</a> per afegir identificacions.\n",
   "log_scale_label": "Registre",
   "long": "Longitud",
   "longitude": "Longitud",
@@ -5055,6 +5039,7 @@ I18n.translations["ca"] = {
   "mark_all_as_reviewed": "Marca-ho tot com a revisat",
   "mark_all_as_unreviewed": "Marqueu-ho tot com a No revisat",
   "mark_as_reviewed": "Marqueu-ho com a revisat",
+  "mark_as_reviewed_desc": "Marcant una observació com a revisada significa que la tornareu a veure per defecte a Identificar. Seguirà sent visible per altres persones a Identificació.\n",
   "maverick": "Disident",
   "media": "Multimèdia",
   "media_type": "Tipus de fitxer multimèdia",
@@ -5062,6 +5047,7 @@ I18n.translations["ca"] = {
   "messages": "Missatges",
   "misidentifications": "Identificacions incorrectes",
   "misleading_or_illegal_content_html": "Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de \"inapropiat\" consulteu el\n<a href=\"/help#inappropriate\">FAQ</a>.\n",
+  "missing_date": "No hi ha data",
   "mobile": "Mòbil",
   "mollusks": "mol·luscs",
   "momentjs": {
@@ -5192,6 +5178,7 @@ I18n.translations["ca"] = {
   "observations_": "observacion",
   "observations_annotated_with_annotation": "Observacions anotades amb %{annotation}",
   "observations_by_category": "Observacions Per categoria",
+  "observations_can_only_have_n_photos": "Les observacions no poden tenir més de %{limit} fotos",
   "observations_in_this_project_must": "Les observacions d'aquest projecte han de seguir els criteris següents",
   "observations_map": "Observacions/mapa",
   "observations_of_relatives": "Observacions de relacionats",
@@ -5689,6 +5676,7 @@ I18n.translations["ca"] = {
   "random": "A l’atzar",
   "rank": "Rang",
   "rank_position": "Classificació",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "stateofmatter": "Estat de l'assumpte",
     "kingdom": "Regne",
@@ -5814,6 +5802,8 @@ I18n.translations["ca"] = {
   "similar_taxa": "Tàxon semblant",
   "site_admin_tools": "Eines d'administració del lloc",
   "skip_to_next_page": "Aneu a la pàgina següent",
+  "some_observations_are_missing_media_or_identifications": "Algunes observacions no tenen contingut multimèdia o identificacions\n",
+  "some_observations_are_missing_media_or_identifications_desc": "Les observacions sense contingut multimèdia no seran visibles de forma predeterminada a les cerques, i les que no tenen cap identificació no poden ser vistes pels experts que cerquen tàxons específics. Fins i tot una identificació tan poc concreta com \"plantes\" pot ajudar als experts en plantes a trobar la vostra observació.\n",
   "some_observations_failed_to_be_added": "Algunes observacions no s'han pogut afegir als projectes",
   "some_observations_failed_to_save": "Algunes observacions no s'han pogut desar",
   "some_other_reason": "Una altra raó que podeu explicar després.",
@@ -5888,6 +5878,9 @@ I18n.translations["ca"] = {
   "tell_us_why": "Dieu-nos per què...",
   "terms": "Termes",
   "terrain": "terreny",
+  "text_block_controls": "Eines de control de blocs de text",
+  "text_editing_controls": "Eines de control d'edició de text",
+  "text_formatting_controls": "Eines de control de formatat de text",
   "that_was_the_last_observation_matching_the_current_filters": "Aquesta ha estat la darrera observació que coincideix amb  els filtres actuals.",
   "the_below_items_are_needed_to_achieve": "Els elements de sota són necessaris per aconseguir el <span classname=\"bold\">Grau de Recerca</span>:\n",
   "the_community_id_requires_at_least_two_identifications": "La ID de la Comunitat necessita un mínim de dues identificacions.",
@@ -6381,6 +6374,7 @@ I18n.translations["ca"] = {
   },
   "x_of_y": "%{x} de %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} de %{y} persones (per sobre de 2/3) estan d'acord amb això",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "1 altre",
     "other": "%{count} més"
@@ -6420,7 +6414,6 @@ I18n.translations["ca"] = {
   "you_are_not_editing_any_guides_add_one_html": "No esteu editant cap guia. <a href=\"/guides/new\">Afegiu una</a>\n",
   "you_are_setting_this_project_to_aggregate": "Esteu fent que aquest projecte incorpori totes les observacions que coincideixen amb les regles següents: %{rules}, voleu continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Esteu enviant observacions sense fotos ni un nom de tàxon.\nLes observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.\n",
   "you_curate_a_project_that_contains_this_observation": "Superviseu un projecte que conté aquesta observació",
   "you_curate_a_project_that_contains_this_observation_desc": "Podeu veure coordenades enfosquides si sou supervisor d'un projecte que conté una observació i el seu observador ha escollit compartir les coordenades amb els supervisors d'aquest projecte.\n",
   "you_faved_this": "Heu fet favorit això!",
@@ -6428,6 +6421,7 @@ I18n.translations["ca"] = {
   "you_must_select_at_least_one_taxon": "Heu de seleccionar al menys un tàxon",
   "you_retain_full_copyright": "Tal com indiquen les nostres condicions de servei, sou el titular de tots els drets d'autor pel que fa al vostre contingut, a part d'aquells drets concedits a %{site_name}.",
   "you_sure_delete_comment?": "Esteu segur que voleu esborrar el comentari?",
+  "you_sure_delete_identification?": "Esteu segur que voleu esborrar aquesta identificació?",
   "you_sure_delete_this_observation": "Esteu segur que voleu eliminar aquesta observació?",
   "your_browser_does_not_support_the_audio_element": "El vostre navegador no admet l'element d'àudio.",
   "your_default": "els vostres valors per defecte",
@@ -6541,13 +6535,6 @@ I18n.translations["cs"] = {
   },
   "all_rights_reserved": "Všechna práva vyhrazena",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Říše",
-      "class": "Třída",
-      "phylum": "Kmen",
-      "species": "Druh",
-      "order": "Řád"
-    },
     "amphibians": "Obojživelníci",
     "animals": "Zvířata",
     "arachnids": "Pavoukovci",
@@ -6950,6 +6937,7 @@ I18n.translations["cs"] = {
   },
   "decrease_brightness": "Snížit jas",
   "default": "výchozí",
+  "default_": "Výchozí",
   "delete": "Smazat",
   "deleting": "Odstraňování...",
   "deleting_verb": "Odstraňování",
@@ -8833,7 +8821,6 @@ I18n.translations["cs"] = {
   "you_are_not_editing_any_guides_add_one_html": "Neprovádíte editaci žádných průvodců. <a href=\"/guides/new\">Přidat</a>\n",
   "you_are_setting_this_project_to_aggregate": "Nastavujete tento projekt tak, aby seskupil všechna pozorování, která splňují následující pravidla: %{rules} Chcete pokračovat?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Nahráváte pozorování bez lokací a datumů.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Nahráváte pozorování bez fotografií a názvů taxonů.\nU takových pozorování bude velmi těžké je přesně identifikovat.\n",
   "you_curate_a_project_that_contains_this_observation": "Organizujete projekt, který obsahuje toto pozorování",
   "you_curate_a_project_that_contains_this_observation_desc": "Při organizování projektu můžete vidět skryté souřadnice\npozorování a pozorovatel se rozhodl sdílet souřadnice s kurátory projektu.\n",
   "you_faved_this": "Toto jste označili jako oblíbené!",
@@ -8955,13 +8942,6 @@ I18n.translations["da"] = {
   },
   "all_rights_reserved": "alle rettigheder forbeholdes",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Rige",
-      "class": "Klasse",
-      "phylum": "Række",
-      "species": "Arter",
-      "order": "Orden"
-    },
     "amphibians": "Padder",
     "animals": "Dyr",
     "arachnids": "Spindlere",
@@ -9326,6 +9306,7 @@ I18n.translations["da"] = {
   },
   "decrease_brightness": "Mindsk lysstyrke",
   "default": "standard",
+  "default_": "Standard",
   "delete": "Slet",
   "deleting": "Sletter...",
   "deleting_verb": "Sletter",
@@ -10398,6 +10379,7 @@ I18n.translations["da"] = {
   "random": "Tilfældig",
   "rank": "Rang",
   "rank_position": "Rang",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "stateofmatter": "Sagens kerne",
     "kingdom": "Rige",
@@ -10523,6 +10505,8 @@ I18n.translations["da"] = {
   "similar_taxa": "Lignende taksa",
   "site_admin_tools": "Side admin værktøjer",
   "skip_to_next_page": "Spring til næste side",
+  "some_observations_are_missing_media_or_identifications": "Nogle observationer mangler medier eller identifikationer\n",
+  "some_observations_are_missing_media_or_identifications_desc": "Observationer uden medier vil som standard ikke være synlige i søgninger, og dem uden identifikation må ikke ses af eksperter på udkig efter\nspecifikke taksa. Selv en meget grov identifikation såsom \"planter\" kan hjælpe en planteekspert med at finde din observation.\n",
   "some_observations_failed_to_be_added": "Nogle observationer kunne ikke tilføjes til projekter",
   "some_observations_failed_to_save": "Nogle observationer kunne ikke gemmes",
   "some_other_reason": "Andre grunde kan du forklare nedenfor.",
@@ -11133,7 +11117,6 @@ I18n.translations["da"] = {
   "you_are_not_editing_any_guides_add_one_html": "Du redigerer ikke nogen guider. <a href=\"/guides/new\">Add one</a>\n",
   "you_are_setting_this_project_to_aggregate": "Du indstiller dette projekt til at samle alle observationer, der matcher\nfølgende regler: %{rules} Vil du fortsætte?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Du indsender observationer uden dato eller sted.\nObservationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Du indsender observationer uden fotos og taksonnavne.\nObservationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.\n",
   "you_curate_a_project_that_contains_this_observation": "Du er kurator på et projekt, som indeholder denne observation",
   "you_curate_a_project_that_contains_this_observation_desc": "Du kan se slørede koordinater, når du er kurator på et projekt, der indeholder en observation, og observatøren har valgt at dele koordinaterne med projektkuratorer.\n",
   "you_faved_this": "Du gjorde denne til favorit!",
@@ -11255,13 +11238,6 @@ I18n.translations["de"] = {
   },
   "all_rights_reserved": "Alle Rechte vorbehalten",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reich",
-      "class": "Klasse",
-      "phylum": "Stamm",
-      "species": "Art",
-      "order": "Ordnung"
-    },
     "amphibians": "Amphibien",
     "animals": "Tiere",
     "arachnids": "Spinnentiere",
@@ -11626,6 +11602,7 @@ I18n.translations["de"] = {
   },
   "decrease_brightness": "Helligkeit reduzieren",
   "default": "Standard",
+  "default_": "Standard",
   "delete": "Löschen",
   "deleting": "Löschen…",
   "deleting_verb": "Löschen",
@@ -12685,6 +12662,7 @@ I18n.translations["de"] = {
   "random": "Zufällig",
   "rank": "Rang",
   "rank_position": "Rang",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "stateofmatter": "eingeordnet als",
     "kingdom": "Reich",
@@ -12810,6 +12788,7 @@ I18n.translations["de"] = {
   "similar_taxa": "Ähnliche Taxa",
   "site_admin_tools": "Tools für Website-Admins",
   "skip_to_next_page": "Zur nächsten Seite springen",
+  "some_observations_are_missing_media_or_identifications": "Bei einigen Beobachtungen fehlt die Bestimmung oder Fotos/Audios.\n",
   "some_observations_failed_to_be_added": "Das Hinzufügen einiger Beobachtungen zum Projekt ist fehlgeschlagen",
   "some_observations_failed_to_save": "Einige Beobachtungen konnten nicht gespeichert werden.",
   "some_other_reason": "Ein anderer Grund, den du unten erläutern kannst.",
@@ -13399,7 +13378,6 @@ I18n.translations["de"] = {
   "you_are_not_editing_any_guides_add_one_html": "Du arbeitest an keine Guides. <a href=\"/guides/new\">Füge einen hinzu</a>\n",
   "you_are_setting_this_project_to_aggregate": "Du stellst dieses Projekt so ein, dass alle Beobachtungen, die den folgenden Regeln entsprechen, zusammengeführt werden: %{rules}\nWollen Sie fortfahren?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Du willst Beobachtungen ohne Datum oder Koordinaten hinzufügen. Beobachtungen\nohne diese Informationen sind oft unmöglich zu identifizieren und sind\nstandardmäßig in Suchanfragen nicht sichtbar.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Du willst Beobachtungen ohne Fotos und Taxonnamen hinzufügen. Beobachtungen ohne diese Informationen sind oft unmöglich zu identifizieren und werden bei Suchanfragen standardmäßig nicht angezeigt.\n",
   "you_curate_a_project_that_contains_this_observation": "Du kuratierst ein Projekt, das diese Beobachtung enthält.",
   "you_curate_a_project_that_contains_this_observation_desc": "Du kannst verdeckte Koordinaten sehen, wenn du ein Projekt kuratierst, das eine Beobachtung enthält und der Beobachter ausgewählt hat, die Koordinaten mit den Kuratoren des Projekts\nzu teilen.\n",
   "you_faved_this": "Du hast dies favorisiert!",
@@ -13515,13 +13493,6 @@ I18n.translations["el"] = {
   },
   "all_rights_reserved": "όλα τα δικαιώματα διατηρούνται",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Βασίλειο",
-      "class": "Τάξη",
-      "phylum": "Συνομοταξία",
-      "species": "Είδη",
-      "order": "Σειρά"
-    },
     "amphibians": "Αμφίβια",
     "animals": "Ζώα",
     "arachnids": "Αραχνίδια",
@@ -15511,7 +15482,6 @@ I18n.translations["el"] = {
   "you_are_not_editing_any_guides_add_one_html": "Δεν επεξεργάζεστε κανέναν οδηγό. <a href=\"/guides/new\"> Προσθέστε έναν </a>\n",
   "you_are_setting_this_project_to_aggregate": "Δίνετε εντολή σε αυτό το πρότζεκτ να συγκεντρώσει όλες τις παρατηρήσεις που πληρούν τους κανόνες: %{rules}. Θέλετε να συνεχίσετε;\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Υποβάλετε παρατηρήσεις χωρίς ημερομηνίες και τοποθεσίες. Οι παρατηρήσεις που δεν περιλαμβάνουν αυτές τις πληροφορίες είναι πολλές φορές αδύνατον να ταυτοποιηθούν και δεν θα εμφανίζονται σε καμία αναζήτηση παρατηρήσεων.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Υποβάλετε παρατηρήσεις χωρίς φωτογραφίες και ονόματα ταξινομικής βαθμίδας. Οι παρατηρήσεις που δεν περιλαμβάνουν αυτές τις πληροφορίες είναι πολλές φορές αδύνατον να ταυτοποιηθούν και δεν θα εμφανίζονται σε καμία αναζήτηση παρατηρήσεων.\n",
   "you_curate_a_project_that_contains_this_observation": "Έχετε την επιμέλεια ενός πρότζεκτ που περιλαμβάνει αυτήν την παρατήρηση",
   "you_curate_a_project_that_contains_this_observation_desc": "Μπορείτε να δείτε αλλοιωμένες συντεταγμένες όταν επιμελείστε ένα πρότζεκτ που περιλαμβάνει μια παρατήρηση και ο παρατηρητής έχει επιλέξει να μοιράζεται τις συντεταγμένες του με τους επιμελητές του πρότζεκτ.\n",
   "you_faved_this": "Αποτύχατε!",
@@ -15836,6 +15806,8 @@ I18n.translations["en"] = {
     "teneral": "Teneral"
   },
   "convert": "Convert",
+  "coords_viewable_for_proj_desc": "Only show observations from this project for which you can see the \"true\"\ncoordinates, including unobscured observations, obscured observations by\npeople who trust you, obscured observations by people who trust this project\nwith anything, and observations obscured by threatened taxa by people who\nonly trust this project with same.\n",
+  "coords_viewable_for_proj_label": "Only w/ full coordinates",
   "copyright": {
     "some_rights_reserved": "some rights reserved",
     "some_rights_reserved_by": "(c) %{name}, some rights reserved (%{license_short})",
@@ -18262,13 +18234,6 @@ I18n.translations["eo"] = {
     "variety": "Ĉiuj varioj aldonitaj en la datenbankon"
   },
   "all_taxa": {
-    "rank": {
-      "kingdom": "Regno",
-      "class": "Klaso",
-      "phylum": "Filumo",
-      "species": "Specio",
-      "order": "Ordo"
-    },
     "amphibians": "Amfibioj",
     "animals": "Animaloj",
     "arachnids": "Araneedoj",
@@ -19537,13 +19502,6 @@ I18n.translations["es"] = {
   },
   "all_rights_reserved": "todos los derechos reservados",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Clase",
-      "phylum": "Filo",
-      "species": "Especie",
-      "order": "Orden"
-    },
     "amphibians": "Anfibios",
     "animals": "Animales",
     "arachnids": "Arácnidos",
@@ -21711,7 +21669,6 @@ I18n.translations["es"] = {
   "you_are_not_editing_any_guides_add_one_html": "No estas editando ninguna de las guías. <a href=\"/guides/new\">Agrega una</a>\n",
   "you_are_setting_this_project_to_aggregate": "Estás estableciendo que en este proyecto se puedan agregar todas las  observaciones que cumplan con las reglas siguientes: %{rules} Quieres continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.\n",
   "you_curate_a_project_that_contains_this_observation": "Tu curaste un proyecto que incluye esta observación",
   "you_curate_a_project_that_contains_this_observation_desc": "Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una\nobservación y el observador ha escogido compartir coordenadas con curadores de\nese proyecto.\n",
   "you_faved_this": "¡Has marcado esto como favorito!",
@@ -21828,13 +21785,6 @@ I18n.translations["es-AR"] = {
   },
   "all_rights_reserved": "todos los derechos reservados",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Clase",
-      "phylum": "Filo",
-      "species": "Especie",
-      "order": "Orden"
-    },
     "amphibians": "Anfibios",
     "animals": "Animales",
     "arachnids": "Arácnidos",
@@ -23852,7 +23802,6 @@ I18n.translations["es-AR"] = {
   "you_are_not_editing_any_guides_add_one_html": "No estas editando ninguna de las guías. <a href=\"/guides/new\">Agrega una</a>\n",
   "you_are_setting_this_project_to_aggregate": "Estás estableciendo que en este proyecto se puedan agregar todas las  observaciones que cumplan con las reglas siguientes: %{rules} Quieres continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.\n",
   "you_curate_a_project_that_contains_this_observation": "Tu curaste un proyecto que incluye esta observación",
   "you_curate_a_project_that_contains_this_observation_desc": "Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una\nobservación y el observador ha escogido compartir coordenadas con curadores de\nese proyecto.\n",
   "you_faved_this": "¡Has marcado esto como favorito!",
@@ -24141,13 +24090,6 @@ I18n.translations["es-MX"] = {
   },
   "all_rights_reserved": "Todos los derechos reservados",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Clase",
-      "phylum": "Filo",
-      "species": "Especie",
-      "order": "Orden"
-    },
     "amphibians": "Anfibios",
     "animals": "Animales",
     "arachnids": "Arañas, alacranes y parientes",
@@ -25852,7 +25794,6 @@ I18n.translations["es-MX"] = {
   "you_are_not_editing_any_guides_add_one_html": "No estas editando ninguna de las guías. <a href=\"/guides/new\">Agrega una</a>\n",
   "you_are_setting_this_project_to_aggregate": "Estás estableciendo que en este proyecto se agregarán todas las  observaciones que cumplan con las siguientes reglas: %{rules} ¿Quieres continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Estás añadiendo observaciones sin fecha ni ubicación.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Estás añadiendo observaciones sin foto ni un nombre de especie.\nOJO, estas observaciones serán dificiles de identificar.\n",
   "you_curate_a_project_that_contains_this_observation": "Eres curador en un proyecto que incluye esta observación",
   "you_curate_a_project_that_contains_this_observation_desc": "Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una observación y el observador ha escogido compartir coordenadas con curadores de ese proyecto.\n",
   "you_faved_this": "¡Has marcado esto como favorito!",
@@ -25960,13 +25901,6 @@ I18n.translations["et"] = {
   },
   "all_rights_reserved": "kõig õigused kaitstud",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Riik",
-      "class": "Klass",
-      "phylum": "Hõimkond",
-      "species": "Liik",
-      "order": "Selts"
-    },
     "amphibians": "Kahepaiksed",
     "animals": "Loomad",
     "arachnids": "Ämblikulaadsed",
@@ -27734,7 +27668,6 @@ I18n.translations["et"] = {
   "you_are_not_editing_any_guides_add_one_html": "Sa ei ole seotud ühegi juhendiga. <a href=\"/guides/new\">Alusta uut</a>\n",
   "you_are_setting_this_project_to_aggregate": "Määrad selle projekti koguma kõiki vaatlusi, mis vastavad reeglitele: %{rules} Soovid sa jätkata?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Lisad vaatluseid ilma kuupäevade või asukohtadeta. Ilma selle infota vaatluseid on sageli võimatu määratleda ning seetõttu pole nad vaikimisi vaatlusotsingutes nähtavad.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Lisad vaatluseid ilma fotode ja taksoni nimedeta. Nende vaatluste täpne määratlemine saab olema väga keeruline, mistõttu pole need vaatlusotsingutes vaikimisi nähtavad.\n",
   "you_curate_a_project_that_contains_this_observation": "Sina kureerid projekti, millesse see vaatlus kuulub",
   "you_curate_a_project_that_contains_this_observation_desc": "Näed varjatud koordinaate kui kureerid projekti, millesse vaatlus kuulub ning vaatleja on otsustanud koordinaate selle projekti kuraatoritega jagada.\n",
   "you_faved_this": "Määrasid lemmikuks!",
@@ -27804,13 +27737,6 @@ I18n.translations["eu"] = {
   },
   "all_rights_reserved": "eskubide guztiak erreserbatuta",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Erreinua",
-      "class": "Klasea",
-      "phylum": "Filuma",
-      "species": "Espeziea",
-      "order": "Ordena"
-    },
     "amphibians": "Anfibioak",
     "animals": "Animaliak",
     "arachnids": "Armiarmak, eskorpioiak eta ahaideak",
@@ -28817,13 +28743,6 @@ I18n.translations["fi"] = {
   },
   "all_rights_reserved": "Kaikki oikeudet pidätetään",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Kunta",
-      "class": "Luokka",
-      "phylum": "Pääjakso",
-      "species": "Laji",
-      "order": "Lahko"
-    },
     "amphibians": "Sammakkoeläimet",
     "animals": "Eläimet",
     "arachnids": "Hämähäkkieläimet",
@@ -30849,7 +30768,6 @@ I18n.translations["fi"] = {
   "you_appear_offline_try_again": "Näytät olevan offline-tilassa. Yritä uudelleen, kun olet yhteydessä Internetiin.\n",
   "you_are_not_editing_any_guides_add_one_html": "Et muokkaa yhtään oppaita. <a href=\"/guides/new\">Lisää yksi</a>\n",
   "you_are_setting_this_project_to_aggregate": "Olet asettamassa tätä projektia kokoamaan kaikki havainnot, jotka täsmäävät seuraaviin sääntöihin: %{rules} Haluatko jatkaa?\n",
-  "you_are_submitting_obs_without_photos_and_names": "Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä. Havainnot \nilman näitä tietoja ovat usein mahdottomia tunnistaa eivätkä ne tule olemaan \nnäkyvillä oletusarvoisesti havaintohauissa.\n",
   "you_faved_this": "Merkitsit tämän suosikiksi!",
   "you_must_fill_out_the_required_fields": "Sinun täytyy täyttää vaaditut kentät",
   "you_must_select_at_least_one_taxon": "Sinun on valittava vähintään yksi taksoni",
@@ -31132,13 +31050,6 @@ I18n.translations["fr"] = {
   },
   "all_rights_reserved": "tous droits réservés",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Règne",
-      "class": "Classe",
-      "phylum": "Embranchement",
-      "species": "Espèces",
-      "order": "Ordre"
-    },
     "amphibians": "Amphibiens",
     "animals": "Animaux",
     "arachnids": "Arachnides",
@@ -31320,10 +31231,10 @@ I18n.translations["fr"] = {
   },
   "controlled_term_labels": {
     "adult": "Adulte",
-    "alive": "En vie",
-    "alive_or_dead": "Mort ou vif",
+    "alive": "Vivant",
+    "alive_or_dead": "Vivant ou mort",
     "budding": "Bourgeonnement",
-    "cannot_be_determined": "Ne peut être déterminé",
+    "cannot_be_determined": "Indéterminé",
     "dead": "Mort",
     "egg": "Oeuf",
     "female": "Femelle",
@@ -31397,7 +31308,7 @@ I18n.translations["fr"] = {
       "Fév",
       "Mar",
       "Avr",
-      "Mai",
+      "mai",
       "Jun",
       "Jui",
       "Aoû",
@@ -31432,36 +31343,36 @@ I18n.translations["fr"] = {
     },
     "month_names": [
       null,
-      "Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre"
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
     ]
   },
   "date_": "Date",
   "date_added": "Date d’ajout",
   "date_format": {
     "month": {
-      "january": "Janvier",
-      "february": "Février",
-      "march": "Mars",
-      "april": "Avril",
-      "may": "Mai",
-      "june": "Juin",
-      "july": "Juillet",
-      "august": "Août",
-      "september": "Septembre",
-      "october": "Octobre",
-      "november": "Novembre",
-      "december": "Décembre"
+      "january": "janvier",
+      "february": "février",
+      "march": "mars",
+      "april": "avril",
+      "may": "mai",
+      "june": "juin",
+      "july": "juillet",
+      "august": "août",
+      "september": "septembre",
+      "october": "octobre",
+      "november": "novembre",
+      "december": "décembre"
     }
   },
   "date_is_accurate": "La date est correcte",
@@ -31503,6 +31414,7 @@ I18n.translations["fr"] = {
   },
   "decrease_brightness": "Diminuer la luminosité",
   "default": "par défaut",
+  "default_": "Choix par défaut",
   "delete": "Supprimer",
   "deleting": "Suppression en cours…",
   "deleting_verb": "Suppression",
@@ -31636,7 +31548,7 @@ I18n.translations["fr"] = {
   "grid_layout": "Grille de mise en page",
   "grid_tooltip": "Afficher la vue en mode grille",
   "grouping": "Regroupement",
-  "has_id_supported_by_two_or_more": "Possède un ID établi par au moins deux",
+  "has_id_supported_by_two_or_more": "A un ID établi par au moins deux personnes",
   "has_one_or_more_faves": "A un ou plusieurs favoris",
   "has_photo": "A une photo",
   "has_photo_and_sound": "A une photo et un son",
@@ -31740,7 +31652,7 @@ I18n.translations["fr"] = {
   "identify_observations": "Identifier les observations",
   "identify_title": "Identifier",
   "ids_by_taxon": "IDs par taxon",
-  "ids_made_for_others": "Identifications faites pour d’autres",
+  "ids_made_for_others": "Identifications réalisées pour d’autres utilisateurs",
   "if_for_some_reason_a_user_doesnt_agree": "Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est\nd’accord avec vous.\n",
   "ignore_and_continue": "Ignorer et continuer",
   "image_size_control": "Contrôle de la taille de l'image",
@@ -31925,11 +31837,11 @@ I18n.translations["fr"] = {
     "overlays": {
       "all_observations": "Toutes les observations",
       "every_publicly_visible_observation": "Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist",
-      "featured_observations": "Observations mises en valeur",
+      "featured_observations": "Notre sélection",
       "gbif_network": "Réseau SMIB",
       "gbif_network_description": "Enregistrements de musées et autres fournisseurs de présences distribués par le Système mondial d’informations sur la biodiversité",
       "observations": "Observations",
-      "place_boundary": "Frontière du lieu",
+      "place_boundary": "Limites géographiques du lieu",
       "checklist_places": "Lieux de la liste de contrôle",
       "checklist_places_description": "Lieux où ce taxon a été répertorié",
       "range": "Aire de répartition"
@@ -32100,7 +32012,7 @@ I18n.translations["fr"] = {
   "ok": "OK",
   "old_observation_form": "Ancien formulaire d’observation (désuet)",
   "open": "Ouvert",
-  "open_": "Ouvrir",
+  "open_": "Ouverte",
   "open_street_map": "OpenStreetMap",
   "or": "ou",
   "orange": "orange",
@@ -32355,7 +32267,7 @@ I18n.translations["fr"] = {
     "fiji": "Fidji",
     "finland": "Finlande",
     "france": "France",
-    "french_guiana": "Guinée Française",
+    "french_guiana": "Guyane française",
     "french_polynesia": "Polynésie Française",
     "french_southern_territories": "Territoires Français du Sud",
     "gabon": "Gabon",
@@ -32373,7 +32285,7 @@ I18n.translations["fr"] = {
     "guernsey": "Guernesey",
     "guinea": "Guinée",
     "guinea_bissau": "Guinée-Bissau",
-    "guyana": "Guyane",
+    "guyana": "Guyana",
     "haiti": "Haïti",
     "heard_island_and_mcdonald_islands": "Îles Heard-et-MacDonald",
     "honduras": "Honduras",
@@ -32543,7 +32455,7 @@ I18n.translations["fr"] = {
   "please_explain_why_you_want_to_hide_this": "Veuillez expliquer la raison pour laquelle vous voulez masquer ceci.",
   "please_explain_why_you_want_to_unhide_this": "Veuillez expliquer la raison pour laquelle vous voulez afficher ceci.",
   "popular": "Populaire",
-  "potential_disagreement": "Désapprobation potentielle",
+  "potential_disagreement": "Désaccord potentiel",
   "prev": "Préc",
   "preview": "Aperçu",
   "preview_observations_with_these_observation_requirements": "Aperçu des observations avec ces critères d’observation",
@@ -32696,6 +32608,7 @@ I18n.translations["fr"] = {
   "similar_taxa": "Taxons similaires",
   "site_admin_tools": "Outils de l'administrateur de site",
   "skip_to_next_page": "Passer à la page suivante",
+  "some_observations_are_missing_media_or_identifications": "Certaines observations n'ont pas de photo ou d'identification\n",
   "some_observations_failed_to_be_added": "Certaines observations n’ont pas pu être ajoutées aux projets",
   "some_observations_failed_to_save": "Certaines observations n’ont pas pu être sauvegardées",
   "some_other_reason": "Une autre raison que vous pouvez expliquer ci-dessous.",
@@ -32738,7 +32651,7 @@ I18n.translations["fr"] = {
     "one": "Soumettre 1 observation",
     "other": "Soumettre %{count} observations"
   },
-  "submitted": "Soumis",
+  "submitted": "Enregistré",
   "suggest_an_identification": "Suggérer une identification",
   "suggestions": "Suggestions",
   "supporting": "Soutenir",
@@ -32849,12 +32762,12 @@ I18n.translations["fr"] = {
       "add": "Ajouter les observations",
       "combine": "Combiner les observations sélectionnées",
       "duplicate": "Dupliquer les observations sélectionnées",
-      "photo_failed": "Échec du téléversement de la photo",
+      "photo_failed": "Échec de l'upload de la photo",
       "remove": "Supprimer les observations sélectionnées",
       "remove_observation": "Supprimer l’observation",
       "remove_photo": "Supprimer la photo",
       "select_all": "Sélectionner toutes les observations",
-      "upload_failed": "Échec du téléversement"
+      "upload_failed": "Échec de l'upload"
     }
   },
   "uploading_num_of_count_photos": {
@@ -33298,14 +33211,13 @@ I18n.translations["fr"] = {
   "year_in_review": "Année %{year} en revue",
   "yellow": "jaune",
   "yes": "Oui",
-  "yes_reject_it": "Oui, refusez le",
+  "yes_reject_it": "Oui, le refuser",
   "yesterday": "Hier",
   "you_": " Vous",
   "you_appear_offline_try_again": "Vous semblez être déconnecté. Veuillez réessayer une fois connecté à Internet.\n",
   "you_are_not_editing_any_guides_add_one_html": "Vous ne modifiez aucun guide. <a href=\"/guides/new\">En ajouter un</a>\n",
   "you_are_setting_this_project_to_aggregate": "Vous paramétrez ce projet pour agréger toutes les observations correspondant aux\nrègles suivantes : %{rules} Voulez-vous continuer ?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Vous soumettez des observations sans date ou lieu. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Vous soumettez des observations sans photos ni noms de taxon. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.\n",
   "you_curate_a_project_that_contains_this_observation": "Vous organisez a projet qui contient cette remarque",
   "you_curate_a_project_that_contains_this_observation_desc": "Vous pouvez voir les coordonnées dissimulées quand vous supervisez un projet qui contient une observation et que l’observateur a choisi de partager les coordonnées avec les responsables de ce projet.\n",
   "you_faved_this": "Vous avez mis cela en favori !",
@@ -33378,13 +33290,6 @@ I18n.translations["fr-CA"] = {
   },
   "all_rights_reserved": "tous droits réservés",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Règne",
-      "class": "Classe",
-      "phylum": "Embranchement",
-      "species": "Espèces",
-      "order": "Ordre"
-    },
     "amphibians": "Amphibiens",
     "animals": "Animaux",
     "arachnids": "Arachnides",
@@ -33995,13 +33900,6 @@ I18n.translations["gl"] = {
   },
   "all_rights_reserved": "Todos os dereitos reservados",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Clase",
-      "phylum": "Filo",
-      "species": "Especie",
-      "order": "Orde"
-    },
     "amphibians": "Anfibios",
     "animals": "Animais",
     "arachnids": "Arañas, alacráns e parentes",
@@ -36158,7 +36056,6 @@ I18n.translations["gl"] = {
   "you_are_not_editing_any_guides_add_one_html": "Non estás a editar guías. <a href=\"/guides/new\">Engade unha</a>\n",
   "you_are_setting_this_project_to_aggregate": "Estás configurando este proxecto para agregar tódalas observacións que concorden cás seguintes regras: %{rules} ¿Queres continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Estás presentando observacións sen data ou ubicación. As observacións sen esta información frecuentemente son imposibles de identificar e non serán visibles de xeito predeterminado nas buscas de observacións.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Estás presentando observacións sen fotos nin nomes taxonómicos. As observacións sen esta información frecuentemente son imposibles de identificar e non serán visibles de xeito predetermindado en buscas de observacións.\n",
   "you_curate_a_project_that_contains_this_observation": "Conservas un proxecto que contén esta observación",
   "you_curate_a_project_that_contains_this_observation_desc": "Poderás ver coordenadas ocultas cando conserves un proxecto que contén unha observación e o observador escolleu compartir as coordenadas con conservadores dese proxecto.\n",
   "you_faved_this": "¡Engadíchelo a favoritos!",
@@ -36279,13 +36176,6 @@ I18n.translations["he"] = {
   },
   "all_rights_reserved": "כל הזכויות שמורות",
   "all_taxa": {
-    "rank": {
-      "kingdom": "ממלכה",
-      "class": "מחלקה",
-      "phylum": "מערכה",
-      "species": "מין",
-      "order": "סדר"
-    },
     "amphibians": "דו־חיים",
     "animals": "בעלי־חיים",
     "arachnids": "עכבישניים",
@@ -38244,7 +38134,6 @@ I18n.translations["he"] = {
   "you_": "אתה",
   "you_appear_offline_try_again": "נראה שאתם במצב לא מקוון. אנא נסו שוב כשתהיו מחוברים לאינטרנט.\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "הנכם שולחים תצפיות ללא תאריכים או מיקומים. יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.\n",
-  "you_are_submitting_obs_without_photos_and_names": "הנכם שולחים תצפיות ללא תמונות ושמות טקסונומיים.\nיהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.\n",
   "you_faved_this": "העדפת את זה!",
   "you_must_fill_out_the_required_fields": "יש צורך למלא את השדות הנדרשים",
   "you_must_select_at_least_one_taxon": "יש לבחור טקסון אחד לפחות",
@@ -38879,13 +38768,6 @@ I18n.translations["id"] = {
   },
   "all_rights_reserved": "Hak cipta dilindungi undang-undang",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Kerajaan",
-      "class": "Kelas",
-      "phylum": "Filum",
-      "species": "Spesies",
-      "order": "Ordo"
-    },
     "amphibians": "Amfibi",
     "animals": "Binatang",
     "arachnids": "Arakhnida",
@@ -39956,13 +39838,6 @@ I18n.translations["it"] = {
   },
   "all_rights_reserved": "Tutti i diritti riservati",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Regno",
-      "class": "Classe",
-      "phylum": "Phylum",
-      "species": "Specie",
-      "order": "Ordine"
-    },
     "amphibians": "Anfibi",
     "animals": "Animali",
     "arachnids": "Aracnidi",
@@ -40327,6 +40202,7 @@ I18n.translations["it"] = {
   },
   "decrease_brightness": "Riduci luminosità",
   "default": "predefinito",
+  "default_": "Default",
   "delete": "Cancella",
   "deleting": "Eliminazione in corso...",
   "deleting_verb": "Eliminazione in corso",
@@ -41399,6 +41275,7 @@ I18n.translations["it"] = {
   "random": "Casuale",
   "rank": "Rango",
   "rank_position": "Rango",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "stateofmatter": "Stato della materia",
     "kingdom": "Regno",
@@ -41524,6 +41401,8 @@ I18n.translations["it"] = {
   "similar_taxa": "Taxa Simili",
   "site_admin_tools": "Strumenti amministratore del sito",
   "skip_to_next_page": "Passa alla pagina successiva",
+  "some_observations_are_missing_media_or_identifications": "Alcune osservazioni mancano di allegato multimediale o di identificazioni\n",
+  "some_observations_are_missing_media_or_identifications_desc": "Le osservazioni senza allegati multimediali non saranno visibili in maniera predefinita nelle ricerche, e quelle senza alcuna identificazione non possono essere viste da esperti che cercano taxa specifici. Anche un'identificazione molto grossolana come \"pianta\" può aiutare un esperto di piante a trovare la tua osservazione.\n",
   "some_observations_failed_to_be_added": "Alcune osservazioni non sono state aggiunte al progetto",
   "some_observations_failed_to_save": "Alcune osservazioni non sono state salvate",
   "some_other_reason": "Qualche altro motivo che puoi spiegare qui sotto.",
@@ -42134,7 +42013,6 @@ I18n.translations["it"] = {
   "you_are_not_editing_any_guides_add_one_html": "Non stai editando nessuna Guida. <a href=\"/guides/new\">Creane una</a>\n",
   "you_are_setting_this_project_to_aggregate": "Stai impostando il progetto in modo che aggreghi tutte le osservazioni che soddisfino alle seguenti regole: %{rules}. Sei sicuro di voler procedere?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Stai caricando osservazioni senza data né luogo. Le osservazioni senza queste informazioni sono spesso impossibili da identificare e non saranno visibili per impostazione predefinita nelle ricerche di osservazioni.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Stai inviando osservazioni senza né foto né riferimenti tassonomici. Le osservazioni senza queste informazioni sono spesso impossibili da identificare e non saranno visibili per impostazione predefinita nelle ricerche di osservazioni.\n",
   "you_curate_a_project_that_contains_this_observation": "Tu curi un progetto che contiene questa osservazione",
   "you_curate_a_project_that_contains_this_observation_desc": "Tu puoi vedere le coordinate oscurate quando curi un progetto che contiene un osservazione e l'osservatore ha scelto di condividere le coordinate con i curatori di quel progetto.\n",
   "you_faved_this": "L'hai aggiunta ai preferiti!",
@@ -42378,13 +42256,6 @@ I18n.translations["ja"] = {
   },
   "all_rights_reserved": "著作権を全て留保する",
   "all_taxa": {
-    "rank": {
-      "kingdom": "界",
-      "class": "綱",
-      "phylum": "門",
-      "species": "種",
-      "order": "目"
-    },
     "amphibians": "両生類",
     "animals": "動物",
     "arachnids": "クモ綱",
@@ -44380,13 +44251,6 @@ I18n.translations["ko"] = {
   },
   "all_rights_reserved": "모든 권리는 저작권자에게 있습니다.",
   "all_taxa": {
-    "rank": {
-      "kingdom": "계",
-      "class": "강",
-      "phylum": "문",
-      "species": "종",
-      "order": "목"
-    },
     "amphibians": "양서류",
     "animals": "동물",
     "arachnids": "거미",
@@ -45667,7 +45531,6 @@ I18n.translations["ko"] = {
   "yesterday": "어제",
   "you_": "나",
   "you_appear_offline_try_again": "오프라인 상태입니다. 인터넷에 연결된 후에 다시 시도해 주세요.\n",
-  "you_are_submitting_obs_without_photos_and_names": "사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우 정확하게 동정하기 매우 어렵습니다.\n",
   "you_must_fill_out_the_required_fields": "필수 칸은 채워야 합니다",
   "your_browser_does_not_support_the_audio_element": "브라우저가 오디오 요소를 지원하지 않습니다.",
   "your_observations": "내 관찰",
@@ -45732,13 +45595,6 @@ I18n.translations["lb"] = {
     "superclass": "All Superklassen an d'Datebank derbäigesat"
   },
   "all_taxa": {
-    "rank": {
-      "kingdom": "Kinnekräich",
-      "class": "Klass",
-      "phylum": "Stamm",
-      "species": "Aarten",
-      "order": "Ordnung"
-    },
     "amphibians": "Amphibien",
     "animals": "Déieren",
     "arachnids": "Spannendéieren",
@@ -46180,6 +46036,7 @@ I18n.translations["lb"] = {
   },
   "mark_all_as_reviewed": "All als nogekuckt markéieren",
   "mark_as_reviewed": "Als nogekuckt markéieren",
+  "mark_as_reviewed_desc": "Eng Observatioun als iwwerpréift  markéieren heescht datt Dir se net méi per Defaut beim Identifizéiere gesitt. Si wäert nach ëmmer fir aner Persoune siichtbar an identifizéierbar sinn.\n",
   "media": "Medien",
   "media_type": "Medientyp",
   "members": "Memberen",
@@ -46448,6 +46305,7 @@ I18n.translations["lb"] = {
   "quality_grade_": "Qualitéitsgrad",
   "random": "Zoufall",
   "rank_position": "Klassement",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "kingdom": "Kinnekräich",
     "subclass": "Ënnerklass",
@@ -46842,13 +46700,6 @@ I18n.translations["lt"] = {
   },
   "all_rights_reserved": "Visos teisės saugomos",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Karalystė",
-      "class": "Klasė",
-      "phylum": "Tipas",
-      "species": "Rūšys",
-      "order": "Būrys"
-    },
     "amphibians": "Varliagyviai",
     "animals": "Gyvūnai",
     "arachnids": "Voragyviai",
@@ -47226,6 +47077,7 @@ I18n.translations["lt"] = {
   },
   "decrease_brightness": "Sumažinti ryškumą",
   "default": "numatytas",
+  "default_": "Numatytasis",
   "delete": "Ištrinti",
   "deleting": "Trinama...",
   "deleting_verb": "Trinama",
@@ -47639,6 +47491,7 @@ I18n.translations["lt"] = {
   "mark_all_as_reviewed": "Pažymėti visus kaip peržiūrėtus",
   "mark_all_as_unreviewed": "Pažymėti visus kaip neperžiūrėtus",
   "mark_as_reviewed": "Pažymėti kaip peržiūrėtą",
+  "mark_as_reviewed_desc": "Pažymėjus stebėjimą kaip peržiūrėtą, daugiau jo nebematysite identifikavimo skiltyje. Tačiau jis liks matomas kitiems vartotojams.\n",
   "maverick": "Prieštaraujantis",
   "media": "Nuotrauka",
   "media_type": "Medijos tipas",
@@ -47646,6 +47499,7 @@ I18n.translations["lt"] = {
   "messages": "Żinutės",
   "misidentifications": "Klaidingos identifikacijos",
   "misleading_or_illegal_content_html": "Klaidinantis arba nelegalus turinys, rasiniai ar etniniai diskriminaciniai žodžiai ir t. t. \nDaugiau informacijos apie „nepriimtiną“ kalbą: \n<a href=\"/help#inappropriate\">DUI</a>.\n",
+  "missing_date": "Trūksta datos",
   "mobile": "Mobilus",
   "mollusks": "moliuskai",
   "momentjs": {
@@ -48249,6 +48103,7 @@ I18n.translations["lt"] = {
   "random": "Atsitiktinis",
   "rank": "Rangas",
   "rank_position": "Rangas",
+  "rank_sciname": "%{rank} %{name}",
   "ranks": {
     "stateofmatter": "Agregatinė būsena",
     "kingdom": "Karalystė",
@@ -48356,6 +48211,7 @@ I18n.translations["lt"] = {
   "similar_taxa": "Panašūs taksonai",
   "site_admin_tools": "Tinklalapio admin. įrankiai",
   "skip_to_next_page": "Pereiti į kitą puslapį",
+  "some_observations_are_missing_media_or_identifications": "Kai kuriems stebėjimams trūksta nuotraukos, garso įrašo arba identifikacijų\n",
   "some_observations_failed_to_be_added": "Kai kurių stebėjimų nepavyko pridėti prie projektų",
   "some_observations_failed_to_save": "Kai kurių stebėjimų nepavyko išsaugoti",
   "some_other_reason": "Kita priežastis, kurią galite paaiškinti žemiau.",
@@ -48423,6 +48279,9 @@ I18n.translations["lt"] = {
   "tell_us_why": "Kodėl taip manote...",
   "terms": "Sąlygos",
   "terrain": "reljefas",
+  "text_block_controls": "Teksto bloko valdymas",
+  "text_editing_controls": "Teksto redagavimo valdymas",
+  "text_formatting_controls": "Teksto formatavimo valdymas",
   "that_was_the_last_observation_matching_the_current_filters": "Tai buvo paskutinis stebėjimas, kuris atitinka pasirinktus filtrus.",
   "the_below_items_are_needed_to_achieve": "Reikalavimai, kad stebėjimas būtų laikomas <span className=\"bold\">identifikuotu:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "Bendruomenės ID reikia bent dviejų identifikacijų.",
@@ -48855,7 +48714,6 @@ I18n.translations["lt"] = {
   "yesterday": "Vakar",
   "you_": "Jūs",
   "you_are_submitting_obs_with_no_date_or_no_location": "Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Jūs pateikiate stebėjimus, kurie yra be nuotraukų ir taksonų pavadinimų. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.\n",
   "you_curate_a_project_that_contains_this_observation": "Jūs kuruojate projektą, kuriame patalpintas šis stebėjimas",
   "you_faved_this": "Jūs tai pamėgote!",
   "you_sure_delete_comment?": "Ar tikrai norite ištrinti šį komentarą?",
@@ -49104,13 +48962,6 @@ I18n.translations["mk"] = {
   },
   "all_rights_reserved": "сите права задржани",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Царство",
-      "class": "Класа",
-      "phylum": "Колено",
-      "species": "Вид",
-      "order": "Ред"
-    },
     "amphibians": "Водоземци",
     "animals": "Животни",
     "arachnids": "Пајаковидни",
@@ -50307,13 +50158,6 @@ I18n.translations["nb"] = {
   },
   "all_rights_reserved": "alle rettigheter forbeholdt",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Rike",
-      "class": "Klasse",
-      "phylum": "Rekke",
-      "species": "Art",
-      "order": "Orden"
-    },
     "amphibians": "Amfibier",
     "animals": "Dyr",
     "arachnids": "Edderkoppdyr",
@@ -52485,7 +52329,6 @@ I18n.translations["nb"] = {
   "you_are_not_editing_any_guides_add_one_html": "Du redigerer ingen guider. <a href=\"/guides/new\">Legg til en</a>\n",
   "you_are_setting_this_project_to_aggregate": "Du stiller inn dette prosjektet til å samle alle observasjoner som er i samsvar med følgende regler: %{rules} Vil du fortsette?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Du legger inn observasjoner uten datoer eller lokaliteter. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Du legger inn observasjoner uten bilder og taksonnavn. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.\n",
   "you_curate_a_project_that_contains_this_observation": "Du kuraterer et prosjekt som inneholder denne observasjonen",
   "you_curate_a_project_that_contains_this_observation_desc": "Du kan se tilslørte koordinater når du kuraterer et prosjekt som inneholder en observasjon og observatøren har valgt å dele koordinatene med kuratorer av det prosjektet.\n",
   "you_faved_this": "Du har gjort dette til en favoritt!",
@@ -52607,13 +52450,6 @@ I18n.translations["nl"] = {
   },
   "all_rights_reserved": "alle rechten voorbehouden",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Rijk",
-      "class": "Klasse",
-      "phylum": "Stam",
-      "species": "Soort",
-      "order": "Orde"
-    },
     "amphibians": "Amfibieën",
     "animals": "Dieren",
     "arachnids": "Spinachtigen",
@@ -54785,7 +54621,6 @@ I18n.translations["nl"] = {
   "you_are_not_editing_any_guides_add_one_html": "Je bewerkt geen gidsen. <a href=\"/guides/new\">Voeg er één toe</a>\n",
   "you_are_setting_this_project_to_aggregate": "Je stelt dit project in om alle waarnemingen te verzamelen die voldoen aan de volgende regels: %{rules} Wil je doorgaan?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Je bent waarnemingen zonder foto's en taxonnamen aan het verzenden. Waarnemingen zonder deze informatie zijn niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.\n",
   "you_curate_a_project_that_contains_this_observation": "Je stelt een project samen dat deze waarneming bevat",
   "you_curate_a_project_that_contains_this_observation_desc": "Je kunt verborgen coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.\n",
   "you_faved_this": "Je hebt dit opgeslagen als favoriet!",
@@ -55039,12 +54874,6 @@ I18n.translations["oc"] = {
   },
   "all_rights_reserved": "totes los dreits reservats",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Règne",
-      "class": "Classa",
-      "species": "Espècias",
-      "order": "Òrdre"
-    },
     "amphibians": "Anfibians",
     "arachnids": "Aracnids",
     "birds": "Ausèls",
@@ -55828,13 +55657,6 @@ I18n.translations["pl"] = {
   },
   "all_rights_reserved": "wszelkie prawa zastrzeżone",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Królestwo",
-      "class": "Gromada",
-      "phylum": "Typ",
-      "species": "Gatunek",
-      "order": "Rząd"
-    },
     "amphibians": "Płazy",
     "animals": "Zwierzęta",
     "arachnids": "Pajęczaki",
@@ -57721,7 +57543,6 @@ I18n.translations["pl"] = {
   "you_": "Ty",
   "you_appear_offline_try_again": "Wygląda na to, że jesteś offline. Spróbuj ponownie, gdy będziesz połączony z Internetem.\n",
   "you_are_not_editing_any_guides_add_one_html": "Nie edytujesz żadnych przewodników. <a href=\"/guides/new\">Dodaj jakiś</a>\n",
-  "you_are_submitting_obs_without_photos_and_names": "Przesyłasz obserwacje bez zdjęć i nazw taksonów. Obserwacje bez tych informacji są często niemożliwe do oznaczenia i nie będą widoczne domyślnie w wynikach wyszukiwania obserwacji.\n",
   "you_faved_this": "Dodałeś to do ulubionych!",
   "you_must_fill_out_the_required_fields": "Musisz wypełnić wymagane pola",
   "you_must_select_at_least_one_taxon": "Musisz wybrać przynajmniej jeden takson",
@@ -57834,13 +57655,6 @@ I18n.translations["pt"] = {
   },
   "all_rights_reserved": "Todos os direitos reservados.",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Reino",
-      "class": "Classe",
-      "phylum": "Filo",
-      "species": "Espécie",
-      "order": "Ordem"
-    },
     "amphibians": "Anfíbios",
     "animals": "Animais",
     "arachnids": "Aracnídeos",
@@ -59921,6 +59735,7 @@ I18n.translations["pt"] = {
   },
   "x_of_y": "%{x} de %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} de  %{y} pessoas  (mais de 2/3) concordam que é",
+  "x_of_y_short": "%{x} / %{y}",
   "x_others": {
     "one": "1 outro",
     "other": "%{count} outros"
@@ -59960,7 +59775,6 @@ I18n.translations["pt"] = {
   "you_are_not_editing_any_guides_add_one_html": "Você não está modificando qualquer guia. <a href=\"/guides/new\">Adicione uma</a>\n",
   "you_are_setting_this_project_to_aggregate": "Você está configurando este projeto para agregar todas as observações na plataforma que combinem com a seguinte regra: %{rules} Gostaria de continuar?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Você está enviando observações sem datas ou locais. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Você está enviando observações sem fotos e nomes de táxons. Observações sem essas informações, muitas vezes é impossível identificar e não será visível por padrão em pesquisas de observação.\n",
   "you_curate_a_project_that_contains_this_observation": "Você curou um projeto que contém esta observação",
   "you_curate_a_project_that_contains_this_observation_desc": "Você pode ver coordenadas ocultas quando tiver curado um projeto que contenha\nobservação eo observador optou por compartilhar coordenadas com curadores de\nesse projeto.\n",
   "you_faved_this": "Adicionado como favorito!",
@@ -60455,13 +60269,6 @@ I18n.translations["ru"] = {
   },
   "all_rights_reserved": "Все права защищены",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Царство",
-      "class": "Класс",
-      "phylum": "Тип",
-      "species": "Вид",
-      "order": "Отряд"
-    },
     "amphibians": "Земноводные",
     "animals": "Животные",
     "arachnids": "Паукообразные",
@@ -62574,7 +62381,7 @@ I18n.translations["ru"] = {
     "one": "%{count} комментарий",
     "few": "%{count} комментария",
     "many": "%{count} комментариев",
-    "other": "%{count} комментария"
+    "other": "%{count} комментариев"
   },
   "x_faves": {
     "one": "%{count} фаворит",
@@ -62748,7 +62555,6 @@ I18n.translations["ru"] = {
   "you_are_not_editing_any_guides_add_one_html": "Вы не редактируете никакие руководства. <a href=\"/guides/new\">Добавить новое</a>\n",
   "you_are_setting_this_project_to_aggregate": "Вы настроили этот проект на совокупность всех наблюдений, соответствующих следующим правилам: %{rules} Вы хотите продолжить?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Вы отправляете наблюдения без дат или местоположений. Наблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Вы отправляете наблюдения без фото и наименований таксонов.\nНаблюдения без этой информации часто невозможно идентифицировать, и по умолчанию они не будут видны в поиске наблюдений.\n",
   "you_curate_a_project_that_contains_this_observation": "Вы курируете проект, который содержит это наблюдение",
   "you_curate_a_project_that_contains_this_observation_desc": "Вы можете видеть скрытые координаты, когда курируете проект, содержащий наблюдение, и когда наблюдатель решил поделиться координатами с кураторами этого проекта.\n",
   "you_faved_this": "Вы добавили это к фаворитам!",
@@ -62857,13 +62663,6 @@ I18n.translations["sk"] = {
   },
   "all_rights_reserved": "všetky práva vyhradené",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Ríša",
-      "class": "Trieda",
-      "phylum": "Kmeň",
-      "species": "Druh",
-      "order": "Rad"
-    },
     "amphibians": "Obojživelníci",
     "animals": "Zvieratá",
     "arachnids": "Pavúkovce",
@@ -64541,13 +64340,6 @@ I18n.translations["sq"] = {
   },
   "all_rights_reserved": "të gjitha të drejtat e rezervuara",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Mbretëri",
-      "class": "Klasë",
-      "phylum": "Tipi",
-      "species": "Specjet",
-      "order": "Renditja"
-    },
     "amphibians": "Amfibët",
     "animals": "Kafshët",
     "arachnids": "Araknidë",
@@ -65827,13 +65619,6 @@ I18n.translations["sv"] = {
   },
   "all_rights_reserved": "alla rättigheter förbehållna",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Rike",
-      "class": "Klass",
-      "phylum": "Fylum",
-      "species": "Art",
-      "order": "Ordning"
-    },
     "amphibians": "Groddjur",
     "animals": "Djur",
     "arachnids": "Spindeldjur",
@@ -68001,7 +67786,6 @@ I18n.translations["sv"] = {
   "you_are_not_editing_any_guides_add_one_html": "Du redigerar inga guider. <a href=\"/guides/new\">Lägg till en</a>\n",
   "you_are_setting_this_project_to_aggregate": "Du anger nu att detta projekt ska samla alla observationer som matchar\nföljande regler: %{rules} Vill du fortsätta?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Du skickar in observationer utan datum eller plats. Observationer\nutan denna information är ofta omöjliga att bestämma och kommer normalt\ninte att vara synliga i observationsutsökningar.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Du skickar in observationer utan bilder och taxonnamn. Observationer\nutan denna information är ofta omöjliga att bestämma och kommer normalt\ninte att vara synliga i observationsutsökningar.\n",
   "you_curate_a_project_that_contains_this_observation": "Du förvaltar ett projekt där denna observation ingår",
   "you_curate_a_project_that_contains_this_observation_desc": "Du kan se diffuserade koordinater när du förvaltar ett projekt som innehåller en\nobservation och observatören har valt att dela koordinater med projektets förvaltare.\n",
   "you_faved_this": "Du favoritmarkerade detta!",
@@ -68122,13 +67906,6 @@ I18n.translations["tr"] = {
   },
   "all_rights_reserved": "tük hakları saklıdır",
   "all_taxa": {
-    "rank": {
-      "kingdom": "Alem",
-      "class": "Sınıf",
-      "phylum": "Şube",
-      "species": "Tür",
-      "order": "Takım"
-    },
     "amphibians": "Yüzergezerler",
     "animals": "Hayvanlar",
     "arachnids": "Eklem bacaklılar",
@@ -70296,7 +70073,6 @@ I18n.translations["tr"] = {
   "you_are_not_editing_any_guides_add_one_html": "Hiçbir rehberi düzenlemiyorsun. <a href=\"/guides/new\">Bir tane ekle</a>\n",
   "you_are_setting_this_project_to_aggregate": "Bu projeyi, aşağıdaki kurallara uyan tüm gözlemleri toplayacak şekilde \nayarlıyorsunuz: %{rules} Devam etmek istiyor musunuz?\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "Tarihler ve konumlar olmadan gözlemler gönderiyorsunuz. Bu bilgiyi içermeyen\ngözlemlerin tanımlanması imkansızdır ve gözlem aramalarında varsayılan olarak \ngörünmez.\n",
-  "you_are_submitting_obs_without_photos_and_names": "Fotoğraflar ve sınıf isimleri olmadan gözlemler gönderiyorsunuz. \nBu bilgiyi içermeyen gözlemlerin tanımlanması imkansızdır ve \ngözlem aramalarında varsayılan olarak görünmez.\n",
   "you_curate_a_project_that_contains_this_observation": "Bu gözlemi içeren bir projenin sorumluluğunu yaptınız",
   "you_curate_a_project_that_contains_this_observation_desc": "Bir gözlem içeren bir projeyi yönetirken gizlenmiş koordinatları görebilirsiniz ve gözlemci bu projenin sorumlularıyla koordinatları paylaşmayı seçti.\n",
   "you_faved_this": "Bunu favoriye ekledin!",
@@ -70789,13 +70565,6 @@ I18n.translations["zh-CN"] = {
   },
   "all_rights_reserved": "保留所有权利",
   "all_taxa": {
-    "rank": {
-      "kingdom": "界",
-      "class": "纲",
-      "phylum": "门",
-      "species": "种",
-      "order": "目"
-    },
     "amphibians": "两栖动物",
     "animals": "动物",
     "arachnids": "蛛形类",
@@ -72386,7 +72155,6 @@ I18n.translations["zh-CN"] = {
   "you_are_not_editing_any_guides_add_one_html": "您没有编辑任何指南。<a href=\"/guides/new\">添加一个</a>\n",
   "you_are_setting_this_project_to_aggregate": "您正在将此项目设为符合以下规则的所有观察的汇总：%{rules}是否继续？\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "您正在提交没有日期或位置的观察。\n",
-  "you_are_submitting_obs_without_photos_and_names": "您正在提交没有照片和分类名称的观察。\n这些观察将很难被准确识别。\n",
   "you_faved_this": "您喜欢了这个！",
   "you_must_fill_out_the_required_fields": "您必须填写所需字段",
   "you_must_select_at_least_one_taxon": "您必须选择至少一个类群",
@@ -72681,13 +72449,6 @@ I18n.translations["zh-TW"] = {
   },
   "all_rights_reserved": "保留所有權利",
   "all_taxa": {
-    "rank": {
-      "kingdom": "界",
-      "class": "綱",
-      "phylum": "門",
-      "species": "種",
-      "order": "目"
-    },
     "amphibians": "兩棲類",
     "animals": "動物",
     "arachnids": "蛛形綱",
@@ -73079,7 +72840,7 @@ I18n.translations["zh-TW"] = {
     "introduced": "引進",
     "invasive": "侵入",
     "managed": "已管理",
-    "native": "本地",
+    "native": "原生",
     "naturalised": "歸化"
   },
   "establishment_means": "定居方式",
@@ -73512,8 +73273,8 @@ I18n.translations["zh-TW"] = {
   "name": "名稱",
   "name_or_slug": "名稱或 URL slug，例如：my-project",
   "names": "名稱",
-  "native": "本地",
-  "native_to_place": "%{place}本地",
+  "native": "原生",
+  "native_to_place": "在%{place}的原生種",
   "near_threatened": "接近受威脅",
   "nearby_observations_": "接近此處的觀察",
   "needs_id": "需要鑑定",
@@ -74467,6 +74228,7 @@ I18n.translations["zh-TW"] = {
         "are_you_ready_to_duplicate": "您確定要離開這個頁面來重複此專案嗎？\n",
         "are_you_sure_you_want_to_delete": "您確定要刪除此專案嗎？",
         "can_be_included_in_multiple": "可包含在多項綜合專案",
+        "check_the_box_to_include_member_observations": "勾選下面方塊的話，只有加入此專案的使用者才會包含在內。使用上方「排除的使用者」會排除特定的使用者，包含專案擁有者和管理者。\n",
         "click_through_to_individual_projects": "點擊至各項專案",
         "collection_project_features": "收藏專案特性：",
         "collection_projects": "收藏專案",
@@ -74483,13 +74245,17 @@ I18n.translations["zh-TW"] = {
           "name_is_required": "專案名稱為必要",
           "summary_is_required": "專案摘要文字為必要"
         },
+        "include_annotated_observations": "僅包含有註解特定屬性的觀察記錄（例：生命階段），或是特定屬性與其內容（例：生命階段 = 成體）。\n每一個專案只能有一個篩選註解的限制。\n",
         "leaderboards_among_individuals": "<strong>個人</strong>排行榜",
         "leaderboards_among_projects_and_bioblitzes": "<strong>專案</strong>排行榜\n",
         "multiple_project_administrators": "多項專案管理員",
         "name_placeholder": "在芝加哥的鳥類、令人驚豔的蜻蜓等等。",
         "no_need_to_rely_on_manual_addition": "無手動添加觀察\n",
+        "note_about_unselected_filters": "注意：如果您沒有選擇任何分類群、地點或是使用者，預設會包含所有的觀察記錄。\n",
         "note_these_users_will_be_able_to_edit": "註：這些包含到管理員的使用者可以編輯所有專案細節。\n",
         "note_you_can_delete_the_time": "（註：若您想包含一整天，您可以刪除時區以及準確時間。）\n",
+        "only_display_member_observations": "只顯示專案成員的觀察記錄（有手動加入此專案的人）\n",
+        "optionally_filter_media": "選擇性填寫有照片、有聲音或是兩者皆有的觀察記錄。",
         "or_drag_and_drop": "（或是拖拉）",
         "please_specify_the_requirements": "請指定添加至此專案的觀察之需求。\n",
         "project_background_color": "專案摘要背景顏色",
@@ -74503,7 +74269,10 @@ I18n.translations["zh-TW"] = {
         "project_summary": "專案摘要",
         "project_summary_help": "簡要說明有關您的專案。大約前 200 個字會顯示在專案主螢幕橫幅的右側，因此請填入最精華的內容！\n",
         "project_summary_placeholder": "探索並追蹤在金門公園的鳥類...",
+        "select_native_to_include": "選擇「原生」來包含僅在某地被標記為「原生」的物種至您的專案中。選擇「引進」則只會包含在某地被標記為「引進」的分類群至您的專案中。\n",
+        "select_quality_grade": "至少要選擇一種品質等級。每個品質等級的詳細解釋可以在我們的\n<a href=\"%{url}\">常見問答頁面</a>中找到。\n",
         "show_projects_as_flags": "在地圖上顯示專案成標籤",
+        "specify_project_filters": "在您的專案內設定篩選條件來包含觀察記錄。您可以選擇多個物種(或分類群)、地點、日期或是其他的篩選條件來自動包含觀察記錄。\n",
         "start_and_end_times_for_bioblitzes": "起始與結束日期/時間（用於 bioblitz 類型活動）",
         "umbrella_project_features": "綜合專案特性：",
         "unique_url_for_outreach": "用於推廣的獨一 URL 地址",
@@ -74565,7 +74334,7 @@ I18n.translations["zh-TW"] = {
     "taxa": {
       "show": {
         "about_conservation_status_desc": "保育狀態總結出一群生物的滅絕風險。\n",
-        "about_establishment_desc": "「定居方式」描述著目前出現的物種如何出現在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。\n",
+        "about_establishment_desc": "「定居方式」描述著目前出現的物種如何出現在此處。「引進」代表著它們是透過人類的活動帶來此地，「原生」則代表著該物種本來就生存於此地，而非透過人類的協助。「特有物種」則是僅出現在特定的地點而其他地方無此物種。\n",
         "about_names_desc": "<p>\n多數生物的分類在語言裡擁有「通用名稱」。這些名稱通常是易於辨別、容易唸出、長期下識用，\n但即使是在使用同一種語言的情形下，也會有多數生物在不同地點裡各擁有不同名稱的情況。這些在溝通有關這些生物時產生困難。因此科學家透過採取符合<a href=\"https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95\">二名法</a>的單一「學名」在任一生物分類上來處理問題，\n但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人這些不像通用名稱那般好記。\n學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上\n更精準的理論時做出更改，但也因此降低在溝通上的實用性，即使是在了解學名的人士上。\n</p>\n<p>\n古老的格言總結出：「通用名稱的變更來自於地點，學名的變更來自於時間。」\n</p>\n<p>\n我們嘗試以透過同時顯示通用名稱與學名來解決這些情況，並基於所使用的語言和視圖上的地理資料\n偏好設定來挑選出通用名稱。\n</p>\n",
         "charts_help_history": "此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加，但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。\n",
         "charts_help_relative_observations": "顯示所有觀察相對比例次數可協助修正有關網站整體成長效益。例如，若網站每年因我們獲取更多的觀察而成長，我們會取得更多各物種分類的觀察，但這僅會您曉得有許多人在觀察物種分類，而不會了解告訴您有關是否有更多物種分類包含在觀察裡。顯示相對比例代表著如果總共有 100 個觀察，其中\n20 個觀察為某個物種分類，那麼比例是 0.2（20 / 100）。若大家在隔年做出 2000 個觀察並且當中有 400 個觀察為某物種分類，那麼比例便是 0.2（400 / 2000）。而縱使是總計計數，也會導致在僅有少數觀察者的地區，或是很少有被觀察到的物種分類群產生偏差情況。\n",
@@ -74726,7 +74495,6 @@ I18n.translations["zh-TW"] = {
   "you_are_not_editing_any_guides_add_one_html": "您沒有編輯任何指南。<a href=\"/guides/new\">添加一個</a>\n",
   "you_are_setting_this_project_to_aggregate": "您正設定此專案要聚集所有符合以下規則：%{rules} 的觀察，您確定要繼續嗎？\n",
   "you_are_submitting_obs_with_no_date_or_no_location": "您正提交未帶有日期或位置的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。\n",
-  "you_are_submitting_obs_without_photos_and_names": "您正提交未帶有照片和物種分類名稱的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。\n",
   "you_curate_a_project_that_contains_this_observation": "您可以策展包含此觀察的專案",
   "you_curate_a_project_that_contains_this_observation_desc": "當您策展含有觀察、且觀察者選擇與此專案策展人分享座標的專案時，您可以查看隱蔽座標。\n",
   "you_faved_this": "您已加為最愛！",
