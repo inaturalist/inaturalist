@@ -3,6 +3,8 @@ class MushroomObserverImportFlowTask < FlowTask
   validate :validate_unique_hash
   before_validation :set_unique_hash
 
+  class TooManyRequestsError < StandardError; end
+
   def validate_unique_hash
     return unless unique_hash && !finished_at
     scope = MushroomObserverImportFlowTask.
@@ -16,6 +18,22 @@ class MushroomObserverImportFlowTask < FlowTask
   def set_unique_hash
     return unless api_key
     self.unique_hash = { api_key: api_key }
+  end
+
+  def get( url, params = {} )
+    try = params.delete(:try) || 1
+    resp = RestClient.get( url, params: params )
+    if resp.code == 429
+      log "429 error from Mushroom Observer for #{url}, try #{try}"
+      if tries > 3
+        raise TooManyRequestsError.new(
+          message: "This process made too many requests to Mushroom Observer so MO stopped returning calls"
+        )
+      end
+      sleep try * 30 # seconds
+      resp = get( url, params.merge( try: try + 1 ) )
+    end
+    resp
   end
 
   def run
@@ -46,7 +64,7 @@ class MushroomObserverImportFlowTask < FlowTask
     update_attributes(
       finished_at: Time.now,
       error: "Error",
-      exception: [ exception_string, e.backtrace ].join("\n")
+      exception: user.is_admin? ? [exception_string, e.backtrace].join("\n") : exception_string
     )
     Emailer.moimport_finished( self, errors, @warnings ).deliver_now
     false
@@ -63,15 +81,21 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def get_results_xml( options = {} )
-    user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "https://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
+    url = "https://mushroomobserver.org/api/observations"
+    resp = get( url, {
+      user: mo_user_id,
+      detail: "high",
+      page: page,
+      api_key: api_key
+    } )
+    Nokogiri::XML( resp ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
     unless @mo_user_id
       for_api_key ||= api_key
-      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
+      xml = Nokogiri::XML( get( "https://mushroomobserver.org/api/api_keys", api_key: for_api_key ) )
       @mo_user_id = xml.at( "response/user" )[:id]
     end
     @mo_user_id
@@ -80,7 +104,12 @@ class MushroomObserverImportFlowTask < FlowTask
   def mo_user_name( for_api_key = nil )
     unless @mo_user_name
       user_id = mo_user_id( for_api_key )
-      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
+      xml = Nokogiri::XML( get(
+        "https://mushroomobserver.org/api/users",
+        id: user_id,
+        detail: "high",
+        api_key: api_key
+      ) )
       @mo_user_name = xml.at( "login_name" ).text
     end
     @mo_user_name
