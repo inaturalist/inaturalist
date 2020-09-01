@@ -1,4 +1,40 @@
 lv:
+  x_comments:
+    zero: '%{count} komentāri'
+    one: '%{count} komentārs'
+    other: '%{count} komentāri'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> komentāri'
+    one: '<span class="count">%{count}</span> komentārs'
+    other: '<span class="count">%{count}</span> komentāri'
+  x_faves:
+    zero: '%{count} reizes pievienots izlasei'
+    one: '%{count} reizi pievienots izlasei'
+    other: '%{count} reizes pievienots izlasei'
+  x_identifications:
+    zero: '%{count} identifikācijas'
+    one: '%{count} identifikācija'
+    other: '%{count} identifikācijas'
+  x_identifications_html:
+    zero: '<span class="count">%{count}</span> identifikācijas'
+    one: '<span class="count">%{count}</span> identifikācija'
+    other: '<span class="count">%{count}</span> identifikācijas'
+  x_identifications_:
+    zero: '%{count} identifikācijas'
+    one: '%{count} identifikācija'
+    other: '%{count} identifikācijas'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    zero: '<span class="count">%{count}</span> identificētāji'
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> identificētājs'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> identificētāji'
+  x_languages:
+    zero: "%{count} valodas"
+    one: "%{count} valoda"
+    other: "%{count} valodas"
   date:
     abbr_month_names:
       - 
