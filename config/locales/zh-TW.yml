@@ -1,6 +1,8 @@
 zh-TW:
   x_comments:
     other: '%{count} 則評論'
+  x_comments_html:
+    other: '<span class="count">%{count}</span> 評論'
   x_faves:
     other: '%{count} 個最愛'
   x_flags_resolved_html:
@@ -150,11 +152,17 @@ zh-TW:
   add: 新增
   add_a_batch_of_observations: 新增一批觀察記錄
   add_a_batch_of_taxa: 新增一批分類群
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: 加入項目符號列表
   add_a_comment: 新增評論
   add_a_field: 新增一個欄位
   add_a_flag: 新增一個標記
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: 加入連結
   add_a_name: 加入名稱
   add_a_new_change_group: 增加一新變更群組
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: 加入編號列表
   add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -177,6 +185,8 @@ zh-TW:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 添加可用物件
   add_batch: 批次新增
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: 加入粗體字
   add_comma_separated_tags: "新增以逗號分隔式標籤"
   add_comment: 新增評論
   add_conservation_status: 新增保育狀態
@@ -189,6 +199,8 @@ zh-TW:
   add_link: 新增連結
   add_higher_level_taxon: 新增一個更高階層的物種分類 (例如:"鳥類")
   add_id: 新增物種鑑定
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: 加入斜體字
   add_new_lexicon: 新增新的詞彙
   add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片（必須是創用 CC（Creative Commons）授權!）
   add_new_place: 新增一處新地點
@@ -560,6 +572,8 @@ zh-TW:
   body: 正文
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: 粗體字
   bounding_box: 邊框
   breadcrumbs: 麵包屑導航
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -616,6 +630,7 @@ zh-TW:
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
     merge: 數個舊物種分類合併成一個新物種分類群
+    swap: 使用輸出的分類群來代換輸入的分類群
     drop: 在歷史用途或與合作者間兼容性的維護上，物種分類的概念完全無效
     stage: 準備一個無作用概念來作為更改群組時釋出的部份
   change_geoprivacy: '更改位置隱私設定'
@@ -713,6 +728,7 @@ zh-TW:
   comment_deleted: 評論已刪除
   comments: 評論
   comments_by_me: 由我做出的評論
+  comments_have_been_disabled: 已停用評論
   comments_on: 評論在
   comments_on_my_observations: 對我觀察的評論
   commercial_solicitation: 商業招攬，無效連結等等。
@@ -870,6 +886,7 @@ zh-TW:
   create_a_query: 建立一項查詢
   create_an_account: 建立一個帳號
   create_an_atlas: 建立一個地圖集
+  create_export: 建立匯出資料
   create_new_taxon: 創建一個新物種分類
   create_observations: 建立觀察
   created: 已建立
@@ -962,6 +979,8 @@ zh-TW:
   decrease_brightness: 減少亮度
   #Default option
   default: 預設
+  #Default option
+  default_: 預設
   default_invite_comment: "很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}"
   default_observation_license: 預設觀察許可協議
   default_photo_license: 預設照片許可權
@@ -1003,8 +1022,15 @@ zh-TW:
   deviation: 偏差
   devise:
     failure:
+      already_authenticated: '您已經登入了。'
+      unauthenticated: '您必須登入或是註冊才能繼續使用。'
+      invalid: '無效的電子郵件或密碼。'
+      invalid_token: '無效的認證安全碼。'
       user:
         suspended: 您的帳號已被停用
+    sessions:
+      signed_in: '已成功登入。'
+      signed_out: '已成功登出。'
   discoveries: 發現
   did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: '您是指'
