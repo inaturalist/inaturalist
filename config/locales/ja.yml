@@ -148,11 +148,17 @@ ja:
   add: 追加
   add_a_batch_of_observations: 観察記録を一括追加
   add_a_batch_of_taxa: 分類群の一括追加
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: 箇条書きにする
   add_a_comment: コメントの追加
   add_a_field: フィールドの追加
   add_a_flag: フラグを追加
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: リンクを追加
   add_a_name: 名前を追加
   add_a_new_change_group: 新規変更グループを追加
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: 番号付き箇条書きにする
   add_a_single_observation: 1件の観測記録を追加。
   add_a_taxon: 分類群を追加
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -166,7 +172,7 @@ ja:
   add_annotations_for_x: '「%{x}」の注釈を追加'
   add_annotations_for_controlled_attribute:
     sex: '「性別」の注釈を追加'
-    plant_phenology: '「植物病理学」の注釈を追加'
+    plant_phenology: '「植物季節学」の注釈を追加'
     life_stage: '「生育段階」の注釈を追加'
   add_another_flag: フラグをさらに追加
   add_another_photo: 写真をもう1枚追加
@@ -175,6 +181,8 @@ ja:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: アセットを追加
   add_batch: 一括追加
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: 太字にする
   add_comma_separated_tags: "カンマ区切りタグを追加"
   add_comment: コメントを追加
   add_conservation_status: 保全状況を追加
@@ -187,6 +195,8 @@ ja:
   add_link: リンクを追加
   add_higher_level_taxon: より高い階級の分類群を追加（例：鳥類）
   add_id: 同定を追加
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: 斜体にする
   add_new_lexicon: 新しい言語を追加
   add_new_photos_by_their_ids: Flickr IDを検索して画像を追加（Creative Commonsを遵守すること）
   add_new_place: 新しい場所を追加
@@ -213,6 +223,7 @@ ja:
   add_plant_phenology_flower_budding_annotation: '"植物季節学：つぼみ"の注釈を追加する'
   add_plant_phenology_flowering_annotation: '"植物季節学：開花中（花あり）"の注釈を追加する'
   add_plant_phenology_fruiting_annotation: '"植物季節学：果実あり"の注釈を追加する'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '"植物季節学：開花の証拠がない" の注釈を追加する'
   add_life_stage_adult_annotation: '“ライフステージ: 成体・成虫”の注釈を追加する'
   add_life_stage_teneral_annotation: '“ライフステージ: テネラル (脱皮したての成虫/成体)”の注釈を追加する'
   add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
@@ -1485,6 +1496,8 @@ ja:
   insects: 昆虫類
   insect_life_stage: 昆虫の変態段階
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: 引用を挿入
   interactions: 連携
   internal_server_error: サーバー内部エラー
   introduced: 外来種
@@ -1804,6 +1817,9 @@ ja:
     %{partial_inat_network_tag_html}iNaturalist Network</a>のメンバーで、%{cas_tag_html}と%{nat_geo_tag_html}の共同イニシアチブです。
   members: メンバー一覧
   mentioned_you_in_noun_html: "%{user} さんが %{noun} であなたをメンションしました"
+  mentioned_you_in_noun_by_html: "%{user}さんは%{by}の%{noun} であなたにメンションしました"
+  mentioned_you_in_noun_by_user_html: "%{user}さんは%{by}の%{noun} であなたにメンションしました"
+  mentioned_you_in_noun_by_you_html: "%{user}さんはあなたの%{noun} にメンションしました"
   mentioned_you_in_a_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたを言及しました"
   mentioned_you_in_an_x_on_noun_by_html: "%{user}さんは%{noun} 上の%{x} で%{by} によってあなたに言及しました"
   merge: 統合
@@ -2098,12 +2114,13 @@ ja:
   observation_date: 日付
   observation_date?: 日付？
   observation_field: 観測記録フィールド
+  observation_field_details: 観察記録フィールドの詳細
   observation_field_type_date: 日付
   observation_field_type_time: 時刻
   observation_field_type_datetime: 日時
   observation_field_type_taxon: 分類群
   observation_field_type_dna: DNA
-  observation_fields: 観測記録フィールド
+  observation_fields: 観察記録フィールド
   observation_fields_are_additional: 観察フィールドは観察記録に追加できる任意データフィールドです
   observation_fields_by_preferences_description: |
     観測フィールドはタグに少し似ていますが、初期設定ではだれでも観測に追加できます。自分だけができるようにしたい場合、またはサイトの管理者だけができるようにしたい場合は、これを変更します。
@@ -2147,6 +2164,7 @@ ja:
   observations_was_successfully_updated: 観察記録が無事更新されました
   observations_widget: 観察記録ウィジェット
   observations_with_this_field: このフィールドでの観察記録
+  observations_with_this_field_and_value: このフィールドと値を含む観察記録
   observations_without_media: メディアなしの観察記録
   observationcounts_refreshed: 観察記録数更新済
   observed: 観察
