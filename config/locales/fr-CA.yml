@@ -979,6 +979,10 @@ fr-CA:
         taxon_name:
           attributes:
             lexicon:
+              should_match_english_translation: |
+                devrait être en anglais, mais ce terme correspond présentement à la traduction %{suggested_locale} de "%{suggested}". 
+                Utilisez "%{suggested}" si c'est ce que vous vouliez dire, et le terme sera traduit quand vous consulterez le site dans 
+                cette langue.
               should_be_in_english: devrait être en anglais
             name:
               already_exists: existe déjà pour ce taxon dans ce lexique
