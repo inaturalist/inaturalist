@@ -5,9 +5,8 @@ class CreateDataPartners < ActiveRecord::Migration
       t.string :url
       t.string :partnership_url
       t.string :frequency
-      t.json :dwc_params
-      t.string :dwc_frequency
-      t.timestamp :dwc_last_export_at
+      t.json :dwca_params
+      t.timestamp :dwca_last_export_at
       t.string :api_request_url
       t.text :description
       t.text :requirements

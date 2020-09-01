@@ -25,10 +25,16 @@ class DataPartner < ActiveRecord::Base
     message: "must be JPG, PNG, SVG, or GIF"
 
   validates :frequency, inclusion: { in: FREQUENCIES }, allow_blank: true
-  validates :dwc_frequency, inclusion: { in: FREQUENCIES }, allow_blank: true
+  validate :dwca_frequency_allowed #, inclusion: { in: FREQUENCIES }, allow_blank: true
   validates :name, presence: true
   validates :url, presence: true
   validates :description, presence: true
+
+  def dwca_frequency_allowed
+    if dwca_params && !dwca_params["freq"].blank? && !FREQUENCIES.include?( dwca_params["freq"] )
+      errors.add( :dwca_params, "freq must be one of #{FREQUENCIES.join( ", " )}")
+    end
+  end
 
   def sync_observation_links( options = {} )
     # Might return an instance of something like DataPartnerLinker::Gbif which
@@ -39,24 +45,31 @@ class DataPartner < ActiveRecord::Base
     end
   end
 
-  def generate_dwc
-    raise "TODO"
-    archive = DarwinCore::Archive.new( dwc_params )
-    archive.generate
-    update_attributes!( dwc_last_export_at: Time.now )
+  def generate_dwca( options = {} )
+    params = dwca_params.clone
+    params[:logger] = options[:logger] unless options[:logger].blank?
+    DarwinCore::Archive.generate( params )
+    update_attributes!( dwca_last_export_at: Time.now )
   end
 
   def self.sync_observation_links( options = {} )
     DataPartner.find_each {|dp| dp.sync_observation_links( options ) }
   end
 
-  def self.generate_dwcs
-    raise "TODO"
-    DataPartner.where( dwc_frequency: "weekly" ).where( "dwc_last_export_at < ?", 1.week.ago ).find_each do |dp|
-      dp.generate_dwc
+  def self.generate_dwcas( options = {} )
+    logger = options[:logger] || Rails.logger
+    generator = Proc.new do |dp|
+      begin
+        dp.generate_dwca( options )
+      rescue => e
+        logger.error "Failed to generate DwC-A for #{dp}: #{e}"
+      end
     end
-    DataPartner.where( dwc_frequency: "monthly" ).where( "dwc_last_export_at < ?", 1.month.ago ).find_each do |dp|
-      dp.generate_dwc
-    end
+    DataPartner.where( "dwca_params->>'freq' = ?", WEEKLY ).
+        where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.week.ago ).
+        find_each( &generator )
+    DataPartner.where( "dwca_params->>'freq' = ?", MONTHLY ).
+        where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.month.ago ).
+        find_each( &generator )
   end
 end

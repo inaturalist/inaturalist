@@ -17,7 +17,6 @@ class DataPartnersController < ApplicationController
     if @data_partner.save
       redirect_to @data_partner
     else
-      flash[:error] = @data_partner.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -29,10 +28,10 @@ class DataPartnersController < ApplicationController
   end
 
   def update
-    if @data_partner.update_attributes( params[:data_partner] )
+    @data_partner.assign_attributes( params[:data_partner] )
+    if @data_partner.save
       redirect_to @data_partner
     else
-      flash[:error] = @data_partner.errors.full_messages.to_sentence
       render :edit
     end
   end

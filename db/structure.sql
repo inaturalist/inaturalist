@@ -1005,9 +1005,8 @@ CREATE TABLE public.data_partners (
     url character varying,
     partnership_url character varying,
     frequency character varying,
-    dwc_params json,
-    dwc_frequency character varying,
-    dwc_last_export_at timestamp without time zone,
+    dwca_params json,
+    dwca_last_export_at timestamp without time zone,
     api_request_url character varying,
     description text,
     requirements text,
@@ -4473,7 +4472,8 @@ CREATE TABLE public.taxon_names (
     name_provider character varying(255),
     creator_id integer,
     updater_id integer,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    parameterized_lexicon character varying
 );
 
 
@@ -10308,6 +10308,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
 
 INSERT INTO schema_migrations (version) VALUES ('20200822002822');
+
+INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
