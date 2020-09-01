@@ -32,7 +32,7 @@ fr:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} liste de vie en premier"
+    one: "%{count} première observation à votre liste des êtres vivants"
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} premiers lanceurs de la liste de vie"
   x_journal_posts_html:
@@ -1391,6 +1391,8 @@ fr:
   flag_for_guide_title_html: |
     Signalement du Guide : %{title}
   flag_for_identification_id_html: Signalement pour <a href="%{url}">Identification %{id}</a>
+  flag_for_life_list_title_html: |
+    Signalement pour la liste des êtres vivants : %{title}
   flag_for_list_title_html: |
     Signalement de la liste: %{title}
   flag_for_message_id_html: Signalement pour le <a href="%{url}">Message %{id}</a>
@@ -3187,6 +3189,8 @@ fr:
   projects_from_everywhere: Projets de partout
   projects_from_place: "Projets de %{place}"
   projects_in_x: "Projets dans %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Projets administrés par %{user}
   projects_you_admin: Projets que vous administrez
   proposed_taxa_that_contradict_the_community_id: Taxons proposés qui sont en contradiction avec l’ID de la communauté
   proposed_taxa_that_support_the_community_id: Taxons proposés qui confirment l’ID de la communauté
@@ -3207,6 +3211,9 @@ fr:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Restrictions de rang
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: État des choses
     kingdom: Royaume
@@ -3522,6 +3529,8 @@ fr:
   some_agree: quelques personnes sont d’accord
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo ou d'identification
+  some_observations_are_missing_media_or_identifications_desc: |
+    Les observations sans média ne seront pas visibles par défaut dans les recherches, et celles sans identifications pourraient ne pas être vues par des experts qui recherchent des taxons spécifiques. Même une identification très approximative comme "Plantes" peut aider les experts à trouver votre observation.
   some_observations_failed_to_be_added: Certaines observations n’ont pas pu être ajoutées aux projets
   some_observations_failed_to_save: Certaines observations n’ont pas pu être sauvegardées
   some_of_those_photos_couldnt_be_saved: "Certaines de ces photos n’ont pas pu être enregistrées : %{error}"
@@ -3656,6 +3665,7 @@ fr:
   subscribe_to_a_place: S’abonner à un lieu
   subscribe_to_comments_on_this_flag_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce signalement"
   subscribe_to_comments_on_this_post_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cet article"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette activation de taxon"
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cet échange de taxon"
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette fusion de taxon"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce partage de taxon"
@@ -4412,6 +4422,7 @@ fr:
     Vous soumettez des observations sans date ou lieu. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_subscribed_to_comments_on_this_flag: Vous êtes abonné aux commentaires sur ce signalement.
   you_are_subscribed_to_comments_on_this_post: Vous êtes abonné aux commentaires sur cet article.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Vous êtes abonné aux commentaires sur cette activation de taxon
   you_are_subscribed_to_comments_on_this_taxon_swap: Vous êtes abonné aux commentaires sur cet échange de taxon
   you_are_subscribed_to_comments_on_this_taxon_merge: Vous êtes abonné aux commentaires sur la fusion de ce taxon
   you_are_subscribed_to_comments_on_this_taxon_split: Vous êtes abonné aux commentaires sur ce partage de taxon
@@ -5619,6 +5630,9 @@ fr:
         select_quality_grade: |
           Sélectionnez au moins une note de qualité. Vous trouverez plus d'explications pour chaque note de qualité sur notre page de <a href="%{url}">FAQ</a>.
         show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
+        specify_project_filters: |
+          Préciser les filtres suivant lesquels les observations seront ajoutées à votre projet.
+          Vous pouvez sélectionner plusieurs espèces (ou taxons), lieux, dates ou autres critères selon lesquels les observations seront automatiquement incluses.
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         umbrella_project_features: "Fonctionnalités du projet cadre:"
@@ -7024,7 +7038,9 @@ fr:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ne doit pas contenir de virgules ni de barres obliques
+              should_be_in_english: devrait être en anglais
             name:
+              already_exists: existe déjà pour ce taxon dans ce lexique
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 ne correspond pas au nom scientifique d'une espèce pour ce lexicon
               must_match_the_taxon_if_valid: |
