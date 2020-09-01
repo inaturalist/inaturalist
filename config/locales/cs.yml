@@ -1236,6 +1236,7 @@ cs:
         subject: 'Pokyny k potvrzení'
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
+  devise_reset_password_instructions_hello_email: Dobrý den %{email}
   discoveries: Objevy
   did_not_send_invitations_because: Pozvánka těmto nebyla odeslána, protože...
   did_you_mean: 'Mysleli jste'
@@ -3314,6 +3315,9 @@ cs:
   rank: Klasifikace
   rank_position: Klasifikace
   rank_restrictions: Omezení klasifikace
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Stav věci
     kingdom: Říše
@@ -3521,6 +3525,7 @@ cs:
   scientific_name: Vědecký název
   search: Hledat
   search_all_fields: prohledat všechna pole
+  search_by_name: Hledat podle jména
   search_by_name_or_email: Hledat podle jména nebo e-mailu
   search_by_taxon_name_or_observation_id: Hledat podle názvu taxonu nebo ID pozorování
   search_by_taxon_name_or_flickr_photo_id: Hledat podle názvu taxonu nebo ID fotky na Flickru
@@ -3633,6 +3638,8 @@ cs:
   site_stats: Statistika stránky
   site_taxon_page: "stránka taxonu %{site_name}"
   some_agree: někteří souhlasí
+  some_observations_are_missing_media_or_identifications: |
+    Některým pozorováním chybí média nebo identifikace
   some_observations_failed_to_be_added: Některá pozorování se nepodařilo přidat k projektům
   some_observations_failed_to_save: Některá pozorování se nepodařilo uložit
   some_of_those_photos_couldnt_be_saved: "Některé z fotek se nepodařilo uložit: %{error}"
@@ -3969,6 +3976,11 @@ cs:
   terms_service: Podmínky služby
   terrain: terén
   text: Text
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Parametry textového bloku
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Parametry formátování textu
+  text_editing_controls: Ovládací prvky pro úpravu textu
   thanks!: Děkujeme!
   thanks_from_all_of_us_here_at: Poděkování od nás všech z
   that_photo_doesnt_exist: Tato fotka neexistuje.
@@ -6825,7 +6837,9 @@ cs:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
+              should_be_in_english: mělo by být v angličtině
             name:
+              already_exists: pro tento taxon v tomto slovníku již existuje
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nemůže odpovídat vědeckému názvu druhu pro tento slovníček
               must_match_the_taxon_if_valid: |
