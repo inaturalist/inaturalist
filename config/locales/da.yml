@@ -1834,7 +1834,7 @@ da:
   link_your_google_account: Tilknyt din Google konto
   linked_facebook: "Din %{site_name} konto er i øjeblikket tilknyttet til din Facebook konto."
   linked_facebook_automaticaly: "Husk også, at hvis du logger ind på %{site_name} via Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook konti. Det ser rimeligt ud, at hvis du bruger Facebook, vil du gerne kunne importere Facebook fotos, ikke?"
-  linked_facebook_description: "Ved at lade din %{site_name} konto være tilknyttet din Facebook konto, kan du tilføje flere billeder samtidigt til dine observationer. Vi vil selvfølgelig ikke stoppe dig, hvis du på et tidspunkt ønsker at %{site_name} og Facebook skal frakobles. Det kan nogle gange være en fordel at oprette en helt ny Facebook konto til brug for billeddeling med %{site_name}"
+  linked_facebook_description: "Ved at lade din %{site_name}-konto være tilknyttet din Facebook-konto, kan du tilføje flere billeder samtidigt til dine observationer. Vi vil selvfølgelig ikke stoppe dig, hvis du på et tidspunkt ønsker at %{site_name} og Facebook skal frakobles. Det kan nogle gange være en fordel at oprette en helt ny Facebook-konto til brug for billeddeling med %{site_name}"
   linked_facebook_howto: "For at forbinde Facebook med %{site_name}, klik på linket til højre og log ind på Facebook.com."
   linked_facebook_password: "Vi vil aldrig bede dig om din Facebook adgangskode (men Facebook vil, tjekke URL adressen, som knappen sender dig og sikre sig at det er Facebook.com). Vi vil heller ikke ændre dine Facebook data, medmindre du vil have os til det."
   linked_flickr: "Din %{site_name} konto er i øjeblikket tilknyttet din Flickr konto."
@@ -2644,7 +2644,7 @@ da:
   #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
   photos_locked: Fotos låst
   photos_locked_desc: Kun medarbejdere kan ændre standardfotos til denne takson
-  photos_of_taxon_html: "Foto´s af %{taxon}"
+  photos_of_taxon_html: "Fotos af %{taxon}"
   photos_or_sounds: Fotos eller lyde
   photos_or_sounds?: Foto´s eller lyde
   photos_size:
@@ -3787,7 +3787,7 @@ da:
     gbif_occurrences: GBIF forekomster
     it_may_take_google_a_while_to: Det kan tage Google et stykke tid at indlæse disse data, forudsat at GBIF har nogle.
     data_url: Data-URL
-    overlays: Overtræk
+    overlays: Kortlag
   taxon_changes: Takson ændringer
   taxon_colors: Taksonfarver
   taxon_curators: Takson kuratorer
@@ -4100,7 +4100,7 @@ da:
       unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF, WAV, AAC og MP4 (kun audio)
     resize_tip: |
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
-      2048 ved 2048 pixels. Dette sker med alle fotos på
+      2048 x 2048 pixels. Dette sker med alle fotos på
       serveren alligevel, og muliggør hurtigere upload.
     tooltips:
       add: Tilføj observation(er)
@@ -4458,7 +4458,7 @@ da:
   you_cant_flag_that: Du kan ikke markere dette
   you_cant_leave_a_project_you_created: Du kan ikke forlade et projekt, du har oprettet.
   you_cant_merge_standard_places: Du kan ikke flette standardsteder
-  you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere foto´s lagret udenfor %{site_name}."
+  you_cant_rotate_photos_hostde_outside: "Du kan ikke rotere fotos lagret udenfor %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan ikke slette taksa involveret i takson-ændringer, eller som indeholder taksa involveret i takson-ændringer
   you_curate_a_project_that_contains_this_observation: Du er kurator på et projekt, som indeholder denne observation
   you_curate_a_project_that_contains_this_observation_desc: |
@@ -5274,7 +5274,7 @@ da:
           Vi vil gerne fjerne alle forbindelser til ødelagte fotos i den nærmeste fremtid, men vi
           vil ikke fjerne noget, der kan reddes. Det er muligt at nogle af disse billeder
           stadig findes hos deres eksterne værter og kan repareres. Nogle billeder kan have været
-          uploadet via en forbindelse mellem din <a href='%{account_url}'>%{site_name} konto </a> og en anden fototjeneste konto, og at denne forbindelse er udløbet og skal genetableres.
+          uploadet via en forbindelse mellem din <a href='%{account_url}'>%{site_name}-konto </a> og en konto på en anden fototjeneste. Hvis denne forbindelse er udløbet, skal den genetableres.
         you_can_attempt_repair: |
           Du kan forsøge at reparere billederne ved at besøge fotosiden og klikke på
           "%{repair_link_text}" linket. Hvis du ved, at billedet ikke længere eksisterer, kan du vælge at slette det.
@@ -5939,7 +5939,7 @@ da:
         photo_chooser_modal_explanation: |
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte fotos til denne
-          takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+          takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på hele sitet.
         rare_desc: Mindst observerede truede taksa
         rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
