@@ -1056,6 +1056,8 @@ nl:
   decrease_brightness: Helderheid verminderen
   #Default option
   default: standaard
+  #Default option
+  default_: Standaard
   default_invite_comment: "Mooie foto! Post ze op %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standaard waarnemingslicentie
   default_photo_license: Standaard fotolicentie
@@ -3208,6 +3210,9 @@ nl:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeperkingen
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Toestand van de materie
     kingdom: Rijk
@@ -3300,7 +3305,7 @@ nl:
   reload_from_observations: Opnieuw laden vanuit de waarnemingen
   reload_timed_out: 'Reload timed out.  Probeer het later opnieuw'
   remarks_optional: 'Opmerkingen <span class="small description">(optional)</span>'
-  remember_me: Instellingen onthouden
+  remember_me: Onthoud mijn gegevens
   remove: Verwijderen
   remove_all_tags: Alle labels verwijderen
   remove_comma_separated_tags: "Door komma's gescheiden labels verwijderen"
@@ -3525,6 +3530,13 @@ nl:
   site_stats: Site statistieken
   site_taxon_page: "%{site_name} taxonpagina"
   some_agree: sommigen gaan akkoord
+  some_observations_are_missing_media_or_identifications: |
+    Een aantal waarnemingen missen media of determinaties
+  some_observations_are_missing_media_or_identifications_desc: |
+    Waarnemingen zonder media zijn standaard niet zichtbaar in zoekopdrachten, en
+    worden als ze geen determinatie hebben mogelijk niet gezien door experts die naar
+    specifieke taxa zoeken. Zelfs een zeer ruwe determinatie zoals "planten" kan een
+    plantenexpert helpen om je waarneming te vinden.
   some_observations_failed_to_be_added: Sommige waarnemingen werden niet aan de projecten toegevoegd
   some_observations_failed_to_save: Enkele waarnemingen werden niet opgeslagen
   some_of_those_photos_couldnt_be_saved: "Sommige van deze foto's konden niet worden opgeslagen: %{error}"
@@ -6548,7 +6560,12 @@ nl:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: mag geen komma's of schuine strepen bevatten
+              should_match_english_translation: |
+                moet in het Engels zijn, maar momenteel komt het overeen met de vertaling van "%{suggested}" in het %{suggested_locale}.
+                Gebruik "%{suggested}" als dat is wat je bedoelde en het wordt vertaald als je de site in die taal bekijkt.
+              should_be_in_english: moet in het Engels zijn
             name:
+              already_exists: bestaat al voor dit taxon in dit lexicon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan geen passende wetenschappelijke naam van een soort vinden voor dit lexicon
               must_match_the_taxon_if_valid: |

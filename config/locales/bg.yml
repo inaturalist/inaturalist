@@ -1145,6 +1145,7 @@ bg:
   ids_made_for_others: Разпознавания направени за други
   if_this_is_a_scientific_name: Ако това е научно име, общоприето ли е в момента?
   if_your_project_is: Ако проектът е за конкретно място, задайте координати чрез щракване върху картата или ги въведете ръчно.
+  image_must_be_exactly: изображението трябва да бъде точно 950 пиксела широко и най-много 400 пиксела високо
   import: Импортиране
   import_date_time_location_taxonomic: "Извлечи дата, време, място, описание и таксономична информация от снимката."
   import_from_csv: Импорт от CSV
@@ -1467,6 +1468,8 @@ bg:
   messages: Съобщения
   misleading_or_illegal_content_html: |
     Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, погледнете <a href="/help#inappropriate">ЧЗВ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Липсва дата
   mollusks: мекотели
   momentjs:
     shortRelativeTime:
@@ -1564,6 +1567,11 @@ bg:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от iNaturalist.org на %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong> е част от международната Мрежа на iNaturalist и се фокусира върху биоразнообразието и хората от Финландия. Желаете ли да промените членството си от iNaturalist.org на iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Желаете ли да промените своето членство от <strong>%{other_site_name}</strong> на <strong>%{site_name}</strong>?
   new: Нови
@@ -2271,6 +2279,7 @@ bg:
   project_curators: Куратори на проекта
   project_group_label: Група
   project_group_description: Група, към която принадлежи проектът
+  project_home: Начална на проекта
   project_icon: Икона на проекта
   project_journal: Дневник на проекта
   project_invitations: 'Покани за проекти'
@@ -2280,6 +2289,8 @@ bg:
   project_members: "Членове на „%{project}“"
   project_members_only: Само за членове на проекта
   project_membership_model_description: Проектът Ви отворен ли е за всички или е само за хора които поканите?
+  project_observations: Наблюдения на проекта
+  project_post: Журнал на проекта
   project_requirements: Изисквания на проекта
   project_rules: Правила на проекта
   project_settings: Настройки за проекти
@@ -2357,6 +2368,7 @@ bg:
   recent_new_users: Скорошни нови потребители
   recent_observations: Скорошни наблюдения
   recent_observations_: Скорошни наблюдения
+  recent_post: Скорошни публикации
   recent_atom_observations_by: "Скорошни наблюдения от %{login} (Atom)"
   recent_observations_by: "Скорошни наблюдения от %{login}"
   recently_active: Последно активни
@@ -2413,6 +2425,9 @@ bg:
   row_singular_or_plural: Ред(ове)
   rules_for_adding_observations: Правила за добавяне на наблюдения
   rules_types:
+    must_be_captive: трябва да е в плен / култивирано
+    must_be_georeferenced: трябва да има координати
+    must_be_identified: трябва да е разпознато
     must_be_in: трябва да бъде от таксон
   said: каза
   satellite: сателит
@@ -2773,6 +2788,7 @@ bg:
   top_identifiers_of_taxon: Най-добри разпознавачи на %{taxon}
   top_observer: Най-добър наблюдател
   total: Общо
+  totals: Общо
   total_members: Общо членове
   total_observations: Общо наблюдения
   total_unique_observers: Общо различни наблюдатели
@@ -2833,6 +2849,7 @@ bg:
   use_well_formed_csv: |
     Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
   user: Потребител
+  user_added_a_comment_html: "%{user} добави коментар"
   user_added_a_flag_html: "%{user} добави маркер"
   user_added_a_x: "%{user} добави %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
@@ -2945,7 +2962,9 @@ bg:
   weather: Време
   website: Уебсайт
   welcome_back: Добре дошли отново
+  welcome_to_inat: "Добре дошли в %{site_name}!"
   welcome_to_guides: "Добре дошли в Ръководствата на %{site_name}!"
+  welcome_to_x_project: "Добре дошли в %{project}"
   #Label for the most probable taxon in the automated suggestions. @gender
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
@@ -3042,6 +3061,7 @@ bg:
   your_flickr_photos_have_been_tagged: Вашите снимки на Flickr бяха тагнати!
   your_hard_drive: Вашият твърд диск
   your_id: Вашето ID
+  your_membership: Вашето членство
   your_name_was_saved: Вашето име беше запазено.
   your_observations: Ваши наблюдения
   your_observations_couldnt_be_added_to_that_project: "Вашите наблюдения не можеха да бъдат добавени към този проект: %{errors}"
@@ -3116,6 +3136,9 @@ bg:
         show_messages_to_user: Покажи съобщенията до %{user}
         speech_privilege_notice: |
           Ще можете да изпращате нови съобщения след като добавите поне три проверими наблюдения или направите три разпознавания за други. Засега можете да четете и отговаряте на съобщения, които сте получили.
+      show:
+        privacy_notice_html: |
+          Макар и съобщенията да са поверителни между Вас и получателя, персоналът на iNaturalist също може да ги вижда и ще ги прегледа, когато съобщенията са маркирани за модериране. Ако имате нужда от абсолютна поверителност, моля потърсете други средства за комуникация предлагащи надеждно криптиране.
     oauth:
       authorizations:
         new:
@@ -3290,8 +3313,14 @@ bg:
       project_location_privacy_notice_html: |
         <p>Моля, имайте предвид, че кураторите на проекта ще могат да виждат всичките поверителни или замаскирани координати на Вашите наблюдения добавени в проекта, освен ако не отмените това им право. Също така, ще могат да добавят което и да е Ваше наблюдение към проекта, освен ако не промените това в <a href="/users/edit">настройките си</a>. Можете да давате или отменяте достъпа до наблюдения в проекта и поотделно.</p>
         <p>Ако се притеснявате за поверителността на местоположението – не се присъединявайте към проекти, когато нямате доверие на кураторите им.</p>
+      project_user_curator_coordinate_access_labels:
+        observer: Да, но само ако аз добавя наблюдението си към проекта.
+        any: Да, независимо кой е добавил наблюдението ми към проекта.
+        none: Не.
       curator_coordinate_access_label: |
         Искате ли да направите координатите на своите поверителни/замаскирани наблюдения видими за кураторите на проекта?
+      curator_coordinate_access_note: |
+        Можете да избирате дали да споделяте скритите координати и поотделно за всяко наблюдение. Това са просто настройките по подразбиране за добавяните наблюдения.
       show:
         no_journal_blurb_html: |
           <p>Дневникът на проекта е начин да общувате с членовете на проекта. Може да го използвате за да оповестите нещо, да определите приоритети или да разговаряте за откритията на проекта.
@@ -3864,14 +3893,34 @@ bg:
     errors:
       messages:
         blank: не може да е празно
+        equal_to: трябва да е равно на %{count}
+        even: трябва да е четно
+        greater_than: трябва да е по-голямо от %{count}
+        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
+        less_than: трябва да е по-малко от %{count}
+        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
         new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
+        not_an_integer: трябва да е цяло число
+        odd: трябва да е нечетно
       models:
+        application:
+          attributes:
+            redirect_uri:
+              invalid_uri: "трябва да е валиден URI."
+              relative_uri: "трябва да е абсолютен URI."
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Не могат да бъдат експортирани повече от 200 000 наблюдения
+              must_have_query: Заявката не може да е празна
         place:
           attributes:
             place_geometry:
               contains_too_many_observations: съдържа прекалено много наблюдения за импортиране
         project_observation:
           attributes:
+            user_id:
+              must_be_curator: трябва да е куратор на проекта
             observation_id:
               must_be_observed_after: |
                 да е наблюдавано след %{time}
