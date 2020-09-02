@@ -37,9 +37,9 @@ class DataPartner < ActiveRecord::Base
   end
 
   def sync_observation_links( options = {} )
-    # Might return an instance of something like DataPartnerLinker::Gbif which
-    # knows how to use the partnership_url to configure a GBIF export we can use
-    # to make obs links
+    # TODO try to avoid reindexing obs when running each linker and instead
+    # maybe pluck all obs IDs from obs links updated in this run and reindex
+    # them at the end
     if linker = DataPartnerLinkers.linker_for( self, options )
       linker.run
     end

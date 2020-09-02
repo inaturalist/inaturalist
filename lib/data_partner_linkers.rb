@@ -3,7 +3,7 @@ module DataPartnerLinkers
     case data_partner.name
     when "GBIF" then DataPartnerLinkers::GBIF.new( data_partner, options )
     when "Maryland Biodiversity Project" then DataPartnerLinkers::MarylandBiodiversityProject.new( data_partner, options )
-    # when "Calflora" then DataPartnerLinkers::Calflora.new( data_partner, options )
+    when "Calflora" then DataPartnerLinkers::Calflora.new( data_partner, options )
     end
   end
 
