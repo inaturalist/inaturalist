@@ -19,7 +19,7 @@ class VotesController < ApplicationController
   end
 
   def vote
-    if @record.respond_to?(:wait_for_index_refresh)
+    if @record.respond_to?(:wait_for_index_refresh) && !params[:skip_refresh]
       @record.wait_for_index_refresh = true
     end
     if @record.respond_to?(:wait_for_obs_index_refresh)
@@ -35,7 +35,7 @@ class VotesController < ApplicationController
   end
 
   def unvote
-    if @record.respond_to?(:wait_for_index_refresh)
+    if @record.respond_to?(:wait_for_index_refresh) && !params[:skip_refresh]
       @record.wait_for_index_refresh = true
     end
     if @record.respond_to?(:wait_for_obs_index_refresh)

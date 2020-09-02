@@ -2032,7 +2032,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.wait_for_index_refresh = true
+    review.observation.wait_for_index_refresh = !params[:skip_refresh]
     review.observation.elastic_index!
   end
 

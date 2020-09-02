@@ -2,7 +2,10 @@ import iNaturalistJS from "inaturalistjs";
 import moment from "moment";
 import _ from "lodash";
 import { setConfig } from "../../../shared/ducks/config";
-import { fetchObservationsStats } from "./observations_stats_actions";
+import {
+  incrementReviewed,
+  decrementReviewed
+} from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import {
@@ -305,7 +308,7 @@ function toggleReviewed( optionalObs = null ) {
     const s = getState( );
     const observation = optionalObs || s.currentObservation.observation;
     const reviewed = observation.reviewedByCurrentUser;
-    const params = { id: observation.id };
+    const params = { id: observation.id, skip_refresh: true };
     if (
       s.currentObservation.observation
       && observation.id === s.currentObservation.observation.id
@@ -320,13 +323,16 @@ function toggleReviewed( optionalObs = null ) {
     if ( reviewed ) {
       dispatch( setConfig( { allReviewed: false } ) );
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
-        dispatch( fetchCurrentObservation( observation ) );
-        dispatch( fetchObservationsStats( ) );
+        dispatch( decrementReviewed( ) );
       } );
     } else {
       iNaturalistJS.observations.review( params ).then( ( ) => {
-        dispatch( fetchCurrentObservation( observation ) );
-        dispatch( fetchObservationsStats( ) );
+        dispatch( incrementReviewed( ) );
+        if ( _.isEmpty( _.filter( getState( ).observations.results,
+          o => !o.reviewedByCurrentUser ) )
+        ) {
+          dispatch( setConfig( { allReviewed: true } ) );
+        }
       } );
     }
   };
@@ -468,9 +474,10 @@ export function vote( scope, params = { } ) {
         api_status: "saving"
       }] );
       dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    } else {
+      payload.skip_refresh = true;
     }
-    iNaturalistJS.observations.fave( payload )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+    iNaturalistJS.observations.fave( payload );
   };
 }
 
@@ -486,9 +493,10 @@ export function unvote( scope ) {
           : v
       ) );
       dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    } else {
+      payload.skip_refresh = true;
     }
-    iNaturalistJS.observations.unfave( payload )
-      .then( () => dispatch( fetchCurrentObservation( ) ) );
+    iNaturalistJS.observations.unfave( payload );
   };
 }
 

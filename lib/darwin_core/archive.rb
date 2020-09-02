@@ -552,7 +552,7 @@ module DarwinCore
       chunk_start_id = 1
       # initial loop splits queries into batches by setting the search param
       # `id_below`. This make queries with very large result sets faster overall
-      # whith little overhead for small queries.
+      # with little overhead for small queries.
       while chunk_start_id <= max_id
         params[:min_id] = chunk_start_id
         params[:id_below] = chunk_start_id + search_chunk_size
