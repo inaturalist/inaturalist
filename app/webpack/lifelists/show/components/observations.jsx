@@ -1,22 +1,36 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Observation from "../../../projects/show/components/observation";
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Observations extends Component {
-  constructor( props, context ) {
-    super( props, context );
-    let asdf = "ASdf";
-  }
-
   render( ) {
     const {
-      search, fetchNextPage, config
+      lifelist, search, fetchNextPage, config, setSpeciesPlaceFilter
     } = this.props;
     let view;
     const loading = !search || ( !search.searchResponse && !search.loaded );
     const observations = loading ? null : search.searchResponse.results || [];
+    let emptyMessage;
+    let emptyClearButton;
     if ( loading ) {
       view = ( <div className="loading_spinner huge" /> );
+    } else if ( _.isEmpty( observations ) && lifelist.speciesPlaceFilter ) {
+      if ( lifelist.detailsTaxon ) {
+        emptyMessage = `No observations found within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+      } else {
+        emptyMessage = `No observations found in ${lifelist.speciesPlaceFilter.display_name}.`;
+      }
+      emptyClearButton = (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={( ) => setSpeciesPlaceFilter( null )}
+        >
+          Reset Place Filter
+        </button>
+      );
     } else {
       view = observations.map( o => {
         const itemDim = 210;
@@ -58,6 +72,12 @@ class Observations extends Component {
     return (
       <div className="flex-container">
         <div className="ObservationsGrid" key="observations-flex-grid">
+          { emptyMessage && (
+            <div className="empty">
+              { emptyMessage }
+              { emptyClearButton }
+            </div>
+          ) }
           { view }
           { moreButton }
         </div>
@@ -69,7 +89,9 @@ class Observations extends Component {
 Observations.propTypes = {
   config: PropTypes.object,
   search: PropTypes.object,
-  fetchNextPage: PropTypes.func
+  fetchNextPage: PropTypes.func,
+  lifelist: PropTypes.object,
+  setSpeciesPlaceFilter: PropTypes.func
 };
 
 export default Observations;

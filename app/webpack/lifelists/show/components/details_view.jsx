@@ -13,7 +13,7 @@ const ObservationsGridContainer = APIWrapper( "observations", Observations );
 const UnobservedSpeciesGridContainer = APIWrapper( "unobservedSpecies", Species );
 
 const DetailsView = ( {
-  lifelist, setSpeciesPlaceFilter, setObservationSort, zoomToTaxon,
+  lifelist, setSpeciesPlaceFilter, setObservationSort,
   setDetailsTaxon, inatAPI
 } ) => {
   let view;
@@ -24,6 +24,7 @@ const DetailsView = ( {
     view = (
       <UnobservedSpeciesGridContainer
         lifelist={lifelist}
+        setDetailisTaxon={setDetailsTaxon}
         setSpeciesPlaceFilter={setSpeciesPlaceFilter}
       />
     );
@@ -58,44 +59,67 @@ const DetailsView = ( {
         </ul>
       </div>
     );
-    view = ( <ObservationsGridContainer /> );
+    view = (
+      <ObservationsGridContainer
+        lifelist={lifelist}
+        setSpeciesPlaceFilter={setSpeciesPlaceFilter}
+      />
+    );
   }
   let stats;
   let title;
   let inatAPIsearch;
   let searchLoaded;
   if ( lifelist.detailsView === "observations" ) {
+    inatAPIsearch = inatAPI.observations;
+    searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
     if ( lifelist.detailsTaxon ) {
-      const hasDirectObs = lifelist.detailsTaxon.direct_obs_count > 0;
-      const hasDescendantObs = lifelist.detailsTaxon.descendant_obs_count > 0;
       const isLeaf = !lifelist.children[lifelist.detailsTaxon.id];
-      const descendantsStats = (
-        <span
-          className={`stat ${lifelist.detailsTaxonExact ? "" : "selected "}${hasDescendantObs ? "clicky" : ""}`}
-          onClick={( ) => hasDescendantObs && setDetailsTaxon( lifelist.detailsTaxon )}
-        >
-          <span className="attr">Observations within this taxon:</span>
-          <span className="value">
-            { lifelist.detailsTaxon.descendant_obs_count.toLocaleString( ) }
-          </span>
-        </span>
-      );
-      stats = (
-        <div className="stats">
+      if ( lifelist.speciesPlaceFilter ) {
+        const label = isLeaf ? "Observations at this taxon:" : "Observations within this taxon:";
+        stats = (
+          <div className="stats">
+            <span className="stat">
+              <span className="attr">{label}</span>
+              <span className="value">
+                { searchLoaded
+                  ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
+                  : ( <div className="loading_spinner" /> ) }
+              </span>
+            </span>
+          </div>
+        );
+      } else {
+        const hasDirectObs = lifelist.detailsTaxon.direct_obs_count > 0;
+        const hasDescendantObs = lifelist.detailsTaxon.descendant_obs_count > 0;
+        const descendantsStats = (
           <span
-            className={`stat ${isLeaf || lifelist.detailsTaxonExact ? "selected " : ""}${hasDirectObs ? "clicky" : ""}`}
-            onClick={( ) => hasDirectObs && setDetailsTaxon( lifelist.detailsTaxon, { without_descendants: true } )}
+            className={`stat ${lifelist.detailsTaxonExact ? "" : "selected "}${hasDescendantObs ? "clicky" : ""}`}
+            onClick={( ) => hasDescendantObs && setDetailsTaxon( lifelist.detailsTaxon )}
           >
-            <span className="attr">Observations at this taxon:</span>
+            <span className="attr">Observations within this taxon:</span>
             <span className="value">
-              <Badge className="green">
-                { lifelist.detailsTaxon.direct_obs_count.toLocaleString( ) }
-              </Badge>
+              { lifelist.detailsTaxon.descendant_obs_count.toLocaleString( ) }
             </span>
           </span>
-          { isLeaf || descendantsStats }
-        </div>
-      );
+        );
+        stats = (
+          <div className="stats">
+            <span
+              className={`stat ${isLeaf || lifelist.detailsTaxonExact ? "selected " : ""}${hasDirectObs ? "clicky" : ""}`}
+              onClick={( ) => hasDirectObs && setDetailsTaxon( lifelist.detailsTaxon, { without_descendants: true } )}
+            >
+              <span className="attr">Observations at this taxon:</span>
+              <span className="value">
+                <Badge className="green">
+                  { lifelist.detailsTaxon.direct_obs_count.toLocaleString( ) }
+                </Badge>
+              </span>
+            </span>
+            { isLeaf || descendantsStats }
+          </div>
+        );
+      }
     } else {
       title = "All Observations";
       stats = (
@@ -103,7 +127,9 @@ const DetailsView = ( {
           <span className="stat">
             <span className="attr">Total Observations:</span>
             <span className="value">
-              { lifelist.observationsCount }
+              { searchLoaded
+                ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
+                : ( <div className="loading_spinner" /> ) }
             </span>
           </span>
         </div>
@@ -111,14 +137,33 @@ const DetailsView = ( {
     }
   } else if ( lifelist.detailsView === "species" ) {
     title = "All Species";
-    inatAPIsearch = inatAPI.species;
-    searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
+    let count = lifelist.detailsTaxon
+      ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount;
+    searchLoaded = true;
+    if ( lifelist.speciesPlaceFilter ) {
+      inatAPIsearch = inatAPI.speciesPlace;
+      searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
+      if ( searchLoaded ) {
+        const nodeIsDescendant = ( !lifelist.detailsTaxon || lifelist.detailsTaxon === "root" )
+          ? ( ) => true
+          : node => node.left >= lifelist.detailsTaxon.left
+            && node.right <= lifelist.detailsTaxon.right;
+        count = _.size( _.filter( lifelist.taxa, t => (
+          nodeIsDescendant( t ) && (
+            ( t.right === t.left + 1 )
+              && inatAPIsearch.searchResponse.results[t.id]
+          )
+        ) ) );
+      }
+    }
     stats = (
       <div className="stats">
         <span className="stat">
           <span className="attr">Observed Species:</span>
           <span className="value">
-            { lifelist.detailsTaxon ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount }
+            { searchLoaded
+              ? count.toLocaleString( )
+              : ( <div className="loading_spinner" /> ) }
           </span>
         </span>
       </div>
@@ -140,7 +185,7 @@ const DetailsView = ( {
       </div>
     );
   }
-  let taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
+  const taxonClear = lifelist.detailsView === "unobservedSpecies" ? null : (
     <span
       className="fa fa-times"
       onClick={( ) => setDetailsTaxon( null )}
@@ -151,7 +196,11 @@ const DetailsView = ( {
       { lifelist.detailsTaxon ? (
         <h3>
           { taxonClear }
-          <SplitTaxon taxon={lifelist.detailsTaxon} noInactive />
+          <SplitTaxon
+            taxon={lifelist.detailsTaxon}
+            url={`/taxa/${lifelist.detailsTaxon.id}`}
+            noInactive
+          />
         </h3>
       ) : (
         <h3>
@@ -161,18 +210,33 @@ const DetailsView = ( {
       { stats }
       <div className="search-options">
         <div className="place-search">
-          <span className="glyphicon glyphicon-search ac-select-thumb" />
-          <PlaceAutocomplete
-            resetOnChange={false}
-            initialPlaceID={lifelist.speciesPlaceFilter}
-            bootstrapClear
-            afterSelect={result => {
-              setSpeciesPlaceFilter( result.item.id );
-            }}
-            afterUnselect={( ) => {
-              setSpeciesPlaceFilter( null );
-            }}
-          />
+          <div className="icon-state">
+            <span className="glyphicon glyphicon-map-marker ac-select-thumb" />
+            { lifelist.speciesPlaceFilter ? "Filtered by" : "Filter by" }
+          </div>
+          { lifelist.speciesPlaceFilter ? (
+            <Badge>
+              { lifelist.speciesPlaceFilter.display_name }
+              <span
+                className="clear"
+                onClick={( ) => setSpeciesPlaceFilter( null ) }
+              >
+                &times;
+              </span>
+            </Badge>
+          ) : (
+            <PlaceAutocomplete
+              resetOnChange={false}
+              initialPlaceID={lifelist.speciesPlaceFilter}
+              bootstrapClear
+              afterSelect={result => {
+                setSpeciesPlaceFilter( result.item );
+              }}
+              afterUnselect={( ) => {
+                setSpeciesPlaceFilter( null );
+              }}
+            />
+          ) }
         </div>
         { lifelist.detailsView !== "observations" && ( searchOptions ) }
       </div>
@@ -186,8 +250,7 @@ DetailsView.propTypes = {
   inatAPI: PropTypes.object,
   setDetailsTaxon: PropTypes.func,
   setSpeciesPlaceFilter: PropTypes.func,
-  setObservationSort: PropTypes.func,
-  zoomToTaxon: PropTypes.func
+  setObservationSort: PropTypes.func
 };
 
 export default DetailsView;
