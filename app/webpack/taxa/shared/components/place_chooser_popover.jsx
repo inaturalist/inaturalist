@@ -70,7 +70,6 @@ const PLACE_TYPES = {
 };
 
 class PlaceChooserPopover extends React.Component {
-
   constructor( props ) {
     super( props );
     this.state = {
@@ -90,8 +89,9 @@ class PlaceChooserPopover extends React.Component {
 
   setPlacesFromProps( props ) {
     const usableProps = Object.assign( { }, props, this.props );
+    const { places } = this.state;
     if ( usableProps.defaultPlace ) {
-      let newPlaces = this.state.places;
+      let newPlaces = places;
       newPlaces = _.filter( newPlaces, p => p.id !== usableProps.defaultPlace.id );
       newPlaces.splice( 0, 0, usableProps.defaultPlace );
       this.setState( { places: newPlaces } );
@@ -105,8 +105,8 @@ class PlaceChooserPopover extends React.Component {
       }
       this.setState( { places: newPlaces } );
     } else if (
-      usableProps.place &&
-      usableProps.place.ancestor_place_ids && usableProps.place.ancestor_place_ids.length > 0
+      usableProps.place
+      && usableProps.place.ancestor_place_ids && usableProps.place.ancestor_place_ids.length > 0
     ) {
       this.fetchPlaces( usableProps.place.ancestor_place_ids );
     }
@@ -115,9 +115,9 @@ class PlaceChooserPopover extends React.Component {
   handlePlacesResponse( response ) {
     let newPlaces = response.results;
     if (
-      this.props.defaultPlace &&
-      this.props.place &&
-      this.props.place.id !== this.props.defaultPlace.id
+      this.props.defaultPlace
+      && this.props.place
+      && this.props.place.id !== this.props.defaultPlace.id
     ) {
       newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
       newPlaces.splice( 0, 0, this.props.defaultPlace );
@@ -137,15 +137,16 @@ class PlaceChooserPopover extends React.Component {
   }
 
   highlightNext( ) {
+    const { places, current } = this.state;
     this.setState( {
-      current: Math.min( this.state.places.length, this.state.current + 1 )
+      current: Math.min( places.length, current + 1 )
     } );
   }
 
   highlightPrev( ) {
-    // TODO
+    const { current } = this.state;
     this.setState( {
-      current: Math.max( -1, this.state.current - 1 )
+      current: Math.max( -1, current - 1 )
     } );
   }
 
@@ -191,15 +192,15 @@ class PlaceChooserPopover extends React.Component {
         onExit={( ) => {
           this.unbindArrowKeys( );
         }}
-        overlay={
+        overlay={(
           <Popover id="place-chooser" className="PlaceChooserPopover RecordChooserPopover">
             <div className="form-group">
               <input
                 type="text"
-                ref={ this.input }
+                ref={this.input}
                 placeholder={I18n.t( "search" )}
                 className="form-control"
-                onChange={ e => {
+                onChange={e => {
                   const text = e.target.value || "";
                   if ( text.length === 0 ) {
                     this.setState( { places: [] } );
@@ -211,16 +212,19 @@ class PlaceChooserPopover extends React.Component {
             </div>
             <ul className="list-unstyled">
               <li
-                className={this.state.current === -1 ? "current" : ""}
-                onMouseOver={( ) => {
-                  this.setState( { current: -1 } );
-                }}
-                onClick={( ) => this.chooseCurrent( )}
-                className="pinned"
+                className={this.state.current === -1 ? "current pinned" : "pinned"}
+                onMouseOver={( ) => this.setState( { current: -1 } )}
+                onFocus={( ) => this.setState( { current: -1 } )}
                 style={{ display: this.props.place ? "block" : "none" }}
               >
-                <i className="fa fa-times"></i>
-                { I18n.t( "clear" ) }
+                <button
+                  type="button"
+                  className="btn btn-nostyle"
+                  onClick={( ) => this.chooseCurrent( )}
+                >
+                  <i className="fa fa-times" />
+                  { I18n.t( "clear" ) }
+                </button>
               </li>
               { _.map( this.state.places, ( p, i ) => {
                 let placeType;
@@ -237,40 +241,43 @@ class PlaceChooserPopover extends React.Component {
                       `media ${this.state.current === i ? "current" : ""}
                       ${this.props.defaultPlace && p.id === this.props.defaultPlace.id ? "pinned" : ""}`
                     }
-                    onClick={( ) => this.chooseCurrent( )}
-                    onMouseOver={( ) => {
-                      this.setState( { current: i } );
-                    }}
+                    onMouseOver={( ) => this.setState( { current: i } )}
+                    onFocus={( ) => this.setState( { current: i } )}
                   >
-                    <div className="media-left">
-                      <i className="media-object fa fa-map-marker"></i>
-                    </div>
-                    <div className="media-body">
-                      {
-                        I18n.t( `places_name.${_.snakeCase( p.name )}`, { defaultValue: p.display_name } )
-                      } {
-                        placeType ? <span className="text-muted place-type">({placeType})</span> : null
-                      }
-                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-nostyle"
+                      onClick={( ) => this.chooseCurrent( )}
+                    >
+                      <div className="media-left">
+                        <i className="media-object fa fa-map-marker" />
+                      </div>
+                      <div className="media-body">
+                        {
+                          I18n.t( `places_name.${_.snakeCase( p.name )}`, { defaultValue: p.display_name } )
+                        }
+                        { " " }
+                        {placeType && <span className="text-muted place-type">{`(${placeType})`}</span>}
+                      </div>
+                    </button>
                   </li>
                 );
               } ) }
             </ul>
           </Popover>
-        }
+        )}
       >
         <div
           className={`PlaceChooserPopoverTrigger RecordChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
-          { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { preIconClass && <i className={`${preIconClass} pre-icon`} /> }
           { label ? ( <label>{ label }</label> ) : null }
           {
-            place ?
-              I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
-              :
-              I18n.t( "filter_by_place" )
+            place
+              ? I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
+              : I18n.t( "filter_by_place" )
           }
-          { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
+          { postIconClass && <i className={`${postIconClass} post-icon`} /> }
         </div>
       </OverlayTrigger>
     );
@@ -280,6 +287,7 @@ class PlaceChooserPopover extends React.Component {
 PlaceChooserPopover.propTypes = {
   place: PropTypes.object,
   defaultPlace: PropTypes.object,
+  // eslint-disable-next-line react/no-unused-prop-types
   defaultPlaces: PropTypes.array,
   className: PropTypes.string,
   setPlace: PropTypes.func,
