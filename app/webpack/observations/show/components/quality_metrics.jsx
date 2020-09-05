@@ -233,6 +233,18 @@ class QualityMetrics extends React.Component {
       ? I18n.t( "community_id_at_genus_level_or_lower" )
       : I18n.t( "community_id_at_species_level_or_lower" );
     const rankPassed = needsIDInfo.mostDisagree ? atLeastGenus : atLeastSpecies;
+    let locationSpecified = false;
+    if ( observation.geojson ) {
+      locationSpecified = true;
+    } else if (
+      observation.obscured
+      && (
+        observation.geoprivacy === "private"
+        || observation.taxon_geoprivacy === "private"
+      )
+    ) {
+      locationSpecified = true;
+    }
     return (
       <div className="QualityMetrics">
         { tableOnly ? null : (
@@ -270,8 +282,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location_specified" ) }
               </td>
-              <td className="agree">{ observation.geojson || observation.obscured ? checkIcon : null }</td>
-              <td className="disagree">{ observation.geojson || observation.obscured ? null : xIcon }</td>
+              <td className="agree">{ locationSpecified ? checkIcon : null }</td>
+              <td className="disagree">{ locationSpecified ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
