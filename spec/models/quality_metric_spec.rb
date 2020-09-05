@@ -2,6 +2,34 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe QualityMetric, "creation" do
   elastic_models( Observation, Identification )
+
+  describe "validation" do
+    describe "location" do
+      it "should pass if the observation has coordinates" do
+        o = Observation.make!( latitude: 1, longitude: 1 )
+        qm = QualityMetric.make( observation: o, metric: QualityMetric::LOCATION, agree: true )
+        expect( qm ).to be_valid
+      end
+      it "should not pass if the observation does not has coordinates" do
+        o = Observation.make!
+        qm = QualityMetric.make( observation: o, metric: QualityMetric::LOCATION, agree: true )
+        expect( qm ).not_to be_valid
+      end
+    end
+    describe "date" do
+      it "should pass if the observation has a date" do
+        o = Observation.make!( observed_on_string: "2020-01-01" )
+        qm = QualityMetric.make( observation: o, metric: QualityMetric::DATE, agree: true )
+        expect( qm ).to be_valid
+      end
+      it "should not pass if the observation does not have a date" do
+        o = Observation.make!
+        qm = QualityMetric.make( observation: o, metric: QualityMetric::DATE, agree: true )
+        expect( qm ).not_to be_valid
+      end
+    end
+  end
+
   it "should update observation quality_grade" do
     o = make_research_grade_observation
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
