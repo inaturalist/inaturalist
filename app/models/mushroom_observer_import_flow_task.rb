@@ -4,6 +4,7 @@ class MushroomObserverImportFlowTask < FlowTask
   before_validation :set_unique_hash
 
   class TooManyRequestsError < StandardError; end
+  class TimeoutError < StandardError; end
 
   def validate_unique_hash
     return unless unique_hash && !finished_at
@@ -22,12 +23,18 @@ class MushroomObserverImportFlowTask < FlowTask
 
   def get( url, params = {} )
     try = params.delete(:try) || 1
-    resp = RestClient.get( url, params: params )
+    resp = begin
+      RestClient.get( url, params: params )
+    rescue Net::ReadTimeout, RestClient::Exceptions::ReadTimeout
+      raise TimeoutError.new(
+        "Request timed out. You might want to let Mushroom Observer know that #{url} may not be working"
+      )
+    end
     if resp.code == 429
       log "429 error from Mushroom Observer for #{url}, try #{try}"
       if tries > 3
         raise TooManyRequestsError.new(
-          message: "This process made too many requests to Mushroom Observer so MO stopped returning calls"
+          "This process made too many requests to Mushroom Observer so MO stopped returning our calls"
         )
       end
       sleep try * 30 # seconds
@@ -83,6 +90,8 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     page = options[:page] || 1
     url = "https://mushroomobserver.org/api/observations"
+    return [] if api_key.blank?
+    return [] if mo_user_id.blank?
     resp = get( url, {
       user: mo_user_id,
       detail: "high",
@@ -96,28 +105,27 @@ class MushroomObserverImportFlowTask < FlowTask
     unless @mo_user_id
       for_api_key ||= api_key
       xml = Nokogiri::XML( get( "https://mushroomobserver.org/api/api_keys", api_key: for_api_key ) )
-      @mo_user_id = xml.at( "response/user" )[:id]
+      @mo_user_id = xml.at( "response/user" ).try(:[], :id)
     end
     @mo_user_id
   end
 
   def mo_user_name( for_api_key = nil )
-    unless @mo_user_name
-      user_id = mo_user_id( for_api_key )
+    if !@mo_user_name && ( user_id = mo_user_id )
       xml = Nokogiri::XML( get(
         "https://mushroomobserver.org/api/users",
         id: user_id,
         detail: "high",
         api_key: api_key
       ) )
-      @mo_user_name = xml.at( "login_name" ).text
+      @mo_user_name = xml.at( "login_name" ).try(:text)
     end
     @mo_user_name
   end
 
   def api_key
     return nil unless inputs && inputs.first && inputs.first.extra
-    @api_key ||= inputs.first.extra[:api_key]
+    @api_key ||= inputs.first.extra[:api_key]&.strip
   end
 
   def warn( url, msg )
