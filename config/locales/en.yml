@@ -7414,6 +7414,11 @@ en:
                 must be observed after %{time}
               must_be_observed_before: |
                 must be observed before %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observation has no date to vote on
+              no_votable_coordinates: Observation has no coordinates to vote on
         taxon:
           attributes:
             rank:
