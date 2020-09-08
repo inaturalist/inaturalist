@@ -6,9 +6,10 @@ module DarwinCore
     end
 
     def initialize(opts = {})
-      @opts = opts
+      @opts = opts.clone.symbolize_keys
       @opts[:path] ||= "dwca.zip"
       @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
+      @opts[:extensions] = [@opts[:extensions]].flatten.compact
       @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
         File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
       else

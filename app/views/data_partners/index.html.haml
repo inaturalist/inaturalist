@@ -1,0 +1,23 @@
+- content_for :title do
+  Data Partners
+- content_for :extracss do
+  :css
+    .data_partner img { max-height: 80px; }
+    .data_partner td.name { width: 100%; }
+.row
+  .col-xs-12
+    %h2 Data Partners
+    %table.table
+      %thead
+        %tr
+          %th Logo
+          %th Name
+          %th Actions
+      %tbody
+        - for dp in @data_partners
+          %tr.data_partner
+            %td.logo= image_tag dp.logo.url, class: "img-responsive"
+            %td.name= link_to dp.name, dp
+            %td
+              = link_to t(:edit), edit_data_partner_path( dp ), class: "btn btn-default btn-sm"
+    = link_to t(:new), new_data_partner_path, class: "btn btn-default"

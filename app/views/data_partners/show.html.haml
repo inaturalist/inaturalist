@@ -1,0 +1,28 @@
+- content_for :title do
+  = @data_partner.name
+- content_for :extracss do
+  :css
+    h2 img { max-height: 50px; }
+.row
+  .col-xs-6.col-xs-offset-3
+    %h2
+      - if @data_partner.logo?
+        = image_tag @data_partner.logo.url, class: "inline-block"
+      = link_to @data_partner.name, @data_partner.url
+    = formatted_user_text @data_partner.description
+    %h3=t :requirements
+    = formatted_user_text @data_partner.requirements
+    %h3=t :frequency
+    = @data_partner.frequency
+    - if !@data_partner.dwca_params.blank?
+      %h3 DwC-A Params
+      %code=@data_partner.dwca_params
+      - if !@data_partner.dwca_params["freq"].blank?
+        %h3=t :dwca_frequency
+        = @data_partner.dwca_params["freq"]
+    - unless @data_partner.partnership_url.blank?
+      %h3=t :partnership
+      = link_to @data_partner.partnership_url, @data_partner.partnership_url
+    .upstacked
+      = link_to t(:edit), edit_data_partner_path( @data_partner ), class: "btn btn-primary"
+      = link_to t(:delete), data_partner_path( @data_partner ), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-danger pull-right"
