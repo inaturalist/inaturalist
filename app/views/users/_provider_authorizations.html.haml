@@ -3,7 +3,7 @@
   =t :or_all_caps
 .form-group.centered.provider-authorizations
   = link_to ProviderAuthorization::AUTH_URLS["facebook"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink facebook" do
-    %i.fa.fa-facebook
+    = image_tag "facebook-f-logo-white.svg"
     .btntext=t :sign_in_with_provider, provider: t(:facebook)
   - if @site && @site.prefers_google_webmaster_dns_verified?
     = link_to ProviderAuthorization::AUTH_URLS["google_oauth2"], method: :post, class: "btn btn-primary btn-lg btn-block providerlink google" do

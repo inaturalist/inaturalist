@@ -63,10 +63,10 @@ describe TaxonName, 'creation' do
     expect(@taxon_name.lexicon).to eq TaxonName::LEXICONS[:ENGLISH]
   end
   
-  it "should not allow synonyms within a lexicon" do
+  it "should not allow synonyms within a parameterized lexicon" do
     taxon = Taxon.make!
-    name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    _name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:CHINESE_SIMPLIFIED])
+    name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:CHINESE_SIMPLIFIED].upcase)
     expect(name2).not_to be_valid
   end
   
@@ -77,6 +77,35 @@ describe TaxonName, 'creation' do
 
   it "should strip the lexicon" do
     expect( TaxonName.make!( lexicon: " Foo" ).lexicon ).to eq "Foo"
+  end
+
+  it "should not be valid with a non-English translation of a lexicon" do
+    tn = TaxonName.make(lexicon: I18n.with_locale(:"zh-CN") { I18n.t("lexicons.finnish") }, name: "common")
+    expect(tn).to_not be_valid
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_match_english_translation", 
+             suggested: I18n.with_locale(:en) { I18n.t("lexicons.finnish") }, 
+             suggested_locale: I18n.t("locales.zh-CN")
+      )
+    )
+  end
+  
+  it "should parameterize and store lexicon" do
+    tn = TaxonName.make!(lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED], name: "common")
+    expect(tn.parameterized_lexicon).to eq "chinese-simplified"
+  end
+  
+  it "should not parameterize and store lexicon with invalid characters" do
+    tn = TaxonName.make(lexicon: "测试", name: "common")
+    expect(tn).to_not be_valid
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_be_in_english")
+    )
+  end
+  
+  it "should not validate presence of a parameterizable lexicon if lexicon not present" do
+    tn = TaxonName.make(lexicon: nil, name: "common")
+    expect(tn).to be_valid
   end
 
   it "should set is_valid to true for common names by default" do

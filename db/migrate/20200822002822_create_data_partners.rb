@@ -10,6 +10,7 @@ class CreateDataPartners < ActiveRecord::Migration
       t.string :api_request_url
       t.text :description
       t.text :requirements
+      t.timestamp :last_sync_observation_links_at
 
       t.timestamps null: false
     end

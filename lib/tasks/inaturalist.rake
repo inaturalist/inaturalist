@@ -115,6 +115,22 @@ namespace :inaturalist do
     end
   end
 
+  desc "Delete expired local photos"
+  task :delete_expired_local_photos => :environment do
+    return unless Rails.env.development?
+    deleted = []
+    DeletedPhoto.find_each do |dp|
+      path = File.join( Rails.root, "public", "attachments", "local_photos", "files", dp.photo_id.to_s )
+      if File.exists?( path )
+        deleted_paths = FileUtils.rm_rf( path )
+        if deleted_paths.size > 0
+          deleted << dp.photo_id
+        end
+      end
+    end
+    puts "Deleted #{deleted.size} expired local photo directories"
+  end
+
   desc "Delete expired S3 sounds"
   task :delete_expired_sounds => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import SpeciesNoAPI from "../components/species_noapi";
 import {
   zoomToTaxon, setSpeciesViewRankFilter, setSpeciesViewSort,
-  setSpeciesPlaceFilter, setSpeciesViewScrollPage
+  setSpeciesPlaceFilter, setSpeciesViewScrollPage, setDetailsTaxon
 } from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
@@ -18,8 +18,9 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     zoomToTaxon: ( taxonID, options ) => dispatch( zoomToTaxon( taxonID, options ) ),
+    setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
     setScrollPage: page => dispatch( setSpeciesViewScrollPage( page ) ),
-    setPlaceFilter: placeID => dispatch( setSpeciesPlaceFilter( placeID ) ),
+    setSpeciesPlaceFilter: place => dispatch( setSpeciesPlaceFilter( place ) ),
     setRankFilter: value => dispatch( setSpeciesViewRankFilter( value ) ),
     setSort: value => dispatch( setSpeciesViewSort( value ) )
   };

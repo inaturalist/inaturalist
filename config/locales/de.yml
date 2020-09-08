@@ -1100,6 +1100,13 @@ de:
         subject: 'Bestätigungsanweisungen'
       reset_password_instructions:
         subject: 'Anweisungen zum Zurücksetzen des Passworts'
+  devise_reset_password_instructions_hello_email: Hallo %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Jemand hat einen Link zur Änderungen deies Passwortes angefordert. Dies funktioniert durch den folgenden Link:
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Falls du kein neues Passwort angefordert hast, ignoriere diese E-Mail einfach.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Dein Passwort bleibt so lange unverändert, bis Du über den oberen Link ein neues Passwort erstellst.
   discoveries: Entdeckungen
   did_not_send_invitations_because: Den folgenden wurde keine Einladung geschickt, weil...
   did_you_mean: 'Meintest du'
@@ -1659,7 +1666,7 @@ de:
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
   join_project: Diesem Projekt beitreten
   #Prompt to join a specific project
-  join_project?: Dem Projekt %{project} beitreten?
+  join_project?: Dem Projekt "%{project}" beitreten?
   join_some_projects_and_invite_some_observations_html: "Tritt <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere passende Beobachtungen</a>"
   join_the_largest_group_of_naturalists_in_the_world: Treten Sie der größten Gruppe von Naturwissenschaftlern der Welt bei!
   join_this_project: Diesem Projekt beitreten
@@ -2135,7 +2142,7 @@ de:
   new_observation_field: Neues Beobachtungsfeld
   new_observations: Neue Beobachtungen
   new_observations_in_year: "Neue Beobachtungen in %{year}"
-  new_observations_ellispsis: "Neue Beobachtungen..."
+  new_observations_ellispsis: "Die hinzuzufügende Beobachtung..."
   new_observations_from_place_html: "Neue Beobachtungen aus %{place}"
   new_observations_may_take_up_to: Es kann bis zu %{widget_expiration} Minuten dauern, bis neue Beobachtungen im Widget erscheinen.
   new_observations_of_x_html: "Neue Beobachtungen für %{x}"
@@ -2485,7 +2492,7 @@ de:
   original_rights_holder: Ursprünglicher Rechteinhaber
   original_url_for_this_map: Ursprüngliche URL für diese Karte
   organism_appears_captive_cultivated: Organismus scheint in Haltung/kultiviert zu sein
-  other: Sonstige
+  other: Sonstiges
   other_animals: andere Tiere
   other_lexicons: Andere Lexika
   other_listings_of_this_taxon_for_this_place: Andere Auflistungen dieses Taxons für diesen Ort
@@ -3586,6 +3593,11 @@ de:
   subscribe_to_a_place: Einen Ort abonnieren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
   subscribe_to_comments_on_this_post_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Vorbereitung"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu diesem Taxon-Tausch"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Zusammenführung"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnieren Sie%{tag_end} Kommentare zu dieser Taxon-Aufteilung"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Löschung"
   subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Skorpione").
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Skorpione aus Texas').
   subscribe_to_places_to: |
@@ -4295,6 +4307,11 @@ de:
     standardmäßig in Suchanfragen nicht sichtbar.
   you_are_subscribed_to_comments_on_this_flag: Du hast Kommentare zu dieser Meldung abonniert.
   you_are_subscribed_to_comments_on_this_post: Du hast Kommentare zu diesem Beitrag abonniert.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Du hast Kommentare zu dieser Taxon-Vorbereitung abonniert.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Du hast Kommentare zu diesem Taxon-Tausch abonniert.
+  you_are_subscribed_to_comments_on_this_taxon_merge: Du hast Kommentare zu dieser Taxon-Zusammenführung abonniert.
+  you_are_subscribed_to_comments_on_this_taxon_split: Du hast Kommentare zu dieser Taxon-Aufteilung abonniert.
+  you_are_subscribed_to_comments_on_this_taxon_drop: Du hast Kommentare zu dieser Taxon-Löschung abonniert.
   you_are_subscribed_to_observations_from_this_place: Du hast Kommentare von diesem Ort abonniert.
   you_arent_a_member_of_that_project: Du bist kein Mitglied dieses Projektes!
   you_arent_following_that_person: "Du folgst dieser Person nicht."
@@ -6343,7 +6360,9 @@ de:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: soll keine Kommata oder Schrägstriche enthalten
+              should_be_in_english: sollte in Englisch sein
             name:
+              already_exists: existiert bereits für dieses Taxon in diesem Lexikon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 darf nicht mit dem wissenschaftlichen Namen einer Art für dieses Lexikon übereinstimmen
               must_match_the_taxon_if_valid: |

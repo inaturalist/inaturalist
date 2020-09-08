@@ -6,7 +6,8 @@ import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 class SpeciesNoAPI extends Component {
   secondaryNodeList( ) {
     const {
-      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, search
+      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon,
+      search, setSpeciesPlaceFilter, setDetailsTaxon
     } = this.props;
     let nodeShouldDisplay;
     const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
@@ -83,8 +84,32 @@ class SpeciesNoAPI extends Component {
     }
     const secondaryNodesToDisplay = _.slice( _.sortBy( secondaryNodes, sortMethod ), 0,
       lifelist.speciesViewScrollPage * lifelist.speciesViewPerPage );
+    let emptyMessage;
+    let emptyClearButton;
+    if ( _.size( secondaryNodesToDisplay ) === 0 && lifelist.speciesPlaceFilter ) {
+      if ( lifelist.detailsTaxon ) {
+        emptyMessage = `No species in your observations found within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+      } else {
+        emptyMessage = `No species in your observations found in ${lifelist.speciesPlaceFilter.display_name}.`;
+      }
+      emptyClearButton = (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={( ) => setSpeciesPlaceFilter( null )}
+        >
+          Reset Place Filter
+        </button>
+      );
+    }
     return (
-      <div className="SpeciesGrid" key={`grid-${lifelist.speciesViewRankFilter}-${lifelist.speciesPlaceFilter}-${detailsTaxon && detailsTaxon.id}`}>
+      <div className="SpeciesGrid" key={`grid-${lifelist.speciesViewRankFilter}-${lifelist.speciesPlaceFilter && lifelist.speciesPlaceFilter.id}-${detailsTaxon && detailsTaxon.id}`}>
+        { emptyMessage && (
+          <div className="empty">
+            { emptyMessage }
+            { emptyClearButton }
+          </div>
+        ) }
         { _.map( secondaryNodesToDisplay, s => {
           const onClick = e => {
             if ( zoomToTaxon ) {
@@ -256,6 +281,8 @@ SpeciesNoAPI.propTypes = {
   search: PropTypes.object,
   lifelist: PropTypes.object,
   detailsTaxon: PropTypes.object,
+  setDetailsTaxon: PropTypes.func,
+  setSpeciesPlaceFilter: PropTypes.func,
   setScrollPage: PropTypes.func,
   setSort: PropTypes.func,
   setRankFilter: PropTypes.func,

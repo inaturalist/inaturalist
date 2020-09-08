@@ -148,7 +148,7 @@ class List < ActiveRecord::Base
     controller = options[:controller] || FakeView.new
     attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
        last_observation url created_at updated_at taxon_common_name)
-    ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
+    ranks = Taxon::RANK_LEVELS.select{|r,l| (Taxon::COMPLEX_LEVEL..Taxon::KINGDOM_LEVEL).include?(l) }.keys - [Taxon::GENUSHYBRID]
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)

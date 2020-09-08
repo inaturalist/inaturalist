@@ -131,7 +131,7 @@ const App = ( {
                 rel="noopener noreferrer"
                 href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
               >
-                <i className="fa fa-facebook" />
+                <img src="/assets/facebook-f-logo-white.svg" alt={I18n.t( "facebook" )} />
                 { I18n.t( "facebook" ) }
               </a>
             </div>

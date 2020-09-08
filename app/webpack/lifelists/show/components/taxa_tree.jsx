@@ -1,6 +1,5 @@
 /* eslint jsx-a11y/click-events-have-key-events: 0 */
 /* eslint jsx-a11y/no-static-element-interactions: 0 */
-/* eslint react/destructuring-assignment: 0 */
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
@@ -17,7 +16,7 @@ class TaxaTree extends React.Component {
   sortMethod( ) {
     const { lifelist } = this.props;
     if ( lifelist.treeSort === "name" ) {
-      return t => t.name;
+      return t => t.preferred_common_name || t.name;
     }
     if ( lifelist.treeSort === "taxonomic" ) {
       return t => t.left;
@@ -35,36 +34,15 @@ class TaxaTree extends React.Component {
   showNodeList( taxon ) {
     const {
       lifelist, toggleTaxon, setDetailsTaxon, config,
-      setDetailsView, mode, setListViewOpenTaxon
+      setDetailsView
     } = this.props;
-    if ( lifelist.treeMode === "list"
-      && !lifelist.treeIndent
-      && taxon
-      && lifelist.listViewOpenTaxon
-      && !_.inRange( lifelist.listViewOpenTaxon.left, taxon.left, taxon.right )
-      && !_.inRange( taxon.left, lifelist.listViewOpenTaxon.left, lifelist.listViewOpenTaxon.right )
-      && taxon.id !== lifelist.listViewOpenTaxon.id ) {
-      return null;
-    }
-    const children = ( mode === "simplified" ) ? lifelist.milestoneChildren : lifelist.children;
+    const simplified = lifelist.treeMode === "simplified";
+    const children = simplified ? lifelist.milestoneChildren : lifelist.children;
     const taxonID = taxon ? taxon.id : 0;
     const isLeaf = !children[taxonID];
     const isRoot = !taxon;
     let isOpen = true;
-    if ( lifelist.treeMode === "list" ) {
-      if ( !lifelist.listViewOpenTaxon && taxon ) {
-        isOpen = false;
-      }
-      if ( lifelist.listViewOpenTaxon
-        && taxon
-        && taxon.id !== lifelist.listViewOpenTaxon.id
-        && !_.includes( lifelist.listViewOpenTaxon.ancestors, taxon.id )
-      ) {
-        isOpen = false;
-      }
-    } else {
-      isOpen = taxon ? _.includes( lifelist.openTaxa, taxon.id ) : true;
-    }
+    isOpen = taxon ? _.includes( lifelist.openTaxa, taxon.id ) : true;
     const childrenTaxa = isLeaf ? []
       : _.map( children[taxonID], childID => lifelist.taxa[childID] );
     const descendantObsCount = taxon ? taxon.descendant_obs_count : lifelist.observationsCount;
@@ -80,18 +58,7 @@ class TaxaTree extends React.Component {
       ) ) {
       nameClasses.push( "featured-ancestor" );
     }
-    let childrenListClass = "nested";
-    if ( lifelist.treeMode === "list"
-      && !lifelist.treeIndent
-      && lifelist.listViewOpenTaxon
-      && !( taxon && (
-        taxon.id === lifelist.listViewOpenTaxon.id
-        || ( mode === "simplified"
-          && taxon.id === lifelist.listViewOpenTaxon.nearestMilestoneTaxonID ) ) ) ) {
-      childrenListClass = null;
-    }
-    const listMode = lifelist.treeMode === "list";
-    const toggleMethod = lifelist.treeMode === "list" ? setListViewOpenTaxon : toggleTaxon;
+    const toggleMethod = toggleTaxon;
     return (
       <li className="branch" taxon-id={`branch-${taxonID}`} key={`branch-${taxonID}`}>
         <div className="name-row">
@@ -111,21 +78,21 @@ class TaxaTree extends React.Component {
               </div>
             ) }
           </div>
-          { ( isLeaf || isRoot || listMode ) ? null : (
+          { ( isLeaf || isRoot || simplified ) ? null : (
             <span
               className={`icon-collapse ${isOpen ? "" : "disabled"}`}
               onClick={( ) => toggleTaxon( taxon, { collapse: true } )}
               title="Expand all nodes in this branch"
             />
           ) }
-          { ( !isRoot && !isLeaf && !listMode && taxon.descendantCount <= 200 ) ? (
+          { ( !isRoot && !isLeaf && !simplified && taxon.descendantCount <= 200 ) ? (
             <span
               className="icon-expand"
               onClick={( ) => toggleTaxon( taxon, { expand: true } )}
               title="Collapse this branch"
             />
           ) : null }
-          { isRoot || listMode ? null : (
+          { ( isRoot || simplified ) ? null : (
             <span
               className="icon-focus"
               onClick={( ) => toggleTaxon( taxon, { feature: true } )}
@@ -170,7 +137,7 @@ class TaxaTree extends React.Component {
           />
         </div>
         { isOpen && !isLeaf ? (
-          <ul className={childrenListClass}>
+          <ul className="nested">
             { _.map( _.sortBy( childrenTaxa, this.sortMethod( ) ), this.showNodeList ) }
           </ul>
         ) : null }
@@ -194,11 +161,9 @@ class TaxaTree extends React.Component {
 TaxaTree.propTypes = {
   config: PropTypes.object,
   lifelist: PropTypes.object,
-  mode: PropTypes.string,
   setDetailsTaxon: PropTypes.func,
   setDetailsView: PropTypes.func,
-  toggleTaxon: PropTypes.func,
-  setListViewOpenTaxon: PropTypes.func
+  toggleTaxon: PropTypes.func
 };
 
 export default TaxaTree;

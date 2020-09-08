@@ -15,11 +15,23 @@ EOS
     type: :string, short: "-d", default: "slim_export_YYYYMMDD"
   opt :root_taxon_id, "ID of the taxon whose data will be exported",
     type: :string, short: "-t"
+  opt :filter_taxon_ids, "IDs of the taxa whose data will be exported",
+    type: :integers, short: "-i"
 end
 
 if OPTS[:dir] == "slim_export_YYYYMMDD"
   datestring = Time.now.strftime( "%Y%m%d" )
   OPTS[:dir] = "slim_export_#{datestring}"
+end
+
+if OPTS[:filter_taxon_ids]
+  filter_taxa = Taxon.where(id: OPTS[:filter_taxon_ids])
+  if filter_taxa.empty?
+    puts "Could not find filter taxa. Exiting.\n\n"
+    exit( 0 )
+  end
+  filter_taxon_ids = filter_taxa.map{ |t| Taxon.self_and_descendants_of(t).pluck(:id) }.flatten.uniq
+  filter_taxon_ancestor_ids = filter_taxa.map{ |t| t.ancestry.split("/").map(&:to_i) }.flatten.uniq
 end
 
 puts "\n\n"
@@ -103,6 +115,11 @@ end
 
 # Part 1: determine the taxonomy
 
+if filter_taxon_ids
+  obs_taxon_filter_clause = "AND (observations.community_taxon_id IN (#{filter_taxon_ids.join(',')})
+      OR observations.taxon_id IN (#{filter_taxon_ids.join(',')}))"
+end
+
 # Create a hash of the candidate observation counts for each node descending from the root (*where candidate means photos, no flags, no failing quality_metrics other than 'wild') for test (must have CID) and otherwise
 CANDIDATE_OBSERVATIONS_SQL = <<-SQL
   SELECT
@@ -127,6 +144,7 @@ CANDIDATE_OBSERVATIONS_SQL = <<-SQL
   WHERE
     observations.observation_photos_count > 0
     AND (observations.community_taxon_id IS NOT NULL OR observations.taxon_id IS NOT NULL)
+    #{ obs_taxon_filter_clause }
   GROUP BY
     observations.id
   HAVING
@@ -169,9 +187,13 @@ species_and_above_rank_levels =
   Taxon::RANK_LEVELS.values.uniq.sort - [Taxon::RANK_LEVELS["subspecies"]]
 species_and_above_rank_levels.each do |rank_level|
   enough_set = enough.map{ |row| row[:taxon_id] }.to_set
-  Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
+  taxa_scope = Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
     where( "is_active = true AND rank_level = ?", rank_level ).
-    where("id NOT IN (?)", extinct_taxon_ids ).each do |t|
+    where("id NOT IN (?)", extinct_taxon_ids )
+  if filter_taxon_ids
+    taxa_scope = taxa_scope.where(id: filter_taxon_ids + filter_taxon_ancestor_ids)
+  end
+  taxa_scope.each do |t|
     dset = t.descendants.pluck( :id ).to_set
     # internode
     if ( dset & enough_set ).count > 0
@@ -237,7 +259,7 @@ LEAF_CLASS_HASH = taxon_ids.zip( indexes ).to_h
 CSV.open( "#{export_dir_fullpath}/taxonomy_data.csv", "wb" ) do |csv|
   csv << ["parent_taxon_id", "taxon_id", "rank_level", "leaf_class_id", "name"]
   export_taxonomy.each do |row|
-    csv << [ row[:ancestors].last, row[:id], row[:rank_level].to_i, LEAF_CLASS_HASH[row[:id]], row[:name] ]
+    csv << [ row[:ancestors].last, row[:id], row[:rank_level].to_f, LEAF_CLASS_HASH[row[:id]], row[:name] ]
   end
 end; nil
 
@@ -265,22 +287,25 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   multitask_label = LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]
   multitask_text = LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s
     
-  rank_level_clause = ""
+  taxon_ids_scope = Taxon.where("taxa.id = #{ row_id } OR taxa.ancestry = '#{ ancestry }' OR taxa.ancestry LIKE ( '#{ ancestry }/%' )").
+    where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
   if INTERNODES.include? row_id
-    rank_level_clause = "AND t.rank_level > #{ row[:rank_level] - 10 }"
+    taxon_ids_scope = taxon_ids_scope.where("taxa.rank_level > #{ row[:rank_level] - 10 }")
   end
+  taxon_ids = taxon_ids_scope.pluck(:id)
+  if taxon_ids.empty?
+    return
+  end
+
   sql_query = <<-SQL
     SELECT op.photo_id AS id, p.medium_url AS filename, p.file_content_type AS file_content_type, o.id AS observation_id, CASE WHEN (o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id )THEN 0 ELSE 1 END AS has_cid
     FROM observations o
     JOIN observation_photos op ON op.observation_id = o.id
-    JOIN taxa t ON t.id = o.taxon_id
     JOIN photos p ON op.photo_id = p.id
-    WHERE ( t.id = #{ row_id } OR t.ancestry = '#{ ancestry }' OR t.ancestry LIKE ( '#{ ancestry }/%' ) )
-    #{ rank_level_clause }
-    AND p.original_url NOT LIKE '%attachment%'
+    WHERE p.original_url NOT LIKE '%attachment%'
     AND p.original_url NOT LIKE '%copyright%'
     AND p.type = 'LocalPhoto'
-    AND ( select count(*) from conservation_statuses ct where ct.taxon_id=t.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0
+    AND o.taxon_id IN (#{taxon_ids.join(",")})
     ORDER BY has_cid DESC
     LIMIT 2000;
   SQL

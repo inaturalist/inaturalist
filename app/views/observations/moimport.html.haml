@@ -9,20 +9,35 @@
         = link_to "http://mushroomobserver.org/account/api_keys", "http://mushroomobserver.org/account/api_keys"
   .row
     .col-xs-6
+      %p
+        %strong 1. First, preview your import
       = form_for moimport_observations_path, html: { class: "form-inline" } do |f|
         .form-group
           %input.form-control{ type: "text", name: "api_key", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key }
         %input.btn.btn-default{ type: "submit", value: "Test", data: { loading_click: "Loading..." } }
     .col-xs6
+      %p
+        - if @results.blank?
+          %strong.text-muted 2. (Preview before you import)
+        - else
+          %strong 2. Ok, now you can import
       = form_for MushroomObserverImportFlowTask.new, 
           url: flow_tasks_url,
           data: { confirm: "Are you sure? This is going to take a while, so expect the following screen to tell you there was an error because it was taking too long. Ignore it! You'll get an email when the import is done though, whether or not it succeeds." } do |f|
         = f.hidden_field :redirect_url, value: observations_by_login_url( current_user.login )
         = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
           = fti.fields_for :extra do |ftie|
-            = ftie.text_field :api_key, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key
+            = ftie.text_field :api_key, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key, disabled: true
             = ftie.hidden_field :mo_user_id, value: @mo_user_id
-        = f.submit "Import", class: "btn btn-primary", data: { loading_click: "Loading..." }
+        = f.submit "Import", class: "btn btn-primary", data: { loading_click: "Loading..." }, disabled: @results.blank?
+  - if @errors && !@errors.blank?
+    .row
+      .col-xs-12
+        .alert-danger.alert.upstacked
+          Errors:
+          %ul
+            - for error in @errors
+              %li= error
   - if @results
     .row
       .col-xs-12

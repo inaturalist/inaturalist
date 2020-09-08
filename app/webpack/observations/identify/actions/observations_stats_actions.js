@@ -49,8 +49,32 @@ function fetchObservationsStats( ) {
   };
 }
 
+function incrementReviewed( ) {
+  return function ( dispatch, getState ) {
+    const state = getState( ).observationsStats;
+    if ( state.reviewed < state.total ) {
+      dispatch( updateObservationsStats( {
+        reviewed: state.reviewed + 1
+      } ) );
+    }
+  };
+}
+
+function decrementReviewed( ) {
+  return function ( dispatch, getState ) {
+    const state = getState( ).observationsStats;
+    if ( state.reviewed > 0 ) {
+      dispatch( updateObservationsStats( {
+        reviewed: state.reviewed - 1
+      } ) );
+    }
+  };
+}
+
 export {
   UPDATE_OBSERVATIONS_STATS,
   updateObservationsStats,
-  fetchObservationsStats
+  fetchObservationsStats,
+  incrementReviewed,
+  decrementReviewed
 };

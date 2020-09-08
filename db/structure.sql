@@ -1010,6 +1010,7 @@ CREATE TABLE public.data_partners (
     api_request_url character varying,
     description text,
     requirements text,
+    last_sync_observation_links_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     logo_file_name character varying,

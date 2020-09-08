@@ -23,8 +23,9 @@ module DataPartnerLinkers
             {
               type: "equals",
               key: "TAXON_KEY",
+              # Uncomment one of the following for testing
               # value: 5420950 # Clarkia breweri
-              value: 3114255 # Hemizonella
+              # value: 3114255 # Hemizonella
             }
           ]
         }
@@ -45,10 +46,10 @@ module DataPartnerLinkers
       @num_checks += 1
       @status["status"] != "SUCCEEDED"
       case @status["status"]
-      when "PREPARING" then return true
+      when "PREPARING", "RUNNING" then return true
       when "SUCCEEDED" then return false
       else
-        raise "Failed to retrieve GBIF archive: #{@status}"
+        raise DataPartnerLinkerError.new( "Failed to retrieve GBIF archive: #{@status}" )
       end
     end
 

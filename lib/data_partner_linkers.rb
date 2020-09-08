@@ -31,4 +31,6 @@ module DataPartnerLinkers
       raise "You need to implement this in your subclass!"  
     end
   end
+
+  class DataPartnerLinkerError < StandardError; end
 end

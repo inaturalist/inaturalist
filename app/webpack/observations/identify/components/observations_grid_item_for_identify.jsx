@@ -71,6 +71,7 @@ const ObservationsGridItemForIdentify = ( {
       <label>
         <input
           type="checkbox"
+          key={`review-checkbox-${observation.id}-${observation.reviewedByCurrentUser}`}
           defaultChecked={observation.reviewedByCurrentUser}
           onChange={( ) => {
             toggleReviewed( observation );
