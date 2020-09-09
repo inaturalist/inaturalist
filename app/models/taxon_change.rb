@@ -390,6 +390,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def uniqueness_of_taxa
+    return true if type == "TaxonSplit"
     taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "input and output taxa must be unique")
