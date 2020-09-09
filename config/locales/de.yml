@@ -6332,6 +6332,11 @@ de:
                 muss nach %{time} beobachtet worden sein
               must_be_observed_before: |
                 muss vor %{time} beobachtet worden sein
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Beobachtung hat kein Datum zur Bewertung
+              no_votable_coordinates: Beobachtung hat keine Koordinaten zur Bewertung
         taxon:
           attributes:
             rank:
