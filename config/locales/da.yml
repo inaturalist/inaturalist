@@ -6847,6 +6847,11 @@ da:
                 skal være observeret efter %{time}
               must_be_observed_before: |
                 skal være observeret før %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observation har ingen dato at stemme på
+              no_votable_coordinates: Observation har ingen koordinater at stemme på
         taxon:
           attributes:
             rank:
