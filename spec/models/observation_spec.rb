@@ -3095,6 +3095,31 @@ describe Observation do
       expect(o.identifications.count).to eq 2
     end
 
+    it "change should be triggered by activating a taxon" do
+      load_test_taxa
+      o = Observation.make!
+      i1 = Identification.make!( observation: o, taxon: @Pseudacris_regilla_regilla )
+      i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla_regilla )
+      expect( o.community_taxon ).not_to be_blank
+      t = Taxon.make!( parent: @Pseudacris, rank: "species", is_active: false )
+      expect( t.is_active ).to be( false )
+      @Pseudacris_regilla_regilla.update_attributes( is_active: false )
+      expect( @Pseudacris_regilla_regilla.is_active ).to be( false )
+      @Pseudacris_regilla_regilla.parent = t
+      @Pseudacris_regilla_regilla.save
+      expect( @Pseudacris_regilla_regilla.parent ).to eq( t )
+      Delayed::Worker.new.work_off
+      o = Observation.find( o.id )
+      expect( o.community_taxon ).to be_blank
+      @Pseudacris_regilla_regilla.parent = @Pseudacris_regilla
+      @Pseudacris_regilla_regilla.save
+      Delayed::Worker.new.work_off
+      @Pseudacris_regilla_regilla.update_attributes( is_active: true )
+      Delayed::Worker.new.work_off
+      o = Observation.find( o.id )
+      expect( o.community_taxon ).not_to be_blank
+    end
+
     it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do
       p = Taxon.make!(:rank => "genus")
       t = Taxon.make!(:parent => p, :rank => "species")

@@ -19,6 +19,8 @@ class Taxon < ActiveRecord::Base
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
 
+  attr_accessor :skip_after_activate
+
   attr_accessor :locale
 
   # set this when you want methods to respond with user-specific content
@@ -103,6 +105,7 @@ class Taxon < ActiveRecord::Base
              :set_wikipedia_summary_later,
              :reindex_identifications_after_save,
              :handle_after_move,
+             :handle_after_activate,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
   after_save :index_observations
@@ -518,6 +521,15 @@ class Taxon < ActiveRecord::Base
     if has_taxon_framework_relationship
       reasess_taxon_framework_relationship_after_move
     end
+    true
+  end
+
+  def handle_after_activate
+    return true unless is_active_changed?
+    return true if skip_after_activate
+    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Observation::update_stats_for_observations_of": id } ).
+      update_stats_for_observations_of( id )
     true
   end
 
