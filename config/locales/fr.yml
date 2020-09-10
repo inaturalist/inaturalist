@@ -7009,6 +7009,11 @@ fr:
                 doit être observé après %{time}
               must_be_observed_before: |
                 doit être observé avant %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: L'observation n'a pas de date sur laquelle voter
+              no_votable_coordinates: L'observation n'a pas de coordonnées sur lesquelles voter
         taxon:
           attributes:
             rank:
