@@ -290,7 +290,7 @@ class ObservationFieldValue < ActiveRecord::Base
     obs_ids = Set.new
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
-      next if input_taxon_ids.count == 1 && input_taxon_ids.first == output_taxon.id
+      next if taxon_change.is_a?(TaxonSplit) && taxon_change.is_branching?
       ofv.update_attributes( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end
