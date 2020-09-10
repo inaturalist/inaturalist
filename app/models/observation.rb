@@ -717,7 +717,8 @@ class Observation < ActiveRecord::Base
       :iconic_taxon,
       { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
-      :stored_preferences, :flags, :quality_metrics ]
+      :stored_preferences, :flags, :quality_metrics,
+      :votes_for ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)
@@ -1156,8 +1157,11 @@ class Observation < ActiveRecord::Base
     # Refreh the ProjectLists
     ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "ProjectList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+      refresh_with_observation(id, taxon_id: taxon_id,
+        taxon_id_was: taxon_id_was,
+        user_id: user_id,
+        created_at: created_at,
+        new: id_was.blank?)
 
     # Don't refresh LifeLists and Lists if only quality grade has changed
     return true unless taxon_id_changed?
