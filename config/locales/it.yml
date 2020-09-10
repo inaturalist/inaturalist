@@ -1,18 +1,18 @@
 it:
   x_comments:
-    one: '1 commento'
+    one: '%{count} commento'
     other: '%{count} commenti'
   x_comments_html:
     one: '<span class="count">%{count}</span> commento'
     other: '<span class="count">%{count}</span> commenti'
   x_faves:
-    one: '1 preferito'
+    one: '%{count} preferito'
     other: '%{count} preferiti'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> contrassegno risolto"
+    one: "<span class='count'>%{count}</span> contrassegno risolto"
     other: "<span class='count'>%{count}</span> contrassegni risolti"
   x_identifications:
-    one: '1 identificazione'
+    one: '%{count} identificazione'
     other: '%{count} identificazioni'
   x_identifications_html:
     one: '<span class="count">1</span> identificazione'
@@ -374,12 +374,6 @@ it:
     form: Tutte le forme aggiunte al database
   all_rights_reserved: Tutti i diritti riservati
   all_taxa:
-    rank:
-      kingdom: Regno
-      class: Classe
-      phylum: Phylum
-      species: Specie
-      order: Ordine
     amphibians: Anfibi
     animals: Animali
     arachnids: Aracnidi
@@ -1045,7 +1039,10 @@ it:
   date_updated: Data aggiornamento
   day: Giorno
   decrease_brightness: Riduci luminosità
+  #Default option
   default: predefinito
+  #Default option
+  default_: Default
   default_invite_comment: "Ottima foto! Dovresti postarla su %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licenza predefinita delle osservazioni
   default_photo_license: Licenza predefinita delle foto
@@ -1111,6 +1108,13 @@ it:
         subject: 'Istruzioni per la conferma'
       reset_password_instructions:
         subject: 'Istruzioni per reimpostare la password'
+  devise_reset_password_instructions_hello_email: Ciao %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Qualcuno ha chiesto un link per cambiare la tua password. È possibile farlo attraverso il link sottostante.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Se non sei stato tu ad aver richiesto il cambio password, ignora questa email.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    La tua password verrà modificata solo se accedi al link riportato sopra e ne crei una nuova.
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
@@ -3167,6 +3171,9 @@ it:
   rank: Rango
   rank_position: Rango
   rank_restrictions: Restrizioni del rango
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Stato della materia
     kingdom: Regno
@@ -3483,6 +3490,10 @@ it:
   site_stats: Statistiche del sito
   site_taxon_page: "pagina %{site_name} del taxon"
   some_agree: alcuni concordano
+  some_observations_are_missing_media_or_identifications: |
+    Alcune osservazioni mancano di allegato multimediale o di identificazioni
+  some_observations_are_missing_media_or_identifications_desc: |
+    Le osservazioni senza allegati multimediali non saranno visibili in maniera predefinita nelle ricerche, e quelle senza alcuna identificazione non possono essere viste da esperti che cercano taxa specifici. Anche un'identificazione molto grossolana come "pianta" può aiutare un esperto di piante a trovare la tua osservazione.
   some_observations_failed_to_be_added: Alcune osservazioni non sono state aggiunte al progetto
   some_observations_failed_to_save: Alcune osservazioni non sono state salvate
   some_of_those_photos_couldnt_be_saved: "Alcune foto non sono state salvate: %{error}"
@@ -4346,8 +4357,6 @@ it:
   you_are_no_longer_following_x: "Non stai più seguendo %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Stai impostando il progetto in modo che aggreghi tutte le osservazioni che soddisfino alle seguenti regole: %{rules}. Sei sicuro di voler procedere?
-  you_are_submitting_obs_without_photos_and_names: |
-    Stai inviando osservazioni senza né foto né riferimenti tassonomici. Le osservazioni senza queste informazioni sono spesso impossibili da identificare e non saranno visibili per impostazione predefinita nelle ricerche di osservazioni.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Stai caricando osservazioni senza data né luogo. Le osservazioni senza queste informazioni sono spesso impossibili da identificare e non saranno visibili per impostazione predefinita nelle ricerche di osservazioni.
   you_are_subscribed_to_comments_on_this_flag: Sei iscritto ai commenti relativi a questo contrassegno.
@@ -6410,6 +6419,8 @@ it:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: non deve contenere virgole o barre
+              should_match_english_translation: |
+                dovrebbe essere in Inglese, ma attualmente corrisponde alla traduzione %{suggested_locale} di "%{suggested}". Usa "%{suggested}" se questo è ciò che intendi e sarà tradotto quando visualizzerai il sito in quella lingua.
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 non corrisponde al nome scientifico di una specie in questa lingua

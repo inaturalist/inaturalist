@@ -18,7 +18,7 @@ function mapDispatchToProps( dispatch ) {
     setDetailsView: view => dispatch( setDetailsView( view ) ),
     setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
     zoomToTaxon: ( taxonID, options ) => dispatch( zoomToTaxon( taxonID, options ) ),
-    setSpeciesPlaceFilter: placeID => dispatch( setSpeciesPlaceFilter( placeID ) ),
+    setSpeciesPlaceFilter: place => dispatch( setSpeciesPlaceFilter( place ) ),
     setObservationSort: sort => dispatch( setObservationSort( sort ) )
   };
 }

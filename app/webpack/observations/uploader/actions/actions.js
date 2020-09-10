@@ -4,8 +4,9 @@ import inaturalistjs from "inaturalistjs";
 import * as types from "../constants/constants";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
-import util, { MAX_FILE_SIZE } from "../models/util";
+import util from "../models/util";
 import { resizeUpload } from "../../../shared/util";
+import RejectedFilesError from "../../../shared/components/rejected_files_error";
 
 const actions = class actions {
   static setState( attrs ) {
@@ -438,7 +439,7 @@ const actions = class actions {
     return function ( dispatch ) {
       util.isOnline( online => {
         if ( online ) {
-          dispatch( actions.submitCheckNoPhotoNoID( ) );
+          dispatch( actions.submitCheckNoPhotoOrNoID( ) );
         } else {
           dispatch( actions.setState( {
             confirmModal: {
@@ -453,16 +454,14 @@ const actions = class actions {
     };
   }
 
-  static submitCheckNoPhotoNoID( ) {
+  static submitCheckNoPhotoOrNoID( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
         if (
           !failed
-          && _.size( c.files ) === 0
-          && !c.taxon_id
-          && !c.species_guess
+          && ( _.size( c.files ) === 0 || ( !c.taxon_id && !c.species_guess ) )
         ) {
           failed = true;
         }
@@ -473,7 +472,8 @@ const actions = class actions {
             show: true,
             cancelText: I18n.t( "go_back" ),
             confirmText: I18n.t( "continue" ),
-            message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
+            title: I18n.t( "some_observations_are_missing_media_or_identifications" ),
+            message: I18n.t( "some_observations_are_missing_media_or_identifications_desc" ),
             onConfirm: () => {
               setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
             }
@@ -773,48 +773,10 @@ const actions = class actions {
 
   static onRejectedFiles( rejectedFiles ) {
     return function ( dispatch ) {
-      const errors = {};
-      let showResizeTip = false;
-      let showModal = false;
-      const namedRejectedFiles = _.filter( rejectedFiles, f => f.name && f.name.length > 0 );
-      _.forEach( namedRejectedFiles, file => {
-        errors[file.name] = errors[file.name] || [];
-        if ( file.size > MAX_FILE_SIZE ) {
-          errors[file.name].push(
-            I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
-          );
-          showResizeTip = true;
-          showModal = true;
-        }
-        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr/i ) ) {
-          errors[file.name].push(
-            I18n.t( "uploader.errors.unsupported_file_type" )
-          );
-          showModal = true;
-        }
-        if ( window.location.search.match( /debug=true/ ) ) {
-          console.log( "[DEBUG] rejected file: ", file );
-        }
-      } );
-      if ( !showModal ) {
+      const message = <RejectedFilesError rejectedFiles={rejectedFiles} />;
+      if ( message === null ) {
         return;
       }
-      const message = (
-        <div>
-          { I18n.t( "there_were_some_problems_with_these_files" ) }
-          { _.map( errors, ( fileErrors, fileName ) => (
-            <div key={`file-errors-${fileName}`}>
-              <code>{ fileName }</code>
-              <ul>
-                { _.map( fileErrors, ( error, i ) => <li key={`file-errors-${fileName}-${i}`}>{ error }</li> )}
-              </ul>
-            </div>
-          ) )}
-          <p className="small text-muted">
-            { showResizeTip && I18n.t( "uploader.resize_tip" ) }
-          </p>
-        </div>
-      );
       dispatch( actions.setState( {
         confirmModal: {
           show: true,

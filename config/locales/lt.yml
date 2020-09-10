@@ -418,12 +418,6 @@ lt:
     form: Visos formos pridėtos į duomenų bazę
   all_rights_reserved: Visos teisės saugomos
   all_taxa:
-    rank:
-      kingdom: Karalystė
-      class: Klasė
-      phylum: Tipas
-      species: Rūšys
-      order: Būrys
     amphibians: Varliagyviai
     animals: Gyvūnai
     arachnids: Voragyviai
@@ -1049,7 +1043,10 @@ lt:
   date_updated: Data atnaujinta
   day: Diena
   decrease_brightness: Sumažinti ryškumą
+  #Default option
   default: numatytas
+  #Default option
+  default_: Numatytasis
   default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Numatytoji stebėjimo licencija
   default_photo_license: Numatytoji nuotraukos licencija
@@ -1917,6 +1914,9 @@ lt:
       range: Ribos
   map_tooltip: Rodyti žemėlapyje
   mark_as_reviewed: Pažymėti kaip peržiūrėtą
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Pažymėjus stebėjimą kaip peržiūrėtą, daugiau jo nebematysite identifikavimo skiltyje. Tačiau jis liks matomas kitiems vartotojams.
   mark_all_as_reviewed: Pažymėti visus kaip peržiūrėtus
   mark_all_as_unreviewed: Pažymėti visus kaip neperžiūrėtus
   matching_species_will_shown_up_here: Čia pasirodys sutampančios rūšys. Žemėlapiai rodys arealo ribas, jeigu %{place} turi jas šiai rūšiai.
@@ -1958,6 +1958,8 @@ lt:
     Klaidinantis arba nelegalus turinys, rasiniai ar etniniai diskriminaciniai žodžiai ir t. t. 
     Daugiau informacijos apie „nepriimtiną“ kalbą: 
     <a href="/help#inappropriate">DUI</a>.
+  #Label shown when a date has not been entered
+  missing_date: Trūksta datos
   mobile: Mobilus
   mollusks: moliuskai
   momentjs:
@@ -2894,6 +2896,9 @@ lt:
   rank: Rangas
   rank_position: Rangas
   rank_restrictions: Rango apribojimai
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Agregatinė būsena
     kingdom: Karalystė
@@ -3072,6 +3077,7 @@ lt:
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Mokslinis pavadinimas
   search: Paieška
+  search_by_name: Paieška pagal pavadinimą
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
   search_by_taxon_name_or_observation_id: Ieškoti pagal taksono pavadinimą arba stebėjimo ID
   search_by_taxon_name_or_flickr_photo_id: Ieškoti pagal taksono pavadinimą arba Flickr ID
@@ -3171,6 +3177,8 @@ lt:
   site_stats: Statistika
   site_taxon_page: "%{site_name} taksono puslapis"
   some_agree: kai kurie sutinka
+  some_observations_are_missing_media_or_identifications: |
+    Kai kuriems stebėjimams trūksta nuotraukos, garso įrašo arba identifikacijų
   some_observations_failed_to_be_added: Kai kurių stebėjimų nepavyko pridėti prie projektų
   some_observations_failed_to_save: Kai kurių stebėjimų nepavyko išsaugoti
   some_of_those_photos_couldnt_be_saved: "Kai kurios nuotraukos nebuvo išsaugotos: %{error}"
@@ -3457,6 +3465,11 @@ lt:
   terms_service: Paslaugų teikimo sąlygos
   terrain: reljefas
   text: Tekstas
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Teksto bloko valdymas
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Teksto formatavimo valdymas
+  text_editing_controls: Teksto redagavimo valdymas
   thanks!: Ačiū!
   thanks_from_all_of_us_here_at: Padėka nuo mūsų visų iš
   that_photo_doesnt_exist: Ši nuotrauka neegzistuoja.
@@ -3567,6 +3580,8 @@ lt:
   top_observer: Top stebėtojas
   top_observers: Top stebėtojai
   top_species: Top rūšys
+  tos_privacy_guidelines_label: |
+    Sutinku su <a href="/terms" target="_blank">Paslaugų teikimo sąlygomis</a> ir <a href="/privacy" target="_blank">Privatumo politika</a>, susipažinau su <a href="/pages/community+guidelines" target="_blank">Bendruomenės gairėmis</a>.
   total: Iš viso
   totals: iš viso
   total_members: Iš viso narių
@@ -3908,8 +3923,6 @@ lt:
     <strong>jūs</strong> dabar esate %{project} vadovas
   you_are_already_a_member_of_this_project: "Jūs jau esate šio projekto narys!"
   you_are_no_longer_following_x: "Jūs nebesekate %{friend}."
-  you_are_submitting_obs_without_photos_and_names: |
-    Jūs pateikiate stebėjimus, kurie yra be nuotraukų ir taksonų pavadinimų. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Jūs pateikiate stebėjimus, kurie yra be datos ir vietos. Stebėjimų be šios informacijos dažnai neįmanoma identifikuoti ir jie nebus matomi tarp stebėjimų paieškos rezultatų.
   you_are_subscribed_to_comments_on_this_flag: Jūs užsiprenumeravote šios žymės komentarus.

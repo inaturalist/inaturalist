@@ -996,6 +996,51 @@ ALTER SEQUENCE public.custom_projects_id_seq OWNED BY public.custom_projects.id;
 
 
 --
+-- Name: data_partners; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.data_partners (
+    id integer NOT NULL,
+    name character varying,
+    url character varying,
+    partnership_url character varying,
+    frequency character varying,
+    dwca_params json,
+    dwca_last_export_at timestamp without time zone,
+    api_request_url character varying,
+    description text,
+    requirements text,
+    last_sync_observation_links_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    logo_file_name character varying,
+    logo_content_type character varying,
+    logo_file_size bigint,
+    logo_updated_at timestamp without time zone
+);
+
+
+--
+-- Name: data_partners_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.data_partners_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: data_partners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.data_partners_id_seq OWNED BY public.data_partners.id;
+
+
+--
 -- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3654,6 +3699,36 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 
 
 --
+-- Name: simplified_tree_milestone_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.simplified_tree_milestone_taxa (
+    id integer NOT NULL,
+    taxon_id integer
+);
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.simplified_tree_milestone_taxa_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: simplified_tree_milestone_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.simplified_tree_milestone_taxa_id_seq OWNED BY public.simplified_tree_milestone_taxa.id;
+
+
+--
 -- Name: site_admins; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4398,7 +4473,8 @@ CREATE TABLE public.taxon_names (
     name_provider character varying(255),
     creator_id integer,
     updater_id integer,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    parameterized_lexicon character varying
 );
 
 
@@ -5296,6 +5372,13 @@ ALTER TABLE ONLY public.custom_projects ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: data_partners id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_partners ALTER COLUMN id SET DEFAULT nextval('public.data_partners_id_seq'::regclass);
+
+
+--
 -- Name: delayed_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5744,6 +5827,13 @@ ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.ses
 
 
 --
+-- Name: simplified_tree_milestone_taxa id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa ALTER COLUMN id SET DEFAULT nextval('public.simplified_tree_milestone_taxa_id_seq'::regclass);
+
+
+--
 -- Name: site_admins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6174,6 +6264,14 @@ ALTER TABLE ONLY public.countries_simplified_1
 
 ALTER TABLE ONLY public.custom_projects
     ADD CONSTRAINT custom_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: data_partners data_partners_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_partners
+    ADD CONSTRAINT data_partners_pkey PRIMARY KEY (id);
 
 
 --
@@ -6686,6 +6784,14 @@ ALTER TABLE ONLY public.saved_locations
 
 ALTER TABLE ONLY public.sessions
     ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simplified_tree_milestone_taxa simplified_tree_milestone_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simplified_tree_milestone_taxa
+    ADD CONSTRAINT simplified_tree_milestone_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -10194,9 +10300,17 @@ INSERT INTO schema_migrations (version) VALUES ('20200318193130');
 
 INSERT INTO schema_migrations (version) VALUES ('20200604181750');
 
+INSERT INTO schema_migrations (version) VALUES ('20200706035032');
+
 INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 
 INSERT INTO schema_migrations (version) VALUES ('20200710004607');
 
 INSERT INTO schema_migrations (version) VALUES ('20200710004608');
+
+INSERT INTO schema_migrations (version) VALUES ('20200822002822');
+
+INSERT INTO schema_migrations (version) VALUES ('20200824210059');
+
+INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 

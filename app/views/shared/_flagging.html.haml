@@ -5,9 +5,10 @@
     %p.description.ui.spam
       = link_to t(:view_flags), send( "#{instance.class.name.underscore}_flags_path", instance )
       \|
-      %a#flag_this.flaglink{ href: link_path, rel: "nofollow" }
-        = t(:add_another_flag)
-  - else
+      - if logged_in?
+        %a#flag_this.flaglink{ href: link_path, rel: "nofollow" }
+          = t(:add_another_flag)
+  - elsif logged_in?
     %p.description.ui.spam
       = t(:is_this_offensive_html)
       %a#flag_this.flaglink{ href: link_path, rel: "nofollow" }

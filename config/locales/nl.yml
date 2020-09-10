@@ -387,12 +387,6 @@ nl:
     form: Alle vormen aan de database toegevoegd
   all_rights_reserved: alle rechten voorbehouden
   all_taxa:
-    rank:
-      kingdom: Rijk
-      class: Klasse
-      phylum: Stam
-      species: Soort
-      order: Orde
     amphibians: Amfibieën
     animals: Dieren
     arachnids: Spinachtigen
@@ -1060,7 +1054,10 @@ nl:
   date_updated: Laatst Bijgewerkt
   day: Dag
   decrease_brightness: Helderheid verminderen
+  #Default option
   default: standaard
+  #Default option
+  default_: Standaard
   default_invite_comment: "Mooie foto! Post ze op %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standaard waarnemingslicentie
   default_photo_license: Standaard fotolicentie
@@ -3213,6 +3210,9 @@ nl:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbeperkingen
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Toestand van de materie
     kingdom: Rijk
@@ -3305,7 +3305,7 @@ nl:
   reload_from_observations: Opnieuw laden vanuit de waarnemingen
   reload_timed_out: 'Reload timed out.  Probeer het later opnieuw'
   remarks_optional: 'Opmerkingen <span class="small description">(optional)</span>'
-  remember_me: Instellingen onthouden
+  remember_me: Onthoud mijn gegevens
   remove: Verwijderen
   remove_all_tags: Alle labels verwijderen
   remove_comma_separated_tags: "Door komma's gescheiden labels verwijderen"
@@ -3530,6 +3530,13 @@ nl:
   site_stats: Site statistieken
   site_taxon_page: "%{site_name} taxonpagina"
   some_agree: sommigen gaan akkoord
+  some_observations_are_missing_media_or_identifications: |
+    Een aantal waarnemingen missen media of determinaties
+  some_observations_are_missing_media_or_identifications_desc: |
+    Waarnemingen zonder media zijn standaard niet zichtbaar in zoekopdrachten, en
+    worden als ze geen determinatie hebben mogelijk niet gezien door experts die naar
+    specifieke taxa zoeken. Zelfs een zeer ruwe determinatie zoals "planten" kan een
+    plantenexpert helpen om je waarneming te vinden.
   some_observations_failed_to_be_added: Sommige waarnemingen werden niet aan de projecten toegevoegd
   some_observations_failed_to_save: Enkele waarnemingen werden niet opgeslagen
   some_of_those_photos_couldnt_be_saved: "Sommige van deze foto's konden niet worden opgeslagen: %{error}"
@@ -4403,8 +4410,6 @@ nl:
   you_are_no_longer_following_x: "Je volgt niet langer %{friend}"
   you_are_setting_this_project_to_aggregate: |
     Je stelt dit project in om alle waarnemingen te verzamelen die voldoen aan de volgende regels: %{rules} Wil je doorgaan?
-  you_are_submitting_obs_without_photos_and_names: |
-    Je bent waarnemingen zonder foto's en taxonnamen aan het verzenden. Waarnemingen zonder deze informatie zijn niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_submitting_obs_with_no_date_or_no_location: |
     U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_subscribed_to_comments_on_this_flag: Je bent geabonneerd op reacties op deze melding.
@@ -6555,7 +6560,12 @@ nl:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: mag geen komma's of schuine strepen bevatten
+              should_match_english_translation: |
+                moet in het Engels zijn, maar momenteel komt het overeen met de vertaling van "%{suggested}" in het %{suggested_locale}.
+                Gebruik "%{suggested}" als dat is wat je bedoelde en het wordt vertaald als je de site in die taal bekijkt.
+              should_be_in_english: moet in het Engels zijn
             name:
+              already_exists: bestaat al voor dit taxon in dit lexicon
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan geen passende wetenschappelijke naam van een soort vinden voor dit lexicon
               must_match_the_taxon_if_valid: |

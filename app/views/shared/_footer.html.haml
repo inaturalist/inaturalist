@@ -33,7 +33,8 @@
             = link_to t(:store), "https://store.inaturalist.org", class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:store)
         .social-media
           - unless site.facebook_url.blank?
-            = link_to t(:facebook), site.facebook_url, :class => "social-media-link facebook", title: t(:facebook)
+            = link_to site.facebook_url, :class => "social-media-link facebook", title: t(:facebook) do
+              = image_tag "facebook-f-logo-white.svg"
           - unless site.twitter_url.blank?
             = link_to t(:twitter), site.twitter_url, :class => "social-media-link twitter", title: t(:twitter)
           - unless site.instagram_url.blank?
@@ -46,7 +47,7 @@
       .col-xs-12
         .links.inlineblock
           - if site.id == Site.default.id
-            =t :member_of_the_inaturalist_network_html, url: "/pages/network"
+            =t :member_of_the_inaturalist_network_html, url: "/sites/network"
             &nbsp;
             |
             &nbsp;

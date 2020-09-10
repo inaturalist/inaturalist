@@ -62,31 +62,39 @@ class ChooserPopover extends React.Component {
               { hideClear ? null : (
                 <li
                   className={current === -1 ? "current pinned" : "pinned"}
-                  onMouseOver={( ) => {
-                    this.setState( { current: -1 } );
-                  }}
-                  onClick={( ) => this.chooseCurrent( )}
+                  onMouseOver={( ) => this.setState( { current: -1 } )}
+                  onFocus={( ) => this.setState( { current: -1 } )}
                   style={{ display: chosen ? "block" : "none" }}
                 >
-                  <i className="fa fa-times" />
-                  { I18n.t( "clear" ) }
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => this.chooseCurrent( )}
+                  >
+                    <i className="fa fa-times" />
+                    { I18n.t( "clear" ) }
+                  </button>
                 </li>
               ) }
               { _.map( choices, ( s, i ) => (
                 <li
                   key={`source-chooser-source-${s}`}
                   className={`media ${current === i ? "current" : ""}`}
-                  onClick={( ) => this.chooseCurrent( )}
-                  onMouseOver={( ) => {
-                    this.setState( { current: i } );
-                  }}
+                  onMouseOver={( ) => this.setState( { current: i } )}
+                  onFocus={( ) => this.setState( { current: i } )}
                 >
-                  <div className="media-left">
-                    { choiceIconClass ? <i className={`media-object ${choiceIconClass}`} /> : null }
-                  </div>
-                  <div className="media-body">
-                    { I18n.t( choiceLabels[s] || s ) }
-                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => this.chooseCurrent( )}
+                  >
+                    <div className="media-left">
+                      { choiceIconClass ? <i className={`media-object ${choiceIconClass}`} /> : null }
+                    </div>
+                    <div className="media-body">
+                      { I18n.t( choiceLabels[s] || s ) }
+                    </div>
+                  </button>
                 </li>
               ) ) }
             </ul>

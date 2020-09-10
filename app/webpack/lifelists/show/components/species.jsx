@@ -11,16 +11,31 @@ class Species extends Component {
 
   render( ) {
     const {
-      search, fetchFirstPage, fetchNextPage, config, lifelist, zoomToTaxon
+      search, fetchNextPage, config, lifelist, zoomToTaxon
     } = this.props;
     let view;
-    const loading = !search || ( !search.searchResponse && !search.loaded );
-    const species = loading ? null : search.searchResponse.results || [];
-    if ( loading ) {
+    const loaded = search && search.searchResponse;
+    const species = loaded ? search.searchResponse.results || [] : null;
+    if ( !loaded ) {
       view = ( <div className="loading_spinner huge" /> );
-      if ( search && !search.loading ) {
-        fetchFirstPage( );
+    } else if ( _.size( species ) === 0 ) {
+      let emptyMessage;
+      if ( _.size( species ) === 0 ) {
+        if ( lifelist.speciesPlaceFilter ) {
+          if ( lifelist.detailsTaxon ) {
+            emptyMessage = `You have no unobserved species within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+          } else {
+            emptyMessage = `You have no unobserved species in ${lifelist.speciesPlaceFilter.display_name}.`;
+          }
+        } else if ( lifelist.detailsTaxon ) {
+          emptyMessage = "You've observed all species within this taxon.";
+        }
       }
+      view = (
+        <div className="empty">
+          { emptyMessage }
+        </div>
+      );
     } else {
       view = _.map( species, s => {
         const onClick = e => {
@@ -70,7 +85,7 @@ class Species extends Component {
     }
     return (
       <div className="flex-container">
-        <div className="SpeciesGrid">
+        <div className="SpeciesGrid unobserved">
           { view }
           <div className="more">
             { moreButton }
@@ -84,7 +99,6 @@ class Species extends Component {
 Species.propTypes = {
   config: PropTypes.object,
   search: PropTypes.object,
-  fetchFirstPage: PropTypes.func,
   fetchNextPage: PropTypes.func,
   lifelist: PropTypes.object,
   zoomToTaxon: PropTypes.func

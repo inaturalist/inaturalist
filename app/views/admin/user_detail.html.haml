@@ -203,6 +203,14 @@
                     %tr
                       %th Donorbox donation?
                       %td= up.donorbox_donor_id ? "yes" : "no"
+                    %tr
+                      %th Actions
+                      %td
+                        = button_to t(:delete), up, method: :delete, data: { confirm: t(:are_you_sure_no_undo) }, class: "btn btn-sm btn-danger"
+                        %small
+                          You
+                          %em might
+                          want to delete a parent record if it was created accidentally and is preventing a user from signing in.
             - else
               No parent record
         %tr

@@ -390,12 +390,6 @@ fi:
     form: Kaikki muodot lisätty tietokantaan
   all_rights_reserved: Kaikki oikeudet pidätetään
   all_taxa:
-    rank:
-      kingdom: Kunta
-      class: Luokka
-      phylum: Pääjakso
-      species: Laji
-      order: Lahko
     amphibians: Sammakkoeläimet
     animals: Eläimet
     arachnids: Hämähäkkieläimet
@@ -1054,6 +1048,7 @@ fi:
   date_updated: Päivityspäiväys
   day: Päivä
   decrease_brightness: Vähennä kirkkautta
+  #Default option
   default: oletus
   default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
@@ -1120,6 +1115,13 @@ fi:
         subject: 'Vahvistusohjeet'
       reset_password_instructions:
         subject: 'Ohjeet salasanan nollaukseen'
+  devise_reset_password_instructions_hello_email: Hei %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Salasanasi ei muutu, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden.
   discoveries: Löydöt
   did_not_send_invitations_because: Kutsuja ei lähetetty seuraaville koska...
   did_you_mean: 'Tarkoititko'
@@ -1965,6 +1967,9 @@ fi:
       range: Väli
   map_tooltip: Näytä karttanäkymä
   mark_as_reviewed: Merkitse tarkastetuksi
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Havainnon merkitseminen tarkastetuksi tarkoittaa, että et näe sitä enää tunnistussivulla. Se jää kuitenkin näkyviin muille käyttäjille.
   mark_all_as_reviewed: Merkitse kaikki tarkastetuiksi
   mark_all_as_unreviewed: Merkitse kaikki tarkistamattomaksi
   matching_species_will_shown_up_here: Lajihavaintohaun tulokset näkyvät tässä. Kartalle piirtyy alue, jos paikkalla %{place} on lajista kirjattu havaintoja.
@@ -2414,8 +2419,8 @@ fi:
     observe_panel_body_p1_global: Tarvitsetko inspiraatiota? Tässä on joitain havaittuja eliöitä...
     observe_panel_body_p2: Lähde retkelle ja etsi villi ja vapaa eläin, kasvi tai sieni! Ota valokuva, jossa se näkyy kokonaan. Jos sinulla on jo tällaisia kuvia, <a href="%{new_observation_path}">voi tallentaa nekin havainnoiksi</a>. Voit myös käyttää %{site_name}-mobiilisovellusta (Android tai iPhone) tallentaaksesi havaintoja.
     observe_panel_body_p3: Kun olet tallentanut havaintojasi, tulee tälle sivulle yhteisön niille tekemiä tunnistuksia ja kommentteja. Kukapa tietää, mitä kaikkea löydät!
-    follow_panel_title_local: Seuraa joitakin läheisiä luonnontieteilijöitä
-    follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
+    follow_panel_title_local: Seuraa joitakin läheisiä luontoharrastajia
+    follow_panel_title_global: Seuraa joitakin aktiivisia luonnonharrastajia
     follow_panel_body: Voit seurata muita käyttäjiä, jolloin saat tiedon kun he tallentavat havaintoja. (Käy käyttäjän profiilissa ja klikkaa seuraa-nappia.)
     following_panel_title: Pidä kirjaa ihmisistä, taksoneista ja paikoista
     following_panel_body: |
@@ -3225,7 +3230,7 @@ fi:
   rotate_right: Käännä oikealle
   row_singular_or_plural: Rivi(t)
   rules_and_formatting: "Säännöt & muotoilu"
-  rules_for_adding_observations: Havaintojen lisäämisen ohjeet
+  rules_for_adding_observations: Tämän projektin havaintokriteerit
   rules_for_becoming_a_member: Jäseneksi liittymisen ohjeet
   rules_for_becoming_memner: Jäseneksi liittymisen ohjeet
   rules_types:
@@ -3484,6 +3489,11 @@ fi:
   subscribe_to_a_place: Seuraa paikkaa
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Tilaa%{tag_end} tämän lipun kommentit"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Tilaa%{tag_end}tähän julkaisuun liittyvät kommentit"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Tilaa%{tag_end}tähän taksonitilaan liittyvät kommentit"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Tilaa%{tag_end}tähän taksonimuutokseen liittyvät kommentit"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Tilaa%{tag_end}tähän taksonin liittämiseen liittyvät kommentit"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Tilaa%{tag_end}tähän taksonijakoon liittyvät kommentit"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Tilaa%{tag_end}tähän taksonipoistoon liittyvät kommentit"
   subscribe_to_observations_in_a_taxon: Seuraa kaikkia lajien tai eliöryhmien havaintoja (esim. 'skorpionit')
   subscribe_to_observations_in_a_place: Seuraa kaikkia tältä paikalta tallennettuja havaintoja. Voit myös lisätä valinnaisen taksonisuodattimen (esim. 'skorpionit Texasista'
   subscribe_to_places_to: |
@@ -3833,7 +3843,7 @@ fi:
   user_invited_you_to_join_project: "%{user} kutsui sinut liittymään projektiin %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} kutsui sinut liittymään tähän projektiin %{date}"
   user_invited_your_x_to_a_project_html: "%{user} kutsui sinun %{x} projektiin"
-  user_is_a_naturalist: "%{user} on luonnontieteilijä!"
+  user_is_a_naturalist: "%{user} on luontoharrastaja!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> on nyt projektin %{project} ylläpitäjä
   user_is_now_a_manager_for_project_html: |
@@ -4020,7 +4030,7 @@ fi:
   x_project_stats: "Projektin %{project} tilastot"
   x_sent_you_a_new_message_on_y_html: "%{x} lähetti sivulle uuden viestin sivulla %{y}:"
   x_site_is_a_social_network_for_naturalist: |
-    %{site} on sosiaalinen verkosto luonnontieteilijöille! Talleta omia havaintoja kasveista ja eläimistä, jaa niitä ystävien ja tutkijoiden kanssa, ja opi luonnonmaailmasta.
+    %{site} on sosiaalinen verkosto luontoharrastajille! Talleta omia havaintoja kasveista ja eläimistä, jaa niitä ystävien ja tutkijoiden kanssa, ja opi luonnosta.
   x_wrote_a_new_post_html: "%{x} kirjoitti uuden viestin"
   x_wrote_y_new_posts_html: "%{x} kirjoitti %{y} uutta viestiä"
   year: Vuosi
@@ -4050,12 +4060,13 @@ fi:
   you_are_no_longer_following_x: "Et enää seuraa ystävää %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Olet asettamassa tätä projektia kokoamaan kaikki havainnot, jotka täsmäävät seuraaviin sääntöihin: %{rules} Haluatko jatkaa?
-  you_are_submitting_obs_without_photos_and_names: |
-    Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä. Havainnot 
-    ilman näitä tietoja ovat usein mahdottomia tunnistaa eivätkä ne tule olemaan 
-    näkyvillä oletusarvoisesti havaintohauissa.
   you_are_subscribed_to_comments_on_this_flag: Olet nyt tilannut kommentit tästä lipusta.
   you_are_subscribed_to_comments_on_this_post: Olet tilannut tähän julkaisuun liittyvät kommentit.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Olet tilannut tähän taksonitilaan liittyvät kommentit.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Olet tilannut tähän taksonivaihtoon liittyvät kommentit.
+  you_are_subscribed_to_comments_on_this_taxon_merge: Olet tilannut tähän taksonin liittämiseen liittyvät kommentit.
+  you_are_subscribed_to_comments_on_this_taxon_split: Olet tilannut tähän taksonitijakoon liittyvät kommentit.
+  you_are_subscribed_to_comments_on_this_taxon_drop: Olet tilannut tähän taksonipoistoon liittyvät kommentit.
   you_are_subscribed_to_observations_from_this_place: Olet tilannut tähän paikkaan liittyvät kommentit.
   you_arent_a_member_of_that_project: Et ole tuon projektin jäsen.
   you_arent_following_that_person: "Et seuraa tätä henkilöä."
@@ -4132,7 +4143,7 @@ fi:
   your_tags: Omat merkinnät
   yours: Sinun
   youre_not_following_anyone: |-
-    Et seuraa ketään. Muiden luonnontieteilijöiden seuraaminen sallii sinun helposti seurata heidän viimeisimpiä havaintojaan. Selvitä mitä ihmiset <a href="%{observations_path}">havainnoivat</a> ja tee joitain uusia <a href="%{people_path}">tuttavuuksia</a>.
+    Et seuraa ketään. Muiden luontoharrastajien seuraaminen sallii sinun helposti seurata heidän viimeisimpiä havaintojaan. Selvitä mitä ihmiset <a href="%{observations_path}">havainnoivat</a> ja tee joitain uusia <a href="%{people_path}">tuttavuuksia</a>.
   youve_linked_your_inaturalist_google_account: "Olet linkittänyt %{site_name}- ja Google-tilisi. \nTämä sallii sinun yhdistää Google-valokuvasi %{site_name}-havaintojesi kanssa."
   youve_successfully_linked_your_provider_account: "Olet onnistuneesti linkittänyt %{provider}-tilisi"
   verifiable: Todennettavissa
@@ -5202,7 +5213,7 @@ fi:
         people_signed_up: 'rekisteröitynyttä käyttäjää'
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
-        share_with_fellow_naturalists: Jaa muiden luonnontieteilijöiden kanssa
+        share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
         discuss_your_findings: Keskustele havainnoistasi
         contribute_to_science: Tue tieteellistä tutkimustyötä
         science_desc_html: |

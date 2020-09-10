@@ -327,12 +327,6 @@ es-AR:
     form: Se añadieron todas las formas a la base de datos
   all_rights_reserved: todos los derechos reservados
   all_taxa:
-    rank:
-      kingdom: Reino
-      class: Clase
-      phylum: Filo
-      species: Especie
-      order: Orden
     amphibians: Anfibios
     animals: Animales
     arachnids: Arácnidos
@@ -964,6 +958,7 @@ es-AR:
   date_updated: Fecha de actualización
   day: Día
   decrease_brightness: Reducir brillo
+  #Default option
   default: Predeterminada
   default_invite_comment: "¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
@@ -3157,6 +3152,7 @@ es-AR:
   schemes_including: Esquemas que incluyen a
   search: Buscar
   search_all_fields: buscar todos los campos
+  search_by_name: Búsqueda por nombre
   search_by_name_or_email: Búsqueda por nombre o email
   search_by_taxon_name_or_observation_id: Búsqueda por nombre taxonómico o por Identificación de la observación
   search_by_taxon_name_or_flickr_photo_id: Busqueda por ID foto de Flickr o nombre taxonómico.
@@ -4080,8 +4076,6 @@ es-AR:
   you_are_no_longer_following_x: "Ya no estas siguiendo a %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Estás estableciendo que en este proyecto se puedan agregar todas las  observaciones que cumplan con las reglas siguientes: %{rules} Quieres continuar?
-  you_are_submitting_obs_without_photos_and_names: |
-    Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
   you_are_subscribed_to_comments_on_this_flag: Estás suscrito/a a los comentarios de esta marca.

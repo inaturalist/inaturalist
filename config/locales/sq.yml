@@ -215,12 +215,6 @@ sq:
     form: Të gjitha format janë shtuar në bazën e të dhënave
   all_rights_reserved: të gjitha të drejtat e rezervuara
   all_taxa:
-    rank:
-      kingdom: Mbretëri
-      class: Klasë
-      phylum: Tipi
-      species: Specjet
-      order: Renditja
     amphibians: Amfibët
     animals: Kafshët
     arachnids: Araknidë
@@ -751,6 +745,7 @@ sq:
   date_specified: Data e specifikuar
   date_time: Data/Ora
   day: Dita
+  #Default option
   default: e paracaktuar
   default_invite_comment: "Foto e mrekullueshme! Duhet ta postoni në %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licenca standard e vëzhgimit
@@ -2686,14 +2681,6 @@ sq:
       - Oct
       - Nov
       - Dec
-    day_names_min:
-      1: Su
-      2: Mo
-      3: Tu
-      4: We
-      5: Th
-      6: Fr
-      7: Sa
     month_names:
       - 
       - January

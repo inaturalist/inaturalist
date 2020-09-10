@@ -2,6 +2,9 @@ eo:
   x_comments:
     one: '1 komento'
     other: '%{count} komentoj'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komento'
+    other: '<span class="count">%{count}</span> komentoj'
   x_faves:
     one: '1 favorato'
     other: '%{count} favoratoj'
@@ -32,6 +35,12 @@ eo:
   x_observations_:
     one: "1 Observo"
     other: "%{count} Observoj"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> observo"
+    other: "<span class='count'>%{count}</span> observoj"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} observo</a>"
+    other: "<a href='%{url}'>%{count} observoj</a>"
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
@@ -140,12 +149,16 @@ eo:
   add_editor: Aldoni Redaktoron
   add_link: Aldoni Ligilon
   add_id: Aldoni Identigilon
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Aldoni kursivan tekston
   add_new_lexicon: Aldoni Novan Terminaron
   add_new_place: Aldoni Novan Lokon
   add_new_rule: Aldoni Novan Regulon
   add_new_source: "Aldoni Novan Fonton..."
   add_new_taxon_name: Aldoni Novan Nomon de Taksono
+  add_obs_from_a_list: Aldonu Observojn de Listo
   add_observations: Aldoni Observojn
+  add_observations_by_checking_off: Aldonu observojn per kontrolado de specioj el listo.
   add_observations_project: Aldoni Observojn al Ĉi Tiu Projekto
   #Prompt to add a new journal post
   add_one: Aldoni Unu!
@@ -154,6 +167,11 @@ eo:
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
   add_place: Aldoni Lokon
+  add_alive_or_dead_alive_annotation: 'Aldoni komentaron "Morta aŭ Vivu: Vivu"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Aldonu komentaron "Morta aŭ Vivu: Ne eblas determini"'
+  add_alive_or_dead_dead_annotation: 'Aldonu komentaron "Morta aŭ Vivu: Morta"'
+  add_plant_phenology_budding_annotation: 'Aldonu komenton "Planta fenologio: florbukedoj"'
+  add_plant_phenology_flowering_annotation: 'Aldonu komenton "Planta fenologio: florado"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Aldonu "Planto-Fenologio: Neniu Evidemo pri Florigado"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Aldoni rilaton'
@@ -224,12 +242,6 @@ eo:
     variety: Ĉiuj varioj aldonitaj en la datenbankon
     form: Ĉiuj formoj aldonitaj en la datenbankon
   all_taxa:
-    rank:
-      kingdom: Regno
-      class: Klaso
-      phylum: Filumo
-      species: Specio
-      order: Ordo
     amphibians: Amfibioj
     animals: Animaloj
     arachnids: Araneedoj
@@ -529,6 +541,7 @@ eo:
     nextText: Sekven
   date_time: Dato/tempo
   day: Tago
+  #Default option
   default: implicita
   definitions: Difinoj
   delete: Forigi

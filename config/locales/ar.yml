@@ -204,12 +204,6 @@ ar:
     form: تُضَاف جميع الأشكال إلى قاعدة البيانات
   all_rights_reserved: جميع الحقوق محفوظة
   all_taxa:
-    rank:
-      kingdom: مملكة
-      class: صف
-      phylum: شعبة
-      species: نوع
-      order: رتبة
     amphibians: برمائيات
     animals: حيوانات
     arachnids: عناكب
@@ -758,6 +752,7 @@ ar:
   date_updated: تاريخ التحديث
   day: يوم
   decrease_brightness: تقليل السطوع
+  #Default option
   default: الافتراضي
   default_invite_comment: "صورة رائعة! ينبغي نشرهها في %{site_name}: {{INVITE_LINK}}"
   default_observation_license: رخصة الملاحظة الافتراضية
@@ -3714,10 +3709,6 @@ ar:
   you_are_setting_this_project_to_aggregate: |
     أنت بصدد إعداد هذا المشروع لتجميع كل الملاحظات التي تطابق 
     القواعد التالية:%{rules} هل تريد المتابعة؟
-  you_are_submitting_obs_without_photos_and_names: |
-    أنت تقدم ملاحظات بدون صور وأسماء الفئات، غالبا 
-    ما يتعذر تحديد الملاحظات بدون هذه المعلومات ولن تكون 
-    مرئية افتراضيا في عمليات البحث عن الملاحظات.
   you_are_submitting_obs_with_no_date_or_no_location: |
     أنت تقدم ملاحظات بدون تواريخ أو مواقع، غالبا 
     ما يتعذر تحديد الملاحظات بدون هذه المعلومات ولن تكون 

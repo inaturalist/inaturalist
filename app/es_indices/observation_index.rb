@@ -993,9 +993,10 @@ class Observation < ActiveRecord::Base
       search_filters << { term: { cached_votes_total: 0 } }
     end
     if p[:min_id]
-      search_filters << { range: { id: { gte: p[:min_id] } } }
-    end
-    if p[:max_id]
+      id_filter = { range: { id: { gte: p[:min_id] } } }
+      id_filter[:range][:id][:lte] = p[:max_id] if p[:max_id]
+      search_filters << id_filter
+    elsif p[:max_id]
       search_filters << { range: { id: { lte: p[:max_id] } } }
     end
     if p[:id_above]

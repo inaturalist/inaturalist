@@ -191,6 +191,8 @@ es:
   add: Agregar
   add_a_batch_of_observations: Agregar un grupo de observaciones
   add_a_batch_of_taxa: Agregar un grupo de taxones
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Agregar una lista con viñetas
   add_a_comment: Agregar un comentario
   add_a_field: Agregar un campo
   add_a_flag: Agregar una marca
@@ -371,12 +373,6 @@ es:
     form: Se añadieron todas las formas a la base de datos
   all_rights_reserved: todos los derechos reservados
   all_taxa:
-    rank:
-      kingdom: Reino
-      class: Clase
-      phylum: Filo
-      species: Especie
-      order: Orden
     amphibians: Anfibios
     animals: Animales
     arachnids: Arácnidos
@@ -1045,7 +1041,10 @@ es:
   date_updated: Fecha de actualización
   day: Día
   decrease_brightness: Reducir brillo
+  #Default option
   default: Predeterminada
+  #Default option
+  default_: Predeterminada
   default_invite_comment: "¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
   default_photo_license: 'Licencia para sus fotos:'
@@ -1111,6 +1110,13 @@ es:
         subject: 'Instrucciones de confirmación'
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
+  devise_reset_password_instructions_hello_email: Hola %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguien ha solicitado un enlace para cambiar tu contraseña, puedes hacerlo a través del siguiente enlace.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Si no lo has solicitado, por favor, ignora este correo electrónico.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
   discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas pues:'
   did_you_mean: '¿Te refieres a'
@@ -1983,6 +1989,10 @@ es:
       range: Área de distribución
   map_tooltip: Muestra la vista de mapa
   mark_as_reviewed: Marca como revisado
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Marcar una observación como revisada significa que no la volverá a ver por defecto
+    en Identificar. Seguirá siendo visible para otras personas en Identificación.
   mark_all_as_reviewed: Marca todas como revisadas
   mark_all_as_unreviewed: Marca todas como no revisadas
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí. El mapa mostrará un área si %{place} tiene alguna de esas especies.
@@ -3182,6 +3192,9 @@ es:
   rank: Rango
   rank_position: Posición
   rank_restrictions: Clasificar las restricciones
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Estado de la materia
     kingdom: Reino
@@ -3385,6 +3398,7 @@ es:
   scientific_name: Nombre científico
   search: Buscar
   search_all_fields: buscar todos los campos
+  search_by_name: Búsqueda por nombre
   search_by_name_or_email: Búsqueda por nombre o email
   search_by_taxon_name_or_observation_id: Búsqueda por nombre taxonómico o por Identificación de la observación
   search_by_taxon_name_or_flickr_photo_id: Busqueda por ID foto de Flickr o nombre taxonómico.
@@ -3497,6 +3511,10 @@ es:
   site_stats: Estadísticas del sitio
   site_taxon_page: "%{site_name} página del taxón"
   some_agree: Algunos la apoyan
+  some_observations_are_missing_media_or_identifications: |
+    Algunas observaciones carecen de fotografías o identificaciones
+  some_observations_are_missing_media_or_identifications_desc: |
+    Las observaciones sin contenido multimedia no serán visibles de forma predeterminada en las búsquedas, y es posible que los expertos que busquen taxones específicos no puedan ver aquellas sin identificación. Incluso una identificación tan simple como "plantas" puede ayudar a un experto en plantas a encontrar tu observación.
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse a los proyectos
   some_observations_failed_to_save: Algunas observaciones no se guardaron
   some_of_those_photos_couldnt_be_saved: "Algunas de las fotos no pudierón ser guardadas: %{error}"
@@ -3631,6 +3649,11 @@ es:
   subscribe_to_a_place: Suscríbete a un lugar
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Suscribirse %{tag_end} a los comentarios de esta marca"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta entrada"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta activación de taxón"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre este intercambio de taxón"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta fusión de taxones"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta división de taxón"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta eliminación de taxón"
   subscribe_to_observations_in_a_taxon: Suscribirse a todas las observaciones publicadas de una especie o grupo de organismos (por ejemplo, 'escorpiones').
   subscribe_to_observations_in_a_place: Suscribirse a todas las observaciones publicadas en este lugar. También puede agregar un filtro opcional especie o grupo de organismos (por ejemplo, 'escorpiones de Chiapas').
   subscribe_to_places_to: |
@@ -3807,6 +3830,11 @@ es:
   terms_service: Términos del servicio
   terrain: terreno
   text: Texto
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Herramientas de bloque de texto
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Herramientas de formato de texto
+  text_editing_controls: Herramientas de edición de texto
   thanks!: '¡Gracias!'
   thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
   that_photo_doesnt_exist: Esa foto no existe.
@@ -3939,6 +3967,8 @@ es:
   top_observer: Mayor observador
   top_observers: Mejores observadores
   top_species: Especie superior
+  tos_privacy_guidelines_label: |
+    Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
   total: total
   totals: Totales
   total_members: Total de miembros
@@ -4208,7 +4238,7 @@ es:
   view_all_of_your_observations_from_x: "Ver todas tus observaciones de %{x}"
   video_tutorials: Videotutoriales
   visually_similar: Similar visualmente
-  vulnerable: vulnerable
+  vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: '¡No se aceptan taxones sin relaciones taxonómicas!'
   w_photos_only: con fotos solamente
   w_sounds: con sonidos
@@ -4357,12 +4387,15 @@ es:
   you_are_no_longer_following_x: "Ya no estas siguiendo a %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Estás estableciendo que en este proyecto se puedan agregar todas las  observaciones que cumplan con las reglas siguientes: %{rules} Quieres continuar?
-  you_are_submitting_obs_without_photos_and_names: |
-    Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.
   you_are_subscribed_to_comments_on_this_flag: Estás suscrito(a) a los comentarios de esta advertencia.
   you_are_subscribed_to_comments_on_this_post: Estás suscrito a los comentarios de esta publicación.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Estás suscrito a los comentarios de esta activación de taxón
+  you_are_subscribed_to_comments_on_this_taxon_swap: Estás suscrito a los comentarios de este intercambio de taxón
+  you_are_subscribed_to_comments_on_this_taxon_merge: Estás suscrito a los comentarios de esta fusión de taxones
+  you_are_subscribed_to_comments_on_this_taxon_split: Estás suscrito a los comentarios de esta división de taxón
+  you_are_subscribed_to_comments_on_this_taxon_drop: Estás suscrito a los comentarios de esta eliminación de taxón
   you_are_subscribed_to_observations_from_this_place: Estás suscrito a los comentarios de este lugar.
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_arent_following_that_person: "No estas siguiendo a esa persona."
@@ -6522,7 +6555,13 @@ es:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: no debe contener comas ni barras
+              should_match_english_translation: |
+                debería estar en inglés, pero actualmente la traducción %{suggested_locale} coincide con la de "%{suggested}".
+                Usa "%{suggested}" si eso es lo que quieres decir y se traducirá cuando veas el sitio en
+                ese idioma.
+              should_be_in_english: debería estar en inglés
             name:
+              already_exists: ya existe para este taxón en este léxico
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 No puede encontrar el nombre científico de una especie para este léxico
               must_match_the_taxon_if_valid: |

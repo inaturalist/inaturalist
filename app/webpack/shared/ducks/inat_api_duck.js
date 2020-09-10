@@ -17,6 +17,7 @@ export const DEFAULT_STATE = {
   scrollIndex: null,
   searchError: null,
   resultsMap: null,
+  resultsModify: null,
   hasMore: false
 };
 
@@ -99,6 +100,9 @@ function fetchFirstPage( searchKey, options = { } ) {
     inatjs[instanceState.method][instanceState.action]( queryParams ).then( response => {
       if ( instanceState.resultsMap ) {
         _.each( response.results, instanceState.resultsMap );
+      }
+      if ( instanceState.resultsModify ) {
+        response.results = instanceState.resultsModify( response.results );
       }
       const nextAttrs = {
         loaded: true,

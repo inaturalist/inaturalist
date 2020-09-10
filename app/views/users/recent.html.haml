@@ -11,40 +11,47 @@
       width: 50px;
     }
 - content_for :extrajs do
+  = javascript_include_tag "https://www.gstatic.com/charts/loader.js"
+  :javascript
+    google.charts.load( "current", {
+      language: "#{I18n.locale}",
+      packages: ["corechart", "annotationchart"]
+    } );
   = javascript_include_tag :stats
-  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','language':'#{I18n.locale}','packages':['corechart','annotationchart']}]}"
   - if @stats
     :javascript
       var STATS_JSON = #{ @stats.to_json.html_safe };
-      google.setOnLoadCallback( Stats.simpleChart( {
-        element_id: "vis",
-        chartType: google.visualization.AnnotationChart,
-        chartOptions: {
-          colors: ["green", "red", "orange", "purple", "dodgerblue"]
-        },
-        series: [
-          { label: "total new users" },
-          { label: "auto spam" },
-          { label: "manual spam" },
-          { label: "probably spam" },
-          { label: "false positives" },
-        ],
-        data: _.map( STATS_JSON, function( stat ) {
-          var localDateString = ( new Date( ) ).toISOString( ).replace( /\d{4}-\d{2}-\d{2}/, stat.date );
-          var localDate = new Date( localDateString );
-          localDate.setHours( 0 );
-          localDate.setMinutes( 0 );
-          localDate.setSeconds( 1 );
-          return [
-            localDate,
-            stat.new_users || 0,
-            stat.auto_spam || 0,
-            stat.manual_spam || 0,
-            stat.probable_spam || 0,
-            stat.false_positives || 0
-          ];
+      google.charts.setOnLoadCallback( function() {
+        Stats.simpleChart( {
+          element_id: "vis",
+          chartType: "AnnotationChart",
+          chartOptions: {
+            colors: ["green", "red", "orange", "purple", "dodgerblue"]
+          },
+          series: [
+            { label: "total new users" },
+            { label: "auto spam" },
+            { label: "manual spam" },
+            { label: "probably spam" },
+            { label: "false positives" },
+          ],
+          data: _.map( STATS_JSON, function( stat ) {
+            var localDateString = ( new Date( ) ).toISOString( ).replace( /\d{4}-\d{2}-\d{2}/, stat.date );
+            var localDate = new Date( localDateString );
+            localDate.setHours( 0 );
+            localDate.setMinutes( 0 );
+            localDate.setSeconds( 1 );
+            return [
+              localDate,
+              stat.new_users || 0,
+              stat.auto_spam || 0,
+              stat.manual_spam || 0,
+              stat.probable_spam || 0,
+              stat.false_positives || 0
+            ];
+          })
         })
-      }));
+      } );
 .container
   .row
     .col-xs-12

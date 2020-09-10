@@ -712,7 +712,8 @@ module ApplicationHelper
       "control-position" => options[:control_position],
       "map-style" => options[:map_style],
       "elastic_params" => options[:elastic_params] ?
-        options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil
+        options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil,
+      "gesture-handling" => options[:gesture_handling]
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)
@@ -1497,7 +1498,7 @@ module ApplicationHelper
   def branding_statement
     I18n.t(
       :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
-      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/pages/network\">",
+      partial_inat_network_tag_html: "<a href=\"https://www.inaturalist.org/sites/network\">",
       cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
       nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
     ).html_safe

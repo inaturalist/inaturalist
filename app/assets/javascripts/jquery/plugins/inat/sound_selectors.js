@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // This is a most certainly stupidly simple way of selecting SoundCloud sounds, derived from the soundSelector plugin
 // Options:
 //   baseURL:       Endpoint to query for sounds.  Should accept query string as
@@ -30,6 +32,8 @@
 //    }
 //
 (function($){
+  var MAX_FILE_SIZE = 20971520; // 20 MB in bytes
+
   $.fn.soundSelector = function(options) {
     var options = $.extend(true, {}, $.fn.soundSelector.defaults, options);
     
@@ -38,6 +42,20 @@
       setup(this, options);
     });
   };
+
+  $.fn.soundSelector.bindMaxFileSizeValidation = function ( wrapper ) {
+    $( ".sound_file_field input:file", wrapper ).not( ".max-file-sized" ).change( function( e ) {
+      $( e.currentTarget ).addClass( "max-file-sized" );
+      var files = e.currentTarget.files;
+      for( var k in files ) {
+        if ( files[k].size > MAX_FILE_SIZE) {
+          alert( I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } ) );
+          $( e.currentTarget ).val( null );
+          break;
+        }
+      }
+    } );
+  }
   
   // Setup an individual soundSelector
   function setup(wrapper, options) {
@@ -60,6 +78,8 @@
     
     // Insert all existing content into the container
     $(container).append(existing);
+
+    $.fn.soundSelector.bindMaxFileSizeValidation( wrapper );
     
     // Fill with sounds
     if (options.queryOnLoad) {
@@ -187,6 +207,8 @@
           $soundSelectorSounds.prepend(selectedSoundsWrapper)
         }
         $(wrapper).data('soundSelectorExisting', null)
+
+        $.fn.soundSelector.bindMaxFileSizeValidation( wrapper );
         
         // Unset loading status
         $soundSelectorSounds.shades('close')

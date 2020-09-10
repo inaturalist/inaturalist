@@ -31,6 +31,10 @@
   display: flex;
 }
 
+body.modal-open #app {
+  right: 15px;
+}
+
 #Lifelist {
   display: flex;
   flex-direction: column;
@@ -51,7 +55,11 @@
     border: 1px solid #e7e7e7;
     letter-spacing: 0.02em;
     background: inherit;
-    .fa {
+    .icon-treeview {
+      float: left;
+      line-height: 16px;
+    }
+    .fa, .icon-treeview {
       margin-right: 6px;
       color: $inat-green;
     }
@@ -59,7 +67,7 @@
       border: none;
       background: $inat-green;
       color: white;
-      .fa {
+      .fa, .icon-treeview {
         color: white;
       }
     }
@@ -101,15 +109,15 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-size: 23px;
     padding: 1px 1px;
     color: #979797;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     text-align: center;
     margin-left: 4px;
     outline: none;
     &:focus {
       outline: none;
     }
-    &.selected {
+    &.selected, &:hover {
       color: $inat-green;
       border: 1px solid #aaa;
     }
@@ -202,6 +210,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       font-size: 11px;
     }
   }
+  .icon-collapse, .icon-expand, .icon-focus {
+    font-size: 12px;
+    line-height: 12px;
+    vertical-align: text-top;
+  }
   & > .fa-chevron-down {
     margin-left: 2px;
   }
@@ -235,6 +248,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  h3 .SplitTaxon .display-name {
+    color: inherit;
+  }
   .stats {
     text-align: center;
     margin-bottom: 10px;
@@ -266,6 +282,22 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .flex-container {
     height: 100%;
     overflow: hidden;
+  }
+  .empty {
+    margin: 0px auto;
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 60%;
+    button {
+      border-radius: 30px;
+      display: block;
+      margin: 0px auto;
+      margin-top: 20px;
+    }
+  }
+  .SpeciesGrid.unobserved .empty, .ObservationsGrid .empty {
+    margin-top: 74px;
   }
 }
 
@@ -373,17 +405,23 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 
-.tree, .tree > * ul, #TaxaList > * ul.children {
+.tree {
   padding: 0;
   list-style: none;
   position: relative;
 }
 
-.tree > * ul, #TaxaList > * ul.children {
+.tree, .tree > * ul {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree > * ul.nested {
   margin: 0 0 0 1em;
 }
 
-.tree:before, .tree ul:before, #TaxaList ul.children:before {
+.tree ul.nested:before {
   content: "";
   display: block;
   width: 0;
@@ -395,14 +433,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree li, #TaxaList li.child {
+.tree ul.nested li {
   margin: 0;
   padding: 0 1em;
   line-height: 1.5em;
   position: relative;
 }
 
-.tree li:before, #TaxaList li.child:before {
+.tree ul.nested li:before {
   content: "";
   display: block;
   width: 10px;
@@ -415,17 +453,55 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree li:last-child:before, #TaxaList li.child:last-child:before {
+.tree ul.nested li:last-child:before {
   background: white;
   height: auto;
   top: .75em;
   bottom: 0;
 }
 
-.tree li:last-child {
+.tree ul.nested li:last-child {
   margin-bottom: 10px;
 }
 
+#TaxaList .tree > li > .name-row {
+  font-size: 18px;
+  padding: 2px 0px 2px 0px;
+  font-weight: 300;
+}
+
+#TaxaList .tree ul.nested li:last-child {
+  margin-bottom: 20px;
+}
+
+#TaxaList ul.nested {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#TaxaList .ancestry {
+  margin-right: 3px;
+  .expander {
+    padding-right: 3px;
+    cursor: pointer;
+  }
+  .SplitTaxon {
+    cursor: pointer;
+    .secondary-name {
+      display: none;
+    }
+    &:not(:first-child):before {
+      content: "\203A";
+      padding: 0px 4px 0px 1px;
+      font-size: 16px;
+      cursor: auto;
+    }
+  }
+}
+
+#TaxaList .name-row .SplitTaxon > a {
+  color: inherit;
+}
 
 
 .bootstrap .form-group.TaxonAutocomplete, .bootstrap .place-search {
@@ -451,6 +527,30 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     display: inline-block;
     margin-right: 20px;
     flex-grow: 1;
+    .icon-state {
+      .glyphicon {
+        font-size: 17px;
+      }
+      color: #979797;
+      float: left;
+      line-height: 34px;
+      margin-right: 8px;
+    }
+    .badge {
+      height: 32px;
+      border-radius: 34px;
+      line-height: 28px;
+      background-color: $inat-green;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 3px 4px 3px 14px;
+      .clear {
+        padding: 0 8px;
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+      }
+    }
     .PlaceAutocomplete .form-group {
       margin-bottom: 0;
     }
@@ -479,6 +579,13 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       li {
         padding: 3px 20px;
         cursor: pointer;
+        &:not(:first-child) {
+          margin-top: 2px;
+        }
+        &.divider {
+          padding: 0;
+          margin: 10px 0;
+        }
         &.selected, &:hover {
           background-color: #f5f5f5;
         }
@@ -489,6 +596,43 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         }
       }
     }
+  }
+}
+
+.ExportModal {
+  .modal-body {
+    font-size: 16px;
+    ul {
+      list-style: none;
+      padding-left: 10px;
+      margin: 10px 0 0 0;
+      li {
+        input {
+          margin-right: 10px;
+        }
+        label {
+          font-weight: normal;
+          .filter-label {
+            font-weight: 700;
+            margin-left: 4px;
+          }
+        }
+      }
+    }
+  }
+  .modal-footer {
+    button {
+      min-width: 80px;
+    }
+    .taxa-count {
+      float: left;
+      font-size: 16px;
+      line-height: 34px;
+    }
+  }
+  button.btn-primary .loading_spinner {
+    border: 3px solid rgba(221, 221, 221, 0.2);
+    border-top: 3px solid white;
   }
 }
 

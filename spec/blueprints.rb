@@ -86,6 +86,12 @@ ControlledTermValue.blueprint do
   controlled_value { ControlledTerm.make!(is_value: true) }
 end
 
+DataPartner.blueprint do
+  name { Faker::Lorem.sentence }
+  description { Faker::Lorem.sentence }
+  url { "https://#{Faker::Internet.domain_name}" }
+end
+
 ExplodedAtlasPlace.blueprint do
   atlas { Atlas.make! }
   place { make_place_with_geom }

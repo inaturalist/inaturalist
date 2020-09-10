@@ -191,48 +191,57 @@
 
 <%= render :partial => 'shared/by_login_header', :locals => {:after => tools} %>
 
-<div id="listcol" class="column span-17">
-  <div class="observations table">
-    <%= render :partial => 'observations_table_header' %>
-    <%= render(:partial => 'cached_component', 
-               :collection => @observations) %>
-  </div><!-- end observations table -->
-  <% if @observations.empty? %>
-    <div id="no_obs_message" class="description">
-      <%=t :no_matching_observations %>
-      <br><br>
-      <% if logged_in? && current_user.login == @login %>
-      <%= link_to t(:add_observations), upload_observations_path,
-                  :class => 'default inline button' %>
-      <% end %>
+<div id="maincol">
+  <div id="listcol">
+    <div class="observations table">
+      <%= render :partial => 'observations_table_header' %>
+      <%= render(:partial => 'cached_component', 
+                 :collection => @observations) %>
+    </div><!-- end observations table -->
+    <% if @observations.empty? %>
+      <div id="no_obs_message" class="description">
+        <%=t :no_matching_observations %>
+        <br><br>
+        <% if logged_in? && current_user.login == @login %>
+        <%= link_to t(:add_observations), upload_observations_path,
+                    :class => 'default inline button' %>
+        <% end %>
+      </div>
+    <% end %>
+    <div id="pagination">
+      <% if logged_in? -%>
+        <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+          <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
+          <%= f.label t(:per_page) %>
+          <%= f.select :per_page, ApplicationController::PER_PAGES, 
+            {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
+        <% end %>
+      <% end -%>
+      <%= will_paginate @observations, renderer: INatLinkRenderer, skip_right: true %>
     </div>
-  <% end %>
-  <div id="pagination">
-    <% if logged_in? -%>
-      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
-        <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
-        <%= f.label t(:per_page) %>
-        <%= f.select :per_page, ApplicationController::PER_PAGES, 
-          {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
-      <% end %>
-    <% end -%>
-    <%= will_paginate @observations, renderer: INatLinkRenderer, skip_right: true %>
+  </div>
+
+  <div id="mapcol">
+    <%- map_attributes = setup_map_tag_attrs( {
+      observations: @observations,
+      focus: "observations",
+      flag_letters: true,
+      min_y: params[:swlat],
+      min_x: params[:swlng],
+      max_y: params[:nelat],
+      max_x: params[:nelng],
+      gesture_handling: "auto"
+    }.merge( @map_params || {} ) ) %>
+    <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
+    <%= link_to_function t(:redo_search_in_map_area),
+      "redoSearchInMapArea()", 
+      :id => 'redo_search_in_map_area_button',
+      "data-loading-click" => t(:loading) %>
   </div>
 </div>
 
-<div id="mapcol" class="column span-7 last stacked">
-  <%- map_attributes = setup_map_tag_attrs({
-    observations: @observations, focus: "observations", flag_letters: true,
-    min_y: params[:swlat], min_x: params[:swlng],
-    max_y: params[:nelat], max_x: params[:nelng] }.merge(@map_params || {})) %>
-  <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
-  <%= link_to_function t(:redo_search_in_map_area),
-    "redoSearchInMapArea()", 
-    :id => 'redo_search_in_map_area_button',
-    "data-loading-click" => t(:loading) %>
-</div>
 
-<div class="last column span-24">
+<div class="clear">
   <div id="feeds" class="small ui description">
     <% if is_me?(@selected_user) -%>
       <span>

@@ -439,12 +439,6 @@ pl:
     form: Wszystkie formy dodane do bazy
   all_rights_reserved: wszelkie prawa zastrzeżone
   all_taxa:
-    rank:
-      kingdom: Królestwo
-      class: Gromada
-      phylum: Typ
-      species: Gatunek
-      order: Rząd
     amphibians: Płazy
     animals: Zwierzęta
     arachnids: Pajęczaki
@@ -1095,6 +1089,7 @@ pl:
   date_updated: Data ostatniej aktualizacji
   day: Dzień
   decrease_brightness: Zmniejsz jasność
+  #Default option
   default: domyślny
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
@@ -1303,7 +1298,7 @@ pl:
   favorite_taxa: Ulubione taksony
   favorites: "Ulubione"
   feature_this_project_: "Ujmij w tym projekcie"
-  featured: Ujęto
+  featured: Wyróżnione
   #Title for a button or section describing the "featured" status of a project
   featuring: Zawiera
   feedback: Opinia
@@ -1351,7 +1346,7 @@ pl:
   first_observer: Pierwszy obserwator
   #Verb form, as in "Flag this item"
   flag: Zgłoś
-  flag_as_inappropriate: Oznacz jako nieodpowienie
+  flag_as_inappropriate: Oznacz jako nieodpowiednie
   flag_an_item: Zgłoś element
   flag_as_spammer: Zgłoś spamera
   flag_as_non_spammer: To nie spamer
@@ -1664,7 +1659,7 @@ pl:
   leaderboard_most:
     species: Najwięcej gatunków w %{time}
     observations: Najwięcej obserwacji w %{time}
-    identifications: Najwięcej obserwacji w %{time}
+    identifications: Najwięcej oznaczeń w %{time}
   leading: Wiodący
   learn: Dowiedz się
   learn_about_the_species_live_in: Dowiedz się więcej o gatunkach, które żyją w
@@ -2218,6 +2213,7 @@ pl:
   observations_map: Obserwacji / Mapę
   observation_must_dotdotdot: Obserwacja musi...
   observations_needing_curation: Obserwacje wymagające opieki
+  observations_of_relatives: Obserwacje spokrewnionych
   observations_of_taxon: "Obserwacje %{taxon_name}"
   observations_per_month: Obserwacji / Miesiąc
   observations_removed_from_the_project: "Obserwacje usunięte z projektu \"%{project}\""
@@ -2853,6 +2849,9 @@ pl:
   reptiles: gady
   request_failed: "Żądanie się nie powiodło"
   request_timed_out: Upłynął limit czasu żądania!
+  required: wymagane
+  required_: Wymagane
+  required_field: pole wymagane
   required_columns_in_order: Wymagane kolumny w kolejności
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
@@ -2911,6 +2910,7 @@ pl:
   select: Wybierz
   select_all: Wybierz wszystkie
   select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
+  select_none: Odznacz wszystkie
   select_observations_to_edit: Wybierz obserwacje do edycji...
   select_one_of_friends_albums: Wybierz jeden z albumów użytkownika %{friend}
   select_one_of_your_albums: Wybierz jeden ze swoich albumów
@@ -3414,8 +3414,6 @@ pl:
     Nie edytujesz żadnych przewodników. <a href="/guides/new">Dodaj jakiś</a>
   you_are_already_a_member_of_this_project: "Jesteś już członkiem tego projektu!"
   you_are_no_longer_following_x: "Już nie obserwujesz %{friend}."
-  you_are_submitting_obs_without_photos_and_names: |
-    Przesyłasz obserwacje bez zdjęć i nazw taksonów. Obserwacje bez tych informacji są często niemożliwe do oznaczenia i nie będą widoczne domyślnie w wynikach wyszukiwania obserwacji.
   you_are_subscribed_to_comments_on_this_flag: Subskrybujesz komentarze do tego zgłoszenia.
   you_are_subscribed_to_comments_on_this_post: Subskrybujesz komentarze do tego posta.
   you_are_subscribed_to_observations_from_this_place: Subskrybujesz komentarze z tej lokalizacji.

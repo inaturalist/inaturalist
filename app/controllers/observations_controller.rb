@@ -311,7 +311,9 @@ class ObservationsController < ApplicationController
           I18n.t( "something" )
         end
         @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable, viewer: current_user )
-        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
+        unless @observation.description.blank?
+          @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
+        end
 
         @skip_application_js = true
         @flash_js = true
@@ -1743,11 +1745,27 @@ class ObservationsController < ApplicationController
   end
 
   def moimport
-    if @api_key = params[:api_key]
+    if @api_key = params[:api_key].strip
       @mo_import_task = MushroomObserverImportFlowTask.new
-      @mo_user_id = @mo_import_task.mo_user_id( @api_key )
-      @mo_user_name = @mo_import_task.mo_user_name( @api_key )
-      @results = @mo_import_task.get_results_xml( api_key: @api_key ).map{ |r| [r, @mo_import_task.observation_from_result( r, skip_images: true )] }
+      @mo_import_task.inputs.build( extra: { api_key: @api_key } )
+      @mo_user_id = @mo_import_task.mo_user_id
+      @mo_user_name = @mo_import_task.mo_user_name
+      if @mo_user_id
+        begin
+          @results = @mo_import_task.get_results_xml.map do |r|
+            [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+          end
+        rescue RestClient::BadGateway
+          @errors ||= []
+          @errors << "Failed to connect to Mushroom Observer"
+        rescue StandardError => e
+          @errors ||= []
+          @errors << e.message
+        end
+      else
+        @errors ||= []
+        @errors << "No Mushroom Observer use associated with that API key"
+      end
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
@@ -2030,7 +2048,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.wait_for_index_refresh = true
+    review.observation.wait_for_index_refresh = !params[:skip_refresh]
     review.observation.elastic_index!
   end
 

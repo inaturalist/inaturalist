@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import TaxaTree from "../components/taxa_tree";
-import { toggleTaxon, setDetailsTaxon, setDetailsView } from "../reducers/lifelist";
+import {
+  toggleTaxon,
+  setDetailsTaxon,
+  setDetailsView,
+  setTreeScrollIndex
+} from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
   return {
@@ -13,7 +18,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     toggleTaxon: ( taxon, options ) => dispatch( toggleTaxon( taxon, options ) ),
     setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
-    setDetailsView: view => dispatch( setDetailsView( view ) )
+    setDetailsView: view => dispatch( setDetailsView( view ) ),
+    setTreeScrollIndex: scrollIndex => dispatch( setTreeScrollIndex( scrollIndex ) )
   };
 }
 

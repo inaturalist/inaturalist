@@ -386,12 +386,6 @@ tr:
     form: Tüm formlar veri tabanına eklendi
   all_rights_reserved: tük hakları saklıdır
   all_taxa:
-    rank:
-      kingdom: Alem
-      class: Sınıf
-      phylum: Şube
-      species: Tür
-      order: Takım
     amphibians: Yüzergezerler
     animals: Hayvanlar
     arachnids: Eklem bacaklılar
@@ -1055,6 +1049,7 @@ tr:
   date_updated: Güncelleme Tarihi
   day: Gün
   decrease_brightness: Parlaklığı azalt
+  #Default option
   default: varsayılan
   default_invite_comment: "Harika fotoğraf! %{site_name} adresine göndermelisiniz: {{INVITE_LINK}}"
   default_observation_license: Varsayılan gözlemleme lisansı
@@ -4316,6 +4311,7 @@ tr:
   'yes': "Evet"
   yes_find_them!: "Evet, onları bul!"
   yes_i_want_to_join: Evet, katılmak istiyorum
+  yes_license_my_childs_observations: Evet, çocuğumun fotoğraflarını, seslerini ve gözlemlerini lisansla, böylece bilim insanları verileri kullanabilir.
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
   yesterday: Dün
@@ -4346,10 +4342,6 @@ tr:
   you_are_setting_this_project_to_aggregate: |
     Bu projeyi, aşağıdaki kurallara uyan tüm gözlemleri toplayacak şekilde 
     ayarlıyorsunuz: %{rules} Devam etmek istiyor musunuz?
-  you_are_submitting_obs_without_photos_and_names: |
-    Fotoğraflar ve sınıf isimleri olmadan gözlemler gönderiyorsunuz. 
-    Bu bilgiyi içermeyen gözlemlerin tanımlanması imkansızdır ve 
-    gözlem aramalarında varsayılan olarak görünmez.
   you_are_submitting_obs_with_no_date_or_no_location: |
     Tarihler ve konumlar olmadan gözlemler gönderiyorsunuz. Bu bilgiyi içermeyen
     gözlemlerin tanımlanması imkansızdır ve gözlem aramalarında varsayılan olarak 

@@ -1,4 +1,5 @@
 import _ from "lodash";
+import React from "react";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
@@ -17,6 +18,7 @@ import { setProjectFieldsModalState } from "./project_fields_modal";
 import { updateSession } from "./users";
 import util from "../util";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
+import RejectedFilesError from "../../../shared/components/rejected_files_error";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
@@ -1231,9 +1233,20 @@ export function removeObservationFieldValue( id ) {
   };
 }
 
-export function onFileDrop( droppedFiles ) {
+export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
   return ( dispatch, getState ) => {
     const { observation } = getState( );
+    if ( rejectedFiles && rejectedFiles.length > 0 ) {
+      // eslint-disable-next-line react/jsx-filename-extension
+      const message = <RejectedFilesError rejectedFiles={rejectedFiles} />;
+      if ( message ) {
+        dispatch( setConfirmModalState( {
+          show: true,
+          message,
+          confirmText: I18n.t( "ok" )
+        } ) );
+      }
+    }
     if ( !observation || droppedFiles.length === 0 ) { return; }
     const newPhotos = [];
     const newSounds = [];
