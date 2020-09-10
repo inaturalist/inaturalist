@@ -17,6 +17,7 @@ class TaxonChange < ActiveRecord::Base
   
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
+  validate :uniqueness_of_output_taxa
   validate :taxa_below_order
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
@@ -397,6 +398,14 @@ class TaxonChange < ActiveRecord::Base
     taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "input and output taxa must be unique")
+    end
+  end
+
+  def uniqueness_of_output_taxa
+    return true unless type == "TaxonSplit"
+    taxon_ids = taxon_change_taxa.map(&:taxon_id)
+    if taxon_ids.size != taxon_ids.uniq.size
+      errors.add(:base, "output taxa must be unique")
     end
   end
 
