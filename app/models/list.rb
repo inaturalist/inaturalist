@@ -309,13 +309,11 @@ class List < ActiveRecord::Base
     if respond_to?(:create_new_listed_taxa_for_refresh)
       create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
     end
-    unless self == ProjectList && options[:new]
-      listed_taxa.each do |lt|
-        Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
-        # delay taxon indexing
-        lt.skip_index_taxon = true
-        refresh_listed_taxon(lt)
-      end
+    listed_taxa.each do |lt|
+      Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
+      # delay taxon indexing
+      lt.skip_index_taxon = true
+      refresh_listed_taxon(lt)
     end
     # index taxa separately in delayed jobs
     listed_taxa.each{ |lt| lt.index_taxon }
