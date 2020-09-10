@@ -1218,6 +1218,11 @@ en:
     If you didn't request this, please ignore this email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+  devise_unlock_instructions_click_the_link: |
+    Click the link below to unlock your account
+  devise_unlock_instructions_unlock: Unlock Your Account
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
