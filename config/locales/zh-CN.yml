@@ -1031,6 +1031,11 @@ zh-CN:
         subject: '确认说明'
       reset_password_instructions:
         subject: '重设密码的说明'
+  devise_reset_password_instructions_hello_email: 您好 %{email}
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    如果您没有提出这个请求，请忽略这个电子邮件。
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
   discoveries: 发现
   did_not_send_invitations_because: 未向以下地址发送邀请，因为...
   did_you_mean: '您是不是要找'

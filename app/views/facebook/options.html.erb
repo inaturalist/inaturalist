@@ -40,8 +40,10 @@
     <%= link_to t(:hate_me_facebook, :site_name => @site.name),
       omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
-    <%= link_to t(:take_me_facebook), "/auth/facebook", 
-                :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>
+    <%= link_to t(:take_me_facebook), "/auth/facebook",
+      onclick: "$('.facebook-button').toggle();",
+      class: "facebook-button default button",
+      method: :post %>
     <div class="facebook-button" style="display:none;">
       <span class="loading status"><%=t :connecting_to_facebook %></span>
     </div>

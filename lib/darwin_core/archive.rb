@@ -6,9 +6,10 @@ module DarwinCore
     end
 
     def initialize(opts = {})
-      @opts = opts
+      @opts = opts.clone.symbolize_keys
       @opts[:path] ||= "dwca.zip"
       @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
+      @opts[:extensions] = [@opts[:extensions]].flatten.compact
       @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
         File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
       else
@@ -111,8 +112,12 @@ module DarwinCore
     end
 
     def make_metadata
+      metadata_observation_params = observations_params
+      if !metadata_observation_params[:created_d2]
+        metadata_observation_params[:created_d2] = Time.now
+      end
       m = DarwinCore::Metadata.new( @opts.merge(
-        observations_params: observations_params
+        observations_params: metadata_observation_params
       ) )
       tmp_path = File.join(@opts[:work_path], "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
@@ -190,7 +195,7 @@ module DarwinCore
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
       params[:created_d1] = @opts[:created_d1]
-      params[:created_d2] = @opts[:created_d2] || ( @generate_started_at || Time.now ).iso8601
+      params[:created_d2] = @opts[:created_d2]
       if @opts[:photos].to_s == "true"
         params[:with_photos] = true
       elsif @opts[:photos].to_s == "false"
@@ -548,16 +553,22 @@ module DarwinCore
     def observations_in_batches(params, preloads, options = {}, &block)
       batch_times = []
       max_id = Observation.maximum( :id )
-      search_chunk_size = 1000000
+      search_chunk_size = 500000
       chunk_start_id = 1
+      if !params[:created_d1] && !params[:created_d2]
+        # no date limits provided. We want to set a default upper limit of roughly when
+        # the archive started exporting. Don't add created_d2 to the ES query, which
+        # creates slower queries, rather check the date in Ruby
+        max_observation_created = ( @generate_started_at || Time.now )
+      end
+      observations_start = Time.now
       # initial loop splits queries into batches by setting the search param
       # `id_below`. This make queries with very large result sets faster overall
       # with little overhead for small queries.
       while chunk_start_id <= max_id
         params[:min_id] = chunk_start_id
-        params[:id_below] = chunk_start_id + search_chunk_size
+        params[:max_id] = chunk_start_id + search_chunk_size - 1
         Observation.search_in_batches( params, logger: logger ) do |batch|
-          start = Time.now
           avg_batch_time = if batch_times.size > 0
             (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
           else
@@ -572,12 +583,14 @@ module DarwinCore
             Observation.preload_associations(batch, preloads)
           end
           batch.each do |observation|
-            if @opts[:community_taxon] && observation.community_taxon.blank?
+            if ( @opts[:community_taxon] && observation.community_taxon.blank? ||
+                 max_observation_created && observation.created_at > max_observation_created )
               next
             end
             yield observation
           end
-          batch_times << (Time.now - start)
+          batch_times << (Time.now - observations_start)
+          observations_start = Time.now
         end
         chunk_start_id += search_chunk_size
       end

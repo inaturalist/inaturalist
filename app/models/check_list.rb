@@ -286,10 +286,10 @@ class CheckList < List
     
     old_listed_taxa = ListedTaxon.where(place_id: (old_place_ids - current_place_ids), taxon_id: taxon_ids)
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
-    unless listed_taxa.blank?
+    unless listed_taxa.blank? || options[:new]
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 30.minutes.from_now,
+        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 2.hours.from_now,
           unique_hash: { "CheckList::refresh_listed_taxon": lt.id }
         ).refresh_listed_taxon( lt.id )
       end
