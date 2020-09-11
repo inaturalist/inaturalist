@@ -128,13 +128,11 @@ class TaxonChange < ActiveRecord::Base
     end
     return true
   end
-  
-  def is_branching?
-    taxon_change_taxa.map( &:taxon_id ).include? taxon_id
-  end
 
-  def need_not_push_to?( output_taxon_id )
-    taxon_id == output_taxon_id
+  def automatable_for_output?( output_taxon )
+    return false unless is_a?( TaxonSplit ) && is_branching?
+    output_taxon_id = output_taxon.is_a?( Taxon ) ? output_taxon.id : output_taxon
+    input_taxon.id == output_taxon_id
   end
 
   def committable_by?( u )
@@ -194,7 +192,7 @@ class TaxonChange < ActiveRecord::Base
       input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     end
     output_taxa.each do |t|
-      next if is_a?( TaxonSplit ) && t.id == taxon_id
+      next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
