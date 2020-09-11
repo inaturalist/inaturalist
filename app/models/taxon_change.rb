@@ -134,7 +134,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def need_not_push_to?( output_taxon_id )
-    taxon_id != output_taxon_id
+    taxon_id == output_taxon_id
   end
 
   def committable_by?( u )
