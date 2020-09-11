@@ -842,7 +842,7 @@ class ListedTaxon < ActiveRecord::Base
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
       if output_taxon = taxon_change.output_taxon_for_record( lt )
-        next if taxon_change.is_a?(TaxonSplit) && taxon_change.is_branching?
+        next if taxon_change.is_a?( TaxonSplit ) && taxon_change.is_branching?
         if existing = ListedTaxon.where( list_id: lt.list_id, taxon_id: output_taxon.id ).first
           existing.skip_index_taxon = true
           existing.merge( lt )

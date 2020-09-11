@@ -119,6 +119,7 @@ class TaxonChange < ActiveRecord::Base
     # inputs can't have active children
     if ["TaxonSwap", "TaxonSplit", "TaxonDrop"].include? type
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+      return false if is_a?( TaxonSplit ) && is_branching?
     # unless they are also inputs
     elsif type == "TaxonMerge"
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.map(&:id).include? e.id) }}.any?
@@ -129,7 +130,7 @@ class TaxonChange < ActiveRecord::Base
   end
   
   def is_branching?
-    taxon_change_taxa.map(&:taxon_id).include? taxon_id
+    taxon_change_taxa.map( &:taxon_id ).include? taxon_id
   end
 
   def committable_by?( u )
@@ -185,11 +186,11 @@ class TaxonChange < ActiveRecord::Base
       raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
       return
     end
-    unless is_a?(TaxonSplit) && is_branching?
+    unless is_a?( TaxonSplit ) && is_branching?
       input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     end
     output_taxa.each do |t|
-      next if is_a?(TaxonSplit) && t.id == taxon_id
+      next if is_a?( TaxonSplit ) && t.id == taxon_id
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
