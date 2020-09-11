@@ -130,9 +130,9 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def automatable_for_output?( output_taxon )
-    return false unless is_a?( TaxonSplit ) && is_branching?
+    return true unless is_a?( TaxonSplit ) && is_branching?
     output_taxon_id = output_taxon.is_a?( Taxon ) ? output_taxon.id : output_taxon
-    input_taxon.id == output_taxon_id
+    input_taxon.id != output_taxon_id
   end
 
   def committable_by?( u )

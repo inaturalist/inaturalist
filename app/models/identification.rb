@@ -600,7 +600,7 @@ class Identification < ActiveRecord::Base
     ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
-      next if taxon_change.automatable_for_output?( output_taxon.id )
+      next if !taxon_change.automatable_for_output?( output_taxon.id )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
         taxon: output_taxon, 

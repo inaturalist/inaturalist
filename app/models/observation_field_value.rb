@@ -290,7 +290,7 @@ class ObservationFieldValue < ActiveRecord::Base
     obs_ids = Set.new
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
-      next if taxon_change.automatable_for_output?( output_taxon.id )
+      next if !taxon_change.automatable_for_output?( output_taxon.id )
       ofv.update_attributes( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end
