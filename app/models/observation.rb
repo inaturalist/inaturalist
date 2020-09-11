@@ -2806,7 +2806,7 @@ class Observation < ActiveRecord::Base
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
         if output_taxon = taxon_change.output_taxon_for_record( observation )
-          next if taxon_change.is_a?( TaxonSplit ) && taxon_change.is_branching?
+          next if taxon_change.is_a?( TaxonSplit ) && taxon_change.is_branching? && taxon_change.need_not_push_to?( output_taxon.id )
           Identification.create(
             user: observation.user,
             observation: observation,

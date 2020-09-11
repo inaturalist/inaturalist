@@ -133,6 +133,10 @@ class TaxonChange < ActiveRecord::Base
     taxon_change_taxa.map( &:taxon_id ).include? taxon_id
   end
 
+  def need_not_push_to?( output_taxon_id )
+    taxon_id != output_taxon_id
+  end
+
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
