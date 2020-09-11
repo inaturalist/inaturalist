@@ -2810,6 +2810,7 @@ class Observation < ActiveRecord::Base
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
         if output_taxon = taxon_change.output_taxon_for_record( observation )
+          next if !taxon_change.automatable_for_output?( output_taxon.id )
           Identification.create(
             user: observation.user,
             observation: observation,
