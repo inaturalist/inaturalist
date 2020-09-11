@@ -3098,23 +3098,23 @@ describe Observation do
     it "change should be triggered by activating a taxon" do
       load_test_taxa
       o = Observation.make!
-      i1 = Identification.make!( observation: o, taxon: @Pseudacris_regilla_regilla )
-      i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla_regilla )
+      i1 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
       expect( o.community_taxon ).not_to be_blank
-      t = Taxon.make!( parent: @Pseudacris, rank: "species", is_active: false )
+      t = Taxon.make!( parent: @Hylidae, rank: "genus", is_active: false )
       expect( t.is_active ).to be( false )
-      @Pseudacris_regilla_regilla.update_attributes( is_active: false )
-      expect( @Pseudacris_regilla_regilla.is_active ).to be( false )
-      @Pseudacris_regilla_regilla.parent = t
-      @Pseudacris_regilla_regilla.save
-      expect( @Pseudacris_regilla_regilla.parent ).to eq( t )
+      @Pseudacris_regilla.update_attributes( is_active: false )
+      expect( @Pseudacris_regilla.is_active ).to be( false )
+      @Pseudacris_regilla.parent = t
+      @Pseudacris_regilla.save
+      expect( @Pseudacris_regilla.parent ).to eq( t )
       Delayed::Worker.new.work_off
       o = Observation.find( o.id )
       expect( o.community_taxon ).to be_blank
-      @Pseudacris_regilla_regilla.parent = @Pseudacris_regilla
-      @Pseudacris_regilla_regilla.save
+      @Pseudacris_regilla.parent = @Pseudacris
+      @Pseudacris_regilla.save
       Delayed::Worker.new.work_off
-      @Pseudacris_regilla_regilla.update_attributes( is_active: true )
+      @Pseudacris_regilla.update_attributes( is_active: true )
       Delayed::Worker.new.work_off
       o = Observation.find( o.id )
       expect( o.community_taxon ).not_to be_blank

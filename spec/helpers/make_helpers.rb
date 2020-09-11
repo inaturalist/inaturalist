@@ -235,7 +235,6 @@ module MakeHelpers
     set_taxon_with_rank_and_parent( "Hylidae", Taxon::FAMILY, @Anura )
     set_taxon_with_rank_and_parent( "Pseudacris", Taxon::GENUS, @Hylidae )
     set_taxon_with_rank_and_parent( "Pseudacris regilla", Taxon::SPECIES, @Pseudacris )
-    set_taxon_with_rank_and_parent( "Pseudacris regilla regilla", Taxon::SUBSPECIES, @Pseudacris_regilla )
 
     set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata, is_iconic: true )
     set_taxon_with_rank_and_parent( "Apodiformes", Taxon::ORDER, @Aves )
