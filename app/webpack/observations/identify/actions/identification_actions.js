@@ -85,12 +85,20 @@ function agreeWithCurrentObservation( ) {
     }
     const currentObservation = s.currentObservation.observation;
     const { currentUser } = s.config;
+    const existingIdent = currentObservation.taxon && (
+      _.find( currentObservation.identifications, i => (
+        i.current
+        && i.user.id === currentUser.id
+        && i.taxon.id === currentObservation.taxon.id
+      ) )
+    );
     if (
       !currentObservation
       || !currentObservation.id
       || !currentObservation.taxon
       || currentObservation.user.id === currentUser.id
       || ( currentObservation.taxon && !currentObservation.taxon.is_active )
+      || existingIdent
     ) {
       return null;
     }
