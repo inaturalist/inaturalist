@@ -6396,6 +6396,11 @@ ca:
                 ha de ser observada després de %{time}
               must_be_observed_before: |
                 ha de ser observada abans de %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: L'observació no té cap data sobre la qual votar
+              no_votable_coordinates: L'observació no té coordenades sobre les quals votar
         taxon:
           attributes:
             rank:
