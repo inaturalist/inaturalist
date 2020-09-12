@@ -917,7 +917,8 @@ class Observation < ActiveRecord::Base
       PST
     )
     
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
+    if ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
+        parsed_time_zone = ActiveSupport::TimeZone::CODES.values.compact.detect{|c| c.name == tz_abbrev} )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       # If the parsed time zone is one of the ambiguous ones where we can't
