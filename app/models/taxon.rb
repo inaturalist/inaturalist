@@ -597,7 +597,12 @@ class Taxon < ActiveRecord::Base
   def index_observations
     return if skip_observation_indexing
     # changing some fields doesn't require reindexing observations
-    return if ( changes.keys - ["taxon_framework_relationship_id", "updater_id", "updated_at"] ).empty?
+    return if ( changes.keys - [
+      "photos_locked",
+      "taxon_framework_relationship_id",
+      "updater_id",
+      "updated_at"
+    ] ).empty?
     Observation.elastic_index!( scope: observations.select( :id ), delay: true )
   end
 
