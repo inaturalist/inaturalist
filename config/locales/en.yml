@@ -3225,6 +3225,35 @@ en:
     zimbabwe: Zimbabwe
   places_of_interest: Places of Interest
   places_merged_successfully: Places merged successfully!
+  places_warning_export_complex_boundary_html: |
+    If you're trying to export observations from a complex boundary, consider
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">downloading them from GBIF instead</a>,
+    where you can draw arbitrary boundaries, or export them from iNat using
+    existing places or a bounding box and then filter the data again once you've
+    downloaded it.
+  places_warning_look_for_existing_html: |
+    Look for <a href="/search?source[]=places">existing places</a> to make sure
+    you're not creating a duplicate. We already have places for all the
+    continents and countries, as well as two administrative levels below
+    country.
+  places_warning_projects_can_have_multiple_places: |
+    If you're trying to make a place for a project boundary, projects can be
+    composed of multiple places. For example, if you want to make a project for
+    New Zealand and Australia, you can just add requirements for two places
+    instead of making a new one.
+  places_warning_new_places_are_slow_html: |
+    New places are one of the biggest sources of slowdowns on iNat, so
+    <strong>please consider not making a new place</strong>. While small places
+    containing only a few thousand observations are usually ok, if you make a
+    new place that contains a lot of observations, you're going to slow iNat
+    down for everyone else. Here are some alternative approaches:
+  places_warning_editing_places_is_slow: |
+    Editing place boundaries is one of the biggest sources of slowdowns on iNat.
+    If you can avoid it, do not add, change, or remove place boundaries unless
+    it's absolutely necessary.
+  places_warning_the_future: |
+    For what it's worth, we will have to restrict the conditions under which
+    people can add places in the future given iNat's current rate of growth.
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_add_this_observation_to: Please add this observation to
@@ -7655,6 +7684,8 @@ en:
         variety: "@n"
         # Default gender for nouns that aren't listed here
         default: "@n"
+  # Title of a section warning the user about something
+  warning_title: Warning
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Prev"

@@ -128,6 +128,9 @@
         :data => {:confirm => t(:are_you_sure_delete_this_place)}, |
         :class => 'minor delete button'                 |
 .last.column.span-12
+  .notice.box
+    %h3=t :warning_title
+    %p.ui=t :places_warning_editing_places_is_slow
   #map.stacked
   - if @npoints && @npoints > 5000
     .notice.box=t 'views.places.edit.complex_boundary_note_html', :url => place_geometry_url(@place, :format => "kml")
