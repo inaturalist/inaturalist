@@ -7249,6 +7249,7 @@ en:
     models:
       AssessmentSection: Assessment Section
       Atlas: Atlas
+      BlockedUser: Blocked User
       CompleteSet: Complete Set
       # Noun
       Flag: Flag
@@ -7259,6 +7260,9 @@ en:
       assessment_section:
         title: Title
         body: Body
+      blocked_user:
+        # The user who has been blocked
+        blocked_user: Blocked user
       conservation_status:
         status: Status
         description : Description
@@ -7504,6 +7508,20 @@ en:
             email:
               must_look_like_an_email_address: must look like an email address
               domain_is_not_supported: domain is not supported
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: You've already blocked that user
+              user_cannot_be_staff: |
+                You cannot block staff. iNat staff need to be able to
+                communicate with everyone on iNat, have access to all data on
+                iNat, and are the ultimate mediators of disputes, so blocking
+                will not prevent them from communicating with you. If you have a
+                problem with a member of staff, please report it to one of the
+                iNat co-directors, or, if you have a problem with one of the
+                co-directors, you can contact the Chief of Science at the
+                Institute for Biodiviersity and Sustainability Science at the
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
