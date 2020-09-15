@@ -116,7 +116,7 @@
               else
                 link_to( name, place_path( id ) )
               end
-              count_link = link_to(observations_by_login_path(@selected_user.login, :place_id => id, :on => @date)) do
+              count_link = link_to( observations_path( user_id: @selected_user.login, place_id: id, on: @date ) ) do
                 "<span class='count'>#{count}</span>".html_safe
               end
             -%>
@@ -197,7 +197,7 @@
 <% if @observations.total_pages > 1 -%>
   <div class="quiet box">
     <%=t :calendars_only_show_x_observations_at_time, :x => @observations.per_page %>.
-    <%= link_to t(:view_all_observations), observations_by_login_path(@selected_user.login, :on => @date) %>
+    <%= link_to t(:view_all_observations), observations_path( user_id: @selected_user.login, on: @date ) %>
     <%=t :from %> <%= @date %>.
   </div>
 <% end -%>

@@ -14,7 +14,7 @@
       .column.span-3
         = link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr"
         %br/
-        = link_to("<span class='count'>#{project_curator.user.observations_count}</span> observations".html_safe, observations_by_login_path(project_curator.user.login))
+        = link_to("<span class='count'>#{project_curator.user.observations_count}</span> observations".html_safe, observations_path( user_id: project_curator.user.login ) )
 = separator
 - unless @project.terms.blank?
   %h3= t(:terms)

@@ -1,14 +1,19 @@
 <ul id="subnav" class="clear">
-  <% if logged_in? && current_user.id == user.id -%>
+  <% if is_me?( current_user) -%>
     <li>
       <%= link_to t(:home), home_path, :class => "#{'active' if current_page?(:controller => "users", :action => "dashboard")}" %>
     </li>
   <% end -%>
   <li>
-    <%= link_to t(:observations), observations_by_login_path(user.login), 
-      :id => "observations_link", 
-      :class => "#{'active' if current_page?(:controller => :observations, :action => :by_login)}" %>
+    <%= link_to t(:observations), observations_path( user_id: user.login ), id: "observations_link" %>
   </li>
+  <% if is_me?( current_user) -%>
+    <li>
+      <%= link_to t(:edit_observations), observations_by_login_path( user.login ), 
+        id: "observations_link", 
+        class: current_page?( controller: :observations, action: :by_login ) ? "active" : nil %>
+    </li>
+  <% end %>
   <li>
     <%= link_to t(:calendar), calendar_path(user.login), 
       :id => "calendar_link", 

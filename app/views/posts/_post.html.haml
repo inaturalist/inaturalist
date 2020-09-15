@@ -23,7 +23,7 @@
     = t(:by).downcase
     - if post.user
       = link_to user_image( post.user ), post.user
-      = link_to( post.user.login, observations_by_login_path( post.user.login ) )
+      = link_to( post.user.login, observations_path( user_id: post.user.login ) )
     - else
       t(:deleted_user)
     - if post.observations.size > 0

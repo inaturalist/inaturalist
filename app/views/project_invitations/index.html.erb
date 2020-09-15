@@ -12,7 +12,7 @@
 <div id="pageheader">
   <div class="breadcrumbs">
     <%= link_to t(:back_to_your_projects), 
-      observations_by_login_path(:login => current_user.login),
+      projects_by_login_path( login: current_user.login ),
       :class => 'back crumb' %>
   </div><!-- /#breadcrumbs -->
 
