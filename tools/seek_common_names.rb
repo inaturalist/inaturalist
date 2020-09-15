@@ -5,7 +5,7 @@ require "optimist"
 # https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
 
 SEEK_LOCALES = [
-  "af", "ar", "ca", "cs", "da", "de", "en", "es", "esMX", "eu", 
+  "af", "ar", "ca", "cs", "da", "de", "en", "es", "eu", 
   "fi", "fr", "he", "it", "ja", "nl", "nb", "pl", "ptBR", "ro", 
   "ru", "si", "sv", "tr", "zh"
 ]
