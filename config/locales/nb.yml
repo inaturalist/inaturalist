@@ -3041,6 +3041,8 @@ nb:
     zimbabwe: Zimbabwe
   places_of_interest: Punkt av interesse
   places_merged_successfully: Steder slått sammen!
+  places_warning_the_future: |
+    For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
@@ -6607,6 +6609,8 @@ nb:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Advarsel
   wild: Viltlevende
   will_paginate:
     previous_label: "&#8592; Forrige"
