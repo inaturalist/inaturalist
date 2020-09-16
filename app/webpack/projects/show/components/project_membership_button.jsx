@@ -4,25 +4,6 @@ import { Modal } from "react-bootstrap";
 import UserLink from "../../../shared/components/user_link";
 import UserImage from "../../../shared/components/user_image";
 
-// TODO only show the button if the user does not curate the project
-
-// TODO If the user already trusts the project, button text should say "Remove
-// trust for project" or something
-
-// TODO Clicking the button should bring up a modal explaining that you're about
-// to join this project and trust the curators with access to the hidden
-// coordinates of your observations
-
-// TODO Modal should allow you to choose whether to only share coords hidden by
-// threatened taxa or share everything
-
-// TODO Modal must explain that you will be notified when the project changes
-// their curators, but you are basically trusting the existing curators to
-// choose trustworthy people
-
-// TODO When you already trust the project, the modal should explain what
-// untrusting will do
-
 class ProjectMembershipButton extends React.Component {
   constructor( props ) {
     super( props );
@@ -73,10 +54,12 @@ class ProjectMembershipButton extends React.Component {
       <div className="ProjectMembershipButton">
         <button
           type="button"
-          className="btn btn-default"
+          className="btn btn-nostyle btn-xs header-link-btn"
           onClick={( ) => this.setState( { modalVisible: true } )}
         >
-          Your Membership
+          <i className="fa fa-cog" />
+          { " " }
+          { I18n.t( "your_membership" ) }
         </button>
         <Modal
           show={modalVisible}
@@ -84,7 +67,7 @@ class ProjectMembershipButton extends React.Component {
         >
           <Modal.Header closeButton>
             <Modal.Title>
-              Your Membership
+              { I18n.t( "your_membership" ) }
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

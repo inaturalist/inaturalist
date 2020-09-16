@@ -98,28 +98,29 @@ a.UserImage {
 
 button {
   outline: none;
-  &.btn-green {
-    font-weight: 700;
+}
+
+.btn-green {
+  font-weight: 700;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px;
+  background: $inat-green;
+  border: none;
+  .fa {
     color: white;
-    padding: 5px 15px;
-    border-radius: 30px;
-    background: $inat-green;
-    border: none;
-    .fa {
-      color: white;
-      margin-right: 5px;
-    }
+    margin-right: 5px;
   }
-  &.btn-white {
-    font-weight: 700;
-    padding: 5px 15px;
-    border-radius: 30px;
-    background: white;
-    border: 1px solid $border-grey;
-    .fa {
-      color: $inat-green;
-      margin-right: 5px;
-    }
+}
+.btn-white {
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 30px;
+  background: white;
+  border: 1px solid $border-grey;
+  .fa {
+    color: $inat-green;
+    margin-right: 5px;
   }
 }
 
@@ -292,10 +293,17 @@ button {
             text-decoration: underline;
           }
         }
-        .header-about-read-more {
+        .header-link-btn {
           font-weight: 700;
           font-size: 15px;
           cursor: pointer;
+          &:hover,
+          &:active,
+          &:focus {
+            color: white;
+          }
+        }
+        .header-about-read-more {
           i {
             font-size: 9px;
             margin-left: 3px;

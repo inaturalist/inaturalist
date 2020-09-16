@@ -247,34 +247,39 @@ const App = ( {
                     moreToggle={false}
                   />
                 </div>
-                <div
-                  className="header-about-read-more"
-                  onClick={() => setSelectedTab( "about" )}
-                >
-                  { I18n.t( "read_more" ) }
-                  <i className="fa fa-chevron-right" />
+                <div>
+                  <button
+                    type="button"
+                    className="header-about-read-more header-link-btn btn btn-nostyle"
+                    onClick={() => setSelectedTab( "about" )}
+                  >
+                    { I18n.t( "read_more" ) }
+                    <i className="fa fa-chevron-right" />
+                  </button>
+                  <div className="pull-right">
+                    <ProjectMembershipButtonContainer />
+                  </div>
                 </div>
-                { userCanEdit && (
-                  <div className="header-about-edit">
-                    <a href={`/projects/${project.slug}/edit`}>
-                      <button className="btn btn-default btn-white">
+                <div>
+                  { userCanEdit && (
+                    <div className="header-about-edit">
+                      <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
                         <i className="fa fa-cog" />
                         { I18n.t( "edit_project" ) }
-                      </button>
+                      </a>
+                    </div>
+                  ) }
+                  { !userCanEdit && project.rule_members_only && (
+                    <div className="header-about-members-only">
+                      { I18n.t( "project_members_only" ) }
+                    </div>
+                  ) }
+                  <div className="header-about-news">
+                    <a href={`/projects/${project.slug}/journal`}>
+                      <span className="glyphicon glyphicon-book" />
+                      { I18n.t( "project_journal" ) }
                     </a>
                   </div>
-                ) }
-                <ProjectMembershipButtonContainer />
-                { !userCanEdit && project.rule_members_only && (
-                  <div className="header-about-members-only">
-                    { I18n.t( "project_members_only" ) }
-                  </div>
-                ) }
-                <div className="header-about-news">
-                  <a href={`/projects/${project.slug}/journal`}>
-                    <span className="glyphicon glyphicon-book" />
-                    { I18n.t( "project_journal" ) }
-                  </a>
                 </div>
               </div>
             </Col>
