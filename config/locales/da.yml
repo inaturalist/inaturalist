@@ -3081,6 +3081,28 @@ da:
     zimbabwe: Zimbabwe
   places_of_interest: Interessante steder
   places_merged_successfully: Steder sammenlagt!
+  places_warning_export_complex_boundary_html: |
+    Forsøger du at eksportere observationer fra en kompleks grænse, så overvej
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
+    hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
+    eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
+  places_warning_look_for_existing_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt to administrative niveauer under
+    land.
+  places_warning_projects_can_have_multiple_places: |
+    Forsøger du at oprette et sted til en projektafgrænsning, kan projekter være
+    sammensat af flere steder. Ønsker du f.eks. at oprette et projekt for
+    New Zealand og Australien, kan du blot føje forudsætninger til to steder
+    i stedet for at oprette et nyt.
+  places_warning_new_places_are_slow_html: |
+    Nye steder er en af de største kilder til træghed på iNat, så
+    <strong>overvej venligst, ikke at oprette et nyt sted</strong>. Mens små steder kun indeholdende et par tusinde observationer normalt er OK, så vil du forøge iNat-responstider for alle andre, hvis du opretter et nyt sted indeholdende en masse observationer. Her er nogle alternative tilgange:
+  places_warning_editing_places_is_slow: |
+    Redigering af stedgrænser er en af de største kilder til træghed på iNat.
+    Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
+  places_warning_the_future: |
+    For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
   please_add_a_citation_for_this_change: Tilføj venligst en henvisning til denne ændring.
   please_add_this_observation_to: Tilføj venligst denne observation til
@@ -6847,6 +6869,11 @@ da:
                 skal være observeret efter %{time}
               must_be_observed_before: |
                 skal være observeret før %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observation har ingen dato at stemme på
+              no_votable_coordinates: Observation har ingen koordinater at stemme på
         taxon:
           attributes:
             rank:
@@ -7075,6 +7102,8 @@ da:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Advarsel
   wild: vild
   will_paginate:
     previous_label: "&#8592; Forrige."

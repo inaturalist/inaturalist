@@ -1674,7 +1674,7 @@ fi:
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
-  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden yhteisöön!
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luontoharrastajien yhteisöön!
   join_this_project: Liity tähän projektiin
   'joined!': Liitytty!
   joined_projects: Liitytyt projektit
@@ -5229,7 +5229,7 @@ fi:
         become_a_citizen_scientist: Ryhdy kansalaistutkijaksi
         find_a_project: "Löydä sinua kiinnostava projekti tai aloita omasi."
         learn_about_nature: Opi luonnosta
-        build_your_knowledge: Lisää tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
+        build_your_knowledge: Lisää tietämystäsi keskustelemalla muiden luontoharrastajien kanssa ja auttamalla muita.
         run_a_bioblitz: Järjestä Bioblitz
         hold_an_event: Järjestä tapahtuma, jossa ihmiset yrittävät havaita mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
@@ -5853,6 +5853,8 @@ fi:
         taxon_swap: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Varoitus
   wild: Villi
   will_paginate:
     previous_label: "&#8592; Edellinen"

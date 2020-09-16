@@ -3126,6 +3126,26 @@ sv:
     zimbabwe: Zimbabwe
   places_of_interest: Sevärdheter
   places_merged_successfully: Lyckades slå ihop platser!
+  places_warning_export_complex_boundary_html: |
+    Om du försöker exportera observationer från en komplex gräns, överväg
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">att ladda ner dem från GBIF istället</a>,
+    där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån
+    befintliga platser eller en polygon och sedan filtrera datat när du väl har
+    hämtat det.
+  places_warning_look_for_existing_html: |
+    Leta efter <a href="/search?source[]=places">befintliga lokaler</a> för att se till att du inte skapar en dubblett. Vi har redan lokaler för alla kontinenter och länder, samt två administrativa nivåer under land.
+  places_warning_projects_can_have_multiple_places: |
+    Om du försöker göra en lokal för en projektgräns, kan projekt bestå av flera lokaler. Till exempel, om du vill göra ett projekt för Nya Zeeland och Australien, kan du helt enkelt lägga till krav för två lokaler istället för att göra en ny.
+  places_warning_new_places_are_slow_html: |
+    Nya lokaler är en av de största källorna till att det går trögt på iNat, så
+    <strong>överväg att inte skapa en ny lokal</strong>. Medan små lokaler
+    som bara innehåller några tusen observationer oftast är ok, kommer du att göra iNat långsamt för alla andra om du skapar en ny lokal som innehåller många observationer. Här är några alternativa tillvägagångssätt:
+  places_warning_editing_places_is_slow: |
+    Redigering av lokalgränser är en av de största källorna till att iNat går trögt.
+    Om du kan undvika det, lägg inte till, ändra eller ta bort lokalgränser om du inte verkligen måste.
+  places_warning_the_future: |
+    Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka
+    användare kan lägga till lokaler i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
   please_add_a_citation_for_this_change: Lägg till en referens för denna ändring.
   please_add_this_observation_to: Lägg till denna observation till
@@ -7489,6 +7509,8 @@ sv:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Varning
   wild: Vilda
   will_paginate:
     previous_label: "&#8592; Föreg"

@@ -3012,6 +3012,27 @@ de:
     zimbabwe: Simbabwe
   places_of_interest: Interessante Orte
   places_merged_successfully: Orte erfolgreich zusammengeführt!
+  places_warning_export_complex_boundary_html: |
+    Falls du Beobachtungen von einer komplexen Gebietsgrenze exportieren möchtest, erwäge
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">sie stattdessen von GBIF herunterzuladen</a>,
+    wo du beliebige Grenzen ziehen kannst, oder exportiere sie aus iNat mit
+    existierenden Orten oder einer Begrenzungsbox und filtere die Daten erneut nach dem 
+    Herunterladen.
+  places_warning_look_for_existing_html: |
+    Suche nach bereits <a href="/search?source[]=places">existierenden Gebieten</a> um sicherzustellen, dass kein Duplikat erstellet wird. Für alle Kontinente und Staaten gibt es bereits entsprechende Gebiete, ebenso jeweils zwei Verwaltungsebenen unterhalb der
+    Staatsebene.
+  places_warning_projects_can_have_multiple_places: |
+    Bevor du versuchst, einen Ort für eine Projektgrenze anzulegen: Projekte können mehrere Gebiete umfassen. Wenn du z.B. ein Projekt für Neuseeland und Australien machen möchtest - anstatt ein neues Gebiet anzulegen kannst du einfach nur die Bedingungen für diese zwei Orte hinzufügen.
+  places_warning_new_places_are_slow_html: |
+    Neue Gebiete sind eine der größten Ursachen für Verlangsamungen auf iNat, deshalb
+    <strong>wäge es gut ab, einen neuen Ort zu erstellen</strong>. Während kleine Gebiete
+    mit nur wenigen tausend Beobachtungen in der Regel in Ordnung sind, wirst du iNat
+    für alle anderen langsamer machen, falls du einen neuen Ort erstellst, der viele Beobachtungen enthält. Hier sind einige alternative Ansätze:
+  places_warning_editing_places_is_slow: |
+    Die Bearbeitung von Gebietsgrenzen ist eine der größten Ursachen für Verlangsamungen auf iNat.
+    Wenn du es vermeiden kannst, füge keine Ortsgrenzen hinzu, ändere oder entferne sie nicht, es sei denn, es ist unbedingt notwendig.
+  places_warning_the_future: |
+    Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
   please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
@@ -3878,7 +3899,7 @@ de:
   those_observations_no_longer_exist: Diese Beobachtungen existieren nicht mehr.
   threatened: gefährdet
   time_: Zeit
-  time_ago: "%{time} her"
+  time_ago: "vor %{time}"
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
@@ -6332,6 +6353,11 @@ de:
                 muss nach %{time} beobachtet worden sein
               must_be_observed_before: |
                 muss vor %{time} beobachtet worden sein
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Beobachtung hat kein Datum zur Bewertung
+              no_votable_coordinates: Beobachtung hat keine Koordinaten zur Bewertung
         taxon:
           attributes:
             rank:
@@ -6538,6 +6564,8 @@ de:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Warnung
   wild: wild
   will_paginate:
     next_label: "Nächste &#8594;"

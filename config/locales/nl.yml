@@ -1123,6 +1123,13 @@ nl:
         subject: 'Instructies voor bevestiging'
       reset_password_instructions:
         subject: 'Instructies voor wachtwoord resetten'
+  devise_reset_password_instructions_hello_email: Hallo %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Als je dit niet hebt aangevraagd negeer dan deze e-mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Je wachtwoord zal niet gewijzigd worden totdat je op de bovenstaande link klikt en een nieuw wachtwoord instelt.
   discoveries: Ontdekkingen
   did_not_send_invitations_because: Geen uitnodigingen verzonden naar de volgende personen omdat...
   did_you_mean: 'Bedoelde u'
@@ -3672,6 +3679,11 @@ nl:
   subscribe_to_a_place: Op een plaats abonneren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze melding"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Abonneer%{tag_end} op reacties op dit bericht"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonneer%{tag_end} op reacties op dit taxonstadium"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonwissel"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsamenvoeging"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsplitsing"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonverwijdering"
   subscribe_to_observations_in_a_taxon: Op alle waarnemingen van een soort of groep organismen (bijv. 'schorpioenen') abonneren.
   subscribe_to_observations_in_a_place: Op alle waarnemingen die op deze plaats worden gerapporteerd abonneren. Je kunt eventueel ook een taxonfilter toevoegen (bijv. 'Paardenbloemen in Utrecht').
   subscribe_to_places_to: |
@@ -4414,6 +4426,11 @@ nl:
     U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_subscribed_to_comments_on_this_flag: Je bent geabonneerd op reacties op deze melding.
   you_are_subscribed_to_comments_on_this_post: Je bent geabonneerd op reacties op dit bericht.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Je bent geabonneerd op reacties op deze taxonpublicatie
+  you_are_subscribed_to_comments_on_this_taxon_swap: Je bent geabonneerd op reacties op deze taxonwissel
+  you_are_subscribed_to_comments_on_this_taxon_merge: Je bent geabonneerd op reacties op deze taxonsamenvoeging
+  you_are_subscribed_to_comments_on_this_taxon_split: Je bent geabonneerd op reacties op deze taxonsplitsing
+  you_are_subscribed_to_comments_on_this_taxon_drop: Je bent geabonneerd op reacties op deze taxonverwijdering
   you_are_subscribed_to_observations_from_this_place: Je bent geabonneerd op reacties uit deze plaats.
   you_arent_a_member_of_that_project: Je bent geen lid van dat project.
   you_arent_following_that_person: "Je volgt deze persoon niet."
@@ -6532,6 +6549,11 @@ nl:
                 moet waargenomen worden na %{time}
               must_be_observed_before: |
                 moet waargenomen worden voor %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Waarneming heeft geen datum om op te stemmen
+              no_votable_coordinates: Waarneming heeft geen coördinaten om op te stemmen
         taxon:
           attributes:
             rank:

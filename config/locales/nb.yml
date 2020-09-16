@@ -1039,6 +1039,8 @@ nb:
   decrease_brightness: Senk lysstyrken
   #Default option
   default: standard
+  #Default option
+  default_: Standard
   default_invite_comment: "Flott bilde! Du bør legge det ut på %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standardlisens for observasjoner
   default_photo_license: Standardlisens for bilder
@@ -1104,6 +1106,13 @@ nb:
         subject: 'Instruksjoner for bekreftelse'
       reset_password_instructions:
         subject: 'Instruksjoner for å tilbakestille passord'
+  devise_reset_password_instructions_hello_email: Hei %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
   did_you_mean: 'Mente du'
@@ -3032,6 +3041,8 @@ nb:
     zimbabwe: Zimbabwe
   places_of_interest: Punkt av interesse
   places_merged_successfully: Steder slått sammen!
+  places_warning_the_future: |
+    For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
@@ -3156,6 +3167,9 @@ nb:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriksjoner
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Tilstand
     kingdom: Rike
@@ -3472,6 +3486,8 @@ nb:
   site_stats: Sidestatistikker
   site_taxon_page: "%{site_name} taksonside"
   some_agree: noen er enige
+  some_observations_are_missing_media_or_identifications: |
+    Noen observasjoner mangler media eller identifikasjoner
   some_observations_failed_to_be_added: Noen observasjoner kunne ikke legges til prosjekter
   some_observations_failed_to_save: Noen observasjoner kunne ikke lagres
   some_of_those_photos_couldnt_be_saved: "Noen av disse bilder kunne ikke lagres: %{error}"
@@ -3606,6 +3622,9 @@ nb:
   subscribe_to_a_place: Abonner på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne markeringen"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Abonner%{tag_end} på kommentarer på dette innlegget"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonner%{tag_end} på kommentarer på dette taksonbyttet"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne taksonsammenslåingen"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne taksonoppdelingen"
   subscribe_to_observations_in_a_taxon: Abonner på alle observasjoner lagt ut av en art eller en gruppe med organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonner på alle observasjoner lagt ut innenfor dette stedet. Du kan også legge til et valgfritt taksonfilter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -4335,6 +4354,9 @@ nb:
     Du legger inn observasjoner uten datoer eller lokaliteter. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
   you_are_subscribed_to_comments_on_this_flag: Du er abonnert på kommentarer på denne markeringen.
   you_are_subscribed_to_comments_on_this_post: Du er abonnert på kommentarer på dette innlegget.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Du er abonnert på kommentarer på dette taksonbyttet
+  you_are_subscribed_to_comments_on_this_taxon_merge: Du er abonnert på kommentarer på denne taksonsammenslåingen
+  you_are_subscribed_to_comments_on_this_taxon_split: Du er abonnert på kommentarer på denne taksonoppdelingen
   you_are_subscribed_to_observations_from_this_place: Du er abonnert på kommentarer fra dette stedet.
   you_arent_a_member_of_that_project: Du er ikke et medlem i det prosjektet.
   you_arent_following_that_person: "Du følger ikke den personen."
@@ -6362,6 +6384,10 @@ nb:
                 må være observert etter %{time}
               must_be_observed_before: |
                 må være observert før %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observasjon har ingen dato å stemme på
         taxon:
           attributes:
             rank:
@@ -6389,7 +6415,9 @@ nb:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke inneholde kommaer eller skråstreker
+              should_be_in_english: bør være på engelsk
             name:
+              already_exists: finnes allerede for dette taksonet i dette leksikonet
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det vitenskapelige navnet av en art for dette leksikonet
               must_match_the_taxon_if_valid: |
@@ -6581,6 +6609,8 @@ nb:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Advarsel
   wild: Viltlevende
   will_paginate:
     previous_label: "&#8592; Forrige"

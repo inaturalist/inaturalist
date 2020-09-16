@@ -2170,8 +2170,7 @@ fr:
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
-    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi ?
+    <strong>iNaturalist Suomi</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens en Finland. Voulez-vous changer votre affiliation d’iNaturalist.org à iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
@@ -3088,6 +3087,16 @@ fr:
     zimbabwe: Zimbabwe
   places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
+  places_warning_export_complex_boundary_html: |
+    Si vous essayez d'exporter des observations depuis un emplacement aux limites complexes, envisagez de 
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">les télécharger depuis le GBIF à la place</a>, 
+    où vous pouvez dessiner des limites arbitraires, ou de les télécharger depuis iNat 
+    en utilisant des emplacements existants ou une boîte englobante puis filtrez 
+    les données à nouveau une fois que vous les avez téléchargées.
+  places_warning_look_for_existing_html: |
+    Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
+    que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
+    continents et pays, et deux niveaux administratifs inférieurs au pays.
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_add_this_observation_to: Veuillez ajouter cette observation à
@@ -3455,7 +3464,7 @@ fr:
   select_observations_to_edit: Sélectionner les observations à modifier...
   select_one_of_friends_albums: Sélectionner un des albums de %{friend}
   select_one_of_your_albums: Sélectionnez un de vos albums
-  select_options: Sélectionnez les options
+  select_options: Sélectionnez
   select_photos_from_your_photo_stream: |
     Sélectionnez des photos des sites d’échange externes pour les convertir en observations %{site_name}. Nous remplirons la date, l’heure et le lieu à partir des métadonnées de la photo et essayerons de trouver les noms des espèces à partir des étiquettes.
   select_photos_to_display: Sélectionnez les photos à afficher
@@ -7010,6 +7019,11 @@ fr:
                 doit être observé après %{time}
               must_be_observed_before: |
                 doit être observé avant %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: L'observation n'a pas de date sur laquelle voter
+              no_votable_coordinates: L'observation n'a pas de coordonnées sur lesquelles voter
         taxon:
           attributes:
             rank:
@@ -7061,6 +7075,19 @@ fr:
             email:
               must_look_like_an_email_address: doit ressembler à une adresse courriel
               domain_is_not_supported: ce domaine n'est pas pris en charge
+        user_block:
+          attributes:
+            base:
+              user_cannot_be_staff: |
+                Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
+                communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
+                iNat, et sont les médiateurs ultimes des différends, donc les bloquer
+                ne les empêchera pas de communiquer avec vous. Si vous avez un problème
+                avec un membre du personnel, veuillez le signaler à l'un des
+                codirecteurs iNat, ou, si vous avez un problème avec l'un des
+                codirecteurs, vous pouvez contacter le directeur scientifique à l’Institut
+                de Biodiviersité et de Science de la durabilité à la
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -7234,6 +7261,8 @@ fr:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Avertissement
   wild: Sauvage
   will_paginate:
     previous_label: "&#8592; Précédent"
