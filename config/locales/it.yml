@@ -6187,6 +6187,7 @@ it:
     models:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
+      BlockedUser: Utente Bloccato
       CompleteSet: Elenco Completo
       #Noun
       Flag: Contrassegno
@@ -6197,6 +6198,9 @@ it:
       assessment_section:
         title: Titolo
         body: Corpo
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Utente bloccato
       conservation_status:
         status: Stato
         description: Descrizione
@@ -6471,6 +6475,12 @@ it:
             email:
               must_look_like_an_email_address: deve sembrare un indirizzo email
               domain_is_not_supported: il dominio non è supportato
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Hai già bloccato questo utente
+              user_cannot_be_staff: |
+                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiviersity and Sustainability Science della California Academy of Sciences.
         user_parent:
           attributes:
             email:
