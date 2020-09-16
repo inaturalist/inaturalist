@@ -7075,6 +7075,19 @@ fr:
             email:
               must_look_like_an_email_address: doit ressembler à une adresse courriel
               domain_is_not_supported: ce domaine n'est pas pris en charge
+        user_block:
+          attributes:
+            base:
+              user_cannot_be_staff: |
+                Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
+                communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
+                iNat, et sont les médiateurs ultimes des différends, donc les bloquer
+                ne les empêchera pas de communiquer avec vous. Si vous avez un problème
+                avec un membre du personnel, veuillez le signaler à l'un des
+                codirecteurs iNat, ou, si vous avez un problème avec l'un des
+                codirecteurs, vous pouvez contacter le directeur scientifique à l’Institut
+                de Biodiviersité et de Science de la durabilité à la
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
