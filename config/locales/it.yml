@@ -3047,6 +3047,19 @@ it:
     zimbabwe: Zimbabwe
   places_of_interest: Luoghi di interesse
   places_merged_successfully: Luoghi uniti con successo!
+  places_warning_export_complex_boundary_html: |
+    Se stai cercando di esportare le osservazioni da un confine complesso, considera di
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">scaricarli da GBIF in alternativa</a>, dove puoi disegnare dei confini arbitrari, oppure di esportarli da iNat usando luoghi esistenti o un riquadro di delimitazione, e quindi filtrarli successivamente una volta scaricati.
+  places_warning_look_for_existing_html: |
+    Cerca <a href="/search?source[]=places">tra i luoghi esistenti</a> per assicurarti di non creare un duplicato. Abbiamo già i luoghi per tutti i continenti e gli stati, così come per i due livelli amministrativi sottostanti.
+  places_warning_projects_can_have_multiple_places: |
+    Se stai cercando di creare un luogo per definire un area per un progetto, considera che i progetti possono essere composti da più luoghi. Per esempio, se vuoi realizzare un progetto che includa la Nuova Zelanda e l'Australia, puoi solo aggiungere le regole per questi due luoghi invece di crearne uno nuovo.
+  places_warning_new_places_are_slow_html: |
+    I nuovi luoghi sono una delle più grandi cause dei rallentamenti di iNat, quindi <strong>per favore valuta di non creare un luogo nuovo</strong>. Mentre i luoghi poco estesi, con solo poche migliaia di osservazioni, non creano generalmente problemi, se crei un nuovo luogo che contiene molte osservazioni, rallenterai iNat per tutti gli altri. Ecco alcuni approcci alternativi:
+  places_warning_editing_places_is_slow: |
+    Modificare i confini dei luoghi è una delle più grandi cause dei rallentamenti di iNat. Se puoi evitarlo, non aggiungere, modificare o rimuovere i confini dei luoghi a meno che non sia assolutamente necessario.
+  places_warning_the_future: |
+    Per quello che vale, in futuro dovremo incrementare le limitazioni all'aggiunta di nuovi luoghi dato l'attuale tasso di crescita di iNat.
   plants: piante
   please_add_a_citation_for_this_change: Per piacere aggiungi un riferimento per questa modifica.
   please_add_this_observation_to: Per piacere aggiungi questa osservazione a
@@ -6630,6 +6643,8 @@ it:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Avvertenza
   wild: Selvatico
   will_paginate:
     previous_label: "&#8592; Precedente"
