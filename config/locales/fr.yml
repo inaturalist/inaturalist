@@ -3087,6 +3087,16 @@ fr:
     zimbabwe: Zimbabwe
   places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
+  places_warning_export_complex_boundary_html: |
+    Si vous essayez d'exporter des observations depuis un emplacement aux limites complexes, envisagez de 
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">les télécharger depuis le GBIF à la place</a>, 
+    où vous pouvez dessiner des limites arbitraires, ou de les télécharger depuis iNat 
+    en utilisant des emplacements existants ou une boîte englobante puis filtrez 
+    les données à nouveau une fois que vous les avez téléchargées.
+  places_warning_look_for_existing_html: |
+    Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
+    que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
+    continents et pays, et deux niveaux administratifs inférieurs au pays.
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_add_this_observation_to: Veuillez ajouter cette observation à
@@ -3454,7 +3464,7 @@ fr:
   select_observations_to_edit: Sélectionner les observations à modifier...
   select_one_of_friends_albums: Sélectionner un des albums de %{friend}
   select_one_of_your_albums: Sélectionnez un de vos albums
-  select_options: Sélectionnez les options
+  select_options: Sélectionnez
   select_photos_from_your_photo_stream: |
     Sélectionnez des photos des sites d’échange externes pour les convertir en observations %{site_name}. Nous remplirons la date, l’heure et le lieu à partir des métadonnées de la photo et essayerons de trouver les noms des espèces à partir des étiquettes.
   select_photos_to_display: Sélectionnez les photos à afficher
@@ -7238,6 +7248,8 @@ fr:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Avertissement
   wild: Sauvage
   will_paginate:
     previous_label: "&#8592; Précédent"
