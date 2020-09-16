@@ -1745,7 +1745,7 @@ class ObservationsController < ApplicationController
   end
 
   def moimport
-    if @api_key = params[:api_key].strip
+    if @api_key = params[:api_key]&.strip
       @mo_import_task = MushroomObserverImportFlowTask.new
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
       @mo_user_id = @mo_import_task.mo_user_id
