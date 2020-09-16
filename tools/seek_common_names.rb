@@ -57,13 +57,21 @@ if relevant_taxa.blank?
   exit( 0 )
 end
 
+places_by_locale = SEEK_LOCALES.inject( {} ) do |memo,locale|
+  locale, lang, region = locale.match( /([a-z]{2})([A-Z]{2})?/ ).to_a
+  memo[locale] = if region
+    Place.where( admin_level: Place::COUNTRY_LEVEL, code: region ).first
+  end
+  memo
+end
+
 common_names = []
 taxon_ids = relevant_taxa.keys
 taxon_ids.in_groups_of( 1000, false ) do |group|
   taxa = Taxon.where( id: group ).includes( :taxon_names )
   taxa.each do |taxon|
     SEEK_LOCALES.each do |locale|
-      common_name = taxon.common_name( locale: locale )
+      common_name = taxon.common_name( locale: locale, place: places_by_locale[locale] )
       if common_name
         common_names << { i: taxon.id, l: locale, n: common_name.name }
       end
