@@ -6640,6 +6640,7 @@ da:
     models:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
+      BlockedUser: Blokeret bruger
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
@@ -6650,6 +6651,9 @@ da:
       assessment_section:
         title: Titel
         body: Indhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokeret bruger
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6929,6 +6933,20 @@ da:
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
               domain_is_not_supported: domæne er uunderstøttet
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du har allerede blokeret dén bruger
+              user_cannot_be_staff: |
+                Du kan ikke blokere personale. iNat-personale skal kunne
+                kommunikere med alle på iNat, har adgang til alle data på
+                iNat, og er de endelige mæglere af tvister, så blokering
+                vil ikke forhindre dem i at kommunikere med dig. Hvis du har et
+                problem med et medlem af personalet, bedes du rapportere dette til en af 
+                iNat-underdirektørerne eller, hvis du har et problem med en af 
+                underdirektørerne, kan du kontakte Videnskabschef på
+                Institute for Biodiviersity and Sustainability Science på
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
