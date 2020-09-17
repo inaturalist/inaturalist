@@ -43,6 +43,7 @@ class Observation < ActiveRecord::Base
     on: :save,
     notification: "mention",
     delay: false,
+    new_notifications: true,
     if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable
@@ -3200,6 +3201,7 @@ class Observation < ActiveRecord::Base
   def user_viewed_updates(user_id)
     obs_updates = UpdateAction.where(resource: self)
     UpdateAction.user_viewed_updates(obs_updates, user_id)
+    Notification.mark_as_read( self, user_id )
   end
 
   def self.dedupe_for_user(user, options = {})

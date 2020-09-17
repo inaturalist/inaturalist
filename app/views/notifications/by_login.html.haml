@@ -1,0 +1,13 @@
+- content_for :title do
+  Notifications Demo
+- content_for :extracss do
+  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  = stylesheet_link_tag "notifications"
+- content_for :extrajs do
+  :javascript
+    var NOTIFICATIONS = #{ @json.to_json.html_safe };
+  = javascript_include_tag "notifications-demo-webpack"
+
+#app
+  #initial-loading.text-center
+    .loading_spinner

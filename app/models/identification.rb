@@ -96,6 +96,15 @@ class Identification < ActiveRecord::Base
       return true unless notifier.body.blank?
       subscribers_identification.taxon_id != notifier.taxon_id
     }
+  # TODO: make sure these get removed if the body is removed ot the ID is withdrawn
+  notifies_subscribers_of :observation, notification: "body", include_owner: true,
+    new_notifications_only: true,
+    queue_if: lambda {|ident|
+      ident.taxon_change_id.blank?
+    },
+    if: lambda {|notifier, subscribable, subscription|
+      !notifier.body.blank?
+    }
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
@@ -103,6 +112,7 @@ class Identification < ActiveRecord::Base
     on: :save,
     delay: false,
     notification: "mention",
+    new_notifications: true,
     if: lambda {|u| u.prefers_receive_mentions? }
 
   earns_privilege UserPrivilege::SPEECH

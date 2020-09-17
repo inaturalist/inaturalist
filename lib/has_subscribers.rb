@@ -26,6 +26,7 @@ module HasSubscribers
         UpdateAction.transaction do
           UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
           Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          Notification.delete_all_for_resource( record )
         end
         true
       end
@@ -91,6 +92,7 @@ module HasSubscribers
         unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           UpdateAction.transaction do
             UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+            Notification.delete_all_for_resource( record )
           end
         end
       end
@@ -114,6 +116,9 @@ module HasSubscribers
       after_destroy do |record|
         unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+          if options[:new_notifications]
+            Notification.delete_all_for_resource( record )
+          end
         end
       end
     end
@@ -195,6 +200,8 @@ module HasSubscribers
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
       belongs_to_reflections  = reflections.select{|k,v| v.macro == :belongs_to}.map{|k,v| k.to_s}
       has_one_reflections     = reflections.select{|k,v| v.macro == :has_one}.map{|k,v| k.to_s}
+      using_new_notifications = options[:new_notifications] || options[:new_notifications_only] || (
+        options[:new_notifications_if] && options[:new_notifications_if].call( notifier ) )
       
       notification ||= options[:notification] || "create"
       users_to_notify = { }
@@ -247,14 +254,28 @@ module HasSubscribers
         end
       end
       if users_to_notify.length > 0
+        new_notifier_attrs = {
+          resource: notifier,
+          action_date: notifier.try(:created_at) || Time.now
+        }
+        if using_new_notifications
+          new_notifier = Notifier.find_or_create_by( new_notifier_attrs )
+        end
         users_to_notify.each do |subscribable, user_ids|
           action_attrs = {
             resource: subscribable,
             notifier: notifier,
             notification: notification
           }
-          if action = UpdateAction.first_with_attributes(action_attrs)
+          if !options[:new_notifications_only] && action = UpdateAction.first_with_attributes(action_attrs)
             action.append_subscribers( user_ids )
+          end
+
+          if using_new_notifications
+            user_ids.each do |notify_user_id|
+              Notification.notify_user_for_resource( new_notifier, notify_user_id,
+                notifier.is_a?( Post ) ? notifier : subscribable, notification )
+            end
           end
         end
       end
@@ -300,8 +321,16 @@ module HasSubscribers
         notifier: self,
         notification: options[:notification]
       }
+      new_notifier_attrs = {
+        resource: self,
+        action_date: self.try(:created_at) || Time.now
+      }
       if action = UpdateAction.first_with_attributes(action_attrs)
         action.append_subscribers( [send(association).user.id] )
+      end
+      if options[:new_notifications] && new_notifier = Notifier.find_or_create_by( new_notifier_attrs )
+        Notification.notify_user_for_resource( new_notifier,
+          send( association ).user.id, send( association ), options[:notification] )
       end
     end
 
@@ -316,11 +345,19 @@ module HasSubscribers
         notifier: self,
         notification: options[:notification]
       }
+      new_notifier_attrs = {
+        resource: self,
+        action_date: self.try( :created_at ) || Time.now
+      }
       users = send(method)
       except_users = send( options[:except].to_sym ) unless options[:except].blank?
       except_users ||= []
       if users.empty?
         UpdateAction.delete_and_purge(action_attrs)
+        if options[:new_notifications] && new_notifier = Notifier.where( new_notifier_attrs ).first
+          NotificationsNotifier.joins( :notification ).
+            where( notifier: new_notifier, reason: options[:notification] ).destroy_all
+        end
         return
       end
       users_to_notify = users - except_users
@@ -330,6 +367,15 @@ module HasSubscribers
       if action = UpdateAction.first_with_attributes(action_attrs)
         action.append_subscribers( user_ids_to_notify )
         action.restrict_to_subscribers( user_ids_to_notify )
+      end
+      if options[:new_notifications] && new_notifier = Notifier.find_or_create_by( new_notifier_attrs )
+        user_ids_to_notify.each do |notify_user_id|
+          Notification.notify_user_for_resource( new_notifier, notify_user_id,
+            self.is_a?( Post ) ? self : resource, options[:notification] )
+        end
+        NotificationsNotifier.joins( :notification ).
+          where( notifier: new_notifier, reason: options[:notification] ).
+          where( "notifications.user_id NOT IN (?)", user_ids_to_notify ).destroy_all
       end
     end
 

@@ -26,11 +26,14 @@ class Comment < ActiveRecord::Base
   after_touch :index_parent
   after_destroy :index_parent
 
-  notifies_subscribers_of :parent, notification: "activity", include_owner: true
+  notifies_subscribers_of :parent, notification: "activity",
+    include_owner: true,
+    new_notifications: true
   notifies_users :mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
+    new_notifications: true,
     if: lambda {|u| u.prefers_receive_mentions? }
   auto_subscribes :user, to: :parent
   blockable_by lambda {|comment| comment.parent.try(:user_id) }

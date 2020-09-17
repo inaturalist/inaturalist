@@ -33,12 +33,14 @@ class Post < ActiveRecord::Base
       project_user.prefers_updates?
     },
     :notification => "created_post",
-    :include_notifier => true
+    :include_notifier => true,
+    new_notifications: true
   }
   notifies_users :mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
+    new_notifications: true,
     if: lambda {|u| u.prefers_receive_mentions? }
   belongs_to :parent, :polymorphic => true
   belongs_to :user

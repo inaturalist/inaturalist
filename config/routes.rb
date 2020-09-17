@@ -650,6 +650,13 @@ Rails.application.routes.draw do
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
 
+  get "notifications/:login" => "notifications#by_login", as: :notifications_by_login, constraints: { login: simplified_login_regex }
+
+  resources :notifications do
+    get :mark_as_read
+    get :mark_as_unread
+  end
+
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
   # could also fix that other stuff, if you're weren't a horrible person, but

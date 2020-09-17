@@ -2262,6 +2262,109 @@ ALTER SEQUENCE public.moderator_actions_id_seq OWNED BY public.moderator_actions
 
 
 --
+-- Name: notifications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.notifications (
+    id integer NOT NULL,
+    user_id integer,
+    resource_type character varying,
+    resource_id integer,
+    is_resource_owner boolean,
+    category character varying,
+    primary_notifier_id integer,
+    notifier_date timestamp without time zone
+);
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.notifications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
+
+
+--
+-- Name: notifications_notifiers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.notifications_notifiers (
+    id integer NOT NULL,
+    notification_id integer,
+    notifier_id integer,
+    category character varying,
+    reason character varying,
+    viewed_at timestamp without time zone,
+    read_at timestamp without time zone
+);
+
+
+--
+-- Name: notifications_notifiers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.notifications_notifiers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notifications_notifiers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.notifications_notifiers_id_seq OWNED BY public.notifications_notifiers.id;
+
+
+--
+-- Name: notifiers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.notifiers (
+    id integer NOT NULL,
+    resource_type character varying,
+    resource_id integer,
+    action_date timestamp without time zone
+);
+
+
+--
+-- Name: notifiers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.notifiers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notifiers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.notifiers_id_seq OWNED BY public.notifiers.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5610,6 +5713,27 @@ ALTER TABLE ONLY public.moderator_actions ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: notifications id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications ALTER COLUMN id SET DEFAULT nextval('public.notifications_id_seq'::regclass);
+
+
+--
+-- Name: notifications_notifiers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications_notifiers ALTER COLUMN id SET DEFAULT nextval('public.notifications_notifiers_id_seq'::regclass);
+
+
+--
+-- Name: notifiers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifiers ALTER COLUMN id SET DEFAULT nextval('public.notifiers_id_seq'::regclass);
+
+
+--
 -- Name: oauth_access_grants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6536,6 +6660,30 @@ ALTER TABLE ONLY public.model_attribute_changes
 
 ALTER TABLE ONLY public.moderator_actions
     ADD CONSTRAINT moderator_actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifications_notifiers notifications_notifiers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications_notifiers
+    ADD CONSTRAINT notifications_notifiers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifications notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications
+    ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifiers notifiers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifiers
+    ADD CONSTRAINT notifiers_pkey PRIMARY KEY (id);
 
 
 --
@@ -7923,6 +8071,20 @@ CREATE INDEX index_moderator_actions_on_resource_type_and_resource_id ON public.
 --
 
 CREATE INDEX index_moderator_actions_on_user_id ON public.moderator_actions USING btree (user_id);
+
+
+--
+-- Name: index_notifications_notifiers_unique; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_notifications_notifiers_unique ON public.notifications_notifiers USING btree (notification_id, notifier_id, reason);
+
+
+--
+-- Name: index_notifications_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_notifications_on_user_id ON public.notifications USING btree (user_id);
 
 
 --
@@ -10299,6 +10461,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200226211718');
 INSERT INTO schema_migrations (version) VALUES ('20200318193130');
 
 INSERT INTO schema_migrations (version) VALUES ('20200604181750');
+
+INSERT INTO schema_migrations (version) VALUES ('20200701164316');
 
 INSERT INTO schema_migrations (version) VALUES ('20200706035032');
 
