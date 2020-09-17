@@ -1758,7 +1758,7 @@ class ObservationsController < ApplicationController
         rescue RestClient::BadGateway
           @errors ||= []
           @errors << "Failed to connect to Mushroom Observer"
-        rescue StandardError => e
+        rescue MushroomObserverImportFlowTaskError => e
           @errors ||= []
           @errors << e.message
         end

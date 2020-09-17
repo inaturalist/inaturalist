@@ -7387,7 +7387,8 @@ en:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API key importing or queued for import"
+              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
+              api_key_missing: "Mushroom Observer API key is missing"
         observation:
           attributes:
             base:
