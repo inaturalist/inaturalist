@@ -6136,6 +6136,7 @@ de:
     models:
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
+      BlockedUser: Blockierter Benutzer
       #Noun
       Flag: Meldung
       TaxonLink: Taxon-Link
@@ -6145,6 +6146,9 @@ de:
       assessment_section:
         title: Titel
         body: Text
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blockierter Benutzer
       conservation_status:
         status: Status
         description: Beschreibung
@@ -6409,6 +6413,20 @@ de:
             email:
               must_look_like_an_email_address: muss wie eine E-Mail-Adresse aussehen
               domain_is_not_supported: Domain wird nicht unterstützt
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du hast diesen Benutzer bereits blockiert
+              user_cannot_be_staff: |
+                Du kannst iNat-Mitarbeiter nicht blockieren. Sie müssen in der Lage sein,
+                mit allen auf iNat zu kommunizieren, haben Zugriff auf alle Daten auf
+                iNat, und sind die ultimativen Vermittler von Streitigkeiten, so dass eine Blockierung
+                sie nicht daran hindert, mit dir zu kommunizieren. Wenn du ein
+                Problem mit einem Mitarbeiter habst, melden es bitte an einen der
+                iNat Co-Direktoren, Oder, wenn du ein Problem mit einem der
+                Co-Direktoren haben, kannst du den Wissenschafts-Leiter am
+                Institute for Biodiviersity and Sustainability Science der
+                California Academy of Sciences kontaktieren.
         user_parent:
           attributes:
             email:
