@@ -27,7 +27,6 @@ class RegularForm extends React.Component {
 
   render( ) {
     const {
-      config,
       project,
       setRulePreference,
       updateProject,
@@ -43,8 +42,6 @@ class RegularForm extends React.Component {
     }
     const chosenTerm = project.rule_term_id
       ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
-    const viewerIsAdmin = config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div id="RegularForm" className="Form">
         <Grid>

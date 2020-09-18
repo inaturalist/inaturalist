@@ -17531,6 +17531,7 @@ I18n.translations["en"] = {
         "show_projects_as_flags": "Show projects as flags in map",
         "specify_project_filters": "Specify the filters for which observations to include in your project.\nYou can select multiple species (or taxa), places, dates, or other criteria for\nobservations to be automatically included.\n",
         "start_and_end_times_for_bioblitzes": "Start and end date/times (for bioblitz-type events)",
+        "trusting_members_will_be_notified": "You've changed the project requirements. This will notify all\nproject members who have trusted the project with hidden coordinates\nso they have a chance to decide whether they still want to trust the\nproject given the new requirements.\n",
         "umbrella_project_features": "Umbrella Project features:",
         "unique_url_for_outreach": "Unique URL for outreach",
         "use_this_for_a_time_limited_event": "Use this for a time-limited event, bioblitz, or seasonal project. Select a single\ndate, range of dates, or which months of the year the observations must be made\nin (regardless of year). If using the Date Range section, make sure you have the\ncorrect times and time zones selected, or delete the time/time zone text to include\nobservations made anytime that entire day. You can leave the Start Date or End Date\nblank if you want to limit the project by only one date.\n",

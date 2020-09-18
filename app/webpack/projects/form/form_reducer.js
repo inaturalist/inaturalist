@@ -30,7 +30,8 @@ export function removeProject( ) {
 export function setProject( p ) {
   p.initialSubprojectCount = _.isEmpty( p.project_observation_rules ) ? 0
     : _.filter( p.project_observation_rules, rule => rule.operand_type === "Project" ).length;
-  return setAttributes( { project: new Project( p ) } );
+  const project = new Project( p );
+  return setAttributes( { project, initialProject: project } );
 }
 
 export function updateProject( attrs ) {
@@ -408,8 +409,8 @@ export function submitProject( ) {
     }
 
     // add project_observation_rules
-    payload.project.project_observation_rules_attributes =
-      payload.project.project_observation_rules_attributes || [];
+    payload.project.project_observation_rules_attributes = payload.project
+      .project_observation_rules_attributes || [];
     _.each( project.project_observation_rules, rule => {
       if (
         ( project.project_type === "umbrella" && rule.operand_type === "Project" )
@@ -470,7 +471,19 @@ export function submitProject( ) {
 export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const { project } = state.form;
+    const { project, initialProject } = state.form;
+    if ( project.id && project.requirementsChangedFrom( initialProject ) ) {
+      dispatch( setConfirmModalState( {
+        show: true,
+        message: I18n.t( "views.projects.new.trusting_members_will_be_notified" ),
+        confirmText: I18n.t( "ok" ),
+        cancelText: I18n.t( "cancel" ),
+        onConfirm: ( ) => {
+          dispatch( submitProject( ) );
+        }
+      } ) );
+      return;
+    }
     if ( !project.hasInsufficientRequirements( ) ) {
       dispatch( submitProject( ) );
       return;
