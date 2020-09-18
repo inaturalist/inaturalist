@@ -100,27 +100,30 @@ button {
   outline: none;
 }
 
-.btn-green {
-  font-weight: 700;
-  color: white;
-  padding: 5px 15px;
-  border-radius: 30px;
-  background: $inat-green;
-  border: none;
-  .fa {
+button,
+a {
+  &.btn-green {
+    font-weight: 700;
     color: white;
-    margin-right: 5px;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: $inat-green;
+    border: none;
+    .fa {
+      color: white;
+      margin-right: 5px;
+    }
   }
-}
-.btn-white {
-  font-weight: 700;
-  padding: 5px 15px;
-  border-radius: 30px;
-  background: white;
-  border: 1px solid $border-grey;
-  .fa {
-    color: $inat-green;
-    margin-right: 5px;
+  &.btn-white {
+    font-weight: 700;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: white;
+    border: 1px solid $border-grey;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
   }
 }
 

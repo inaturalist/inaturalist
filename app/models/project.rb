@@ -28,6 +28,7 @@ class Project < ActiveRecord::Base
   before_save :remove_times_from_non_bioblitzes
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
+  after_save :notify_trusting_members_about_changes_if_rules_changed
   before_update :set_updated_at_if_preferences_changed
   around_save :add_admins
 
@@ -97,8 +98,8 @@ class Project < ActiveRecord::Base
   preference :rule_d1, :string
   preference :rule_d2, :string
   preference :rule_month, :string
-  preference :rule_term_id, :integer
-  preference :rule_term_value_id, :integer
+  preference :rule_term_id, :integer # annotation term
+  preference :rule_term_value_id, :integer # annotation term / value
   preference :rule_native, :boolean
   preference :rule_introduced, :boolean
   preference :rule_members_only, :boolean
@@ -1070,6 +1071,46 @@ class Project < ActiveRecord::Base
 
   def within_umbrella_ids
     return project_observation_rules_as_operand.map( &:ruler_id )
+  end
+
+  def notify_trusting_members_about_changes_unique_hash
+    { "Project::notify_trusting_members_about_changes": id }
+  end
+
+  def notify_trusting_members_about_changes_later
+    unique_hash = notify_trusting_members_about_changes_unique_hash
+    job = Delayed::Job.where( unique_hash: unique_hash.to_s ).first
+    job ||= Project.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: unique_hash
+    ).notify_trusting_members_about_changes( id )
+    job.update_attributes( run_at: 1.hour.from_now )
+  end
+
+  def notify_trusting_members_about_changes_if_rules_changed
+    RULE_PREFERENCES.each do |pref|
+      if preference_changes[pref]
+        notify_trusting_members_about_changes_later
+        break
+      end
+    end
+  end
+
+  def self.notify_trusting_members_about_changes( project )
+    project = Project.find_by_id( project ) unless project.is_a?( Project )
+    return unless project
+    trusting_prefs = [
+      ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+      ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+    ]
+    pu_scope = project.project_users.joins(:stored_preferences).where(
+      "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
+      trusting_prefs
+    )
+    pu_scope.find_each do |project_user|
+      next unless trusting_prefs.include?( project_user.prefers_curator_coordinate_access_for )
+      Emailer.collection_project_changed_for_trusting_member( project_user ).deliver_now
+    end
   end
 
   private

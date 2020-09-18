@@ -8,7 +8,8 @@ class PlaceGeometry < ActiveRecord::Base
 
   after_save :refresh_place_check_list,
              :process_geometry_if_changed,
-             :update_observations_places_later
+             :update_observations_places_later,
+             :notify_trusting_project_members
 
   after_destroy :update_observations_places_later
 
@@ -110,6 +111,20 @@ class PlaceGeometry < ActiveRecord::Base
       unique_hash: { "Place::update_observations_places": place_id },
       run_at: 5.minutes.from_now,
       queue: "slow" ).update_observations_places( place_id )
+  end
+
+  def notify_trusting_project_members
+    return true unless geom_changed?
+    Project.
+        joins(:project_observation_rules).
+        where( "rules.operator = 'observed_in_place?'" ).
+        where( "rules.operand_type = 'Place'" ).
+        where( "rules.operand_id = ?", place_id ).
+        where( project_type: %w(collection umbrella) ).
+        find_each do |proj|
+      proj.notify_trusting_members_about_changes_later
+    end
+    true
   end
 
   def simplified_geom

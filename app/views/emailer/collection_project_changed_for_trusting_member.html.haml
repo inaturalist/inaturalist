@@ -1,0 +1,18 @@
+= render "header"
+
+%p The observation requirements of the following project have recently changed:
+
+%p
+  = image_tag( @project.icon.url(:span2), style: "vertical-align: middle; margin-right: 0.5em" ) if @project.icon?
+  = link_to @project.title, @project
+
+%p Since you have trusted this project with the hidden coordinates of some of your observations, the admins may now have access to more of your hidden coordinates than they did at the time that you trusted this project. You should review the list of admins and the project requirements to make sure you still trust this project with your observations:
+
+%p= link_to( project_url( @project, tab: "about" ), project_url( @project, tab: "about" ) )
+
+%p
+  You can change your preferences or leave the project on the
+  = succeed "." do
+    = link_to "project's page", @project
+
+= render "footer"
