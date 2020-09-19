@@ -395,6 +395,8 @@ bg:
   all_your_observations_will_default_to_this_time_zone: Всички Ваши наблюдения ще попадат в тази часова зона по подразбиране, освен в случаите когато изберете друго.
   #Option to allow any taxa on a list
   allow_any: позволявай всякакви
+  allow_curator_access: Разреши достъп за куратори
+  allow_project_curators_to_view_your_private_coordinates: Разрешете на кураторите на проекта да виждат скритите Ви координати.
   allowed_html: Разрешен HTML
   allowed_values: Допустими стойности
   almost_there_: Почти готово...
@@ -883,6 +885,7 @@ bg:
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
   edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
+  edit_your_global_project_settings: Редактирай общите настройки за проекти
   edit_your_identification: Промени разпознаването си
   edit_your_settings_for_this_project: Промени настройките си за този проект
   edited_by_name_html: "Редактирано от %{name}"
@@ -2408,6 +2411,8 @@ bg:
   remove_comma_separated_tags: "Премахни етикети (разделени със запетаи)"
   remove_conservation_status: премахни природозащитен статут
   remove_from: Премахни от
+  remove_from_list: Премахни от списъка
+  remove_from_project: Премахни от проекта
   remove_manager: Премахни управител
   remove_observations:
     one: Премахни 1 наблюдение?
@@ -3208,10 +3213,13 @@ bg:
         date_column_format: ГГГГ-ММ-ДД ЧЧ:ММ
         decimal_degrees_format: dd.dddd
       show:
+        allow_curator_coordinate_access_desc_html: |
+          Разрешете на кураторите на проекта да виждат скритите координати на това наблюдение.
         data_quality_assessment_desc_html: |
           Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
         flagged_photos_desc_html: |
           Някои от тези снимки са маркирани за неуместно съдържание или нарушение на авторски права. За подробности вижте %{links}
+        observer_only_allows_curators_to_add_fields: Наблюдателят позволява само на кураторите на сайта да добавят полета за наблюдения.
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>Можете да редактирате това поле, защото е създадено от Вас или защото сте куратор на сайта. Ако сте куратор, моля следвайте тези напътствия:
