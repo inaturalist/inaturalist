@@ -9396,6 +9396,13 @@ CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING bt
 
 
 --
+-- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
+
+
+--
 -- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10322,4 +10329,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
 INSERT INTO schema_migrations (version) VALUES ('20200918185507');
+
+INSERT INTO schema_migrations (version) VALUES ('20200918230545');
 
