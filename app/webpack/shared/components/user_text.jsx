@@ -27,7 +27,7 @@ const ALLOWED_TAGS = ( `
   h5
   h6
   hr
-  i"
+  i
   img
   ins
   li

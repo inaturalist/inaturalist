@@ -20,11 +20,13 @@
     </div>
     
     <div class="last column span-8">
-      <%= f.form_field t(:featured) do %>
-        <%= f.check_box :featured_at, :label_after => true, 
-          :label => t(:yes_show_this_in_the_box),
-          :description => t(:make_sure_the_default_photo_looks_good) %>
-      <% end -%>
+      <% unless taxon.featured_at.blank? %>
+        <%= f.form_field t(:featured) do %>
+          <%= f.check_box :featured_at, label_after: true,
+            label: t(:yes_show_this_in_the_box),
+            description: t(:make_sure_the_default_photo_looks_good) %>
+        <% end -%>
+      <% end %>
     </div>
   </div>
   
