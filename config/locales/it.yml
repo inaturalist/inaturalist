@@ -1639,7 +1639,7 @@ it:
   inat_account_action: "%{site_name} &#58; Profilo &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} crede che questa sia una lista completa di questo taxon in questo luogo."
   inat_user_profile: "%{site_name}: Profilo di %{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} è un'iziativa congiunta della California Academy of Sciences e della National Geographic Society."
+  inaturalist_is_a_joint_initiative: "%{site_name} è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_places: "Luoghi di %{site_name}"
   info: Info
   input_taxon: Inserisci un taxon
@@ -6359,6 +6359,11 @@ it:
           attributes:
             base:
               guide_has_too_many_taxa: "la guida può avere al massimo 500 taxa"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
+              api_key_missing: "Manca la chiave API Osservatore Funghi"
         observation:
           attributes:
             base:
