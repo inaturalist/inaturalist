@@ -6754,6 +6754,10 @@ cs:
           attributes:
             base:
               guide_has_too_many_taxa: "průvodce může mít jen 500 taxonů"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:
