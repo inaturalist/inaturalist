@@ -6158,6 +6158,7 @@ nb:
     models:
       AssessmentSection: Vurderingsseksjon
       Atlas: Atlas
+      BlockedUser: Blokkert bruker
       CompleteSet: Fullstendig sett
       #Noun
       Flag: Markering
@@ -6168,6 +6169,9 @@ nb:
       assessment_section:
         title: Tittel
         body: Innhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokkert bruker
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6326,6 +6330,10 @@ nb:
           attributes:
             base:
               guide_has_too_many_taxa: "guide kan ha kun 500 taksa"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_missing: "Mushroom Observer API-nøkkel mangler"
         observation:
           attributes:
             base:
