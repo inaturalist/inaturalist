@@ -6158,6 +6158,7 @@ nb:
     models:
       AssessmentSection: Vurderingsseksjon
       Atlas: Atlas
+      BlockedUser: Blokkert bruker
       CompleteSet: Fullstendig sett
       #Noun
       Flag: Markering
@@ -6168,6 +6169,9 @@ nb:
       assessment_section:
         title: Tittel
         body: Innhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokkert bruker
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6329,7 +6333,7 @@ nb:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API-nøkkel importeres eller venter på import"
+              api_key_missing: "Mushroom Observer API-nøkkel mangler"
         observation:
           attributes:
             base:

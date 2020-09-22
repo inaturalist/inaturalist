@@ -1562,6 +1562,7 @@ de:
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
   identification_updated: Bestimmung aktualisiert!
+  identification_user_short: Ident. Benutzer
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   identifications_by: "Bestimmungen von %{user}"
@@ -1601,7 +1602,7 @@ de:
   import_sections: Abschnitte importieren
   import_tags_from_csv: Stichwörter aus CSV importieren
   importing: "Importiere…"
-  improving: Wird besser
+  improving: Verbesserung
   in_n: "in %{n}"
   in_place_x: in %{place}
   inaturalist_network_affiliation: iNaturalist Zusammenschluss
@@ -6136,6 +6137,7 @@ de:
     models:
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
+      BlockedUser: Blockierter Benutzer
       #Noun
       Flag: Meldung
       TaxonLink: Taxon-Link
@@ -6145,6 +6147,9 @@ de:
       assessment_section:
         title: Titel
         body: Text
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blockierter Benutzer
       conservation_status:
         status: Status
         description: Beschreibung
@@ -6296,7 +6301,7 @@ de:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API-Schlüssel wird importiert oder ist in der Warteschlange für den Import"
+              api_key_missing: "Der Mushroom Observer API-Schlüssel fehlt"
         observation:
           attributes:
             base:
@@ -6409,6 +6414,20 @@ de:
             email:
               must_look_like_an_email_address: muss wie eine E-Mail-Adresse aussehen
               domain_is_not_supported: Domain wird nicht unterstützt
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du hast diesen Benutzer bereits blockiert
+              user_cannot_be_staff: |
+                Du kannst iNat-Mitarbeiter nicht blockieren. Sie müssen in der Lage sein,
+                mit allen auf iNat zu kommunizieren, haben Zugriff auf alle Daten auf
+                iNat, und sind die ultimativen Vermittler von Streitigkeiten, so dass eine Blockierung
+                sie nicht daran hindert, mit dir zu kommunizieren. Wenn du ein
+                Problem mit einem Mitarbeiter habst, melden es bitte an einen der
+                iNat Co-Direktoren, Oder, wenn du ein Problem mit einem der
+                Co-Direktoren haben, kannst du den Wissenschafts-Leiter am
+                Institute for Biodiviersity and Sustainability Science der
+                California Academy of Sciences kontaktieren.
         user_parent:
           attributes:
             email:

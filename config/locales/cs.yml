@@ -6574,6 +6574,7 @@ cs:
     models:
       AssessmentSection: Části hodnocení
       Atlas: Atlas
+      BlockedUser: Blokovaný uživatel
       CompleteSet: Dokončit sady
       #Noun
       Flag: Označit
@@ -6584,6 +6585,9 @@ cs:
       assessment_section:
         title: Název
         body: Text
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokovaný uživatel
       conservation_status:
         status: Stav
         description: Popis
@@ -6753,7 +6757,7 @@ cs:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "Import nebo čekání na import API klíče"
+              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:
