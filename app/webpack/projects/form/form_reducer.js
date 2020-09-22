@@ -398,7 +398,8 @@ export function submitProject( ) {
           ? "" : project.rule_month,
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
         prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
-        prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only
+        prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only,
+        prefers_user_trust: project.prefers_user_trust === true
       }
     };
     if ( !payload.project.icon && project.iconDeleted ) {
@@ -472,7 +473,11 @@ export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const { project, initialProject } = state.form;
-    if ( project.id && project.requirementsChangedFrom( initialProject ) ) {
+    if (
+      project.id
+      && project.prefers_user_trust
+      && project.requirementsChangedFrom( initialProject )
+    ) {
       dispatch( setConfirmModalState( {
         show: true,
         message: I18n.t( "views.projects.new.trusting_members_will_be_notified" ),

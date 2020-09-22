@@ -120,6 +120,8 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, default: MEMBERSHIP_OPEN
 
+  preference :user_trust, :boolean, default: false
+
   NPS_BIOBLITZ_PROJECT_NAME = "2016 National Parks Bioblitz - NPS Servicewide"
   NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
 
@@ -693,7 +695,13 @@ class Project < ActiveRecord::Base
   
   def self.default_json_options
     {
-      methods: [:icon_url, :project_observation_rule_terms, :rule_place, :cached_slug, :slug],
+      methods: [
+        :cached_slug,
+        :icon_url,
+        :project_observation_rule_terms,
+        :rule_place,
+        :slug
+      ],
       except: [:tracking_codes]
     }
   end

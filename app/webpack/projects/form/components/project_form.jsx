@@ -30,7 +30,8 @@ class ProjectForm extends React.Component {
       removeProjectManager,
       confirmSubmitProject,
       removeProject,
-      changeOwner
+      changeOwner,
+      updateProject
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
@@ -55,9 +56,46 @@ class ProjectForm extends React.Component {
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col xs={12}>
+              <h2>Membership</h2>
+              <label className="section-label">
+                Trust
+              </label>
+              <p className="help-text">
+                If you want access to the hidden coordinates of obscured
+                observations, this option will allow people who have joined this
+                project to trust the project admins with access to those hidden
+                coordinates. Project members will be able to grant access to the
+                hidden coordinates of any of their observations that appear in
+                this project, or just the observations that are obscured because
+                of threatened taxa.
+              </p>
+              <p className="help-text">
+                However, this will also notify all trusting project members
+                every time you change the project requirements, so they can
+                reassess whether they want to continue trusting you given the
+                new requirements.
+              </p>
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={project.prefers_user_trust}
+                    onChange={e => updateProject( {
+                      prefers_user_trust: e.target.checked || null
+                    } )}
+                  />
+                  Allow members to trust this project with hidden coordinates
+                </label>
+              </div>
+            </Col>
+          </Row>
           <Row className="admins-row">
             <Col xs={12}>
-              <label>{ I18n.t( "admin_s" ) }</label>
+              <label className="section-label">
+                { I18n.t( "admin_s" ) }
+              </label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
                 { project.id && I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }
