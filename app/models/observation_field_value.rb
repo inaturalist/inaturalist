@@ -162,15 +162,19 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def observer_prefers_fields_by_user
-    return true unless user && observation
+    return true unless observation
     return true if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
     if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
-      if observation.user_id != user_id
-        errors.add(:observation_id, :user_does_not_accept_fields_from_others )
+      creator_is_not_observer = observation.user_id != user_id
+      updater_is_not_observer = observation.user_id != updater_id
+      if ( new_record? && creator_is_not_observer ) || ( persisted? && updater_is_not_observer )
+        errors.add( :observation_id, :user_does_not_accept_fields_from_others )
       end
     elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
-      if !user.is_curator? && user_id != observation.user_id
-        errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
+      creation_by_non_observer_non_curator = new_record? && user_id != observation.user_id && !user&.is_curator?
+      update_by_non_observer_non_curator = updater_id != observation.user_id && !updater&.is_curator?
+      if creation_by_non_observer_non_curator || update_by_non_observer_non_curator
+        errors.add( :observation_id, :user_only_accepts_fields_from_site_curators )
       end
     end
     true

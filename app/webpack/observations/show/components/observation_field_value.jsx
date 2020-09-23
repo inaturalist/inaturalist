@@ -8,7 +8,19 @@ class ObservationFieldValue extends React.Component {
   render( ) {
     const { ofv, config, observation } = this.props;
     if ( !observation || !ofv || !ofv.observation_field ) { return ( <div /> ); }
-    const loggedIn = config && config.currentUser;
+    const currentUser = config && config.currentUser;
+    const pref = observation.user.preferences.prefers_observation_fields_by;
+    const viewerIsCurator = currentUser && currentUser.roles && (
+      currentUser.roles.indexOf( "curator" ) >= 0
+    );
+    const editAllowed = (
+      currentUser
+      && (
+        ( pref === "curators" && viewerIsCurator )
+        || ( pref === "observer" && currentUser.id === observation.user.id )
+        || pref === "anyone"
+      )
+    );
     let { value } = ofv;
     let loading;
     if ( ofv.api_status ) {
@@ -60,7 +72,7 @@ class ObservationFieldValue extends React.Component {
       );
     }
     let editOptions;
-    if ( loggedIn ) {
+    if ( editAllowed ) {
       editOptions = (
         <div className="edit">
           <div>
