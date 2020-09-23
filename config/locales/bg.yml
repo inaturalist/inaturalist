@@ -1225,7 +1225,7 @@ bg:
   join_project: Включи се в проекта
   #Prompt to join a specific project
   join_project?: Присъедини се към %{project}?
-  join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>поканете няколко наблюдения</a>"
+  join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>добавете няколко наблюдения</a>"
   join_the_largest_group_of_naturalists_in_the_world: Присъедини се към най-голямата общност от естествоизпитатели в света!
   join_this_project: Включи се в проекта
   'joined!': Присъединихте се!
@@ -2538,7 +2538,7 @@ bg:
   send_the_invites: Изпрати поканите
   sending: Изпращане...
   #Label for messages you've sent
-  sent: изпратени
+  sent: Изпратени
   separate_values_with_a_pipe: Разделете отделните стойности с вертикална черта, например „да|не|може би“ или „зелен|червен|син“
   settings: настройки
   share: Споделяне
@@ -2576,6 +2576,10 @@ bg:
   site_staff: "Персонал на %{site_name}"
   site_stats: Статистика за сайта
   site_taxon_page: "Таксономична страница на %{site_name}"
+  some_observations_are_missing_media_or_identifications: |
+    Някои от наблюденията нямат аудио/визуални свидетелства или разпознаване
+  some_observations_are_missing_media_or_identifications_desc: |
+    Наблюдения без визуални или аудио свидетелства, няма да бъдат видими по подразбиране при търсене. А тези без никакво разпознаване, може да не бъдат намерени от експертите преглеждащи конкретни таксони. Дори и най-общо разпознаване като „Растение“, може да помогне на ботаник да намери наблюдението и да помогне с разпознаването му.
   some_other_reason: Други причини, които можете да обясните по-долу.
   duplicate_observation_flag_warning: |
     При дублирани наблюдения, моля обърнете се към наблюдателя за разрешаване на проблема, вместо да добавяте маркер. Кураторите на сайта не могат да изтриват наблюдения.
