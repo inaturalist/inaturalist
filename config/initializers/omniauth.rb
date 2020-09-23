@@ -91,7 +91,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       scope: "email name",
       team_id: CONFIG.apple.team_id,
       key_id: CONFIG.apple.key_id,
-      pem: CONFIG.apple.pem
+      pem: CONFIG.apple.pem,
+      provider_ignores_state: true
     }
   end
 
