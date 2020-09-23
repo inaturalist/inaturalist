@@ -34,6 +34,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def get( url, params = {} )
     try = params.delete(:try) || 1
     resp = begin
+      log "GET #{url}, #{params}"
       RestClient.get( url, params: params )
     rescue Net::ReadTimeout, RestClient::Exceptions::ReadTimeout
       raise TimeoutError.new(
@@ -77,7 +78,7 @@ class MushroomObserverImportFlowTask < FlowTask
     Emailer.moimport_finished( self, errors, @warnings ).deliver_now
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
-    logger.error "#{self.class.name} #{id}: Error: #{exception_string}" if @debug
+    log "Error: #{exception_string}"
     update_attributes(
       finished_at: Time.now,
       error: "Error",
@@ -88,12 +89,13 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def log( msg )
+    msg = "#{self.class.name} #{id}: #{msg}"
     if options[:logger] == "stdout"
       puts
       puts "[INFO] #{msg}"
       puts
     else
-      Rails.logger.info "[INFO] #{msg}"
+      Rails.logger.info "#{msg}"
     end
   end
 
@@ -161,8 +163,11 @@ class MushroomObserverImportFlowTask < FlowTask
       Taxon::ICONIC_TAXA_BY_NAME["Protozoa"]
     ] )
     taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
-    taxon.reload if taxon
-    taxon
+    if taxon && taxon.persisted?
+      taxon.reload
+      return taxon
+    end
+    nil
   end
 
   def observation_from_result( result, options = {} )
