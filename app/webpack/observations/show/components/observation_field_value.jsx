@@ -9,48 +9,86 @@ class ObservationFieldValue extends React.Component {
     const { ofv, config, observation } = this.props;
     if ( !observation || !ofv || !ofv.observation_field ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
-    let value = ofv.value;
+    let { value } = ofv;
     let loading;
     if ( ofv.api_status ) {
       loading = ( <div className="loading_spinner" /> );
     }
     if ( ofv.datatype === "dna" ) {
-      value = ( <div className="dna">{ ofv.value } { loading }</div> );
+      value = (
+        <div className="dna">
+          { ofv.value }
+          { " " }
+          { loading }
+        </div>
+      );
     } else if ( ofv.datatype === "text" ) {
-      value = ( <div className="value"><UserText text={ value } /> { loading }</div> );
+      value = (
+        <div className="value">
+          <UserText text={value} />
+          { " " }
+          { loading }
+        </div>
+      );
     } else {
       if ( ofv.datatype === "taxon" && ofv.taxon ) {
-        value = ( <SplitTaxon
-          taxon={ ofv.taxon }
-          url={ `/taxa/${ofv.taxon.id}` }
-          user={ config.currentUser }
-        /> );
+        value = (
+          <SplitTaxon
+            taxon={ofv.taxon}
+            url={`/taxa/${ofv.taxon.id}`}
+            user={config.currentUser}
+          />
+        );
       }
-      value = ( <div className="value">{ value } { loading }</div> );
+      value = (
+        <div className="value">
+          { value }
+          { " " }
+          { loading }
+        </div>
+      );
     }
     let info;
     if ( ofv.observation_field && ofv.observation_field.description ) {
-      info = ( <div className="info">
-        <div className="header">{ I18n.t( "info" ) }:</div>
-        <div className="desc">
-          { ofv.observation_field.description }
+      info = (
+        <div className="info">
+          <div className="header">{ `${I18n.t( "info" )}:` }</div>
+          <div className="desc">
+            { ofv.observation_field.description }
+          </div>
         </div>
-      </div> );
+      );
     }
     let editOptions;
     if ( loggedIn ) {
-      editOptions = ( <div className="edit">
-        <div onClick={ ( ) => {
-          if ( ofv.api_status ) { return; }
-          this.props.setEditingFieldValue( ofv );
-        } }
-        >{ I18n.t( "edit" ) }</div>
-        <div onClick={ ( ) => {
-          if ( ofv.api_status ) { return; }
-          this.props.removeObservationFieldValue( ofv.uuid );
-        } }
-        >{ I18n.t( "delete" ) }</div>
-      </div> );
+      editOptions = (
+        <div className="edit">
+          <div>
+            <button
+              type="button"
+              className="btn btn-nostyle"
+              onClick={( ) => {
+                if ( ofv.api_status ) { return; }
+                this.props.setEditingFieldValue( ofv );
+              }}
+            >
+              { I18n.t( "edit" ) }
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="btn btn-nostyle"
+              onClick={( ) => {
+                if ( ofv.api_status ) { return; }
+                this.props.removeObservationFieldValue( ofv.uuid );
+              }}
+            >
+              { I18n.t( "delete" ) }
+            </button>
+          </div>
+        </div>
+      );
     }
     let addedBy;
     if ( ofv.user && ofv.user.id !== observation.user.id ) {
