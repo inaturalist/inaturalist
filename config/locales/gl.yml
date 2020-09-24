@@ -2108,9 +2108,6 @@ gl:
   needs_id_: Precisa identificación
   needs_id_expandable_html: "<span class='full'>Precisa </span>identificación"
   needs_to_be_identified: Necesita ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da Rede Internacional iNaturalist, está enfocada na biodiversidade e na xente de %{place}. ¿Gustaríache mudar a afiliación da túa conta de iNaturalist.org a %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     ¿Gustaríache mudar a túa afiliación de <strong>%{other_site_name}</strong> a <strong>%{site_name}</strong>?
   new: Novo
