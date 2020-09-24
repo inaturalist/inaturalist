@@ -47,6 +47,14 @@ class ProviderAuthorizationsController < ApplicationController
           auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
         end
       end
+    when "apple"
+      if auth_info["info"]["name"] && auth_info["info"]["name"]["firstName"]
+        full_name = auth_info["info"]["name"]["firstName"]
+        if auth_info["info"]["name"]["lastName"]
+          full_name += " " + auth_info["info"]["name"]["lastName"]
+        end
+        auth_info["info"]["name"] = full_name
+      end
     end
     
     

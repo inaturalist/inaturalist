@@ -12,7 +12,7 @@ class ProviderAuthorization < ActiveRecord::Base
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo soundcloud orcid)
+  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo soundcloud orcid apple)
   PROVIDER_NAMES = PROVIDERS.inject({}) do |memo, provider|
     if provider == "google_oauth2"
       memo[provider] = "Google"

@@ -11,7 +11,7 @@
       .btntext=t :sign_in_with_google
   - if extra
     .extra
-      - providers = %w{flickr twitter yahoo}
+      - providers = %w{flickr twitter yahoo apple}
       - providers.each do |provider_name|
         - provider, url = ProviderAuthorization::AUTH_URLS.detect{|p,u| p == provider_name }
         - provider_label = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
