@@ -78,7 +78,7 @@ class MushroomObserverImportFlowTask < FlowTask
     Emailer.moimport_finished( self, errors, @warnings ).deliver_now
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
-    log "Error: #{exception_string}"
+    log "Error: #{exception_string}\n#{e.backtrace}"
     update_attributes(
       finished_at: Time.now,
       error: "Error",
@@ -164,8 +164,8 @@ class MushroomObserverImportFlowTask < FlowTask
     ] )
     taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
     if taxon && taxon.persisted?
-      taxon.reload
-      return taxon
+      # make sure this isn't a Ratatosk adapter
+      return Taxon.find_by_id( taxon.id )
     end
     nil
   end
