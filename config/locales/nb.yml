@@ -2138,14 +2138,6 @@ nb:
   needs_id_: Trenger ID
   needs_id_expandable_html: "<span class='full'>Trenger </span>ID"
   needs_to_be_identified: Trenger å bli identifisert
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i %{place}. Ønsker du å endre din kontotilknytning fra iNaturalist.org til %{site_name}?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i Finland. Ønsker du å endre din kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du å endre din tilknytning fra <strong>%{other_site_name}</strong> til <strong>%{site_name}</strong>?
   new: Ny
