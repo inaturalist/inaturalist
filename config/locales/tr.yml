@@ -2149,17 +2149,6 @@ tr:
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
   needs_to_be_identified: Tanımlanması gerekenler
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, uluslararası iNaturalist Ağı'nın bir parçasıdır, 
-    biyoçeşitliliğe ve %{place}'deki insalara odaklanır. Hesap bağlantınızı iNaturalist.org'dan %{site_name}'e 
-    değiştirmek ister misiniz?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, uluslararası iNaturalist Ağı'nın bir parçasıdır, 
-    biyoçeşitliliğe ve Finlandiya'daki insalara odaklanır. Hesap bağlantınızı iNaturalist.org'dan iNaturalist Suomi'ye geçirmek ister misiniz?
   network_affiliation_prompt_from_other_site_html: |
     Üyeliğinizi <strong>%{other_site_name}</strong>'den <strong>%{site_name}</strong>'e 
     değiştirmek ister misiniz?
