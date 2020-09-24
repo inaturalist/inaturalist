@@ -327,12 +327,6 @@ fr-CA:
   mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
   #Label shown when a date has not been entered
   missing_date: Date manquante
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
-    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi?
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   official_blog: Blogue officiel
