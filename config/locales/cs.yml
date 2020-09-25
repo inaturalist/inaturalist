@@ -598,7 +598,7 @@ cs:
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
   apply_fields: Použít pole
-  apply_geoprivacy: Použít geosoukromí
+  apply_geoprivacy: Použít Soukromí zeměpisné polohy
   apply_darr: "Použít &darr;"
   apply_establishment_means_to_descendant_places: "Použít způsob vzniku pro následující místa"
   apply_these_settings_to_all: Použít toto nastavení pro všechna pozorování níže.
@@ -822,7 +822,7 @@ cs:
     swap: Nahradit vstupní taxon výstupním taxonem
     drop: Koncept taxonu zcela neplatný, udržovaný pro historické účely nebo kompatibilitu s partnerem
     stage: Připravit neaktivní koncept pro spuštění v rámci skupiny změn
-  change_geoprivacy: 'Změnit geosoukromí'
+  change_geoprivacy: 'Změnit Soukromí zeměpisné polohy'
   change_group: Změna skupiny
   change_icon: Změna ikony
   change_password: Změna hesla
@@ -860,7 +860,7 @@ cs:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} byly sloučeny do %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} budou sloučeny do %{output_taxon}"
   change_your_password: Změna vašeho hesla
-  changing_the_geoprivacy: 'Změnou geosoukromí změníte to, jak ostatní uvidí lokalitu vašeho pozorování.'
+  changing_the_geoprivacy: 'Změnou soukromí zeměpisné polohy změníte to, jak ostatní uvidí umístění vašeho pozorování.'
   check_above_for_errors: Zkontrolujte chyby výše
   check_back_soon: Brzy opět zkontrolujte!
   check_here_to_autoload_description: Označte pro automatické nahrání popisu z Wikipedie. Označení můžete zrušit, pokud je vědecký název taxonu zároveň nevědeckým výrazem nebo běžně používaným chybným označením.
@@ -977,10 +977,10 @@ cs:
       Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
-    geoprivacy: Standardně nastavené geosoukromí pro pozorování tohoto taxonu
+    geoprivacy: Standardně nastavené soukromí zěměpisné polohy pro pozorování tohoto taxonu
     iucn: Odpovídající kód v Červeném seznamu IUCN
   conservation_status_geoprivacy_desc: |
-    Na všechna pozorování tohoto taxonu v tomto místě se vztahovalo výchozí geo soukromí (udržování soukromí své zeměpisné polohy)
+    Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
   contain_all_descendants?: Obsahuje tento seznam všechny následné taxony, které se zde vyskytují?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1100,7 +1100,7 @@ cs:
   curator: Kurátor
   curators_changed_for_x_html: "Kurátoři změněni na %{x}"
   curators: Kurátoři
-  curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a skrytých příspěvků do tohoto projektu.
+  curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
   curator_identification: Identifikace kurátora
   current_flags: Aktuální vlajky
   custom_project_fields: Pole vlastního projektu
@@ -1597,10 +1597,10 @@ cs:
   generate_your_stats: Generovat vaše statistiky
   generating_mobile_archive: "Generování mobilního archivu"
   Genus: Rod
-  geoprivacy: Geosoukromí
-  geoprivacy_is_obscured: Udržení soukromého geografického umístění je ukryta
-  geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zakrýt souřadnice.
-  geoprivacy_is_private: Udržení soukromého geografického umístění je soukromé
+  geoprivacy: Soukromí zeměpisné polohy
+  geoprivacy_is_obscured: Soukromí geografické polohy je nastaveno na přibližné
+  geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zveřejnit jen přibližné souřadnice.
+  geoprivacy_is_private: Soukromí zeměpisné polohy je nastaveno na soukromé
   geoprivacy_is_private_desc: Pozorovatel se rozhodl skrýt souřadnice.
   georeferenced: Georeference?
   get_started: Začněte
@@ -2045,7 +2045,7 @@ cs:
   location_is_accurate: Umístění je přesné
   location_is_exact: umístění je přesné
   location_is_public: Místo je veřejné
-  location_is_obscured: Lokace je neznámá
+  location_is_obscured: Poloha je přibližná
   location_is_private: Místo je soukromé
   location_specified: Umístění určeno
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
@@ -2436,10 +2436,10 @@ cs:
   obs: Skr
   obs_cid_d: ID pozorování
   obs_id_d: ID pozorování
-  obscured: Skrytý
-  obscured_or_private: skrytý nebo soukromý
+  obscured: Přibližné
+  obscured_or_private: přibližný nebo soukromý
   obscured_description: |
-    Veřejné souřadnice zobrazené jako náhodný bod do 10 km od skutečných souřadnic. Skutečné souřadnice vidíte pouze vy a kurátoři projektů, k nimž přidáte své pozorování.
+    Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
   observation: Pozorování
   observation_: pozorování
   observation_added: Pozorování přidáno.
@@ -2765,7 +2765,7 @@ cs:
   pin_verb: Připnout
   pink: růžový
   pinned_locations_desc: |
-    Připojte tuto kombinaci souřadnic, přesnosti, geografické důvěrnosti a poznámky k místům pro pozdější použití.
+    Připnout tuto kombinaci souřadnic, přesnosti, soukromí zeměpisné polohy a poznámky k místu pro pozdější použití.
   place: Místo
   placeholder: Zástupný text
   place_autocomplete_placeholder: Zion National Park, Miami, atd.
@@ -3889,9 +3889,9 @@ cs:
   taxon_is_threatened_coordinates_hidden: Taxon je ohrožen, souřadnice jsou ve výchozím nastavení skryté
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonů, které obsahují některý z těchto taxonů, je vzácný nebo ohrožený, takže umístění tohoto pozorování bylo skryto.
-  taxon_is_threatened_coordinates_obscured: Taxon je ohrožen, proto jsou výchozí souřadnice zakryty
+  taxon_is_threatened_coordinates_obscured: Taxon je ohrožen, proto jsou souřadnice záměrně přibližné
   taxon_is_threatened_coordinates_obscured_desc: |
-    Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonu, který obsahuje jeden z nich, je vzácný nebo ohrožený, takže umístění tohoto pozorování bylo ukryto.
+    Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonů, který obsahuje jeden z nich, je vzácný nebo ohrožený, takže poloha tohoto pozorování byla změněna na přibližnou.
   taxonomy: Taxonomie
   taxon_assessments_are: |
     Hodnocení taxonů jsou dokumenty hodnotící aktuální status druhu, obvykle status ochrany. Může je využít například regionální ochranářská organizace při organizování informací a vyžadování zpětné vazby o statusu několika ohrožených taxonů v regionu.
@@ -4452,7 +4452,7 @@ cs:
   who_can_see_the_coordinates_trusted: Jednotlivci, kterým pozorovatel důvěřoval, se svými skrytými souřadnicemi
   who_helped_user_the_most: "Kdo uživateli %{user} nejvíce pomohl"
   who_user_helped_the_most: "Komu uživatel %{user} nejvíce pomohl"
-  why_the_coordinates_are_obscured: Proč jsou souřadnice zakryté
+  why_the_coordinates_are_obscured: Proč jsou souřadnice přibližné
   with_annotation: S anotací
   without_annotation: Bez anotace
   widget: Widget
@@ -4570,8 +4570,7 @@ cs:
   you_cannot_delete_taxa_involved_in_taxon_changes: Nemůžete odstranit taxony zapojené do změn taxonů nebo taxony, které se podílejí na změnách taxonu
   you_curate_a_project_that_contains_this_observation: Organizujete projekt, který obsahuje toto pozorování
   you_curate_a_project_that_contains_this_observation_desc: |
-    Při organizování projektu můžete vidět skryté souřadnice
-    pozorování a pozorovatel se rozhodl sdílet souřadnice s kurátory projektu.
+    Při organizování projektu můžete vidět přibližné souřadnice pozorování, pokud se pozorovatel rozhodl sdílet souřadnice s kurátory projektu.
   you_didnt_select_any_observations: Nevybrali jste žádná pozorování.
   you_didnt_select_any_photos_to_tag: Nevybrali jste žádné fotky k označení!
   you_dont_have_permission_to_do_that: Nemáte povolení k tomuto kroku.
@@ -5065,11 +5064,11 @@ cs:
         latitude: Veřejně zobrazená zeměpisná šířka
         longitude: Veřejně zobrazená zeměpisná délka
         positional_accuracy: "Přesnost souřadnic(jo, jo, přesnost != přesnost, špatná volba názvů)"
-        private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo skryté"
-        private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo skryté"
+        private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo přibližné"
+        private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo přibližné"
         geoprivacy: "Zda si pozorovatel zvolil možnost skrýt souřadnice"
-        taxon_geoprivacy: "Nejkonzervativnější geografická důvěrnost se uplatňuje z důvodu stavu zachování taxonů v současné identifikaci."
-        coordinates_obscured: "Zda byly souřadnice skryty, buď kvůli geosoukromí nebo kvůli ohroženému taxonu"
+        taxon_geoprivacy: "Použito nejkonzervativnější soukromí zeměpisné polohy z důvodu stavu zachování taxonů v současné identifikaci."
+        coordinates_obscured: "Zda byly souřadnice přibližné, buď kvůli zachování soukromí zeměpisné polohy nebo kvůli ohroženému taxonu"
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
         user_id: Jedinečný identifikátor pro pozorovatele
         user_login: Uživatelské jméno pozorovatele
@@ -5100,7 +5099,7 @@ cs:
         date_column_format: RRRR-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
-          Sloupec geologická důvěrnost musí být v angličtině a musí být prázdný nebo mít hodnotu "skryté" nebo "soukromé"
+          Sloupec Soukromí zeměpisné polohy musí být v angličtině a musí být prázdný nebo mít hodnotu "obscured" (přibližné) nebo "private" (soukromé)
         google_photos_notice_html: |
           V únoru 2019 změnila společnost Google své rozhraní API, což nám bránilo v přístupu ke souřadnicím GPS, informacím o licenci a prakticky k jakýmkoli informacím, které bychom mohli použít k přidání ID (například značek). Odstranil také textové vyhledávání a digitální stránkování. Kromě toho požadují, aby všechny připojené účty měly dodatečné právo, a než může třetí strana požádat o toto právo uživatele, musí být třetí strana ověřena. Čekáme na ověření, ale než se to stane, nebudete moci importovat fotografie od společnosti Google. Pokud budeme přijati, budete moci nahrát fotografie, ale nebudou obsahovat žádné informace o poloze ani licenci, které by se mohly zobrazit ve službě Fotky Google. Další informace naleznete v <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>. Stahování původních souborů a jejich přidávání pomocí <a href="/observations/upload"> Nahrávání </a> je nejlepším řešením.
         project_csv_template_notice_html: |
@@ -5597,7 +5596,7 @@ cs:
         any: Ano, bez ohledu na to, kdo přidává pozorování k projektu.
         none: Ne.
       curator_coordinate_access_label: |
-        Chcete, aby vaše soukromé/skryté souřadnice pozorování byly viditelné pro kurátory projektu?
+        Chcete, aby vaše soukromé/přibližné souřadnice pozorování byly viditelné pro kurátory projektu?
       curator_coordinate_access_note: |
         Také můžete sdílet soukromé souřadnice pozorování v tomto projektu jednotlivě. Toto je pouze automatické nastavení pro nová pozorování přidaná do projektu.
       project_terms_desc_html: |
@@ -5607,11 +5606,11 @@ cs:
           Opravdu chcete tento projekt převést na Sbírky projektů?
         bioblitz_results_desc_html: |
           <p>
-            Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
-            Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
+           Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
+           Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
           </p>
           <p>
-            Vezměte na vědomí, že i když tento druh projektu zobrazuje statistiky pozorování, která nebyla do projektu cíleně přidána, neumožňuje kurátorům zobrazovat soukromé nebo skryté souřadnice těchto pozorování, ani předpokládat, že pozorovatelé vyjádřili souhlas s podmínkami projektu. Jste-li kurátorem projektu a potřebujete přístup k soukromým souřadnicím, je nutné, aby vaši účastníci vyjádřili souhlas s podmínkami projektu, nebo pokud chcete, aby byla pozorování zahrnuta do seznamu spravovaného projektu, postarejte se, aby se účastníci připojili k projektu a přidali svá pozorování stejně jako v běžném projektu.
+           Vezměte na vědomí, že i když tento druh projektu zobrazuje statistiky pozorování, která nebyla do projektu cíleně přidána, neumožňuje kurátorům zobrazovat soukromé nebo přibližné souřadnice těchto pozorování, ani předpokládat, že pozorovatelé vyjádřili souhlas s podmínkami projektu. Jste-li kurátorem projektu a potřebujete přístup k soukromým souřadnicím, je nutné, aby vaši účastníci vyjádřili souhlas s podmínkami projektu, nebo pokud chcete, aby byla pozorování zahrnuta do seznamu spravovaného projektu, postarejte se, aby se účastníci připojili k projektu a přidali svá pozorování stejně jako v běžném projektu.
           </p>
         click_here_to_convert_this_project: |
           Klikněte zde, chcete-li tento projekt převést na projekt Kolekce.
@@ -5921,7 +5920,7 @@ cs:
         new_project_admin_html: |
           Nevíte, proč jste teď správcem tohoto projektu? Předchozí majitel vás buď jmenoval novým správcem, nebo si smazal účet a stránka %{site_name} vybrala vás, protože jste vedoucí projektu nebo kurátor stránky. Pokud nechcete být správcem projektu, kontaktujte prosím <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
-          Jen pro připomenutí, kurátoři projektu vidí soukromé a skryté souřadnice vašich pozorování, která do projektu přidáte.
+          Jen pro připomenutí, kurátoři projektu vidí soukromé a přibližné souřadnice vašich pozorování, která do projektu přidáte.
       delete:
         by_deleting_your_account_you_will_remove: |
           Smazáním účtu odstraníte
@@ -5998,8 +5997,6 @@ cs:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jestliže změníte svůj názor, můžete kdykoli
           <a href='/users/edit'>změnit své nastavení</a>.
-        inaturalist_network_affiliation_desc_html: |
-          Síť <a href="%{url}" target="_blank">iNaturalist Network</a> je souborem lokalizovaných stránek napojených na globální komunitu iNaturalist. Můžete si změnit svou hlavní příslušnost na stránce, což znamená, že váš obsah bude mít na dané stránce určitou prioritu, ale zároveň to znamená, že majitelé stránky mají právo stahovat a zobrazovat veškeré vaše údaje stejně jako správci stránek iNaturalist. Pokud tato stránka ze sítě odejde, váš účet i údaje půjdou s touto stránkou.
         licensing_desc_html: |
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
@@ -6057,8 +6054,8 @@ cs:
         prefers_community_taxa_desc: |
           %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
-          Když nastavíte geoprivacy pozorování na "zakryté" nebo
-          "soukromé" toto bude platit stejně k vašemu druhému pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování ve stejný čas.
+          Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
+          "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
         prefers_no_tracking_label: Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran
         prefers_no_tracking_label_desc_we_use: |
           Ke sledování stability, diagnostice chyb a problémů v našem softwaru využíváme služby třetích stran. Tyto třetí strany zahrnují
@@ -6099,7 +6096,7 @@ cs:
           a druhy dat, které s nimi sdílíte při používání iNat, nemůžeme zcela zastavit tok dat.
         project_settings_desc: |
           Nezapomeňte, že toto nedává projektům povolení k přístupu k vašim soukromým souřadnicím ani zasílání aktualizací. Abyste mohli tato povolení udělit, musíte se přidat do projektů, nebo je udělit jednotlivě.
-        same_day_geoprivacy_protection: Stejná ochrana geoprivacy
+        same_day_geoprivacy_protection: Ochrana soukromí zeměpisné polohy ve stejný den
         search_place_help_html: |
           Výchozí místo pro hledání.
         scientific_name_first_desc: |
@@ -6584,7 +6581,7 @@ cs:
         authority: Orgán
         place_id: Místo
         url: URL odkaz
-        geoprivacy: Geosoukromí
+        geoprivacy: Soukromí zeměpisné polohy
         iucn: Ekvivalent IUCN
       flag:
         reason: Důvod
