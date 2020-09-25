@@ -1242,7 +1242,7 @@ fr:
   either: Soit
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
-  email: Adresse électronique
+  email: Courriel
   email_addresses_description: Adresses électroniques séparées par des virgules, limitées à 60 tous les 30 jours.
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
   email_addresses_to_receive_invites: Adresses électroniques pour recevoir les invitations
@@ -1326,7 +1326,7 @@ fr:
   favorite_taxa: Taxons favoris
   favorites: "Favoris"
   feature_this_project_: "Mettre en valeur ce projet"
-  featured: Mis en valeur
+  featured: En vedette
   #Title for a button or section describing the "featured" status of a project
   featuring: Mis en valeur
   feedback: Commentaires
@@ -1403,6 +1403,7 @@ fr:
     Signalement pour le message : %{title}
   flag_for_project_title_html: |
     Signalement pour le projet : %{title}
+  flag_for_guide_section_id_html: Signalement pour <a href="%{url}">Identification %{id}</a>
   flag_for_sound_id_html: Signalement pour le <a href="%{url}">Son %{id}</a>
   flag_for_taxon_title_html: |
     Signalement pour le taxon : %{title}
@@ -2147,6 +2148,7 @@ fr:
   name_of_the_place_you: Nom du lieu où vous avez fait l’observation
   name_providers:
     col: Catalogue of Life
+    ubio: uBio
     nzor: Registre des organisations néo-zélandaises
   names: Noms
   names_for_taxon_html: "Noms de %{taxon}"
@@ -2166,6 +2168,14 @@ fr:
   needs_id_: Nécessite un ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens au/aux/en/à %{place}. Voulez-vous changer votre affiliation d’iNaturalist.org à %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens en Finlande. Voulez-vous changer votre affiliation d’iNaturalist.org à iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
@@ -2673,7 +2683,7 @@ fr:
     Épingler cette combinaison de coordonnées, de précision, de confidentialité géographique et de notes de lieux, pour un usage ultérieur.
   place: Lieu
   placeholder: Signet (élément de substitution)
-  place_autocomplete_placeholder: Parc National de Zion, Miami, etc...
+  place_autocomplete_placeholder: Parc national de Zion, Miami, etc.
   place_deleted: Lieu supprimé.
   place_geo:
     geo_planet_place_types:
@@ -2766,6 +2776,7 @@ fr:
       Province: Province
       province: province
       Regency: Régence
+      regency: Régence
       Region: Région
       region: région
       Republic: République
@@ -3062,7 +3073,7 @@ fr:
     tuvalu: Tuvalu
     uganda: Ouganda
     ukraine: Ukraine
-    united_arab_emirates: Union des Emirats Arabes
+    united_arab_emirates: Émirats arabes unis
     united_kingdom: Royaume-Uni
     united_states: États-Unis
     united_states_minor_outlying_islands: Îles mineures éloignées des États-Unis
@@ -3074,9 +3085,9 @@ fr:
     venezuela: Vénézuela
     vietnam: Vietnam
     virgin_islands: Îles Vierges
-    wallis_and_futuna: Wallis et Futuna
+    wallis_and_futuna: Wallis-et-Futuna
     west_africa: Afrique occidentale
-    western_sahara: Sahara Occidental
+    western_sahara: Sahara occidental
     yemen: Yémen
     zambia: Zambie
     zimbabwe: Zimbabwe
@@ -3092,6 +3103,14 @@ fr:
     Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
     que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
     continents et pays, et deux niveaux administratifs inférieurs au pays.
+  places_warning_projects_can_have_multiple_places: |
+    Si vous essayez de créer un endroit pour délimiter un projet, notez que les projets peuvent être composés de plusieurs endroits. Par exemple, si vous voulez faire un projet pour la Nouvelle-Zélande et l'Australie, vous pouvez simplement ajouter des pré-requis pour ces deux endroits au lieu d'en créer un nouveau.
+  places_warning_new_places_are_slow_html: |
+    Les nouveaux endroits sont l'une des plus grandes sources de ralentissements sur iNat, donc <strong>s'il vous plaît envisager de ne pas créer un nouvel endroit</strong>. Tandis que les petits endroits ne contenant que quelques milliers d'observations sont généralement acceptables, si vous créez un nouvel endroit qui contient beaucoup plus d'observations, vous allez ralentir iNat pour tout le monde. Voici quelques approches alternatives :
+  places_warning_editing_places_is_slow: |
+    La modification des limites des endroits est l'une des plus grandes sources de ralentissements sur iNat. Si vous pouvez l'éviter, n'ajoutez, ne modifiez pas ou ne supprimez pas les limites d'endroits, sauf si c'est absolument nécessaire.
+  places_warning_the_future: |
+    Pour ce que ça vaut, nous allons devoir restreindre les conditions dans lesquelles les gens peuvent créer de nouveaux endroits à l'avenir, compte tenu du taux de croissance actuel d'iNat.
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_add_this_observation_to: Veuillez ajouter cette observation à
@@ -3182,6 +3201,8 @@ fr:
   project_settings: Paramètres du projet
   project_start_time_datetime: "Date de début : %{datetime}"
   project_that_does_not_contain_these_observations: Projet qui ne contient pas ces observations
+  project_type_description: |
+    Les évaluations visent à collaborer sur un ensemble d'évaluations d'espèces, généralement pour évaluer l'importance de mesures de conservation.
   project_user_cannot_be_found: L’utilisateur du projet ne peut pas être trouvé
   project_user_was_invalid: "L’utilisateur du projet n’est pas valide : %{project_user}"
   project_was_successfully_created: Le projet a bien été créé.
@@ -3189,7 +3210,7 @@ fr:
   project_x_was_delete: "%{project} a été supprimé (merci d’attendre quelques minutes pour qu’il soit supprimé du site web)"
   projects: Projets
   projects_description: |
-    Les projets sont un moyen de mettre en commun vos observations avec celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un projet scientifique entre citoyens ou gérer des onglets sur les oiseaux du voisinage, les projets sont le moyen d’y arriver.
+    Les projets vous permettent d'associer vos observations à celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un projet de science citoyenne ou gérer un registre des oiseaux de votre voisinage, les projets sont le moyen d’y arriver.
   projects_from_everywhere: Projets de partout
   projects_from_place: "Projets de %{place}"
   projects_in_x: "Projets dans %{x}"
@@ -3233,6 +3254,9 @@ fr:
     suborder: Sous-ordre
     infraorder: Sous-ordre
     subterclass: Sous-classe
+    parvorder: Micro-ordre
+    zoosection: Section animale
+    zoosubsection: Sous-section animale
     superfamily: Super-famille
     epifamily: Épifamille
     family: Famille
@@ -3789,7 +3813,10 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Responsables des taxons
   taxon_framework_complete: "Complet : Vrai"
+  taxon_framework_deviations_with_count_html: "Déviations : %{count}"
   taxon_framework_relationships_with_count_html: "Relations du cadre taxinomique : %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Taxons couverts marqués : %{count}"
   taxon_framework_notes: Notes du cadre de taxon
   taxon_framework_relationship: Relation du cadre de taxon
   taxon_framework_relationship_number: "Relation du cadre du taxon %{number}"
@@ -4101,7 +4128,7 @@ fr:
   uploading_num_of_count_photos:
     one: Téléversement d’une photo…
     other: Téléversement de %{num} sur %{count} photos…
-  url_identifier_of_a_project_derived_from: "URL/identifiant d&un projet dérivé d’une ressource externe"
+  url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
   US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
@@ -4130,6 +4157,8 @@ fr:
   user_added_a_project_invitation_html: "%{user} a ajouté une invitation au projet"
   user_added_a_x: "%{user} a ajouté un %{x}"
   user_added_a_x_to_noun_by_html: "%{user} a ajouté une %{x} à %{noun} de %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} a ajouté un %{x} à %{noun} par %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} a ajouté un %{x} à %{noun} par vous."
   user_added_a_x_to_noun_html: "%{user} a ajouté une %{x} à %{noun}"
   user_added_an_identification_html: "%{user} a ajouté une identification"
   user_added_an_observation_field_html: '%{user} a ajouté une valeur à « %{field_name} » pour une observation de %{owner}'
@@ -4137,6 +4166,8 @@ fr:
   user_added_an_observation_html: "%{user} a ajouté une observation"
   user_added_an_x: "%{user} a ajouté un %{x}"
   user_added_an_x_to_noun_by_html: "%{user} a ajouté une %{x} à %{noun} de %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} a ajouté un %{x} à %{noun} par %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} a ajouté un %{x} à %{noun} par vous"
   user_added_an_x_to_noun_html: "%{user} a ajouté une %{x} à %{noun}"
   user_added_x_observations_html: "%{user} a ajouté %{x} observations"
   user_already_authenticated: L'utilisateur est déjà authentifié
@@ -4292,7 +4323,7 @@ fr:
   week_of_date: "Semaine de %{date}"
   welcome: bienvenue
   welcome_back: Re-bonjour
-  welcome_back!: Re-bonjour !
+  welcome_back!: Re-bonjour!
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue aux guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
@@ -4523,7 +4554,7 @@ fr:
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} vous demande d’accorder davantage de permissions à %{provider} pour continuer :"
   your_subscriptions_to_this_place: Vos abonnements à cet endroit
   your_tags: Vos étiquettes
-  yours: Votre
+  yours: Les vôtres
   youre_not_following_anyone: |-
     Vous ne suivez personne. En suivant d’autres naturalistes, vous pourrez facilement
     suivre leurs dernières observations. Découvrez ce que les gens
@@ -5470,8 +5501,8 @@ fr:
         custom_project_fields_means: "Personnalisez la bannière du projet, ajoutez du contenu au site et modifiez le CSS."
         end_time_desc: "Date de fin du bioblitz. Doit être moins d’un an après la date de début"
         event_url_desc: |
-          URL d’un service d’enregistrement d’une activité que vous utilisez pour votre bioblitz.
-          Si c’est une URL d’Eventbrite qui inclut un ID numérique, nous
+          URL du service d’inscriptions que vous utilisez pour votre bioblitz.
+          Si c’est une adresse URL d’Eventbrite qui inclut un ID numérique, nous
           inclurons un widget d’inscription sur votre page de projet jusqu’au début de
           votre bioblitz.
         icon_desc: "Sera retaillé en un carré"
@@ -5640,7 +5671,7 @@ fr:
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         umbrella_project_features: "Fonctionnalités du projet cadre:"
-        unique_url_for_outreach: URL unique pour le dépassement
+        unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |
           Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.
         users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal
@@ -6251,6 +6282,10 @@ fr:
           biodiversité</a> (SMIB), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
+        license_description_attribution_html: |
+          Descriptions de licence et images &copy; %{year} Creative Commons, utilisés
+          sous une licence <a href="http://creativecommons.org/licenses/by/3.0/">Licence d'attribution Creative
+          Commons</a> (donc meta !)
         monthly_supporter: Soutiens mensuels
         monthly_supporter_desc_html: |
           Les parrains réguliers d’iNaturalist font des contributions mensualisées
@@ -6782,6 +6817,7 @@ fr:
     models:
       AssessmentSection: Section d’évaluation
       Atlas: Atlas
+      BlockedUser: Utilisateur bloqué
       CompleteSet: Ensemble complet
       #Noun
       Flag: Signalement
@@ -6792,6 +6828,9 @@ fr:
       assessment_section:
         title: Titre
         body: Corps
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Utilisateur bloqué
       conservation_status:
         status: Situation
         description: Description
@@ -6861,7 +6900,7 @@ fr:
         woeid: WOEID
       site:
         logo: Logo textuel
-        logo_email_banner: Bannière email
+        logo_email_banner: Bannière courriel
       source:
         title: Titre
         in_text: Dans le texte
@@ -6950,6 +6989,11 @@ fr:
           attributes:
             base:
               guide_has_too_many_taxa: "le guide ne peut avoir que 500 taxons"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "L'importation des données de cet utilisateur de Mushroom Observer est en cours ou en attente d'importation"
+              api_key_missing: "La clé API de Mushroom Observer est manquante"
         observation:
           attributes:
             base:
@@ -7043,6 +7087,10 @@ fr:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ne doit pas contenir de virgules ni de barres obliques
+              should_match_english_translation: |
+                devrait être en anglais, mais correspond présentement à la traduction %{suggested_locale} de "%{suggested}".
+                Utilisez "%{suggested}" si c'est ce que vous vouliez dire et il sera traduit lorsque vous consulterez le site dans
+                cette langue.
               should_be_in_english: devrait être en anglais
             name:
               already_exists: existe déjà pour ce taxon dans ce lexique
@@ -7069,6 +7117,7 @@ fr:
         user_block:
           attributes:
             base:
+              user_already_blocked: Vous avez déjà bloqué cet utilisateur
               user_cannot_be_staff: |
                 Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
                 communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
