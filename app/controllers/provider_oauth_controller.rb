@@ -214,7 +214,19 @@ class ProviderOauthController < ApplicationController
     assertion_access_token_for_client_and_user( client, user )
   end
 
-  def oauth_access_token_from_apple_assertion( client, assertion )
+  def oauth_access_token_from_apple_assertion( client_id, assertion )
+    client = Doorkeeper::Application.find_by_uid( client_id )
+    if client.blank?
+      error_message = "Client does not exist for Apple assertion: #{client_id}"
+      Rails.logger.error = error_message
+      LogStasher.write_hash(
+        error_message: error_message,
+        request: request,
+        session: session,
+        user: current_user
+      )
+      return
+    end
     # Note that the assertion we are expecting from our own iPhone app is a JSON
     # string that contains the identity token as well as name details that are
     # (apprently) only available to the app
