@@ -19,9 +19,11 @@ class ProviderOauthController < ApplicationController
     end
     access_token = case assertion_type
     when /facebook/
-      oauth_access_token_from_facebook_token(params[:client_id], params[:assertion])
+      oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
     when /google/
-      oauth_access_token_from_google_token(params[:client_id], params[:assertion])
+      oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
+    when /apple/
+      oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
     end
 
     if access_token
@@ -208,6 +210,95 @@ class ProviderOauthController < ApplicationController
       nil
     end
 
+    return nil unless user && user.persisted?
+    assertion_access_token_for_client_and_user( client, user )
+  end
+
+  def oauth_access_token_from_apple_assertion( client, assertion )
+    # Note that the assertion we are expecting from our own iPhone app is a JSON
+    # string that contains the identity token as well as name details that are
+    # (apprently) only available to the app
+    assertion_json = begin
+      JSON.parse( assertion )
+    rescue JSON::ParserError, TypeError => e
+      Rails.logger.error "Failed to parse Apple assertion: #{e}"
+      Logstasher.write_exception( e, request: request, session: session, user: current_user )
+      return
+    end
+    id_token = assertion_json["id_token"]
+    if id_token.blank?
+      error_message = "Failed to parse id_token out of Apple assertion"
+      Rails.logger.error = error_message
+      LogStasher.write_hash(
+        error_message: error_message,
+        request: request,
+        session: session,
+        user: current_user
+      )
+      return
+    end
+    jwks = JSON.parse(
+      RestClient.get( "https://appleid.apple.com/auth/keys" ).body,
+      symbolize_names: true
+    )
+    # CONFIG.apple.client_id is the client ID for the *web*. Assertions from the
+    # app will use the package ID... which should probably be specified
+    # separately in the config, but this works for now
+    iphone_app_id = CONFIG.apple.app_id
+    # JWT is handling the JWS signature verification using the JWKs. That's a
+    # lot of JW
+    id_token_conents, _header = ::JWT.decode( id_token, nil, true, {
+      verify_iss: true,
+      iss: "https://appleid.apple.com",
+      verify_iat: true,
+      verify_aud: true,
+      aud: [iphone_app_id], #.concat(options.authorized_client_ids),
+      algorithms: ["RS256"],
+      jwks: jwks
+    } )
+    # Verify the contents of the token
+    issuer_is_apple = id_token_conents["iss"] == "https://appleid.apple.com"
+    audience_is_inat = id_token_conents["aud"] == iphone_app_id
+    token_is_current = Time.now < Time.at( id_token_conents["exp"] )
+    if !( issuer_is_apple && audience_is_inat && token_is_current )
+      error_message = "Invalid identity token. iss: #{id_token_conents["iss"]}, aud: #{id_token_conents["aud"]}, exp: #{id_token_conents["exp"]} "
+      Rails.logger.error = error_message
+      LogStasher.write_hash(
+        error_message: error_message,
+        request: request,
+        session: session,
+        user: current_user
+      )
+      return
+    end
+    # Get the Apple unique user identifier (the "sub"ject)
+    provider_uid = id_token_conents["sub"]
+    if provider_uid.blank?
+      error_message = "No user identifier in the Apple identity token"
+      Rails.logger.error = error_message
+      LogStasher.write_hash(
+        error_message: error_message,
+        request: request,
+        session: session,
+        user: current_user
+      )
+      return
+    end
+    existing_pa = ProviderAuthorization.where( provider_name: "apple", provider_uid: provider_uid ).first
+    user = existing_pa&.user
+    user ||= User.find_by_email( id_token_conents["email"] )
+    unless user
+      auth_info = {
+        "provider" => "apple",
+        "uid" => provider_uid,
+        "info" => {
+          "email" => id_token_conents["email"],
+          "name" => assertion_json["name"],
+          "verified" => id_token_conents["email_verified"] == "true"
+        }
+      }
+      user = User.create_from_omniauth( auth_info )
+    end
     return nil unless user && user.persisted?
     assertion_access_token_for_client_and_user( client, user )
   end
