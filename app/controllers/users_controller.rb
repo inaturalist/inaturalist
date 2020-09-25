@@ -595,6 +595,7 @@ class UsersController < ApplicationController
       format.html do
         @monthly_supporter = @user.donorbox_plan_status == "active" &&
           @user.donorbox_plan_type == "monthly"
+        render :edit2, layout:"bootstrap"
       end
       format.json do
         render :json => @user.to_json(
