@@ -30,7 +30,7 @@ describe UserMute do
         Delayed::Worker.new.work_off
         update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
       end
       it "when the user follows the muted user and the muted user makes a new observation" do
         Friendship.make!( user: user, friend: muted_user )
@@ -38,7 +38,7 @@ describe UserMute do
         Delayed::Worker.new.work_off
         update_action = UpdateAction.where( resource: muted_user, notifier: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
       end
       it "when the user follows a place and the muted user makes a new observation in that place" do
         p = make_place_with_geom
@@ -47,7 +47,7 @@ describe UserMute do
         Delayed::Worker.new.work_off
         update_action = UpdateAction.where( resource: p, notifier: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
       end
       it "when the user follows a taxon and the muted user makes a new observation of that taxon" do
         t = Taxon.make!
@@ -56,7 +56,7 @@ describe UserMute do
         Delayed::Worker.new.work_off
         update_action = UpdateAction.where( resource: t, notifier: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
       end
       describe "notifications for the user for an observation the user is following when the muted user adds" do
         let(:o) { Observation.make! }
@@ -68,14 +68,31 @@ describe UserMute do
           Delayed::Worker.new.work_off
           update_action = UpdateAction.where( resource: o, notifier: c ).first
           expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
         end
         it "an identification" do
           i = Identification.make!( user: muted_user, observation: o )
           Delayed::Worker.new.work_off
           update_action = UpdateAction.where( resource: o, notifier: i ).first
           expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
+        end
+        it "an observation field value" do
+          ofv = ObservationFieldValue.make!( user: muted_user, observation: o )
+          Delayed::Worker.new.work_off
+          update_action = UpdateAction.where( resource: o, notifier: ofv ).first
+          expect( update_action ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
+        end
+      end
+      describe "notifications for the user from the user's observation when the muted user adds" do
+        let(:o) { Observation.make!( user: user ) }
+        it "an observation field value" do
+          ofv = ObservationFieldValue.make!( user: muted_user, observation: o )
+          Delayed::Worker.new.work_off
+          update_action = UpdateAction.where( resource: o, notifier: ofv ).first
+          expect( update_action ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
         end
       end
     end
