@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Popover, OverlayTrigger } from "react-bootstrap";
@@ -13,12 +14,25 @@ class ObservationFieldValue extends React.Component {
     const viewerIsCurator = currentUser && currentUser.roles && (
       currentUser.roles.indexOf( "curator" ) >= 0
     );
+    // You can edit an existing field if you are the observer, if you are a
+    // curator and the observer allows fields from curators, or if the user
+    // allows fields from anyone
     const editAllowed = (
       currentUser
       && (
-        ( pref === "curators" && viewerIsCurator )
-        || ( pref === "observer" && currentUser.id === observation.user.id )
+        currentUser.id === observation.user.id
+        || ( pref === "curators" && viewerIsCurator )
         || pref === "anyone"
+        || _.isUndefined( pref )
+      )
+    );
+    // You can delete an existing field if you added it or if you are the
+    // observer
+    const deleteAllowed = (
+      currentUser
+      && (
+        currentUser.id === observation.user.id
+        || ( ofv && currentUser.id === ofv.user.id )
       )
     );
     let { value } = ofv;
@@ -72,33 +86,37 @@ class ObservationFieldValue extends React.Component {
       );
     }
     let editOptions;
-    if ( editAllowed ) {
+    if ( editAllowed || deleteAllowed ) {
       editOptions = (
         <div className="edit">
-          <div>
-            <button
-              type="button"
-              className="btn btn-nostyle"
-              onClick={( ) => {
-                if ( ofv.api_status ) { return; }
-                this.props.setEditingFieldValue( ofv );
-              }}
-            >
-              { I18n.t( "edit" ) }
-            </button>
-          </div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-nostyle"
-              onClick={( ) => {
-                if ( ofv.api_status ) { return; }
-                this.props.removeObservationFieldValue( ofv.uuid );
-              }}
-            >
-              { I18n.t( "delete" ) }
-            </button>
-          </div>
+          { editAllowed && (
+            <div>
+              <button
+                type="button"
+                className="btn btn-nostyle"
+                onClick={( ) => {
+                  if ( ofv.api_status ) { return; }
+                  this.props.setEditingFieldValue( ofv );
+                }}
+              >
+                { I18n.t( "edit" ) }
+              </button>
+            </div>
+          ) }
+          { deleteAllowed && (
+            <div>
+              <button
+                type="button"
+                className="btn btn-nostyle"
+                onClick={( ) => {
+                  if ( ofv.api_status ) { return; }
+                  this.props.removeObservationFieldValue( ofv.uuid );
+                }}
+              >
+                { I18n.t( "delete" ) }
+              </button>
+            </div>
+          ) }
         </div>
       );
     }
