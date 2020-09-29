@@ -1,3 +1,13 @@
+#UserSettings {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#LeftNav {
+  display: flex;
+  flex-direction: column;
+}
+
 #UserSettingsHeader h2 {
   color: #333;
   margin-left: 54px;
@@ -18,5 +28,12 @@
 #UserSettingsMenu a:focus {
   color: #74ac00;
   line-height: 17px;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.vl {
+  border-left: 1px solid #eee;
+  height: 522px;
+  margin-left: 44px;
 }

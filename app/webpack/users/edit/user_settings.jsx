@@ -4,10 +4,13 @@ import Menu from "./menu";
 
 const UserSettings = () => (
   <div id="UserSettings">
-    <div id="UserSettingsHeader">
-      <h2>Settings</h2>
+    <div id="LeftNav">
+      <div id="UserSettingsHeader">
+        <h2>Settings</h2>
+      </div>
+      <Menu />
     </div>
-    <Menu />
+    <div className="vl" />
     <text>body</text>
   </div>
 );
