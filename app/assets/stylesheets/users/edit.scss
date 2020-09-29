@@ -1,3 +1,22 @@
-#app {
-  background-color: red;
+#UserSettingsHeader h2 {
+  color: #333;
+  margin-left: 54px;
+  margin-top: 33px;
+  margin-bottom: 38px;
+}
+
+#UserSettingsMenu {
+  font-size: 15px;
+  margin-left: 54px;
+}
+
+#UserSettingsMenu a {
+  color: #333;
+  line-height: 17px;
+}
+
+#UserSettingsMenu a:focus {
+  color: #74ac00;
+  line-height: 17px;
+  text-decoration: none;
 }

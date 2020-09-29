@@ -1,7 +1,9 @@
 import { render } from "react-dom";
 import React from "react";
 
+import UserSettings from "./user_settings";
+
 render(
-  <div>content in div</div>,
+  <UserSettings />,
   document.getElementById( "app" )
 );
