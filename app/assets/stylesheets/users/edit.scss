@@ -18,22 +18,29 @@
 #UserSettingsMenu {
   font-size: 15px;
   margin-left: 54px;
-}
 
-#UserSettingsMenu a {
-  color: #333;
-  line-height: 17px;
-}
+  a {
+    color: #333;
+    line-height: 17px;
 
-#UserSettingsMenu a:focus {
-  color: #74ac00;
-  line-height: 17px;
-  font-weight: 600;
-  text-decoration: none;
+    &:focus {
+      color: #74ac00;
+      line-height: 17px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
 }
 
 .vl {
   border-left: 1px solid #eee;
   height: 522px;
   margin-left: 44px;
+}
+
+#SettingsContainer {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  max-height: 700px;
 }

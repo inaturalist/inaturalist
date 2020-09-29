@@ -1,6 +1,7 @@
 import React from "react";
 
 import Menu from "./menu";
+import Profile from "./profile";
 
 const UserSettings = () => (
   <div id="UserSettings">
@@ -11,7 +12,7 @@ const UserSettings = () => (
       <Menu />
     </div>
     <div className="vl" />
-    <text>body</text>
+    <Profile />
   </div>
 );
 
