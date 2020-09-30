@@ -149,7 +149,6 @@ class ProviderAuthorizationsController < ApplicationController
     @provider_authorization.update_with_auth_info(auth_info)
     @provider_authorization.touch
     set_request_locale
-    flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized #{@site.site_name_short} to write to your account " +
         "on #{@provider_authorization.provider}. Thanks! Please try " +

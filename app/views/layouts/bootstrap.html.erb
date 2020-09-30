@@ -64,8 +64,8 @@
         </div>
       <% end %>
 
-      <% unless @headless %>
-        <% if current_user && session[:potential_place] && flash.empty? %>
+      <% if !@headless && flash.empty? %>
+        <% if current_user && session[:potential_place] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="container-fluid bg-warning">
               <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
@@ -73,7 +73,7 @@
               <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
             </div>
           </div>
-        <% elsif current_user && session[:potential_site] && flash.empty? %>
+        <% elsif current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
