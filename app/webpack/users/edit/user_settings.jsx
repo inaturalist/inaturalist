@@ -7,7 +7,7 @@ const UserSettings = () => (
   <div id="UserSettings">
     <div id="LeftNav">
       <div id="UserSettingsHeader">
-        <h2>Settings</h2>
+        <h2>{I18n.t( "settings" )}</h2>
       </div>
       <Menu />
     </div>

@@ -545,6 +545,7 @@ en:
   any: any
   any_: Any
   anyone: Anyone
+  applications: Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
   apply_fields: Apply fields
@@ -689,6 +690,7 @@ en:
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
   back_to_your_projects: Back to your projects
+  badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
   batch: Batch
@@ -699,6 +701,7 @@ en:
   because_of: because of
   before_importing_photos: before importing photos
   bg_color: BG Color
+  bio: Bio
   bioblitz: Bioblitz
   birds: birds
   birthday: Birthday
@@ -951,6 +954,7 @@ en:
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   # Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Content
+  content_and_display: Content & Display
   content_author: Content Author
   content_hidden: Content Hidden
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1228,6 +1232,7 @@ en:
   disagree_: Disagree
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
+  display_name: Display Name
   distance_traveled_value: "Distance traveled: %{distance}m"
   distance_traveled: "Distance traveled (m)"
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
@@ -2448,6 +2453,7 @@ en:
   note: Note
   notes: Notes
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
+  notifications: Notifications
   notify_me_of_mentions: Notify me of mentions (e.g. @username)
   notify_me_about_redundant_identifications: Notify me about confirming identifications
   notify_me_about_redundant_identifications_desc: |
@@ -3306,6 +3312,8 @@ en:
   processing: Processing
   processing3p: "Processing..."
   profile: Profile
+  profile_and_user: Profile & User
+  profile_picture: Profile Picture
   profile_visibility_desc: |
     In an effort to keep spam off of %{site_name}, user profiles are only
     publicly visible after a user has contributed several Research Grade
@@ -3477,6 +3485,7 @@ en:
       not_external: not external
       not_internal: not internal
       error: error
+  relationships_user_settings: Relationships
   relationship_html: "Relationship: %{link}"
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -4295,6 +4304,7 @@ en:
   upload_a_csv_file_with_observation: |
     Upload a CSV file with observation data. If you have your data in a
     spreadsheet or database, this is probably the way to go.
+  upload_new_photo: Upload New Photo
   upload_photo: Upload Photo
   upload_range: Upload Range
   uploaded_by: Uploaded by

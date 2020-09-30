@@ -6,26 +6,26 @@ const Profile = () => (
   <div id="SettingsContainer">
     <div id="SettingsItem">
       <text id="ProfileHeader">
-        Profile Picture
+        {I18n.t( "profile_picture" )}
       </text>
       <div id="row">
         <img alt="profile-empty" src={emptyProfileImage} />
         <div className="centered-column">
           <button className="blue-button" type="button">
-            <text className="blue-button-text">Upload new photo</text>
+            <text className="blue-button-text">{I18n.t( "upload_new_photo" )}</text>
           </button>
           <button className="gray-button" type="button">
-            <text className="gray-button-text">Remove photo</text>
+            <text className="gray-button-text">{I18n.t( "remove_photo" )}</text>
           </button>
         </div>
       </div>
     </div>
-    <div>Username</div>
-    <div>Email</div>
-    <div>Change Password</div>
-    <div>Display name</div>
-    <div>Bio</div>
-    <div>Badges</div>
+    <div>{I18n.t( "username" )}</div>
+    <div>{I18n.t( "email" )}</div>
+    <div>{I18n.t( "change_password" )}</div>
+    <div>{I18n.t( "display_name" )}</div>
+    <div>{I18n.t( "bio" )}</div>
+    <div>{I18n.t( "badges" )}</div>
   </div>
 );
 
