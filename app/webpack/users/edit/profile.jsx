@@ -1,5 +1,7 @@
 import React from "react";
 
+const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png"
+
 const Profile = () => (
   <div id="SettingsContainer">
     <div id="SettingsItem">
@@ -7,7 +9,7 @@ const Profile = () => (
         Profile Picture
       </text>
       <div id="row">
-        <image />
+        <img alt="profile-empty" src={emptyProfileImage} />
         <div className="centered-column">
           <button className="blue-button" type="button">
             <text className="blue-button-text">Upload new photo</text>
