@@ -8,6 +8,11 @@
   flex-direction: column;
 }
 
+#row {
+  display: flex;
+  flex-direction: row;
+}
+
 #UserSettingsHeader h2 {
   color: #333;
   margin-left: 54px;
@@ -39,8 +44,52 @@
 }
 
 #SettingsContainer {
+  margin-top: 91px;
   margin-left: 50px;
   display: flex;
   flex-direction: column;
   max-height: 700px;
+}
+
+#SettingsItem {
+  margin-bottom: 23px;
+}
+
+#ProfileHeader {
+  font-weight: 500;
+  line-height: 17px;
+  margin-bottom: 20px;
+}
+
+.blue-button {
+  padding-right: 11px;
+  padding-left: 12px;
+  height: 26px;
+  min-width: 115px;
+  border-radius: 7px;
+  border-color: transparent;
+  background-color: #2e78b8;
+}
+
+.blue-button-text {
+  color: #fff;
+  font-size: 12px;
+}
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gray-button {
+  margin-top: 11px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.gray-button-text {
+  color: #d8d8d8;
+  text-decoration: underline;
+  font-size: 12px;
 }
