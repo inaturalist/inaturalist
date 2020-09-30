@@ -19,6 +19,7 @@ class ObservationFieldValue extends React.Component {
     // allows fields from anyone
     const editAllowed = (
       currentUser
+      && observation.user
       && (
         currentUser.id === observation.user.id
         || ( pref === "curators" && viewerIsCurator )
@@ -30,6 +31,8 @@ class ObservationFieldValue extends React.Component {
     // observer
     const deleteAllowed = (
       currentUser
+      && observation.user
+      && ofv.user
       && (
         currentUser.id === observation.user.id
         || ( ofv && currentUser.id === ofv.user.id )
