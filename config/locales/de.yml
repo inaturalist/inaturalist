@@ -1717,7 +1717,7 @@ de:
     species: Die meisten Arten in %{time}
     observations: Die meisten Beobachtungen in %{time}
     identifications: Die meisten Bestimmungen in %{time}
-  leading: Führend
+  leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
   learn_more: Mehr erfahren
@@ -3629,7 +3629,7 @@ de:
   suggest_or_require_that: Wähle optionale oder verpflichtende Felder aus, die für zum Projekt hinzuzufügende Beobachtungen ausgefüllt werden können/müssen.
   suggestions: Vorschläge
   summary: Zusammenfassung
-  supporting: Unterstützen
+  supporting: bestätigend
   support_inaturalist: iNaturalist unterstützen
   suspend_user: Benutzer sperren
   sw_lat: SW Lat.
@@ -6291,6 +6291,7 @@ de:
         mushroom_observer_import_flow_task:
           attributes:
             base:
+              api_key_in_use: "Der Import für diesen Benutzer von Mushroom Observer läuft oder ist für den Import in der Warteschlange"
               api_key_missing: "Der Mushroom Observer API-Schlüssel fehlt"
         observation:
           attributes:
