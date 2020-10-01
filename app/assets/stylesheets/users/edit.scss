@@ -1,6 +1,5 @@
 #UserSettings {
   display: flex;
-  // flex-wrap: nowrap;
 }
 
 #Column {
@@ -14,14 +13,13 @@
 
 #UserSettingsHeader h2 {
   color: #333;
-  margin-left: 54px;
   margin-top: 33px;
   margin-bottom: 38px;
+  font-weight: bold;
 }
 
 #UserSettingsMenu {
   font-size: 15px;
-  margin-left: 54px;
 
   a {
     color: #333;
@@ -33,6 +31,16 @@
       font-weight: 600;
       text-decoration: none;
     }
+  }
+}
+
+.left-nav {
+  margin-left: 54px;
+}
+
+@media (max-width: 767px) {
+  .left-nav {
+    margin-left: 38px;
   }
 }
 
@@ -61,7 +69,7 @@
 }
 
 #Header {
-  font-weight: 500;
+  font-weight: bold;
   line-height: 17px;
   margin-bottom: 8px;
   display: flex;
@@ -75,6 +83,11 @@
   .small {
     font-size: 12px;
     margin-bottom: 7px;
+  }
+  
+  .downward-caret {
+    color: #bbbbbb;
+    margin-left: 6px;
   }
 }
 
@@ -143,7 +156,7 @@
 }
 
 .italic-text {
-  max-width: 256px;
+  max-width: 257px;
   font-size: 12px;
   font-style: italic;
   line-height: 1.17;

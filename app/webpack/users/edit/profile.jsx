@@ -35,7 +35,10 @@ const Profile = () => (
       <form><input type="text" id="InputMedium" /></form>
     </div>
     <div id="SettingsItem">
-      <div id="Header" className="margin-medium">{I18n.t( "change_password" )}</div>
+      <div id="Header" className="margin-medium">
+        {I18n.t( "change_password" )}
+        <div className="downward-caret">&#x25BE;</div>
+      </div>
       <div id="Header" className="small">{I18n.t( "new_password" )}</div>
       <form className="margin-medium-small"><input type="text" id="InputMedium" /></form>
       <div id="Header" className="small">{I18n.t( "confirm_new_password" )}</div>
