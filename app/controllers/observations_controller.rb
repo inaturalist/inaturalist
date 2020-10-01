@@ -100,9 +100,10 @@ class ObservationsController < ApplicationController
     # API methods, and HTML/views and partials
     if human_or_scraper && !showing_partial
       @shareable_description = begin
-                                generate_shareable_description
-                               rescue StandardError
-                                ""
+                                 generate_shareable_description
+                               rescue StandardError => e
+                                 Logstasher.write_exception( e, request: request, session: session, user: current_user )
+                                 ""
                                end
     else
       h = observations_index_search(params)
