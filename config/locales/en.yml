@@ -702,6 +702,7 @@ en:
   before_importing_photos: before importing photos
   bg_color: BG Color
   bio: Bio
+  bio_description: Tell other users on iNaturalist about yourself!
   bioblitz: Bioblitz
   birds: birds
   birthday: Birthday
@@ -1232,7 +1233,20 @@ en:
   disagree_: Disagree
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
+  display_monthly_supporter_badge: Display Monthly Supporter Badge on profile
+  display_monthly_supporter_badge_description: |
+    iNaturalist Monthly Supporters make automatic monthly 
+    contributions which are received by the California Academy of 
+    Sciences (United States IRS EIN 94-1156258) to support the 
+    not-for-profit operation of iNaturalist and iNaturalist Network 
+    sites. Click here to become a Monthly Supporter. When we 
+    have confirmed your support you will be able to check this box 
+    to display this status on your profile. Note: you will need to use 
+    exactly the same email address on Donorbox as you do on 
+    iNaturalist for us to confirm that you've become a Monthly 
+    Supporter.
   display_name: Display Name
+  display_name_description: This is the name that will be displayed on your profile
   distance_traveled_value: "Distance traveled: %{distance}m"
   distance_traveled: "Distance traveled (m)"
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
@@ -1340,6 +1354,7 @@ en:
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   eligible_for_research_grade: Eligible for Research Grade
   email: Email
+  email_description: Your email is not shared with other users on iNaturalist
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_addresses_to_receive_invites: Email addresses to receive invites
@@ -4304,7 +4319,7 @@ en:
   upload_a_csv_file_with_observation: |
     Upload a CSV file with observation data. If you have your data in a
     spreadsheet or database, this is probably the way to go.
-  upload_new_photo: Upload New Photo
+  upload_new_photo: Upload new photo
   upload_photo: Upload Photo
   upload_range: Upload Range
   uploaded_by: Uploaded by
@@ -4415,6 +4430,7 @@ en:
     their observations.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
+  username_description: This is the username you will use to log in, and other users can use to identify you on iNaturalist
   username_or_email: Username or email
   username_or_user_id: Username or User ID
   users: Users

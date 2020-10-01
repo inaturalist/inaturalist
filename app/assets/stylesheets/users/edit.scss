@@ -1,14 +1,13 @@
 #UserSettings {
   display: flex;
-  flex-wrap: nowrap;
+  // flex-wrap: nowrap;
 }
 
-#LeftNav {
-  display: flex;
-  flex-direction: column;
+#Column {
+  flex-flow: column nowrap;
 }
 
-#row {
+#Row {
   display: flex;
   flex-direction: row;
 }
@@ -43,29 +42,45 @@
   margin-left: 44px;
 }
 
+@media (min-width: 768px) {
+  .two-column {
+    display: flex;
+    flex-flow: column wrap;
+    column-gap: 89px;
+    max-height: 611px;
+  }
+}
+
 #SettingsContainer {
   margin-top: 91px;
   margin-left: 50px;
-  display: flex;
-  flex-direction: column;
-  max-height: 700px;
 }
 
 #SettingsItem {
   margin-bottom: 23px;
 }
 
-#ProfileHeader {
+#Header {
   font-weight: 500;
   line-height: 17px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+
+  .asterisk {
+    color: #ca5c53;
+    margin-left: 3px;
+  }
+
+  .small {
+    font-size: 12px;
+    margin-bottom: 7px;
+  }
 }
 
 .blue-button {
-  padding-right: 11px;
-  padding-left: 12px;
   height: 26px;
-  min-width: 115px;
+  width: 115px;
   border-radius: 7px;
   border-color: transparent;
   background-color: #2e78b8;
@@ -92,4 +107,62 @@
   color: #d8d8d8;
   text-decoration: underline;
   font-size: 12px;
+}
+
+#InputSmall {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  color: #fafafa;
+  width: 155px;
+  height: 26px;
+}
+
+#InputMedium {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  color: #fafafa;
+  width: 205px;
+  height: 26px;
+}
+
+#InputLarge {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  color: #fafafa;
+  width: 317px;
+  height: 137px;
+}
+
+#Checkbox {
+  border-color: #bbbbbb;
+  border-width: 1px;
+  color: #f7f7f7;
+  width: 14px;
+  height: 14px;
+  margin-right: 11px;
+}
+
+.italic-text {
+  max-width: 256px;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.17;
+  color: #656665;
+  margin-bottom: 13px;
+}
+
+.profile-picture {
+  margin-top: 20px;
+}
+
+.user-photo {
+  margin-right: 25px;
+}
+
+.margin-medium {
+  margin-bottom: 17px;
+}
+
+.margin-medium-small {
+  margin-bottom: 13px;
 }

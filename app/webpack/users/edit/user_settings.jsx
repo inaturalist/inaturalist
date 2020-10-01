@@ -5,7 +5,7 @@ import Profile from "./profile";
 
 const UserSettings = () => (
   <div id="UserSettings">
-    <div id="LeftNav">
+    <div id="Column">
       <div id="UserSettingsHeader">
         <h2>{I18n.t( "settings" )}</h2>
       </div>
