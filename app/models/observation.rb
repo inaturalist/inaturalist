@@ -56,7 +56,7 @@ class Observation < ActiveRecord::Base
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
-    :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh,
+    :taxon_introduced, :taxon_endemic, :taxon_native,
     :skip_identification_indexing, :will_be_saved_with_photos
   
   # Set if you need to set the taxon from a name separate from the species 
