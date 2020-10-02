@@ -1080,6 +1080,7 @@ zh-CN:
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
   drawings: 绘画
   duplicate_verb: 复制
+  duration_value: "持续时间：%{duration}分钟"
   each_place_displays_all_species_inat_knows: "每个地点页面都会显示%{site_name}已知的该地点所有分类单元的相关信息，包括其丰度，保护状态以及谁首先在%{site_name}上从该地点发现了该分类单元的信息。您可以通过分类群，颜色，保护状态等条件来检索分类单元，或通过旧版的普通搜索检索分类单元。"
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
@@ -1504,6 +1505,7 @@ zh-CN:
   ignore_and_continue: 忽略并继续
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
+  image_size_control: 图片大小控制
   imperiled: 危及
   import: 导入
   import_all_photos_as_observations: 将所有照片导入为观察
@@ -1521,6 +1523,7 @@ zh-CN:
   importing: "正在导入..."
   improving: 正在改进
   in_n: "在 %{n}"
+  in_place_x: 在 %{place}
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
   inbox: 收件箱
@@ -1964,6 +1967,8 @@ zh-CN:
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "YYYY年M月D日"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
   month: 月
   monthly_supporter_since_date_html: |
@@ -2246,6 +2251,7 @@ zh-CN:
   observation_field: 观察字段
   observation_field_details: 观察地区详情
   observation_field_type_text: 文本
+  observation_field_type_numeric: 数值
   observation_field_type_date: 日期
   observation_field_type_time: 时间
   observation_field_type_datetime: 日期时间
@@ -2312,6 +2318,8 @@ zh-CN:
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_descriptions:
+    absent: 在区域内未发生
+    common: 频繁发生
     irregular: 存在不可预测，包含流浪生物。可能会在某些年份很常见而另一些年份不存在
     present: 在此区域发生
     uncommon: 定期发生，但数量较少，需要仔细寻找正确栖息地
@@ -2640,6 +2648,8 @@ zh-CN:
       undefined: 未定义
       Unknown: 未知
       unknown: 未知
+      Village_block: 乡村街区
+      village_block: 乡村街区
       Zone: 地区
       zone: 地带
   place_guess: 地方猜想
@@ -3328,6 +3338,9 @@ zh-CN:
   show_taxa_from_place: "显示来自%{place}的分类群"
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: 显示前 %{x}
   showing_taxa_from_everywhere: "显示来自世界各地的分类群"
   showing_taxa_from_place: "显示来自%{place}的分类群"
   showing_x_of_y_listings: "显示%{x}/%{y}个列表项"
@@ -3392,6 +3405,7 @@ zh-CN:
     select_one_or_more_sounds: 请选择一个或多个声音
     selected_sounds: 已选择声音
     sound: 声音
+    sound_has_been_flagged: 此声音已被标记。
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
     your_soundcloud_account: 您的SoundCloud账户
@@ -3400,6 +3414,7 @@ zh-CN:
   source_wikipedia: "来源：维基百科"
   source_list_: "来源列表"
   source_list:
+    ubio: uBio
     catalogue_of_life: 生命目录（Catalogue of Life）
     inaturalist: iNaturalist
     new_zeland_organisms_register: 新西兰生物注册
@@ -3453,15 +3468,19 @@ zh-CN:
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
+  status_in_place: '在 %{place} 为 %{status}'
   stay_and_try_again: 停留并重试
   still_no_luck?: 仍然不高兴？
   still_needs_id?: 社群可以确认/改进ID么？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
   stop_following_user: "停止关注%{user}"
+  stop_testing: 停止测试
+  stop_trusting_this_person_with_your_private_coordinates: 停止以您的隐藏坐标来信任此人
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 商店
+  studies_that_used_inaturalist_data_in_year: 在%{year} 用到过iNaturalist数据的研究
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
@@ -4515,6 +4534,7 @@ zh-CN:
       import:
         coordinate_systems_help: |
           %{site_name}可接受多种不同坐标系的坐标系统，因此当您用并非纬度/经度的系统提供坐标时，我们需要知道您正在使用哪个坐标系，以便正确解析坐标。请确保您已为您的数据选择了正确的坐标系，否则记录的位置可能会与正确位置偏离很远。如果您的坐标来自GPS装置，请检查其设置以获取其正在使用的坐标系的名称。请注意，我们不会存储自定义坐标，只存储它们的纬度/经度转换结果。
+        date_column_format: YYYY-MM-DD HH:MM
         geoprivacy_must_be_in_english: |
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
         project_csv_template_notice_html: |
@@ -5194,7 +5214,10 @@ zh-CN:
           在常用名前显示学名。
         taxon_change_desc: |
           当在%{site_name}上合并或重命名分类单元时，如果更改是明确的，您的观察、列出的分类单元、标识等将自动更新为新的分类单元。如果您选择退出或更改不明确（例如拆分），您将收到有关更改链接到工具的更新，如果您愿意，可以使用该工具手动更新您的内容。
+        thanks_for_supporting_us!: 感谢您对我们的支持！
         youve_used_all_of_your_blocks: 您使用了您所有的封禁权利。移除一个封禁行为来添加另一个。
+      recent:
+        about_recent_users: 关于
       show:
         take_a_chance_to_review_html: '抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。'
         this_user_was_banned: 此用户已被停用
@@ -5206,6 +5229,13 @@ zh-CN:
         child_name_private: 孩子名称 (非公开)
         create_a_minor_account: 创建一个次要账户
         create_minor_account: 创建次要账户
+        parent_name_private: 父母或法定监护人姓名(非公开)
+        parent_email: 父母或法定监护人电子邮箱(非公开)
+        parent_information_private: 家长信息(非公开)
+        step1_title: 为您的孩子创建一个帐户
+        step2_title: 通过信用卡来确认您的身份
+        step3_title: 等待用于确认的电子邮件
+        step3_donor_title: 您孩子的账号已经被激活
     welcome:
       index:
         welcome_message_html: |
@@ -5364,10 +5394,12 @@ zh-CN:
       invalid: 无效
       less_than: 必须小于 %{count}
       less_than_or_equal_to: 必须小于等于 %{count}
+      new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
       not_a_number: 不是数字
       not_an_integer: 必须是一个整数
       odd: 必须是奇数
       record_invalid: '验证失败：%{errors}'
+      requires_privilege_organizer: 要做到这一点，必须有50个可核查的观察记录
       taken: 已被使用
       too_long:
         other: 太长了（最多 %{count} 个字符）
@@ -5491,6 +5523,7 @@ zh-CN:
         description: 描述
         authority: 权威
         place_id: 地方
+        url: 网址
         geoprivacy: 位置隐私
         iucn: IUCN等价物
       flag:
@@ -5503,11 +5536,19 @@ zh-CN:
         occurrence_status_level: 出现状态级别
         establishment_means: 建立手段
       observation:
+        description: 备注
         geo_x: 向东
         geo_y: 向北
+        observed_on: 观察日期
       observation_field_value:
         value: '值'
       observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: 等待中
+        #Date/time the task began processing
+        started_at: 已启动
+        #Date/time the task finished processing
+        finished_at: 已完成
         #Inputs to an export task, e.g. the query and the columns
         inputs: 输入
       post:
@@ -5706,11 +5747,17 @@ zh-CN:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
+              should_be_in_english: 应为英文
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 不能匹配指定此词汇的物种名
               must_match_the_taxon_if_valid: |
                 如果这是一个有效的学名那它一定符合分类群名称
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                不能有超过 %{max} 张照片
         user:
           attributes:
             login:
@@ -5718,6 +5765,11 @@ zh-CN:
                 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
             email:
               must_look_like_an_email_address: 必须看起来像电子邮件地址
+              domain_is_not_supported: 域名不被支持
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: 您已经屏蔽了该用户
         user_parent:
           attributes:
             email:
@@ -5738,6 +5790,8 @@ zh-CN:
         epifamily: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
+  #Title of a section warning the user about something
+  warning_title: 警告
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 上一页"
