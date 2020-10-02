@@ -4,7 +4,7 @@
   = javascript_include_tag "users/registrations"
 - content_for( :content ) do
   .flexrow
-    - if @observations && @observations.size > 0
+    - if !@skip_external_connections && @observations && @observations.size > 0
       :ruby
         obs = @observations[rand(@observations.size)]
         photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.photo

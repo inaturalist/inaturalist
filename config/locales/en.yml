@@ -2375,6 +2375,7 @@ en:
   no_matching_places: No matching places
   no_matching_projects: No matching projects
   no_matching_species: No matching species.
+  no_matching_taxa: No matching taxa
   no_matching_users: No matching users.
   no_members_yet: "No members yet."
   no_messages_yet: No messages yet
@@ -3392,15 +3393,27 @@ en:
   ranks:
       stateofmatter: State of matter
       kingdom: Kingdom
+      x_kingdoms:
+        one: Kingdom
+        other: Kingdoms
       subkingdom: Subkingdom
       phylum: Phylum
+      x_phyla:
+        one: Phylum
+        other: Phyla
       subphylum: Subphylum
       superclass: Superclass
       class: Class
+      x_classes:
+        one: Class
+        other: Classes
       subclass: Subclass
       infraclass: Infraclass
       superorder: Superorder
       order: Order
+      x_orders:
+        one: Order
+        other: Orders
       suborder: Suborder
       infraorder: Infraorder
       subterclass: Subterclass
@@ -3410,11 +3423,17 @@ en:
       superfamily: Superfamily
       epifamily: Epifamily
       family: Family
+      x_families:
+        one: Family
+        other: Families
       subfamily: Subfamily
       supertribe: Supertribe
       tribe: Tribe
       subtribe: Subtribe
       genus: Genus
+      x_genera:
+        one: Genus
+        other: Genera
       genushybrid: Genushybrid
       subgenus: Subgenus
       section: Section
@@ -3422,6 +3441,9 @@ en:
       complex: Complex
       # Singular
       species: Species
+      x_species:
+        one: Species
+        other: Species
       hybrid: Hybrid
       # Singular
       subspecies: Subspecies
@@ -5023,6 +5045,55 @@ en:
           You can copy this taxon into another guide. If you are one of the
           editors of this guide it should copy everything, but if you're not, it
           will only copy the licensed content.
+    lifelists:
+      list_view: List View
+      tree_view: Tree View
+      observed_species: Observed Species
+      unobserved_species: Unobserved Species
+      all_species: All Species
+      all_unobserved_species: All Unobserved Species
+      observations_at_this_taxon: Observations at this taxon
+      observations_within_this_taxon: Observations within this taxon
+      all_observations: All Observations
+      total_observations: Total Observations
+      filter_by: Filter by
+      filtered_by: Filtered by
+      apply_filters_to_export: Apply filters to export
+      restrict_to_leaf_taxa: Restrict to leaf taxa
+      restrict_to_taxon: Restrict to %{taxon}
+      restrict_to_taxa_observed_in_place: Restrict to taxa observed in %{place}
+      exporting_all_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting all %{count} taxa
+      exporting_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting %{count} taxa
+      no_observations_found_in_place: No observations found in %{place}.
+      no_observations_found_within_this_taxon_in_place:
+        No observations found within this taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: No species found within this taxon in %{place}.
+      no_species_found_in_place: No species found in %{place}.
+      no_unobserved_species_in_place: No unobserved species in %{place}.
+      no_unobserved_species_within_this_taxon: No unobserved species within this taxon.
+      no_unobserved_species_within_this_taxon_in_place: No unobserved species within this taxon in %{place}.
+      reset_place_filter: Reset Place Filter
+      all_observations_in_this_taxon: All observations in this taxon
+      observations_of_exactly_this_taxon: Observations of exactly this taxon
+      focus_tree_on_this_taxon: Focus tree on this taxon
+      expand_all_nodes_in_this_branch: Expand all nodes in this branch
+      collapse_this_branch: Collapse this branch
+      dropdowns:
+        sort: Sort
+        taxonomic: Taxonomic
+        name: Name
+        most_observed: Most Observed
+        date_added_newest: Date Added, Newest to Oldest
+        date_added_oldest: Date Added, Oldest to Newest
+        ancestry: Ancestry
+        show: Show
+        children: Children
+        simplified_tree: Simplified Tree
+        full_taxonomy: Full Taxonomy
     listed_taxa:
       establishment_field:
         confirmation: |

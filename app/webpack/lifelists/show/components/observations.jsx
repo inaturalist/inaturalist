@@ -7,7 +7,7 @@ import Observation from "../../../projects/show/components/observation";
 class Observations extends Component {
   render( ) {
     const {
-      lifelist, search, fetchNextPage, config, setSpeciesPlaceFilter
+      lifelist, search, fetchNextPage, config, setSpeciesPlaceFilter, setObservationSort
     } = this.props;
     let view;
     const loading = !search || ( !search.searchResponse && !search.loaded );
@@ -18,9 +18,13 @@ class Observations extends Component {
       view = ( <div className="loading_spinner huge" /> );
     } else if ( _.isEmpty( observations ) && lifelist.speciesPlaceFilter ) {
       if ( lifelist.detailsTaxon ) {
-        emptyMessage = `No observations found within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+        emptyMessage = I18n.t( "views.lifelists.no_observations_found_within_this_taxon_in_place", {
+          place: lifelist.speciesPlaceFilter.display_name
+        } );
       } else {
-        emptyMessage = `No observations found in ${lifelist.speciesPlaceFilter.display_name}.`;
+        emptyMessage = I18n.t( "views.lifelists.no_observations_found_in_place", {
+          place: lifelist.speciesPlaceFilter.display_name
+        } );
       }
       emptyClearButton = (
         <button
@@ -28,7 +32,7 @@ class Observations extends Component {
           className="btn btn-primary"
           onClick={( ) => setSpeciesPlaceFilter( null )}
         >
-          Reset Place Filter
+          { I18n.t( "views.lifelists.reset_place_filter" ) }
         </button>
       );
     } else {
@@ -64,13 +68,46 @@ class Observations extends Component {
               onClick={fetchNextPage}
             >
               <i className="fa fa-caret-down" />
-              Show More
+              { I18n.t( "show_more" ) }
             </button>
           </div>
         );
     }
+    const sortLabel = lifelist.observationSort === "dateAsc"
+      ? `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${I18n.t( "views.lifelists.dropdowns.date_added_oldest" )}`
+      : `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${I18n.t( "views.lifelists.dropdowns.date_added_newest" )}`;
+    const sortOptions = (
+      <div className="dropdown sortDropdown">
+        <button
+          className="btn btn-sm dropdown-toggle"
+          type="button"
+          data-toggle="dropdown"
+          id="sortDropdown"
+        >
+          { sortLabel }
+          <span className="caret" />
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
+          <li
+            className={lifelist.observationSort === "dateDesc" ? "selected" : null}
+            onClick={( ) => setObservationSort( "dateDesc" )}
+          >
+            { I18n.t( "views.lifelists.dropdowns.date_added_newest" ) }
+          </li>
+          <li
+            className={lifelist.observationSort === "dateAsc" ? "selected" : null}
+            onClick={( ) => setObservationSort( "dateAsc" )}
+          >
+            { I18n.t( "views.lifelists.dropdowns.date_added_oldest" ) }
+          </li>
+        </ul>
+      </div>
+    );
     return (
       <div className="flex-container">
+        <div className="search-options">
+          { sortOptions }
+        </div>
         <div className="ObservationsGrid" key="observations-flex-grid">
           { emptyMessage && (
             <div className="empty">
@@ -91,7 +128,8 @@ Observations.propTypes = {
   search: PropTypes.object,
   fetchNextPage: PropTypes.func,
   lifelist: PropTypes.object,
-  setSpeciesPlaceFilter: PropTypes.func
+  setSpeciesPlaceFilter: PropTypes.func,
+  setObservationSort: PropTypes.func
 };
 
 export default Observations;

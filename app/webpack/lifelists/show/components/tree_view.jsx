@@ -8,7 +8,10 @@ class TreeView extends React.Component {
     const {
       lifelist, setTreeMode
     } = this.props;
-    const rankLabel = `SimpleTree: ${lifelist.treeMode === "simplified" ? "on" : "off"}`;
+    let label = lifelist.treeMode === "simplified"
+      ? I18n.t( "views.lifelists.dropdowns.simplified_tree" )
+      : I18n.t( "views.lifelists.dropdowns.full_taxonomy" );
+    label = `${I18n.t( "view" )}: ${label}`;
     return (
       <div className="dropdown">
         <button
@@ -17,14 +20,17 @@ class TreeView extends React.Component {
           data-toggle="dropdown"
           id="rankDropdown"
         >
-          { rankLabel }
+          { label }
           <span className="caret" />
         </button>
         <ul className="dropdown-menu" aria-labelledby="rankDropdown">
           <li
             onClick={( ) => setTreeMode( lifelist.treeMode === "simplified" ? "tree" : "simplified" )}
           >
-            SimpleTree: { lifelist.treeMode === "simplified" ? "off" : "on" }
+            { lifelist.treeMode === "simplified"
+              ? I18n.t( "views.lifelists.dropdowns.full_taxonomy" )
+              : I18n.t( "views.lifelists.dropdowns.simplified_tree" )
+            }
           </li>
         </ul>
       </div>
@@ -32,14 +38,14 @@ class TreeView extends React.Component {
   }
 
   sortOptions( ) {
-    this.ssh = "ssh";
     const { lifelist, setTreeSort } = this.props;
-    let sortLabel = "Sort: Total Observations";
+    let sortLabel = I18n.t( "views.lifelists.dropdowns.most_observed" );
     if ( lifelist.treeSort === "name" ) {
-      sortLabel = "Sort: Name";
+      sortLabel = I18n.t( "views.lifelists.dropdowns.name" );
     } else if ( lifelist.treeSort === "taxonomic" ) {
-      sortLabel = "Sort: Taxonomic";
+      sortLabel = I18n.t( "views.lifelists.dropdowns.taxonomic" );
     }
+    sortLabel = `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${sortLabel}`;
     return (
       <div className="dropdown">
         <button
@@ -56,19 +62,19 @@ class TreeView extends React.Component {
             className={lifelist.treeSort === "obsDesc" ? "selected" : null}
             onClick={( ) => setTreeSort( "obsDesc" )}
           >
-            Total Observations
+            { I18n.t( "views.lifelists.dropdowns.most_observed" ) }
           </li>
           <li
             className={lifelist.treeSort === "name" ? "selected" : null}
             onClick={( ) => setTreeSort( "name" )}
           >
-            Name
+            { I18n.t( "views.lifelists.dropdowns.name" ) }
           </li>
           <li
             className={lifelist.treeSort === "taxonomic" ? "selected" : null}
             onClick={( ) => setTreeSort( "taxonomic" )}
           >
-            Taxonomic
+            { I18n.t( "views.lifelists.dropdowns.taxonomic" ) }
           </li>
         </ul>
       </div>
@@ -78,10 +84,12 @@ class TreeView extends React.Component {
   ancestryOptions( ) {
     this.ssh = "ssh";
     const { lifelist, setListShowAncestry } = this.props;
-    let sortLabel = "Ancestry: Hide";
+    let label = I18n.t( "hide" );
     if ( lifelist.listShowAncestry ) {
-      sortLabel = "Ancestry: Show";
+      label = I18n.t( "show" );
     }
+    label = `${I18n.t( "views.lifelists.dropdowns.ancestry" )}: ${label}`;
+
     return (
       <div className="dropdown">
         <button
@@ -90,7 +98,7 @@ class TreeView extends React.Component {
           data-toggle="dropdown"
           id="ancestryDropdown"
         >
-          { sortLabel }
+          { label }
           <span className="caret" />
         </button>
         <ul className="dropdown-menu" aria-labelledby="ancestryDropdown">
@@ -98,7 +106,7 @@ class TreeView extends React.Component {
             className={lifelist.listShowAncestry ? "selected" : null}
             onClick={( ) => setListShowAncestry( !lifelist.listShowAncestry )}
           >
-            Ancestry: { lifelist.listShowAncestry ? "Hide" : "Show" }
+            { lifelist.listShowAncestry ? I18n.t( "hide" ) : I18n.t( "show" ) }
           </li>
         </ul>
       </div>
@@ -127,11 +135,8 @@ class TreeView extends React.Component {
 }
 
 TreeView.propTypes = {
-  config: PropTypes.object,
   lifelist: PropTypes.object,
-  setNavView: PropTypes.func,
   setTreeSort: PropTypes.func,
-  setListViewRankFilter: PropTypes.func,
   setTreeMode: PropTypes.func,
   setListShowAncestry: PropTypes.func
 };

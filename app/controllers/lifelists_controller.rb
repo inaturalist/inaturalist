@@ -4,20 +4,10 @@ class LifelistsController < ApplicationController
   before_filter :admin_required
 
   def by_login
-    respond_to do |format|
-      format.html do
-        render layout: "bootstrap"
-      end
-      format.csv do
-        tmp_path = DynamicLifelist.export( @user )
-        if tmp_path.blank?
-          render json: { error: t(:internal_server_error) }, status: 500
-          return
-        end
-        response.headers['Content-Disposition'] = "attachment; filename=\"#{File.basename(tmp_path)}\""
-        render file: tmp_path
-      end
+    if params[:place_id]
+      @place = Place.find_by_id(params[:place_id])
     end
+    render layout: "bootstrap"
   end
 
   def load_user

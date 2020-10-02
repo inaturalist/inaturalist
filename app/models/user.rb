@@ -99,7 +99,9 @@ class User < ActiveRecord::Base
   preference :no_tracking, :boolean, default: false
   preference :identify_image_size, :string, default: nil
   preference :identify_side_bar, :boolean, default: false
-  
+  preference :lifelist_nav_view, :string
+  preference :lifelist_details_view, :string
+
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
     identification_email_notification 

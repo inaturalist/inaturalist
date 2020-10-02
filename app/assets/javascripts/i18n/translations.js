@@ -421,6 +421,7 @@ I18n.translations["ar"] = {
   "except": "إلا",
   "exclusion_filters": "مرشحات الاستبعاد",
   "exit_full_screen": "إنهاء وضع الشاشة الكاملة",
+  "export": "تصدير",
   "export_observations": "تصدير الملاحظات",
   "exporting": "جارٍ التصدير...",
   "extinct": "منقرض",
@@ -1365,6 +1366,7 @@ I18n.translations["ar"] = {
   "show": "أظهر",
   "show_hidden_content": "إظهار المحتوى المخفي",
   "show_keyboard_shortcuts": "عرض اختصارات لوحة المفاتيح",
+  "show_more": "أظهر المزيد",
   "show_relative_proportions_of_all_observations": "إظهار النسب المرتبطة لجميع الملاحظات",
   "show_running_total": "إظهار تشغيل الاجمالي",
   "show_taxa_from_everywhere": "عرض أصناف من كل مكان",
@@ -1561,6 +1563,10 @@ I18n.translations["ar"] = {
   "view_your_year_stats": "عرض إحصائياتك لسنة %{year}",
   "view_yours": "عرض لك",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "اتفاق",
@@ -2289,6 +2295,7 @@ I18n.translations["bg"] = {
   "exclude_users": "Изключвай потребители",
   "exclusion_filters": "Изключващи филтри",
   "exit_full_screen": "Излез от цял екран",
+  "export": "Експортирай",
   "export_observations": "Експортирай наблюдения",
   "exporting": "Експортиране...",
   "extinct": "изчезнал",
@@ -2347,6 +2354,7 @@ I18n.translations["bg"] = {
   "has_sound": "Има звук",
   "has_sounds": "Има звуци",
   "here_are_our_top_species_suggestions": "Ето нашите най-добри предложения за видове",
+  "hide": "Скрий",
   "hide_content": "Скрий съдържанието",
   "high": "Висок",
   "history": "История",
@@ -3204,6 +3212,7 @@ I18n.translations["bg"] = {
   "share": "Споделяне",
   "show": "Показване",
   "show_keyboard_shortcuts": "Покажи клавишните комбинации",
+  "show_more": "Покажи повече",
   "show_relative_proportions_of_all_observations": "Покажи относителният дял на наблюденията към общия брой наблюдения",
   "show_taxa_from_everywhere": "Покажи таксони отвсякъде",
   "show_taxa_from_place": "Покажи таксони от %{place}",
@@ -3350,6 +3359,10 @@ I18n.translations["bg"] = {
   "view_your_year_stats": "Виж своята статистика за %{year}",
   "view_yours": "Виж своите",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Съгласие",
@@ -3822,6 +3835,7 @@ I18n.translations["br"] = {
   },
   "exact_location": "Lec'hiadur resis",
   "exit_full_screen": "Kuitaat ar mod skramm leun",
+  "export": "Ezporzhiañ",
   "export_observations": "Ezporzhiañ an evezhiadennoù",
   "exporting": "Oc'h ezporzhiañ...",
   "extinct": "Aet da get",
@@ -4100,6 +4114,8 @@ I18n.translations["br"] = {
   "prev": "kent",
   "previous": "Kent",
   "project": "Raktres",
+  "ranks": {
+  },
   "share": "Rannañ",
   "sounds": {
   },
@@ -4118,6 +4134,10 @@ I18n.translations["br"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -4704,6 +4724,7 @@ I18n.translations["ca"] = {
   "exclude_users": "Excloure Usuaris",
   "exclusion_filters": "Filtres d'exclusió",
   "exit_full_screen": "Surt del mode de pantalla completa.",
+  "export": "Exportar",
   "export_observations": "Exporta observacions",
   "exporting": "Exportant...",
   "extinct": "extint",
@@ -4780,6 +4801,7 @@ I18n.translations["ca"] = {
   "has_sounds": "Té sons",
   "heads_up": "Avís",
   "here_are_our_top_species_suggestions": "Aquí estan les principals espècies suggerides",
+  "hide": "Amaga",
   "hide_content": "Amaga Contingut",
   "hide_desc": "Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.\n",
   "hide_running_total": "Amagar el total acumulat",
@@ -5819,6 +5841,7 @@ I18n.translations["ca"] = {
   "show": "Mostra",
   "show_hidden_content": "Mostra Contingut Ocult",
   "show_keyboard_shortcuts": "Mostreu Dreceres de teclat",
+  "show_more": "Mostrar més",
   "show_relative_proportions_of_all_observations": "Mostra les proporcions relatives de totes les observacions",
   "show_running_total": "Mostrar l'acumulat total",
   "show_taxa_from_everywhere": "Mostra tàxons de tot arreu",
@@ -6045,6 +6068,10 @@ I18n.translations["ca"] = {
   "view_your_year_stats": "Veure les vostres estadístiques de %{year}",
   "view_yours": "Veure el vostre",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acord",
@@ -7040,6 +7067,7 @@ I18n.translations["cs"] = {
   "exclude_users": "Vyloučit uživatele",
   "exclusion_filters": "Vylučovací filtry",
   "exit_full_screen": "Ukončit celou obrazovku",
+  "export": "Exportovat",
   "export_observations": "Exportovat pozorování",
   "exporting": "Exportování...",
   "extinct": "vyhynulý",
@@ -7118,6 +7146,7 @@ I18n.translations["cs"] = {
   "has_sounds": "má zvuky",
   "heads_up": "Pozor",
   "here_are_our_top_species_suggestions": "Toto jsou naše nejlepší návrhy k druhům",
+  "hide": "Skrýt",
   "hide_content": "Skrýt obsah",
   "hide_desc": "Skrytí obsahu ho odstraní z veřejného náhledu, ale lidé budou i nadále\nvidět, že něco bylo skryto, a kurátoři stránek a autor\nbude stále moci vidět skrytý obsah. Obecně to\nplatí pouze pro psaný obsah, např. pokud skryjete obsah\nidentifikace, identifikace je stále viditelná, ale \npoznámky identifikátora jsou skryté. Tuto akci nelze vrátit zpět a pouze pracovníci webu mohou obsah odkrýt, jakmile je skrytý, proto buďte opatrní a používejte jej jen pro velmi\nnevhodný obsah.\n",
   "hide_running_total": "Skrýt Running Total",
@@ -8162,6 +8191,7 @@ I18n.translations["cs"] = {
   "show": "Zobrazit",
   "show_hidden_content": "Zobrazit skrytý obsah",
   "show_keyboard_shortcuts": "Zobrazit klávesové zkratky",
+  "show_more": "Zobrazit více",
   "show_relative_proportions_of_all_observations": "Zobrazte příbuzné části všech pozorování",
   "show_running_total": "Zobrazit Running Total",
   "show_taxa_from_everywhere": "Zobrazit taxony ze všech míst",
@@ -8395,6 +8425,10 @@ I18n.translations["cs"] = {
   "view_your_year_stats": "Zobrazit vaši statistiku za rok %{year}",
   "view_yours": "Zobrazit váš",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Shoda",
@@ -9412,6 +9446,7 @@ I18n.translations["da"] = {
   "exclude_users": "Ekskludér brugere",
   "exclusion_filters": "Eksklusionsfiltre",
   "exit_full_screen": "Afslut fuld skærm",
+  "export": "Eksportér",
   "export_observations": "Eksportér observationer",
   "exporting": "Eksporterer...",
   "extinct": "uddød",
@@ -9488,6 +9523,7 @@ I18n.translations["da"] = {
   "has_sounds": "Har lyde",
   "heads_up": "OBS",
   "here_are_our_top_species_suggestions": "Her er vores topforslag til art",
+  "hide": "Skjul",
   "hide_content": "Skjul indhold",
   "hide_desc": "Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.\n",
   "hide_running_total": "Skjul igangværende total",
@@ -10527,6 +10563,7 @@ I18n.translations["da"] = {
   "show": "Vis",
   "show_hidden_content": "Vis skjult indhold",
   "show_keyboard_shortcuts": "Vis tastaturgenveje",
+  "show_more": "Vis mere",
   "show_relative_proportions_of_all_observations": "Vis relative proportioner for alle observationer",
   "show_running_total": "Vis igangværende total",
   "show_taxa_from_everywhere": "Viser taksa fra overalt",
@@ -10753,6 +10790,10 @@ I18n.translations["da"] = {
   "view_your_year_stats": "Vis dine %{year} statistikker",
   "view_yours": "Vis dine",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Enighed",
@@ -11708,6 +11749,7 @@ I18n.translations["de"] = {
   "exclude_users": "Benutzer ausschließen",
   "exclusion_filters": "Ausschluss-Filter",
   "exit_full_screen": "Vollbild beenden",
+  "export": "Exportieren",
   "export_observations": "Beobachtungen exportieren",
   "exporting": "Exportiere...",
   "extinct": "ausgestorben",
@@ -11783,6 +11825,7 @@ I18n.translations["de"] = {
   "has_sounds": "mit Audio",
   "heads_up": "Achtung",
   "here_are_our_top_species_suggestions": "Hier sind unsere besten Vorschläge",
+  "hide": "ausblenden",
   "hide_content": "Inhalt ausblenden",
   "hide_desc": "Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.\n",
   "hide_running_total": "Gesamtzahl ausblenden",
@@ -12810,6 +12853,7 @@ I18n.translations["de"] = {
   "show": "Anzeigen",
   "show_hidden_content": "Ausgeblendeten Inhalt anzeigen",
   "show_keyboard_shortcuts": "Tastaturkürzel anzeigen",
+  "show_more": "Mehr anzeigen",
   "show_relative_proportions_of_all_observations": "Relativen Anteil aller Beobachtungen anzeigen",
   "show_running_total": "Gesamtzahl anzeigen",
   "show_taxa_from_everywhere": "Taxa von überall anzeigen",
@@ -13028,6 +13072,10 @@ I18n.translations["de"] = {
   "view_your_year_stats": "Deine Statistik für %{year} anzeigen",
   "view_yours": "Deine anzeigen",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Zustimmung",
@@ -13959,6 +14007,7 @@ I18n.translations["el"] = {
   "exclude_users": "Εξαίρεση χρηστών",
   "exclusion_filters": "Φίλτρα Εξαίρεσης",
   "exit_full_screen": "Έξοδος από πλήρη οθόνη",
+  "export": "Εξαγωγή",
   "export_observations": "Εξαγωγή Παρατηρήσεων",
   "exporting": "Εξαγωγή...",
   "extinct": "εξαφανισμένο",
@@ -14035,6 +14084,7 @@ I18n.translations["el"] = {
   "has_sounds": "Έχει Ήχους",
   "heads_up": "Προσοχή!",
   "here_are_our_top_species_suggestions": "Εδώ είναι η προτεινόμενη λίστα των κορυφαίων μας ειδών",
+  "hide": "Απόκρυψη",
   "hide_content": "Απόκρυψη Περιεχομένου",
   "hide_desc": "Το να αποκρύψετε το περιεχόμενο θα το αφαιρέσει από την κοινή θέα, αλλά άλλοι θα μπορούν ακόμα να δουν ότι κάτι έχει κρυφτεί, και οι επιμελητές της σελίδας και ο συγγραφέας του περιεχομένου θα μπορούν ακόμα να δουν το κρυμμένο περιεχόμενο. Γενικά, αυτό ισχύει μόνο για γραπτό περιεχόμενο, π.χ. αν κρύψετε το περιεχόμενο από μια ταυτοποίηση, η ταυτοποίηση θα φαίνεται ακόμα αλλά τα σχόλια του ταυτοποιητή θα είναι κρυμμένα, για αυτό δείξτε προσοχή και χρησιμοποιείστε αυτό μόνο για πολύ ανάρμοστο περιεχόμενο. \n",
   "hide_running_total": "Κρύψτε το Τρεχούμενο Σύνολο",
@@ -14986,6 +15036,7 @@ I18n.translations["el"] = {
   "show": "Εμφάνιση",
   "show_hidden_content": "Εμφάνιση κρυφού περιεχομένου",
   "show_keyboard_shortcuts": "Εμφάνιση συντομεύσεων πληκτρολογίου",
+  "show_more": "Εμφάνιση περισσότερων",
   "show_relative_proportions_of_all_observations": "Εμφάνιση σχετικών αναλογιών όλων των παρατηρήσεων",
   "show_running_total": "Εμφάνιση Τρέχοντος Συνόλου",
   "show_taxa_from_everywhere": "Εμφάνιση ταξινομικών βαθμίδων από όλα",
@@ -15205,6 +15256,10 @@ I18n.translations["el"] = {
   "view_your_year_stats": "Προβολή των στατιστικών σας για το %{year}",
   "view_yours": "Δείτε τις δικές σας",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Συμφωνία",
@@ -16072,6 +16127,7 @@ I18n.translations["en"] = {
   "exclude_users": "Exclude Users",
   "exclusion_filters": "Exclusion Filters",
   "exit_full_screen": "Exit Full Screen",
+  "export": "Export",
   "export_observations": "Export Observations",
   "exporting": "Exporting...",
   "extinct": "extinct",
@@ -16148,6 +16204,7 @@ I18n.translations["en"] = {
   "has_sounds": "Has Sounds",
   "heads_up": "Heads up",
   "here_are_our_top_species_suggestions": "Here are our top species suggestions",
+  "hide": "Hide",
   "hide_content": "Hide Content",
   "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. Generally, this\nonly applies to written content, e.g. if you hide the content of an\nidentification, the identification is still visible but the identifier's\nremarks are hidden. You cannot undo this, and only site staff can unhide\ncontent once it has been hidden, so be careful and only use this for very\nobjectionable content.\n",
   "hide_running_total": "Hide Running Total",
@@ -16529,6 +16586,7 @@ I18n.translations["en"] = {
   "no_journal_posts_yet": "No journal posts yet",
   "no_license_all_rights_reserved": "No license (all rights reserved)",
   "no_matching_observations": "No matching observations.",
+  "no_matching_taxa": "No matching taxa",
   "no_misidentifications_yet": "No misidentifications yet",
   "no_more_results_found": "No more results found",
   "no_more_taxa_to_load": "No more taxa to load!",
@@ -17081,15 +17139,31 @@ I18n.translations["en"] = {
   "ranks": {
     "stateofmatter": "State of matter",
     "kingdom": "Kingdom",
+    "x_kingdoms": {
+      "one": "Kingdom",
+      "other": "Kingdoms"
+    },
     "subkingdom": "Subkingdom",
     "phylum": "Phylum",
+    "x_phyla": {
+      "one": "Phylum",
+      "other": "Phyla"
+    },
     "subphylum": "Subphylum",
     "superclass": "Superclass",
     "class": "Class",
+    "x_classes": {
+      "one": "Class",
+      "other": "Classes"
+    },
     "subclass": "Subclass",
     "infraclass": "Infraclass",
     "superorder": "Superorder",
     "order": "Order",
+    "x_orders": {
+      "one": "Order",
+      "other": "Orders"
+    },
     "suborder": "Suborder",
     "infraorder": "Infraorder",
     "subterclass": "Subterclass",
@@ -17099,17 +17173,29 @@ I18n.translations["en"] = {
     "superfamily": "Superfamily",
     "epifamily": "Epifamily",
     "family": "Family",
+    "x_families": {
+      "one": "Family",
+      "other": "Families"
+    },
     "subfamily": "Subfamily",
     "supertribe": "Supertribe",
     "tribe": "Tribe",
     "subtribe": "Subtribe",
     "genus": "Genus",
+    "x_genera": {
+      "one": "Genus",
+      "other": "Genera"
+    },
     "genushybrid": "Genushybrid",
     "subgenus": "Subgenus",
     "section": "Section",
     "subsection": "Subsection",
     "complex": "Complex",
     "species": "Species",
+    "x_species": {
+      "one": "Species",
+      "other": "Species"
+    },
     "hybrid": "Hybrid",
     "subspecies": "Subspecies",
     "variety": "Variety",
@@ -17187,6 +17273,7 @@ I18n.translations["en"] = {
   "show": "Show",
   "show_hidden_content": "Show Hidden Content",
   "show_keyboard_shortcuts": "Show Keyboard Shortcuts",
+  "show_more": "Show More",
   "show_relative_proportions_of_all_observations": "Show relative proportions of all observations",
   "show_running_total": "Show Running Total",
   "show_taxa_from_everywhere": "Show taxa from everywhere",
@@ -17416,6 +17503,58 @@ I18n.translations["en"] = {
   "view_your_year_stats": "View Your %{year} Stats",
   "view_yours": "View Yours",
   "views": {
+    "lifelists": {
+      "all_observations": "All Observations",
+      "all_observations_in_this_taxon": "All observations in this taxon",
+      "all_species": "All Species",
+      "all_unobserved_species": "All Unobserved Species",
+      "apply_filters_to_export": "Apply filters to export",
+      "collapse_this_branch": "Collapse this branch",
+      "dropdowns": {
+        "ancestry": "Ancestry",
+        "children": "Children",
+        "date_added_newest": "Date Added, Newest to Oldest",
+        "date_added_oldest": "Date Added, Oldest to Newest",
+        "full_taxonomy": "Full Taxonomy",
+        "most_observed": "Most Observed",
+        "name": "Name",
+        "show": "Show",
+        "simplified_tree": "Simplified Tree",
+        "sort": "Sort",
+        "taxonomic": "Taxonomic"
+      },
+      "expand_all_nodes_in_this_branch": "Expand all nodes in this branch",
+      "exporting_all_x_taxa": {
+        "one": "Exporting %{count} taxon",
+        "other": "Exporting all %{count} taxa"
+      },
+      "exporting_x_taxa": {
+        "one": "Exporting %{count} taxon",
+        "other": "Exporting %{count} taxa"
+      },
+      "filter_by": "Filter by",
+      "filtered_by": "Filtered by",
+      "focus_tree_on_this_taxon": "Focus tree on this taxon",
+      "list_view": "List View",
+      "no_observations_found_in_place": "No observations found in %{place}.",
+      "no_observations_found_within_this_taxon_in_place": "No observations found within this taxon in %{place}.",
+      "no_species_found_in_place": "No species found in %{place}.",
+      "no_species_found_within_this_taxon_in_place": "No species found within this taxon in %{place}.",
+      "no_unobserved_species_in_place": "No unobserved species in %{place}.",
+      "no_unobserved_species_within_this_taxon": "No unobserved species within this taxon.",
+      "no_unobserved_species_within_this_taxon_in_place": "No unobserved species within this taxon in %{place}.",
+      "observations_at_this_taxon": "Observations at this taxon",
+      "observations_of_exactly_this_taxon": "Observations of exactly this taxon",
+      "observations_within_this_taxon": "Observations within this taxon",
+      "observed_species": "Observed Species",
+      "reset_place_filter": "Reset Place Filter",
+      "restrict_to_leaf_taxa": "Restrict to leaf taxa",
+      "restrict_to_taxa_observed_in_place": "Restrict to taxa observed in %{place}",
+      "restrict_to_taxon": "Restrict to %{taxon}",
+      "total_observations": "Total Observations",
+      "tree_view": "Tree View",
+      "unobserved_species": "Unobserved Species"
+    },
     "observations": {
       "community_id": {
         "agreement": "Agreement",
@@ -17947,6 +18086,8 @@ I18n.translations["en-UK"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -17962,6 +18103,10 @@ I18n.translations["en-UK"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -18126,6 +18271,8 @@ I18n.translations["en-US"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -18144,6 +18291,10 @@ I18n.translations["en-US"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -18577,6 +18728,7 @@ I18n.translations["eo"] = {
   "exact_date": "Ekzakta Dato",
   "exact_location": "Ekzakta_loko",
   "exit_full_screen": "Malŝalti plenekranan reĝimon",
+  "export": "Elporti",
   "exporting": "Elportanta...",
   "extinct": "formortinta",
   "failed_to_find_your_location": "Malsukcesis trovi vian lokon.",
@@ -19275,6 +19427,10 @@ I18n.translations["eo"] = {
   "view_flags": "Vidi Flagojn",
   "view_on": "Vidi ĉe",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Akordo",
@@ -19983,6 +20139,7 @@ I18n.translations["es"] = {
   "exclude_users": "Excluye Usuarios",
   "exclusion_filters": "Filtros para excluir",
   "exit_full_screen": "Sal de la pantalla completa",
+  "export": "Exporta",
   "export_observations": "Exporta observaciones",
   "exporting": "Exportando...",
   "extinct": "extinto",
@@ -20059,6 +20216,7 @@ I18n.translations["es"] = {
   "has_sounds": "Tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
+  "hide": "Ocultar",
   "hide_content": "Ocultar contenido",
   "hide_desc": "Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los administradores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una  identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para\ncontenido censurable.\n",
   "hide_running_total": "Esconder Total Acumulado",
@@ -21098,6 +21256,7 @@ I18n.translations["es"] = {
   "show": "Mostrar",
   "show_hidden_content": "Mostrar contenido oculto",
   "show_keyboard_shortcuts": "Mostrar Atajos de Teclado",
+  "show_more": "Muestra más",
   "show_relative_proportions_of_all_observations": "Enseña proporciones relativas de todas las observaciones",
   "show_running_total": "Mostrar Total Acumulado",
   "show_taxa_from_everywhere": "Mostrar taxones de todas partes",
@@ -21324,6 +21483,10 @@ I18n.translations["es"] = {
   "view_your_year_stats": "Ver tus estadísticas de %{year}",
   "view_yours": "Ver los tuyos",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acuerdo",
@@ -22245,6 +22408,7 @@ I18n.translations["es-AR"] = {
   "except": "excepto",
   "exclusion_filters": "Filtros para excluir",
   "exit_full_screen": "Sal de la pantalla completa",
+  "export": "Exporta",
   "export_observations": "Exporta observaciones",
   "exporting": "Exportando...",
   "extinct": "extinto",
@@ -22319,6 +22483,7 @@ I18n.translations["es-AR"] = {
   "has_sounds": "Tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
+  "hide": "Ocultar",
   "hide_content": "Ocultar contenido",
   "hide_desc": "Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los administradores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una  identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para\ncontenido censurable.\n",
   "hide_running_total": "Esconder Total Acumulado",
@@ -23301,6 +23466,7 @@ I18n.translations["es-AR"] = {
   "show": "Mostrar",
   "show_hidden_content": "Mostrar contenido oculto",
   "show_keyboard_shortcuts": "Mostrar Atajos de Teclado",
+  "show_more": "Muestra más",
   "show_relative_proportions_of_all_observations": "Enseña proporciones relativas de todas las observaciones",
   "show_running_total": "Mostrar Total Acumulado",
   "show_taxa_from_everywhere": "Mostrar taxones de todas partes",
@@ -23518,6 +23684,10 @@ I18n.translations["es-AR"] = {
   "view_your_year_stats": "Ver tus estadísticas de %{year}",
   "view_yours": "Ver los tuyos",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acuerdo",
@@ -23991,6 +24161,8 @@ I18n.translations["es-ES"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -24009,6 +24181,10 @@ I18n.translations["es-ES"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -24526,6 +24702,7 @@ I18n.translations["es-MX"] = {
   "except": "excepto",
   "exclusion_filters": "Filtros para excluir",
   "exit_full_screen": "Salir de la pantalla completa",
+  "export": "Exporta",
   "export_observations": "Exporta observaciones",
   "exporting": "Exportando...",
   "extinct": "Extinta",
@@ -25365,6 +25542,7 @@ I18n.translations["es-MX"] = {
   "share": "Comparte",
   "show": "Muestra",
   "show_keyboard_shortcuts": "Mostrar atajos de teclado",
+  "show_more": "Mostrar más",
   "show_relative_proportions_of_all_observations": "Enseña proporciones relativas de todas las observaciones",
   "show_running_total": "Mostrar total acumulado",
   "show_taxa_from_everywhere": "Muestra taxa de todas partes",
@@ -25568,6 +25746,10 @@ I18n.translations["es-MX"] = {
   "view_your_year_stats": "Ver tus estadísticas de %{year}",
   "view_yours": "Ver los tuyos",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acuerdo",
@@ -26355,6 +26537,7 @@ I18n.translations["et"] = {
   "except": "väljaarvatud",
   "exclusion_filters": "Välistusfiltrid",
   "exit_full_screen": "Sule täisekraan",
+  "export": "Ekspordi",
   "export_observations": "Ekspordi vaatlused",
   "exporting": "Eksportin...",
   "extinct": "väljasurnud",
@@ -27216,6 +27399,7 @@ I18n.translations["et"] = {
   "share": "Jaga",
   "show": "Näita",
   "show_keyboard_shortcuts": "Näita kiirklahve",
+  "show_more": "Näita rohkem",
   "show_relative_proportions_of_all_observations": "Näita kõigi vaatluste suhtelisi proportsioone",
   "show_running_total": "Näita hetke koguarvu",
   "show_taxa_from_everywhere": "Näita taksoneid kõikjalt",
@@ -27414,6 +27598,10 @@ I18n.translations["et"] = {
   "view_your_year_stats": "Vaata oma aasta %{year} statistikat",
   "view_yours": "Vaata enda oma",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Leping",
@@ -28178,6 +28366,7 @@ I18n.translations["eu"] = {
   "exact_date": "Data zehatza",
   "exact_location": "Kokapen zehatza",
   "exit_full_screen": "Irten pantaila osotik",
+  "export": "Esportatu",
   "extinct": "iraungia",
   "extinct_in_the_wild": "Egoera basatian desagertua",
   "failed_to_find_your_location": "Zure kokapena aurkitzeak huts egin du.",
@@ -28688,6 +28877,10 @@ I18n.translations["eu"] = {
   "view_observations_of_this_taxon_by": "Taxon honetako oharrak iksui",
   "view_on": "Hemen ikusi:",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "algorithm_summary": "Algoritmoaren laburpena"
@@ -29368,6 +29561,7 @@ I18n.translations["fi"] = {
   "exclude_users": "Rajaa pois käyttäjät",
   "exclusion_filters": "Poissulkevat suotimet",
   "exit_full_screen": "Poistu kokoruututilasta",
+  "export": "Vie",
   "export_observations": "Vie havaintoja",
   "exporting": "Viedään...",
   "extinct": "kuollut sukupuuttoon",
@@ -29443,6 +29637,7 @@ I18n.translations["fi"] = {
   "has_sounds": "Ääniä",
   "heads_up": "Huomio",
   "here_are_our_top_species_suggestions": "Tässä ovat parhaat lajiehdotuksemme",
+  "hide": "Piilota",
   "hide_content": "Piilota sisältö",
   "hide_desc": "Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.\n",
   "hide_running_total": "Piilota kumulatiivinen yhteismäärä",
@@ -30414,6 +30609,7 @@ I18n.translations["fi"] = {
   "show": "Näytä",
   "show_hidden_content": "Näytä piilotettu sisältö",
   "show_keyboard_shortcuts": "Näytä pikanäppäimet",
+  "show_more": "Näytä enemmän",
   "show_relative_proportions_of_all_observations": "Näytä kaikkien havaintojen suhteellinen määrä",
   "show_running_total": "Näytä kumulatiivinen yhteismäärä",
   "show_taxa_from_everywhere": "Näytä taksonit kaikkialta",
@@ -30615,6 +30811,10 @@ I18n.translations["fi"] = {
   "view_your_year_stats": "Näytä vuoden %{year} tilastosi",
   "view_yours": "Näytä sinun",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Yksimielisyys",
@@ -31070,6 +31270,8 @@ I18n.translations["fil"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -31085,6 +31287,10 @@ I18n.translations["fil"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -31669,6 +31875,7 @@ I18n.translations["fr"] = {
   "exclude_users": "Exclude des utilisateurs",
   "exclusion_filters": "Filtres d'exclusion",
   "exit_full_screen": "Sortir du mode plein écran",
+  "export": "Exporter",
   "export_observations": "Exporter les observations",
   "exporting": "Exportation en cours…",
   "extinct": "disparue",
@@ -31745,6 +31952,7 @@ I18n.translations["fr"] = {
   "has_sounds": "A des sons",
   "heads_up": "Avertissement",
   "here_are_our_top_species_suggestions": "Voici les suggestions concernant nos espèces favorites",
+  "hide": "Cacher",
   "hide_content": "Masquer le contenu",
   "hide_desc": "Masquer du contenu le rendra invisible au public, mais celui-ci pourra\ntoujours voir que quelque chose a été masqué, et les utilisateurs du site\net le créateur du contenu pourront toujours voir le contenu masqué.\nGénéralement, cela s’applique uniquement au contenu écrit, ex. si vous\nmasquez le contenu d’une identification, celle-ci reste visible mais ses\nremarques sont masquées. Cela n’est pas réversible, et seul le personnel\npeut réafficher du contenu une fois masqué. Soyez donc prudent et ne le\nfaites que pour du contenu particulièrement répréhensible.\n",
   "hide_running_total": "Masquer le total actuel",
@@ -32780,6 +32988,7 @@ I18n.translations["fr"] = {
   "show": "Afficher",
   "show_hidden_content": "Afficher le contenu masqué",
   "show_keyboard_shortcuts": "Afficher les raccourcis clavier",
+  "show_more": "Afficher davantage",
   "show_relative_proportions_of_all_observations": "Afficher les proportions relatives de toutes les observations",
   "show_running_total": "Afficher le total actuel",
   "show_taxa_from_everywhere": "Afficher les taxons de partout",
@@ -33006,6 +33215,10 @@ I18n.translations["fr"] = {
   "view_your_year_stats": "Afficher vos statistiques de %{year}",
   "view_yours": "Afficher les vôtres",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Accord",
@@ -33620,6 +33833,8 @@ I18n.translations["fr-CA"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "some_observations_are_missing_media_or_identifications": "Certaines observations n'ont pas de photo/son ou d'identification\n",
   "some_observations_are_missing_media_or_identifications_desc": "Les observations sans média ne seront pas visibles par défaut dans les recherches, et celles sans identifications pourraient ne pas être vues par des experts qui recherchent des taxons spécifiques. Même une identification très approximative comme \"Plantes\" peut aider les experts à trouver votre observation.\n",
   "sounds": {
@@ -33658,6 +33873,10 @@ I18n.translations["fr-CA"] = {
     "other": "Téléversement de %{num} sur %{count} photos…"
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -33912,6 +34131,8 @@ I18n.translations["gd"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -33927,6 +34148,10 @@ I18n.translations["gd"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -34509,6 +34734,7 @@ I18n.translations["gl"] = {
   "exclude_users": "Excluír Usuarios",
   "exclusion_filters": "Filtros de Exclusión",
   "exit_full_screen": "Saír da pantalla completa.",
+  "export": "Exportar",
   "export_observations": "Exportar Observacións",
   "exporting": "Exportando...",
   "extinct": "Extinto",
@@ -34585,6 +34811,7 @@ I18n.translations["gl"] = {
   "has_sounds": "Ten sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aquí tes as nosas mellores suxestións de especies",
+  "hide": "Ocultar",
   "hide_content": "Ocultar Contido",
   "hide_desc": "Ocultar contido vai sacalo da vista pública, pero a xente aínda vai poder ver que algo foi agochado, e os conservadores do sitio e o autor do contido aínda poderán ver o contido oculto. Xeralmente, isto só se aplica ó contido escrito, p.e. se ocultares o contido dunha identificación, a identificación aínda será visible pero as anotacións do identificador estarán agochadas. Non podes desfacer isto, e só os traballadores do sitio poden desvelar o contido unha vez foi oculto, asi que ten tino e usa isto só para contidos moi ofensivos.\n",
   "hide_running_total": "Ocultar Total Acumulado",
@@ -35614,6 +35841,7 @@ I18n.translations["gl"] = {
   "show": "Mostrar",
   "show_hidden_content": "Mostrar Contido Oculto",
   "show_keyboard_shortcuts": "Mostrar Atallos de Teclado",
+  "show_more": "Mostrar Máis",
   "show_relative_proportions_of_all_observations": "Mostrar proporcións relativas de tódalas observacións",
   "show_running_total": "Mostrar Total Acumulado",
   "show_taxa_from_everywhere": "Mostrar taxons de todas partes",
@@ -35835,6 +36063,10 @@ I18n.translations["gl"] = {
   "view_your_year_stats": "Ver As Estatísticas Do Teu %{year}",
   "view_yours": "Ver As Túas",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acordo",
@@ -36806,6 +37038,7 @@ I18n.translations["he"] = {
   "exclude_users": "הוצא משתמשים",
   "exclusion_filters": "פילטרי אי-כלילה",
   "exit_full_screen": "יציאה ממסך מלא",
+  "export": "ייצוא",
   "export_observations": "ייצוא תצפיות",
   "exporting": "מתבצע ייצוא...",
   "extinct": "נכחד",
@@ -36876,6 +37109,7 @@ I18n.translations["he"] = {
   "has_sounds": "יש קולות",
   "heads_up": "שימו לב",
   "here_are_our_top_species_suggestions": "הינה ההצעות הטובות ביותר שלנו",
+  "hide": "הסתרה",
   "hide_content": "הסתרת תוכן",
   "high": "גבוה",
   "history": "היסטוריה",
@@ -37814,6 +38048,7 @@ I18n.translations["he"] = {
   "show": "הצגה",
   "show_hidden_content": "הצגת תוכן מוסתר",
   "show_keyboard_shortcuts": "הצגת קיצורי-מקלדת",
+  "show_more": "להציג עוד",
   "show_taxa_from_everywhere": "הצגת טקסונים מכל המקומות",
   "show_taxa_from_place": "הצגת טקסונים מ%{place}",
   "show_total_counts": "הצגת ספירה כוללת",
@@ -37980,6 +38215,10 @@ I18n.translations["he"] = {
   "view_your_year_stats": "הצגת הסטטיסטיקות שלך לשנת %{year}",
   "view_yours": "צפו בשלך",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "הסכם",
@@ -38441,6 +38680,8 @@ I18n.translations["hi"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -38459,6 +38700,10 @@ I18n.translations["hi"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -38623,6 +38868,8 @@ I18n.translations["hu"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -38641,6 +38888,10 @@ I18n.translations["hu"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -38780,6 +39031,8 @@ I18n.translations["hy"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -38795,6 +39048,10 @@ I18n.translations["hy"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -39172,6 +39429,7 @@ I18n.translations["id"] = {
   "exact_location": "Lokasi yang tepat",
   "except": "kecuali",
   "exit_full_screen": "Keluar dari layar penuh",
+  "export": "Ekspor",
   "export_observations": "Ekspor pengamatan",
   "exporting": "Mengekspor...",
   "extinct": "punah",
@@ -39734,6 +39992,10 @@ I18n.translations["id"] = {
   "view_observations": "Lihat pengamatan",
   "view_on": "Lihat pada",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -40422,6 +40684,7 @@ I18n.translations["it"] = {
   "exclude_users": "Escludi Utenti",
   "exclusion_filters": "Filtri di esclusione",
   "exit_full_screen": "Esci dalla modalità a tutto schermo",
+  "export": "Esporta",
   "export_observations": "Esporta le osservazioni",
   "exporting": "Esportazione in corso...",
   "extinct": "Estinta",
@@ -40498,6 +40761,7 @@ I18n.translations["it"] = {
   "has_sounds": "Ha suoni",
   "heads_up": "Avviso",
   "here_are_our_top_species_suggestions": "Questi sono i nostri migliori suggerimenti per la specie",
+  "hide": "Nascondi",
   "hide_content": "Nascondi il contenuto",
   "hide_desc": "Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.\n",
   "hide_running_total": "Nascondi il totale attuale",
@@ -41537,6 +41801,7 @@ I18n.translations["it"] = {
   "show": "Mostra",
   "show_hidden_content": "Mostra contenuti nascosti",
   "show_keyboard_shortcuts": "Mostra Scorciatoie di Tastiera",
+  "show_more": "Mostra di più",
   "show_relative_proportions_of_all_observations": "Mostra le proporzioni relative di tutte le osservazioni",
   "show_running_total": "Mostra il totale attuale",
   "show_taxa_from_everywhere": "Visualizza i taxa di tutto il mondo",
@@ -41763,6 +42028,10 @@ I18n.translations["it"] = {
   "view_your_year_stats": "Visualizza le tue statistiche %{year}",
   "view_yours": "Visualizza le tue",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Accordo",
@@ -42247,6 +42516,8 @@ I18n.translations["iw"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -42262,6 +42533,10 @@ I18n.translations["iw"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -42814,6 +43089,7 @@ I18n.translations["ja"] = {
   "exclude_users": "ユーザーを除く",
   "exclusion_filters": "除外フィルタ",
   "exit_full_screen": "全画面表示を終了",
+  "export": "エクスポート",
   "export_observations": "観測記録をエクスポート",
   "exporting": "エクスポート中...",
   "extinct": "絶滅",
@@ -42885,6 +43161,7 @@ I18n.translations["ja"] = {
   "has_sounds": "音声あり",
   "heads_up": "お知らせ",
   "here_are_our_top_species_suggestions": "最も優れた種の提案は次のとおりです",
+  "hide": "非表示",
   "hide_content": "コンテンツを非表示",
   "hide_desc": "コンテンツを非表示にすると、そのコンテンツはパブリックビューから削除されますが、ユーザーは何かが非表示になっていることを確認でき、サイト管理者およびコンテンツの作成者は非表示のコンテンツを確認できます。一般に、これは記述されたコンテンツにのみ適用されます。たとえば、同定のコンテンツを非表示にした場合、同定は表示されたままですが、同定者による注釈は非表示になります。元に戻すことはできず、一度非表示にしたコンテンツを再表示できるのはサイトのスタッフだけです。そのため操作には注意し、非常に好ましくないコンテンツにのみ使用してください。\n",
   "hide_running_total": "現在の総計を非表示",
@@ -43794,6 +44071,7 @@ I18n.translations["ja"] = {
   "show": "表示",
   "show_hidden_content": "非表示コンテンツを表示",
   "show_keyboard_shortcuts": "キーボードショートカットを表示",
+  "show_more": "もっと表示",
   "show_relative_proportions_of_all_observations": "全観察記録の相対比率を表示する",
   "show_running_total": "現在の総計を表示",
   "show_taxa_from_everywhere": "すべての場所からの分類群を表示",
@@ -43970,6 +44248,10 @@ I18n.translations["ja"] = {
   "view_on": "次のサイトで表示：",
   "view_yours": "自分のを表示",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "ancestor_disagreements": "祖先の不一致数",
@@ -44251,6 +44533,8 @@ I18n.translations["ka"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -44266,6 +44550,10 @@ I18n.translations["ka"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -44714,6 +45002,7 @@ I18n.translations["ko"] = {
   "exact_location": "정확한_장소",
   "exclusion_filters": "제외 필터",
   "exit_full_screen": "전체 화면에서 나가기",
+  "export": "내보내기",
   "export_observations": "관찰 내보내기",
   "exporting": "내보내는 중...",
   "extinct": "절멸(EX)",
@@ -45420,6 +45709,7 @@ I18n.translations["ko"] = {
   "share": "공유",
   "show": "보기",
   "show_keyboard_shortcuts": "단축 키 표시",
+  "show_more": "더 보기",
   "show_relative_proportions_of_all_observations": "모든 관찰의 상대적인 비율 보기",
   "show_total_counts": "월별 관찰 개수 보기",
   "show_uncountable_species": "셀 수 없는 종을 표시",
@@ -45508,6 +45798,10 @@ I18n.translations["ko"] = {
   "view_observations": "관찰 보기",
   "view_sample": "샘플 보기",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "동의",
@@ -46014,6 +46308,7 @@ I18n.translations["lb"] = {
   "everyone_": "Jiddwereen",
   "exact": "Genee",
   "exact_date": "Geneeën Datum",
+  "export": "Exportéieren",
   "export_observations": "Observatiounen exportéieren",
   "extinct": "ausgestuerwen",
   "failed_to_find_your_location": "Är Positioun gouf net fonnt.",
@@ -46505,6 +46800,7 @@ I18n.translations["lb"] = {
   "share": "Deelen",
   "show": "Weisen",
   "show_keyboard_shortcuts": "Tastatur-Shortcuts weisen",
+  "show_more": "Méi weisen",
   "sign_out": "Ofmellen",
   "sign_up": "Mellt Iech un",
   "site_admin_tools": "Säiten Administratortoolen",
@@ -46587,6 +46883,10 @@ I18n.translations["lb"] = {
   "view_your_year_stats": "Weist Är %{year} Statistiken",
   "view_yours": "Är weisen",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Accord"
@@ -47299,6 +47599,7 @@ I18n.translations["lt"] = {
   "exclude_taxa": "Neįtraukti taksonų",
   "exclude_users": "Neįtraukti vartotojų",
   "exit_full_screen": "Išeiti iš viso ekrano režimo",
+  "export": "Eksportuoti",
   "export_observations": "Eksportuoti stebėjimus",
   "exporting": "Eksportuojama...",
   "extinct": "išnykę",
@@ -47373,6 +47674,7 @@ I18n.translations["lt"] = {
   "has_sounds": "Turi garsų",
   "heads_up": "Dėmesio",
   "here_are_our_top_species_suggestions": "Čia yra mūsų top rūšies pasiūlymai",
+  "hide": "Paslėpti",
   "hide_content": "Paslėpti turinį",
   "hide_desc": "Paslėptas turinys bus nematomas viešai, tačiau žmonės vis tiek matys, kad kažkas buvo paslėpta, o tinklalapio kuratoriai ir turinio autoriai ir toliau galės matyti tai, kas paslėpta. Dažniausiai tai galioja tik rašytiniam turiniui, pvz.: jeigu paslėpiate identifikacijos turinį, pati identifikacija ir toliau matoma, tačiau identifikuotojo pastabos būna paslėptos. Paslėptą turini vėl matomu gali padaryti tik tinklalapio personalas, jūs to padaryti negalite, todėl būkite atsargūs ir slėpkite tik tikrai nepageidautiną turinį.\n",
   "hide_uncountable_species": "Paslėpti nepriskaičiuojamas rūšis",
@@ -48354,6 +48656,7 @@ I18n.translations["lt"] = {
   "show": "Rodyti",
   "show_hidden_content": "Rodyti paslėptą turinį",
   "show_keyboard_shortcuts": "Rodyti spračiuosius klavišus",
+  "show_more": "Rodyti daugiau",
   "show_taxa_from_everywhere": "Rodyti taksonus iš visur",
   "show_taxa_from_place": "Rodyti taksonus iš %{place}",
   "show_uncountable_species": "Rodyti nepriskaičiuojamas rūšis",
@@ -48552,6 +48855,10 @@ I18n.translations["lt"] = {
   "view_your_year_stats": "Žiūrėti Savo %{year} Statistiką",
   "view_yours": "Rodyti jūsų",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Susitarimas",
@@ -48996,6 +49303,8 @@ I18n.translations["lv"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -49014,6 +49323,10 @@ I18n.translations["lv"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -49381,6 +49694,7 @@ I18n.translations["mk"] = {
   },
   "exact_location": "Точна_местоположба",
   "exit_full_screen": "Излези од цел екран",
+  "export": "Извези",
   "export_observations": "Извези набљудувања",
   "exporting": "Извезувам...",
   "extinct": "изумрен",
@@ -49773,6 +50087,10 @@ I18n.translations["mk"] = {
   "view_observations": "Погл. набљудувања",
   "view_on": "Погл. на",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -49980,6 +50298,8 @@ I18n.translations["mr"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -49995,6 +50315,10 @@ I18n.translations["mr"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -50159,6 +50483,8 @@ I18n.translations["ms"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -50177,6 +50503,10 @@ I18n.translations["ms"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -50761,6 +51091,7 @@ I18n.translations["nb"] = {
   "exclude_users": "Ekskluder brukere",
   "exclusion_filters": "Ekskluderingsfiltre",
   "exit_full_screen": "Avslutt fullskjermmodus",
+  "export": "Eksporter",
   "export_observations": "Eksporter observasjoner",
   "exporting": "Eksporterer...",
   "extinct": "utdødd",
@@ -50837,6 +51168,7 @@ I18n.translations["nb"] = {
   "has_sounds": "Har lyder",
   "heads_up": "Obs",
   "here_are_our_top_species_suggestions": "Her er våre beste artsforslag",
+  "hide": "Skjul",
   "hide_content": "Skjul innhold",
   "hide_desc": "Skjuling av innhold vil fjerne det fra offentlig visning, men folk vil fortsatt kunne se, at noe er blitt skjult, og sidekuratorer og innholdets forfatter vil fortsatt kunne se det skjulte innholdet. Generelt gelder dette kun for skrevet innhold, dvs. hvis du skjuler innholdet i en identifikasjon, vil selve identifikasjonen fortsatt være synlig, men merknader fra personen bak identifikasjonen vil være skjult. Du kan ikke angre dette, og kun hjemmesidens personale kan gjøre innhold synlig igjen når det først er blitt skjult, så vær forsiktig og bruk dette kun ved veldig støtende innhold.\n",
   "hide_running_total": "Skjul løpende total",
@@ -51876,6 +52208,7 @@ I18n.translations["nb"] = {
   "show": "Vis",
   "show_hidden_content": "Vis skjult innhold",
   "show_keyboard_shortcuts": "Vis hurtigtaster",
+  "show_more": "Vis mer",
   "show_relative_proportions_of_all_observations": "Vis relative andel av alle observasjoner",
   "show_running_total": "Vis løpende total",
   "show_taxa_from_everywhere": "Vis taksa fra overalt",
@@ -52101,6 +52434,10 @@ I18n.translations["nb"] = {
   "view_your_year_stats": "Vis dine statistikker for %{year}",
   "view_yours": "Vis dine",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Enighet",
@@ -53056,6 +53393,7 @@ I18n.translations["nl"] = {
   "exclude_users": "Gebruikers uitsluiten",
   "exclusion_filters": "Uitsluitingsfilters",
   "exit_full_screen": "Volledig Schermmodus Verlaten",
+  "export": "Exporteren",
   "export_observations": "Waarnemingen exporteren",
   "exporting": "Aan het exporteren...",
   "extinct": "uitgestorven",
@@ -53132,6 +53470,7 @@ I18n.translations["nl"] = {
   "has_sounds": "Heeft geluiden",
   "heads_up": "Opgelet",
   "here_are_our_top_species_suggestions": "Dit zijn onze top voorstellen voor deze soort",
+  "hide": "Verbergen",
   "hide_content": "Inhoud verbergen",
   "hide_desc": "Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit\nalleen van toepassing op geschreven inhoud, bijv. als je de een determinatie verbergt. De determinatie is nog steeds zichtbaar, maar de opmerkingen zijn verborgen. Je kunt dit niet ongedaan maken en alleen het personeel van de site kan de inhoud weer zichtbaar maken nadat deze is verborgen. Wees dus voorzichtig en gebruik dit alleen voor zeer\naanstootgevende inhoud.\n",
   "hide_running_total": "Huidig totaal verbergen",
@@ -54171,6 +54510,7 @@ I18n.translations["nl"] = {
   "show": "Weergeven",
   "show_hidden_content": "Verborgen inhoud tonen",
   "show_keyboard_shortcuts": "Toon sneltoetsen",
+  "show_more": "Meer weergeven",
   "show_relative_proportions_of_all_observations": "Relatieve verhoudingen van alle waarnemingen tonen",
   "show_running_total": "Lopend totaal weergeven",
   "show_taxa_from_everywhere": "Toon taxa van overal",
@@ -54397,6 +54737,10 @@ I18n.translations["nl"] = {
   "view_your_year_stats": "Toon je statistieken van %{year}",
   "view_yours": "Bekijk die van jou",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Overeenkomst",
@@ -54932,6 +55276,8 @@ I18n.translations["nn"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -54950,6 +55296,10 @@ I18n.translations["nn"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -55268,6 +55618,7 @@ I18n.translations["oc"] = {
   "exact_date": "Data exacta",
   "exact_location": "Emplaçament exacte",
   "exit_full_screen": "Sortir del mòde ecran complet",
+  "export": "Exportar",
   "export_observations": "Exportar las observacions",
   "exporting": "Expòrt en cors...",
   "extinct": "atudat",
@@ -55635,6 +55986,10 @@ I18n.translations["oc"] = {
   "view_more": "Veire mai",
   "view_more_unreviewed": "Afichar mai de pas relegits",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -56281,6 +56636,7 @@ I18n.translations["pl"] = {
   "except": "poza",
   "exclusion_filters": "Filtry wykluczające",
   "exit_full_screen": "Wyjdź z trybu pełnoekranowego",
+  "export": "Eksport",
   "export_observations": "Eksport obserwacji",
   "exporting": "Eksportowanie...",
   "extinct": "wymarły",
@@ -56355,6 +56711,7 @@ I18n.translations["pl"] = {
   "has_sounds": "Posiadające nagrania dźwiękowe",
   "heads_up": "Uwaga",
   "here_are_our_top_species_suggestions": "Nasze sugestie dot. gatunku",
+  "hide": "Ukryj",
   "hide_content": "Ukryj zawartość",
   "hide_desc": "Ukrycie zawartości usunie ją z widoku publicznego, ale ludzie wciąż będą mogli zobaczyć, że coś zostało ukryte. Opiekunowie strony i autor treści będą mogli zobaczyć ukrytą zawartość. Dotyczy to tylko treści tekstowej, więc jeśli ukryjesz zawartość identyfikacji, identyfikacja będzie wciąż widoczna, ale uwagi identyfikującego już nie. Uważaj, tego nie można odwrócić - tylko administratorzy mogą ponownie odkryć zawartość, dlatego używaj tego narzędzia z rozwagą.\n",
   "high": "Wysoki",
@@ -57266,6 +57623,7 @@ I18n.translations["pl"] = {
   "share": "Udostępnij",
   "show": "Pokaż",
   "show_keyboard_shortcuts": "Pokaż skróty klawiszowe",
+  "show_more": "Pokaż więcej",
   "sign_out": "Wyloguj się",
   "sign_up": "Zarejestruj się",
   "similar_species": "Podobne gatunki",
@@ -57425,6 +57783,10 @@ I18n.translations["pl"] = {
   "view_year_stats_for_site": "Zobacz statystyki dla %{site} z %{year}",
   "view_yours": "Zobacz swoje",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "score": "Ocena"
@@ -58264,6 +58626,7 @@ I18n.translations["pt"] = {
   "exclude_users": "Excluir Usuários",
   "exclusion_filters": "Filtros de Exclusão",
   "exit_full_screen": "Sair do modo de ecrã inteiro",
+  "export": "Exportar",
   "export_observations": "Exportar observações",
   "exporting": "A exportar...",
   "extinct": "extinto",
@@ -58340,6 +58703,7 @@ I18n.translations["pt"] = {
   "has_sounds": "Tem sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa selecção de espécies",
+  "hide": "Esconder",
   "hide_content": "Ocultar conteúdo",
   "hide_desc": "Esconder conteúdo irá removê-lo da exibição pública, mas as pessoas ainda serão\ncapaz de ver que algo estava escondido, e curadores do site e autor de\no conteúdo ainda poderá ver o conteúdo oculto. Geralmente, isso\naplica-se apenas ao conteúdo escrito, por ex. se você ocultar o conteúdo de um\nidentificação, a identificação ainda é visível, mas o identificador\nobservações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir\nconteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para\nconteúdo censurável.\n",
   "hide_running_total": "Ocultar total acumulado",
@@ -59379,6 +59743,7 @@ I18n.translations["pt"] = {
   "show": "Mostrar",
   "show_hidden_content": "Mostrar conteúdo oculto",
   "show_keyboard_shortcuts": "Mostrar as Teclas de Atalho do Teclado",
+  "show_more": "Mostrar mais",
   "show_relative_proportions_of_all_observations": "Mostrar a proporção relativa de todas as observações",
   "show_running_total": "Mostrar total acumulado",
   "show_taxa_from_everywhere": "Mostrar taxa de toda a parte",
@@ -59605,6 +59970,10 @@ I18n.translations["pt"] = {
   "view_your_year_stats": "Veja suas estatísticas de %{year}",
   "view_yours": "Veja os Seus",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Acordo",
@@ -60140,6 +60509,8 @@ I18n.translations["pt-BR"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -60158,6 +60529,10 @@ I18n.translations["pt-BR"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -60323,6 +60698,8 @@ I18n.translations["ro"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -60341,6 +60718,10 @@ I18n.translations["ro"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -60965,6 +61346,7 @@ I18n.translations["ru"] = {
   "exclude_users": "Исключить пользователей",
   "exclusion_filters": "Фильтры исключений",
   "exit_full_screen": "Выйти из полноэкранного режима",
+  "export": "Экспорт",
   "export_observations": "Экспорт наблюдений",
   "exporting": "Экспортируется...",
   "extinct": "вымерший",
@@ -61043,6 +61425,7 @@ I18n.translations["ru"] = {
   "has_sounds": "Со звуком",
   "heads_up": "Внимание",
   "here_are_our_top_species_suggestions": "Вот наши лучшие предложения видов",
+  "hide": "Скрыть",
   "hide_content": "Скрыть контент",
   "hide_desc": "Скрытие контента уберёт его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, сама идентификация все же видна, но примечания к ней скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.\n",
   "hide_running_total": "Скрыть текущий итог",
@@ -62088,6 +62471,7 @@ I18n.translations["ru"] = {
   "show": "Показать",
   "show_hidden_content": "Показать скрытый контент",
   "show_keyboard_shortcuts": "Показывать сочетания клавиш",
+  "show_more": "Показать больше",
   "show_relative_proportions_of_all_observations": "Показать относительные доли всех наблюдений",
   "show_running_total": "Показать текущий итог",
   "show_taxa_from_everywhere": "Показывать таксоны отовсюду",
@@ -62322,6 +62706,10 @@ I18n.translations["ru"] = {
   "view_your_year_stats": "Просмотр вашей статистики %{year}",
   "view_yours": "Посмотреть ваши",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Согласие",
@@ -62894,6 +63282,8 @@ I18n.translations["si"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -62909,6 +63299,10 @@ I18n.translations["si"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -64232,6 +64626,7 @@ I18n.translations["sk"] = {
   "show": "Zobraziť",
   "show_hidden_content": "Zobraziť skrytý obsah",
   "show_keyboard_shortcuts": "Zobraziť klávesové skratky",
+  "show_more": "Zobraziť viac",
   "show_relative_proportions_of_all_observations": "Zobraziť príbuzné časti všetkých pozorovaní",
   "show_running_total": "Zobraziť doteraz celkom",
   "show_taxa_from_everywhere": "Zobraziť taxóny zo všetkých miest",
@@ -64377,6 +64772,10 @@ I18n.translations["sk"] = {
   "view_your_year_stats": "Zobraziť vašu štatistiku za rok %{year}",
   "view_yours": "Zobraziť váš",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "your_id_does_not_match": "Vaše ID (<span class=\"bold\">%{taxon_name}</span>) nesúhlasí s komunitným ID\n"
@@ -64562,6 +64961,8 @@ I18n.translations["sl"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -64580,6 +64981,10 @@ I18n.translations["sl"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -65068,6 +65473,7 @@ I18n.translations["sq"] = {
   "exact_location": "Vendndodhja_e_saktë",
   "examples_of_ranking_organizations": "Shembuj të Organizatave Renditëse",
   "exit_full_screen": "Dil nga ekrani i plotë",
+  "export": "Eksporto",
   "export_observations": "Eksporto vëzhgimet",
   "exporting": "Duke eksportuar...",
   "extinct": "i zhdukur",
@@ -65729,6 +66135,7 @@ I18n.translations["sq"] = {
   "share": "Shpërndaje",
   "show": "Shfaq",
   "show_keyboard_shortcuts": "Shfaq shkurtesat e tastierës",
+  "show_more": "Shih më shumë",
   "show_relative_proportions_of_all_observations": "Shfaq proprocionet relative të të gjitha vëzhgimeve",
   "show_taxa_from_everywhere": "Shfaq taxa-t nga gjithandej",
   "show_taxa_from_place": "Shfaq taxa-t nga %{place}",
@@ -65803,6 +66210,10 @@ I18n.translations["sq"] = {
   },
   "view_observation": "Shiko vëzhgimin",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -66417,6 +66828,7 @@ I18n.translations["sv"] = {
   "exclude_users": "Uteslut användare",
   "exclusion_filters": "Exkluderingsfilter",
   "exit_full_screen": "Avsluta helskärmsläge",
+  "export": "Exportera",
   "export_observations": "Exportera observationer",
   "exporting": "Exporterar...",
   "extinct": "utdöd",
@@ -66493,6 +66905,7 @@ I18n.translations["sv"] = {
   "has_sounds": "Har ljud",
   "heads_up": "Se upp",
   "here_are_our_top_species_suggestions": "Här är våra populäraste förslag på arter",
+  "hide": "Dölj",
   "hide_content": "Dölj innehåll",
   "hide_desc": "Att dölja innehåll kommer att ta bort det från publik visning, men människor kommer fortfarande att\nkunna se att något dolts, och sajtens förvaltare samt författaren till\ninnehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta\nendast skriftligt innehåll, t.ex. om du döljer innehållet i en\nbestämning är den fortfarande synlig medan bestämmarens\nkommentarer är dolda. Du kan inte ångra detta, och endast webbplatspersonal kan ta fram\ninnehåll när det väl har gömts, så var försiktig och använd endast detta för mycket\nstötande innehåll.\n",
   "hide_running_total": "Dölj löpande total",
@@ -67530,6 +67943,7 @@ I18n.translations["sv"] = {
   "show": "Visa",
   "show_hidden_content": "Visa dolt innehåll",
   "show_keyboard_shortcuts": "Visa kortkommandon",
+  "show_more": "Visa mer",
   "show_relative_proportions_of_all_observations": "Visa relativ andel av alla observationer",
   "show_running_total": "Visa ackumulerat",
   "show_taxa_from_everywhere": "Visa taxa från alla ställen",
@@ -67751,6 +68165,10 @@ I18n.translations["sv"] = {
   "view_your_year_stats": "Visa din statistik för %{year}",
   "view_yours": "Visa dina",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Enighet",
@@ -68705,6 +69123,7 @@ I18n.translations["tr"] = {
   "exclude_users": "Kullanıcıları Dışında Tut",
   "exclusion_filters": "Dışında Tutma Filtreleri",
   "exit_full_screen": "Tam Ekrandan Çık",
+  "export": "Dışa aktar",
   "export_observations": "Gözlemleri Dışa Aktar",
   "exporting": "Dışa aktarılıyor...",
   "extinct": "soyu tükenmiş",
@@ -68781,6 +69200,7 @@ I18n.translations["tr"] = {
   "has_sounds": "Sesler Var",
   "heads_up": "Uyarı",
   "here_are_our_top_species_suggestions": "İşte en iyi tür önerilerimiz",
+  "hide": "Gizle",
   "hide_content": "İçeriği Gizle",
   "hide_desc": "İçeriği gizleme, onu genel görünümden kaldıracak ancak insanlar bir şeyin gizli olduğunu görmeyi sürdürecek, site sorumluları ve içeriğin sahibi gizli içeriği görebilecek. Genel olarak, bu yalnızca yazılı içerik için geçerlidir, örn. bir tanımlamanın içeriğini gizlerseniz, tanımlama hala görünür durumdadır ancak tanımlayıcının yorumları gizlenir. Bunu geri alamazsınız ve yalnızca site yetkilileri içeriği gizlendikten sonra gösterebilir, bu yüzden dikkatli olun ve bunu yalnızca sakıncalı içerikler için kullanın.\n",
   "hide_running_total": "Toplam Bulunanı Gizle",
@@ -69820,6 +70240,7 @@ I18n.translations["tr"] = {
   "show": "Göster",
   "show_hidden_content": "Gizli İçeriği Göster",
   "show_keyboard_shortcuts": "Klavye Kısayollarını Göster",
+  "show_more": "Daha Fazla Göster",
   "show_relative_proportions_of_all_observations": "Tüm gözlemlerin karşılaştırmalı oranlarını göster",
   "show_running_total": "Toplam Bulunanı Göster",
   "show_taxa_from_everywhere": "Her yerden sınıfları göster",
@@ -70046,6 +70467,10 @@ I18n.translations["tr"] = {
   "view_your_year_stats": "%{year} İstatistiklerinizi Görüntüleyin",
   "view_yours": "Seninkini Görüntüle",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "Anlaşma",
@@ -70583,6 +71008,8 @@ I18n.translations["uk"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -70601,6 +71028,10 @@ I18n.translations["uk"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -70765,6 +71196,8 @@ I18n.translations["vi"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -70783,6 +71216,10 @@ I18n.translations["vi"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -71340,6 +71777,7 @@ I18n.translations["zh-CN"] = {
   "exclude_users": "排除用户",
   "exclusion_filters": "排除过滤器",
   "exit_full_screen": "退出全屏",
+  "export": "导出",
   "export_observations": "导出观察记录",
   "exporting": "正在导出……",
   "extinct": "灭绝",
@@ -71414,6 +71852,7 @@ I18n.translations["zh-CN"] = {
   "has_sounds": "有声音",
   "heads_up": "小心",
   "here_are_our_top_species_suggestions": "这里有我们最常用的物种建议",
+  "hide": "隐藏",
   "hide_content": "隐藏内容",
   "hide_running_total": "隐藏运行总计",
   "hide_uncountable_species": "隐藏无法计数的物种",
@@ -72376,6 +72815,7 @@ I18n.translations["zh-CN"] = {
   "show": "显示",
   "show_hidden_content": "显示隐藏内容",
   "show_keyboard_shortcuts": "显示键盘快捷键",
+  "show_more": "显示更多",
   "show_relative_proportions_of_all_observations": "显示所有观察的相关尺寸",
   "show_running_total": "显示运行总计",
   "show_taxa_from_everywhere": "显示来自世界各地的分类单元",
@@ -72584,6 +73024,10 @@ I18n.translations["zh-CN"] = {
   "view_your_year_stats": "查看您的%{year}统计",
   "view_yours": "查看您的",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "协议",
@@ -73041,6 +73485,8 @@ I18n.translations["zh-HK"] = {
   },
   "place_geo": {
   },
+  "ranks": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -73059,6 +73505,10 @@ I18n.translations["zh-HK"] = {
     }
   },
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
       },
@@ -73621,6 +74071,7 @@ I18n.translations["zh-TW"] = {
   "exclude_users": "排除的使用者",
   "exclusion_filters": "排除的篩選",
   "exit_full_screen": "結束全螢幕",
+  "export": "匯出",
   "export_observations": "匯出觀察",
   "exporting": "匯出中...",
   "extinct": "絕種",
@@ -73696,6 +74147,7 @@ I18n.translations["zh-TW"] = {
   "has_sounds": "擁有聲音",
   "heads_up": "注意",
   "here_are_our_top_species_suggestions": "這是我們的最佳物種建議",
+  "hide": "隱藏",
   "hide_content": "隱藏內容",
   "hide_desc": "隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。\n",
   "hide_running_total": "隱藏運行總計",
@@ -74719,6 +75171,7 @@ I18n.translations["zh-TW"] = {
   "show": "顯示",
   "show_hidden_content": "顯示隱藏內容",
   "show_keyboard_shortcuts": "顯示鍵盤快捷鍵",
+  "show_more": "顯示更多",
   "show_relative_proportions_of_all_observations": "顯示所有觀察的相對比例",
   "show_running_total": "顯示運行總計",
   "show_taxa_from_everywhere": "顯示來自於任何地點的物種分類",
@@ -74931,6 +75384,10 @@ I18n.translations["zh-TW"] = {
   "view_your_year_stats": "檢視您的 %{year} 統計內容",
   "view_yours": "檢視您自己的",
   "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
     "observations": {
       "community_id": {
         "agreement": "一致",

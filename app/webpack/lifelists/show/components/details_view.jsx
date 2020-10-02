@@ -29,40 +29,11 @@ const DetailsView = ( {
       />
     );
   } else {
-    const sortLabel = lifelist.observationSort === "dateAsc"
-      ? "Sort by: Date added, oldest to newest"
-      : "Sort by: Date added, newest to oldest";
-    searchOptions = (
-      <div className="dropdown sortDropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="sortDropdown"
-        >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
-          <li
-            className={lifelist.observationSort === "dateDesc" ? "selected" : null}
-            onClick={( ) => setObservationSort( "dateDesc" )}
-          >
-            Date: Newest to oldest
-          </li>
-          <li
-            className={lifelist.observationSort === "dateAsc" ? "selected" : null}
-            onClick={( ) => setObservationSort( "dateAsc" )}
-          >
-            Date: Oldest to newest
-          </li>
-        </ul>
-      </div>
-    );
     view = (
       <ObservationsGridContainer
         lifelist={lifelist}
         setSpeciesPlaceFilter={setSpeciesPlaceFilter}
+        setObservationSort={setObservationSort}
       />
     );
   }
@@ -76,11 +47,15 @@ const DetailsView = ( {
     if ( lifelist.detailsTaxon ) {
       const isLeaf = !lifelist.children[lifelist.detailsTaxon.id];
       if ( lifelist.speciesPlaceFilter ) {
-        const label = isLeaf ? "Observations at this taxon:" : "Observations within this taxon:";
+        const label = isLeaf
+          ? I18n.t( "views.lifelists.observations_at_this_taxon" )
+          : I18n.t( "views.lifelists.observations_within_this_taxon" );
         stats = (
           <div className="stats">
             <span className="stat">
-              <span className="attr">{label}</span>
+              <span className="attr">
+                {label}:
+              </span>
               <span className="value">
                 { searchLoaded
                   ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
@@ -97,7 +72,9 @@ const DetailsView = ( {
             className={`stat ${lifelist.detailsTaxonExact ? "" : "selected "}${hasDescendantObs ? "clicky" : ""}`}
             onClick={( ) => hasDescendantObs && setDetailsTaxon( lifelist.detailsTaxon )}
           >
-            <span className="attr">Observations within this taxon:</span>
+            <span className="attr">
+              { I18n.t( "views.lifelists.observations_within_this_taxon" ) }:
+            </span>
             <span className="value">
               { lifelist.detailsTaxon.descendant_obs_count.toLocaleString( ) }
             </span>
@@ -109,7 +86,9 @@ const DetailsView = ( {
               className={`stat ${isLeaf || lifelist.detailsTaxonExact ? "selected " : ""}${hasDirectObs ? "clicky" : ""}`}
               onClick={( ) => hasDirectObs && setDetailsTaxon( lifelist.detailsTaxon, { without_descendants: true } )}
             >
-              <span className="attr">Observations at this taxon:</span>
+              <span className="attr">
+                { I18n.t( "views.lifelists.observations_at_this_taxon" ) }:
+              </span>
               <span className="value">
                 <Badge className="green">
                   { lifelist.detailsTaxon.direct_obs_count.toLocaleString( ) }
@@ -121,11 +100,13 @@ const DetailsView = ( {
         );
       }
     } else {
-      title = "All Observations";
+      title = I18n.t( "views.lifelists.all_observations" );
       stats = (
         <div className="stats">
           <span className="stat">
-            <span className="attr">Total Observations:</span>
+            <span className="attr">
+              { I18n.t( "views.lifelists.total_observations" ) }:
+            </span>
             <span className="value">
               { searchLoaded
                 ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
@@ -136,7 +117,7 @@ const DetailsView = ( {
       );
     }
   } else if ( lifelist.detailsView === "species" ) {
-    title = "All Species";
+    title = I18n.t( "views.lifelists.all_species" );
     let count = lifelist.detailsTaxon
       ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount;
     searchLoaded = true;
@@ -159,7 +140,9 @@ const DetailsView = ( {
     stats = (
       <div className="stats">
         <span className="stat">
-          <span className="attr">Observed Species:</span>
+          <span className="attr">
+            { I18n.t( "views.lifelists.observed_species" ) }:
+          </span>
           <span className="value">
             { searchLoaded
               ? count.toLocaleString( )
@@ -169,13 +152,15 @@ const DetailsView = ( {
       </div>
     );
   } else if ( lifelist.detailsView === "unobservedSpecies" ) {
-    title = "All Unobserved Species";
+    title = I18n.t( "views.lifelists.all_unobserved_species" );
     inatAPIsearch = inatAPI.unobservedSpecies;
     searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
     stats = (
       <div className="stats">
         <span className="stat">
-          <span className="attr">Unobserved Species:</span>
+          <span className="attr">
+            { I18n.t( "views.lifelists.unobserved_species" ) }:
+          </span>
           <span className="value">
             { searchLoaded
               ? inatAPIsearch.searchResponse.total_results.toLocaleString( )
@@ -212,7 +197,9 @@ const DetailsView = ( {
         <div className="place-search">
           <div className="icon-state">
             <span className="glyphicon glyphicon-map-marker ac-select-thumb" />
-            { lifelist.speciesPlaceFilter ? "Filtered by" : "Filter by" }
+            { lifelist.speciesPlaceFilter
+              ? I18n.t( "views.lifelists.filtered_by" )
+              : I18n.t( "views.lifelists.filter_by" ) }
           </div>
           { lifelist.speciesPlaceFilter ? (
             <Badge>
@@ -238,8 +225,8 @@ const DetailsView = ( {
             />
           ) }
         </div>
-        { lifelist.detailsView !== "observations" && ( searchOptions ) }
       </div>
+      { searchOptions }
       { view }
     </div>
   );

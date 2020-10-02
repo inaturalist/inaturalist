@@ -67,7 +67,7 @@ class TaxaList extends React.Component {
                 />
               ) : (
                 <div className="name-label featured-ancestor">
-                  Life
+                  { I18n.t( "all_taxa.life" ) }
                 </div>
               ) }
             </div>
@@ -75,7 +75,7 @@ class TaxaList extends React.Component {
               <span
                 className="descendants"
                 onClick={( ) => setDetailsTaxon( taxon )}
-                title="All observations in this taxon"
+                title={I18n.t( "views.lifelists.all_observations_in_this_taxon" )}
               >
                 { descendantObsCount }
               </span>
@@ -87,21 +87,11 @@ class TaxaList extends React.Component {
                   setDetailsTaxon( taxon, { without_descendants: true } );
                   setDetailsView( "observations" );
                 }}
-                title="Observations of exactly this taxon"
+                title={I18n.t( "views.lifelists.observations_of_exactly_this_taxon" )}
               >
                 { directObsCount }
               </Badge>
             ) : null }
-            <span
-              className={`${lifelist.detailsView === "observations" ? "icon icon-binoculars" : "fa fa-leaf"}`}
-              onClick={( ) => {
-                setDetailsTaxon( taxon );
-                if ( lifelist.detailsView !== "observations" ) {
-                  setDetailsView( "species" );
-                }
-              }}
-              title={`${lifelist.detailsView === "observations" ? "View observations" : "View speciews"}`}
-            />
           </div>
           { leaves }
         </li>
@@ -121,6 +111,7 @@ class TaxaList extends React.Component {
       }
     } else {
       taxaToList = _.map( lifelist.simplifiedLeafParents, id => lifelist.taxa[id] );
+      taxaToList = _.filter( taxaToList, t => t.rank_level > 10 );
       if ( searchTaxon ) {
         taxaToList = _.filter( taxaToList,
           t => (
@@ -183,7 +174,7 @@ class TaxaList extends React.Component {
             }}
           >
             <i className="fa fa-caret-down" />
-            Show More
+            { I18n.t( "show_more" ) }
           </button>
         </div>
       );
