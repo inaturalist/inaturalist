@@ -1028,7 +1028,6 @@ cs:
     flowering: Květiny viditelné, otevřené a stále připojené k rostlině
     fruiting: Květiny viditelné a stále připojené k rostlině
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
-    teneral: Dospělá rostlina, která nedávno zakořenila, ale dosud nedosáhla konečné dospělé formy
     cannot_be_determined: Na základě poskytnutých důkazů nelze určit
   controls: Ovládací prvky
   convert: Převést
@@ -1695,8 +1694,6 @@ cs:
     tooltips:
       leading: |
         Taxon vychází z komunitního taxonu. Tato identifikace by mohla vést ke správné odpovědi.
-      improving: |
-        První návrh tohoto taxonu, s nímž komunita následně souhlasila. Toto pomohlo komunitní taxon vylepšit.
       maverick: |
         Taxon není následník ani předchůdce komunitního taxonu, komunita tedy s tímto taxonem nesouhlasí.
   id_withdrawn: ID odebráno
@@ -2353,6 +2350,7 @@ cs:
   no_matching_places: Žádná odpovídající místa
   no_matching_projects: Žádné odpovídající projekty
   no_matching_species: Žádné odpovídající druhy.
+  no_matching_taxa: Žádné odpovídající taxony
   no_matching_users: Žádní odpovídající uživatelé.
   no_members_yet: "Zatím žádní členové."
   no_messages_yet: Zatím žádné zprávy
@@ -4841,6 +4839,35 @@ cs:
       show:
         reuse_desc: |
           Tento taxon můžete zkopírovat do jiného průvodce. Pokud jste jedním z editorů tohoto průvodce, mělo by se zkopírovat všechno, ale pokud nejste, zkopíruje se pouze obsah s licencí.
+    lifelists:
+      list_view: Zobrazení seznamu
+      tree_view: Zobrazení stromu
+      observed_species: Pozorované druhy
+      unobserved_species: Nepozorované druhy
+      all_species: Všechny druhy
+      all_unobserved_species: Všechny nepozorované druhy
+      observations_at_this_taxon: Pozorování v tomto taxonu
+      observations_within_this_taxon: Pozorování v rámci tohoto taxonu
+      all_observations: Všechna pozorování
+      total_observations: Celková pozorování
+      filter_by: Filtrovat podle
+      filtered_by: Filtrováno podle
+      reset_place_filter: Resetovat filtr místa
+      all_observations_in_this_taxon: Všechna pozorování v tomto taxonu
+      observations_of_exactly_this_taxon: Pozorování přesně tohoto taxonu
+      focus_tree_on_this_taxon: Zaměřit strom na tento taxon
+      expand_all_nodes_in_this_branch: Rozbalit všechny uzly v této větvi
+      collapse_this_branch: Sbalit tuto větev
+      dropdowns:
+        sort: Seřadit
+        taxonomic: Taxonomicky
+        name: Název
+        most_observed: Nejvíce pozorované
+        date_added_newest: Datum přidání, od nejnovějšího k nejstaršímu
+        date_added_oldest: Datum přidání, od nejstaršího k nejnovějšímu
+        show: Zobrazit
+        simplified_tree: Zjednodušený strom
+        full_taxonomy: Úplná taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
