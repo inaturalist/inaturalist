@@ -214,6 +214,16 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-size: 12px;
     line-height: 12px;
     vertical-align: text-top;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+  }
+  .icon-collapse + .icon-expand {
+    margin-left: 2px;
+  }
+  .icon-focus {
+    font-size: 10px;
   }
   & > .fa-chevron-down {
     margin-left: 2px;
@@ -232,6 +242,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-weight: 600;
   }
 }
+
 .bootstrap .badge.green {
   padding: 3px 7px 1px 7px;
   vertical-align: inherit;
@@ -296,7 +307,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       margin-top: 20px;
     }
   }
-  .SpeciesGrid.unobserved .empty, .ObservationsGrid .empty {
+  .SpeciesGrid.unobserved .empty {
     margin-top: 74px;
   }
 }
@@ -466,7 +477,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList .tree > li > .name-row {
   font-size: 18px;
-  padding: 2px 0px 2px 0px;
+  padding: 3px 0px 4px 0px;
   font-weight: 300;
 }
 
@@ -600,6 +611,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 .ExportModal {
+  .modal-header {
+    font-size: 24px;
+  }
   .modal-body {
     font-size: 16px;
     ul {
@@ -614,7 +628,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
           font-weight: normal;
           .filter-label {
             font-weight: 700;
-            margin-left: 4px;
           }
         }
       }

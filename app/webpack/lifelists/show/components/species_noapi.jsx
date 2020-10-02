@@ -7,7 +7,7 @@ class SpeciesNoAPI extends Component {
   secondaryNodeList( ) {
     const {
       lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon,
-      search, setSpeciesPlaceFilter, setDetailsTaxon
+      search, setSpeciesPlaceFilter
     } = this.props;
     let nodeShouldDisplay;
     const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
@@ -38,7 +38,7 @@ class SpeciesNoAPI extends Component {
       nodeShouldDisplay = node => node.rank_level % 10 === 0;
     } else if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
       nodeShouldDisplay = node => node.rank_level === 70;
-    } else if ( lifelist.speciesViewRankFilter === "phylums" ) {
+    } else if ( lifelist.speciesViewRankFilter === "phyla" ) {
       nodeShouldDisplay = node => node.rank_level === 60;
     } else if ( lifelist.speciesViewRankFilter === "classes" ) {
       nodeShouldDisplay = node => node.rank_level === 50;
@@ -51,7 +51,13 @@ class SpeciesNoAPI extends Component {
     } else if ( lifelist.speciesViewRankFilter === "species" ) {
       nodeShouldDisplay = node => node.rank_level === 10;
     } else if ( lifelist.speciesViewRankFilter === "leaves" ) {
-      nodeShouldDisplay = node => node.left === node.right - 1;
+      nodeShouldDisplay = node => (
+        node.rank_level === 10 || (
+          node.left === node.right - 1 && node.rank_level > 10
+        ) || (
+          detailsTaxon && detailsTaxon.rank_level < 10 && detailsTaxon.id === node.id
+        )
+      );
     }
     if ( !nodeShouldDisplay ) return null;
     const secondaryNodes = _.filter( lifelist.taxa,
@@ -69,7 +75,7 @@ class SpeciesNoAPI extends Component {
             }}
           >
             <i className="fa fa-caret-down" />
-            Show More
+            { I18n.t( "show_more" ) }
           </button>
         </div>
       );
@@ -88,9 +94,13 @@ class SpeciesNoAPI extends Component {
     let emptyClearButton;
     if ( _.size( secondaryNodesToDisplay ) === 0 && lifelist.speciesPlaceFilter ) {
       if ( lifelist.detailsTaxon ) {
-        emptyMessage = `No species in your observations found within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+        emptyMessage = I18n.t( "views.lifelists.no_species_found_within_this_taxon_in_place", {
+          place: lifelist.speciesPlaceFilter.display_name
+        } );
       } else {
-        emptyMessage = `No species in your observations found in ${lifelist.speciesPlaceFilter.display_name}.`;
+        emptyMessage = I18n.t( "views.lifelists.no_species_found_in_place", {
+          place: lifelist.speciesPlaceFilter.display_name
+        } );
       }
       emptyClearButton = (
         <button
@@ -98,7 +108,7 @@ class SpeciesNoAPI extends Component {
           className="btn btn-primary"
           onClick={( ) => setSpeciesPlaceFilter( null )}
         >
-          Reset Place Filter
+          { I18n.t( "views.lifelists.reset_place_filter" ) }
         </button>
       );
     }
@@ -150,24 +160,25 @@ class SpeciesNoAPI extends Component {
       lifelist, detailsTaxon, setRankFilter, setSort, search
     } = this.props;
     if ( !lifelist.taxa || !lifelist.children ) { return ( <span /> ); }
-    let rankLabel = "Show: Children";
+    let rankLabel = I18n.t( "views.lifelists.dropdowns.children" );
     if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
-      rankLabel = "Show: Kingdoms";
-    } else if ( lifelist.speciesViewRankFilter === "phylums" ) {
-      rankLabel = "Show: Phylums";
+      rankLabel = I18n.t( "ranks.x_kingdoms", { count: 2 } );
+    } else if ( lifelist.speciesViewRankFilter === "phyla" ) {
+      rankLabel = I18n.t( "ranks.x_phyla", { count: 2 } );
     } else if ( lifelist.speciesViewRankFilter === "classes" ) {
-      rankLabel = "Show: Classes";
+      rankLabel = I18n.t( "ranks.x_classes", { count: 2 } );
     } else if ( lifelist.speciesViewRankFilter === "orders" ) {
-      rankLabel = "Show: Orders";
+      rankLabel = I18n.t( "ranks.x_orders", { count: 2 } );
     } else if ( lifelist.speciesViewRankFilter === "families" ) {
-      rankLabel = "Show: Families";
+      rankLabel = I18n.t( "ranks.x_families", { count: 2 } );
     } else if ( lifelist.speciesViewRankFilter === "genera" ) {
-      rankLabel = "Show: Genera";
+      rankLabel = I18n.t( "ranks.x_genera", { count: 2 } );
     } else if ( lifelist.speciesViewRankFilter === "species" ) {
-      rankLabel = "Show: Species";
+      rankLabel = I18n.t( "ranks.species" );
     } else if ( lifelist.speciesViewRankFilter === "leaves" ) {
-      rankLabel = "Show: Leaves";
+      rankLabel = I18n.t( "ranks.leaves" );
     }
+    rankLabel = `${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel}`;
     const rankOptions = (
       <div className="dropdown">
         <button
@@ -183,16 +194,17 @@ class SpeciesNoAPI extends Component {
           <li
             className={lifelist.speciesViewRankFilter === "children" ? "selected" : null}
             onClick={( ) => setRankFilter( "children" )}
+            disabled={detailsTaxon && detailsTaxon.right === detailsTaxon.left + 1}
           >
             Children
           </li>
-          { [{ filter: "kingdoms", label: "Kingdoms", rank_level: 70 },
-            { filter: "phylums", label: "Phylums", rank_level: 60 },
-            { filter: "classes", label: "Classes", rank_level: 50 },
-            { filter: "orders", label: "Orders", rank_level: 40 },
-            { filter: "families", label: "Families", rank_level: 30 },
-            { filter: "genera", label: "Genera", rank_level: 20 },
-            { filter: "species", label: "Species", rank_level: 10 }].map( r => (
+          { [{ filter: "kingdoms", rank_level: 70 },
+            { filter: "phyla", rank_level: 60 },
+            { filter: "classes", rank_level: 50 },
+            { filter: "orders", rank_level: 40 },
+            { filter: "families", rank_level: 30 },
+            { filter: "genera", rank_level: 20 },
+            { filter: "species", rank_level: 10 }].map( r => (
               <li
                 key={`rank-filter-${r.filter}`}
                 disabled={detailsTaxon && ( detailsTaxon.rank_level <= 20 || detailsTaxon.rank_level <= r.rank_level )}
@@ -206,24 +218,25 @@ class SpeciesNoAPI extends Component {
                   setRankFilter( r.filter );
                 }}
               >
-                { r.label }
+                { I18n.t( `ranks.x_${r.filter}`, { count: 2 } ) }
               </li>
           ) )}
           <li
             className={lifelist.speciesViewRankFilter === "leaves" ? "selected" : null}
             onClick={( ) => setRankFilter( "leaves" )}
           >
-            Leaves
+            { I18n.t( "ranks.leaves" ) }
           </li>
         </ul>
       </div>
     );
-    let sortLabel = "Sort: Total Observations";
+    let sortLabel = I18n.t( "views.lifelists.dropdowns.most_observed" );
     if ( lifelist.speciesViewSort === "name" ) {
-      sortLabel = "Sort: Name";
+      sortLabel = I18n.t( "views.lifelists.dropdowns.name" );
     } else if ( lifelist.speciesViewSort === "taxonomic" ) {
-      sortLabel = "Sort: Taxonomic";
+      sortLabel = I18n.t( "views.lifelists.dropdowns.taxonomic" );
     }
+    sortLabel = `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${sortLabel}`;
     const sortOptions = (
       <div className="dropdown">
         <button
@@ -240,19 +253,19 @@ class SpeciesNoAPI extends Component {
             className={lifelist.speciesViewSort === "obsDesc" ? "selected" : null}
             onClick={( ) => setSort( "obsDesc" )}
           >
-            Total Observations
+            { I18n.t( "views.lifelists.dropdowns.most_observed" ) }
           </li>
           <li
             className={lifelist.speciesViewSort === "name" ? "selected" : null}
             onClick={( ) => setSort( "name" )}
           >
-            Name
+            { I18n.t( "views.lifelists.dropdowns.name" ) }
           </li>
           <li
             className={lifelist.speciesViewSort === "taxonomic" ? "selected" : null}
             onClick={( ) => setSort( "taxonomic" )}
           >
-            Taxonomic
+            { I18n.t( "views.lifelists.dropdowns.taxonomic" ) }
           </li>
         </ul>
       </div>
@@ -281,7 +294,6 @@ SpeciesNoAPI.propTypes = {
   search: PropTypes.object,
   lifelist: PropTypes.object,
   detailsTaxon: PropTypes.object,
-  setDetailsTaxon: PropTypes.func,
   setSpeciesPlaceFilter: PropTypes.func,
   setScrollPage: PropTypes.func,
   setSort: PropTypes.func,
