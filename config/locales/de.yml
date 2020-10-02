@@ -1548,7 +1548,7 @@ de:
         Taxon leitet sich vom Community-Taxon ab. Diese ID könnte zur richtigen Antwort
         führen.
       improving: |
-        Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei, das Community-Taxon zu verfeinern.
+        Erster Vorschlag dieses Taxons in Übereinstimmung mit der Community. Dies trägt dazu bei, das Community-Taxon zu verfeinern.
       maverick: |
         Taxon steht außerhalb des Community-Taxons (weder abgeleitet noch übergeordnet), d.h. die Community stimmt diesem Taxon nicht zu.
   id_withdrawn: ID zurückgezogen
@@ -1691,6 +1691,10 @@ de:
   labels: Etikett
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Standort privat
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Fehlender Standort
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomstufe fixieren
@@ -1791,6 +1795,7 @@ de:
   life_list_updated: Life-Liste wurde aktualisiert!
   life_list_updated_we_also_saved_a: Life-Liste aktualisiert! Wir haben auch eine leere Beobachtung dieses Taxons gespeichert.
   life_lists_automatically_fill: Life-Listen füllen sich automatisch mit neuen Taxa, sobald du diese beobachtest, und sie können auf übergeordnete Taxa beschränkt werden, z.B. eine Life-Liste der Rabenvögel (Corvidae).
+  linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Verknüpfe oder entferne deinen Facebook Account
   link_or_unlink_your_flickr_account: Verknüpfe oder entferne deinen Flickr-Account
@@ -1900,6 +1905,7 @@ de:
     <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Kommentare hinzuzufügen.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Bestimmungen hinzuzufügen.
+  log_scale_label: Log
   login_slash_username: Login/Benutzername
   logo:
     logo: Logo
@@ -2112,6 +2118,16 @@ de:
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
   needs_to_be_identified: Muss bestimmt werden
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
+    Kontos von iNaturalist.org auf %{site_name} ändern?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in Finnland. Möchtest du die Zugehörigkeit deines
+    Kontos von iNaturalist.org auf iNaturalist Suomi ändern?
   network_affiliation_prompt_from_other_site_html: |
     Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
     <strong>%{site_name}</strong> ändern?
@@ -6002,14 +6018,14 @@ de:
         #"one million and two and a half dollars" this would be written as
         #"$1,000,002.50" in English, and "," is the delimiter. This should not
         #be the same as the separator.
-        delimiter: ','
+        delimiter: '.'
         format: '%u%n'
         precision: 2
         #The separator separates an integer from a decimal fraction, so if the
         #number is "one million and two and a half dollars" this would be
         #written as "$1,000,002.50" in English, and "." is the separator. This
         #should not be the same as the delimiter.
-        separator: .
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
@@ -6018,13 +6034,13 @@ de:
       #"one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
-      delimiter: ','
+      delimiter: '.'
       precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
       #the same as the delimiter.
-      separator: .
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
       si:
