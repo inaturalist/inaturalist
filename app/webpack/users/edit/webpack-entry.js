@@ -11,7 +11,6 @@ import {
 } from "redux";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 
-// import UserSettings from "./user_settings";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {

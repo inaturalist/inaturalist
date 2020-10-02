@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Profile from "../components/profile";
+import UserSettings from "../components/app";
 
 function mapStateToProps( state ) {
   return {
@@ -16,6 +16,6 @@ function mapStateToProps( state ) {
 const AppContainer = connect(
   mapStateToProps
   // mapDispatchToProps
-)( Profile );
+)( UserSettings );
 
 export default AppContainer;
