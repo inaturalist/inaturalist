@@ -2957,6 +2957,8 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_the_future: |
+    Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
@@ -5526,6 +5528,7 @@ fi:
     models:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
+      BlockedUser: Estetty Käyttäjä
       CompleteSet: Täydellinen sarja
       #Noun
       Flag: Lippu
@@ -5536,6 +5539,9 @@ fi:
       assessment_section:
         title: Otsikko
         body: Leipäteksti
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Estetty käyttäjä
       conservation_status:
         status: Tila
         description: Kuvaus
@@ -5673,6 +5679,10 @@ fi:
           attributes:
             base:
               guide_has_too_many_taxa: "oppaassa voi olla vain 500 taksonia"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_missing: "Mushroom Observer API-key puuttuu."
         observation:
           attributes:
             base:
@@ -5715,6 +5725,11 @@ fi:
                 tulee olla havaittu %{time} jälkeen
               must_be_observed_before: |
                 pitää olla havaittu ennen %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Havainnolla ei ole päivämäärää, josta voisi äänestää
+              no_votable_coordinates: Havainnolla ei ole koordinaatteja, joista voisi äänestää
         taxon:
           attributes:
             rank:
@@ -5739,6 +5754,7 @@ fi:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ei saa sisältää pilkkuja tai kauttaviivoja
+              should_be_in_english: pitää olla englanniksi
             name:
               must_match_the_taxon_if_valid: |
                 pitää vastata taksonin nimeä, jos kyseessä on hyväksytty tieteellinen nimi
@@ -5755,6 +5771,10 @@ fi:
             email:
               must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
               domain_is_not_supported: verkkotunnusta ei voi käyttää
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Olet jo estänyt käyttäjän
         user_parent:
           attributes:
             email:
