@@ -1546,6 +1546,8 @@ de:
       leading: |
         Taxon leitet sich vom Community-Taxon ab. Diese ID könnte zur richtigen Antwort
         führen.
+      improving: |
+        Erster Vorschlag dieses Taxons in Übereinstimmung mit der Community. Dies trägt dazu bei, das Community-Taxon zu verfeinern.
       maverick: |
         Taxon steht außerhalb des Community-Taxons (weder abgeleitet noch übergeordnet), d.h. die Community stimmt diesem Taxon nicht zu.
   id_withdrawn: ID zurückgezogen
@@ -2204,6 +2206,7 @@ de:
   no_matching_places: Keine übereinstimmenden Gebiete
   no_matching_projects: Keine übereinstimmenden Projekte
   no_matching_species: Keine übereinstimmenden Arten.
+  no_matching_taxa: Keine übereinstimmenden Taxa
   no_matching_users: Keine übereinstimmenden Benutzer.
   no_members_yet: "Noch keine Mitglieder."
   no_messages_yet: Noch keine Nachrichten
@@ -3169,15 +3172,27 @@ de:
   ranks:
     stateofmatter: eingeordnet als
     kingdom: Reich
+    x_kingdoms:
+      one: Reich
+      other: Reiche
     subkingdom: Unterreich
     phylum: Stamm
+    x_phyla:
+      one: Stamm
+      other: Stämme
     subphylum: Unterstamm
     superclass: Überklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klassen
     subclass: Unterklasse
     infraclass: Teilklasse
     superorder: Überordnung
     order: Ordnung
+    x_orders:
+      one: Ordnung
+      other: Ordnungen
     suborder: Unterordnung
     infraorder: Teilordnung
     subterclass: Unterklasse
@@ -3187,11 +3202,17 @@ de:
     superfamily: Überfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familien
     subfamily: Unterfamilie
     supertribe: Übertribus
     tribe: Tribus
     subtribe: Untertribus
     genus: Gattung
+    x_genera:
+      one: Gattung
+      other: Gattungen
     genushybrid: Gattungshybrid
     subgenus: Untergattung
     section: Sektion
@@ -3199,6 +3220,9 @@ de:
     complex: Komplex
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arten
     hybrid: Hybrid
     #Singular
     subspecies: Unterart
@@ -4615,6 +4639,53 @@ de:
         reuse_desc: |
           Du kannst dieses Taxon in einen anderen Guide kopieren. Wenn du einer von den
           Editoren dieses Guides bist, sollte es alles kopieren, aber wenn du es nicht bist, wird es nur den lizenzierten Inhalt kopieren.
+    lifelists:
+      list_view: Listenansicht
+      tree_view: Baumstruktur
+      observed_species: Beobachtete Arten
+      unobserved_species: Nicht beobachtete Arten
+      all_species: Alle Arten
+      all_unobserved_species: Alle nicht beobachteten Arten
+      observations_at_this_taxon: Beobachtungen von diesem Taxon
+      observations_within_this_taxon: Beobachtungen innerhalb dieses Taxons
+      all_observations: Alle Beobachtungen
+      total_observations: Beobachtungen insgesamt
+      filter_by: Filtern nach
+      filtered_by: Gefiltert nach
+      apply_filters_to_export: Filter zum Exportieren anwenden
+      restrict_to_taxon: Auf %{taxon} beschränken
+      restrict_to_taxa_observed_in_place: Auf Taxa in %{place} beschränken
+      exporting_all_x_taxa:
+        one: Exportiere %{count} Taxon
+        other: Alle %{count} Taxa exportieren
+      exporting_x_taxa:
+        one: Exportiere %{count} Taxon
+        other: Exportiere %{count} Taxa
+      no_observations_found_in_place: Keine Beobachtungen in %{place} gefunden.
+      no_observations_found_within_this_taxon_in_place: Keine Beobachtungen innerhalb dieses Taxons in %{place} gefunden.
+      no_species_found_within_this_taxon_in_place: Keine Arten in diesem Taxon in %{place} gefunden.
+      no_species_found_in_place: Keine Arten in %{place} gefunden.
+      no_unobserved_species_in_place: Keine unbeobachteten Arten in %{place}.
+      no_unobserved_species_within_this_taxon: Keine unbeobachteten Arten innerhalb dieses Taxons.
+      no_unobserved_species_within_this_taxon_in_place: Keine unbeobachteten Arten innerhalb dieses Taxons in %{place}.
+      reset_place_filter: Gebietsfilter zurücksetzen
+      all_observations_in_this_taxon: Alle Beobachtungen in diesem Taxon
+      observations_of_exactly_this_taxon: Beobachtungen von genau diesem Taxon
+      focus_tree_on_this_taxon: Stammbaum auf dieses Taxon zentrieren
+      expand_all_nodes_in_this_branch: Alle Knoten in diesem Zweig erweitern
+      collapse_this_branch: Diesen Zweig einklappen
+      dropdowns:
+        sort: Sortieren
+        taxonomic: Taxonomisch
+        name: Name
+        most_observed: Am häufigsten beobachtet
+        date_added_newest: Datum hinzugefügt (absteigend)
+        date_added_oldest: Datum hinzugefügt (aufsteigend)
+        ancestry: Vorfahren
+        show: Zeigen
+        children: Unterkategorien
+        simplified_tree: Vereinfachte Baumstruktur
+        full_taxonomy: Komplette Taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
