@@ -1,24 +1,43 @@
-#UserSettings {
-  display: flex;
-}
-
 #Column {
   flex-flow: column nowrap;
+}
+
+.left-nav {
+  margin-left: 54px;
+}
+
+@media (max-width: 767px) {
+  .left-nav {
+    margin-left: 38px;
+  }
 }
 
 #Row {
   display: flex;
   flex-direction: row;
+
+  .center {
+    align-items: center;
+  }
+
+  .settings-row {
+    margin-left: 54px;
+    margin-top: 33px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 }
 
 #UserSettingsHeader h2 {
   color: #333;
-  margin-top: 33px;
-  margin-bottom: 38px;
   font-weight: bold;
+  margin-right: 349px;
 }
 
 #UserSettingsMenu {
+  margin-top: 38px;
   font-size: 15px;
 
   a {
@@ -34,20 +53,11 @@
   }
 }
 
-.left-nav {
-  margin-left: 54px;
-}
-
-@media (max-width: 767px) {
-  .left-nav {
-    margin-left: 38px;
-  }
-}
-
 .vl {
   border-left: 1px solid #eee;
   height: 522px;
   margin-left: 44px;
+  margin-top: 26px;
 }
 
 @media (min-width: 768px) {
@@ -60,7 +70,7 @@
 }
 
 #SettingsContainer {
-  margin-top: 91px;
+  margin-top: 36px;
   margin-left: 50px;
 }
 
@@ -91,6 +101,12 @@
   }
 }
 
+#Time {
+  color: #777777;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
 .blue-button {
   height: 26px;
   width: 115px;
@@ -102,6 +118,21 @@
 .blue-button-text {
   color: #fff;
   font-size: 12px;
+}
+
+.blue-button-caps {
+  height: 26px;
+  border-radius: 7px;
+  border-color: transparent;
+  background-color: #2e78b8;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.blue-button-text-caps {
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1.1px;
 }
 
 .centered-column {
@@ -125,34 +156,38 @@
 #InputSmall {
   border-color: #bbbbbb;
   border-width: 1px;
-  color: #fafafa;
+  background-color: #fafafa;
   width: 155px;
   height: 26px;
+  z-index: 1;
 }
 
 #InputMedium {
   border-color: #bbbbbb;
   border-width: 1px;
-  color: #fafafa;
+  background-color: #fafafa;
   width: 205px;
   height: 26px;
+  z-index: 1;
 }
 
 #InputLarge {
   border-color: #bbbbbb;
   border-width: 1px;
-  color: #fafafa;
+  background-color: #fafafa;
   width: 317px;
   height: 137px;
+  z-index: 1;
 }
 
 #Checkbox {
   border-color: #bbbbbb;
   border-width: 1px;
-  color: #f7f7f7;
+  background-color: #f7f7f7;
   width: 14px;
   height: 14px;
   margin-right: 11px;
+  border-radius: 0px;
 }
 
 .italic-text {
@@ -178,4 +213,8 @@
 
 .margin-medium-small {
   margin-bottom: 13px;
+}
+
+.time-margin {
+  margin-right: 16px;
 }

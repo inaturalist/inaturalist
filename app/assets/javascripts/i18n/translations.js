@@ -17082,7 +17082,9 @@ I18n.translations["en"] = {
   "save_comment": "Save comment",
   "save_identification": "Save identification",
   "save_photos": "Save photos",
+  "save_settings": "Save settings",
   "saved": "Saved",
+  "saved_at": "Saved at",
   "saving": "Saving...",
   "saving_num_of_count_observations": {
     "one": "Saving observation...",
