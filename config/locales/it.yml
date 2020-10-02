@@ -2230,6 +2230,7 @@ it:
   no_matching_places: Nessun luogo corrisponde
   no_matching_projects: Nessun progetto corrisponde
   no_matching_species: Nessuna specie corrisponde.
+  no_matching_taxa: Nessun taxa corrispondente
   no_matching_users: Nessun utente corrisponde.
   no_members_yet: "Ancora nessun membro."
   no_messages_yet: Ancora nessun messaggio
@@ -3190,15 +3191,27 @@ it:
   ranks:
     stateofmatter: Stato della materia
     kingdom: Regno
+    x_kingdoms:
+      one: Regno
+      other: Regni
     subkingdom: Sottoregno
     phylum: Phylum
+    x_phyla:
+      one: Phylum
+      other: Phyla
     subphylum: Subphylum
     superclass: Superclasse
     class: Classe
+    x_classes:
+      one: Classe
+      other: Classi
     subclass: Sottoclasse
     infraclass: Infraclasse
     superorder: Superordine
     order: Ordine
+    x_orders:
+      one: Ordine
+      other: Ordini
     suborder: Sottordine
     infraorder: Infraordine
     subterclass: Superclasse
@@ -3208,11 +3221,17 @@ it:
     superfamily: Superfamiglia
     epifamily: Epifamilia
     family: Famiglia
+    x_families:
+      one: Famiglia
+      other: Famiglie
     subfamily: Sottofamiglia
     supertribe: Supertribù
     tribe: Tribù
     subtribe: Sottotribù
     genus: Genere
+    x_genera:
+      one: Genere
+      other: Generi
     genushybrid: Genereibrido
     subgenus: Sottogenere
     section: Sezione
@@ -3220,6 +3239,9 @@ it:
     complex: Complesso
     #Singular
     species: Specie
+    x_species:
+      one: Specie
+      other: Specie
     hybrid: Ibrido
     #Singular
     subspecies: Sottospecie
@@ -4653,6 +4675,54 @@ it:
       show:
         reuse_desc: |
           Puoi copiare questo taxon in un'altra guida. Se sei uno degli editor della guida la copia sarà completa, altrimenti verranno copiati solo i contenuti con licenza.
+    lifelists:
+      list_view: Visualizzazione Elenco
+      tree_view: Visualizzazione ad Albero
+      observed_species: Specie Osservate
+      unobserved_species: Specie Non-Osservate
+      all_species: Tutte le Specie
+      all_unobserved_species: Tutte le Specie Non-Osservate
+      observations_at_this_taxon: Osservazioni di questo taxon
+      observations_within_this_taxon: Osservazioni all'interno di questo taxon
+      all_observations: Tutte le Osservazioni
+      total_observations: Totale Osservazioni
+      filter_by: 'Filtra per:'
+      filtered_by: Filtrato per
+      apply_filters_to_export: Applica i filtri all'esportazione
+      restrict_to_leaf_taxa: Limita ai taxa foglia
+      restrict_to_taxon: Limita a %{taxon}
+      restrict_to_taxa_observed_in_place: Limita ai taxa osservati in %{place}
+      exporting_all_x_taxa:
+        one: Esportando %{count} taxon
+        other: Esportando %{count} taxa
+      exporting_x_taxa:
+        one: Esportando %{count} taxon
+        other: Esportando %{count} taxa
+      no_observations_found_in_place: Nessuna osservazione trovata in %{place}.
+      no_observations_found_within_this_taxon_in_place: Nessuna osservazione trovata all'interno di questo taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: Nessuna specie trovata in questo taxon in %{place}.
+      no_species_found_in_place: Nessuna specie trovata in %{place}.
+      no_unobserved_species_in_place: Nessuna specie non-osservata in %{place}.
+      no_unobserved_species_within_this_taxon: Nessuna specie non-osservata all'interno di questo taxon.
+      no_unobserved_species_within_this_taxon_in_place: Nessuna specie non-osservata all'interno di questo taxon in %{place}.
+      reset_place_filter: Resetta i Filtri di Luogo
+      all_observations_in_this_taxon: Tutte le osservazioni in questo taxon
+      observations_of_exactly_this_taxon: Osservazioni di questo esatto taxon
+      focus_tree_on_this_taxon: Centra l'albero su questo taxon
+      expand_all_nodes_in_this_branch: Espandi tutti i nodi in questo ramo
+      collapse_this_branch: Collassa questo ramo
+      dropdowns:
+        sort: Ordina
+        taxonomic: Tassonomico
+        name: Nome
+        most_observed: Più Osservato
+        date_added_newest: Data Aggiunta, dalla Più Recente alla Meno Recente
+        date_added_oldest: Data Aggiunta, dalla Meno Recente alla Più Recente
+        ancestry: Antenato
+        show: Mostra
+        children: Discendenti
+        simplified_tree: Albero Semplificato
+        full_taxonomy: Tassonomia Completa
     listed_taxa:
       establishment_field:
         confirmation: |
