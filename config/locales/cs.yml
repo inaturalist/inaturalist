@@ -1236,6 +1236,12 @@ cs:
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
   devise_reset_password_instructions_hello_email: Dobrý den %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Pokud jste o změnu hesla nežádali, prosím ignorujte tento e-mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Vaše heslo nebude změněno, pokud se nepřihlásíte na následující odkaz a nevytvoříte si nové heslo.
   discoveries: Objevy
   did_not_send_invitations_because: Pozvánka těmto nebyla odeslána, protože...
   did_you_mean: 'Mysleli jste'
@@ -1694,6 +1700,8 @@ cs:
     tooltips:
       leading: |
         Taxon vychází z komunitního taxonu. Tato identifikace by mohla vést ke správné odpovědi.
+      improving: |
+        První návrh tohoto taxonu, s nímž komunita následně souhlasila. Toto pomohlo komunitní taxon vylepšit.
       maverick: |
         Taxon není následník ani předchůdce komunitního taxonu, komunita tedy s tímto taxonem nesouhlasí.
   id_withdrawn: ID odebráno
@@ -2112,6 +2120,10 @@ cs:
       range: Rozsah
   map_tooltip: Ukázat zobrazení mapy
   mark_as_reviewed: Označit jako zkontrolované
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Označení pozorování jako recenzované znamená, že ho znovu neuvidíte v
+    výchozím nastavení v Identify. Bude stále viditelné i pro ostatní lidi v identifikaci.
   mark_all_as_reviewed: Označit vše za zkontrolované
   mark_all_as_unreviewed: Označit všechny za nezkontrolované
   matching_species_will_shown_up_here: Zde se zobrazí odpovídající druhy. Pokud má %{place} pro daný druh rozsah, zobrazí se na mapě.
@@ -3176,6 +3188,29 @@ cs:
     zimbabwe: Zimbabwe
   places_of_interest: Zajímavá místa
   places_merged_successfully: Místa byla úspěšně sloučena!
+  places_warning_export_complex_boundary_html: |
+    Pokud se pokoušíte exportovat pozorování z komplikované hranice, zvažte raději
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">jejich stažení z GBIF</a>,
+    kde můžete nakreslit libovolné hranice, nebo je exportujte z iNat pomocí
+    existujících míst nebo ohraničujícího obdélníku a pak data znovu filtrujte po stažení.
+  places_warning_look_for_existing_html: |
+    Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že nevytváříte duplikát. Již máme místa pro všechny světadíly a státy, a stejně tak i pro další dvě administrativní úrovně států.
+  places_warning_projects_can_have_multiple_places: |
+    Pokud se snažíte vytvořit místo pro ohraničení projektu, pak projekty mohou být 
+    složeny z více míst. Například, pokud chcete vytvořit projekt pro
+    Nový Zéland a Austrálii, můžete přidat do požadavků dvě místa
+    namísto vytváření nového.
+  places_warning_new_places_are_slow_html: |
+    Nová místa jsou jedním z největších zdrojů zpomalení na iNat, tak
+    <strong>prosím zvažte nevytváření nového místa</strong>. Zatímco malá místa
+    obsahující pouze několik tisíc pozorování jsou obvykle v pořádku, pokud vytvoříte
+    nové místo, které obsahuje spoustu pozorování, budete zpomalovat iNat
+    pro všechny ostatní. Zde jsou některé alternativní možnosti:
+  places_warning_editing_places_is_slow: |
+    Úprava hranic místa je jedním z největších zdrojů zpomalení na iNat.
+    Pokud se tomu můžete vyhnout, nepřidávejte, neměňte ani neodstraňujte hranice míst, pokud to není naprosto nezbytné.
+  places_warning_the_future: |
+    Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_add_this_observation_to: Přidejte prosím toto pozorování k
@@ -3309,6 +3344,11 @@ cs:
   ranks:
     stateofmatter: Stav věci
     kingdom: Říše
+    x_kingdoms:
+      one: Říše
+      few: Říše
+      many: Říší
+      other: Říše
     subkingdom: Podříše
     phylum: kmen
     subphylum: Podkmen
@@ -3628,6 +3668,11 @@ cs:
   some_agree: někteří souhlasí
   some_observations_are_missing_media_or_identifications: |
     Některým pozorováním chybí média nebo identifikace
+  some_observations_are_missing_media_or_identifications_desc: |
+    Pozorování bez médií nebudou ve výchozím nastavení při hledání viditelná, a
+    osoby bez identifikace nesmí být viděny odborníky hledajícími
+    konkrétní taxony. Dokonce i velmi hrubá identifikace jako "rostliny" může pomoci
+    rostlinnému odborníkovi najít vaše pozorování.
   some_observations_failed_to_be_added: Některá pozorování se nepodařilo přidat k projektům
   some_observations_failed_to_save: Některá pozorování se nepodařilo uložit
   some_of_those_photos_couldnt_be_saved: "Některé z fotek se nepodařilo uložit: %{error}"
@@ -3764,6 +3809,11 @@ cs:
   subscribe_to_a_place: Sledovat místo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Odebírejte%{tag_end} komentáře k této vlajce"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Přihlásit se k odběru%{tag_end} komentářů k tomuto příspěvku"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Odebírat%{tag_end} komentáře u této fáze taxonu"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Odebírat%{tag_end} komentáře k této výměně taxonu"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto sloučení taxonu"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto rozdělení taxonu"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto vyloučení taxonu"
   subscribe_to_observations_in_a_taxon: Přihlaste se k odběru všech vložených pozorování druhu nebo skupiny organismů (např. „štíři“).
   subscribe_to_observations_in_a_place: Přihlaste se k odběru všech pozorování vložených k tomuto místu. Také si můžete přidat volitelný filtr taxonů (např. „štíři z Texasu“).
   subscribe_to_places_to: |
@@ -4518,6 +4568,8 @@ cs:
   'yes': "Ano"
   yes_find_them!: "Ano, najít!"
   yes_i_want_to_join: Ano, chci se připojit
+  yes_license_my_childs_observations: Ano, nastavte u mých fotografií, zvuků a pozorování licenci tak, aby vědci mohli používat data (doporučeno).
+  yes_license_my_observations_so_scientists_can_use: Ano, povolte mé fotografie, zvuky a pozorování, aby vědci mohli používat moje data (doporučeno).
   yes_reject_it: Ano, odmítnout
   yes_show_this_in_the_box: Ano, zobrazit toto ve velkém boxu v horní části/taxonech
   yesterday: Včera
@@ -4546,6 +4598,11 @@ cs:
     Nahráváte pozorování bez lokací a datumů.
   you_are_subscribed_to_comments_on_this_flag: Jste přihlášeni k odběru komentářů k tomuto listu.
   you_are_subscribed_to_comments_on_this_post: Jste přihlášeni k odběru komentářů k tomuto příspěvku.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Jste přihlášeni k odběru komentářů v této fázi taxonu
+  you_are_subscribed_to_comments_on_this_taxon_swap: Jste přihlášeni k odběru komentářů v této výměně taxonu
+  you_are_subscribed_to_comments_on_this_taxon_merge: Jste přihlášeni k odběru komentářů k tomuto sloučení taxonu
+  you_are_subscribed_to_comments_on_this_taxon_split: Jste přihlášeni k odběru komentářů k tomuto rozdělení taxonu
+  you_are_subscribed_to_comments_on_this_taxon_drop: Jste přihlášeni k odběru komentářů k tomuto vyloučení taxonu
   you_are_subscribed_to_observations_from_this_place: Jste přihlášeni k odběru komentářů z tohoto místa.
   you_arent_a_member_of_that_project: Nejste členem tohoto projektu.
   you_arent_following_that_person: "Tuto osobu nesledujete."
@@ -6771,6 +6828,7 @@ cs:
         mushroom_observer_import_flow_task:
           attributes:
             base:
+              api_key_in_use: "Import nebo čekání na import API klíče"
               api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
@@ -6828,6 +6886,11 @@ cs:
                 musí být pozorován po %{time}
               must_be_observed_before: |
                 musí být pozorován před %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Pozorování nemá žádný datum k hodnocení
+              no_votable_coordinates: Pozorování nemá žádné souřadnice k hodnocení
         taxon:
           attributes:
             rank:
@@ -6855,6 +6918,10 @@ cs:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
+              should_match_english_translation: |
+                by měl být v angličtině, ale v současné době odpovídá %{suggested_locale} překladu "%{suggested}".
+                Použijte "%{suggested}", pokud jste to mysleli a bude přeloženo při prohlížení stránky v
+                uvedeném jazyce.
               should_be_in_english: mělo by být v angličtině
             name:
               already_exists: pro tento taxon v tomto slovníku již existuje
@@ -6878,6 +6945,13 @@ cs:
             email:
               must_look_like_an_email_address: musí vypadat jako e-mailová adresa
               domain_is_not_supported: doména není podporována
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Tohoto uživatele již blokujete
+              user_cannot_be_staff: |
+                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
+                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
         user_parent:
           attributes:
             email:
