@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import UserSettings from "../components/app";
+import Profile from "../components/profile";
 // import { setUserData } from "../ducks/profile";
 
 function mapStateToProps( state ) {
@@ -16,9 +16,9 @@ function mapStateToProps( state ) {
 //   };
 // }
 
-const AppContainer = connect(
+const ProfileContainer = connect(
   mapStateToProps
   // mapDispatchToProps
-)( UserSettings );
+)( Profile );
 
-export default AppContainer;
+export default ProfileContainer;

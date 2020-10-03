@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Menu from "./menu";
-import Profile from "./profile";
+import ProfileContainer from "../containers/profile_container";
 import SaveButton from "./save_button";
 
-const App = ( { config } ) => (
+const App = ( ) => (
   <div id="Column" className="left-nav">
     <div id="Row" className="settings-row">
       <div id="UserSettingsHeader">
@@ -16,13 +15,9 @@ const App = ( { config } ) => (
     <div id="Row">
       <Menu />
       <div className="vl" />
-      <Profile config={config} />
+      <ProfileContainer />
     </div>
   </div>
 );
-
-App.propTypes = {
-  config: PropTypes.object
-};
 
 export default App;

@@ -1,41 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import UserImage from "../../../shared/components/user_image";
+// import UserImage from "../../../shared/components/user_image";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  // editDescription( e ) {
+  //   console.log( e.target.value, "bio in edit description" );
+  //   const bio = e.target.value;
+  //   const updatedUserData = this.state.userData;
+  //   updatedUserData.description = bio;
 
-    this.state = {
-      userData: {}
-    };
-  }
-
-  componentDidMount() {
-    const { currentUser } = this.props.config;
-    const authenticityToken = $( "meta[name=csrf-token]" ).attr( "content" );
-    fetch( `/users/edit.json?authenticity_token=${authenticityToken}&id=${currentUser.id}` )
-      .then( response => response.json( ) )
-      .then( json => {
-        this.setState( { userData: json } );
-        console.log( json );
-      } )
-      .catch( e => alert( `Failed to fetch user: ${e}` ) );
-  }
+  //   this.setState( { userData: updatedUserData } );
+  // }
 
   render() {
-    const { userData } = this.state;
-    const { currentUser } = this.props.config;
+    const { profile, config } = this.props;
+    const currentUser = config && config.currentUser;
 
     return (
       <div id="SettingsContainer" className="two-column">
         <div id="SettingsItem">
           <div id="Header">{I18n.t( "profile_picture" )}</div>
           <div id="Row" className="profile-picture">
-            <UserImage user={currentUser} />
+            {/* <UserImage user={currentUser} /> */}
             <img alt="profile-empty" src={emptyProfileImage} className="user-photo" />
             <div className="centered-column">
               <button className="blue-button" type="button">
@@ -54,7 +43,7 @@ class Profile extends Component {
           </div>
           <div className="italic-text">{I18n.t( "username_description" )}</div>
           <form>
-            <input type="text" id="InputSmall" value={currentUser && currentUser.login} />
+            <input type="text" id="InputSmall" value={currentUser ? currentUser.login : ""} />
           </form>
         </div>
         <div id="SettingsItem">
@@ -63,7 +52,7 @@ class Profile extends Component {
             <div className="asterisk">*</div>
           </div>
           <div className="italic-text">{I18n.t( "email_description" )}</div>
-          <form><input type="text" id="InputMedium" value={userData.email || null} /></form>
+          <form><input type="text" id="InputMedium" value={profile ? profile.email : ""} /></form>
         </div>
         <div id="SettingsItem">
           <div id="Header" className="margin-medium">
@@ -84,7 +73,7 @@ class Profile extends Component {
             <div className="asterisk">*</div>
           </div>
           <div className="italic-text">{I18n.t( "display_name_description" )}</div>
-          <form><input type="text" id="InputSmall" value={userData.description || null} /></form>
+          <form><input type="text" id="InputSmall" value={profile ? profile.name : ""} /></form>
         </div>
         <div id="SettingsItem">
           <div id="Header">
@@ -92,7 +81,9 @@ class Profile extends Component {
             <div className="asterisk">*</div>
           </div>
           <div className="italic-text">{I18n.t( "bio_description" )}</div>
-          <form><input type="text" id="InputLarge" /></form>
+          <form>
+            <textarea id="InputLarge" value={profile ? profile.description : ""} onChange={this.editDescription} />
+          </form>
         </div>
         <div id="SettingsItem">
           <div id="Header" className="margin-medium">{I18n.t( "badges" )}</div>
@@ -110,7 +101,8 @@ class Profile extends Component {
 };
 
 Profile.propTypes = {
-  config: PropTypes.object
+  config: PropTypes.object,
+  profile: PropTypes.object
 };
 
 export default Profile;
