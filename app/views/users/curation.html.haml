@@ -148,6 +148,7 @@
       .col-xs-4
         %p
           = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+        = link_to t(:users_profile, user: @display_user.login), user_path(@display_user), class: "btn btn-block btn-default"
         - if @display_user.is_curator?
           = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
         - else
@@ -198,6 +199,10 @@
             %span.badge= @display_user.comments.count
             %i.fa.fa-comments
             Comments
+          = link_to projects_by_login_path(@display_user.login), class: "list-group-item" do
+            %span.badge= @display_user.projects.count
+            %i.fa.fa-briefcase
+            = t(:projects)
         = render :partial => 'glance', :locals => {:user => @display_user, :extra => extra}
         - unless @display_user.provider_authorizations.blank?
           %h3= t(:provider_authorizations)
