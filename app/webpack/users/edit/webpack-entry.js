@@ -10,12 +10,10 @@ import {
   combineReducers
 } from "redux";
 
-import configReducer, { setConfig } from "../../shared/ducks/config";
 import profileReducer, { fetchUserProfile } from "./ducks/profile";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
-  config: configReducer,
   profile: profileReducer
 } );
 
@@ -30,12 +28,7 @@ const store = createStore(
   )
 );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
-  store.dispatch( fetchUserProfile( ) );
-}
+store.dispatch( fetchUserProfile( ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension

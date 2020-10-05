@@ -5,7 +5,6 @@ import Profile from "../components/profile";
 
 function mapStateToProps( state ) {
   return {
-    config: state.config,
     profile: state.profile
   };
 }

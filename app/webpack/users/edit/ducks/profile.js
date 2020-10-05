@@ -1,3 +1,5 @@
+import inatjs from "inaturalistjs";
+
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
 export default function reducer( state = { }, action ) {
@@ -18,13 +20,18 @@ export function setUserData( userData ) {
 
 export function fetchUserProfile( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const currentUser = s.config.currentUser ? s.config.currentUser : null;
-    const authenticityToken = $( "meta[name=csrf-token]" ).attr( "content" );
+    // const s = getState( );
+    return inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
+      dispatch( setUserData( results[0] ) );
+      console.log( results, "results in inat users me" );
+    } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
+  };
+}
 
-    return fetch( `/users/edit.json?authenticity_token=${authenticityToken}&id=${currentUser.id}` )
-      .then( response => response.json( ) )
-      .then( json => dispatch( setUserData( json ) ) )
-      .catch( e => console.log( `Failed to fetch user: ${e}` ) );
+export function updateUserProfile( ) {
+  return ( dispatch, getState ) => {
+    return inatjs.users.update( ).then( ( results ) => {
+      console.log( results, "update users/edit" );
+    } ).catch( e => console.log( `Failed to update user: ${e}` ) );
   };
 }

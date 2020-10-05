@@ -6,10 +6,8 @@ const SaveButton = () => (
       {I18n.t( "saved_at" )}
       {" time"}
     </div>
-    <button className="blue-button-caps" type="button">
-      <div className="blue-button-text-caps">
-        {I18n.t( "save_settings" ).toLocaleUpperCase()}
-      </div>
+    <button className="btn btn-xs btn-primary blue-button-caps" type="button">
+      {I18n.t( "save_settings" ).toLocaleUpperCase()}
     </button>
   </div>
 );

@@ -5,7 +5,6 @@ import UserSettings from "../components/app";
 
 function mapStateToProps( state ) {
   return {
-    config: state.config,
     profile: state.profile
   };
 }
