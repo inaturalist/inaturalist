@@ -2331,7 +2331,7 @@ fr:
   notify_me_of_mentions: M’informer des mentions (par ex. @username)
   notify_me_about_redundant_identifications: M’avertir des confirmations d’identité
   notify_me_about_redundant_identifications_desc: |
-    Recevoir des avertissements sur les identifications qui correspondent aux vôtres. Si vous refusez, vous ne recevrez que les avertissements sur les identifications ne correspondant pas exactement à votre propre identification.
+    Recevoir des notifications pour les identifications qui confirment la vôtre. Si vous décochez cette case, vous ne recevrez des avertissements que pour les identifications qui ne correspondent pas parfaitement à votre propre détermination.
   number_of_observations: Nombre d’observations
   number_of_observers_value: "Nombre d'observateurs : %{number}"
   number_of_observers: "Nombre d'observateurs"
@@ -5496,7 +5496,7 @@ fr:
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       collection_and_umbrellas_do_not_support: |
-        Les collections et les projets chapeau ne prennent pas actuellement en charge l’accès aux coordonnées masquées.
+        Actuellement, les collections et les projets cadres ne prennent pas en charge l’accès aux coordonnées masquées.
       curator_coordinate_access_desc_html: |
         Souvenez-vous, <strong>les responsables du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -5649,7 +5649,7 @@ fr:
           invitation.
       new:
         a_project_allows_you_to_gather: |
-          Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche du cœur de iNaturalist. Tout ce qui correspond aux paramètres définis par le projet sera automatiquement inclus.
+          Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche natifs d'iNaturalist. Tout ce qui correspond aux paramètres définis par le projet sera automatiquement inclus.
         an_umbrella_project_can_be_used_to: |
           Un projet cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets cadres ne peuvent pas contenir d’autres projets caders.
         are_you_ready_to_duplicate: |
@@ -5730,7 +5730,7 @@ fr:
           Utilisez à la place,  <a href="%{url}">ce lien</a> pour créer un projet traditionnel.
         visual_comparison_of_data_among: Comparaison visuelle des données parmi les projets sous l'ombrelle
         we_have_redesigned_projects: |
-          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous avez définis. Choisir entre deux types principaux :
+          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types principaux :
           Projets collections et Projets cadres, qui partagent les fonctionnalités suivantes :
         welcome_to_projects: Bienvenue dans les projets !
         you_can_learn_more_html: |
@@ -6390,7 +6390,7 @@ fr:
           <a href='/users/edit'>modifier vos paramètres</a>.
         project_addition_preferences:
           any: Tout
-          joined: Projets que vous avez rejoint
+          joined: Projets que vous avez rejoints
           none: "Non, vous seul pouvez ajouter vos observations aux projets"
         prefers_community_taxa_desc: |
           %{site_name} suit ce que vos identifications d’observations et les identifications de
