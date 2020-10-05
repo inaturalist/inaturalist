@@ -28,9 +28,9 @@ const Profile = ( { profile } ) => (
         <div className="asterisk">*</div>
       </div>
       <div className="italic-text">{I18n.t( "username_description" )}</div>
-      <form>
-        <input type="text" id="InputSmall" value={profile.login} />
-      </form>
+      <div className="input-group">
+        <input type="text" className="form-control" value={profile.login} />
+      </div>
     </div>
     <div id="SettingsItem">
       <div id="Header">
@@ -38,7 +38,7 @@ const Profile = ( { profile } ) => (
         <div className="asterisk">*</div>
       </div>
       <div className="italic-text">{I18n.t( "email_description" )}</div>
-      <form><input type="text" id="InputMedium" value={profile ? profile.email : ""} /></form>
+      <form><input type="text" className="form-control" value={profile ? profile.email : ""} /></form>
     </div>
     <div id="SettingsItem">
       <div id="Header" className="margin-medium">
@@ -46,9 +46,9 @@ const Profile = ( { profile } ) => (
         <div className="downward-caret">&#x25BE;</div>
       </div>
       <div id="Header" className="small">{I18n.t( "new_password" )}</div>
-      <form className="margin-medium-small"><input type="text" id="InputMedium" /></form>
+      <form className="margin-medium-small"><input type="text" className="form-control" /></form>
       <div id="Header" className="small">{I18n.t( "confirm_new_password" )}</div>
-      <form className="margin-medium"><input type="text" id="InputMedium" /></form>
+      <form className="margin-medium"><input type="text" className="form-control" /></form>
       <button className="btn btn-xs btn-primary" type="button">
         {I18n.t( "change_password" )}
       </button>
@@ -59,7 +59,9 @@ const Profile = ( { profile } ) => (
         <div className="asterisk">*</div>
       </div>
       <div className="italic-text">{I18n.t( "display_name_description" )}</div>
-      <form><input type="text" id="InputSmall" value={profile ? profile.name : ""} /></form>
+      <div className="input-group">
+        <input type="text" className="form-control" value={profile ? profile.name : ""} />
+      </div>
     </div>
     <div id="SettingsItem">
       <div id="Header">
@@ -68,7 +70,7 @@ const Profile = ( { profile } ) => (
       </div>
       <div className="italic-text">{I18n.t( "bio_description" )}</div>
       <form>
-        <textarea id="InputLarge" value={profile ? profile.description : ""} />
+        <textarea className="form-control" value={profile ? profile.description : ""} />
       </form>
     </div>
     <div id="SettingsItem">

@@ -14,10 +14,6 @@ const App = ( ) => (
         </div>
         <div className="col-xs-10">
           profile, not sidebar
-          <button className="btn btn-xs btn-inat btn-primary" type="button">button</button>
-          <div className="input-group">
-            <input type="text" className="form-control" />
-          </div>
         </div>
       </div>
     </div>
