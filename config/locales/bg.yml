@@ -2927,7 +2927,9 @@ bg:
   use_well_formed_csv: |
     Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
   user: Потребител
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} и %{x_others} харесаха това наблюдение"
   user_added_a_comment_html: "%{user} добави коментар"
+  user_added_a_fave_html: "%{user} добави харесване"
   user_added_a_flag_html: "%{user} добави маркер"
   user_added_a_x: "%{user} добави %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добави %{x} към %{noun} на %{by}"
@@ -2949,6 +2951,7 @@ bg:
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
+  user_faved_this_observation: "%{user} хареса това наблюдение"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение "%{observation}" към проекта %{project}.'
   user_invited_you_to_join_html: "%{user} Ви покани да се включите"
@@ -3087,6 +3090,9 @@ bg:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    one: "%{x} от %{count} потвърден"
+    other: "%{x} от %{count} потвърдени"
   x_of_count_observed:
     one: "%{x} от %{count} наблюдавано"
     other: "%{x} от %{count} наблюдавани"
@@ -3124,6 +3130,7 @@ bg:
   you_curate_a_project_that_contains_this_observation_desc: |
     Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.
   you_dont_have_permission_to_edit_those_photos: Нямате права за редактиране на тези снимки.
+  you_faved_this: Вие харесахте това!
   you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
   you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
