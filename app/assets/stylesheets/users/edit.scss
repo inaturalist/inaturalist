@@ -13,16 +13,6 @@
   align-items: center;
 }
 
-.column-spacing {
-  margin-left: 89px
-}
-
-.two-column-height {
-  max-height: 850px;
-  display: flex;
-  flex-flow: column wrap;
-}
-
 .save-button {
   display: flex;
   flex-direction: row;
@@ -53,10 +43,12 @@
   margin-bottom: 23px;
 }
 
+.label {
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
 h5 {
-  font-weight: bold;
-  line-height: 17px;
-  margin-bottom: 8px;
   display: flex;
   flex-direction: row;
 
@@ -65,11 +57,6 @@ h5 {
     margin-left: 3px;
   }
 
-  .small {
-    font-size: 12px;
-    margin-bottom: 7px;
-  }
-  
   .downward-caret {
     color: #bbbbbb;
     margin-left: 6px;
@@ -98,7 +85,6 @@ h5 {
   text-decoration: underline;
   font-size: 12px;
 }
-
 
 .italic-text {
   max-width: 257px;
