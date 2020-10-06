@@ -1156,6 +1156,7 @@ bg:
   highest_rank: Най-висок ранг
   history: История
   home: Начало
+  i_dont_know_but_i_am_sure_this_is_taxon: Не знам, но съм сигурен че това е %{taxon}
   icon: Иконка
   icon_size: Размер на иконката
   iconic_taxon: Таксон за иконка
@@ -1650,6 +1651,7 @@ bg:
   next_photo: Следваща снимка
   next_tab: Следващ раздел
   'no': 'Не'
+  no_but_it_is_a_member_of_taxon: "Не, но е представител на %{taxon}"
   no_comments_yet: Няма коментари.
   no_description: Липсва описание
   no_identifications: Няма разпознавания
@@ -2200,17 +2202,52 @@ bg:
     macedonia: Македония
     madagascar: Мадагаскар
     malawi: Малави
+    malaysia: Малайзия
+    maldives: Малдиви
+    mali: Мали
+    malta: Малта
+    marshall_islands: Маршалови острови 
     martinique: Мартиника
+    mauritania: Мавритания
+    mauritius: Мавриций
+    mayotte: Майот
     mexico: Мексико
+    micronesia: Микронезия
+    moldova: Молдова
+    monaco: Монако 
+    mongolia: Монголия
+    montenegro: Черна гора
+    montserrat: Монсерат 
+    morocco: Мароко
+    mozambique: Мозамбик
+    myanmar: Мианмар
+    namibia: Намибия
+    nauru: Науру
+    nepal: Непал
     netherlands: Нидерландия
+    new_caledonia: Нова Каледония 
     new_guinea: Нова Гвинея
     new_zealand: Нова Зеландия
+    nicaragua: Никарагуа
+    niger: Нигер
+    nigeria: Нигерия 
+    niue: Ниуе 
+    norfolk_island: Остров Норфолк 
     north_africa: Северна Африка
     north_america: Северна Америка
+    north_korea: Северна Корея
+    northern_cyprus: Северен Кипър
+    norway: Норвегия
+    oman: Оман
+    pakistan: Пакистан
+    palau: Палау
     palestine: Палестина
     panama: Панама
+    papua_new_guinea: Папуа Нова Гвинея
+    paraguay: Парагвай
     peru: Перу
     philippines: Филипини
+    pitcairn_islands: Острови Питкерн
     poland: Полша
     portugal: Португалия
     puerto_rico: Пуерто Рико
@@ -4134,6 +4171,9 @@ bg:
           notice: 'Приложението е отменено.'
   i18n:
     inflections:
+      "@vow_or_con":
+        vow: гласна
+        con: съгласна
       "@gender":
         m: мъжки
         f: женски
