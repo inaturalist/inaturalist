@@ -8,7 +8,7 @@ const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users
 const Profile = ( { profile } ) => (
   <div className="col-xs-9">
     <div className="row">
-      <div className="col-md-4">
+      <div className="col-md-4 col-xs-10">
         <div className="profile-setting">
           <h5>{I18n.t( "profile_picture" )}</h5>
           <div className="row row-align-center">
@@ -61,7 +61,7 @@ const Profile = ( { profile } ) => (
         </div>
       </div>
       <div className="col-md-1" />
-      <div className="col-md-6">
+      <div className="col-md-6 col-xs-10">
         <div className="profile-setting">
           <h5>
             {I18n.t( "display_name" )}
