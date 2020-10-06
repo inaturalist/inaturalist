@@ -9,16 +9,12 @@ const menuItems = [
   I18n.t( "applications" )
 ];
 
-const Menu = () => (
-  <div id="UserSettingsMenu">
-    {menuItems.map( item => (
-      <dl key={item}>
-        <dt>
-          <a href="#">{item}</a>
-        </dt>
-      </dl>
-    ) )}
-  </div>
-);
+const Menu = () => menuItems.map( item => (
+  <dl key={item} className="menu-item">
+    <dt>
+      <a href="#">{item}</a>
+    </dt>
+  </dl>
+) );
 
 export default Menu;

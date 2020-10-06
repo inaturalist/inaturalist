@@ -5,30 +5,23 @@ import ProfileContainer from "../containers/profile_container";
 import SaveButton from "./save_button";
 
 const App = ( ) => (
-  <div>
-    <div className="container-fluid">
-      container text
-      <div className="row">
-        <div className="col-xs-2">
-        text
-        </div>
-        <div className="col-xs-10">
-          profile, not sidebar
-        </div>
+  <div className="container">
+    <div className="row row-align-center header-margin">
+      <div className="col-sm-6">
+        <h1>{I18n.t( "settings" )}</h1>
       </div>
-    </div>
-    <div id="Column" className="left-nav">
-      <div id="Row" className="settings-row">
-        <div id="UserSettingsHeader">
-          <h2>{I18n.t( "settings" )}</h2>
-        </div>
+      <div className="col-sm-6">
         <SaveButton />
       </div>
-      <div id="Row">
+    </div>
+    <div className="row">
+      <div className="col-sm-2 menu">
         <Menu />
-        <div className="vl" />
-        <ProfileContainer />
       </div>
+      <div className="col-sm-1">
+        <div className="vl" />
+      </div>
+      <ProfileContainer />
     </div>
   </div>
 );

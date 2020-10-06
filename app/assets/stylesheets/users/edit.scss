@@ -1,84 +1,59 @@
-#Column {
-  flex-flow: column nowrap;
+.row-align-center {
+  display: flex;
+  align-items: center
 }
 
-.left-nav {
-  margin-left: 54px;
+.header-margin {
+  margin-bottom: 26px;
 }
 
-@media (max-width: 767px) {
-  .left-nav {
-    margin-left: 38px;
-  }
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#Row {
+.column-spacing {
+  margin-left: 89px
+}
+
+.two-column-height {
+  max-height: 850px;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.save-button {
   display: flex;
   flex-direction: row;
-
-  .center {
-    align-items: center;
-  }
-
-  .settings-row {
-    margin-left: 54px;
-    margin-top: 33px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-  }
 }
 
-#UserSettingsHeader h2 {
+.menu {
+  margin-top: 12px;
+}
+
+.menu-item a {
   color: #333;
-  font-weight: bold;
-  margin-right: 349px;
-}
-
-#UserSettingsMenu {
-  margin-top: 38px;
+  line-height: 17px;
   font-size: 15px;
 
-  a {
-    color: #333;
-    line-height: 17px;
-
-    &:focus {
-      color: #74ac00;
-      line-height: 17px;
-      font-weight: 600;
-      text-decoration: none;
-    }
+  &:focus {
+    color: #74ac00;
+    font-weight: 600;
+    text-decoration: none;
   }
 }
 
 .vl {
   border-left: 1px solid #eee;
   height: 522px;
-  margin-left: 44px;
-  margin-top: 26px;
 }
 
-@media (min-width: 768px) {
-  .two-column {
-    display: flex;
-    flex-flow: column wrap;
-    column-gap: 89px;
-    max-height: 611px;
-  }
-}
-
-#SettingsContainer {
-  margin-top: 36px;
-  margin-left: 50px;
-}
-
-#SettingsItem {
+.profile-setting {
   margin-bottom: 23px;
 }
 
-#Header {
+h5 {
   font-weight: bold;
   line-height: 17px;
   margin-bottom: 8px;
@@ -101,20 +76,15 @@
   }
 }
 
-#Time {
+.time {
   color: #777777;
   text-decoration: underline;
   font-size: 14px;
+  margin-right: 16px;
 }
 
 .blue-button-caps {
   letter-spacing: 1.1px;
-}
-
-.centered-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .gray-button {
@@ -129,15 +99,6 @@
   font-size: 12px;
 }
 
-#Checkbox {
-  border-color: #bbbbbb;
-  border-width: 1px;
-  background-color: #f7f7f7;
-  width: 14px;
-  height: 14px;
-  margin-right: 11px;
-  border-radius: 0px;
-}
 
 .italic-text {
   max-width: 257px;
@@ -146,10 +107,6 @@
   line-height: 1.17;
   color: #656665;
   margin-bottom: 13px;
-}
-
-.profile-picture {
-  margin-top: 20px;
 }
 
 .user-photo {
@@ -162,8 +119,4 @@
 
 .margin-medium-small {
   margin-bottom: 13px;
-}
-
-.time-margin {
-  margin-right: 16px;
 }
