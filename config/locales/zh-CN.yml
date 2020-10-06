@@ -3057,15 +3057,23 @@ zh-CN:
   ranks:
     stateofmatter: 事件的国家
     kingdom: 界
+    x_kingdoms:
+      other: 界
     subkingdom: 亚界
     phylum: 门
+    x_phyla:
+      other: 门
     subphylum: 亚门
     superclass: 总纲
     class: 纲
+    x_classes:
+      other: 纲
     subclass: 亚纲
     infraclass: 附纲
     superorder: 总目
     order: 目
+    x_orders:
+      other: 目
     suborder: 亚目
     infraorder: 下目
     subterclass: 子类
@@ -3075,11 +3083,15 @@ zh-CN:
     superfamily: 总科
     epifamily: 领科
     family: 科
+    x_families:
+      other: 科
     subfamily: 亚科
     supertribe: 总族
     tribe: 族
     subtribe: 亚族
     genus: 属
+    x_genera:
+      other: 属
     genushybrid: 属间杂种
     subgenus: 亚属
     section: 节
@@ -3087,6 +3099,8 @@ zh-CN:
     complex: 复合群
     #Singular
     species: 种
+    x_species:
+      other: 种
     hybrid: 杂种
     #Singular
     subspecies: 亚种
@@ -3364,6 +3378,8 @@ zh-CN:
   site_stats: 网站统计
   site_taxon_page: "%{site_name}分类单元页"
   some_agree: 部分同意
+  some_observations_are_missing_media_or_identifications: |
+    有些观察缺少媒体（照片/音频）或鉴定
   some_observations_failed_to_be_added: 一些观察无法添加到项目中
   some_observations_failed_to_save: 部分观察保存失败
   some_of_those_photos_couldnt_be_saved: "某些照片无法保存：%{error}"
@@ -3564,6 +3580,8 @@ zh-CN:
     other: "%{taxon}是色藻界（褐藻及其他）中的%{rank}，共有%{count}次观察"
   taxon_is_kingdom_of_life_with_x_observations:
     other: "%{taxon}属于生物界，共有%{count}次观察"
+  taxon_is_threatened_coordinates_hidden: 分类单元为受到威胁状态，默认隐藏坐标
+  taxon_is_threatened_coordinates_obscured: 分类单元为受到威胁状态，默认隐藏坐标
   taxonomy: 分类学
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
@@ -4387,6 +4405,33 @@ zh-CN:
       show:
         reuse_desc: |
           您可以复制此分类至其他指南。如果您是此指南的编辑者之一，它应该复制任何东西，但如果您不是，那么它将只复制获授权的内容。
+    lifelists:
+      list_view: 列表视图
+      tree_view: 树形视图
+      observed_species: 观察到的物种
+      unobserved_species: 未被观察到的物种
+      all_species: 所有物种
+      all_unobserved_species: 所有未被观察到的物种
+      observations_at_this_taxon: 在此分类单元中的观察
+      observations_within_this_taxon: 在此分类单元内的观察
+      all_observations: 所有观察
+      total_observations: 观察总数
+      filter_by: 筛选条件
+      no_observations_found_in_place: 在 %{place} 没有发现任何观察。
+      no_observations_found_within_this_taxon_in_place: 在 %{place} 中没有发现包含在该分类单元中的观察。
+      no_species_found_within_this_taxon_in_place: 在 %{place} 没有发现包含在该分类单元中的物种。
+      no_species_found_in_place: 在 %{place} 没有发现任何物种。
+      no_unobserved_species_in_place: 在 %{place} 没有未观察到的物种。
+      no_unobserved_species_within_this_taxon: 在此分类单元中没有未被观察到的物种。
+      no_unobserved_species_within_this_taxon_in_place: 此分类单元在%{place} 没有未被观察到的物种。
+      reset_place_filter: 重置位置过滤器
+      all_observations_in_this_taxon: 此分类单元中的所有观察
+      dropdowns:
+        sort: 排序
+        name: 名称
+        most_observed: 观察次数最多的
+        show: 显示
+        simplified_tree: 简化树
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5017,6 +5062,8 @@ zh-CN:
         sunburst_desc_html: |
           观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
+        translators_prompt: |
+          如果您想要帮助翻译， %{link_tag}点此学习%{link_tag_end}。
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5511,6 +5558,8 @@ zh-CN:
       AssessmentSection: 评定章节
       Atlas: 地图集
       CompleteSet: 完整集
+      #Noun
+      Flag: 标记
       TaxonLink: 分类单元链接
     attributes:
       assessment:
@@ -5518,6 +5567,9 @@ zh-CN:
       assessment_section:
         title: 标题
         body: 正文
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: 被屏蔽的用户
       conservation_status:
         status: 状态
         description: 描述
