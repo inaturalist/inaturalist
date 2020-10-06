@@ -4,6 +4,11 @@ pl:
     few: '%{count} komentarze'
     many: '%{count} komentarzy'
     other: '%{count} komentarza'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentarz'
+    few: '<span class="count">%{count}</span> komentarze'
+    many: '<span class="count">%{count}</span> komentarzy'
+    other: '<span class="count">%{count}</span> komentarza'
   x_faves:
     one: '1 ulubiona'
     few: '%{count} ulubione'
@@ -267,11 +272,17 @@ pl:
   add: Dodaj
   add_a_batch_of_observations: Dodaj serię obserwacji
   add_a_batch_of_taxa: Dodaj serię taksonów
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Dodaj listę punktowaną
   add_a_comment: Dodaj komentarz
   add_a_field: Dodaj pole
   add_a_flag: Dodaj zgłoszenie
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Dodaj odnośnik
   add_a_name: Dodaj nazwę
   add_a_new_change_group: Dodaj nową grupę zmian
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Dodaj listę numerowaną
   add_a_single_observation: Dodaj pojedynczą obserwację
   add_a_taxon: Dodaj takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -294,6 +305,8 @@ pl:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Dodaj zasób
   add_batch: Dodaj wiele
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Dodaj tekst pogrubiony
   add_comma_separated_tags: "Dodaj tagi oddzielone przecinkami"
   add_comment: Dodaj komentarz
   add_conservation_status: Dodaj status ochronny
@@ -306,6 +319,8 @@ pl:
   add_link: Dodaj link
   add_higher_level_taxon: Dodaj takson wyższego rzędu (np. "ptaki")
   add_id: Dodaj oznaczenie
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Dodaj tekst pochyły
   add_new_lexicon: Dodaj nowy język
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
   add_new_place: Dodaj nową lokalizację
@@ -715,6 +730,8 @@ pl:
   body: Treść
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: Pogrubiony tekst
   bounding_box: Prostokąt ograniczający
   breadcrumbs: Okruszki chleba
   brief_caption: Krótki podpis
@@ -763,6 +780,7 @@ pl:
   change_descriptions:
     split: Stary takson został podzielony na kilka nowych taksonów
     merge: Niektóre stare taksony zostały połączone w jeden nowy takson
+    swap: Zastąp takson wejściowy taksonem wyjściowym
   change_geoprivacy: 'Zmień geo-prywatność'
   change_group: Grupa zmian
   change_icon: Zmień ikonę
@@ -1127,13 +1145,23 @@ pl:
   deviation: Odchylenie
   devise:
     failure:
+      already_authenticated: 'Jesteś już zalogowany.'
+      invalid: 'Niepoprawny e-mail lub hasło.'
+      invalid_token: 'Nieprawidłowy token uwierzytelniania.'
       user:
         suspended: Twoje konto zostało zawieszone
+    sessions:
+      signed_in: 'Zalogowano pomyślnie.'
+      signed_out: 'Wylogowano pomyślnie.'
+    passwords:
+      send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.'
+  devise_reset_password_instructions_hello_email: Witaj %{email}
   discoveries: Odkrycia
   did_not_send_invitations_because: Nie wysłano zaproszeń, ponieważ...
   did_you_mean: 'Czy chodziło ci o'
   did_you_photos_flickr?: Czy dodałeś zdjęcia na Flickr?
   disable: Wyłącz
+  disable_comments: Wyłącz komentarze
   disagree_: Nie zgadzam się
   disconnect_provider: "Rozłącz %{provider}"
   distance_traveled_value: "Przebyta odległość: %{distance}m"
@@ -1268,6 +1296,9 @@ pl:
   exact_location: Dokładna lokalizacja
   exact_rank: Dokładna kategoria
   except: poza
+  exclude_projects: Wyklucz projekty
+  exclude_taxa: Wyklucz taksony
+  exclude_users: Wyklucz użytkowników
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
@@ -1312,6 +1343,7 @@ pl:
   fields_can_only_be_edited_by_the_people_who: Pola mogą być edytowane tylko przez ich autorów i kuratorów strony
   fields_merged: Scalone pola
   file: Plik
+  file_size: Rozmiar pliku
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   fill_out_your_profile: uzupełnij swój profil
@@ -1610,11 +1642,16 @@ pl:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Czy podane dane są wystarczające do potwierdzenia, że jest to %{taxon}?
   is_this_offensive_html: 'Czy to jest <a href="/help#inappropriate">nieodpowiednie</a>, obraźliwe lub jest spamem?'
   is_this_place_a_duplicate: Czy ta lokalizacja jest zduplikowana?
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: tekst pochylony
   item_flagged_notice_html: |
     To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś tego autorem lub kuratorem strony. Jeśli uważasz, że to pomyłka, <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
   join: Dołączyć do
+  join_and_add_an_observation_to_project_html: Dołącz i dodaj obserwację do %{project}
   join_project: Dołącz do tego projektu
+  #Prompt to join a specific project
+  join_project?: Dołączyć do %{project}?
   join_some_projects_and_invite_some_observations_html: "Dołącz do <a href='%{join_url}'>projektów</a> i <a href='%{invite_url}'>dodaj obserwacje</a>"
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
   join_this_project: Dołącz do tego projektu
@@ -2221,6 +2258,8 @@ pl:
   observations_this_year_vs_last_year: Obserwacje tegoroczne vs. zeszłoroczne
   observations_total: Obserwacji łącznie
   observations_widget: Widżet obserwacji
+  observations_with_this_field: Obserwacje z tym polem
+  observations_with_this_field_and_value: Obserwacje z tym polem i wartością
   observations_without_media: Obserwacje bez mediów
   observed: Zaobserwowano
   observed_by: Zaobserwował
@@ -2231,7 +2270,9 @@ pl:
   occurence_status_describes_how: 'Status występowania opisuje jak często lub rzadko takson jest w danym obszarze. Zobacz DarwinCore, aby uzyskać <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">więcej informacji na temat terminologii</a>.'
   occurrence_status: Status występowania
   occurrence_status_descriptions:
+    absent: Nie występuje na tym obszarze
     common: Często występuje
+    present: Występuje na tym obszarze
   occurrence_status_levels:
     present: obecny
     common: pospolity
@@ -2264,6 +2305,7 @@ pl:
   only_receive_updates_about_this_taxon: Otrzymuj tylko aktualizacje o tym taksonie
   only_species: tylko gatunki
   only_species_and_subspecies: tylko gatunki i podgatunki/odmiany
+  only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
   open: otwarty
   open_: Otwórz
@@ -2856,11 +2898,14 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
   resolved_by: Rozstrzygnięte przez
   resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
+  restoring: Przywracanie...
+  results: wyniki
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje RG
@@ -2950,6 +2995,8 @@ pl:
   sizes: Rozmiary
   skip_to_next_page: "Przejdź do następnej strony"
   site_admin_tools: Narzędzia administratora strony
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Administratorzy strony
   site_stats: Statystyki strony
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
   some_of_those_photos_couldnt_be_saved: "Niektóre z tych zdjęć nie mogły zostać zapisane: %{error}"
@@ -3521,17 +3568,23 @@ pl:
         score: Ocena
       compare:
         about_missing_taxa: O brakujących taksonach
+      export:
+        choose_columns_desc: Wybierz kolumny, które chcesz wyeksportować
       field_descriptions:
         id: "Unikalny identyfikator obserwacji"
         observed_on: Znormalizowana data obserwacji
         time_observed_at: Znormalizowany czas obserwacji
         time_zone: Strefa czasowa obserwacji
+        latitude: Publicznie widoczna szerokość geograficzna
+        longitude: Publicznie widoczna długość geograficzna
         user_login: Nazwa użytkownika obserwatora
         url: Adres URL obserwacji
         image_url: Adres URL domyślnego zdjęcia
         tag_list: Lista tagów oddzielonych przecinkami
+        positioning_device: Urządzenie użyte do określenia współrzędnych
       identify:
         review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
+        unreview_all_tooltip: "Usuń status przejrzanych dla wszystkich obserwacji na stronie"
     emailer:
       photos_missing:
         subject: Niektóre zdjęcia wymagają naprawy
@@ -3542,6 +3595,12 @@ pl:
       edit:
         cover_desc: "Opcjonalny obrazek banera, który pojawi się na górze strony projektu. Musi mieć szerokość 950px i wysokość poniżej 400px."
         custom_project_fields_means: "Dostosuj baner projektu, dodaj zawartość boczną i edytuj CSS."
+        rules:
+          has_a_photo: posiadać zdjęcie
+          has_a_sound: posiadać dźwięk
+          has_media: posiadać media (zdjęcie lub dźwięk)
+          identified: być oznaczona
+          verifiable: być weryfikowalna
         submission_models:
           any: każdy
       new:

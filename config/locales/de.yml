@@ -892,7 +892,6 @@ de:
     flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
-    teneral: Ein ausgewachsenes Individuum, das sich kürzlich gehäutet hat, aber noch nicht fertig ausgefärbt ist
     cannot_be_determined: Kann anhand der zur Verfügung stehenden Daten nicht bestimmt werden
   controls: Steuerung
   convert: Konvertieren
@@ -1548,7 +1547,7 @@ de:
         Taxon leitet sich vom Community-Taxon ab. Diese ID könnte zur richtigen Antwort
         führen.
       improving: |
-        Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei, das Community-Taxon zu verfeinern.
+        Erster Vorschlag dieses Taxons in Übereinstimmung mit der Community. Dies trägt dazu bei, das Community-Taxon zu verfeinern.
       maverick: |
         Taxon steht außerhalb des Community-Taxons (weder abgeleitet noch übergeordnet), d.h. die Community stimmt diesem Taxon nicht zu.
   id_withdrawn: ID zurückgezogen
@@ -1691,6 +1690,10 @@ de:
   labels: Etikett
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Standort privat
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Fehlender Standort
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zoomstufe fixieren
@@ -1717,7 +1720,7 @@ de:
     species: Die meisten Arten in %{time}
     observations: Die meisten Beobachtungen in %{time}
     identifications: Die meisten Bestimmungen in %{time}
-  leading: Führend
+  leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
   learn_more: Mehr erfahren
@@ -1791,6 +1794,7 @@ de:
   life_list_updated: Life-Liste wurde aktualisiert!
   life_list_updated_we_also_saved_a: Life-Liste aktualisiert! Wir haben auch eine leere Beobachtung dieses Taxons gespeichert.
   life_lists_automatically_fill: Life-Listen füllen sich automatisch mit neuen Taxa, sobald du diese beobachtest, und sie können auf übergeordnete Taxa beschränkt werden, z.B. eine Life-Liste der Rabenvögel (Corvidae).
+  linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Verknüpfe oder entferne deinen Facebook Account
   link_or_unlink_your_flickr_account: Verknüpfe oder entferne deinen Flickr-Account
@@ -1900,6 +1904,7 @@ de:
     <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Kommentare hinzuzufügen.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/log_in">Einloggen</a> oder <a href="/sign_up">registrieren</a> , um Bestimmungen hinzuzufügen.
+  log_scale_label: Log
   login_slash_username: Login/Benutzername
   logo:
     logo: Logo
@@ -2114,13 +2119,13 @@ de:
   needs_to_be_identified: Muss bestimmt werden
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, konzentriert sich auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
+    <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
     Kontos von iNaturalist.org auf %{site_name} ändern?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, Teil des internationalen iNaturalist-Netzwerks, konzentriert sich auf Artenvielfalt und Personen in Finnland. Möchtest du die Zugehörigkeit deines
+    <strong>iNaturalist Suomi</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in Finnland. Möchtest du die Zugehörigkeit deines
     Kontos von iNaturalist.org auf iNaturalist Suomi ändern?
   network_affiliation_prompt_from_other_site_html: |
     Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
@@ -2201,6 +2206,7 @@ de:
   no_matching_places: Keine übereinstimmenden Gebiete
   no_matching_projects: Keine übereinstimmenden Projekte
   no_matching_species: Keine übereinstimmenden Arten.
+  no_matching_taxa: Keine übereinstimmenden Taxa
   no_matching_users: Keine übereinstimmenden Benutzer.
   no_members_yet: "Noch keine Mitglieder."
   no_messages_yet: Noch keine Nachrichten
@@ -3166,15 +3172,27 @@ de:
   ranks:
     stateofmatter: eingeordnet als
     kingdom: Reich
+    x_kingdoms:
+      one: Reich
+      other: Reiche
     subkingdom: Unterreich
     phylum: Stamm
+    x_phyla:
+      one: Stamm
+      other: Stämme
     subphylum: Unterstamm
     superclass: Überklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klassen
     subclass: Unterklasse
     infraclass: Teilklasse
     superorder: Überordnung
     order: Ordnung
+    x_orders:
+      one: Ordnung
+      other: Ordnungen
     suborder: Unterordnung
     infraorder: Teilordnung
     subterclass: Unterklasse
@@ -3184,11 +3202,17 @@ de:
     superfamily: Überfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familien
     subfamily: Unterfamilie
     supertribe: Übertribus
     tribe: Tribus
     subtribe: Untertribus
     genus: Gattung
+    x_genera:
+      one: Gattung
+      other: Gattungen
     genushybrid: Gattungshybrid
     subgenus: Untergattung
     section: Sektion
@@ -3196,6 +3220,9 @@ de:
     complex: Komplex
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arten
     hybrid: Hybrid
     #Singular
     subspecies: Unterart
@@ -3639,7 +3666,7 @@ de:
   suggest_or_require_that: Wähle optionale oder verpflichtende Felder aus, die für zum Projekt hinzuzufügende Beobachtungen ausgefüllt werden können/müssen.
   suggestions: Vorschläge
   summary: Zusammenfassung
-  supporting: Unterstützen
+  supporting: bestätigend
   support_inaturalist: iNaturalist unterstützen
   suspend_user: Benutzer sperren
   sw_lat: SW Lat.
@@ -4612,6 +4639,53 @@ de:
         reuse_desc: |
           Du kannst dieses Taxon in einen anderen Guide kopieren. Wenn du einer von den
           Editoren dieses Guides bist, sollte es alles kopieren, aber wenn du es nicht bist, wird es nur den lizenzierten Inhalt kopieren.
+    lifelists:
+      list_view: Listenansicht
+      tree_view: Baumstruktur
+      observed_species: Beobachtete Arten
+      unobserved_species: Nicht beobachtete Arten
+      all_species: Alle Arten
+      all_unobserved_species: Alle nicht beobachteten Arten
+      observations_at_this_taxon: Beobachtungen von diesem Taxon
+      observations_within_this_taxon: Beobachtungen innerhalb dieses Taxons
+      all_observations: Alle Beobachtungen
+      total_observations: Beobachtungen insgesamt
+      filter_by: Filtern nach
+      filtered_by: Gefiltert nach
+      apply_filters_to_export: Filter zum Exportieren anwenden
+      restrict_to_taxon: Auf %{taxon} beschränken
+      restrict_to_taxa_observed_in_place: Auf Taxa in %{place} beschränken
+      exporting_all_x_taxa:
+        one: Exportiere %{count} Taxon
+        other: Alle %{count} Taxa exportieren
+      exporting_x_taxa:
+        one: Exportiere %{count} Taxon
+        other: Exportiere %{count} Taxa
+      no_observations_found_in_place: Keine Beobachtungen in %{place} gefunden.
+      no_observations_found_within_this_taxon_in_place: Keine Beobachtungen innerhalb dieses Taxons in %{place} gefunden.
+      no_species_found_within_this_taxon_in_place: Keine Arten in diesem Taxon in %{place} gefunden.
+      no_species_found_in_place: Keine Arten in %{place} gefunden.
+      no_unobserved_species_in_place: Keine unbeobachteten Arten in %{place}.
+      no_unobserved_species_within_this_taxon: Keine unbeobachteten Arten innerhalb dieses Taxons.
+      no_unobserved_species_within_this_taxon_in_place: Keine unbeobachteten Arten innerhalb dieses Taxons in %{place}.
+      reset_place_filter: Gebietsfilter zurücksetzen
+      all_observations_in_this_taxon: Alle Beobachtungen in diesem Taxon
+      observations_of_exactly_this_taxon: Beobachtungen von genau diesem Taxon
+      focus_tree_on_this_taxon: Stammbaum auf dieses Taxon zentrieren
+      expand_all_nodes_in_this_branch: Alle Knoten in diesem Zweig erweitern
+      collapse_this_branch: Diesen Zweig einklappen
+      dropdowns:
+        sort: Sortieren
+        taxonomic: Taxonomisch
+        name: Name
+        most_observed: Am häufigsten beobachtet
+        date_added_newest: Datum hinzugefügt (absteigend)
+        date_added_oldest: Datum hinzugefügt (aufsteigend)
+        ancestry: Vorfahren
+        show: Zeigen
+        children: Unterkategorien
+        simplified_tree: Vereinfachte Baumstruktur
+        full_taxonomy: Komplette Taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -6012,14 +6086,14 @@ de:
         #"one million and two and a half dollars" this would be written as
         #"$1,000,002.50" in English, and "," is the delimiter. This should not
         #be the same as the separator.
-        delimiter: ','
+        delimiter: '.'
         format: '%u%n'
         precision: 2
         #The separator separates an integer from a decimal fraction, so if the
         #number is "one million and two and a half dollars" this would be
         #written as "$1,000,002.50" in English, and "." is the separator. This
         #should not be the same as the delimiter.
-        separator: .
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: '$'
@@ -6028,13 +6102,13 @@ de:
       #"one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
-      delimiter: ','
+      delimiter: '.'
       precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
       #the same as the delimiter.
-      separator: .
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
       si:
@@ -6301,6 +6375,7 @@ de:
         mushroom_observer_import_flow_task:
           attributes:
             base:
+              api_key_in_use: "Der Import für diesen Benutzer von Mushroom Observer läuft oder ist für den Import in der Warteschlange"
               api_key_missing: "Der Mushroom Observer API-Schlüssel fehlt"
         observation:
           attributes:

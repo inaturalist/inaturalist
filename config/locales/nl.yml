@@ -915,7 +915,6 @@ nl:
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
-    teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
     cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
   controls: Besturing
   convert: Converteren
@@ -1580,8 +1579,6 @@ nl:
     tooltips:
       leading: |
         Taxon stamt af van het gemeenschapstaxon. Deze determinatie kan naar het juiste antwoord leiden.
-      improving: |
-        Eerste suggestie van dit taxon waar de gemeenschap vervolgens mee instemde. Dit hielp bij het verfijnen van het gemeenschapstaxon.
       maverick: |
         Taxon is geen afstammeling of voorouder van het gemeenschapstaxon, d.w.z. de gemeenschap is het niet
         eens met dit taxon.
@@ -2162,16 +2159,6 @@ nl:
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
   needs_to_be_identified: Moet worden gedetermineerd
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, deel van het internationale iNaturalist
-    netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, deel van het internationale iNaturalist
-    netwerk, is gericht op biodiversiteit en mensen in Finland. Wilt je je account verbinden aan iNaturalist Suomi in plaats van iNaturalist.org?
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
@@ -3088,6 +3075,30 @@ nl:
     zimbabwe: Zimbabwe
   places_of_interest: Interessante plaatsen
   places_merged_successfully: Plaatsen succesvol samengevoegd!
+  places_warning_export_complex_boundary_html: |
+    Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
+    waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
+  places_warning_look_for_existing_html: |
+    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
+    een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
+    land.
+  places_warning_projects_can_have_multiple_places: |
+    Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
+    meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
+    Nieuw-Zeeland en Australië kun je alleen eisen toevoegen voor twee plaatsen
+    in plaats van één nieuwe.
+  places_warning_new_places_are_slow_html: |
+    Nieuwe gebieden zijn één van de grootste bronnen van vertraging in iNat dus
+    <strong>overweeg om geen nieuw gebied aan te maken</strong>. Kleine gebieden
+    met enkele duizenden waarnemingen zijn gewoonlijk geen probleem maar een
+    nieuwe plaats met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
+  places_warning_editing_places_is_slow: |
+    Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
+    Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
+  places_warning_the_future: |
+    Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
+    mensen in de toekomst plaatsen kunnen toevoegen.
   plants: planten
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
   please_add_this_observation_to: Voeg deze waarneming toe aan
@@ -6319,6 +6330,7 @@ nl:
     models:
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
+      BlockedUser: Geblokkeerde gebruiker
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
@@ -6329,6 +6341,9 @@ nl:
       assessment_section:
         title: Titel
         body: Tekst
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Geblokkeerde gebruiker
       conservation_status:
         status: Status
         description: Beschrijving
@@ -6487,6 +6502,11 @@ nl:
           attributes:
             base:
               guide_has_too_many_taxa: "gids kan slechts 500 taxa bevatten"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
+              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
         observation:
           attributes:
             base:
@@ -6604,6 +6624,20 @@ nl:
             email:
               must_look_like_an_email_address: moet eruit zien als een e-mailadres
               domain_is_not_supported: domein wordt niet ondersteund
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff: |
+                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet
+                kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
+                iNat en zijn de uiteindelijke bemiddelaars van geschillen. Het blokkeren van
+                hen zal hen niet verhinderen om met jou te communiceren. Als je een
+                probleem hebt met een medewerker rapporteer dat dan aan één van de
+                iNat co-directeurs, of als je een probleem hebt met één van de
+                co-directeuren, kun je contact opnemen met het hoofd van de Wetenschap op het
+                Instituut voor Biodiviersity en Duurzaamheid Wetenschap op de
+                California Academy of Science.
         user_parent:
           attributes:
             email:
@@ -6777,6 +6811,8 @@ nl:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Waarschuwing
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorige"

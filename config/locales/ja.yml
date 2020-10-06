@@ -819,7 +819,6 @@ ja:
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
     no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
-    teneral: 羽化したばかりで、まだ成熟していない成体・成虫
     cannot_be_determined: 提供された証拠から判断することはできません
   controls: 設定
   coordinate_systems: 座標システム
@@ -1418,8 +1417,6 @@ ja:
     tooltips:
       leading: |
         分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。
-      improving: |
-        この分類群の最初の提案は、後にコミュニティが同意したものです。この提案がコミュニティ分類群を洗練させるのに役立ちました。
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
   id_withdrawn: 同定の撤回
@@ -1930,9 +1927,6 @@ ja:
   needs_id_: 要同定
   needs_id_expandable_html: "<span class='full'>要</span>ID"
   needs_to_be_identified: 要同定
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>は、国際的なiNaturalistネットワークの一部で、生物多様性と %{place} の人々に焦点を当てています。アカウントの所属をiNaturalist.orgから %{site_name} に変更したいですか？
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
   new: 新規
@@ -3766,6 +3760,7 @@ ja:
   x_journal_middot: "%{user}さんのジャーナル •"
   x_observations_failed:
     other: "%{count}件の観察失敗記録"
+  x_of_y: "全%{y}種中%{x}種"
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} 人中 %{x} 人（2/3を超える）が同意しています"
   x_project_journal: "%{project}の%{name}"
   x_project_stats: "%{project}の統計"

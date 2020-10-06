@@ -35,6 +35,436 @@ lv:
     zero: "%{count} valodas"
     one: "%{count} valoda"
     other: "%{count} valodas"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    zero: "%{count} pirmais sugas novērojums sarakstā"
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} pirmais sugas novērojums sarakstā"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} pirmie sugas novērojumi sarakstā"
+  x_journal_posts_html:
+    zero: '<span class="count">%{count}</span> ieraksti žurnālā'
+    one: '<span class="count">%{count}</span> ieraksts žurnālā'
+    other: '<span class="count">%{count}</span> ieraksti žurnālā'
+  x_matching_taxa:
+    zero: '%{count} saskanīgs taksons'
+    one: '%{count} saskanīgs taksons'
+    other: '%{count} saskanīgi taksoni'
+  x_matching_taxa_html:
+    zero: '<span class="count">%{count}</span> saskanīgi taksoni'
+    one: '<span class="count">%{count}</span> saskanīgs taksons'
+    other: '<span class="count">%{count}</span> saskanīgi taksoni'
+  x_misidentifications_of_this_species:
+    zero: "%{count} nepareiza sugas identifikācija"
+    one: "%{count} nepareiza sugas identifikācija"
+    other: "%{count} nepareizas sugas identifikācijas"
+  x_misidentifications_of_species_in_this_rank:
+    zero: "%{count} nepareizas sugas identifikācijas šajā %{rank}"
+    one: "%{count} nepareiza sugas identifikācija šajā %{rank}"
+    other: "%{count} nepareizas sugas identifikācijas šajā %{rank}"
+  x_observations:
+    zero: "%{count} novērojumi"
+    one: "%{count} novērojums"
+    other: "%{count} novērojumi"
+  x_observations_:
+    zero: "%{count} novērojumi"
+    one: "%{count} novērojums"
+    other: "%{count} novērojumi"
+  x_observations_html:
+    zero: "<span class='count'>%{count}</span> novērojumi"
+    one: "<span class='count'>%{count}</span> novērojums"
+    other: "<span class='count'>%{count}</span> novērojumi"
+  x_observations_link_html:
+    zero: "<a href='%{url}'>%{count} novērojumi</a>"
+    one: "<a href='%{url}'>%{count} novērojums</a>"
+    other: "<a href='%{url}'>%{count} novērojumi</a>"
+  x_observations_reviewed_html:
+    zero: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
+    one: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
+    other: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
+  x_observers_html:
+    zero: '<span class="count">%{count}</span> novērotāji'
+    one: '<span class="count">%{count}</span> novērotājs'
+    other: '<span class="count">%{count}</span> novērotāji'
+  x_others:
+    zero: "%{count} citi"
+    one: "%{count} cits"
+    other: "%{count} citi"
+  x_people:
+    zero: "%{count} cilvēki"
+    one: "%{count} persona"
+    other: "%{count} cilvēki"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} cilvēki</strong> palīdzēja %{user} ar <strong>%{y} identifikācijām</strong>"
+  x_photos:
+    zero: "%{count} fotogrāfijas"
+    one: "%{count} fotogrāfija"
+    other: "%{count} fotogrāfijas"
+  x_new_species:
+    zero: "%{count} jaunas sugas"
+    one: "%{count} jauna suga"
+    other: "%{count} jaunas sugas"
+  x_new_users:
+    zero: '%{count} jauni lietotāji'
+    one: '%{count} jauns lietotājs'
+    other: '%{count} jauni lietotāji'
+  x_species:
+    zero: '%{count} sugas'
+    one: '%{count} suga'
+    other: '%{count} sugas'
+  x_species_html:
+    zero: "<span class='count'>%{count}</span> sugas"
+    one: "<span class='count'>%{count}</span> suga"
+    other: "<span class='count'>%{count}</span> sugas"
+  x_species_link_html:
+    zero: "<a href='%{url}'>%{count} sugas</a>"
+    one: "<a href='%{url}'>%{count} suga</a>"
+    other: "<a href='%{url}'>%{count} sugas</a>"
+  x_suggestions_filtered_by_colon:
+    zero: "%{count} ieteikumi filtrēti pēc šādiem kritērijiem:"
+    one: "%{count} ieteikums filtrēts pēc šādiem kritērijiem:"
+    other: "%{count} ieteikumi filtrēti pēc šādiem kritērijiem:"
+  x_taxa:
+    zero: "%{count} taksoni"
+    one: "%{count} taksons"
+    other: "%{count} taksoni"
+  x_taxa_observed_html:
+    zero: "<span class='count'>%{count}</span> novēroti taksoni"
+    one: "<span class='count'>%{count}</span> novērots taksons"
+    other: "<span class='count'>%{count}</span> novēroti taksoni"
+  x_research_grade_observations_html:
+    zero: "<span class='count'>%{count}</span> pētniecības līmeņa novērojumi"
+    one: "<span class='count'>%{count}</span> pētniecības līmeņa novērojums"
+    other: "<span class='count'>%{count}</span> pētniecības līmeņa novērojumi"
+  x_sounds:
+    zero: "%{count} skaņas"
+    one: "%{count} skaņa"
+    other: "%{count} skaņas"
+  x_taxa_curated_html:
+    zero: "<span class='count'>%{count}</span> iekļauti taksoni"
+    one: "<span class='count'>%{count}</span> iekļauts taksons"
+    other: "<span class='count'>%{count}</span> iekļauti taksoni"
+  x_taxa_matching_current_filters:
+    zero: "%{count} taksoni atbilst izvēlētajiem filtriem"
+    one: "%{count} taksons atbilst izvēlētajiem filtriem"
+    other: "%{count} taksoni atbilst izvēlētajiem filtriem"
+  x_taxon_changes_added_html:
+    zero: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonā"
+    one: "<span class='count'>%{count}</span> pievienota izmaiņa taksonā"
+    other: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonā"
+  _100_day_trends: Pēdējo 100 dienu tendences
+  _percent_ID_d: "% identificēti"
+  a_community_for_naturalist: Kopiena dabas draugiem
+  a_default_taxon_name_will_automatically_created: |
+    Noklusējuma taksona nosaukums izveidosies automātiski, vadoties pēc šī taksona zinātniskā nosaukuma.
+    Kad saglabāsi jauno taksonu, varēsi pevienot arī citus nosaukumus (tautā pieņemtos, novecojušus zinātniskos nosaukums u.c.).
+  a_member_of_taxon_html: "%{taxon} biedrs"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  about: Apraksts
+  about_blocking: Vairāk par bloķēšanu
+  about_community_taxa: Vairāk par kopienas taksoniem
+  about_complete_taxa: Vairāk par pilnīgiem taksoniem
+  about_conservation_status: Vairāk par aizsardzības statusu
+  about_editing_observation_fields: Vairāk par novērojuma lauka rediģēšanu
+  about_licenses: Vairāk par licencēm
+  about_muting: Vairāk par apklusināšanu
+  #Header for a section describing taxon names
+  about_names: Vairāk par nosaukumiem
+  about_places: Vairāk par vietām
+  about_the_cc_licenses: Vairāk par "Creative Commons" licencēm
+  about_these_licenses: Vairāk par šīm licencēm
+  about_this_map: Vairāk par šo karti
+  about_this_project: Vairāk par šo projektu
+  about_x: "Vairāk par %{x}"
+  acc: 'Preciz. (m)'
+  account: Konts
+  account_creation: Konta izveide
+  account_settings: Konta iestatījumi
+  accept: apstiprināt
+  accept_community_identifications: Apstiprināt kopienas identifikācijas
+  accuracy: Precizitāte
+  accuracy_meters: Precizitāte (metros)
+  action: Darbība
+  actions: Darbības
+  active: Aktīvs
+  active_users: Aktīvi lietotāji
+  activity: Paziņojumi
+  activity_settings: Paziņojumu iestatījumi
+  adapted_by_name_from_a_work_by_original: "Pielāgojis %{name} no %{original} darba"
+  add: Pievienot
+  add_a_batch_of_observations: Pievienot vairākus novērojumus reizē
+  add_a_batch_of_taxa: Pievienot vairākus taksonus reizē
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Pievienot sarakstu ar punktiem
+  add_a_comment: Pievienot komentāru
+  add_a_field: Pievienot lauku
+  add_a_flag: Ziņot
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Pievienot saiti
+  add_a_name: Pievienot nosaukumu
+  add_a_new_change_group: Pievienot jaunu izmainīto taksonu grupu
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Pievienot numurētu sarakstu
+  add_a_single_observation: Pievienot vienu novērojumu
+  add_a_taxon: Pievienot taksonu
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Pievienot <a target="_blank" href="%{url}">izmaiņas taksonos</a>, lai pārdēvētu
+  add_an_assessment: Pievienot novērtējumu
+  add_an_identification: Pievienot identifikāciju
+  add_an_observation: Pievienot novērojumu
+  add_an_observation?: Pievienot novērojumu?
+  add_an_observation_of: "Pievienot %{taxon} novērojumu"
+  add_an_observation_to_project_html: Pievienot novērojumu %{project} projektam
+  add_annotations_for_x: Pievienot "%{x}" piezīmes
+  add_annotations_for_controlled_attribute:
+    sex: Pievienot piezīmes par "dzimumu"
+    plant_phenology: Pievienot piezīmes par "auga fenoloģiju"
+    life_stage: Pievienot piezīmes par "dzīves posmu"
+  add_another_flag: Ziņot vēlreiz
+  add_another_photo: Pievienot vēl vienu foto
+  add_another_section: Pievienot vēl vienu sadaļu
+  add_another_subscription: Pievienot vēl vienu abonementu
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Pievienot projektam pielikumu
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Pievienot tekstu treknrakstā
+  add_comma_separated_tags: "Pievienot ar komatiem atdalītas kategorijas"
+  add_comment: Pievienot komentāru
+  add_conservation_status: Norādīt aizsardzības statusu
+  add_countries: Pievienot valstis
+  add_custom_project_fields: Pievienot projektam pielāgojamus laukus
+  add_edit_flags: Ziņot vai labot ziņojumus
+  add_editor: Pievienot redaktoru
+  add_description: "Pievienot %{description_name}"
+  add_from_your_observations: Pievienot no saviem novērojumiem
+  add_link: Pievienot saiti
+  add_higher_level_taxon: Pievienot augstāka līmeņa taksonu (piem. putni)
+  add_id: Pievienot ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Pievienot tekstu slīprakstā
+  add_new_lexicon: Pievienot jaunu leksikonu
+  add_new_photos_by_their_ids: Pievienot fotogrāfijas, izmantojot Flickr Id (tikai ar Creative Commons licenci!)
+  add_new_place: Pievienot jaunu vietu
+  add_new_rule: Pievienot jaunu noteikumu
+  add_new_source: "Pievienot jaunu avotu"
+  add_new_taxon_name: Pievienot jaunu taksona nosaukumu
+  add_notes_about_this_taxon: Aprakstīt taksonu šajā vietā, piemēram, kur un kad tas sastopams.
+  add_obs_from_a_link: "Pievienot novēr. no šī saraksta: %{link}"
+  add_obs_from_a_list: Pievienot novēr. no saraksta
+  add_observations: Pievienot novērojumus
+  add_observations_by_checking_off: Pievienot novērojumus, atzīmējot sarakstā sugas.
+  add_observations_project: Pievienot novērojumus šim projektam
+  #Prompt to add a new journal post
+  add_one: Pievienot
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Pievienot tagad
+  add_photos: Pievienot foto
+  add_place: Pievienot vietu
+  add_alive_or_dead_alive_annotation: 'Pievienot piezīmi "Dzīvs vai miris: dzīvs"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzīvs vai miris: nenosakāms"'
+  add_alive_or_dead_dead_annotation: 'Pievienot piezīmi "Dzīvs vai miris: miris"'
+  add_plant_phenology_budding_annotation: 'Pievienot piezīmi "auga fenoloģija: pumpurojas"'
+  add_plant_phenology_flower_budding_annotation: 'Pievienot piezīmi "auga fenoloģija: novērojami ziedpumpuri"'
+  add_plant_phenology_flowering_annotation: 'Pievienot piezīmi "auga fenoloģija: zied"'
+  add_plant_phenology_fruiting_annotation: 'Pievienot piezīmi "auga fenoloģija: ar augļiem"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Pievienot piezīmi "auga fenoloģija: ziedēšana nav novērojama"'
+  add_life_stage_adult_annotation: 'Pievienot piezīmi "Dzīves posms: pieaudzis"'
+  add_life_stage_teneral_annotation: 'Pievienot piezīmi "Dzīves posms: tenerāls īpatnis"'
+  add_life_stage_subimago_annotation: 'Pievienot piezīmi "Dzīves posms: subimago"'
+  add_life_stage_pupa_annotation: 'Pievienot piezīmi "Dzīves posms: kūniņa"'
+  add_life_stage_nymph_annotation: 'Pievienot piezīmi "Dzīves posms: kukaiņu nimfa"'
+  add_life_stage_larva_annotation: 'Pievienot piezīmi "Dzīves posms: cirmenis"'
+  add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves posms: nepieaudzis"'
+  add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves posms: ola"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Pievienot taksonu saistību'
+  #As in a Guide Section
+  add_section: Pievienot sadaļu
+  add_several_observations_at_once: Pievienot vairākus novērojumus reizē.
+  add_sex_female_annotation: 'Pievienot piezīmi "Dzimums: mātīte"'
+  add_sex_male_annotation: 'Pievienot piezīmi "Dzimums: tēviņš"'
+  add_sex_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzimums: nenosakāms"'
+  add_some_now: Pievienot tagad
+  add_tag: Pievienot kategoriju
+  add_tags: Pievienot kategorijas
+  add_tags_to_selected_taxa: Pievienot kategorijas izvēlētajiem taksoniem
+  add_taxa: Pievienot taksonus
+  add_taxon_batch_to: "Pievienot taksonu grupu sarakstam: %{list}"
+  add_taxon_range: Pievienot taksonu rangu
+  add_to_a_scheme: Pievienot plānam
+  add_to_a_project: Pievienot projektam
+  add_to_calendar: Pievienot kalendāram
+  add_to_checklist: Pievienot sarakstam
+  add_to_favorites: Pievienot izlasei
+  add_to_list: Pievienot sarakstam
+  add_to_project: Pievienot projektam
+  add_to_your_list: Pievienot savam sarakstam
+  added: Pievienots
+  added!: Pievienots!
+  added_as_a_part_of_a_taxon_change_html: |
+    Pievienots kā daļa no 
+    <a target="%{target}" class="%{class}" href="%{url}">izmaiņām taksonos</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Pievienots kā daļa no 
+    <a target="%{target}" class="%{class}" href="%{url}">taksonu apvienošanas</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Pievienots kā daļa no 
+    <a target="%{target}" class="%{class}" href="%{url}">taksonu sadalīšanas</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Pievienots kā daļa no 
+    <a target="%{target}" class="%{class}" href="%{url}">taksonu samainīšanas</a>
+  added_by: Pievienoja
+  added_by_user_on_date_html: "%{date} pievienoja %{user}"
+  added_on_datetime: "Pievienoja %{datetime}"
+  added_to_favorites_html: |
+    Pievienots <a href="%{url}">izlasei</a>
+  adding: "Pievieno..."
+  adjust_brightness: Pielāgot spilgtumu
+  admin: Administrators
+  admin_s: Administrators/i
+  admin_only: Tikai administratori
+  admin_tools: Administratora rīki
+  agree_: Piekrist
+  agree?: Piekrist?
+  agree_with_current_taxon: Piekrist pašreizējam taksonam
+  agreeing: Piekrīt...
+  aka: jeb
+  all: Viss
+  all_comments: Visi komentāri
+  all_flags_must_be_resolved: Visi ziņojumi ir jāatrisina
+  all_life: Visa dzīve
+  all_names: Visi nosaukumi
+  all_observations: Visi novērojumi
+  all_photos: Visas fotogrāfijas
+  all_places: "Visas vietas"
+  all_projects: Visi projekti
+  all_rank_added_to_the_database:
+    phylum: Visas sugas pievienotas datubāzei
+    subphylum: Visas apakšsugas pievienotas datubāzei
+    superclass: Visas virsklases pievienotas datubāzei
+    class: Visas klases pievienotas datubāzei
+    subclass: Visas apakšklases pievienotas datubāzei
+    infraclass: Visas infraklases pievienotas datubāzei
+    superorder: Visas augstākās kārtas pievienotas datubāzei
+    order: Visas kārtas pievienotas datubāzei
+    suborder: Visas apakškārtas pievienotas datubāzei
+    infraorder: Visas infrakārtas pievienotas datubāzei
+    superfamily: Visas virsdzimtas pievienotas datubāzei
+    epifamily: Visas "Epifamily" dzimtas pievienotas datubāzei
+    family: Visas dzimtas pievienotas datubāzei
+    subfamily: Visas apakšdzimtas pievienotas datubāzei
+    supertribe: Visas virsciltis pievienotas datubāzei
+    tribe: Visas ciltis pievienotas datubāzei
+    subtribe: Visas apakšciltis pievienotas datubāzei
+    genus: Visas ģintis pievienotas datubāzei
+    genushybrid: Visi ģints hibrīdi pievienoti datubāzei
+    subgenus: Visas apakšģintis pievienotas datubāzei
+    section: Visas sekcijas pievienotas datubāzei
+    subsection: Visas apakšsekcijas pievienotas datubāzei
+    complex: Visas sīksugas pievienotas datubāzei
+    species: Visas sugas pievienotas datubāzei
+    hybrid: Visi hibrīdi pievienoti datubāzei
+    subspecies: Visas apakšsugas pievienotas datubāzei
+    variety: Visas šķirnes pievienotas datubāzei
+    form: Visas kultūrformas pievienotas datubāzei
+  all_rights_reserved: visas tiesības paturētas
+  all_taxa:
+    amphibians: Abinieki
+    animals: Dzīvnieki
+    arachnids: Zirnekļveidīgie
+    birds: Putni
+    chromista: Hromisti
+    fungi: Sēnes
+    fungi_including_lichens: Sēnes, tai skaitā ķērpji
+    insects: Kukaiņi
+    mammals: Zīdītāji
+    mollusks: Gliemji
+    other_animals: Citi dzīvnieki
+    plants: Augi
+    protozoans: Vienšūņi
+    ray_finned_fishes: Starspurzivis
+    reptiles: Rāpuļi
+    life: Dzīvība
+    x_plantae:
+      zero: "%{count} augi"
+      one: "%{count} augs"
+      other: "%{count} augi"
+    x_animalia:
+      zero: "%{count} dzīvnieki"
+      one: "%{count} dzīvnieks"
+      other: "%{count} dzīvnieki"
+    x_mollusca:
+      zero: "%{count} gliemji"
+      one: "%{count} gliemis"
+      other: "%{count} gliemji"
+    x_amphibia:
+      zero: "%{count} abinieki"
+      one: "%{count} abinieks"
+      other: "%{count} abinieki"
+    x_mammalia:
+      zero: "%{count} zīdītāji"
+      one: "%{count} zīdītājs"
+      other: "%{count} zīdītāji"
+    x_actinopterygii:
+      zero: "%{count} starspurzivis"
+      one: "%{count} starspurzivs"
+      other: "%{count} starspurzivis"
+    x_reptilia:
+      zero: "%{count} rāpuļi"
+      one: "%{count} rāpulis"
+      other: "%{count} rāpuļi"
+    x_aves:
+      zero: "%{count} putni"
+      one: "%{count} putns"
+      other: "%{count} putni"
+    x_insecta:
+      zero: "%{count} kukaiņi"
+      one: "%{count} kukainis"
+      other: "%{count} kukaiņi"
+    x_arachnida:
+      zero: "%{count} zirnekļveidīgie"
+      one: "%{count} zirnekļveidīgais"
+      other: "%{count} zirnekļveidīgie"
+    x_fungi:
+      zero: "%{count} sēnes"
+      one: "%{count} sēne"
+      other: "%{count} sēnes"
+    x_chromista:
+      zero: "%{count} hromisti"
+      one: "%{count} hromists"
+      other: "%{count} hromisti"
+    x_protozoa:
+      zero: "%{count} vienšūņi"
+      one: "%{count} vienšūnis"
+      other: "%{count} vienšūņi"
+    x_other_animals:
+      zero: "%{count} citi dzīvnieki"
+      one: "%{count} cits dzīvnieks"
+      other: "%{count} citi dzīvnieki"
+  all_taxa_: Visi taksoni
+  all_taxa_in_this_guide: Visi šī padoma taksoni
+  all_taxonomic_groups: "&laquo; Visas taksonomiskās grupas"
+  all_updates: Visi jaunumi
   date:
     abbr_month_names:
       - 

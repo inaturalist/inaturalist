@@ -910,7 +910,6 @@ gl:
     flowering: As flores son visibles, están abertas e aínda están unidos á planta
     fruiting: Os froitos son visibles e aínda están unidos á planta
     no_evidence_of_flowering: Os medios non amosan evidencias de estructuras reproductivas
-    teneral: Adulto que pupou recentemente pero que aínda non acadou a súa forma adulta
     cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
   controls: Controis
   convert: Convertir
@@ -1552,8 +1551,6 @@ gl:
     tooltips:
       leading: |
         O taxon descende dun taxon da comunidade. Esta identificación pode dar abrir camiño á resposta certa.
-      improving: |
-        A primeira suxestión deste taxon con que, subsecuentemente, a comunidade está dacordo. Isto axudou a refinar o taxon da comunidade.
       maverick: |
         O taxon non é descendente ou ancestro do taxon da comunidade, p.e. a comunidade está en desacordo con este taxon.
   id_withdrawn: Identificación Retirada
@@ -2108,9 +2105,6 @@ gl:
   needs_id_: Precisa identificación
   needs_id_expandable_html: "<span class='full'>Precisa </span>identificación"
   needs_to_be_identified: Necesita ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da Rede Internacional iNaturalist, está enfocada na biodiversidade e na xente de %{place}. ¿Gustaríache mudar a afiliación da túa conta de iNaturalist.org a %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     ¿Gustaríache mudar a túa afiliación de <strong>%{other_site_name}</strong> a <strong>%{site_name}</strong>?
   new: Novo

@@ -1226,8 +1226,6 @@ pt:
     tooltips:
       leading: |
         O táxon provém do táxon da comunidade. Esta identificação pode levar à resposta correta.
-      improving: |
-        Primeira sugestão deste táxon que teve o acordo da comunidade. Isto ajudou a refinar o táxon comunitário.
       maverick: |
         O táxon não é um descendente ou um ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon.
   id_withdrawn: ID retirada
@@ -1681,11 +1679,6 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da rede iNaturalist internacional,
-    está focada na biodiversidade e nas pessoas em %{place}. Gostaria de mudar a sua
-    afiliação de conta de iNaturalist.org para %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     Gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
