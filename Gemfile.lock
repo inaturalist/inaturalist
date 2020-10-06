@@ -8,13 +8,6 @@ GIT
       omniauth-oauth (~> 1.0)
 
 GIT
-  remote: https://github.com/JayTeeSF/translate.git
-  revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
-  specs:
-    translate-rails3 (0.2.3)
-      ya2yaml (~> 0.30)
-
-GIT
   remote: https://github.com/Programatica/irwi.git
   revision: ca970bca1ccd07e9a7ac8782c7a892d1ec0f06d1
   specs:
@@ -780,7 +773,6 @@ DEPENDENCIES
   sprockets (~> 2.12.5)
   terrapin
   thin (~> 1.7)
-  translate-rails3!
   uglifier
   utf8-cleaner
   watu_table_builder

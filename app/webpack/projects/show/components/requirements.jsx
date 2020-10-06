@@ -59,7 +59,7 @@ const Requirements = ( {
   if ( project.rule_members_only ) {
     userRules = I18n.t( "project_members_only" );
   } else if ( _.isEmpty( project.userRules ) ) {
-    userRules = I18n.t( "any" );
+    userRules = I18n.t( "any_user" );
   } else {
     userRules = _.map( project.userRules, r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
@@ -73,7 +73,7 @@ const Requirements = ( {
         { r.user.login }
       </a>
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" )
+  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any_project" )
     : _.map( project.projectRules, r => (
       <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
         { r.project.title }
@@ -85,7 +85,7 @@ const Requirements = ( {
         { r.project.title }
       </a>
     ) );
-  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" )
+  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
     : _.map( _.keys( project.rule_quality_grade ),
       q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
   const media = [];
@@ -95,9 +95,9 @@ const Requirements = ( {
   if ( project.rule_sounds ) {
     media.push( I18n.t( "sounds.sounds" ) );
   }
-  const mediaRules = _.isEmpty( media ) ? I18n.t( "any" )
+  const mediaRules = _.isEmpty( media ) ? I18n.t( "any_media" )
     : media.join( ` ${I18n.t( "and" )} ` );
-  let dateRules = I18n.t( "any" );
+  let dateRules = I18n.t( "any_date" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = true;
     dateRules = I18n.t( "date_to_date", {
@@ -112,7 +112,7 @@ const Requirements = ( {
     const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 0 ) );
     dateRules = monthIndices.map( m => I18n.t( "date.month_names" )[m] ).join( ", " );
   }
-  let establishmentRules = I18n.t( "any" );
+  let establishmentRules = I18n.t( "any_establishment" );
   if ( project.rule_native || project.rule_introduced ) {
     establishmentRules = _.compact( [
       project.rule_native && I18n.t( "establishment.native" ),

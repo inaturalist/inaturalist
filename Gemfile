@@ -89,7 +89,6 @@ gem "savon"   #allow to consume soap services with WSDL
 gem "sass-rails", "5.0.7"
 gem "soundcloud"
 gem "sprockets", "~> 2.12.5"
-gem "translate-rails3", require: "translate", git: "https://github.com/JayTeeSF/translate.git"
 gem "uglifier"
 gem "utf8-cleaner"
 gem "watu_table_builder", require: "table_builder"

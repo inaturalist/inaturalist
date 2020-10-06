@@ -737,8 +737,14 @@ iNaturalist.OverlayControl = function(map, options) {
   return this;
 }
 
+iNaturalist.OverlayControl.safeTitle = function( title ) {
+  if ( !title ) return title;
+  return title.replace( /\'/, "&#39;" ).replace( /\"/, "&quot;" );
+}
+
 iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
-  $("li[data-title='"+title+"']", this.div).remove()
+  var selector = "li[data-title='" + iNaturalist.OverlayControl.safeTitle( title ) + "']";
+  $( selector, this.div ).remove()
 }
 
 iNaturalist.OverlayControl.prototype.removeAll = function( ) {
@@ -755,7 +761,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
-      title = options.title || "Layer",
+      title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
       id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),

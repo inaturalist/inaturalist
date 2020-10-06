@@ -544,6 +544,27 @@ en:
   announcements: Announcements
   any: any
   any_: Any
+  # Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Any
+  # Label for an option to show content with any annotation value
+  any_annotation_value: Any
+  # Label for an option to show content from any date
+  any_date: Any
+  # Label for an option to show content with any establishment means
+  any_establishment: Any
+  # Label for an option to show content with any license
+  any_license: Any
+  # Label for an option to show content with photos, sounds, or neither
+  any_media: Any
+  # Label for an option to show content from any project
+  any_project: Any
+  # Label for an option to show content with any quality grade
+  any_quality_grade: Any
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
+  any_reviewed: Any
+  # Label for an option to show/include content by any user
+  any_user: Any
   anyone: Anyone
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -6760,6 +6781,9 @@ en:
           License descriptions and images &copy; %{year} Creative Commons, used
           under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution license</a> (so meta!)
+        # Header for the section of the profile settings where you can choose to
+        # show a badge on your profile to indicate that you make a regular,
+        # monthly donation to iNat
         monthly_supporter: Monthly Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
