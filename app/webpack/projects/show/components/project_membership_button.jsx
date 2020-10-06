@@ -51,7 +51,10 @@ class ProjectMembershipButton extends React.Component {
       detailsOpen
     } = this.state;
     let trustingFields;
-    if ( project.prefers_user_trust ) {
+    if (
+      project.prefers_user_trust
+      || ["any", "taxon"].includes( projectUser.prefers_curator_coordinate_access_for )
+    ) {
       trustingFields = (
         <div>
           <h4>Trust this project with hidden coordinates?</h4>

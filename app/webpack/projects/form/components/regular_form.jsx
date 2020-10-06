@@ -116,15 +116,17 @@ class RegularForm extends React.Component {
               <div className="help-text">
                 { I18n.t( "views.projects.new.check_the_box_to_include_member_observations" ) }
               </div>
-              <input
-                type="checkbox"
-                id="project-members-only"
-                defaultChecked={project.rule_members_only}
-                onChange={e => setRulePreference( "members_only", e.target.checked || null )}
-              />
-              <label className="inline" htmlFor="project-members-only">
-                { I18n.t( "views.projects.new.only_display_member_observations" ) }
-              </label>
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    id="project-members-only"
+                    defaultChecked={project.rule_members_only}
+                    onChange={e => setRulePreference( "members_only", e.target.checked || null )}
+                  />
+                  { I18n.t( "views.projects.new.only_display_member_observations" ) }
+                </label>
+              </div>
             </Col>
           </Row>
           <Row>

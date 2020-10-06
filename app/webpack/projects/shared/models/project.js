@@ -82,8 +82,13 @@ const Project = class Project {
   }
 
   requirementsChangedFrom( otherProject ) {
-    return !_.isEqual( this.project_observation_rules, otherProject.project_observation_rules )
-      || !_.isEqual( this.rule_preferences, otherProject.rule_preferences );
+    const trustChanged = this.prefers_user_trust !== otherProject.prefers_user_trust;
+    const rulesChanged = !_.isEqual(
+      this.project_observation_rules,
+      otherProject.project_observation_rules
+    );
+    const prefsChanged = !_.isEqual( this.rule_preferences, otherProject.rule_preferences );
+    return trustChanged || rulesChanged || prefsChanged;
   }
 
   bannerURL( ) {

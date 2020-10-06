@@ -2096,6 +2096,7 @@ describe Observation do
       let(:place) { make_place_with_geom }
       let(:project) do
         proj = Project.make(:collection)
+        proj.update_attributes( prefers_user_trust: true )
         proj.project_observation_rules << ProjectObservationRule.new( operator: "observed_in_place?", operand: place )
         proj
       end
@@ -2172,6 +2173,13 @@ describe Observation do
         end
         before do
           expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        end
+        it "should not allow curator access if disabled" do
+          project.update_attributes( prefers_user_trust: false )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be false
         end
         it "should allow curator access to coordinates of a threatened taxon" do
           stub_api_response_for_observation( o )

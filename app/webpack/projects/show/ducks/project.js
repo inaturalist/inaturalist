@@ -67,7 +67,6 @@ export function fetchCurrentProjectUser( ) {
     return inatjs.projects.membership( { id: project.id } )
       .then( response => {
         if ( response.results[0] ) {
-          console.log( "[DEBUG] response: ", response );
           dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
         }
       } )

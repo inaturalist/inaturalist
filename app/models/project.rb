@@ -1096,6 +1096,11 @@ class Project < ActiveRecord::Base
   end
 
   def notify_trusting_members_about_changes_if_rules_changed
+    return true unless prefers_user_trust?
+    if prefers_user_trust_changed?
+      notify_trusting_members_about_changes_later
+      return true
+    end
     RULE_PREFERENCES.each do |pref|
       if preference_changes[pref]
         notify_trusting_members_about_changes_later
@@ -1107,6 +1112,7 @@ class Project < ActiveRecord::Base
   def self.notify_trusting_members_about_changes( project )
     project = Project.find_by_id( project ) unless project.is_a?( Project )
     return unless project
+    return true unless project.prefers_user_trust?
     trusting_prefs = [
       ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
       ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY

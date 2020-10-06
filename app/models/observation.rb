@@ -1474,7 +1474,9 @@ class Observation < ActiveRecord::Base
     cps = collection_projects( authenticate: viewer )
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
-      if pu && pu.prefers_curator_coordinate_access_for &&
+      if !cp.prefers_user_trust?
+        false
+      elsif pu && pu.prefers_curator_coordinate_access_for &&
           pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
         if GEOPRIVACIES.include?( geoprivacy ) &&
             pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
@@ -3207,7 +3209,7 @@ class Observation < ActiveRecord::Base
     UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 
-  def in_collection_projects?( projects, api_parmas = {} )
+  def in_collection_projects?( projects, api_params = {} )
     project_ids = projects.map{|project| project.is_a?( Project ) ? project.id : project}.uniq.compact.map(&:to_i)
     r = INatAPIService.get("/observations/#{id}", api_params.merge( include_new_projects: true ) )
     if r && r.results && api_obs = r.results[0]
