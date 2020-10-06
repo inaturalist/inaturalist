@@ -902,6 +902,7 @@ es:
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
   controls: Controles
   convert: Convertir
@@ -1566,6 +1567,9 @@ es:
     tooltips:
       leading: |
         Este taxón es descendiente del taxón determinado por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
+      improving: |
+        Primera sugerencia de este taxón con la que la comunidad está de acuerdo. Esto
+        ayuda a refinar el taxón comunitario.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Id. retirada
@@ -2147,6 +2151,16 @@ es:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    iNaturalist.org a %{site_name}?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de iNaturalist.org a iNaturalist Suomi y compartir datos con instituciones locales?
   network_affiliation_prompt_from_other_site_html: |
     ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
@@ -2229,6 +2243,7 @@ es:
   no_matching_places: No hay lugares que concuerden
   no_matching_projects: No hay proyectos que concuerden
   no_matching_species: No hay especies que concuerden
+  no_matching_taxa: No hay taxones que concuerden
   no_matching_users: No hay usuarios que concuerden
   no_members_yet: "No hay miembros todavía"
   no_messages_yet: Ningún mensaje aún
@@ -3198,15 +3213,27 @@ es:
   ranks:
     stateofmatter: Estado de la materia
     kingdom: Reino
+    x_kingdoms:
+      one: Reino
+      other: Reinos
     subkingdom: Subreino
     phylum: Filo
+    x_phyla:
+      one: Filo
+      other: Filos
     subphylum: subfilo
     superclass: Superclase
     class: Clase
+    x_classes:
+      one: Clase
+      other: Clases
     subclass: Subclase
     infraclass: Infraclase
     superorder: Superorden
     order: orden
+    x_orders:
+      one: Orden
+      other: Órdenes
     suborder: Suborden
     infraorder: Infraorden
     subterclass: Subclase
@@ -3216,11 +3243,17 @@ es:
     superfamily: Superfamilia
     epifamily: Epifamilia
     family: Familia
+    x_families:
+      one: Familia
+      other: Familias
     subfamily: subfamilia
     supertribe: Supertribu
     tribe: Tribu
     subtribe: Subtribu
     genus: género
+    x_genera:
+      one: Género
+      other: Géneros
     genushybrid: Género híbrido
     subgenus: Subgénero
     section: Sección
@@ -3228,6 +3261,9 @@ es:
     complex: Complejo
     #Singular
     species: Especie
+    x_species:
+      one: Especie
+      other: Especies
     hybrid: Híbrido
     #Singular
     subspecies: Subespecie
