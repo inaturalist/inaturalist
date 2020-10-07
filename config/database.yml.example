@@ -3,6 +3,7 @@ login: &login
   host: localhost
   encoding: utf8
   adapter: postgis
+  username: you
   template: template_postgis
 
 development:
