@@ -6018,6 +6018,9 @@ ru:
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         license_description_attribution_html: |
           Описания и &copy; изображений лицензии %{year} Creative Commons, используемой по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a>
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Ежемесячная поддержка
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
