@@ -479,6 +479,27 @@ sv:
   announcements: Meddelanden
   any: alla
   any_: Vilken som helst
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alla
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alla
+  #Label for an option to show content from any date
+  any_date: Alla
+  #Label for an option to show content with any establishment means
+  any_establishment: Alla
+  #Label for an option to show content with any license
+  any_license: Alla
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alla
+  #Label for an option to show content from any project
+  any_project: Alla
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alla
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alla
+  #Label for an option to show/include content by any user
+  any_user: Alla
   anyone: Vem som helst
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
@@ -924,6 +945,7 @@ sv:
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
+    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
   controls: Kontroller
   convert: Konvertera
@@ -1604,6 +1626,9 @@ sv:
       leading: |
         Taxon härstammar från gemenskapens taxon. Denna bestämning kan leda till det
         rätta svaret.
+      improving: |
+        Första förslaget för detta taxon som gemenskapen håller med om. Detta bidrar till att
+        förbättra gemenskapens taxon.
       maverick: |
         Taxon är varken under- eller överliggande gemenskapens taxon, d.v.s. gemenskapen
         håller inte med om detta taxon.
@@ -2286,6 +2311,7 @@ sv:
   no_matching_places: Inga matchande platser
   no_matching_projects: Inga matchande projekt
   no_matching_species: Inga matchande arter.
+  no_matching_taxa: Inga matchande taxa
   no_matching_users: Inga matchande användare.
   no_members_yet: "Inga medlemmar än."
   no_messages_yet: Inga meddelanden ännu
@@ -3292,15 +3318,27 @@ sv:
   ranks:
     stateofmatter: Aggregationstillstånd
     kingdom: Rike
+    x_kingdoms:
+      one: Rike
+      other: Riken
     subkingdom: Underrike
     phylum: Fylum
+    x_phyla:
+      one: Fylum
+      other: Fyla
     subphylum: Underfylum
     superclass: Överklass
     class: Klass
+    x_classes:
+      one: Klass
+      other: Klasser
     subclass: Underklass
     infraclass: infraklass
     superorder: Överordning
     order: Ordning
+    x_orders:
+      one: Ordning
+      other: Ordningar
     suborder: Underordning
     infraorder: Infraordning
     subterclass: Subterklass
@@ -3310,11 +3348,17 @@ sv:
     superfamily: Överfamilj
     epifamily: Epifamilj
     family: Familj
+    x_families:
+      one: Familj
+      other: Familjer
     subfamily: Underfamilj
     supertribe: Övertribus
     tribe: Tribus
     subtribe: Undertribus
     genus: Släkte
+    x_genera:
+      one: Släkte
+      other: Släkten
     genushybrid: Släkteshybrid
     subgenus: Undersläkte
     section: Avsnitt
@@ -3322,6 +3366,9 @@ sv:
     complex: Artkomplex
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underart
@@ -4910,6 +4957,54 @@ sv:
           Du kan kopiera över detta taxon till en annan guide. Om du är
           en av redaktörerna för denna guide bör den kopiera allt, annars
           kommer den bara att kopiera det licensierade innehållet.
+    lifelists:
+      list_view: Listvy
+      tree_view: Trädvy
+      observed_species: Observerade arter
+      unobserved_species: Ej observerade arter
+      all_species: Alla arter
+      all_unobserved_species: Alla ej observerade arter
+      observations_at_this_taxon: Observationer på detta taxon
+      observations_within_this_taxon: Observationer under detta taxon
+      all_observations: Alla observationer
+      total_observations: Totalt antal observationer
+      filter_by: Filtrera på
+      filtered_by: Filtrerat på
+      apply_filters_to_export: Tillämpa filter på export
+      restrict_to_leaf_taxa: Begränsa till lövtaxa
+      restrict_to_taxon: Begränsa till %{taxon}
+      restrict_to_taxa_observed_in_place: Begränsa till taxa som observerats i %{place}
+      exporting_all_x_taxa:
+        one: Exporterar %{count} taxon
+        other: Exporterar alla %{count} taxa
+      exporting_x_taxa:
+        one: Exporterar %{count} taxon
+        other: Exporterar %{count} taxa
+      no_observations_found_in_place: Inga observationer hittade i %{place}.
+      no_observations_found_within_this_taxon_in_place: Inga observationer hittade under detta taxon i %{place}.
+      no_species_found_within_this_taxon_in_place: Inga arter hittade under detta taxon i %{place}.
+      no_species_found_in_place: Inga arter hittade i %{place}.
+      no_unobserved_species_in_place: Ingen art utan observation i %{place}.
+      no_unobserved_species_within_this_taxon: Ingen art utan observation under detta taxon.
+      no_unobserved_species_within_this_taxon_in_place: Ingen art utan observation under detta taxon i %{place}.
+      reset_place_filter: Återställ lokalfilter
+      all_observations_in_this_taxon: Alla observationer på detta taxon
+      observations_of_exactly_this_taxon: Observationer av just detta taxon
+      focus_tree_on_this_taxon: Fokusera trädet på detta taxon
+      expand_all_nodes_in_this_branch: Expandera alla noder på denna gren
+      collapse_this_branch: Fäll ihop denna gren
+      dropdowns:
+        sort: Sortera
+        taxonomic: Taxonomisk
+        name: Namn
+        most_observed: Mest observerade
+        date_added_newest: Datum tilldagd, nyaste till äldsta
+        date_added_oldest: Datum tillagd, äldsta till nyaste
+        ancestry: Ursprung
+        show: Visa
+        children: Underliggande
+        simplified_tree: Förenklat träd
+        full_taxonomy: Fullständig taxonomi
     listed_taxa:
       establishment_field:
         confirmation: |
