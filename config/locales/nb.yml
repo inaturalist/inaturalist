@@ -5675,6 +5675,9 @@ nb:
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
         license_description_attribution_html: |
           Lisensbeskrivelser og bilder &copy; %{year} Creative Commons, brukt under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Navngivelse lisens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedlig supporter
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
