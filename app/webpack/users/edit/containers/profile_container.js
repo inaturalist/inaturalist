@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import Profile from "../components/profile";
-// import { setUserData } from "../ducks/profile";
+import { setUserData } from "../ducks/profile";
 
 function mapStateToProps( state ) {
   return {
@@ -9,15 +9,15 @@ function mapStateToProps( state ) {
   };
 }
 
-// function mapDispatchToProps( dispatch ) {
-//   return {
-//     setUserData: newState => dispatch( setUserData( newState ) )
-//   };
-// }
+function mapDispatchToProps( dispatch ) {
+  return {
+    setUserData: newState => { dispatch( setUserData( newState ) ); }
+  };
+}
 
 const ProfileContainer = connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( Profile );
 
 export default ProfileContainer;

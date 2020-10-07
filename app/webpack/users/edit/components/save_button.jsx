@@ -1,5 +1,5 @@
 import React from "react";
-import { updateUserProfile } from "../ducks/profile";
+import { saveUserProfile } from "../ducks/profile";
 
 const SaveButton = ( ) => (
   <div className="save-button">
@@ -10,7 +10,7 @@ const SaveButton = ( ) => (
     <button
       className="btn btn-xs btn-primary blue-button-caps"
       type="button"
-      onClick={updateUserProfile}
+      onClick={saveUserProfile}
     >
       {I18n.t( "save_settings" ).toLocaleUpperCase()}
     </button>

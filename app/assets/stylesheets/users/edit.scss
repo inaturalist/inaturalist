@@ -13,10 +13,6 @@
   align-items: center;
 }
 
-// .col-width {
-//   max-width: 317px;
-// }
-
 .save-button {
   display: flex;
   flex-direction: row;
@@ -47,7 +43,7 @@
   margin-bottom: 23px;
 }
 
-.label {
+label {
   font-size: 12px;
   margin-bottom: 7px;
 }
@@ -55,6 +51,7 @@
 h5 {
   display: flex;
   flex-direction: row;
+  font-weight: bold !important;
 
   .asterisk {
     color: #ca5c53;
@@ -91,7 +88,6 @@ h5 {
 }
 
 .italic-text {
-  max-width: 257px;
   font-size: 12px;
   font-style: italic;
   line-height: 1.17;

@@ -19,19 +19,15 @@ export function setUserData( userData ) {
 }
 
 export function fetchUserProfile( ) {
-  return ( dispatch, getState ) => {
-    // const s = getState( );
-    return inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
-      dispatch( setUserData( results[0] ) );
-      console.log( results, "results in inat users me" );
-    } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
-  };
+  return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
+    dispatch( setUserData( results[0] ) );
+  } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
 }
 
-export function updateUserProfile( ) {
-  return ( dispatch, getState ) => {
-    return inatjs.users.update( ).then( ( results ) => {
-      console.log( results, "update users/edit" );
-    } ).catch( e => console.log( `Failed to update user: ${e}` ) );
-  };
-}
+// export function saveUserProfile( ) {
+//   return ( dispatch, getState ) => {
+//     return inatjs.users.update( ).then( ( results ) => {
+//       console.log( results, "update users/edit" );
+//     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
+//   };
+// }
