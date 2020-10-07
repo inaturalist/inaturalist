@@ -594,6 +594,25 @@ cs:
   announcements: Oznámení
   any: libovolné
   any_: Jakýkoliv
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Jakýkoliv
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Jakýkoliv
+  #Label for an option to show content from any date
+  any_date: Kdykoliv
+  #Label for an option to show content with any license
+  any_license: Jakákoliv
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Kterýkoliv
+  #Label for an option to show content from any project
+  any_project: Kterýkoliv
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Jakákoliv
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Jakýkoliv
+  #Label for an option to show/include content by any user
+  any_user: Kterýkoliv
   anyone: Kdokoliv
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
@@ -6088,6 +6107,9 @@ cs:
           Popis licence a obrázky &copy; %{year} Creative Commons, použité
           pod licencí <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution licence</a> (tak meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Měsíční podporovatel
         monthly_supporter_desc_html: |
           měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy
