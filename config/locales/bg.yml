@@ -645,7 +645,11 @@ bg:
   comparing_observations_from: "Сравняване на наблюденията на %{user} от %{dates}"
   configure: Конфигуриране
   configure_a_widget_to_show: Конфигурирайте приставка, която да показва наблюдения от %{site_name} на Вашия уебсайт или блог. Може да се наложи да включите вградения CSS в <code>&lt;head&gt;</code> етикета на Вашия HTML код. Ако желаете - можете да промените CSS стила по Ваше усмотрение.
+  confirm: Потвърди
+  confirm_membership: Потвърди членство
   confirm_new_password: Потвърдете новата парола
+  confirm_now: Потвърди сега
+  confirm_your_info: Потвърдете данните си
   connect_to_provider: "Свържи с %{provider}"
   connected_accounts: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
@@ -851,6 +855,8 @@ bg:
       updated: 'Успешно обновихте акаунта си.'
       destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
     mailer:
+      confirmation_instructions:
+        subject: 'Инструкции за потвърждение'
       reset_password_instructions:
         subject: 'Инструкции за възстановяване на паролата'
   disable: Изключване
@@ -1065,6 +1071,7 @@ bg:
   flags_for_x_html: Маркер за %{x}
   flags_on_users_content: "Маркери на съдържанието на %{user}"
   flickr_account_information: Информация за Вашия акаунт на Flickr
+  flickr_needs_to_confirm: "Flickr трябва да потвърди, че искате да свържете акаунта си с %{site_name}."
   flickr_tags: Flickr етикети
   follow: Следвай
   follow_user: "Следвай %{user}"
@@ -2660,6 +2667,7 @@ bg:
   sort: Сортиране
   sort_by: Сортиране по
   sorting_by: Сортиране по
+  soundcloud_needs_to_confirm: "SoundCloud трябва да потвърди, че искате да свържете акаунта си с %{site_name}."
   sounds:
     add_media: Добави медийно съдържание
     add_sounds: Добави звуци
@@ -3174,6 +3182,7 @@ bg:
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
   you_must_fill_out_the_required_fields: Трябва да попълните задължителните полета
   you_must_select_at_least_one_taxon: Трябва да изберете поне един таксон
+  you_must_specify_and_confirm_a_new_password: Трябва да укажете и потвърдите нова парола.
   you_retain_full_copyright: "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване."
   you_retain_full_copyright_over_your_content: "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване."
   you_sure_delete_identification?: Сигурни ли сте, че искате да изтриете това разпознаване?
@@ -3625,6 +3634,8 @@ bg:
         still_want_to_delete_html: |
           Ако все пак сте сигурни, че искате да изтриете акаунта си, въведете <code>%{confirmation_code}</code> в полето по-долу и щракнете бутона, за да изтриете акаунта и всичките си данни.
         type_confirmation_code: Въведете %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          Трябва да въведете „%{confirmation_code}“ във формуляра, за да изтриете акаунта си.
       edit:
         about_third_party_tracking: Относно следенето от трети страни
         blocking_desc_html: |
@@ -3729,6 +3740,9 @@ bg:
         this_user_was_banned: Този потребител е запориран
         favorites_list_prompt_html: |
           Искате да покажете някои от любимите си таксони? %{link_start_tag}Създайте списък%{link_end_tag} озаглавен „Любими“ и най-новите попълнения в него ще се появят в този раздел.
+    user_parents:
+      new:
+        step2_title: ПОТВЪРДЕТЕ САМОЛИЧНОСТТА СИ ЧРЕЗ КРЕДИТНА КАРТА
     welcome:
       index:
         connect_with_nature: Сближете се с Природата
@@ -4096,6 +4110,7 @@ bg:
     errors:
       messages:
         blank: не може да е празно
+        confirmation: несъответстваща парола
         equal_to: трябва да е равно на %{count}
         even: трябва да е четно
         greater_than: трябва да е по-голямо от %{count}
