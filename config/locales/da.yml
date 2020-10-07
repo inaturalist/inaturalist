@@ -462,6 +462,27 @@ da:
   announcements: Meddelelser
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Hvilken som helst
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Hvilken som helst
+  #Label for an option to show content from any date
+  any_date: Hvilken som helst
+  #Label for an option to show content with any establishment means
+  any_establishment: Hvilken som helst
+  #Label for an option to show content with any license
+  any_license: Hvilken som helst
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Hvilken som helst
+  #Label for an option to show content from any project
+  any_project: Hvilken som helst
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Hvilken som helst
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Hvilken som helst
+  #Label for an option to show/include content by any user
+  any_user: Hvilken som helst
   anyone: Enhver
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -904,6 +925,7 @@ da:
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
+    teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
   controls: Kontrolpanel
   convert: Konvertér
@@ -1574,6 +1596,8 @@ da:
       leading: |
         Takson stammer fra fællesskabs takson. Denne identifikation kan føre til det
         rigtige svar.
+      improving: |
+        Første forslag til denne takson, som fællesskabet er enige i. Dette hjælper med at forædle fællesskabstaksonen.
       maverick: |
         Takson er ikke en efterkommer eller stamfader til fællesskabs taksonen, dvs. fællesskabet er ikke enig i denne takson
   id_withdrawn: ID trukket tilbage
@@ -2245,6 +2269,7 @@ da:
   no_matching_places: Ingen matchende steder
   no_matching_projects: Ingen matchende projekter
   no_matching_species: Ingen matchende arter.
+  no_matching_taxa: Ingen matchende taksa
   no_matching_users: Ingen matchende brugere.
   no_members_yet: "Ingen medlemmer endnu."
   no_messages_yet: Ingen beskeder endnu
@@ -3233,11 +3258,20 @@ da:
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
+    x_kingdoms:
+      one: Rige
+      other: Riger
     subkingdom: Underrige
     phylum: Række
+    x_phyla:
+      one: Stamme
+      other: Stammer
     subphylum: Underrække
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klasser
     subclass: Underklasse
     infraclass: Infraklasse
     superorder: Superorden
@@ -6122,6 +6156,9 @@ da:
           biodiversitets information fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
