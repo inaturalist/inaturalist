@@ -60,7 +60,7 @@ class PlaceGeometry < ActiveRecord::Base
     PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
         SELECT
-          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(ST_MakeValid(geom)))) AS new_geom
         FROM (
           SELECT (ST_Dump(geom)).geom
           FROM place_geometries
