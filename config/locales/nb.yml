@@ -459,6 +459,27 @@ nb:
   announcements: Kunngjøringer
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alle
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alle
+  #Label for an option to show content from any date
+  any_date: Alle
+  #Label for an option to show content with any establishment means
+  any_establishment: Alle
+  #Label for an option to show content with any license
+  any_license: Alle
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alle
+  #Label for an option to show content from any project
+  any_project: Alle
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alle
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alle
+  #Label for an option to show/include content by any user
+  any_user: Alle
   anyone: Alle
   apply_to_selected: Bruk på utvalgte
   apply_captive_cultivated: "Bruk i fangenskap / dyrket"
@@ -898,6 +919,7 @@ nb:
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
+    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
     cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
   controls: Kontrollpanel
   convert: Konverter
@@ -2216,6 +2238,7 @@ nb:
   no_matching_places: Ingen treff for steder
   no_matching_projects: Ingen matchende prosjekter
   no_matching_species: Ingen treff for arter.
+  no_matching_taxa: Ingen overensstemmende taksa
   no_matching_users: Ingen treff for brukere.
   no_members_yet: "Ingen medlemmer ennå."
   no_messages_yet: Ingen meldinger ennå
@@ -3162,15 +3185,27 @@ nb:
   ranks:
     stateofmatter: Tilstand
     kingdom: Rike
+    x_kingdoms:
+      one: Rike
+      other: Riker
     subkingdom: Underrike
     phylum: Rekke
+    x_phyla:
+      one: Rekke
+      other: Rekker
     subphylum: Underrekke
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klasser
     subclass: Underklasse
     infraclass: Infraklasse
     superorder: Superorden
     order: Orden
+    x_orders:
+      one: Orden
+      other: Ordner
     suborder: Underorden
     infraorder: Infraorden
     subterclass: Subterklasse
@@ -3180,11 +3215,17 @@ nb:
     superfamily: Superfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familier
     subfamily: Underfamilie
     supertribe: Superstamme
     tribe: Stamme
     subtribe: Understamme
     genus: Slekt
+    x_genera:
+      one: Slekt
+      other: Slekter
     genushybrid: Slektshybrid
     subgenus: Underslekt
     section: Seksjon
@@ -3192,6 +3233,9 @@ nb:
     complex: Kompleks
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underart
@@ -4598,6 +4642,14 @@ nb:
       show:
         reuse_desc: |
           Du kan kopiere dette taksonet til en annen guide. Hvis du er en av redaktørene av denne guiden bør alt kopieres, men hvis ikke kopieres kun det lisensierte innholdet.
+    lifelists:
+      list_view: Listevisning
+      tree_view: Trevisning
+      observed_species: Observerte arter
+      all_species: Alle arter
+      all_unobserved_species: Alle uobserverte arter
+      filter_by: Filtrer etter
+      filtered_by: Filtrert etter
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5675,6 +5727,9 @@ nb:
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
         license_description_attribution_html: |
           Lisensbeskrivelser og bilder &copy; %{year} Creative Commons, brukt under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Navngivelse lisens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedlig supporter
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United

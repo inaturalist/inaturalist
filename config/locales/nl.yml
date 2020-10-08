@@ -476,6 +476,27 @@ nl:
   announcements: Mededelingen
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alle
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alle
+  #Label for an option to show content from any date
+  any_date: Elke
+  #Label for an option to show content with any establishment means
+  any_establishment: Elke
+  #Label for an option to show content with any license
+  any_license: Alle
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alle
+  #Label for an option to show content from any project
+  any_project: Elke
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alle
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alle
+  #Label for an option to show/include content by any user
+  any_user: Alle
   anyone: Iedereen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
@@ -915,6 +936,7 @@ nl:
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
+    teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
     cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
   controls: Besturing
   convert: Converteren
@@ -1579,6 +1601,8 @@ nl:
     tooltips:
       leading: |
         Taxon stamt af van het gemeenschapstaxon. Deze determinatie kan naar het juiste antwoord leiden.
+      improving: |
+        Eerste suggestie van dit taxon waar de gemeenschap vervolgens mee instemde. Dit hielp bij het verfijnen van het gemeenschapstaxon.
       maverick: |
         Taxon is geen afstammeling of voorouder van het gemeenschapstaxon, d.w.z. de gemeenschap is het niet
         eens met dit taxon.
@@ -2241,6 +2265,7 @@ nl:
   no_matching_places: Geen overeenkomende plaatsen
   no_matching_projects: Geen overeenkomende projecten
   no_matching_species: Geen overeenkomende soorten.
+  no_matching_taxa: Geen overeenkomende taxa
   no_matching_users: Geen overeenkomende gebruikers.
   no_members_yet: "Nog geen leden."
   no_messages_yet: Nog geen berichten
@@ -4730,6 +4755,35 @@ nl:
       show:
         reuse_desc: |
           Je kunt dit taxon kopiëren naar een andere gids. Als je een van de redacteurs van deze gids bent, zou dit alles moeten kopiëren, maar als je dat niet bent zal het alleen de gelicentieerde inhoud kopiëren.
+    lifelists:
+      list_view: Lijst weergave
+      tree_view: Boomstructuur weergave
+      observed_species: Waargenomen soorten
+      unobserved_species: Niet waargenomen soorten
+      all_species: Alle soorten
+      all_unobserved_species: Alle niet waargenomen soorten
+      observations_at_this_taxon: Waarnemingen op dit taxon
+      observations_within_this_taxon: Waarnemingen binnen dit taxon
+      all_observations: Alle waarnemingen
+      total_observations: Totaal aantal waarnemingen
+      filter_by: Filter op
+      filtered_by: 'Gefilterd door:'
+      no_observations_found_within_this_taxon_in_place: Geen waarnemingen gevonden binnen dit taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: Geen soorten gevonden binnen dit taxon in %{place}.
+      no_species_found_in_place: Geen soorten gevonden in %{place}.
+      no_unobserved_species_in_place: Geen niet-waargenomen soorten in %{place}.
+      all_observations_in_this_taxon: Alle waarnemingen binnen dit taxon
+      dropdowns:
+        sort: Sorteer
+        taxonomic: Taxonomisch
+        name: Naam
+        most_observed: Meest waargenomen
+        date_added_newest: Datum toegevoegd, nieuwste naar oudste
+        date_added_oldest: Datum toegevoegd, oudste naar nieuwste
+        show: Toon
+        children: Kinderen
+        simplified_tree: Vereenvoudigde boom
+        full_taxonomy: Volledige taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5833,6 +5887,9 @@ nl:
           Licentiebeschrijvingen en afbeeldingen &copy; %{year} Creative Commons, gebruikt
           onder een <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Naamsvermelding licentie</a> (zo meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Maandelijkse supporter
         monthly_supporter_desc_html: |
           Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.

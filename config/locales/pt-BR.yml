@@ -1,4 +1,4 @@
-pt-BR:
+pt:
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
@@ -464,6 +464,27 @@ pt-BR:
   announcements: Anúncios
   any: qualquer
   any_: Qualquer
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualquer
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualquer
+  #Label for an option to show content from any date
+  any_date: Qualquer
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualquer
+  #Label for an option to show content with any license
+  any_license: Qualquer
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualquer
+  #Label for an option to show content from any project
+  any_project: Qualquer
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualquer
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualquer
+  #Label for an option to show/include content by any user
+  any_user: Qualquer
   anyone: Qualquer um
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
@@ -5828,6 +5849,9 @@ pt-BR:
           Descrições de licença e imagens &copy; %{year} Creative Commons, usados
           sob a licença<a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution</a> (tão meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Apoiador Mensal
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas

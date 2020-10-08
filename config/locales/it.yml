@@ -463,6 +463,27 @@ it:
   announcements: Avvisi
   any: qualsiasi
   any_: Qualsiasi
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualsiasi
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualsiasi
+  #Label for an option to show content from any date
+  any_date: Qualsiasi
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualsiasi
+  #Label for an option to show content with any license
+  any_license: Qualsiasi
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualsiasi
+  #Label for an option to show content from any project
+  any_project: Qualsiasi
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualsiasi
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualsiasi
+  #Label for an option to show/include content by any user
+  any_user: Qualsiasi
   anyone: Chiunque
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
@@ -900,6 +921,7 @@ it:
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
+    teneral: Individuo adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
     cannot_be_determined: Non può essere determinato in base alle prove fornite
   controls: Controlli
   convert: Converti
@@ -1561,6 +1583,8 @@ it:
     tooltips:
       leading: |
         Il taxon discende dal taxon della comunità. Questa identificazione può portare alla classificazione corretta.
+      improving: |
+        Il primo suggerimento per questo taxon su cui la comunità concorda. Questo suggerimento aiuta ad affinare il taxon della comunità.
       maverick: |
         Il taxon non è discendente o antenato del taxon della comunità, e.g., la comunità non concorda con questo taxon.
   id_withdrawn: ID ritirata
@@ -5782,6 +5806,9 @@ it:
         license_description_attribution_html: |
           Descrizioni ed immagini delle licenze &copy; %{year} Creative Commons, usate sotto una <a href="http://creativecommons.org/licenses/by/3.0/">licenza Attribuzione Creative
           Commons</a> (così metareferenziale!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
           I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS EIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
