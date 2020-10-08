@@ -1,11 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment-timezone";
 
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
+  };
+
+  const createTimeZoneList = ( ) => {
+    const options = [<option value="current-timezone">{moment.tz.guess( ).toString( )}</option>];
+
+    return options;
+  };
+
+  const createLocaleList = ( ) => {
+    const locales = I18n.t( "locales" );
+
+    return Object.keys( locales ).map( locale => (
+      <option value={locale}>{I18n.t( `locales.${locale}` )}</option>
+    ) );
   };
 
   return (
@@ -15,10 +30,17 @@ const Account = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}</h5>
             <div className="account-subheader-text">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</div>
+            <select>
+              {createTimeZoneList( )}
+              {/* <option value="current-timezone">{moment.tz.guess( ).toString( )}</option> */}
+            </select>
           </div>
           <div className="profile-setting">
             <h5>{I18n.t( "language_slash_locale" )}</h5>
             <div className="account-subheader-text">{I18n.t( "language_slash_locale_description" )}</div>
+            <select>
+              {createLocaleList( )}
+            </select>
           </div>
           <div className="profile-setting">
             <h5>{I18n.t( "default_search_place" )}</h5>
