@@ -119,7 +119,16 @@ const Profile = ( { profile, setUserData } ) => {
               </div>
               <div className="col-xs-9">
                 <label>{I18n.t( "display_monthly_supporter_badge" )}</label>
-                <div className="italic-text">{I18n.t( "display_monthly_supporter_badge_description" )}</div>
+                {/* <div className="italic-text">{I18n.t( "display_monthly_supporter_badge_description" )}</div> */}
+                <span
+                  className="italic-text"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
+                      url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
+                    } )
+                  }}
+                />
               </div>
             </div>
           </div>
