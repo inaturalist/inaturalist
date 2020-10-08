@@ -1,11 +1,9 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 
-import SettingsItem from "./settings_item";
-
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
-const Profile = ( { profile, setUserData, uploadPhoto } ) => {
+const Profile = ( { profile, setUserData } ) => {
   const hiddenFileInput = createRef( null );
 
   const handleInputChange = e => {
@@ -30,7 +28,8 @@ const Profile = ( { profile, setUserData, uploadPhoto } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <SettingsItem header="profile_picture">
+          <div className="profile-setting">
+            <h5>{I18n.t( "profile_picture" )}</h5>
             <div className="row row-align-center">
               <div className="col-xs-4">
                 <img alt="profile-empty" src={profile.icon || emptyProfileImage} className="user-photo" />
@@ -49,17 +48,25 @@ const Profile = ( { profile, setUserData, uploadPhoto } ) => {
                 </button>
               </div>
             </div>
-          </SettingsItem>
-          <SettingsItem header="username" required>
+          </div>
+          <div className="profile-setting">
+            <h5>
+              {I18n.t( "username" )}
+              <div className="asterisk">*</div>
+            </h5>
             <div className="italic-text">{I18n.t( "username_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
-          </SettingsItem>
-          <SettingsItem header="email" required>
+          </div>
+          <div className="profile-setting">
+            <h5>
+              {I18n.t( "email" )}
+              <div className="asterisk">*</div>
+            </h5>
             <div className="italic-text">{I18n.t( "email_description" )}</div>
             <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
-          </SettingsItem>
+          </div>
           <div className="profile-setting">
             <h5>
               {I18n.t( "change_password" )}
@@ -80,17 +87,26 @@ const Profile = ( { profile, setUserData, uploadPhoto } ) => {
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <SettingsItem header="display_name" required>
+          <div className="profile-setting">
+            <h5>
+              {I18n.t( "display_name" )}
+              <div className="asterisk">*</div>
+            </h5>
             <div className="italic-text">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
-          </SettingsItem>
-          <SettingsItem header="bio" required>
+          </div>
+          <div className="profile-setting">
+            <h5>
+              {I18n.t( "bio" )}
+              <div className="asterisk">*</div>
+            </h5>
             <div className="italic-text">{I18n.t( "bio_description" )}</div>
             <textarea className="form-control" value={profile ? profile.description : ""} name="description" onChange={handleInputChange} />
-          </SettingsItem>
-          <SettingsItem header="badges">
+          </div>
+          <div className="profile-setting">
+            <h5>{I18n.t( "badges" )}</h5>
             <div className="row">
               <div className="col-xs-1">
                 <input
@@ -106,7 +122,7 @@ const Profile = ( { profile, setUserData, uploadPhoto } ) => {
                 <div className="italic-text">{I18n.t( "display_monthly_supporter_badge_description" )}</div>
               </div>
             </div>
-          </SettingsItem>
+          </div>
         </div>
       </div>
     </div>

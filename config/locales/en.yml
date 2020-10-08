@@ -1085,6 +1085,7 @@ en:
   customize_location: Customize Location
   darr_apply_darr: "&darr; Apply &darr;"
   daily_users: Daily Users
+  danger_zone: Danger Zone
   dashboard: Dashboard
   data_deficient: Data Deficient
   data_quality: Data Quality
@@ -1150,6 +1151,8 @@ en:
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
   default_photo_license: Default photo license
+  default_search_place: Default Search Place
+  default_search_place_description: This will be your default place for all searches in Explore.
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
@@ -1868,6 +1871,8 @@ en:
   # Option to lock the zoom level for maps on Identify so the zoom level remains
   # the same as you move from one observation to another
   lock_zoom_level: Lock zoom level
+  language_slash_locale: Language/Locale
+  language_slash_locale_description: This sets your language and date formatting preferences across iNaturalist based on your locale.
   language_slash_type: Language / Type
   # Large photo size
   large: large

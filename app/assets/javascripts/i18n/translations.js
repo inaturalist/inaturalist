@@ -98,6 +98,7 @@ I18n.translations["ar"] = {
     "life": "حياة"
   },
   "all_taxa_": "كل الأصناف",
+  "all_your_observations_will_default_this_time_zone": "سيتم تعيين جميع ملاحظاتك بشكل افتراضي إلى هذه المنطقة الزمنية ما لم تحدد خلاف ذلك.",
   "allow_curator_access": "السماح للأمين بالوصول",
   "allow_project_curators_to_view_your_private_coordinates": "السماح لأمناء المشروع بعرض إحداثياتك المخفية",
   "amphibians": "برمائيات",
@@ -357,6 +358,7 @@ I18n.translations["ar"] = {
   "decrease_brightness": "تقليل السطوع",
   "default": "الافتراضي",
   "delete": "حذف",
+  "delete_your_account": "حذف حسابك",
   "deleting": "جارٍ الحذف...",
   "deleting_verb": "حذف",
   "desc": "الوصف",
@@ -521,6 +523,7 @@ I18n.translations["ar"] = {
   "in_the_past_week": "في الأسبوع الماضي",
   "inactive_taxon": "أصنوفة غير نشطة",
   "inappropriate_content": "محتوى غير لائق؟",
+  "inaturalist_network_affiliation": "شبكة انتماء إيناتوراليست",
   "including": "يتضمن",
   "increase_brightness": "زيادة السطوع",
   "info": "معلومات",
@@ -1244,6 +1247,7 @@ I18n.translations["ar"] = {
   "previous_observation": "الملاحظة السابقة",
   "previous_photo": "الصورة السابقة",
   "previous_tab": "علامة التبويب السابقة",
+  "privacy": "الخصوصية",
   "private_": "خاص",
   "proceed": "تابع",
   "profile": "الملف الشخصي",
@@ -1730,6 +1734,7 @@ I18n.translations["ar"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p>\n  The <a href=\"%{url}\" target=\"_blank\"> شبكة إيناتوراليست</a> هي\n  مجموعة من مواقع الويب المترجمة المرتبطة تماما \n  بمجتمع إيناتوراليست العالمي، يتم دعم مواقع الشبكة من قبل \n  المؤسسات المحلية التي وقعت اتفاقية مع إيناتوراليست\n  لتعزيز الاستخدام المحلي وإفادة التنوع البيولوجي المحلي، لديهم إمكانية الوصول \n  إلى الإحداثيات الحقيقية من بلدانهم المحجوبة\n  تلقائيا عن العرض العام من أجل حماية الأنواع المهددة.</p>\n<p>\n  يعمل اسم المستخدم وكلمة المرور على جميع المواقع التي تشكل جزءا من \n  شبكة إيناتوراليست، إذا اخترت الانضمام إلى موقع \n  شبكة، المؤسسات المحلية التي تشغل كل موقع سيكون لها أيضا\n  وصول إلى عنوان بريدك الإلكتروني (فقط للتواصل معك حول \n  أنشطة الموقع) والوصول إلى الإحداثيات الحقيقية للملاحظات \n  الغامضة أو الخاصة.\n</p>\n<p>\n  ملاحظة: يُرجَى عدم تغيير انتمائك بشكل تجريبي إذا كان \n  لديك أكثر من 1000 ملاحظة.\n</p>\n",
         "licensing_desc_html": "يطلب إذنك إذا كان يلتزم بشروط الترخيص،\nبالإضافة إلى ذلك، يتضمن %{site_name} محتواك المرخص بالمشاع الإبداعي\nفي أرشيفات يتم تحديثها بانتظام ويتم إنتاجها لمنظمات شريكة \nمحددة مهتمة ببياناتنا، على سبيل المثال، نقوم بتضمين سجلات \"لا\nتوجد حقوق طبع ونشر\" (CC0)، والنسبة (CC BY)، والنسبة-غير تجاري\n(CC BY-NC) في الأرشيف الذي ننشئه من أجل\n<a href=\"http://www.gbif.org/\"> المرفق العالمي لمعلومات التنوع\nالحيوي</a> (GBIF)، وهي منظمة دولية حكومية دولية\nتقوم بجمع وتوزيع معلومات التنوع الحيوي من جميع أنحاء \nالعالم.\n"
       }
     },
@@ -1955,6 +1960,7 @@ I18n.translations["bg"] = {
     }
   },
   "all_taxa_": "Всички таксони",
+  "all_your_observations_will_default_this_time_zone": "Всички Ваши наблюдения ще попадат в тази часова зона по подразбиране, освен в случаите когато изберете друго.",
   "amphibians": "земноводни",
   "and": "и",
   "android": "Андроид",
@@ -2221,6 +2227,7 @@ I18n.translations["bg"] = {
   "decrease_brightness": "Намали яркостта",
   "default": "по подразбиране",
   "delete": "Изтриване",
+  "delete_your_account": "Изтриване на акаунта",
   "deleting": "Изтриване...",
   "deleting_verb": "Изтриване",
   "desc": "низх.",
@@ -2403,6 +2410,7 @@ I18n.translations["bg"] = {
   "in_the_past_week": "През изминалата седмица",
   "inactive_taxon": "неактивен таксон",
   "inappropriate_content": "Неуместно съдържание?",
+  "inaturalist_network_affiliation": "Членство в Мрежата на iNaturalist",
   "increase_brightness": "Увеличи яркостта",
   "info": "Информация",
   "insects": "насекоми",
@@ -3062,6 +3070,7 @@ I18n.translations["bg"] = {
   "previous_observation": "Предишно наблюдение",
   "previous_photo": "Предишна снимка",
   "previous_tab": "Предишен раздел",
+  "privacy": "Защита на лични данни",
   "private_": "Поверително",
   "proceed": "Продължи",
   "profile": "Профил",
@@ -3435,7 +3444,9 @@ I18n.translations["bg"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">Мрежата на iNaturalist</a> е сбор от локализирани сайтове, които са изцяло свързани с международната общност на iNaturalist. Сайтовете от мрежата се поддържат от местни институции, които са подписали споразумение с iNaturalist да популяризират местната му употреба и да са в полза на местното биоразнообразие. Те имат достъп до реалните координати на застрашени видове в рамките на съответната държава, които са автоматично замаскирани за обществото с цел тяхната защита.\n</p>\n<p>\nВашето потребителско име и парола работят на всички сайтове, които са част от Мрежата на iNaturalist. Ако промените членството си към някой от тези сайтове, местната институция, която го управлява, ще може да се свързва с Вас чрез имейл и да вижда реалните координати на наблюденията Ви със скрити или замаскирани координати.\n</p>\n<p>\nЗабележка: Моля, не променяйте членството си експериментално, ако имате повече от 1000 наблюдения.\n</p>\n",
+        "licensing_desc_html": "Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.\n",
+        "prefers_no_tracking_label": "Не събирай данни за стабилността и потреблението използвайки услугите на трети страни"
       }
     },
     "welcome": {
@@ -3631,6 +3642,7 @@ I18n.translations["br"] = {
     "reptiles": "Stlejviled",
     "life": "Bev"
   },
+  "all_your_observations_will_default_this_time_zone": "Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all",
   "allow_project_curators_to_view_your_private_coordinates": "Aotren goursellerien ar raktres da welet hoc'h evezhiadennoù prevez",
   "amphibians": "Divelfenneged",
   "and": "ha(g)",
@@ -3748,6 +3760,7 @@ I18n.translations["br"] = {
   },
   "default": "dre ziouer",
   "delete": "Dilemel",
+  "delete_your_account": "Dilemel ho kont",
   "deleting": "O telemel...",
   "deleting_verb": "Dilemel",
   "desc": "War zigresk",
@@ -4052,6 +4065,7 @@ I18n.translations["br"] = {
   "plants": "plant",
   "prev": "kent",
   "previous": "Kent",
+  "privacy": "Reolennoù prevezded",
   "project": "Raktres",
   "share": "Rannañ",
   "sounds": {
@@ -4289,6 +4303,7 @@ I18n.translations["ca"] = {
     }
   },
   "all_taxa_": "Tots els tàxons",
+  "all_your_observations_will_default_this_time_zone": "Totes les observacions es faran en aquesta zona horària tret que especifiqueu el contrari.",
   "allow_curator_access": "Permeteu l'accés al supervisor",
   "allow_project_curators_to_view_your_private_coordinates": "Permet als supervisors del projecte a visualitzar les vostres coordenades ocultes",
   "amphibians": "amfibis",
@@ -4583,6 +4598,7 @@ I18n.translations["ca"] = {
   "default": "Predeterminada",
   "default_": "Per defecte",
   "delete": "Elimina",
+  "delete_your_account": "Elimineu el compte",
   "deleting": "Esborrant...",
   "deleting_verb": "Eliminant",
   "desc": "desc",
@@ -4831,6 +4847,7 @@ I18n.translations["ca"] = {
   "in_the_past_week": "La setmana passada",
   "inactive_taxon": "Tàxon inactiu",
   "inappropriate_content": "Contingut inadequat?",
+  "inaturalist_network_affiliation": "Afiliació a la Xarxa d'iNaturalist",
   "include_places": "Incloure Llocs",
   "include_projects": "Incloure Projectes",
   "include_taxa": "Incloure Tàxons",
@@ -5632,6 +5649,7 @@ I18n.translations["ca"] = {
   "previous_observation": "Observació anterior",
   "previous_photo": "Foto anterior",
   "previous_tab": "Pestanya anterior",
+  "privacy": "Privacitat",
   "private_": "Privat",
   "proceed": "Procedir",
   "profile": "Perfil",
@@ -6237,7 +6255,9 @@ I18n.translations["ca"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = \"http://www.gbif.org/ \"> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.\n"
+        "inaturalist_network_affiliation_desc_html": "<p> La <a href=\"%{url}\" target=\"_blank\"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>\n",
+        "licensing_desc_html": "Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = \"http://www.gbif.org/ \"> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.\n",
+        "prefers_no_tracking_label": "No recolliu dades d'estabilitat i ús utilitzant serveis de tercers"
       }
     },
     "welcome": {
@@ -6606,6 +6626,7 @@ I18n.translations["cs"] = {
     }
   },
   "all_taxa_": "Všechny taxony",
+  "all_your_observations_will_default_this_time_zone": "Všechna Vaše pozorování budou mít toto časové pásmo, pokud nespecifikujete jiné.",
   "allow_curator_access": "Povolit přístup správci",
   "allow_project_curators_to_view_your_private_coordinates": "Povolit správcům projektu náhled vašich soukromých souřadnic",
   "amphibians": "obojživelníci",
@@ -6910,6 +6931,7 @@ I18n.translations["cs"] = {
   "default": "výchozí",
   "default_": "Výchozí",
   "delete": "Smazat",
+  "delete_your_account": "Smazat vlastní účet",
   "deleting": "Odstraňování...",
   "deleting_verb": "Odstraňování",
   "desc": "sest.",
@@ -7162,6 +7184,7 @@ I18n.translations["cs"] = {
   "in_the_past_week": "v minulém týdnu",
   "inactive_taxon": "neaktivní taxon",
   "inappropriate_content": "Nevhodný obsah?",
+  "inaturalist_network_affiliation": "Příslušnost k síti iNaturalist",
   "include_places": "Zahrnout místa",
   "include_projects": "Zahrnout projekty",
   "include_taxa": "Zahrnout taxony",
@@ -7962,6 +7985,7 @@ I18n.translations["cs"] = {
   "previous_observation": "Předchozí pozorování",
   "previous_photo": "Předchozí fotka",
   "previous_tab": "Předchozí panel",
+  "privacy": "Zásady ochrany osobních údajů",
   "private_": "Soukromý",
   "proceed": "Pokračovat",
   "profile": "Profil",
@@ -8588,7 +8612,9 @@ I18n.translations["cs"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.\n"
+        "inaturalist_network_affiliation_desc_html": "Síť <a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> je souborem lokalizovaných stránek napojených na globální komunitu iNaturalist. Můžete si změnit svou hlavní příslušnost na stránce, což znamená, že váš obsah bude mít na dané stránce určitou prioritu, ale zároveň to znamená, že majitelé stránky mají právo stahovat a zobrazovat veškeré vaše údaje stejně jako správci stránek iNaturalist. Pokud tato stránka ze sítě odejde, váš účet i údaje půjdou s touto stránkou.\n",
+        "licensing_desc_html": "Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.\n",
+        "prefers_no_tracking_label": "Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran"
       }
     },
     "welcome": {
@@ -8983,6 +9009,7 @@ I18n.translations["da"] = {
     }
   },
   "all_taxa_": "Alle taksa",
+  "all_your_observations_will_default_this_time_zone": "Alle dine observationer vil som standard bruge denne tidszone med mindre du ændrer den",
   "allow_curator_access": "Tillad kuratoradgang",
   "allow_project_curators_to_view_your_private_coordinates": "Tillad projektkuratorer at se dine fortrolige koordinater",
   "amphibians": "padder",
@@ -9277,6 +9304,7 @@ I18n.translations["da"] = {
   "default": "standard",
   "default_": "Standard",
   "delete": "Slet",
+  "delete_your_account": "Slet din konto",
   "deleting": "Sletter...",
   "deleting_verb": "Sletter",
   "desc": "Fald",
@@ -9525,6 +9553,7 @@ I18n.translations["da"] = {
   "in_the_past_week": "I den sidste uge",
   "inactive_taxon": "inaktiv takson",
   "inappropriate_content": "Upassende indhold?",
+  "inaturalist_network_affiliation": "iNaturalist Network-tilknytning",
   "include_places": "Inkludér steder",
   "include_projects": "Inkludér projekter",
   "include_taxa": "Inkludér taksa",
@@ -10326,6 +10355,7 @@ I18n.translations["da"] = {
   "previous_observation": "Forrige observation",
   "previous_photo": "Forrige foto",
   "previous_tab": "Forrige fane",
+  "privacy": "Fortrolighedspolitik",
   "private_": "Fortrolig",
   "proceed": "Fortsæt",
   "profile": "Profil",
@@ -10931,7 +10961,9 @@ I18n.translations["da"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Licensering af dit indhold giver andre personer juridisk ret til at bruge det\nuden at spørge om din tilladelse, hvis de overholder betingelserne i\nlicensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href=\"http://www.gbif.org/\"> Global\nBiodiversitet information facilitet </a> (GBIF), en international,\ninterstatslig organisation, der udarbejder og distribuerer\nbiodiversitets information fra hele verden.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> er en\nsamling af lokale websteder, som er forbundet med det globale INaturalist-fællesskab. \nNetværkswebsteder understøttes af lokale institutioner, som har underskrevet en aftale med iNaturalist om at fremme lokalt brug og gavn af biodiversitet. De har adgang til reelle koordinater fra deres lande, som automatisk er sløre for offentligheden for at beskytte truede arter.\n</p>\n<p>\nDit brugernavn og adgangskode fungerer på alle websteder, som udgør en del af iNaturalist Network. Hvis du vælger at deltage i et netværkswebsted, vil de lokale institutioner, som driver hvert websted, også have adgang til din e-mailadresse (kun for at kommunikere med dig om iNat-aktiviteter) og adgang til de reelle koordinater for observationer, som er offentligt sløret eller fortrolige.\n</p>\n<p>\nBemærk: Skift ikke for sjov din tilknytning, hvis du har flere end 1.000 observationer.\n</p>\n",
+        "licensing_desc_html": "Licensering af dit indhold giver andre personer juridisk ret til at bruge det\nuden at spørge om din tilladelse, hvis de overholder betingelserne i\nlicensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href=\"http://www.gbif.org/\"> Global\nBiodiversitet information facilitet </a> (GBIF), en international,\ninterstatslig organisation, der udarbejder og distribuerer\nbiodiversitets information fra hele verden.\n",
+        "prefers_no_tracking_label": "Indsaml ikke driftsstabilitets- og brugsdata vha. tredjepartstjenester"
       }
     },
     "welcome": {
@@ -11272,6 +11304,7 @@ I18n.translations["de"] = {
     }
   },
   "all_taxa_": "Alle Taxa",
+  "all_your_observations_will_default_this_time_zone": "Alle deine Beobachtungen werden dieser Zeitzone zugeordnet, sofern du nichts anderes angibst.",
   "allow_curator_access": "Kuratorenzugriff erlauben",
   "allow_project_curators_to_view_your_private_coordinates": "Projektkuratoren die Ansicht deiner verborgenen Koordinaten erlauben",
   "amphibians": "Amphibien",
@@ -11566,6 +11599,7 @@ I18n.translations["de"] = {
   "default": "Standard",
   "default_": "Standard",
   "delete": "Löschen",
+  "delete_your_account": "Dein Benutzerkonto löschen",
   "deleting": "Löschen…",
   "deleting_verb": "Löschen",
   "desc": "absteigend",
@@ -11807,6 +11841,7 @@ I18n.translations["de"] = {
   "in_the_past_week": "In der vergangenen Woche",
   "inactive_taxon": "Inaktives Taxon",
   "inappropriate_content": "Unangemessener Inhalt?",
+  "inaturalist_network_affiliation": "iNaturalist Zusammenschluss",
   "include_places": "Gebiete einbeziehen",
   "include_projects": "Projekte einbeziehen",
   "include_taxa": "Taxa einbeziehen",
@@ -12602,6 +12637,7 @@ I18n.translations["de"] = {
   "previous_observation": "Vorherige Beobachtung",
   "previous_photo": "Vorheriges Foto",
   "previous_tab": "Vorheriger Tab",
+  "privacy": "Datenschutz",
   "private_": "Privat",
   "proceed": "Fortfahren",
   "profile": "Profil",
@@ -13185,7 +13221,9 @@ I18n.translations["de"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Die Lizenzierung deines Inhalts gibt jedem das Recht, ihn ohne deine Zustimmung zu nutzen, wenn er sich an die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. So nehmen wir beispielsweise Kein Copyright (CC0), Namensnennung (CC BY) und Namensnennung-Nicht kommerziell \n (CC BY-NC) Datensätze in das Archiv auf, die wir für die <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF) generieren, eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nDas <a href=\"%{url}\" target=\"_blank\">iNaturalist Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern. Sie haben Zugang zu echten Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.\n</p>\n<p>\nDein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind. \n</p>\n<p>\nHinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.\n</p>\n",
+        "licensing_desc_html": "Die Lizenzierung deines Inhalts gibt jedem das Recht, ihn ohne deine Zustimmung zu nutzen, wenn er sich an die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. So nehmen wir beispielsweise Kein Copyright (CC0), Namensnennung (CC BY) und Namensnennung-Nicht kommerziell \n (CC BY-NC) Datensätze in das Archiv auf, die wir für die <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF) generieren, eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.\n",
+        "prefers_no_tracking_label": "Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen"
       }
     },
     "welcome": {
@@ -13520,6 +13558,7 @@ I18n.translations["el"] = {
     }
   },
   "all_taxa_": "Όλα τα taxa",
+  "all_your_observations_will_default_this_time_zone": "Όλες οι παρατηρήσεις σας θα έχουν ως προεπιλεγμένη αυτήν τη ζώνη ώρας εκτός κι αν προσδιορίσετε διαφορετικά.",
   "allow_curator_access": "Να επιτρέπεται η πρόσβαση επιμελητή",
   "allow_project_curators_to_view_your_private_coordinates": "Να επιτρέπεται στους επιμελητές πρότζεκτ να βλέπουν τις κρυμμένες συντεταγμένες σας.",
   "amphibians": "Αμφίβια",
@@ -13811,6 +13850,7 @@ I18n.translations["el"] = {
   "decrease_brightness": "Μείωση φωτεινότητας",
   "default": "προεπιλογή",
   "delete": "Διαγραφή",
+  "delete_your_account": "Διαγραφή του λογαριασμού σας",
   "deleting": "Διαγραφή σε εξέλιξη...",
   "deleting_verb": "Διαγράφεται",
   "desc": "φθιν",
@@ -14003,6 +14043,7 @@ I18n.translations["el"] = {
   "in_the_past_week": "Την τελευταία εβδομάδα",
   "inactive_taxon": "Ανενεργό Taxon",
   "inappropriate_content": "Ακατάλληλο περιεχόμενο;",
+  "inaturalist_network_affiliation": "iNaturalist Προσχώρηση Δικτύου",
   "include_places": "Συμπεριλάβετε τοποθεσίες",
   "include_projects": "Συμπεριλάβετε πρότζεκτ",
   "include_users": "Συμπεριλάβετε χρήστες",
@@ -14783,6 +14824,7 @@ I18n.translations["el"] = {
   "previous_observation": "Προηγούμενη παρατήρηση",
   "previous_photo": "Προηγούμενη φωτογραφία",
   "previous_tab": "Προηγούμενη καρτέλα",
+  "privacy": "Πολιτική ιδιωτικού απορρήτου",
   "private_": "Ιδιωτικό",
   "proceed": "Συνέχεια",
   "profile": "Προφίλ",
@@ -15312,6 +15354,7 @@ I18n.translations["el"] = {
     },
     "users": {
       "edit": {
+        "prefers_no_tracking_label": "Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων"
       }
     },
     "welcome": {
@@ -15622,6 +15665,7 @@ I18n.translations["en"] = {
     }
   },
   "all_taxa_": "All taxa",
+  "all_your_observations_will_default_this_time_zone": "All your observations will default to this time zone unless you specify otherwise.",
   "allow_curator_access": "Allow curator access",
   "allow_project_curators_to_view_your_private_coordinates": "Allow project curators to view your hidden coordinates",
   "amphibians": "amphibians",
@@ -15792,6 +15836,7 @@ I18n.translations["en"] = {
   "curators": "Curators",
   "current_flags": "Current Flags",
   "customize_location": "Customize Location",
+  "danger_zone": "Danger Zone",
   "dashboard": "Dashboard",
   "data_deficient": "Data Deficient",
   "data_quality": "Data Quality",
@@ -15920,7 +15965,10 @@ I18n.translations["en"] = {
   "decrease_brightness": "Decrease Brightness",
   "default": "default",
   "default_": "Default",
+  "default_search_place": "Default Search Place",
+  "default_search_place_description": "This will be your default place for all searches in Explore.",
   "delete": "Delete",
+  "delete_your_account": "Delete your account",
   "deleting": "Deleting...",
   "deleting_verb": "Deleting",
   "desc": "Desc",
@@ -16174,6 +16222,7 @@ I18n.translations["en"] = {
   "in_the_past_week": "In the past week",
   "inactive_taxon": "Inactive Taxon",
   "inappropriate_content": "Inappropriate content?",
+  "inaturalist_network_affiliation": "iNaturalist Network Affiliation",
   "include_places": "Include Places",
   "include_projects": "Include Projects",
   "include_taxa": "Include Taxa",
@@ -16203,6 +16252,8 @@ I18n.translations["en"] = {
   "kml_file_size_error": "KML must be less than 1 MB in size",
   "label_colon": "%{label}:",
   "labels": "Labels",
+  "language_slash_locale": "Language/Locale",
+  "language_slash_locale_description": "This sets your language and date formatting preferences across iNaturalist based on your locale.",
   "language_slash_type": "Language / Type",
   "large": "large",
   "last_observation": "Last observation",
@@ -16976,6 +17027,7 @@ I18n.translations["en"] = {
   "previous_observation": "Previous Observation",
   "previous_photo": "Previous Photo",
   "previous_tab": "Previous Tab",
+  "privacy": "Privacy",
   "private_": "Private",
   "proceed": "Proceed",
   "profile": "Profile",
@@ -17603,7 +17655,9 @@ I18n.translations["en"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Licensing your content gives anyone the legal right to use it without\nasking your permission if they abide by the terms of the license. In\naddition, %{site_name} includes your Creative Commons-licensed content\nin regularly-updated archives produced for select partner\norganizations interested in our data. For example, we include No\nCopyright (CC0), Attribution (CC BY), and Attribution-NonCommercial\n(CC BY-NC) records in the archive we generate for the\n<a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), an international, inter-governmental organization\nthat compiles and distributes biodiversity information from around the\nworld.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n  The <a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> is a\n  collection of localized websites that are fully connected to the\n  global iNaturalist community. Network sites are supported by local\n  institutions that have signed an agreement with iNaturalist to\n  promote local use and benefit local biodiversity. They have access\n  to true coordinates from their countries that are automatically\n  obscured from public view in order to protect threatened species.\n</p>\n<p>\n  Your username and password works on all sites that are part of\n  the iNaturalist Network. If you choose to affiliate with a Network\n  site, the local institutions that operate each site will also have\n  access to your email address (only to communicate with you about\n  site activities) and access to the true coordinates for observations\n  that are publicly obscured or private.\n</p>\n<p>\n  Note: Please do not experimentally change your affiliation if you\n  have more than 1000 observations.\n</p>\n",
+        "licensing_desc_html": "Licensing your content gives anyone the legal right to use it without\nasking your permission if they abide by the terms of the license. In\naddition, %{site_name} includes your Creative Commons-licensed content\nin regularly-updated archives produced for select partner\norganizations interested in our data. For example, we include No\nCopyright (CC0), Attribution (CC BY), and Attribution-NonCommercial\n(CC BY-NC) records in the archive we generate for the\n<a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), an international, inter-governmental organization\nthat compiles and distributes biodiversity information from around the\nworld.\n",
+        "prefers_no_tracking_label": "Do not collect stability and usage data using third party services"
       }
     },
     "welcome": {
@@ -17875,6 +17929,8 @@ I18n.translations["en-UK"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -18054,6 +18110,8 @@ I18n.translations["en-US"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -18469,6 +18527,7 @@ I18n.translations["eo"] = {
   },
   "default": "implicita",
   "delete": "Forigi",
+  "delete_your_account": "Forigi vian konton",
   "deleting": "Forigante...",
   "deleting_verb": "Forigado",
   "desc": "Malkr",
@@ -19050,6 +19109,7 @@ I18n.translations["eo"] = {
   "popular": "Populara",
   "preview": "Antaŭrigardi",
   "previous_photo": "Antaŭa Foto",
+  "privacy": "Privateco",
   "private_": "Privata",
   "profile": "Profilo",
   "project": "Projekto",
@@ -19546,6 +19606,7 @@ I18n.translations["es"] = {
     }
   },
   "all_taxa_": "Todos los taxones",
+  "all_your_observations_will_default_this_time_zone": "Todas tus observaciones se harán en este huso horario a menos que especifiques lo contrario.",
   "allow_curator_access": "Permite acceso al curador",
   "allow_project_curators_to_view_your_private_coordinates": "Permite a los curadores del proyecto ver tus coordenadas privadas",
   "amphibians": "anfibios",
@@ -19840,6 +19901,7 @@ I18n.translations["es"] = {
   "default": "Predeterminada",
   "default_": "Predeterminada",
   "delete": "Elimina",
+  "delete_your_account": "Elimina tu cuenta",
   "deleting": "Borrando...",
   "deleting_verb": "Eliminando",
   "desc": "desc",
@@ -20088,6 +20150,7 @@ I18n.translations["es"] = {
   "in_the_past_week": "Durante la semana pasada",
   "inactive_taxon": "Especie o grupo inactivo",
   "inappropriate_content": "¿Contenido inapropiado?",
+  "inaturalist_network_affiliation": "Afiliación de Red iNaturalist",
   "include_places": "Incluye Lugares",
   "include_projects": "Incluye Proyectos",
   "include_taxa": "Incluye Taxones",
@@ -20889,6 +20952,7 @@ I18n.translations["es"] = {
   "previous_observation": "Observación Anterior",
   "previous_photo": "Foto anterior",
   "previous_tab": "Pestaña anterior",
+  "privacy": "Privacidad",
   "private_": "Privado",
   "proceed": "Continuar",
   "profile": "Perfil",
@@ -21494,7 +21558,9 @@ I18n.translations["es"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>La <a href=\"%{url}\" target=\"_blank\">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>\n\n<p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>\n\n<p>\nNota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.\n</p>\n",
+        "licensing_desc_html": "La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.\n",
+        "prefers_no_tracking_label": "No recopilar datos de estabilidad ni de uso usando servicios de terceros"
       }
     },
     "welcome": {
@@ -21832,6 +21898,7 @@ I18n.translations["es-AR"] = {
     }
   },
   "all_taxa_": "Todos los taxones",
+  "all_your_observations_will_default_this_time_zone": "Todas tus observaciones se harán en este huso horario a menos que especifiques lo contrario.",
   "allow_curator_access": "Permite acceso al curador",
   "allow_project_curators_to_view_your_private_coordinates": "Permite a los curadores del proyecto ver tus coordenadas privadas",
   "amphibians": "anfibios",
@@ -22101,6 +22168,7 @@ I18n.translations["es-AR"] = {
   "decrease_brightness": "Reducir brillo",
   "default": "Predeterminada",
   "delete": "Elimina",
+  "delete_your_account": "Elimina tu cuenta",
   "deleting": "Borrando...",
   "deleting_verb": "Eliminando",
   "desc": "Desc",
@@ -22333,6 +22401,7 @@ I18n.translations["es-AR"] = {
   "in_the_past_week": "Durante la semana pasada",
   "inactive_taxon": "Especie o grupo inactivo",
   "inappropriate_content": "¿Contenido inapropiado?",
+  "inaturalist_network_affiliation": "Afiliación de Red iNaturalist",
   "including": "incluyendo",
   "increase_brightness": "Aumentar brillo",
   "info": "Información",
@@ -23091,6 +23160,7 @@ I18n.translations["es-AR"] = {
   "previous_observation": "Observación Anterior",
   "previous_photo": "Foto anterior",
   "previous_tab": "Pestaña anterior",
+  "privacy": "Privacidad",
   "private_": "Privado",
   "proceed": "Continuar",
   "profile": "Perfil",
@@ -23639,6 +23709,7 @@ I18n.translations["es-AR"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p>La <a href=\"%{url}\" target=\"_blank\">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>\n\n<p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>\n\n<p>\nNota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.\n</p>\n",
         "licensing_desc_html": "La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.\n"
       }
     },
@@ -23909,6 +23980,8 @@ I18n.translations["es-ES"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -24123,6 +24196,7 @@ I18n.translations["es-MX"] = {
     }
   },
   "all_taxa_": "Todos los taxones",
+  "all_your_observations_will_default_this_time_zone": "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa.",
   "allow_curator_access": "Permite acceso al curador",
   "allow_project_curators_to_view_your_private_coordinates": "Permite a los curadores del proyecto ver tus coordinadas privadas",
   "amphibians": "Anfibios",
@@ -24378,6 +24452,7 @@ I18n.translations["es-MX"] = {
   },
   "default": "Predeterminada",
   "delete": "Borrar",
+  "delete_your_account": "Borra tu cuenta",
   "deleting": "Borrando...",
   "deleting_verb": "Eliminando",
   "desc": "Descendente",
@@ -24544,6 +24619,7 @@ I18n.translations["es-MX"] = {
   "in_the_past_week": "En la semana pasada",
   "inactive_taxon": "Especie o grupo inactivo",
   "inappropriate_content": "¿Contenido inapropiado?",
+  "inaturalist_network_affiliation": "Afiliación de Red iNaturalist",
   "including": "incluyendo",
   "info": "Información",
   "input_taxon": "Incluye al taxón",
@@ -25153,6 +25229,7 @@ I18n.translations["es-MX"] = {
   "previous_observation": "Observación Anterior",
   "previous_photo": "Foto anterior",
   "previous_tab": "Pestaña anterior",
+  "privacy": "Normativa de privacidad",
   "private_": "Privado",
   "proceed": "Continuar",
   "profile": "Perfil",
@@ -25638,6 +25715,7 @@ I18n.translations["es-MX"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p>La <a href=\"%{url}\" target=\"_blank\">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>\n\n<p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>\n\n<p>\nNota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.\n</p>\n",
         "licensing_desc_html": "La licencia de tu contenido permite a otra gente el uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons para compartir el contenido\ncon otros socios como <a href=\"http://www.gbif.org/\">Global \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, \nque reúne y distriuye información sobre biodiversidad en todo el mundo.\n"
       }
     },
@@ -25934,6 +26012,7 @@ I18n.translations["et"] = {
     }
   },
   "all_taxa_": "Kõik taksonid",
+  "all_your_observations_will_default_this_time_zone": "Kui sa teisiti ei määra, kasutatakse kõigi sinu vaatluste puhul seda ajavööndit.",
   "allow_curator_access": "Luba ligipääs kuraatoritele",
   "allow_project_curators_to_view_your_private_coordinates": "Luba projekti kuraatoritel vaadata sinu peidetud koordinaate",
   "amphibians": "kahepaiksed",
@@ -26201,6 +26280,7 @@ I18n.translations["et"] = {
   },
   "default": "vaikimisi",
   "delete": "Kustuta",
+  "delete_your_account": "Kustuta oma konto",
   "deleting": "Kustutan...",
   "deleting_verb": "Kustutan",
   "desc": "Kahanev",
@@ -26377,6 +26457,7 @@ I18n.translations["et"] = {
   "in_the_past_week": "Eelmisel nädalal",
   "inactive_taxon": "Mitteaktiivne takson",
   "inappropriate_content": "Ebasobiv sisu?",
+  "inaturalist_network_affiliation": "iNaturalist võrgustiku kuuluvus",
   "including": "sisaldab",
   "info": "Teave",
   "input_taxon": "Sisendtakson",
@@ -27000,6 +27081,7 @@ I18n.translations["et"] = {
   "previous_observation": "Eelmine vaatlus",
   "previous_photo": "Eelmine foto",
   "previous_tab": "Eelmine sakk",
+  "privacy": "Privaatsus",
   "private_": "Isiklik",
   "proceed": "Jätka",
   "profile": "Profiil",
@@ -27487,6 +27569,7 @@ I18n.translations["et"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist Võrgustik</a> on kogum kohalikke interneti lehekülgi, mida ühendab globaalne iNaturalist-i kogukond. Võrgustikku kuuluvaid lehekülgi toetavad kohalikud institutsioonid, mis on sõlminud iNaturalistiga lepingu, mille eesmärgiks on arendada kohalikku kasutamist ning aidata kaasa kohalikule looduslikule mitmekesisusele. Neil on ligipääs oma riigis asuvatele koordinatele, mida avalikult ohustatud liikide kaitsmise eesmärgil varjatakse.\n</p>\n<p>\nSinu kasutajatunnus ja salasõna toimivad kõigil iNaturalist Võrgustiku lehtedel. Kui sa otsustad liituda mõne kohaliku leheküljega, näeb seda juhatav institutsioon sinu e-posti aadressi (ainult selleks, et sinuga lehel toimuva osas suhelda) ning pääseb ligi sinu vaatluste tõelistele koordinaatidele, mis on varjatud või privaatsed.\n</p>\n<p>\nMärkus: palun ära vaheta eksperimendi korras niisama oma kohalikku lehte, kui sul on enam kui 1000 vaatlust.\n</p>\n",
         "licensing_desc_html": "Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href=\"http://www.gbif.org/\">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.\n"
       }
     },
@@ -27796,6 +27879,7 @@ I18n.translations["eu"] = {
     }
   },
   "all_taxa_": "Taxoi guztiak",
+  "all_your_observations_will_default_this_time_zone": "Zure ohar guztiak ordu-zona honetan egingo dira, zuk kontrakoa zehaztu ezean.",
   "allow_curator_access": "Ontzailearen sartzea onartu",
   "allow_project_curators_to_view_your_private_coordinates": "Baimendu proiektuen zaintzaileei zure ezkutuko koordenatuak ikustea",
   "amphibians": "anfibioak",
@@ -28040,6 +28124,7 @@ I18n.translations["eu"] = {
   },
   "default": "Lehenetsia",
   "delete": "Ezabatu",
+  "delete_your_account": "Zure kontua ezabatu",
   "deleting": "Ezabatzen...",
   "deleting_verb": "Ezabatzen",
   "desc": "Beher.",
@@ -28440,6 +28525,7 @@ I18n.translations["eu"] = {
   "previous_observation": "Aurreko behaketa",
   "previous_photo": "Aurreko argazkia",
   "previous_tab": "Aurreko orrialdea",
+  "privacy": "Pribatutasuna",
   "profile": "Profila",
   "project": "Proiektua",
   "projects": "Proiektuak",
@@ -28903,6 +28989,7 @@ I18n.translations["fi"] = {
     }
   },
   "all_taxa_": "Kaikki taksonit",
+  "all_your_observations_will_default_this_time_zone": "Kaikki havaintosi tulevat olemaan oletusarvoisesti tällä aikavyöhykkeellä, ellet määritä toisin.",
   "allow_curator_access": "Salli kuraattorin pääsy",
   "allow_project_curators_to_view_your_private_coordinates": "Salli projektin kuraattorien katsoa piilotettuja koordinaattejasi",
   "amphibians": "sammakkoeläimet",
@@ -29196,6 +29283,7 @@ I18n.translations["fi"] = {
   "decrease_brightness": "Vähennä kirkkautta",
   "default": "oletus",
   "delete": "Poista",
+  "delete_your_account": "Poista käyttäjätunnuksesi",
   "deleting": "Poistaa...",
   "deleting_verb": "Poistaminen",
   "desc": "Laskeva",
@@ -29406,6 +29494,7 @@ I18n.translations["fi"] = {
   "in_the_past_week": "Menneellä viikolla",
   "inactive_taxon": "Epäaktiivinen taksoni",
   "inappropriate_content": "Sopimatonta sisältöä?",
+  "inaturalist_network_affiliation": "Verkosto, johon tunnuksesi on liitetty",
   "include_places": "Sisällytä paikat",
   "include_projects": "Sisällytä projektit",
   "include_taxa": "Sisällytä taksonit",
@@ -30182,6 +30271,7 @@ I18n.translations["fi"] = {
   "previous_observation": "Edellinen havainto",
   "previous_photo": "Edellinen kuva",
   "previous_tab": "Edellinen välilehti",
+  "privacy": "Yksityisyys",
   "private_": "Yksityinen",
   "proceed": "Jatka",
   "profile": "Profiili",
@@ -30707,6 +30797,7 @@ I18n.translations["fi"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<a href=\"%{url}\" target=\"_blank\">iNaturalist-verkosto</a> on \njoukko eri alueille mukautettuja (lokalisoituja) verkkosivustoja, jotka on kytketty yhteen maailmanlaajuiseen iNaturalist\n-yhteisöön. Verkoston sivustoja ylläpidetään yhteistyössä paikallisten instituutioiden kanssa, Suomessa yhdessä Suomen Lajitietokeskuksen kanssa.\n</p><p>\nNämä instituutiot ovat allekirjoittaneet sopimuksen iNaturalistin kanssa ja edistävät sen paikallista käyttöä luonnon monimuotoisuuden hyväksi. Paikalliset instituutiot pääsevät käsiksi havaintojen tarkkoihin koordinaatteihin oman valtionsa alueelta, vaikka koordinaatit muuten olisivat karkeistettuja uhattujen eliölajien suojelemiseksi.\n</p><p>\nKäyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liität tunnuksesi paikalliseen verkostoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.\n</p><p>\nHuom: Ole hyvä äläkä vaihda verkostoa vain kokeillaksesi vaihtamista, jos sinulla on yli 1000 havaintoa (koska vaihtaminen on hidasta).\n</p>\n",
         "licensing_desc_html": "Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen\n(CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.\n"
       }
     },
@@ -30963,6 +31054,8 @@ I18n.translations["fil"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -31195,6 +31288,7 @@ I18n.translations["fr"] = {
     }
   },
   "all_taxa_": "Tous les taxons",
+  "all_your_observations_will_default_this_time_zone": "Toutes vos observations seront automatiquement assignées à ce fuseau horaire, sauf si vous spécifiez une autre préférence.",
   "allow_curator_access": "Autoriser l’accès au responsable",
   "allow_project_curators_to_view_your_private_coordinates": "Autoriser les responsables de projets à voir vos coordonnées géographiques masquées",
   "amphibians": "amphibiens",
@@ -31489,6 +31583,7 @@ I18n.translations["fr"] = {
   "default": "par défaut",
   "default_": "Choix par défaut",
   "delete": "Supprimer",
+  "delete_your_account": "Supprimer votre compte",
   "deleting": "Suppression en cours…",
   "deleting_verb": "Suppression",
   "desc": "Desc",
@@ -31737,6 +31832,7 @@ I18n.translations["fr"] = {
   "in_the_past_week": "Durant la semaine passée",
   "inactive_taxon": "Taxon inactif",
   "inappropriate_content": "Contenu inapproprié ?",
+  "inaturalist_network_affiliation": "Affiliation au réseau iNaturalist",
   "include_places": "Ajouter des lieux",
   "include_projects": "Ajouter des projets",
   "include_taxa": "Ajouter des taxons",
@@ -32537,6 +32633,7 @@ I18n.translations["fr"] = {
   "previous_observation": "Observation précédente",
   "previous_photo": "Photo précédente",
   "previous_tab": "Onglet précédent",
+  "privacy": "Confidentialité",
   "private_": "Privé",
   "proceed": "Procéder",
   "profile": "Profil",
@@ -33139,7 +33236,9 @@ I18n.translations["fr"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "En mettant votre contenu sous licence, vous donnerez à quiconque le\ndroit de l’utiliser légalement sans\ndemander votre permission s’il reste dans les conditions de la licence. De\nplus, %{site_name} inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires\nsélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements de Aucun\nDroit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le\n(CC BY-NC) dans l’archive que nous générons pour le \n<a href=\"http://www.gbif.org/\">Système mondial d’information sur la\nbiodiversité</a> (SMIB), une organisation internationale\nintergouvernementale qui compile et distribue des informations sur la\nbiodiversité dans le monde entier.\n"
+        "inaturalist_network_affiliation_desc_html": "<p> Le <a href=\"%{url}\" target=\"_blank\">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> \n<p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.\n</p>\n",
+        "licensing_desc_html": "En mettant votre contenu sous licence, vous donnerez à quiconque le\ndroit de l’utiliser légalement sans\ndemander votre permission s’il reste dans les conditions de la licence. De\nplus, %{site_name} inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires\nsélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements de Aucun\nDroit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le\n(CC BY-NC) dans l’archive que nous générons pour le \n<a href=\"http://www.gbif.org/\">Système mondial d’information sur la\nbiodiversité</a> (SMIB), une organisation internationale\nintergouvernementale qui compile et distribue des informations sur la\nbiodiversité dans le monde entier.\n",
+        "prefers_no_tracking_label": "Ne pas collecter de données de performance et d'utilisation par le biais de services tiers"
       }
     },
     "welcome": {
@@ -33500,6 +33599,8 @@ I18n.translations["fr-CA"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "some_observations_are_missing_media_or_identifications": "Certaines observations n'ont pas de photo/son ou d'identification\n",
   "some_observations_are_missing_media_or_identifications_desc": "Les observations sans média ne seront pas visibles par défaut dans les recherches, et celles sans identifications pourraient ne pas être vues par des experts qui recherchent des taxons spécifiques. Même une identification très approximative comme \"Plantes\" peut aider les experts à trouver votre observation.\n",
@@ -33589,6 +33690,7 @@ I18n.translations["fr-CA"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p> Le <a href=\"%{url}\" target=\"_blank\">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> \n<p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.\n</p>\n"
       }
     },
     "welcome": {
@@ -33792,6 +33894,8 @@ I18n.translations["gd"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -34024,6 +34128,7 @@ I18n.translations["gl"] = {
     }
   },
   "all_taxa_": "Tódolos taxons",
+  "all_your_observations_will_default_this_time_zone": "Todas as túas observacións faranse nesta zona horaria a menos que especifiques o contrario.",
   "allow_curator_access": "Permitir o acceso ó conservador",
   "allow_project_curators_to_view_your_private_coordinates": "Permitir ós conservadores dos proxectos ver as túas coordenadas ocultas",
   "amphibians": "Anfibios",
@@ -34316,6 +34421,7 @@ I18n.translations["gl"] = {
   "decrease_brightness": "Minguar o Brillo",
   "default": "Predeterminada",
   "delete": "Eliminar",
+  "delete_your_account": "Eliminar a túa conta",
   "deleting": "Borrando...",
   "deleting_verb": "Eliminando",
   "desc": "Desc.",
@@ -34564,6 +34670,7 @@ I18n.translations["gl"] = {
   "in_the_past_week": "durante a semana pasada",
   "inactive_taxon": "Especie ou grupo inactivo",
   "inappropriate_content": "¿Contido impropio?",
+  "inaturalist_network_affiliation": "Afiliación á Rede de iNaturalist",
   "include_places": "Incluir Lugares",
   "include_projects": "Incluir Proxectos",
   "include_taxa": "Incluir Taxons",
@@ -35356,6 +35463,7 @@ I18n.translations["gl"] = {
   "previous_observation": "Observación Anterior",
   "previous_photo": "Foto Anterior",
   "previous_tab": "Pestana Anterior",
+  "privacy": "Política de privacidade",
   "private_": "Privado",
   "proceed": "Continuar",
   "profile": "Perfil",
@@ -35954,7 +36062,9 @@ I18n.translations["gl"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href=\"http://www.gbif.org/\"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nA <a href=\"%{url}\" target=\"_blank\">Rede iNaturalist</a> é unha colección de sitios web localizados que están conectados á comunidade global iNaturalist. Os sitios da rede están apoiados por institucións locais que firmaron un acordo con iNaturalist para promover o uso local e beneficiar a biodiversidade local.Teñen acceso ás coordenadas reales nos seus países cando son automáticamente escurecidos da vista pública para protexer especies ameazadas.\n</p>\n<p>\nO teu nome de usuario e palabra chave funcionan en tódolos sitios que formen parte da Rede iNaturalist. Se escolleres afiliarte a un sitio da Rede, as institucións locais que operan en cada sitio tamén terán acceso ó teu enderezo de correo electrónico (só para comunicar contigo sobre as actividades do sitio) e ás coordenadas verdadeiras das observacións que estean publicamente escurecidas ou privadas.\n</p>\n<p>\nNota: Por vafor, non cambies a túa afiliación de xeito experimental se xa tes máis de 1000 observacións.\n</p>\n",
+        "licensing_desc_html": "A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href=\"http://www.gbif.org/\"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.\n",
+        "prefers_no_tracking_label": "Non recoller dados de estabilidade e de uso usando servicios de terceiros"
       }
     },
     "welcome": {
@@ -36321,6 +36431,7 @@ I18n.translations["he"] = {
     }
   },
   "all_taxa_": "כל הטקסות",
+  "all_your_observations_will_default_this_time_zone": "כל התצפיות שלכם ישתמשו באזור הזמן הזה כברירת מחדל, אלא אם כן תציינו אזור זמן אחר.",
   "allow_curator_access": "הרשאת גישה לאוצרים",
   "allow_project_curators_to_view_your_private_coordinates": "לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות שלך",
   "amphibians": "דו־חיים",
@@ -36614,6 +36725,7 @@ I18n.translations["he"] = {
   },
   "default": "ברירת המחדל",
   "delete": "מחיקה",
+  "delete_your_account": "מחיקת חשבון זה",
   "deleting": "מוחק...",
   "deleting_verb": "מוחק...",
   "desc": "סדר יורד",
@@ -37574,6 +37686,7 @@ I18n.translations["he"] = {
   "previous_observation": "תצפית קודמת",
   "previous_photo": "תמונה קודמת",
   "previous_tab": "לשונית קודמת",
+  "privacy": "פרטיות",
   "private_": "פרטי",
   "proceed": "להמשיך",
   "profile": "פרופיל",
@@ -37991,6 +38104,7 @@ I18n.translations["he"] = {
     },
     "users": {
       "edit": {
+        "prefers_no_tracking_label": "אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי"
       }
     },
     "welcome": {
@@ -38307,6 +38421,8 @@ I18n.translations["hi"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -38489,6 +38605,8 @@ I18n.translations["hu"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -38646,6 +38764,8 @@ I18n.translations["hy"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -38796,6 +38916,7 @@ I18n.translations["id"] = {
     "life": "kehidupan"
   },
   "all_taxa_": "Semua Taksa",
+  "all_your_observations_will_default_this_time_zone": "Semua pengamatan Anda akan otomatis masuk ke zona waktu ini kecuali Anda melakukan pegaturan lain.",
   "allow_curator_access": "Izinkan akses kurator",
   "allow_project_curators_to_view_your_private_coordinates": "Memungkinkan kurator proyek untuk melihat koordinat pribadi Anda",
   "amphibians": "Amfibi",
@@ -38988,6 +39109,7 @@ I18n.translations["id"] = {
   },
   "default": "baku",
   "delete": "Hapus",
+  "delete_your_account": "Hapus akun anda",
   "deleting": "Menghapus...",
   "deleting_verb": "Menghapus",
   "desc": "turun",
@@ -39097,6 +39219,7 @@ I18n.translations["id"] = {
   "import": "Masukkan",
   "in_the_past_week": "dalam seminggu terakhir",
   "inactive_taxon": "takson yang tidak aktif",
+  "inaturalist_network_affiliation": "Afiliasi Jaringan iNaturalist",
   "including": "termasuk",
   "input_taxon": "Masukkan takson",
   "insect_life_stage": "Tahapan Hidup Serangga",
@@ -39442,6 +39565,7 @@ I18n.translations["id"] = {
   "prev": "sebelum",
   "preview": "Lihat kembali",
   "previous": "Sebelumnya",
+  "privacy": "Kebijakan Privasi",
   "profile": "Profil",
   "project": "Proyek",
   "projects": "Proyek",
@@ -39915,6 +40039,7 @@ I18n.translations["it"] = {
     }
   },
   "all_taxa_": "Tutti i taxa",
+  "all_your_observations_will_default_this_time_zone": "Tutte le tue osservazioni saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente.",
   "allow_curator_access": "Permetti l'accesso ai curatori",
   "allow_project_curators_to_view_your_private_coordinates": "Consenti ai curatori del progetto di vedere le tue coordinate nascoste",
   "amphibians": "anfibi",
@@ -40209,6 +40334,7 @@ I18n.translations["it"] = {
   "default": "predefinito",
   "default_": "Default",
   "delete": "Cancella",
+  "delete_your_account": "Elimina il tuo account",
   "deleting": "Eliminazione in corso...",
   "deleting_verb": "Eliminazione in corso",
   "desc": "Decr",
@@ -40457,6 +40583,7 @@ I18n.translations["it"] = {
   "in_the_past_week": "La scorsa settimana",
   "inactive_taxon": "Taxon inattivo",
   "inappropriate_content": "Contenuto inappropriato?",
+  "inaturalist_network_affiliation": "Affiliazione al Network iNaturalist",
   "include_places": "Includi Luoghi",
   "include_projects": "Includi Progetti",
   "include_taxa": "Includi Taxa",
@@ -41258,6 +41385,7 @@ I18n.translations["it"] = {
   "previous_observation": "Osservazione Precedente",
   "previous_photo": "Foto Precedente",
   "previous_tab": "Scheda precedente",
+  "privacy": "Privacy",
   "private_": "Privato",
   "proceed": "Procedi",
   "profile": "Profilo",
@@ -41863,7 +41991,9 @@ I18n.translations["it"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nIl <a href=\"%{url}\" target=\"_blank\">Network iNaturalist</a> è una collezione di siti web localizzati che sono completamente connessi alla comunità globale di iNaturalist. i Siti del Network sono supportati da istituzioni locali che hanno firmato un accordo con iNaturalist per promuovere l'utilizzo locale e portare beneficio alla biodiversità locale. Per gli stati di competenza, hanno accesso alle coordinare reali che sono automaticamente oscurate al pubblico per proteggere le specie minacciate.\n</p>\n<p>\nIl tuo nome utente e password funziona per tutti i siti che sono partner del Network iNaturalist. Se scegli di affiliarti ad un sito del Network, le istituzioni locali che mantengono ogni siti hanno anche accesso alla tua mail (solo per comunicare con te relativamente all'attività del sito) e alle coordinate reali delle osservazioni che sono pubblicamente oscurate o private.\n</p>\n<p>\nNota: Per favore non provare a cambiare affiliazione se hai più di 1000 osservazioni.\n</p>\n",
+        "licensing_desc_html": "Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.\n",
+        "prefers_no_tracking_label": "Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti"
       }
     },
     "welcome": {
@@ -42100,6 +42230,8 @@ I18n.translations["iw"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -42317,6 +42449,7 @@ I18n.translations["ja"] = {
     }
   },
   "all_taxa_": "すべての分類群",
+  "all_your_observations_will_default_this_time_zone": "今後指定があった場合を除き、観察記録がデファルトでこのタイムゾーンになります",
   "allow_curator_access": "キュレーター管理者アクセスを許可",
   "allow_project_curators_to_view_your_private_coordinates": "プロジェクトのキュレーター管理者に非表示の位置情報の閲覧を許可",
   "amphibians": "両生類",
@@ -42596,6 +42729,7 @@ I18n.translations["ja"] = {
   "decrease_brightness": "輝度を下げる",
   "default": "既定",
   "delete": "削除",
+  "delete_your_account": "このアカウントを削除",
   "deleting": "削除しています...",
   "deleting_verb": "削除しています",
   "desc": "降順",
@@ -42765,6 +42899,7 @@ I18n.translations["ja"] = {
   "in_the_past_week": "ここ1週間以内",
   "inactive_taxon": "無効な分類群",
   "inappropriate_content": "不適切な内容ですか?",
+  "inaturalist_network_affiliation": "iNaturalistネットワーク所属",
   "include_places": "場所を含む",
   "include_projects": "プロジェクトを含む",
   "include_taxa": "分類群を含む",
@@ -43518,6 +43653,7 @@ I18n.translations["ja"] = {
   "previous_observation": "前の観察記録",
   "previous_photo": "前の写真",
   "previous_tab": "前のタブ",
+  "privacy": "プライバシー",
   "private_": "非公開",
   "proceed": "続行",
   "profile": "プロフィール",
@@ -43893,7 +44029,9 @@ I18n.translations["ja"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href=\"http://www.gbif.org/\">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> は、世界のiNaturalistコミュニティに完全に接続された地域に特化したウェブサイトの集合体です。ネットワークサイトは、地元での利用を促進し地元の生物多様性に利益をもたらすために、iNaturalistと契約を結んだ地元の機関によってサポートされています。これらのサイトは、絶滅の危機に瀕している種を保護するために、自動的に一般の目には見えないようになっている自国の真の座標にアクセスすることができます。\n</p>\n<p>\nあなたのユーザー名とパスワードは、iNaturalist Networkの一部であるすべてのサイトで使用できます。ネットワークサイトとのアフィリエイトを選択した場合、各サイトを運営している現地機関は、あなたのメールアドレスにもアクセスすることができます（サイトの活動についてあなたと連絡を取るためだけに使用します）。\n</p>\n<p>\n注意: 1000件以上の観察記録がある場合は、実験的に所属を変更しないでください。\n</p>\n",
+        "licensing_desc_html": "あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href=\"http://www.gbif.org/\">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。\n",
+        "prefers_no_tracking_label": "サードパーティのサービスを使用して安定性や利用状況のデータを収集しない"
       }
     },
     "welcome": {
@@ -44097,6 +44235,8 @@ I18n.translations["ka"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -44262,6 +44402,7 @@ I18n.translations["ko"] = {
     "life": "생명"
   },
   "all_taxa_": "모든 분류군",
+  "all_your_observations_will_default_this_time_zone": "다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.",
   "allow_curator_access": "큐레이터 엑세스 허용",
   "allow_project_curators_to_view_your_private_coordinates": "나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함",
   "amphibians": "양서류",
@@ -44507,6 +44648,7 @@ I18n.translations["ko"] = {
   "decrease_brightness": "밝기 줄이기",
   "default": "기본값",
   "delete": "삭제",
+  "delete_your_account": "계정 지우기",
   "deleting": "삭제 중...",
   "deleting_verb": "삭제 중",
   "desc": "내림차순",
@@ -45187,6 +45329,7 @@ I18n.translations["ko"] = {
   "previous_observation": "이전 관찰",
   "previous_photo": "이전 사진",
   "previous_tab": "이전 탭",
+  "privacy": "개인정보",
   "private_": "비공개",
   "profile": "프로필",
   "project": "프로젝트",
@@ -45818,6 +45961,7 @@ I18n.translations["lb"] = {
   },
   "default": "Standard",
   "delete": "Läschen",
+  "delete_your_account": "Äre Benotzerkont läschen",
   "deleting": "läschen...",
   "deleting_verb": "Läschen",
   "description_slash_tags": "Beschreiwung / Tags",
@@ -46290,6 +46434,7 @@ I18n.translations["lb"] = {
   "previous_observation": "Vireg Observatioun",
   "previous_photo": "Vireg Foto",
   "previous_tab": "Viregen Tab",
+  "privacy": "Dateschutz",
   "private_": "Privat",
   "profile": "Profil",
   "project": "Projet",
@@ -46787,6 +46932,7 @@ I18n.translations["lt"] = {
     }
   },
   "all_taxa_": "Visi taksonai",
+  "all_your_observations_will_default_this_time_zone": "Visi jūsų stebėjimai bus numatyti pagal šią laiko juostą, nebent nurodysite kitaip.",
   "allow_curator_access": "Leisti kuratoriaus prieigą",
   "allow_project_curators_to_view_your_private_coordinates": "Leisti projekto kuratoriams peržiūrėti privačias koordinates",
   "amphibians": "varliagyviai",
@@ -47066,6 +47212,7 @@ I18n.translations["lt"] = {
   "default": "numatytas",
   "default_": "Numatytasis",
   "delete": "Ištrinti",
+  "delete_your_account": "Ištrinti savo paskyrą",
   "deleting": "Trinama...",
   "deleting_verb": "Trinama",
   "desc": "Maž.",
@@ -47301,6 +47448,7 @@ I18n.translations["lt"] = {
   "in_the_past_week": "praėjusioje savaitėje",
   "inactive_taxon": "Neaktyvus taksonas",
   "inappropriate_content": "Nepriimtinas turinys?",
+  "inaturalist_network_affiliation": "Pasirinkite iNaturalist tinklo priskyrimą",
   "include_places": "Įtraukti vietas",
   "include_projects": "Įtraukti projektus",
   "include_taxa": "Įtraukti taksonus",
@@ -48066,6 +48214,7 @@ I18n.translations["lt"] = {
   "previous_observation": "Ankstesnis stebėjimas",
   "previous_photo": "Ankstesnė nuotrauka",
   "previous_tab": "Ankstesnis skirtukas",
+  "privacy": "Privatumas",
   "private_": "Privatus",
   "proceed": "Tęsti",
   "profile": "Profilis",
@@ -48504,6 +48653,7 @@ I18n.translations["lt"] = {
     },
     "users": {
       "edit": {
+        "prefers_no_tracking_label": "Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis"
       }
     },
     "welcome": {
@@ -48829,6 +48979,8 @@ I18n.translations["lv"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -49497,6 +49649,7 @@ I18n.translations["mk"] = {
   "plants": "растенија",
   "prev": "Прет",
   "previous": "Претходно",
+  "privacy": "Заштита на личните податоци",
   "profile": "Профил",
   "project": "Проект",
   "projects": "Проекти",
@@ -49814,6 +49967,8 @@ I18n.translations["mr"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -49993,6 +50148,8 @@ I18n.translations["ms"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -50228,6 +50385,7 @@ I18n.translations["nb"] = {
     }
   },
   "all_taxa_": "Alle taksa",
+  "all_your_observations_will_default_this_time_zone": "Alle dine observasjoner vil bruke denne tidssonen som standard med mindre du overstyrer den.",
   "allow_curator_access": "Tillat kuratortilgang",
   "allow_project_curators_to_view_your_private_coordinates": "Tillat prosjektkuratorer å se dine skjulte koordinater",
   "amphibians": "amfibier",
@@ -50522,6 +50680,7 @@ I18n.translations["nb"] = {
   "default": "standard",
   "default_": "Standard",
   "delete": "Slett",
+  "delete_your_account": "Slett din konto",
   "deleting": "Sletter...",
   "deleting_verb": "Sletter",
   "desc": "Synk",
@@ -50770,6 +50929,7 @@ I18n.translations["nb"] = {
   "in_the_past_week": "I uka som har gått",
   "inactive_taxon": "Inaktivt takson",
   "inappropriate_content": "Upassende innhold?",
+  "inaturalist_network_affiliation": "iNaturalist nettverkstilknytning",
   "include_places": "Inkluder steder",
   "include_projects": "Inkluder prosjekter",
   "include_taxa": "Inkluder taksa",
@@ -51571,6 +51731,7 @@ I18n.translations["nb"] = {
   "previous_observation": "Forrige observasjon",
   "previous_photo": "Forrige bilde",
   "previous_tab": "Forrige fane",
+  "privacy": "Personvern",
   "private_": "Privat",
   "proceed": "Fortsett",
   "profile": "Profil",
@@ -52175,7 +52336,9 @@ I18n.translations["nb"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist-nettverket</a> er en samling av lokaliserte nettsteder som er fullstendig tilkoble det verdensomspennende iNaturalist-fellesskapet. Nettverkssider støttes av lokale\ninstitusjoner som har signert en avtale med iNaturalist til å\nfremme lokal bruk og og gagne det lokale biologiske mangfoldet. De har tilgang\ntil sanne koordinater fra sine land som automatisk er\ntilslørt fra offentlig innsyn for å beskytte truede arter.\n</p>\n<p>\nDitt brukernavn og passord fungerer på alle nettsteder som er en del av\niNaturalist-netverket. Hvis du velger å knytte det til en nettverksside, vil de lokale institusjonene som driver hvert nettsted også ha tilgang til e-postadressen din (bare for å kommunisere med deg om\nnettstedaktiviteter) og ha tilgang til de sanne koordinatene for observasjoner\nsom er offentlig tilslørt eller privat.</p>\n<p>\nMerk: Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner.\n</p>\n",
+        "licensing_desc_html": "Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.\n",
+        "prefers_no_tracking_label": "Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester"
       }
     },
     "welcome": {
@@ -52516,6 +52679,7 @@ I18n.translations["nl"] = {
     }
   },
   "all_taxa_": "Alle taxa",
+  "all_your_observations_will_default_this_time_zone": "Al je waarnemingen zullen standaard deze tijdzone gebruiken tenzij je iets anders aangeeft.",
   "allow_curator_access": "Geef de curator toegang",
   "allow_project_curators_to_view_your_private_coordinates": "Geef projectcurators toestemming om je privé-coördinaten te bekijken",
   "amphibians": "amfibieën",
@@ -52810,6 +52974,7 @@ I18n.translations["nl"] = {
   "default": "standaard",
   "default_": "Standaard",
   "delete": "Verwijderen",
+  "delete_your_account": "Verwijder je account",
   "deleting": "Aan het verwijderen...",
   "deleting_verb": "Aan het verwijderen",
   "desc": "Afl.",
@@ -53058,6 +53223,7 @@ I18n.translations["nl"] = {
   "in_the_past_week": "Vorige week",
   "inactive_taxon": "Inactief taxon",
   "inappropriate_content": "Ongepaste inhoud?",
+  "inaturalist_network_affiliation": "iNaturalist netwerk affiliatie",
   "include_places": "Plaatsen inbegrijpen",
   "include_projects": "Projecten inbegrijpen",
   "include_taxa": "Taxa inbegrijpen",
@@ -53859,6 +54025,7 @@ I18n.translations["nl"] = {
   "previous_observation": "Vorige waarneming",
   "previous_photo": "Vorige foto",
   "previous_tab": "Vorige tabblad",
+  "privacy": "Privacy",
   "private_": "Privé",
   "proceed": "Doorgaan",
   "profile": "Profiel",
@@ -54464,7 +54631,9 @@ I18n.translations["nl"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken\nzonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nHet <a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst met iNaturalist hebben gesloten om lokaal gebruik te bevorderen en de lokale biodiversiteit ten goede te komen. Ze hebben toegang tot de echte coördinaten uit hun eigen land die automatisch worden verborgen om bedreigde soorten te beschermen.\n</p>\n<p>\nJe gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar verduisterd of privé zijn.\n</p>\n<p>\nLet op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.\n</p>\n",
+        "licensing_desc_html": "Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken\nzonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.\n",
+        "prefers_no_tracking_label": "Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden"
       }
     },
     "welcome": {
@@ -54752,6 +54921,8 @@ I18n.translations["nn"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -55061,6 +55232,7 @@ I18n.translations["oc"] = {
   },
   "default": "per defaut",
   "delete": "Suprimir",
+  "delete_your_account": "Suprimir vòstre compte",
   "deleting": "Supression en cors…",
   "deleting_verb": "Supression",
   "desc": "desc",
@@ -55374,6 +55546,7 @@ I18n.translations["oc"] = {
   "prev": "Prec",
   "preview": "Apercebut",
   "previous": "Precedent",
+  "privacy": "Politica de confidencialitat",
   "profile": "Perfil",
   "project": "Projècte",
   "projects": "Projèctes",
@@ -55741,6 +55914,7 @@ I18n.translations["pl"] = {
     }
   },
   "all_taxa_": "Wszystkie taksony",
+  "all_your_observations_will_default_this_time_zone": "Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.",
   "allow_curator_access": "Zezwalaj na dostęp kuratora",
   "allow_project_curators_to_view_your_private_coordinates": "Zezwalaj kuratorom projektu na dostęp do ukrytych współrzędnych",
   "amphibians": "płazy",
@@ -56036,6 +56210,7 @@ I18n.translations["pl"] = {
   "decrease_brightness": "Zmniejsz jasność",
   "default": "domyślny",
   "delete": "Usuń",
+  "delete_your_account": "Usuń konto",
   "deleting": "Usuwanie...",
   "deleting_verb": "Usuwanie",
   "desc": "Malejąco",
@@ -56975,6 +57150,7 @@ I18n.translations["pl"] = {
   "previous_observation": "Poprzednia obserwacja",
   "previous_photo": "Poprzednie zdjęcie",
   "previous_tab": "Poprzednia strona",
+  "privacy": "Prywatność",
   "proceed": "Kontynuuj",
   "profile": "Profil",
   "project": "Projekt",
@@ -57347,6 +57523,7 @@ I18n.translations["pl"] = {
     },
     "users": {
       "edit": {
+        "prefers_no_tracking_label": "Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich"
       }
     },
     "welcome": {
@@ -57712,6 +57889,7 @@ I18n.translations["pt"] = {
     }
   },
   "all_taxa_": "Todos os táxons",
+  "all_your_observations_will_default_this_time_zone": "Todas as suas observações serão registadas neste fuso horário a não ser que especifiques de maneira diferente.",
   "allow_curator_access": "Permitir acesso ao curador",
   "allow_project_curators_to_view_your_private_coordinates": "Permitir aos Curadores do projeto visualizar as suas coordenadas privadas",
   "amphibians": "anfíbios",
@@ -58006,6 +58184,7 @@ I18n.translations["pt"] = {
   "default": "predefinido(/a)",
   "default_": "Padrão",
   "delete": "Eliminar",
+  "delete_your_account": "Apagar a sua conta",
   "deleting": "A apagar...",
   "deleting_verb": "A apagar",
   "desc": "desc",
@@ -58254,6 +58433,7 @@ I18n.translations["pt"] = {
   "in_the_past_week": "durante a semana passada",
   "inactive_taxon": "táxon inativo",
   "inappropriate_content": "Conteúdo inapropriado?",
+  "inaturalist_network_affiliation": "Filiação da Rede iNaturalist",
   "include_places": "Incluir lugares",
   "include_projects": "Incluir Projetos",
   "include_taxa": "Incluir Táxons",
@@ -59055,6 +59235,7 @@ I18n.translations["pt"] = {
   "previous_observation": "Observação Anterior",
   "previous_photo": "Foto anterior",
   "previous_tab": "Aba Anterior",
+  "privacy": "Política de Privacidade",
   "private_": "Privado",
   "proceed": "Avançar",
   "profile": "Perfil",
@@ -59660,7 +59841,9 @@ I18n.translations["pt"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nA <a href=\"%{url}\" target=\"_blank\">iNaturalist Network</a> é uma coleção\nde sites localizados que estão totalmente conectados à\ncomunidade global iNaturalist. Os sites da rede são apoiados por instituições\nlocais que assinaram um acordo com a iNaturalist para\npromover o uso local e beneficiar a biodiversidade local. Têm acesso\na verdadeiras coordenadas dos seus países que são automaticamente\nocultas da visão pública, a fim de proteger as espécies ameaçadas.\n</p>\n<p>\nO seu nome de utilizador e senha funcionam em todos os sites que fazem parte \nda rede iNaturalist. Se você optar por se afiliar a uma rede\nlocal, as instituições locais que operam cada site terão também\nacesso ao seu endereço de e-mail (apenas para comunicar consigo sobre\natividades do site) e acesso às coordenadas verdadeiras para as observações\nobscurecidas ou privadas do público.\n</p>\n<p>\nNota: Por favor, não altere experimentalmente sua afiliação se\ntiver mais de 1000 observações.\n</p>\n",
+        "licensing_desc_html": "Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.\n",
+        "prefers_no_tracking_label": "Não colete dados de estabilidade e uso usando serviços de terceiros"
       }
     },
     "welcome": {
@@ -59948,6 +60131,8 @@ I18n.translations["pt-BR"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -60131,6 +60316,8 @@ I18n.translations["ro"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -60394,6 +60581,7 @@ I18n.translations["ru"] = {
     }
   },
   "all_taxa_": "Все таксоны",
+  "all_your_observations_will_default_this_time_zone": "Все ваши наблюдения по умолчанию будут отнесены к этому часовому поясу, если вы не укажете другой.",
   "allow_curator_access": "Разрешить доступ кураторам",
   "allow_project_curators_to_view_your_private_coordinates": "Разрешить кураторам проекта видеть ваши скрытые координаты",
   "amphibians": "земноводные",
@@ -60698,6 +60886,7 @@ I18n.translations["ru"] = {
   "default": "по умолчанию",
   "default_": "По умолчанию",
   "delete": "Удалить",
+  "delete_your_account": "Удалить вашу учётную запись",
   "deleting": "Удаление...",
   "deleting_verb": "Удаление",
   "desc": "Убыв",
@@ -60950,6 +61139,7 @@ I18n.translations["ru"] = {
   "in_the_past_week": "на прошлой неделе",
   "inactive_taxon": "Неактивный таксон",
   "inappropriate_content": "Неприемлемый контент?",
+  "inaturalist_network_affiliation": "Принадлежность к сети iNaturalist",
   "include_places": "Включить места",
   "include_projects": "Включить проекты",
   "include_taxa": "Включить таксоны",
@@ -61751,6 +61941,7 @@ I18n.translations["ru"] = {
   "previous_observation": "Предыдущее Наблюдение",
   "previous_photo": "Предыдущее Фото",
   "previous_tab": "Предыдущая вкладка",
+  "privacy": "Конфиденциальность",
   "private_": "Частный",
   "proceed": "Продолжить",
   "profile": "Профиль",
@@ -62378,7 +62569,9 @@ I18n.translations["ru"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href=\"http://www.gbif.org/\">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\nСеть <a href=\"%{url}\" target=\"_blank\">iNaturalist</a> представляет собой набор локализованных веб-сайтов, которые полностью связаны с глобальным сообществом iNaturalist. Сетевые сайты поддерживаются местными учреждениями, которые подписали соглашение с iNaturalist о том, чтобы пропагандировать местное биоразнообразие и приносить ему пользу. Они имеют доступ к истинным координатам, относящимся к своим странам, которые автоматически скрываются от общественности в целях защиты находящихся под угрозой видов.\n</p>\n<p>\nВаши имя пользователя и пароль работают на всех сайтах, входящих в сеть iNaturalist. Если вы решите присоединиться к сетевому сайту, местные учреждения, которые управляют каждым сайтом, также будут иметь доступ к вашему адресу электронной почты (только для связи с вами о деятельности сайта) и доступ к истинным координатам наблюдений, которые публично скрыты или являются конфиденциальными.\n</p>\n<p>\nПримечание: пожалуйста, не меняйте экспериментально свою сетевую принадлежность, если у вас имеется более 1000 наблюдений.\n</p>\n",
+        "licensing_desc_html": "Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href=\"http://www.gbif.org/\">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.\n",
+        "prefers_no_tracking_label": "Не собирать данные о стабильности и использовании с помощью сторонних сервисов"
       }
     },
     "welcome": {
@@ -62695,6 +62888,8 @@ I18n.translations["si"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -62860,6 +63055,7 @@ I18n.translations["sk"] = {
     "life": "Život"
   },
   "all_taxa_": "Všetky taxóny",
+  "all_your_observations_will_default_this_time_zone": "Všetky vaše pozorovania budú mať toto časové pásmo, ak nezadáte iné.",
   "allow_curator_access": "Povoliť prístup kurátorovi",
   "allow_project_curators_to_view_your_private_coordinates": "Povoliť kurátorom projektu náhľad vašich súkromných súradníc",
   "amphibians": "obojživelníci",
@@ -63108,6 +63304,7 @@ I18n.translations["sk"] = {
   "decrease_brightness": "Znížiť jas",
   "default": "štandardne",
   "delete": "Zmazať",
+  "delete_your_account": "Zmazať váš účet",
   "deleting": "Odstraňovanie...",
   "deleting_verb": "Odstraňovanie",
   "desc": "Zostupne",
@@ -63264,6 +63461,7 @@ I18n.translations["sk"] = {
   "in_the_past_week": "v minulom týždni",
   "inactive_taxon": "Neaktívny taxón",
   "inappropriate_content": "Nevhodný obsah?",
+  "inaturalist_network_affiliation": "Pridruženie k sieti iNaturalist",
   "including": "vrátane",
   "increase_brightness": "Zvýšiť jas",
   "info": "Informácie",
@@ -63918,6 +64116,7 @@ I18n.translations["sk"] = {
   "previous_observation": "Predchádzajúce pozorovanie",
   "previous_photo": "Predchádzajúca fotka",
   "previous_tab": "Predchádzajúci panel",
+  "privacy": "Súkromie",
   "private_": "Súkromný",
   "proceed": "Pokračovať",
   "profile": "Profil",
@@ -64358,6 +64557,8 @@ I18n.translations["sl"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -64575,6 +64776,7 @@ I18n.translations["sq"] = {
     }
   },
   "all_taxa_": "Të gjitha taxat",
+  "all_your_observations_will_default_this_time_zone": "Të gjitha vëzhgimet tuaja do të renditen automatikisht në këtë zonë nëse nuk ju nuk e përcaktoni ndryshe.",
   "allow_curator_access": "Lejo qasjen e kuratorit",
   "allow_project_curators_to_view_your_private_coordinates": "Lejo që kuratorët e projektit të shohin koordinatat tuaja private",
   "amphibians": "amfibet",
@@ -64805,6 +65007,7 @@ I18n.translations["sq"] = {
   },
   "default": "e paracaktuar",
   "delete": "Fshi",
+  "delete_your_account": "Fshini llogarinë tuaj",
   "deleting": "Fshirja ...",
   "deleting_verb": "Fshirja",
   "desc": "zbritje",
@@ -64951,6 +65154,7 @@ I18n.translations["sq"] = {
   "in_the_past_week": "në javën e kaluar",
   "inactive_taxon": "taxon joaktiv",
   "inappropriate_content": "përmbajtje e papërshtatshme?",
+  "inaturalist_network_affiliation": "Bashkim me Rrjetin iNaturalist",
   "including": "përfshirë",
   "info": "Informacion",
   "input_taxon": "Fut taxon",
@@ -65411,6 +65615,7 @@ I18n.translations["sq"] = {
   "previous_observation": "Vëzhgimi paraprak",
   "previous_photo": "Fotoja paraprake",
   "previous_tab": "Skeda paraprake",
+  "privacy": "Politika e privatësisë",
   "private_": "Privat",
   "proceed": "Përpunuar",
   "profile": "Profili",
@@ -65842,6 +66047,7 @@ I18n.translations["sv"] = {
     }
   },
   "all_taxa_": "Alla taxa",
+  "all_your_observations_will_default_this_time_zone": "Alla dina observationer kommer använda denna tidzon som standard om du inte anger annat.",
   "allow_curator_access": "Tillåt åtkomst för förvaltare",
   "allow_project_curators_to_view_your_private_coordinates": "Tillåt projektförvaltare att se dina dolda koordinater",
   "amphibians": "groddjur",
@@ -66135,6 +66341,7 @@ I18n.translations["sv"] = {
   "decrease_brightness": "Minska ljusstyrkan",
   "default": "standard",
   "delete": "Radera",
+  "delete_your_account": "Radera ditt konto",
   "deleting": "Raderar...",
   "deleting_verb": "Raderar",
   "desc": "Beskr",
@@ -66383,6 +66590,7 @@ I18n.translations["sv"] = {
   "in_the_past_week": "Under senaste veckan",
   "inactive_taxon": "Inaktivt taxon",
   "inappropriate_content": "Olämpligt innehåll?",
+  "inaturalist_network_affiliation": "iNaturalist Network anknytning",
   "include_places": "Inkludera platser",
   "include_projects": "Inkludera projekt",
   "include_taxa": "Inkludera taxa",
@@ -67183,6 +67391,7 @@ I18n.translations["sv"] = {
   "previous_observation": "Föregående observation",
   "previous_photo": "Föregående foto",
   "previous_tab": "Föregående flik",
+  "privacy": "Integritet",
   "private_": "Privat",
   "proceed": "Fortsätt",
   "profile": "Profil",
@@ -67782,7 +67991,9 @@ I18n.translations["sv"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Licensiering av ditt innehåll ger vem som helst laglig rätt att använda\ndet utan att be om ditt tillstånd förutsatt att de följer licensvillkoren.\nDessutom inkluderar %{site_name} ditt Creative Commons-licensierade\ninnehåll i regelbundet uppdaterade arkiv som produceras för utvalda\npartnerorganisationer som är intresserade av våra data. Till exempel\ninkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY),\noch Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar\nför <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), en internationell, mellanstatlig organisation som\nsammanställer och tillgängliggör information om biologisk mångfald\nfrån hela världen.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n <a href=\"%{url}\" target=\"_blank\">iNaturalist-nätverket</a> är en\nsamling lokaliserade webbplatser som är helt anslutna till den\nglobala iNaturalist-gemenskapen. Nätverksplatserna stöds av lokala\ninstitutioner som har undertecknat ett avtal med iNaturalist att\nfrämja lokal användning och gynna lokal biologisk mångfald. De har\ntillgång till exakta koordinater från sina länder som automatiskt\ndiffuseras vid publik visning för att skydda hotade arter.\n</p>\n<p>\nDitt användarnamn och lösenord fungerar på alla webbplatser som ingår i\niNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks\nwebbplats, kommer den lokala institution som driver webbplatsen\nockså att ha tillgång till din e-postadress (endast för att kommunicera\nmed dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna\nför observationer som publikt är diffuserade eller privata.\n</p>\n<p>\nObs: Teständra inte din tillhörighet om du har mer än 1000\nobservationer.\n</p>\n",
+        "licensing_desc_html": "Licensiering av ditt innehåll ger vem som helst laglig rätt att använda\ndet utan att be om ditt tillstånd förutsatt att de följer licensvillkoren.\nDessutom inkluderar %{site_name} ditt Creative Commons-licensierade\ninnehåll i regelbundet uppdaterade arkiv som produceras för utvalda\npartnerorganisationer som är intresserade av våra data. Till exempel\ninkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY),\noch Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar\nför <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), en internationell, mellanstatlig organisation som\nsammanställer och tillgängliggör information om biologisk mångfald\nfrån hela världen.\n",
+        "prefers_no_tracking_label": "Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster"
       }
     },
     "welcome": {
@@ -68122,6 +68333,7 @@ I18n.translations["tr"] = {
     }
   },
   "all_taxa_": "Tüm sınıflar",
+  "all_your_observations_will_default_this_time_zone": "Tersi belirtmediğiniz sürece, tüm gözlemleriniz bu zaman diliminde varsayılan olacaktır.",
   "allow_curator_access": "Sorumlu erişimine izin ver",
   "allow_project_curators_to_view_your_private_coordinates": "Proje sorumlularına gizli koordinatlarını görmesi için izin ver",
   "amphibians": "yüzergezerler",
@@ -68415,6 +68627,7 @@ I18n.translations["tr"] = {
   "decrease_brightness": "Parlaklığı azalt",
   "default": "varsayılan",
   "delete": "Sil",
+  "delete_your_account": "Hesabını sil",
   "deleting": "Siliniyor...",
   "deleting_verb": "Silme",
   "desc": "Azalan",
@@ -68663,6 +68876,7 @@ I18n.translations["tr"] = {
   "in_the_past_week": "Geçen haftada",
   "inactive_taxon": "Aktif Olmayan Sınıf",
   "inappropriate_content": "Uygunsuz içerik mi?",
+  "inaturalist_network_affiliation": "iNaturalist Ağ Üyeliği",
   "include_places": "Yerleri Ekle",
   "include_projects": "Projeleri Ekle",
   "include_taxa": "Sınıfları Ekle",
@@ -69463,6 +69677,7 @@ I18n.translations["tr"] = {
   "previous_observation": "Önceki Gözlem",
   "previous_photo": "Önceki Fotoğraf",
   "previous_tab": "Önceki Sekme",
+  "privacy": "Gizlilik",
   "private_": "Özel",
   "proceed": "İlerle",
   "profile": "Profil",
@@ -70062,7 +70277,9 @@ I18n.translations["tr"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "İçeriğinizi lisanslamak, izninize, lisansın şartlarına uyup uymadıklarını sormadan, \nkullanma hakkını yasal olarak verir. Ayrıca, %{site_name}, Creative Commons lisanslı \niçeriğinizi, verilerimizle ilgilenen belirli ortak kuruluşlar için üretilen düzenli olarak \ngüncellenen arşivlere dahil eder. Örneğin, Telif Hakkı Yok (CC0), Atfetme (CC BY), ve \nTicari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href=\"http://www.gbif.org/\">Küresel Biyoçeşitlilik \nDanışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından \nderleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.\n"
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist Ağı </a>, küresel iNaturalist \ntopluluğuna tamamen bağlı yerelleştirilmiş web siteleri topluluğudur. \nAğ siteleri, yerel kullanımı teşvik etmek ve yerel biyolojik çeşitliliğe \nfayda sağlamak için iNaturalist ile bir anlaşma imzalayan yerel kurumlar \ntarafından desteklenmektedir. Tehdit altındaki türleri korumak için ülkelerinden, \nkamuoyundan otomatik olarak gizlenen gerçek koordinatlara erişimlere sahiptirler.\n</p>\n<p>\nKullanıcı adınız ve şifreniz, iNaturalist Ağının bir parçası olan tüm sitelerde çalışır. \nBir ağ sitesine üye olmayı seçerseniz, her siteyi işleten yerel kurumlar e-posta adresinize \n(yalnızca sizinle site etkinlikleri hakkında iletişim kurmak için) erişebilir ve kamuya \ngizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilir.\n</p>\n<p>\nNot: Lütfen 1000'den fazla gözleminiz varsa, üyeliğinizi deneysel olarak değiştirmeyin.\n</p>\n",
+        "licensing_desc_html": "İçeriğinizi lisanslamak, izninize, lisansın şartlarına uyup uymadıklarını sormadan, \nkullanma hakkını yasal olarak verir. Ayrıca, %{site_name}, Creative Commons lisanslı \niçeriğinizi, verilerimizle ilgilenen belirli ortak kuruluşlar için üretilen düzenli olarak \ngüncellenen arşivlere dahil eder. Örneğin, Telif Hakkı Yok (CC0), Atfetme (CC BY), ve \nTicari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href=\"http://www.gbif.org/\">Küresel Biyoçeşitlilik \nDanışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından \nderleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.\n",
+        "prefers_no_tracking_label": "Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın"
       }
     },
     "welcome": {
@@ -70351,6 +70568,8 @@ I18n.translations["uk"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -70533,6 +70752,8 @@ I18n.translations["vi"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -70749,6 +70970,7 @@ I18n.translations["zh-CN"] = {
     }
   },
   "all_taxa_": "所有分类群",
+  "all_your_observations_will_default_this_time_zone": "如果您不进行另外的规定，那么您的全部观察记录都将默认按这一时区记录",
   "allow_curator_access": "允许馆长访问",
   "allow_project_curators_to_view_your_private_coordinates": "允许项目馆长查看您的私人坐标信息",
   "amphibians": "两栖动物",
@@ -71037,6 +71259,7 @@ I18n.translations["zh-CN"] = {
   "default": "默认",
   "default_": "默认设置",
   "delete": "删除",
+  "delete_your_account": "删除您的账户",
   "deleting": "删除中……",
   "deleting_verb": "删除中",
   "desc": "描述",
@@ -71217,6 +71440,7 @@ I18n.translations["zh-CN"] = {
   "in_the_past_week": "在上周",
   "inactive_taxon": "不活跃的分类单元",
   "inappropriate_content": "不适当的内容？",
+  "inaturalist_network_affiliation": "iNaturalist网络关系",
   "include_places": "包含的地点",
   "include_projects": "包含的项目",
   "include_taxa": "包含分类",
@@ -72008,6 +72232,7 @@ I18n.translations["zh-CN"] = {
   "previous_observation": "上一观察",
   "previous_photo": "上一照片",
   "previous_tab": "上一标签",
+  "privacy": "隐私政策",
   "private_": "私有",
   "proceed": "已处理",
   "profile": "个人信息",
@@ -72544,6 +72769,7 @@ I18n.translations["zh-CN"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<a href=\"%{url}\" target=\"_blank\">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。\n",
         "licensing_desc_html": "许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href=\"http://www.gbif.org/\">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。\n"
       }
     },
@@ -72802,6 +73028,8 @@ I18n.translations["zh-HK"] = {
     }
   },
   "place_geo": {
+    "geo_planet_place_types": {
+    }
   },
   "sounds": {
   },
@@ -73022,6 +73250,7 @@ I18n.translations["zh-TW"] = {
     }
   },
   "all_taxa_": "所有物種分類群",
+  "all_your_observations_will_default_this_time_zone": "若您未指定的話，您所有的觀察將會被預設成此時區。",
   "allow_curator_access": "允許策展人存取",
   "allow_project_curators_to_view_your_private_coordinates": "允許專案策展人檢視您的隱藏座標",
   "amphibians": "兩棲類",
@@ -73310,6 +73539,7 @@ I18n.translations["zh-TW"] = {
   "default": "預設",
   "default_": "預設",
   "delete": "刪除",
+  "delete_your_account": "刪除您的帳號",
   "deleting": "刪除中…",
   "deleting_verb": "刪除中",
   "desc": "降冪",
@@ -73556,6 +73786,7 @@ I18n.translations["zh-TW"] = {
   "in_the_past_week": "在過去一週",
   "inactive_taxon": "不起作用的物種分類",
   "inappropriate_content": "不適當內容？",
+  "inaturalist_network_affiliation": "iNaturalist 網路聯合",
   "include_places": "包含的地點",
   "include_projects": "包含的專案",
   "include_taxa": "包含的分類群",
@@ -74345,6 +74576,7 @@ I18n.translations["zh-TW"] = {
   "previous_observation": "上一個觀察",
   "previous_photo": "上一個照片",
   "previous_tab": "上一個頁籤",
+  "privacy": "隱私",
   "private_": "私人的",
   "proceed": "繼續",
   "profile": "個人檔案",
@@ -74888,6 +75120,7 @@ I18n.translations["zh-TW"] = {
     },
     "users": {
       "edit": {
+        "inaturalist_network_affiliation_desc_html": "<p>\n<a href=\"%{url}\" target=\"_blank\">iNaturalist 網路</a>是將有完整連結至全球 iNaturalist 社群之本地網站的聚集。這些網路站台是由有與 iNaturalist 簽屬協議，來促進在本地上使用以及助於本地生物多樣性的本地機構所支援。他們具有可取得來自於他們國家、為了保護受威脅物種避免被公開檢視而遮蔽的實際座標。\n</p>\n<p>\n您的使用者名稱和密碼在所有隸屬 iNaturalist 網路下站台皆可運作。如果您挑選了網路站台分部，運作各站台的本地機構可取用您的電子郵件地址（僅會通知您有關站台上的活動），以及存取公開遮蔽或私有觀察的實際座標位置。\n</p>\n<p>\n註：若您已經做出超過 1000 筆的觀察，請不要出於實驗性質更改您的分部\n</p>\n",
         "licensing_desc_html": "授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href=\"http://www.gbif.org/\">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。\n"
       }
     },
