@@ -85,6 +85,23 @@ describe UserMute do
           expect( UpdateAction.unviewed_by_user_from_query( user.id, { }) ).to eq false
         end
       end
+      describe "notifications for the user for an observation the user created when the muted user updates" do
+        let(:o) { Observation.make!( user: user ) }
+        it "an observation field value" do
+          ofv = after_delayed_job_finishes do
+            ObservationFieldValue.make!( user: muted_user, observation: o )
+          end
+          update_action = UpdateAction.where( resource: o, notifier: ofv ).first
+          expect( update_action ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, { } ) ).to eq false
+          after_delayed_job_finishes do
+            ofv.update_attributes( updater: ofv.user, value: "#{ofv.value} foo" )
+          end
+          update_action = UpdateAction.where( resource: o, notifier: ofv ).first
+          expect( update_action ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, { } ) ).to eq false
+        end
+      end
       describe "notifications for the user from the user's observation when the muted user adds" do
         let(:o) { Observation.make!( user: user ) }
         it "an observation field value" do
