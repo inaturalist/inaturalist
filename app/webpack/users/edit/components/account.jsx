@@ -18,8 +18,14 @@ const Account = ( { profile, setUserData } ) => {
   const createLocaleList = ( ) => {
     const locales = I18n.t( "locales" );
 
+    const excludeLocalizedName = ["br", "en", "eo", "oc"];
+
     return Object.keys( locales ).map( locale => (
-      <option value={locale}>{I18n.t( `locales.${locale}` )}</option>
+      <option value={locale}>
+        {I18n.t( `locales.${locale}` )}
+        {!excludeLocalizedName.includes( locale )
+          && ` / ${I18n.t( `locales.${locale}`, { locale } )}`}
+      </option>
     ) );
   };
 
