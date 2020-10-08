@@ -1,4 +1,4 @@
-import inatjs from "inaturalistjs";
+import inatjs, { FileUpload } from "inaturalistjs";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -20,14 +20,44 @@ export function setUserData( userData ) {
 
 export function fetchUserProfile( ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
+    console.log( results[0], "profile-data" );
     dispatch( setUserData( results[0] ) );
   } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
 }
 
-// export function saveUserProfile( ) {
+export function saveUserProfile( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const { id } = s.profile;
+
+    const params = {
+      id,
+      user: s.profile
+    };
+    return inatjs.users.update( params, { useAuth: true } ).then( ( results ) => {
+      console.log( results, "update users/edit" );
+      dispatch( setUserData( results[0] ) );
+    } ).catch( e => console.log( `Failed to update user: ${e}` ) );
+  };
+}
+
+// export function uploadPhoto( photo ) {
 //   return ( dispatch, getState ) => {
-//     return inatjs.users.update( ).then( ( results ) => {
-//       console.log( results, "update users/edit" );
+//     const s = getState( );
+//     const { id } = s.profile;
+
+//     const params = {
+//       id,
+//       user: {
+//         icon: photo
+//       }
+//     };
+
+//     console.log( params, "params in upload photo" );
+
+//     return inatjs.users.update( params, { useAuth: true } ).then( ( results ) => {
+//       console.log( results, "upload photo" );
+//       dispatch( setUserData( results[0] ) );
 //     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
 //   };
 // }

@@ -2,16 +2,16 @@ import React from "react";
 
 import Menu from "./menu";
 import ProfileContainer from "../containers/profile_container";
-import SaveButton from "./save_button";
+import SaveButtonContainer from "../containers/save_button_container";
 
 const App = ( ) => (
   <div className="container">
     <div className="row row-align-center header-margin">
-      <div className="col-sm-6">
+      <div className="col-sm-9">
         <h1>{I18n.t( "settings" )}</h1>
       </div>
-      <div className="col-sm-6">
-        <SaveButton />
+      <div className="col-sm-3">
+        <SaveButtonContainer />
       </div>
     </div>
     <div className="row">

@@ -1,15 +1,27 @@
-import React from "react";
+import React, { createRef } from "react";
 import PropTypes from "prop-types";
-
-// import UserImage from "../../../shared/components/user_image";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
-const Profile = ( { profile, setUserData } ) => {
+const Profile = ( { profile, setUserData, uploadPhoto } ) => {
+  const hiddenFileInput = createRef( null );
+
   const handleInputChange = e => {
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
+  };
+
+  const handleClick = ( ) => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleChange = e => {
+    const fileUploaded = e.target.files[0];
+    const formData = new FormData( );
+    formData.append( "icon", fileUploaded.name );
+    // console.log( fileUploaded, "file uploaded", formData );
+    // uploadPhoto( formData );
   };
 
   return (
@@ -19,14 +31,18 @@ const Profile = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "profile_picture" )}</h5>
             <div className="row row-align-center">
-              {/* <UserImage user={currentUser} /> */}
               <div className="col-xs-4">
-                <img alt="profile-empty" src={emptyProfileImage} className="user-photo" />
+                <img alt="profile-empty" src={profile.icon || emptyProfileImage} className="user-photo" />
               </div>
-              <div className="col-xs-6 centered-column">
-                <button className="btn btn-xs btn-primary" type="button">
+              <div className="col-xs-3 centered-column">
+                <button
+                  className="btn btn-xs btn-primary"
+                  type="button"
+                  onClick={handleClick}
+                >
                   {I18n.t( "upload_new_photo" )}
                 </button>
+                <input className="hidden-input" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
                 <button className="btn gray-button" type="button">
                   <div className="gray-button-text">{I18n.t( "remove_photo" )}</div>
                 </button>
