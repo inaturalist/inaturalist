@@ -240,7 +240,10 @@ class Emailer < ActionMailer::Base
     @user = project_user.user
     set_site
     mail_with_defaults(
-      subject: t( "views.emailer.collection_project_changed_for_trusting_member.subject" )
+      subject: t(
+        "views.emailer.collection_project_changed_for_trusting_member.subject",
+        project: @project.title
+      )
     )
   end
 

@@ -61,24 +61,15 @@ class ProjectForm extends React.Component {
           { viewerIsAdmin && (
             <Row>
               <Col xs={12}>
-                <h2>Membership</h2>
+                <h2>{ I18n.t( "members" ) }</h2>
                 <label className="section-label">
-                  Trust
+                  { I18n.t( "trust" ) }
                 </label>
                 <p className="help-text">
-                  If you want access to the hidden coordinates of obscured
-                  observations, this option will allow people who have joined this
-                  project to trust the project admins with access to those hidden
-                  coordinates. Project members will be able to grant access to the
-                  hidden coordinates of any of their observations that appear in
-                  this project, or just the observations that are obscured because
-                  of threatened taxa.
+                  { I18n.t( "views.projects.edit.trust_help_desc" ) }
                 </p>
                 <p className="help-text">
-                  However, this will also notify all trusting project members
-                  every time you change the project requirements, so they can
-                  reassess whether they want to continue trusting you given the
-                  new requirements.
+                  { I18n.t( "views.projects.edit.trust_help_notification" ) }
                 </p>
                 <div className="checkbox">
                   <label>
@@ -89,7 +80,7 @@ class ProjectForm extends React.Component {
                         prefers_user_trust: e.target.checked || null
                       } )}
                     />
-                    Allow members to trust this project with hidden coordinates
+                    { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
                   </label>
                 </div>
               </Col>

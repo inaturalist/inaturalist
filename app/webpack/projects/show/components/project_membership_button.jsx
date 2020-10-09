@@ -57,7 +57,7 @@ class ProjectMembershipButton extends React.Component {
     ) {
       trustingFields = (
         <div>
-          <h4>Trust this project with hidden coordinates?</h4>
+          <h4>{ I18n.t( "trust_this_project_with_your_private_coordinates?" ) }</h4>
           <div className="radio">
             <label>
               <input
@@ -67,7 +67,7 @@ class ProjectMembershipButton extends React.Component {
                 onChange={( ) => this.setState( { curatorCoordinateAccessFor: "none" } )}
               />
               { " " }
-              No
+              { I18n.t( "no" ) }
             </label>
           </div>
           <div className="radio">
@@ -79,7 +79,7 @@ class ProjectMembershipButton extends React.Component {
                 onChange={( ) => this.setState( { curatorCoordinateAccessFor: "any" } )}
               />
               { " " }
-              Yes, for any of my observations
+              { I18n.t( "yes_for_any_of_my_observations" ) }
             </label>
           </div>
           <div className="radio">
@@ -91,7 +91,7 @@ class ProjectMembershipButton extends React.Component {
                 onChange={( ) => this.setState( { curatorCoordinateAccessFor: "taxon" } )}
               />
               { " " }
-              Yes, but only for my observations of threatened taxa, not when I've set the geoprivacy
+              { I18n.t( "yes_but_only_for_threatened" ) }
             </label>
           </div>
           <div className="collapsible-section">
@@ -102,22 +102,12 @@ class ProjectMembershipButton extends React.Component {
             >
               <h5>
                 <i className={`fa fa-chevron-circle-${detailsOpen ? "down" : "right"}`} />
-                About Trusting Projects
+                { I18n.t( "about_trusting_projects" ) }
               </h5>
             </button>
             <div className={`collapsible-content ${detailsOpen ? "open" : "closed"}`}>
-              <p>
-                Granting access to your hidden coordinates will allow the
-                managers of this project to see the true, unobscured location
-                of of your observations in this project. This is extremeley
-                important in situations where scientists or resource managers
-                need access to exact coordinates for analysis and
-                decision-making.
-              </p>
-              <p>
-                The project managers who will have access to your hidden
-                coordinates are:
-              </p>
+              <p>{ I18n.t( "about_trusting_projects_overview" ) }</p>
+              <p>{ I18n.t( "about_trusting_projects_project_managers_are" ) }</p>
               <div className="stacked row">
                 { project.admins.map( manager => (
                   <div className="col-xs-3" key={`admin-${manager.id}`}>
@@ -127,37 +117,30 @@ class ProjectMembershipButton extends React.Component {
                   </div>
                 ) ) }
               </div>
-              <p>
-                You can choose to share hidden coordinates for
-              </p>
+              <p>{ I18n.t( "about_trusting_projects_you_can_choose" ) }</p>
               <ul>
                 <li>
-                  <p>
-                    <strong>All your observations in this project</strong>:
-                    { " " }
-                    This includes observations where you have set the
-                    geoprivacy to "obscured" or "private," e.g. observations
-                    from your backyard or spots you don't want other people to
-                    know about.
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "bold_label_colon_value_html", {
+                        label: I18n.t( "about_trusting_projects_options_any" ),
+                        value: I18n.t( "about_trusting_projects_options_any_desc" )
+                      } )
+                    }}
+                  />
                 </li>
                 <li>
-                  <p>
-                    <strong>Only your observations in this project that have obscured coordinates because of threatened taxa</strong>:
-                    { " " }
-                    Many projects just need access to coordinates that are
-                    obscured because the observation depicts a threatened
-                    taxon.
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "bold_label_colon_value_html", {
+                        label: I18n.t( "about_trusting_projects_options_taxon" ),
+                        value: I18n.t( "about_trusting_projects_options_taxon_desc" )
+                      } )
+                    }}
+                  />
                 </li>
               </ul>
-              <p>
-                Note that project managers can change the project parameters to
-                include any of your observations, and they can add or remove
-                project managers at any time. You will receive notifications about
-                these changes, but you are essentially trusting this project with
-                your private location data, so be careful.
-              </p>
+              <p>{ I18n.t( "about_trusting_projects_warning" ) }</p>
             </div>
           </div>
         </div>

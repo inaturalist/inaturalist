@@ -41,18 +41,18 @@
       label: t(:receive_updates_from_this_project),
       description: t('views.projects.updates_desc')
     - if @project.is_new_project?
-      = f.form_field "Trust this project with hidden coordinates?", description: "Granting access to your hidden coordinates will allow the managers of this project to see the true, unobscured location of of your observations in this project. This is extremeley important in situations where scientists or resource managers need access to exact coordinates for analysis and decision-making, but it also requires you to trust the curators of this project with information that is not public." do
+      = f.form_field t(:trust_this_project_with_your_private_coordinates?), description: t(:about_trusting_projects_overview) do
         = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE,
           label_after: true,
           label: t(:no)
         = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY,
           label_after: true,
-          label: "Yes, for any of my observations",
-          description: "This includes observations where you have set the geoprivacy to \"obscured\" or \"private,\" e.g. observations from your backyard or spots you don't want other people to know about."
+          label: t(:yes_for_any_of_my_observations),
+          description: t(:about_trusting_projects_options_any_desc)
         = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
           label_after: true,
-          label: "Yes, but only for my observations of threatened taxa, not when I've set the geoprivacy",
-          description: "Many projects just need access to coordinates that are obscured because the observation depicts a threatened taxon."
+          label: t(:yes_but_only_for_threatened),
+          description: t(:about_trusting_projects_options_taxon_desc)
     - else
       %label=t 'views.projects.curator_coordinate_access_label'
       - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|

@@ -31,7 +31,7 @@ export function setProject( p ) {
   p.initialSubprojectCount = _.isEmpty( p.project_observation_rules ) ? 0
     : _.filter( p.project_observation_rules, rule => rule.operand_type === "Project" ).length;
   const project = new Project( p );
-  return setAttributes( { project, initialProject: project } );
+  return setAttributes( { project, initialProject: _.cloneDeep( project ) } );
 }
 
 export function updateProject( attrs ) {
