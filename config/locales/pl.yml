@@ -776,6 +776,7 @@ pl:
   cc_by_sa_description: "Ta licencja pozwala innym na remiksowanie, ulepszanie i nadbudowywanie twojej pracy, nawet w celach komercyjnych, o ile uznają twoje autorstwo i licencjonują nowe dzieła pod identycznymi zasadami. Wszystkie nowe utwory bazujące na twoich pracach będą miały taką samą licencję, więc jakiekolwiek utwory zależne również będą mogły zostać użyte komercyjnie."
   cc_by_sa_name: Uznanie autorstwa - Na tych samych warunkach
   change_admin: Zmień administratora
+  #Button to change the cover (or banner) image for a project
   change_cover: Zmień okładkę
   change_descriptions:
     split: Stary takson został podzielony na kilka nowych taksonów
@@ -1117,6 +1118,7 @@ pl:
   delete: Usuń
   delete_all: Usuń wszystko
   delete_conversation: Usuń konwersację
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: usunąć okładkę?
   delete_icon?: Usunąć ikonę?
   delete_photo: Usuń zdjęcie
@@ -3384,7 +3386,6 @@ pl:
   weather: Pogoda
   website: Strona internetowa
   welcome: witamy
-  welcome_back: Witamy ponownie
   welcome_back!: Witamy ponownie!
   welcome_to_inat: "Witamy na %{site_name}!"
   welcome_to_guides: "Witamy w przewodnikach %{site_name}!"
