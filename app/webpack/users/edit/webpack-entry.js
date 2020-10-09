@@ -10,11 +10,11 @@ import {
   combineReducers
 } from "redux";
 
-import profileReducer, { fetchUserProfile } from "./ducks/profile";
+import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import App from "./components/app";
 
 const rootReducer = combineReducers( {
-  profile: profileReducer
+  profile: userSettingsReducer
 } );
 
 const store = createStore(
@@ -28,7 +28,7 @@ const store = createStore(
   )
 );
 
-store.dispatch( fetchUserProfile( ) );
+store.dispatch( fetchUserSettings( ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension

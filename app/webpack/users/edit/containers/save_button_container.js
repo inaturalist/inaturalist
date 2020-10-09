@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import SaveButton from "../components/save_button";
-import { saveUserSettings } from "../ducks/profile";
+import { saveUserSettings } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {

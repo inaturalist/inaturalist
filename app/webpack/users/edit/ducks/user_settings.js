@@ -18,7 +18,7 @@ export function setUserData( userData ) {
   };
 }
 
-export function fetchUserProfile( ) {
+export function fetchUserSettings( ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
     console.log( results[0], "profile-data" );
     dispatch( setUserData( results[0] ) );

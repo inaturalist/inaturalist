@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import Profile from "../components/profile";
-import { setUserData } from "../ducks/profile";
+import { setUserData } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
