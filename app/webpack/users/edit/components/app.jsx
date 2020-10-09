@@ -23,7 +23,7 @@ const App = ( ) => (
         <div className="vl" />
       </div>
       <Account />
-      {/* <ProfileContainer /> */}
+      <ProfileContainer />
     </div>
   </div>
 );

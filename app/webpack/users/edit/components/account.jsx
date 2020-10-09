@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
+import { MenuItem, DropdownButton } from "react-bootstrap";
 
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
+    console.log( e, "input change locale" );
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
@@ -21,11 +23,25 @@ const Account = ( { profile, setUserData } ) => {
     const excludeLocalizedName = ["br", "en", "eo", "oc"];
 
     return Object.keys( locales ).map( locale => (
-      <option value={locale}>
+      <option value={locale} key={locale}>
         {I18n.t( `locales.${locale}` )}
         {!excludeLocalizedName.includes( locale )
           && ` / ${I18n.t( `locales.${locale}`, { locale } )}`}
       </option>
+    ) );
+  };
+
+  const createINatAffiliationList = ( ) => {
+    const pngAssetList = [2, 6, 8, 13, 14, 18];
+
+    return [1, 2, 3, 5, 6, 8, 9, 13, 14, 15, 16, 18, 20].map( number => (
+      <MenuItem eventKey={number} key={`inat-affiliation-logo-${number}`}>
+        <img
+          className="logo-height-width"
+          alt={`inat-affiliation-logo-${number}`}
+          src={`https://static.inaturalist.org/sites/${number}-logo.${pngAssetList.includes( number ) ? "png" : "svg"}`}
+        />
+      </MenuItem>
     ) );
   };
 
@@ -38,13 +54,12 @@ const Account = ( { profile, setUserData } ) => {
             <div className="account-subheader-text">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</div>
             <select>
               {createTimeZoneList( )}
-              {/* <option value="current-timezone">{moment.tz.guess( ).toString( )}</option> */}
             </select>
           </div>
           <div className="profile-setting">
             <h5>{I18n.t( "language_slash_locale" )}</h5>
             <div className="account-subheader-text">{I18n.t( "language_slash_locale_description" )}</div>
-            <select>
+            <select name="locale" onChange={handleInputChange}>
               {createLocaleList( )}
             </select>
           </div>
@@ -81,6 +96,20 @@ const Account = ( { profile, setUserData } ) => {
         <div className="col-md-6 col-xs-10">
           <div className="profile-setting">
             <h5>{I18n.t( "inaturalist_network_affiliation" )}</h5>
+            <DropdownButton
+              id="inaturalist-affiliation-network-dropdown"
+              title={(
+                <span>
+                  <img
+                    className="logo-height-width"
+                    alt="inat-affiliation-logo-1"
+                    src="https://static.inaturalist.org/sites/1-logo.svg"
+                  />
+                </span>
+              )}
+            >
+              {createINatAffiliationList( )}
+            </DropdownButton>
             <span
               className="account-subheader-text"
               // eslint-disable-next-line react/no-danger

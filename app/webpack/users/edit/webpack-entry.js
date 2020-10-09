@@ -11,7 +11,7 @@ import {
 } from "redux";
 
 import profileReducer, { fetchUserProfile } from "./ducks/profile";
-import AppContainer from "./containers/app_container";
+import App from "./components/app";
 
 const rootReducer = combineReducers( {
   profile: profileReducer
@@ -33,7 +33,7 @@ store.dispatch( fetchUserProfile( ) );
 render(
   // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById( "app" )
 );

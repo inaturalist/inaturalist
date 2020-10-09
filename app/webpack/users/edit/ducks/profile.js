@@ -1,4 +1,4 @@
-import inatjs, { FileUpload } from "inaturalistjs";
+import inatjs from "inaturalistjs";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -40,24 +40,3 @@ export function saveUserProfile( ) {
     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
   };
 }
-
-// export function uploadPhoto( photo ) {
-//   return ( dispatch, getState ) => {
-//     const s = getState( );
-//     const { id } = s.profile;
-
-//     const params = {
-//       id,
-//       user: {
-//         icon: photo
-//       }
-//     };
-
-//     console.log( params, "params in upload photo" );
-
-//     return inatjs.users.update( params, { useAuth: true } ).then( ( results ) => {
-//       console.log( results, "upload photo" );
-//       dispatch( setUserData( results[0] ) );
-//     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
-//   };
-// }
