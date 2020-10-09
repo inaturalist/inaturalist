@@ -16,6 +16,12 @@ const Account = ( { profile, setUserData } ) => {
     setUserData( updatedProfile );
   };
 
+  const handleSelect = eventKey => {
+    const updatedProfile = profile;
+    updatedProfile.site_id = eventKey;
+    setUserData( updatedProfile );
+  };
+
   const createTimeZoneList = ( ) => {
     const options = [<option value="current-timezone">{moment.tz.guess( ).toString( )}</option>];
 
@@ -36,19 +42,22 @@ const Account = ( { profile, setUserData } ) => {
     ) );
   };
 
-  const createINatAffiliationList = ( ) => {
+  const showINatAffiliationLogo = num => {
     const pngAssetList = [2, 6, 8, 13, 14, 18];
+    return `https://static.inaturalist.org/sites/${num}-logo.${pngAssetList.includes( num ) ? "png" : "svg"}`;
+  };
 
-    return [1, 2, 3, 5, 6, 8, 9, 13, 14, 15, 16, 18, 20].map( number => (
+  const createINatAffiliationList = ( ) => (
+    [1, 2, 3, 5, 6, 8, 9, 13, 14, 15, 16, 18, 20].map( number => (
       <MenuItem eventKey={number} key={`inat-affiliation-logo-${number}`}>
         <img
           className="logo-height-width"
           alt={`inat-affiliation-logo-${number}`}
-          src={`https://static.inaturalist.org/sites/${number}-logo.${pngAssetList.includes( number ) ? "png" : "svg"}`}
+          src={showINatAffiliationLogo( number )}
         />
       </MenuItem>
-    ) );
-  };
+    ) )
+  );
 
   return (
     <div className="col-xs-9">
@@ -102,13 +111,15 @@ const Account = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "inaturalist_network_affiliation" )}</h5>
             <DropdownButton
+              bsStyle="default"
               id="inaturalist-affiliation-network-dropdown"
+              onSelect={handleSelect}
               title={(
                 <span>
                   <img
                     className="logo-height-width"
-                    alt="inat-affiliation-logo-1"
-                    src="https://static.inaturalist.org/sites/1-logo.svg"
+                    alt={`inat-affiliation-logo-${profile.site_id || 1}`}
+                    src={showINatAffiliationLogo( profile.site_id || 1 )}
                   />
                 </span>
               )}

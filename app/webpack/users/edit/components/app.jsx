@@ -4,7 +4,6 @@ import Menu from "./menu";
 import ProfileContainer from "../containers/profile_container";
 import AccountContainer from "../containers/account_container";
 import SaveButtonContainer from "../containers/save_button_container";
-import Account from "./account";
 
 const App = ( ) => (
   <div className="container">
