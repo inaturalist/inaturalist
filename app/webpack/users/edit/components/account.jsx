@@ -5,9 +5,14 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
-    console.log( e, "input change locale" );
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
+    setUserData( updatedProfile );
+  };
+
+  const handleCheckboxChange = e => {
+    const updatedProfile = profile;
+    updatedProfile[e.target.name] = e.target.checked;
     setUserData( updatedProfile );
   };
 
@@ -74,9 +79,9 @@ const Account = ( { profile, setUserData } ) => {
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  value={profile ? profile.prefers_no_tracking : ""}
+                  defaultChecked={profile.prefers_no_tracking}
                   name="prefers_no_tracking"
-                  onChange={handleInputChange}
+                  onChange={handleCheckboxChange}
                 />
               </div>
               <div className="col-xs-9">
