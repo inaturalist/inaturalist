@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment-timezone";
 import { MenuItem, DropdownButton } from "react-bootstrap";
+
+/* global TIMEZONES */
 
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
+    console.log( e.target.value, e.target.name, "input change" );
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
@@ -22,11 +24,9 @@ const Account = ( { profile, setUserData } ) => {
     setUserData( updatedProfile );
   };
 
-  const createTimeZoneList = ( ) => {
-    const options = [<option value="current-timezone">{moment.tz.guess( ).toString( )}</option>];
-
-    return options;
-  };
+  const createTimeZoneList = ( ) => (
+    TIMEZONES.map( zone => <option value={zone.value}>{zone.label}</option> )
+  );
 
   const createLocaleList = ( ) => {
     const locales = I18n.t( "locales" );
@@ -66,7 +66,7 @@ const Account = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}</h5>
             <div className="account-subheader-text">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</div>
-            <select>
+            <select value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
               {createTimeZoneList( )}
             </select>
           </div>
