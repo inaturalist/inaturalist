@@ -73,7 +73,7 @@ const Account = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "language_slash_locale" )}</h5>
             <div className="account-subheader-text">{I18n.t( "language_slash_locale_description" )}</div>
-            <select name="locale" onChange={handleInputChange}>
+            <select value={profile.locale} name="locale" onChange={handleInputChange}>
               {createLocaleList( )}
             </select>
           </div>
