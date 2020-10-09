@@ -9,7 +9,7 @@ const menuItems = [
   I18n.t( "applications" )
 ];
 
-const Menu = () => menuItems.map( item => (
+const Menu = ( ) => menuItems.map( item => (
   <dl key={item} className="menu-item">
     <dt>
       <a href="#">{item}</a>

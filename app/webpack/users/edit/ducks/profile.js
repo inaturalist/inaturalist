@@ -25,7 +25,7 @@ export function fetchUserProfile( ) {
   } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
 }
 
-export function saveUserProfile( ) {
+export function saveUserSettings( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const { id } = s.profile;

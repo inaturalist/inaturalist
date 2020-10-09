@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SaveButton = ( { saveUserProfile } ) => {
-  const handleClick = ( ) => saveUserProfile( );
+const SaveButton = ( { saveUserSettings } ) => {
+  const handleClick = ( ) => saveUserSettings( );
 
   return (
     <div className="save-button">
@@ -22,7 +22,7 @@ const SaveButton = ( { saveUserProfile } ) => {
 };
 
 SaveButton.propTypes = {
-  saveUserProfile: PropTypes.func
+  saveUserSettings: PropTypes.func
 };
 
 export default SaveButton;

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import SaveButton from "../components/save_button";
-import { saveUserProfile } from "../ducks/profile";
+import { saveUserSettings } from "../ducks/profile";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    saveUserProfile: newState => { dispatch( saveUserProfile( newState ) ); }
+    saveUserSettings: newState => { dispatch( saveUserSettings( newState ) ); }
   };
 }
 
