@@ -6,7 +6,6 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
-    console.log( e.target.value, e.target.name, "input change" );
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
