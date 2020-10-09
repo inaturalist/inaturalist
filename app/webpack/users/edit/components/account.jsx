@@ -126,6 +126,7 @@ const Account = ( { profile, setUserData } ) => {
             >
               {createINatAffiliationList( )}
             </DropdownButton>
+            <div className="margin-medium" />
             <span
               className="account-subheader-text"
               // eslint-disable-next-line react/no-danger
