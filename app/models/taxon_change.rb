@@ -17,6 +17,7 @@ class TaxonChange < ActiveRecord::Base
   
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
+  validate :uniqueness_of_output_taxa
   validate :taxa_below_order
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
@@ -118,6 +119,7 @@ class TaxonChange < ActiveRecord::Base
     # inputs can't have active children
     if ["TaxonSwap", "TaxonSplit", "TaxonDrop"].include? type
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+      return false if is_a?( TaxonSplit ) && is_branching?
     # unless they are also inputs
     elsif type == "TaxonMerge"
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.map(&:id).include? e.id) }}.any?
@@ -126,7 +128,13 @@ class TaxonChange < ActiveRecord::Base
     end
     return true
   end
-    
+
+  def automatable_for_output?( output_taxon )
+    return true unless is_a?( TaxonSplit ) && is_branching?
+    output_taxon_id = output_taxon.is_a?( Taxon ) ? output_taxon.id : output_taxon
+    input_taxon.id != output_taxon_id
+  end
+
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
@@ -180,8 +188,11 @@ class TaxonChange < ActiveRecord::Base
       raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
       return
     end
-    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+    unless is_a?( TaxonSplit ) && is_branching?
+      input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+    end
     output_taxa.each do |t|
+      next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
@@ -390,9 +401,18 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def uniqueness_of_taxa
+    return true if type == "TaxonSplit"
     taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "input and output taxa must be unique")
+    end
+  end
+
+  def uniqueness_of_output_taxa
+    return true unless type == "TaxonSplit"
+    taxon_ids = taxon_change_taxa.map(&:taxon_id)
+    if taxon_ids.size != taxon_ids.uniq.size
+      errors.add(:base, "output taxa must be unique")
     end
   end
 

@@ -61,8 +61,9 @@ describe Ratatosk::NameProviders::EolNameProvider do
 
   it "should find a bunch of names" do
     names = [
-      'Ofatulena duodecemstriata',
-      'Acossus populi'
+      "Ofatulena duodecemstriata",
+      "Acossus populi",
+      "Goodia macrocarpa"
     ]
     names.each do |name|
       results = @np.find(name)

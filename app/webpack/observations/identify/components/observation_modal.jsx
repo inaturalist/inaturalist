@@ -192,6 +192,7 @@ class ObservationModal extends React.Component {
       const { brightnesses } = this.state;
       const brightness = brightnesses[brightnessKey] || 1;
       const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
+      const currentImage = images[imagesCurrentIndex] || images[0];
       photos = (
         <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
@@ -211,7 +212,7 @@ class ObservationModal extends React.Component {
           <div className="photo-controls" role="toolbar">
             <div className="btn-group-vertical btn-group-xs" role="group">
               <a
-                href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+                href={currentImage.zoom || currentImage.original}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-default"

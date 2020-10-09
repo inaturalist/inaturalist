@@ -253,7 +253,7 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                     },
                     {
                       id: 2,
-                      url: "http://explorer.natureserve.org/ranking.htm",
+                      url: "https://explorer.natureserve.org/AboutTheData/Statuses",
                       host: "explorer.natureserve.org",
                       text: "NatureServe"
                     }

@@ -110,6 +110,21 @@ describe Post do
       end
     end
   end
+  
+  describe "destroy" do
+    describe "for a user" do 
+      it "should decrement the user's counter cache" do
+        u = User.make!
+        expect( u.journal_posts_count ).to eq 0
+        p = Post.make!( parent: u, user: u )
+        u.reload
+        expect( u.journal_posts_count ).to eq 1
+        p.destroy
+        u.reload
+        expect( u.journal_posts_count ).to eq 0
+      end
+    end
+  end
 
   describe "creation for project" do
     it "should generate an update for the owner" do

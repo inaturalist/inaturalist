@@ -948,11 +948,6 @@ lb:
   native_to_place: "Einheimesch an %{place}"
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, Deel vum internationalen iNaturalist Netzwierk, ass fokusséiert ob d'Biodiversitéit an d'Leit aus Finnland. Well Dir d'Affiliatioun vun Ärem Konto vun iNaturalist.org ob iNaturalist Suomi änneren?
   new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung

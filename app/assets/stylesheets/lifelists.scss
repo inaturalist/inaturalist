@@ -31,6 +31,10 @@
   display: flex;
 }
 
+body.modal-open #app {
+  right: 15px;
+}
+
 #Lifelist {
   display: flex;
   flex-direction: column;
@@ -113,7 +117,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     &:focus {
       outline: none;
     }
-    &.selected {
+    &.selected, &:hover {
       color: $inat-green;
       border: 1px solid #aaa;
     }
@@ -210,6 +214,16 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-size: 12px;
     line-height: 12px;
     vertical-align: text-top;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+  }
+  .icon-collapse + .icon-expand {
+    margin-left: 2px;
+  }
+  .icon-focus {
+    font-size: 10px;
   }
   & > .fa-chevron-down {
     margin-left: 2px;
@@ -228,6 +242,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-weight: 600;
   }
 }
+
 .bootstrap .badge.green {
   padding: 3px 7px 1px 7px;
   vertical-align: inherit;
@@ -244,6 +259,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  h3 .SplitTaxon .display-name {
+    color: inherit;
+  }
   .stats {
     text-align: center;
     margin-bottom: 10px;
@@ -275,6 +293,22 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .flex-container {
     height: 100%;
     overflow: hidden;
+  }
+  .empty {
+    margin: 0px auto;
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 60%;
+    button {
+      border-radius: 30px;
+      display: block;
+      margin: 0px auto;
+      margin-top: 20px;
+    }
+  }
+  .SpeciesGrid.unobserved .empty {
+    margin-top: 74px;
   }
 }
 
@@ -388,17 +422,17 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   position: relative;
 }
 
-.tree, .tree > * ul, #TaxaList > * ul.children {
+.tree, .tree > * ul {
   padding: 0;
   list-style: none;
   position: relative;
 }
 
-.tree > * ul.nested, #TaxaList > * ul.children {
+.tree > * ul.nested {
   margin: 0 0 0 1em;
 }
 
-.tree ul.nested:before, #TaxaList ul.children:before {
+.tree ul.nested:before {
   content: "";
   display: block;
   width: 0;
@@ -410,14 +444,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree ul.nested li, #TaxaList li.child {
+.tree ul.nested li {
   margin: 0;
   padding: 0 1em;
   line-height: 1.5em;
   position: relative;
 }
 
-.tree ul.nested li:before, #TaxaList li.child:before {
+.tree ul.nested li:before {
   content: "";
   display: block;
   width: 10px;
@@ -430,7 +464,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   color: #ddd;
 }
 
-.tree ul.nested li:last-child:before, #TaxaList li.child:last-child:before {
+.tree ul.nested li:last-child:before {
   background: white;
   height: auto;
   top: .75em;
@@ -441,6 +475,44 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   margin-bottom: 10px;
 }
 
+#TaxaList .tree > li > .name-row {
+  font-size: 18px;
+  padding: 3px 0px 4px 0px;
+  font-weight: 300;
+}
+
+#TaxaList .tree ul.nested li:last-child {
+  margin-bottom: 20px;
+}
+
+#TaxaList ul.nested {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#TaxaList .ancestry {
+  margin-right: 3px;
+  .expander {
+    padding-right: 3px;
+    cursor: pointer;
+  }
+  .SplitTaxon {
+    cursor: pointer;
+    .secondary-name {
+      display: none;
+    }
+    &:not(:first-child):before {
+      content: "\203A";
+      padding: 0px 4px 0px 1px;
+      font-size: 16px;
+      cursor: auto;
+    }
+  }
+}
+
+#TaxaList .name-row .SplitTaxon > a {
+  color: inherit;
+}
 
 
 .bootstrap .form-group.TaxonAutocomplete, .bootstrap .place-search {
@@ -466,6 +538,30 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     display: inline-block;
     margin-right: 20px;
     flex-grow: 1;
+    .icon-state {
+      .glyphicon {
+        font-size: 17px;
+      }
+      color: #979797;
+      float: left;
+      line-height: 34px;
+      margin-right: 8px;
+    }
+    .badge {
+      height: 32px;
+      border-radius: 34px;
+      line-height: 28px;
+      background-color: $inat-green;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 3px 4px 3px 14px;
+      .clear {
+        padding: 0 8px;
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+      }
+    }
     .PlaceAutocomplete .form-group {
       margin-bottom: 0;
     }
@@ -511,6 +607,45 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         }
       }
     }
+  }
+}
+
+.ExportModal {
+  .modal-header {
+    font-size: 24px;
+  }
+  .modal-body {
+    font-size: 16px;
+    ul {
+      list-style: none;
+      padding-left: 10px;
+      margin: 10px 0 0 0;
+      li {
+        input {
+          margin-right: 10px;
+        }
+        label {
+          font-weight: normal;
+          .filter-label {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  .modal-footer {
+    button {
+      min-width: 80px;
+    }
+    .taxa-count {
+      float: left;
+      font-size: 16px;
+      line-height: 34px;
+    }
+  }
+  button.btn-primary .loading_spinner {
+    border: 3px solid rgba(221, 221, 221, 0.2);
+    border-top: 3px solid white;
   }
 }
 

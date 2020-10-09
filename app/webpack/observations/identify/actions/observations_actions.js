@@ -92,6 +92,9 @@ function fetchObservations( ) {
         } ) );
         dispatch( fetchObservationsStats( ) );
         dispatch( fetchObservationPlaces( ) );
+        if ( _.isEmpty( _.filter( obs, o => !o.reviewedByCurrentUser ) ) ) {
+          dispatch( setConfig( { allReviewed: true } ) );
+        }
       } ).catch( e => {
         const { lastRequestAt } = getState( ).observations;
         if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
@@ -143,11 +146,9 @@ function setReviewing( reviewing ) {
   return { type: SET_REVIEWING, reviewing };
 }
 
-function reviewAll( ) {
-  return function ( dispatch, getState ) {
-    dispatch( setConfig( { allReviewed: true } ) );
-    dispatch( setReviewing( true ) );
-    dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
+function setReviewed( results, apiMethod ) {
+  return dispatch => {
+    const lastResult = results.pop( );
     // B/c this was new to me, Promise.all takes an array of Promises and
     // creates another Promise that is fulfilled if all the promises in the
     // array are fulfilled. So here, we only want to fetch the obs stats after
@@ -157,8 +158,14 @@ function reviewAll( ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.review( { id: o.id } ) )
+      results.map( o => apiMethod( { id: o.id, skip_refresh: true } ) )
     )
+      .then( ( ) => {
+        if ( lastResult ) {
+          return apiMethod( { id: lastResult.id } );
+        }
+        return null;
+      } )
       .catch( ( ) => {
         dispatch( setReviewing( false ) );
         dispatch( showAlert(
@@ -173,26 +180,25 @@ function reviewAll( ) {
   };
 }
 
+function reviewAll( ) {
+  return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: true } ) );
+    dispatch( setReviewing( true ) );
+    const unreviewedResults = _.filter( getState( ).observations.results,
+      o => !o.reviewedByCurrentUser );
+    dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
+    dispatch( setReviewed( unreviewedResults, iNaturalistJS.observations.review ) );
+  };
+}
+
 function unreviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( setReviewing( true ) );
+    const reviewedResults = _.filter( getState( ).observations.results,
+      o => o.reviewedByCurrentUser );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
-    Promise.all(
-      getState( ).observations.results
-        .map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
-    )
-      .catch( ( ) => {
-        dispatch( setReviewing( false ) );
-        dispatch( showAlert(
-          I18n.t( "failed_to_save_record" ),
-          { title: I18n.t( "request_failed" ) }
-        ) );
-      } )
-      .then( ( ) => {
-        dispatch( setReviewing( false ) );
-        dispatch( fetchObservationsStats( ) );
-      } );
+    dispatch( setReviewed( reviewedResults, iNaturalistJS.observations.unreview ) );
   };
 }
 

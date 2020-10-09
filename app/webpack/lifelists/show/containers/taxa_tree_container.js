@@ -4,8 +4,7 @@ import {
   toggleTaxon,
   setDetailsTaxon,
   setDetailsView,
-  setTreeScrollIndex,
-  setListViewOpenTaxon
+  setTreeScrollIndex
 } from "../reducers/lifelist";
 
 function mapStateToProps( state ) {
@@ -20,8 +19,7 @@ function mapDispatchToProps( dispatch ) {
     toggleTaxon: ( taxon, options ) => dispatch( toggleTaxon( taxon, options ) ),
     setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
     setDetailsView: view => dispatch( setDetailsView( view ) ),
-    setTreeScrollIndex: scrollIndex => dispatch( setTreeScrollIndex( scrollIndex ) ),
-    setListViewOpenTaxon: taxon => dispatch( setListViewOpenTaxon( taxon ) )
+    setTreeScrollIndex: scrollIndex => dispatch( setTreeScrollIndex( scrollIndex ) )
   };
 }
 

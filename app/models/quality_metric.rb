@@ -23,11 +23,23 @@ class QualityMetric < ActiveRecord::Base
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
   validates_uniqueness_of :metric, :scope => [:observation_id, :user_id]
+  validate :metric_can_be_assessed
 
   attr_accessor :wait_for_obs_index_refresh
 
   def to_s
     "<QualityMetric #{id} metric: #{metric}, user_id: #{user_id}, agree: #{agree}>"
+  end
+
+  def metric_can_be_assessed
+    return true unless observation
+    if metric == LOCATION && !observation.georeferenced?
+      errors.add(:base, :no_votable_coordinates)
+    end
+    if metric == DATE && observation.observed_on.blank?
+      errors.add(:base, :no_votable_date)
+    end
+    true
   end
 
   def update_observation

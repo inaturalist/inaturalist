@@ -1,5 +1,5 @@
 - content_for :extrahead do
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "bootstrap"
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
   = stylesheet_link_tag "projects/stats_slideshow"
   = javascript_include_tag 'i18n'
@@ -12,8 +12,8 @@
 - content_for :delayed_js do
   = javascript_include_tag 'i18n/translations'
   = javascript_include_tag "ang/models/taxon"
-  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
+  = javascript_include_tag "jquery/jquery-1.11.3.min.js"
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"
   = javascript_include_tag "project-slideshow-webpack"
-  = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  = javascript_include_tag "bootstrap.min"
   = stylesheet_link_tag "fontastic-icons"

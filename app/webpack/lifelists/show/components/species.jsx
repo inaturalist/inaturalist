@@ -3,21 +3,39 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Species extends Component {
-  constructor( props, context ) {
-    super( props, context );
-    let asdf = "ASdf";
-  }
-
   render( ) {
     const {
       search, fetchNextPage, config, lifelist, zoomToTaxon
     } = this.props;
     let view;
-    const loading = !search || ( !search.searchResponse && !search.loaded );
-    const species = loading ? null : search.searchResponse.results || [];
-    if ( loading ) {
+    const loaded = search && search.searchResponse;
+    const species = loaded ? search.searchResponse.results || [] : null;
+    if ( !loaded ) {
       view = ( <div className="loading_spinner huge" /> );
+    } else if ( _.size( species ) === 0 ) {
+      let emptyMessage;
+      if ( _.size( species ) === 0 ) {
+        if ( lifelist.speciesPlaceFilter ) {
+          if ( lifelist.detailsTaxon ) {
+            emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_within_this_taxon_in_place", {
+              place: lifelist.speciesPlaceFilter.display_name
+            } );
+          } else {
+            emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_in_place", {
+              place: lifelist.speciesPlaceFilter.display_name
+            } );
+          }
+        } else if ( lifelist.detailsTaxon ) {
+          emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_within_this_taxon" );
+        }
+      }
+      view = (
+        <div className="empty">
+          { emptyMessage }
+        </div>
+      );
     } else {
       view = _.map( species, s => {
         const onClick = e => {
@@ -39,7 +57,7 @@ class Species extends Component {
                 <div>
                   <a
                     onClick={onClick}
-                    href={`/observations?user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any`}
+                    href={`/observations?unobserved_by_user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any`}
                   >
                     { I18n.t( "x_observations", { count: s.count } ) }
                   </a>
@@ -61,13 +79,13 @@ class Species extends Component {
             onClick={fetchNextPage}
           >
             <i className="fa fa-caret-down" />
-            Show More
+            { I18n.t( "show_more" ) }
           </button>
         );
     }
     return (
       <div className="flex-container">
-        <div className="SpeciesGrid">
+        <div className="SpeciesGrid unobserved">
           { view }
           <div className="more">
             { moreButton }

@@ -173,7 +173,7 @@ class RegularForm extends React.Component {
                       }}
                     >
                       <option value="">
-                        { I18n.t( "any_" ) }
+                        { I18n.t( "any_annotation_value" ) }
                       </option>
                       { chosenTerm.values.map( t => (
                         <option value={t.id} key={`annotation-term-value-id-${t.id}`}>
@@ -248,7 +248,7 @@ class RegularForm extends React.Component {
                     setRulePreference( "sounds", null );
                   }}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_media" ) }
               </label>
               <label className="inline checkboxradio" htmlFor="project-media-sounds">
                 <input
@@ -316,7 +316,7 @@ class RegularForm extends React.Component {
                     }
                   }}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_establishment" ) }
               </label>
               <label
                 key="project-establishment-native"
@@ -373,7 +373,7 @@ class RegularForm extends React.Component {
                   checked={project.date_type === "any"}
                   onChange={( ) => updateProject( { date_type: "any" } )}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_date" ) }
               </label>
               <input
                 type="radio"

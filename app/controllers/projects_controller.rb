@@ -542,8 +542,7 @@ class ProjectsController < ApplicationController
       @top_contributors = @project.project_users.where("taxa_count > 0").order("taxa_count DESC, observations_count DESC").limit(5)
     end
     respond_to do |format|
-      format.html do
-      end
+      format.html
       format.widget do
         render :js => render_to_string(:partial => "widget.js.erb")
       end

@@ -56,7 +56,7 @@ class Observation < ActiveRecord::Base
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
-    :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh,
+    :taxon_introduced, :taxon_endemic, :taxon_native,
     :skip_identification_indexing, :will_be_saved_with_photos
   
   # Set if you need to set the taxon from a name separate from the species 
@@ -250,7 +250,26 @@ class Observation < ActiveRecord::Base
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
-  ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
+  ALLOWED_DESCRIPTION_TAGS = %w(
+    a
+    abbr
+    acronym
+    b
+    blockquote
+    br
+    cite
+    code
+    em
+    i
+    img
+    pre
+    s
+    small
+    strike
+    strong
+    sub
+    sup
+  )
 
   preference :community_taxon, :boolean, :default => nil
   
@@ -717,7 +736,8 @@ class Observation < ActiveRecord::Base
       :iconic_taxon,
       { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
-      :stored_preferences, :flags, :quality_metrics ]
+      :stored_preferences, :flags, :quality_metrics,
+      :votes_for ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)
@@ -916,7 +936,8 @@ class Observation < ActiveRecord::Base
       PST
     )
     
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
+    if ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
+        parsed_time_zone = ActiveSupport::TimeZone::CODES.values.compact.detect{|c| c.name == tz_abbrev} )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       # If the parsed time zone is one of the ambiguous ones where we can't
@@ -1156,8 +1177,11 @@ class Observation < ActiveRecord::Base
     # Refreh the ProjectLists
     ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "ProjectList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+      refresh_with_observation(id, taxon_id: taxon_id,
+        taxon_id_was: taxon_id_was,
+        user_id: user_id,
+        created_at: created_at,
+        new: id_was.blank?)
 
     # Don't refresh LifeLists and Lists if only quality grade has changed
     return true unless taxon_id_changed?
@@ -2838,6 +2862,7 @@ class Observation < ActiveRecord::Base
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
         if output_taxon = taxon_change.output_taxon_for_record( observation )
+          next if !taxon_change.automatable_for_output?( output_taxon.id )
           Identification.create(
             user: observation.user,
             observation: observation,

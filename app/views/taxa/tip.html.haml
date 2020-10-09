@@ -25,6 +25,6 @@
       %td
         = link_to(t(:everyone), observations_path(:taxon_id => taxon.id))
       - if @observation
-        %td= link_to(@observation.user.login, observations_by_login_path(@observation.user.login, :taxon_id => taxon.id))
+        %td= link_to( @observation.user.login, observations_path( user_id: @observation.user.login, taxon_id: taxon.id ) )
       - if logged_in?
-        %td= link_to(t(:you), observations_by_login_path(current_user.login, :taxon_id => taxon.id))
+        %td= link_to( t(:you), observations_path( user_id: current_user.login, taxon_id: taxon.id ) )

@@ -27,6 +27,12 @@ class Map extends React.Component {
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
     let geoprivacyLabel = I18n.t( "location_unknown" );
+    // Note this is based on the currently confusing nature of obscured, which
+    // at present means coordinates_obscured? OR geoprivacy == "obscured", so if
+    // there are no coordinates and geoprivacy is obscured, we set the
+    // geoprivacy icon and title, but the location is legitimately unknown. If
+    // there are no coordinates and the geoprivacy is private, then
+    // observation.obscured will be false
     if (
       observation.obscured
       && (

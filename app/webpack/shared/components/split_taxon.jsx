@@ -10,6 +10,7 @@ const SplitTaxon = props => {
     url,
     target,
     noParens,
+    noRank,
     placeholder,
     displayClassName,
     showIcon,
@@ -178,10 +179,12 @@ const SplitTaxon = props => {
           onClick={onClick}
           target={target}
         >
-          <span className="rank">
-            { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
-          </span>
-          &nbsp;
+          { !noRank && (
+            <span className="rank">
+              { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
+            </span>
+          ) }
+          { !noRank && "\u00A0" }
           { truncateText( name ) }
         </LinkElement>
       );
@@ -309,6 +312,7 @@ SplitTaxon.propTypes = {
   url: PropTypes.string,
   target: PropTypes.string,
   noParens: PropTypes.bool,
+  noRank: PropTypes.bool,
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string,
   showIcon: PropTypes.bool,

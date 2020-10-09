@@ -7,7 +7,7 @@
       url: person_url(@contributor.user.login), 
       project_title: @project.title)
 - content_for(:extracss) do
-  = stylesheet_link_tag 'observations/by_login', 'observations/filters'
+  = stylesheet_link_tag "observations/filters"
   :css
     .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
       width: 172px;
@@ -16,7 +16,7 @@
 - content_for(:extrajs) do
   = google_maps_js
   = javascript_include_tag 'map_bundle'
-#pageheader.clear
+#pageheader.column.span-24
   .breadcrumbs
     %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
   %h2
@@ -31,7 +31,7 @@
   #observations
     - if @project_observations.blank? && @observations.blank?
       .description.noresults
-        = link_to @contributor.user.login, observations_by_login_path(@contributor.user.login)
+        = link_to @contributor.user.login, observations_path( user_id: @contributor.user.login )
         = t(:hasnt_contributed_any_observations)
     - else
       .stacked.observationcontrols

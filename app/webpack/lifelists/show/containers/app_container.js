@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import App from "../components/app";
 import {
-  setNavView, setDetailsView, zoomToTaxon, setDetailsTaxon
+  setNavView, setDetailsView, zoomToTaxon, setDetailsTaxon, setSearchTaxon
 } from "../reducers/lifelist";
+import { setExportModalState } from "../reducers/export_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -16,7 +17,9 @@ function mapDispatchToProps( dispatch ) {
     setNavView: view => dispatch( setNavView( view ) ),
     setDetailsView: view => dispatch( setDetailsView( view ) ),
     setDetailsTaxon: ( taxon, options ) => dispatch( setDetailsTaxon( taxon, options ) ),
-    zoomToTaxon: ( taxonID, options ) => dispatch( zoomToTaxon( taxonID, options ) )
+    setSearchTaxon: taxon => dispatch( setSearchTaxon( taxon ) ),
+    zoomToTaxon: ( taxonID, options ) => dispatch( zoomToTaxon( taxonID, options ) ),
+    setExportModalState: newState => dispatch( setExportModalState( newState ) )
   };
 }
 

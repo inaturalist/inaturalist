@@ -1262,8 +1262,6 @@ es-MX:
     tooltips:
       leading: |
         El taxón desciende del taxón elegido por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
-      improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón de la comunidad.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, es decir que la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Identificación retirada
@@ -4973,6 +4971,7 @@ es-MX:
   activerecord:
     models:
       AssessmentSection: Sección de evaluación
+      BlockedUser: Usuario bloqueado
       CompleteSet: Lista completa
       TaxonLink: Enlace de taxón
     attributes:
@@ -4981,6 +4980,9 @@ es-MX:
       assessment_section:
         title: Título
         body: Contenido principal
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuario bloqueado
       conservation_status:
         status: Estatus
         description: Descripción
@@ -5118,7 +5120,7 @@ es-MX:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
+              api_key_missing: "Falta la clave API de observador de hongos"
         observation_field_value:
           attributes:
             value:
@@ -5188,6 +5190,12 @@ es-MX:
                 tiene que empezar con una letra, no contener espacios y usar sólo letras, números, guiones, y guiones bajos
             email:
               must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
   doorkeeper:
     scopes:
       write: |

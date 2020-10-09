@@ -1438,8 +1438,6 @@ es-AR:
     tooltips:
       leading: |
         El taxón desciende del taxón taxon. Esta identificación te podría acercar a la respuesta correcta.
-      improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Id. retirada
@@ -3152,6 +3150,7 @@ es-AR:
   schemes_including: Esquemas que incluyen a
   search: Buscar
   search_all_fields: buscar todos los campos
+  search_by_name: Búsqueda por nombre
   search_by_name_or_email: Búsqueda por nombre o email
   search_by_taxon_name_or_observation_id: Búsqueda por nombre taxonómico o por Identificación de la observación
   search_by_taxon_name_or_flickr_photo_id: Busqueda por ID foto de Flickr o nombre taxonómico.
@@ -5888,10 +5887,6 @@ es-AR:
           attributes:
             base:
               guide_has_too_many_taxa: "la guía solo puede tener 500 taxones"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
         observation:
           attributes:
             base:

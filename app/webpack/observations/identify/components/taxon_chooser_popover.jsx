@@ -109,14 +109,18 @@ class TaxonChooserPopover extends React.Component {
             <ul className="list-unstyled">
               <li
                 className={current === -1 ? "pinned current" : "pinned"}
-                onMouseOver={( ) => {
-                  this.setState( { current: -1 } );
-                }}
-                onClick={( ) => this.chooseCurrent( )}
+                onMouseOver={( ) => this.setState( { current: -1 } )}
+                onFocus={( ) => this.setState( { current: -1 } )}
                 style={{ display: taxon ? "block" : "none" }}
               >
-                <i className="fa fa-times" />
-                { I18n.t( "clear" ) }
+                <button
+                  type="button"
+                  onClick={( ) => this.chooseCurrent( )}
+                  className="btn btn-nostyle"
+                >
+                  <i className="fa fa-times" />
+                  { I18n.t( "clear" ) }
+                </button>
               </li>
               { _.map( taxa, ( t, i ) => (
                 <li
@@ -125,17 +129,21 @@ class TaxonChooserPopover extends React.Component {
                     `media ${current === i ? "current" : ""}
                     ${defaultTaxon && t.id === defaultTaxon.id ? "pinned" : ""}`
                   }
-                  onClick={( ) => this.chooseCurrent( )}
-                  onMouseOver={( ) => {
-                    this.setState( { current: i } );
-                  }}
+                  onMouseOver={( ) => this.setState( { current: i } )}
+                  onFocus={( ) => this.setState( { current: i } )}
                 >
-                  <div className="media-left">
-                    <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`} />
-                  </div>
-                  <div className="media-body">
-                    <SplitTaxon taxon={t} user={ config.currentUser } />
-                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => this.chooseCurrent( )}
+                  >
+                    <div className="media-left">
+                      <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`} />
+                    </div>
+                    <div className="media-body">
+                      <SplitTaxon taxon={t} user={config.currentUser} />
+                    </div>
+                  </button>
                 </li>
               ) ) }
             </ul>

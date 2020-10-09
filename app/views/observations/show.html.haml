@@ -22,7 +22,6 @@
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
 - content_for :extracss do
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   = stylesheet_link_tag "observations/show"
 - content_for :extrajs do
   - if logged_in?
@@ -74,13 +73,13 @@
     };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
       only: [ :id ], include: { default_name: { only: [ :name ] } } ).html_safe : "{ }" };
-    var OUTLINK_SITE_ICONS = {
+    var OUTLINK_SITE_ICONS = _.assign( {
       "Atlas of Living Australia": "#{ asset_url( "sites/ala.png" ) }",
       "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
       "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
       "GloBI": "#{ asset_url( "sites/globi.png" ) }",
       "EDDMapS": "#{ asset_url( "sites/eddmaps.png" ) }",
-    };
+    }, #{DataPartner.all.inject({}) {|memo, dp| memo[dp.name] = dp.logo&.url; memo}.to_json.html_safe} );
   = javascript_include_tag "observations-show-webpack"
 
 #app

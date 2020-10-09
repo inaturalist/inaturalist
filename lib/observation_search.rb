@@ -35,7 +35,7 @@ module ObservationSearch
 
     def search_in_batches(raw_params, options={}, &block)
       search_params = Observation.get_search_params(raw_params, options)
-      search_params.merge!({ min_id: 1, per_page: 500, preload: [ ],
+      search_params.merge!({ min_id: raw_params[:min_id] || 1, per_page: 500, preload: [ ],
         order_by: "id", order: "asc" })
       loop do
         batch = try_and_try_again( PG::ConnectionBad, logger: options[:logger] ) do

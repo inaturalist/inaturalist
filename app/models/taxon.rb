@@ -97,12 +97,14 @@ class Taxon < ActiveRecord::Base
               :strip_name,
               :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
-              :ensure_parent_ancestry_in_ancestry
+              :ensure_parent_ancestry_in_ancestry,
+              :unfeature_inactive
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :reindex_identifications_after_save,
              :handle_after_move,
+             :handle_after_activate,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
   after_save :index_observations
@@ -521,6 +523,14 @@ class Taxon < ActiveRecord::Base
     true
   end
 
+  def handle_after_activate
+    return true unless is_active_changed?
+    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Observation::update_stats_for_observations_of": id } ).
+      update_stats_for_observations_of( id )
+    true
+  end
+
   def self.get_internal_taxa_covered_by( taxon_framework )
     ancestry_string = ( taxon_framework.taxon.rank == STATEOFMATTER || taxon_framework.taxon.ancestry.nil? ) ?
       "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
@@ -588,7 +598,12 @@ class Taxon < ActiveRecord::Base
   def index_observations
     return if skip_observation_indexing
     # changing some fields doesn't require reindexing observations
-    return if ( changes.keys - ["taxon_framework_relationship_id", "updater_id", "updated_at"] ).empty?
+    return if ( changes.keys - [
+      "photos_locked",
+      "taxon_framework_relationship_id",
+      "updater_id",
+      "updated_at"
+    ] ).empty?
     Observation.elastic_index!( scope: observations.select( :id ), delay: true )
   end
 
@@ -1307,6 +1322,11 @@ class Taxon < ActiveRecord::Base
     if parent && parent.ancestry && ancestry && ancestry.index( parent.ancestry ) != 0
       self.ancestry = [parent.ancestry.split( "/ " ), parent.id].flatten.compact.join( "/" )
     end
+    true
+  end
+
+  def unfeature_inactive
+    self.featured_at = nil unless is_active?
     true
   end
 

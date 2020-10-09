@@ -1,4 +1,27 @@
 mr:
+  x_people_helped_user_with_y_ids_html: "<strong>%{x}व्यक्ती </strong> मदत%{user} करणाऱ्या <strong>%{y} ओळखण्यासाठी</strong>"
+  a_community_for_naturalist: एक समुदाय निसर्गवादींसाठी
+  a_flag_for_x: "निशाण %{x} साठी"
+  a_member_of_taxon_html: "%{taxon} चा सदस्य"
+  about: च्या बाबत
+  about_blocking: प्रतिबंधाबाबत
+  about_charts: तक्त्यांबाबत
+  about_community_taxa: सामूहिक वर्गसहमतीबाबत
+  about_complete_taxa: संपूर्ण वर्गांसंबंधी
+  about_conservation_status: संवर्धन स्थितीविषयी
+  about_editing_observation_fields: निरीक्षण नोंदींमधील बदलासंबंधी
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: आस्थापना साधनांविषयी
+  about_licenses: परवानान्यांविषयी
+  about_muting: निःशब्दीकरणासंबंधी
+  #Header for a section describing taxon names
+  about_names: नावांविषयी
+  about_places: स्थानांविषयी
+  about_the_cc_licenses: '"क्रिएटिव्ह कॉमन्स लायसन्स" विषयी'
+  about_these_licenses: विविध परवानान्यांविषयी
+  about_this_bioblitz: '"बायोब्लिट्झ" विषयी'
   date:
     abbr_month_names:
       - 
@@ -14,14 +37,6 @@ mr:
       - Oct
       - Nov
       - Dec
-    day_names_min:
-      1: Su
-      2: Mo
-      3: Tu
-      4: We
-      5: Th
-      6: Fr
-      7: Sa
     month_names:
       - 
       - January

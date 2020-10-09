@@ -479,6 +479,27 @@ sv:
   announcements: Meddelanden
   any: alla
   any_: Vilken som helst
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alla
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alla
+  #Label for an option to show content from any date
+  any_date: Alla
+  #Label for an option to show content with any establishment means
+  any_establishment: Alla
+  #Label for an option to show content with any license
+  any_license: Alla
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alla
+  #Label for an option to show content from any project
+  any_project: Alla
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alla
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alla
+  #Label for an option to show/include content by any user
+  any_user: Alla
   anyone: Vem som helst
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
@@ -1065,6 +1086,8 @@ sv:
   decrease_brightness: Minska ljusstyrkan
   #Default option
   default: standard
+  #Default option
+  default_: Standard
   default_invite_comment: "Snyggt foto! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standard observation licens
   default_photo_license: Standard foto licens
@@ -1134,6 +1157,13 @@ sv:
         subject: 'Instruktioner för bekräftelse'
       reset_password_instructions:
         subject: 'Instruktioner för återställning av lösenord'
+  devise_reset_password_instructions_hello_email: Hej %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Om du inte har begärt detta, vänligen ignorera detta mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
   discoveries: Upptäckter
   did_not_send_invitations_because: Skickade inte inbjudningar till följande eftersom...
   did_you_mean: 'Menade du'
@@ -1597,7 +1627,7 @@ sv:
         Taxon härstammar från gemenskapens taxon. Denna bestämning kan leda till det
         rätta svaret.
       improving: |
-        Första förslaget på detta taxon som gemenskapen sedan gick med på. Detta hjälpte
+        Första förslaget för detta taxon som gemenskapen håller med om. Detta bidrar till att
         förbättra gemenskapens taxon.
       maverick: |
         Taxon är varken under- eller överliggande gemenskapens taxon, d.v.s. gemenskapen
@@ -2028,6 +2058,9 @@ sv:
       range: Utbredningsområde
   map_tooltip: Visa kartvy
   mark_as_reviewed: Markera som granskad
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Att markera en observation som granskad innebär att du som standard inte kommer att se den igen i Bestämning. Den kommer fortfarande att vara synlig för andra personer i Bestämning.
   mark_all_as_reviewed: Markera alla som granskade
   mark_all_as_unreviewed: Markera alla som ogranskade
   matching_species_will_shown_up_here: Matchande arter kommer att synas här. Kartorna kommer att visa ett utbredningsområde om %{place} har ett för den arten.
@@ -2189,13 +2222,13 @@ sv:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
     nätverket, fokuserar på biologisk mångfald och människor i %{place}. Vill du ändra din
-    kontotillhörighet från iNaturalist.org till %{site_name}?
+    kontoanknytning från iNaturalist.org till %{site_name}?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del av det internationella iNaturalist-nätverket, fokuserar på biologisk mångfald och människor i Finland. Vill du
-    ändra din kontoanknytning från iNaturalist.org till iNaturalist Suomi?
+    ändra din kontoanknytning från iNaturalist.org till iNaturalist Suomi och dela data med lokala institutioner?
   network_affiliation_prompt_from_other_site_html: |
     Vill du ändra din tillhörighet från <strong>%{other_site_name}</strong> till
     <strong>%{site_name}</strong>?
@@ -2278,6 +2311,7 @@ sv:
   no_matching_places: Inga matchande platser
   no_matching_projects: Inga matchande projekt
   no_matching_species: Inga matchande arter.
+  no_matching_taxa: Inga matchande taxa
   no_matching_users: Inga matchande användare.
   no_members_yet: "Inga medlemmar än."
   no_messages_yet: Inga meddelanden ännu
@@ -3126,6 +3160,26 @@ sv:
     zimbabwe: Zimbabwe
   places_of_interest: Sevärdheter
   places_merged_successfully: Lyckades slå ihop platser!
+  places_warning_export_complex_boundary_html: |
+    Om du försöker exportera observationer från en komplex gräns, överväg
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">att ladda ner dem från GBIF istället</a>,
+    där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån
+    befintliga platser eller en polygon och sedan filtrera datat när du väl har
+    hämtat det.
+  places_warning_look_for_existing_html: |
+    Leta efter <a href="/search?source[]=places">befintliga lokaler</a> för att se till att du inte skapar en dubblett. Vi har redan lokaler för alla kontinenter och länder, samt två administrativa nivåer under land.
+  places_warning_projects_can_have_multiple_places: |
+    Om du försöker göra en lokal för en projektgräns, kan projekt bestå av flera lokaler. Till exempel, om du vill göra ett projekt för Nya Zeeland och Australien, kan du helt enkelt lägga till krav för två lokaler istället för att göra en ny.
+  places_warning_new_places_are_slow_html: |
+    Nya lokaler är en av de största källorna till att det går trögt på iNat, så
+    <strong>överväg att inte skapa en ny lokal</strong>. Medan små lokaler
+    som bara innehåller några tusen observationer oftast är ok, kommer du att göra iNat långsamt för alla andra om du skapar en ny lokal som innehåller många observationer. Här är några alternativa tillvägagångssätt:
+  places_warning_editing_places_is_slow: |
+    Redigering av lokalgränser är en av de största källorna till att iNat går trögt.
+    Om du kan undvika det, lägg inte till, ändra eller ta bort lokalgränser om du inte verkligen måste.
+  places_warning_the_future: |
+    Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka
+    användare kan lägga till lokaler i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
   please_add_a_citation_for_this_change: Lägg till en referens för denna ändring.
   please_add_this_observation_to: Lägg till denna observation till
@@ -3258,18 +3312,33 @@ sv:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangbegränsningar
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Aggregationstillstånd
     kingdom: Rike
+    x_kingdoms:
+      one: Rike
+      other: Riken
     subkingdom: Underrike
     phylum: Fylum
+    x_phyla:
+      one: Fylum
+      other: Fyla
     subphylum: Underfylum
     superclass: Överklass
     class: Klass
+    x_classes:
+      one: Klass
+      other: Klasser
     subclass: Underklass
     infraclass: infraklass
     superorder: Överordning
     order: Ordning
+    x_orders:
+      one: Ordning
+      other: Ordningar
     suborder: Underordning
     infraorder: Infraordning
     subterclass: Subterklass
@@ -3279,11 +3348,17 @@ sv:
     superfamily: Överfamilj
     epifamily: Epifamilj
     family: Familj
+    x_families:
+      one: Familj
+      other: Familjer
     subfamily: Underfamilj
     supertribe: Övertribus
     tribe: Tribus
     subtribe: Undertribus
     genus: Släkte
+    x_genera:
+      one: Släkte
+      other: Släkten
     genushybrid: Släkteshybrid
     subgenus: Undersläkte
     section: Avsnitt
@@ -3291,6 +3366,9 @@ sv:
     complex: Artkomplex
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underart
@@ -3461,6 +3539,7 @@ sv:
   scientific_name: Vetenskapligt namn
   search: Sök
   search_all_fields: sök alla fält
+  search_by_name: Sök på namn
   search_by_name_or_email: Sök efter namn eller e-post
   search_by_taxon_name_or_observation_id: Sök taxonnamn eller observationsID
   search_by_taxon_name_or_flickr_photo_id: Sök taxonnamn eller Flickr-bildID
@@ -3575,6 +3654,13 @@ sv:
   site_stats: Sajt statistik
   site_taxon_page: "%{site_name}-taxonsida"
   some_agree: några håller med
+  some_observations_are_missing_media_or_identifications: |
+    Vissa observationer saknar media eller bestämningar
+  some_observations_are_missing_media_or_identifications_desc: |
+    Observationer utan media kommer som standard inte att synas i sökningar, och
+    de utan någon bestämning kanske inte ses av experter som letar efter
+    specifika taxa. Även en mycket grov bestämning som "växter" kan hjälpa en
+    växtexpert att hitta din observation.
   some_observations_failed_to_be_added: Vissa observationer misslyckades att läggas till i projekt
   some_observations_failed_to_save: Några observationer kunde inte sparas
   some_of_those_photos_couldnt_be_saved: "Några av de bilderna kunde inte sparas: %{error}"
@@ -3710,6 +3796,11 @@ sv:
   subscribe_to_a_place: Prenumerera på en plats
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer till denna flagga"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer till detta inlägg"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna taxonförberedelse"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer om detta taxonbyte"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer om denna hopslagning av taxa"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna uppdelning av taxa"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på detta taxons avlägsnande"
   subscribe_to_observations_in_a_taxon: Prenumerera på alla observationer av en art eller grupp av organismer (t.ex. 'skorpioner').
   subscribe_to_observations_in_a_place: Prenumerera på alla observationer som publiceras på denna plats. Du kan också lägga till ett valfritt taxonfilter (t.ex. 'skorpioner från Texas').
   subscribe_to_places_to: |
@@ -3890,6 +3981,11 @@ sv:
   terms_service: Användarvillkor
   terrain: terräng
   text: Text
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Textblockskontroller
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Textformateringskontroller
+  text_editing_controls: Textredigeringskontroller
   thanks!: Tack!
   thanks_from_all_of_us_here_at: Tack från alla här på
   that_photo_doesnt_exist: Den bilden finns inte.
@@ -4053,6 +4149,9 @@ sv:
   top_observer: Toppobservatör
   top_observers: Toppobservatörer
   top_species: Topparter
+  tos_privacy_guidelines_label: |
+    Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
+    <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Gemenskapsriktlinjerna</a>.
   total: Totalt
   totals: Summa
   total_members: Totalt antal medlemmar
@@ -4456,6 +4555,8 @@ sv:
   'yes': "Ja"
   yes_find_them!: "Ja, hitta dem!"
   yes_i_want_to_join: Ja, jag vill gå med
+  yes_license_my_childs_observations: Ja, licensiera mitt barns bilder, ljud och observationer så att vetenskapsmän kan använda uppgifterna (rekommenderat).
+  yes_license_my_observations_so_scientists_can_use: Ja, licensiera mina bilder, ljud och observationer så att vetenskapsmän kan använda mina data (rekommenderat).
   yes_reject_it: Ja, avvisa det
   yes_show_this_in_the_box: Ja, visa detta i den stora rutan högst upp i /taxa
   yesterday: I går
@@ -4492,6 +4593,11 @@ sv:
     inte att vara synliga i observationsutsökningar.
   you_are_subscribed_to_comments_on_this_flag: Du prenumererar på kommentarer på den här flaggan.
   you_are_subscribed_to_comments_on_this_post: Du prenumererar på kommentarer på detta inlägg.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Du prenumererar på kommentarer på denna taxonförberedelse.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Du prenumererar på kommentarer på detta taxonbyte
+  you_are_subscribed_to_comments_on_this_taxon_merge: Du prenumererar på kommentarer om denna hopslagning av taxa
+  you_are_subscribed_to_comments_on_this_taxon_split: Du prenumererar på kommentarer på denna uppdelning av taxa
+  you_are_subscribed_to_comments_on_this_taxon_drop: Du prenumererar på kommentarer på detta avlägsnande av ett taxon
   you_are_subscribed_to_observations_from_this_place: Du prenumererar på kommentarer från denna plats.
   you_arent_a_member_of_that_project: Du inte är en medlem i detta projekt.
   you_arent_following_that_person: "Du följer inte den personen."
@@ -4546,6 +4652,7 @@ sv:
   you_sure_delete_asset?: Är du säker på att du vill ta bort denna projekttillgång?
   you_sure_delete_check_list: "Är du säker på att du vill ta bort denna lista? En del personer kan ha lagt ner mycket arbete på den..."
   you_sure_delete_comment?: Är du säker på att du vill ta bort den här kommentaren?
+  you_sure_delete_identification?: Är du säker på att du vill ta bort denna bestämning?
   you_sure_delete_custom_field?: Är du säker på att du vill ta bort dessa anpassade fält?
   you_sure_delete_flag?: Är du säker på att du vill ta bort denna flagga?
   you_sure_delete_project?: Är du säker på att du vill ta bort detta projekt?
@@ -4850,6 +4957,54 @@ sv:
           Du kan kopiera över detta taxon till en annan guide. Om du är
           en av redaktörerna för denna guide bör den kopiera allt, annars
           kommer den bara att kopiera det licensierade innehållet.
+    lifelists:
+      list_view: Listvy
+      tree_view: Trädvy
+      observed_species: Observerade arter
+      unobserved_species: Ej observerade arter
+      all_species: Alla arter
+      all_unobserved_species: Alla ej observerade arter
+      observations_at_this_taxon: Observationer på detta taxon
+      observations_within_this_taxon: Observationer under detta taxon
+      all_observations: Alla observationer
+      total_observations: Totalt antal observationer
+      filter_by: Filtrera på
+      filtered_by: Filtrerat på
+      apply_filters_to_export: Tillämpa filter på export
+      restrict_to_leaf_taxa: Begränsa till lövtaxa
+      restrict_to_taxon: Begränsa till %{taxon}
+      restrict_to_taxa_observed_in_place: Begränsa till taxa som observerats i %{place}
+      exporting_all_x_taxa:
+        one: Exporterar %{count} taxon
+        other: Exporterar alla %{count} taxa
+      exporting_x_taxa:
+        one: Exporterar %{count} taxon
+        other: Exporterar %{count} taxa
+      no_observations_found_in_place: Inga observationer hittade i %{place}.
+      no_observations_found_within_this_taxon_in_place: Inga observationer hittade under detta taxon i %{place}.
+      no_species_found_within_this_taxon_in_place: Inga arter hittade under detta taxon i %{place}.
+      no_species_found_in_place: Inga arter hittade i %{place}.
+      no_unobserved_species_in_place: Ingen art utan observation i %{place}.
+      no_unobserved_species_within_this_taxon: Ingen art utan observation under detta taxon.
+      no_unobserved_species_within_this_taxon_in_place: Ingen art utan observation under detta taxon i %{place}.
+      reset_place_filter: Återställ lokalfilter
+      all_observations_in_this_taxon: Alla observationer på detta taxon
+      observations_of_exactly_this_taxon: Observationer av just detta taxon
+      focus_tree_on_this_taxon: Fokusera trädet på detta taxon
+      expand_all_nodes_in_this_branch: Expandera alla noder på denna gren
+      collapse_this_branch: Fäll ihop denna gren
+      dropdowns:
+        sort: Sortera
+        taxonomic: Taxonomisk
+        name: Namn
+        most_observed: Mest observerade
+        date_added_newest: Datum tilldagd, nyaste till äldsta
+        date_added_oldest: Datum tillagd, äldsta till nyaste
+        ancestry: Ursprung
+        show: Visa
+        children: Underliggande
+        simplified_tree: Förenklat träd
+        full_taxonomy: Fullständig taxonomi
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -6473,6 +6628,9 @@ sv:
           Licensbeskrivningar och bilder &copy; %{year} Creative Commons, används
           under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Erkännande-licens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månatlig bidragsgivare
         monthly_supporter_desc_html: |
           iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
@@ -7032,6 +7190,7 @@ sv:
     models:
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
+      BlockedUser: Blockerad användare
       CompleteSet: Fullständig uppsättning
       #Noun
       Flag: Flagga
@@ -7042,6 +7201,9 @@ sv:
       assessment_section:
         title: Titel
         body: Innehåll
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blockerad användare
       conservation_status:
         status: Status
         description: Beskrivning
@@ -7203,7 +7365,8 @@ sv:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API-nyckel importerar eller köad för import"
+              api_key_in_use: "Import för den Mushroom Observer-användaren körs eller väntar på import"
+              api_key_missing: "Mushroom Observer API-nyckel saknas"
         observation:
           attributes:
             base:
@@ -7263,6 +7426,11 @@ sv:
                 måste ha observerats efter %{time}
               must_be_observed_before: |
                 måste ha observerats innan %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observationen har inget datum att rösta på
+              no_votable_coordinates: Observationen har inga koordinater att rösta på
         taxon:
           attributes:
             rank:
@@ -7291,7 +7459,12 @@ sv:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bör inte innehålla kommatecken eller snedstreck
+              should_match_english_translation: |
+                borde vara på engelska, men matchar för närvarande %{suggested_locale}-översättningen av "%{suggested}".
+                Använd "%{suggested}" om det är vad du menade så kommer det att översättas när du visar webbplatsen på det språket.
+              should_be_in_english: borde vara på engelska
             name:
+              already_exists: finns redan för detta taxon i denna ordbok
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan inte matcha det vetenskapliga namnet på en art i detta lexikon
               must_match_the_taxon_if_valid: |
@@ -7313,6 +7486,20 @@ sv:
             email:
               must_look_like_an_email_address: måste se ut som en e-postadress
               domain_is_not_supported: domänen stöds inte
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du har redan blockerat den användaren
+              user_cannot_be_staff: |
+                Du kan inte blockera personal. iNat-personal måste kunna
+                kommunicera med alla på iNat, ha tillgång till all data på
+                iNat, och är de slutgiltiga medlarna av tvister, så blockering
+                kommer inte att hindra dem från att kommunicera med dig. Om du har ett
+                problem med en anställd kan du rapportera det till en av
+                iNats biträdande chefer, eller, om du har problem med en av de
+                biträdande cheferna, kan du kontakta vetenskapschefen på
+                Institute for Biodiversity and Sustainability Science vid
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -7489,6 +7676,8 @@ sv:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Varning
   wild: Vilda
   will_paginate:
     previous_label: "&#8592; Föreg"

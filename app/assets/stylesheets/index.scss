@@ -671,23 +671,30 @@ ul.leafylist li li:first-child {
   .social-media-link.twitter:before {
     content: "\f099";
     position: relative;
-    // top: -1px;
-    // @media (min-width: 992px) {
-      top: 0px;
-      left: 1px;
-    // }
+    top: 0px;
+    left: 1px;
     @media (min-width: 1200px) {
       top: 0px;
       left: 1px;
     }
   }
   .social-media-link.facebook {
-    background-color: #3b5998;
+    background-color: #1877f2;
+    line-height: $social-media-link-dim - 2px;
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 - 1px;
+    }
+    img {
+      width: $social-media-link-dim - 18px;
+      height: $social-media-link-dim - 18px;
+      @media (min-width: 1200px) {
+        width: $social-media-link-dim-1200 - 18px;
+        height: $social-media-link-dim-1200 - 18px;
+      }
+    }
   }
   .social-media-link.facebook:before {
-    content: "\f09a";
-    position: relative;
-    left: -0.5px;
+    display: none;
   }
   .social-media-link.instagram {
     background: white;
@@ -1281,6 +1288,7 @@ ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
 .providerlink.soundcloud { background-image: image-url('external/soundcloud_favicon.png');}
 .providerlink.orcid { background-image: image-url( 'https://orcid.org/sites/default/files/images/orcid_16x16.png' ); }
+.providerlink.apple { background-image: image-url('external/apple_favicon.png');}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}

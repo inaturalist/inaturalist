@@ -205,13 +205,17 @@
       background-color: $yahoo-purple;
       border-color: $yahoo-purple;
     }
+    &.apple {
+      background-color: black;
+      border-color: black;
+    }
   }
 
   .providerlink.btn-primary {
     width: 100%;
     margin-bottom: 15px;
     border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
     border: 0 transparent;
     font-weight: 600;
     display: flex;

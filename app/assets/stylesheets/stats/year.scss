@@ -177,6 +177,13 @@ $ribbon-midfold-width: 40px;
       background-color: $facebook-blue;
       border-color: $facebook-blue;
       color: white;
+      img {
+        width: 16px;
+        height: 16px;
+        position: relative;
+        top: -1px;
+        margin-right: 5px;
+      }
     }
     .twitter-share-button {
       vertical-align: top;

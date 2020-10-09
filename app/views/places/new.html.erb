@@ -143,6 +143,25 @@
   <h2><%= t(:create_a_new_place) %></h2>
 </div>
 
+<div class="column span-24">
+  <div class="notice box">
+    <h3><%=t :warning_title %></h3>
+    <p class="ui"><%=t :places_warning_new_places_are_slow_html %></p>
+    <ul>
+      <li>
+        <p class="ui"><%=t :places_warning_look_for_existing_html %></p>
+      </li>
+      <li>
+        <p class="ui"><%=t :places_warning_projects_can_have_multiple_places %></p>
+      </li>
+      <li>
+        <p class="ui"><%=t :places_warning_export_complex_boundary_html %></p>
+      </li>
+    </ul>
+    <p class="ui"><%=t :places_warning_the_future %></p>
+  </div>
+</div>
+
 <div class="column span-15">
   <h3>
   	<%= t('views.places.new.map_instruction') %>

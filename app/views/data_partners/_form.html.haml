@@ -1,0 +1,14 @@
+= form_for data_partner, builder: BootstrapFormBuilder do |f|
+  = f.error_messages
+  = f.text_field :name, required: true, description: "If we have links to this partner on obs detail, the name must match the name used there exactly"
+  = f.file_field :logo, description: "Logo for the partner, preferrably something that fits in a 100x100 square"
+  = f.text_area :description, required: true, description: "Description of the partner and their mission"
+  = f.text_field :url, required: true, description: "URL of the partner's home page"
+  = f.text_field :partnership_url, description: "URL on the partner's webiste describing iNat data on their site"
+  = f.select :frequency, DataPartner::FREQUENCIES, {}, description: "How frequently we think the partner ingests our data"
+  = f.text_area :dwca_params, description: "JSON object to parameterize call to DarwinCore::Archive.new"
+  = f.text_field :api_request_url, description: "iNat API URL the partner uses to request data (or something like it)"
+  = f.text_area :requirements, description: "Description of what observations the partner ingests, kind of a narrative version of dwc_params or api_request_url"
+  = f.submit t(:save), class: "btn btn-primary"
+  = link_to t(:cancel), :back, class: "btn btn-default"
+  

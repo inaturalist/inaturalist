@@ -99,7 +99,9 @@ class User < ActiveRecord::Base
   preference :no_tracking, :boolean, default: false
   preference :identify_image_size, :string, default: nil
   preference :identify_side_bar, :boolean, default: false
-  
+  preference :lifelist_nav_view, :string
+  preference :lifelist_details_view, :string
+
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
     identification_email_notification 
@@ -269,6 +271,7 @@ class User < ActiveRecord::Base
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
+  DEFAULT_LOGIN = "naturalist"
 
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
@@ -723,7 +726,7 @@ class User < ActiveRecord::Base
     auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
     autogen_login = User.suggest_login(auth_info_name)
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
-    autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
+    autogen_login = User.suggest_login( DEFAULT_LOGIN ) if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     icon_url = auth_info["info"]["image"]
     # Don't bother if the icon URL looks like the default Google user icon
@@ -759,22 +762,31 @@ class User < ActiveRecord::Base
   # there's already an inat user where login=joe, so it suggest joe2)
   def self.suggest_login(requested_login)
     requested_login = requested_login.to_s
-    requested_login = "naturalist" if requested_login.blank?
-    # strip out everything but letters and numbers so we can pass the login format regex validation
-    requested_login = requested_login.sub(/^\d*/, '').downcase.split('').select do |l|
-      ('a'..'z').member?(l) || ('0'..'9').member?(l)
-    end.join('')
-    requested_login = "naturalist" if requested_login.blank?
+    requested_login = DEFAULT_LOGIN if requested_login.blank?
+    requested_login = I18n.transliterate( requested_login ).sub( /^\d*/, "" ).gsub( /\?+/, "" )
+    requested_login = if requested_login.blank?
+      DEFAULT_LOGIN
+    else
+      requested_login.gsub( /\W/, "_" ).downcase
+    end
     suggested_login = requested_login
 
     if suggested_login.size > MAX_LOGIN_SIZE
       suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
     end
 
-    appendix = 1
-    while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
-      suggested_login = "#{requested_login}#{appendix}"
-      appendix += 1
+    if suggested_login =~ /^#{DEFAULT_LOGIN}\d+?/
+      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login( suggested_login )
+        suggested_login = "#{requested_login}#{rand( User.maximum(:id) * 2 )}"
+      end
+    else
+      # if the name is semi-unique, try to append integers, so kueda would get
+      # kueda2 and not kueda34097348976 off the bat
+      appendix = 1
+      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
+        suggested_login = "#{requested_login}#{appendix}"
+        appendix += 1
+      end
     end
 
     (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil

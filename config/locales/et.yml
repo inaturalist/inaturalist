@@ -1302,8 +1302,6 @@ et:
     tooltips:
       leading: |
         Takson pärineb kogukondlikust taksonist. See määratlus võib juhtida õige vastuseni.
-      improving: |
-        Esimene selle taksoni pakkumine, millega kogukond hiljem ka nõustus. See aitas kogukondliku taksonit parandada.
       maverick: |
         Takson ei ole kogukondliku taksoni järeltulija, st kogukond ei nõustu selle taksoniga.
   id_withdrawn: Määratlus tagasivõetud
@@ -4939,10 +4937,6 @@ et:
           attributes:
             base:
               guide_has_too_many_taxa: "juhendis saab olla kuni 500 taksonit"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "API võti importimisel või importimisjärjekorras"
         observation:
           attributes:
             base:
