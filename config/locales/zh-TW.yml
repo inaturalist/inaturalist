@@ -405,6 +405,16 @@ zh-TW:
   announcements: 公告
   any: 任何
   any_: 任何
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: 任一註解
+  #Label for an option to show content with any annotation value
+  any_annotation_value: 任一
+  #Label for an option to show content from any date
+  any_date: 任一日期
+  #Label for an option to show content with any establishment means
+  any_establishment: 任一
+  #Label for an option to show content with any license
+  any_license: 任一授權
   anyone: 任何人
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
@@ -626,6 +636,7 @@ zh-TW:
   cc_by_sa_name: 姓名標示-相同方式分享
   cc_used_under_a: "創用 CC，用於"
   change_admin: 變更管理員
+  #Button to change the cover (or banner) image for a project
   change_cover: 變更封面
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
@@ -991,6 +1002,7 @@ zh-TW:
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 刪除封面？
   delete_icon?: 刪除圖示？
   delete_photo: 刪除照片
@@ -4071,7 +4083,6 @@ zh-TW:
   website: 網站
   week_of_date: "%{date} 該週"
   welcome: 歡迎
-  welcome_back: 歡迎回來
   welcome_back!: 歡迎回來！
   welcome_to_inat: "歡迎來到 %{site_name}！"
   welcome_to_guides: "歡迎來到 %{site_name} 指南！"
