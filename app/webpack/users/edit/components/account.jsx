@@ -119,7 +119,7 @@ const Account = ( { profile, setUserData } ) => {
                   <img
                     className="logo-height-width"
                     alt={`inat-affiliation-logo-${profile.site_id || 1}`}
-                    src={showINatAffiliationLogo( profile.site_id || 1 )}
+                    src={showINatAffiliationLogo( profile.site_id )}
                   />
                 </span>
               )}
