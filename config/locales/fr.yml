@@ -709,6 +709,7 @@ fr:
   cc_by_sa_name: Attribution-Partage sous même license
   cc_used_under_a: "Creative Commons, utilisé sous une"
   change_admin: Changer d’administrateur
+  #Button to change the cover (or banner) image for a project
   change_cover: Modifier la couverture
   change_descriptions:
     split: Ancien taxon divisé en plusieurs nouveaux taxons
@@ -1086,6 +1087,7 @@ fr:
   delete: Supprimer
   delete_all: Supprimer tout
   delete_conversation: Supprimer la conversation
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: supprimer la couverture ?
   delete_icon?: Supprimer l’icône ?
   delete_photo: Supprimer la photo
@@ -4364,7 +4366,6 @@ fr:
   website: Site web
   week_of_date: "Semaine de %{date}"
   welcome: bienvenue
-  welcome_back: Re-bonjour
   welcome_back!: Re-bonjour!
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue aux guides d’%{site_name}!"
@@ -6470,7 +6471,7 @@ fr:
           automatiquement mis à jour avec les nouveaux taxons si la
           modification est sans ambiguïté. Si vous décidez de ne pas choisir
           cette option ou si le changement est ambigu (par ex. une séparation),
-          vous recevrez une mise à jour sur le changement lié à un outil que
+          vous recevrez une mise à jour sur le changement et un lien vers un outil que
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
         thanks_for_supporting_us!: Merci de nous soutenir !
