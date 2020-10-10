@@ -203,7 +203,7 @@ describe ObservationsExportFlowTask do
       let(:place) { make_place_with_geom }
       let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
       let(:project) {
-        p = Project.make!( project_type: "collection", user: user )
+        p = Project.make!( project_type: "collection", user: user, prefers_user_trust: true )
         p.project_observation_rules.create( operator: "observed_in_place?", operand: place )
         p
       }
