@@ -1,8 +1,9 @@
 import React from "react";
 
 import Menu from "./menu";
-import ProfileContainer from "../containers/profile_container";
 import AccountContainer from "../containers/account_container";
+import ContentContainer from "../containers/content_container";
+import ProfileContainer from "../containers/profile_container";
 import SaveButtonContainer from "../containers/save_button_container";
 
 const App = ( ) => (
@@ -22,6 +23,7 @@ const App = ( ) => (
       <div className="col-xs-1">
         <div className="vl" />
       </div>
+      <ContentContainer />
       <AccountContainer />
       <ProfileContainer />
     </div>

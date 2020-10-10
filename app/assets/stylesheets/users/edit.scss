@@ -13,6 +13,13 @@
   align-items: center;
 }
 
+.left-aligned-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 9px;
+}
+
 .save-button {
   display: flex;
   flex-direction: row;
@@ -132,4 +139,8 @@ h5 {
 .logo-height-width {
   max-height: 19px;
   max-width: 104px;
+}
+
+.radio-button {
+  margin-right: 9px;
 }
