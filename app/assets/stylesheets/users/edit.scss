@@ -137,10 +137,41 @@ h5 {
 }
 
 .logo-height-width {
-  max-height: 19px;
-  max-width: 104px;
+  max-height: 33px;
+  max-width: 135px;
 }
 
 .radio-button {
   margin-right: 9px;
+}
+
+.no-divider-margin {
+  height: 1px;
+  margin-top: 3px;
+  width: 275px;
+  background-color: #e5e5e5;
+  position: absolute;
+  left: 0
+}
+
+.inat-affiliation-width-height {
+  width: 275px;
+  height: 36px;
+}
+
+.inat-affiliation-width {
+  width: 275px;
+}
+
+.place-name {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #777777;
+  margin-left: 12px;
+}
+
+.align-right {
+  position: absolute;
+  right: 6px
 }

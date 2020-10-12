@@ -4,6 +4,22 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 /* global TIMEZONES */
 
+const iNatAffiliationDict = [
+  { number: 1, location: I18n.t( "global" ) },
+  { number: 2, location: I18n.t( "places_name.mexico" ) },
+  { number: 3, location: I18n.t( "places_name.new_zealand" ) },
+  { number: 5, location: I18n.t( "places_name.canada" ) },
+  { number: 6, location: I18n.t( "places_name.colombia" ) },
+  { number: 8, location: I18n.t( "places_name.portugal" ) },
+  { number: 9, location: I18n.t( "places_name.australia" ) },
+  { number: 13, location: I18n.t( "places_name.panama" ) },
+  { number: 14, location: I18n.t( "places_name.ecuador" ) },
+  { number: 15, location: I18n.t( "places_name.italy" ) },
+  { number: 16, location: I18n.t( "places_name.argentina" ) },
+  { number: 18, location: I18n.t( "places_name.chile" ) },
+  { number: 20, location: I18n.t( "places_name.finland" ) }
+];
+
 const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
     const updatedProfile = profile;
@@ -47,13 +63,22 @@ const Account = ( { profile, setUserData } ) => {
   };
 
   const createINatAffiliationList = ( ) => (
-    [1, 2, 3, 5, 6, 8, 9, 13, 14, 15, 16, 18, 20].map( number => (
-      <MenuItem eventKey={number} key={`inat-affiliation-logo-${number}`}>
-        <img
-          className="logo-height-width"
-          alt={`inat-affiliation-logo-${number}`}
-          src={showINatAffiliationLogo( number )}
-        />
+    iNatAffiliationDict.map( ( { number, location } ) => (
+      <MenuItem
+        key={`inat-affiliation-logo-${number}`}
+        eventKey={number}
+        className="inat-affiliation-width"
+      >
+        <span className="row-align-center">
+          <img
+            className="logo-height-width"
+            alt={`inat-affiliation-logo-${number}`}
+            src={showINatAffiliationLogo( number )}
+          />
+          <div className="place-name">{location.toLocaleUpperCase( )}</div>
+          {profile.site_id === number && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+        </span>
+        {number !== 20 && <div className="no-divider-margin" />}
       </MenuItem>
     ) )
   );
@@ -110,9 +135,9 @@ const Account = ( { profile, setUserData } ) => {
           <div className="profile-setting">
             <h5>{I18n.t( "inaturalist_network_affiliation" )}</h5>
             <DropdownButton
-              bsStyle="default"
               id="inaturalist-affiliation-network-dropdown"
               onSelect={handleSelect}
+              className="inat-affiliation-width-height"
               title={(
                 <span>
                   <img

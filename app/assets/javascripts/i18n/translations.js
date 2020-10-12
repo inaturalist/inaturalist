@@ -16255,6 +16255,7 @@ I18n.translations["en"] = {
   "get_started": "Get Started",
   "give_monthly_caps": "GIVE MONTHLY",
   "give_now_caps": "GIVE NOW",
+  "global": "Global",
   "globally": "Globally",
   "go": "Go",
   "go_back": "Go back",
@@ -17437,6 +17438,7 @@ I18n.translations["en"] = {
   "there_were_some_problems_with_these_files": "There were some problems with these files:",
   "these_observations_have_not_been_uploaded_yet": "These observations have not been uploaded yet.\n",
   "this_bioblitz_beings_in": "This bioblitz begins in",
+  "this_is_how_taxon_names_will_be_displayed": "This is how all taxon names will be displayed to you across %{site_name}",
   "this_is_your_observation": "This is your observation",
   "this_is_your_observation_desc": "You can always see the coordinates of your own observations.",
   "this_job_failed_to_run": "This job failed to run. Please contact %{email}",
@@ -18110,6 +18112,8 @@ I18n.translations["en-UK"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -18292,6 +18296,8 @@ I18n.translations["en-US"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -24215,6 +24221,8 @@ I18n.translations["es-ES"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -31363,6 +31371,8 @@ I18n.translations["fil"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -33933,6 +33943,8 @@ I18n.translations["fr-CA"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "some_observations_are_missing_media_or_identifications": "Certaines observations n'ont pas de photo/son ou d'identification\n",
   "some_observations_are_missing_media_or_identifications_desc": "Les observations sans média ne seront pas visibles par défaut dans les recherches, et celles sans identifications pourraient ne pas être vues par des experts qui recherchent des taxons spécifiques. Même une identification très approximative comme \"Plantes\" peut aider les experts à trouver votre observation.\n",
   "sounds": {
@@ -34231,6 +34243,8 @@ I18n.translations["gd"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -38797,6 +38811,8 @@ I18n.translations["hi"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -38983,6 +38999,8 @@ I18n.translations["hu"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -39143,6 +39161,8 @@ I18n.translations["hy"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -42648,6 +42668,8 @@ I18n.translations["iw"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -44674,6 +44696,8 @@ I18n.translations["ka"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -49451,6 +49475,8 @@ I18n.translations["lv"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -50445,6 +50471,8 @@ I18n.translations["mr"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -50627,6 +50655,8 @@ I18n.translations["ms"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -55446,6 +55476,8 @@ I18n.translations["nn"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -60700,6 +60732,8 @@ I18n.translations["pt-BR"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -60886,6 +60920,8 @@ I18n.translations["ro"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -63483,6 +63519,8 @@ I18n.translations["si"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -65165,6 +65203,8 @@ I18n.translations["sl"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -71234,6 +71274,8 @@ I18n.translations["uk"] = {
     "geo_planet_place_types": {
     }
   },
+  "places_name": {
+  },
   "sounds": {
   },
   "taxon_map": {
@@ -71419,6 +71461,8 @@ I18n.translations["vi"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
@@ -73717,6 +73761,8 @@ I18n.translations["zh-HK"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
+  },
+  "places_name": {
   },
   "sounds": {
   },
