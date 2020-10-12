@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { DropdownButton, MenuItem } from "react-bootstrap";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
 class SpeciesNoAPI extends Component {
@@ -85,6 +86,8 @@ class SpeciesNoAPI extends Component {
       sortMethod = t => t.name;
     } else if ( lifelist.speciesViewSort === "taxonomic" ) {
       sortMethod = t => t.left;
+    } else if ( lifelist.speciesViewSort === "obsAsc" ) {
+      sortMethod = [t => obsCount( t ), "left"];
     } else {
       sortMethod = [t => -1 * obsCount( t ), "left"];
     }
@@ -113,7 +116,12 @@ class SpeciesNoAPI extends Component {
       );
     }
     return (
-      <div className="SpeciesGrid" key={`grid-${lifelist.speciesViewRankFilter}-${lifelist.speciesPlaceFilter && lifelist.speciesPlaceFilter.id}-${detailsTaxon && detailsTaxon.id}`}>
+      <div
+        className="SpeciesGrid"
+        key={`grid-${lifelist.speciesViewRankFilter}-${
+          lifelist.speciesPlaceFilter && lifelist.speciesPlaceFilter.id}-${
+          detailsTaxon && detailsTaxon.id}`}
+      >
         { emptyMessage && (
           <div className="empty">
             { emptyMessage }
@@ -140,7 +148,8 @@ class SpeciesNoAPI extends Component {
                   <div>
                     <a
                       onClick={onClick}
-                      href={`/observations?user_id=${lifelist.user.login}&taxon_id=${s.id}&place_id=any&verifiable=any`}
+                      href={`/observations?user_id=${lifelist.user.login}&taxon_id=${
+                        s.id}&place_id=any&verifiable=any`}
                     >
                       { I18n.t( "x_observations", { count: obsCount( s ) } ) }
                     </a>
@@ -179,98 +188,87 @@ class SpeciesNoAPI extends Component {
       rankLabel = I18n.t( "ranks.leaves" );
     }
     rankLabel = `${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel}`;
+
     const rankOptions = (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="rankDropdown"
+      <DropdownButton
+        title={rankLabel}
+        id="rankDropdown"
+        onSelect={key => setRankFilter( key )}
+      >
+        <MenuItem
+          eventKey="children"
+          className={lifelist.speciesViewRankFilter === "children" ? "selected" : null}
         >
-          { rankLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="rankDropdown">
-          <li
-            className={lifelist.speciesViewRankFilter === "children" ? "selected" : null}
-            onClick={( ) => setRankFilter( "children" )}
-            disabled={detailsTaxon && detailsTaxon.right === detailsTaxon.left + 1}
-          >
-            Children
-          </li>
-          { [{ filter: "kingdoms", rank_level: 70 },
-            { filter: "phyla", rank_level: 60 },
-            { filter: "classes", rank_level: 50 },
-            { filter: "orders", rank_level: 40 },
-            { filter: "families", rank_level: 30 },
-            { filter: "genera", rank_level: 20 },
-            { filter: "species", rank_level: 10 }].map( r => (
-              <li
-                key={`rank-filter-${r.filter}`}
-                disabled={detailsTaxon && ( detailsTaxon.rank_level <= 20 || detailsTaxon.rank_level <= r.rank_level )}
-                className={lifelist.speciesViewRankFilter === r.filter ? "selected" : null}
-                onClick={e => {
-                  if ( detailsTaxon && detailsTaxon.rank_level <= r.rank_level ) {
-                    e.preventDefault( );
-                    e.stopPropagation( );
-                    return;
-                  }
-                  setRankFilter( r.filter );
-                }}
-              >
-                { I18n.t( `ranks.x_${r.filter}`, { count: 2 } ) }
-              </li>
-          ) )}
-          <li
-            className={lifelist.speciesViewRankFilter === "leaves" ? "selected" : null}
-            onClick={( ) => setRankFilter( "leaves" )}
-          >
-            { I18n.t( "ranks.leaves" ) }
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "views.lifelists.dropdowns.children" ) }
+        </MenuItem>
+        { [{ filter: "kingdoms", rank_level: 70 },
+          { filter: "phyla", rank_level: 60 },
+          { filter: "classes", rank_level: 50 },
+          { filter: "orders", rank_level: 40 },
+          { filter: "families", rank_level: 30 },
+          { filter: "genera", rank_level: 20 },
+          { filter: "species", rank_level: 10 }].map( r => (
+            <MenuItem
+              key={`rankFilter-${r.filter}`}
+              eventKey={r.filter}
+              disabled={detailsTaxon
+                && ( detailsTaxon.rank_level <= 20 || detailsTaxon.rank_level <= r.rank_level )}
+              className={lifelist.speciesViewRankFilter === r.filter ? "selected" : null}
+            >
+              { I18n.t( `ranks.x_${r.filter}`, { count: 2 } ) }
+            </MenuItem>
+        ) )}
+        <MenuItem
+          eventKey="leaves"
+          className={lifelist.speciesViewRankFilter === "leaves" ? "selected" : null}
+        >
+          { I18n.t( "ranks.leaves" ) }
+        </MenuItem>
+      </DropdownButton>
     );
     let sortLabel = I18n.t( "views.lifelists.dropdowns.most_observed" );
     if ( lifelist.speciesViewSort === "name" ) {
       sortLabel = I18n.t( "views.lifelists.dropdowns.name" );
     } else if ( lifelist.speciesViewSort === "taxonomic" ) {
       sortLabel = I18n.t( "views.lifelists.dropdowns.taxonomic" );
+    } else if ( lifelist.speciesViewSort === "obsAsc" ) {
+      sortLabel = I18n.t( "views.lifelists.dropdowns.least_observed" );
     }
     sortLabel = `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${sortLabel}`;
     const sortOptions = (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="sortDropdown"
+      <DropdownButton
+        title={sortLabel}
+        id="speciesSortDropdown"
+        onSelect={key => setSort( key )}
+      >
+        <MenuItem
+          eventKey="obsDesc"
+          className={lifelist.speciesViewSort === "obsDesc" ? "selected" : null}
         >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
-          <li
-            className={lifelist.speciesViewSort === "obsDesc" ? "selected" : null}
-            onClick={( ) => setSort( "obsDesc" )}
-          >
-            { I18n.t( "views.lifelists.dropdowns.most_observed" ) }
-          </li>
-          <li
-            className={lifelist.speciesViewSort === "name" ? "selected" : null}
-            onClick={( ) => setSort( "name" )}
-          >
-            { I18n.t( "views.lifelists.dropdowns.name" ) }
-          </li>
-          <li
-            className={lifelist.speciesViewSort === "taxonomic" ? "selected" : null}
-            onClick={( ) => setSort( "taxonomic" )}
-          >
-            { I18n.t( "views.lifelists.dropdowns.taxonomic" ) }
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "views.lifelists.dropdowns.most_observed" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="obsAsc"
+          className={lifelist.speciesViewSort === "obsAsc" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.least_observed" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="name"
+          className={lifelist.speciesViewSort === "name" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.name" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="taxonomic"
+          className={lifelist.speciesViewSort === "taxonomic" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.taxonomic" ) }
+        </MenuItem>
+      </DropdownButton>
     );
-    const loading = ( lifelist.speciesPlaceFilter && ( !search || ( !search.searchResponse && !search.loaded ) ) );
+    const loading = ( lifelist.speciesPlaceFilter
+      && ( !search || ( !search.searchResponse && !search.loaded ) ) );
     let view;
     if ( loading ) {
       view = ( <div className="loading_spinner huge" /> );

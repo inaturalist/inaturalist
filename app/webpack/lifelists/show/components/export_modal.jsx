@@ -219,7 +219,9 @@ class ExportModal extends Component {
         <Modal.Body>
           { _.isEmpty( filterOptions ) ? null : (
             <div className="export-filters">
-              { I18n.t( "views.lifelists.apply_filters_to_export" ) }:
+              <span className="intro">
+                { I18n.t( "views.lifelists.apply_filters_to_export" ) }
+              </span>
               <ul>{ filterOptions }</ul>
             </div>
           ) }

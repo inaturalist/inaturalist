@@ -64,10 +64,13 @@ class App extends React.Component {
                     className={`iconic-taxon-icon ${selected ? "selected" : ""}`}
                     key={`iconic-taxon-${_.toLower( t.name )}`}
                     disabled={!lifelist.taxa[t.id]}
-                    onClick={( ) => selected
-                      ? setDetailsTaxon( null, { updateSearch: true } )
-                      : zoomToTaxon( t.id )
-                    }
+                    onClick={( ) => {
+                      if ( selected ) {
+                        setDetailsTaxon( null, { updateSearch: true } );
+                      } else {
+                        zoomToTaxon( t.id );
+                      }
+                    }}
                   >
                     <i
                       className={`icon-iconic-${_.toLower( t.name )}`}
@@ -90,7 +93,7 @@ class App extends React.Component {
               afterSelect={e => {
                 zoomToTaxon( e.item.id );
               }}
-              afterUnselect={e => {
+              afterUnselect={( ) => {
                 setSearchTaxon( null );
               }}
               observedByUserID={lifelist.user.id}

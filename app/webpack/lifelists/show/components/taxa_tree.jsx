@@ -21,6 +21,9 @@ class TaxaTree extends React.Component {
     if ( lifelist.treeSort === "taxonomic" ) {
       return t => t.left;
     }
+    if ( lifelist.treeSort === "obsAsc" ) {
+      return t => t.descendant_obs_count;
+    }
     return t => -1 * t.descendant_obs_count;
   }
 

@@ -28,6 +28,17 @@ const RANK_FILTER_RANK_LEVELS = {
   species: 10
 };
 
+const NAV_VIEWS = [
+  "list",
+  "tree"
+];
+
+const DETAILS_VIEWS = [
+  "species",
+  "observations",
+  "unobservedSpecies"
+];
+
 const DEFAULT_STATE = {
   loading: true,
   user: null,
@@ -156,6 +167,9 @@ export function fetchAllCommonNames( callback ) {
 
 export function setNavView( view ) {
   return dispatch => {
+    if ( !_.includes( NAV_VIEWS, view ) ) {
+      return;
+    }
     updateSession( { preferred_lifelist_nav_view: view } );
     dispatch( setAttributes( { navView: view } ) );
     dispatch( updateBrowserStateHistory( ) );
@@ -164,6 +178,9 @@ export function setNavView( view ) {
 
 export function setDetailsView( view ) {
   return dispatch => {
+    if ( !_.includes( DETAILS_VIEWS, view ) ) {
+      return;
+    }
     updateSession( { preferred_lifelist_details_view: view } );
     dispatch( setAttributes( { detailsView: view } ) );
     dispatch( updateBrowserStateHistory( ) );

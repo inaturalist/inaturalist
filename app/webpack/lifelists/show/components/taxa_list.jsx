@@ -116,7 +116,8 @@ class TaxaList extends React.Component {
         taxaToList = _.filter( taxaToList,
           t => (
             ( t.left >= searchTaxon.left && t.right <= searchTaxon.right )
-            || ( t.id === searchTaxon.milestoneParentID && !lifelist.milestoneChildren[searchTaxon.id] )
+            || ( t.id === searchTaxon.milestoneParentID
+              && !lifelist.milestoneChildren[searchTaxon.id] )
           ) );
       }
     }
@@ -125,6 +126,10 @@ class TaxaList extends React.Component {
       sortMethod = t => t.preferred_common_name || t.name;
     } else if ( lifelist.treeSort === "taxonomic" ) {
       sortMethod = taxon ? "left" : "right";
+    } else if ( lifelist.treeSort === "obsAsc" ) {
+      sortMethod = taxon
+        ? ( t => t.descendant_obs_count )
+        : ["rank_level", t => t.descendant_obs_count];
     } else {
       sortMethod = taxon
         ? ( t => -1 * t.descendant_obs_count )
