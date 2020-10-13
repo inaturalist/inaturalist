@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
-const SaveButton = ( { saveUserSettings } ) => {
+const SaveButton = ( { saveUserSettings, profile } ) => {
   const handleClick = ( ) => saveUserSettings( );
 
   return (
     <div className="save-button">
       <div className="time">
         {I18n.t( "saved_at" )}
-        {" time"}
+        {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
       </div>
       <button
         className="btn btn-xs btn-primary blue-button-caps"
@@ -22,6 +23,7 @@ const SaveButton = ( { saveUserSettings } ) => {
 };
 
 SaveButton.propTypes = {
+  profile: PropTypes.object,
   saveUserSettings: PropTypes.func
 };
 

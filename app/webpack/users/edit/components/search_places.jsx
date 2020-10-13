@@ -29,7 +29,7 @@ class SearchPlaces extends Component {
     console.log( item, "fill from place autocomplete" );
     const { profile, setUserData } = this.props;
     const updatedProfile = profile;
-    updatedProfile.user_search_place_id = item.name;
+    updatedProfile.search_place_id = item.name;
     setUserData( updatedProfile );
     // this.setState( { showDropdown: false } );
   }
@@ -37,7 +37,7 @@ class SearchPlaces extends Component {
   // fillInputWithSelection( e ) {
   // const { profile, setUserData } = this.props;
   // const updatedProfile = profile;
-  // updatedProfile.user_search_place_id = e.target.name;
+  // updatedProfile.search_place_id = e.target.name;
   // setUserData( updatedProfile );
   // this.setState( { showDropdown: false } );
   // }
@@ -72,6 +72,7 @@ class SearchPlaces extends Component {
           initialPlaceID={null}
           bootstrapClear
           afterSelect={this.fillInputWithSelection}
+          placeholder={profile.search_place_id}
           // afterSelect={result => {
           //   updateSearchParams( { place_id: result.item.id } );
           // }}
@@ -85,8 +86,8 @@ class SearchPlaces extends Component {
           <input
             type="search"
             className="form-control"
-            value={profile.user_search_place_id}
-            name="user_search_place_id"
+            value={profile.search_place_id}
+            name="search_place_id"
             onSelect={this.showPlaceList}
           />
           {showDropdown && (
