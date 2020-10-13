@@ -84,6 +84,18 @@ class Notification < ActiveRecord::Base
     resource_type == "Post"
   end
 
+  def resource_is_flag?
+    resource_type == "Flag"
+  end
+
+  def resource_is_taxon_change?
+    resource_type == "TaxonChange"
+  end
+
+  def resource_is_listed_taxon?
+    resource_type == "ListedTaxon"
+  end
+
   def notifier_is_comment?
     primary_notifier.notifier.resource_type == "Comment" || (
       primary_notifier.notifier.resource_type == "Identification" && primary_notifier.reason == "body"
@@ -92,6 +104,10 @@ class Notification < ActiveRecord::Base
 
   def notifier_is_vote?
     primary_notifier.notifier.resource_type == "ActsAsVotable::Vote"
+  end
+
+  def notifier_is_observation_field_value?
+    primary_notifier.notifier.resource_type == "ObservationFieldValue"
   end
 
   def highest_priority_notifier
@@ -172,6 +188,8 @@ class Notification < ActiveRecord::Base
       statement += " commented on"
     elsif resource_is_observation? && notifier_is_vote?
       statement += " faved"
+    elsif resource_is_observation? && notifier_is_observation_field_value?
+      statement += " added an observation field value to"
     end
     if resource_is_observation?
       taxon_statement = if resource.taxon
@@ -192,8 +210,54 @@ class Notification < ActiveRecord::Base
         else
           statement += " a journal post"
         end
-      elsif notifier_is_comment? && is_resource_owner?
-        statement += " your post"
+      elsif notifier_is_comment?
+        if is_resource_owner?
+          statement += " your post"
+        else
+          statement += " a journal post"
+        end
+      end
+    elsif resource_is_flag?
+      if primary_notifier.reason == "mention"
+        if notifier_is_comment?
+          statement += " a comment on a flag"
+        else
+          statement += " a flag"
+        end
+      elsif notifier_is_comment?
+        if is_resource_owner?
+          statement += " your flag"
+        else
+          statement += " a flag"
+        end
+      end
+    elsif resource_is_taxon_change?
+      if primary_notifier.reason == "mention"
+        if notifier_is_comment?
+          statement += " a comment on a taxon change"
+        else
+          statement += " a taxon change"
+        end
+      elsif notifier_is_comment?
+        if is_resource_owner?
+          statement += " your taxon change"
+        else
+          statement += " a taxon change"
+        end
+      end
+    elsif resource_is_listed_taxon?
+      if primary_notifier.reason == "mention"
+        if notifier_is_comment?
+          statement += " a comment on a listed taxon"
+        else
+          statement += " a listed taxon"
+        end
+      elsif notifier_is_comment?
+        if is_resource_owner?
+          statement += " your listed taxon"
+        else
+          statement += " a listed taxon"
+        end
       end
     end
     url_resource = primary_notifier.notifier.resource

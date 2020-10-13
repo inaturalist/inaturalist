@@ -30,6 +30,16 @@ class App extends React.Component {
     let icon;
     if ( notification.resource.icon ) {
       icon = ( <img src={notification.resource.icon} /> );
+    } else if ( notification.resource.type === "Observation" ) {
+      icon = ( <span className="stub"><span className="fa fa-binoculars" /></span> );
+    } else if ( notification.resource.type === "Post" ) {
+      icon = ( <span className="stub"><span className="glyphicon glyphicon-book" /></span> );
+    } else if ( notification.resource.type === "Flag" ) {
+      icon = ( <span className="stub"><span className="fa fa-flag" /></span> );
+    } else if ( notification.resource.type === "TaxonChange" ) {
+      icon = ( <span className="stub"><span className="glyphicon glyphicon-refresh" /></span> );
+    } else if ( notification.resource.type === "ListedTaxon" ) {
+      icon = ( <span className="stub"><span className="fa fa-list" /></span> );
     } else {
       icon = notification.resource.type[0];
     }

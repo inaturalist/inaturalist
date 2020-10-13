@@ -6,20 +6,23 @@ class NotificationsController < ApplicationController
 
   def by_login
     category = params[:category] || :conversations
-    notifications = Notification.where( user: @selected_user ).
+    @notifications = Notification.where( user: @selected_user ).
       where( category: category ).
-      order( notifier_date: :desc )
+      order( notifier_date: :desc ).
+      paginate( page: params[:page] )
     @json = {
-      notifications: notifications.as_json,
+      notifications: @notifications.as_json,
       category_counts: Notification.
         joins( :notifications_notifiers ).
         where( "notifications_notifiers.read_at IS NULL" ).
         where( user: @selected_user ).
         group( :category ).uniq.count
     }
-    Notification.mark_as_viewed( notifications )
+    Notification.mark_as_viewed( @notifications )
     respond_to do |format|
-      format.html
+      format.html do
+        render layout: "bootstrap"
+      end
       format.json do
         render json: @json
       end

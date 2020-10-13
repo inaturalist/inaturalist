@@ -11,3 +11,6 @@
 #app
   #initial-loading.text-center
     .loading_spinner
+
+- if @notifications.respond_to?(:total_pages)
+  = will_paginate @notifications

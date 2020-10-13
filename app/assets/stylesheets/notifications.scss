@@ -3,39 +3,32 @@
 
 #bodywrapper {
   // background: #ddd;
-  min-height: auto;
-  height: 100%;
+  min-height: 100%;
   margin-bottom: -15px;
 }
 
 #bodywrapper:after {
-  height: 0;
-}
-
-#wrapper.bootstrap {
-  position: inherit;
+  height: 65px;
 }
 
 #initial-loading {
   width: 100%;
 }
 
-#app {
-  position: absolute;
-  top: 56px;
-  left: 0;
-  right: 0;
-  bottom: 15px;
-  display: flex;
-}
-
 .comment {
   overflow: inherit;
 }
 
+.bootstrap .pagination {
+  margin: 0px auto;
+  display: block;
+  padding-top: 20px;
+}
+
 .notification {
-  height: 60px;
+  height: 70px;
   border: 1px solid #ccc;
+  padding: 5px;
   &:not(:last-child) {
     border-bottom: 0;
   }
@@ -52,10 +45,24 @@
       width: 60px;
       height: 60px;
       float: left;
+      border-radius: 30px;
+    }
+    .stub {
+      background: $inat-green;
+      border-radius: 30px;
+      height: 60px;
+      width: 60px;
+      display: block;
+      color: white;
+      font-size: 27px;
+      & > span {
+        line-height: 60px;
+      }
     }
   }
   .body {
     display: inline-block;
+    min-width: 500px;
     .summary {
       .types {
         float: left;

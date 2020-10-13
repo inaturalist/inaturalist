@@ -27,6 +27,7 @@ class TaxonChange < ActiveRecord::Base
     on: :save,
     delay: false,
     notification: "mention",
+    new_notifications: true,
     if: lambda {|u| u.prefers_receive_mentions? }
 
   TAXON_JOINS = [

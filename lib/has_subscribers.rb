@@ -345,9 +345,13 @@ module HasSubscribers
         notifier: self,
         notification: options[:notification]
       }
+      action_date = self.try( :created_at ) || Time.now
+      if options[:notification] === "mention"
+        action_date = Time.now
+      end
       new_notifier_attrs = {
         resource: self,
-        action_date: self.try( :created_at ) || Time.now
+        action_date: action_date
       }
       users = send(method)
       except_users = send( options[:except].to_sym ) unless options[:except].blank?
