@@ -118,7 +118,10 @@ const Account = ( { profile, setUserData } ) => {
               </div>
               <div className="col-xs-9">
                 <label>{I18n.t( "views.users.edit.prefers_no_tracking_label" )}</label>
-                <div className="blue-text italic-text">{I18n.t( "learn_about_third_party_tracking" )}</div>
+                <div className="blue-text italic-text">
+                  <i className="fa fa-info-circle" />
+                  {` ${I18n.t( "learn_about_third_party_tracking" )}`}
+                </div>
               </div>
             </div>
           </div>
