@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import inatjs from "inaturalistjs";
 
+import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
+
 class SearchPlaces extends Component {
   constructor( ) {
     super( );
@@ -23,13 +25,22 @@ class SearchPlaces extends Component {
     } ).catch( err => console.log( "couldn't autocomplete places", err ) );
   }
 
-  fillInputWithSelection( e ) {
+  fillInputWithSelection( { item } ) {
+    console.log( item, "fill from place autocomplete" );
     const { profile, setUserData } = this.props;
     const updatedProfile = profile;
-    updatedProfile.user_search_place_id = e.target.name;
+    updatedProfile.user_search_place_id = item.name;
     setUserData( updatedProfile );
-    this.setState( { showDropdown: false } );
+    // this.setState( { showDropdown: false } );
   }
+
+  // fillInputWithSelection( e ) {
+  // const { profile, setUserData } = this.props;
+  // const updatedProfile = profile;
+  // updatedProfile.user_search_place_id = e.target.name;
+  // setUserData( updatedProfile );
+  // this.setState( { showDropdown: false } );
+  // }
 
   createSearchPlaceList( ) {
     const { placesList } = this.state;
@@ -56,7 +67,21 @@ class SearchPlaces extends Component {
       <div className="profile-setting">
         <h5>{I18n.t( "default_search_place" )}</h5>
         <div className="account-subheader-text">{I18n.t( "default_search_place_description" )}</div>
-        <div className="input-group">
+        <PlaceAutocomplete
+          resetOnChange={false}
+          initialPlaceID={null}
+          bootstrapClear
+          afterSelect={this.fillInputWithSelection}
+          // afterSelect={result => {
+          //   updateSearchParams( { place_id: result.item.id } );
+          // }}
+          // afterUnselect={idWas => {
+          //   if ( idWas ) {
+          //     updateSearchParams( { place_id: null } );
+          //   }
+          // }}
+        />
+        {/* <div className="input-group">
           <input
             type="search"
             className="form-control"
@@ -69,7 +94,7 @@ class SearchPlaces extends Component {
               {this.createSearchPlaceList( )}
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     );
   }
