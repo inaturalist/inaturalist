@@ -111,7 +111,7 @@ const Account = ( { profile, setUserData } ) => {
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  defaultChecked={profile.prefers_no_tracking}
+                  checked={profile.prefers_no_tracking}
                   name="prefers_no_tracking"
                   onChange={handleCheckboxChange}
                 />
