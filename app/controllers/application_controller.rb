@@ -802,6 +802,23 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def announcements_for_placements( *placements )
+    lat, lon = if params[:test] =~ /location|.+|.+/
+      test_name, lat, lon = params[:test].split( "|" )
+      [lat,lon]
+    else
+      [current_user&.latitude, current_user&.longitude]
+    end
+    country = if lat && lon
+      Place.
+        containing_lat_lng( lat, lon ).
+        where( admin_level: Place::COUNTRY_LEVEL ).first
+    end
+    placements.map {|placement|
+      Announcement.active_in_placement( placement, @site, place_id: country&.id )
+    }.flatten.compact.uniq
+  end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins

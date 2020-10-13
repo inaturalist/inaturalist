@@ -11,14 +11,15 @@ class Announcement < ActiveRecord::Base
     where( "? = ANY (locales)", locale )
   }
 
-  before_save :compact_locales
+  before_save :compact_arrays
 
   def session_key
     "user-seen-ann-#{id}"
   end
 
-  def compact_locales
+  def compact_arrays
     self.locales = ( locales || [] ).reject(&:blank?).compact
+    self.place_ids = ( place_ids || [] ).reject(&:blank?).compact
   end
 
   def dismissed_by?( user )
@@ -28,7 +29,7 @@ class Announcement < ActiveRecord::Base
     dismiss_user_ids.include?( user_id )
   end
 
-  def self.active_in_placement( placement, site )
+  def self.active_in_placement( placement, site, options = {} )
     scope = Announcement.
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
       joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
@@ -46,6 +47,14 @@ class Announcement < ActiveRecord::Base
       @announcements = @announcements.flatten
     end
     @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
+    if options[:place_id]
+      @announcements = @announcements.reject{|a|
+        Rails.logger.debug "[DEBUG] a.place_ids: #{a.place_ids}"
+        !a.place_ids.blank? && !a.place_ids.include?( options[:place_id] )
+      }
+    else
+      @announcements = @announcements.reject{|a| !a.place_ids.blank?}
+    end
     @announcements = @announcements.sort_by {|a| [
       a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
       a.locales.include?( I18n.locale ) ? 0 : 1,

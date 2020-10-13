@@ -2,7 +2,7 @@ class AnnouncementsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :site_admin_required, except: [:dismiss]
   before_filter :load_announcement, :only => [:show, :edit, :update, :destroy, :dismiss]
-  before_filter :load_sites, only: [:new, :edit, :create]
+  before_filter :load_form_data, only: [:new, :edit, :create, :update]
 
   layout "bootstrap"
   
@@ -84,8 +84,9 @@ class AnnouncementsController < ApplicationController
     render_404 unless @announcement = Announcement.find_by_id(params[:id])
   end
 
-  def load_sites
-    @sites = Site.limit(100)
+  def load_form_data
+    @sites = Site.limit( 100 )
+    @countries = Place.where( admin_level: Place::COUNTRY_LEVEL ).limit( 500 )
   end
   
 end

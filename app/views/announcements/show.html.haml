@@ -5,7 +5,7 @@
         Announcement
         = @announcement.id
       %table.table.table-bordered
-        - %w(created_at updated_at placement start end site_ids locales).each do |a|
+        - %w(created_at updated_at placement start end site_ids locales place_ids).each do |a|
           %tr
             %th=t "#{a}_", default: t( a )
             %td= @announcement.send( a )

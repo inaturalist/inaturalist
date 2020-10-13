@@ -5,7 +5,7 @@
       width: 100%;
       min-height: 300px;
     }
-= form_for @announcement, :builder => DefaultFormBuilder do |f|
+= form_for @announcement, builder: BootstrapFormBuilder do |f|
   = f.error_messages
   = f.select :placement, Announcement::PLACEMENTS
   :ruby
@@ -21,6 +21,7 @@
     = f.hidden_field :site_ids
   = f.check_box :dismissible, label_after: true
   = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
+  = f.select :place_ids, @countries.sort_by(&:name).map{|c| [c.name, c.id]}, { }, { multiple: true, label: t(:countries), description: t( "views.announcements.place_ids_desc" ) }
   = f.text_area :body
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"

@@ -327,7 +327,8 @@ CREATE TABLE public.announcements (
     updated_at timestamp without time zone,
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
-    dismissible boolean DEFAULT false
+    dismissible boolean DEFAULT false,
+    place_ids integer[] DEFAULT '{}'::integer[]
 );
 
 
@@ -10322,4 +10323,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
 INSERT INTO schema_migrations (version) VALUES ('20200925210606');
+
+INSERT INTO schema_migrations (version) VALUES ('20201013183452');
 

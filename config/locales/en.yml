@@ -4825,6 +4825,10 @@ en:
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
+      place_ids_desc: |
+        Countries to show this announcement in (based on the user's IP address).
+        CMD- or SHIFT-click to select multiple. Locale and site targeting will
+        take precedence.
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
