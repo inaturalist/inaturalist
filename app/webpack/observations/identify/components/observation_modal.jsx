@@ -92,6 +92,7 @@ class ObservationModal extends React.Component {
       toggleReviewed,
       visible,
       updateCurrentUser,
+      updateEditorContent,
       mapZoomLevel,
       onMapZoomChanged,
       mapZoomLevelLocked,
@@ -754,35 +755,11 @@ class ObservationModal extends React.Component {
                         key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && commentFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".IdentificationForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                       <IdentificationFormContainer
                         key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && identificationFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".CommentForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                     </div>
                   </div>
@@ -860,6 +837,7 @@ ObservationModal.propTypes = {
   toggleKeyboardShortcuts: PropTypes.func,
   toggleReviewed: PropTypes.func,
   updateCurrentUser: PropTypes.func,
+  updateEditorContent: PropTypes.func,
   visible: PropTypes.bool,
   mapZoomLevel: PropTypes.number,
   onMapZoomChanged: PropTypes.func,

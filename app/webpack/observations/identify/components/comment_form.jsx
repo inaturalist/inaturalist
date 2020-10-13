@@ -9,7 +9,7 @@ import TextEditor from "../../../shared/components/text_editor";
 // complicated.
 
 const CommentForm = ( {
-  observation, onSubmitComment, className, content, key
+  observation, onSubmitComment, className, content, key, updateEditorContent
 } ) => (
   <form
     key={key}
@@ -21,7 +21,6 @@ const CommentForm = ( {
         parent_id: observation.id,
         body: content
       } );
-      content = null;
     }}
   >
     <h3>{ I18n.t( "add_a_comment" ) }</h3>
@@ -30,7 +29,7 @@ const CommentForm = ( {
         content={content}
         key={`comment-editor-${observation.id}-${observation.comments.length}`}
         maxLength={5000}
-        onBlur={e => { content = e.target.value; }}
+        onBlur={e => { updateEditorContent( e.target.value ); }}
         placeholder={I18n.t( "leave_a_comment" )}
         showCharsRemainingAt={4000}
         textareaClassName="form-control"
@@ -51,7 +50,8 @@ CommentForm.propTypes = {
   onSubmitComment: PropTypes.func.isRequired,
   className: PropTypes.string,
   content: PropTypes.string,
-  key: PropTypes.string
+  key: PropTypes.string,
+  updateEditorContent: PropTypes.func
 };
 
 export default CommentForm;

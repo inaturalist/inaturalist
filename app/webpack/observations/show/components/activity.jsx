@@ -20,7 +20,6 @@ class Activity extends React.Component {
   constructor( ) {
     super( );
     this.setUpMentionsAutocomplete = this.setUpMentionsAutocomplete.bind( this );
-    this.state = { editorContent: "" };
   }
 
   componentDidMount( ) {
@@ -68,28 +67,27 @@ class Activity extends React.Component {
     );
   }
 
-  updateTextEditorContent( text ) {
-    this.setState( { editorContent: text } );
-  }
-
   postIdentification( ) {
-    const { addID } = this.props;
-    const { editorContent } = this.state;
+    const { addID, content, updateEditorContent } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
     const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
     if ( selectedTaxon ) {
-      addID( selectedTaxon, { body: editorContent } );
+      addID( selectedTaxon, { body: content } );
       input.trigger( "resetSelection" );
       input.val( "" );
       input.data( "uiAutocomplete" ).selectedItem = null;
 
-      this.updateTextEditorContent( "" );
+      updateEditorContent( "" );
     }
   }
 
   doneButton( ) {
-    const { config, addComment } = this.props;
-    const { editorContent } = this.state;
+    const {
+      addComment,
+      config,
+      content,
+      updateEditorContent
+    } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -97,10 +95,10 @@ class Activity extends React.Component {
         onClick={
           ( ) => {
             if ( $( ".comment_tab" ).is( ":visible" ) ) {
-              const comment = editorContent;
+              const comment = content;
               if ( comment ) {
                 addComment( comment );
-                this.updateTextEditorContent( "" );
+                updateEditorContent( "" );
               }
             } else {
               this.postIdentification( );
@@ -161,10 +159,11 @@ class Activity extends React.Component {
     const {
       observation,
       config,
+      content,
       activeTab,
-      setActiveTab
+      setActiveTab,
+      updateEditorContent
     } = this.props;
-    const { editorContent } = this.state;
     if ( !observation ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
@@ -191,9 +190,9 @@ class Activity extends React.Component {
             placeholder={I18n.t( "leave_a_comment" )}
             textareaClassName="form-control"
             maxLength={5000}
-            content={editorContent}
+            content={content}
             showCharsRemainingAt={4000}
-            onBlur={e => this.updateTextEditorContent( e.target.value )}
+            onBlur={e => updateEditorContent( e.target.value )}
           />
         </div>
       ) : (
@@ -231,8 +230,8 @@ class Activity extends React.Component {
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"
-              onBlur={e => this.updateTextEditorContent( e.target.value )}
-              content={editorContent}
+              onBlur={e => updateEditorContent( e.target.value )}
+              content={content}
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
@@ -295,6 +294,7 @@ Activity.propTypes = {
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
+  content: PropTypes.string,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
@@ -310,6 +310,7 @@ Activity.propTypes = {
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
   untrustUser: PropTypes.func,
+  updateEditorContent: PropTypes.func,
   showHidden: PropTypes.func
 };
 

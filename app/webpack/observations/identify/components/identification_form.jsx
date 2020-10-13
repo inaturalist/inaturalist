@@ -9,7 +9,8 @@ const IdentificationForm = ( {
   className,
   content,
   blind,
-  key
+  key,
+  updateEditorContent
 } ) => (
   <form
     key={key}
@@ -55,7 +56,6 @@ const IdentificationForm = ( {
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
       $( "input[name='taxon_name']", e.target ).blur( );
-      content = null;
     }}
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
@@ -65,7 +65,7 @@ const IdentificationForm = ( {
         className="upstacked"
         content={content}
         key={`comment-editor-${o.id}-${o.identifications.length}`}
-        onBlur={e => { content = e.target.value; }}
+        onBlur={e => { updateEditorContent( e.target.value ); }}
         placeholder={I18n.t( "tell_us_why" )}
         textareaClassName="form-control"
         mentions
@@ -105,7 +105,8 @@ IdentificationForm.propTypes = {
   className: PropTypes.string,
   content: PropTypes.string,
   blind: PropTypes.bool,
-  key: PropTypes.string
+  key: PropTypes.string,
+  updateEditorContent: PropTypes.func
 };
 
 export default IdentificationForm;
