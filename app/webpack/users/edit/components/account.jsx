@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
 
+import SearchPlaces from "./search_places";
+
 /* global TIMEZONES */
 
 const iNatAffiliationDict = [
@@ -101,10 +103,7 @@ const Account = ( { profile, setUserData } ) => {
               {createLocaleList( )}
             </select>
           </div>
-          <div className="profile-setting">
-            <h5>{I18n.t( "default_search_place" )}</h5>
-            <div className="account-subheader-text">{I18n.t( "default_search_place_description" )}</div>
-          </div>
+          <SearchPlaces profile={profile} setUserData={setUserData} />
           <div className="profile-setting">
             <h5>{I18n.t( "privacy" )}</h5>
             <div className="row">
