@@ -1,15 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { MenuItem, DropdownButton } from "react-bootstrap";
 
-/* global SITE */
+// import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 const Content = ( { profile, setUserData } ) => {
-  console.log( SITE, "site" );
-  // const handleInputChange = e => {
-  //   const updatedProfile = profile;
-  //   updatedProfile[e.target.name] = e.target.value;
-  //   setUserData( updatedProfile );
-  // };
+  const handleNameChange = e => {
+    console.log( e.target );
+  };
+
+  const handleInputChange = e => {
+    const updatedProfile = profile;
+    console.log( e.target.name, e.target.value );
+    updatedProfile[e.target.name] = e.target.value;
+    setUserData( updatedProfile );
+  };
 
   const handleCheckboxChange = e => {
     const updatedProfile = profile;
@@ -17,11 +22,50 @@ const Content = ( { profile, setUserData } ) => {
     setUserData( updatedProfile );
   };
 
-  // const handleSelect = eventKey => {
-  //   // const updatedProfile = profile;
-  //   // updatedProfile.site_id = eventKey;
-  //   // setUserData( updatedProfile );
-  // };
+  const handlePlaceDropdownSelect = ( { item } ) => {
+    const updatedProfile = profile;
+    console.log( profile, "updated profile" );
+    updatedProfile.place_id = item.id;
+    console.log( updatedProfile, "updated profile with place id" );
+    setUserData( updatedProfile );
+  };
+
+  const handleSelect = eventKey => {
+    const updatedProfile = profile;
+    updatedProfile.site_id = eventKey;
+    setUserData( updatedProfile );
+  };
+
+  const createDisplayNamesList = ( ) => {
+    const italicText = I18n.t( "scientific_name" );
+
+    const displayNames = [{
+      option: 1,
+      text: I18n.t( "common_name" ),
+      parentheses: ` (${italicText})`
+    },
+    {
+      option: 2,
+      text: italicText,
+      parentheses: ` (${I18n.t( "common_name" )})`
+    },
+    {
+      option: 3,
+      text: italicText,
+      parentheses: null
+    }];
+
+    return displayNames.map( ( { option, text, parentheses } ) => (
+      <MenuItem
+        key={`display-names-${option}`}
+        eventKey={option}
+        className="inat-affiliation-width"
+      >
+        {text}
+        {parentheses && <div className="italic-text">{parentheses}</div>}
+      </MenuItem>
+    ) );
+  };
 
   return (
     <div className="col-xs-9">
@@ -31,18 +75,47 @@ const Content = ( { profile, setUserData } ) => {
             <h5>{I18n.t( "project_settings" )}</h5>
             <label>{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             <div className="left-aligned-column">
-              <div className="save-button">
-                <input type="radio" className="radio-button" id="any" name="preferred_project_addition_by" value="any_project" />
-                <label htmlFor="any">{I18n.t( "views.users.edit.project_addition_preferences.any" )}</label>
-              </div>
-              <div className="save-button">
-                <input type="radio" className="radio-button" id="joined" name="preferred_views.users.edit._addition_by" value="projects_you_joined" />
-                <label htmlFor="joined">{I18n.t( "views.users.edit.project_addition_preferences.joined" )}</label>
-              </div>
-              <div className="save-button">
-                <input type="radio" className="radio-button" id="none" name="preferred_project_addition_by" value="none" />
-                <label htmlFor="none">{I18n.t( "views.users.edit.project_addition_preferences.none" )}</label>
-              </div>
+              <form>
+                <div className="form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      value="any"
+                      name="preferred_project_addition_by"
+                      checked={profile.preferred_project_addition_by === "any"}
+                      onChange={handleInputChange}
+                    />
+                    {I18n.t( "views.users.edit.project_addition_preferences.any" )}
+                  </label>
+                </div>
+                <div className="form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      value="joined"
+                      name="preferred_project_addition_by"
+                      checked={profile.preferred_project_addition_by === "joined"}
+                      onChange={handleInputChange}
+                    />
+                    {I18n.t( "views.users.edit.project_addition_preferences.joined" )}
+                  </label>
+                </div>
+                <div className="form-check">
+                  <label>
+                    <input
+                      type="radio"
+                      className="form-check-input"
+                      value="none"
+                      name="preferred_project_addition_by"
+                      checked={profile.preferred_project_addition_by === "none"}
+                      onChange={handleInputChange}
+                    />
+                    {I18n.t( "views.users.edit.project_addition_preferences.none" )}
+                  </label>
+                </div>
+              </form>
             </div>
             <div className="account-subheader-text">
               {I18n.t( "views.users.edit.project_settings_desc" )}
@@ -63,7 +136,7 @@ const Content = ( { profile, setUserData } ) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                defaultChecked={profile.prefers_automatic_taxon_changes}
+                checked={profile.prefers_automatic_taxon_changes}
                 name="prefers_automatic_taxon_changes"
                 onChange={handleCheckboxChange}
               />
@@ -101,18 +174,57 @@ const Content = ( { profile, setUserData } ) => {
             <h5>{I18n.t( "names" )}</h5>
             <label>{I18n.t( "display" )}</label>
             <div className="account-subheader-text">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
-            <label>{I18n.t( "views.users.edit.name_place_help_html" )}</label>
+            {/* <select value="display-names" name="display-names" onChange={handleNameChange}>
+              {createDisplayNamesList( )}
+            </select> */}
+            <DropdownButton
+              id="display-names-dropdown"
+              onSelect={handleNameChange}
+              className="inat-affiliation-width-height"
+              title={(
+                <span>
+                  common names
+                </span>
+              )}
+            >
+              {createDisplayNamesList( )}
+            </DropdownButton>
+            <div>
+              <label>{I18n.t( "views.users.edit.name_place_help_html" )}</label>
+              {/* <PlaceAutocomplete
+                // resetOnChange={false}
+                initialPlaceID={profile.place_id}
+                bootstrapClear
+                afterSelect={handlePlaceDropdownSelect}
+              /> */}
+            </div>
           </div>
           <div className="profile-setting">
             <h5>{I18n.t( "community_moderation_settings" )}</h5>
-            <label>{I18n.t( "accept_community_identifications" )}</label>
-            <div className="account-subheader-text">{I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}</div>
+            <div className="col-xs-1">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                value={profile.prefers_community_taxa}
+                name="prefers_community_taxa"
+                checked={profile.prefers_community_taxa}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="col-xs-9">
+              <label>{I18n.t( "accept_community_identifications" )}</label>
+              <div className="account-subheader-text">{I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}</div>
+            </div>
             <label>{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
             <div className="account-subheader-text">{I18n.t( "observation_fields_by_preferences_description" )}</div>
-            <select>
-              <option>{I18n.t( "anyone" )}</option>
-              <option>{I18n.t( "curators" )}</option>
-              <option>{I18n.t( "only_you" )}</option>
+            <select
+              value={profile.preferred_observation_fields_by}
+              name="preferred_observation_fields_by"
+              onChange={handleInputChange}
+            >
+              <option value="anyone">{I18n.t( "anyone" )}</option>
+              <option value="curators">{I18n.t( "curators" )}</option>
+              <option value="only_you">{I18n.t( "only_you" )}</option>
             </select>
           </div>
         </div>

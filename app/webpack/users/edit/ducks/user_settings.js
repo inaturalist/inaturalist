@@ -30,6 +30,8 @@ export function saveUserSettings( ) {
     const s = getState( );
     const { id } = s.profile;
 
+    console.log( id, s.profile, "Id in save button" );
+
     const params = {
       id,
       user: s.profile

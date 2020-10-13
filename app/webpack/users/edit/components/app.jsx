@@ -23,9 +23,9 @@ const App = ( ) => (
       <div className="col-xs-1">
         <div className="vl" />
       </div>
-      {/* <ContentContainer /> */}
-      <AccountContainer />
-      <ProfileContainer />
+      <ContentContainer />
+      {/* <AccountContainer /> */}
+      {/* <ProfileContainer /> */}
     </div>
   </div>
 );
