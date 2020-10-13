@@ -34,10 +34,14 @@ export function saveUserSettings( ) {
       id,
       user: s.profile
     };
+
+    params.user.updated_at = new Date( );
+
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth
       // currently users.me returns different results than
       // dispatching setUserData( results[0] ) from users.update response
+      console.log( "saving users.update and fetching user settings" );
       fetchUserSettings( );
     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
   };

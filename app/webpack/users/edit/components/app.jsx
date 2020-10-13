@@ -25,7 +25,7 @@ const App = ( ) => (
       </div>
       {/* <ContentContainer /> */}
       <AccountContainer />
-      {/* <ProfileContainer /> */}
+      <ProfileContainer />
     </div>
   </div>
 );

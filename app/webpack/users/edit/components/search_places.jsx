@@ -29,7 +29,7 @@ class SearchPlaces extends Component {
     console.log( item, "fill from place autocomplete" );
     const { profile, setUserData } = this.props;
     const updatedProfile = profile;
-    updatedProfile.search_place_id = item.name;
+    updatedProfile.search_place_id = item.id;
     setUserData( updatedProfile );
     // this.setState( { showDropdown: false } );
   }
@@ -69,10 +69,10 @@ class SearchPlaces extends Component {
         <div className="account-subheader-text">{I18n.t( "default_search_place_description" )}</div>
         <PlaceAutocomplete
           resetOnChange={false}
-          initialPlaceID={null}
+          initialPlaceID={profile.search_place_id}
           bootstrapClear
           afterSelect={this.fillInputWithSelection}
-          placeholder={profile.search_place_id}
+          // placeholder={profile.search_place_id}
           // afterSelect={result => {
           //   updateSearchParams( { place_id: result.item.id } );
           // }}

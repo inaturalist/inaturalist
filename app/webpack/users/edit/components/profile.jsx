@@ -7,7 +7,6 @@ const Profile = ( { profile, setUserData } ) => {
   const hiddenFileInput = createRef( null );
 
   const handleInputChange = e => {
-    console.log( e.target.name, e.target.value, "target in handleinputchange" );
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
@@ -119,7 +118,7 @@ const Profile = ( { profile, setUserData } ) => {
                 <input
                   type="checkbox"
                   className="form-check-input"
-                  defaultChecked={profile.prefers_monthly_supporters_badge}
+                  checked={profile.prefers_monthly_supporter_badge}
                   name="prefers_monthly_supporter_badge"
                   onChange={handleCheckboxChange}
                 />
