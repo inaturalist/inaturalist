@@ -68,6 +68,32 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
     </div>
   ) );
 
+
+  const createObsLicenseList = ( ) => {
+    const iNatLicenses = iNaturalist.Licenses;
+
+    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa"];
+
+    return displayList.map( license => {
+      const { code } = iNatLicenses[license];
+      const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
+
+      return (
+        <MenuItem
+          key={`display-names-${code}`}
+          eventKey={code}
+          className="inat-affiliation-width"
+        >
+          <span className="row-align-center">
+            <img src={iNatLicenses[license].icon_large} alt={code} />
+            {I18n.t( `${localizedName}_name` )}
+            {code === profile.preferred_observation_license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+          </span>
+        </MenuItem>
+      );
+    } );
+  };
+
   return (
     <div className="col-xs-9">
       <div className="row">
@@ -123,6 +149,18 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             />
             <a href="#">{I18n.t( "learn_what_these_licenses_mean" )}</a>
             <label>{I18n.t( "default_observation_license" )}</label>
+            <DropdownButton
+              id="observation-license-dropdown"
+              onSelect={handleNameChange}
+              className="custom-dropdown"
+              title={(
+                <span>
+                  observation license
+                </span>
+              )}
+            >
+              {createObsLicenseList( )}
+            </DropdownButton>
             <label>{I18n.t( "default_photo_license" )}</label>
             <label>{I18n.t( "default_sound_license" )}</label>
           </SettingsItem>
@@ -135,7 +173,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             <DropdownButton
               id="display-names-dropdown"
               onSelect={handleNameChange}
-              className="inat-affiliation-width-height"
+              className="custom-dropdown"
               title={(
                 <span>
                   common names

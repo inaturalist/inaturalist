@@ -116,7 +116,7 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
             <DropdownButton
               id="inaturalist-affiliation-network-dropdown"
               onSelect={handleSelect}
-              className="inat-affiliation-width-height"
+              className="custom-dropdown"
               title={(
                 <span>
                   <img
