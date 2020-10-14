@@ -26,7 +26,6 @@ class SearchPlaces extends Component {
   }
 
   fillInputWithSelection( { item } ) {
-    console.log( item, "fill from place autocomplete" );
     const { profile, setUserData } = this.props;
     const updatedProfile = profile;
     updatedProfile.search_place_id = item.id;
@@ -64,7 +63,7 @@ class SearchPlaces extends Component {
     const { showDropdown } = this.state;
 
     return (
-      <div className="profile-setting">
+      <div className="settings-item">
         <h5>{I18n.t( "default_search_place" )}</h5>
         <div className="account-subheader-text">{I18n.t( "default_search_place_description" )}</div>
         <PlaceAutocomplete

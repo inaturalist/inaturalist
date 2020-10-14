@@ -34,7 +34,7 @@ const Profile = ( { profile, setUserData } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "profile_picture" )}</h5>
             <div className="row row-align-center">
               <div className="col-xs-4">
@@ -55,7 +55,7 @@ const Profile = ( { profile, setUserData } ) => {
               </div>
             </div>
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>
               {I18n.t( "username" )}
               <div className="asterisk">*</div>
@@ -65,7 +65,7 @@ const Profile = ( { profile, setUserData } ) => {
               <input type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>
               {I18n.t( "email" )}
               <div className="asterisk">*</div>
@@ -73,7 +73,7 @@ const Profile = ( { profile, setUserData } ) => {
             <div className="italic-text">{I18n.t( "email_description" )}</div>
             <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>
               {I18n.t( "change_password" )}
               <div className="downward-caret">&#x25BE;</div>
@@ -93,7 +93,7 @@ const Profile = ( { profile, setUserData } ) => {
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>
               {I18n.t( "display_name" )}
               <div className="asterisk">*</div>
@@ -103,7 +103,7 @@ const Profile = ( { profile, setUserData } ) => {
               <input type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>
               {I18n.t( "bio" )}
               <div className="asterisk">*</div>
@@ -111,7 +111,7 @@ const Profile = ( { profile, setUserData } ) => {
             <div className="italic-text">{I18n.t( "bio_description" )}</div>
             <textarea className="form-control" value={profile ? profile.description : ""} name="description" onChange={handleInputChange} />
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "badges" )}</h5>
             <div className="row">
               <div className="col-xs-1">

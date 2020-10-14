@@ -11,7 +11,6 @@ const Content = ( { profile, setUserData } ) => {
 
   const handleInputChange = e => {
     const updatedProfile = profile;
-    console.log( e.target.name, e.target.value );
     updatedProfile[e.target.name] = e.target.value;
     setUserData( updatedProfile );
   };
@@ -24,9 +23,7 @@ const Content = ( { profile, setUserData } ) => {
 
   const handlePlaceDropdownSelect = ( { item } ) => {
     const updatedProfile = profile;
-    console.log( profile, "updated profile" );
     updatedProfile.place_id = item.id;
-    console.log( updatedProfile, "updated profile with place id" );
     setUserData( updatedProfile );
   };
 
@@ -61,8 +58,11 @@ const Content = ( { profile, setUserData } ) => {
         eventKey={option}
         className="inat-affiliation-width"
       >
-        {text}
-        {parentheses && <div className="italic-text">{parentheses}</div>}
+        <span className="row-align-center">
+          {text}
+          {parentheses && <div className="italic-text">{parentheses}</div>}
+          <i className="fa fa-check blue-text align-right" aria-hidden="true" />
+        </span>
       </MenuItem>
     ) );
   };
@@ -71,7 +71,7 @@ const Content = ( { profile, setUserData } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "project_settings" )}</h5>
             <label>{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             <div className="left-aligned-column">
@@ -130,31 +130,33 @@ const Content = ( { profile, setUserData } ) => {
               }}
             />
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "taxonomy_settings" )}</h5>
-            <div className="col-xs-1">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                checked={profile.prefers_automatic_taxon_changes}
-                name="prefers_automatic_taxon_changes"
-                onChange={handleCheckboxChange}
-              />
-            </div>
-            <div className="col-xs-9">
-              <label>{I18n.t( "automatically_update_my_content_for_taxon_changes" )}</label>
-              <span
-                className="account-subheader-text"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.users.edit.taxon_change_desc", {
-                    site_name: SITE.name
-                  } )
-                }}
-              />
+            <div className="row">
+              <div className="col-xs-1">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={profile.prefers_automatic_taxon_changes}
+                  name="prefers_automatic_taxon_changes"
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+              <div className="col-xs-10">
+                <label>{I18n.t( "automatically_update_my_content_for_taxon_changes" )}</label>
+                <span
+                  className="account-subheader-text"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.taxon_change_desc", {
+                      site_name: SITE.name
+                    } )
+                  }}
+                />
+              </div>
             </div>
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "licensing" )}</h5>
             <span
               className="account-subheader-text"
@@ -170,13 +172,10 @@ const Content = ( { profile, setUserData } ) => {
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "names" )}</h5>
             <label>{I18n.t( "display" )}</label>
             <div className="account-subheader-text">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
-            {/* <select value="display-names" name="display-names" onChange={handleNameChange}>
-              {createDisplayNamesList( )}
-            </select> */}
             <DropdownButton
               id="display-names-dropdown"
               onSelect={handleNameChange}
@@ -199,7 +198,7 @@ const Content = ( { profile, setUserData } ) => {
               /> */}
             </div>
           </div>
-          <div className="profile-setting">
+          <div className="settings-item">
             <h5>{I18n.t( "community_moderation_settings" )}</h5>
             <div className="col-xs-1">
               <input
