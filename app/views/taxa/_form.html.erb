@@ -138,7 +138,7 @@
     </p>
     
     <p class="ui">
-      <%= f.label :wikipedia_summary %>:
+      <%= f.label :wikipedia_summary %>
       <blockquote class="quiet box">
         <% if taxon.wikipedia_summary -%>
           <span id="wikipedia_summary"><%= raw taxon.wikipedia_summary %></span>
@@ -163,9 +163,9 @@
         <% end -%>
       </blockquote>
       <span class="description">
-        <%= t(:this_is_a_cached_summary_based_on) %>
-        <%= link_to t(:wikipedia_entry), 
-          "https://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}" %>.
+        <%=t "views.taxa.edit.wikipedia_summary_desc_html",
+          url: "https://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}"
+        %>
       </span>
     </p>
   </fieldset>

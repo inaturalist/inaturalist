@@ -4179,7 +4179,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_a_life_list_from_place_html: "This is a life list from %{place}"
   this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
@@ -4610,7 +4609,6 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
-  wikipedia_entry: Wikipedia entry
   with: with
   withdraw: Withdraw
   withdrawing: Withdrawing...
@@ -6443,6 +6441,12 @@ en:
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
           Default is species.
+        wikipedia_summary_desc_html: |
+          Short summary of this taxon based on its <a target="_blank"
+          href="%{url}">Wikipedia page</a> that we cache indefinitely until
+          manually refreshed. Refreshing this summary also immediately updates
+          our cache of the underlying Wikipedia content that we show on the
+          website, which automatically refreshes after a week.
       show:
         about_names_desc: |
           <p>
