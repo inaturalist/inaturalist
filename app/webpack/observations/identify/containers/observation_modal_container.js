@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
-import { updateEditorContent } from "../../shared/ducks/update_editor_content";
+import { updateEditorContent } from "../../shared/ducks/text_editor";
 import {
   hideCurrentObservation,
   addIdentification,

@@ -6,7 +6,7 @@ import {
   loadingDiscussionItem,
   stopLoadingDiscussionItem
 } from "../actions";
-import { updateEditorContent } from "../../shared/ducks/update_editor_content";
+import { updateEditorContent } from "../../shared/ducks/text_editor";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <CommentFormContainer observation={foo} />
