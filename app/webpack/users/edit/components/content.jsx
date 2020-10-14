@@ -52,6 +52,22 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
     ) );
   };
 
+  const createRadioButtons = ( ) => ["any", "joined", "none"].map( button => (
+    <div className="form-check">
+      <label>
+        <input
+          type="radio"
+          className="form-check-input"
+          value={button}
+          name="preferred_project_addition_by"
+          checked={profile.preferred_project_addition_by === button}
+          onChange={handleInputChange}
+        />
+        {I18n.t( `views.users.edit.project_addition_preferences.${button}` )}
+      </label>
+    </div>
+  ) );
+
   return (
     <div className="col-xs-9">
       <div className="row">
@@ -60,45 +76,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             <label>{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             <div className="left-aligned-column">
               <form>
-                <div className="form-check">
-                  <label>
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      value="any"
-                      name="preferred_project_addition_by"
-                      checked={profile.preferred_project_addition_by === "any"}
-                      onChange={handleInputChange}
-                    />
-                    {I18n.t( "views.users.edit.project_addition_preferences.any" )}
-                  </label>
-                </div>
-                <div className="form-check">
-                  <label>
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      value="joined"
-                      name="preferred_project_addition_by"
-                      checked={profile.preferred_project_addition_by === "joined"}
-                      onChange={handleInputChange}
-                    />
-                    {I18n.t( "views.users.edit.project_addition_preferences.joined" )}
-                  </label>
-                </div>
-                <div className="form-check">
-                  <label>
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      value="none"
-                      name="preferred_project_addition_by"
-                      checked={profile.preferred_project_addition_by === "none"}
-                      onChange={handleInputChange}
-                    />
-                    {I18n.t( "views.users.edit.project_addition_preferences.none" )}
-                  </label>
-                </div>
+                {createRadioButtons( )}
               </form>
             </div>
             <div className="account-subheader-text">
