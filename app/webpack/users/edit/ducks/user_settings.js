@@ -12,6 +12,7 @@ export default function reducer( state = { }, action ) {
 }
 
 export function setUserData( userData ) {
+  console.log( userData, "setting user data" );
   return {
     type: SET_USER_DATA,
     userData
@@ -30,7 +31,7 @@ export function saveUserSettings( ) {
     const s = getState( );
     const { id } = s.profile;
 
-    console.log( id, s.profile, "Id in save button" );
+    console.log( s.profile, "profile in save settings" );
 
     const params = {
       id,
@@ -43,8 +44,15 @@ export function saveUserSettings( ) {
       // fetching user settings here to get the source of truth
       // currently users.me returns different results than
       // dispatching setUserData( results[0] ) from users.update response
-      console.log( "saving users.update and fetching user settings" );
       fetchUserSettings( );
     } ).catch( e => console.log( `Failed to update user: ${e}` ) );
+  };
+}
+
+export function handleCheckboxChange( e ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile[e.target.name] = e.target.checked;
+    dispatch( setUserData( profile ) );
   };
 }

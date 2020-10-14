@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
+import CheckboxRow from "../containers/checkbox_row_container";
 
 // import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
@@ -12,12 +13,6 @@ const Content = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
-    setUserData( updatedProfile );
-  };
-
-  const handleCheckboxChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.checked;
     setUserData( updatedProfile );
   };
 
@@ -132,18 +127,10 @@ const Content = ( { profile, setUserData } ) => {
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "taxonomy_settings" )}</h5>
-            <div className="row">
-              <div className="col-xs-1">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  checked={profile.prefers_automatic_taxon_changes}
-                  name="prefers_automatic_taxon_changes"
-                  onChange={handleCheckboxChange}
-                />
-              </div>
-              <div className="col-xs-10">
-                <label>{I18n.t( "automatically_update_my_content_for_taxon_changes" )}</label>
+            <CheckboxRow
+              name="prefers_automatic_taxon_changes"
+              label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
+              description={(
                 <span
                   className="account-subheader-text"
                   // eslint-disable-next-line react/no-danger
@@ -153,8 +140,8 @@ const Content = ( { profile, setUserData } ) => {
                     } )
                   }}
                 />
-              </div>
-            </div>
+              )}
+            />
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "licensing" )}</h5>
@@ -168,6 +155,9 @@ const Content = ( { profile, setUserData } ) => {
               }}
             />
             <a href="#">{I18n.t( "learn_what_these_licenses_mean" )}</a>
+            <label>{I18n.t( "default_observation_license" )}</label>
+            <label>{I18n.t( "default_photo_license" )}</label>
+            <label>{I18n.t( "default_sound_license" )}</label>
           </div>
         </div>
         <div className="col-md-1" />
@@ -200,20 +190,15 @@ const Content = ( { profile, setUserData } ) => {
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "community_moderation_settings" )}</h5>
-            <div className="col-xs-1">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                value={profile.prefers_community_taxa}
-                name="prefers_community_taxa"
-                checked={profile.prefers_community_taxa}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="col-xs-9">
-              <label>{I18n.t( "accept_community_identifications" )}</label>
-              <div className="account-subheader-text">{I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}</div>
-            </div>
+            <CheckboxRow
+              name="prefers_community_taxa"
+              label={I18n.t( "accept_community_identifications" )}
+              description={(
+                <div className="account-subheader-text">
+                  {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
+                </div>
+              )}
+            />
             <label>{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
             <div className="account-subheader-text">{I18n.t( "observation_fields_by_preferences_description" )}</div>
             <select
