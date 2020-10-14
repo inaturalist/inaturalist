@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
 
 import SearchPlaces from "./search_places";
+import CheckboxRowContainer from "../containers/checkbox_row_container";
 
 /* global TIMEZONES */
 
@@ -26,12 +27,6 @@ const Account = ( { profile, setUserData } ) => {
   const handleInputChange = e => {
     const updatedProfile = profile;
     updatedProfile[e.target.name] = e.target.value;
-    setUserData( updatedProfile );
-  };
-
-  const handleCheckboxChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.checked;
     setUserData( updatedProfile );
   };
 
@@ -106,24 +101,16 @@ const Account = ( { profile, setUserData } ) => {
           <SearchPlaces profile={profile} setUserData={setUserData} />
           <div className="settings-item">
             <h5>{I18n.t( "privacy" )}</h5>
-            <div className="row">
-              <div className="col-xs-1">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  checked={profile.prefers_no_tracking}
-                  name="prefers_no_tracking"
-                  onChange={handleCheckboxChange}
-                />
-              </div>
-              <div className="col-xs-9">
-                <label>{I18n.t( "views.users.edit.prefers_no_tracking_label" )}</label>
+            <CheckboxRowContainer
+              name="prefers_no_tracking"
+              label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
+              description={(
                 <div className="blue-text italic-text">
                   <i className="fa fa-info-circle" />
                   {` ${I18n.t( "learn_about_third_party_tracking" )}`}
                 </div>
-              </div>
-            </div>
+              )}
+            />
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "danger_zone" )}</h5>

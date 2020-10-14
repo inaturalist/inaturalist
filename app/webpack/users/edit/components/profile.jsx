@@ -1,5 +1,6 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
+import CheckboxRowContainer from "../containers/checkbox_row_container";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
@@ -14,12 +15,6 @@ const Profile = ( { profile, setUserData } ) => {
 
   const handleClick = ( ) => {
     hiddenFileInput.current.click();
-  };
-
-  const handleCheckboxChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.checked;
-    setUserData( updatedProfile );
   };
 
   const handleChange = e => {
@@ -113,29 +108,23 @@ const Profile = ( { profile, setUserData } ) => {
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "badges" )}</h5>
-            <div className="row">
-              <div className="col-xs-1">
-                <input
-                  type="checkbox"
-                  className="form-check-input"
-                  checked={profile.prefers_monthly_supporter_badge}
-                  name="prefers_monthly_supporter_badge"
-                  onChange={handleCheckboxChange}
-                />
-              </div>
-              <div className="col-xs-9">
-                <label>{I18n.t( "display_monthly_supporter_badge" )}</label>
-                <span
-                  className="italic-text"
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{
-                    __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
-                      url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
-                    } )
-                  }}
-                />
-              </div>
-            </div>
+            <CheckboxRowContainer
+              name="prefers_monthly_supporter_badge"
+              label={I18n.t( "display_monthly_supporter_badge" )}
+              description={(
+                <div>
+                  <span
+                    className="italic-text"
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
+                        url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
+                      } )
+                    }}
+                  />
+                </div>
+              )}
+            />
           </div>
         </div>
       </div>

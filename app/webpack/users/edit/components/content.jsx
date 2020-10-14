@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
-import CheckboxRow from "../containers/checkbox_row_container";
+
+import CheckboxRowContainer from "../containers/checkbox_row_container";
 
 // import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
@@ -127,19 +128,21 @@ const Content = ( { profile, setUserData } ) => {
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "taxonomy_settings" )}</h5>
-            <CheckboxRow
+            <CheckboxRowContainer
               name="prefers_automatic_taxon_changes"
               label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
               description={(
-                <span
-                  className="account-subheader-text"
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{
-                    __html: I18n.t( "views.users.edit.taxon_change_desc", {
-                      site_name: SITE.name
-                    } )
-                  }}
-                />
+                <div>
+                  <span
+                    className="account-subheader-text"
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "views.users.edit.taxon_change_desc", {
+                        site_name: SITE.name
+                      } )
+                    }}
+                  />
+                </div>
               )}
             />
           </div>
@@ -190,7 +193,7 @@ const Content = ( { profile, setUserData } ) => {
           </div>
           <div className="settings-item">
             <h5>{I18n.t( "community_moderation_settings" )}</h5>
-            <CheckboxRow
+            <CheckboxRowContainer
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
               description={(

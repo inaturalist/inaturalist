@@ -24,8 +24,8 @@ const App = ( ) => (
         <div className="vl" />
       </div>
       <ContentContainer />
-      {/* <AccountContainer /> */}
-      {/* <ProfileContainer /> */}
+      <AccountContainer />
+      <ProfileContainer />
     </div>
   </div>
 );
