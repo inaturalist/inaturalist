@@ -47,7 +47,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
-      dispatch( updateEditorContent( "" ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     toggleCaptive: ( ) => {
       dispatch( toggleCaptive( ) );
@@ -68,11 +68,11 @@ function mapDispatchToProps( dispatch ) {
     },
     showNextObservation: ( ) => {
       dispatch( showNextObservation( ) );
-      dispatch( updateEditorContent( "" ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
-      dispatch( updateEditorContent( "" ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     chooseTab: tab => {
       dispatch( updateCurrentObservation( { tab } ) );
@@ -96,7 +96,7 @@ function mapDispatchToProps( dispatch ) {
       } ) );
     },
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
-    updateEditorContent: content => dispatch( updateEditorContent( content ) ),
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
     setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
   };

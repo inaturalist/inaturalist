@@ -29,7 +29,7 @@ const CommentForm = ( {
         content={content}
         key={`comment-editor-${observation.id}-${observation.comments.length}`}
         maxLength={5000}
-        onBlur={e => { updateEditorContent( e.target.value ); }}
+        onBlur={e => { updateEditorContent( "obsIdentifyIdComment", e.target.value ); }}
         placeholder={I18n.t( "leave_a_comment" )}
         showCharsRemainingAt={4000}
         textareaClassName="form-control"

@@ -65,7 +65,7 @@ const IdentificationForm = ( {
         className="upstacked"
         content={content}
         key={`comment-editor-${o.id}-${o.identifications.length}`}
-        onBlur={e => { updateEditorContent( e.target.value ); }}
+        onBlur={e => { updateEditorContent( "obsIdentifyIdComment", e.target.value ); }}
         placeholder={I18n.t( "tell_us_why" )}
         textareaClassName="form-control"
         mentions

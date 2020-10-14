@@ -77,7 +77,7 @@ class Activity extends React.Component {
       input.val( "" );
       input.data( "uiAutocomplete" ).selectedItem = null;
 
-      updateEditorContent( "" );
+      updateEditorContent( "activity", "" );
     }
   }
 
@@ -98,7 +98,7 @@ class Activity extends React.Component {
               const comment = content;
               if ( comment ) {
                 addComment( comment );
-                updateEditorContent( "" );
+                updateEditorContent( "activity", "" );
               }
             } else {
               this.postIdentification( );
@@ -192,7 +192,7 @@ class Activity extends React.Component {
             maxLength={5000}
             content={content}
             showCharsRemainingAt={4000}
-            onBlur={e => updateEditorContent( e.target.value )}
+            onBlur={e => updateEditorContent( "activity", e.target.value )}
           />
         </div>
       ) : (
@@ -230,7 +230,7 @@ class Activity extends React.Component {
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"
-              onBlur={e => updateEditorContent( e.target.value )}
+              onBlur={e => updateEditorContent( "activity", e.target.value )}
               content={content}
               maxLength={5000}
               showCharsRemainingAt={4000}

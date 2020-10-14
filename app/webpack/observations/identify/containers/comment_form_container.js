@@ -13,7 +13,7 @@ import { updateEditorContent } from "../../shared/ducks/text_editor";
 function mapStateToProps( state, ownProps ) {
   return {
     observation: ownProps.observation,
-    content: state.textEditor.content
+    content: state.textEditor.obsIdentifyIdComment
   };
 }
 
@@ -26,13 +26,15 @@ function mapDispatchToProps( dispatch, ownProps ) {
           dispatch( stopLoadingDiscussionItem( comment ) );
         } )
         .then( ( ) => {
-          dispatch( updateEditorContent( "" ) );
+          dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
           dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
         } );
     },
-    updateEditorContent: content => { dispatch( updateEditorContent( content ) ); }
+    updateEditorContent: ( editor, content ) => {
+      dispatch( updateEditorContent( editor, content ) );
+    }
   };
 }
 

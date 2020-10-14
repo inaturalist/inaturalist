@@ -27,7 +27,7 @@ function mapStateToProps( state ) {
     observation,
     config: state.config,
     activeTab: state.commentIDPanel.activeTab,
-    content: state.textEditor.content
+    content: state.textEditor.activity
   };
 }
 
@@ -68,7 +68,7 @@ function mapDispatchToProps( dispatch ) {
     showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
     hideContent: item => dispatch( showModeratorActionForm( item ) ),
     unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) ),
-    updateEditorContent: content => dispatch( updateEditorContent( content ) )
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) )
   };
 }
 
