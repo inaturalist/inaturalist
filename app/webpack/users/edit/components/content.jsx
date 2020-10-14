@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
+import SettingsItem from "./settings_item";
 
 // import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
@@ -67,8 +68,7 @@ const Content = ( { profile, setUserData } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <div className="settings-item">
-            <h5>{I18n.t( "project_settings" )}</h5>
+          <SettingsItem header={I18n.t( "project_settings" )}>
             <label>{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             <div className="left-aligned-column">
               <form>
@@ -125,9 +125,8 @@ const Content = ( { profile, setUserData } ) => {
                 } )
               }}
             />
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "taxonomy_settings" )}</h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "taxonomy_settings" )}>
             <CheckboxRowContainer
               name="prefers_automatic_taxon_changes"
               label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
@@ -145,9 +144,8 @@ const Content = ( { profile, setUserData } ) => {
                 </div>
               )}
             />
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "licensing" )}</h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "licensing" )}>
             <span
               className="account-subheader-text"
               // eslint-disable-next-line react/no-danger
@@ -161,12 +159,11 @@ const Content = ( { profile, setUserData } ) => {
             <label>{I18n.t( "default_observation_license" )}</label>
             <label>{I18n.t( "default_photo_license" )}</label>
             <label>{I18n.t( "default_sound_license" )}</label>
-          </div>
+          </SettingsItem>
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <div className="settings-item">
-            <h5>{I18n.t( "names" )}</h5>
+          <SettingsItem header={I18n.t( "names" )}>
             <label>{I18n.t( "display" )}</label>
             <div className="account-subheader-text">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
             <DropdownButton
@@ -190,9 +187,8 @@ const Content = ( { profile, setUserData } ) => {
                 afterSelect={handlePlaceDropdownSelect}
               /> */}
             </div>
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "community_moderation_settings" )}</h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "community_moderation_settings" )}>
             <CheckboxRowContainer
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
@@ -213,7 +209,7 @@ const Content = ( { profile, setUserData } ) => {
               <option value="curators">{I18n.t( "curators" )}</option>
               <option value="only_you">{I18n.t( "only_you" )}</option>
             </select>
-          </div>
+          </SettingsItem>
         </div>
       </div>
     </div>

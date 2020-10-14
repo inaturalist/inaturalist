@@ -4,6 +4,7 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 import SearchPlaces from "./search_places";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
+import SettingsItem from "./settings_item";
 
 /* global TIMEZONES */
 
@@ -84,23 +85,20 @@ const Account = ( { profile, setUserData } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <div className="settings-item">
-            <h5>{I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}</h5>
+          <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}>
             <div className="account-subheader-text">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</div>
             <select value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
               {createTimeZoneList( )}
             </select>
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "language_slash_locale" )}</h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "language_slash_locale" )}>
             <div className="account-subheader-text">{I18n.t( "language_slash_locale_description" )}</div>
             <select value={profile.locale} name="locale" onChange={handleInputChange}>
               {createLocaleList( )}
             </select>
-          </div>
+          </SettingsItem>
           <SearchPlaces profile={profile} setUserData={setUserData} />
-          <div className="settings-item">
-            <h5>{I18n.t( "privacy" )}</h5>
+          <SettingsItem header={I18n.t( "privacy" )}>
             <CheckboxRowContainer
               name="prefers_no_tracking"
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
@@ -111,18 +109,16 @@ const Account = ( { profile, setUserData } ) => {
                 </div>
               )}
             />
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "danger_zone" )}</h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "danger_zone" )}>
             <button className="btn gray-button" type="button">
               <div className="blue-button-text">{I18n.t( "delete_your_account" )}</div>
             </button>
-          </div>
+          </SettingsItem>
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <div className="settings-item">
-            <h5>{I18n.t( "inaturalist_network_affiliation" )}</h5>
+          <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )}>
             <DropdownButton
               id="inaturalist-affiliation-network-dropdown"
               onSelect={handleSelect}
@@ -149,7 +145,7 @@ const Account = ( { profile, setUserData } ) => {
                 } )
               }}
             />
-          </div>
+          </SettingsItem>
         </div>
       </div>
     </div>
