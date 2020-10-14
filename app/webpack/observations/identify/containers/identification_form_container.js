@@ -11,7 +11,7 @@ import {
   addIdentification
 } from "../actions";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
-import { updateEditorContent } from "../../shared/ducks/text_editor";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <IdentificationFormContainer observation={foo} />

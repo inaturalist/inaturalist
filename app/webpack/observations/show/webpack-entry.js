@@ -33,7 +33,7 @@ import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import currentObservationReducer from "../identify/reducers/current_observation_reducer";
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
-import textEditorReducer from "../shared/ducks/text_editor";
+import textEditorReducer from "../shared/ducks/text_editors";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;

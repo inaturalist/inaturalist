@@ -17,7 +17,7 @@ import {
 } from "../../identify/actions/current_observation_actions";
 import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config";
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
-import { updateEditorContent } from "../../shared/ducks/text_editor";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {

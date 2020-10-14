@@ -33,7 +33,7 @@ import config from "../../../shared/ducks/config";
 import searchParams from "./search_params_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alert from "./alert_reducer";
-import textEditor from "../../shared/ducks/text_editor";
+import textEditor from "../../shared/ducks/text_editors";
 import suggestions from "../ducks/suggestions";
 import controlledTerms from "../../show/ducks/controlled_terms";
 import qualityMetrics from "../../show/ducks/quality_metrics";
