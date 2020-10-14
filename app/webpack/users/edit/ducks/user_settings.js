@@ -12,7 +12,6 @@ export default function reducer( state = { }, action ) {
 }
 
 export function setUserData( userData ) {
-  console.log( userData, "setting user data" );
   return {
     type: SET_USER_DATA,
     userData
@@ -28,14 +27,12 @@ export function fetchUserSettings( ) {
 
 export function saveUserSettings( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const { id } = s.profile;
-
-    console.log( s.profile, "profile in save settings" );
+    const { profile } = getState( );
+    const { id } = profile;
 
     const params = {
       id,
-      user: s.profile
+      user: profile
     };
 
     params.user.updated_at = new Date( );
@@ -53,6 +50,14 @@ export function handleCheckboxChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[e.target.name] = e.target.checked;
+    dispatch( setUserData( profile ) );
+  };
+}
+
+export function handleInputChange( e ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile[e.target.name] = e.target.value;
     dispatch( setUserData( profile ) );
   };
 }

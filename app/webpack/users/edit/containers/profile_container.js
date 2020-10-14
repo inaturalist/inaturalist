@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import Profile from "../components/profile";
-import { setUserData } from "../ducks/user_settings";
+import { setUserData, handleInputChange } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setUserData: newState => { dispatch( setUserData( newState ) ); }
+    setUserData: newState => { dispatch( setUserData( newState ) ); },
+    handleInputChange: newState => { dispatch( handleInputChange( newState ) ); }
   };
 }
 

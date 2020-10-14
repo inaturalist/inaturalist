@@ -7,26 +7,14 @@ import SettingsItem from "./settings_item";
 
 // import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
-const Content = ( { profile, setUserData } ) => {
+const Content = ( { profile, setUserData, handleInputChange } ) => {
   const handleNameChange = e => {
     console.log( e.target );
-  };
-
-  const handleInputChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.value;
-    setUserData( updatedProfile );
   };
 
   const handlePlaceDropdownSelect = ( { item } ) => {
     const updatedProfile = profile;
     updatedProfile.place_id = item.id;
-    setUserData( updatedProfile );
-  };
-
-  const handleSelect = eventKey => {
-    const updatedProfile = profile;
-    updatedProfile.site_id = eventKey;
     setUserData( updatedProfile );
   };
 
@@ -218,7 +206,8 @@ const Content = ( { profile, setUserData } ) => {
 
 Content.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func
+  setUserData: PropTypes.func,
+  handleInputChange: PropTypes.func
 };
 
 export default Content;

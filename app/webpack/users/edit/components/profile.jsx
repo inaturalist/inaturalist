@@ -6,14 +6,8 @@ import SettingsItem from "./settings_item";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
-const Profile = ( { profile, setUserData } ) => {
+const Profile = ( { profile, setUserData, handleInputChange } ) => {
   const hiddenFileInput = createRef( null );
-
-  const handleInputChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.value;
-    setUserData( updatedProfile );
-  };
 
   const handleClick = ( ) => {
     hiddenFileInput.current.click();
@@ -118,7 +112,8 @@ const Profile = ( { profile, setUserData } ) => {
 
 Profile.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func
+  setUserData: PropTypes.func,
+  handleInputChange: PropTypes.func
 };
 
 export default Profile;

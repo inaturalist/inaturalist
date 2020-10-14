@@ -24,13 +24,7 @@ const iNatAffiliationDict = [
   { number: 20, location: I18n.t( "places_name.finland" ) }
 ];
 
-const Account = ( { profile, setUserData } ) => {
-  const handleInputChange = e => {
-    const updatedProfile = profile;
-    updatedProfile[e.target.name] = e.target.value;
-    setUserData( updatedProfile );
-  };
-
+const Account = ( { profile, setUserData, handleInputChange } ) => {
   const handleSelect = eventKey => {
     const updatedProfile = profile;
     updatedProfile.site_id = eventKey;
@@ -154,7 +148,8 @@ const Account = ( { profile, setUserData } ) => {
 
 Account.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func
+  setUserData: PropTypes.func,
+  handleInputChange: PropTypes.func
 };
 
 export default Account;
