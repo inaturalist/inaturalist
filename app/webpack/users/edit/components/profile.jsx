@@ -1,6 +1,8 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
+
 import CheckboxRowContainer from "../containers/checkbox_row_container";
+import SettingsItem from "./settings_item";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
@@ -29,8 +31,7 @@ const Profile = ( { profile, setUserData } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <div className="settings-item">
-            <h5>{I18n.t( "profile_picture" )}</h5>
+          <SettingsItem header={I18n.t( "profile_picture" )}>
             <div className="row row-align-center">
               <div className="col-xs-4">
                 <img alt="profile-empty" src={profile.icon || emptyProfileImage} className="user-photo" />
@@ -49,25 +50,17 @@ const Profile = ( { profile, setUserData } ) => {
                 </button>
               </div>
             </div>
-          </div>
-          <div className="settings-item">
-            <h5>
-              {I18n.t( "username" )}
-              <div className="asterisk">*</div>
-            </h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "username" )} required>
             <div className="italic-text">{I18n.t( "username_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
-          </div>
-          <div className="settings-item">
-            <h5>
-              {I18n.t( "email" )}
-              <div className="asterisk">*</div>
-            </h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "email" )} required>
             <div className="italic-text">{I18n.t( "email_description" )}</div>
             <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
-          </div>
+          </SettingsItem>
           <div className="settings-item">
             <h5>
               {I18n.t( "change_password" )}
@@ -88,26 +81,17 @@ const Profile = ( { profile, setUserData } ) => {
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <div className="settings-item">
-            <h5>
-              {I18n.t( "display_name" )}
-              <div className="asterisk">*</div>
-            </h5>
+          <SettingsItem header={I18n.t( "display_name" )} required>
             <div className="italic-text">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
-          </div>
-          <div className="settings-item">
-            <h5>
-              {I18n.t( "bio" )}
-              <div className="asterisk">*</div>
-            </h5>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "bio" )} required>
             <div className="italic-text">{I18n.t( "bio_description" )}</div>
-            <textarea className="form-control" value={profile ? profile.description : ""} name="description" onChange={handleInputChange} />
-          </div>
-          <div className="settings-item">
-            <h5>{I18n.t( "badges" )}</h5>
+            <textarea className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "badges" )}>
             <CheckboxRowContainer
               name="prefers_monthly_supporter_badge"
               label={I18n.t( "display_monthly_supporter_badge" )}
@@ -125,7 +109,7 @@ const Profile = ( { profile, setUserData } ) => {
                 </div>
               )}
             />
-          </div>
+          </SettingsItem>
         </div>
       </div>
     </div>
