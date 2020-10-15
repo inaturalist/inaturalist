@@ -1819,6 +1819,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
     maltese: Maltesisk
@@ -1929,6 +1930,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
+    lv: Lettisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -4005,7 +4007,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
@@ -4419,7 +4420,6 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
-  wikipedia_entry: Wikipedia indgang
   with: med
   withdraw: Træk tilbage
   withdrawing: Trækker tilbage...
@@ -5978,6 +5978,11 @@ da:
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
           Arter er standard.
+        wikipedia_summary_desc_html: |
+          Kort opsummering af denne takson baseret på dens <a target="_blank"
+          href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
+          manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
+          hvilket automatisk opfriskes efter én uge.
       show:
         about_names_desc: |
           <P>
