@@ -53,11 +53,10 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
   };
 
   const createRadioButtons = ( ) => ["any", "joined", "none"].map( button => (
-    <div className="form-check">
+    <div>
       <label>
         <input
           type="radio"
-          className="form-check-input"
           value={button}
           name="preferred_project_addition_by"
           checked={profile.preferred_project_addition_by === button}
@@ -69,7 +68,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
   ) );
 
 
-  const createObsLicenseList = ( ) => {
+  const createLicenseList = name => {
     const iNatLicenses = iNaturalist.Licenses;
 
     const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa"];
@@ -80,18 +79,23 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
 
       return (
         <MenuItem
-          key={`display-names-${code}`}
+          key={`${name}-${code}`}
           eventKey={code}
           className="inat-affiliation-width"
         >
-          <span className="row-align-center">
+          <span className="row-align-center wrap-white-space">
             <img src={iNatLicenses[license].icon_large} alt={code} />
-            {I18n.t( `${localizedName}_name` )}
-            {code === profile.preferred_observation_license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+            <div className="license">
+              <h6>{I18n.t( `${localizedName}_name` )}</h6>
+            </div>
+            {profile[name] === license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
           </span>
         </MenuItem>
       );
     } );
+
+    // no_license_all_rights_reserved
+    // you_retain_full_copyright
   };
 
   return (
@@ -99,17 +103,15 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
       <div className="row">
         <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "project_settings" )}>
-            <label>{I18n.t( "which_projects_can_add_your_observations?" )}</label>
-            <div className="left-aligned-column">
-              <form>
-                {createRadioButtons( )}
-              </form>
-            </div>
-            <div className="account-subheader-text">
+            <label>
+              {I18n.t( "which_projects_can_add_your_observations?" )}
+              {createRadioButtons( )}
+            </label>
+            <p className="text-muted small">
               {I18n.t( "views.users.edit.project_settings_desc" )}
-            </div>
-            <span
-              className="account-subheader-text"
+            </p>
+            <p
+              className="text-muted small"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects", {
@@ -125,7 +127,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
               description={(
                 <div>
                   <span
-                    className="account-subheader-text"
+                    className="text-muted small"
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: I18n.t( "views.users.edit.taxon_change_desc", {
@@ -139,7 +141,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
           </SettingsItem>
           <SettingsItem header={I18n.t( "licensing" )}>
             <span
-              className="account-subheader-text"
+              className="text-muted small"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.licensing_desc_html", {
@@ -147,7 +149,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
                 } )
               }}
             />
-            <a href="#">{I18n.t( "learn_what_these_licenses_mean" )}</a>
+            <a href="#" className="small">{I18n.t( "learn_what_these_licenses_mean" )}</a>
             <label>{I18n.t( "default_observation_license" )}</label>
             <DropdownButton
               id="observation-license-dropdown"
@@ -159,17 +161,41 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
                 </span>
               )}
             >
-              {createObsLicenseList( )}
+              {createLicenseList( "preferred_observation_license" )}
             </DropdownButton>
             <label>{I18n.t( "default_photo_license" )}</label>
+            <DropdownButton
+              id="photo-license-dropdown"
+              onSelect={handleNameChange}
+              className="custom-dropdown"
+              title={(
+                <span>
+                  photo license
+                </span>
+              )}
+            >
+              {createLicenseList( "preferred_photo_license" )}
+            </DropdownButton>
             <label>{I18n.t( "default_sound_license" )}</label>
+            <DropdownButton
+              id="sound-license-dropdown"
+              onSelect={handleNameChange}
+              className="custom-dropdown"
+              title={(
+                <span>
+                  sound license
+                </span>
+              )}
+            >
+              {createLicenseList( "preferred_sound_license" )}
+            </DropdownButton>
           </SettingsItem>
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
           <SettingsItem header={I18n.t( "names" )}>
             <label>{I18n.t( "display" )}</label>
-            <div className="account-subheader-text">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
+            <div className="text-muted small">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
             <DropdownButton
               id="display-names-dropdown"
               onSelect={handleNameChange}
@@ -180,7 +206,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
                 </span>
               )}
             >
-              {createDisplayNamesList( )}
+              {createDisplayNamesList( "preferred_observation_license" )}
             </DropdownButton>
             <div>
               <label>{I18n.t( "views.users.edit.name_place_help_html" )}</label>
@@ -197,14 +223,15 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
               description={(
-                <div className="account-subheader-text">
+                <div className="text-muted small">
                   {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
                 </div>
               )}
             />
             <label>{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
-            <div className="account-subheader-text">{I18n.t( "observation_fields_by_preferences_description" )}</div>
+            <div className="text-muted small">{I18n.t( "observation_fields_by_preferences_description" )}</div>
             <select
+              className="form-control"
               value={profile.preferred_observation_fields_by}
               name="preferred_observation_fields_by"
               onChange={handleInputChange}

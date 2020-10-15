@@ -65,7 +65,7 @@ class SearchPlaces extends Component {
     return (
       <div className="settings-item">
         <h5>{I18n.t( "default_search_place" )}</h5>
-        <div className="account-subheader-text">{I18n.t( "default_search_place_description" )}</div>
+        <div className="text-muted small">{I18n.t( "default_search_place_description" )}</div>
         <PlaceAutocomplete
           resetOnChange={false}
           initialPlaceID={profile.search_place_id}

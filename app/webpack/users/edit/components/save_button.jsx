@@ -6,8 +6,8 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
   const handleClick = ( ) => saveUserSettings( );
 
   return (
-    <div className="save-button">
-      <div className="time">
+    <div className="flex-no-wrap">
+      <div className="text-muted underline">
         {I18n.t( "saved_at" )}
         {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
       </div>

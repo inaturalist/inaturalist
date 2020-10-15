@@ -38,9 +38,9 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
-                <input className="hidden-input" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
-                <button className="btn gray-button" type="button">
-                  <div className="gray-button-text">{I18n.t( "remove_photo" )}</div>
+                <input className="hide" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
+                <button className="btn btn-default btn-xs" type="button">
+                  {I18n.t( "remove_photo" )}
                 </button>
               </div>
             </div>
@@ -56,17 +56,21 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
             <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
           <div className="settings-item">
-            <h5>
-              {I18n.t( "change_password" )}
-              <div className="downward-caret">&#x25BE;</div>
-            </h5>
+            <h4>
+              {`${I18n.t( "change_password" )} `}
+              <i className="fa fa-caret-down" aria-hidden="true" />
+            </h4>
             <form className="margin-medium-small">
-              <label>{I18n.t( "new_password" )}</label>
-              <input type="text" className="form-control" name="new_password" />
+              <label>
+                {I18n.t( "new_password" )}
+                <input type="text" className="form-control" name="new_password" />
+              </label>
             </form>
             <form className="margin-medium">
-              <label>{I18n.t( "confirm_new_password" )}</label>
-              <input type="text" className="form-control" name="confirm_new_password" />
+              <label>
+                {I18n.t( "confirm_new_password" )}
+                <input type="text" className="form-control" name="confirm_new_password" />
+              </label>
             </form>
             <button className="btn btn-xs btn-primary" type="button">
               {I18n.t( "change_password" )}
@@ -90,17 +94,15 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
               name="prefers_monthly_supporter_badge"
               label={I18n.t( "display_monthly_supporter_badge" )}
               description={(
-                <div>
-                  <span
-                    className="italic-text"
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{
-                      __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
-                        url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
-                      } )
-                    }}
-                  />
-                </div>
+                <p
+                  className="italic-text small"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
+                      url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
+                    } )
+                  }}
+                />
               )}
             />
           </SettingsItem>

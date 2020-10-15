@@ -80,14 +80,14 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
       <div className="row">
         <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}>
-            <div className="account-subheader-text">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</div>
-            <select value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+            <p className="text-muted small">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
+            <select className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
               {createTimeZoneList( )}
             </select>
           </SettingsItem>
           <SettingsItem header={I18n.t( "language_slash_locale" )}>
-            <div className="account-subheader-text">{I18n.t( "language_slash_locale_description" )}</div>
-            <select value={profile.locale} name="locale" onChange={handleInputChange}>
+            <p className="text-muted small">{I18n.t( "language_slash_locale_description" )}</p>
+            <select className="form-control" value={profile.locale} name="locale" onChange={handleInputChange}>
               {createLocaleList( )}
             </select>
           </SettingsItem>
@@ -130,8 +130,8 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
               {createINatAffiliationList( )}
             </DropdownButton>
             <div className="margin-medium" />
-            <span
-              className="account-subheader-text"
+            <p
+              className="text-muted small"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
