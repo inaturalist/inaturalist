@@ -46,13 +46,13 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "username" )} required>
-            <div className="italic-text">{I18n.t( "username_description" )}</div>
+            <div className="text-muted">{I18n.t( "username_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "email" )} required>
-            <div className="italic-text">{I18n.t( "email_description" )}</div>
+            <div className="text-muted">{I18n.t( "email_description" )}</div>
             <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
           <div className="settings-item">
@@ -65,8 +65,6 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
                 {I18n.t( "new_password" )}
                 <input type="text" className="form-control" name="new_password" />
               </label>
-            </form>
-            <form className="margin-medium">
               <label>
                 {I18n.t( "confirm_new_password" )}
                 <input type="text" className="form-control" name="confirm_new_password" />
@@ -80,13 +78,13 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
           <SettingsItem header={I18n.t( "display_name" )} required>
-            <div className="italic-text">{I18n.t( "display_name_description" )}</div>
+            <div className="text-muted">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">
               <input type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "bio" )} required>
-            <div className="italic-text">{I18n.t( "bio_description" )}</div>
+            <div className="text-muted">{I18n.t( "bio_description" )}</div>
             <textarea className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
           </SettingsItem>
           <SettingsItem header={I18n.t( "badges" )}>
@@ -95,7 +93,7 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
               label={I18n.t( "display_monthly_supporter_badge" )}
               description={(
                 <p
-                  className="italic-text small"
+                  className="text-muted"
                   // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{
                     __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {

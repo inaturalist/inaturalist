@@ -16,7 +16,7 @@ const App = ( ) => (
         <SaveButtonContainer />
       </div>
     </div>
-    <div className="row UserSettings">
+    <div className="row">
       <div className="col-xs-2 menu">
         <Menu />
       </div>

@@ -5,7 +5,7 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 
-// import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
+import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 const Content = ( { profile, setUserData, handleInputChange } ) => {
   const handleNameChange = e => {
@@ -41,11 +41,11 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
       <MenuItem
         key={`display-names-${option}`}
         eventKey={option}
-        className="inat-affiliation-width"
+        className="custom-dropdown-width-width"
       >
         <span className="row-align-center">
           {text}
-          {parentheses && <div className="italic-text">{parentheses}</div>}
+          {parentheses && <div className="text-muted">{parentheses}</div>}
           <i className="fa fa-check blue-text align-right" aria-hidden="true" />
         </span>
       </MenuItem>
@@ -81,13 +81,11 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
         <MenuItem
           key={`${name}-${code}`}
           eventKey={code}
-          className="inat-affiliation-width"
+          className="custom-dropdown-width"
         >
-          <span className="row-align-center wrap-white-space">
-            <img src={iNatLicenses[license].icon_large} alt={code} />
-            <div className="license">
-              <h6>{I18n.t( `${localizedName}_name` )}</h6>
-            </div>
+          <span className="flex-no-wrap wrap-white-space">
+            <img id="image-license" src={iNatLicenses[license].icon_large} alt={code} />
+            <label htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
             {profile[name] === license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
           </span>
         </MenuItem>
@@ -107,11 +105,11 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
               {I18n.t( "which_projects_can_add_your_observations?" )}
               {createRadioButtons( )}
             </label>
-            <p className="text-muted small">
+            <p className="text-muted">
               {I18n.t( "views.users.edit.project_settings_desc" )}
             </p>
             <p
-              className="text-muted small"
+              className="text-muted"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects", {
@@ -127,7 +125,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
               description={(
                 <div>
                   <span
-                    className="text-muted small"
+                    className="text-muted"
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{
                       __html: I18n.t( "views.users.edit.taxon_change_desc", {
@@ -141,7 +139,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
           </SettingsItem>
           <SettingsItem header={I18n.t( "licensing" )}>
             <span
-              className="text-muted small"
+              className="text-muted"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.licensing_desc_html", {
@@ -149,12 +147,12 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
                 } )
               }}
             />
-            <a href="#" className="small">{I18n.t( "learn_what_these_licenses_mean" )}</a>
+            <a href="#">{I18n.t( "learn_what_these_licenses_mean" )}</a>
             <label>{I18n.t( "default_observation_license" )}</label>
             <DropdownButton
               id="observation-license-dropdown"
               onSelect={handleNameChange}
-              className="custom-dropdown"
+              className="custom-dropdown-width"
               title={(
                 <span>
                   observation license
@@ -167,7 +165,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             <DropdownButton
               id="photo-license-dropdown"
               onSelect={handleNameChange}
-              className="custom-dropdown"
+              className="custom-dropdown-width"
               title={(
                 <span>
                   photo license
@@ -180,7 +178,7 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             <DropdownButton
               id="sound-license-dropdown"
               onSelect={handleNameChange}
-              className="custom-dropdown"
+              className="custom-dropdown-width"
               title={(
                 <span>
                   sound license
@@ -195,11 +193,11 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
         <div className="col-md-6 col-xs-10">
           <SettingsItem header={I18n.t( "names" )}>
             <label>{I18n.t( "display" )}</label>
-            <div className="text-muted small">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
+            <div className="text-muted">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
             <DropdownButton
               id="display-names-dropdown"
               onSelect={handleNameChange}
-              className="custom-dropdown"
+              className="custom-dropdown-width"
               title={(
                 <span>
                   common names
@@ -210,12 +208,12 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
             </DropdownButton>
             <div>
               <label>{I18n.t( "views.users.edit.name_place_help_html" )}</label>
-              {/* <PlaceAutocomplete
-                // resetOnChange={false}
+              <PlaceAutocomplete
+                resetOnChange={false}
                 initialPlaceID={profile.place_id}
                 bootstrapClear
                 afterSelect={handlePlaceDropdownSelect}
-              /> */}
+              />
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "community_moderation_settings" )}>
@@ -223,13 +221,13 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
               description={(
-                <div className="text-muted small">
+                <div className="text-muted">
                   {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
                 </div>
               )}
             />
             <label>{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
-            <div className="text-muted small">{I18n.t( "observation_fields_by_preferences_description" )}</div>
+            <div className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</div>
             <select
               className="form-control"
               value={profile.preferred_observation_fields_by}

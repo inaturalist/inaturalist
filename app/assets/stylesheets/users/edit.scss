@@ -1,7 +1,9 @@
 .flex-no-wrap {
   display: flex;
-  flex-direction: row;
   align-items: center;
+}
+
+.space-between-items {
   justify-content: space-between;
 }
 
@@ -9,13 +11,13 @@
   text-decoration: underline;
 }
 
-.custom-dropdown {
+.custom-dropdown-width {
   width: 275px;
-  height: 36px;
 }
 
-.inat-affiliation-width {
-  width: 275px;
+.inat-affiliation-logo-size {
+  max-height: 33px;
+  max-width: 135px;
 }
 
 .centered-column {
@@ -47,128 +49,23 @@
   height: 522px;
 }
 
-// .row-align-center {
-//   display: flex;
-//   align-items: center
-// }
+.align-right {
+  position: absolute;
+  right: 6px
+}
 
-// .header-margin {
-//   margin-bottom: 26px;
-// }
+.divider {
+  border-bottom: 1px solid #eee;
+}
 
-// .left-aligned-column {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   margin-left: 9px;
-// }
+.divider:last-child {
+  border-bottom: 0 transparent;
+}
 
-// label {
-//   margin-bottom: 7px;
-// }
+.divider:first-child {
+  border-bottom: 0 transparent;
+}
 
-// h5 {
-//   display: flex;
-//   flex-direction: row;
-//   font-weight: bold !important;
-
-//   .asterisk {
-//     color: #ca5c53;
-//     margin-left: 3px;
-//   }
-
-//   .downward-caret {
-//     color: #bbbbbb;
-//     margin-left: 6px;
-//   }
-// }
-
-// .blue-button-caps {
-//   letter-spacing: 1.1px;
-// }
-
-// .gray-button {
-//   margin-top: 11px;
-//   border-color: transparent;
-//   background-color: transparent;
-// }
-
-// .gray-button-text {
-//   color: #d8d8d8;
-//   text-decoration: underline;
-//   font-size: 12px;
-// }
-
-// .italic-text {
-//   font-size: 12px;
-//   font-style: italic;
-//   line-height: 1.17;
-//   color: #656665;
-//   margin-bottom: 13px;
-// }
-
-// .account-subheader-text {
-//   font-size: 12px;
-//   line-height: 1.17;
-//   color: #656665;
-//   margin-bottom: 17px;
-//   font-weight: 500px;
-// }
-
-// .user-photo {
-//   margin-right: 25px;
-// }
-
-// .margin-medium {
-//   margin-bottom: 17px;
-// }
-
-// .margin-medium-small {
-//   margin-bottom: 13px;
-// }
-
-// .blue-button-text {
-//   color: #2e78b8;
-//   text-decoration: underline;
-//   font-size: 12px;
-// }
-
-// .blue-text {
-//   color: #2e78b8;
-// }
-
-// .logo-height-width {
-//   max-height: 33px;
-//   max-width: 135px;
-// }
-
-// .no-divider-margin {
-//   height: 1px;
-//   margin-top: 3px;
-//   width: 275px;
-//   background-color: #e5e5e5;
-//   position: absolute;
-//   left: 0
-// }
-
-// .place-name {
-//   font-size: 10px;
-//   font-weight: 500;
-//   letter-spacing: 1px;
-//   color: #777777;
-//   margin-left: 12px;
-// }
-
-// .align-right {
-//   position: absolute;
-//   right: 6px
-// }
-
-// .license {
-//   width: 115px;
-//   margin-left: 15px;
-// }
-
-// .wrap-white-space {
-//   white-space: normal;
-// }
+.wrap-white-space {
+  white-space: normal;
+}

@@ -6,7 +6,7 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
   const handleClick = ( ) => saveUserSettings( );
 
   return (
-    <div className="flex-no-wrap">
+    <div className="flex-no-wrap space-between-items">
       <div className="text-muted underline">
         {I18n.t( "saved_at" )}
         {` ${moment( profile.updated_at ).format( "h:mm a" )}`}

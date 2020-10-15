@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MenuItem, DropdownButton } from "react-bootstrap";
 
-import SearchPlaces from "./search_places";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
+import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 /* global TIMEZONES */
 
@@ -28,6 +28,12 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
   const handleSelect = eventKey => {
     const updatedProfile = profile;
     updatedProfile.site_id = eventKey;
+    setUserData( updatedProfile );
+  };
+
+  const fillInputWithSelection = ( { item } ) => {
+    const updatedProfile = profile;
+    updatedProfile.search_place_id = item.id;
     setUserData( updatedProfile );
   };
 
@@ -61,16 +67,16 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
         eventKey={number}
         className="inat-affiliation-width"
       >
-        <span className="row-align-center">
+        <span className="flex-no-wrap">
           <img
-            className="logo-height-width"
+            className="inat-affiliation-logo-size"
             alt={`inat-affiliation-logo-${number}`}
             src={showINatAffiliationLogo( number )}
           />
-          <div className="place-name">{location.toLocaleUpperCase( )}</div>
+          {location.toLocaleUpperCase( )}
           {profile.site_id === number && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
         </span>
-        {number !== 20 && <div className="no-divider-margin" />}
+        <div className="divider" />
       </MenuItem>
     ) )
   );
@@ -80,58 +86,61 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
       <div className="row">
         <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )}>
-            <p className="text-muted small">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
+            <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
             <select className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
               {createTimeZoneList( )}
             </select>
           </SettingsItem>
           <SettingsItem header={I18n.t( "language_slash_locale" )}>
-            <p className="text-muted small">{I18n.t( "language_slash_locale_description" )}</p>
+            <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
             <select className="form-control" value={profile.locale} name="locale" onChange={handleInputChange}>
               {createLocaleList( )}
             </select>
           </SettingsItem>
-          <SearchPlaces profile={profile} setUserData={setUserData} />
+          <SettingsItem header={I18n.t( "default_search_place" )}>
+            <div className="text-muted">{I18n.t( "default_search_place_description" )}</div>
+            <PlaceAutocomplete
+              resetOnChange={false}
+              initialPlaceID={profile.search_place_id}
+              bootstrapClear
+              afterSelect={fillInputWithSelection}
+            />
+          </SettingsItem>
           <SettingsItem header={I18n.t( "privacy" )}>
             <CheckboxRowContainer
               name="prefers_no_tracking"
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
               description={(
-                <div className="blue-text italic-text">
+                <a href="#">
                   <i className="fa fa-info-circle" />
                   {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-                </div>
+                </a>
               )}
             />
           </SettingsItem>
           <SettingsItem header={I18n.t( "danger_zone" )}>
-            <button className="btn gray-button" type="button">
-              <div className="blue-button-text">{I18n.t( "delete_your_account" )}</div>
-            </button>
+            <a href="#">{I18n.t( "delete_your_account" )}</a>
           </SettingsItem>
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
           <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )}>
             <DropdownButton
-              id="inaturalist-affiliation-network-dropdown"
+              id="iNatAffiliation"
               onSelect={handleSelect}
-              className="custom-dropdown"
+              className="custom-dropdown-width"
               title={(
-                <span>
-                  <img
-                    className="logo-height-width"
-                    alt={`inat-affiliation-logo-${profile.site_id || 1}`}
-                    src={showINatAffiliationLogo( profile.site_id )}
-                  />
-                </span>
+                <img
+                  className="inat-affiliation-logo-size"
+                  alt={`inat-affiliation-logo-${profile.site_id || 1}`}
+                  src={showINatAffiliationLogo( profile.site_id )}
+                />
               )}
             >
               {createINatAffiliationList( )}
             </DropdownButton>
-            <div className="margin-medium" />
             <p
-              className="text-muted small"
+              className="text-muted"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
