@@ -14,9 +14,10 @@ module TaxonDescribers
         # those are the taxon IDs Wikidata has ingested, so unfortunately this
         # can't really be tested
         if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale}" )
-          r.header[:location].split( "/" ).last
+          r.header[:location].to_s.split( "/" ).last
         end
       end
+      title = CGI.unescape( title ) unless title.blank?
       title = taxon.wikipedia_title if title.blank?
       title = taxon.name if title.blank?
       decoded = ""
@@ -41,7 +42,6 @@ module TaxonDescribers
       decoded = coder.decode(html)
       decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
       decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
-      decoded.gsub!(/<table .*?class=.*?ambox.*?>.+?<\/table>/, '')
       decoded.gsub!(/<div .*?class=.*?hatnote.*?>.+?<\/div>/, '')
       if options[:strip_references]
         decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')

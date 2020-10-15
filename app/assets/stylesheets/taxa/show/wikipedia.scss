@@ -4,7 +4,10 @@
   line-height: 1.6em;
 
   // hide taxobox
-  .infobox.biota {
+  .infobox.biota,
+  .taxobox_v3,
+  .taxobox,
+  .infobox {
     display: none;
   }
 
@@ -21,6 +24,12 @@
     margin-bottom: 1em;
     background-color: #eee;
     padding: 1em;
+  }
+
+  ul.gallery {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .gallerybox .thumb {
@@ -97,9 +106,16 @@
   .toc {
     line-height: 1.8;
   }
+  .toccolours {
+    background: #f8f9fa;
+  }
 
   a.new {
     color: #ba0000;
+  }
+
+  .navbar {
+    display: none;
   }
 
 }

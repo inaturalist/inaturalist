@@ -1048,9 +1048,18 @@ class TaxaController < ApplicationController
     @describers = if @site.taxon_describers
       @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
-      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
+      [
+        TaxonDescribers::Wikipedia.new( locale: I18n.locale ),
+        TaxonDescribers::AmphibiaWeb,
+        TaxonDescribers::Eol,
+        TaxonDescribers::Inaturalist
+      ]
     else
-      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
+      [
+        TaxonDescribers::Wikipedia.new( locale: I18n.locale ),
+        TaxonDescribers::Eol,
+        TaxonDescribers::Inaturalist
+      ]
     end
     # Perform caching here as opposed to caches_action so we can set request headers appropriately
     key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
@@ -1063,7 +1072,8 @@ class TaxaController < ApplicationController
         @describers << TaxonDescribers::Wikipedia.new( locale: :en )
       end
       if @taxon.auto_description?
-        if @describer = TaxonDescribers.get_describer(params[:from])
+        if describer_klass = TaxonDescribers.get_describer(params[:from])
+          @describer = describer_klass.new( locale: I18n.locale )
           @description = @describer.describe( @taxon )
         else
           @describers.each do |d|
