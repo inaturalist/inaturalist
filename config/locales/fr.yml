@@ -1833,6 +1833,7 @@ fr:
     italian: Italien
     japanese: Japonais
     korean: Coréen
+    latvian: letton
     lithuanian: Lithuanien
     luxembourgish: Luxembourgeois
     maltese: Maltais
@@ -1943,6 +1944,7 @@ fr:
     ko: Coréen
     lb: Luxembourgeois
     lt: Lithuanien
+    lv: letton
     mk: Macédonien
     nb: Bokmål norvégien
     nl: néerlandais
@@ -3998,7 +4000,6 @@ fr:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
-  this_is_a_cached_summary_based_on: Voici un résumé cahcé de ce taxon basé sur son
   this_is_a_life_list_of: Voici une liste des êtres vivants de
   this_is_a_life_list_from_place_html: "C’est une liste de vie pour %{place}"
   this_is_a_life_list_of_taxon_in_place: "Voici une liste des êtres vivants %{taxon} à %{place}"
@@ -4415,7 +4416,6 @@ fr:
     licence <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Son contenu peut avoir été
     supprimé dans l’original, mais aucun contenu n’a été modifié ou complété.
-  wikipedia_entry: Entrée de Wikipédia
   with: avec
   withdraw: Retirer
   withdrawing: Retrait…
@@ -6053,6 +6053,8 @@ fr:
           déclarer des taxons complets, actuellement.
         complete_rank_desc_html: |
           Rang auquel ce taxon est complet, par ex. si cette famille contient tous ses genres, mais pas toutes ses espèces, cela serait mis à « genre ». Par défaut, espèces.
+        wikipedia_summary_desc_html: |
+          Bref résumé de ce taxon basé sur sa page <a target="_blank" href="%{url}">Wikipédia</a> que nous mettons en cache indéfiniment jusqu'à ce qu'il soit actualisé manuellement. Rafraîchir ce résumé met également immédiatement à jour notre cache du contenu sous-jacent de Wikipédia que nous affichons sur le site Web, et qui se rafraîchit automatiquement après une semaine.
       show:
         about_names_desc: |
           <p>
