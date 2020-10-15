@@ -1860,6 +1860,7 @@ sv:
     italian: Italienska
     japanese: Japanska
     korean: Koreanska
+    latvian: Lettiska
     lithuanian: Litauiska
     luxembourgish: Luxemburgiska
     maltese: Maltesiska
@@ -1970,6 +1971,7 @@ sv:
     ko: Koreanska
     lb: Luxemburgiska
     lt: Litauiska
+    lv: Lettiska
     mk: Makedonska
     nb: Norska (Bokmål)
     nl: Nederländska
@@ -4081,7 +4083,6 @@ sv:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
-  this_is_a_cached_summary_based_on: Detta är en cachelagrad sammanfattning av detta taxon baserat på dess
   this_is_a_life_list_of: Detta är en livslista över
   this_is_a_life_list_from_place_html: "Detta är en livslista från %{place}"
   this_is_a_life_list_of_taxon_in_place: "Detta är en livslista över %{taxon} i %{place}"
@@ -4507,7 +4508,6 @@ sv:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Erkännande Dela Lika-licens 3.0</a>. Delar av innehållet kan ha
     utelämnats jämfört med originalet, men inget har ändrats eller lagts till.
-  wikipedia_entry: Wikipedia-artikel
   with: med
   withdraw: Dra tillbaka
   withdrawing: Drar tillbaka...
@@ -6291,6 +6291,11 @@ sv:
           Den rang till vilket ett taxon är komplett, t.ex. om en familj innehåller
           alla sina släkten men inte alla sina arter, skulle detta vara satt till "släkte ".
           Art är standard.
+        wikipedia_summary_desc_html: |
+          Kort sammanfattning av detta taxon baserat på dess <a target="_blank"
+          href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den
+          manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
+          webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
         about_names_desc: |
           <p>
