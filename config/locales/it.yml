@@ -1805,6 +1805,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
+    latvian: Lettone
     lithuanian: Lituano
     luxembourgish: Lussemburghese
     maltese: Maltese
@@ -1915,6 +1916,7 @@ it:
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
+    lv: Lettone
     mk: Macedone
     nb: Norvegese Bokmål
     nl: Olandese
@@ -3935,7 +3937,6 @@ it:
   third_person_possessive_plural: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
-  this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon basato sul suo
   this_is_a_life_list_of: Questa è una lista degli esseri viventi di
   this_is_a_life_list_from_place_html: "Questa e una lista degli esseri viventi in %{place}"
   this_is_a_life_list_of_taxon_in_place: "Questa è una lista degli esseri viventi del taxon %{taxon} in %{place}"
@@ -4345,7 +4346,6 @@ it:
     Questa voce usa materiale dalla voce di Wikipedia <a href="%{url}">"%{title}"</a>, che è stata rilasciata con
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
-  wikipedia_entry: Voce di Wikipedia
   with: con
   withdraw: Ritira
   withdrawing: Ritiro in corso...
@@ -5645,6 +5645,10 @@ it:
           Un taxon "completo" contiene <em>tutti</em> i taxa discendenti conosciuti ad uno specifico livello in accordo con le politiche della curatela dei taxa iNaturalist. Al momento solo gli amministratori del sito possono definire i taxa completi.
         complete_rank_desc_html: |
           Livello al quale questo taxon è completo, e.g. se questa famiglia contiene tutti i generi ma non tutte le specie, questo sarà settato al "genere". Predefinito è il livello specie.
+        wikipedia_summary_desc_html: |
+          Breve descrizione sintetica di questo taxon basata sulla sua <a target="_blank"
+          href="%{url}"> pagina di Wikipedia</a> che manteniamo a tempo indeterminato fino ad un
+          aggiornamento manuale. Aggiornando questa sintesi viene aggiornata immediatamente anche la nostra cache del sottostante contenuto di Wikipedia visualizzato sul sito web, che si aggiorna automaticamente dopo una settimana.
       show:
         about_names_desc: |
           <p>
