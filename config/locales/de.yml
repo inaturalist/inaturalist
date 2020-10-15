@@ -1789,6 +1789,7 @@ de:
     italian: Italienisch
     japanese: Japanisch
     korean: Koreanisch
+    latvian: Lettisch
     lithuanian: Litauisch
     luxembourgish: Luxemburgisch
     maltese: Maltesisch
@@ -1898,6 +1899,7 @@ de:
     ko: Koreanisch
     lb: Luxemburgisch
     lt: litauisch
+    lv: Lettisch
     mk: Mazedonisch
     nb: Norwegian Bokmål
     nl: Niederländisch
@@ -4302,7 +4304,6 @@ de:
     Quelle: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
-  wikipedia_entry: Wikipedia-Eintrag
   with: mit
   withdraw: Zurücknehmen
   withdrawing: Nehme zurück …
@@ -5560,6 +5561,12 @@ de:
         complete_rank_desc_html: |
           Taxonomischer Rang auf dem dieses Taxon komplett ist, z.B. wenn diese Familie
           alle ihre untergeordneten Gattungen enthält, aber nicht alle ihre Arten, würde der Rang auf "Gattung" gesetzt. Standard ist <b>Art</b>.
+        wikipedia_summary_desc_html: |
+          Kurze Zusammenfassung dieses Taxons basierend auf seiner <a target="_blank"
+          href="%{url}">Wikipedia-Seite</a>, die wir so lange unbegrenzt zwischenspeichern, bis
+          sie manuell aktualisiert wurde. Das Aktualisieren dieser Zusammenfassung aktualisiert 
+          unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
+          Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
       show:
         about_names_desc: |
           <p>
