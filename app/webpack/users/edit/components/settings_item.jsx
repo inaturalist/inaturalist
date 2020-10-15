@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SettingsItem = ( { header, required, children } ) => (
+const SettingsItem = ( {
+  header,
+  required,
+  children,
+  htmlFor
+} ) => (
   <div className="row settings-item">
     <div className="col-xs-12">
-      <h4>
+      <label htmlFor={htmlFor}>
         {header}
         {required && " *"}
-      </h4>
+      </label>
       {children}
     </div>
   </div>
@@ -16,7 +21,8 @@ const SettingsItem = ( { header, required, children } ) => (
 SettingsItem.propTypes = {
   header: PropTypes.string,
   required: PropTypes.bool,
-  children: PropTypes.any
+  children: PropTypes.any,
+  htmlFor: PropTypes.string
 };
 
 export default SettingsItem;

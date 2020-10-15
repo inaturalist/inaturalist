@@ -25,7 +25,7 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <SettingsItem header={I18n.t( "profile_picture" )}>
+          <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
             <div className="row row-align-center">
               <div className="col-xs-4">
                 <img alt="profile-empty" src={profile.icon || emptyProfileImage} className="user-photo" />
@@ -38,29 +38,29 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
-                <input className="hide" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
+                <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
                 <button className="btn btn-default btn-xs" type="button">
                   {I18n.t( "remove_photo" )}
                 </button>
               </div>
             </div>
           </SettingsItem>
-          <SettingsItem header={I18n.t( "username" )} required>
+          <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
             <div className="text-muted">{I18n.t( "username_description" )}</div>
             <div className="input-group">
-              <input type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
+              <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
           </SettingsItem>
-          <SettingsItem header={I18n.t( "email" )} required>
+          <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
             <div className="text-muted">{I18n.t( "email_description" )}</div>
-            <input type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
+            <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
           <div className="settings-item">
-            <h4>
+            <label htmlFor="user_password">
               {`${I18n.t( "change_password" )} `}
               <i className="fa fa-caret-down" aria-hidden="true" />
-            </h4>
-            <form className="margin-medium-small">
+            </label>
+            <form id="user_password" className="margin-medium-small">
               <label>
                 {I18n.t( "new_password" )}
                 <input type="text" className="form-control" name="new_password" />
@@ -77,20 +77,21 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
-          <SettingsItem header={I18n.t( "display_name" )} required>
+          <SettingsItem header={I18n.t( "display_name" )} required htmlFor="user_name">
             <div className="text-muted">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">
-              <input type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
+              <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
           </SettingsItem>
-          <SettingsItem header={I18n.t( "bio" )} required>
+          <SettingsItem header={I18n.t( "bio" )} required htmlFor="user_description">
             <div className="text-muted">{I18n.t( "bio_description" )}</div>
-            <textarea className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
+            <textarea id="user_description" className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
           </SettingsItem>
-          <SettingsItem header={I18n.t( "badges" )}>
+          <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
             <CheckboxRowContainer
               name="prefers_monthly_supporter_badge"
               label={I18n.t( "display_monthly_supporter_badge" )}
+              id="user_prefers_monthly_supporter_badge"
               description={(
                 <p
                   className="text-muted"

@@ -6,11 +6,13 @@ const CheckboxRow = ( {
   name,
   handleCheckboxChange,
   label,
-  description
+  description,
+  id
 } ) => (
   <div className="row">
     <div className="col-xs-1">
       <input
+        id={id}
         type="checkbox"
         className="form-check-input"
         checked={profile[name]}
@@ -20,7 +22,7 @@ const CheckboxRow = ( {
       />
     </div>
     <div className="col-xs-10">
-      <label>{label}</label>
+      <label htmlFor={id}>{label}</label>
       {description}
     </div>
   </div>
@@ -31,7 +33,8 @@ CheckboxRow.propTypes = {
   name: PropTypes.string,
   handleCheckboxChange: PropTypes.func,
   label: PropTypes.string,
-  description: PropTypes.object
+  description: PropTypes.object,
+  id: PropTypes.string
 };
 
 export default CheckboxRow;
