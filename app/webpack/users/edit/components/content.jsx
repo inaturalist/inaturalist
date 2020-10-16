@@ -13,12 +13,6 @@ const Content = ( {
   handleInputChange,
   handleCustomDropdownSelect
 } ) => {
-  // const handleCustomDropdownSelect = ( eventKey, name ) => {
-  //   const updatedProfile = profile;
-  //   updatedProfile[name] = eventKey;
-  //   setUserData( updatedProfile );
-  // };
-
   const handlePlaceDropdownSelect = ( { item } ) => {
     const updatedProfile = profile;
     updatedProfile.place_id = item.id;
@@ -148,6 +142,10 @@ const Content = ( {
                 {createLicenseList( "preferred_observation_license" )}
               </DropdownButton>
             </div>
+            <CheckboxRowContainer
+              label={I18n.t( "update_existing_observations_with_new_license" )}
+              id="user_make_observation_licenses_same"
+            />
             <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
             <div>
               <DropdownButton
@@ -159,6 +157,10 @@ const Content = ( {
                 {createLicenseList( "preferred_photo_license" )}
               </DropdownButton>
             </div>
+            <CheckboxRowContainer
+              label={I18n.t( "update_existing_photos_with_new_license" )}
+              id="user_make_photo_licenses_same"
+            />
             <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
             <div>
               <DropdownButton
@@ -170,6 +172,10 @@ const Content = ( {
                 {createLicenseList( "preferred_sound_license" )}
               </DropdownButton>
             </div>
+            <CheckboxRowContainer
+              label={I18n.t( "update_existing_sounds_with_new_license" )}
+              id="user_make_sound_licenses_same"
+            />
           </SettingsItem>
         </div>
         <div className="col-md-1" />
