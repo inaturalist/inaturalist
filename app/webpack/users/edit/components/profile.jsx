@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
+import ChangePassword from "./change_password";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
-const Profile = ( { profile, setUserData, handleInputChange } ) => {
+const Profile = ( { profile, handleInputChange } ) => {
   const hiddenFileInput = createRef( null );
 
   const handleClick = ( ) => {
@@ -55,29 +56,32 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
             <div className="text-muted">{I18n.t( "email_description" )}</div>
             <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
-          <div className="settings-item">
-            <label htmlFor="user_password">
+          <ChangePassword />
+          {/* <div className="settings-item">
+            <label className="inverse-toggle collapsible" htmlFor="user_password">
               {`${I18n.t( "change_password" )} `}
               <i className="fa fa-caret-down" aria-hidden="true" />
             </label>
-            <form id="user_password">
-              <div className="form-group">
-                <label>
-                  {I18n.t( "new_password" )}
-                  <input type="text" className="form-control" name="new_password" />
-                </label>
-              </div>
-              <div className="form-group">
-                <label>
-                  {I18n.t( "confirm_new_password" )}
-                  <input type="text" className="form-control" name="confirm_new_password" />
-                </label>
-              </div>
-            </form>
-            <button className="btn btn-xs btn-primary" type="button">
-              {I18n.t( "change_password" )}
-            </button>
-          </div>
+            <div className="collapse">
+              <form id="user_password">
+                <div className="form-group">
+                  <label>
+                    {I18n.t( "new_password" )}
+                    <input type="text" className="form-control" name="new_password" />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label>
+                    {I18n.t( "confirm_new_password" )}
+                    <input type="text" className="form-control" name="confirm_new_password" />
+                  </label>
+                </div>
+              </form>
+              <button className="btn btn-xs btn-primary" type="button">
+                {I18n.t( "change_password" )}
+              </button>
+            </div>
+          </div> */}
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
@@ -117,7 +121,6 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
 
 Profile.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func,
   handleInputChange: PropTypes.func
 };
 
