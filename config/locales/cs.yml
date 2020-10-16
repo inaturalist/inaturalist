@@ -1941,6 +1941,7 @@ cs:
     italian: italsky
     japanese: japonsky
     korean: korejsky
+    latvian: lotyština
     lithuanian: Litevština
     luxembourgish: lucemburština
     maltese: maltsky
@@ -2051,6 +2052,7 @@ cs:
     ko: Korejština
     lb: Lucemburština
     lt: Litevština
+    lv: lotyština
     mk: makedonsky
     nb: Norština (Bokmål)
     nl: holandsky
@@ -5914,6 +5916,11 @@ cs:
           „Kompletní“ taxon obsahuje <em>všechny</em> známé následné taxony určité kategorie, které splňují kurátorskou politiku taxonů iNaturalist bez ohledu na to, zda byly pozorovány. V současné době mohou taxony označit jako kompletní pouze správci stránek.
         complete_rank_desc_html: |
           Kategorie, v níž je tento taxon kompletní, např. pokud tato čeleď obsahuje všechny své rody, ale ne všechny své druhy, byla by kategorie nastavena na „rod“. Automatické nastavení je na druhy.
+        wikipedia_summary_desc_html: |
+          Krátké shrnutí tohoto taxonu na základě jeho <a target="_blank"
+          href="%{url}">stránky na Wikipedii</a> , které máme natrvalo uložené, dokud jej někdo ručně neobnoví. Obnovení tohoto shrnutí také okamžitě aktualizuje
+          naši mezipaměť obsahu Wikipedie, který zobrazujeme na
+          webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
         about_names_desc: |
           <p>
