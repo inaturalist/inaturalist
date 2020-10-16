@@ -1,5 +1,6 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
+import Dropzone from "react-dropzone";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
@@ -7,19 +8,26 @@ import ChangePassword from "./change_password";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
-const Profile = ( { profile, handleInputChange } ) => {
+const Profile = ( {
+  profile,
+  handleInputChange,
+  handlePhotoUpload,
+  onFileDrop,
+  removePhoto,
+  changePassword
+} ) => {
   const hiddenFileInput = createRef( null );
+  const iconDropzone = createRef( );
 
-  const handleClick = ( ) => {
-    hiddenFileInput.current.click();
-  };
+  const showFileDialog = ( ) => hiddenFileInput.current.click();
 
-  const handleChange = e => {
-    const fileUploaded = e.target.files[0];
-    // const formData = new FormData( );
-    // formData.append( "icon", fileUploaded.name );
-    // console.log( fileUploaded, "file uploaded", formData );
-    // uploadPhoto( formData );
+  const showUserIcon = ( ) => {
+    if ( !profile.icon ) { return emptyProfileImage; }
+
+    if ( profile.icon.preview ) {
+      return profile.icon.preview;
+    }
+    return profile.icon;
   };
 
   return (
@@ -27,24 +35,38 @@ const Profile = ( { profile, handleInputChange } ) => {
       <div className="row">
         <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
-            <div className="row row-align-center">
-              <div className="col-xs-4">
-                <img alt="profile-empty" src={profile.icon || emptyProfileImage} className="user-photo" />
+            <Dropzone
+              ref={iconDropzone}
+              className="dropzone"
+              onDrop={droppedFiles => onFileDrop( droppedFiles )}
+              activeClassName="hover"
+              disableClick
+              accept="image/png,image/jpeg,image/gif"
+              multiple={false}
+            >
+              <div className="row row-align-center">
+                <div className="col-xs-4">
+                  <img
+                    alt="user-icon"
+                    src={showUserIcon( )}
+                    className="user-photo"
+                  />
+                </div>
+                <div className="col-xs-3 centered-column">
+                  <button
+                    className="btn btn-xs btn-primary"
+                    type="button"
+                    onClick={showFileDialog}
+                  >
+                    {I18n.t( "upload_new_photo" )}
+                  </button>
+                  <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
+                  <button className="btn btn-default btn-xs" type="button" onClick={removePhoto}>
+                    {I18n.t( "remove_photo" )}
+                  </button>
+                </div>
               </div>
-              <div className="col-xs-3 centered-column">
-                <button
-                  className="btn btn-xs btn-primary"
-                  type="button"
-                  onClick={handleClick}
-                >
-                  {I18n.t( "upload_new_photo" )}
-                </button>
-                <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handleChange} accept="image/*" />
-                <button className="btn btn-default btn-xs" type="button">
-                  {I18n.t( "remove_photo" )}
-                </button>
-              </div>
-            </div>
+            </Dropzone>
           </SettingsItem>
           <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
             <div className="text-muted">{I18n.t( "username_description" )}</div>
@@ -56,7 +78,7 @@ const Profile = ( { profile, handleInputChange } ) => {
             <div className="text-muted">{I18n.t( "email_description" )}</div>
             <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
-          <ChangePassword />
+          <ChangePassword changePassword={changePassword} />
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
@@ -96,7 +118,11 @@ const Profile = ( { profile, handleInputChange } ) => {
 
 Profile.propTypes = {
   profile: PropTypes.object,
-  handleInputChange: PropTypes.func
+  handleInputChange: PropTypes.func,
+  handlePhotoUpload: PropTypes.func,
+  onFileDrop: PropTypes.func,
+  removePhoto: PropTypes.func,
+  handleClick: PropTypes.func
 };
 
 export default Profile;

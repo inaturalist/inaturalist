@@ -1,4 +1,5 @@
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -66,6 +67,45 @@ export function handleCustomDropdownSelect( eventKey, name ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[name] = eventKey;
+    dispatch( setUserData( profile ) );
+  };
+}
+
+export function handlePhotoUpload( e ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile.icon = e.target.files[0];
+    dispatch( setUserData( profile ) );
+  };
+}
+
+export function onFileDrop( droppedFiles ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+
+    if ( _.isEmpty( droppedFiles ) ) { return; }
+    const droppedFile = droppedFiles[0];
+    if ( droppedFile.type.match( /^image\// ) ) {
+      profile.icon = droppedFile;
+      dispatch( setUserData( profile ) );
+    }
+  };
+}
+
+export function removePhoto( ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile.icon = null;
+    profile.icon_delete = true;
+    dispatch( setUserData( profile ) );
+  };
+}
+
+export function changePassword( input ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile.password = input.new_password;
+    profile.password_confirmation = input.confirm_new_password;
     dispatch( setUserData( profile ) );
   };
 }

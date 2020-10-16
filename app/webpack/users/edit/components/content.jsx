@@ -163,6 +163,7 @@ const Content = ( {
               </DropdownButton>
             </div>
             <CheckboxRowContainer
+              name="make_observation_licenses_same"
               label={I18n.t( "update_existing_observations_with_new_license" )}
               id="user_make_observation_licenses_same"
             />
@@ -178,6 +179,7 @@ const Content = ( {
               </DropdownButton>
             </div>
             <CheckboxRowContainer
+              name="make_photo_licenses_same"
               label={I18n.t( "update_existing_photos_with_new_license" )}
               id="user_make_photo_licenses_same"
             />
@@ -193,6 +195,7 @@ const Content = ( {
               </DropdownButton>
             </div>
             <CheckboxRowContainer
+              name="make_sound_licenses_same"
               label={I18n.t( "update_existing_sounds_with_new_license" )}
               id="user_make_sound_licenses_same"
             />

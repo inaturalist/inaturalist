@@ -1,7 +1,13 @@
 import { connect } from "react-redux";
 
 import Profile from "../components/profile";
-import { setUserData, handleInputChange } from "../ducks/user_settings";
+import {
+  handleInputChange,
+  handlePhotoUpload,
+  onFileDrop,
+  removePhoto,
+  changePassword
+} from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
@@ -11,8 +17,11 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setUserData: newState => { dispatch( setUserData( newState ) ); },
-    handleInputChange: e => { dispatch( handleInputChange( e ) ); }
+    handleInputChange: e => { dispatch( handleInputChange( e ) ); },
+    handlePhotoUpload: e => { dispatch( handlePhotoUpload( e ) ); },
+    onFileDrop: droppedFiles => { dispatch( onFileDrop( droppedFiles ) ); },
+    removePhoto: ( ) => { dispatch( removePhoto( ) ); },
+    changePassword: input => { dispatch( changePassword( input ) ); }
   };
 }
 
