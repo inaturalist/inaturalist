@@ -640,7 +640,7 @@ Rails.application.routes.draw do
 
   resources :lifelists do
     collection do
-      get ":login", to: "lifelists#by_login"
+      get ":login", to: "lifelists#by_login", as: "by_login"
     end
   end
 
