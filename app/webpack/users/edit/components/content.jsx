@@ -6,6 +6,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
+import inaturalistjs from "inaturalistjs";
 
 const Content = ( {
   profile,
@@ -55,9 +56,9 @@ const Content = ( {
   const createLicenseList = name => {
     const iNatLicenses = iNaturalist.Licenses;
 
-    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa"];
+    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa", "c"];
 
-    return displayList.map( license => {
+    const menuItems = displayList.map( license => {
       const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
       const { code } = iNatLicenses[license];
 
@@ -67,17 +68,36 @@ const Content = ( {
           eventKey={code}
           className="custom-dropdown-width"
         >
-          <span className="flex-no-wrap wrap-white-space">
-            <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-            <label className="user-prefers-license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
-            {profile[name] === license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
-          </span>
+          {license === "c" ? (
+            <div>
+              <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
+              <p
+                className="text-muted wrap-white-space"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "you_retain_full_copyright", {
+                    site_name: SITE.name
+                  } )
+                }}
+              />
+              {profile[name] === code && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+            </div>
+          ) : (
+            <span className="flex-no-wrap wrap-white-space">
+              <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
+              <label className="user-prefers-license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+              {profile[name || "cc-by-nc"] === code && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+            </span>
+          )}
         </MenuItem>
       );
     } );
 
-    // no_license_all_rights_reserved
-    // you_retain_full_copyright
+    const divider = <MenuItem divider />;
+
+    return menuItems.map( ( e, i ) => (
+      i < menuItems.length - 1 ? [e, divider] : [e]
+    ) ).reduce( ( a, b ) => a.concat( b ) );
   };
 
   return (
