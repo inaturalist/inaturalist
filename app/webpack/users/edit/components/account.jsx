@@ -122,34 +122,40 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
               id="user_prefers_no_tracking"
               description={(
-                <a href="#">
-                  <i className="fa fa-info-circle" />
-                  {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-                </a>
+                <p>
+                  <a href="#">
+                    <i className="fa fa-info-circle" />
+                    {` ${I18n.t( "learn_about_third_party_tracking" )}`}
+                  </a>
+                </p>
               )}
             />
           </SettingsItem>
           <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
-            <a href="#" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
+            <p>
+              <a href="#" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
+            </p>
           </SettingsItem>
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">
           <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-            <DropdownButton
-              id="user_site_id"
-              onSelect={handleSelect}
-              className="custom-dropdown-width"
-              title={(
-                <img
-                  className="inat-affiliation-logo-size"
-                  alt={`inat-affiliation-logo-${profile.site_id || 1}`}
-                  src={showINatAffiliationLogo( profile.site_id )}
-                />
-              )}
-            >
-              {createINatAffiliationList( )}
-            </DropdownButton>
+            <div>
+              <DropdownButton
+                id="user_site_id"
+                onSelect={handleSelect}
+                className="custom-dropdown-width"
+                title={(
+                  <img
+                    className="inat-affiliation-logo-size"
+                    alt={`inat-affiliation-logo-${profile.site_id || 1}`}
+                    src={showINatAffiliationLogo( profile.site_id )}
+                  />
+                )}
+              >
+                {createINatAffiliationList( )}
+              </DropdownButton>
+            </div>
             <p
               className="text-muted"
               // eslint-disable-next-line react/no-danger

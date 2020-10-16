@@ -60,15 +60,19 @@ const Profile = ( { profile, setUserData, handleInputChange } ) => {
               {`${I18n.t( "change_password" )} `}
               <i className="fa fa-caret-down" aria-hidden="true" />
             </label>
-            <form id="user_password" className="margin-medium-small">
-              <label>
-                {I18n.t( "new_password" )}
-                <input type="text" className="form-control" name="new_password" />
-              </label>
-              <label>
-                {I18n.t( "confirm_new_password" )}
-                <input type="text" className="form-control" name="confirm_new_password" />
-              </label>
+            <form id="user_password">
+              <div className="form-group">
+                <label>
+                  {I18n.t( "new_password" )}
+                  <input type="text" className="form-control" name="new_password" />
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  {I18n.t( "confirm_new_password" )}
+                  <input type="text" className="form-control" name="confirm_new_password" />
+                </label>
+              </div>
             </form>
             <button className="btn btn-xs btn-primary" type="button">
               {I18n.t( "change_password" )}
