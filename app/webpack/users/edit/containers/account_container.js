@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     setUserData: newState => { dispatch( setUserData( newState ) ); },
-    handleInputChange: newState => { dispatch( handleInputChange( newState ) ); }
+    handleInputChange: e => { dispatch( handleInputChange( e ) ); }
   };
 }
 

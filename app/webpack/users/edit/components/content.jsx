@@ -7,12 +7,17 @@ import SettingsItem from "./settings_item";
 
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
-const Content = ( { profile, setUserData, handleInputChange } ) => {
-  const handleCustomDropdownSelect = ( eventKey, name ) => {
-    const updatedProfile = profile;
-    updatedProfile[name] = eventKey;
-    setUserData( updatedProfile );
-  };
+const Content = ( {
+  profile,
+  setUserData,
+  handleInputChange,
+  handleCustomDropdownSelect
+} ) => {
+  // const handleCustomDropdownSelect = ( eventKey, name ) => {
+  //   const updatedProfile = profile;
+  //   updatedProfile[name] = eventKey;
+  //   setUserData( updatedProfile );
+  // };
 
   const handlePlaceDropdownSelect = ( { item } ) => {
     const updatedProfile = profile;
@@ -229,7 +234,8 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
 Content.propTypes = {
   profile: PropTypes.object,
   setUserData: PropTypes.func,
-  handleInputChange: PropTypes.func
+  handleInputChange: PropTypes.func,
+  handleCustomDropdownSelect: PropTypes.func
 };
 
 export default Content;

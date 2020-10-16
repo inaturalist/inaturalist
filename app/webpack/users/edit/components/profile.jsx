@@ -57,31 +57,6 @@ const Profile = ( { profile, handleInputChange } ) => {
             <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
           <ChangePassword />
-          {/* <div className="settings-item">
-            <label className="inverse-toggle collapsible" htmlFor="user_password">
-              {`${I18n.t( "change_password" )} `}
-              <i className="fa fa-caret-down" aria-hidden="true" />
-            </label>
-            <div className="collapse">
-              <form id="user_password">
-                <div className="form-group">
-                  <label>
-                    {I18n.t( "new_password" )}
-                    <input type="text" className="form-control" name="new_password" />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    {I18n.t( "confirm_new_password" )}
-                    <input type="text" className="form-control" name="confirm_new_password" />
-                  </label>
-                </div>
-              </form>
-              <button className="btn btn-xs btn-primary" type="button">
-                {I18n.t( "change_password" )}
-              </button>
-            </div>
-          </div> */}
         </div>
         <div className="col-md-1" />
         <div className="col-md-6 col-xs-10">

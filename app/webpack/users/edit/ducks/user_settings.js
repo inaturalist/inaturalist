@@ -61,3 +61,11 @@ export function handleInputChange( e ) {
     dispatch( setUserData( profile ) );
   };
 }
+
+export function handleCustomDropdownSelect( eventKey, name ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile[name] = eventKey;
+    dispatch( setUserData( profile ) );
+  };
+}
