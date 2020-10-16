@@ -12,7 +12,7 @@
 }
 
 .custom-dropdown-width {
-  width: 275px;
+  min-width: 275px;
 }
 
 .inat-affiliation-logo-size {
@@ -54,18 +54,11 @@
   right: 6px
 }
 
-.divider {
-  border-bottom: 1px solid #eee;
-}
-
-.divider:last-child {
-  border-bottom: 0 transparent;
-}
-
-.divider:first-child {
-  border-bottom: 0 transparent;
-}
-
 .wrap-white-space {
   white-space: normal;
+}
+
+.user-prefers-license {
+  width: 115px;
+  margin-left: 15px;
 }

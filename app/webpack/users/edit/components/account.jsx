@@ -76,7 +76,7 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
             src={showINatAffiliationLogo( number )}
           />
           {location.toLocaleUpperCase( )}
-          {profile.site_id === number && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+          {profile.site_id === number && <i className="fa fa-check align-right" aria-hidden="true" />}
         </span>
       </MenuItem>
     ) );

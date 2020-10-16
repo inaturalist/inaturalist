@@ -44,9 +44,11 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
     return (
-      <span className="flex-no-wrap wrap-white-space">
+      <span className="inline">
         <img id="image-license" src={iNatLicenses[defaultLicense].icon_large} alt={defaultLicense} />
-        <label htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+        <label className="user-prefers-license" htmlFor="image-license">
+          {I18n.t( `${localizedName}_name` )}
+        </label>
       </span>
     );
   };
@@ -58,16 +60,17 @@ const Content = ( { profile, setUserData, handleInputChange } ) => {
 
     return displayList.map( license => {
       const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
+      const { code } = iNatLicenses[license];
 
       return (
         <MenuItem
           key={`${name}-${license}`}
-          eventKey={license}
+          eventKey={code}
           className="custom-dropdown-width"
         >
           <span className="flex-no-wrap wrap-white-space">
             <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-            <label htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+            <label className="user-prefers-license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
             {profile[name] === license && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
           </span>
         </MenuItem>
