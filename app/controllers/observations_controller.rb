@@ -1211,6 +1211,8 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    search_params[:order_by] = @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
+    search_params[:order] = @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
