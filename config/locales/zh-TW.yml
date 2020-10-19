@@ -405,6 +405,16 @@ zh-TW:
   announcements: 公告
   any: 任何
   any_: 任何
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: 任一註解
+  #Label for an option to show content with any annotation value
+  any_annotation_value: 任一
+  #Label for an option to show content from any date
+  any_date: 任一日期
+  #Label for an option to show content with any establishment means
+  any_establishment: 任一
+  #Label for an option to show content with any license
+  any_license: 任一授權
   anyone: 任何人
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
@@ -626,6 +636,7 @@ zh-TW:
   cc_by_sa_name: 姓名標示-相同方式分享
   cc_used_under_a: "創用 CC，用於"
   change_admin: 變更管理員
+  #Button to change the cover (or banner) image for a project
   change_cover: 變更封面
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
@@ -991,6 +1002,7 @@ zh-TW:
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 刪除封面？
   delete_icon?: 刪除圖示？
   delete_photo: 刪除照片
@@ -3734,7 +3746,6 @@ zh-TW:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
-  this_is_a_cached_summary_based_on: 這是物種分類快取摘要，基於它的
   this_is_a_life_list_of: 這生物清單屬於
   this_is_a_life_list_from_place_html: "這是來自%{place}的生物列表"
   this_is_a_life_list_of_taxon_in_place: "這是一個在 %{place} 的 %{taxon} 物種分類中的生物清單"
@@ -4071,7 +4082,6 @@ zh-TW:
   website: 網站
   week_of_date: "%{date} 該週"
   welcome: 歡迎
-  welcome_back: 歡迎回來
   welcome_back!: 歡迎回來！
   welcome_to_inat: "歡迎來到 %{site_name}！"
   welcome_to_guides: "歡迎來到 %{site_name} 指南！"
@@ -4117,7 +4127,6 @@ zh-TW:
     來源：維基百科、"%{title}"、%{url}、CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     此篇來自於維基百科條目<a href="%{url}">"%{title}"</a>裡的內容，該基於<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">創用 CC 姓名標示協議-相同方式分享 3.0 未本地化</a>授權條款所釋出。內容可能已從原始內容裡去除，但未有已更改或擴充的內容。
-  wikipedia_entry: 維基百科項目
   with: 帶
   withdraw: 撤回
   withdrawing: 正在撤回...

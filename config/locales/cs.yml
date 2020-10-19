@@ -834,6 +834,7 @@ cs:
   cc_by_sa_name: S uvedením autora - sdílení
   cc_used_under_a: "Creative Commons, použito podle"
   change_admin: Změnit správce
+  #Button to change the cover (or banner) image for a project
   change_cover: Změnit obal
   change_descriptions:
     split: Rozdělení starého taxonu do několika nových taxonů
@@ -1200,6 +1201,7 @@ cs:
   delete: Smazat
   delete_all: Smazat vše
   delete_conversation: Smazat rozhovor
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: smazat obal?
   delete_icon?: Ikonu odstranit?
   delete_photo: Smazat fotografii
@@ -1898,6 +1900,7 @@ cs:
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
   learn_more: Více informací
+  learn_more_on_the_blog: Zjistěte více na blogu
   learn_more_raquo: "Více informací &raquo;"
   learn_what_these_licenses_mean: Zjistěte, co znamenají tyto licence
   least_concern: nejmenší obava
@@ -1939,6 +1942,7 @@ cs:
     italian: italsky
     japanese: japonsky
     korean: korejsky
+    latvian: lotyština
     lithuanian: Litevština
     luxembourgish: lucemburština
     maltese: maltsky
@@ -2049,6 +2053,7 @@ cs:
     ko: Korejština
     lb: Lucemburština
     lt: Litevština
+    lv: lotyština
     mk: makedonsky
     nb: Norština (Bokmål)
     nl: holandsky
@@ -4114,7 +4119,6 @@ cs:
   third_person_possessive_plural: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
-  this_is_a_cached_summary_based_on: Toto je skrytý přehled tohoto taxonu podle
   this_is_a_life_list_of: Toto je seznam života
   this_is_a_life_list_from_place_html: "Toto je seznam života z %{place}"
   this_is_a_life_list_of_taxon_in_place: "Toto je seznam života %{taxon} v %{place}"
@@ -4483,7 +4487,6 @@ cs:
   website: Webová stránka
   week_of_date: "Týden %{date}"
   welcome: vítejte
-  welcome_back: Vítejte zpátky
   welcome_back!: Vítejte zpátky
   welcome_to_inat: "Vítejte na %{site_name}!"
   welcome_to_guides: "Vítejte v průvodcích %{site_name}!"
@@ -4533,7 +4536,6 @@ cs:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Uveďte autora-Sdílej-Podobně 3.</a>Obsah byl možná
     vynechán v originálu, ale žádný obsah nebyl změněn ani rozšířen.
-  wikipedia_entry: Zápis na Wikipedii
   with: s
   withdraw: Odstranit
   withdrawing: Odstoupení...
@@ -4939,6 +4941,7 @@ cs:
         taxonomic: Taxonomicky
         name: Název
         most_observed: Nejvíce pozorované
+        least_observed: Nejméně pozorované
         date_added_newest: Datum přidání, od nejnovějšího k nejstaršímu
         date_added_oldest: Datum přidání, od nejstaršího k nejnovějšímu
         show: Zobrazit
@@ -5914,6 +5917,11 @@ cs:
           „Kompletní“ taxon obsahuje <em>všechny</em> známé následné taxony určité kategorie, které splňují kurátorskou politiku taxonů iNaturalist bez ohledu na to, zda byly pozorovány. V současné době mohou taxony označit jako kompletní pouze správci stránek.
         complete_rank_desc_html: |
           Kategorie, v níž je tento taxon kompletní, např. pokud tato čeleď obsahuje všechny své rody, ale ne všechny své druhy, byla by kategorie nastavena na „rod“. Automatické nastavení je na druhy.
+        wikipedia_summary_desc_html: |
+          Krátké shrnutí tohoto taxonu na základě jeho <a target="_blank"
+          href="%{url}">stránky na Wikipedii</a> , které máme natrvalo uložené, dokud jej někdo ručně neobnoví. Obnovení tohoto shrnutí také okamžitě aktualizuje
+          naši mezipaměť obsahu Wikipedie, který zobrazujeme na
+          webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
         about_names_desc: |
           <p>

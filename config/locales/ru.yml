@@ -813,6 +813,7 @@ ru:
   cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: "Creative Commons, используется по"
   change_admin: Изменить администратора
+  #Button to change the cover (or banner) image for a project
   change_cover: Изменить обложку
   change_descriptions:
     split: Старый таксон разделяется на несколько новых таксонов
@@ -1184,6 +1185,7 @@ ru:
   delete: Удалить
   delete_all: Удалить всё
   delete_conversation: Удалить переписку
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: удалить обложку?
   delete_icon?: Удалить иконку?
   delete_photo: Удалить фото
@@ -4101,7 +4103,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
   this_is_a_life_list_from_place_html: "Это список жизни для %{place}"
   this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} для %{place}"
@@ -4470,7 +4471,6 @@ ru:
   website: Веб-сайт
   week_of_date: "Неделя %{date}"
   welcome: добро пожаловать
-  welcome_back: Добро пожаловать вновь
   welcome_back!: Добро пожаловать вновь!
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
@@ -4519,7 +4519,6 @@ ru:
     <a href="%{url}">"%{title}"</a>, которая выпущена под лицензией 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
-  wikipedia_entry: Источник в Википедии
   with: с
   withdraw: Отозвать
   withdrawing: Отзыв...

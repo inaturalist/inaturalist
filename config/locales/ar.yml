@@ -431,6 +431,7 @@ ar:
   cc_by_sa_name: إسناد المشاركة بالمثل
   cc_used_under_a: "المشاع الإبداعي، تُستخدَم تحت"
   change_admin: تغيير الإداري
+  #Button to change the cover (or banner) image for a project
   change_cover: تغيير الغلاف
   change_descriptions:
     split: انقسام الأصناف القديمة إلى أصناف جديدة متعددة
@@ -764,6 +765,7 @@ ar:
   delete: حذف
   delete_all: حذف الكل
   delete_conversation: مسح المحادثة
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: حذف الغلاف؟
   delete_icon?: حذف الأيقونة؟
   delete_photo: حذف الصورة
@@ -3267,7 +3269,6 @@ ar:
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: هذا
   this_bioblitz_beings_in: هذا bioblitz يبدأ في
-  this_is_a_cached_summary_based_on: هذا ملخص مخبأ لهذه الأصنوفة على أساس
   this_is_a_life_list_of: هذه قائمة حياة
   this_is_a_life_list_from_place_html: "هذه قائمة حياة من %{place}"
   this_is_a_life_list_of_taxon_in_place: "هذه قائمة حياة %{taxon} في %{place}"
@@ -3596,7 +3597,6 @@ ar:
   website: الموقع الإلكتروني
   week_of_date: "أسبوع %{date}"
   welcome: أهلا بك
-  welcome_back: مرحبا بعودتك
   welcome_back!: مرحبا بعودتك!
   welcome_to_inat: "مرحبا بك في %{site_name}!"
   welcome_to_guides: "مرحبا بك في دليل %{site_name}!"
@@ -3646,7 +3646,6 @@ ar:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">رخصة
     المشاع الإبداعي: النسبة-الترخيص بالمثل 3.0</a>، ربما تم 
     حذف المحتوى من الأصل، ولكن لم يتم تغيير أي محتوى أو تمديده.
-  wikipedia_entry: إدخال ويكيبيديا
   with: مع
   withdraw: سحب
   withdrawing: جارٍ السحب...

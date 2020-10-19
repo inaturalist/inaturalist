@@ -700,6 +700,7 @@ fi:
   cc_by_sa_name: Nimeä-JaaSamoin
   cc_used_under_a: "Creative Commons, käytetty lisenssillä"
   change_admin: Vaihda ylläpitäjä
+  #Button to change the cover (or banner) image for a project
   change_cover: Vaihda kansikuva
   change_descriptions:
     split: Vanha taksoni jaettu osaksi useita uusia taksoneita
@@ -1060,6 +1061,7 @@ fi:
   delete: Poista
   delete_all: Poista kaikki
   delete_conversation: Poista keskustelu
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: poista kansikuva?
   delete_icon?: Poista kuvake?
   delete_photo: Poista kuva
@@ -3947,7 +3949,6 @@ fi:
   website: Verkkosivusto
   week_of_date: "Päivän %{date} viikko"
   welcome: tervetuloa
-  welcome_back: Tervetuloa takaisin
   welcome_back!: Tervetuloa takaisin!
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
@@ -3987,7 +3988,6 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: Wikipedia-merkintä
   withdraw: Peruuta
   withdrawing: Peruuttaa...
   with_errors: Virheiden kera

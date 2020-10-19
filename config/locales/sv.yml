@@ -722,6 +722,7 @@ sv:
   cc_by_sa_name: Erkännande-DelaLika
   cc_used_under_a: "Creative Commons, används under en "
   change_admin: Ändra admin
+  #Button to change the cover (or banner) image for a project
   change_cover: Ändra omslag
   change_descriptions:
     split: Gammalt taxon uppdelat i flera nya taxa
@@ -786,6 +787,7 @@ sv:
   check_out_my_observations_at: Om du vill, du kan kolla mina observationer på
   check_out_our_blog: Kolla vår blogg
   check_out_what_the_observation: Kolla hur observationen du försöker bestämma ser ut.
+  check_out_your_new_and_improved_list_list: Kolla in din nya och förbättrade Livslista!
   check_this_box_if_html: |
     Kryssa i denna ruta om du vill tillämpa en <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1099,6 +1101,7 @@ sv:
   delete: Radera
   delete_all: Radera alla
   delete_conversation: Radera konversation
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: radera omslag?
   delete_icon?: Radera ikon?
   delete_photo: Radera foto
@@ -1816,6 +1819,7 @@ sv:
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
   learn_more: Läs mer
+  learn_more_on_the_blog: Läs mer på bloggen
   learn_more_raquo: "Lär dig mer &raquo;"
   learn_what_these_licenses_mean: Lär dig vad dessa licenser innebär
   least_concern: Livskraftig
@@ -1858,6 +1862,7 @@ sv:
     italian: Italienska
     japanese: Japanska
     korean: Koreanska
+    latvian: Lettiska
     lithuanian: Litauiska
     luxembourgish: Luxemburgiska
     maltese: Maltesiska
@@ -1968,6 +1973,7 @@ sv:
     ko: Koreanska
     lb: Luxemburgiska
     lt: Litauiska
+    lv: Lettiska
     mk: Makedonska
     nb: Norska (Bokmål)
     nl: Nederländska
@@ -4079,7 +4085,6 @@ sv:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
-  this_is_a_cached_summary_based_on: Detta är en cachelagrad sammanfattning av detta taxon baserat på dess
   this_is_a_life_list_of: Detta är en livslista över
   this_is_a_life_list_from_place_html: "Detta är en livslista från %{place}"
   this_is_a_life_list_of_taxon_in_place: "Detta är en livslista över %{taxon} i %{place}"
@@ -4393,6 +4398,7 @@ sv:
   view_more_observations_of_x_project: "Visa fler observationer från %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visa fler observationer av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Visa fler ogranskade"
+  view_my_life_list: Visa min livslista
   view_observation: Visa observation
   view_observations: Visa observationer
   view_observation_flags: Visa observationsflaggor
@@ -4456,7 +4462,6 @@ sv:
   website: Webbplats
   week_of_date: "Vecka av %{date}"
   welcome: välkommen
-  welcome_back: Välkommen tillbaka
   welcome_back!: Välkommen tillbaka!
   welcome_to_inat: "Välkommen till %{site_name}!"
   welcome_to_guides: "Välkommen till %{site_name} guider!"
@@ -4506,7 +4511,6 @@ sv:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Erkännande Dela Lika-licens 3.0</a>. Delar av innehållet kan ha
     utelämnats jämfört med originalet, men inget har ändrats eller lagts till.
-  wikipedia_entry: Wikipedia-artikel
   with: med
   withdraw: Dra tillbaka
   withdrawing: Drar tillbaka...
@@ -4998,6 +5002,7 @@ sv:
         taxonomic: Taxonomisk
         name: Namn
         most_observed: Mest observerade
+        least_observed: Minst observerade
         date_added_newest: Datum tilldagd, nyaste till äldsta
         date_added_oldest: Datum tillagd, äldsta till nyaste
         ancestry: Ursprung
@@ -6289,6 +6294,11 @@ sv:
           Den rang till vilket ett taxon är komplett, t.ex. om en familj innehåller
           alla sina släkten men inte alla sina arter, skulle detta vara satt till "släkte ".
           Art är standard.
+        wikipedia_summary_desc_html: |
+          Kort sammanfattning av detta taxon baserat på dess <a target="_blank"
+          href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den
+          manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
+          webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
         about_names_desc: |
           <p>

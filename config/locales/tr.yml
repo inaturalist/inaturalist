@@ -695,6 +695,7 @@ tr:
   cc_by_sa_name: Atıf-Aynı Lisansla Paylaş
   cc_used_under_a: "Creative Commons Lisansı, şunda kullanılıyor "
   change_admin: Yöneticiyi Değiştir
+  #Button to change the cover (or banner) image for a project
   change_cover: Kapağı değiştir
   change_descriptions:
     split: Eski sınıf birçok yeni sınıfa bölündü
@@ -1063,6 +1064,7 @@ tr:
   delete: Sil
   delete_all: Tümünü sil
   delete_conversation: Konuşmayı sil
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: kapak silinsin mi?
   delete_icon?: Simge silinsin mi?
   delete_photo: Fotoğrafı sil
@@ -3886,7 +3888,6 @@ tr:
   third_person_possessive_plural: "%{object_phrase}'in %{noun}"
   this: bu
   this_bioblitz_beings_in: Bioblitz şurada başlar
-  this_is_a_cached_summary_based_on: Bu, bu sınıfın önbelleğe alınmış bir özetidir
   this_is_a_life_list_of: Bu şunun yaşam listesidir
   this_is_a_life_list_from_place_html: "Bu %{place} yerinin yaşam listesidir"
   this_is_a_life_list_of_taxon_in_place: "Bu %{place} yerindeki %{taxon} sınıfının yaşam listesidir"
@@ -4247,7 +4248,6 @@ tr:
   website: Web sitesi
   week_of_date: "%{date} haftası"
   welcome: hoş geldiniz
-  welcome_back: Tekrar hoş geldiniz
   welcome_back!: Tekrar Hoş Geldiniz!
   welcome_to_inat: "%{site_name}'e hoş geldiniz!"
   welcome_to_guides: "%{site_name} Rehberlerine Hoş geldiniz!"
@@ -4293,7 +4293,6 @@ tr:
     Kaynak: Vikipedi, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     Burada, <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Atıf-Aynı Lisansla Paylaş Lisansı 3.0</a> kullanılarak yayınlanan <a href="%{url}">%{title}</a> Vikipedi makalesinde kullanılan öğeler kullanılmıştır.
-  wikipedia_entry: Vikipedi girişi
   with: ile
   withdraw: Geri Al
   withdrawing: Geri alınıyor...
