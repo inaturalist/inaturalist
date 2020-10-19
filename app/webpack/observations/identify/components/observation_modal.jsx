@@ -755,35 +755,11 @@ class ObservationModal extends React.Component {
                         key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && commentFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".IdentificationForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                       <IdentificationFormContainer
                         key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && identificationFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".CommentForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                     </div>
                   </div>
