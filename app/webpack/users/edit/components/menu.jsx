@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const menuItems = [
   I18n.t( "profile_and_user" ),
@@ -9,12 +10,22 @@ const menuItems = [
   I18n.t( "applications" )
 ];
 
-const Menu = ( ) => menuItems.map( item => (
-  <dl key={item} className="menu-item">
-    <dt>
-      <a href="#">{item}</a>
-    </dt>
-  </dl>
+const Menu = ( { setContainerIndex } ) => menuItems.map( ( item, i ) => (
+  <div>
+    <button
+      type="button"
+      name={i}
+      id="LeftNav"
+      className="left-nav-item"
+      onClick={( ) => setContainerIndex( i )}
+    >
+      {item}
+    </button>
+  </div>
 ) );
+
+Menu.propTypes = {
+  setContainerIndex: PropTypes.func
+};
 
 export default Menu;

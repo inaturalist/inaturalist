@@ -34,13 +34,18 @@
   margin-top: 12px;
 }
 
-.menu-item a {
-  color: #333;
+button.left-nav-item {
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  background-color: #fff;
 
   &:focus {
     color: #74ac00;
     font-weight: 600;
     text-decoration: none;
+    outline:none;
   }
 }
 
