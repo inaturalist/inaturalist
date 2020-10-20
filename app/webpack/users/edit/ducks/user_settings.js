@@ -38,6 +38,8 @@ export function saveUserSettings( ) {
 
     params.user.updated_at = new Date( );
 
+    console.log( profile, "profile in update" );
+
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth
       // currently users.me returns different results than

@@ -6,7 +6,6 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
-import inaturalistjs from "inaturalistjs";
 
 const Content = ( {
   profile,
@@ -21,7 +20,7 @@ const Content = ( {
   };
 
   const createRadioButtons = ( ) => ["any", "joined", "none"].map( button => (
-    <div>
+    <div key={button}>
       <label>
         <input
           id="user_preferred_project_addition_by"
@@ -93,10 +92,8 @@ const Content = ( {
       );
     } );
 
-    const divider = <MenuItem divider />;
-
     return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, divider] : [e]
+      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
     ) ).reduce( ( a, b ) => a.concat( b ) );
   };
 
@@ -124,7 +121,6 @@ const Content = ( {
             <CheckboxRowContainer
               name="prefers_automatic_taxon_changes"
               label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
-              id="user_prefers_automatic_taxonomic_changes"
               description={(
                 <p
                   className="text-muted"
@@ -165,7 +161,6 @@ const Content = ( {
             <CheckboxRowContainer
               name="make_observation_licenses_same"
               label={I18n.t( "update_existing_observations_with_new_license" )}
-              id="user_make_observation_licenses_same"
             />
             <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
             <div>
@@ -181,7 +176,6 @@ const Content = ( {
             <CheckboxRowContainer
               name="make_photo_licenses_same"
               label={I18n.t( "update_existing_photos_with_new_license" )}
-              id="user_make_photo_licenses_same"
             />
             <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
             <div>
@@ -197,7 +191,6 @@ const Content = ( {
             <CheckboxRowContainer
               name="make_sound_licenses_same"
               label={I18n.t( "update_existing_sounds_with_new_license" )}
-              id="user_make_sound_licenses_same"
             />
           </SettingsItem>
         </div>
@@ -233,7 +226,6 @@ const Content = ( {
             <CheckboxRowContainer
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
-              id="user_prefers_community_taxa"
               description={(
                 <div className="text-muted">
                   {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
@@ -249,9 +241,9 @@ const Content = ( {
               name="preferred_observation_fields_by"
               onChange={handleInputChange}
             >
-              <option value="anyone">{I18n.t( "anyone" )}</option>
-              <option value="curators">{I18n.t( "curators" )}</option>
-              <option value="only_you">{I18n.t( "only_you" )}</option>
+              {["anyone", "curators", "only_you"].map( value => (
+                <option value={value} key={value}>{I18n.t( value )}</option>
+              ) )}
             </select>
           </SettingsItem>
         </div>

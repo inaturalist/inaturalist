@@ -24,7 +24,7 @@ class App extends Component {
   render( ) {
     const { container } = this.state;
 
-    const userSettings = [<ProfileContainer />, <AccountContainer />, <ContentContainer />];
+    const userSettings = [<ProfileContainer />, <AccountContainer />, <></>, <></>, <ContentContainer />, <></>];
 
     return (
       <div className="container">

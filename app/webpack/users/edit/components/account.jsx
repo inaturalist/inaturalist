@@ -38,7 +38,7 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
   };
 
   const createTimeZoneList = ( ) => (
-    TIMEZONES.map( zone => <option value={zone.value}>{zone.label}</option> )
+    TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
 
   const createLocaleList = ( ) => {
@@ -61,8 +61,6 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
   };
 
   const createINatAffiliationList = ( ) => {
-    const divider = <MenuItem divider />;
-
     const menuItems = iNatAffiliationDict.map( ( { number, location } ) => (
       <MenuItem
         key={`inat-affiliation-logo-${number}`}
@@ -85,7 +83,7 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
     // using this instead of my own div because it's automatically styled
     // to be the same width as the menu
     return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, divider] : [e]
+      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
     ) ).reduce( ( a, b ) => a.concat( b ) );
   };
 
@@ -120,7 +118,6 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
             <CheckboxRowContainer
               name="prefers_no_tracking"
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
-              id="user_prefers_no_tracking"
               description={(
                 <p>
                   <a href="#">

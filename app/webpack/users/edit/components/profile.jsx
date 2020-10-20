@@ -30,6 +30,12 @@ const Profile = ( {
     return profile.icon;
   };
 
+  // this gets rid of the React warning about inputs being controlled vs. uncontrolled
+  // by ensuring user data is fetched before the Profile & User page loads
+  if ( profile.login === undefined && profile.email === undefined ) {
+    return null;
+  }
+
   return (
     <div className="col-xs-9">
       <div className="row">
@@ -96,7 +102,6 @@ const Profile = ( {
             <CheckboxRowContainer
               name="prefers_monthly_supporter_badge"
               label={I18n.t( "display_monthly_supporter_badge" )}
-              id="user_prefers_monthly_supporter_badge"
               description={(
                 <p
                   className="text-muted"
@@ -122,7 +127,7 @@ Profile.propTypes = {
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
-  handleClick: PropTypes.func
+  changePassword: PropTypes.func
 };
 
 export default Profile;
