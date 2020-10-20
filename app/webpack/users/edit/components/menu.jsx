@@ -11,7 +11,7 @@ const menuItems = [
 ];
 
 const Menu = ( { setContainerIndex } ) => menuItems.map( ( item, i ) => (
-  <div>
+  <div key={item}>
     <button
       type="button"
       name={i}

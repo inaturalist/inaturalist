@@ -23,7 +23,7 @@ export function fetchUserSettings( ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
     console.log( results[0], "profile-data" );
     dispatch( setUserData( results[0] ) );
-  } ).catch( e => console.log( `Failed to fetch user: ${e}` ) );
+  } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
 export function saveUserSettings( ) {
@@ -43,7 +43,7 @@ export function saveUserSettings( ) {
       // currently users.me returns different results than
       // dispatching setUserData( results[0] ) from users.update response
       fetchUserSettings( );
-    } ).catch( e => console.log( `Failed to update user: ${e}` ) );
+    } ).catch( e => console.log( `Failed to update via users.update: ${e}` ) );
   };
 }
 
