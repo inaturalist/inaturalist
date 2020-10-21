@@ -61,6 +61,7 @@ class App extends React.Component {
                 return (
                   <button
                     type="button"
+                    title={I18n.t( `all_taxa.${t.label}` )}
                     className={`iconic-taxon-icon ${selected ? "selected" : ""}`}
                     key={`iconic-taxon-${_.toLower( t.name )}`}
                     disabled={!lifelist.taxa[t.id]}
@@ -74,7 +75,6 @@ class App extends React.Component {
                   >
                     <i
                       className={`icon-iconic-${_.toLower( t.name )}`}
-                      title={t.name}
                     />
                   </button>
                 );

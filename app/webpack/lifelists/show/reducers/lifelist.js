@@ -619,7 +619,12 @@ export function fetchUser( user, options ) {
           }
           taxa[childID].milestoneParentID = milestoneTaxonID;
           if ( isLeaf ) {
-            simplifiedLeafParents[milestoneTaxonID] = true;
+            if ( milestoneTaxonID === 0 ) {
+              // this is also a root node
+              simplifiedLeafParents[childID] = true;
+            } else {
+              simplifiedLeafParents[milestoneTaxonID] = true;
+            }
           }
           ticker += 1;
         } );

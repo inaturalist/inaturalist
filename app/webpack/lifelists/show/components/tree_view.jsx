@@ -122,7 +122,6 @@ class TreeView extends React.Component {
         <div className="search-options">
           { this.sortOptions( ) }
           { lifelist.navView === "tree" && this.rankOptions( ) }
-          { lifelist.navView === "list" && this.ancestryOptions( ) }
         </div>
         { treeComponent }
       </div>

@@ -107,7 +107,7 @@ class TaxaTree extends React.Component {
             <span
               className="descendants"
               onClick={( ) => {
-                setDetailsTaxon( taxon );
+                setDetailsTaxon( taxon, { updateSearch: true } );
                 setDetailsView( "observations" );
               }}
               title={I18n.t( "views.lifelists.all_observations_in_this_taxon" )}
@@ -119,7 +119,7 @@ class TaxaTree extends React.Component {
             <Badge
               className="green"
               onClick={( ) => {
-                setDetailsTaxon( taxon, { without_descendants: true } );
+                setDetailsTaxon( taxon, { without_descendants: true, updateSearch: true } );
                 setDetailsView( "observations" );
               }}
               title={I18n.t( "views.lifelists.observations_of_exactly_this_taxon" )}
@@ -130,7 +130,7 @@ class TaxaTree extends React.Component {
           <span
             className={`${lifelist.detailsView === "observations" ? "icon icon-binoculars" : "fa fa-leaf"}`}
             onClick={( ) => {
-              setDetailsTaxon( taxon );
+              setDetailsTaxon( taxon, { updateSearch: true } );
               if ( lifelist.detailsView === "observations" ) {
                 setDetailsView( "observations" );
               } else {
