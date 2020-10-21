@@ -15,6 +15,10 @@
   min-width: 275px;
 }
 
+.dropdown-title {
+  display: inline-block;
+}
+
 .inat-affiliation-logo-size {
   max-height: 33px;
   max-width: 135px;
@@ -72,4 +76,12 @@ button.left-nav-item {
   width: 65px;
   height: 65px;
   border-radius: 50%;
+}
+
+.margin-left {
+  margin-left: 9px;
+}
+
+.description-margin-left {
+  margin-left: 20px;
 }

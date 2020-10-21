@@ -11,7 +11,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 0
+      container: 4
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -24,7 +24,14 @@ class App extends Component {
   render( ) {
     const { container } = this.state;
 
-    const userSettings = [<ProfileContainer />, <AccountContainer />, <></>, <></>, <ContentContainer />, <></>];
+    const userSettings = [
+      <ProfileContainer />,
+      <AccountContainer />,
+      <></>,
+      <></>,
+      <ContentContainer />,
+      <></>
+    ];
 
     return (
       <div className="container">

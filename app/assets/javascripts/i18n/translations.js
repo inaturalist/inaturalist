@@ -840,7 +840,6 @@ I18n.translations["ar"] = {
   "offensive_inappropriate": "مسيئة / غير مناسبة",
   "ok": "موافق",
   "old_observation_form": "استمارة الملاحظة القديمة (مهملة)",
-  "only_you": "أنت فقط",
   "open": "فتح",
   "open_": "فتح",
   "open_street_map": "خريطة الشارع المفتوحة",
@@ -1754,6 +1753,11 @@ I18n.translations["ar"] = {
         "monthly_supporter_desc_html": "يقدم داعمو إيناتوراليست شهريا مساهمات شهرية تلقائية\nالتي تستقبلها أكاديمية كاليفورنيا للعلوم (الولايات\nالمتحدة IRS EIN 94-1156258)\nلدعم العملية غير الهادفة للربح إيناتوراليست\nومواقع شبكة إيناتوراليست،\n<a href=\"%{url}\">انقر هنا لتصبح داعما شهريا</a>.\nعندما نؤكد دعمك، ستتمكن من التحقق من هذا\nالصندوق لعرض هذه الحالة في ملفك الشخصي، ملاحظة: سوف تحتاج إلى استخدام\nنفس عنوان البريد الإلكتروني بالضبط على صندوق المانحين كما تفعل في إيناتوراليست\nلكي نؤكد أنك أصبحت داعمًا شهريا.\n",
         "name_place_help_html": "إعطاء الأولوية للأسماء الشائعة المستخدمة في هذا المكان.\n",
         "prefers_community_taxa_desc": "يتتبع %{site_name} ما تراه ملاحظاتك وما \nيعتقده المجتمع، إن الهوية الذي نتشاركها مع \nشركاء البيانات هي هوية المجتمع، ولكن إذا كنت لا تعتقد أن \nرأي المجتمع يجب أن يلغي حسابك، يمكنك تعطيله \nهنا، سيظل الناس قادرين على إضافة هويات، ولكن \nلن يتم تفضيل الرأي المجتمعي على رأيك: وهذا يعني أن ملاحظاتك \nلن تكون مؤهلة للحصول على درجة بحثية ما لم \nتوافق على المجتمع.\n",
+        "project_addition_preferences": {
+          "any": "أي",
+          "joined": "المشاريع التي انضممت إليها",
+          "none": "لا شيء، فقط يمكنك إضافة ملاحظاتك إلى المشاريع"
+        },
         "project_settings_desc": "تذكر، هذا لا يعطي مشاريع الإذن بالوصول \nلإحداثياتك المخفية أو إرسال تحديثات لك،; يجب عليك الانضمام إلى المشاريع من \nأجل منح هذه الأذونات، أو منحها على أساس كل حالة على \nحدة.\n",
         "taxon_change_desc": "عندما يتم دمج الأصناف أو إعادة تسميتها في %{site_name}، \nسيتم تحديث ملاحظاتك، وتصنيفاتك، وهوياتك، وما إلى ذلك تلقائيا إلى \nالأصناف الجديدة إذا كان التغيير لا لبس فيه، إذا قمت بإلغاء الاشتراك أو إذا كان التغيير \nغامضا (على سبيل المثال انقسام)، سوف تتلقى تحديثا عن \nربط التغيير لأداة يمكنك استخدامها لتحديث المحتوى الخاص بك يدويا \nإذا اخترت.\n",
         "this_only_applies_to_traditional_projects": "هذا ينطبق فقط على المشاريع التقليدية، لا يمكنك استبعاد الملاحظات \nمن مشاريع مجموعة أو مظلة، وهي عمليات بحث محفوظة بشكل أساسي، \nيمكنك قراءة المزيد\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">هنا</a>.\n"
@@ -1992,7 +1996,6 @@ I18n.translations["bg"] = {
   "annotations": "Анотации",
   "any": "без значение",
   "any_": "Без значение",
-  "anyone": "Всеки",
   "arachnids": "паякообразни",
   "are_you_sure?": "Сигурни ли сте?",
   "are_you_sure_leave_this_project": "Сигурни ли сте, че искате да напуснете проекта?",
@@ -2731,7 +2734,6 @@ I18n.translations["bg"] = {
   "of_this_taxon": "От този таксон",
   "offensive_inappropriate": "Обидно / неуместно",
   "old_observation_form": "Стар формуляр за наблюдения (неактуален)",
-  "only_you": "Само Вие",
   "open": "открито",
   "open_": "Открито",
   "or": "или",
@@ -3488,6 +3490,11 @@ I18n.translations["bg"] = {
         "name_place_help_html": "Дай приоритет на народните имена използвани на това място.\n",
         "prefers_community_taxa_desc": "%{site_name} следи както Вашето мнение за това какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият таксон, който споделяме с информационните си партньори, винаги е този по консенсус на общността. Но ако не искате никога мнението на общността да натежава над Вашето собствено, изключете от тук тази функция. Хората все още ще могат да разпознават наблюденията Ви, но тяхното мнение няма да е с по-голям приоритет от Вашето. Това означава също и, че Вашите наблюдения няма да получават „Изследователско качество“, когато мнението Ви е различно от това на общността.\n",
         "prefers_no_tracking_label": "Не събирай данни за стабилността и потреблението използвайки услугите на трети страни",
+        "project_addition_preferences": {
+          "any": "Всички",
+          "joined": "Проекти, в които участвате",
+          "none": "Никои, само Вие можете да добавяте наблюденията си към проекти"
+        },
         "project_settings_desc": "Помнете, това не дава достъп на проектите до Вашите поверителни координати, нито им позволява да Ви изпращат новини. Трябва да се включите в проект, за да стане това възможно, или да дадете такива права собственоръчно.\n",
         "taxon_change_desc": "Когато таксон бъде променен или преименуван на %{site_name}, Вашите наблюдения, списъци, разпознавания и т.н. ще бъдат автоматично обновени до новия таксон, ако тези промени са еднозначни. Ако изключите тази функция или ако промяната е двузначна (например разделяне на таксон), ще получите известие за промяната с препратка към инструмент, с който собственоръчно да обновите съдържанието си ако пожелаете.\n",
         "this_only_applies_to_traditional_projects": "Това се отнася единствено за традиционните проекти. Не можете да изключвате наблюдения от Събирателни или Обединителни проекти, които по същество са преконфигурирани търсения. Можете да прочетете повече <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">тук</a>.\n"
@@ -4179,6 +4186,8 @@ I18n.translations["br"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -4367,7 +4376,6 @@ I18n.translations["ca"] = {
   "annotations": "Anotacions",
   "any": "qualsevol",
   "any_": "Qualsevol",
-  "anyone": "Qualsevol",
   "arachnids": "aràcnids",
   "are_you_sure?": "N’esteu segur?",
   "are_you_sure_leave_this_project": "Esteu segur que voleu sortir d'aquest projecte?",
@@ -5258,7 +5266,6 @@ I18n.translations["ca"] = {
   "offensive_inappropriate": "Ofensiu/inadequat",
   "ok": "D’acord",
   "old_observation_form": "Antic registre de l'observació (obsolet)",
-  "only_you": "Només tu",
   "open": "Transparent",
   "open_": "Obre",
   "open_street_map": "OpenStreetMap",
@@ -6330,6 +6337,11 @@ I18n.translations["ca"] = {
         "name_place_help_html": "Prioritza els noms comuns emprats a aquest lloc.\n",
         "prefers_community_taxa_desc": "%{site_name} rastreja el que penseu que són les vostres observacions i el que opina la comunitat. Les dades d'identificació que compartim amb els socis són les que ofereix la comunitat, però si no voleu que l'opinió de la comunitat sobreescrigui la vostra pode marcar-ho aquí. Les altres persones encara podran afegir IDentificacions però l'opinió de la comunitat no tindrà prioritat sobre la vostra. Això significa que les vostres observacions únicament tindran el grau de recerca, quan coincideix la vostra opinió i la de la comunitat.\n",
         "prefers_no_tracking_label": "No recolliu dades d'estabilitat i ús utilitzant serveis de tercers",
+        "project_addition_preferences": {
+          "any": "Qualsevol",
+          "joined": "Projectes als que us heu unit",
+          "none": "Ningú, només vosaltres, pot afegir les vostres observacions als projectes"
+        },
         "project_settings_desc": "Recordeu, això no dóna permís als projectes per accedir a les vostres coordenades ocultes o enviar-vos actualitzacions. Cal unir-se a projectes per a la concessió d'aquests permisos, o concedir-los cas-per-cas.\n",
         "taxon_change_desc": "Quan es fusionen o canvien de nom els tàxons a %{site_name}, les vostres observacions, llistes de tàxons, identificacions, etc. seran actualitzades automàticament al nou tàxon si el canvi és inequívoc. Si opteu pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.\n",
         "this_only_applies_to_traditional_projects": "Això només s'aplica als projectes tradicionals. No podeu excloure observacions de projectes col·lectius o paraigua, els quals són essencialment va salvar recerques.\nPodeu llegir més <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aquí</a>.\n"
@@ -6714,7 +6726,6 @@ I18n.translations["cs"] = {
   "annotations": "Anotace",
   "any": "libovolné",
   "any_": "Jakýkoliv",
-  "anyone": "Kdokoliv",
   "arachnids": "pavoukovci",
   "are_you_sure?": "Jste si jistý?",
   "are_you_sure_leave_this_project": "Jste si jisti, že chcete opustit tento pojekt?",
@@ -7618,7 +7629,6 @@ I18n.translations["cs"] = {
   "offensive_inappropriate": "útočný / nevhodný",
   "ok": "Jo",
   "old_observation_form": "Původní formulář pozorování (zastaralý)",
-  "only_you": "Jen vy",
   "open": "otevřený",
   "open_": "Otevřený",
   "open_street_map": "OpenStreetMap",
@@ -8711,6 +8721,11 @@ I18n.translations["cs"] = {
         "name_place_help_html": "Upřednostňovat obvyklá jména použitá na tomto místě.\n",
         "prefers_community_taxa_desc": "%{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.\n",
         "prefers_no_tracking_label": "Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran",
+        "project_addition_preferences": {
+          "any": "Jakýkoliv",
+          "joined": "Projekty, ke kterým jste se přidali",
+          "none": "Žádný, k projektům můžete přidávat svá pozorování pouze vy"
+        },
         "project_settings_desc": "Nezapomeňte, že toto nedává projektům povolení k přístupu k vašim soukromým souřadnicím ani zasílání aktualizací. Abyste mohli tato povolení udělit, musíte se přidat do projektů, nebo je udělit jednotlivě.\n",
         "taxon_change_desc": "Když jsou na %{site_name} sloučeny nebo přejmenovány taxony, vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů), dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální aktualizaci svého obsahu, pokud chcete.\n",
         "this_only_applies_to_traditional_projects": "To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.\nDalší informace <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">zde</a>.\n"
@@ -9121,7 +9136,6 @@ I18n.translations["da"] = {
   "annotations": "Note",
   "any": "alle",
   "any_": "Alle",
-  "anyone": "Enhver",
   "arachnids": "spindler",
   "are_you_sure?": "Er du sikker?",
   "are_you_sure_leave_this_project": "Er du sikker på, at du vil forlade dette projekt?",
@@ -10012,7 +10026,6 @@ I18n.translations["da"] = {
   "offensive_inappropriate": "fornærmende / upassende",
   "ok": "OK",
   "old_observation_form": "Gammel observations formular (forældet)",
-  "only_you": "Kun dig",
   "open": "åben",
   "open_": "Åben",
   "open_street_map": "OpenStreetMap",
@@ -11084,6 +11097,11 @@ I18n.translations["da"] = {
         "name_place_help_html": "Prioritér lokale navne brugt på dette sted.\n",
         "prefers_community_taxa_desc": "%{site_name} holder styr på, hvad du tror dine observationer er, og hvad\nfællesskabet mener at de er. Den identifikation, vi deler med data\npartnere er fællesskabs identifikationen, men hvis du ikke mener at\nfællesskabets mening nogensinde bør underkende din egen, kan du fravælge det. Andre personer vil stadig kunne tilføje identifikationer, men\nfællesskabets mening vil ikke blive foretrukket frem for din. Det betyder samtidigt at dine observationer ikke vil kunne opnå status af forskningskvalitet, medmindre du er enig med fællesskabet.\n",
         "prefers_no_tracking_label": "Indsaml ikke driftsstabilitets- og brugsdata vha. tredjepartstjenester",
+        "project_addition_preferences": {
+          "any": "Alle",
+          "joined": "Projekter du er medlem af",
+          "none": "Ingen. Det er kun dig der kan tilføje dine observationer til projekter"
+        },
         "project_settings_desc": "Husk, dette giver ikke projekter tilladelse til at få adgang til dine\nskjulte koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.\n",
         "taxon_change_desc": "Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye\ntaksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er\ntvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.\n",
         "this_only_applies_to_traditional_projects": "Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer\nfra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.\nDu kan læse mere <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">here</a>.\n"
@@ -11440,7 +11458,6 @@ I18n.translations["de"] = {
   "annotations": "Annotationen",
   "any": "alle",
   "any_": "Alle",
-  "anyone": "Alle",
   "arachnids": "Spinnentiere",
   "are_you_sure?": "Bist du sicher?",
   "are_you_sure_leave_this_project": "Bist du sicher, dass du dieses Projekt verlassen willst?",
@@ -12318,7 +12335,6 @@ I18n.translations["de"] = {
   "offensive_inappropriate": "beleidigend / unangemessen",
   "ok": "OK",
   "old_observation_form": "Altes Beobachtungsformular (veraltet)",
-  "only_you": "Nur dir",
   "open": "offen",
   "open_": "Öffnen",
   "open_street_map": "OpenStreetMap",
@@ -13367,6 +13383,11 @@ I18n.translations["de"] = {
         "name_place_help_html": "Umgangssprachliche Namen and diesem Ort bevorzugen\n",
         "prefers_community_taxa_desc": "%{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht \"Forschungsqualität\" erhalten, es sei denn, du stimmst der Mehrheit zu.\n",
         "prefers_no_tracking_label": "Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen",
+        "project_addition_preferences": {
+          "any": "alle",
+          "joined": "Projekte, denen du beigetreten bist",
+          "none": "Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen."
+        },
         "project_settings_desc": "Denke daran dass dies dem Projekt keine Berechtigung gibt, auf deine versteckten Koordinaten zuzugreifen oder dir Updates zu schicken. Du musst Projekten beitreten, um diese Berechtigungen zu vergeben, oder sie jeweils einzeln vergeben.\n",
         "taxon_change_desc": "Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es willst.\n",
         "this_only_applies_to_traditional_projects": "Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammel- oder Dach-Projekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.\nMehr <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">hier</a>.\n"
@@ -13717,7 +13738,6 @@ I18n.translations["el"] = {
   "annotations": "Ενδείξεις",
   "any": "Οτιδήποτε",
   "any_": "Οποιοδήποτε",
-  "anyone": "οποιοσδήποτε",
   "arachnids": "Αραχνίδια",
   "are_you_sure?": "Είστε σίγουρος;",
   "are_you_sure_leave_this_project": "Είστε βέβαιοι ότι θέλετε να εγκαταλείψετε αυτό το πρότζεκτ;",
@@ -14532,7 +14552,6 @@ I18n.translations["el"] = {
   "offensive_inappropriate": "Προσβλητικό / Ακατάλληλο",
   "ok": "Εντάξει",
   "old_observation_form": "Παλιά παρατήρηση από (παρωχημένο)",
-  "only_you": "Μόνο εσείς",
   "open": "Άνοιγμα",
   "open_": "Ανοιχτό",
   "open_street_map": "OpenStreetMap",
@@ -15518,6 +15537,11 @@ I18n.translations["el"] = {
     "users": {
       "edit": {
         "prefers_no_tracking_label": "Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων",
+        "project_addition_preferences": {
+          "any": "Οποιοδήποτε",
+          "joined": "Πρότζεκτ στα οποία είστε μέλος",
+          "none": "Όχι, μόνο εσείς μπορείτε να προσθέσετε τις παρατηρήσεις σας σε πρότζεκτ"
+        },
         "project_settings_desc": "Θυμηθείτε, αυτό δεν σας δίνει την άδεια πρότζεκτ έτσι ώστε να έχει πρόσβαση στις κρυμμένες συντεταγμένες σας ή να σας στέλνει ενημερώσεις.Πρέπει να γίνετε μέλος σε πρότζεκτ προκειμένου να δικαιούστε τέτοιες άδειες, ή να τις αποκτήσετε σταδιακά.\n",
         "this_only_applies_to_traditional_projects": "Αυτό είναι διαθέσιμο μόνο για τα παραδοσιακά πρότζεκτ. Δεν μπορείτε να εξαιρέσετε παρατηρήσεις από συλλογή ή από πρότζεκτ ομπρέλα, που είναι ουσιαστικά αποθηκευμένες αναζητήσεις.\nΔιαβάστε περισσότερα \n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">εδώ</a>.\n"
       }
@@ -15843,7 +15867,6 @@ I18n.translations["en"] = {
   "annotations": "Annotations",
   "any": "any",
   "any_": "Any",
-  "anyone": "Anyone",
   "applications": "Applications",
   "arachnids": "arachnids",
   "are_you_sure?": "Are you sure?",
@@ -16753,7 +16776,6 @@ I18n.translations["en"] = {
   "offensive_inappropriate": "Offensive / Inappropriate",
   "ok": "OK",
   "old_observation_form": "Old observation form (deprecated)",
-  "only_you": "Only you",
   "open": "open",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
@@ -17848,6 +17870,11 @@ I18n.translations["en"] = {
         "name_place_help_html": "Prioritize common names used in this place.\n",
         "prefers_community_taxa_desc": "%{site_name} tracks what you think your observations are and what\nthe community thinks they are. The identification we share with data\npartners is the community identification, but if you don't think the\ncommunity's opinion should ever overrule your own, you can opt out\nhere. People will still be able to add identifications, but the\ncommunity opinion won't be favored over yours. This means your\nobservations will not be eligible for research grade unless you\nagree with the community.\n",
         "prefers_no_tracking_label": "Do not collect stability and usage data using third party services",
+        "project_addition_preferences": {
+          "any": "Any",
+          "joined": "Projects you've joined",
+          "none": "None, only you can add your observations to projects"
+        },
         "project_settings_desc": "Remember, this does not give projects permission to access your\nhidden coordinates or send you updates. You must join projects in\norder to grant these permissions, or grant them on a case-by-case\nbasis.\n",
         "taxon_change_desc": "When taxa are merged or renamed on %{site_name}, your observations, listed\ntaxa, identifications, etc. will be automatically updated to the new\ntaxa if the change is unambiguous. If you opt out or the change is\nambiguous (e.g. a split), you will receive an update about the\nchange linking to a tool you can use to manually update your content\nif you choose.\n",
         "this_only_applies_to_traditional_projects": "This only applies to traditional projects. You can't exclude observations\nfrom collection or umbrella projects, which are essentially saved searches.\nYou can read more\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">here</a>.\n"
@@ -18186,6 +18213,8 @@ I18n.translations["en-UK"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -18372,6 +18401,8 @@ I18n.translations["en-US"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -18976,7 +19007,6 @@ I18n.translations["eo"] = {
   "of_places": "lokoj",
   "of_species": "specioj",
   "ok": "Bone",
-  "only_you": "Nur vi",
   "open": "malfermi",
   "open_": "Malfermi",
   "or": "aŭ",
@@ -19545,6 +19575,10 @@ I18n.translations["eo"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+          "any": "Ajna",
+          "joined": "Projektoj al kiuj vi aliĝis"
+        }
       }
     },
     "welcome": {
@@ -19820,7 +19854,6 @@ I18n.translations["es"] = {
   "annotations": "Anotaciones",
   "any": "cualquiera",
   "any_": "Cualquiera",
-  "anyone": "Cualquiera",
   "arachnids": "arácnidos",
   "are_you_sure?": "¿Estás seguro?",
   "are_you_sure_leave_this_project": "¿Estás seguro que quieres abandonar este proyecto?",
@@ -20711,7 +20744,6 @@ I18n.translations["es"] = {
   "offensive_inappropriate": "Ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguo registro de observaciones",
-  "only_you": "Solo tú",
   "open": "Transparente",
   "open_": "Abierto",
   "open_street_map": "Mapa OpenStreetMap",
@@ -21783,6 +21815,11 @@ I18n.translations["es"] = {
         "name_place_help_html": "Priorizar los nombres vernáculos utilizados en este lugar.\n",
         "prefers_community_taxa_desc": "%{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.\n",
         "prefers_no_tracking_label": "No recopilar datos de estabilidad ni de uso usando servicios de terceros",
+        "project_addition_preferences": {
+          "any": "Cualquiera",
+          "joined": "Proyectos a los que te has unido",
+          "none": "Ninguno: solo tú puedes añadir observaciones a los proyectos"
+        },
         "project_settings_desc": "Recuerda, esto no le da permiso a los proyectos para acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso particular.\n",
         "taxon_change_desc": "Cuando los taxones se fusionan o cambian de nombre  en %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.\n",
         "this_only_applies_to_traditional_projects": "Esto sólo se aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o paraguas, que son esencialmente búsquedas guardadas. Puedes leer más <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aquí</a>.\n"
@@ -22136,7 +22173,6 @@ I18n.translations["es-AR"] = {
   "annotations": "Anotaciones",
   "any": "cualquiera",
   "any_": "Cualquiera",
-  "anyone": "Cualquiera",
   "arachnids": "arácnidos",
   "are_you_sure?": "¿Estás seguro?",
   "are_you_sure_leave_this_project": "¿Estás seguro que quieres abandonar este proyecto?",
@@ -22962,7 +22998,6 @@ I18n.translations["es-AR"] = {
   "offensive_inappropriate": "Ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguo registro de observaciones",
-  "only_you": "Solo tú",
   "open": "Transparente",
   "open_": "Abierto",
   "open_street_map": "Mapa OpenStreetMap",
@@ -23956,6 +23991,11 @@ I18n.translations["es-AR"] = {
         "monthly_supporter_desc_html": "Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.\n<a href=\"%{url}\"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.\n",
         "name_place_help_html": "Priorizar los nombres vernáculos utilizados en este lugar.\n",
         "prefers_community_taxa_desc": "%{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.\n",
+        "project_addition_preferences": {
+          "any": "Cualquiera",
+          "joined": "Proyectos a los que te has unido",
+          "none": "Ninguno: solo tú puedes añadir observaciones a los proyectos"
+        },
         "project_settings_desc": "Recuerda, esto no le da permiso a los proyectos para acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso particular.\n",
         "taxon_change_desc": "Cuando los taxones se fusionan o cambian de nombre  en %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.\n",
         "this_only_applies_to_traditional_projects": "Esto sólo aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o paraguas, los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aquí</a>.\n"
@@ -24294,6 +24334,8 @@ I18n.translations["es-ES"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -25170,7 +25212,6 @@ I18n.translations["es-MX"] = {
   "offensive_inappropriate": "ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguó registro de observaciones",
-  "only_you": "Solo tú",
   "open": "Abierta",
   "open_": "Abierto",
   "or": "o",
@@ -25985,6 +26026,11 @@ I18n.translations["es-MX"] = {
         "licensing_desc_html": "La licencia de tu contenido permite a otra gente el uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons para compartir el contenido\ncon otros socios como <a href=\"http://www.gbif.org/\">Global \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, \nque reúne y distriuye información sobre biodiversidad en todo el mundo.\n",
         "name_place_help_html": "Priorizar los nombres vernáculos utilizados en este lugar.\n",
         "prefers_community_taxa_desc": "%{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.\n",
+        "project_addition_preferences": {
+          "any": "Cualquiera",
+          "joined": "Proyectos a los que te has unido",
+          "none": "Ninguno: solo tú puedes añadir observaciones a los proyectos"
+        },
         "project_settings_desc": "Recuerda, esto no le da permiso a los proyectos para acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso particular.\n",
         "taxon_change_desc": "Cuando una especie o grupo (taxa) se combina o cambia de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones, etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la división de una especie en dos) recibirás\nuna actualización sobre el cambio con un enlace a una herramienta que puedes usar\nmanualmente para actualizar el contenido.\n",
         "this_only_applies_to_traditional_projects": "Esto sólo aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o contenedores, los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aquí</a>.\n"
@@ -27042,7 +27088,6 @@ I18n.translations["et"] = {
   "of_this_taxon": "Selle taksoni",
   "offensive_inappropriate": "Solvav / ebasobiv",
   "old_observation_form": "Vana vaatlusvorm (mittekasutatav)",
-  "only_you": "Vaid sina",
   "open": "avalik",
   "open_": "Avalik",
   "open_street_map": "OpenStreetMap",
@@ -27860,6 +27905,11 @@ I18n.translations["et"] = {
         "licensing_desc_html": "Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href=\"http://www.gbif.org/\">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.\n",
         "name_place_help_html": "Eelista selles kohas kasutatavaid rahvapäraseid nimesid.\n",
         "prefers_community_taxa_desc": "%{site_name} jälgib, kuidas sina oma vaatluseid määratled ja kuidas kogukond neid määralteb. Andmepartneritega jagame kogukondliku määratlust, aga kui sa arvad, et kogukonna arvamus ei tohiks kunagi sinu omast üle olla, võid sellest siin keelduda. Inimesed saavad ikkagi lisada määratlusi, kuid kogukonna arvamust ei eelistata sinu omale. See tähendab, et su vaatlused ei saa olla teaduskõlbulikud, kui just sinu ja kogukonna määratlus kokku ei lange.\n",
+        "project_addition_preferences": {
+          "any": "Kõik",
+          "joined": "Projektid, millega oled liitunud",
+          "none": "Ei ühelegi, ainult sina saad enda vaatluseid projektidesse lisada"
+        },
         "project_settings_desc": "Pea meeles, et see ei anna projektidele luba näha sinu peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead projektidega liituma või andma neile igale ühele eraldi load.\n",
         "taxon_change_desc": "Kui taksoneid lehel %{site_name} kokku liidetakse või ümbernimetatakse, uuendatakse automaatselt ka sinu vaatluseid, taksonite nimekirju, määratlusi, jms, kui taksonimuutus on üheti tõlgendatav. Kui sa sellest keeldud või muutus on mitmeti tõlgendatav (nt taksonite jagamine), saad muudatuse kohta teate koos lingiga tööriistale, mis võimaldab sul enda sisu soovi korral käsitsi uuendada.\n",
         "this_only_applies_to_traditional_projects": "See kehtib ainult tavaprojektide puhul. Kogumis- või ülemprojektide puhul, mis on sisuliselt meeldejäetud otsingud, sa vaatlusi välistada ei saa. Loe edasi <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">siit</a>.\n"
@@ -28184,7 +28234,6 @@ I18n.translations["eu"] = {
   "annotations": "Anotazioak",
   "any": "Edozein",
   "any_": "Edozein",
-  "anyone": "Edonor",
   "arachnids": "araknidoak",
   "are_you_sure?": "Ziur zaude?",
   "are_you_sure_leave_this_project": "Ziur zaude proiektu honetatik irten nahi duzula?",
@@ -29023,6 +29072,9 @@ I18n.translations["eu"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+          "any": "Edozein"
+        }
       }
     },
     "welcome": {
@@ -29306,7 +29358,6 @@ I18n.translations["fi"] = {
   "annotations": "Merkinnät",
   "any": "mikä tahansa",
   "any_": "Mikä tahansa",
-  "anyone": "Kuka tahansa",
   "arachnids": "hämähäkkieläimet",
   "are_you_sure?": "Oletko varma?",
   "are_you_sure_leave_this_project": "Haluatko varmasti lähteä pois tästä projektista?",
@@ -30152,7 +30203,6 @@ I18n.translations["fi"] = {
   "offensive_inappropriate": "Loukkaava / sopimaton",
   "ok": "OK",
   "old_observation_form": "Vanha havaintomuoto (vanhentunut)",
-  "only_you": "Vain sinä",
   "open": "avoin",
   "open_": "Avoin",
   "open_street_map": "OpenStreetMap",
@@ -31124,6 +31174,11 @@ I18n.translations["fi"] = {
         "monthly_supporter_desc_html": "iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United\nStates IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.\n<a href=\"%{url}\">Ryhdy kuukausitukijaksi.</a>\nKun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.\n",
         "name_place_help_html": "Aseta etusijalle tässä paikassa käytetyt yleiskieliset nimet.\n",
         "prefers_community_taxa_desc": "%{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.\n",
+        "project_addition_preferences": {
+          "any": "Kaikki",
+          "joined": "Projektit, joihin olet liittynyt",
+          "none": "Ei mitkään, vain sinä voit lisätä havaintojasi projekteihin"
+        },
         "project_settings_desc": "Muista että tämä ei anna projekteille pääsyä havaintojesi salattuihin koordinaatteihin eikä lupaa lähettää sinulle viestejä. Jos haluat antaa näitä oikeuksia täytyy sinun joko liittyä projektiin, tai myöntää projektille pääsy yksi jokaiseen havaintoon erikseen.\n",
         "taxon_change_desc": "Kun taksoneita yhdistetään tai uudelleennimetään %{site_name}:ssa havaintosi, taksoniluettelosi, määrityksesi ym. päivitetään automaattisesti vastaamaan uutta taksonia, mikäli muutos on yksiselitteinen. Jos et hyväksy tätä tai muutos on epämääräinen (esim. taksoni jaetaan kahtia), saat viestin muutoksesta. Viestissä on linkki työkaluun, jolla voit itse halutessasi päivittää sisältösi.\n",
         "this_only_applies_to_traditional_projects": "Tämä pätee ainoastaan perinteisiin projekteihin. Koonti- tai sateenvarjoprojekteista ei voi sulkea pois havaintoja - ne ovat käytännössä tallennettuja hakuehtoja. <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">Lue lisää (englanniksi)</a>.\n"
@@ -31445,6 +31500,8 @@ I18n.translations["fil"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -31631,7 +31688,6 @@ I18n.translations["fr"] = {
   "annotations": "Annotations",
   "any": "tous",
   "any_": "Tous",
-  "anyone": "Tout le monde",
   "arachnids": "arachnides",
   "are_you_sure?": "Êtes-vous certain ?",
   "are_you_sure_leave_this_project": "Êtes-vous sûr de vouloir quitter ce projet ?",
@@ -32522,7 +32578,6 @@ I18n.translations["fr"] = {
   "offensive_inappropriate": "Injurieux/inapproprié",
   "ok": "OK",
   "old_observation_form": "Ancien formulaire d’observation (désuet)",
-  "only_you": "Seulement vous",
   "open": "Ouvert",
   "open_": "Ouverte",
   "open_street_map": "OpenStreetMap",
@@ -33590,6 +33645,11 @@ I18n.translations["fr"] = {
         "name_place_help_html": "Prioriser les noms communs utilisés à cet endroit.\n",
         "prefers_community_taxa_desc": "%{site_name} suit ce que vos identifications d’observations et les identifications de\nla communauté. L’identification que nous échangeons avec les partenaires\nd’échange de données est celle de la communauté, mais si vous ne pensez pas que\nl’opinion de la communauté doit annuler la vôtre, vous pouvez choisir de la refuser\nici. Les gens pourront toujours ajouter des identifications, mais\nl’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos\nobservations ne seront pas admissibles au calibre recherche, à moins que vous\nne soyez d’accord avec la communauté.\n",
         "prefers_no_tracking_label": "Ne pas collecter de données de performance et d'utilisation par le biais de services tiers",
+        "project_addition_preferences": {
+          "any": "Tout",
+          "joined": "Projets que vous avez rejoint",
+          "none": "Non, vous seul pouvez ajouter vos observations aux projets"
+        },
         "project_settings_desc": "Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos\ncoordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin\nd’accorder ces droits, ou les autoriser au cas par cas.\n",
         "taxon_change_desc": "Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos\nobservations, taxons répertoriés, identifications, etc., seront\nautomatiquement mis à jour avec les nouveaux taxons si la\nmodification est sans ambiguïté. Si vous décidez de ne pas choisir\ncette option ou si le changement est ambigu (par ex. une séparation),\nvous recevrez une mise à jour sur le changement lié à un outil que\nvous pouvez utiliser pour mettre à jour votre contenu manuellement,\nsi vous le voulez.\n",
         "this_only_applies_to_traditional_projects": "Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.\nDavantage d'informations <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">ici</a>.\n"
@@ -34050,6 +34110,8 @@ I18n.translations["fr-CA"] = {
       "edit": {
         "inaturalist_network_affiliation_desc_html": "<p> Le <a href=\"%{url}\" target=\"_blank\">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> \n<p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.\n</p>\n",
         "monthly_supporter_desc_html": "Les parrains réguliers d’iNaturalist font des contributions mensualisées\nautomatiques qui sont reçues par l’Académie des sciences de Californie\n(Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les\nopérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.\n<a href=\"%{url}\">Cliquez ici pour devenir un parrain mensualisé</a>.\nLorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette\nboîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser\nexactement la même adresse courriel sur Donorbox que celle que vous\nutilisez sur iNaturalist pour nous permettre de confirmer que vous êtes\nun parrain mensualisé.\n",
+        "project_addition_preferences": {
+        },
         "this_only_applies_to_traditional_projects": "Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.\nDavantage d'informations <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">ici</a>.\n"
       }
     },
@@ -34316,6 +34378,8 @@ I18n.translations["gd"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -34502,7 +34566,6 @@ I18n.translations["gl"] = {
   "annotations": "Anotacións",
   "any": "Calquera",
   "any_": "Calquera",
-  "anyone": "Calquera",
   "arachnids": "Arácnidos",
   "are_you_sure?": "Estás seguro?",
   "are_you_sure_leave_this_project": "Estás seguro de que desexas saír deste proxecto?",
@@ -35382,7 +35445,6 @@ I18n.translations["gl"] = {
   "offensive_inappropriate": "ofensivo / non axeitado",
   "ok": "Aceptar",
   "old_observation_form": "Formularios de observacións antigas (obsoleto)",
-  "only_you": "Só ti",
   "open": "Transparente",
   "open_": "Aberto",
   "open_street_map": "OpenStreetMap",
@@ -36447,6 +36509,11 @@ I18n.translations["gl"] = {
         "name_place_help_html": "Priorizar nomes vernáculos usados neste lugar.\n",
         "prefers_community_taxa_desc": "%{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. A identificación que compartimos cós nosos socios de dados é a identificación da comunidade, pero se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda será capaz de engadir identificacións, pero a opinión da comunidade non será favorecida perante a túa. Isto significa que as túas observacións non poderán optar ó grao de investigación, non sendo que tí esteas de acordo cá comunidade.\n",
         "prefers_no_tracking_label": "Non recoller dados de estabilidade e de uso usando servicios de terceiros",
+        "project_addition_preferences": {
+          "any": "Calquera",
+          "joined": "Proxectos ós que te uniches",
+          "none": "Ningún, só ti podes engadir as túas observacións a proxectos"
+        },
         "project_settings_desc": "Lembra, isto non da permiso ós proxectos para acceder ás túas coordenadas ocultas ou para enviarte novas. Debes de unirte ós proxectos para concederlles estes permisos, or darllos caso a caso.\n",
         "taxon_change_desc": "Cando se combinan ou renomean taxons en %{site_name}, as túas observacións, taxons listados, identificacións, etc. serán actualizados automáticamente ós novos taxons se o cambio non é ambíguo. Se optas por excluílo ou o cambio é ambíguo (p.e. unha división), recibirás novas sobre o cambio vinculadas a unha ferramenta que poderás empregar para actualizar o teu contido se así o decides.\n",
         "this_only_applies_to_traditional_projects": "Istó só é aplicable a proxectos tradicionais. Non podes excluír observacións de proxectos de recolla ou paraugas, que son esencialmente buscas gardadas.\nPodes ler máis <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aquí</a>.\n"
@@ -36829,7 +36896,6 @@ I18n.translations["he"] = {
   "annotations": "תוויות",
   "any": "הכול",
   "any_": "כלשהו",
-  "anyone": "כולם",
   "arachnids": "עכבישניים",
   "are_you_sure?": "בטוחים?",
   "are_you_sure_leave_this_project": "האם ברצונך לעזוב את הפרויקט הזה?",
@@ -37663,7 +37729,6 @@ I18n.translations["he"] = {
   "offensive_inappropriate": "פוגעני/לא מתאים",
   "ok": "אישור",
   "old_observation_form": "טופס תצפית ישן (לא בשימוש)",
-  "only_you": "רק את/ה",
   "open": "פתיחה",
   "open_": "פתיחה",
   "open_street_map": "OpenStreetMap",
@@ -38503,7 +38568,11 @@ I18n.translations["he"] = {
     "users": {
       "edit": {
         "prefers_community_taxa_desc": "%{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.\n",
-        "prefers_no_tracking_label": "אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי"
+        "prefers_no_tracking_label": "אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי",
+        "project_addition_preferences": {
+          "any": "כל",
+          "joined": "פרוייקטים שהצטרפת אליהם"
+        }
       }
     },
     "welcome": {
@@ -38885,6 +38954,8 @@ I18n.translations["hi"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -39071,6 +39142,8 @@ I18n.translations["hu"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -39229,6 +39302,8 @@ I18n.translations["hy"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -40192,6 +40267,11 @@ I18n.translations["id"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+          "any": "Apa saja",
+          "joined": "Proyek yang telah Anda bergabung",
+          "none": "Tidak ada, hanya Anda yang dapat menambahkan pengamatan Anda untuk proyek-proyek"
+        },
         "project_settings_desc": "Ingat, ini tidak memberikan izin proyek untuk mengakses koordinat pribadi anda atau mengirim pembaruan. Anda harus bergabung di proyek untuk memberikan izin ini, atau memberikan mereka pada kasus per kasus dasar.\n"
       }
     },
@@ -40471,7 +40551,6 @@ I18n.translations["it"] = {
   "annotations": "Annotazioni",
   "any": "qualsiasi",
   "any_": "Qualsiasi",
-  "anyone": "Chiunque",
   "arachnids": "aracnidi",
   "are_you_sure?": "Sei sicuro?",
   "are_you_sure_leave_this_project": "Sei sicuro di voler abbandonare questo progetto?",
@@ -41362,7 +41441,6 @@ I18n.translations["it"] = {
   "offensive_inappropriate": "Offensivo / inappropriato",
   "ok": "OK",
   "old_observation_form": "Vecchio formulario dell'osservazione (obsoleto)",
-  "only_you": "Solo tu",
   "open": "pubblica",
   "open_": "Aperta",
   "open_street_map": "OpenStreetMap",
@@ -42434,6 +42512,11 @@ I18n.translations["it"] = {
         "name_place_help_html": "Dai priorità ai nomi comuni usati in questo luogo.\n",
         "prefers_community_taxa_desc": "%{site_name} tiene traccia di cosa tu pensi che sia ciò che hai osservato e di ciò che ne pensa la community. L'identificazione che condividiamo con i partner dei dati è l'identificazione della community, ma se non pensi che l'opinione della community debba avere priorità sulla tua, puoi deselezionare qui l'opzione. Le persone continueranno ad essere in grado di aggiungere identificazioni, ma l'opinione della community non avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno il Livello Ricerca a me che non sia in accordo con l'ID della community.\n",
         "prefers_no_tracking_label": "Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti",
+        "project_addition_preferences": {
+          "any": "Qualsiasi",
+          "joined": "Progetti a cui ti sei unito",
+          "none": "Nessuno, solo tu puoi aggiungere le tue osservazioni ai progetti"
+        },
         "project_settings_desc": "Ricorda, questa opzione non concede il permesso ai progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti. Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere i permessi osservazione per osservazione.\n",
         "taxon_change_desc": "Quando dei taxa sono uniti o rinominati su %{site_name}, le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai un aggiornamento sulla modifica, con un link ad uno strumento che potrai usare per aggiornare manualmente il tuo contenuto.\n",
         "this_only_applies_to_traditional_projects": "Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">qui</a>.\n"
@@ -42736,6 +42819,8 @@ I18n.translations["iw"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -43675,7 +43760,6 @@ I18n.translations["ja"] = {
   "offensive_inappropriate": "不快／不適切",
   "ok": "OK",
   "old_observation_form": "旧観察記録記入フォーム（非推奨）",
-  "only_you": "自分のみ",
   "open": "公開",
   "open_": "オープン",
   "open_street_map": "OpenStreetMap",
@@ -44497,6 +44581,10 @@ I18n.translations["ja"] = {
         "name_place_help_html": "この場所で使用される一般名を優先します\n",
         "prefers_community_taxa_desc": "%{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。\n",
         "prefers_no_tracking_label": "サードパーティのサービスを使用して安定性や利用状況のデータを収集しない",
+        "project_addition_preferences": {
+          "joined": "自分の参加しているプロジェクト",
+          "none": "許可しない。あなただけがあなたの観察記録をプロジェクトに追加することができます。"
+        },
         "project_settings_desc": "これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。\n",
         "taxon_change_desc": "分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。\n",
         "this_only_applies_to_traditional_projects": "これは従来のプロジェクトにのみ適用されます。基本的に保存された検索であるコレクションやアンブレラプロジェクト（親プロジェクト）から観察記録を除外することはできません。詳細は<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">こちら</a>をご覧ください。\n"
@@ -44766,6 +44854,8 @@ I18n.translations["ka"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -45481,7 +45571,6 @@ I18n.translations["ko"] = {
   "of_species": "종",
   "offensive_inappropriate": "불쾌 / 부적절",
   "ok": "확인",
-  "only_you": "나만",
   "open": "공개",
   "open_": "공개",
   "open_street_map": "오픈스트리트맵",
@@ -46063,6 +46152,10 @@ I18n.translations["ko"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+          "joined": "내가 가입한 프로젝트",
+          "none": "없음, 프로젝트에 관찰만 추가할 수 있습니다"
+        }
       }
     },
     "welcome": {
@@ -46745,7 +46838,6 @@ I18n.translations["lb"] = {
   "of_places": "Plazen",
   "of_species": "Aarten",
   "of_this_taxon": "Vun desem Taxon",
-  "only_you": "Nëmmen Dir",
   "open": "opmaachen",
   "open_": "Opmaachen",
   "or": "oder",
@@ -47124,6 +47216,10 @@ I18n.translations["lb"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+          "joined": "Projeten deenen Dir bäigetruede sidd",
+          "none": "Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen"
+        }
       }
     },
     "welcome": {
@@ -47426,7 +47522,6 @@ I18n.translations["lt"] = {
   "annotations": "Pastabos",
   "any": "nesvarbu",
   "any_": "Bet kuris",
-  "anyone": "Betkuris",
   "arachnids": "voragyviai",
   "are_you_sure?": "Ar tikrai?",
   "are_you_sure_leave_this_project": "Ar tikrai norite palikti šį projektą?",
@@ -48263,7 +48358,6 @@ I18n.translations["lt"] = {
   "offensive_inappropriate": "Įžeidžiantis / Nepriimtinas",
   "ok": "Gerai",
   "old_observation_form": "Sena stebėjimo forma (nebenaudojama)",
-  "only_you": "Tik jūs",
   "open": "atviras",
   "open_": "Atviras",
   "open_street_map": "OpenStreetMap",
@@ -49149,6 +49243,10 @@ I18n.translations["lt"] = {
     "users": {
       "edit": {
         "prefers_no_tracking_label": "Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis",
+        "project_addition_preferences": {
+          "any": "Nesvarbu",
+          "joined": "Projektai, prie kurių prisijungėte"
+        },
         "this_only_applies_to_traditional_projects": "Tai galioja tik tradiciniams projektams. Jūs negalite išmesti stebėjimų iš grupinių ar skėtinių projektų, nes jie iš esmės yra išsaugoti paieškos rezultatai. <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">Čia</a> galite paskaityti daugiau.\n"
       }
     },
@@ -49540,6 +49638,8 @@ I18n.translations["lv"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -50305,6 +50405,8 @@ I18n.translations["mk"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -50529,6 +50631,8 @@ I18n.translations["mr"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -50715,6 +50819,8 @@ I18n.translations["ms"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -50901,7 +51007,6 @@ I18n.translations["nb"] = {
   "annotations": "Merknader",
   "any": "alle",
   "any_": "Alle",
-  "anyone": "Alle",
   "arachnids": "edderkoppdyr",
   "are_you_sure?": "Er du sikker?",
   "are_you_sure_leave_this_project": "Er du sikker på at du vil forlate dette prosjektet?",
@@ -51792,7 +51897,6 @@ I18n.translations["nb"] = {
   "offensive_inappropriate": "Støtende / upassende",
   "ok": "Ok",
   "old_observation_form": "Gammelt observasjonsskjema (foreldret)",
-  "only_you": "Kun du",
   "open": "åpen",
   "open_": "Åpen",
   "open_street_map": "OpenStreetMap",
@@ -52863,6 +52967,11 @@ I18n.translations["nb"] = {
         "name_place_help_html": "Prioriter populærnavn brukt på dette stedet.\n",
         "prefers_community_taxa_desc": "%{site_name} holder rede på hva du tror dine observasjoner er og hva felleskapet tror det er. Identifikasjonen vi deler med datapartnere er felleskapets identifikasjon, men hvis synes at felleskapets mening aldri skal overstyre din egen, kan du melde deg av her. Folk vil fortsatt kunne legge til identifikasjoner, men felleskapets mening blir ikke prioritert over din. Dette betyr at dine observasjoner ikke vil kunne nå forskingskvalitet med mindre du er enig med felleskapet.\n",
         "prefers_no_tracking_label": "Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester",
+        "project_addition_preferences": {
+          "any": "Alle",
+          "joined": "Prosjekter som du er med i",
+          "none": "Ingen, bare du kan legge til dine observasjoner til prosjekter"
+        },
         "project_settings_desc": "Husk at dette ikke gir prosjekter tilgang til å se dine skjulte koordinater eller sende seg oppdateringer. Du må bli medlem i prosjekter for å gi disse tillatelser, eller gi de en-og-en.\n",
         "taxon_change_desc": "Når taksa blir slått sammen eller får et nytt navn på %{site_name}, vil dine observasjoner, listede taksa, identifikasjoner, osv. bli oppdatert til det nye taksonet automatisk, hvis endringen er entydig. Hvis du velger å ikke gjøre det eller endringen er tvetydig (for eksempel en oppdeling), vil du få en oppdatering om endringen med en lenke til et verktøy for å oppdatere ditt innhold manuelt, hvis du velger å gjøre det.\n",
         "this_only_applies_to_traditional_projects": "Dette er kun relevant for tradisjonelle prosjekter. Du kan ikke ekskludere observasjoner fra samlings- eller paraplyprosjekter, som i praksis er lagrede søk. Du kan lese mer <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">her</a>.\n"
@@ -53219,7 +53328,6 @@ I18n.translations["nl"] = {
   "annotations": "Aantekeningen",
   "any": "alle",
   "any_": "Alle",
-  "anyone": "Iedereen",
   "arachnids": "spinachtigen",
   "are_you_sure?": "Weet je het zeker?",
   "are_you_sure_leave_this_project": "Weet je zeker dat je dit project wilt verlaten?",
@@ -54110,7 +54218,6 @@ I18n.translations["nl"] = {
   "offensive_inappropriate": "Aanstootgevend/ongepast",
   "ok": "OK",
   "old_observation_form": "Oud waarnemingsformulier (verouderd)",
-  "only_you": "Alleen jij",
   "open": "open",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
@@ -55182,6 +55289,11 @@ I18n.translations["nl"] = {
         "name_place_help_html": "Geef prioriteit aan lokale namen die op deze plaats worden gebruikt.\n",
         "prefers_community_taxa_desc": "%{site_name} volgt wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met gegevenspartners delen, is de determinatie van de gemeenschap, maar als je denkt dat de mening van de gemeenschap jouw eigen mening nooit mag vervangen, kunt je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar de mening van de gemeenschap heeft geen voorkeur boven die van jou. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.\n",
         "prefers_no_tracking_label": "Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden",
+        "project_addition_preferences": {
+          "any": "Alle",
+          "joined": "Projecten waar je lid van bent",
+          "none": "Geen, je bent de enige die je waarnemingen aan projecten kan toevoegen"
+        },
         "project_settings_desc": "Let op: dit geeft projecten geen toegang tot je verborgen coördinaten of om je updates te sturen. Je moet deelnemen aan projecten om hier toestemming toe te geven, of het van geval tot geval toestaan.\n",
         "taxon_change_desc": "Wanneer taxa op %{site_name} worden samengevoegd of hernoemd, worden je waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als je je afmeldt of als de wijziging niet eenduidig is (bijv. een splitsing), ontvang je een update over de wijziging met een link naar een tool die je kunt gebruiken om je inhoud handmatig bij te werken als je daarvoor kiest.\n",
         "this_only_applies_to_traditional_projects": "Dit geldt alleen voor traditionele projecten. Je kunt waarnemingen niet uitsluiten\nvan verzamel- of overkoepelende projecten, wat in feite opgeslagen zoekopdrachten zijn.\nJe kunt <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">hier</a> meer lezen.\n"
@@ -55538,6 +55650,8 @@ I18n.translations["nn"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -56230,6 +56344,8 @@ I18n.translations["oc"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -56482,7 +56598,6 @@ I18n.translations["pl"] = {
   "annotations": "Adnotacje",
   "any": "dowolny",
   "any_": "Dowolna",
-  "anyone": "Ktokolwiek",
   "arachnids": "pajęczaki",
   "are_you_sure?": "Czy jesteś pewien?",
   "are_you_sure_leave_this_project": "Czy na pewno chcesz opuścić ten projekt?",
@@ -57324,7 +57439,6 @@ I18n.translations["pl"] = {
   "offensive_inappropriate": "Obraźliwy / Nieodpowiedni",
   "ok": "OK",
   "old_observation_form": "Stary formularz obserwacji (przestarzały)",
-  "only_you": "Tylko Ty",
   "open": "otwarty",
   "open_": "Otwórz",
   "open_street_map": "OpenStreetMap",
@@ -58094,6 +58208,10 @@ I18n.translations["pl"] = {
     "users": {
       "edit": {
         "prefers_no_tracking_label": "Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich",
+        "project_addition_preferences": {
+          "any": "Dowolna",
+          "joined": "Projekty do których dołączyłeś"
+        },
         "project_settings_desc": "Pamiętaj, że nie daje to projektom uprawnień do dostępu do twoich ukrytych współrzędnych lub wysyłania aktualizacji. Musisz dołączyć do projektów, aby przyznać te uprawnienia, lub przyznać je indywidualnie dla każdego przypadku.\n",
         "taxon_change_desc": "Gdy taksony na %{site_name} są scalane lub zmieniane są ich nazwy, Twoje obserwacje, taksony znajdujące się na listach, oznaczenia itp. zostaną automatycznie zaktualizowane do nowych taksonów, jeśli zmiana ta jest jednoznaczna. Jeśli zrezygnujesz z otrzymywania powiadomień o zmianach w taksonie lub zmiana jest niejednoznaczna (np. podział), otrzymasz aktualizację dotyczącą zmiany razem z linkiem do narzędzia, którego możesz użyć do ręcznej aktualizacji swojej zawartości.\n"
       }
@@ -58474,7 +58592,6 @@ I18n.translations["pt"] = {
   "annotations": "Anotações",
   "any": "qualquer",
   "any_": "Qualquer",
-  "anyone": "Qualquer um",
   "arachnids": "aracnídeos",
   "are_you_sure?": "Tem a certeza?",
   "are_you_sure_leave_this_project": "Tem a certeza que deseja abandonar este projeto?",
@@ -59365,7 +59482,6 @@ I18n.translations["pt"] = {
   "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "Ok",
   "old_observation_form": "Formulário antigo de registo de observação (descontinuado)",
-  "only_you": "Só você",
   "open": "abrir",
   "open_": "Abrir",
   "open_street_map": "OpenStreetMap",
@@ -60437,6 +60553,11 @@ I18n.translations["pt"] = {
         "name_place_help_html": "Priorize os nomes comuns usados neste local.\n",
         "prefers_community_taxa_desc": "%{site_name} ratreia oque você acredita que suas observações são e o que a comunidade acredita. A identificação que dividimos com parceiros é a realizada pela comunidade, porém se você não deseja que a opinião da comunidade se sobreponha à sua, você pode optar por isso aqui. As pessoas ainda poderão adicionar identificações, mas a opinião da comunidade de identificação não irá se sobrepor à sua. Isto significa que suas observações não estarão elegíveis para serem utilizadas em pesquisas a não ser que você concorde com a comunidade.\n",
         "prefers_no_tracking_label": "Não colete dados de estabilidade e uso usando serviços de terceiros",
+        "project_addition_preferences": {
+          "any": "Qualquer",
+          "joined": "Projetos a que aderiu",
+          "none": "Nenhum(a), as suas observações só podem ser adicionadas por si aos projetos"
+        },
         "project_settings_desc": "Lembre-se, isto não concede permissão aos projetos para acessar suas coordenadas ocultadas ou lhe enviar notificações. Você precisa se inscrever nos projetos para conceder estas permissões ou, concedê-las para cada caso em particular.\n",
         "taxon_change_desc": "Quando os táxons convergirem ou forem renomeados para %{site_name}, suas observações, táxons registrados, identificações, entre outros serão automaticamente atualizados para o novo táxon se a mudança não for ambígua.\n",
         "this_only_applies_to_traditional_projects": "Isso só se aplica a projetos tradicionais. Você não pode excluir observações\nde projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.\nVocê pode ler mais\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">aqui</a>.\n"
@@ -60793,6 +60914,8 @@ I18n.translations["pt-BR"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -60980,6 +61103,8 @@ I18n.translations["ro"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -61194,7 +61319,6 @@ I18n.translations["ru"] = {
   "annotations": "Значения",
   "any": "любой",
   "any_": "Любой",
-  "anyone": "Любой",
   "arachnids": "паукообразные",
   "are_you_sure?": "Вы уверены?",
   "are_you_sure_leave_this_project": "Вы уверены, что хотите выйти из этого проекта?",
@@ -62099,7 +62223,6 @@ I18n.translations["ru"] = {
   "offensive_inappropriate": "Оскорбительное / Неприемлемое",
   "ok": "ОК",
   "old_observation_form": "Старая форма наблюдения (устарела)",
-  "only_you": "Только вы",
   "open": "открытая",
   "open_": "Открытое",
   "open_street_map": "OpenStreetMap",
@@ -63193,6 +63316,11 @@ I18n.translations["ru"] = {
         "name_place_help_html": "Установить приоритет народных названий, используемых в этом месте.\n",
         "prefers_community_taxa_desc": "%{site_name} отслеживает то, чем, вы  считаете, являются ваши наблюдения, и то, чем, сообщество считает, они являются. Идентификация, которой мы делимся с партнерами по данным, - это идентификация сообщества, но если Вы не думаете, что мнение сообщества должно когда-либо отменять ваше собственное, вы можете отказаться. Люди по-прежнему смогут добавлять идентификации, но мнение сообщества не будет предпочтительнее вашего. Это означает, что ваши наблюдения не будут иметь право на участие в исследовании, если вы не согласны с сообществом.\n",
         "prefers_no_tracking_label": "Не собирать данные о стабильности и использовании с помощью сторонних сервисов",
+        "project_addition_preferences": {
+          "any": "Любой",
+          "joined": "Проекты, к которым вы присоединились",
+          "none": "Никакие, только вы можете добавлять ваши наблюдения к проектам"
+        },
         "project_settings_desc": "Помните, что это не дает проектам разрешение на доступ к вашим скрытым координатам или на отправку вам обновлений. Вы должны присоединиться к проектам, чтобы предоставить эти разрешения, или предоставить их в каждом конкретном случае.\n",
         "taxon_change_desc": "Когда таксоны объединяются или переименовываются на %{site_name}, ваши наблюдения, списки таксонов, идентификации и т.д. будут автоматически обновлены до нового таксона, если изменение однозначно. Если вы откажетесь от изменения или изменение неоднозначно (например, разделение таксона), вы получите уведомление об изменении со ссылкой на инструментарий, который позволит, если вы захотите, вручную обновить ваш контент.\n",
         "this_only_applies_to_traditional_projects": "Это относится только к традиционным проектам. Вы не можете исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисками.\nВы можете прочитать больше <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">здесь</a>.\n"
@@ -63575,6 +63703,8 @@ I18n.translations["si"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -63694,7 +63824,6 @@ I18n.translations["sk"] = {
   "annotations": "Anotácie",
   "any": "ľubovoľný",
   "any_": "Ľubovoľný",
-  "anyone": "Ktokoľvek",
   "arachnids": "pavúkovce",
   "are_you_sure?": "Ste si istý?",
   "are_you_sure_leave_this_project": "Ste si istý, že chcete opustiť tento projekt?",
@@ -64390,7 +64519,6 @@ I18n.translations["sk"] = {
   "of_this_taxon": "Z tohto taxónu",
   "offensive_inappropriate": "útočný / nevhodný",
   "old_observation_form": "Pôvodný formulár pozorovania (zastaraný)",
-  "only_you": "Iba vy",
   "open": "otvorený",
   "open_": "Otvorený",
   "or": "alebo",
@@ -65065,6 +65193,8 @@ I18n.translations["sk"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -65262,6 +65392,8 @@ I18n.translations["sl"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -66069,7 +66201,6 @@ I18n.translations["sq"] = {
   "offensive_inappropriate": "Ofenduese/e papërshtatshme",
   "ok": "Në rregull",
   "old_observation_form": "Formë e vjeter vëzhgimi (e zhvlerësuar)",
-  "only_you": "Vetem ju",
   "open": "hape",
   "open_": "Hape",
   "or": "ose",
@@ -66498,7 +66629,9 @@ I18n.translations["sq"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.\n"
+        "licensing_desc_html": "Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.\n",
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -66713,7 +66846,6 @@ I18n.translations["sv"] = {
   "annotations": "Anteckningar",
   "any": "alla",
   "any_": "Vilken som helst",
-  "anyone": "Vem som helst",
   "arachnids": "spindeldjur",
   "are_you_sure?": "Är du säker?",
   "are_you_sure_leave_this_project": "Är du säker på att du vill lämna detta projekt?",
@@ -67602,7 +67734,6 @@ I18n.translations["sv"] = {
   "offensive_inappropriate": "Stötande / Olämpligt",
   "ok": "OK",
   "old_observation_form": "Gammalt observationsformulär (utfasat)",
-  "only_you": "Endast dig",
   "open": "öppna",
   "open_": "Öppna",
   "open_street_map": "OpenStreetMap",
@@ -68668,6 +68799,11 @@ I18n.translations["sv"] = {
         "name_place_help_html": "Prioritera vanliga namn som används på denna plats.\n",
         "prefers_community_taxa_desc": "%{site_name} spårar vad du tror att dina observationer är och vad\ngemenskapen tycker att de är. Den bestämning vi delar med data-\npartners är gemenskapens bestämning, men om du inte tycker att\ngemenskapens åsikt någonsin ska upphäva din egen, kan du välja\nbort det här. Folk kommer fortfarande att kunna lägga till bestämningar,\nmen gemenskapens åsikt kommer inte att föredras framför din. Detta\ninnebär att dina observationer inte kommer att kvalificera för\nforskningskvalitet såvida du inte själv håller med gemenskapen.\n",
         "prefers_no_tracking_label": "Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster",
+        "project_addition_preferences": {
+          "any": "Alla",
+          "joined": "Projekt du har gått med i",
+          "none": "Ingen, bara du kan lägga till dina observationer till projekt"
+        },
         "project_settings_desc": "Kom ihåg, detta ger inte projekt behörighet att komma åt dina dolda\nkoordinater eller skicka uppdateringar till dig. Du måste gå med i\nprojekt för att ge dem dessa behörigheter, eller annars göra det från\nfall till fall.\n",
         "taxon_change_desc": "När taxa slås samman eller byter namn på %{site_name}, kommer dina\nobservationer, listade taxa, bestämningar etc. automatiskt att uppdateras\ntill dessa nya taxa om ändringen är entydig. Om du väljer bort det eller\nom ändringen är tvetydig (t.ex. vid en uppdelning), kommer du att få en\nuppdatering om ändringen med en länk till ett verktyg du kan använda\nför att manuellt uppdatera ditt innehåll om du vill.\n",
         "this_only_applies_to_traditional_projects": "Det här gäller endast traditionella projekt. Du kan inte utesluta observationer\nfrån samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.\nDu kan läsa mer\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">här</a>.\n"
@@ -69023,7 +69159,6 @@ I18n.translations["tr"] = {
   "annotations": "Açıklamalar",
   "any": "herhangi",
   "any_": "Herhangi",
-  "anyone": "Herhangi Biri",
   "arachnids": "eklembacaklılar",
   "are_you_sure?": "Emin misiniz?",
   "are_you_sure_leave_this_project": "Bu projeden ayrılmak istediğine emin misin?",
@@ -69912,7 +70047,6 @@ I18n.translations["tr"] = {
   "offensive_inappropriate": "Saldırgan / Uygunsuz",
   "ok": "TAMAM",
   "old_observation_form": "Eski gözlem formu (kullanımdan kaldırıldı)",
-  "only_you": "Yalnızca siz",
   "open": "açık",
   "open_": "Açık",
   "open_street_map": "OpenStreetMap",
@@ -70978,6 +71112,11 @@ I18n.translations["tr"] = {
         "name_place_help_html": "Bu yerde kullanılan yaygın adlara öncelik ver.\n",
         "prefers_community_taxa_desc": "%{site_name}, gözlemlerinizin ne olduğunu ve topluluğun ne düşündüğünü izler. \nVeri ortaklarıyla paylaştığımız kimlik, topluluk kimliğidir, ancak topluluğun görüşünün \nkendi kararlarınızı geçersiz kılması gerektiğini düşünmüyorsanız, buradan vazgeçebilirsiniz. \nİnsanlar hala tanımlama ekleyebilecekler, ancak topluluk görüşü sizinkinden yana olmayacak. \nBu, topluluğa katılmadığınız sürece gözlemlerinizin araştırma için uygun \nolmayacağı anlamına gelir.\n",
         "prefers_no_tracking_label": "Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın",
+        "project_addition_preferences": {
+          "any": "Herhangi",
+          "joined": "Katıldığınız projeler",
+          "none": "Hiç kimse, projeye yalnızca siz gözlemlerinizi ekleyebilirsiniz"
+        },
         "project_settings_desc": "Unutmayın, bu, projelere gizli koordinatlarınıza erişmesine veya size güncellemeler \ngöndermesine izin vermiyor. Bu izinleri vermek için projelere katılmanız veya \nduruma göre onay vermeniz gerekir.\n",
         "taxon_change_desc": "Sınıflar %{site_name} üzerinde birleştirildiğinde veya yeniden adlandırıldığında,\ngözlemlerin, listelenen sınıfların, tanımlamaların, vb., değişikliklerin anlamları açıkça\nbelliyse otomatik olarak yeni sınıflara güncellenecek. Vazgeçerseniz veya değişiklik \nbelirsiz ise (örneğin bir bölme), isterseniz içeriğinizi manuel olarak güncellemek için\nkullanabileceğiniz bir araca bağlanma değişikliği hakkında bir güncelleme alırsınız.\n",
         "this_only_applies_to_traditional_projects": "Bu sadece geleneksel projeler için geçerlidir. Gözlemleri, temelde kaydedilen aramalar olan \nkoleksiyon veya şemsiye projelerden dışlayamazsınız. \n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">Buradan</a>\ndaha fazla okuyabilirsiniz.\n"
@@ -71335,6 +71474,8 @@ I18n.translations["uk"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -71521,6 +71662,8 @@ I18n.translations["vi"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -71688,7 +71831,6 @@ I18n.translations["zh-CN"] = {
   "annotations": "注释",
   "any": "任何",
   "any_": "任何",
-  "anyone": "任何人",
   "arachnids": "蛛形纲",
   "are_you_sure?": "您确定么？",
   "are_you_sure_leave_this_project": "您确定要离开这个项目么？",
@@ -72500,7 +72642,6 @@ I18n.translations["zh-CN"] = {
   "offensive_inappropriate": "冒犯性的/不恰当的",
   "ok": "确定",
   "old_observation_form": "旧观察表单（已弃用）",
-  "only_you": "只有您",
   "open": "打开",
   "open_": "打开",
   "open_street_map": "开放式街道地图",
@@ -73496,6 +73637,11 @@ I18n.translations["zh-CN"] = {
         "licensing_desc_html": "许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href=\"http://www.gbif.org/\">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。\n",
         "name_place_help_html": "排序用于这一地区常用名的优先级。\n",
         "prefers_community_taxa_desc": "%{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。\n",
+        "project_addition_preferences": {
+          "any": "任何",
+          "joined": "您加入的项目",
+          "none": "没有，只有您可以将您的观察添加到项目中"
+        },
         "project_settings_desc": "记住，这不会给项目提供访问您私有坐标或向您发送更新的权限。为了获得这些权限，您必须加入项目，或在个案中授予他们权限。\n",
         "taxon_change_desc": "当在%{site_name}上合并或重命名分类单元时，如果更改是明确的，您的观察、列出的分类单元、标识等将自动更新为新的分类单元。如果您选择退出或更改不明确（例如拆分），您将收到有关更改链接到工具的更新，如果您愿意，可以使用该工具手动更新您的内容。\n"
       }
@@ -73821,6 +73967,8 @@ I18n.translations["zh-HK"] = {
     },
     "users": {
       "edit": {
+        "project_addition_preferences": {
+        }
       }
     },
     "welcome": {
@@ -73992,7 +74140,6 @@ I18n.translations["zh-TW"] = {
   "annotations": "註解",
   "any": "任何",
   "any_": "任何",
-  "anyone": "任何人",
   "arachnids": "蛛形綱",
   "are_you_sure?": "您確定嗎？",
   "are_you_sure_leave_this_project": "您確定要離開這個專案嗎？",
@@ -74865,7 +75012,6 @@ I18n.translations["zh-TW"] = {
   "offensive_inappropriate": "冒犯/不適當",
   "ok": "確定",
   "old_observation_form": "舊式觀察表單（已廢棄使用）",
-  "only_you": "僅有您",
   "open": "開啟",
   "open_": "開啟",
   "open_street_map": "開放街圖",
@@ -75871,6 +76017,11 @@ I18n.translations["zh-TW"] = {
         "monthly_supporter_desc_html": "iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的\niNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href=\"%{url}\">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。\n",
         "name_place_help_html": "在此地點優先採用通用名稱。\n",
         "prefers_community_taxa_desc": "%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇排除。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。\n",
+        "project_addition_preferences": {
+          "any": "任何",
+          "joined": "您已加入的專案",
+          "none": "不，僅有您可添加您的觀察至專案"
+        },
         "project_settings_desc": "請記住，這並沒有給予專案能存取您的隱藏座標，或寄發給您更新內容的權限。您必須要加入專案才能授予權限，或依各個情況授予它們權限。\n",
         "taxon_change_desc": "當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。\n",
         "this_only_applies_to_traditional_projects": "這僅會套用到傳統專案。您不能從基本上有保存搜尋的收藏或綜合專案裡排除掉觀察。您可<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">按此</a>來了解更多。\n"

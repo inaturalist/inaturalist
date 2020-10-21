@@ -21,8 +21,24 @@ export function setUserData( userData ) {
 
 export function fetchUserSettings( ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
-    console.log( results[0], "profile-data" );
-    dispatch( setUserData( results[0] ) );
+    // this is kind of unnecessary, but removing these since they're read-only keys
+    // and don't need to be included in UI or users.update
+    const keysToIgnore = [
+      "spam", "suspended", "created_at", "login_autocomplete", "login_exact",
+      "name_autocomplete", "observations_count", "identifications_count", "journal_posts_count",
+      "activity_count", "species_count", "universal_search_rank", "prefers_automatic_taxon_changes"
+    ];
+
+    const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
+      if ( !keysToIgnore.includes( key ) ) {
+        object[key] = results[0][key];
+      }
+      return object;
+    }, {} );
+
+    console.log( userSettings, "profile from users.me" );
+
+    dispatch( setUserData( userSettings ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
@@ -36,9 +52,29 @@ export function saveUserSettings( ) {
       user: profile
     };
 
-    params.user.updated_at = new Date( );
+    const updateOnlyAttributes = [
+      "icon_delete",
+      "make_observation_licenses_same",
+      "make_photo_licenses_same",
+      "make_sound_licenses_same"
+    ];
 
-    console.log( profile, "profile in update" );
+    // move these attributes so they're nested under params, not params.user
+    updateOnlyAttributes.forEach( attr => {
+      if ( !profile[attr] ) return;
+
+      params[attr] = true;
+      delete params.user[attr];
+    } );
+
+    // don't include the icon value from users.me, otherwise, will get a 500 error
+    if ( typeof params.user.icon === "string" ) {
+      delete params.user.icon;
+    }
+
+    // could leave these, but they're unpermitted parameters
+    delete params.user.id;
+    delete params.user.updated_at;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth

@@ -9,21 +9,19 @@ const CheckboxRow = ( {
   description
 } ) => (
   <div className="row">
-    <div className="col-xs-1">
-      {profile[name] !== undefined && (
-        <input
-          id={`user_${name}`}
-          type="checkbox"
-          className="form-check-input"
-          checked={profile[name]}
-          name={name}
-          onChange={handleCheckboxChange}
-        />
-      )}
-    </div>
-    <div className="col-xs-10">
-      <label htmlFor={`user_${name}`}>{label}</label>
-      {description}
+    <div className="col-xs-12">
+      <input
+        id={`user_${name}`}
+        type="checkbox"
+        // false when profile[name] is undefined
+        checked={profile[name] || false}
+        name={name}
+        onChange={handleCheckboxChange}
+      />
+      <label htmlFor={`user_${name}`} className="margin-left">{label}</label>
+      <div className="description-margin-left">
+        {description}
+      </div>
     </div>
   </div>
 );

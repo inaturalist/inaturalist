@@ -7,6 +7,12 @@ import SettingsItem from "./settings_item";
 
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
+const radioButtons = {
+  any: I18n.t( "views.users.edit.project_addition_preferences.any" ),
+  joined: I18n.t( "views.users.edit.project_addition_preferences.joined" ),
+  none: I18n.t( "views.users.edit.project_addition_preferences.none" )
+};
+
 const Content = ( {
   profile,
   setUserData,
@@ -19,18 +25,18 @@ const Content = ( {
     setUserData( updatedProfile );
   };
 
-  const createRadioButtons = ( ) => ["any", "joined", "none"].map( button => (
+  const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
     <div key={button}>
-      <label>
-        <input
-          id="user_preferred_project_addition_by"
-          type="radio"
-          value={button}
-          name="preferred_project_addition_by"
-          checked={profile.preferred_project_addition_by === button}
-          onChange={handleInputChange}
-        />
-        {I18n.t( `views.users.edit.project_addition_preferences.${button}` )}
+      <input
+        id="user_preferred_project_addition_by"
+        type="radio"
+        value={button}
+        name="preferred_project_addition_by"
+        checked={profile.preferred_project_addition_by === button}
+        onChange={handleInputChange}
+      />
+      <label className="margin-left" htmlFor="user_preferred_project_addition_by">
+        {radioButtons[button]}
       </label>
     </div>
   ) );
@@ -43,12 +49,10 @@ const Content = ( {
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
     return (
-      <span className="inline">
+      <div className="custom-dropdown-width dropdown-title">
         <img id="image-license" src={iNatLicenses[defaultLicense].icon_large} alt={defaultLicense} />
-        <label className="user-prefers-license" htmlFor="image-license">
-          {I18n.t( `${localizedName}_name` )}
-        </label>
-      </span>
+        <label className="user-prefers-license wrap-white-space" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+      </div>
     );
   };
 
@@ -106,6 +110,7 @@ const Content = ( {
               <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             </p>
             {createRadioButtons( )}
+            <p />
             <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
             <p
               className="text-muted"
@@ -152,42 +157,44 @@ const Content = ( {
               <DropdownButton
                 id="preferred_observation_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
-                className="custom-dropdown-width"
                 title={showDefaultLicense( profile.preferred_observation_license )}
               >
                 {createLicenseList( "preferred_observation_license" )}
               </DropdownButton>
             </div>
+            <p />
             <CheckboxRowContainer
               name="make_observation_licenses_same"
               label={I18n.t( "update_existing_observations_with_new_license" )}
             />
+            <p />
             <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
             <div>
               <DropdownButton
                 id="preferred_photo_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
-                className="custom-dropdown-width"
                 title={showDefaultLicense( profile.preferred_photo_license )}
               >
                 {createLicenseList( "preferred_photo_license" )}
               </DropdownButton>
             </div>
+            <p />
             <CheckboxRowContainer
               name="make_photo_licenses_same"
               label={I18n.t( "update_existing_photos_with_new_license" )}
             />
+            <p />
             <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
             <div>
               <DropdownButton
                 id="preferred_sound_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
-                className="custom-dropdown-width"
                 title={showDefaultLicense( profile.preferred_sound_license )}
               >
                 {createLicenseList( "preferred_sound_license" )}
               </DropdownButton>
             </div>
+            <p />
             <CheckboxRowContainer
               name="make_sound_licenses_same"
               label={I18n.t( "update_existing_sounds_with_new_license" )}
