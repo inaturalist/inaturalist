@@ -243,11 +243,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 .name-label {
   display: inline-block;
-  &.featured {
+  &.featured .display-name {
     font-weight: 600;
     color: $inat-green;
   }
-  &.featured-ancestor {
+  &.featured-ancestor .display-name {
     font-weight: 600;
   }
 }
@@ -384,7 +384,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       height: 60px;
       padding: 10px;
       position: relative;
-      padding-right: 86px;
+      padding-right: 75px;
       white-space: nowrap;
       .display-name {
         font-size: 17px;
@@ -501,7 +501,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList ul.nested {
   font-size: 15px;
-  font-weight: 700;
 }
 
 #TaxaList .ancestry {

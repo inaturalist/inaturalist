@@ -14,9 +14,12 @@ class TaxaTree extends React.Component {
   }
 
   sortMethod( ) {
-    const { lifelist } = this.props;
+    const { config, lifelist } = this.props;
     if ( lifelist.treeSort === "name" ) {
-      return t => t.preferred_common_name || t.name;
+      return t => ( config.currentUser && config.currentUser.prefers_scientific_name_first
+        ? t.name
+        : t.preferred_common_name || t.name
+      );
     }
     if ( lifelist.treeSort === "taxonomic" ) {
       return t => t.left;
@@ -77,7 +80,7 @@ class TaxaTree extends React.Component {
                 user={config.currentUser}
               />
             ) : (
-              <div className="name-label featured-ancestor">
+              <div className="name-label featured-ancestor display-name">
                 { I18n.t( "all_taxa.life" ) }
               </div>
             ) }

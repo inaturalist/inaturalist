@@ -105,7 +105,7 @@ class TaxaList extends React.Component {
   }
 
   showTaxaList( taxon = null, nodeDisplayedCount = 0 ) {
-    const { lifelist, searchTaxon } = this.props;
+    const { config, lifelist, searchTaxon } = this.props;
     let taxaToList = [];
     // if the search taxon is a subspecies, use its parent as the search taxon
     // since subspecies aren't shown in the list view
@@ -135,7 +135,10 @@ class TaxaList extends React.Component {
     }
     let sortMethod;
     if ( lifelist.treeSort === "name" ) {
-      sortMethod = t => t.preferred_common_name || t.name;
+      sortMethod = t => ( config.currentUser && config.currentUser.prefers_scientific_name_first
+        ? t.name
+        : t.preferred_common_name || t.name
+      );
     } else if ( lifelist.treeSort === "taxonomic" ) {
       sortMethod = taxon ? "left" : "right";
     } else if ( lifelist.treeSort === "obsAsc" ) {
