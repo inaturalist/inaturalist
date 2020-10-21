@@ -87,7 +87,7 @@ const Profile = ( {
           <ChangePassword changePassword={changePassword} />
         </div>
         <div className="col-md-1" />
-        <div className="col-md-6 col-xs-10">
+        <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "display_name" )} required htmlFor="user_name">
             <div className="text-muted">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">

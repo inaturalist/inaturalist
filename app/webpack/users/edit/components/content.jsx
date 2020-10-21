@@ -13,18 +13,19 @@ const radioButtons = {
   none: I18n.t( "views.users.edit.project_addition_preferences.none" )
 };
 
+const obsFields = {
+  anyone: I18n.t( "anyone" ),
+  curators: I18n.t( "curators" ),
+  only_you: I18n.t( "only_you" )
+};
+
 const Content = ( {
   profile,
-  setUserData,
   handleInputChange,
-  handleCustomDropdownSelect
+  handleCustomDropdownSelect,
+  handleDisplayNames,
+  handlePlaceAutocomplete
 } ) => {
-  const handlePlaceDropdownSelect = ( { item } ) => {
-    const updatedProfile = profile;
-    updatedProfile.place_id = item.id;
-    setUserData( updatedProfile );
-  };
-
   const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
     <div key={button}>
       <input
@@ -101,6 +102,16 @@ const Content = ( {
     ) ).reduce( ( a, b ) => a.concat( b ) );
   };
 
+  const setDisplayName = ( ) => {
+    if ( profile.prefers_common_names ) {
+      if ( !profile.prefers_scientific_name_first ) {
+        return "prefers_common_names";
+      }
+      return "prefers_scientific_name_first";
+    }
+    return "prefers_scientific_names";
+  };
+
   return (
     <div className="col-xs-9">
       <div className="row">
@@ -117,7 +128,7 @@ const Content = ( {
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
                 __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects", {
-                  url: "https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist"
+                  url: "blog/15450-announcing-changes-to-projects-on-inaturalist"
                 } )
               }}
             />
@@ -202,45 +213,46 @@ const Content = ( {
           </SettingsItem>
         </div>
         <div className="col-md-1" />
-        <div className="col-md-6 col-xs-10">
+        <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "names" )} htmlFor="user_prefers_common_names">
             <p>
               <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
             </p>
             <div className="text-muted">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
+            <p />
             <select
               className="form-control"
               id="user_prefers_common_names"
               name="prefers_common_names"
-              onChange={handleInputChange}
+              onChange={handleDisplayNames}
+              value={setDisplayName( )}
             >
               <option value="prefers_common_names">{`${I18n.t( "common_name" )} (${I18n.t( "scientific_name" )})`}</option>
               <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
               <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
             </select>
-            <div>
-              <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
-              <PlaceAutocomplete
-                // no id here
-                resetOnChange={false}
-                initialPlaceID={profile.place_id}
-                bootstrapClear
-                afterSelect={handlePlaceDropdownSelect}
-              />
-            </div>
+            <p />
+            <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
+            <PlaceAutocomplete
+              // no id here
+              resetOnChange={false}
+              initialPlaceID={profile.place_id}
+              bootstrapClear
+              afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
+            />
           </SettingsItem>
           <SettingsItem header={I18n.t( "community_moderation_settings" )} htmlFor="user_prefers_community_taxa">
             <CheckboxRowContainer
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
               description={(
-                <div className="text-muted">
+                <p className="text-muted">
                   {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
-                </div>
+                </p>
               )}
             />
             <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
-            <div className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</div>
+            <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
             <select
               className="form-control"
               id="preferred_observation_fields_by"
@@ -248,8 +260,8 @@ const Content = ( {
               name="preferred_observation_fields_by"
               onChange={handleInputChange}
             >
-              {["anyone", "curators", "only_you"].map( value => (
-                <option value={value} key={value}>{I18n.t( value )}</option>
+              {Object.keys( obsFields ).map( value => (
+                <option value={value} key={value}>{obsFields[value]}</option>
               ) )}
             </select>
           </SettingsItem>
@@ -261,9 +273,10 @@ const Content = ( {
 
 Content.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func,
   handleInputChange: PropTypes.func,
-  handleCustomDropdownSelect: PropTypes.func
+  handleCustomDropdownSelect: PropTypes.func,
+  handleDisplayNames: PropTypes.func,
+  handlePlaceAutocomplete: PropTypes.func
 };
 
 export default Content;

@@ -93,6 +93,25 @@ export function handleCheckboxChange( e ) {
   };
 }
 
+export function handleDisplayNames( { target } ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    const { value } = target;
+
+    if ( value === "prefers_common_names" ) {
+      profile.prefers_common_names = true;
+      profile.prefers_scientific_name_first = false;
+    } else if ( value === "prefers_scientific_name_first" ) {
+      profile.prefers_common_names = true;
+      profile.prefers_scientific_name_first = true;
+    } else {
+      profile.prefers_common_names = false;
+      profile.prefers_scientific_name_first = false;
+    }
+    dispatch( setUserData( profile ) );
+  };
+}
+
 export function handleInputChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
@@ -105,6 +124,14 @@ export function handleCustomDropdownSelect( eventKey, name ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[name] = eventKey;
+    dispatch( setUserData( profile ) );
+  };
+}
+
+export function handlePlaceAutocomplete( { item }, name ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile[name] = item.id;
     dispatch( setUserData( profile ) );
   };
 }

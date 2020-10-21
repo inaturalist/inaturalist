@@ -24,16 +24,10 @@ const iNatAffiliationDict = [
   { number: 20, location: I18n.t( "places_name.finland" ) }
 ];
 
-const Account = ( { profile, setUserData, handleInputChange } ) => {
+const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomplete } ) => {
   const handleSelect = eventKey => {
     const updatedProfile = profile;
     updatedProfile.site_id = eventKey;
-    setUserData( updatedProfile );
-  };
-
-  const fillInputWithSelection = ( { item } ) => {
-    const updatedProfile = profile;
-    updatedProfile.search_place_id = item.id;
     setUserData( updatedProfile );
   };
 
@@ -111,7 +105,7 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
               resetOnChange={false}
               initialPlaceID={profile.search_place_id}
               bootstrapClear
-              afterSelect={fillInputWithSelection}
+              afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
             />
           </SettingsItem>
           <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
@@ -130,12 +124,12 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
           </SettingsItem>
           <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
             <p>
-              <a href="#" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
+              <a href="/users/delete" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
             </p>
           </SettingsItem>
         </div>
         <div className="col-md-1" />
-        <div className="col-md-6 col-xs-10">
+        <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
             <div>
               <DropdownButton
@@ -172,7 +166,8 @@ const Account = ( { profile, setUserData, handleInputChange } ) => {
 Account.propTypes = {
   profile: PropTypes.object,
   setUserData: PropTypes.func,
-  handleInputChange: PropTypes.func
+  handleInputChange: PropTypes.func,
+  handlePlaceAutocomplete: PropTypes.func
 };
 
 export default Account;
