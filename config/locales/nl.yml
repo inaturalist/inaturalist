@@ -1827,6 +1827,7 @@ nl:
     italian: Italiaans
     japanese: Japans
     korean: Koreaans
+    latvian: Lets
     lithuanian: Litouws
     luxembourgish: Luxemburgs
     maltese: Maltees
@@ -1937,6 +1938,7 @@ nl:
     ko: Koreaans
     lb: Luxemburgs
     lt: Litouws
+    lv: Lets
     mk: Macedonisch
     nb: Noors Bokmål
     nl: Nederlands
@@ -4276,6 +4278,7 @@ nl:
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Bekijk meer niet-nagekeken"
+  view_my_life_list: Bekijk mijn levenslijst
   view_observation: Waarneming weergeven
   view_observations: Waarnemingen weergeven
   view_observation_flags: Meldingen over waarneming bekijken
@@ -4767,16 +4770,21 @@ nl:
       total_observations: Totaal aantal waarnemingen
       filter_by: Filter op
       filtered_by: 'Gefilterd door:'
+      restrict_to_taxon: Beperken tot %{taxon}
+      no_observations_found_in_place: Geen waarnemingen gevonden in %{place}.
       no_observations_found_within_this_taxon_in_place: Geen waarnemingen gevonden binnen dit taxon in %{place}.
       no_species_found_within_this_taxon_in_place: Geen soorten gevonden binnen dit taxon in %{place}.
       no_species_found_in_place: Geen soorten gevonden in %{place}.
       no_unobserved_species_in_place: Geen niet-waargenomen soorten in %{place}.
+      no_unobserved_species_within_this_taxon: Alle soorten binnen dit taxon zijn waargenomen
+      no_unobserved_species_within_this_taxon_in_place: Alle soorten binnen dit taxon zijn waargenomen in %{place}
       all_observations_in_this_taxon: Alle waarnemingen binnen dit taxon
       dropdowns:
         sort: Sorteer
         taxonomic: Taxonomisch
         name: Naam
         most_observed: Meest waargenomen
+        least_observed: Minst waargenomen
         date_added_newest: Datum toegevoegd, nieuwste naar oudste
         date_added_oldest: Datum toegevoegd, oudste naar nieuwste
         show: Toon
