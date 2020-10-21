@@ -24,13 +24,12 @@ const iNatAffiliationDict = [
   { number: 20, location: I18n.t( "places_name.finland" ) }
 ];
 
-const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomplete } ) => {
-  const handleSelect = eventKey => {
-    const updatedProfile = profile;
-    updatedProfile.site_id = eventKey;
-    setUserData( updatedProfile );
-  };
-
+const Account = ( {
+  profile,
+  handleCustomDropdownSelect,
+  handleInputChange,
+  handlePlaceAutocomplete
+} ) => {
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
@@ -98,7 +97,7 @@ const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomp
             </select>
           </SettingsItem>
           <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
-            <div className="text-muted">{I18n.t( "default_search_place_description" )}</div>
+            <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
             <PlaceAutocomplete
               // can't label this one because PlaceAutocomplete doesn't accept an id in props
               // id="user_search_place_id"
@@ -134,7 +133,7 @@ const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomp
             <div>
               <DropdownButton
                 id="user_site_id"
-                onSelect={handleSelect}
+                onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
                 className="custom-dropdown-width"
                 title={(
                   <img
@@ -147,6 +146,7 @@ const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomp
                 {createINatAffiliationList( )}
               </DropdownButton>
             </div>
+            <p />
             <p
               className="text-muted"
               // eslint-disable-next-line react/no-danger
@@ -165,7 +165,7 @@ const Account = ( { profile, setUserData, handleInputChange, handlePlaceAutocomp
 
 Account.propTypes = {
   profile: PropTypes.object,
-  setUserData: PropTypes.func,
+  handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func
 };

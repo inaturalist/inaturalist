@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 
 import Account from "../components/account";
-import { setUserData, handleInputChange, handlePlaceAutocomplete } from "../ducks/user_settings";
+import {
+  setUserData,
+  handleInputChange,
+  handlePlaceAutocomplete,
+  handleCustomDropdownSelect
+} from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
@@ -15,6 +20,9 @@ function mapDispatchToProps( dispatch ) {
     handleInputChange: e => { dispatch( handleInputChange( e ) ); },
     handlePlaceAutocomplete: ( e, name ) => {
       dispatch( handlePlaceAutocomplete( e, name ) );
+    },
+    handleCustomDropdownSelect: ( eventKey, name ) => {
+      dispatch( handleCustomDropdownSelect( eventKey, name ) );
     }
   };
 }
