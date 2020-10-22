@@ -931,6 +931,8 @@ en:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
+  confirming_ids: Confirming ID's
+  confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   connect_to_provider: "Connect to %{provider}"
   connected_accounts: Connected accounts
   connecting_flickr: "Connecting to Flickr... "
@@ -1353,6 +1355,7 @@ en:
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_addresses_to_receive_invites: Email addresses to receive invites
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
+  email_notifications: Email Notifications
   email_settings: Email settings
   embed: 'Embed'
   embed_place_widget: Embed place widget
@@ -1786,6 +1789,7 @@ en:
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
+  inaturalist_activity_notifications: "%{site_name} Activity Notifications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
   info: Info
@@ -2468,6 +2472,7 @@ en:
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
   notifications: Notifications
   notify_me_of_mentions: Notify me of mentions (e.g. @username)
+  notify_me_of_mentions_description: "If you turn this off, you will not get any notifications when someone mentions you on %{site_name}."
   notify_me_about_redundant_identifications: Notify me about confirming identifications
   notify_me_about_redundant_identifications_desc: |
     Receive notifications about identifications that match your own. If you
@@ -3461,6 +3466,8 @@ en:
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
+  receive_email_notifications: Receive Email Notifications
+  receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications. You will receive notifications for everything checked below:"
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_updates_from_this_project: Receive updates from this project
   recent: Recent

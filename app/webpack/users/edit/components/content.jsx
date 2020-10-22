@@ -135,7 +135,7 @@ const Content = ( {
           </SettingsItem>
           <SettingsItem header={I18n.t( "taxonomy_settings" )} htmlFor="user_prefers_automatic_taxonomic_changes">
             <CheckboxRowContainer
-              name="prefers_automatic_taxon_changes"
+              name="prefers_automatic_taxonomic_changes"
               label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
               description={(
                 <p

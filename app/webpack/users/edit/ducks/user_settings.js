@@ -86,6 +86,7 @@ export function saveUserSettings( ) {
 }
 
 export function handleCheckboxChange( e ) {
+  console.log( e.target.name, "name", e.target.checked );
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[e.target.name] = e.target.checked;

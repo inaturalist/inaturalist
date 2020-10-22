@@ -4,6 +4,7 @@ import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
 import ProfileContainer from "../containers/profile_container";
+import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 4
+      container: 0
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -27,7 +28,7 @@ class App extends Component {
     const userSettings = [
       <ProfileContainer />,
       <AccountContainer />,
-      <></>,
+      <NotificationsContainer />,
       <></>,
       <ContentContainer />,
       <></>

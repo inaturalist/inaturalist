@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 
 import Account from "../components/account";
 import {
-  setUserData,
   handleInputChange,
   handlePlaceAutocomplete,
   handleCustomDropdownSelect
@@ -16,7 +15,6 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setUserData: newState => { dispatch( setUserData( newState ) ); },
     handleInputChange: e => { dispatch( handleInputChange( e ) ); },
     handlePlaceAutocomplete: ( e, name ) => {
       dispatch( handlePlaceAutocomplete( e, name ) );
