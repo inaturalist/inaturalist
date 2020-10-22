@@ -10,55 +10,59 @@ const Notifications = ( {
 } ) => (
   <div className="col-xs-9">
     <div className="row">
-      <div className="col-md-5 col-xs-10">
+      <div className="col-xs-10">
         <SettingsItem header={I18n.t( "inaturalist_activity_notifications", { site_name: SITE.name } )} htmlFor="notifications">
-          <label>{I18n.t( "notify_me_of_mentions" )}</label>
+          <p>
+            <label>{I18n.t( "notify_me_of_mentions" )}</label>
+          </p>
           <p className="text-muted">{I18n.t( "notify_me_of_mentions_description", { site_name: SITE.name } )}</p>
           <label>{I18n.t( "confirming_ids" )}</label>
           <p className="text-muted">{I18n.t( "confirming_ids_description" )}</p>
         </SettingsItem>
         <SettingsItem header={I18n.t( "email_notifications" )} htmlFor="notifications">
-          <label>{I18n.t( "receive_email_notifications" )}</label>
+          <p>
+            <label>{I18n.t( "receive_email_notifications" )}</label>
+          </p>
           <p className="text-muted">{I18n.t( "receive_email_notifications_description", { site_name: SITE.name } )}</p>
           <CheckboxRowContainer
             name="prefers_comment_email_notification"
-            label={I18n.t( "notification_preferences_comments" )}
+            label={I18n.t( "views.users.edit.notification_preferences_comments" )}
           />
           <CheckboxRowContainer
             name="prefers_identification_email_notification"
-            label={I18n.t( "notification_preferences_identifications" )}
+            label={I18n.t( "views.users.edit.notification_preferences_identifications" )}
           />
           <CheckboxRowContainer
             name="prefers_mention_email_notification"
-            label={I18n.t( "notification_preferences_mentions" )}
+            label={I18n.t( "views.users.edit.notification_preferences_mentions" )}
           />
           <CheckboxRowContainer
             name="prefers_message_email_notification"
-            label={I18n.t( "notification_preferences_messages" )}
+            label={I18n.t( "views.users.edit.notification_preferences_messages" )}
           />
           <CheckboxRowContainer
             name="prefers_project_journal_post_email_notification"
-            label={I18n.t( "notification_preferences_project_journal_posts" )}
+            label={I18n.t( "views.users.edit.notification_preferences_project_journal_posts" )}
           />
           <CheckboxRowContainer
             name="prefers_project_added_your_observation_email_notification"
-            label={I18n.t( "notification_preferences_project_added_your_observations" )}
+            label={I18n.t( "views.users.edit.notification_preferences_project_added_your_observations" )}
           />
           <CheckboxRowContainer
             name="prefers_project_curator_change_email_notification"
-            label={I18n.t( "notification_preferences_project_curator_changes" )}
+            label={I18n.t( "views.users.edit.notification_preferences_project_curator_changes" )}
           />
           <CheckboxRowContainer
             name="prefers_taxon_change_email_notification"
-            label={I18n.t( "notification_preferences_taxon_changes" )}
+            label={I18n.t( "views.users.edit.notification_preferences_taxon_changes" )}
           />
           <CheckboxRowContainer
             name="prefers_user_observation_email_notification"
-            label={I18n.t( "notification_preferences_user_observations" )}
+            label={I18n.t( "views.users.edit.notification_preferences_user_observations" )}
           />
           <CheckboxRowContainer
             name="prefers_taxon_or_place_observation_email_notification"
-            label={I18n.t( "notification_preferences_taxon_or_place_observations" )}
+            label={I18n.t( "views.users.edit.notification_preferences_taxon_or_place_observations" )}
           />
         </SettingsItem>
       </div>

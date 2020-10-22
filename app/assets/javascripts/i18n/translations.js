@@ -795,6 +795,7 @@ I18n.translations["ar"] = {
   "not_evaluated": "لم يتم تقييمه",
   "not_recorded": "غير مسجل",
   "notes": "ملاحظات",
+  "notify_me_of_mentions": "أشعرني عند الإشارة لي (على سبيل المثال @username)",
   "number": {
     "format": {
       "delimiter": "،",
@@ -2698,6 +2699,7 @@ I18n.translations["bg"] = {
   "none_found": "Няма намерени",
   "not_evaluated": "неоценен",
   "notes": "Бележки",
+  "notify_me_of_mentions": "Известявай ме за споменавания (напр. @потр.име)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -3491,6 +3493,16 @@ I18n.translations["bg"] = {
         "licensing_desc_html": "Лицензирайки своето съдържание, Вие давате законово право на всеки да го използва без да се допитва до Вас, стига да се придържа към условията на лиценза. Освен това, %{site_name} включва Вашето съдържание лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за партньорски организации интересуващи се от данните. Например, включваме записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално (CC BY-NC) в архива който поддържаме за <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена организация, която обединява и разпространява информация за биоразнообразието от целия свят.\n",
         "monthly_supporter_desc_html": "Ежемесечните поддръжници на iNaturalist правят автоматични приноси, получавани от Калифорнийската академия на науките (САЩ, IRS EIN 94-1156258), в поддръжка на некомерсиалната дейност на iNaturalist и другите сайтове от Мрежата на iNaturalist.\n<a href=\"%{url}\">Щракнете тук, ако искате да станете Ежемесечен поддръжник</a>.\nКогато потвърдим Вашата поддръжка, ще можете да добавите отметка в тази кутийка и статусът ще се изобразява на Вашия профил. Забележка: трябва да използвате същия имейл в Donorbox, какъвто използвате и в iNaturalist, за да можем да потвърдим поддръжката Ви.\n",
         "name_place_help_html": "Дай приоритет на народните имена използвани на това място.\n",
+        "notification_preferences_comments": "Коментари",
+        "notification_preferences_identifications": "Разпознавания",
+        "notification_preferences_mentions": "Споменавания",
+        "notification_preferences_messages": "Съобщения",
+        "notification_preferences_project_added_your_observations": "Когато проект добави Ваши наблюдения",
+        "notification_preferences_project_curator_changes": "Променени куратори на проект",
+        "notification_preferences_project_journal_posts": "Публикации в дневника на проект",
+        "notification_preferences_taxon_changes": "Таксономични промени",
+        "notification_preferences_taxon_or_place_observations": "Наблюдения на таксони или от места, за които съм абониран(а)",
+        "notification_preferences_user_observations": "Наблюдения от хора които следвам",
         "prefers_community_taxa_desc": "%{site_name} следи както Вашето мнение за това какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият таксон, който споделяме с информационните си партньори, винаги е този по консенсус на общността. Но ако не искате никога мнението на общността да натежава над Вашето собствено, изключете от тук тази функция. Хората все още ще могат да разпознават наблюденията Ви, но тяхното мнение няма да е с по-голям приоритет от Вашето. Това означава също и, че Вашите наблюдения няма да получават „Изследователско качество“, когато мнението Ви е различно от това на общността.\n",
         "prefers_no_tracking_label": "Не събирай данни за стабилността и потреблението използвайки услугите на трети страни",
         "project_addition_preferences": {
@@ -5219,6 +5231,7 @@ I18n.translations["ca"] = {
   "not_evaluated": "no avaluat",
   "not_recorded": "No enregistrat",
   "notes": "Notes",
+  "notify_me_of_mentions": "Notifiqueu-me les mencions (p.e. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -6340,6 +6353,16 @@ I18n.translations["ca"] = {
         "licensing_desc_html": "Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = \"http://www.gbif.org/ \"> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.\n",
         "monthly_supporter_desc_html": "Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i la Xarxa d'iNaturalist.\n<a href=\"%{url}\"> Faci clic aquí per a convertir-se en un Patrocinador Mensual</a>. Quan confirmem el seu suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: necessitarà indicar exactament la mateixa adreça de correu electrònic a Donorbox i a iNaturalist perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual.\n",
         "name_place_help_html": "Prioritza els noms comuns emprats a aquest lloc.\n",
+        "notification_preferences_comments": "Comentaris",
+        "notification_preferences_identifications": "Identificacions",
+        "notification_preferences_mentions": "Mencions",
+        "notification_preferences_messages": "Missatges",
+        "notification_preferences_project_added_your_observations": "Quan un projecte afegeix les vostres observacions",
+        "notification_preferences_project_curator_changes": "Canvis del supervisor del projecte",
+        "notification_preferences_project_journal_posts": "Entrades diàries del Projecte",
+        "notification_preferences_taxon_changes": "Canvis de taxonomia",
+        "notification_preferences_taxon_or_place_observations": "Observacions de tàxons o llocs als quals estic subscrit",
+        "notification_preferences_user_observations": "Observacions de persones a les quals segueixo",
         "prefers_community_taxa_desc": "%{site_name} rastreja el que penseu que són les vostres observacions i el que opina la comunitat. Les dades d'identificació que compartim amb els socis són les que ofereix la comunitat, però si no voleu que l'opinió de la comunitat sobreescrigui la vostra pode marcar-ho aquí. Les altres persones encara podran afegir IDentificacions però l'opinió de la comunitat no tindrà prioritat sobre la vostra. Això significa que les vostres observacions únicament tindran el grau de recerca, quan coincideix la vostra opinió i la de la comunitat.\n",
         "prefers_no_tracking_label": "No recolliu dades d'estabilitat i ús utilitzant serveis de tercers",
         "project_addition_preferences": {
@@ -7584,6 +7607,7 @@ I18n.translations["cs"] = {
   "not_evaluated": "nehodnoceno",
   "not_recorded": "Nezaznamenáno",
   "notes": "Poznámky",
+  "notify_me_of_mentions": "Informovat mě o zmínkách (např. @uživatelské jméno)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -8726,6 +8750,16 @@ I18n.translations["cs"] = {
         "licensing_desc_html": "Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.\n",
         "monthly_supporter_desc_html": "měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy\nIRS EIN 94-1156258) na podporu neziskových operací\nstránek iNaturalist a iNaturalist sítě.\n<a href=\"%{url}\">Klikněte zde, abyste se stali Měsíčním podporovatelem</a>.\nKdyž jsme potvrdili vaši podporu, budete moci zaškrtnout toto\npolíčko pro zobrazení tohoto stavu na vašem profilu. Poznámka: budete muset použít\npřesnou, stejnou e-mailovou adresu na Donorboxu jako na iNaturalist, abyste mohli potvrdit, že jste se stali Měsíční podporovatel.\n",
         "name_place_help_html": "Upřednostňovat obvyklá jména použitá na tomto místě.\n",
+        "notification_preferences_comments": "Komentáře",
+        "notification_preferences_identifications": "Identifikace",
+        "notification_preferences_mentions": "Zmínky",
+        "notification_preferences_messages": "Zprávy",
+        "notification_preferences_project_added_your_observations": "Když projekt přidá vaše pozorování",
+        "notification_preferences_project_curator_changes": "Změny kurátora projektu",
+        "notification_preferences_project_journal_posts": "Příspěvky v deníku projektu",
+        "notification_preferences_taxon_changes": "Taxonomické změny",
+        "notification_preferences_taxon_or_place_observations": "Pozorování taxonů nebo z míst, ke kterým se hlásím",
+        "notification_preferences_user_observations": "Pozorování lidí, které sleduji",
         "prefers_community_taxa_desc": "%{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.\n",
         "prefers_no_tracking_label": "Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran",
         "project_addition_preferences": {
@@ -9983,6 +10017,7 @@ I18n.translations["da"] = {
   "not_evaluated": "Ikke evalueret",
   "not_recorded": "Ikke registreret",
   "notes": "Noter",
+  "notify_me_of_mentions": "Underret mig hvis nævnt (f.eks. @brugernavn)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -11104,6 +11139,16 @@ I18n.translations["da"] = {
         "licensing_desc_html": "Licensering af dit indhold giver andre personer juridisk ret til at bruge det\nuden at spørge om din tilladelse, hvis de overholder betingelserne i\nlicensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href=\"http://www.gbif.org/\"> Global\nBiodiversitet information facilitet </a> (GBIF), en international,\ninterstatslig organisation, der udarbejder og distribuerer\nbiodiversitets information fra hele verden.\n",
         "monthly_supporter_desc_html": "iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United\nStates IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.\n<a href=\"%{url}\">Klik hér for at blive en Monthly Supporter</a>.\nNår vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.\n",
         "name_place_help_html": "Prioritér lokale navne brugt på dette sted.\n",
+        "notification_preferences_comments": "Kommentarer",
+        "notification_preferences_identifications": "Identifikationer",
+        "notification_preferences_mentions": "Omtaler",
+        "notification_preferences_messages": "Beskeder",
+        "notification_preferences_project_added_your_observations": "Når et projekt tilføjer dine observationer",
+        "notification_preferences_project_curator_changes": "Projektkuratorændringer",
+        "notification_preferences_project_journal_posts": "Projektjournalindlæg",
+        "notification_preferences_taxon_changes": "Taksonomiændringer",
+        "notification_preferences_taxon_or_place_observations": "Observationer af taksa eller fra steder, jeg abonnerer på",
+        "notification_preferences_user_observations": "Observationer fra folk, jeg følger",
         "prefers_community_taxa_desc": "%{site_name} holder styr på, hvad du tror dine observationer er, og hvad\nfællesskabet mener at de er. Den identifikation, vi deler med data\npartnere er fællesskabs identifikationen, men hvis du ikke mener at\nfællesskabets mening nogensinde bør underkende din egen, kan du fravælge det. Andre personer vil stadig kunne tilføje identifikationer, men\nfællesskabets mening vil ikke blive foretrukket frem for din. Det betyder samtidigt at dine observationer ikke vil kunne opnå status af forskningskvalitet, medmindre du er enig med fællesskabet.\n",
         "prefers_no_tracking_label": "Indsaml ikke driftsstabilitets- og brugsdata vha. tredjepartstjenester",
         "project_addition_preferences": {
@@ -12296,6 +12341,7 @@ I18n.translations["de"] = {
   "not_evaluated": "nicht beurteilt",
   "not_recorded": "Nicht erfasst",
   "notes": "Notizen",
+  "notify_me_of_mentions": "Mich über Erwähnungen benachrichtigen (z.B. @username)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -13392,6 +13438,16 @@ I18n.translations["de"] = {
         "inaturalist_network_affiliation_desc_html": "<p>\nDas <a href=\"%{url}\" target=\"_blank\">iNaturalist Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern. Sie haben Zugang zu echten Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.\n</p>\n<p>\nDein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind. \n</p>\n<p>\nHinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.\n</p>\n",
         "licensing_desc_html": "Die Lizenzierung deines Inhalts gibt jedem das Recht, ihn ohne deine Zustimmung zu nutzen, wenn er sich an die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. So nehmen wir beispielsweise Kein Copyright (CC0), Namensnennung (CC BY) und Namensnennung-Nicht kommerziell \n (CC BY-NC) Datensätze in das Archiv auf, die wir für die <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF) generieren, eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.\n",
         "name_place_help_html": "Umgangssprachliche Namen and diesem Ort bevorzugen\n",
+        "notification_preferences_comments": "Kommentare",
+        "notification_preferences_identifications": "Bestimmungen",
+        "notification_preferences_mentions": "Erwähnungen",
+        "notification_preferences_messages": "Nachrichten",
+        "notification_preferences_project_added_your_observations": "Wenn ein Projekt deine Beobachtungen hinzufügt",
+        "notification_preferences_project_curator_changes": "Änderungen des Projektkurators",
+        "notification_preferences_project_journal_posts": "Journal-Einträge des Projekts",
+        "notification_preferences_taxon_changes": "Taxonomische Änderungen",
+        "notification_preferences_taxon_or_place_observations": "Beobachtungen von Taxa oder von Orten, die ich abonniere",
+        "notification_preferences_user_observations": "Beobachtungen von Personen, denen ich folge",
         "prefers_community_taxa_desc": "%{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht \"Forschungsqualität\" erhalten, es sei denn, du stimmst der Mehrheit zu.\n",
         "prefers_no_tracking_label": "Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen",
         "project_addition_preferences": {
@@ -14516,6 +14572,7 @@ I18n.translations["el"] = {
   "not_evaluated": "μη αξιολογημένο",
   "not_recorded": "μη καταγεγραμμένο",
   "notes": "Σημειώσεις",
+  "notify_me_of_mentions": "Ενημερώστε με για επισημάνσεις (π.χ. @username)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -15549,6 +15606,15 @@ I18n.translations["el"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_comments": "Σχόλια",
+        "notification_preferences_identifications": "Ταυτοποιήσεις",
+        "notification_preferences_mentions": "Αναφορές",
+        "notification_preferences_messages": "Μηνύματα",
+        "notification_preferences_project_added_your_observations": "Όταν ένα πρότζεκτ προσθέτει τις παρατηρήσεις σας",
+        "notification_preferences_project_curator_changes": "Αλλαγές πρότζεκτ επιμελητή",
+        "notification_preferences_taxon_changes": "Αλλαγές στην ταξινομική βαθμίδα",
+        "notification_preferences_taxon_or_place_observations": "Παρατηρήσεις από ταξινομικές βαθμίδες ή από μέρη στα οποία είμαι εγγεγραμμένος/η",
+        "notification_preferences_user_observations": "Παρατηρήσεις από άτομα που ακολουθώ",
         "prefers_no_tracking_label": "Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων",
         "project_addition_preferences": {
           "any": "Οποιοδήποτε",
@@ -15969,6 +16035,8 @@ I18n.translations["en"] = {
   "computer_vision_suggestion_desc": "Computer vision is the process of teaching computers to recognize patterns\nin images. We provide tools that use computer vision models trained on the\ncommunity's photos to provide identification suggestions, like the auto-\ncomplete and comparison features. This label indicates when a person added\nan identification using one of these tools.\n",
   "confirm": "Confirm",
   "confirm_new_password": "Confirm New Password",
+  "confirming_ids": "Confirming ID's",
+  "confirming_ids_description": "If you turn this off, you will no longer be notified about IDs that agree with yours.",
   "conservation_status": "Conservation Status",
   "conservation_status_geoprivacy_desc": "Default geoprivacy applied to all observations of this taxon in this place\n",
   "contact_support": "Contact Support",
@@ -16222,6 +16290,7 @@ I18n.translations["en"] = {
   "eligible_for_research_grade": "Eligible for Research Grade",
   "email": "Email",
   "email_description": "Your email is not shared with other users on iNaturalist",
+  "email_notifications": "Email Notifications",
   "encompassing_places": "Encompassing Places",
   "end": "End",
   "end_date_time": "End Date / Time",
@@ -16434,6 +16503,7 @@ I18n.translations["en"] = {
   "in_the_past_week": "In the past week",
   "inactive_taxon": "Inactive Taxon",
   "inappropriate_content": "Inappropriate content?",
+  "inaturalist_activity_notifications": "%{site_name} Activity Notifications",
   "inaturalist_network_affiliation": "iNaturalist Network Affiliation",
   "include_places": "Include Places",
   "include_projects": "Include Projects",
@@ -16739,6 +16809,8 @@ I18n.translations["en"] = {
   "not_recorded": "Not recorded",
   "notes": "Notes",
   "notifications": "Notifications",
+  "notify_me_of_mentions": "Notify me of mentions (e.g. @username)",
+  "notify_me_of_mentions_description": "If you turn this off, you will not get any notifications when someone mentions you on %{site_name}.",
   "number": {
     "format": {
       "delimiter": ",",
@@ -17313,6 +17385,8 @@ I18n.translations["en"] = {
   },
   "ray_finned_fishes": "ray-finned fishes",
   "read_more": "Read More",
+  "receive_email_notifications": "Receive Email Notifications",
+  "receive_email_notifications_description": "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications. You will receive notifications for everything checked below:",
   "recent": "Recent",
   "recent_evidence_of_organism": "Recent evidence of an organism",
   "recent_observations_": "Recent Observations",
@@ -17883,6 +17957,16 @@ I18n.translations["en"] = {
         "licensing_desc_html": "Licensing your content gives anyone the legal right to use it without\nasking your permission if they abide by the terms of the license. In\naddition, %{site_name} includes your Creative Commons-licensed content\nin regularly-updated archives produced for select partner\norganizations interested in our data. For example, we include No\nCopyright (CC0), Attribution (CC BY), and Attribution-NonCommercial\n(CC BY-NC) records in the archive we generate for the\n<a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), an international, inter-governmental organization\nthat compiles and distributes biodiversity information from around the\nworld.\n",
         "monthly_supporter_desc_html": "iNaturalist Monthly Supporters make automatic monthly contributions\nwhich are received by the California Academy of Sciences (United\nStates IRS EIN 94-1156258) to support the not-for-profit operation of\niNaturalist and iNaturalist Network sites.\n<a href=\"%{url}\">Click here to become a Monthly Supporter</a>.\nWhen we have confirmed your support you will be able to check this\nbox to display this status on your profile. Note: you will need to use\nexactly the same email address on Donorbox as you do on iNaturalist\nfor us to confirm that you've become a Monthly Supporter.\n",
         "name_place_help_html": "Prioritize common names used in this place.\n",
+        "notification_preferences_comments": "Comments",
+        "notification_preferences_identifications": "Identifications",
+        "notification_preferences_mentions": "Mentions",
+        "notification_preferences_messages": "Messages",
+        "notification_preferences_project_added_your_observations": "When a project adds your observations",
+        "notification_preferences_project_curator_changes": "Project curator changes",
+        "notification_preferences_project_journal_posts": "Project journal posts",
+        "notification_preferences_taxon_changes": "Taxonomy changes",
+        "notification_preferences_taxon_or_place_observations": "Observations of taxa or from places that I subscribe to",
+        "notification_preferences_user_observations": "Observations by people I follow",
         "prefers_community_taxa_desc": "%{site_name} tracks what you think your observations are and what\nthe community thinks they are. The identification we share with data\npartners is the community identification, but if you don't think the\ncommunity's opinion should ever overrule your own, you can opt out\nhere. People will still be able to add identifications, but the\ncommunity opinion won't be favored over yours. This means your\nobservations will not be eligible for research grade unless you\nagree with the community.\n",
         "prefers_no_tracking_label": "Do not collect stability and usage data using third party services",
         "project_addition_preferences": {
@@ -20710,6 +20794,7 @@ I18n.translations["es"] = {
   "not_evaluated": "no evaluado",
   "not_recorded": "No grabado",
   "notes": "Notas",
+  "notify_me_of_mentions": "Notificarme sobre las menciones (p. ej. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -21831,6 +21916,16 @@ I18n.translations["es"] = {
         "licensing_desc_html": "La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.\n",
         "monthly_supporter_desc_html": "Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.\n<a href=\"%{url}\"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.\n",
         "name_place_help_html": "Priorizar los nombres vernáculos utilizados en este lugar.\n",
+        "notification_preferences_comments": "Comentarios",
+        "notification_preferences_identifications": "Identificaciones",
+        "notification_preferences_mentions": "Menciones",
+        "notification_preferences_messages": "Mensajes",
+        "notification_preferences_project_added_your_observations": "Cuando un proyecto incorpora tus observaciones",
+        "notification_preferences_project_curator_changes": "Cambios del curador del proyecto",
+        "notification_preferences_project_journal_posts": "Notas de diario del proyecto",
+        "notification_preferences_taxon_changes": "Cambios taxonómicos",
+        "notification_preferences_taxon_or_place_observations": "Observaciones de taxones o de lugares a los que estoy suscrito",
+        "notification_preferences_user_observations": "Observaciones de personas a las que sigo",
         "prefers_community_taxa_desc": "%{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.\n",
         "prefers_no_tracking_label": "No recopilar datos de estabilidad ni de uso usando servicios de terceros",
         "project_addition_preferences": {
@@ -22970,6 +23065,7 @@ I18n.translations["es-AR"] = {
   "not_evaluated": "no evaluado",
   "not_recorded": "No grabado",
   "notes": "Notas",
+  "notify_me_of_mentions": "Notificarme sobre las menciones (p. ej. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -24010,6 +24106,9 @@ I18n.translations["es-AR"] = {
         "licensing_desc_html": "La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.\n",
         "monthly_supporter_desc_html": "Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.\n<a href=\"%{url}\"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.\n",
         "name_place_help_html": "Priorizar los nombres vernáculos utilizados en este lugar.\n",
+        "notification_preferences_project_added_your_observations": "Cuando un proyecto incorpora tus observaciones",
+        "notification_preferences_taxon_or_place_observations": "Observaciones de taxones o de lugares a los que estoy suscrito",
+        "notification_preferences_user_observations": "Observaciones de personas a las que sigo",
         "prefers_community_taxa_desc": "%{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.\n",
         "project_addition_preferences": {
           "any": "Cualquiera",
@@ -25188,6 +25287,7 @@ I18n.translations["es-MX"] = {
   "not_evaluated": "No se ha evaluado",
   "not_recorded": "No grabado",
   "notes": "Notas",
+  "notify_me_of_mentions": "Notificarme sobre las menciones (p. ej. @username)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -27065,6 +27165,7 @@ I18n.translations["et"] = {
   "not_evaluated": "pole hinnatud",
   "not_recorded": "Pole märgitud",
   "notes": "Märkused",
+  "notify_me_of_mentions": "Anna mulle mainimistest teada (s.t. @kasutajatunnus)",
   "number": {
     "format": {
       "delimiter": " ",
@@ -29095,6 +29196,7 @@ I18n.translations["eu"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_taxon_changes": "Aldaketak taxonomian",
         "project_addition_preferences": {
           "any": "Edozein"
         }
@@ -30177,6 +30279,7 @@ I18n.translations["fi"] = {
   "not_evaluated": "arvioimatta jätetty",
   "not_recorded": "Ei merkitty",
   "notes": "Muistiinpanot",
+  "notify_me_of_mentions": "Ilmoita minulle maininnoista (esim. @käyttäjänimi)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -31198,6 +31301,16 @@ I18n.translations["fi"] = {
         "licensing_desc_html": "Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen\n(CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.\n",
         "monthly_supporter_desc_html": "iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United\nStates IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.\n<a href=\"%{url}\">Ryhdy kuukausitukijaksi.</a>\nKun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.\n",
         "name_place_help_html": "Aseta etusijalle tässä paikassa käytetyt yleiskieliset nimet.\n",
+        "notification_preferences_comments": "Kommentit",
+        "notification_preferences_identifications": "Tunnistukset",
+        "notification_preferences_mentions": "Maininnat",
+        "notification_preferences_messages": "Viestit",
+        "notification_preferences_project_added_your_observations": "Kun havaintojasi liitetään projektiin",
+        "notification_preferences_project_curator_changes": "Muutokset projektin kuraattoreissa",
+        "notification_preferences_project_journal_posts": "Projektien päiväkirjamerkinnät",
+        "notification_preferences_taxon_changes": "Taksonomiamuutokset",
+        "notification_preferences_taxon_or_place_observations": "Havainnot seuraamistani taksoneista tai paikoista",
+        "notification_preferences_user_observations": "Seuraamieni käyttäjien havainnot",
         "prefers_community_taxa_desc": "%{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.\n",
         "project_addition_preferences": {
           "any": "Kaikki",
@@ -32553,6 +32666,7 @@ I18n.translations["fr"] = {
   "not_evaluated": "non évalué",
   "not_recorded": "Non enregistré",
   "notes": "Notes",
+  "notify_me_of_mentions": "M’informer des mentions (par ex. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -33670,6 +33784,16 @@ I18n.translations["fr"] = {
         "licensing_desc_html": "En mettant votre contenu sous licence, vous donnerez à quiconque le\ndroit de l’utiliser légalement sans\ndemander votre permission s’il reste dans les conditions de la licence. De\nplus, %{site_name} inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires\nsélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements de Aucun\nDroit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le\n(CC BY-NC) dans l’archive que nous générons pour le \n<a href=\"http://www.gbif.org/\">Système mondial d’information sur la\nbiodiversité</a> (SMIB), une organisation internationale\nintergouvernementale qui compile et distribue des informations sur la\nbiodiversité dans le monde entier.\n",
         "monthly_supporter_desc_html": "Les parrains réguliers d’iNaturalist font des contributions mensualisées\nautomatiques qui sont reçues par l’Académie des sciences de Californie\n(Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les\nopérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.\n<a href=\"%{url}\">Cliquez ici pour devenir un parrain mensualisé</a>.\nLorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette\nboîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser\nexactement la même adresse courriel sur Donorbox que celle que vous\nutilisez sur iNaturalist pour nous permettre de confirmer que vous êtes\nun parrain mensualisé.\n",
         "name_place_help_html": "Prioriser les noms communs utilisés à cet endroit.\n",
+        "notification_preferences_comments": "Commentaires",
+        "notification_preferences_identifications": "Identifications",
+        "notification_preferences_mentions": "Mentions",
+        "notification_preferences_messages": "Messages",
+        "notification_preferences_project_added_your_observations": "Quand un projet ajoute vos observations",
+        "notification_preferences_project_curator_changes": "Modifications par le superviseur du projet",
+        "notification_preferences_project_journal_posts": "Notes de journal du projet",
+        "notification_preferences_taxon_changes": "Modifications taxinomiques",
+        "notification_preferences_taxon_or_place_observations": "Observations de taxons ou de lieux auxquels je suis abonné",
+        "notification_preferences_user_observations": "Observations de personnes que je suis",
         "prefers_community_taxa_desc": "%{site_name} suit ce que vos identifications d’observations et les identifications de\nla communauté. L’identification que nous échangeons avec les partenaires\nd’échange de données est celle de la communauté, mais si vous ne pensez pas que\nl’opinion de la communauté doit annuler la vôtre, vous pouvez choisir de la refuser\nici. Les gens pourront toujours ajouter des identifications, mais\nl’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos\nobservations ne seront pas admissibles au calibre recherche, à moins que vous\nne soyez d’accord avec la communauté.\n",
         "prefers_no_tracking_label": "Ne pas collecter de données de performance et d'utilisation par le biais de services tiers",
         "project_addition_preferences": {
@@ -34137,6 +34261,16 @@ I18n.translations["fr-CA"] = {
       "edit": {
         "inaturalist_network_affiliation_desc_html": "<p> Le <a href=\"%{url}\" target=\"_blank\">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> \n<p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.\n</p>\n",
         "monthly_supporter_desc_html": "Les parrains réguliers d’iNaturalist font des contributions mensualisées\nautomatiques qui sont reçues par l’Académie des sciences de Californie\n(Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les\nopérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.\n<a href=\"%{url}\">Cliquez ici pour devenir un parrain mensualisé</a>.\nLorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette\nboîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser\nexactement la même adresse courriel sur Donorbox que celle que vous\nutilisez sur iNaturalist pour nous permettre de confirmer que vous êtes\nun parrain mensualisé.\n",
+        "notification_preferences_comments": "Commentaires",
+        "notification_preferences_identifications": "Identifications",
+        "notification_preferences_mentions": "Mentions",
+        "notification_preferences_messages": "Messages",
+        "notification_preferences_project_added_your_observations": "Quand un projet ajoute vos observations",
+        "notification_preferences_project_curator_changes": "Modifications par le superviseur du projet",
+        "notification_preferences_project_journal_posts": "Notes de journal du projet",
+        "notification_preferences_taxon_changes": "Modifications taxinomiques",
+        "notification_preferences_taxon_or_place_observations": "Observations de taxons ou de lieux auxquels je suis abonné·e",
+        "notification_preferences_user_observations": "Observations de personnes que je suis",
         "project_addition_preferences": {
         },
         "this_only_applies_to_traditional_projects": "Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.\nDavantage d'informations <a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">ici</a>.\n"
@@ -35423,6 +35557,7 @@ I18n.translations["gl"] = {
   "not_evaluated": "non avaliado",
   "not_recorded": "Non rexistrado",
   "notes": "Notas",
+  "notify_me_of_mentions": "Notifícame as mencións (p.e. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -36536,6 +36671,16 @@ I18n.translations["gl"] = {
         "licensing_desc_html": "A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href=\"http://www.gbif.org/\"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.\n",
         "monthly_supporter_desc_html": "Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.\n<a href=\"%{url}\">Preme aquí para ser un Patrocinador Mensual</a>.\nCando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.\n",
         "name_place_help_html": "Priorizar nomes vernáculos usados neste lugar.\n",
+        "notification_preferences_comments": "Comentarios",
+        "notification_preferences_identifications": "Identificacións",
+        "notification_preferences_mentions": "Mencións",
+        "notification_preferences_messages": "Mensaxes",
+        "notification_preferences_project_added_your_observations": "Cando un proxecto engade as túas observacións",
+        "notification_preferences_project_curator_changes": "Cambio de conservadores do proxecto",
+        "notification_preferences_project_journal_posts": "Publicacións no diario do proxecto",
+        "notification_preferences_taxon_changes": "Mudanzas taxonómicas",
+        "notification_preferences_taxon_or_place_observations": "Observacións dos taxons ou dos lugares ós que me suscribín",
+        "notification_preferences_user_observations": "Observacións da xente á que sigo",
         "prefers_community_taxa_desc": "%{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. A identificación que compartimos cós nosos socios de dados é a identificación da comunidade, pero se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda será capaz de engadir identificacións, pero a opinión da comunidade non será favorecida perante a túa. Isto significa que as túas observacións non poderán optar ó grao de investigación, non sendo que tí esteas de acordo cá comunidade.\n",
         "prefers_no_tracking_label": "Non recoller dados de estabilidade e de uso usando servicios de terceiros",
         "project_addition_preferences": {
@@ -37711,6 +37856,7 @@ I18n.translations["he"] = {
   "not_evaluated": "טרם הוערך",
   "not_recorded": "לא נרשם",
   "notes": "הערות",
+  "notify_me_of_mentions": "עדכנו אותי בנוגע לאיזכורים (לדוגמא @שם משתמש)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -38598,6 +38744,16 @@ I18n.translations["he"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_comments": "הערות",
+        "notification_preferences_identifications": "זיהויים",
+        "notification_preferences_mentions": "איזכורים",
+        "notification_preferences_messages": "הודעות",
+        "notification_preferences_project_added_your_observations": "כאשר פרוייק מסויף את התצפיות שלך",
+        "notification_preferences_project_curator_changes": "שינויים של אוצרי הפרויקט",
+        "notification_preferences_project_journal_posts": "פוסטים",
+        "notification_preferences_taxon_changes": "שינויים טקסונומיים",
+        "notification_preferences_taxon_or_place_observations": "תצפיות על טקסונים או ממקומות שאני מנוי עליהם",
+        "notification_preferences_user_observations": "תצפיות של אנשים שאני עוקב אחריהם",
         "prefers_community_taxa_desc": "%{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.\n",
         "prefers_no_tracking_label": "אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי",
         "project_addition_preferences": {
@@ -39907,6 +40063,7 @@ I18n.translations["id"] = {
   "no_summary_from_wikipedia": "Tidak ada rangkuman dari Wikipedia",
   "none": "Tak satupun",
   "not_evaluated": "tidak dievaluasi",
+  "notify_me_of_mentions": "Beritahu saya pada sebutan (contoh: @namapengguna)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -40298,6 +40455,9 @@ I18n.translations["id"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_comments": "Komentar",
+        "notification_preferences_identifications": "Identifikasi",
+        "notification_preferences_messages": "Pesan",
         "project_addition_preferences": {
           "any": "Apa saja",
           "joined": "Proyek yang telah Anda bergabung",
@@ -41422,6 +41582,7 @@ I18n.translations["it"] = {
   "not_evaluated": "Non Valutata",
   "not_recorded": "Non registrata",
   "notes": "Note",
+  "notify_me_of_mentions": "Notificami le menzioni (e.g. @nomeutente)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -42543,6 +42704,16 @@ I18n.translations["it"] = {
         "licensing_desc_html": "Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.\n",
         "monthly_supporter_desc_html": "I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS EIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.\n<a href=\"%{url}\">Fai clic qui per diventare un sostenitore mensile</a>.\nQuando avremo avuto conferma del tuo supporto potrai spuntare questa casella per visualizzare tale stato sul tuo profilo. Nota: dovrai usare esattamente lo stesso indirizzo e-mail che usi su iNaturalist anche su Donorbox per confermarci che sei diventato un sostenitore mensile.\n",
         "name_place_help_html": "Dai priorità ai nomi comuni usati in questo luogo.\n",
+        "notification_preferences_comments": "Commenti",
+        "notification_preferences_identifications": "Identificazioni",
+        "notification_preferences_mentions": "Menzioni",
+        "notification_preferences_messages": "Messaggi",
+        "notification_preferences_project_added_your_observations": "Quando un progetto aggiunge le tue osservazioni",
+        "notification_preferences_project_curator_changes": "Cambi di curatore del progetto",
+        "notification_preferences_project_journal_posts": "Post del diario di progetto",
+        "notification_preferences_taxon_changes": "Modifiche tassonomiche",
+        "notification_preferences_taxon_or_place_observations": "Osservazioni di taxa o da luoghi a cui sono iscritto",
+        "notification_preferences_user_observations": "Osservazioni da parte di persone che seguo",
         "prefers_community_taxa_desc": "%{site_name} tiene traccia di cosa tu pensi che sia ciò che hai osservato e di ciò che ne pensa la community. L'identificazione che condividiamo con i partner dei dati è l'identificazione della community, ma se non pensi che l'opinione della community debba avere priorità sulla tua, puoi deselezionare qui l'opzione. Le persone continueranno ad essere in grado di aggiungere identificazioni, ma l'opinione della community non avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno il Livello Ricerca a me che non sia in accordo con l'ID della community.\n",
         "prefers_no_tracking_label": "Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti",
         "project_addition_preferences": {
@@ -43750,6 +43921,7 @@ I18n.translations["ja"] = {
   "not_evaluated": "未評価",
   "not_recorded": "記録されていません",
   "notes": "メモ",
+  "notify_me_of_mentions": "私についての投稿（例@username)の通知を受け取る",
   "number": {
     "format": {
       "delimiter": ",",
@@ -44613,6 +44785,16 @@ I18n.translations["ja"] = {
         "licensing_desc_html": "あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href=\"http://www.gbif.org/\">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。\n",
         "monthly_supporter_desc_html": "iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href=\"%{url}\">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。\n",
         "name_place_help_html": "この場所で使用される一般名を優先します\n",
+        "notification_preferences_comments": "コメント",
+        "notification_preferences_identifications": "同定",
+        "notification_preferences_mentions": "@コメント",
+        "notification_preferences_messages": "メッセージ",
+        "notification_preferences_project_added_your_observations": "プロジェクトがあなたの観察記録を追加するとき",
+        "notification_preferences_project_curator_changes": "プロジェクトのキュレーターの変更",
+        "notification_preferences_project_journal_posts": "プロジェクトのジャーナル投稿",
+        "notification_preferences_taxon_changes": "分類群の変更",
+        "notification_preferences_taxon_or_place_observations": "私がフォローしている分類群または場所からの観察記録",
+        "notification_preferences_user_observations": "フォローしている人による観察記録",
         "prefers_community_taxa_desc": "%{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。\n",
         "prefers_no_tracking_label": "サードパーティのサービスを使用して安定性や利用状況のデータを収集しない",
         "project_addition_preferences": {
@@ -45576,6 +45758,7 @@ I18n.translations["ko"] = {
   "not_evaluated": "미평가(NE)",
   "not_recorded": "기록되지 않음",
   "notes": "참고",
+  "notify_me_of_mentions": "내 아이디 언급 시 알림 (예: @아이디)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -49280,6 +49463,16 @@ I18n.translations["lt"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_comments": "Komentarai",
+        "notification_preferences_identifications": "Identifikacijos",
+        "notification_preferences_mentions": "Paminėjimai",
+        "notification_preferences_messages": "Žinutės",
+        "notification_preferences_project_added_your_observations": "Kai projektas prideda jūsų stebėjimus",
+        "notification_preferences_project_curator_changes": "Projektų kuratorių pasikeitimai",
+        "notification_preferences_project_journal_posts": "Projekto žurnalo įrašai",
+        "notification_preferences_taxon_changes": "Taksonominiai pakeitimai",
+        "notification_preferences_taxon_or_place_observations": "Prenumeruojamų taksonų stebėjimai arba stebėjimai iš mano prenumeruojamų vietų",
+        "notification_preferences_user_observations": "Žmonių, kuriuos seku, stebėjimai",
         "prefers_no_tracking_label": "Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis",
         "project_addition_preferences": {
           "any": "Nesvarbu",
@@ -51885,6 +52078,7 @@ I18n.translations["nb"] = {
   "not_evaluated": "ikke vurdert",
   "not_recorded": "Ikke registrert",
   "notes": "Notater",
+  "notify_me_of_mentions": "Informer meg når jeg blir nevnt (f.eks. @brukernavn)",
   "number": {
     "format": {
       "delimiter": " ",
@@ -53005,6 +53199,16 @@ I18n.translations["nb"] = {
         "licensing_desc_html": "Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.\n",
         "monthly_supporter_desc_html": "Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United\nStates IRS EIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.\n<a href=\"%{url}\">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.\n",
         "name_place_help_html": "Prioriter populærnavn brukt på dette stedet.\n",
+        "notification_preferences_comments": "Kommentarer",
+        "notification_preferences_identifications": "Identifikasjoner",
+        "notification_preferences_mentions": "Omtalelser",
+        "notification_preferences_messages": "Meldinger",
+        "notification_preferences_project_added_your_observations": "Når et prosjekt legger til dine observasjoner",
+        "notification_preferences_project_curator_changes": "Prosjektkurator-endringer",
+        "notification_preferences_project_journal_posts": "Innligg i prosjektjournaler",
+        "notification_preferences_taxon_changes": "Taksonomiske endringer",
+        "notification_preferences_taxon_or_place_observations": "Observasjoner av taksa eller steder som jeg abonnerer meg på",
+        "notification_preferences_user_observations": "Observasjoner av personer som jeg følger",
         "prefers_community_taxa_desc": "%{site_name} holder rede på hva du tror dine observasjoner er og hva felleskapet tror det er. Identifikasjonen vi deler med datapartnere er felleskapets identifikasjon, men hvis synes at felleskapets mening aldri skal overstyre din egen, kan du melde deg av her. Folk vil fortsatt kunne legge til identifikasjoner, men felleskapets mening blir ikke prioritert over din. Dette betyr at dine observasjoner ikke vil kunne nå forskingskvalitet med mindre du er enig med felleskapet.\n",
         "prefers_no_tracking_label": "Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester",
         "project_addition_preferences": {
@@ -54208,6 +54412,7 @@ I18n.translations["nl"] = {
   "not_evaluated": "Niet beoordeeld",
   "not_recorded": "Niet opgenomen",
   "notes": "Notities",
+  "notify_me_of_mentions": "Breng me op de hoogte van vermeldingen (bv. @gebruikersnaam)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -55329,6 +55534,16 @@ I18n.translations["nl"] = {
         "licensing_desc_html": "Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken\nzonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.\n",
         "monthly_supporter_desc_html": "Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.\n<a href=\"%{url}\">Klik hier om een maandelijkse supporter te worden</a>.\nAls je steun door ons is bevestigd kun je deze checkbox aanvinken\nzodat deze status in je profiel wordt weergegeven. Je moet wel\nexact hetzelfde e-mailadres gebruiken op Donorbox als op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent geworden.\n",
         "name_place_help_html": "Geef prioriteit aan lokale namen die op deze plaats worden gebruikt.\n",
+        "notification_preferences_comments": "Reacties",
+        "notification_preferences_identifications": "Determinaties",
+        "notification_preferences_mentions": "Vermeldingen",
+        "notification_preferences_messages": "Berichten",
+        "notification_preferences_project_added_your_observations": "Wanneer een project je waarnemingen toevoegt",
+        "notification_preferences_project_curator_changes": "Wijzigingen door projectcuratoren",
+        "notification_preferences_project_journal_posts": "Berichten in projectdagboeken",
+        "notification_preferences_taxon_changes": "Taxonomische wijzigingen",
+        "notification_preferences_taxon_or_place_observations": "Waarnemingen van taxa of plaatsen waar ik me op abonneer",
+        "notification_preferences_user_observations": "Waarnemingen door mensen die ik volg",
         "prefers_community_taxa_desc": "%{site_name} volgt wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met gegevenspartners delen, is de determinatie van de gemeenschap, maar als je denkt dat de mening van de gemeenschap jouw eigen mening nooit mag vervangen, kunt je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar de mening van de gemeenschap heeft geen voorkeur boven die van jou. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.\n",
         "prefers_no_tracking_label": "Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden",
         "project_addition_preferences": {
@@ -57437,6 +57652,7 @@ I18n.translations["pl"] = {
   "none": "Brak",
   "none_found": "Nie znaleziono",
   "notes": "Notatki",
+  "notify_me_of_mentions": "Powiadamiaj mnie o wzmiankach (np. @użytkownik)",
   "number": {
     "format": {
       "delimiter": " ",
@@ -58251,6 +58467,16 @@ I18n.translations["pl"] = {
     },
     "users": {
       "edit": {
+        "notification_preferences_comments": "Komentarzach",
+        "notification_preferences_identifications": "Oznaczeniach",
+        "notification_preferences_mentions": "Wzmiankach",
+        "notification_preferences_messages": "Wiadomościach",
+        "notification_preferences_project_added_your_observations": "Gdy projekt dodaje Twoje obserwacje",
+        "notification_preferences_project_curator_changes": "Zmienia się kurator projektu",
+        "notification_preferences_project_journal_posts": "Wpisach w dzienniku projektu",
+        "notification_preferences_taxon_changes": "Zmianach taksonomicznych",
+        "notification_preferences_taxon_or_place_observations": "Obserwacjach taksonów lub z lokalizacji, które subskrybuję",
+        "notification_preferences_user_observations": "Obserwacjach od ludzi, których obserwuję",
         "prefers_no_tracking_label": "Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich",
         "project_addition_preferences": {
           "any": "Dowolna",
@@ -59476,6 +59702,7 @@ I18n.translations["pt"] = {
   "not_evaluated": "Não avaliado",
   "not_recorded": "Não registado",
   "notes": "Notas",
+  "notify_me_of_mentions": "Notifique-me quando for mencionado (e.g. @username)",
   "number": {
     "format": {
       "delimiter": ".",
@@ -60597,6 +60824,16 @@ I18n.translations["pt"] = {
         "licensing_desc_html": "Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.\n",
         "monthly_supporter_desc_html": "Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas\nrecebidos pela Academia de Ciências da Califórnia (United\nIRS EIN 94-1156258) para apoiar a operação sem fins lucrativos de\nSites da iNaturalist e da iNaturalist Network.\n<a href=\"%{url}\">Clique aqui para se tornar um apoiador mensal</a>.\nQuando confirmarmos seu apoio, você poderá verificar isso\npara exibir esse status no seu perfil. Nota: você precisará usar\nexatamente o mesmo endereço de email no Donorbox que você usa no iNaturalist\npara confirmarmos que você se tornou um Suporte mensal.\n",
         "name_place_help_html": "Priorize os nomes comuns usados neste local.\n",
+        "notification_preferences_comments": "Comentários",
+        "notification_preferences_identifications": "Identificações",
+        "notification_preferences_mentions": "Menções",
+        "notification_preferences_messages": "Mensagens",
+        "notification_preferences_project_added_your_observations": "Quando um projeto adiciona suas observações",
+        "notification_preferences_project_curator_changes": "Alterações do curador do projeto",
+        "notification_preferences_project_journal_posts": "Postagens do registro do Projeto",
+        "notification_preferences_taxon_changes": "Mudanças de taxonomia",
+        "notification_preferences_taxon_or_place_observations": "Observações de táxons ou de lugares em que estou inscrito",
+        "notification_preferences_user_observations": "Observações de pessoas que eu sigo",
         "prefers_community_taxa_desc": "%{site_name} ratreia oque você acredita que suas observações são e o que a comunidade acredita. A identificação que dividimos com parceiros é a realizada pela comunidade, porém se você não deseja que a opinião da comunidade se sobreponha à sua, você pode optar por isso aqui. As pessoas ainda poderão adicionar identificações, mas a opinião da comunidade de identificação não irá se sobrepor à sua. Isto significa que suas observações não estarão elegíveis para serem utilizadas em pesquisas a não ser que você concorde com a comunidade.\n",
         "prefers_no_tracking_label": "Não colete dados de estabilidade e uso usando serviços de terceiros",
         "project_addition_preferences": {
@@ -62219,6 +62456,7 @@ I18n.translations["ru"] = {
   "not_evaluated": "не оцененный",
   "not_recorded": "Не указана",
   "notes": "Примечания",
+  "notify_me_of_mentions": "Уведомлять меня об упоминаниях (например, @username)",
   "number": {
     "format": {
       "delimiter": "  ",
@@ -63362,6 +63600,16 @@ I18n.translations["ru"] = {
         "licensing_desc_html": "Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href=\"http://www.gbif.org/\">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.\n",
         "monthly_supporter_desc_html": "Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.\n<a href=\"%{url}\">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.\nКогда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.\n",
         "name_place_help_html": "Установить приоритет народных названий, используемых в этом месте.\n",
+        "notification_preferences_comments": "Комментарии",
+        "notification_preferences_identifications": "Идентификации",
+        "notification_preferences_mentions": "Упоминания",
+        "notification_preferences_messages": "Сообщения",
+        "notification_preferences_project_added_your_observations": "Когда в проект добавлены ваши наблюдения",
+        "notification_preferences_project_curator_changes": "Изменения куратора проекта",
+        "notification_preferences_project_journal_posts": "Сообщения журнала проекта",
+        "notification_preferences_taxon_changes": "Изменения таксонов",
+        "notification_preferences_taxon_or_place_observations": "Наблюдения таксонов или из мест, на которые я подписан",
+        "notification_preferences_user_observations": "Наблюдения людей, на которых я подписан",
         "prefers_community_taxa_desc": "%{site_name} отслеживает то, чем, вы  считаете, являются ваши наблюдения, и то, чем, сообщество считает, они являются. Идентификация, которой мы делимся с партнерами по данным, - это идентификация сообщества, но если Вы не думаете, что мнение сообщества должно когда-либо отменять ваше собственное, вы можете отказаться. Люди по-прежнему смогут добавлять идентификации, но мнение сообщества не будет предпочтительнее вашего. Это означает, что ваши наблюдения не будут иметь право на участие в исследовании, если вы не согласны с сообществом.\n",
         "prefers_no_tracking_label": "Не собирать данные о стабильности и использовании с помощью сторонних сервисов",
         "project_addition_preferences": {
@@ -64525,6 +64773,7 @@ I18n.translations["sk"] = {
   "not_evaluated": "nehodnotené",
   "not_recorded": "Nebol zaznamenaný",
   "notes": "Poznámky",
+  "notify_me_of_mentions": "Informovať ma o zmienkach (napr. @užívateľské meno)",
   "number": {
     "format": {
       "delimiter": " ",
@@ -66209,6 +66458,7 @@ I18n.translations["sq"] = {
   "not_evaluated": "Nuk është akoma e vlerësuar",
   "not_recorded": "Nuk regjistrohet",
   "notes": "Shënime",
+  "notify_me_of_mentions": "Më njofto për etiketimet (psh. @EmriPërdorues)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -67735,6 +67985,7 @@ I18n.translations["sv"] = {
   "not_evaluated": "inte utvärderad",
   "not_recorded": "Ingen uppgift",
   "notes": "Kommentarer",
+  "notify_me_of_mentions": "Meddela mig när jag omnämns (t.ex. @användarnamn)",
   "number": {
     "format": {
       "delimiter": " ",
@@ -68850,6 +69101,16 @@ I18n.translations["sv"] = {
         "licensing_desc_html": "Licensiering av ditt innehåll ger vem som helst laglig rätt att använda\ndet utan att be om ditt tillstånd förutsatt att de följer licensvillkoren.\nDessutom inkluderar %{site_name} ditt Creative Commons-licensierade\ninnehåll i regelbundet uppdaterade arkiv som produceras för utvalda\npartnerorganisationer som är intresserade av våra data. Till exempel\ninkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY),\noch Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar\nför <a href=\"http://www.gbif.org/\">Global Biodiversity Information\nFacility</a> (GBIF), en internationell, mellanstatlig organisation som\nsammanställer och tillgängliggör information om biologisk mångfald\nfrån hela världen.\n",
         "monthly_supporter_desc_html": "iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.\n<a href=\"%{url}\">Klicka här för att bli Månatlig bidragsgivare</a>.\nNär vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.\nObs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist\nför att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.\n",
         "name_place_help_html": "Prioritera vanliga namn som används på denna plats.\n",
+        "notification_preferences_comments": "Kommentarer",
+        "notification_preferences_identifications": "Bestämningar",
+        "notification_preferences_mentions": "Omnämningar",
+        "notification_preferences_messages": "Meddelanden",
+        "notification_preferences_project_added_your_observations": "När ett projekt lägger till dina observationer",
+        "notification_preferences_project_curator_changes": "Ändring av projektförvaltare",
+        "notification_preferences_project_journal_posts": "Projektdagboksinlägg",
+        "notification_preferences_taxon_changes": "Taxonomiska förändringar",
+        "notification_preferences_taxon_or_place_observations": "Observationer av taxa eller från platser som jag prenumererar på",
+        "notification_preferences_user_observations": "Observationer av personer jag följer",
         "prefers_community_taxa_desc": "%{site_name} spårar vad du tror att dina observationer är och vad\ngemenskapen tycker att de är. Den bestämning vi delar med data-\npartners är gemenskapens bestämning, men om du inte tycker att\ngemenskapens åsikt någonsin ska upphäva din egen, kan du välja\nbort det här. Folk kommer fortfarande att kunna lägga till bestämningar,\nmen gemenskapens åsikt kommer inte att föredras framför din. Detta\ninnebär att dina observationer inte kommer att kvalificera för\nforskningskvalitet såvida du inte själv håller med gemenskapen.\n",
         "prefers_no_tracking_label": "Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster",
         "project_addition_preferences": {
@@ -70050,6 +70311,7 @@ I18n.translations["tr"] = {
   "not_evaluated": "değerlendirilmedi",
   "not_recorded": "Kaydedilmemiş",
   "notes": "Notlar",
+  "notify_me_of_mentions": "Benden söz etmede bildir (örn. @kullanıcıadı)",
   "number": {
     "format": {
       "delimiter": ",",
@@ -71165,6 +71427,16 @@ I18n.translations["tr"] = {
         "licensing_desc_html": "İçeriğinizi lisanslamak, izninize, lisansın şartlarına uyup uymadıklarını sormadan, \nkullanma hakkını yasal olarak verir. Ayrıca, %{site_name}, Creative Commons lisanslı \niçeriğinizi, verilerimizle ilgilenen belirli ortak kuruluşlar için üretilen düzenli olarak \ngüncellenen arşivlere dahil eder. Örneğin, Telif Hakkı Yok (CC0), Atfetme (CC BY), ve \nTicari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href=\"http://www.gbif.org/\">Küresel Biyoçeşitlilik \nDanışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından \nderleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.\n",
         "monthly_supporter_desc_html": "iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin\nkar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy\n(ABD IRS EIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.\n<a href=\"%{url}\">Aylık Destekçi olmak için buraya tıklayın</a>.\nDesteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu\nkutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,\niNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.\n",
         "name_place_help_html": "Bu yerde kullanılan yaygın adlara öncelik ver.\n",
+        "notification_preferences_comments": "Yorumlar",
+        "notification_preferences_identifications": "Tanımlamalar",
+        "notification_preferences_mentions": "Bahsedilmeler",
+        "notification_preferences_messages": "Mesajlar",
+        "notification_preferences_project_added_your_observations": "Bir proje gözlemlerinizi eklediğinde",
+        "notification_preferences_project_curator_changes": "Proje sorumlusu değişiklikleri",
+        "notification_preferences_project_journal_posts": "Proje yayın gönderileri",
+        "notification_preferences_taxon_changes": "Sınıflandırma değişiklikleri",
+        "notification_preferences_taxon_or_place_observations": "Sınıfların gözlemleri veya abone olduğum yerlerden yapılan gözlemler",
+        "notification_preferences_user_observations": "Takip ettiğim insanlar tarafından yapılan gözlemler",
         "prefers_community_taxa_desc": "%{site_name}, gözlemlerinizin ne olduğunu ve topluluğun ne düşündüğünü izler. \nVeri ortaklarıyla paylaştığımız kimlik, topluluk kimliğidir, ancak topluluğun görüşünün \nkendi kararlarınızı geçersiz kılması gerektiğini düşünmüyorsanız, buradan vazgeçebilirsiniz. \nİnsanlar hala tanımlama ekleyebilecekler, ancak topluluk görüşü sizinkinden yana olmayacak. \nBu, topluluğa katılmadığınız sürece gözlemlerinizin araştırma için uygun \nolmayacağı anlamına gelir.\n",
         "prefers_no_tracking_label": "Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın",
         "project_addition_preferences": {
@@ -72651,6 +72923,7 @@ I18n.translations["zh-CN"] = {
   "not_evaluated": "未评估",
   "not_recorded": "未记录",
   "notes": "注释",
+  "notify_me_of_mentions": "通知提及我的（例如@username）",
   "number": {
     "format": {
       "delimiter": "，",
@@ -73693,6 +73966,15 @@ I18n.translations["zh-CN"] = {
         "inaturalist_network_affiliation_desc_html": "<a href=\"%{url}\" target=\"_blank\">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。\n",
         "licensing_desc_html": "许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href=\"http://www.gbif.org/\">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。\n",
         "name_place_help_html": "排序用于这一地区常用名的优先级。\n",
+        "notification_preferences_comments": "评论",
+        "notification_preferences_identifications": "鉴定",
+        "notification_preferences_mentions": "提及",
+        "notification_preferences_messages": "站内消息",
+        "notification_preferences_project_added_your_observations": "当一个项目添加了您的观察",
+        "notification_preferences_project_curator_changes": "项目管理员更改",
+        "notification_preferences_project_journal_posts": "项目日记帖子",
+        "notification_preferences_taxon_changes": "物种分类变更",
+        "notification_preferences_user_observations": "我关注的人的观察记录",
         "prefers_community_taxa_desc": "%{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。\n",
         "project_addition_preferences": {
           "any": "任何",
@@ -75020,6 +75302,7 @@ I18n.translations["zh-TW"] = {
   "not_evaluated": "未評估",
   "not_recorded": "未記錄",
   "notes": "註解",
+  "notify_me_of_mentions": "通知提及到我的（例如：@username）",
   "number": {
     "format": {
       "delimiter": ",",
@@ -76075,6 +76358,15 @@ I18n.translations["zh-TW"] = {
         "licensing_desc_html": "授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href=\"http://www.gbif.org/\">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。\n",
         "monthly_supporter_desc_html": "iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的\niNaturalist 與 iNaturalist 網路站台，並由加利福尼亞州科學院所接收（美利堅合眾國 IRS EIN 94-1156258）。<a href=\"%{url}\">請按此來成為每月贊助者</a>。當我們確認好您的贊助後，您可勾選此方框來在您的個人檔案裡顯示該狀態。請注意：您需要在 Donorbox 上使用和您用在 iNaturalist 裡相同的電子郵件地址，來讓我們確認您的每月贊助者身份。\n",
         "name_place_help_html": "在此地點優先採用通用名稱。\n",
+        "notification_preferences_comments": "評論",
+        "notification_preferences_identifications": "鑑定",
+        "notification_preferences_mentions": "提及",
+        "notification_preferences_messages": "訊息",
+        "notification_preferences_project_added_your_observations": "當一個專案已添加了您的觀察",
+        "notification_preferences_project_curator_changes": "專案策展人更動",
+        "notification_preferences_project_journal_posts": "專案日誌發佈文章",
+        "notification_preferences_taxon_changes": "物種分類更動",
+        "notification_preferences_user_observations": "我追蹤的人之觀察記錄",
         "prefers_community_taxa_desc": "%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇排除。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。\n",
         "project_addition_preferences": {
           "any": "任何",
