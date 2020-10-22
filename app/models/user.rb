@@ -103,6 +103,7 @@ class User < ActiveRecord::Base
   preference :lifelist_details_view, :string
   preference :edit_observations_sort, :string, default: "desc"
   preference :edit_observations_order, :string, default: "created_at"
+  preference :lifelist_tree_mode, :string
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

@@ -194,7 +194,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   // unecessary resetSelection events, which end up firing afterUnselect even
   // when nothing has been unselected.
   field.keydown( function ( e ) {
-    if ( field.searchClear ) {
+    if ( field.searchClear && !options.resetOnChange === false ) {
       setTimeout( function ( ) {
         field.val( ) ? $( field.searchClear ).show( ) : $( field.searchClear ).hide( );
       }, 1 );

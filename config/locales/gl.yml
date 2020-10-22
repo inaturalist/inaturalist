@@ -694,6 +694,7 @@ gl:
   cc_by_sa_name: Atribución-Compartir igual
   cc_used_under_a: "Creative Commons, empregada baixo unha licenza deste tipo"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Mudar a cabeceira
   change_descriptions:
     split: A especie ou grupo está separada
@@ -1060,6 +1061,7 @@ gl:
   delete: Eliminar
   delete_all: Borrar todo
   delete_conversation: Eliminar conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿Eliminar a cabeceira?'
   delete_icon?: Eliminar icona?
   delete_photo: Eliminar foto
@@ -3822,7 +3824,6 @@ gl:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: Este
   this_bioblitz_beings_in: Este bioblitz comeza en
-  this_is_a_cached_summary_based_on: Este é un resumo en caché deste taxón baseado no teu traballo
   this_is_a_life_list_of: Esta é unha lista de vida de
   this_is_a_life_list_from_place_html: "Isto é unha listaxe de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Isto é unha lista de vida de %{taxon} en %{place}"
@@ -4179,7 +4180,6 @@ gl:
   website: Sitio web
   week_of_date: "Semana do %{date}"
   welcome: Benvido
-  welcome_back: Benvido outra vez
   welcome_back!: '¡Benvido de novo!'
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_guides: "¡Benvido ás Guías de %{site_name}!"
@@ -4225,7 +4225,6 @@ gl:
     Fonte: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     Este artigo usa material do artigo da Wikipedia <a href="%{url}">%{title}</a>, que é lanzado baixo a licenza <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a>. O contido poderá ter sido omitido do orixinal, pero ningún contido foi mudado ou extendido.
-  wikipedia_entry: Rexistro de Wikipedia
   with: Con
   withdraw: Retirar
   withdrawing: Retirando...

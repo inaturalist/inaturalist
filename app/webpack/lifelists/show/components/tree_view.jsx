@@ -26,7 +26,7 @@ class TreeView extends React.Component {
           { I18n.t( "views.lifelists.dropdowns.simplified_tree" ) }
         </MenuItem>
         <MenuItem
-          eventKey="tree"
+          eventKey="full_taxonomy"
           className={lifelist.treeMode === "simplified" ? null : "selected"}
         >
           { I18n.t( "views.lifelists.dropdowns.full_taxonomy" ) }
@@ -122,7 +122,6 @@ class TreeView extends React.Component {
         <div className="search-options">
           { this.sortOptions( ) }
           { lifelist.navView === "tree" && this.rankOptions( ) }
-          { lifelist.navView === "list" && this.ancestryOptions( ) }
         </div>
         { treeComponent }
       </div>

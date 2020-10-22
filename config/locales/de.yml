@@ -700,6 +700,7 @@ de:
   cc_by_sa_name: Namensnennung-GleicheBedingungen
   cc_used_under_a: "Creative Commons, unter Verwendung von"
   change_admin: Administrator ändern
+  #Button to change the cover (or banner) image for a project
   change_cover: Front ändern
   change_descriptions:
     split: Altes Taxon in mehrere neue Taxa aufspalten
@@ -762,6 +763,7 @@ de:
   check_out_my_observations_at: 'Wenn Du möchtest, kannst Du hier ein Auge auf meine Beobachtungen werfen:'
   check_out_our_blog: Teste unseren Blog
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
+  check_out_your_new_and_improved_list_list: Schau dir deine neue und verbesserte Life-Liste an!
   check_this_box_if_html: |
     Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a> stellen möchtest. Das bedeutet, dass jeder Deine Fotos und/oder Beobachtungen kopieren und wiederverwenden kann, ohne um Erlaubnis zu bitten, solange eine Namensnennung erfolgt und die Werke nicht kommerziell genutzt werden. Du kannst eine andere Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz für die Weitergabe an Forscher.
   checklist: Checkliste
@@ -1066,6 +1068,7 @@ de:
   delete: Löschen
   delete_all: Alle löschen
   delete_conversation: Unterhaltung löschen
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: Cover löschen?
   delete_icon?: Symbol löschen?
   delete_photo: Foto löschen
@@ -1745,6 +1748,7 @@ de:
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
   learn_more: Mehr erfahren
+  learn_more_on_the_blog: Mehr dazu in unserem Blog
   learn_more_raquo: "Mehr erfahren &raquo;"
   learn_what_these_licenses_mean: Lerne, was diese Lizenzen bedeuten
   least_concern: nicht gefährdet
@@ -1787,6 +1791,7 @@ de:
     italian: Italienisch
     japanese: Japanisch
     korean: Koreanisch
+    latvian: Lettisch
     lithuanian: Litauisch
     luxembourgish: Luxemburgisch
     maltese: Maltesisch
@@ -1896,6 +1901,7 @@ de:
     ko: Koreanisch
     lb: Luxemburgisch
     lt: litauisch
+    lv: Lettisch
     mk: Mazedonisch
     nb: Norwegian Bokmål
     nl: Niederländisch
@@ -4192,6 +4198,7 @@ de:
   view_more_observations_of_x_project: "Weitere Beobachtungen von %{project} auf <nobr>%{site_name} &raquo;</nobr> ansehen"
   view_more_observations_of_x_taxon: "Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name} &raquo;</nobr> anzeigen"
   view_more_unreviewed: "Weitere \"nicht-Begutachtete\" ansehen"
+  view_my_life_list: Meine Life-Liste anzeigen
   view_observation: Beobachtung ansehen
   view_observations: Beobachtungen anzeigen
   view_observation_flags: Meldungen für Beobachtung anzeigen
@@ -4255,7 +4262,6 @@ de:
   website: Webseite
   week_of_date: "Woche vom %{date}"
   welcome: willkommen
-  welcome_back: Willkommen zurück
   welcome_back!: Willkommen zurück
   welcome_to_inat: "Willkommen bei %{site_name}!"
   welcome_to_guides: "Willkommen bei %{site_name}-Guides!"
@@ -4301,7 +4307,6 @@ de:
     Quelle: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
-  wikipedia_entry: Wikipedia-Eintrag
   with: mit
   withdraw: Zurücknehmen
   withdrawing: Nehme zurück …
@@ -4700,6 +4705,7 @@ de:
         taxonomic: Taxonomisch
         name: Name
         most_observed: Am häufigsten beobachtet
+        least_observed: Am wenigsten beobachtet
         date_added_newest: Datum hinzugefügt (absteigend)
         date_added_oldest: Datum hinzugefügt (aufsteigend)
         ancestry: Vorfahren
@@ -5558,6 +5564,12 @@ de:
         complete_rank_desc_html: |
           Taxonomischer Rang auf dem dieses Taxon komplett ist, z.B. wenn diese Familie
           alle ihre untergeordneten Gattungen enthält, aber nicht alle ihre Arten, würde der Rang auf "Gattung" gesetzt. Standard ist <b>Art</b>.
+        wikipedia_summary_desc_html: |
+          Kurze Zusammenfassung dieses Taxons basierend auf seiner <a target="_blank"
+          href="%{url}">Wikipedia-Seite</a>, die wir so lange unbegrenzt zwischenspeichern, bis
+          sie manuell aktualisiert wurde. Das Aktualisieren dieser Zusammenfassung aktualisiert 
+          unseren Cache für den zugrundeliegenden Wikipedia-Inhalt, den wir auf der
+          Website anzeigen, die automatisch nach einer Woche aktualisiert wird.
       show:
         about_names_desc: |
           <p>

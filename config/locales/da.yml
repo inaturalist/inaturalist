@@ -705,6 +705,7 @@ da:
   cc_by_sa_name: Kildeangivelse - Del på samme måde
   cc_used_under_a: "Creative Commons, brugt under en"
   change_admin: Skift administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Skift bannerbillede
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
@@ -769,6 +770,7 @@ da:
   check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer på
   check_out_our_blog: Se vores blog
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere, ser ud
+  check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
     <a href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1079,6 +1081,7 @@ da:
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slet bannerbillede?
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
@@ -1775,6 +1778,7 @@ da:
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
+  learn_more_on_the_blog: Læs mere på bloggen
   learn_more_raquo: "Lær mere &raquo;"
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: Mindste bekymring
@@ -1817,6 +1821,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
     maltese: Maltesisk
@@ -1927,6 +1932,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
+    lv: Lettisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -4003,7 +4009,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
@@ -4308,6 +4313,7 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  view_my_life_list: Vis din livsliste
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -4371,7 +4377,6 @@ da:
   website: Hjemmeside
   week_of_date: "Ugen med %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbage
   welcome_back!: Velkommen tilbage!
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
@@ -4418,7 +4423,6 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
-  wikipedia_entry: Wikipedia indgang
   with: med
   withdraw: Træk tilbage
   withdrawing: Trækker tilbage...
@@ -4868,6 +4872,7 @@ da:
         taxonomic: Taksonomisk
         name: Navn
         most_observed: Mest observeret
+        least_observed: Mindst observeret
         date_added_newest: Tilføjelsesdato, nyeste til ældste
         date_added_oldest: Tilføjelsesdata, ældste til nyeste
         ancestry: Herkomst
@@ -5976,6 +5981,11 @@ da:
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
           Arter er standard.
+        wikipedia_summary_desc_html: |
+          Kort opsummering af denne takson baseret på dens <a target="_blank"
+          href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
+          manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
+          hvilket automatisk opfriskes efter én uge.
       show:
         about_names_desc: |
           <P>

@@ -615,6 +615,7 @@ zh-CN:
   cc_by_sa_name: 署名-相同方式共享
   cc_used_under_a: "知识共享，使用"
   change_admin: 更改管理员
+  #Button to change the cover (or banner) image for a project
   change_cover: 更改封面
   change_descriptions:
     split: 旧分类单元分成多个新分类单元
@@ -976,6 +977,7 @@ zh-CN:
   delete: 删除
   delete_all: 删除所有
   delete_conversation: 删除会话
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 删除封面么？
   delete_icon?: 删除图标？
   delete_photo: 删除照片
@@ -3716,7 +3718,6 @@ zh-CN:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
-  this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
   this_is_a_life_list_of: 这是生命清单，其属于
   this_is_a_life_list_from_place_html: "这是来自 %{place} 的生命清单"
   this_is_a_life_list_of_taxon_in_place: "这是位于%{place}的%{taxon}的清单"
@@ -4070,7 +4071,6 @@ zh-CN:
   website: 网站
   week_of_date: "%{date}的一周"
   welcome: 欢迎
-  welcome_back: 欢迎回来
   welcome_back!: 欢迎回来!
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
@@ -4113,7 +4113,6 @@ zh-CN:
   widget_for: 挂件用于
   wikipedia_attribution_cc_by_sa_3: |
     资料来源：维基百科"%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: 维基百科记录
   with: 带
   withdraw: 放弃
   withdrawing: 正在放弃...

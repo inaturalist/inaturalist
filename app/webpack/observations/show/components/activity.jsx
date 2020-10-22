@@ -68,21 +68,26 @@ class Activity extends React.Component {
   }
 
   postIdentification( ) {
-    const { addID } = this.props;
+    const { addID, content, updateEditorContent } = this.props;
     const input = $( ".id_tab input[name='taxon_name']" );
     const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
     if ( selectedTaxon ) {
-      addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+      addID( selectedTaxon, { body: content } );
       input.trigger( "resetSelection" );
       input.val( "" );
       input.data( "uiAutocomplete" ).selectedItem = null;
-      $( ".id_tab textarea" ).val( "" );
-      $( ".comment_tab textarea" ).val( "" );
+
+      updateEditorContent( "activity", "" );
     }
   }
 
   doneButton( ) {
-    const { config, addComment } = this.props;
+    const {
+      addComment,
+      config,
+      content,
+      updateEditorContent
+    } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -90,11 +95,10 @@ class Activity extends React.Component {
         onClick={
           ( ) => {
             if ( $( ".comment_tab" ).is( ":visible" ) ) {
-              const comment = $( ".comment_tab textarea" ).val( );
+              const comment = content;
               if ( comment ) {
-                addComment( $( ".comment_tab textarea" ).val( ) );
-                $( ".comment_tab textarea" ).val( "" );
-                $( ".id_tab textarea" ).val( "" );
+                addComment( comment );
+                updateEditorContent( "activity", "" );
               }
             } else {
               this.postIdentification( );
@@ -155,8 +159,10 @@ class Activity extends React.Component {
     const {
       observation,
       config,
+      content,
       activeTab,
-      setActiveTab
+      setActiveTab,
+      updateEditorContent
     } = this.props;
     if ( !observation ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
@@ -176,10 +182,6 @@ class Activity extends React.Component {
       }
       return null;
     } ) );
-    // couldn't find a great way to do this within React
-    const syncRemarks = text => {
-      $( ".id_tab textarea, .comment_tab textarea" ).val( text );
-    };
     const commentContent = loggedIn
       ? (
         <div className="form-group">
@@ -188,8 +190,9 @@ class Activity extends React.Component {
             placeholder={I18n.t( "leave_a_comment" )}
             textareaClassName="form-control"
             maxLength={5000}
+            content={content}
             showCharsRemainingAt={4000}
-            onBlur={e => syncRemarks( e.target.value )}
+            onBlur={e => updateEditorContent( "activity", e.target.value )}
           />
         </div>
       ) : (
@@ -227,7 +230,8 @@ class Activity extends React.Component {
               placeholder={I18n.t( "tell_us_why" )}
               className="upstacked"
               textareaClassName="form-control"
-              onBlur={e => syncRemarks( e.target.value )}
+              onBlur={e => updateEditorContent( "activity", e.target.value )}
+              content={content}
               maxLength={5000}
               showCharsRemainingAt={4000}
             />
@@ -290,6 +294,7 @@ Activity.propTypes = {
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
+  content: PropTypes.string,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
@@ -305,6 +310,7 @@ Activity.propTypes = {
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
   untrustUser: PropTypes.func,
+  updateEditorContent: PropTypes.func,
   showHidden: PropTypes.func
 };
 
