@@ -5,8 +5,6 @@ import moment from "moment";
 const SaveButton = ( { saveUserSettings, profile } ) => {
   const handleClick = ( ) => saveUserSettings( );
 
-  console.log( profile, "profile in save button" );
-
   return (
     <div className="flex-no-wrap space-between-items">
       <div className="text-muted underline">
@@ -14,7 +12,7 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
         {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
       </div>
       <button
-        className="btn btn-xs btn-primary blue-button-caps"
+        className={`btn btn-xs ${profile.unsaved_changes ? "btn-primary" : "btn-default"}`}
         type="button"
         onClick={handleClick}
       >

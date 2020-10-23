@@ -58,7 +58,8 @@ export function saveUserSettings( ) {
       "icon_delete",
       "make_observation_licenses_same",
       "make_photo_licenses_same",
-      "make_sound_licenses_same"
+      "make_sound_licenses_same",
+      "upsaved_changes"
     ];
 
     // move these attributes so they're nested under params, not params.user
