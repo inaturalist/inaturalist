@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import Notifications from "../components/notifications";
+import ToggleSwitch from "../components/toggle_switch";
 import { handleCheckboxChange } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
@@ -11,13 +11,13 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    handleCheckboxChange: e => { dispatch( handleCheckboxChange( e ) ); }
+    handleCheckboxChange: newState => { dispatch( handleCheckboxChange( newState ) ); }
   };
 }
 
-const NotificationsContainer = connect(
+const ToggleSwitchContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Notifications );
+)( ToggleSwitch );
 
-export default NotificationsContainer;
+export default ToggleSwitchContainer;

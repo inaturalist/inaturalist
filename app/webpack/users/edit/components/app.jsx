@@ -4,15 +4,17 @@ import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
 import ProfileContainer from "../containers/profile_container";
-import NotificationsContainer from "../containers/notifications_container";
+import Notifications from "./notifications";
 import SaveButtonContainer from "../containers/save_button_container";
+import SaveReminderModal from "./save_reminder_modal";
 
 class App extends Component {
   constructor( ) {
     super( );
 
     this.state = {
-      container: 0
+      container: 2,
+      showModal: false
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -28,7 +30,7 @@ class App extends Component {
     const userSettings = [
       <ProfileContainer />,
       <AccountContainer />,
-      <NotificationsContainer />,
+      <Notifications />,
       <></>,
       <ContentContainer />,
       <></>
@@ -36,6 +38,7 @@ class App extends Component {
 
     return (
       <div className="container">
+        <SaveReminderModal showModal={this.state.showModal} />
         <div className="row row-align-center header-margin">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
