@@ -15,6 +15,7 @@
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
         preferred_lifelist_nav_view: (current_user.preferred_lifelist_nav_view || ""),
         preferred_lifelist_details_view: (current_user.preferred_lifelist_details_view || ""),
+        preferred_lifelist_tree_mode: (current_user.preferred_lifelist_tree_mode || ""),
       }
   :javascript
     var LIFELIST_USER = #{ js_lifelist_user.to_json.html_safe };

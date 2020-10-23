@@ -53,6 +53,7 @@ class Observations extends Component {
             width={width}
             height={itemDim}
             config={config}
+            hideUserIcon
           />
         );
       } );
@@ -99,7 +100,7 @@ class Observations extends Component {
       </DropdownButton>
     );
     return (
-      <div className="flex-container">
+      <div className="Details">
         <div className="search-options">
           { sortOptions }
         </div>
