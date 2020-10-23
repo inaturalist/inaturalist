@@ -28,6 +28,23 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 import { annotationShortcuts } from "../keyboard_shortcuts";
 
+const scrollSidebarToForm = dialog => {
+  const sidebar = $( dialog ).find( ".ObservationModal:first" ).find( ".sidebar" );
+  const form = $( dialog )
+    .find( ".IdentificationForm, .CommentForm" ).not( ".collapse" )[0];
+  if ( form ) {
+    if ( $( form ).hasClass( "IdentificationForm" ) ) {
+      $( ":input:visible:first", form ).focus( );
+    } else {
+      $( "textarea:visible:first", form ).focus( );
+    }
+    // Note that you need to scroll the element that can actually scroll.
+    // There are a lot of nested divs here, so make sure you're scrolling the
+    // right one
+    $( ".info-tab-content", sidebar ).scrollTo( form );
+  }
+};
+
 class ObservationModal extends React.Component {
   constructor( props, context ) {
     super( props, context );
@@ -57,6 +74,14 @@ class ObservationModal extends React.Component {
           ) );
         }
       }, 500 );
+    }
+    if ( ( this.props.identificationFormVisible
+        && prevProps.identificationFormVisible !== this.props.identificationFormVisible
+    ) || ( this.props.commentFormVisible
+        && prevProps.commentFormVisible !== this.props.commentFormVisible
+    ) ) {
+      // focus on the ID or Comment form first fields if either just became visible
+      scrollSidebarToForm( ReactDOM.findDOMNode( this ) );
     }
   }
 
@@ -338,19 +363,6 @@ class ObservationModal extends React.Component {
         </div>
       );
     }
-
-    const scrollSidebarToForm = form => {
-      const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      if ( $( form ).hasClass( "IdentificationForm" ) ) {
-        $( ":input:visible:first", form ).focus( );
-      } else {
-        $( "textarea:visible:first", form ).focus( );
-      }
-      // Note that you need to scroll the element that can actually scroll.
-      // There are a lot of nested divs here, so make sure you're scrolling the
-      // right one
-      $( ".info-tab-content", sidebar ).scrollTo( form );
-    };
 
     const qualityGrade = ( ) => {
       if ( observation.quality_grade === "research" ) {
