@@ -4,7 +4,7 @@ import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
 import ProfileContainer from "../containers/profile_container";
-import Notifications from "./notifications";
+import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
 import SaveReminderModal from "./save_reminder_modal";
 
@@ -30,7 +30,7 @@ class App extends Component {
     const userSettings = [
       <ProfileContainer />,
       <AccountContainer />,
-      <Notifications />,
+      <NotificationsContainer />,
       <></>,
       <ContentContainer />,
       <></>

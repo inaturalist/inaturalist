@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ToggleSwitchContainer from "../containers/toggle_switch_container";
 
-const Notifications = ( ) => (
+const Notifications = ( { profile } ) => (
   <div className="col-xs-9">
     <div className="row">
       <div className="col-xs-10">
@@ -32,59 +33,65 @@ const Notifications = ( ) => (
             </div>
             <ToggleSwitchContainer name="prefers_no_email" />
           </div>
-          <CheckboxRowContainer
-            name="prefers_comment_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_comments" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_identification_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_identifications" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_mention_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_mentions" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_message_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_messages" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_project_journal_post_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_project_journal_posts" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_project_added_your_observation_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_project_added_your_observations" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_project_curator_change_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_project_curator_changes" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_taxon_change_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_taxon_changes" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_user_observation_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_user_observations" )}
-          />
-          <p />
-          <CheckboxRowContainer
-            name="prefers_taxon_or_place_observation_email_notification"
-            label={I18n.t( "views.users.edit.notification_preferences_taxon_or_place_observations" )}
-          />
+          <div className={profile.prefers_no_email ? null : "collapse"}>
+            <CheckboxRowContainer
+              name="prefers_comment_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_comments" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_identification_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_identifications" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_mention_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_mentions" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_message_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_messages" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_project_journal_post_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_project_journal_posts" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_project_added_your_observation_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_project_added_your_observations" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_project_curator_change_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_project_curator_changes" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_taxon_change_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_taxon_changes" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_user_observation_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_user_observations" )}
+            />
+            <p />
+            <CheckboxRowContainer
+              name="prefers_taxon_or_place_observation_email_notification"
+              label={I18n.t( "views.users.edit.notification_preferences_taxon_or_place_observations" )}
+            />
+          </div>
         </SettingsItem>
       </div>
     </div>
   </div>
 );
+
+Notifications.propTypes = {
+  profile: PropTypes.object
+};
 
 export default Notifications;
