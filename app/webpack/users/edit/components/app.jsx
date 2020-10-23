@@ -7,13 +7,14 @@ import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
 import SaveReminderModal from "./save_reminder_modal";
+import Applications from "./applications";
 
 class App extends Component {
   constructor( ) {
     super( );
 
     this.state = {
-      container: 2,
+      container: 5,
       showModal: false
     };
 
@@ -33,7 +34,7 @@ class App extends Component {
       <NotificationsContainer />,
       <></>,
       <ContentContainer />,
-      <></>
+      <Applications />
     ];
 
     return (

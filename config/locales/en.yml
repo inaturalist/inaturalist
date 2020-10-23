@@ -1097,6 +1097,7 @@ en:
   datatype: Datatype
   date_: Date
   date_added: Date Added
+  date_authorized: Date Authorized
   date_created: Date Created
   date_format:
     date_long:
@@ -1412,6 +1413,7 @@ en:
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
+  external_applications: External Applications
   external_taxon_including_children: External taxon (including children)
   external_taxon_rank: External taxon rank
   extinct: EXTINCT
@@ -1790,6 +1792,7 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
+  inaturalist_applications: "%{site_name} Applications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
   info: Info
@@ -2079,6 +2082,7 @@ en:
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add comments.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
+  log_out: Log out
   log_scale_label: Log
   login_slash_username: Login / username
   logo:
@@ -3574,6 +3578,7 @@ en:
   results: results
   review_all: Review All
   reviewed: Reviewed
+  revoke: Revoke
   rg_observations: RG Observations
   role: Role
   rotate_left: Rotate Left

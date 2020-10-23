@@ -12,7 +12,9 @@ export default function reducer( state = { }, action ) {
   return state;
 }
 
-export function setUserData( userData ) {
+export function setUserData( userData, unsavedChanges = true ) {
+  userData.unsaved_changes = unsavedChanges;
+
   return {
     type: SET_USER_DATA,
     userData
@@ -36,9 +38,9 @@ export function fetchUserSettings( ) {
       return object;
     }, {} );
 
-    console.log( userSettings, "profile from users.me" );
+    // console.log( userSettings, "profile from users.me" );
 
-    dispatch( setUserData( userSettings ) );
+    dispatch( setUserData( userSettings, false ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
@@ -86,7 +88,6 @@ export function saveUserSettings( ) {
 }
 
 export function handleCheckboxChange( e ) {
-  console.log( e.target.name, "name", e.target.checked );
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[e.target.name] = e.target.checked;

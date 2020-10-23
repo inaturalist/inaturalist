@@ -5,6 +5,8 @@ import moment from "moment";
 const SaveButton = ( { saveUserSettings, profile } ) => {
   const handleClick = ( ) => saveUserSettings( );
 
+  console.log( profile, "profile in save button" );
+
   return (
     <div className="flex-no-wrap space-between-items">
       <div className="text-muted underline">
