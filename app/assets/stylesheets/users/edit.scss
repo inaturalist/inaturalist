@@ -150,3 +150,30 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.hide-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.RevokeAccessModal.modal {
+  .modal-dialog {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    .modal-content {
+      height: 20%;
+      padding-top: 22px;
+      padding-left: 32px;
+      padding-right: 32px;
+      overflow: hidden;
+      min-height: 218px;
+      min-width: 502px;
+    }
+    .modal-body {
+      padding-bottom: 46px;
+      overflow-x: auto;
+    }
+  }
+}

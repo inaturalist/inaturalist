@@ -1,4 +1,5 @@
 import React from "react";
+import RevokeAccessModal from "./revoke_access_modal";
 // import PropTypes from "prop-types";
 
 import SettingsItem from "./settings_item";
@@ -15,6 +16,7 @@ const sampleData = [{
 
 const Applications = ( ) => (
   <div className="col-xs-9">
+    <RevokeAccessModal showModal />
     <div className="row">
       <div className="col-xs-4">
         <SettingsItem header={I18n.t( "inaturalist_applications", { site_name: SITE.name } )} htmlFor="notifications" />
@@ -24,7 +26,7 @@ const Applications = ( ) => (
       </div>
     </div>
     {sampleData.map( app => (
-      <div className="row row-margin">
+      <div className="row row-margin" key={app.name}>
         <div className="col-xs-4">
           {app.name}
         </div>
@@ -45,7 +47,7 @@ const Applications = ( ) => (
       </div>
     </div>
     {sampleData.map( app => (
-      <div className="row row-margin">
+      <div className="row row-margin" key={app.name}>
         <div className="col-xs-4">
           {app.name}
         </div>

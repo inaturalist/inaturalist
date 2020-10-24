@@ -16669,6 +16669,7 @@ I18n.translations["en"] = {
   "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Log in</a> or <a href=\"/signup\">sign up</a> to add comments.\n",
   "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Log in</a> or <a href=\"/signup\">sign up</a> to add identifications.\n",
   "log_out": "Log out",
+  "log_out_of_application": "Log out of %{site_name}?",
   "log_scale_label": "Log",
   "long": "Lon",
   "longitude": "Longitude",
@@ -17426,6 +17427,7 @@ I18n.translations["en"] = {
   "review_all": "Review All",
   "reviewed": "Reviewed",
   "revoke": "Revoke",
+  "revoke_external_application": "Revoke %{site_name}?",
   "rg_observations": "RG Observations",
   "running_total": "Running Total",
   "satellite": "satellite",
@@ -17589,6 +17591,7 @@ I18n.translations["en"] = {
   "this_observation_was_created_using": "This observation was created using:",
   "this_taxon_concept_is_inactive": "this taxon concept is inactive",
   "this_taxon_has_no_default_photo": "This taxon has no default photo!",
+  "this_will_sign_you_out_current_session": "This will sign you out of your current session on this application.",
   "this_year": "This Year",
   "threatened": "Threatened",
   "time": {

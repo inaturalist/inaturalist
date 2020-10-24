@@ -2083,6 +2083,7 @@ en:
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_out: Log out
+  log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / username
   logo:
@@ -3579,6 +3580,7 @@ en:
   review_all: Review All
   reviewed: Reviewed
   revoke: Revoke
+  revoke_external_application: "Revoke %{site_name}?"
   rg_observations: RG Observations
   role: Role
   rotate_left: Rotate Left
@@ -4220,6 +4222,7 @@ en:
     associated stats`, e.g. rejecting taxa that are not within the list taxon
     or aren't of the selected rank. It will not add any new taxa. It may take
     a few minutes.
+  this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
   those_observations_no_longer_exist: Those observations no longer exist.
