@@ -159,21 +159,15 @@ input:checked + .slider:before {
 
 .RevokeAccessModal.modal {
   .modal-dialog {
-    height: 80%;
-    display: flex;
-    align-items: center;
     .modal-content {
-      height: 20%;
       padding-top: 22px;
       padding-left: 32px;
       padding-right: 32px;
-      overflow: hidden;
       min-height: 218px;
       min-width: 502px;
     }
     .modal-body {
-      padding-bottom: 46px;
-      overflow-x: auto;
+      padding-bottom: 25px;
     }
   }
 }

@@ -38,7 +38,7 @@ export function fetchUserSettings( ) {
       return object;
     }, {} );
 
-    console.log( userSettings, "profile from users.me" );
+    // console.log( userSettings, "profile from users.me" );
 
     dispatch( setUserData( userSettings, false ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );

@@ -1,6 +1,5 @@
 import React from "react";
-import RevokeAccessModal from "./revoke_access_modal";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import SettingsItem from "./settings_item";
 
@@ -14,9 +13,8 @@ const sampleData = [{
   revoke_link: 3
 }];
 
-const Applications = ( ) => (
+const Applications = ( { showModal } ) => (
   <div className="col-xs-9">
-    <RevokeAccessModal showModal />
     <div className="row">
       <div className="col-xs-4">
         <SettingsItem header={I18n.t( "inaturalist_applications", { site_name: SITE.name } )} htmlFor="notifications" />
@@ -34,7 +32,7 @@ const Applications = ( ) => (
           {app.authorized_date}
         </div>
         <div className="col-xs-5 col-sm-4">
-          <button type="button" className="btn btn-default btn-xs">{I18n.t( "log_out" )}</button>
+          <button type="button" className="btn btn-default btn-xs" onClick={showModal}>{I18n.t( "log_out" )}</button>
         </div>
       </div>
     ) )}
@@ -55,15 +53,15 @@ const Applications = ( ) => (
           {app.authorized_date}
         </div>
         <div className="col-xs-5 col-sm-4">
-          <button type="button" className="btn btn-default btn-xs">{I18n.t( "revoke" )}</button>
+          <button type="button" className="btn btn-default btn-xs" onClick={showModal}>{I18n.t( "revoke" )}</button>
         </div>
       </div>
     ) )}
   </div>
 );
 
-// Applications.propTypes = {
-//   profile: PropTypes.object
-// };
+Applications.propTypes = {
+  showModal: PropTypes.func
+};
 
 export default Applications;

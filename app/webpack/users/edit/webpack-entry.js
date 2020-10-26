@@ -11,10 +11,12 @@ import {
 } from "redux";
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
+import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import App from "./components/app";
 
 const rootReducer = combineReducers( {
-  profile: userSettingsReducer
+  profile: userSettingsReducer,
+  revokeAccess: revokeAccessModalReducer
 } );
 
 const store = createStore(

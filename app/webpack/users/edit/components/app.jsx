@@ -6,16 +6,18 @@ import ContentContainer from "../containers/content_container";
 import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
-import SaveReminderModal from "./save_reminder_modal";
-import Applications from "./applications";
+// import SaveReminderModal from "./save_reminder_modal";
+import ApplicationsContainer from "../containers/applications_container";
+import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
+
 
 class App extends Component {
   constructor( ) {
     super( );
 
     this.state = {
-      container: 2,
-      showModal: false
+      container: 5
+      // showModal: false
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -34,12 +36,12 @@ class App extends Component {
       <NotificationsContainer />,
       <></>,
       <ContentContainer />,
-      <Applications />
+      <ApplicationsContainer />
     ];
 
     return (
       <div className="container">
-        <SaveReminderModal showModal={this.state.showModal} />
+        {/* <SaveReminderModal showModal={this.state.showModal} /> */}
         <div className="row row-align-center header-margin">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
@@ -57,6 +59,7 @@ class App extends Component {
           </div>
           {userSettings[container]}
         </div>
+        <RevokeAccessModalContainer />
       </div>
     );
   }
