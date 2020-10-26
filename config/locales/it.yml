@@ -2167,6 +2167,14 @@ it:
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
   needs_to_be_identified: Ha bisogno essere identificato
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da <strong>%{inat_site_name}</strong> verso <strong>%{site_name}</strong> e condividere i dati con le istituzioni locali?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da <strong>%{inat_site_name}</strong> ad <strong>iNaturalist Suomi</strong> e condividere i dati con le istituzioni locali?
   network_affiliation_prompt_from_other_site_html: |
     Vuoi spostare l'affiliazione dell'account da <strong>%{other_site_name}</strong> verso
     <strong>%{site_name}</strong>?
