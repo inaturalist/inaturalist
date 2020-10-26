@@ -2194,14 +2194,6 @@ fr:
   needs_id_: Nécessite un ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
   needs_to_be_identified: Doit être identifié
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens au/aux/en/à %{place}. Voulez-vous changer votre affiliation d’iNaturalist.org à %{site_name}?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens en Finlande. Voulez-vous changer votre affiliation d’iNaturalist.org à iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
