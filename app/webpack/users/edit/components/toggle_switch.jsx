@@ -9,7 +9,7 @@ const ToggleSwitch = ( { profile, name, handleCheckboxChange } ) => (
         <input
           name={name}
           type="checkbox"
-          // checked={profile[name] || false}
+          checked={profile[name] || false}
           onChange={handleCheckboxChange}
         />
         <span className="slider round" />

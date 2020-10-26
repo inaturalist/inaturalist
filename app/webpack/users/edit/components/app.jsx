@@ -14,7 +14,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 5,
+      container: 2,
       showModal: false
     };
 
