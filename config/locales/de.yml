@@ -2147,13 +2147,13 @@ de:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in %{place}. Möchtest du die Zugehörigkeit deines
-    Kontos von iNaturalist.org auf %{site_name} ändern?
+    Kontos von <strong>%{inat_site_name}</strong> auf <strong>%{site_name}</strong> ändern?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, Teil des internationalen iNaturalist-Netzwerks, mit dem Fokus auf Artenvielfalt und Personen in Finnland. Möchtest du die Zugehörigkeit deines
-    Kontos von iNaturalist.org auf iNaturalist Suomi ändern?
+    Kontos von <strong>%{inat_site_name}</strong> auf <strong>iNaturalist Suomi</strong> ändern?
   network_affiliation_prompt_from_other_site_html: |
     Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
     <strong>%{site_name}</strong> ändern?

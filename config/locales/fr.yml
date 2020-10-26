@@ -1792,7 +1792,7 @@ fr:
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
   learn_more: En apprendre d'avantage
-  learn_more_on_the_blog: Apprenez-en plus sur le blog
+  learn_more_on_the_blog: Apprenez-en plus sur le blogue
   learn_more_raquo: "En apprendre d'avantage &raquo;"
   learn_what_these_licenses_mean: Apprenez-en davantage sur ce que veulent dire ces licences
   least_concern: Préoccupation mineure
@@ -2196,12 +2196,12 @@ fr:
   needs_to_be_identified: Doit être identifié
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens au/aux/en/à %{place}. Voulez-vous changer votre affiliation d’iNaturalist.org à %{site_name}?
+    <strong>%{site_name}</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens au/aux/en/à %{place}. Voulez-vous changer votre affiliation d’<strong>%{inat_site_name}</strong> à <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens en Finlande. Voulez-vous changer votre affiliation d’iNaturalist.org à iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, qui fait partie du réseau international d’iNaturalist, se concentre sur la biodiversité et les gens en Finlande. Voulez-vous changer votre affiliation d’<strong>%{inat_site_name}</strong> à <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?

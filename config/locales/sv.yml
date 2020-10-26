@@ -2228,13 +2228,13 @@ sv:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
     nätverket, fokuserar på biologisk mångfald och människor i %{place}. Vill du ändra din
-    kontoanknytning från iNaturalist.org till %{site_name}?
+    kontoanknytning från <strong>%{inat_site_name}</strong> till <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del av det internationella iNaturalist-nätverket, fokuserar på biologisk mångfald och människor i Finland. Vill du
-    ändra din kontoanknytning från iNaturalist.org till iNaturalist Suomi och dela data med lokala institutioner?
+    ändra din kontoanknytning från <strong>%{inat_site_name}</strong> till <strong>iNaturalist Suomi</strong> och dela data med lokala institutioner?
   network_affiliation_prompt_from_other_site_html: |
     Vill du ändra din tillhörighet från <strong>%{other_site_name}</strong> till
     <strong>%{site_name}</strong>?

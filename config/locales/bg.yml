@@ -1620,12 +1620,12 @@ bg:
   needs_to_be_identified: Нуждае се от разпознаване
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от iNaturalist.org на %{site_name}?
+    <strong>%{site_name}</strong>, част от международната Мрежа на iNaturalist, се фокусира върху биоразнообразието и потребителите на %{place}. Желаете ли да промените членството си от <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong> е част от международната Мрежа на iNaturalist и се фокусира върху биоразнообразието и хората от Финландия. Желаете ли да промените членството си от iNaturalist.org на iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong> е част от международната Мрежа на iNaturalist и се фокусира върху биоразнообразието и хората от Финландия. Желаете ли да промените членството си от <strong>%{inat_site_name}</strong> на <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Желаете ли да промените своето членство от <strong>%{other_site_name}</strong> на <strong>%{site_name}</strong>?
   new: Нови

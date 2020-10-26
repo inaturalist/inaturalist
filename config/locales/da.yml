@@ -2185,14 +2185,14 @@ da:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til %{site_name}?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i Finland. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
