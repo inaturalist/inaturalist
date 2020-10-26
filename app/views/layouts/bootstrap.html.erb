@@ -79,8 +79,10 @@
               <div class="container">
                 <%= t(
                   "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
+                  inat_site_name: Site.default.name,
                   default: t( :network_affiliation_prompt_from_inat_html,
                     site_name: session[:potential_site][:name],
+                    inat_site_name: Site.default.name,
                     place: session[:potential_site][:place_name],
                     vow_or_con: session[:potential_site][:place_name].first.downcase
                   )

@@ -120,10 +120,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_preferred_site
-    unless params[:test].to_s =~ /network/
-      session.delete(:potential_site)
-      return true
-    end
     return true unless flash.empty?
     return true unless current_user
     if current_user.prefers_no_site?
@@ -138,8 +134,6 @@ class ApplicationController < ActionController::Base
         current_user.latitude = lat.to_f
         current_user.longitude = lon.to_f
       end
-    else
-      return true
     end
     return true unless session[:potential_site].blank?
     return true if @site != Site.default && current_user.site == @site
@@ -147,10 +141,8 @@ class ApplicationController < ActionController::Base
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
-      Rails.logger.debug "[DEBUG] potential_place: #{potential_place}"
       return true unless potential_place
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
-      Rails.logger.debug "[DEBUG] potential_site: #{potential_site}"
       if potential_site
         session[:potential_site] = {
           id: potential_site.id,
