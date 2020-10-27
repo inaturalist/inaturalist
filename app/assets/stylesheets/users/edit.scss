@@ -11,17 +11,38 @@
   text-decoration: underline;
 }
 
+.help-text {
+  margin-bottom: 13px;
+}
+
+.remove-photo-margin {
+  margin-top: 5px !important;
+}
+
 .custom-dropdown-width {
   min-width: 275px;
 }
 
-.dropdown-title {
+.default-license {
   display: inline-block;
+  vertical-align: middle;
+  min-width: 275px;
+  min-height: 63px;
 }
 
 .inat-affiliation-logo-size {
   max-height: 33px;
   max-width: 135px;
+}
+
+.inat-affiliation-network-margin {
+  margin-left: 12px;
+}
+
+.blue-checkmark {
+  color: #2e78b8;
+  position: absolute;
+  right: 6px
 }
 
 .centered-column {
@@ -58,18 +79,22 @@ button.left-nav-item {
   height: 522px;
 }
 
-.align-right {
-  position: absolute;
-  right: 6px
-}
-
 .wrap-white-space {
   white-space: normal;
 }
 
-.user-prefers-license {
+.license {
   width: 115px;
   margin-left: 15px;
+  text-align: left;
+}
+
+.default-license-label {
+  padding-top: 15px;
+}
+
+.default-license-image {
+  padding-bottom: 21px;
 }
 
 .user-photo {
@@ -89,6 +114,10 @@ button.left-nav-item {
 
 .row-margin {
   margin-bottom: 21px;
+}
+
+.profile-photo-margin {
+  margin-top: 20px;
 }
 
 .ToggleSwitch {

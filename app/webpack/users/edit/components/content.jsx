@@ -50,9 +50,14 @@ const Content = ( {
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
     return (
-      <div className="custom-dropdown-width dropdown-title">
-        <img id="image-license" src={iNatLicenses[defaultLicense].icon_large} alt={defaultLicense} />
-        <label className="user-prefers-license wrap-white-space" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+      <div className="default-license">
+        <img
+          id="image-license"
+          src={iNatLicenses[defaultLicense].icon_large}
+          alt={defaultLicense}
+          className="default-license-image"
+        />
+        <label className="license wrap-white-space default-license-label" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
       </div>
     );
   };
@@ -61,10 +66,27 @@ const Content = ( {
     const iNatLicenses = iNaturalist.Licenses;
 
     const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa", "c"];
+    const checkmark = <i className="fa fa-check blue-checkmark" aria-hidden="true" />;
 
     const menuItems = displayList.map( license => {
       const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
       const { code } = iNatLicenses[license];
+
+      const allRightsReserved = (
+        <div>
+          <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
+          <p
+            className="text-muted wrap-white-space"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "you_retain_full_copyright", {
+                site_name: SITE.name
+              } )
+            }}
+          />
+          {profile[name] === code && checkmark}
+        </div>
+      );
 
       return (
         <MenuItem
@@ -72,25 +94,11 @@ const Content = ( {
           eventKey={code}
           className="custom-dropdown-width"
         >
-          {license === "c" ? (
-            <div>
-              <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
-              <p
-                className="text-muted wrap-white-space"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "you_retain_full_copyright", {
-                    site_name: SITE.name
-                  } )
-                }}
-              />
-              {profile[name] === code && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
-            </div>
-          ) : (
+          {license === "c" ? allRightsReserved : (
             <span className="flex-no-wrap wrap-white-space">
               <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-              <label className="user-prefers-license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
-              {profile[name || "cc-by-nc"] === code && <i className="fa fa-check blue-text align-right" aria-hidden="true" />}
+              <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+              {profile[name] === code && checkmark}
             </span>
           )}
         </MenuItem>

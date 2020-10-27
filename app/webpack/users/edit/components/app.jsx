@@ -16,7 +16,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 5
+      container: 0
       // showModal: false
     };
 
@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <div className="container">
         {/* <SaveReminderModal showModal={this.state.showModal} /> */}
-        <div className="row row-align-center header-margin">
+        <div className="row">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
           </div>

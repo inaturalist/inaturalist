@@ -50,7 +50,7 @@ const Profile = ( {
               accept="image/png,image/jpeg,image/gif"
               multiple={false}
             >
-              <div className="row row-align-center">
+              <div className="row profile-photo-margin">
                 <div className="col-xs-4">
                   <img
                     alt="user-icon"
@@ -67,7 +67,7 @@ const Profile = ( {
                     {I18n.t( "upload_new_photo" )}
                   </button>
                   <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
-                  <button className="btn btn-default btn-xs" type="button" onClick={removePhoto}>
+                  <button className="btn btn-default btn-xs remove-photo-margin" type="button" onClick={removePhoto}>
                     {I18n.t( "remove_photo" )}
                   </button>
                 </div>
@@ -75,13 +75,13 @@ const Profile = ( {
             </Dropzone>
           </SettingsItem>
           <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
-            <div className="text-muted">{I18n.t( "username_description" )}</div>
+            <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
             <div className="input-group">
               <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
-            <div className="text-muted">{I18n.t( "email_description" )}</div>
+            <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
             <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
           </SettingsItem>
           <ChangePassword changePassword={changePassword} />
@@ -89,13 +89,13 @@ const Profile = ( {
         <div className="col-md-1" />
         <div className="col-md-5 col-xs-10">
           <SettingsItem header={I18n.t( "display_name" )} required htmlFor="user_name">
-            <div className="text-muted">{I18n.t( "display_name_description" )}</div>
+            <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">
               <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
             </div>
           </SettingsItem>
           <SettingsItem header={I18n.t( "bio" )} required htmlFor="user_description">
-            <div className="text-muted">{I18n.t( "bio_description" )}</div>
+            <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
             <textarea id="user_description" className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
           </SettingsItem>
           <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">

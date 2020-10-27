@@ -66,8 +66,8 @@ const Account = ( {
             alt={`inat-affiliation-logo-${number}`}
             src={showINatAffiliationLogo( number )}
           />
-          {location.toLocaleUpperCase( )}
-          {profile.site_id === number && <i className="fa fa-check align-right" aria-hidden="true" />}
+          <div className="text-muted small inat-affiliation-network-margin">{location.toLocaleUpperCase( )}</div>
+          {profile.site_id === number && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
         </span>
       </MenuItem>
     ) );
