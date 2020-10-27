@@ -12,8 +12,8 @@ export default function reducer( state = { }, action ) {
   return state;
 }
 
-export function setUserData( userData, unsavedChanges = true ) {
-  userData.unsaved_changes = unsavedChanges;
+export function setUserData( userData, savedStatus = "unsaved" ) {
+  userData.saved_status = savedStatus;
 
   return {
     type: SET_USER_DATA,
@@ -21,7 +21,7 @@ export function setUserData( userData, unsavedChanges = true ) {
   };
 }
 
-export function fetchUserSettings( ) {
+export function fetchUserSettings( savedStatus ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
     // this is kind of unnecessary, but removing these since they're read-only keys
     // and don't need to be included in UI or users.update
@@ -38,9 +38,7 @@ export function fetchUserSettings( ) {
       return object;
     }, {} );
 
-    // console.log( userSettings, "profile from users.me" );
-
-    dispatch( setUserData( userSettings, false ) );
+    dispatch( setUserData( userSettings, savedStatus ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
@@ -58,8 +56,7 @@ export function saveUserSettings( ) {
       "icon_delete",
       "make_observation_licenses_same",
       "make_photo_licenses_same",
-      "make_sound_licenses_same",
-      "upsaved_changes"
+      "make_sound_licenses_same"
     ];
 
     // move these attributes so they're nested under params, not params.user
@@ -78,12 +75,13 @@ export function saveUserSettings( ) {
     // could leave these, but they're unpermitted parameters
     delete params.user.id;
     delete params.user.updated_at;
+    delete params.user.saved_status;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth
       // currently users.me returns different results than
       // dispatching setUserData( results[0] ) from users.update response
-      fetchUserSettings( );
+      dispatch( fetchUserSettings( "saved" ) );
     } ).catch( e => console.log( `Failed to update via users.update: ${e}` ) );
   };
 }

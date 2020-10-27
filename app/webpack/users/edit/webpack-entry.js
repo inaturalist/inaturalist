@@ -30,7 +30,7 @@ const store = createStore(
   )
 );
 
-store.dispatch( fetchUserSettings( ) );
+store.dispatch( fetchUserSettings( null ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension
