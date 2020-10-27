@@ -12,7 +12,7 @@ import {
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
-import App from "./components/app";
+import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
   profile: userSettingsReducer,
@@ -35,7 +35,7 @@ store.dispatch( fetchUserSettings( null ) );
 render(
   // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById( "app" )
 );

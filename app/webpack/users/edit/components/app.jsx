@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
@@ -6,10 +7,8 @@ import ContentContainer from "../containers/content_container";
 import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
-// import SaveReminderModal from "./save_reminder_modal";
 import ApplicationsContainer from "../containers/applications_container";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
-
 
 class App extends Component {
   constructor( ) {
@@ -17,14 +16,34 @@ class App extends Component {
 
     this.state = {
       container: 0
-      // showModal: false
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
+    this.handleUnload = this.handleUnload.bind( this );
+  }
+
+  componentDidMount() {
+    window.addEventListener( "beforeunload", this.handleUnload );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener( "beforeunload", this.handleUnload );
   }
 
   setContainerIndex( i ) {
     this.setState( { container: i } );
+  }
+
+  handleUnload( e ) {
+    const { profile } = this.props;
+    e.preventDefault( );
+
+    if ( profile.saved_status === "unsaved" ) {
+      // Chrome requires returnValue to be set
+      e.returnValue = "";
+    } else {
+      delete e.returnValue;
+    }
   }
 
   render( ) {
@@ -41,7 +60,6 @@ class App extends Component {
 
     return (
       <div className="container">
-        {/* <SaveReminderModal showModal={this.state.showModal} /> */}
         <div className="row">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
@@ -64,5 +82,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  profile: PropTypes.object
+};
 
 export default App;
