@@ -27,8 +27,9 @@
         = f.hidden_field :redirect_url, value: observations_by_login_url( current_user.login )
         = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
           = fti.fields_for :extra do |ftie|
-            = ftie.text_field :api_key, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key, disabled: true
+            = ftie.text_field :api_key_display, class: "text", placeholder: "Enter your Mushroom Observer API key", style: "min-width: 300px", value: @api_key, disabled: true
             = ftie.hidden_field :mo_user_id, value: @mo_user_id
+            = ftie.hidden_field :api_key, value: @api_key
         = f.submit "Import", class: "btn btn-primary", data: { loading_click: "Loading..." }, disabled: @results.blank?
   - if @errors && !@errors.blank?
     .row
@@ -75,7 +76,9 @@
                   = observation.munge_observed_on_with_chronic; observation.observed_on
                 %td= observation.latitude
                 %td= observation.longitude
-                %td= "#{observation.positional_accuracy} m"
+                %td
+                  - unless observation.positional_accuracy.blank?
+                    = "#{observation.positional_accuracy} m"
                 %td= observation.place_guess
                 %td
                   = formatted_user_text observation.description
@@ -103,7 +106,6 @@
           observations to correct them.
         %li
           %strong iNat will use the MO consensus name, not your name.
-          Getting your naming from the MO API seems to be impossible.
         %li
           %strong Observations not from collection location will be skipped:
           iNat is for recording observations from where and when they were

@@ -462,6 +462,27 @@ da:
   announcements: Meddelelser
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Hvilken som helst
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Hvilken som helst
+  #Label for an option to show content from any date
+  any_date: Hvilken som helst
+  #Label for an option to show content with any establishment means
+  any_establishment: Hvilken som helst
+  #Label for an option to show content with any license
+  any_license: Hvilken som helst
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Hvilken som helst
+  #Label for an option to show content from any project
+  any_project: Hvilken som helst
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Hvilken som helst
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Hvilken som helst
+  #Label for an option to show/include content by any user
+  any_user: Hvilken som helst
   anyone: Enhver
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -684,6 +705,7 @@ da:
   cc_by_sa_name: Kildeangivelse - Del på samme måde
   cc_used_under_a: "Creative Commons, brugt under en"
   change_admin: Skift administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Skift bannerbillede
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
@@ -748,6 +770,7 @@ da:
   check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer på
   check_out_our_blog: Se vores blog
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere, ser ud
+  check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
     <a href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -904,7 +927,7 @@ da:
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
-    teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
+    teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
   controls: Kontrolpanel
   convert: Konvertér
@@ -1058,6 +1081,7 @@ da:
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slet bannerbillede?
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
@@ -1576,7 +1600,7 @@ da:
         Takson stammer fra fællesskabs takson. Denne identifikation kan føre til det
         rigtige svar.
       improving: |
-        Første forslag til dette takson, som fællesskabet efterfølgende var enige i. Dette hjalp med at forbedre fællesskabs taksonen.
+        Første forslag til denne takson, som fællesskabet er enige i. Dette hjælper med at forædle fællesskabstaksonen.
       maverick: |
         Takson er ikke en efterkommer eller stamfader til fællesskabs taksonen, dvs. fællesskabet er ikke enig i denne takson
   id_withdrawn: ID trukket tilbage
@@ -1754,6 +1778,7 @@ da:
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
+  learn_more_on_the_blog: Læs mere på bloggen
   learn_more_raquo: "Lær mere &raquo;"
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: Mindste bekymring
@@ -1796,6 +1821,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
     maltese: Maltesisk
@@ -1906,6 +1932,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
+    lv: Lettisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -2158,14 +2185,14 @@ da:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til %{site_name}?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i Finland. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
@@ -2248,6 +2275,7 @@ da:
   no_matching_places: Ingen matchende steder
   no_matching_projects: Ingen matchende projekter
   no_matching_species: Ingen matchende arter.
+  no_matching_taxa: Ingen matchende taksa
   no_matching_users: Ingen matchende brugere.
   no_members_yet: "Ingen medlemmer endnu."
   no_messages_yet: Ingen beskeder endnu
@@ -3081,6 +3109,28 @@ da:
     zimbabwe: Zimbabwe
   places_of_interest: Interessante steder
   places_merged_successfully: Steder sammenlagt!
+  places_warning_export_complex_boundary_html: |
+    Forsøger du at eksportere observationer fra en kompleks grænse, så overvej
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
+    hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
+    eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
+  places_warning_look_for_existing_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt to administrative niveauer under
+    land.
+  places_warning_projects_can_have_multiple_places: |
+    Forsøger du at oprette et sted til en projektafgrænsning, kan projekter være
+    sammensat af flere steder. Ønsker du f.eks. at oprette et projekt for
+    New Zealand og Australien, kan du blot føje forudsætninger til to steder
+    i stedet for at oprette et nyt.
+  places_warning_new_places_are_slow_html: |
+    Nye steder er en af de største kilder til træghed på iNat, så
+    <strong>overvej venligst, ikke at oprette et nyt sted</strong>. Mens små steder kun indeholdende et par tusinde observationer normalt er OK, så vil du forøge iNat-responstider for alle andre, hvis du opretter et nyt sted indeholdende en masse observationer. Her er nogle alternative tilgange:
+  places_warning_editing_places_is_slow: |
+    Redigering af stedgrænser er en af de største kilder til træghed på iNat.
+    Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
+  places_warning_the_future: |
+    For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
   please_add_a_citation_for_this_change: Tilføj venligst en henvisning til denne ændring.
   please_add_this_observation_to: Tilføj venligst denne observation til
@@ -3214,15 +3264,27 @@ da:
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
+    x_kingdoms:
+      one: Rige
+      other: Riger
     subkingdom: Underrige
     phylum: Række
+    x_phyla:
+      one: Stamme
+      other: Stammer
     subphylum: Underrække
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klasser
     subclass: Underklasse
     infraclass: Infraklasse
     superorder: Superorden
     order: Orden
+    x_orders:
+      one: Indordning
+      other: Indordninger
     suborder: Underorden
     infraorder: Infraorden
     subterclass: Subterklasse
@@ -3232,11 +3294,17 @@ da:
     superfamily: Superfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familier
     subfamily: Underfamilie
     supertribe: Superstamme
     tribe: Stamme
     subtribe: Understamme
     genus: Slægt
+    x_genera:
+      one: Slægt
+      other: Slægter
     genushybrid: Slægtshybrid
     subgenus: Underslægt
     section: Sektion
@@ -3244,6 +3312,9 @@ da:
     complex: Kompleks
     #Singular
     species: Arter
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underarter
@@ -3938,7 +4009,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
@@ -4243,6 +4313,7 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  view_my_life_list: Vis din livsliste
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -4306,7 +4377,6 @@ da:
   website: Hjemmeside
   week_of_date: "Ugen med %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbage
   welcome_back!: Velkommen tilbage!
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
@@ -4353,7 +4423,6 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
-  wikipedia_entry: Wikipedia indgang
   with: med
   withdraw: Træk tilbage
   withdrawing: Trækker tilbage...
@@ -4762,6 +4831,55 @@ da:
         reuse_desc: |
           Du kan kopiere denne takson til en anden Guide. Hvis du er en af redaktørerne for denne Guide, skulle alt blive kopieret, men hvis du ikke er det,
           vil det kun være det licenserede indhold, der blive kopieret.
+    lifelists:
+      list_view: Listevisning
+      tree_view: Trævisning
+      observed_species: Observerede arter
+      unobserved_species: Uobserverede arter
+      all_species: Alle arter
+      all_unobserved_species: Alle uobserverede arter
+      observations_at_this_taxon: Observationer hos denne takson
+      observations_within_this_taxon: Observationer indenfor denne takson
+      all_observations: Alle observationer
+      total_observations: Observationer i alt
+      filter_by: Filtrér efter
+      filtered_by: Filtreret efter
+      apply_filters_to_export: Anvend filtre til eksport
+      restrict_to_leaf_taxa: Begræns til bladtaksa
+      restrict_to_taxon: Begræns til %{taxon}
+      restrict_to_taxa_observed_in_place: Begræns til taksaobservationer for %{place}
+      exporting_all_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer alle %{count} taksa
+      exporting_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer alle %{count} taksa
+      no_observations_found_in_place: Ingen observationer fundet for %{place}
+      no_observations_found_within_this_taxon_in_place: Ingen observationer fundet indenfor denne takson for %{place}.
+      no_species_found_within_this_taxon_in_place: Ingen arter fundet indenfor denne takson for %{place}.
+      no_species_found_in_place: Ingen arter fundet for %{place}
+      no_unobserved_species_in_place: Ingen uobserverede arter for %{place}.
+      no_unobserved_species_within_this_taxon: Ingen uobserverede arter indenfor denne takson.
+      no_unobserved_species_within_this_taxon_in_place: Ingen uobserverede arter indenfor denne takson for %{place}.
+      reset_place_filter: Nulstil placeringsfilter
+      all_observations_in_this_taxon: Alle observationer i denne takson
+      observations_of_exactly_this_taxon: Observationer præcis denne takson
+      focus_tree_on_this_taxon: Fokusér træ på denne takson
+      expand_all_nodes_in_this_branch: Udvid alle knudepunkter for denne gren
+      collapse_this_branch: Sammenfold denne gren
+      dropdowns:
+        sort: Sortér
+        taxonomic: Taksonomisk
+        name: Navn
+        most_observed: Mest observeret
+        least_observed: Mindst observeret
+        date_added_newest: Tilføjelsesdato, nyeste til ældste
+        date_added_oldest: Tilføjelsesdata, ældste til nyeste
+        ancestry: Herkomst
+        show: Vis
+        children: Underordnede
+        simplified_tree: Forenklet træ
+        full_taxonomy: Fuld taksonomi
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5863,6 +5981,11 @@ da:
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
           Arter er standard.
+        wikipedia_summary_desc_html: |
+          Kort opsummering af denne takson baseret på dens <a target="_blank"
+          href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
+          manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
+          hvilket automatisk opfriskes efter én uge.
       show:
         about_names_desc: |
           <P>
@@ -6103,6 +6226,9 @@ da:
           biodiversitets information fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
@@ -6618,6 +6744,7 @@ da:
     models:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
+      BlockedUser: Blokeret bruger
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
@@ -6628,6 +6755,9 @@ da:
       assessment_section:
         title: Titel
         body: Indhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokeret bruger
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6789,7 +6919,8 @@ da:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API nøgle import eller kø for import"
+              api_key_in_use: "Import for denne Mushroom Observer-bruger kører eller er sat i kø til import"
+              api_key_missing: "Champignonobservator API-nøgle mangler"
         observation:
           attributes:
             base:
@@ -6847,6 +6978,11 @@ da:
                 skal være observeret efter %{time}
               must_be_observed_before: |
                 skal være observeret før %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observation har ingen dato at stemme på
+              no_votable_coordinates: Observation har ingen koordinater at stemme på
         taxon:
           attributes:
             rank:
@@ -6902,6 +7038,20 @@ da:
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
               domain_is_not_supported: domæne er uunderstøttet
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du har allerede blokeret dén bruger
+              user_cannot_be_staff: |
+                Du kan ikke blokere personale. iNat-personale skal kunne
+                kommunikere med alle på iNat, har adgang til alle data på
+                iNat, og er de endelige mæglere af tvister, så blokering
+                vil ikke forhindre dem i at kommunikere med dig. Hvis du har et
+                problem med et medlem af personalet, bedes du rapportere dette til en af 
+                iNat-underdirektørerne eller, hvis du har et problem med en af 
+                underdirektørerne, kan du kontakte Videnskabschef på
+                Institute for Biodiviersity and Sustainability Science på
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -7075,6 +7225,8 @@ da:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Advarsel
   wild: vild
   will_paginate:
     previous_label: "&#8592; Forrige."

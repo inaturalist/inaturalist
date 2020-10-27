@@ -694,6 +694,7 @@ gl:
   cc_by_sa_name: Atribución-Compartir igual
   cc_used_under_a: "Creative Commons, empregada baixo unha licenza deste tipo"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Mudar a cabeceira
   change_descriptions:
     split: A especie ou grupo está separada
@@ -910,7 +911,6 @@ gl:
     flowering: As flores son visibles, están abertas e aínda están unidos á planta
     fruiting: Os froitos son visibles e aínda están unidos á planta
     no_evidence_of_flowering: Os medios non amosan evidencias de estructuras reproductivas
-    teneral: Adulto que pupou recentemente pero que aínda non acadou a súa forma adulta
     cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
   controls: Controis
   convert: Convertir
@@ -1061,6 +1061,7 @@ gl:
   delete: Eliminar
   delete_all: Borrar todo
   delete_conversation: Eliminar conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿Eliminar a cabeceira?'
   delete_icon?: Eliminar icona?
   delete_photo: Eliminar foto
@@ -1552,8 +1553,6 @@ gl:
     tooltips:
       leading: |
         O taxon descende dun taxon da comunidade. Esta identificación pode dar abrir camiño á resposta certa.
-      improving: |
-        A primeira suxestión deste taxon con que, subsecuentemente, a comunidade está dacordo. Isto axudou a refinar o taxon da comunidade.
       maverick: |
         O taxon non é descendente ou ancestro do taxon da comunidade, p.e. a comunidade está en desacordo con este taxon.
   id_withdrawn: Identificación Retirada
@@ -2108,9 +2107,6 @@ gl:
   needs_id_: Precisa identificación
   needs_id_expandable_html: "<span class='full'>Precisa </span>identificación"
   needs_to_be_identified: Necesita ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da Rede Internacional iNaturalist, está enfocada na biodiversidade e na xente de %{place}. ¿Gustaríache mudar a afiliación da túa conta de iNaturalist.org a %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     ¿Gustaríache mudar a túa afiliación de <strong>%{other_site_name}</strong> a <strong>%{site_name}</strong>?
   new: Novo
@@ -3828,7 +3824,6 @@ gl:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: Este
   this_bioblitz_beings_in: Este bioblitz comeza en
-  this_is_a_cached_summary_based_on: Este é un resumo en caché deste taxón baseado no teu traballo
   this_is_a_life_list_of: Esta é unha lista de vida de
   this_is_a_life_list_from_place_html: "Isto é unha listaxe de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Isto é unha lista de vida de %{taxon} en %{place}"
@@ -4185,7 +4180,6 @@ gl:
   website: Sitio web
   week_of_date: "Semana do %{date}"
   welcome: Benvido
-  welcome_back: Benvido outra vez
   welcome_back!: '¡Benvido de novo!'
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_guides: "¡Benvido ás Guías de %{site_name}!"
@@ -4231,7 +4225,6 @@ gl:
     Fonte: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     Este artigo usa material do artigo da Wikipedia <a href="%{url}">%{title}</a>, que é lanzado baixo a licenza <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a>. O contido poderá ter sido omitido do orixinal, pero ningún contido foi mudado ou extendido.
-  wikipedia_entry: Rexistro de Wikipedia
   with: Con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -5608,6 +5601,9 @@ gl:
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
         license_description_attribution_html: |
           As descricións de licenzas e imaxes &copy;%{year} Creative Commons, usados baixo unha <a href="http://creativecommons.org/licenses/by/3.0/">Licenza Creative Commons Attribution</a> (que meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Patrocinador Mensual
         monthly_supporter_desc_html: |
           Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
@@ -6238,10 +6234,6 @@ gl:
           attributes:
             base:
               guide_has_too_many_taxa: "a guía só pode ter 500 taxons"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Importando chave API ou na cola para a importación"
         observation:
           attributes:
             base:

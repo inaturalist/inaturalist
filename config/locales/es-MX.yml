@@ -536,6 +536,7 @@ es-MX:
   cc_by_sa_name: Atribución - Compartir bajo la misma licencia
   cc_used_under_a: "Creative Commons, utilizado bajo una"
   change_admin: Cambia administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambia la portada
   change_descriptions:
     split: La especie o grupo es separada
@@ -851,6 +852,7 @@ es-MX:
   delete: Borrar
   delete_all: Elimina todo
   delete_conversation: Eliminar conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿Borrar la portada?'
   delete_icon?: '¿Borrar el ícono?'
   delete_photo: Elimina foto
@@ -1262,8 +1264,6 @@ es-MX:
     tooltips:
       leading: |
         El taxón desciende del taxón elegido por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
-      improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón de la comunidad.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, es decir que la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Identificación retirada
@@ -1739,6 +1739,19 @@ es-MX:
   needs_id_: Necesita identificación
   needs_id_expandable_html: "<span class='full'>Necesita </span>ID"
   needs_to_be_identified: Necesita identificarse
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de <strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong> y compartir datos con instituciones locales?
+  network_affiliation_prompt_from_other_site_html: |
+    ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
+    <strong>%{site_name}</strong>?
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
@@ -3197,7 +3210,6 @@ es-MX:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Hay un resumen guardado sobre esta especie o grupo basado en su
   this_is_a_life_list_of: Esta es la lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -3506,7 +3518,6 @@ es-MX:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de regreso
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -3547,7 +3558,6 @@ es-MX:
   without_annotation: Sin anotación
   widget_code: Código widget
   widget_for: Widget para
-  wikipedia_entry: entrada de wikipedia
   with: Con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4973,6 +4983,7 @@ es-MX:
   activerecord:
     models:
       AssessmentSection: Sección de evaluación
+      BlockedUser: Usuario bloqueado
       CompleteSet: Lista completa
       TaxonLink: Enlace de taxón
     attributes:
@@ -4981,6 +4992,9 @@ es-MX:
       assessment_section:
         title: Título
         body: Contenido principal
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuario bloqueado
       conservation_status:
         status: Estatus
         description: Descripción
@@ -5118,7 +5132,7 @@ es-MX:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
+              api_key_missing: "Falta la clave API de observador de hongos"
         observation_field_value:
           attributes:
             value:
@@ -5188,6 +5202,12 @@ es-MX:
                 tiene que empezar con una letra, no contener espacios y usar sólo letras, números, guiones, y guiones bajos
             email:
               must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
   doorkeeper:
     scopes:
       write: |

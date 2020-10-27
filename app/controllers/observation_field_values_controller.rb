@@ -115,7 +115,7 @@ class ObservationFieldValuesController < ApplicationController
     elsif @observation_field_value.observation.user_id != current_user.id &&
           @observation_field_value.user_id != current_user.id
       status = :forbidden
-      json = "You do not have permission to do that."
+      json = t(:you_dont_have_permission_to_do_that)
     else
       @observation_field_value.wait_for_obs_index_refresh = true
       @observation_field_value.destroy

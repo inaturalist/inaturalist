@@ -36,7 +36,14 @@ module Ratatosk
             next
           end
           names[tn.name] ||= tn
-          if synonym = page.xpath('//synonym').detect{|s| TaxonName.strip_author(Taxon.remove_rank_from_name(s.text)) == name} 
+          synonyms = page.xpath('//synonyms/synonym').select {|s|
+            if r = s.at( "relationship")
+              !%w(doubtful misapplied).include?( r.text )
+            else
+              true
+            end
+          }.map{|s| s.at("synonym")}
+          if synonym = synonyms.detect{|s| TaxonName.strip_author(Taxon.remove_rank_from_name(s.text)) == name}
             stn = names[tn.name].dup
             stn.name = TaxonName.strip_author(Taxon.remove_rank_from_name(synonym.text))
             stn.source_identifier = nil
@@ -53,7 +60,10 @@ module Ratatosk
             names[ctn.name] = ctn
           end
         end
-        names.values[0..9]
+        taxon_names = names.values.sort_by do |tn|
+          tn.taxon.name.downcase == name.downcase ? 0 : 1
+        end
+        taxon_names[0..9]
       end
 
       #

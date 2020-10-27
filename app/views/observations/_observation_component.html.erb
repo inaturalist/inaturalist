@@ -125,7 +125,7 @@ Some notes:
   </div>
   <div class="user attribute">
     <h4 class="label"><%=t :observer_short %></h4>
-    <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
+    <%= link_to( observation.user.login, observations_path( user_id: observation.user.login ) ) %>
   </div>
   <div class="observed_on attribute">
     <h4 class="label"><%=t :observation_date %></h4>
@@ -133,11 +133,11 @@ Some notes:
       <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
       <% if observation.observed_on -%>
         <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
-          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
+          observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
         <%= link_to observation.observed_on.day, 
-          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+          observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
         <%= link_to observation.observed_on.year, 
-          observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
+          observations_path( user_id: observation.user.login, on: observation.observed_on.year) %>
       <% else %>
         <%=t :missing_date %>
       <% end -%>

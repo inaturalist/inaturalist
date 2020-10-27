@@ -148,7 +148,7 @@ class Post < ActiveRecord::Base
   end
   
   def update_user_counter_cache
-    if parent_type == "User" && published_at_changed?
+    if parent_type == "User" && (published_at_changed? || destroyed?) 
       User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
     end
     true

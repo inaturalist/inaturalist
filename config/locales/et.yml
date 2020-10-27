@@ -585,6 +585,7 @@ et:
   cc_by_sa_name: Viitamine-Samatingimuslik
   cc_used_under_a: "Creative Commons, kasutatud litsentsiga"
   change_admin: Muuda administraatorit
+  #Button to change the cover (or banner) image for a project
   change_cover: Muuda kaanepilti
   change_descriptions:
     split: Vana takson on jagatud mitmeks uueks taksoniks
@@ -906,6 +907,7 @@ et:
   delete: Kustuta
   delete_all: Kustuta kõik
   delete_conversation: Kustuta vestlus
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: kustutan kaanepildi?
   delete_icon?: Kustutan ikooni?
   delete_photo: Kustuta foto
@@ -1302,8 +1304,6 @@ et:
     tooltips:
       leading: |
         Takson pärineb kogukondlikust taksonist. See määratlus võib juhtida õige vastuseni.
-      improving: |
-        Esimene selle taksoni pakkumine, millega kogukond hiljem ka nõustus. See aitas kogukondliku taksonit parandada.
       maverick: |
         Takson ei ole kogukondliku taksoni järeltulija, st kogukond ei nõustu selle taksoniga.
   id_withdrawn: Määratlus tagasivõetud
@@ -3222,7 +3222,6 @@ et:
   third_person_possessive_singular: "Kasutaja %{object_phrase} %{noun}"
   this: see
   this_bioblitz_beings_in: Välkvaatlus algab
-  this_is_a_cached_summary_based_on: See on antud taksoni arhiveeritud kokkuvõte, mis põhineb selle
   this_is_a_life_list_of: 'See on failide nimekiri:'
   this_is_a_life_list_from_place_html: "See on koha %{place} elunimekiri"
   this_is_a_life_list_of_taxon_in_place: "See on taksoni %{taxon} elunimekiri kohas %{place}"
@@ -3523,7 +3522,6 @@ et:
   website: Veebileht
   week_of_date: "Kuupäeva %{date} nädal"
   welcome: tere tulemast
-  welcome_back: Tere tulemast tagasi
   welcome_back!: Tere tulemast tagasi!
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
@@ -3566,7 +3564,6 @@ et:
   widget_for: Tööriist
   wikipedia_attribution_cc_by_sa_3: |
     Allikas: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: Wikipedia artikkel
   with: koos
   withdraw: Võta tagasi
   withdrawing: Võtan tagasi...
@@ -4939,10 +4936,6 @@ et:
           attributes:
             base:
               guide_has_too_many_taxa: "juhendis saab olla kuni 500 taksonit"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "API võti importimisel või importimisjärjekorras"
         observation:
           attributes:
             base:

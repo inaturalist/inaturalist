@@ -1,10 +1,12 @@
 class MushroomObserverImportFlowTask < FlowTask
 
   validate :validate_unique_hash
+  validate :api_key_present
   before_validation :set_unique_hash
 
-  class TooManyRequestsError < StandardError; end
-  class TimeoutError < StandardError; end
+  class MushroomObserverImportFlowTaskError < StandardError; end
+  class TooManyRequestsError < MushroomObserverImportFlowTaskError; end
+  class TimeoutError < MushroomObserverImportFlowTaskError; end
 
   def validate_unique_hash
     return unless unique_hash && !finished_at
@@ -14,6 +16,14 @@ class MushroomObserverImportFlowTask < FlowTask
     scope = scope.where("id != ?", id) if id
     return unless scope.count > 0
     errors.add(:base, :api_key_in_use)
+    true
+  end
+
+  def api_key_present
+    if inputs.first.blank? || inputs.first.extra.blank? || inputs.first.extra.symbolize_keys[:api_key].blank?
+      errors.add(:base, :api_key_missing)
+    end
+    true
   end
 
   def set_unique_hash
@@ -24,6 +34,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def get( url, params = {} )
     try = params.delete(:try) || 1
     resp = begin
+      log "GET #{url}, #{params}"
       RestClient.get( url, params: params )
     rescue Net::ReadTimeout, RestClient::Exceptions::ReadTimeout
       raise TimeoutError.new(
@@ -67,7 +78,7 @@ class MushroomObserverImportFlowTask < FlowTask
     Emailer.moimport_finished( self, errors, @warnings ).deliver_now
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
-    logger.error "#{self.class.name} #{id}: Error: #{exception_string}" if @debug
+    log "Error: #{exception_string}\n#{e.backtrace}"
     update_attributes(
       finished_at: Time.now,
       error: "Error",
@@ -78,12 +89,13 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def log( msg )
+    msg = "#{self.class.name} #{id}: #{msg}"
     if options[:logger] == "stdout"
       puts
       puts "[INFO] #{msg}"
       puts
     else
-      Rails.logger.info "[INFO] #{msg}"
+      Rails.logger.info "#{msg}"
     end
   end
 
@@ -145,6 +157,19 @@ class MushroomObserverImportFlowTask < FlowTask
     [primary_image, result.search( "> images image" )].compact.flatten
   end
 
+  def taxon_for_name( name )
+    taxon = Taxon.single_taxon_for_name( name, iconic_taxa: [
+      Taxon::ICONIC_TAXA_BY_NAME["Fungi"],
+      Taxon::ICONIC_TAXA_BY_NAME["Protozoa"]
+    ] )
+    taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
+    if taxon && taxon.persisted?
+      # make sure this isn't a Ratatosk adapter
+      return Taxon.find_by_id( taxon.id )
+    end
+    nil
+  end
+
   def observation_from_result( result, options = {} )
     mo_url = result[:url].gsub( "https", "http" )
     log "working on result #{mo_url}"
@@ -174,29 +199,49 @@ class MushroomObserverImportFlowTask < FlowTask
       o.longitude = swlng + ( ( nelng - swlng ) / 2 )
       o.positional_accuracy = lat_lon_distance_in_meters(o.latitude, o.longitude, nelat, nelng)
     end
-    if consensus_name = result.at( "consensus_name" )
-      name = consensus_name.at( "name" ).text
+    if ( latitude = result.at( "latitude" ) ) && ( longitude = result.at( "longitude" ) )
+      o.latitude = latitude.text.to_f
+      o.longitude = longitude.text.to_f
+      o.positional_accuracy = nil
+    end
+    # This would prioritize the owner's name if we wanted to do that, but after
+    # implementing this, I feel like it's probably preferrable to use the
+    # consensus name
+    # owner_naming = result.search( "> namings / naming" ).detect{|n|
+    #   n.at( "owner" ).try(:[], :id) == mo_user_id
+    # }&.at( "name" )
+    owner_naming = nil
+    consensus_naming = result.at( "consensus_name" )
+    [owner_naming, consensus_naming].compact.each do |naming|
       begin
-        taxon = Taxon.single_taxon_for_name( name, iconic_taxa: [
-          Taxon::ICONIC_TAXA_BY_NAME["Fungi"],
-          Taxon::ICONIC_TAXA_BY_NAME["Protozoa"]
-        ] )
-        taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
-        if taxon && taxon.persisted?
-          o.taxon = Taxon.find_by_id( taxon.id )
+        name = naming.at( "name" ).text
+        taxon = taxon_for_name( name )
+        if o.taxon.blank? && taxon && taxon.persisted?
+          o.taxon = taxon
           if taxon.name != name
             warn( mo_url, "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
           end
         end
+        o.species_guess ||= name
       rescue ActiveRecord::AssociationTypeMismatch
         warn( mo_url, "Failed to import a new taxon for #{name}")
       end
-      o.species_guess = name
+    end
+    if consensus_naming
+      name = consensus_naming.at( "name" ).text
       o.observation_field_values.build( observation_field: mo_name_observation_field, value: [
         name,
-        consensus_name.at( "author" ).try(:text)
+        consensus_naming.at( "author" ).try(:text)
       ].compact.join(" ") )
     end
+    if owner_naming
+      name = owner_naming.at( "name" ).text
+      o.observation_field_values.build( observation_field: mo_name_observation_field, value: [
+        name,
+        owner_naming.at( "author" ).try(:text)
+      ].compact.join(" ") )
+    end
+
     if date = result.at_css( "> date" )
       o.observed_on_string = date.text
     end
@@ -260,13 +305,27 @@ class MushroomObserverImportFlowTask < FlowTask
 
   def mo_name_observation_field
     unless @mo_name_observation_field
-      @mo_name_observation_field = ObservationField.find_by_name( "Mushroom Observer Consensus Name" )
+      field_name = "Mushroom Observer Consensus Name"
+      @mo_name_observation_field = ObservationField.find_by_name( field_name )
       @mo_name_observation_field ||= ObservationField.create!(
-        name: "Mushroom Observer Consensus Name",
+        name: field_name,
         datatype: ObservationField::TEXT,
         description: "Consensus taxon name for this record on https://mushroomobserver.org"
       )
     end
     @mo_name_observation_field
+  end
+
+  def mo_owner_name_observation_field
+    unless @mo_owner_name_observation_field
+      field_name = "Mushroom Observer Owner Name"
+      @mo_owner_name_observation_field = ObservationField.find_by_name( field_name )
+      @mo_owner_name_observation_field ||= ObservationField.create!(
+        name: field_name,
+        datatype: ObservationField::TEXT,
+        description: "Taxon name applied by the owner of this record on https://mushroomobserver.org"
+      )
+    end
+    @mo_owner_name_observation_field
   end
 end

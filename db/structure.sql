@@ -8713,6 +8713,13 @@ CREATE INDEX index_projects_on_user_id ON public.projects USING btree (user_id);
 
 
 --
+-- Name: index_provider_authorizations_on_provider_name_and_provider_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_provider_authorizations_on_provider_name_and_provider_uid ON public.provider_authorizations USING btree (provider_name, provider_uid);
+
+
+--
 -- Name: index_provider_authorizations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10325,4 +10332,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
 INSERT INTO schema_migrations (version) VALUES ('20200910001039');
+
+INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 

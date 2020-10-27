@@ -22,6 +22,10 @@ class TaxonSplit < TaxonChange
     false
   end
 
+  def is_branching?
+    output_taxa.map(&:id).include?( input_taxon.id )
+  end
+
   def output_ancestor( options = { })
     if !@output_ancestor || options[:force]
       output_ancestor_id = output_taxa.first.ancestor_ids.reverse.detect do |aid|

@@ -93,7 +93,9 @@ describe Observation do
         ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
         ["2017/03/12 12:17 P.M. PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
         # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
-        ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"]
+        ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"],
+        ["2020/09/02 8:28 PM UTC", month: 9, day: 2, hour: 20, offset: "+00:00"],
+        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"]
       ].each do |date_string, opts|
         o = Observation.make!(:observed_on_string => date_string)
         expect(o.observed_on.day).to eq opts[:day]
@@ -3093,6 +3095,31 @@ describe Observation do
       o.update_attributes( taxon: @Plantae, editing_user_id: o.user_id )
       expect(o.community_taxon).not_to be_blank
       expect(o.identifications.count).to eq 2
+    end
+
+    it "change should be triggered by activating a taxon" do
+      load_test_taxa
+      o = Observation.make!
+      i1 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      expect( o.community_taxon ).not_to be_blank
+      t = Taxon.make!( parent: @Hylidae, rank: "genus", is_active: false )
+      expect( t.is_active ).to be( false )
+      @Pseudacris_regilla.update_attributes( is_active: false )
+      expect( @Pseudacris_regilla.is_active ).to be( false )
+      @Pseudacris_regilla.parent = t
+      @Pseudacris_regilla.save
+      expect( @Pseudacris_regilla.parent ).to eq( t )
+      Delayed::Worker.new.work_off
+      o = Observation.find( o.id )
+      expect( o.community_taxon ).to be_blank
+      @Pseudacris_regilla.parent = @Pseudacris
+      @Pseudacris_regilla.save
+      Delayed::Worker.new.work_off
+      @Pseudacris_regilla.update_attributes( is_active: true )
+      Delayed::Worker.new.work_off
+      o = Observation.find( o.id )
+      expect( o.community_taxon ).not_to be_blank
     end
 
     it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do

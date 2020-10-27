@@ -134,6 +134,7 @@ class TaxonName < ActiveRecord::Base
     "romanian"              => "ro",
     "russian"               => "ru",
     "scientific_names"      => "sci",
+    "sinhala"               => "si",
     "slovak"                => "sk",
     "spanish"               => "es",
     "swedish"               => "sv",

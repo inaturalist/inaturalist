@@ -7,6 +7,7 @@ module ActsAsElasticModel
     include Elasticsearch::Model
 
     attr_accessor :skip_indexing
+    attr_accessor :wait_for_index_refresh
     attr_accessor :es_source
 
     # load the index definition, if it exists

@@ -28,6 +28,23 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 import { annotationShortcuts } from "../keyboard_shortcuts";
 
+const scrollSidebarToForm = dialog => {
+  const sidebar = $( dialog ).find( ".ObservationModal:first" ).find( ".sidebar" );
+  const form = $( dialog )
+    .find( ".IdentificationForm, .CommentForm" ).not( ".collapse" )[0];
+  if ( form ) {
+    if ( $( form ).hasClass( "IdentificationForm" ) ) {
+      $( ":input:visible:first", form ).focus( );
+    } else {
+      $( "textarea:visible:first", form ).focus( );
+    }
+    // Note that you need to scroll the element that can actually scroll.
+    // There are a lot of nested divs here, so make sure you're scrolling the
+    // right one
+    $( ".info-tab-content", sidebar ).scrollTo( form );
+  }
+};
+
 class ObservationModal extends React.Component {
   constructor( props, context ) {
     super( props, context );
@@ -57,6 +74,14 @@ class ObservationModal extends React.Component {
           ) );
         }
       }, 500 );
+    }
+    if ( ( this.props.identificationFormVisible
+        && prevProps.identificationFormVisible !== this.props.identificationFormVisible
+    ) || ( this.props.commentFormVisible
+        && prevProps.commentFormVisible !== this.props.commentFormVisible
+    ) ) {
+      // focus on the ID or Comment form first fields if either just became visible
+      scrollSidebarToForm( ReactDOM.findDOMNode( this ) );
     }
   }
 
@@ -192,6 +217,7 @@ class ObservationModal extends React.Component {
       const { brightnesses } = this.state;
       const brightness = brightnesses[brightnessKey] || 1;
       const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
+      const currentImage = images[imagesCurrentIndex] || images[0];
       photos = (
         <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
@@ -211,7 +237,7 @@ class ObservationModal extends React.Component {
           <div className="photo-controls" role="toolbar">
             <div className="btn-group-vertical btn-group-xs" role="group">
               <a
-                href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+                href={currentImage.zoom || currentImage.original}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-default"
@@ -337,19 +363,6 @@ class ObservationModal extends React.Component {
         </div>
       );
     }
-
-    const scrollSidebarToForm = form => {
-      const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      if ( $( form ).hasClass( "IdentificationForm" ) ) {
-        $( ":input:visible:first", form ).focus( );
-      } else {
-        $( "textarea:visible:first", form ).focus( );
-      }
-      // Note that you need to scroll the element that can actually scroll.
-      // There are a lot of nested divs here, so make sure you're scrolling the
-      // right one
-      $( ".info-tab-content", sidebar ).scrollTo( form );
-    };
 
     const qualityGrade = ( ) => {
       if ( observation.quality_grade === "research" ) {
@@ -754,35 +767,11 @@ class ObservationModal extends React.Component {
                         key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && commentFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".IdentificationForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                       <IdentificationFormContainer
                         key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && identificationFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".CommentForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                     </div>
                   </div>

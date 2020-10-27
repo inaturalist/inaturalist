@@ -700,6 +700,7 @@ fi:
   cc_by_sa_name: Nimeä-JaaSamoin
   cc_used_under_a: "Creative Commons, käytetty lisenssillä"
   change_admin: Vaihda ylläpitäjä
+  #Button to change the cover (or banner) image for a project
   change_cover: Vaihda kansikuva
   change_descriptions:
     split: Vanha taksoni jaettu osaksi useita uusia taksoneita
@@ -910,7 +911,6 @@ fi:
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
-    teneral: Aikuinen, joka on äskettäin koteloitunut, mutta ei ole vielä saanut lopullista aikuismuotoa
     cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
   controls: Ohjaimet
   convert: Muunna
@@ -1061,6 +1061,7 @@ fi:
   delete: Poista
   delete_all: Poista kaikki
   delete_conversation: Poista keskustelu
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: poista kansikuva?
   delete_icon?: Poista kuvake?
   delete_photo: Poista kuva
@@ -1558,8 +1559,6 @@ fi:
       leading: |
         Taksoni polveutuu yhteisön taksonista. Tämä tunnistus voisi johtaa kohti
         oikeaa vastausta.
-      improving: |
-        Ensimmäinen ehdotus tästä taksonista, jonka yhteisö on myöhemmin hyväksynyt. Tämä auttoi parantamaan yhteisön tekemää tunnistusta.
   id_withdrawn: Tunnistus peruutettu
   ids_by_taxon: Tunnistuksia per taksoni
   identify: Tunnistus
@@ -1674,7 +1673,7 @@ fi:
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
   join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
-  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden yhteisöön!
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luontoharrastajien yhteisöön!
   join_this_project: Liity tähän projektiin
   'joined!': Liitytty!
   joined_projects: Liitytyt projektit
@@ -2122,14 +2121,6 @@ fi:
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
   needs_to_be_identified: On tunnistettava
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong> on osa kansainvälistä iNaturalist-verkostoa paikassa %{place}. Haluatko liittää tunnuksesi %{site_name}:een kansainvälisen sivuston sijasta?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong> on osa kansainvälistä iNaturalist-verkostoa, ja on mukautettu suomalaiseen käyttöön. Haluatko liittää tilisi iNaturalist Suomeen kansainvälisen iNaturalist.org:in sijasta?
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
@@ -2968,6 +2959,8 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_the_future: |
+    Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
@@ -3956,7 +3949,6 @@ fi:
   website: Verkkosivusto
   week_of_date: "Päivän %{date} viikko"
   welcome: tervetuloa
-  welcome_back: Tervetuloa takaisin
   welcome_back!: Tervetuloa takaisin!
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
@@ -3996,7 +3988,6 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: Wikipedia-merkintä
   withdraw: Peruuta
   withdrawing: Peruuttaa...
   with_errors: Virheiden kera
@@ -5089,6 +5080,9 @@ fi:
         license_description_attribution_html: |
           Lisenssien kuvaukset ja kuvat &copy; %{year} Creative Commons, käyttö lisenssillä <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution license</a>.
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Kuukausitukija
         monthly_supporter_desc_html: |
           iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
@@ -5229,7 +5223,7 @@ fi:
         become_a_citizen_scientist: Ryhdy kansalaistutkijaksi
         find_a_project: "Löydä sinua kiinnostava projekti tai aloita omasi."
         learn_about_nature: Opi luonnosta
-        build_your_knowledge: Lisää tietämystäsi keskustelemalla muiden luonnontieteilijöiden kanssa ja auttamalla muita.
+        build_your_knowledge: Lisää tietämystäsi keskustelemalla muiden luontoharrastajien kanssa ja auttamalla muita.
         run_a_bioblitz: Järjestä Bioblitz
         hold_an_event: Järjestä tapahtuma, jossa ihmiset yrittävät havaita mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
@@ -5537,6 +5531,7 @@ fi:
     models:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
+      BlockedUser: Estetty Käyttäjä
       CompleteSet: Täydellinen sarja
       #Noun
       Flag: Lippu
@@ -5547,6 +5542,9 @@ fi:
       assessment_section:
         title: Otsikko
         body: Leipäteksti
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Estetty käyttäjä
       conservation_status:
         status: Tila
         description: Kuvaus
@@ -5684,6 +5682,10 @@ fi:
           attributes:
             base:
               guide_has_too_many_taxa: "oppaassa voi olla vain 500 taksonia"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_missing: "Mushroom Observer API-key puuttuu."
         observation:
           attributes:
             base:
@@ -5726,6 +5728,11 @@ fi:
                 tulee olla havaittu %{time} jälkeen
               must_be_observed_before: |
                 pitää olla havaittu ennen %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Havainnolla ei ole päivämäärää, josta voisi äänestää
+              no_votable_coordinates: Havainnolla ei ole koordinaatteja, joista voisi äänestää
         taxon:
           attributes:
             rank:
@@ -5750,6 +5757,7 @@ fi:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: ei saa sisältää pilkkuja tai kauttaviivoja
+              should_be_in_english: pitää olla englanniksi
             name:
               must_match_the_taxon_if_valid: |
                 pitää vastata taksonin nimeä, jos kyseessä on hyväksytty tieteellinen nimi
@@ -5766,6 +5774,10 @@ fi:
             email:
               must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
               domain_is_not_supported: verkkotunnusta ei voi käyttää
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Olet jo estänyt käyttäjän
         user_parent:
           attributes:
             email:
@@ -5853,6 +5865,8 @@ fi:
         taxon_swap: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Varoitus
   wild: Villi
   will_paginate:
     previous_label: "&#8592; Edellinen"

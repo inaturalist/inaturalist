@@ -7,7 +7,8 @@ class UserBlock < ActiveRecord::Base
   validates_presence_of :blocked_user
   validate :only_three_per_user, on: :create
   validate :cant_block_yourself
-  validates_uniqueness_of :blocked_user_id, scope: :user_id, message: "already blocked"
+  validate :cant_block_staff
+  validate :uniquenes_of_blocked_user
 
   after_create :destroy_friendships, :notify_staff_about_potential_problem_user
 
@@ -24,6 +25,21 @@ class UserBlock < ActiveRecord::Base
     end
     true
   end
+
+  def cant_block_staff
+    if blocked_user && blocked_user.is_admin?
+      errors.add( :base, :user_cannot_be_staff )
+    end
+    true
+  end
+
+  def uniquenes_of_blocked_user
+    if blocked_user && user.user_blocks.where( blocked_user_id: blocked_user ).exists?
+      errors.add( :base, :user_already_blocked )
+    end
+    true
+  end
+
 
   def destroy_friendships
     Friendship.where( user_id: user_id, friend_id: blocked_user_id ).destroy_all

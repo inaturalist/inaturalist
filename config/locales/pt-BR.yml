@@ -464,6 +464,27 @@ pt:
   announcements: Anúncios
   any: qualquer
   any_: Qualquer
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualquer
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualquer
+  #Label for an option to show content from any date
+  any_date: Qualquer
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualquer
+  #Label for an option to show content with any license
+  any_license: Qualquer
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualquer
+  #Label for an option to show content from any project
+  any_project: Qualquer
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualquer
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualquer
+  #Label for an option to show/include content by any user
+  any_user: Qualquer
   anyone: Qualquer um
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
@@ -685,6 +706,7 @@ pt:
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: "Creative Commons, utilizada sob uma"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Altere a capa
   change_descriptions:
     split: A espécie ou grupo foi subdividida em outras
@@ -901,7 +923,6 @@ pt:
     flowering: Flores visíveis, abertas e ainda presas à planta
     fruiting: Frutos visíveis e ainda anexados à planta
     no_evidence_of_flowering: Os meios de comunicação não dão provas de estruturas reprodutivas
-    teneral: Adulto que pupou recentemente mas ainda não alcançou sua forma final de adulto
     cannot_be_determined: Não pode ser determinado a partir da evidência fornecida
   controls: Controles
   convert: Converter
@@ -1055,6 +1076,7 @@ pt:
   delete: Apagar
   delete_all: Excluir tudo
   delete_conversation: Excluir conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: apagar capa?
   delete_icon?: Excluir ícone?
   delete_photo: Excluir foto
@@ -1572,8 +1594,6 @@ pt:
     tooltips:
       leading: |
         Táxon proveniente do táxon da comunidade. Esta identificação pode estar seguindo rumo à resposta correta.
-      improving: |
-        Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxiliou ao refinar o táxon da comunidade
       maverick: |
         Táxon não é um descendente ou ancestral da comunidade táxon, i.e. a comunidade não concorda com este táxon
   id_withdrawn: ID retirada
@@ -2151,18 +2171,6 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da rede internacional iNaturalist ,
-    está focada na biodiversidade e nas pessoas de %{place}. Gostaria de mudar sua
-    afiliação de conta de iNaturalist.org para %{site_name}?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, parte da rede internacional iNaturalist,
-    está focada na biodiversidade e nas pessoas da Finlândia. Gostaria de mudar sua
-    afiliação de conta de iNaturalist.org para iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Você gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
@@ -3898,7 +3906,6 @@ pt:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
-  this_is_a_cached_summary_based_on: Este é um resumo em cache deste táxon baseado no seu trabalho
   this_is_a_life_list_of: Esta é a Lista de Vida de
   this_is_a_life_list_from_place_html: "Esta é uma lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta é uma lifelist de %{taxon} em %{place}"
@@ -4260,7 +4267,6 @@ pt:
   website: Site
   week_of_date: "Semana de %{date}"
   welcome: bem vindo
-  welcome_back: Bem vindo de volta
   welcome_back!: Bem vindo de volta!
   welcome_to_inat: "Seja bem vindo a %{site_name}!"
   welcome_to_guides: "Seja bem Vindo às Guias do %{site_name}!"
@@ -4308,7 +4314,6 @@ pt:
     Este artigo usa material do artigo da Wikipédia
     <a href="%{url}">"%{title}"</a>, que é lançado sob a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
-  wikipedia_entry: Registro do Wikipédia
   with: com
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4670,6 +4675,8 @@ pt:
       show:
         reuse_desc: |
           Você pode copiar este táxon em outra guia. Se você é um dos editores desta guia isto deve copiar tudo, mas se você não é, isto irá copiar somente o conteúdo licenciado.
+    lifelists:
+      filter_by: Filtrar por
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5843,6 +5850,9 @@ pt:
           Descrições de licença e imagens &copy; %{year} Creative Commons, usados
           sob a licença<a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution</a> (tão meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Apoiador Mensal
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
@@ -6523,10 +6533,6 @@ pt:
           attributes:
             base:
               guide_has_too_many_taxa: "a guia só pode ter 500 táxons"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Chave de API sendo importada ou aguardando importação"
         observation:
           attributes:
             base:

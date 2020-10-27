@@ -629,6 +629,7 @@ es-AR:
   cc_by_sa_name: Atribución-CompartirIgual
   cc_used_under_a: "Creative Commons, usada bajo una"
   change_admin: Cambiar administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambiar la cubierta
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
@@ -971,6 +972,7 @@ es-AR:
   delete: Elimina
   delete_all: Elimina todo
   delete_conversation: Elimina conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿elimina la cubierta?'
   delete_icon?: '¿Elimina ícono?'
   delete_photo: Elimina foto
@@ -1438,8 +1440,6 @@ es-AR:
     tooltips:
       leading: |
         El taxón desciende del taxón taxon. Esta identificación te podría acercar a la respuesta correcta.
-      improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Id. retirada
@@ -3626,7 +3626,6 @@ es-AR:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -3964,7 +3963,6 @@ es-AR:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de vuelta
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -4012,7 +4010,6 @@ es-AR:
     Este artículo utiliza material del artículo de Wikipedia.
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
-  wikipedia_entry: Registro de Wikipedia
   with: con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -5889,10 +5886,6 @@ es-AR:
           attributes:
             base:
               guide_has_too_many_taxa: "la guía solo puede tener 500 taxones"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
         observation:
           attributes:
             base:

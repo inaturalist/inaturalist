@@ -19,7 +19,9 @@ const UserWithIcon = ( { user, subtitle, subtitleIconClass } ) => {
             subtitle
             || (
               user.observations_count
-              && I18n.t( "x_observations", { count: user.observations_count.toLocaleString( ) } )
+              && I18n.t( "x_observations", {
+                count: I18n.toNumber( user.observations_count, { precision: 0 } )
+              } )
             )
            }
         </a>

@@ -564,6 +564,7 @@ pt:
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: "Creative Commons, utilizada sob uma"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Alterar a capa
   change_descriptions:
     split: Taxon anterior dividido em vários taxa novos
@@ -856,6 +857,7 @@ pt:
   delete: Eliminar
   delete_all: Eliminar tudo
   delete_conversation: Eliminar a conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: apagar capa?
   delete_icon?: Excluir ícone?
   delete_photo: Eliminar fotografia
@@ -1226,8 +1228,6 @@ pt:
     tooltips:
       leading: |
         O táxon provém do táxon da comunidade. Esta identificação pode levar à resposta correta.
-      improving: |
-        Primeira sugestão deste táxon que teve o acordo da comunidade. Isto ajudou a refinar o táxon comunitário.
       maverick: |
         O táxon não é um descendente ou um ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon.
   id_withdrawn: ID retirada
@@ -1681,11 +1681,6 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da rede iNaturalist internacional,
-    está focada na biodiversidade e nas pessoas em %{place}. Gostaria de mudar a sua
-    afiliação de conta de iNaturalist.org para %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     Gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
@@ -2889,7 +2884,6 @@ pt:
     <a href="http://facebook.com">Facebook</a>
     para o alojamento das suas imagens.
   we_had_a_problem_flagging_that_item: "Ocorreu um erro ao sinalizar esse item: %{flag_error}"
-  welcome_back: Bem-vindo de volta!
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
   welcome_to_x_project: "Bem-vindo ao projeto %{project}"

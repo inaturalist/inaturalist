@@ -328,6 +328,7 @@ mk:
   casual: површно
   cc_attribution_license: лиценца Криејтив комонс Наведи извор
   cc_by_name: Припис
+  #Button to change the cover (or banner) image for a project
   change_cover: смени насловна
   change_geoprivacy: 'Измени геоприватност'
   change_group: Промени група
@@ -454,6 +455,7 @@ mk:
   default_invite_comment: "Одлична слика!  Треба да ја објавите на %{site_name}: {{INVITE_LINK}}"
   delete: Избриши
   delete_all: Избриши ги сите
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: да ја избришам насловната?
   deleted_synonyms: Ибришани синоними
   deleting: Бришам...
@@ -1371,7 +1373,6 @@ mk:
     <a href="http://facebook.com">Facebook</a>
     како места за вдомување на сликите.
   welcome: добре дојдовте
-  welcome_back: Мило ни е што се вративте
   welcome_to_inat: "Добре дојдовте на %{site_name}!"
   welcome_to_guides: "Добре дојдовте на Водичите на %{site_name}!"
   welcome_to_x_project: "Добре дојдовте на %{project}"
@@ -1388,7 +1389,6 @@ mk:
   widget: Елемент
   widget_code: Код на елементот
   widget_for: Елемент за
-  wikipedia_entry: Статија на Википедија
   with: со
   with_errors: Со грешки
   wondering_what_to_do_next: 'Се прашувате што следно да правите? Предлагаме:'

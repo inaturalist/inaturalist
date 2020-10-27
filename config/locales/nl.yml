@@ -476,6 +476,27 @@ nl:
   announcements: Mededelingen
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alle
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alle
+  #Label for an option to show content from any date
+  any_date: Elke
+  #Label for an option to show content with any establishment means
+  any_establishment: Elke
+  #Label for an option to show content with any license
+  any_license: Alle
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alle
+  #Label for an option to show content from any project
+  any_project: Elke
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alle
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alle
+  #Label for an option to show/include content by any user
+  any_user: Alle
   anyone: Iedereen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
@@ -697,6 +718,7 @@ nl:
   cc_by_sa_name: Naamsvermelding-GelijkDelen
   cc_used_under_a: "Creative Commons gebruikt onder een"
   change_admin: Wijzig Admin
+  #Button to change the cover (or banner) image for a project
   change_cover: Cover wijzigen
   change_descriptions:
     split: Oud taxon opgesplitst in meerdere nieuwe taxa
@@ -1069,6 +1091,7 @@ nl:
   delete: Verwijderen
   delete_all: Alles verwijderen
   delete_conversation: Gesprek verwijderen
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: coverfoto verwijderen?
   delete_icon?: Icoon verwijderen?
   delete_photo: Foto verwijderen
@@ -1123,6 +1146,13 @@ nl:
         subject: 'Instructies voor bevestiging'
       reset_password_instructions:
         subject: 'Instructies voor wachtwoord resetten'
+  devise_reset_password_instructions_hello_email: Hallo %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Als je dit niet hebt aangevraagd negeer dan deze e-mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Je wachtwoord zal niet gewijzigd worden totdat je op de bovenstaande link klikt en een nieuw wachtwoord instelt.
   discoveries: Ontdekkingen
   did_not_send_invitations_because: Geen uitnodigingen verzonden naar de volgende personen omdat...
   did_you_mean: 'Bedoelde u'
@@ -1797,6 +1827,7 @@ nl:
     italian: Italiaans
     japanese: Japans
     korean: Koreaans
+    latvian: Lets
     lithuanian: Litouws
     luxembourgish: Luxemburgs
     maltese: Maltees
@@ -1907,6 +1938,7 @@ nl:
     ko: Koreaans
     lb: Luxemburgs
     lt: Litouws
+    lv: Lets
     mk: Macedonisch
     nb: Noors Bokmål
     nl: Nederlands
@@ -2157,14 +2189,14 @@ nl:
   needs_to_be_identified: Moet worden gedetermineerd
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, deel van het internationale iNaturalist
-    netwerk, is gericht op biodiversiteit en mensen in %{place}. Wilt je je account affiliatie van iNaturalist.org naar %{site_name} wijzigen?
+    <strong>%{site_name}</strong>, onderdeel van het internationale iNaturalist
+    netwerk is gericht op biodiversiteit en mensen in %{place}. Wil je jouw lidmaatschap wijzigen van <strong>%{inat_site_name}</strong> naar <strong>%{site_name}</strong>
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, deel van het internationale iNaturalist
-    netwerk, is gericht op biodiversiteit en mensen in Finland. Wilt je je account verbinden aan iNaturalist Suomi in plaats van iNaturalist.org?
+    <strong>iNaturalist Suomi</strong>, onderdeel van het internationale iNaturalist
+    netwerk is gericht op biodiversiteit en mensen in Finland. Wil je jouw lidmaatschap wijzigen van <strong>%{inat_site_name}</strong> naar <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
@@ -2247,6 +2279,7 @@ nl:
   no_matching_places: Geen overeenkomende plaatsen
   no_matching_projects: Geen overeenkomende projecten
   no_matching_species: Geen overeenkomende soorten.
+  no_matching_taxa: Geen overeenkomende taxa
   no_matching_users: Geen overeenkomende gebruikers.
   no_members_yet: "Nog geen leden."
   no_messages_yet: Nog geen berichten
@@ -3081,6 +3114,30 @@ nl:
     zimbabwe: Zimbabwe
   places_of_interest: Interessante plaatsen
   places_merged_successfully: Plaatsen succesvol samengevoegd!
+  places_warning_export_complex_boundary_html: |
+    Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
+    waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
+  places_warning_look_for_existing_html: |
+    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
+    een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
+    land.
+  places_warning_projects_can_have_multiple_places: |
+    Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
+    meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
+    Nieuw-Zeeland en Australië kun je alleen eisen toevoegen voor twee plaatsen
+    in plaats van één nieuwe.
+  places_warning_new_places_are_slow_html: |
+    Nieuwe gebieden zijn één van de grootste bronnen van vertraging in iNat dus
+    <strong>overweeg om geen nieuw gebied aan te maken</strong>. Kleine gebieden
+    met enkele duizenden waarnemingen zijn gewoonlijk geen probleem maar een
+    nieuwe plaats met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
+  places_warning_editing_places_is_slow: |
+    Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
+    Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
+  places_warning_the_future: |
+    Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
+    mensen in de toekomst plaatsen kunnen toevoegen.
   plants: planten
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
   please_add_this_observation_to: Voeg deze waarneming toe aan
@@ -3672,6 +3729,11 @@ nl:
   subscribe_to_a_place: Op een plaats abonneren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze melding"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Abonneer%{tag_end} op reacties op dit bericht"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonneer%{tag_end} op reacties op dit taxonstadium"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonwissel"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsamenvoeging"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsplitsing"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonverwijdering"
   subscribe_to_observations_in_a_taxon: Op alle waarnemingen van een soort of groep organismen (bijv. 'schorpioenen') abonneren.
   subscribe_to_observations_in_a_place: Op alle waarnemingen die op deze plaats worden gerapporteerd abonneren. Je kunt eventueel ook een taxonfilter toevoegen (bijv. 'Paardenbloemen in Utrecht').
   subscribe_to_places_to: |
@@ -3925,7 +3987,6 @@ nl:
   third_person_possessive_plural: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz begint over
-  this_is_a_cached_summary_based_on: Dit is een gecachte samenvatting van dit taxon op basis van zijn
   this_is_a_life_list_of: Dit is een levenslijst van
   this_is_a_life_list_from_place_html: "Dit is een levenslijst uit %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dit is een levenslijst van %{taxon} uit %{place}"
@@ -4227,6 +4288,7 @@ nl:
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Bekijk meer niet-nagekeken"
+  view_my_life_list: Bekijk mijn levenslijst
   view_observation: Waarneming weergeven
   view_observations: Waarnemingen weergeven
   view_observation_flags: Meldingen over waarneming bekijken
@@ -4289,7 +4351,6 @@ nl:
   website: Website
   week_of_date: "Week van %{date}"
   welcome: welkom
-  welcome_back: Welkom terug
   welcome_back!: Welkom terug!
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
@@ -4336,7 +4397,6 @@ nl:
   wikipedia_attribution_cc_by_sa_3_html: |
     Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
-  wikipedia_entry: Wikipedia-item
   with: met
   withdraw: Intrekken
   withdrawing: Intrekken
@@ -4414,6 +4474,11 @@ nl:
     U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_subscribed_to_comments_on_this_flag: Je bent geabonneerd op reacties op deze melding.
   you_are_subscribed_to_comments_on_this_post: Je bent geabonneerd op reacties op dit bericht.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Je bent geabonneerd op reacties op deze taxonpublicatie
+  you_are_subscribed_to_comments_on_this_taxon_swap: Je bent geabonneerd op reacties op deze taxonwissel
+  you_are_subscribed_to_comments_on_this_taxon_merge: Je bent geabonneerd op reacties op deze taxonsamenvoeging
+  you_are_subscribed_to_comments_on_this_taxon_split: Je bent geabonneerd op reacties op deze taxonsplitsing
+  you_are_subscribed_to_comments_on_this_taxon_drop: Je bent geabonneerd op reacties op deze taxonverwijdering
   you_are_subscribed_to_observations_from_this_place: Je bent geabonneerd op reacties uit deze plaats.
   you_arent_a_member_of_that_project: Je bent geen lid van dat project.
   you_arent_following_that_person: "Je volgt deze persoon niet."
@@ -4702,6 +4767,40 @@ nl:
       show:
         reuse_desc: |
           Je kunt dit taxon kopiëren naar een andere gids. Als je een van de redacteurs van deze gids bent, zou dit alles moeten kopiëren, maar als je dat niet bent zal het alleen de gelicentieerde inhoud kopiëren.
+    lifelists:
+      list_view: Lijst weergave
+      tree_view: Boomstructuur weergave
+      observed_species: Waargenomen soorten
+      unobserved_species: Niet waargenomen soorten
+      all_species: Alle soorten
+      all_unobserved_species: Alle niet waargenomen soorten
+      observations_at_this_taxon: Waarnemingen op dit taxon
+      observations_within_this_taxon: Waarnemingen binnen dit taxon
+      all_observations: Alle waarnemingen
+      total_observations: Totaal aantal waarnemingen
+      filter_by: Filter op
+      filtered_by: 'Gefilterd door:'
+      restrict_to_taxon: Beperken tot %{taxon}
+      no_observations_found_in_place: Geen waarnemingen gevonden in %{place}.
+      no_observations_found_within_this_taxon_in_place: Geen waarnemingen gevonden binnen dit taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: Geen soorten gevonden binnen dit taxon in %{place}.
+      no_species_found_in_place: Geen soorten gevonden in %{place}.
+      no_unobserved_species_in_place: Geen niet-waargenomen soorten in %{place}.
+      no_unobserved_species_within_this_taxon: Alle soorten binnen dit taxon zijn waargenomen
+      no_unobserved_species_within_this_taxon_in_place: Alle soorten binnen dit taxon zijn waargenomen in %{place}
+      all_observations_in_this_taxon: Alle waarnemingen binnen dit taxon
+      dropdowns:
+        sort: Sorteer
+        taxonomic: Taxonomisch
+        name: Naam
+        most_observed: Meest waargenomen
+        least_observed: Minst waargenomen
+        date_added_newest: Datum toegevoegd, nieuwste naar oudste
+        date_added_oldest: Datum toegevoegd, oudste naar nieuwste
+        show: Toon
+        children: Kinderen
+        simplified_tree: Vereenvoudigde boom
+        full_taxonomy: Volledige taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5805,6 +5904,9 @@ nl:
           Licentiebeschrijvingen en afbeeldingen &copy; %{year} Creative Commons, gebruikt
           onder een <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Naamsvermelding licentie</a> (zo meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Maandelijkse supporter
         monthly_supporter_desc_html: |
           Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.
@@ -6302,6 +6404,7 @@ nl:
     models:
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
+      BlockedUser: Geblokkeerde gebruiker
       CompleteSet: Volledige set
       #Noun
       Flag: Melding
@@ -6312,6 +6415,9 @@ nl:
       assessment_section:
         title: Titel
         body: Tekst
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Geblokkeerde gebruiker
       conservation_status:
         status: Status
         description: Beschrijving
@@ -6473,7 +6579,8 @@ nl:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API-sleutel importeren of in de wachtrij zetten voor importeren"
+              api_key_in_use: "Import voor deze \"Mushroom Observer\"-gebruiker is in onderhanden of staat in de wachtrij voor import"
+              api_key_missing: "\"Mushroom Observer\" API-sleutel ontbreekt"
         observation:
           attributes:
             base:
@@ -6532,6 +6639,11 @@ nl:
                 moet waargenomen worden na %{time}
               must_be_observed_before: |
                 moet waargenomen worden voor %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Waarneming heeft geen datum om op te stemmen
+              no_votable_coordinates: Waarneming heeft geen coördinaten om op te stemmen
         taxon:
           attributes:
             rank:
@@ -6586,6 +6698,20 @@ nl:
             email:
               must_look_like_an_email_address: moet eruit zien als een e-mailadres
               domain_is_not_supported: domein wordt niet ondersteund
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff: |
+                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet
+                kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
+                iNat en zijn de uiteindelijke bemiddelaars van geschillen. Het blokkeren van
+                hen zal hen niet verhinderen om met jou te communiceren. Als je een
+                probleem hebt met een medewerker rapporteer dat dan aan één van de
+                iNat co-directeurs, of als je een probleem hebt met één van de
+                co-directeuren, kun je contact opnemen met het hoofd van de Wetenschap op het
+                Instituut voor Biodiviersity en Duurzaamheid Wetenschap op de
+                California Academy of Science.
         user_parent:
           attributes:
             email:
@@ -6759,6 +6885,8 @@ nl:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Waarschuwing
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorige"

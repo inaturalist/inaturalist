@@ -465,6 +465,7 @@ ko:
   cc_by_sa_name: 저작자표시-같은공유
   cc_used_under_a: "크리에이티브 커먼즈"
   change_admin: 관리자 변경
+  #Button to change the cover (or banner) image for a project
   change_cover: 겉표지 변경
   change_descriptions:
     split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
@@ -741,6 +742,7 @@ ko:
   delete: 삭제
   delete_all: 모두 삭제
   delete_conversation: 대화 내역 삭제
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 겉표지 삭제?
   delete_icon?: 아이콘을 삭제하시겠습니까?
   delete_photo: 사진을 삭제하시겠습니까?
@@ -1415,8 +1417,8 @@ ko:
   ne_lon: NE 경도
   near_threatened: 준위협(NT)
   nearby_observations_: 근처에서 관찰된 생물
-  needs_id: ID가 필요합니다.
-  needs_id_: ID가 필요합니다
+  needs_id: 동정 필요 등급
+  needs_id_: 동정 필요 등급
   needs_to_be_identified: 동정 필요
   new_and_noteworthy: 새롭고 주목할 만한 사항
   new_announcement: 새로운 알림
@@ -1471,7 +1473,7 @@ ko:
   no_identifications_added:
     current_user: 다른 사람의 관찰에 동정을 추가한 것이 없습니다.
     user: "%{user}님은 아직 다른 사용자의 관찰에 동정을 추가하지 않았습니다."
-  no_ids_have_been_suggested_yet: 제안된 ID가 아직 없습니다
+  no_ids_have_been_suggested_yet: 제안된 동정이 아직 없습니다
   no_favorites_added:
     current_user: 즐겨찾기가 추가되지 않았습니다.
     user: "%{user}님은 즐겨찾기를 추가한 것이 없습니다."
@@ -1483,6 +1485,7 @@ ko:
   no_matching_places: 일치하는 장소가 없습니다.
   no_matching_projects: 일치하는 프로젝트가 없습니다.
   no_matching_species: 일치하는 종이 없습니다.
+  no_matching_taxa: 일치하는 분류군이 없습니다.
   no_matching_users: 해당하는 사용자가 없습니다.
   no_members_yet: "아직 회원이 없습니다."
   no_messages_yet: 아직 메시지가 없습니다.
@@ -2365,7 +2368,6 @@ ko:
   weather: 날씨
   website: 웹사이트
   welcome: 환영합니다
-  welcome_back: 다시 온 것을 환영합니다
   welcome_back!: 다시 오신 것을 환영합니다!
   welcome_to_inat: "%{site_name}에 오신 것을 환영합니다!"
   welcome_to_guides: "%{site_name} 가이드에 오신 것을 환영합니다!"

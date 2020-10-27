@@ -544,6 +544,27 @@ en:
   announcements: Announcements
   any: any
   any_: Any
+  # Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Any
+  # Label for an option to show content with any annotation value
+  any_annotation_value: Any
+  # Label for an option to show content from any date
+  any_date: Any
+  # Label for an option to show content with any establishment means
+  any_establishment: Any
+  # Label for an option to show content with any license
+  any_license: Any
+  # Label for an option to show content with photos, sounds, or neither
+  any_media: Any
+  # Label for an option to show content from any project
+  any_project: Any
+  # Label for an option to show content with any quality grade
+  any_quality_grade: Any
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
+  any_reviewed: Any
+  # Label for an option to show/include content by any user
+  any_user: Any
   anyone: Anyone
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -766,6 +787,7 @@ en:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change_admin: Change Admin
+  # Button to change the cover (or banner) image for a project
   change_cover: Change cover
   change_descriptions:
       split: Old taxon split into multiple new taxa
@@ -830,6 +852,7 @@ en:
   check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
+  check_out_your_new_and_improved_list_list: Check out your new and improved Life List!
   check_this_box_if_html: |
     Check this box if you want to apply a <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -994,7 +1017,7 @@ en:
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
-    teneral: Adult that has recently pupated but has not yet achieved its final adult form
+    teneral: Adult that has recently emerged but has not yet achieved its final adult form
     cannot_be_determined: Cannot be determined from the evidence provided
   controls: Controls
   convert: Convert
@@ -1153,6 +1176,7 @@ en:
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: delete cover?
   delete_icon?: Delete icon?
   delete_photo: Delete photo
@@ -1689,8 +1713,8 @@ en:
         Taxon descends from the community taxon. This identification could be leading toward the
         right answer.
       improving: |
-        First suggestion of this taxon that the community subsequently agreed with. This helped
-        refine the community taxon.
+        First suggestion of this taxon that the community agrees with. This
+        helps refine the community taxon.
       maverick: |
         Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
         agree with this taxon.
@@ -1880,6 +1904,7 @@ en:
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
+  learn_more_on_the_blog: Learn more on the blog
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
   least_concern: Least Concern
@@ -1922,6 +1947,7 @@ en:
     italian: Italian
     japanese: Japanese
     korean: Korean
+    latvian: Latvian
     lithuanian: Lithuanian
     luxembourgish: Luxembourgish
     maltese: Maltese
@@ -2033,6 +2059,7 @@ en:
     ko: Korean
     lb: Luxembourgish
     lt: Lithuanian
+    lv: Latvian
     mk: Macedonian
     nb: Norwegian Bokmål
     nl: Dutch
@@ -2288,15 +2315,17 @@ en:
   # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
-    Network, is focused on biodiversity and people in %{place}. Would you like to change your
-    account affiliation from iNaturalist.org to %{site_name}?
+    Network, is focused on biodiversity and people in %{place}. Would you like
+    to change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>%{site_name}</strong> and share data with local institutions?
   # Special version for network_affiliation_prompt_from_inat_html, which cannot
   # be properly translated into Finnish with the %{place} variable. Please don't
   # feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, part of the international iNaturalist
     Network, is focused on biodiversity and people in Finland. Would you like to
-    change your account affiliation from iNaturalist.org to iNaturalist Suomi?
+    change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>iNaturalist Suomi</strong> and share data with local institutions?
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?
@@ -2380,6 +2409,7 @@ en:
   no_matching_places: No matching places
   no_matching_projects: No matching projects
   no_matching_species: No matching species.
+  no_matching_taxa: No matching taxa
   no_matching_users: No matching users.
   no_members_yet: "No members yet."
   no_messages_yet: No messages yet
@@ -3230,6 +3260,35 @@ en:
     zimbabwe: Zimbabwe
   places_of_interest: Places of Interest
   places_merged_successfully: Places merged successfully!
+  places_warning_export_complex_boundary_html: |
+    If you're trying to export observations from a complex boundary, consider
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">downloading them from GBIF instead</a>,
+    where you can draw arbitrary boundaries, or export them from iNat using
+    existing places or a bounding box and then filter the data again once you've
+    downloaded it.
+  places_warning_look_for_existing_html: |
+    Look for <a href="/search?source[]=places">existing places</a> to make sure
+    you're not creating a duplicate. We already have places for all the
+    continents and countries, as well as two administrative levels below
+    country.
+  places_warning_projects_can_have_multiple_places: |
+    If you're trying to make a place for a project boundary, projects can be
+    composed of multiple places. For example, if you want to make a project for
+    New Zealand and Australia, you can just add requirements for two places
+    instead of making a new one.
+  places_warning_new_places_are_slow_html: |
+    New places are one of the biggest sources of slowdowns on iNat, so
+    <strong>please consider not making a new place</strong>. While small places
+    containing only a few thousand observations are usually ok, if you make a
+    new place that contains a lot of observations, you're going to slow iNat
+    down for everyone else. Here are some alternative approaches:
+  places_warning_editing_places_is_slow: |
+    Editing place boundaries is one of the biggest sources of slowdowns on iNat.
+    If you can avoid it, do not add, change, or remove place boundaries unless
+    it's absolutely necessary.
+  places_warning_the_future: |
+    For what it's worth, we will have to restrict the conditions under which
+    people can add places in the future given iNat's current rate of growth.
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_add_this_observation_to: Please add this observation to
@@ -3368,15 +3427,27 @@ en:
   ranks:
       stateofmatter: State of matter
       kingdom: Kingdom
+      x_kingdoms:
+        one: Kingdom
+        other: Kingdoms
       subkingdom: Subkingdom
       phylum: Phylum
+      x_phyla:
+        one: Phylum
+        other: Phyla
       subphylum: Subphylum
       superclass: Superclass
       class: Class
+      x_classes:
+        one: Class
+        other: Classes
       subclass: Subclass
       infraclass: Infraclass
       superorder: Superorder
       order: Order
+      x_orders:
+        one: Order
+        other: Orders
       suborder: Suborder
       infraorder: Infraorder
       subterclass: Subterclass
@@ -3386,11 +3457,17 @@ en:
       superfamily: Superfamily
       epifamily: Epifamily
       family: Family
+      x_families:
+        one: Family
+        other: Families
       subfamily: Subfamily
       supertribe: Supertribe
       tribe: Tribe
       subtribe: Subtribe
       genus: Genus
+      x_genera:
+        one: Genus
+        other: Genera
       genushybrid: Genushybrid
       subgenus: Subgenus
       section: Section
@@ -3398,6 +3475,9 @@ en:
       complex: Complex
       # Singular
       species: Species
+      x_species:
+        one: Species
+        other: Species
       hybrid: Hybrid
       # Singular
       subspecies: Subspecies
@@ -4110,7 +4190,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_a_life_list_from_place_html: "This is a life list from %{place}"
   this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
@@ -4429,6 +4508,7 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
+  view_my_life_list: View my life list
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -4492,7 +4572,6 @@ en:
   website: Website
   week_of_date: "Week of %{date}"
   welcome: welcome
-  welcome_back: Welcome back
   welcome_back!: Welcome Back!
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
@@ -4542,7 +4621,6 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
-  wikipedia_entry: Wikipedia entry
   with: with
   withdraw: Withdraw
   withdrawing: Withdrawing...
@@ -4999,6 +5077,56 @@ en:
           You can copy this taxon into another guide. If you are one of the
           editors of this guide it should copy everything, but if you're not, it
           will only copy the licensed content.
+    lifelists:
+      list_view: List View
+      tree_view: Tree View
+      observed_species: Observed Species
+      unobserved_species: Unobserved Species
+      all_species: All Species
+      all_unobserved_species: All Unobserved Species
+      observations_at_this_taxon: Observations at this taxon
+      observations_within_this_taxon: Observations within this taxon
+      all_observations: All Observations
+      total_observations: Total Observations
+      filter_by: Filter by
+      filtered_by: Filtered by
+      apply_filters_to_export: Apply filters to export
+      restrict_to_leaf_taxa: Restrict to leaf taxa
+      restrict_to_taxon: Restrict to %{taxon}
+      restrict_to_taxa_observed_in_place: Restrict to taxa observed in %{place}
+      exporting_all_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting all %{count} taxa
+      exporting_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting %{count} taxa
+      no_observations_found_in_place: No observations found in %{place}.
+      no_observations_found_within_this_taxon_in_place:
+        No observations found within this taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: No species found within this taxon in %{place}.
+      no_species_found_in_place: No species found in %{place}.
+      no_unobserved_species_in_place: No unobserved species in %{place}.
+      no_unobserved_species_within_this_taxon: No unobserved species within this taxon.
+      no_unobserved_species_within_this_taxon_in_place: No unobserved species within this taxon in %{place}.
+      reset_place_filter: Reset Place Filter
+      all_observations_in_this_taxon: All observations in this taxon
+      observations_of_exactly_this_taxon: Observations of exactly this taxon
+      focus_tree_on_this_taxon: Focus tree on this taxon
+      expand_all_nodes_in_this_branch: Expand all nodes in this branch
+      collapse_this_branch: Collapse this branch
+      dropdowns:
+        sort: Sort
+        taxonomic: Taxonomic
+        name: Name
+        most_observed: Most Observed
+        least_observed: Least Observed
+        date_added_newest: Date Added, Newest to Oldest
+        date_added_oldest: Date Added, Oldest to Newest
+        ancestry: Ancestry
+        show: Show
+        children: Children
+        simplified_tree: Simplified Tree
+        full_taxonomy: Full Taxonomy
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -6325,6 +6453,12 @@ en:
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
           Default is species.
+        wikipedia_summary_desc_html: |
+          Short summary of this taxon based on its <a target="_blank"
+          href="%{url}">Wikipedia page</a> that we cache indefinitely until
+          manually refreshed. Refreshing this summary also immediately updates
+          our cache of the underlying Wikipedia content that we show on the
+          website, which automatically refreshes after a week.
       show:
         about_names_desc: |
           <p>
@@ -6665,6 +6799,9 @@ en:
           License descriptions and images &copy; %{year} Creative Commons, used
           under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution license</a> (so meta!)
+        # Header for the section of the profile settings where you can choose to
+        # show a badge on your profile to indicate that you make a regular,
+        # monthly donation to iNat
         monthly_supporter: Monthly Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
@@ -7225,6 +7362,7 @@ en:
     models:
       AssessmentSection: Assessment Section
       Atlas: Atlas
+      BlockedUser: Blocked User
       CompleteSet: Complete Set
       # Noun
       Flag: Flag
@@ -7235,6 +7373,9 @@ en:
       assessment_section:
         title: Title
         body: Body
+      blocked_user:
+        # The user who has been blocked
+        blocked_user: Blocked user
       conservation_status:
         status: Status
         description : Description
@@ -7359,7 +7500,8 @@ en:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API key importing or queued for import"
+              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
+              api_key_missing: "Mushroom Observer API key is missing"
         observation:
           attributes:
             base:
@@ -7480,6 +7622,20 @@ en:
             email:
               must_look_like_an_email_address: must look like an email address
               domain_is_not_supported: domain is not supported
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: You've already blocked that user
+              user_cannot_be_staff: |
+                You cannot block staff. iNat staff need to be able to
+                communicate with everyone on iNat, have access to all data on
+                iNat, and are the ultimate mediators of disputes, so blocking
+                will not prevent them from communicating with you. If you have a
+                problem with a member of staff, please report it to one of the
+                iNat co-directors, or, if you have a problem with one of the
+                co-directors, you can contact the Chief of Science at the
+                Institute for Biodiviersity and Sustainability Science at the
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -7660,6 +7816,8 @@ en:
         variety: "@n"
         # Default gender for nouns that aren't listed here
         default: "@n"
+  # Title of a section warning the user about something
+  warning_title: Warning
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Prev"

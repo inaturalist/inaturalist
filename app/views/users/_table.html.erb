@@ -24,7 +24,7 @@
         </div>
       </td>
       <td>
-        <%= link_to t(:view_observations), observations_by_login_path(person.login), :class => "readable" %>
+        <%= link_to t(:view_observations), observations_path( user_id: person.login ), class: "readable" %>
         <% if observations_count > 0 -%>
           <div class="meta">
             <%=t :x_observations_html, count: number_with_delimiter(observations_count) %>

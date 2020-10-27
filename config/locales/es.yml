@@ -462,6 +462,27 @@ es:
   announcements: Anuncios
   any: cualquiera
   any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
   anyone: Cualquiera
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
@@ -575,7 +596,7 @@ es:
   authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
   automatic_short: Autom.
   automatically_add_observations_to_this_project: Añadir automáticamente observaciones a este proyecto
-  automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxón
+  automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxon
   back: Volver
   back_to_all_species: Volver a todas las especies
   back_to_browsing_people: Volver a la búsqueda de personas
@@ -684,6 +705,7 @@ es:
   cc_by_sa_name: Atribución-CompartirIgual
   cc_used_under_a: "Creative Commons, usada bajo una"
   change_admin: Cambiar administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambiar la cubierta
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
@@ -902,7 +924,7 @@ es:
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
-    teneral: Adulto que ha pupado recientemente pero no ha alcanzado su forma adulta final
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
   controls: Controles
   convert: Convertir
@@ -1056,6 +1078,7 @@ es:
   delete: Elimina
   delete_all: Elimina todo
   delete_conversation: Elimina conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿elimina la cubierta?'
   delete_icon?: '¿Elimina ícono?'
   delete_photo: Elimina foto
@@ -1568,7 +1591,8 @@ es:
       leading: |
         Este taxón es descendiente del taxón determinado por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
       improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
+        Primera sugerencia de este taxón con la que la comunidad está de acuerdo. Esto
+        ayuda a refinar el taxón comunitario.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Id. retirada
@@ -2153,14 +2177,13 @@ es:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
-    se centra en la biodiversidad y personas en %{place}. ¿Quieres cambiar tu afiliación de tu cuenta de
-    de iNaturalist.org a %{site_name}?
+    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres
-    cambiar tu afiliación de cuenta de iNaturalist.org a iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de <strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong> y compartir datos con instituciones locales?
   network_affiliation_prompt_from_other_site_html: |
     ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
@@ -2243,6 +2266,7 @@ es:
   no_matching_places: No hay lugares que concuerden
   no_matching_projects: No hay proyectos que concuerden
   no_matching_species: No hay especies que concuerden
+  no_matching_taxa: No hay taxones que concuerden
   no_matching_users: No hay usuarios que concuerden
   no_members_yet: "No hay miembros todavía"
   no_messages_yet: Ningún mensaje aún
@@ -3068,6 +3092,20 @@ es:
     zimbabwe: Zimbabue
   places_of_interest: Lugares de Interés
   places_merged_successfully: '¡Los lugares se combinaron satisfactoriamente!'
+  places_warning_export_complex_boundary_html: |
+    Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considera
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
+  places_warning_look_for_existing_html: |
+    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
+  places_warning_projects_can_have_multiple_places: |
+    Si estás intentando crear un lugar para un límite de proyecto, los proyectos pueden estar compuestos por múltiples lugares. Por ejemplo, si quieres hacer un proyecto para Nueva Zelanda y Australia, puedes añadir requisitos para dos lugares en lugar de hacer uno nuevo.
+  places_warning_new_places_are_slow_html: |
+    Los nuevos lugares son una de las mayores fuentes de lentitud en iNat, así que <strong>por favor considera no crearlos</strong>. No hay problema con lugares pequeños que contienen sólo unos pocos miles de observaciones, pero si haces un nuevo lugar que contenga muchas observaciones, vas a ralentizar iNat para todos los demás. He aquí algunos enfoques alternativos:
+  places_warning_editing_places_is_slow: |
+    La edición de los límites de lugar es una de las mayores fuentes de lentitud en iNat.
+    Si puedes evitarlo, no añadas, cambies o elimines límites a menos que sea absolutamente necesario.
+  places_warning_the_future: |
+    Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
@@ -3198,15 +3236,27 @@ es:
   ranks:
     stateofmatter: Estado de la materia
     kingdom: Reino
+    x_kingdoms:
+      one: Reino
+      other: Reinos
     subkingdom: Subreino
     phylum: Filo
+    x_phyla:
+      one: Filo
+      other: Filos
     subphylum: subfilo
     superclass: Superclase
     class: Clase
+    x_classes:
+      one: Clase
+      other: Clases
     subclass: Subclase
     infraclass: Infraclase
     superorder: Superorden
     order: orden
+    x_orders:
+      one: Orden
+      other: Órdenes
     suborder: Suborden
     infraorder: Infraorden
     subterclass: Subclase
@@ -3216,11 +3266,17 @@ es:
     superfamily: Superfamilia
     epifamily: Epifamilia
     family: Familia
+    x_families:
+      one: Familia
+      other: Familias
     subfamily: subfamilia
     supertribe: Supertribu
     tribe: Tribu
     subtribe: Subtribu
     genus: género
+    x_genera:
+      one: Género
+      other: Géneros
     genushybrid: Género híbrido
     subgenus: Subgénero
     section: Sección
@@ -3228,6 +3284,9 @@ es:
     complex: Complejo
     #Singular
     species: Especie
+    x_species:
+      one: Especie
+      other: Especies
     hybrid: Híbrido
     #Singular
     subspecies: Subespecie
@@ -3793,7 +3852,7 @@ es:
   taxon_photos_updated: '¡Las fotos del taxón fueron actualizadas!'
   taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente. Por favor, espere unos minutos para que aparezca en los mapas.
-  taxon_range_updated_notice: El área de distribución del taxón se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
+  taxon_range_updated_notice: El área de distribución del taxon se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
   taxon_ranks: Filas de taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
@@ -3903,7 +3962,6 @@ es:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -4264,7 +4322,6 @@ es:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de vuelta
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -4312,7 +4369,6 @@ es:
     Este artículo utiliza material del artículo de Wikipedia.
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
-  wikipedia_entry: Registro de Wikipedia
   with: con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4416,7 +4472,7 @@ es:
   you_cant_leave_a_project_you_created: No puedes abandonar un proyecto que tu creaste.
   you_cant_merge_standard_places: No puedes combinar lugares estándar
   you_cant_rotate_photos_hostde_outside: "No puedes rotar fotos que son almacenadas fuera de %{site_name}."
-  you_cannot_delete_taxa_involved_in_taxon_changes: No puedes eliminar taxones involucrados en cambios de taxón o que contengan taxones involucrados en cambios de taxón
+  you_cannot_delete_taxa_involved_in_taxon_changes: No puedes eliminar táxones involucrados en cambios de taxon o que contengan táxones involucrados en cambios de taxon
   you_curate_a_project_that_contains_this_observation: Tu curaste un proyecto que incluye esta observación
   you_curate_a_project_that_contains_this_observation_desc: |
     Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una
@@ -5612,7 +5668,7 @@ es:
         about_establishment_desc: |
           «Medios de establecimiento» describe cómo llegó una especie adonde se encuentra. Introducida significa que llegó por la actividad humana, nativa que ocurrió sin intervención humana. Las especies endémicas se encuentran solo en un lugar concreto.
         about_taxon_curators_desc: |
-          Estas personas administran la parte del árbol taxonómico que incluye este taxón. Si deseas realizar cambios, incluye una advertencia para este taxón o ponte en contacto con una de estas personas.
+          Estas personas administran la parte del árbol taxonómico que incluye este taxon. Si deseas realizar cambios, incluye una advertencia para este taxon o ponte en contacto con una de estas personas.
         charts_help_seasonality: |
           Este gráfico muestra el número de observaciones de este taxón agrupadas por mes. Tenga en cuenta que se trata del número de observaciones, por lo que dependes tanto del momento en el que el organismo puede ser observado como de cuantas personas están participando en su observación. Así, un pájaro podría parecer muy activo en mayo, pero también podría ser debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden a ignorarla los últimos meses. De manera similar, si indica más libélulas en junio que en enero, puede deberse a que hay más observadores en el hemisferio norte que en el hemisferio sur y no porque las libélulas sean más activas en junio, así que compruebe el mapa al considerar estos graficos. Siempre es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones y/o grandes discrepancias entre el número de observaciones "verificables" y de "grado de investigación".
         charts_help_history: |
@@ -5713,7 +5769,7 @@ es:
     users:
       dashboard:
         taxon_change_desc: |
-          Cambios de taxón representan cambios en %{site_name}'s taxonomía.
+          Cambios de taxon representan cambios en %{site_name}'s taxonomía.
           La mayor parte del tiempo de %{site_name} mantendrá automáticamente
           a su contenido hasta al fecha, cuando esos cambios ocurren (a menos que
           optado por no), pero todavía queremos saber cuándo y cómo sus datos
@@ -5800,6 +5856,9 @@ es:
         license_description_attribution_html: |
           Licencia de uso de descripciones e imágenes &copy; %{year} Creative Commons, usado
           bajo una <a href=“https://creativecommons.org/licenses/by/3.0/deed.es“>licencia de Atribución No portada</a> (¡que autoreferencia!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
           Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
@@ -5893,7 +5952,7 @@ es:
         scientific_name_first_desc: |
           Mostrar los nombres científicos antes de los vernáculos.
         taxon_change_desc: |
-          Cuando los taxones se fusionan o cambian de nombre  en %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.
+          Cuando los táxones se fusionan o cambian de nombre en %{site_name}, sus observaciones, táxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxon si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.
         thanks_for_supporting_us!: '¡Gracias por apoyarnos!'
         this_only_applies_to_traditional_projects: |
           Esto sólo se aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o paraguas, que son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
@@ -6302,6 +6361,7 @@ es:
     models:
       AssessmentSection: Sección de evaluación
       Atlas: Atlas
+      BlockedUser: Usuario bloqueado
       CompleteSet: Lista completa
       #Noun
       Flag: Marca
@@ -6312,6 +6372,9 @@ es:
       assessment_section:
         title: Título
         body: Cuerpo
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuario bloqueado
       conservation_status:
         status: Estatus
         description: Descripción
@@ -6473,7 +6536,7 @@ es:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
+              api_key_missing: "Falta la clave API de Mushroom Observer"
         observation:
           attributes:
             base:
@@ -6528,6 +6591,11 @@ es:
                 debe observarse después de %{time}
               must_be_observed_before: |
                 debe observarse antes de %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: La observación no tiene fecha sobre la que votar
+              no_votable_coordinates: La observación no tiene coordenadas sobre las que votar
         taxon:
           attributes:
             rank:
@@ -6582,6 +6650,13 @@ es:
             email:
               must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
               domain_is_not_supported: el dominio no está soportado
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Son los principales mediadores en disputas, por lo que bloquearles no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la
+                Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
@@ -6755,6 +6830,8 @@ es:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Aviso
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import moment from "moment-timezone";
+import ReactDOMServer from "react-dom/server";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 moment.locale( I18n.locale );
@@ -87,7 +88,8 @@ class ExportModal extends Component {
   startExport( ) {
     this.setState( { generating: true } );
     const dataToDownload = [[
-      "id", "parent_id", "name", "common_name", "rank", "is_leaf", "direct_observation_count", "total_observation_count"
+      "id", "parent_id", "name", "common_name", "rank", "is_leaf",
+      "direct_observation_count", "total_observation_count"
     ]];
     const taxa = _.sortBy( this.taxaToExport( ), "left" );
     _.each( taxa, t => {
@@ -121,7 +123,7 @@ class ExportModal extends Component {
           }}
         />
         <label className="sectionlabel" htmlFor="export-leaves-filter">
-          Restrict to leaf taxa
+          { I18n.t( "views.lifelists.restrict_to_leaf_taxa" ) }
         </label>
       </li>
     )];
@@ -136,15 +138,22 @@ class ExportModal extends Component {
               this.setState( { filterTaxon: e.target.checked } );
             }}
           />
-          <label className="sectionlabel" htmlFor="export-taxon-filter">
-            Restrict to
-            <span className="filter-label">
-              <SplitTaxon
-                taxon={lifelist.detailsTaxon}
-                user={config.currentUser}
-              />
-            </span>
-          </label>
+          <label
+            className="sectionlabel"
+            htmlFor="export-taxon-filter"
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.lifelists.restrict_to_taxon", {
+                taxon: ReactDOMServer.renderToString(
+                  <span className="filter-label">
+                    <SplitTaxon
+                      taxon={lifelist.detailsTaxon}
+                      user={config.currentUser}
+                    />
+                  </span>
+                )
+              } )
+            }}
+          />
         </li>
       );
     }
@@ -159,12 +168,19 @@ class ExportModal extends Component {
               this.setState( { filterPlace: e.target.checked } );
             }}
           />
-          <label className="sectionlabel" htmlFor="export-place-filter">
-            Restrict to taxa observed in
-            <span className="filter-label">
-              {lifelist.speciesPlaceFilter.display_name}
-            </span>
-          </label>
+          <label
+            className="sectionlabel"
+            htmlFor="export-place-filter"
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.lifelists.restrict_to_taxa_observed_in_place", {
+                place: ReactDOMServer.renderToString(
+                  <span className="filter-label">
+                    {lifelist.speciesPlaceFilter.display_name}
+                  </span>
+                )
+              } )
+            }}
+          />
         </li>
       );
     }
@@ -184,11 +200,11 @@ class ExportModal extends Component {
     let taxonCountText;
     if ( this.props.show ) {
       if ( exportingTaxonCount === 0 ) {
-        taxonCountText = "No matching taxa";
+        taxonCountText = I18n.t( "no_matching_taxa" );
       } else {
         taxonCountText = exportingTaxonCount === _.size( lifelist.taxa )
-          ? `Exporting all ${exportingTaxonCount} taxa`
-          : `Exporting ${exportingTaxonCount} taxa`;
+          ? I18n.t( "views.lifelists.exporting_all_x_taxa", { count: exportingTaxonCount } )
+          : I18n.t( "views.lifelists.exporting_x_taxa", { count: exportingTaxonCount } );
       }
     }
     return (
@@ -197,10 +213,15 @@ class ExportModal extends Component {
         className="ExportModal"
         onHide={this.close}
       >
+        <Modal.Header>
+          { I18n.t( "export" ) }
+        </Modal.Header>
         <Modal.Body>
           { _.isEmpty( filterOptions ) ? null : (
             <div className="export-filters">
-              Apply Filters:
+              <span className="intro">
+                { I18n.t( "views.lifelists.apply_filters_to_export" ) }
+              </span>
               <ul>{ filterOptions }</ul>
             </div>
           ) }
@@ -216,10 +237,10 @@ class ExportModal extends Component {
             onClick={this.startExport}
             disabled={exportingTaxonCount === 0}
           >
-            {this.state.generating ? ( <div className="loading_spinner" /> ) : "Export"}
+            {this.state.generating ? ( <div className="loading_spinner" /> ) : I18n.t( "export" ) }
           </Button>
           <Button onClick={this.confirm}>
-            Close
+            { I18n.t( "close" ) }
           </Button>
         </Modal.Footer>
         <CSVLink

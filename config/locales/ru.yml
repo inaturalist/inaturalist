@@ -571,6 +571,27 @@ ru:
   announcements: Объявления
   any: любой
   any_: Любой
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Любое
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Любое
+  #Label for an option to show content from any date
+  any_date: Любая
+  #Label for an option to show content with any establishment means
+  any_establishment: Любой
+  #Label for an option to show content with any license
+  any_license: Любая
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Любой
+  #Label for an option to show content from any project
+  any_project: Любой
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Любой
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Любые
+  #Label for an option to show/include content by any user
+  any_user: Любой
   anyone: Любой
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: "Применить В неволе / культивируемое"
@@ -792,6 +813,7 @@ ru:
   cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: "Creative Commons, используется по"
   change_admin: Изменить администратора
+  #Button to change the cover (or banner) image for a project
   change_cover: Изменить обложку
   change_descriptions:
     split: Старый таксон разделяется на несколько новых таксонов
@@ -1009,7 +1031,7 @@ ru:
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
-    teneral: Взрослые, которые недавно окуклились, но еще не достигли своей окончательной взрослой формы
+    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
     cannot_be_determined: Не может быть определен на основании представленных доказательств
   controls: Элементы управления
   convert: Конвертировать
@@ -1163,6 +1185,7 @@ ru:
   delete: Удалить
   delete_all: Удалить всё
   delete_conversation: Удалить переписку
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: удалить обложку?
   delete_icon?: Удалить иконку?
   delete_photo: Удалить фото
@@ -1678,7 +1701,7 @@ ru:
       leading: |
         Таксон происходит от таксона сообщества. Эта идентификация может привести к правильному ответу.
       improving: |
-        Первое предложение этого таксона, с которым сообщество впоследствии согласилось. Это помогло уточнить таксон сообщества.
+        Первое предложение этого таксона, с которым сообщество согласилось. Это помогло уточнить таксон сообщества.
       maverick: |
         Таксон не является потомком или предком таксона сообщества, т.е. сообщество не согласно с этим таксоном.
   id_withdrawn: Отзыв идентификации
@@ -2258,13 +2281,12 @@ ru:
   needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, часть сети iNaturalist
-    Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+    <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> и делиться данными с местными организациями?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, фокусируется на биоразнообразии и людях в Финляндии. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в Финляндии. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>iNaturalist Suomi</strong> и делиться данными с местными организациями?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
@@ -2347,6 +2369,7 @@ ru:
   no_matching_places: Нет соответствующих мест
   no_matching_projects: Нет соответствующих проектов
   no_matching_species: Нет соответствующих видов.
+  no_matching_taxa: Нет подходящих таксонов
   no_matching_users: Нет соответствующих пользователей.
   no_members_yet: "Пока нет участников."
   no_messages_yet: Пока нет сообщений
@@ -3163,6 +3186,19 @@ ru:
     zimbabwe: Зимбабве
   places_of_interest: Достопримечательности
   places_merged_successfully: Места объединены успешно!
+  places_warning_export_complex_boundary_html: |
+    Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
+    где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
+  places_warning_look_for_existing_html: |
+    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_projects_can_have_multiple_places: |
+    Когда вы пытаетесь создать место для границы проекта, проекты могут состоять из нескольких мест. Например, если вы хотите сделать проект для Новой Зеландии и Австралии, вы можете просто добавить требования для двух мест вместо того, чтобы создавать новые.
+  places_warning_new_places_are_slow_html: |
+    Новые места - один из самых больших источников замедления iNat, поэтому <strong>пожалуйста, подумайте о том, чтобы не создавать новое место</strong>. Хотя небольшие места, содержащие только несколько тысяч наблюдений, обычно считаются приемлемыми, но если вы создаёте новое место, содержащее большое количество наблюдений, вы замедлите iNat для всех остальных. Вот несколько альтернативных подходов:
+  places_warning_editing_places_is_slow: |
+    Редактирование границ места - один из основных источников замедления работы iNat. Если вы можете этого избежать, не добавляйте, не изменяйте и не удаляйте границы мест, если только это не является абсолютно необходимым.
+  places_warning_the_future: |
+    Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
   please_add_this_observation_to: Пожалуйста, добавьте это наблюдение к
@@ -3295,15 +3331,35 @@ ru:
   ranks:
     stateofmatter: Форма
     kingdom: Царство
+    x_kingdoms:
+      one: Царство
+      few: Царства
+      many: Царств
+      other: Царств
     subkingdom: Подцарство
     phylum: Тип
+    x_phyla:
+      one: Тип
+      few: Типа
+      many: Типов
+      other: Типов
     subphylum: Подтип
     superclass: Надкласс
     class: Класс
+    x_classes:
+      one: Класс
+      few: Класса
+      many: Классов
+      other: Классов
     subclass: Подкласс
     infraclass: Инфракласс
     superorder: Надотряд
     order: Отряд
+    x_orders:
+      one: Отряд
+      few: Отряда
+      many: Отрядов
+      other: Отрядов
     suborder: Подотряд
     infraorder: Инфраотряд
     subterclass: Надкласс
@@ -3313,11 +3369,21 @@ ru:
     superfamily: Надсемейство
     epifamily: Эписемейство
     family: Семейство
+    x_families:
+      one: Семейство
+      few: Семейства
+      many: Семейств
+      other: Семейств
     subfamily: Подсемейство
     supertribe: Надтриба
     tribe: Триба
     subtribe: Подтриба
     genus: Род
+    x_genera:
+      one: Род
+      few: Рода
+      many: Родов
+      other: Родов
     genushybrid: Genus hybrid (GeoPlanet)
     subgenus: Подрод
     section: Секция
@@ -3325,6 +3391,11 @@ ru:
     complex: Комплекс
     #Singular
     species: Вид
+    x_species:
+      one: Вид
+      few: Вида
+      many: Видов
+      other: Видов
     hybrid: Гибрид
     #Singular
     subspecies: Подвид
@@ -4032,7 +4103,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
   this_is_a_life_list_from_place_html: "Это список жизни для %{place}"
   this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} для %{place}"
@@ -4401,7 +4471,6 @@ ru:
   website: Веб-сайт
   week_of_date: "Неделя %{date}"
   welcome: добро пожаловать
-  welcome_back: Добро пожаловать вновь
   welcome_back!: Добро пожаловать вновь!
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
@@ -4450,7 +4519,6 @@ ru:
     <a href="%{url}">"%{title}"</a>, которая выпущена под лицензией 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
-  wikipedia_entry: Источник в Википедии
   with: с
   withdraw: Отозвать
   withdrawing: Отзыв...
@@ -4815,6 +4883,58 @@ ru:
       show:
         reuse_desc: |
           Вы можете скопировать этот таксон в другое руководство. Если вы являетесь одним из редакторов этого руководства, будет скопировано всё, но если вы не являетесь редактором, будет скопирован только лицензионный контент.
+    lifelists:
+      list_view: В виде списка
+      tree_view: В виде дерева
+      observed_species: Наблюдаемые виды
+      unobserved_species: Виды, наблюдений которых не было
+      all_species: Все виды
+      all_unobserved_species: Все виды, наблюдений которых не было
+      observations_at_this_taxon: Наблюдения за этим таксоном
+      observations_within_this_taxon: Наблюдения в рамках этого таксона
+      all_observations: Все наблюдения
+      total_observations: Итого наблюдений
+      filter_by: Фильтр по
+      filtered_by: Отфильтровано по
+      apply_filters_to_export: Применить фильтры к экспорту
+      restrict_to_leaf_taxa: Ограничиться листьями таксонов
+      restrict_to_taxon: Ограничиться %{taxon}
+      restrict_to_taxa_observed_in_place: Ограничиться таксонами, наблюдаемыми в %{place}
+      exporting_all_x_taxa:
+        one: Экспорт %{count} таксона
+        few: Экспорт всех %{count} таксонов
+        many: Экспорт всех %{count} таксонов
+        other: Экспорт всех %{count} таксонов
+      exporting_x_taxa:
+        one: Экспорт %{count} таксона
+        few: Экспорт %{count} таксонов
+        many: Экспорт %{count} таксонов
+        other: Экспорт %{count} таксонов
+      no_observations_found_in_place: В %{place} наблюдения не найдены.
+      no_observations_found_within_this_taxon_in_place: В %{place} в рамках этого таксона наблюдения не найдены.
+      no_species_found_within_this_taxon_in_place: В %{place} виды в рамках этого таксона не найдены.
+      no_species_found_in_place: В %{place} виды не найдены.
+      no_unobserved_species_in_place: Нет наблюдаемых видов в %{place}.
+      no_unobserved_species_within_this_taxon: Не осталось ненаблюдавшихся видов в рамках этого таксона.
+      no_unobserved_species_within_this_taxon_in_place: В %{place} не осталось ненаблюдавшихся видов в рамках этого таксона.
+      reset_place_filter: Сбросить фильтр места
+      all_observations_in_this_taxon: Все наблюдения этого таксона
+      observations_of_exactly_this_taxon: Наблюдения конкретно этого таксона
+      focus_tree_on_this_taxon: Сфокусироваться в дереве на этом таксоне
+      expand_all_nodes_in_this_branch: Развернуть все узлы в этой ветке
+      collapse_this_branch: Свернуть эту ветку
+      dropdowns:
+        sort: Сортировать
+        taxonomic: Таксономический
+        name: Название
+        most_observed: Наиболее наблюдаемые
+        date_added_newest: Дата добавления, от новых к старым
+        date_added_oldest: Дата добавления, от старых к новым
+        ancestry: Предки
+        show: Показать
+        children: Дети
+        simplified_tree: Упрощённое дерево
+        full_taxonomy: Полная таксономия
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5918,6 +6038,9 @@ ru:
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         license_description_attribution_html: |
           Описания и &copy; изображений лицензии %{year} Creative Commons, используемой по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a>
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Ежемесячная поддержка
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
@@ -6438,6 +6561,7 @@ ru:
     models:
       AssessmentSection: Раздел оценки
       Atlas: Атлас
+      BlockedUser: Заблокированный пользователь
       CompleteSet: Полный набор
       #Noun
       Flag: Флаг
@@ -6448,6 +6572,9 @@ ru:
       assessment_section:
         title: Название
         body: Текст
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Заблокированный пользователь
       conservation_status:
         status: Статус
         description: Описание
@@ -6618,6 +6745,7 @@ ru:
           attributes:
             base:
               api_key_in_use: "Импорт ключей API или их ожидание в очереди на импорт"
+              api_key_missing: "Отсутствует ключ API Наблюдателя Грибов"
         observation:
           attributes:
             base:
@@ -6672,6 +6800,11 @@ ru:
                 должен наблюдаться после %{time}
               must_be_observed_before: |
                 должен наблюдаться перед %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: У наблюдения нет даты и оно не учитывается
+              no_votable_coordinates: У наблюдения нет координат и оно не учитывается
         taxon:
           attributes:
             rank:
@@ -6723,6 +6856,12 @@ ru:
             email:
               must_look_like_an_email_address: должно выглядеть как адрес электронной почты
               domain_is_not_supported: домен не поддерживается
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Вы уже заблокировали этого пользователя
+              user_cannot_be_staff: |
+                Вы не можете блокировать персонал. Персонал iNat должен иметь возможность общаться со всеми на iNat, иметь доступ ко всем данным на iNat и быть окончательным посредником в спорах, так, чтобы блокировка не помешала ему общаться с вами. Если у вас возникли проблемы с сотрудником, пожалуйста, сообщите об этом одному из содиректоров iNat, или, если у вас возникли проблемы с одним из содиректоров, вы можете связаться с научным руководителем Института биоразнообразия и устойчивого развития науки Калифорнийской академии наук.
         user_parent:
           attributes:
             email:
@@ -6895,6 +7034,8 @@ ru:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Предупреждение
   wild: Дикий
   will_paginate:
     previous_label: "&#8592; Пред"

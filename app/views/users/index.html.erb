@@ -59,7 +59,7 @@
                 <%
                   if update.observation
                     observation_link = link_to t(:observation).downcase, update.observation
-                    user_link = link_to char_wrap(update.observation.user.login, 50), observations_by_login_path(update.observation.user.login)
+                    user_link = link_to char_wrap(update.observation.user.login, 50), observations_path( user_id: update.observation.user.login )
                   end
                 -%>
 
@@ -96,7 +96,7 @@
                   if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project)
                     by_link = link_to char_wrap(h(update.parent.parent.title), 50), update.parent.parent
                   elsif update.parent.user
-                    by_link = link_to char_wrap(h(update.parent.user.login), 50), observations_by_login_path(update.parent.user.login)
+                    by_link = link_to char_wrap(h(update.parent.user.login), 50), observations_path( user_id: update.parent.user.login )
                   end
                 -%>
                 <% if by_link -%>
@@ -132,7 +132,7 @@
           :time_unit => 'month', 
           :data => @most_identifications, 
           :last => true,
-          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")))} %>
+          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
         <div class="column span-24">
           <div class='meta'><%=raw t :observations_observed_this_month %></div>
           <%- prev_date = Date.today - 1.month -%>
@@ -149,7 +149,7 @@
           :time_unit => 'year', 
           :data => @most_identifications_year, 
           :last => true,
-          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")))} %>
+          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
         <div class="column span-24">
           <%- prev_date = Date.today - 1.year -%>
           <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>

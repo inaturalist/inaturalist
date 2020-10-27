@@ -11,7 +11,7 @@ class WikipediaService < MetaService
       title: "Wikipedia (#{ subdomain.upcase })",
       documentation_url: "#{ self.base_url }/w/api.php",
       base_url: "#{ self.base_url }/w/api.php?",
-      cache_hours: 720)
+      cache_hours: 168)
     @default_params = { :format => 'xml' }
   end
 

@@ -6,12 +6,49 @@ import linkifyHtml from "linkifyjs/html";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 
-const ALLOWED_TAGS = (
-  "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
-  + " img li ol p pre s small strike strong sub sup tt ul del ins"
-  + " table thead tbody tr td th"
-  // + " audio source embed iframe object param"
-).split( " " );
+const ALLOWED_TAGS = ( `
+  a
+  abbr
+  acronym
+  b
+  blockquote
+  br
+  cite
+  code
+  del
+  div
+  dl
+  dt
+  em
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  hr
+  i
+  img
+  ins
+  li
+  ol
+  p
+  pre
+  s
+  small
+  strike
+  strong
+  sub
+  sup
+  table
+  tbody
+  td
+  t
+  thead
+  tr
+  tt
+  ul
+` ).split( /\s+/m );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
   "href src width height alt cite title class name abbr value align target rel"
@@ -125,15 +162,23 @@ class UserText extends React.Component {
         </button>
       );
     }
-
-    let htmlToDisplay = sanitizeHtml(
-      linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ),
+    const sanitizedHtml = sanitizeHtml(
+      truncatedHtml || html,
       {
         allowedTags: ALLOWED_TAGS,
         allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
         exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
       }
     );
+    // Note: markdown-it has a linkifier option too, but it does not allow you
+    // to specify attributes link nofollow, so we're using linkifyjs, but we are
+    // ignoring URLs in the existing tags that might have them like a and code
+    const linkifiedHtml = linkifyHtml( sanitizedHtml, {
+      className: null,
+      attributes: { rel: "nofollow" },
+      ignoreTags: ["a", "code", "pre"]
+    } );
+    let htmlToDisplay = linkifiedHtml;
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
     }

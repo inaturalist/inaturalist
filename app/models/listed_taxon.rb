@@ -578,6 +578,13 @@ class ListedTaxon < ActiveRecord::Base
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless list
+    Logstasher.write_hash(
+      "@timestamp": Time.now,
+      subtype: "ListedTaxon#cache_columns",
+      model: "ListedTaxon",
+      model_id: self.id,
+      model_method: "ListedTaxon::cache_columns"
+    )
     # get the specific options for this list type
     options = list.cache_columns_options(self)
     ListedTaxon.earliest_and_latest_ids(options)
@@ -842,6 +849,7 @@ class ListedTaxon < ActiveRecord::Base
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
       if output_taxon = taxon_change.output_taxon_for_record( lt )
+        next if !taxon_change.automatable_for_output?( output_taxon.id )
         if existing = ListedTaxon.where( list_id: lt.list_id, taxon_id: output_taxon.id ).first
           existing.skip_index_taxon = true
           existing.merge( lt )

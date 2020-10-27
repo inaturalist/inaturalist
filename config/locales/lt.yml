@@ -734,6 +734,7 @@ lt:
   cc_by_name: Požymis
   cc_by_nc_name: Pobūdis-Ne komercinis
   change_admin: Keisti Administratorių
+  #Button to change the cover (or banner) image for a project
   change_cover: Keisti viršelį
   change_descriptions:
     split: Senas taksonas, padalintas į keletą naujų taksonų
@@ -920,7 +921,6 @@ lt:
     flowering: Žiedai matomi, prasiskleidę ir vis dar prisitvirtinę prie augalo
     fruiting: Vaisiai matomi ir vis dar prisitvirtinę prie augalo
     no_evidence_of_flowering: Nuotraukoje nesimato jokių dauginimosi struktūrų
-    teneral: Išsinėrė paskutinį kartą, bet dar nėra pilnai subrendęs suaugėlis
     cannot_be_determined: Negali būti nustatyta iš pateiktų įrodymų
   controls: Valdikliai
   convert: Konvertuoti
@@ -1058,6 +1058,7 @@ lt:
   delete: Ištrinti
   delete_all: Ištrinti visus
   delete_conversation: Ištrinti pokalbį
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: ištrinti viršelį?
   delete_icon?: Ištrinti ikoną?
   delete_photo: Ištrinti nuotrauką
@@ -1534,8 +1535,6 @@ lt:
     tooltips:
       leading: |
         Šis taksonas yra bendruomenės taksono palikuonis. Ši identifikacija gali vesti link teisingo atsakymo.
-      improving: |
-        Pirmasis šio taksono pasiūlymas, su kuriuo bendruomenė vėliau sutiko. Tai padėjo patobulinti bendruomenės taksoną.
       maverick: |
         Taksonas ne giminingas bendruomenės taksonui, t.y. bendruomenė nesutinka su šiuo taksonu.
   id_withdrawn: ID atšauktas
@@ -3828,7 +3827,6 @@ lt:
   website: Tinklalapis
   week_of_date: "%{date} Savaitė"
   welcome: sveiki
-  welcome_back: Sveiki sugrįžę
   welcome_back!: Sveiki sugrįžę!
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
@@ -3869,7 +3867,6 @@ lt:
   widget_for: Valdiklis skirtas
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
-  wikipedia_entry: Vikipedijos straipsnis
   with: su
   withdraw: Atsiimti
   withdrawing: Atšaukiama...
@@ -4331,6 +4328,9 @@ lt:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Mėnesinis remėjas
         muting_desc_html: |
           <p>

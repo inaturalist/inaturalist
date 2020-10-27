@@ -16,6 +16,7 @@
   #invite .button{margin-right:0;}
 </style>
 <% end %>
+
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
@@ -48,7 +49,7 @@
       <tr>
         <td width="33%">
           <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-            observations_by_login_path(project_user.user.login),
+            observations_path( user_id: project_user.user.login ),
             :alt => h(project_user.user.login),
             :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
           <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
@@ -62,6 +63,7 @@
         <td>
           <%= link_to t(:view_contributions), project_show_contributor_path(@project, project_user.user.login), :class => "readmore" %>
         </td>
+      </tr>
     <% end %>
     </table>
     <%= will_paginate @contributors, :renderer => INatLinkRenderer %>

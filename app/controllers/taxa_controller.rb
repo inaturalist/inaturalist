@@ -63,7 +63,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do # index.html.erb
         @site_place = @site.place if @site
-        @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
+        @featured_taxa = Taxon.active.where("taxa.featured_at IS NOT NULL").
           order("taxa.featured_at DESC").
           limit(100)
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
