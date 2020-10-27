@@ -886,7 +886,7 @@ fr:
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: Code équivalent de la liste rouge de l’UICN
   conservation_status_geoprivacy_desc: |
-    La confidentialité géographique par défaut est appliquée à toutes les observations de taxon à cet endroit
+    La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants de ce taxon qui sont présents ici ?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -3789,7 +3789,7 @@ fr:
   taxa_to_include: Taxons à inclure
   taxon: Taxon
   taxon_autocomplete_placeholder: Oiseaux, monarque, etc.
-  taxon_geoprivacy: Confidentialité géographique du taxon
+  taxon_geoprivacy: Géoconfidentialité du taxon
   taxon_is_a_rank: "%{taxon} est un %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} est un %{rank} dans %{iconic_taxon} avec 1 observation"
@@ -5091,8 +5091,8 @@ fr:
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
         geoprivacy: "Si l’observateur a choisi ou non de dissimuler ou masquer les coordonnées"
-        taxon_geoprivacy: "La confidentialité géographique la plus conservatrice est appliquée du fait des états de conservation des taxons dans l’identification actuelle."
-        coordinates_obscured: "Si les coordonnées ont ou non été dissimulées, soit à cause de confidentialité géographique, soit à cause d’un taxon menacé"
+        taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison de la situation de conservation des taxons selon l’identification actuelle."
+        coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
         user_id: Identificateur unique de l’observateur
         user_login: Nom d'utilisateur de l'observateur
