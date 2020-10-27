@@ -638,7 +638,7 @@ Rails.application.routes.draw do
   end
   resources :moderator_actions, only: [:create]
 
-  resources :lifelists do
+  resource :lifelists, only: [] do
     collection do
       get ":login", to: "lifelists#by_login", as: "by_login"
     end
