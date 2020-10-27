@@ -135,15 +135,21 @@ class ApplicationController < ActionController::Base
         current_user.longitude = lon.to_f
       end
     end
-    return true unless session[:potential_site].blank?
-    return true if @site != Site.default && current_user.site == @site
+    viewing_non_default_site = @site != Site.default
+    viewer_affiliated_with_non_default_site = (
+      !current_user.site.blank? && current_user.site != Site.default
+    )
+    if viewing_non_default_site || viewer_affiliated_with_non_default_site
+      session.delete(:potential_site)
+      return true
+    end
     if current_user.latitude && current_user.longitude
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
       return true unless potential_place
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
-      if potential_site
+      if potential_site && potential_site != current_user.site
         session[:potential_site] = {
           id: potential_site.id,
           name: potential_site.name,
