@@ -76,7 +76,9 @@
                   = observation.munge_observed_on_with_chronic; observation.observed_on
                 %td= observation.latitude
                 %td= observation.longitude
-                %td= "#{observation.positional_accuracy} m"
+                %td
+                  - unless observation.positional_accuracy.blank?
+                    = "#{observation.positional_accuracy} m"
                 %td= observation.place_guess
                 %td
                   = formatted_user_text observation.description
