@@ -147,7 +147,10 @@ class ApplicationController < ActionController::Base
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
-      return true unless potential_place
+      unless potential_place
+        session.delete(:potential_site)
+        return true
+      end
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
       if potential_site && potential_site != current_user.site
         session[:potential_site] = {
@@ -158,6 +161,8 @@ class ApplicationController < ActionController::Base
             default: potential_place.name
           )
         }
+      else
+        session.delete(:potential_site)
       end
     end
     true
