@@ -1145,6 +1145,11 @@ da:
     Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Din konto er blevet låst grundet for mange mislykkede indlogningsforsøg.
+  devise_unlock_instructions_click_the_link: |
+    Klik på linket nedenfor, for at oplåse din konto:
+  devise_unlock_instructions_unlock: Oplås din konto
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
@@ -2006,7 +2011,7 @@ da:
   managers_can_do: Ledere kan gøre alt, hvad kuratorer kan gøre, samt redigere projektindstillinger og skrive projekt journalindlæg.
   managing_projects: Administrerer projekter
   map: Kort
-  map_legend: signaturforklaring
+  map_legend: Kortsymbolforklaring
   map_marker_size: kortmarkør størrelse
   map_of_observations: Observationskort
   maps:
