@@ -1167,6 +1167,11 @@ sv:
     Om du inte har begärt detta, vänligen ignorera detta mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Ditt konto har låsts på grund av ett stort antal misslyckade inloggningsförsök.
+  devise_unlock_instructions_click_the_link: |
+    Klicka på länken nedan för att låsa upp ditt konto
+  devise_unlock_instructions_unlock: Lås upp ditt konto
   discoveries: Upptäckter
   did_not_send_invitations_because: Skickade inte inbjudningar till följande eftersom...
   did_you_mean: 'Menade du'
@@ -2047,7 +2052,6 @@ sv:
   managers_can_do: Ägare kan göra allt som förvaltarna kan göra samt ändra projektinställningar och göra inlägg i projektdagboken.
   managing_projects: Hanterar projekt
   map: Karta
-  map_legend: kartförklaring
   map_marker_size: kartans markörstorlek
   map_of_observations: Karta över observationer
   maps:
