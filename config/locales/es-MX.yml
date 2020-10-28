@@ -365,6 +365,27 @@ es-MX:
   announcements: Anuncios
   any: Cualquiera
   any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
   apply_to_selected: Apicar a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplica campos
@@ -885,6 +906,11 @@ es-MX:
     failure:
       user:
         suspended: Tu cuenta ha sido suspendida
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Tu cuenta ha sido bloqueada debido a varios intentos de ingresos fallido
+  devise_unlock_instructions_click_the_link: |
+    Haz clic en el siguiente enlace para desbloquear tu cuenta:
+  devise_unlock_instructions_unlock: Elimina tu cuenta
   discoveries: Descubrimientos
   did_not_send_invitations_because: No se enviaron invitaciones a los siguientes porque....
   did_you_mean: '¿Te refieres a'
@@ -1615,7 +1641,6 @@ es-MX:
   managers_can_do: Los gerentes pueden hacer las mismas actividades que un curador y adicionalmente pueden cambiar las propiedades del proyecto y escribir notas en el diario del proyecto.
   managing_projects: Administrar proyectos
   map: Mapa
-  map_legend: leyenda del mapa
   map_marker_size: tamaño del marcador de mapa
   map_of_observations: Mapa de observaciones
   maps:
@@ -4252,7 +4277,7 @@ es-MX:
           observed_in_place: fue observado en algún lugar
           on_list: ser una especie o grupo de la lista del proyecto
           verifiable: ser verificable
-          wild: estado salvaje/silvestre
+          wild: estado silvestre/naturalizado
         start_time_desc: "Tiempo en que empezará tu proyecto bioblitz"
         submission_models:
           any: cualquiera
@@ -5248,7 +5273,7 @@ es-MX:
         destroy:
           #Application as in a software application
           notice: 'Aplicación revocada.'
-  wild: salvaje
+  wild: Silvestre
   will_paginate:
     previous_label: "&#8592; Previo"
     next_label: "Siguiente &#8594;"
