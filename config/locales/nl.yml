@@ -783,6 +783,7 @@ nl:
   check_out_my_observations_at: Als je wilt kan je mijn waarnemingen bekijken op
   check_out_our_blog: Bekijk ons blog
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te determineren eruitziet.
+  check_out_your_new_and_improved_list_list: Bekijk je nieuwe en verbeterde levenslijst!
   check_this_box_if_html: |
     Vink dit vakje aan als je een
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Naamsvermelding-NietCommercieel-licentie</a> wil toekennen aan geuploade media en gegevens. 
@@ -1153,6 +1154,11 @@ nl:
     Als je dit niet hebt aangevraagd negeer dan deze e-mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Je wachtwoord zal niet gewijzigd worden totdat je op de bovenstaande link klikt en een nieuw wachtwoord instelt.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Je account is geblokkeerd vanwege een te groot aantal mislukte inlogpogingen.
+  devise_unlock_instructions_click_the_link: |
+    Klik op onderstaande link om je account te deblokkeren
+  devise_unlock_instructions_unlock: Deblokkeer je account
   discoveries: Ontdekkingen
   did_not_send_invitations_because: Geen uitnodigingen verzonden naar de volgende personen omdat...
   did_you_mean: 'Bedoelde u'
@@ -1785,6 +1791,7 @@ nl:
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
   learn_more: Lees meer
+  learn_more_on_the_blog: Meer informatie in de blog
   learn_more_raquo: "Leer meer &raquo;"
   learn_what_these_licenses_mean: Leer meer over de betekenis van deze licenties
   least_concern: Niet bedreigd (veilig)
@@ -2012,7 +2019,6 @@ nl:
   managers_can_do: Beheerders kunnen alles doen wat curatoren ook kunnen, plus projectinstellingen bewerken en artikelen in het projectdagboek schrijven.
   managing_projects: Beheer van projecten
   map: Kaart
-  map_legend: kaart legende
   map_marker_size: verbind marker grootte
   map_of_observations: Kaart van Waarnemingen
   maps:
@@ -4780,7 +4786,10 @@ nl:
       total_observations: Totaal aantal waarnemingen
       filter_by: Filter op
       filtered_by: 'Gefilterd door:'
+      apply_filters_to_export: Pas filters om te exporteren toe
+      restrict_to_leaf_taxa: Beperken tot blad taxa
       restrict_to_taxon: Beperken tot %{taxon}
+      restrict_to_taxa_observed_in_place: Beperken tot taxa waargenomen in %{place}
       no_observations_found_in_place: Geen waarnemingen gevonden in %{place}.
       no_observations_found_within_this_taxon_in_place: Geen waarnemingen gevonden binnen dit taxon in %{place}.
       no_species_found_within_this_taxon_in_place: Geen soorten gevonden binnen dit taxon in %{place}.
@@ -4788,7 +4797,12 @@ nl:
       no_unobserved_species_in_place: Geen niet-waargenomen soorten in %{place}.
       no_unobserved_species_within_this_taxon: Alle soorten binnen dit taxon zijn waargenomen
       no_unobserved_species_within_this_taxon_in_place: Alle soorten binnen dit taxon zijn waargenomen in %{place}
+      reset_place_filter: Reset plaatsfilter
       all_observations_in_this_taxon: Alle waarnemingen binnen dit taxon
+      observations_of_exactly_this_taxon: Waarnemingen van precies dit taxon
+      focus_tree_on_this_taxon: Focus boom op dit taxon
+      expand_all_nodes_in_this_branch: Alle nodes in deze branch uitvouwen
+      collapse_this_branch: Klap deze tak in
       dropdowns:
         sort: Sorteer
         taxonomic: Taxonomisch
@@ -4797,6 +4811,7 @@ nl:
         least_observed: Minst waargenomen
         date_added_newest: Datum toegevoegd, nieuwste naar oudste
         date_added_oldest: Datum toegevoegd, oudste naar nieuwste
+        ancestry: Voorouders
         show: Toon
         children: Kinderen
         simplified_tree: Vereenvoudigde boom
@@ -5693,6 +5708,12 @@ nl:
           siteadministratoren taxa als compleet aanduiden.
         complete_rank_desc_html: |
           Rang waarop dit taxon voltooid is, bijv. als deze familie al zijn geslachten bevat, maar niet alle soorten, zou dit worden ingesteld op 'genus'. Standaard is de soort.
+        wikipedia_summary_desc_html: |
+          Korte samenvatting van dit taxon op basis van de <a target="_blank"
+          href="%{url}">Wikipedia pagina</a> die we oneindig cachen totdat deze
+          handmatig wordt vernieuwd. Verversen van deze samenvatting update onmiddellijk
+          onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
+          website, die automatisch verversd wordt na een week.
       show:
         about_names_desc: |
           <p>
