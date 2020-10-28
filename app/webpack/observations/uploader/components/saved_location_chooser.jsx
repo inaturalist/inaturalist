@@ -164,7 +164,7 @@ class SavedLocationChooser extends React.Component {
               >
                 <button
                   type="button"
-                  className="btn btn-nostyle"
+                  className="btn btn-nostyle choose-button"
                   onClick={e => {
                     e.preventDefault( );
                     onChoose( sl );
@@ -186,6 +186,7 @@ class SavedLocationChooser extends React.Component {
                 </button>
                 <button
                   type="button"
+                  className="remove-button"
                   onClick={( ) => {
                     if ( confirm( I18n.t( "are_you_sure?" ) ) ) {
                       removeLocation( sl );
