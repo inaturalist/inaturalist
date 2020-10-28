@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { updateProjectUser } from "../ducks/project";
+import { updateProjectUser, leave } from "../ducks/project";
 import ProjectMembershipButton from "../components/project_membership_button";
 
 const mapStateToProps = state => ( {
@@ -8,7 +8,8 @@ const mapStateToProps = state => ( {
 } );
 
 const mapDispatchToProps = dispatch => ( {
-  updateProjectUser: projectUser => dispatch( updateProjectUser( projectUser ) )
+  updateProjectUser: projectUser => dispatch( updateProjectUser( projectUser ) ),
+  leaveProject: ( ) => dispatch( leave( ) )
 } );
 
 const ProjectMembershipButtonContainer = connect(

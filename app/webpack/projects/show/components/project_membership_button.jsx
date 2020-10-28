@@ -29,7 +29,9 @@ class ProjectMembershipButton extends React.Component {
       ( !oldProjectUser && projectUser )
       || ( oldProjectUser && projectUser && projectUser.id !== oldProjectUser.id )
     ) {
-      this.setState( { curatorCoordinateAccessFor: projectUser.prefers_curator_coordinate_access_for } );
+      this.setState( {
+        curatorCoordinateAccessFor: projectUser.prefers_curator_coordinate_access_for
+      } );
       this.setState( { prefersUpdates: projectUser.prefers_updates } );
     }
   }
@@ -168,7 +170,7 @@ class ProjectMembershipButton extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <div className="stacked">
-              <h4>Receive project journal notifications?</h4>
+              <h4>{ I18n.t( "receive_project_journal_notifications?" ) }</h4>
               <div className="radio">
                 <label>
                   <input
@@ -201,7 +203,10 @@ class ProjectMembershipButton extends React.Component {
               type="button"
               className="btn btn-default pull-left"
               confirm="Are you sure?"
-              onClick={( ) => leaveProject( )}
+              onClick={( ) => {
+                this.setState( { modalVisible: false } );
+                leaveProject( );
+              }}
             >
               { I18n.t( "leave" ) }
             </button>
@@ -236,9 +241,8 @@ class ProjectMembershipButton extends React.Component {
 ProjectMembershipButton.propTypes = {
   project: PropTypes.object,
   projectUser: PropTypes.object,
-  // trustProject: PropTypes.func
-  updateProjectUser: PropTypes.func,
-  leaveProject: PropTypes.func
+  updateProjectUser: PropTypes.func.isRequired,
+  leaveProject: PropTypes.func.isRequired
 };
 
 export default ProjectMembershipButton;

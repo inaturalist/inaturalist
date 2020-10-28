@@ -17508,6 +17508,7 @@ I18n.translations["en"] = {
   },
   "ray_finned_fishes": "ray-finned fishes",
   "read_more": "Read More",
+  "receive_project_journal_notifications?": "Receive project journal notifications?",
   "recent": "Recent",
   "recent_evidence_of_organism": "Recent evidence of an organism",
   "recent_observations_": "Recent Observations",
