@@ -1153,6 +1153,11 @@ fr:
     Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce courriel.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué le lien ci-dessus pour en créer un nouveau.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Votre compte a été verrouillé en raison d'une quantité excessive de tentatives de connexion infructueuses.
+  devise_unlock_instructions_click_the_link: |
+    Cliquez sur le lien ci-dessous pour débloquer votre compte :
+  devise_unlock_instructions_unlock: Déverrouiller votre compte
   discoveries: Découvertes
   did_not_send_invitations_because: Nous n’avons pas envoyé d’invitations aux personnes suivantes parce que…
   did_you_mean: 'Voulez-vous dire'
@@ -2020,7 +2025,7 @@ fr:
   managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables de l’organisation, ainsi que modifier les paramètres du projet et écrire des notes de journal pour le projet.
   managing_projects: Gestion des projets
   map: Carte
-  map_legend: légende de la carte
+  map_legend: Légende de la Carte
   map_marker_size: taille du marqueur sur la carte
   map_of_observations: Carte des observations
   maps:
@@ -4875,6 +4880,7 @@ fr:
         taxonomic: Taxinomique
         name: Nom
         most_observed: Les plus observés
+        least_observed: Le moins observé
         date_added_newest: Date ajoutée, Du plus récent au plus vieux
         date_added_oldest: Date ajoutée, Du plus vieux au plus récent
         ancestry: Ancêtres
