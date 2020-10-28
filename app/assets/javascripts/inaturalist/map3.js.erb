@@ -646,12 +646,12 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>",
               "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
-    label: [ I18n.t( "needs_id" ), I18n.t( "casual" ) ].join( ", " ),
+    label: [ I18n.t( "needs_id_" ), I18n.t( "casual_" ) ].join( ", " ),
     classes: "last" }));
   ul1.append( $( "<li class='header'>" + I18n.t( "geoprivacy" ) +"</li>") );
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>" ],
-    label: I18n.t( "open" ) }));
+    label: I18n.t( "open_" ) }));
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
     label: I18n.t( "obscured" ),
