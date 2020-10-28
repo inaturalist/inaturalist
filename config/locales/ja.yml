@@ -404,6 +404,12 @@ ja:
   announcements: お知らせ
   any: すべて
   any_: すべて
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: すべて
+  #Label for an option to show content from any date
+  any_date: 指定なし
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: 全てのメディア
   anyone: 誰でも
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
@@ -1996,6 +2002,7 @@ ja:
     user: "%{user}さんは別のユーザーの観察記録に追加した同定がありません"
   no_ids_have_been_suggested_yet: 同定はまだ提案されていません
   no_interaction_data_available: 相互作用データはありません
+  no_its_as_good_as_it_can_be: いいえ、このままで適切です。
   no_favorites_added:
     current_user: お気に入りに登録されている項目がありません
     user: "%{user}さんはお気に入りに登録されている項目がありません"
@@ -3637,6 +3644,7 @@ ja:
   user_is_a_naturalist: "%{user}さんはナチュラリストです！"
   user_observed_on_on_date_in_place: |
     %{user} さんが %{date} に %{place} で観察しました
+  user_suggested_an_id: "%{user} さんが 同定を提案しました"
   username: ユーザー名
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
@@ -4425,6 +4433,8 @@ ja:
       observation:
         geo_x: 東距
         geo_y: 北�距
+      observation_field_value:
+        value: '選択肢'
       project:
         title: タイトル
         project_icon: プロジェクトアイコン
