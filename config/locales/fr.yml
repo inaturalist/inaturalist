@@ -886,7 +886,7 @@ fr:
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: Code équivalent de la liste rouge de l’UICN
   conservation_status_geoprivacy_desc: |
-    La confidentialité géographique par défaut est appliquée à toutes les observations de taxon à cet endroit
+    La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants de ce taxon qui sont présents ici ?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1153,6 +1153,11 @@ fr:
     Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce courriel.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué le lien ci-dessus pour en créer un nouveau.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Votre compte a été verrouillé en raison d'une quantité excessive de tentatives de connexion infructueuses.
+  devise_unlock_instructions_click_the_link: |
+    Cliquez sur le lien ci-dessous pour débloquer votre compte :
+  devise_unlock_instructions_unlock: Déverrouiller votre compte
   discoveries: Découvertes
   did_not_send_invitations_because: Nous n’avons pas envoyé d’invitations aux personnes suivantes parce que…
   did_you_mean: 'Voulez-vous dire'
@@ -2020,7 +2025,7 @@ fr:
   managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables de l’organisation, ainsi que modifier les paramètres du projet et écrire des notes de journal pour le projet.
   managing_projects: Gestion des projets
   map: Carte
-  map_legend: légende de la carte
+  map_legend: Légende de la Carte
   map_marker_size: taille du marqueur sur la carte
   map_of_observations: Carte des observations
   maps:
@@ -3789,7 +3794,7 @@ fr:
   taxa_to_include: Taxons à inclure
   taxon: Taxon
   taxon_autocomplete_placeholder: Oiseaux, monarque, etc.
-  taxon_geoprivacy: Confidentialité géographique du taxon
+  taxon_geoprivacy: Géoconfidentialité du taxon
   taxon_is_a_rank: "%{taxon} est un %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} est un %{rank} dans %{iconic_taxon} avec 1 observation"
@@ -4875,6 +4880,7 @@ fr:
         taxonomic: Taxinomique
         name: Nom
         most_observed: Les plus observés
+        least_observed: Le moins observé
         date_added_newest: Date ajoutée, Du plus récent au plus vieux
         date_added_oldest: Date ajoutée, Du plus vieux au plus récent
         ancestry: Ancêtres
@@ -5091,8 +5097,8 @@ fr:
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
         geoprivacy: "Si l’observateur a choisi ou non de dissimuler ou masquer les coordonnées"
-        taxon_geoprivacy: "La confidentialité géographique la plus conservatrice est appliquée du fait des états de conservation des taxons dans l’identification actuelle."
-        coordinates_obscured: "Si les coordonnées ont ou non été dissimulées, soit à cause de confidentialité géographique, soit à cause d’un taxon menacé"
+        taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison de la situation de conservation des taxons selon l’identification actuelle."
+        coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
         user_id: Identificateur unique de l’observateur
         user_login: Nom d'utilisateur de l'observateur

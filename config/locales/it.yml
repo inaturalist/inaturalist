@@ -1139,6 +1139,11 @@ it:
     Se non sei stato tu ad aver richiesto il cambio password, ignora questa email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La tua password verrà modificata solo se accedi al link riportato sopra e ne crei una nuova.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Il tuo profilo è stato bloccato a causa di un numero eccessivo di tentativi di accesso falliti.
+  devise_unlock_instructions_click_the_link: |
+    Clicca il collegamento sotto per sbloccare il tuo profilo
+  devise_unlock_instructions_unlock: Sblocca il Tuo Profilo
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
@@ -1992,7 +1997,7 @@ it:
   managers_can_do: I gestori possono fare tutto quello che fanno i curatori come editare le impostazioni del progetto e scrivere il post del diario.
   managing_projects: Gestione progetti
   map: Mappa
-  map_legend: legenda della mappa
+  map_legend: Legenda della Mappa
   map_marker_size: dimensione dell'indicatore della mappa
   map_of_observations: Mappa delle osservazioni
   maps:

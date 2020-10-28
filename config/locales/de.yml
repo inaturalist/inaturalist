@@ -1437,6 +1437,8 @@ de:
   flickr_style: Flickr-Stil
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
+  #Adjective, as in a fluid layout of images
+  fluid: Flüssigkeit
   follow: Folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
   follow_user: "Folge %{user}"
@@ -1755,7 +1757,7 @@ de:
   leave: Verlassen
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
-  leaves: '''Blätter'''
+  leaves: Taxon-Enden
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
@@ -3256,7 +3258,7 @@ de:
     variety: Varietät
     form: Form
     infrahybrid: Infrahybrid
-    leaves: Blätter
+    leaves: Taxon-Enden
   ranges: Bereiche
   ray_finned_fishes: Strahlenflosser
   re_apply_list_rules: Listenregeln erneut anwenden
@@ -3720,7 +3722,7 @@ de:
   taxa_observed: beobachtete Taxa
   taxa_to_include: Einzubeziehende Taxa
   taxon: Taxon
-  taxon_autocomplete_placeholder: Vögel, Monarchen, etc.
+  taxon_autocomplete_placeholder: Vögel, Marienkäfer, Veilchen etc.
   taxon_geoprivacy: Taxon-Geoprivatsphäre
   taxon_is_a_rank: "%{taxon} ist ein %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
@@ -4672,13 +4674,14 @@ de:
       unobserved_species: Nicht beobachtete Arten
       all_species: Alle Arten
       all_unobserved_species: Alle nicht beobachteten Arten
-      observations_at_this_taxon: Beobachtungen von diesem Taxon
+      observations_at_this_taxon: Beobachtungen von genau diesem Taxon
       observations_within_this_taxon: Beobachtungen innerhalb dieses Taxons
       all_observations: Alle Beobachtungen
       total_observations: Beobachtungen insgesamt
       filter_by: Filtern nach
       filtered_by: Gefiltert nach
       apply_filters_to_export: Filter zum Exportieren anwenden
+      restrict_to_leaf_taxa: Auf einzigartige End-Taxa beschränken
       restrict_to_taxon: Auf %{taxon} beschränken
       restrict_to_taxa_observed_in_place: Auf Taxa in %{place} beschränken
       exporting_all_x_taxa:

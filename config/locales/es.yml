@@ -769,6 +769,7 @@ es:
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Échale un vistazo a nuestro blog
   check_out_what_the_observation: Échale un vistazo a como aparece la observación que estás tratando de identificar.
+  check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu nueva y mejorada lista de vida!'
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
@@ -1140,6 +1141,11 @@ es:
     Si no lo has solicitado, por favor, ignora este correo electrónico.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Tu cuenta ha sido bloqueada debido a una cantidad excesiva de intentos de inicio de sesión fallidos.
+  devise_unlock_instructions_click_the_link: |
+    Haz clic en el enlace de abajo para desbloquear tu cuenta
+  devise_unlock_instructions_unlock: Desbloquear tu cuenta
   discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas pues:'
   did_you_mean: '¿Te refieres a'
@@ -1771,6 +1777,7 @@ es:
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
   learn_more: Aprende más
+  learn_more_on_the_blog: Lee nuestro blog para saber más
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que estas licencias significan
   least_concern: Preocupación menor
@@ -1813,6 +1820,7 @@ es:
     italian: Italiano
     japanese: Japonés
     korean: Coreano
+    latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
     maltese: Maltés
@@ -1923,6 +1931,7 @@ es:
     ko: Coreano
     lb: Luxemburgués
     lt: Lituano
+    lv: Letón
     mk: Macedonio
     nb: Noruego Bokmål
     nl: Holandés
@@ -4259,6 +4268,7 @@ es:
   view_more_observations_of_x_project: "Ver más observaciones de %{project} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver más observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver más sin revisar"
+  view_my_life_list: Ver mi lista de vida
   view_observation: Ve observación
   view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
@@ -4757,6 +4767,55 @@ es:
           Puedes copiar este taxón en otra guía. Si eres uno de los
           los editores de esta guía se debe copiar todo, pero si no lo eres
           sólo se copiará el contenido con licencia.
+    lifelists:
+      list_view: Ver lista
+      tree_view: Vista en árbol
+      observed_species: Especies observadas
+      unobserved_species: Especies no observadas
+      all_species: Todas las especies
+      all_unobserved_species: Todas las especies no observadas
+      observations_at_this_taxon: Observaciones en este taxón
+      observations_within_this_taxon: Observaciones dentro de este taxón
+      all_observations: Todas las Observaciones
+      total_observations: Observaciones totales
+      filter_by: Filtrar por
+      filtered_by: Filtrado por
+      apply_filters_to_export: Aplicar filtros para exportar
+      restrict_to_leaf_taxa: Restringir a taxones de hoja
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a los táxones observados en %{place}
+      exporting_all_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando %{count} taxones
+      exporting_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando %{count} taxones
+      no_observations_found_in_place: No se han encontrado observaciones en %{place}.
+      no_observations_found_within_this_taxon_in_place: No se han encontrado observaciones con este taxón en %{place}.
+      no_species_found_within_this_taxon_in_place: No se han encontrado especies de este taxón en %{place}.
+      no_species_found_in_place: No se han encontrado especies en %{place}.
+      no_unobserved_species_in_place: No hay especies sin observar en %{place}.
+      no_unobserved_species_within_this_taxon: No hay especies sin observar dentro de este taxón.
+      no_unobserved_species_within_this_taxon_in_place: No hay especies sin observar de este taxón en %{place}.
+      reset_place_filter: Restablecer filtro de lugar
+      all_observations_in_this_taxon: Todas las observaciones de este taxón
+      observations_of_exactly_this_taxon: Observaciones de exactamente este taxón
+      focus_tree_on_this_taxon: Centrar el árbol en este taxón
+      expand_all_nodes_in_this_branch: Expandir todos los nodos en esta rama
+      collapse_this_branch: Contraer esta rama
+      dropdowns:
+        sort: Ordenar
+        taxonomic: Taxonomía
+        name: Nombre
+        most_observed: Más observado
+        least_observed: Menos observado
+        date_added_newest: Fecha de adición, más reciente a más antigua
+        date_added_oldest: Fecha de adición, de más antigua a más reciente
+        ancestry: Ancestro
+        show: Mostrar
+        children: Subordinado
+        simplified_tree: Árbol simplificado
+        full_taxonomy: Taxonomía completa
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5658,6 +5717,9 @@ es:
         complete_rank_desc_html: |
           Rango en el qué este taxón está completo, p. ej. si esta familia contiene
           todo sus géneros pero no todas sus especies, esto estaría indicado a "género." La respuesta por defecto es especie.
+        wikipedia_summary_desc_html: |
+          Breve resumen de este taxón basado en su página de <a target="_blank"
+          href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
       show:
         about_names_desc: |
           <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos sin ocasionar confusión. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
@@ -6536,6 +6598,7 @@ es:
         mushroom_observer_import_flow_task:
           attributes:
             base:
+              api_key_in_use: "La importación para ese usuario Observador de Hongos está siendo ejecutada o en proceso de importación"
               api_key_missing: "Falta la clave API de Mushroom Observer"
         observation:
           attributes:
