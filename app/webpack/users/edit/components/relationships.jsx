@@ -1,5 +1,6 @@
 import React from "react";
 // import PropTypes from "prop-types";
+import Pagination from "rc-pagination";
 
 import SettingsItem from "./settings_item";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
@@ -118,6 +119,19 @@ const Relationships = ( ) => (
       </div>
     ) )}
     <div className="divider" />
+    <div className="Pagination text-center">
+      <Pagination
+        total={1200}
+        current={1}
+        pageSize={10}
+        locale={{
+          prev_page: I18n.t( "prev" ),
+          next_page: I18n.t( "next" )
+        }}
+        onChange={( ) => console.log( "paginating" )}
+        // onChange={page => loadPage( page )}
+      />
+    </div>
     <div className="row">
       <div className="col-xs-6">
         <SettingsItem header={I18n.t( "blocked_users" )} htmlFor="blocked_users" />
@@ -132,14 +146,24 @@ const Relationships = ( ) => (
         </div>
         {sampleData.map( user => (
           <div className="row flex-no-wrap" key={user.name}>
-            <div className="col-xs-6">
+            <div className="col-xs-9">
               <UserFollowing user={user} />
             </div>
-            <div className="col-xs-6">
+            <div className="col-xs-3">
               <button type="button" className="btn btn-default btn-xs">{I18n.t( "unblock" )}</button>
             </div>
           </div>
         ) )}
+        <div className="margin-top">
+          <p
+            className="text-muted"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.blocking_desc_html" ),
+              site_name: SITE.name
+            }}
+          />
+        </div>
       </div>
       <div className="col-xs-6">
         <SettingsItem header={I18n.t( "muted_users" )} htmlFor="muted_users" />
@@ -154,14 +178,23 @@ const Relationships = ( ) => (
         </div>
         {sampleData.map( user => (
           <div className="row flex-no-wrap" key={user.name}>
-            <div className="col-xs-6">
+            <div className="col-xs-9">
               <UserFollowing user={user} />
             </div>
-            <div className="col-xs-6">
+            <div className="col-xs-3">
               <button type="button" className="btn btn-default btn-xs">{I18n.t( "unmute" )}</button>
             </div>
           </div>
         ) )}
+        <div className="margin-top">
+          <p
+            className="text-muted"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.muting_desc_html" )
+            }}
+          />
+        </div>
       </div>
     </div>
   </div>
