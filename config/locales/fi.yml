@@ -3365,6 +3365,8 @@ fi:
   site_stats: Sivuston tilastot
   site_taxon_page: "%{site_name} taksonisivu"
   some_agree: jotkut ovat samaa mieltä
+  some_observations_are_missing_media_or_identifications_desc: |
+    Havainnot, joissa ei ole kuvia tai ääniä eivät näy oletuksena hauissa. Jos havainnossa ei ole tunnistusta, lajiryhmän asiantuntijat eivät välttämättä koskaan katso sitä. Lisää havaintoon ainakin karkea tunnistus, esim. "kasvit" - tämä auttaa muita löytämään havaintosi.
   some_observations_failed_to_be_added: Joidenkin havaintojen liittäminen projektiin epäonnistui
   some_observations_failed_to_save: Joidenkin havaintojen tallentaminen epäonnistui
   some_of_those_photos_couldnt_be_saved: "Joitakin näistä valokuvista ei voitu tallentaa: %{error}"
@@ -4050,6 +4052,10 @@ fi:
   you_are_no_longer_following_x: "Et enää seuraa ystävää %{friend}."
   you_are_setting_this_project_to_aggregate: |
     Olet asettamassa tätä projektia kokoamaan kaikki havainnot, jotka täsmäävät seuraaviin sääntöihin: %{rules} Haluatko jatkaa?
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    Lähetät havaintoja ilman päivämäärää tai paikkaa. Havainnot
+    ilman näitä tietoja ovat usein mahdottomia tunnistaa, eivätkä ne oletuksena näy
+    havaintohauissa.
   you_are_subscribed_to_comments_on_this_flag: Olet nyt tilannut kommentit tästä lipusta.
   you_are_subscribed_to_comments_on_this_post: Olet tilannut tähän julkaisuun liittyvät kommentit.
   you_are_subscribed_to_comments_on_this_taxon_stage: Olet tilannut tähän taksonitilaan liittyvät kommentit.
