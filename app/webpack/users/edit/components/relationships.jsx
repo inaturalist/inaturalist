@@ -159,8 +159,9 @@ const Relationships = ( ) => (
             className="text-muted"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.blocking_desc_html" ),
-              site_name: SITE.name
+              __html: I18n.t( "views.users.edit.blocking_desc_html", {
+                site_name: SITE.name
+              } )
             }}
           />
         </div>
