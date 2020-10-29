@@ -1130,6 +1130,11 @@ de:
     Falls du kein neues Passwort angefordert hast, ignoriere diese E-Mail einfach.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Dein Passwort bleibt so lange unverändert, bis Du über den oberen Link ein neues Passwort erstellst.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Dein Konto wurde aufgrund einer übermäßigen Anzahl von erfolglosen Anmeldeversuchen gesperrt.
+  devise_unlock_instructions_click_the_link: |
+    Klicke auf untenstehenden Link, um Dein Konto zu entsperren
+  devise_unlock_instructions_unlock: Konto entsperren
   discoveries: Entdeckungen
   did_not_send_invitations_because: Den folgenden wurde keine Einladung geschickt, weil...
   did_you_mean: 'Meintest du'
