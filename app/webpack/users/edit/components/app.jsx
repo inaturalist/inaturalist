@@ -8,6 +8,8 @@ import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
 import ApplicationsContainer from "../containers/applications_container";
+// import RelationshipsContainer from "../containers/relationships_container";
+import Relationships from "./relationships";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
 
 class App extends Component {
@@ -15,7 +17,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 0
+      container: 3
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -53,7 +55,7 @@ class App extends Component {
       <ProfileContainer />,
       <AccountContainer />,
       <NotificationsContainer />,
-      <></>,
+      <Relationships />,
       <ContentContainer />,
       <ApplicationsContainer />
     ];

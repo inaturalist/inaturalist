@@ -108,6 +108,11 @@ button.left-nav-item {
   display: inline !important;
 }
 
+.margin-right {
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
 .description-margin-left {
   margin-left: 20px;
 }
@@ -118,6 +123,14 @@ button.left-nav-item {
 
 .profile-photo-margin {
   margin-top: 20px;
+}
+
+.divider {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.relationship-row-margin {
+  margin-bottom: 11px;
 }
 
 .ToggleSwitch {
