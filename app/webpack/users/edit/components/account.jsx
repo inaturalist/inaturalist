@@ -28,7 +28,8 @@ const Account = ( {
   profile,
   handleCustomDropdownSelect,
   handleInputChange,
-  handlePlaceAutocomplete
+  handlePlaceAutocomplete,
+  setModalState
 } ) => {
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
@@ -113,10 +114,10 @@ const Account = ( {
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
               description={(
                 <p>
-                  <a href="#">
+                  <button type="button" className="btn btn-link" onClick={( ) => setModalState( { show: true } )}>
                     <i className="fa fa-info-circle" />
                     {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-                  </a>
+                  </button>
                 </p>
               )}
             />
@@ -167,7 +168,8 @@ Account.propTypes = {
   profile: PropTypes.object,
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
-  handlePlaceAutocomplete: PropTypes.func
+  handlePlaceAutocomplete: PropTypes.func,
+  setModalState: PropTypes.func
 };
 
 export default Account;

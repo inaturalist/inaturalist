@@ -12,11 +12,15 @@ import {
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
+import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
+import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
   profile: userSettingsReducer,
-  revokeAccess: revokeAccessModalReducer
+  revokeAccess: revokeAccessModalReducer,
+  apps: authenticatedAppsReducer,
+  thirdPartyTracking: thirdPartyTrackingModalReducer
 } );
 
 const store = createStore(
@@ -31,6 +35,7 @@ const store = createStore(
 );
 
 store.dispatch( fetchUserSettings( null ) );
+store.dispatch( fetchAuthorizedApps( ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension

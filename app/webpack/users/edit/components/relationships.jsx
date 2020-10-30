@@ -58,6 +58,8 @@ const Relationships = ( ) => (
               name="following"
             >
               <option value="following">{I18n.t( "all" )}</option>
+              <option value="following">{I18n.t( "yes" )}</option>
+              <option value="following">{I18n.t( "no" )}</option>
             </select>
           </div>
         </div>
@@ -70,6 +72,8 @@ const Relationships = ( ) => (
               name="trusted"
             >
               <option value="trusted">{I18n.t( "all" )}</option>
+              <option value="trusted">{I18n.t( "yes" )}</option>
+              <option value="trusted">{I18n.t( "no" )}</option>
             </select>
           </div>
         </div>
@@ -107,7 +111,7 @@ const Relationships = ( ) => (
             label={I18n.t( "following" )}
           />
           <CheckboxRowContainer
-            name="trust_with_private_coordinates"
+            name="trust"
             label={I18n.t( "trust_with_private_coordinates" )}
           />
           <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: user.username } )}</dfn>
@@ -121,7 +125,7 @@ const Relationships = ( ) => (
     <div className="divider" />
     <div className="Pagination text-center">
       <Pagination
-        total={1200}
+        total={200}
         current={1}
         pageSize={10}
         locale={{
@@ -134,68 +138,68 @@ const Relationships = ( ) => (
     </div>
     <div className="row">
       <div className="col-xs-6">
-        <SettingsItem header={I18n.t( "blocked_users" )} htmlFor="blocked_users" />
-        <div className="input-group">
-          <input
-            id="blocked_users"
-            type="text"
-            className="form-control"
-            name="blocked_users"
-            placeholder={I18n.t( "add_blocked_users" )}
-          />
-        </div>
-        {sampleData.map( user => (
-          <div className="row flex-no-wrap" key={user.name}>
-            <div className="col-xs-9">
-              <UserFollowing user={user} />
-            </div>
-            <div className="col-xs-3">
-              <button type="button" className="btn btn-default btn-xs">{I18n.t( "unblock" )}</button>
-            </div>
+        <SettingsItem header={I18n.t( "blocked_users" )} htmlFor="blocked_users">
+          <div className="input-group">
+            <input
+              id="blocked_users"
+              type="text"
+              className="form-control"
+              name="blocked_users"
+              placeholder={I18n.t( "add_blocked_users" )}
+            />
           </div>
-        ) )}
-        <div className="margin-top">
-          <p
-            className="text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.blocking_desc_html", {
-                site_name: SITE.name
-              } )
-            }}
-          />
-        </div>
+          {sampleData.map( user => (
+            <div className="row flex-no-wrap" key={user.name}>
+              <div className="col-xs-9">
+                <UserFollowing user={user} />
+              </div>
+              <div className="col-xs-3">
+                <button type="button" className="btn btn-default btn-xs">{I18n.t( "unblock" )}</button>
+              </div>
+            </div>
+          ) )}
+        </SettingsItem>
+        <p
+          className="text-muted"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.users.edit.blocking_desc_html", {
+              site_name: SITE.name,
+              // noting that this help_email isn't populating
+              help_email: SITE.help_email
+            } )
+          }}
+        />
       </div>
       <div className="col-xs-6">
-        <SettingsItem header={I18n.t( "muted_users" )} htmlFor="muted_users" />
-        <div className="input-group">
-          <input
-            id="muted_users"
-            type="text"
-            className="form-control"
-            name="muted_users"
-            placeholder={I18n.t( "add_muted_users" )}
-          />
-        </div>
-        {sampleData.map( user => (
-          <div className="row flex-no-wrap" key={user.name}>
-            <div className="col-xs-9">
-              <UserFollowing user={user} />
-            </div>
-            <div className="col-xs-3">
-              <button type="button" className="btn btn-default btn-xs">{I18n.t( "unmute" )}</button>
-            </div>
+        <SettingsItem header={I18n.t( "muted_users" )} htmlFor="muted_users">
+          <div className="input-group">
+            <input
+              id="muted_users"
+              type="text"
+              className="form-control"
+              name="muted_users"
+              placeholder={I18n.t( "add_muted_users" )}
+            />
           </div>
-        ) )}
-        <div className="margin-top">
-          <p
-            className="text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.muting_desc_html" )
-            }}
-          />
-        </div>
+          {sampleData.map( user => (
+            <div className="row flex-no-wrap" key={user.name}>
+              <div className="col-xs-9">
+                <UserFollowing user={user} />
+              </div>
+              <div className="col-xs-3">
+                <button type="button" className="btn btn-default btn-xs">{I18n.t( "unmute" )}</button>
+              </div>
+            </div>
+          ) )}
+        </SettingsItem>
+        <p
+          className="text-muted"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.users.edit.muting_desc_html" )
+          }}
+        />
       </div>
     </div>
   </div>

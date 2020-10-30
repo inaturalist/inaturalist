@@ -11,13 +11,14 @@ import ApplicationsContainer from "../containers/applications_container";
 // import RelationshipsContainer from "../containers/relationships_container";
 import Relationships from "./relationships";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
+import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking_modal_container";
 
 class App extends Component {
   constructor( ) {
     super( );
 
     this.state = {
-      container: 3
+      container: 5
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -80,6 +81,7 @@ class App extends Component {
           {userSettings[container]}
         </div>
         <RevokeAccessModalContainer />
+        <ThirdPartyTrackingModalContainer />
       </div>
     );
   }

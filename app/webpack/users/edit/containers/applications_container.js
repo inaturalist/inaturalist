@@ -1,17 +1,20 @@
 import { connect } from "react-redux";
 
 import Applications from "../components/applications";
+import { setAppToDelete } from "../ducks/authorized_applications";
 import { showModal } from "../ducks/revoke_access_modal";
 
-function mapStateToProps( ) {
-  return {};
+function mapStateToProps( state ) {
+  return {
+    apps: state.apps.apps
+  };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showModal: ( ) => {
-      // dispatch( setModal( application ) );
-      dispatch( showModal( ) );
+    showModal: id => {
+      dispatch( setAppToDelete( id ) );
+      dispatch( showModal( id ) );
     }
   };
 }
