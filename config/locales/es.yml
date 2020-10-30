@@ -45,8 +45,8 @@ es:
     one: '<span class="count">1</span> taxón que coincide'
     other: '<span class="count">%{count}</span> taxones que coinciden'
   x_misidentifications_of_this_species:
-    one: "1 identificación erronea de esta especie"
-    other: "%{count} identificaciónes erroneas de esta especie"
+    one: "%{count} identificación errónea de esta especie"
+    other: "%{count} identificaciones erróneas de esta especie"
   x_misidentifications_of_species_in_this_rank:
     one: "1 identificación errónea de especie en este %{rank}"
     other: "%{count} identificaciones erróneas de especies en este %{rank}"
@@ -2039,6 +2039,7 @@ es:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
     iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
+  #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: "%{user} te ha mencionado en %{noun}"
