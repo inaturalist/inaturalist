@@ -127,6 +127,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
     };
     if( observation.coordinates_obscured ) {
       shape = markerObscuredRectangle( marker, shapeOptions );
+      this.observationRectangles[observation.id] = shape;
     } else {
       var accuracy = parseInt( observation.positional_accuracy ) || 0;
       if( accuracy == 0 ) return
@@ -134,7 +135,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
         center: marker.getPosition( ),
         radius: accuracy
       }));
-      observation._circle = shape;
+      this.observationCircles[observation.id] = shape;
     }
     var listener = function() {
       var mapBounds = this.getBounds(),
@@ -157,6 +158,16 @@ google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
   if (this.observations[observation.id]) {
     this.observations[observation.id].setMap(null)
+  }
+  if ( this.observationCircles[observation.id] ) {
+    this.observationCircles[observation.id].unbindAll( );
+    this.observationCircles[observation.id].setMap( null );
+    delete this.observationCircles[observation.id];
+  }
+  if ( this.observationRectangles[observation.id] ) {
+    this.observationRectangles[observation.id].unbindAll( );
+    this.observationRectangles[observation.id].setMap( null );
+    delete this.observationRectangles[observation.id];
   }
   delete this.observations[observation.id];
 };
@@ -435,6 +446,8 @@ iNaturalist.Map.createMap = function(options) {
   // storage for marker objects indexed by their corresponding
   // observation_id's
   map.observations = {};
+  map.observationCircles = {};
+  map.observationRectangles = {};
   map.places = {};
       
   // used when creating observations from the map

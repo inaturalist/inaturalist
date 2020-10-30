@@ -143,6 +143,10 @@ class ObservationModal extends React.Component {
         "map_scale"
       ] );
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
+      if ( observation.private_geojson ) {
+        obsForMap.private_latitude = observation.private_geojson.coordinates[1];
+        obsForMap.private_longitude = observation.private_geojson.coordinates[0];
+      }
       const taxonLayer = {
         observationLayers: [
           {
@@ -170,7 +174,7 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
-          reloadKey={`map-for-${obsForMap.id}`}
+          reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude}`}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
