@@ -174,7 +174,7 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
-          reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude}`}
+          reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
