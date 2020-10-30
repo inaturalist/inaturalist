@@ -249,6 +249,37 @@ en:
       table of presence-absence records for a species from trips and associated
       observations. <a href='%{url}'>Learn more</a>
     </p>
+  about_trusting_projects: About Trusting Projects
+  about_trusting_projects_options_any: All your observations in this project
+  about_trusting_projects_options_any_desc: |-
+    This includes observations where you have set the geoprivacy to "obscured"
+    or "private," e.g. observations from your backyard or spots you don't want
+    other people to know about.
+  about_trusting_projects_options_taxon: |-
+    Only your observations in this project that have obscured coordinates
+    because of threatened taxa
+  about_trusting_projects_options_taxon_desc: |-
+    Many projects just need access to coordinates that are obscured because the
+    observation depicts a threatened taxon.
+  about_trusting_projects_overview: |-
+    Granting access to your hidden coordinates will allow the managers of this
+    project to see the true, unobscured location of of your observations in this
+    project. This is extremeley important in situations where scientists or
+    resource managers need access to exact coordinates for analysis and
+    decision-making.
+  # Header for a section listing all the project managers (admins and curators)
+  # of a project
+  about_trusting_projects_project_managers_are: |-
+    The project managers who will have access to your hidden coordinates are:
+  about_trusting_projects_warning: |-
+    Note that project managers can change the project parameters to include any
+    of your observations, and they can add or remove project managers at any
+    time. You will receive notifications about these changes, but you are
+    essentially trusting this project with your private location data, so be
+    careful.
+  # Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    You can choose to share hidden coordinates for
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -1023,11 +1054,21 @@ en:
   convert: Convert
   coordinate_systems: Coordinate systems
   coordinates: Coordinates
+  # A filter option that only shows observations for which the viewer has
+  # permission to see the "true" or "hidden" coordinates for observations in a
+  # particular project, i.e. anythign unobscured as well as anything obscured
+  # that the viewer has permission to see
+  coords_viewable_for_proj_label: Only w/ full coordinates
+  coords_viewable_for_proj_desc: |
+    Only show observations from this project for which you can see the "true"
+    coordinates, including unobscured observations, obscured observations by
+    people who trust you, obscured observations by people who trust this project
+    with anything, and observations obscured by threatened taxa by people who
+    only trust this project with same.
   copy: Copy
   copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
-  
   copyright:
     some_rights_reserved: some rights reserved        
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
@@ -2167,6 +2208,7 @@ en:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Member of the %{partial_inat_network_tag_html}iNaturalist Network</a>, a
     joint initiative of the %{cas_tag_html} and the %{nat_geo_tag_html}.
+  # As in members of a project
   members: Members
   membership_model: Membership Model
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
@@ -3497,6 +3539,7 @@ en:
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
+  receive_project_journal_notifications?: Receive project journal notifications?
   receive_updates_from_this_project: Receive updates from this project
   recent: Recent
   recent_evidence_of_organism: Recent evidence of an organism
@@ -4277,9 +4320,12 @@ en:
   trending: Trending
   trends: Trends
   trip_target_list_info: 'Any species covered by this target list that were not observed within the radius and duration of this trip will be interpreted as absences. <a href="/pages/trips">Read more</a>.'
+  # Noun
+  trust: Trust
   trusted: Trusted
   trusted_project?: Trusted project?
   trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
+  trust_this_project_with_your_private_coordinates?: Trust this project with hidden coordinates?
   trust_with_private_coordinates: Trust with hidden coordinates
   try_adding_species_form: Try adding some species using the form on this page.
   twitter: Twitter
@@ -4673,7 +4719,16 @@ en:
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
   'yes': "Yes"
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates but only for observations of
+  # threatened taxa
+  yes_but_only_for_threatened: |-
+    Yes, but only for my observations of threatened taxa, not when I've set the
+    geoprivacy
   yes_find_them!: "Yes, find them!"
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Yes, for any of my observations"
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data (recommended).
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data (recommended).
@@ -5656,6 +5711,23 @@ en:
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
           name that only matches a single taxon. 
+      collection_project_changed_for_trusting_member:
+        # Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Since you have trusted this project with the hidden coordinates of <a
+          href="%{obs_url}">some of your observations</a>, the admins may now
+          have access to more of your hidden coordinates than they did at the
+          time that you trusted this project. You should review the list of
+          admins and the project requirements to make sure you still trust this
+          project with your observations:
+        # Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          The observation requirements of the following project have recently
+          changed:
+        subject: Project observation requirements changed for %{project}
+        you_can_change_html: |-
+          You can change your preferences or leave the project on the
+          <a href="%{url}">project's page</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Your observations export is ready. There's a copy attached to this email, or you can
@@ -5981,6 +6053,19 @@ en:
         submission_models:
           any: anyone
           curators: project curators
+        trust_allow_members_to_trust: |-
+          Allow members to trust this project with hidden coordinates
+        trust_help_desc: |-
+          If you want access to the hidden coordinates of obscured observations,
+          this option will allow people who have joined this project to trust
+          the project admins with access to those hidden coordinates. Project
+          members will be able to grant access to the hidden coordinates of any
+          of their observations that appear in this project, or just the
+          observations that are obscured because of threatened taxa.
+        trust_help_notification: |-
+          However, this will also notify all trusting project members every time
+          you change the project requirements, so they can reassess whether they
+          want to continue trusting you given the new requirements.
         trusted_project_means: |
           Trusting a project means that the project managers can add Project
           Assets and custom project attributes (e.g. banner HTML, CSS). Access
@@ -6098,6 +6183,11 @@ en:
           observations to be automatically included.
         start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         traditional_projects_cannot_be_copied: Traditional project cannot be copied
+        trusting_members_will_be_notified: |
+          You've changed the project requirements or turned on user trust. This
+          will notify any project members who have already trusted the project
+          with hidden coordinates so they have a chance to decide whether they
+          still want to trust the project given the new requirements.
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
         use_this_for_a_time_limited_event: |

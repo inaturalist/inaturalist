@@ -38,7 +38,14 @@ const App = ( { config, form, createNewProject } ) => {
             </ul>
           </Col>
           <Col xs={6}>
-            <img src={HERO_IMAGE_PATH} className="preview-img" alt="" />
+            <img
+              src={
+                // eslint-disable-next-line no-undef
+                HERO_IMAGE_PATH
+              }
+              className="preview-img"
+              alt=""
+            />
           </Col>
         </Row>
         <Row>
@@ -104,6 +111,7 @@ const App = ( { config, form, createNewProject } ) => {
           <Col xs={6}>
             <div className="btn-div">
               <button
+                type="button"
                 className="btn-green"
                 onClick={( ) => createNewProject( "collection" )}
               >
@@ -120,6 +128,7 @@ const App = ( { config, form, createNewProject } ) => {
           <Col xs={6}>
             <div className="btn-div">
               <button
+                type="button"
                 className="btn-green"
                 onClick={( ) => createNewProject( "umbrella" )}
               >

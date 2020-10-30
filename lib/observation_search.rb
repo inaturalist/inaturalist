@@ -171,7 +171,8 @@ module ObservationSearch
         mapped_params = map_params_for_node_api(params)
         rsp = INatAPIService.observations(mapped_params.merge(only_id: true))
         return WillPaginate::Collection.create(rsp.page, rsp.per_page, rsp.total_results) do |pager|
-          pager.replace(Observation.where(id: rsp.results.map{ |r| r["id"] }).to_a)
+          observations = Observation.where(id: rsp.results.map{ |r| r["id"] }).to_a
+          pager.replace( observations )
         end
       end
       Observation.elastic_paginate(elastic_params)
