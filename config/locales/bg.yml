@@ -547,6 +547,7 @@ bg:
   cc_by_nd_name: Признание-БезПроизводни
   cc_by_sa_description: "Този лиценз позволява на други хора да разпространяват, променят, допълват и използват Вашата творба, включително за комерсиални цели, стига да посочат Вас като автор на оригинала и стига да лицензират своите производни творби под същия лиценз."
   cc_by_sa_name: Признание-СподелянеСподеленото
+  change_admin: Промени администратора
   #Button to change the cover (or banner) image for a project
   change_cover: Промени корицата
   change_descriptions:
@@ -620,6 +621,10 @@ bg:
   colors: Цветове
   columns: Колони
   combine: Обедини
+  comma_separated_list_of_tracking_codes: |
+    Списък на кодове за проследяване отделени със запетаи. Добавете такива, ако искате да добавяте проследяващ код към уебадреса, когато препращате хората към формуляра за нови наблюдения, например:
+    %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
+    Можете да ги използвате, за да проследявате от къде са дошли различните участници. Тези кодове ще са достъпни, когато изтеглите наблюденията на проекта в CSV формат.
   comma_separated_please: Разделени със запетая, моля
   comment: коментар
   #Verb, generally a label on a button that allows the user to add a comment
@@ -755,6 +760,7 @@ bg:
   curation: Куриране
   curator: Куратор
   curators: Куратори
+  curators_can_remove_observations_from: Кураторите могат да премахват наблюдения от проекта и техните разпознавания се показват до наблюденията в определени изгледи специфични за проектите. Кураторите могат също да виждат истинските координати на поверителни или замаскирани наблюдения добавени в проекта.
   dashboard: Табло
   data_deficient: недостатъчно данни
   data_quality: Качество на данните
@@ -861,6 +867,11 @@ bg:
         subject: 'Инструкции за потвърждение'
       reset_password_instructions:
         subject: 'Инструкции за възстановяване на паролата'
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Вашият акаунт е заключен поради множество неуспешни опити за влизане.
+  devise_unlock_instructions_click_the_link: |
+    Щракнете препратката по-долу, за да отключите акаунта си
+  devise_unlock_instructions_unlock: Отключете акаунта си
   disable: Изключване
   disable_comments: Изключи коментарите
   disable_comments_desc: Забрани на хората да добавят нови коментари
@@ -907,6 +918,7 @@ bg:
   edit_observations: Редактиране на наблюдения
   edit_photos: Редактиране на снимки
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
+  edit_project: Редактирай проекта
   edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
   edit_your_global_project_settings: Редактирай общите настройки за проекти
@@ -999,6 +1011,7 @@ bg:
   fill_out_project_observation_fields: Попълнете полетата за наблюдения на проекта
   fill_out_your_profile: довършете профила си
   filter: Филтриране
+  filter_by_curator_identification: Филтрирай по разпознавания от куратори
   filter_by_place: Филтрирай по място
   filter_by_taxon: Филтрирай по таксон
   filter_list_by_this_taxon: Филтрирай списъка по този таксон
@@ -1161,6 +1174,8 @@ bg:
   #Verb, usually a button to hide an interface element
   hide: Скрий
   hide_content: Скрий съдържанието
+  hide_desc: |
+    Скриването на съдържание ще го премахне от публичния изглед, но хората ще могат да виждат, че нещо е скрито, а кураторите на сайта и авторът на съдържанието ще могат да виждат скритото съдържание. Това се отнася за написано съдържание, например ако скриете съдържанието на разпознаване – самото разпознаване ще е видимо, но бележките към него ще са скрити. Не можете да отмените това действие, само персоналът на сайта може да отмени скриването, така че бъдете внимателни и използвайте функцията само за наистина нежелателно съдържание.
   high: Висок
   highest_rank: Най-висок ранг
   history: История
@@ -1203,7 +1218,7 @@ bg:
   in_place_x: във %{place}
   inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
-  inbox: входящи
+  inbox: Входящи
   include_places: Включвай места
   include_projects: Включи проекти
   include_taxa: Включвай таксони
@@ -1328,6 +1343,7 @@ bg:
     italian: италиански
     japanese: японски
     korean: корейски
+    latvian: латвийски
     lithuanian: литовски
     luxembourgish: люксембургски
     maltese: малтийски
@@ -1420,6 +1436,7 @@ bg:
     ko: корейски
     lb: люксембургски
     lt: литовски
+    lv: латвийски
     mk: македонски
     nb: норвежки (букмол)
     nl: нидерландски
@@ -1502,6 +1519,7 @@ bg:
   member_of_the_inaturalist_network_html: |
     Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
+  membership_model: Начин на членство
   mentioned_you_in_noun_html: "%{user} Ви спомена във %{noun}"
   mentioned_you_in_noun_by_html: "%{user} Ви спомена във %{noun} от %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} Ви спомена във %{noun} от %{by}"
@@ -1661,6 +1679,7 @@ bg:
   'no': 'Не'
   no_but_it_is_a_member_of_taxon: "Не, но е представител на %{taxon}"
   no_comments_yet: Няма коментари.
+  no_curators_set: Не са зададени куратори
   no_description: Липсва описание
   no_identifications: Няма разпознавания
   no_identifications_added:
@@ -1726,6 +1745,7 @@ bg:
   number_of_observations: Брой наблюдения
   number_of_observers_value: "Брой наблюдатели: %{number}"
   number_of_observers: "Брой наблюдатели"
+  obs: Набл
   obscured: Замаскирано
   obscured_or_private: замаскирано или поверително
   obscured_description: |
@@ -2381,6 +2401,7 @@ bg:
     other: Администратори на проекта
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
+  project_curator_tools: Инструменти за куратори на проекта
   project_curators: Куратори на проекта
   project_group_label: Група
   project_group_description: Група, към която принадлежи проектът
@@ -2724,6 +2745,7 @@ bg:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: МАГАЗИН
+  submission_model: Начин на добавяне
   submission_model_description: Кой може да добавя наблюдения към Вашия проект?
   submit_observations:
     one: Публикувай 1 наблюдение
@@ -3061,12 +3083,16 @@ bg:
   view_original_by: "Виж оригинала от %{by} на %{photo}"
   view_original_ccD_photo: "Виж оригиналната снимка от %{owner}"
   view_photos_ranges_observations_more: "Вижте снимки, разпространение, наблюдения от %{site_name} и още много! Събрали сме информация от много различни източници и сме я обединили в удобно резюме за всеки биологичен вид от всяко място."
+  view_place: Виж мястото
+  view_projects_from_place: "Виж проекти от %{place}"
   view_sample: Виж пример
+  view_stats: Виж статистика
   view_taxon_change: Виж таксономичната промяна
   view_taxon_changes: Виж таксономичните промени
   view_taxononomy_details_for_taxon: "Виж таксономични детайли за %{taxon}"
   view_the_observation: Виж наблюдението
   view_user_observations: "Виж наблюденията на %{user}"
+  view_year_stats_for_site: "Виж статистика за %{year} на %{site}"
   view_your_dashboard: Виж информационното табло
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Вижте Вашето информационното табло</a> за повече новости"
   view_your_inbox: Виж входящата поща
@@ -3269,6 +3295,9 @@ bg:
       sorts:
         alphaname: Азбучно по научно име
         alphadisplay: Азбучно по имената показвани по подразбиране
+    lifelists:
+      dropdowns:
+        least_observed: Най-малко наблюдаван
     lists:
       new:
         place_desc: |
@@ -3323,6 +3352,8 @@ bg:
       show:
         allow_curator_coordinate_access_desc_html: |
           Разрешете на кураторите на проекта да виждат скритите координати на това наблюдение.
+        curator_coordinate_access_disabled_desc_html: |
+          Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
         data_quality_assessment_desc_html: |
           Оценката на качеството на данните представлява оценка на точността на данните. Наблюдения с Изследователско качество могат да се използват от учените за изследвания. Дайте своя вот по-долу:
         flagged_photos_desc_html: |
@@ -3393,6 +3424,7 @@ bg:
           <p>
           Биоблиц е мероприятие, в което участниците се стремят да наблюдават възможно най-голям брой видове за определен период от време. Това е забавен начин хората да се запознаят с биоразнообразието и същевременно да се съберат ценни данни.
           </p>
+        change_admin_desc: Изберете един от кураторите на проекта, който да стане новият администратор.
         change_owner_alert: |
           Това ще Ви лиши от способността да изтривате проекта или да променяте собственика му отново. Сигурни ли сте, че искате да продължите?
         cover_desc: "Незадължително изображение за заглавното каре, което се показва най-отгоре на страницата на проекта. Трябва да е широко 950 пиксела и високо по-малко от 400 пиксела."
@@ -4080,6 +4112,7 @@ bg:
         preferred_membership_model: Начин на членство
         preferred_submission_model: Начин на публикуване
         prefers_place_boundary_visible: Покажи границите на мястото върху картата
+        tracking_codes: Кодове за проследяване
         start_time: Час на започване
       place:
         code: Код
@@ -4141,6 +4174,13 @@ bg:
               contains_too_many_observations: съдържа прекалено много наблюдения за импортиране
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                събирателните и обединителните проекти не позволяват директно добавяне
             user_id:
               must_be_curator: трябва да е куратор на проекта
             observation_id:
