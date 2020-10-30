@@ -813,6 +813,7 @@ ru:
   cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: "Creative Commons, используется по"
   change_admin: Изменить администратора
+  #Button to change the cover (or banner) image for a project
   change_cover: Изменить обложку
   change_descriptions:
     split: Старый таксон разделяется на несколько новых таксонов
@@ -876,6 +877,7 @@ ru:
   check_out_my_observations_at: Если вы хотите, вы можете проверить мои наблюдения на
   check_out_our_blog: Загляните в наш блог
   check_out_what_the_observation: Проверьте, как выглядит наблюдение, которое вы пытаетесь идентифицировать.
+  check_out_your_new_and_improved_list_list: Выгрузить свой новый улучшенный список жизни
   check_this_box_if_html: |
     Установите этот флажок, если вы хотите использовать 
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>лицензию Creative Commons С указанием авторства-Некоммерческая</a> для загружаемого контента. Это означает, что любой может копировать и повторно использовать ваши фото и/или наблюдения, не спрашивая вашего разрешения, поскольку они признали, что не будут использовать работы в коммерческих целях. Вы можете выбрать другой вид лицензии, но эта - наилучшая для совместного использования с исследователями.
@@ -1184,6 +1186,7 @@ ru:
   delete: Удалить
   delete_all: Удалить всё
   delete_conversation: Удалить переписку
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: удалить обложку?
   delete_icon?: Удалить иконку?
   delete_photo: Удалить фото
@@ -1245,6 +1248,11 @@ ru:
     Если вы не посылали этот запрос, проигнорируйте это письмо.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будет изменён, пока Вы не перейдете по указанной ссылке и не укажете новый пароль.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Ваш аккаунт был заблокирован из-за чрезмерного количества неудачных попыток входа.
+  devise_unlock_instructions_click_the_link: |
+    Нажмите на ссылку ниже, чтобы разблокировать свой аккаунт:
+  devise_unlock_instructions_unlock: Разблокировать аккаунт
   discoveries: Открытия
   did_not_send_invitations_because: Не отправил приглашения следующим, потому что...
   did_you_mean: 'Возможно, вы имеете в виду'
@@ -1877,6 +1885,7 @@ ru:
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
   learn_more: Узнать больше
+  learn_more_on_the_blog: Подробнее в блоге
   learn_more_raquo: "Узнать больше &raquo;"
   learn_what_these_licenses_mean: Узнайте, что означают эти лицензии
   least_concern: Под наименьшей угрозой
@@ -1919,6 +1928,7 @@ ru:
     italian: Итальянский
     japanese: Японский
     korean: Корейский
+    latvian: Латышский
     lithuanian: Литовский
     luxembourgish: Люксембургский
     maltese: Мальтийский
@@ -2029,6 +2039,7 @@ ru:
     ko: Корейский
     lb: Люксембургский
     lt: Литовский
+    lv: Латышский
     mk: Македонский
     nb: Норвежский (букмол)
     nl: Голландский
@@ -2279,12 +2290,12 @@ ru:
   needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с iNaturalist.org на %{site_name} и делиться данными с местными организациями?
+    <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> и делиться данными с местными организациями?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в Финляндии. Хотите ли вы изменить вашу сетевую принадлежность с iNaturalist.org на iNaturalist Suomi и делиться данными с местными организациями?
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в Финляндии. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>iNaturalist Suomi</strong> и делиться данными с местными организациями?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
@@ -4101,7 +4112,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
   this_is_a_life_list_from_place_html: "Это список жизни для %{place}"
   this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} для %{place}"
@@ -4408,6 +4418,7 @@ ru:
   view_more_observations_of_x_project: "Посмотреть дополнительные наблюдения из %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Посмотреть ещё наблюдения %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Посмотреть ещё непроверенные"
+  view_my_life_list: Посмотреть свой список жизни
   view_observation: Посмотреть наблюдение
   view_observations: Посмотреть наблюдения
   view_observation_flags: Посмотреть флаги наблюдения
@@ -4470,7 +4481,6 @@ ru:
   website: Веб-сайт
   week_of_date: "Неделя %{date}"
   welcome: добро пожаловать
-  welcome_back: Добро пожаловать вновь
   welcome_back!: Добро пожаловать вновь!
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
@@ -4519,7 +4529,6 @@ ru:
     <a href="%{url}">"%{title}"</a>, которая выпущена под лицензией 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
-  wikipedia_entry: Источник в Википедии
   with: с
   withdraw: Отозвать
   withdrawing: Отзыв...
@@ -4929,6 +4938,7 @@ ru:
         taxonomic: Таксономический
         name: Название
         most_observed: Наиболее наблюдаемые
+        least_observed: Наименее наблюдаемые
         date_added_newest: Дата добавления, от новых к старым
         date_added_oldest: Дата добавления, от старых к новым
         ancestry: Предки
@@ -5834,6 +5844,9 @@ ru:
           "Полный" таксон содержит <em>все</em> известные потомки таксонов указанного ранга, которые соответствуют политике курирования таксонов iNaturalist, независимо от того, наблюдались они или нет.  В настоящее время только администраторы сайта могут объявить таксоны полными.
         complete_rank_desc_html: |
           Ранг, при котором этот таксон является полным, например, если это семейство содержит все его роды, но не все его виды, это будет установлено в "род". По умолчанию - вид.
+        wikipedia_summary_desc_html: |
+          Краткое описание этого таксона основано на его <a target="_blank"
+          href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
       show:
         about_names_desc: |
           <p>

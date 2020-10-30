@@ -4992,7 +4992,10 @@ CREATE TABLE public.users (
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    species_count integer DEFAULT 0
+    species_count integer DEFAULT 0,
+    locked_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0,
+    unlock_token character varying
 );
 
 
@@ -9368,6 +9371,13 @@ CREATE INDEX index_users_on_state ON public.users USING btree (state);
 
 
 --
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
 -- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10320,6 +10330,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
+
+INSERT INTO schema_migrations (version) VALUES ('20200910001039');
 
 INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 

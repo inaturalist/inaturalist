@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
-         :encryptable, :encryptor => :restful_authentication_sha1
+         :encryptable, :lockable, :encryptor => :restful_authentication_sha1
   handle_asynchronously :send_devise_notification
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
@@ -101,6 +101,9 @@ class User < ActiveRecord::Base
   preference :identify_side_bar, :boolean, default: false
   preference :lifelist_nav_view, :string
   preference :lifelist_details_view, :string
+  preference :edit_observations_sort, :string, default: "desc"
+  preference :edit_observations_order, :string, default: "created_at"
+  preference :lifelist_tree_mode, :string
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

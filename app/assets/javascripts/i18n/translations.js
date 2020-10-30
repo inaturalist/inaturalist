@@ -673,7 +673,6 @@ I18n.translations["ar"] = {
   "manage_names": "إدارة الأسماء",
   "manage_your_relationships": "إدارة علاقاتك",
   "map": "خريطة",
-  "map_legend": "مفتاح الخريطة",
   "map_marker_size": "حجم علامة الخريطة",
   "map_of_observations": "خريطة الملاحظات",
   "map_tooltip": "مشاهدة عرض الخريطة",
@@ -832,7 +831,6 @@ I18n.translations["ar"] = {
   "offensive_inappropriate": "مسيئة / غير مناسبة",
   "ok": "موافق",
   "old_observation_form": "استمارة الملاحظة القديمة (مهملة)",
-  "open": "فتح",
   "open_": "فتح",
   "open_street_map": "خريطة الشارع المفتوحة",
   "or": "أو",
@@ -2068,7 +2066,8 @@ I18n.translations["bg"] = {
     "flower_budding": "Виждат се цветни пъпки, но не са разтворени",
     "flowering": "Цветовете са видими, напълно развити и все още прикачени към растението",
     "fruiting": "Плодът се вижда и все още е прикрепен към растението",
-    "no_evidence_of_flowering": "Медията не свидетелства за наличието на репродуктивни структури"
+    "no_evidence_of_flowering": "Медията не свидетелства за наличието на репродуктивни структури",
+    "teneral": "Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид"
   },
   "controlled_term_labels": {
     "adult": "Възрастен",
@@ -2592,7 +2591,6 @@ I18n.translations["bg"] = {
   "mammals": "бозайници",
   "manage_your_relationships": "Управление на взаимоотношения",
   "map": "Карта",
-  "map_legend": "легенда на картата",
   "map_marker_size": "размер на маркера на картата",
   "map_of_observations": "Карта на наблюдения",
   "map_tooltip": "Покажи на картата",
@@ -2736,7 +2734,6 @@ I18n.translations["bg"] = {
   "of_this_taxon": "От този таксон",
   "offensive_inappropriate": "Обидно / неуместно",
   "old_observation_form": "Стар формуляр за наблюдения (неактуален)",
-  "open": "открито",
   "open_": "Открито",
   "or": "или",
   "orange": "оранжево",
@@ -3999,7 +3996,6 @@ I18n.translations["br"] = {
   "mammals": "bronneged",
   "manage_names": "Merañ an anvioù",
   "map": "Kartenn",
-  "map_legend": "alc'hwez ar gartenn",
   "map_marker_size": "ment ar merker war ar gartenn",
   "map_tooltip": "Diskouez ar gwel eus ar gartenn",
   "maps": {
@@ -4044,7 +4040,6 @@ I18n.translations["br"] = {
   "obscured": "Kuzhet",
   "observation_date": "Deiziad",
   "ok": "Mat eo",
-  "open": "digor",
   "or": "pe",
   "orange": "orañjez",
   "order_by": "Rummañ dre",
@@ -5138,7 +5133,6 @@ I18n.translations["ca"] = {
   "manage_names": "Gestiona noms",
   "manage_your_relationships": "Gestioneu les vostres relacions",
   "map": "Mapa",
-  "map_legend": "llegenda del mapa",
   "map_marker_size": "mida del marcador del mapa",
   "map_of_observations": "Mapa d'Observacions",
   "map_tooltip": "Mostra la vista del mapa",
@@ -5320,7 +5314,6 @@ I18n.translations["ca"] = {
   "offensive_inappropriate": "Ofensiu/inadequat",
   "ok": "D’acord",
   "old_observation_form": "Antic registre de l'observació (obsolet)",
-  "open": "Transparent",
   "open_": "Obre",
   "open_street_map": "OpenStreetMap",
   "or": "o",
@@ -7397,6 +7390,7 @@ I18n.translations["cs"] = {
     "italian": "italsky",
     "japanese": "japonsky",
     "korean": "korejsky",
+    "latvian": "lotyština",
     "lithuanian": "Litevština",
     "luxembourgish": "lucemburština",
     "maltese": "maltsky",
@@ -7453,6 +7447,7 @@ I18n.translations["cs"] = {
     "ko": "Korejština",
     "lb": "Lucemburština",
     "lt": "Litevština",
+    "lv": "lotyština",
     "mk": "makedonsky",
     "nb": "Norština (Bokmål)",
     "nl": "holandsky",
@@ -7491,7 +7486,6 @@ I18n.translations["cs"] = {
   "manage_names": "Spravovat jména",
   "manage_your_relationships": "Spravovat svoje vztahy",
   "map": "Mapa",
-  "map_legend": "legenda mapy",
   "map_marker_size": "velikost značky mapy",
   "map_of_observations": "Mapa pozorování",
   "map_tooltip": "Ukázat zobrazení mapy",
@@ -7674,7 +7668,6 @@ I18n.translations["cs"] = {
   "offensive_inappropriate": "útočný / nevhodný",
   "ok": "Jo",
   "old_observation_form": "Původní formulář pozorování (zastaralý)",
-  "open": "otevřený",
   "open_": "Otevřený",
   "open_street_map": "OpenStreetMap",
   "or": "nebo",
@@ -8517,6 +8510,7 @@ I18n.translations["cs"] = {
         "date_added_newest": "Datum přidání, od nejnovějšího k nejstaršímu",
         "date_added_oldest": "Datum přidání, od nejstaršího k nejnovějšímu",
         "full_taxonomy": "Úplná taxonomie",
+        "least_observed": "Nejméně pozorované",
         "most_observed": "Nejvíce pozorované",
         "name": "Název",
         "show": "Zobrazit",
@@ -9820,6 +9814,7 @@ I18n.translations["da"] = {
     "italian": "Italiensk",
     "japanese": "Japansk",
     "korean": "Koreansk",
+    "latvian": "Lettisk",
     "lithuanian": "Litauisk",
     "luxembourgish": "Luxembursk",
     "maltese": "Maltesisk",
@@ -9876,6 +9871,7 @@ I18n.translations["da"] = {
     "ko": "Koreansk",
     "lb": "Luxembursk",
     "lt": "Litauisk",
+    "lv": "Lettisk",
     "mk": "Makedonsk",
     "nb": "Norsk Bokmål",
     "nl": "Hollandsk",
@@ -9914,7 +9910,7 @@ I18n.translations["da"] = {
   "manage_names": "Administrér navne",
   "manage_your_relationships": "Administrér dine forbindelser",
   "map": "Kort",
-  "map_legend": "signaturforklaring",
+  "map_legend": "Kortsymbolforklaring",
   "map_marker_size": "kortmarkør størrelse",
   "map_of_observations": "Observationskort",
   "map_tooltip": "Vis kortvisning",
@@ -10097,7 +10093,6 @@ I18n.translations["da"] = {
   "offensive_inappropriate": "fornærmende / upassende",
   "ok": "OK",
   "old_observation_form": "Gammel observations formular (forældet)",
-  "open": "åben",
   "open_": "Åben",
   "open_street_map": "OpenStreetMap",
   "or": "eller",
@@ -10951,6 +10946,7 @@ I18n.translations["da"] = {
         "date_added_newest": "Tilføjelsesdato, nyeste til ældste",
         "date_added_oldest": "Tilføjelsesdata, ældste til nyeste",
         "full_taxonomy": "Fuld taksonomi",
+        "least_observed": "Mindst observeret",
         "most_observed": "Mest observeret",
         "name": "Navn",
         "show": "Vis",
@@ -12202,6 +12198,7 @@ I18n.translations["de"] = {
     "italian": "Italienisch",
     "japanese": "Japanisch",
     "korean": "Koreanisch",
+    "latvian": "Lettisch",
     "lithuanian": "Litauisch",
     "luxembourgish": "Luxemburgisch",
     "maltese": "Maltesisch",
@@ -12258,6 +12255,7 @@ I18n.translations["de"] = {
     "ko": "Koreanisch",
     "lb": "Luxemburgisch",
     "lt": "litauisch",
+    "lv": "Lettisch",
     "mk": "Mazedonisch",
     "nb": "Norwegian Bokmål",
     "nl": "Niederländisch",
@@ -12476,7 +12474,6 @@ I18n.translations["de"] = {
   "offensive_inappropriate": "beleidigend / unangemessen",
   "ok": "OK",
   "old_observation_form": "Altes Beobachtungsformular (veraltet)",
-  "open": "offen",
   "open_": "Öffnen",
   "open_street_map": "OpenStreetMap",
   "or": "oder",
@@ -13018,7 +13015,7 @@ I18n.translations["de"] = {
     "variety": "Varietät",
     "form": "Form",
     "infrahybrid": "Infrahybrid",
-    "leaves": "Blätter"
+    "leaves": "Taxon-Enden"
   },
   "ray_finned_fishes": "Strahlenflosser",
   "read_more": "Mehr lesen",
@@ -13159,7 +13156,7 @@ I18n.translations["de"] = {
   "tags": "Stichwörter",
   "taxa": "Taxa",
   "taxon": "Taxon",
-  "taxon_autocomplete_placeholder": "Vögel, Monarchen, etc.",
+  "taxon_autocomplete_placeholder": "Vögel, Marienkäfer, Veilchen etc.",
   "taxon_changes": "Taxon-Änderungen",
   "taxon_drop": "Taxon-Löschung",
   "taxon_geoprivacy": "Taxon-Geoprivatsphäre",
@@ -13322,6 +13319,7 @@ I18n.translations["de"] = {
         "date_added_newest": "Datum hinzugefügt (absteigend)",
         "date_added_oldest": "Datum hinzugefügt (aufsteigend)",
         "full_taxonomy": "Komplette Taxonomie",
+        "least_observed": "Am wenigsten beobachtet",
         "most_observed": "Am häufigsten beobachtet",
         "name": "Name",
         "show": "Zeigen",
@@ -13349,11 +13347,12 @@ I18n.translations["de"] = {
       "no_unobserved_species_in_place": "Keine unbeobachteten Arten in %{place}.",
       "no_unobserved_species_within_this_taxon": "Keine unbeobachteten Arten innerhalb dieses Taxons.",
       "no_unobserved_species_within_this_taxon_in_place": "Keine unbeobachteten Arten innerhalb dieses Taxons in %{place}.",
-      "observations_at_this_taxon": "Beobachtungen von diesem Taxon",
+      "observations_at_this_taxon": "Beobachtungen von genau diesem Taxon",
       "observations_of_exactly_this_taxon": "Beobachtungen von genau diesem Taxon",
       "observations_within_this_taxon": "Beobachtungen innerhalb dieses Taxons",
       "observed_species": "Beobachtete Arten",
       "reset_place_filter": "Gebietsfilter zurücksetzen",
+      "restrict_to_leaf_taxa": "Auf einzigartige End-Taxa beschränken",
       "restrict_to_taxa_observed_in_place": "Auf Taxa in %{place} beschränken",
       "restrict_to_taxon": "Auf %{taxon} beschränken",
       "total_observations": "Beobachtungen insgesamt",
@@ -14575,7 +14574,6 @@ I18n.translations["el"] = {
   "manage_names": "Διαχείριση ονομάτων",
   "manage_your_relationships": "Διαχειριστείτε τις σχέσεις σας",
   "map": "Χάρτης",
-  "map_legend": "υπόμνημα χάρτη",
   "map_marker_size": "Μέγεθος μαρκαδόρου χάρτη",
   "map_of_observations": "Χάρτης παρατηρήσεων",
   "map_tooltip": "Εμφάνιση διάταξης χάρτη",
@@ -14748,7 +14746,6 @@ I18n.translations["el"] = {
   "offensive_inappropriate": "Προσβλητικό / Ακατάλληλο",
   "ok": "Εντάξει",
   "old_observation_form": "Παλιά παρατήρηση από (παρωχημένο)",
-  "open": "Άνοιγμα",
   "open_": "Ανοιχτό",
   "open_street_map": "OpenStreetMap",
   "or": "ή",
@@ -16685,6 +16682,7 @@ I18n.translations["en"] = {
     "italian": "Italian",
     "japanese": "Japanese",
     "korean": "Korean",
+    "latvian": "Latvian",
     "lithuanian": "Lithuanian",
     "luxembourgish": "Luxembourgish",
     "maltese": "Maltese",
@@ -16741,6 +16739,7 @@ I18n.translations["en"] = {
     "ko": "Korean",
     "lb": "Luxembourgish",
     "lt": "Lithuanian",
+    "lv": "Latvian",
     "mk": "Macedonian",
     "nb": "Norwegian Bokmål",
     "nl": "Dutch",
@@ -16779,7 +16778,7 @@ I18n.translations["en"] = {
   "manage_names": "Manage Names",
   "manage_your_relationships": "Manage your relationships",
   "map": "Map",
-  "map_legend": "map legend",
+  "map_legend": "Map Legend",
   "map_marker_size": "map marker size",
   "map_of_observations": "Map of Observations",
   "map_tooltip": "Show map view",
@@ -16962,7 +16961,6 @@ I18n.translations["en"] = {
   "offensive_inappropriate": "Offensive / Inappropriate",
   "ok": "OK",
   "old_observation_form": "Old observation form (deprecated)",
-  "open": "open",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
   "or": "or",
@@ -17822,6 +17820,7 @@ I18n.translations["en"] = {
         "date_added_newest": "Date Added, Newest to Oldest",
         "date_added_oldest": "Date Added, Oldest to Newest",
         "full_taxonomy": "Full Taxonomy",
+        "least_observed": "Least Observed",
         "most_observed": "Most Observed",
         "name": "Name",
         "show": "Show",
@@ -19252,7 +19251,6 @@ I18n.translations["eo"] = {
   "of_places": "lokoj",
   "of_species": "specioj",
   "ok": "Bone",
-  "open": "malfermi",
   "open_": "Malfermi",
   "or": "aŭ",
   "orange": "oranĝkolora",
@@ -20716,6 +20714,7 @@ I18n.translations["es"] = {
     "italian": "Italiano",
     "japanese": "Japonés",
     "korean": "Coreano",
+    "latvian": "Letón",
     "lithuanian": "Lituano",
     "luxembourgish": "Luxemburgués",
     "maltese": "Maltés",
@@ -20772,6 +20771,7 @@ I18n.translations["es"] = {
     "ko": "Coreano",
     "lb": "Luxemburgués",
     "lt": "Lituano",
+    "lv": "Letón",
     "mk": "Macedonio",
     "nb": "Noruego Bokmål",
     "nl": "Holandés",
@@ -20993,7 +20993,6 @@ I18n.translations["es"] = {
   "offensive_inappropriate": "Ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguo registro de observaciones",
-  "open": "Transparente",
   "open_": "Abierto",
   "open_street_map": "Mapa OpenStreetMap",
   "or": "o",
@@ -21835,8 +21834,57 @@ I18n.translations["es"] = {
   "view_yours": "Ver los tuyos",
   "views": {
     "lifelists": {
+      "all_observations": "Todas las Observaciones",
+      "all_observations_in_this_taxon": "Todas las observaciones de este taxón",
+      "all_species": "Todas las especies",
+      "all_unobserved_species": "Todas las especies no observadas",
+      "apply_filters_to_export": "Aplicar filtros para exportar",
+      "collapse_this_branch": "Contraer esta rama",
       "dropdowns": {
-      }
+        "ancestry": "Ancestro",
+        "children": "Subordinado",
+        "date_added_newest": "Fecha de adición, más reciente a más antigua",
+        "date_added_oldest": "Fecha de adición, de más antigua a más reciente",
+        "full_taxonomy": "Taxonomía completa",
+        "least_observed": "Menos observado",
+        "most_observed": "Más observado",
+        "name": "Nombre",
+        "show": "Mostrar",
+        "simplified_tree": "Árbol simplificado",
+        "sort": "Ordenar",
+        "taxonomic": "Taxonomía"
+      },
+      "expand_all_nodes_in_this_branch": "Expandir todos los nodos en esta rama",
+      "exporting_all_x_taxa": {
+        "one": "Exportando %{count} taxon",
+        "other": "Exportando %{count} taxones"
+      },
+      "exporting_x_taxa": {
+        "one": "Exportando %{count} taxon",
+        "other": "Exportando %{count} taxones"
+      },
+      "filter_by": "Filtrar por",
+      "filtered_by": "Filtrado por",
+      "focus_tree_on_this_taxon": "Centrar el árbol en este taxón",
+      "list_view": "Ver lista",
+      "no_observations_found_in_place": "No se han encontrado observaciones en %{place}.",
+      "no_observations_found_within_this_taxon_in_place": "No se han encontrado observaciones con este taxón en %{place}.",
+      "no_species_found_in_place": "No se han encontrado especies en %{place}.",
+      "no_species_found_within_this_taxon_in_place": "No se han encontrado especies de este taxón en %{place}.",
+      "no_unobserved_species_in_place": "No hay especies sin observar en %{place}.",
+      "no_unobserved_species_within_this_taxon": "No hay especies sin observar dentro de este taxón.",
+      "no_unobserved_species_within_this_taxon_in_place": "No hay especies sin observar de este taxón en %{place}.",
+      "observations_at_this_taxon": "Observaciones en este taxón",
+      "observations_of_exactly_this_taxon": "Observaciones de exactamente este taxón",
+      "observations_within_this_taxon": "Observaciones dentro de este taxón",
+      "observed_species": "Especies observadas",
+      "reset_place_filter": "Restablecer filtro de lugar",
+      "restrict_to_leaf_taxa": "Restringir a taxones de hoja",
+      "restrict_to_taxa_observed_in_place": "Restringir a los táxones observados en %{place}",
+      "restrict_to_taxon": "Restringir a %{taxon}",
+      "total_observations": "Observaciones totales",
+      "tree_view": "Vista en árbol",
+      "unobserved_species": "Especies no observadas"
     },
     "observations": {
       "community_id": {
@@ -23084,7 +23132,7 @@ I18n.translations["es-AR"] = {
   "manage_names": "Administra nombres",
   "manage_your_relationships": "Administrar tus relaciones",
   "map": "Mapa",
-  "map_legend": "leyenda del mapa",
+  "map_legend": "Leyenda del mapa",
   "map_marker_size": "tamaño del marcador de mapa",
   "map_of_observations": "Mapa de observaciones",
   "map_tooltip": "Muestra la vista de mapa",
@@ -23253,7 +23301,6 @@ I18n.translations["es-AR"] = {
   "offensive_inappropriate": "Ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguo registro de observaciones",
-  "open": "Transparente",
   "open_": "Abierto",
   "open_street_map": "Mapa OpenStreetMap",
   "or": "o",
@@ -24398,6 +24445,382 @@ I18n.translations["es-AR"] = {
   "zoom_out": "Alejar Zoom",
   "zoom_photo": "Ampliar foto"
 };
+I18n.translations["es-CO"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+      "long": "%A, %d de %B de %Y"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": ".",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "ranks": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%A, %d de %B de %Y a las %I:%M %p"
+    },
+    "pm": "pm"
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["es-CR"] = {
+  "activerecord": {
+    "attributes": {
+      "observation": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_definitions": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "formats": {
+      "long": "%A, %d de %B de %Y"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+    "distance_in_words": {
+      "x_days": {
+        "one": "1 día",
+        "other": "%{count} días"
+      }
+    }
+  },
+  "establishment": {
+  },
+  "i18n": {
+    "inflections": {
+    }
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "locales": {
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "number": {
+    "format": {
+      "delimiter": ",",
+      "separator": ".",
+      "si": {
+      }
+    }
+  },
+  "place_geo": {
+  },
+  "ranks": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "long": "%A, %d de %B de %Y a las %I:%M %p"
+    },
+    "pm": "pm"
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "lifelists": {
+      "dropdowns": {
+      }
+    },
+    "observations": {
+      "community_id": {
+      },
+      "compare": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "edit": {
+      },
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+        "frequency": {
+        }
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["es-ES"] = {
   "activerecord": {
     "attributes": {
@@ -24748,6 +25171,16 @@ I18n.translations["es-MX"] = {
   "annotation": "Anotación",
   "annotations": "Anotaciones",
   "any_": "Cualquiera",
+  "any_annotation_attribute": "Cualquiera",
+  "any_annotation_value": "Cualquiera",
+  "any_date": "Cualquiera",
+  "any_establishment": "Cualquiera",
+  "any_license": "Cualquiera",
+  "any_media": "Cualquiera",
+  "any_project": "Cualquiera",
+  "any_quality_grade": "Cualquiera",
+  "any_reviewed": "Cualquiera",
+  "any_user": "Cualquiera",
   "arachnids": "Arácnidos",
   "are_you_sure?": "¿Estás seguro?",
   "are_you_sure_leave_this_project": "¿Estás seguro que quieres abandonar este proyecto?",
@@ -25293,7 +25726,6 @@ I18n.translations["es-MX"] = {
   "manage_names": "Administra nombres",
   "manage_your_relationships": "Administrar tus relaciones",
   "map": "Mapa",
-  "map_legend": "leyenda del mapa",
   "map_marker_size": "tamaño del marcador de mapa",
   "map_of_observations": "Mapa de observaciones",
   "map_tooltip": "Muestra la vista de mapa",
@@ -25446,7 +25878,6 @@ I18n.translations["es-MX"] = {
   "offensive_inappropriate": "ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguó registro de observaciones",
-  "open": "Abierta",
   "open_": "Abierto",
   "or": "o",
   "orange": "Anaranjado",
@@ -26282,7 +26713,7 @@ I18n.translations["es-MX"] = {
   "who_user_helped_the_most": "Quien %{user} ayudó más",
   "why_the_coordinates_are_obscured": "Por qué las coordenadas están ocultas",
   "why_you_can_see_the_coordinates": "Por qué puedes ver las coordenadas",
-  "wild": "salvaje",
+  "wild": "Silvestre",
   "with_annotation": "Con anotación",
   "withdraw": "Retirar",
   "without_annotation": "Sin anotación",
@@ -27061,6 +27492,7 @@ I18n.translations["et"] = {
     "italian": "Itaalia",
     "japanese": "Jaapani",
     "korean": "Korea",
+    "latvian": "Läti",
     "lithuanian": "Leedu",
     "luxembourgish": "Luksemburgi",
     "maltese": "Malta",
@@ -27110,6 +27542,7 @@ I18n.translations["et"] = {
     "ko": "Korea",
     "lb": "Luksemburgi",
     "lt": "Leedu",
+    "lv": "Läti",
     "mk": "Makedoonia",
     "nl": "Hollandi",
     "oc": "Oksitaani",
@@ -27140,7 +27573,6 @@ I18n.translations["et"] = {
   "manage_names": "Halda nimesid",
   "manage_your_relationships": "Halda enda suhteid",
   "map": "Kaart",
-  "map_legend": "kaardi legend",
   "map_marker_size": "kaardi märgise suurus",
   "map_of_observations": "Vaatluste kaart",
   "map_tooltip": "Näita kaarti",
@@ -27302,7 +27734,6 @@ I18n.translations["et"] = {
   "of_this_taxon": "Selle taksoni",
   "offensive_inappropriate": "Solvav / ebasobiv",
   "old_observation_form": "Vana vaatlusvorm (mittekasutatav)",
-  "open": "avalik",
   "open_": "Avalik",
   "open_street_map": "OpenStreetMap",
   "or": "või",
@@ -28935,7 +29366,6 @@ I18n.translations["eu"] = {
   "observed_on": "Hau behatuta:",
   "observers": "Begiraleak",
   "offensive_inappropriate": "Iraingarria/ Desegokia",
-  "open": "Transparente",
   "or": "edo",
   "orange": "laranja",
   "order_by": "Honen arabera ordenatu:",
@@ -30216,7 +30646,6 @@ I18n.translations["fi"] = {
   "manage_names": "Hallitse nimiä",
   "manage_your_relationships": "Hallitse suhteitasi",
   "map": "Kartta",
-  "map_legend": "karttamerkkien selitteet",
   "map_marker_size": "karttamerkin koko",
   "map_of_observations": "Havaintokartta",
   "map_tooltip": "Näytä karttanäkymä",
@@ -30393,7 +30822,6 @@ I18n.translations["fi"] = {
   "offensive_inappropriate": "Loukkaava / sopimaton",
   "ok": "OK",
   "old_observation_form": "Vanha havaintomuoto (vanhentunut)",
-  "open": "avoin",
   "open_": "Avoin",
   "open_street_map": "OpenStreetMap",
   "or": "tai",
@@ -31961,7 +32389,7 @@ I18n.translations["fr"] = {
   "computer_vision_suggestion_desc": "La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.\n",
   "confirm": "Confirmer",
   "conservation_status": "Situation quant à la conservation",
-  "conservation_status_geoprivacy_desc": "La confidentialité géographique par défaut est appliquée à toutes les observations de taxon à cet endroit\n",
+  "conservation_status_geoprivacy_desc": "La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit\n",
   "contact_support": "Contacter le soutien",
   "content_hidden": "Contenu masqué",
   "content_hidden_by_user_on_date_because_reason_html": "Contenu masqué par %{user} le %{date} car&nbsp;: \"%{reason}\"\n",
@@ -32484,6 +32912,7 @@ I18n.translations["fr"] = {
     "italian": "Italien",
     "japanese": "Japonais",
     "korean": "Coréen",
+    "latvian": "letton",
     "lithuanian": "Lithuanien",
     "luxembourgish": "Luxembourgeois",
     "maltese": "Maltais",
@@ -32540,6 +32969,7 @@ I18n.translations["fr"] = {
     "ko": "Coréen",
     "lb": "Luxembourgeois",
     "lt": "Lithuanien",
+    "lv": "letton",
     "mk": "Macédonien",
     "nb": "Bokmål norvégien",
     "nl": "néerlandais",
@@ -32578,7 +33008,7 @@ I18n.translations["fr"] = {
   "manage_names": "Gérer les noms",
   "manage_your_relationships": "Gérer vos relations",
   "map": "Carte",
-  "map_legend": "légende de la carte",
+  "map_legend": "Légende de la Carte",
   "map_marker_size": "taille du marqueur sur la carte",
   "map_of_observations": "Carte des observations",
   "map_tooltip": "Afficher la vue de la carte",
@@ -32761,7 +33191,6 @@ I18n.translations["fr"] = {
   "offensive_inappropriate": "Injurieux/inapproprié",
   "ok": "OK",
   "old_observation_form": "Ancien formulaire d’observation (désuet)",
-  "open": "Ouvert",
   "open_": "Ouverte",
   "open_street_map": "OpenStreetMap",
   "or": "ou",
@@ -33448,7 +33877,7 @@ I18n.translations["fr"] = {
   "taxon_autocomplete_placeholder": "Oiseaux, monarque, etc.",
   "taxon_changes": "Modifications de taxon",
   "taxon_drop": "perte de taxon",
-  "taxon_geoprivacy": "Confidentialité géographique du taxon",
+  "taxon_geoprivacy": "Géoconfidentialité du taxon",
   "taxon_is_threatened_coordinates_hidden": "Le taxon est menacé, les coordonnées sont masquées par défaut",
   "taxon_is_threatened_coordinates_hidden_desc": "Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.\n",
   "taxon_is_threatened_coordinates_obscured": "Le taxon est menacé, les coordonnées ont été dissimulées par défaut",
@@ -33615,6 +34044,7 @@ I18n.translations["fr"] = {
         "date_added_newest": "Date ajoutée, Du plus récent au plus vieux",
         "date_added_oldest": "Date ajoutée, Du plus vieux au plus récent",
         "full_taxonomy": "Taxinomie complète",
+        "least_observed": "Le moins observé",
         "most_observed": "Les plus observés",
         "name": "Nom",
         "show": "Afficher",
@@ -33725,7 +34155,7 @@ I18n.translations["fr"] = {
       },
       "new": {
         "a_project_allows_you_to_gather": "Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche natifs d'iNaturalist. Tout ce qui correspond aux paramètres définis par le projet sera automatiquement inclus.\n",
-        "an_umbrella_project_can_be_used_to": "Un projet cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets cadres ne peuvent pas contenir d’autres projets caders.\n",
+        "an_umbrella_project_can_be_used_to": "Un projet cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets dans un seul projet cadre. Les projets cadres ne peuvent pas contenir d’autres projets cadres.\n",
         "are_you_ready_to_duplicate": "Êtes-vous prêt à sortir de cette page pour dupliquer ce projet ? Veuillez noter que l’icône du projet\net sa bannière ne seront pas dupliqués, et devront être rechargés dans le projet\ndupliqué.\n",
         "are_you_sure_you_want_to_delete": "Êtes-vous sûr de vouloir supprimer ce projet ?",
         "can_be_included_in_multiple": "Peut être inclus dans plusieurs projets chapeau",
@@ -33780,7 +34210,7 @@ I18n.translations["fr"] = {
         "use_this_for_a_time_limited_event": "Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.\n",
         "use_this_link_to_create_html": "Utilisez à la place,  <a href=\"%{url}\">ce lien</a> pour créer un projet traditionnel.\n",
         "users_can_follow_your_project": "Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal",
-        "visual_comparison_of_data_among": "Comparaison visuelle des données parmi les projets sous l'ombrelle",
+        "visual_comparison_of_data_among": "Comparaison visuelle des données parmi les projets inclus dans le projet cadre",
         "we_have_redesigned_projects": "Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types principaux :\nProjets collections et Projets cadres, qui partagent les fonctionnalités suivantes :\n",
         "welcome_to_projects": "Bienvenue dans les projets !",
         "you_can_learn_more_html": "Vous pouvez en savoir plus sur la gestion des projets\n<a href=\"https://www.inaturalist.org/pages/managing-projects\">ici</a>\nou lire l’historique des projets sur\n<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">notre blog</a>.\n",
@@ -35498,7 +35928,6 @@ I18n.translations["gl"] = {
   "manage_names": "Xestionar Nomes",
   "manage_your_relationships": "Xestiona as túas relacións",
   "map": "Mapa",
-  "map_legend": "lenda do mapa",
   "map_marker_size": "tamaño do rotulador do mapa",
   "map_of_observations": "Mapa de Observacións",
   "map_tooltip": "Mostrar vista do mapa",
@@ -35677,7 +36106,6 @@ I18n.translations["gl"] = {
   "offensive_inappropriate": "ofensivo / non axeitado",
   "ok": "Aceptar",
   "old_observation_form": "Formularios de observacións antigas (obsoleto)",
-  "open": "Transparente",
   "open_": "Aberto",
   "open_street_map": "OpenStreetMap",
   "or": "ou",
@@ -37944,7 +38372,6 @@ I18n.translations["he"] = {
   "offensive_inappropriate": "פוגעני/לא מתאים",
   "ok": "אישור",
   "old_observation_form": "טופס תצפית ישן (לא בשימוש)",
-  "open": "פתיחה",
   "open_": "פתיחה",
   "open_street_map": "OpenStreetMap",
   "or": "או",
@@ -40014,7 +40441,6 @@ I18n.translations["id"] = {
   "mammals": "mamalia",
   "manage_names": "Kelola nama",
   "map": "Peta",
-  "map_legend": "legenda peta",
   "map_marker_size": "ukuran penanda peta",
   "map_tooltip": "Tunjukan tampilan peta",
   "maps": {
@@ -40105,7 +40531,6 @@ I18n.translations["id"] = {
   "of_species": "spesies",
   "offensive_inappropriate": "ofensif / tidak pantas",
   "ok": "Oke",
-  "open": "buka",
   "open_": "Buka",
   "or": "atau",
   "orange": "jingga",
@@ -41369,6 +41794,7 @@ I18n.translations["it"] = {
     "italian": "Italiano",
     "japanese": "Giapponese",
     "korean": "Coreano",
+    "latvian": "Lettone",
     "lithuanian": "Lituano",
     "luxembourgish": "Lussemburghese",
     "maltese": "Maltese",
@@ -41425,6 +41851,7 @@ I18n.translations["it"] = {
     "ko": "Coreano",
     "lb": "Lussemburghese",
     "lt": "Lituano",
+    "lv": "Lettone",
     "mk": "Macedone",
     "nb": "Norvegese Bokmål",
     "nl": "Olandese",
@@ -41463,7 +41890,7 @@ I18n.translations["it"] = {
   "manage_names": "Gestisci i nomi",
   "manage_your_relationships": "Organizza le tue relazioni",
   "map": "Mappa",
-  "map_legend": "legenda della mappa",
+  "map_legend": "Legenda della Mappa",
   "map_marker_size": "dimensione dell'indicatore della mappa",
   "map_of_observations": "Mappa delle osservazioni",
   "map_tooltip": "Mostra la visualizzazione a mappa",
@@ -41646,7 +42073,6 @@ I18n.translations["it"] = {
   "offensive_inappropriate": "Offensivo / inappropriato",
   "ok": "OK",
   "old_observation_form": "Vecchio formulario dell'osservazione (obsoleto)",
-  "open": "pubblica",
   "open_": "Aperta",
   "open_street_map": "OpenStreetMap",
   "or": "o",
@@ -42500,6 +42926,7 @@ I18n.translations["it"] = {
         "date_added_newest": "Data Aggiunta, dalla Più Recente alla Meno Recente",
         "date_added_oldest": "Data Aggiunta, dalla Meno Recente alla Più Recente",
         "full_taxonomy": "Tassonomia Completa",
+        "least_observed": "Meno osservati",
         "most_observed": "Più Osservato",
         "name": "Nome",
         "show": "Mostra",
@@ -43265,6 +43692,9 @@ I18n.translations["ja"] = {
   "annotation": "注釈",
   "annotations": "より詳細な情報",
   "any_": "すべて",
+  "any_annotation_attribute": "すべて",
+  "any_date": "指定なし",
+  "any_media": "全てのメディア",
   "arachnids": "クモ綱",
   "are_you_sure?": "本当によろしいですか？",
   "are_you_sure_leave_this_project": "このプロジェクトを退会して本当によろしいですか？",
@@ -43955,6 +44385,7 @@ I18n.translations["ja"] = {
   "no_identifications": "同定なし",
   "no_ids_have_been_suggested_yet": "同定はまだ提案されていません",
   "no_interaction_data_available": "相互作用データはありません",
+  "no_its_as_good_as_it_can_be": "いいえ、このままで適切です。",
   "no_license_all_rights_reserved": "ライセンスなし（著作権を全て留保する）",
   "no_matching_observations": "一致する観察記録がありません",
   "no_misidentifications_yet": "誤った同定がまだありません",
@@ -44020,7 +44451,6 @@ I18n.translations["ja"] = {
   "offensive_inappropriate": "不快／不適切",
   "ok": "OK",
   "old_observation_form": "旧観察記録記入フォーム（非推奨）",
-  "open": "公開",
   "open_": "オープン",
   "open_street_map": "OpenStreetMap",
   "or": "または",
@@ -44734,6 +45164,7 @@ I18n.translations["ja"] = {
   "user_disagrees_this_is_taxon": "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています",
   "user_faved_this_observation": "%{user}さんがこの観察記録をお気に入りに追加しました",
   "user_has_opted_out_of_community_id": "利用者はコミュニティ分類群の通知を受け取りません",
+  "user_suggested_an_id": "%{user} さんが 同定を提案しました",
   "username_or_user_id": "ユーザー名またはユーザーID",
   "users": "ユーザー",
   "verbing_x_of_y": "%{y}部の%{x}を%{verb}中...",
@@ -45749,8 +46180,8 @@ I18n.translations["ko"] = {
   "names": "이름",
   "near_threatened": "준위협(NT)",
   "nearby_observations_": "근처에서 관찰된 생물",
-  "needs_id": "ID가 필요합니다.",
-  "needs_id_": "ID가 필요합니다",
+  "needs_id": "동정 필요 등급",
+  "needs_id_": "동정 필요 등급",
   "new_and_noteworthy": "새롭고 주목할 만한 사항",
   "new_observation_field": "새로운 관찰 필드",
   "new_observations": "새로운 관찰",
@@ -45763,7 +46194,7 @@ I18n.translations["ko"] = {
   "next_photo": "다음 사진",
   "next_tab": "다음 탭",
   "no": "아니오",
-  "no_ids_have_been_suggested_yet": "제안된 ID가 아직 없습니다",
+  "no_ids_have_been_suggested_yet": "제안된 동정이 아직 없습니다",
   "no_license_all_rights_reserved": "라이선스 없음 (모든 권한 보유)",
   "no_matching_observations": "일치하는 관찰이 없습니다.",
   "no_matching_taxa": "일치하는 분류군이 없습니다.",
@@ -45816,7 +46247,6 @@ I18n.translations["ko"] = {
   "of_species": "종",
   "offensive_inappropriate": "불쾌 / 부적절",
   "ok": "확인",
-  "open": "공개",
   "open_": "공개",
   "open_street_map": "오픈스트리트맵",
   "or": "또는",
@@ -46915,6 +47345,7 @@ I18n.translations["lb"] = {
     "italian": "Italienesch",
     "japanese": "Japanesch",
     "korean": "Koreanesch",
+    "latvian": "Lettesch",
     "lithuanian": "Litauesch",
     "luxembourgish": "Lëtzebuergesch",
     "maltese": "Maltesesch",
@@ -46957,6 +47388,7 @@ I18n.translations["lb"] = {
     "ko": "Koreanesch",
     "lb": "Lëtzebuergesch",
     "lt": "Litauesch",
+    "lv": "Lettesch",
     "mk": "Mazedonesch",
     "nl": "Hollännesch",
     "pl": "Polnesch",
@@ -47083,7 +47515,6 @@ I18n.translations["lb"] = {
   "of_places": "Plazen",
   "of_species": "Aarten",
   "of_this_taxon": "Vun desem Taxon",
-  "open": "opmaachen",
   "open_": "Opmaachen",
   "or": "oder",
   "other": "Anerer",
@@ -48429,7 +48860,6 @@ I18n.translations["lt"] = {
   "manage_names": "Valdyti pavadinimus",
   "manage_your_relationships": "Valdyti jūsų santykius",
   "map": "Žemėlapis",
-  "map_legend": "žemėlapio legenda",
   "map_marker_size": "žemėlapio žymeklio dydis",
   "map_of_observations": "Stebėjimų žemėlapis",
   "map_tooltip": "Rodyti žemėlapyje",
@@ -48595,7 +49025,6 @@ I18n.translations["lt"] = {
   "offensive_inappropriate": "Įžeidžiantis / Nepriimtinas",
   "ok": "Gerai",
   "old_observation_form": "Sena stebėjimo forma (nebenaudojama)",
-  "open": "atviras",
   "open_": "Atviras",
   "open_street_map": "OpenStreetMap",
   "or": "arba",
@@ -50633,7 +51062,6 @@ I18n.translations["mk"] = {
   "observations_map": "Набљудувања  / Карта",
   "observed_on": "Забележан на",
   "offensive_inappropriate": "навредливо / неумесно",
-  "open": "отворено",
   "or": "или",
   "orange": "портокалова",
   "order_by": "Подреди по",
@@ -52398,7 +52826,6 @@ I18n.translations["nb"] = {
   "manage_names": "Administer navn",
   "manage_your_relationships": "Administer dine relasjoner",
   "map": "Kart",
-  "map_legend": "kartforklaring",
   "map_marker_size": "kartmarkørens størrelse",
   "map_of_observations": "Observasjonskart",
   "map_tooltip": "Vis som kart",
@@ -52581,7 +53008,6 @@ I18n.translations["nb"] = {
   "offensive_inappropriate": "Støtende / upassende",
   "ok": "Ok",
   "old_observation_form": "Gammelt observasjonsskjema (foreldret)",
-  "open": "åpen",
   "open_": "Åpen",
   "open_street_map": "OpenStreetMap",
   "or": "eller",
@@ -54652,6 +55078,7 @@ I18n.translations["nl"] = {
     "italian": "Italiaans",
     "japanese": "Japans",
     "korean": "Koreaans",
+    "latvian": "Lets",
     "lithuanian": "Litouws",
     "luxembourgish": "Luxemburgs",
     "maltese": "Maltees",
@@ -54708,6 +55135,7 @@ I18n.translations["nl"] = {
     "ko": "Koreaans",
     "lb": "Luxemburgs",
     "lt": "Litouws",
+    "lv": "Lets",
     "mk": "Macedonisch",
     "nb": "Noors Bokmål",
     "nl": "Nederlands",
@@ -54746,7 +55174,6 @@ I18n.translations["nl"] = {
   "manage_names": "Namen beheren",
   "manage_your_relationships": "Beheer je relaties",
   "map": "Kaart",
-  "map_legend": "kaart legende",
   "map_marker_size": "verbind marker grootte",
   "map_of_observations": "Kaart van Waarnemingen",
   "map_tooltip": "Kaartweergave tonen",
@@ -54929,7 +55356,6 @@ I18n.translations["nl"] = {
   "offensive_inappropriate": "Aanstootgevend/ongepast",
   "ok": "OK",
   "old_observation_form": "Oud waarnemingsformulier (verouderd)",
-  "open": "open",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
   "or": "of",
@@ -55747,11 +56173,15 @@ I18n.translations["nl"] = {
       "all_observations_in_this_taxon": "Alle waarnemingen binnen dit taxon",
       "all_species": "Alle soorten",
       "all_unobserved_species": "Alle niet waargenomen soorten",
+      "apply_filters_to_export": "Pas filters om te exporteren toe",
+      "collapse_this_branch": "Klap deze tak in",
       "dropdowns": {
+        "ancestry": "Voorouders",
         "children": "Kinderen",
         "date_added_newest": "Datum toegevoegd, nieuwste naar oudste",
         "date_added_oldest": "Datum toegevoegd, oudste naar nieuwste",
         "full_taxonomy": "Volledige taxonomie",
+        "least_observed": "Minst waargenomen",
         "most_observed": "Meest waargenomen",
         "name": "Naam",
         "show": "Toon",
@@ -55759,16 +56189,26 @@ I18n.translations["nl"] = {
         "sort": "Sorteer",
         "taxonomic": "Taxonomisch"
       },
+      "expand_all_nodes_in_this_branch": "Alle nodes in deze branch uitvouwen",
       "filter_by": "Filter op",
       "filtered_by": "Gefilterd door:",
+      "focus_tree_on_this_taxon": "Focus boom op dit taxon",
       "list_view": "Lijst weergave",
+      "no_observations_found_in_place": "Geen waarnemingen gevonden in %{place}.",
       "no_observations_found_within_this_taxon_in_place": "Geen waarnemingen gevonden binnen dit taxon in %{place}.",
       "no_species_found_in_place": "Geen soorten gevonden in %{place}.",
       "no_species_found_within_this_taxon_in_place": "Geen soorten gevonden binnen dit taxon in %{place}.",
       "no_unobserved_species_in_place": "Geen niet-waargenomen soorten in %{place}.",
+      "no_unobserved_species_within_this_taxon": "Alle soorten binnen dit taxon zijn waargenomen",
+      "no_unobserved_species_within_this_taxon_in_place": "Alle soorten binnen dit taxon zijn waargenomen in %{place}",
       "observations_at_this_taxon": "Waarnemingen op dit taxon",
+      "observations_of_exactly_this_taxon": "Waarnemingen van precies dit taxon",
       "observations_within_this_taxon": "Waarnemingen binnen dit taxon",
       "observed_species": "Waargenomen soorten",
+      "reset_place_filter": "Reset plaatsfilter",
+      "restrict_to_leaf_taxa": "Beperken tot blad taxa",
+      "restrict_to_taxa_observed_in_place": "Beperken tot taxa waargenomen in %{place}",
+      "restrict_to_taxon": "Beperken tot %{taxon}",
       "total_observations": "Totaal aantal waarnemingen",
       "tree_view": "Boomstructuur weergave",
       "unobserved_species": "Niet waargenomen soorten"
@@ -56821,7 +57261,6 @@ I18n.translations["oc"] = {
   "observed": "Observat",
   "observed_on": "Observat sus",
   "ok": "D'acòrdi",
-  "open": "dobrir",
   "or": "o",
   "orange": "irange",
   "order_by": "Triar per :",
@@ -58002,7 +58441,7 @@ I18n.translations["pl"] = {
   "manage_names": "Zarządzaj nazwami",
   "manage_your_relationships": "Zarządzaj swoimi relacjami",
   "map": "Mapa",
-  "map_legend": "legenda mapy",
+  "map_legend": "Legenda Mapy",
   "map_marker_size": "wielkość znacznika",
   "map_of_observations": "Mapa obserwacji",
   "map_tooltip": "Pokaż widok mapy",
@@ -58169,7 +58608,6 @@ I18n.translations["pl"] = {
   "offensive_inappropriate": "Obraźliwy / Nieodpowiedni",
   "ok": "OK",
   "old_observation_form": "Stary formularz obserwacji (przestarzały)",
-  "open": "otwarty",
   "open_": "Otwórz",
   "open_street_map": "OpenStreetMap",
   "or": "lub",
@@ -59425,7 +59863,8 @@ I18n.translations["pt"] = {
     "flower_budding": "Botões de flor são visíveis, mas não abertos",
     "flowering": "Flores visíveis, abertas e ainda presas à planta",
     "fruiting": "Frutos visíveis e ainda anexados à planta",
-    "no_evidence_of_flowering": "Os meios de comunicação não dão provas de estruturas reprodutivas"
+    "no_evidence_of_flowering": "Os meios de comunicação não dão provas de estruturas reprodutivas",
+    "teneral": "Adulto que emergiu recentemente, mas ainda não atingiu sua forma final de adulto"
   },
   "controlled_term_labels": {
     "adult": "Adulto",
@@ -59840,6 +60279,7 @@ I18n.translations["pt"] = {
   "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
+      "improving": "Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxilia a refinar o táxon da comunidade.\n",
       "leading": "O táxon provém do táxon da comunidade. Esta identificação pode levar à resposta correta.\n",
       "maverick": "O táxon não é um descendente ou um ancestral do táxon comunitário, ou seja, a comunidade não concorda com este táxon.\n"
     }
@@ -59934,6 +60374,7 @@ I18n.translations["pt"] = {
     "italian": "Italiano",
     "japanese": "Japonês",
     "korean": "Coreano",
+    "latvian": "Lituano",
     "lithuanian": "Lituano",
     "luxembourgish": "Luxemburguês",
     "maltese": "Maltês",
@@ -59990,6 +60431,7 @@ I18n.translations["pt"] = {
     "ko": "Coreano",
     "lb": "Luxemburguês",
     "lt": "Lituano",
+    "lv": "Lituano",
     "mk": "Macedónio",
     "nb": "Norueguês Bokmahl",
     "nl": "Holandês",
@@ -60028,7 +60470,7 @@ I18n.translations["pt"] = {
   "manage_names": "Gerir nomes",
   "manage_your_relationships": "Gerenciar seus relacionamentos",
   "map": "Mapa",
-  "map_legend": "legenda do mapa",
+  "map_legend": "Legenda do Mapa",
   "map_marker_size": "tamanho do marcador do mapa",
   "map_of_observations": "Mapa de Observações",
   "map_tooltip": "Mostrar a vista do mapa",
@@ -60138,6 +60580,7 @@ I18n.translations["pt"] = {
   "no_journal_posts_yet": "Nenhuma publicação do diário ainda",
   "no_license_all_rights_reserved": "Sem licenças (todos os direitos reservados)",
   "no_matching_observations": "Não existem observações correspondentes.",
+  "no_matching_taxa": "Nenhum táxon correspondente",
   "no_misidentifications_yet": "Ainda sem identificação incorreta",
   "no_more_results_found": "Nenhum resultado encontrado",
   "no_more_taxa_to_load": "Não existem mais espécies ou grupos para carregar!",
@@ -60210,7 +60653,6 @@ I18n.translations["pt"] = {
   "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "Ok",
   "old_observation_form": "Formulário antigo de registo de observação (descontinuado)",
-  "open": "abrir",
   "open_": "Abrir",
   "open_street_map": "OpenStreetMap",
   "or": "ou",
@@ -60690,15 +61132,31 @@ I18n.translations["pt"] = {
   "ranks": {
     "stateofmatter": "Estado da matéria",
     "kingdom": "reino",
+    "x_kingdoms": {
+      "one": "Reino",
+      "other": "Reinos"
+    },
     "subkingdom": "sub-reino",
     "phylum": "Filo",
+    "x_phyla": {
+      "one": "Filo",
+      "other": "Filos"
+    },
     "subphylum": "subfilo",
     "superclass": "superclasse",
     "class": "classe",
+    "x_classes": {
+      "one": "Classe",
+      "other": "Classes"
+    },
     "subclass": "subclasse",
     "infraclass": "infraclasse",
     "superorder": "superordem",
     "order": "ordem",
+    "x_orders": {
+      "one": "Ordem",
+      "other": "Ordens"
+    },
     "suborder": "subordem",
     "infraorder": "infraordem",
     "subterclass": "Subclasse",
@@ -60708,17 +61166,29 @@ I18n.translations["pt"] = {
     "superfamily": "Superfamília",
     "epifamily": "Epifamília",
     "family": "família",
+    "x_families": {
+      "one": "Família",
+      "other": "Famílias"
+    },
     "subfamily": "subfamília",
     "supertribe": "supertribo",
     "tribe": "tribo",
     "subtribe": "Subtribo",
     "genus": "género",
+    "x_genera": {
+      "one": "Gênero",
+      "other": "Gêneros"
+    },
     "genushybrid": "género híbrido",
     "subgenus": "subgénero",
     "section": "secção",
     "subsection": "subsecção",
     "complex": "Complexo",
     "species": "Espécies",
+    "x_species": {
+      "one": "Espécie",
+      "other": "Espécies"
+    },
     "hybrid": "híbrido",
     "subspecies": "subespécie",
     "variety": "variedade",
@@ -61024,8 +61494,57 @@ I18n.translations["pt"] = {
   "view_yours": "Veja os Seus",
   "views": {
     "lifelists": {
+      "all_observations": "Todas as Observações",
+      "all_observations_in_this_taxon": "Todas as observações neste táxon",
+      "all_species": "Todas as Espécies",
+      "all_unobserved_species": "Todas as Espécies Não Observadas",
+      "apply_filters_to_export": "Aplicar filtros para exportação",
+      "collapse_this_branch": "Recolher este galho",
       "dropdowns": {
-      }
+        "ancestry": "Ancestralidade",
+        "children": "Descendentes",
+        "date_added_newest": "Data adicionada, da mais recente para a mais antiga",
+        "date_added_oldest": "Data adicionada, mais antiga para mais recente",
+        "full_taxonomy": "Taxonomia Completa",
+        "least_observed": "Menos observados",
+        "most_observed": "Mais Observados",
+        "name": "Nome",
+        "show": "Mostrar",
+        "simplified_tree": "Árvore Simplificada",
+        "sort": "Ordenar",
+        "taxonomic": "Taxonomia"
+      },
+      "expand_all_nodes_in_this_branch": "Expandir todos os nós neste galho",
+      "exporting_all_x_taxa": {
+        "one": "Exportando %{count} táxon",
+        "other": "Exportando todos os %{count} táxons"
+      },
+      "exporting_x_taxa": {
+        "one": "Exportando %{count} táxon",
+        "other": "Exportando %{count} táxons"
+      },
+      "filter_by": "Filtrar por",
+      "filtered_by": "Filtrado por",
+      "focus_tree_on_this_taxon": "Focar árvore neste táxon",
+      "list_view": "Exibição em Lista",
+      "no_observations_found_in_place": "Não foram encontradas observações em %{place}.",
+      "no_observations_found_within_this_taxon_in_place": "Não foram encontradas observações dentro deste táxon em %{place}.",
+      "no_species_found_in_place": "Não foram encontradas espécies em %{place}.",
+      "no_species_found_within_this_taxon_in_place": "Não foram encontradas espécies dentro deste táxon em %{place}.",
+      "no_unobserved_species_in_place": "Nenhuma espécie não observada em %{place}.",
+      "no_unobserved_species_within_this_taxon": "Nenhuma espécie não observada dentro deste táxon.",
+      "no_unobserved_species_within_this_taxon_in_place": "Nenhuma espécie não observada dentro deste táxon em %{place}.",
+      "observations_at_this_taxon": "Observações neste táxon",
+      "observations_of_exactly_this_taxon": "Observações exatamente neste táxon",
+      "observations_within_this_taxon": "Observações dentro deste táxon",
+      "observed_species": "Espécies Observadas",
+      "reset_place_filter": "Redefinir Filtro de Lugar",
+      "restrict_to_leaf_taxa": "Restringir a táxons de folha",
+      "restrict_to_taxa_observed_in_place": "Restringir a táxons observados em %{place}",
+      "restrict_to_taxon": "Restringir a %{taxon}",
+      "total_observations": "Total de Observações",
+      "tree_view": "Exibição em Árvore",
+      "unobserved_species": "Espécies Não Observadas"
     },
     "observations": {
       "community_id": {
@@ -62666,6 +63185,7 @@ I18n.translations["ru"] = {
     "italian": "Итальянский",
     "japanese": "Японский",
     "korean": "Корейский",
+    "latvian": "Латышский",
     "lithuanian": "Литовский",
     "luxembourgish": "Люксембургский",
     "maltese": "Мальтийский",
@@ -62722,6 +63242,7 @@ I18n.translations["ru"] = {
     "ko": "Корейский",
     "lb": "Люксембургский",
     "lt": "Литовский",
+    "lv": "Латышский",
     "mk": "Македонский",
     "nb": "Норвежский (букмол)",
     "nl": "Голландский",
@@ -62943,7 +63464,6 @@ I18n.translations["ru"] = {
   "offensive_inappropriate": "Оскорбительное / Неприемлемое",
   "ok": "ОК",
   "old_observation_form": "Старая форма наблюдения (устарела)",
-  "open": "открытая",
   "open_": "Открытое",
   "open_street_map": "OpenStreetMap",
   "or": "или",
@@ -63825,6 +64345,7 @@ I18n.translations["ru"] = {
         "date_added_newest": "Дата добавления, от новых к старым",
         "date_added_oldest": "Дата добавления, от старых к новым",
         "full_taxonomy": "Полная таксономия",
+        "least_observed": "Наименее наблюдаемые",
         "most_observed": "Наиболее наблюдаемые",
         "name": "Название",
         "show": "Показать",
@@ -65160,7 +65681,6 @@ I18n.translations["sk"] = {
   "manage_names": "Spravovať mená",
   "manage_your_relationships": "Spravovať vaše vzťahy",
   "map": "Mapa",
-  "map_legend": "legenda mapy",
   "map_marker_size": "veľkosť značky mapy",
   "map_of_observations": "Mapa pozorovaní",
   "map_tooltip": "Ukázať zobrazenie mapy",
@@ -65314,7 +65834,6 @@ I18n.translations["sk"] = {
   "of_this_taxon": "Z tohto taxónu",
   "offensive_inappropriate": "útočný / nevhodný",
   "old_observation_form": "Pôvodný formulár pozorovania (zastaraný)",
-  "open": "otvorený",
   "open_": "Otvorený",
   "or": "alebo",
   "orange": "oranžový",
@@ -66845,7 +67364,6 @@ I18n.translations["sq"] = {
   "mammals": "Gjitarët",
   "manage_names": "Menaxho emrat",
   "map": "Harta",
-  "map_legend": "Legjenda e hartës",
   "map_marker_size": "Madhësia e markuesit të hartës",
   "map_of_observations": "Harta e vëzhgimeve",
   "map_tooltip": "Shiko si hartë",
@@ -66990,7 +67508,6 @@ I18n.translations["sq"] = {
   "offensive_inappropriate": "Ofenduese/e papërshtatshme",
   "ok": "Në rregull",
   "old_observation_form": "Formë e vjeter vëzhgimi (e zhvlerësuar)",
-  "open": "hape",
   "open_": "Hape",
   "or": "ose",
   "orange": "Portokalli",
@@ -68254,6 +68771,7 @@ I18n.translations["sv"] = {
     "italian": "Italienska",
     "japanese": "Japanska",
     "korean": "Koreanska",
+    "latvian": "Lettiska",
     "lithuanian": "Litauiska",
     "luxembourgish": "Luxemburgiska",
     "maltese": "Maltesiska",
@@ -68310,6 +68828,7 @@ I18n.translations["sv"] = {
     "ko": "Koreanska",
     "lb": "Luxemburgiska",
     "lt": "Litauiska",
+    "lv": "Lettiska",
     "mk": "Makedonska",
     "nb": "Norska (Bokmål)",
     "nl": "Nederländska",
@@ -68348,7 +68867,6 @@ I18n.translations["sv"] = {
   "manage_names": "Hantera namn",
   "manage_your_relationships": "Hantera dina relationer",
   "map": "Karta",
-  "map_legend": "kartförklaring",
   "map_marker_size": "kartans markörstorlek",
   "map_of_observations": "Karta över observationer",
   "map_tooltip": "Visa kartvy",
@@ -68531,7 +69049,6 @@ I18n.translations["sv"] = {
   "offensive_inappropriate": "Stötande / Olämpligt",
   "ok": "OK",
   "old_observation_form": "Gammalt observationsformulär (utfasat)",
-  "open": "öppna",
   "open_": "Öppna",
   "open_street_map": "OpenStreetMap",
   "or": "eller",
@@ -69385,6 +69902,7 @@ I18n.translations["sv"] = {
         "date_added_newest": "Datum tilldagd, nyaste till äldsta",
         "date_added_oldest": "Datum tillagd, äldsta till nyaste",
         "full_taxonomy": "Fullständig taxonomi",
+        "least_observed": "Minst observerade",
         "most_observed": "Mest observerade",
         "name": "Namn",
         "show": "Visa",
@@ -70914,7 +71432,7 @@ I18n.translations["tr"] = {
   "manage_names": "İsimleri Yönet",
   "manage_your_relationships": "İlişkilerini düzenle",
   "map": "Harita",
-  "map_legend": "harita simgesi",
+  "map_legend": "Harita Simgesi",
   "map_marker_size": "harita işaretleyici boyutu",
   "map_of_observations": "Gözlemlerin Haritası",
   "map_tooltip": "Harita görünümünü göster",
@@ -71096,7 +71614,6 @@ I18n.translations["tr"] = {
   "offensive_inappropriate": "Saldırgan / Uygunsuz",
   "ok": "TAMAM",
   "old_observation_form": "Eski gözlem formu (kullanımdan kaldırıldı)",
-  "open": "açık",
   "open_": "Açık",
   "open_street_map": "OpenStreetMap",
   "or": "ya da",
@@ -73680,7 +74197,6 @@ I18n.translations["zh-CN"] = {
   "offensive_inappropriate": "冒犯性的/不恰当的",
   "ok": "确定",
   "old_observation_form": "旧观察表单（已弃用）",
-  "open": "打开",
   "open_": "打开",
   "open_street_map": "开放式街道地图",
   "or": "或",
@@ -75230,6 +75746,16 @@ I18n.translations["zh-TW"] = {
   "annotation": "註解",
   "annotations": "註解",
   "any_": "任何",
+  "any_annotation_attribute": "任一註解",
+  "any_annotation_value": "任一",
+  "any_date": "任一日期",
+  "any_establishment": "任一",
+  "any_license": "任一授權",
+  "any_media": "任一",
+  "any_project": "任一",
+  "any_quality_grade": "任一",
+  "any_reviewed": "任一",
+  "any_user": "任一",
   "arachnids": "蛛形綱",
   "are_you_sure?": "您確定嗎？",
   "are_you_sure_leave_this_project": "您確定要離開這個專案嗎？",
@@ -76023,6 +76549,7 @@ I18n.translations["zh-TW"] = {
   "no_journal_posts_yet": "還未有日誌貼文",
   "no_license_all_rights_reserved": "無許可協議（保留所有權利）",
   "no_matching_observations": "沒有符合的觀察",
+  "no_matching_taxa": "找不到符合的分類群",
   "no_misidentifications_yet": "尚無錯誤鑑定",
   "no_more_results_found": "沒有找到更多結果",
   "no_more_taxa_to_load": "沒有更多要載入的物種分類群！",
@@ -76073,6 +76600,7 @@ I18n.translations["zh-TW"] = {
   "observations_": "觀察",
   "observations_annotated_with_annotation": "觀察帶有%{annotation}註解",
   "observations_by_category": "依分類區分觀察",
+  "observations_can_only_have_n_photos": "觀察紀錄限制只能有 %{limit} 張照片",
   "observations_in_this_project_must": "此專案的觀察必須符合以下準則",
   "observations_map": "觀察 / 地圖",
   "observations_of_relatives": "相關觀察",
@@ -76094,7 +76622,6 @@ I18n.translations["zh-TW"] = {
   "offensive_inappropriate": "冒犯/不適當",
   "ok": "確定",
   "old_observation_form": "舊式觀察表單（已廢棄使用）",
-  "open": "開啟",
   "open_": "開啟",
   "open_street_map": "開放街圖",
   "or": "或",
@@ -76135,6 +76662,8 @@ I18n.translations["zh-TW"] = {
   "photo_licensing": "照片許可",
   "photos_chosen_for_this_taxon": "挑選用於此物種分類的照片",
   "photos_from": "照片來自",
+  "photos_locked": "照片已鎖定",
+  "photos_locked_desc": "只有官方工作人員才能更改此分類群的預設照片",
   "photos_of_taxon_html": "屬於 %{taxon} 的照片",
   "photos_or_sounds": "照片或聲音",
   "pin_verb": "釘選",
@@ -76570,15 +77099,27 @@ I18n.translations["zh-TW"] = {
   "ranks": {
     "stateofmatter": "事件狀態",
     "kingdom": "界",
+    "x_kingdoms": {
+      "other": "界"
+    },
     "subkingdom": "亞界",
     "phylum": "門",
+    "x_phyla": {
+      "other": "門"
+    },
     "subphylum": "亞門",
     "superclass": "總綱",
     "class": "綱",
+    "x_classes": {
+      "other": "綱"
+    },
     "subclass": "亞綱",
     "infraclass": "下綱",
     "superorder": "總目",
     "order": "目",
+    "x_orders": {
+      "other": "目"
+    },
     "suborder": "亞目",
     "infraorder": "下目",
     "subterclass": "準綱",
@@ -76588,17 +77129,26 @@ I18n.translations["zh-TW"] = {
     "superfamily": "總科",
     "epifamily": "領科",
     "family": "科",
+    "x_families": {
+      "other": "科"
+    },
     "subfamily": "亞科",
     "supertribe": "總族",
     "tribe": "族",
     "subtribe": "亞族",
     "genus": "屬",
+    "x_genera": {
+      "other": "屬"
+    },
     "genushybrid": "屬間雜種",
     "subgenus": "亞屬",
     "section": "節",
     "subsection": "亞組",
     "complex": "複合群",
     "species": "種",
+    "x_species": {
+      "other": "種"
+    },
     "hybrid": "雜種",
     "subspecies": "亞種",
     "variety": "變種",
@@ -76691,6 +77241,7 @@ I18n.translations["zh-TW"] = {
   "similar_taxa": "相似分類",
   "site_admin_tools": "網站管理工具",
   "skip_to_next_page": "跳至下一頁",
+  "some_observations_are_missing_media_or_identifications": "有些觀察紀錄沒有多媒體檔案或鑑定資訊\n",
   "some_observations_failed_to_be_added": "部份觀察添加至專案失敗",
   "some_observations_failed_to_save": "部份觀察儲存失敗",
   "some_other_reason": "您可在下方說明一些其它原因。",

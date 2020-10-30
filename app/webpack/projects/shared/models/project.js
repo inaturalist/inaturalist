@@ -168,7 +168,8 @@ const Project = class Project {
     if ( this.is_umbrella ) {
       if ( !_.isEmpty( this.projectRules ) ) {
         this.previewSearchParamsObject.project_id = _.map(
-          this.projectRules, r => r.operand_id
+          this.projectRules,
+          r => r.operand_id
         ).join( "," );
       }
     } else {
@@ -177,32 +178,38 @@ const Project = class Project {
       );
       if ( !_.isEmpty( this.notTaxonRules ) ) {
         this.previewSearchParamsObject.without_taxon_id = _.map(
-          this.notTaxonRules, r => r.operand_id
+          this.notTaxonRules,
+          r => r.operand_id
         ).join( "," );
       }
       if ( !_.isEmpty( this.taxonRules ) ) {
         this.previewSearchParamsObject.taxon_ids = _.map(
-          this.taxonRules, r => r.operand_id
+          this.taxonRules,
+          r => r.operand_id
         ).join( "," );
       }
       if ( !_.isEmpty( this.notPlaceRules ) ) {
         this.previewSearchParamsObject.not_in_place = _.map(
-          this.notPlaceRules, r => r.operand_id
+          this.notPlaceRules,
+          r => r.operand_id
         ).join( "," );
       }
       if ( !_.isEmpty( this.placeRules ) ) {
         this.previewSearchParamsObject.place_id = _.map(
-          this.placeRules, r => r.operand_id
+          this.placeRules,
+          r => r.operand_id
         ).join( "," );
       }
       if ( !_.isEmpty( this.notUserRules ) ) {
         this.previewSearchParamsObject.not_user_id = _.map(
-          this.notUserRules, r => r.operand_id
+          this.notUserRules,
+          r => r.operand_id
         ).join( "," );
       }
       if ( !_.isEmpty( this.userRules ) ) {
         this.previewSearchParamsObject.user_id = _.map(
-          this.userRules, r => r.operand_id
+          this.userRules,
+          r => r.operand_id
         ).join( "," );
       }
     }
@@ -246,6 +253,13 @@ const Project = class Project {
     // using naming consistent with the web obs search form
     this.previewSearchParamsObject.verifiable = "any";
     this.previewSearchParamsObject.place_id = this.previewSearchParamsObject.place_id || "any";
+    // Convert dates into iso8601 strings
+    _.each( ["d1", "d2"], dateAttr => {
+      if ( this.previewSearchParamsObject[dateAttr] ) {
+        const d = moment( this.previewSearchParamsObject[dateAttr] );
+        this.previewSearchParamsObject[dateAttr] = d.format( );
+      }
+    } );
     this.previewSearchParamsString = $.param( this.previewSearchParamsObject );
   }
 };

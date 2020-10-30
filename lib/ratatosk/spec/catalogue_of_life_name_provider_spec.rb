@@ -80,6 +80,13 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
     end
   end
 
+  it "should strip the rank from 'Epipactis youngiana'" do
+    name = "Epipactis youngiana"
+    results = @np.find( name )
+    expect( results[0].name ).not_to match /subsp/
+    expect( results[0].taxon.name ).not_to match /subsp/
+  end
+
 end
 
 describe Ratatosk::NameProviders::ColTaxonAdapter do

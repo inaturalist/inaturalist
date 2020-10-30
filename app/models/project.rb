@@ -635,24 +635,32 @@ class Project < ActiveRecord::Base
     end
     CSV.open(path, 'w') do |csv|
       csv << columns
-      self.project_observations.find_in_batches do |batch|
-        ProjectObservation.preload_associations(batch, [
+      Observation.search_in_batches( projects: id ) do |batch|
+        puts "[#{Time.now}] batch starting with #{batch.first.id}"
+        Observation.preload_associations( batch, [:project_observations] )
+        project_observations = batch.map {|o| o.project_observations.select{|po|
+          po.project_id == id
+        }}.flatten.uniq.compact
+        ProjectObservation.preload_associations( project_observations, [
           :stored_preferences,
           curator_identification: [:taxon, :user],
-          observation: [{
-            identifications: :taxon,
-            observation_photos: :photo,
-            sounds: {},
-            taxon: {taxon_names: :place_taxon_names},
-            observation_field_values: :observation_field,
-            project_observations: :stored_preferences,
-            user: {project_users: :stored_preferences},
-          }, :quality_metrics ]
+          observation: [
+            {
+              identifications: :taxon,
+              observation_photos: :photo,
+              sounds: {},
+              taxon: { taxon_names: :place_taxon_names },
+              observation_field_values: :observation_field,
+              project_observations: :stored_preferences,
+              user: { project_users: :stored_preferences },
+            },
+            :quality_metrics
+          ]
         ])
-        batch.each do |project_observation|
-          csv << columns.map {|column|
-            project_observation.to_csv_column(column, project: self, viewer: options[:viewer])
-          }
+        project_observations.each do |po|
+          csv << columns.map do |column|
+            po.to_csv_column( column, project: self, viewer: options[:viewer] )
+          end
         end
       end
     end

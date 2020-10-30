@@ -700,6 +700,7 @@ nb:
   cc_by_sa_name: Navngivelse-DelPåSammeVilkår
   cc_used_under_a: "Creative Commons, brukt under en "
   change_admin: Endre administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Endre coverbilde
   change_descriptions:
     split: Gammel taksonoppdeling i flere nye taksa
@@ -1073,6 +1074,7 @@ nb:
   delete: Slett
   delete_all: Slett alle
   delete_conversation: Slett samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slett coverbilde?
   delete_icon?: Slett ikon?
   delete_photo: Slett bilde
@@ -1982,7 +1984,6 @@ nb:
   managers_can_do: Managere kan gjøre alt kuratorer også kan gjøre, pluss å redigere prosjektinnstillinger og skrive innlegg i prosjektjournalen.
   managing_projects: Prosjektadministrasjon
   map: Kart
-  map_legend: kartforklaring
   map_marker_size: kartmarkørens størrelse
   map_of_observations: Observasjonskart
   maps:
@@ -3900,7 +3901,6 @@ nb:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitzen starter om
-  this_is_a_cached_summary_based_on: Dette er et forhåndslagret sammendrag av dette taksonet basert på dets
   this_is_a_life_list_of: Dette er en livsliste av
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste av %{taxon} i %{place}"
@@ -4260,7 +4260,6 @@ nb:
   website: Nettsted
   week_of_date: "Uka til %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbake
   welcome_back!: Velkommen tilbake!
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
@@ -4309,7 +4308,6 @@ nb:
     <a href="%{url}">"%{title}"</a>, som er lisensiert under en
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Navngivelse-DelPåSammeVilkår lisens 3.0</a>. Innhold fra originalen kan være utelatt, men ingen innhold har blitt endret eller utvidet.
-  wikipedia_entry: Wikipedia-innlegg
   with: med
   withdraw: Trekk
   withdrawing: Trekker...

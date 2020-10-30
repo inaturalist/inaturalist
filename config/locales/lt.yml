@@ -734,6 +734,7 @@ lt:
   cc_by_name: Požymis
   cc_by_nc_name: Pobūdis-Ne komercinis
   change_admin: Keisti Administratorių
+  #Button to change the cover (or banner) image for a project
   change_cover: Keisti viršelį
   change_descriptions:
     split: Senas taksonas, padalintas į keletą naujų taksonų
@@ -1057,6 +1058,7 @@ lt:
   delete: Ištrinti
   delete_all: Ištrinti visus
   delete_conversation: Ištrinti pokalbį
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: ištrinti viršelį?
   delete_icon?: Ištrinti ikoną?
   delete_photo: Ištrinti nuotrauką
@@ -1894,7 +1896,6 @@ lt:
   managers_can_do: Vadovai gali daryti viską, ką gali kuratoriai, taip pat redaguoti projektų nustatymus ir kurti projektų žurnalų įrašus.
   managing_projects: Projektų tvarkymas
   map: Žemėlapis
-  map_legend: žemėlapio legenda
   map_marker_size: žemėlapio žymeklio dydis
   map_of_observations: Stebėjimų žemėlapis
   maps:
@@ -3825,7 +3826,6 @@ lt:
   website: Tinklalapis
   week_of_date: "%{date} Savaitė"
   welcome: sveiki
-  welcome_back: Sveiki sugrįžę
   welcome_back!: Sveiki sugrįžę!
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
@@ -3866,7 +3866,6 @@ lt:
   widget_for: Valdiklis skirtas
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
-  wikipedia_entry: Vikipedijos straipsnis
   with: su
   withdraw: Atsiimti
   withdrawing: Atšaukiama...

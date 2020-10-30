@@ -277,7 +277,7 @@
       <% end -%>
       <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
         <li>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_path( @project.observations_url_params.merge( not_in_project: @project.slug, user_id: current_user.login ) ), :class => "navlink" %>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge( not_in_project: @project.slug ) ), :class => "navlink" %>
           <div class="inner">
             <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project), :project_id => @project.id %>
           </div>

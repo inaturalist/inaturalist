@@ -54,7 +54,68 @@
       text-align: center;
       padding: 50px 0px;
     }
+
+    .box.announcement {
+      font-size: 1.2em;
+      text-align: center;
+      background: white;
+      box-shadow: 0px 1px 3px #666;
+      border-radius: 10px;
+      padding: 0px;
+      max-width: 700px;
+      margin: 0px auto;
+      margin-bottom: 20px;
+    }
+    .box.announcement .logo-bird {
+      float: left;
+      padding-left: 15px;
+      position: absolute;
+    }
+    .box.announcement .logo-bird img {
+      height: 100px;
+      width: 100px;
+    }
+    .box.announcement .contents {
+      padding: 20px;
+      letter-spacing: 0.2px;
+      margin-left: 50px;
+    }
+    .box.announcement .message {
+      font-size: 1.1em;
+    }
+    .box.announcement .buttons {
+      margin-top: 15px;
+    }
+    .box.announcement .btn {
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      font-size: 13px;
+      padding: 6px 15px;
+    }
+    .box.announcement .btn:not(:first-child) {
+      margin-left: 15px;
+    }
   </style>
+<% end -%>
+
+<%- if @show_new_life_list_banner -%>
+ <div class="bootstrap column span-24">
+    <div class="quiet box announcement">
+      <div class="logo-bird">
+        <%= image_tag( "bird.png" ) %>
+      </div>
+      <div class="contents">
+        <span class="message">
+          <%= t( :check_out_your_new_and_improved_list_list ) %>
+        </span>
+        <div class="buttons">
+          <%= link_to t(:learn_more_on_the_blog), "/blog/42454-a-new-kind-of-life-list", class: "button btn btn-inat btn-primary" %>
+          <%= link_to t(:view_my_life_list), by_login_lifelists_path( login: @current_user.login ), class: "button btn btn-inat btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end -%>
 
 <%- tools = capture do -%>

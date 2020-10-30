@@ -564,6 +564,7 @@ pt:
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: "Creative Commons, utilizada sob uma"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Alterar a capa
   change_descriptions:
     split: Taxon anterior dividido em vários taxa novos
@@ -623,6 +624,7 @@ pt:
   check_out_my_observations_at: Se quiser, pode ver as minhas observações em
   check_out_our_blog: Veja o nosso Blog
   check_out_what_the_observation: Dê uma olhadela à observação que está a tentar identificar.
+  check_out_your_new_and_improved_list_list: Veja a sua nova e melhorada Lista de Vida!
   choose_a_field: Escolher um campo
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um local
@@ -856,6 +858,7 @@ pt:
   delete: Eliminar
   delete_all: Eliminar tudo
   delete_conversation: Eliminar a conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: apagar capa?
   delete_icon?: Excluir ícone?
   delete_photo: Eliminar fotografia
@@ -888,6 +891,11 @@ pt:
     failure:
       user:
         suspended: A sua conta foi suspensa
+  devise_unlock_instructions_your_account_has_been_locked: |
+    A sua conta foi bloqueada devido a uma quantidade excessiva de tentativas de início de sessão mal sucedidas.
+  devise_unlock_instructions_click_the_link: |
+    Clique na hiperligação abaixo para desbloquear a sua conta:
+  devise_unlock_instructions_unlock: Desbloquear a sua conta
   discoveries: Descobertas
   did_not_send_invitations_because: Não foram enviados os convites para estes contactos porque...
   did_you_mean: 'Será que quis dizer'
@@ -1366,6 +1374,7 @@ pt:
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
   learn_more: Saiba mais
+  learn_more_on_the_blog: Ler mais no nosso blog
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
   least_concern: pouco preocupante
@@ -1404,6 +1413,7 @@ pt:
     italian: Italiano
     japanese: Japonês
     korean: Coreano
+    latvian: Lituano
     luxembourgish: Luxemburguês
     maltese: Maltês
     norwegian: Norueguês
@@ -1499,6 +1509,7 @@ pt:
     ja: Japonês
     ko: Coreano
     lb: Luxemburguês
+    lv: Lituano
     mk: Macedónio
     oc: Occitano
     pt-BR: Português (Brasil)
@@ -1555,7 +1566,7 @@ pt:
   managers: Gestores
   managers_can_do: Os gestores podem fazer tudo o que fazem os curadores, assim como editar as definições de projeto e escrever artigos no boletim do projeto.
   map: Mapa
-  map_legend: legenda do mapa
+  map_legend: Legenda do Mapa
   map_marker_size: tamanho do marcador do mapa
   map_of_observations: Mapa de Observações
   maps:
@@ -2868,6 +2879,7 @@ pt:
   view_more: Ver mais
   view_more_observations_from: Ver mais observações de
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
+  view_my_life_list: Ver a minha lista de vida
   view_observation: Ver observação
   view_observation_flags: Ver observações sinalizadas
   view_observations_of_this_taxon_by: Ver observações deste táxon por
@@ -2882,7 +2894,6 @@ pt:
     <a href="http://facebook.com">Facebook</a>
     para o alojamento das suas imagens.
   we_had_a_problem_flagging_that_item: "Ocorreu um erro ao sinalizar esse item: %{flag_error}"
-  welcome_back: Bem-vindo de volta!
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
   welcome_to_x_project: "Bem-vindo ao projeto %{project}"
@@ -2912,6 +2923,9 @@ pt:
             <a href="%{url}">Verificar as Directrizes de Comunidade</a> para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
           please_read_the_teachers_guide_html: |
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
+    lifelists:
+      dropdowns:
+        least_observed: Menos observados
     observations:
       captive_help_html: |
         O organismo observado é uma espécie <strong>cultivada</strong> ou
@@ -2950,6 +2964,12 @@ pt:
     stats:
       year:
         growth_title: Crescimento
+    taxa:
+      edit:
+        wikipedia_summary_desc_html: |
+          Breve resumo deste táxon com base na sua <a target="_blank"
+          href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
+          seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
     users:
       edit:
         inaturalist_network_affiliation_desc_html: |

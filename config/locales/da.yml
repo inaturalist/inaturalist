@@ -705,6 +705,7 @@ da:
   cc_by_sa_name: Kildeangivelse - Del på samme måde
   cc_used_under_a: "Creative Commons, brugt under en"
   change_admin: Skift administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Skift bannerbillede
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
@@ -769,6 +770,7 @@ da:
   check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer på
   check_out_our_blog: Se vores blog
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere, ser ud
+  check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
     <a href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1079,6 +1081,7 @@ da:
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slet bannerbillede?
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
@@ -1142,6 +1145,11 @@ da:
     Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Din konto er blevet låst grundet for mange mislykkede indlogningsforsøg.
+  devise_unlock_instructions_click_the_link: |
+    Klik på linket nedenfor, for at oplåse din konto:
+  devise_unlock_instructions_unlock: Oplås din konto
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
@@ -1775,6 +1783,7 @@ da:
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
+  learn_more_on_the_blog: Læs mere på bloggen
   learn_more_raquo: "Lær mere &raquo;"
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: Mindste bekymring
@@ -1817,6 +1826,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
     maltese: Maltesisk
@@ -1927,6 +1937,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
+    lv: Lettisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -2000,7 +2011,7 @@ da:
   managers_can_do: Ledere kan gøre alt, hvad kuratorer kan gøre, samt redigere projektindstillinger og skrive projekt journalindlæg.
   managing_projects: Administrerer projekter
   map: Kort
-  map_legend: signaturforklaring
+  map_legend: Kortsymbolforklaring
   map_marker_size: kortmarkør størrelse
   map_of_observations: Observationskort
   maps:
@@ -2179,14 +2190,14 @@ da:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til %{site_name}?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i Finland. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
@@ -4003,7 +4014,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
@@ -4308,6 +4318,7 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  view_my_life_list: Vis din livsliste
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -4371,7 +4382,6 @@ da:
   website: Hjemmeside
   week_of_date: "Ugen med %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbage
   welcome_back!: Velkommen tilbage!
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
@@ -4418,7 +4428,6 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
-  wikipedia_entry: Wikipedia indgang
   with: med
   withdraw: Træk tilbage
   withdrawing: Trækker tilbage...
@@ -4868,6 +4877,7 @@ da:
         taxonomic: Taksonomisk
         name: Navn
         most_observed: Mest observeret
+        least_observed: Mindst observeret
         date_added_newest: Tilføjelsesdato, nyeste til ældste
         date_added_oldest: Tilføjelsesdata, ældste til nyeste
         ancestry: Herkomst
@@ -5976,6 +5986,11 @@ da:
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
           Arter er standard.
+        wikipedia_summary_desc_html: |
+          Kort opsummering af denne takson baseret på dens <a target="_blank"
+          href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
+          manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
+          hvilket automatisk opfriskes efter én uge.
       show:
         about_names_desc: |
           <P>

@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { DropdownButton, MenuItem } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Observation from "../../../projects/show/components/observation";
 
@@ -52,6 +53,7 @@ class Observations extends Component {
             width={width}
             height={itemDim}
             config={config}
+            hideUserIcon
           />
         );
       } );
@@ -73,38 +75,32 @@ class Observations extends Component {
           </div>
         );
     }
-    const sortLabel = lifelist.observationSort === "dateAsc"
-      ? `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${I18n.t( "views.lifelists.dropdowns.date_added_oldest" )}`
-      : `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${I18n.t( "views.lifelists.dropdowns.date_added_newest" )}`;
+    let label = lifelist.observationSort === "dateAsc"
+      ? I18n.t( "views.lifelists.dropdowns.date_added_oldest" )
+      : I18n.t( "views.lifelists.dropdowns.date_added_newest" );
+    label = `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${label}`;
     const sortOptions = (
-      <div className="dropdown sortDropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="sortDropdown"
+      <DropdownButton
+        title={label}
+        id="obsSortDropdown"
+        onSelect={key => setObservationSort( key )}
+      >
+        <MenuItem
+          eventKey="dateDesc"
+          className={lifelist.observationSort === "dateDesc" ? "selected" : null}
         >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
-          <li
-            className={lifelist.observationSort === "dateDesc" ? "selected" : null}
-            onClick={( ) => setObservationSort( "dateDesc" )}
-          >
-            { I18n.t( "views.lifelists.dropdowns.date_added_newest" ) }
-          </li>
-          <li
-            className={lifelist.observationSort === "dateAsc" ? "selected" : null}
-            onClick={( ) => setObservationSort( "dateAsc" )}
-          >
-            { I18n.t( "views.lifelists.dropdowns.date_added_oldest" ) }
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "views.lifelists.dropdowns.date_added_newest" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="dateAsc"
+          className={lifelist.observationSort === "dateAsc" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.date_added_oldest" ) }
+        </MenuItem>
+      </DropdownButton>
     );
     return (
-      <div className="flex-container">
+      <div className="Details">
         <div className="search-options">
           { sortOptions }
         </div>

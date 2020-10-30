@@ -199,6 +199,11 @@ class MushroomObserverImportFlowTask < FlowTask
       o.longitude = swlng + ( ( nelng - swlng ) / 2 )
       o.positional_accuracy = lat_lon_distance_in_meters(o.latitude, o.longitude, nelat, nelng)
     end
+    if ( latitude = result.at( "latitude" ) ) && ( longitude = result.at( "longitude" ) )
+      o.latitude = latitude.text.to_f
+      o.longitude = longitude.text.to_f
+      o.positional_accuracy = nil
+    end
     # This would prioritize the owner's name if we wanted to do that, but after
     # implementing this, I feel like it's probably preferrable to use the
     # consensus name

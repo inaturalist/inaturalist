@@ -21,3 +21,22 @@ code {white-space:normal;}
 .wiki_history .td:first-child { white-space: nowrap; }
 .img {background-color: white; padding: 1em; border: 1px solid #eee;}
 .img img {width:100%;}
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  a.anchor {
+    position: absolute;
+    left: -25px;
+    padding-right: 10px;
+    i {
+      visibility: hidden;
+    }
+  }
+  &:hover {
+    a.anchor,
+    a.anchor:hover {
+      i {
+        visibility: visible;
+      }
+    }
+  }
+}

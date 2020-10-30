@@ -28,6 +28,7 @@ class ListsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     @prefs = current_preferences
+    @show_new_life_list_banner = ( logged_in? && current_user == @selected_user )
     
     @life_list = @selected_user.life_list
     @lists = @selected_user.personal_lists.

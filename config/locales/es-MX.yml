@@ -365,6 +365,27 @@ es-MX:
   announcements: Anuncios
   any: Cualquiera
   any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
   apply_to_selected: Apicar a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplica campos
@@ -536,6 +557,7 @@ es-MX:
   cc_by_sa_name: Atribución - Compartir bajo la misma licencia
   cc_used_under_a: "Creative Commons, utilizado bajo una"
   change_admin: Cambia administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambia la portada
   change_descriptions:
     split: La especie o grupo es separada
@@ -851,6 +873,7 @@ es-MX:
   delete: Borrar
   delete_all: Elimina todo
   delete_conversation: Eliminar conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿Borrar la portada?'
   delete_icon?: '¿Borrar el ícono?'
   delete_photo: Elimina foto
@@ -883,6 +906,11 @@ es-MX:
     failure:
       user:
         suspended: Tu cuenta ha sido suspendida
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Tu cuenta ha sido bloqueada debido a varios intentos de ingresos fallido
+  devise_unlock_instructions_click_the_link: |
+    Haz clic en el siguiente enlace para desbloquear tu cuenta:
+  devise_unlock_instructions_unlock: Elimina tu cuenta
   discoveries: Descubrimientos
   did_not_send_invitations_because: No se enviaron invitaciones a los siguientes porque....
   did_you_mean: '¿Te refieres a'
@@ -1613,7 +1641,6 @@ es-MX:
   managers_can_do: Los gerentes pueden hacer las mismas actividades que un curador y adicionalmente pueden cambiar las propiedades del proyecto y escribir notas en el diario del proyecto.
   managing_projects: Administrar proyectos
   map: Mapa
-  map_legend: leyenda del mapa
   map_marker_size: tamaño del marcador de mapa
   map_of_observations: Mapa de observaciones
   maps:
@@ -1737,6 +1764,19 @@ es-MX:
   needs_id_: Necesita identificación
   needs_id_expandable_html: "<span class='full'>Necesita </span>ID"
   needs_to_be_identified: Necesita identificarse
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de <strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong> y compartir datos con instituciones locales?
+  network_affiliation_prompt_from_other_site_html: |
+    ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
+    <strong>%{site_name}</strong>?
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
@@ -3195,7 +3235,6 @@ es-MX:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Hay un resumen guardado sobre esta especie o grupo basado en su
   this_is_a_life_list_of: Esta es la lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -3504,7 +3543,6 @@ es-MX:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de regreso
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -3545,7 +3583,6 @@ es-MX:
   without_annotation: Sin anotación
   widget_code: Código widget
   widget_for: Widget para
-  wikipedia_entry: entrada de wikipedia
   with: Con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4240,7 +4277,7 @@ es-MX:
           observed_in_place: fue observado en algún lugar
           on_list: ser una especie o grupo de la lista del proyecto
           verifiable: ser verificable
-          wild: estado salvaje/silvestre
+          wild: estado silvestre/naturalizado
         start_time_desc: "Tiempo en que empezará tu proyecto bioblitz"
         submission_models:
           any: cualquiera
@@ -5236,7 +5273,7 @@ es-MX:
         destroy:
           #Application as in a software application
           notice: 'Aplicación revocada.'
-  wild: salvaje
+  wild: Silvestre
   will_paginate:
     previous_label: "&#8592; Previo"
     next_label: "Siguiente &#8594;"

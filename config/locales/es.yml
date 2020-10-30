@@ -596,7 +596,7 @@ es:
   authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
   automatic_short: Autom.
   automatically_add_observations_to_this_project: Añadir automáticamente observaciones a este proyecto
-  automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxón
+  automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxon
   back: Volver
   back_to_all_species: Volver a todas las especies
   back_to_browsing_people: Volver a la búsqueda de personas
@@ -705,6 +705,7 @@ es:
   cc_by_sa_name: Atribución-CompartirIgual
   cc_used_under_a: "Creative Commons, usada bajo una"
   change_admin: Cambiar administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambiar la cubierta
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
@@ -768,6 +769,7 @@ es:
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Échale un vistazo a nuestro blog
   check_out_what_the_observation: Échale un vistazo a como aparece la observación que estás tratando de identificar.
+  check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu nueva y mejorada lista de vida!'
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
@@ -1077,6 +1079,7 @@ es:
   delete: Elimina
   delete_all: Elimina todo
   delete_conversation: Elimina conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿elimina la cubierta?'
   delete_icon?: '¿Elimina ícono?'
   delete_photo: Elimina foto
@@ -1138,6 +1141,11 @@ es:
     Si no lo has solicitado, por favor, ignora este correo electrónico.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Tu cuenta ha sido bloqueada debido a una cantidad excesiva de intentos de inicio de sesión fallidos.
+  devise_unlock_instructions_click_the_link: |
+    Haz clic en el enlace de abajo para desbloquear tu cuenta
+  devise_unlock_instructions_unlock: Desbloquear tu cuenta
   discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas pues:'
   did_you_mean: '¿Te refieres a'
@@ -1769,6 +1777,7 @@ es:
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
   learn_more: Aprende más
+  learn_more_on_the_blog: Lee nuestro blog para saber más
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que estas licencias significan
   least_concern: Preocupación menor
@@ -1811,6 +1820,7 @@ es:
     italian: Italiano
     japanese: Japonés
     korean: Coreano
+    latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
     maltese: Maltés
@@ -1921,6 +1931,7 @@ es:
     ko: Coreano
     lb: Luxemburgués
     lt: Lituano
+    lv: Letón
     mk: Macedonio
     nb: Noruego Bokmål
     nl: Holandés
@@ -2176,12 +2187,12 @@ es:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
     se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
-    iNaturalist.org a %{site_name}?
+    <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de iNaturalist.org a iNaturalist Suomi y compartir datos con instituciones locales?
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de <strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong> y compartir datos con instituciones locales?
   network_affiliation_prompt_from_other_site_html: |
     ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
@@ -3850,7 +3861,7 @@ es:
   taxon_photos_updated: '¡Las fotos del taxón fueron actualizadas!'
   taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente. Por favor, espere unos minutos para que aparezca en los mapas.
-  taxon_range_updated_notice: El área de distribución del taxón se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
+  taxon_range_updated_notice: El área de distribución del taxon se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
   taxon_ranks: Filas de taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
@@ -3960,7 +3971,6 @@ es:
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
   this_is_a_life_list_of: Esta es una lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -4258,6 +4268,7 @@ es:
   view_more_observations_of_x_project: "Ver más observaciones de %{project} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver más observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver más sin revisar"
+  view_my_life_list: Ver mi lista de vida
   view_observation: Ve observación
   view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
@@ -4321,7 +4332,6 @@ es:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de vuelta
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -4369,7 +4379,6 @@ es:
     Este artículo utiliza material del artículo de Wikipedia.
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
-  wikipedia_entry: Registro de Wikipedia
   with: con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4473,7 +4482,7 @@ es:
   you_cant_leave_a_project_you_created: No puedes abandonar un proyecto que tu creaste.
   you_cant_merge_standard_places: No puedes combinar lugares estándar
   you_cant_rotate_photos_hostde_outside: "No puedes rotar fotos que son almacenadas fuera de %{site_name}."
-  you_cannot_delete_taxa_involved_in_taxon_changes: No puedes eliminar taxones involucrados en cambios de taxón o que contengan taxones involucrados en cambios de taxón
+  you_cannot_delete_taxa_involved_in_taxon_changes: No puedes eliminar táxones involucrados en cambios de taxon o que contengan táxones involucrados en cambios de taxon
   you_curate_a_project_that_contains_this_observation: Tu curaste un proyecto que incluye esta observación
   you_curate_a_project_that_contains_this_observation_desc: |
     Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una
@@ -4758,6 +4767,55 @@ es:
           Puedes copiar este taxón en otra guía. Si eres uno de los
           los editores de esta guía se debe copiar todo, pero si no lo eres
           sólo se copiará el contenido con licencia.
+    lifelists:
+      list_view: Ver lista
+      tree_view: Vista en árbol
+      observed_species: Especies observadas
+      unobserved_species: Especies no observadas
+      all_species: Todas las especies
+      all_unobserved_species: Todas las especies no observadas
+      observations_at_this_taxon: Observaciones en este taxón
+      observations_within_this_taxon: Observaciones dentro de este taxón
+      all_observations: Todas las Observaciones
+      total_observations: Observaciones totales
+      filter_by: Filtrar por
+      filtered_by: Filtrado por
+      apply_filters_to_export: Aplicar filtros para exportar
+      restrict_to_leaf_taxa: Restringir a taxones de hoja
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a los táxones observados en %{place}
+      exporting_all_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando %{count} taxones
+      exporting_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando %{count} taxones
+      no_observations_found_in_place: No se han encontrado observaciones en %{place}.
+      no_observations_found_within_this_taxon_in_place: No se han encontrado observaciones con este taxón en %{place}.
+      no_species_found_within_this_taxon_in_place: No se han encontrado especies de este taxón en %{place}.
+      no_species_found_in_place: No se han encontrado especies en %{place}.
+      no_unobserved_species_in_place: No hay especies sin observar en %{place}.
+      no_unobserved_species_within_this_taxon: No hay especies sin observar dentro de este taxón.
+      no_unobserved_species_within_this_taxon_in_place: No hay especies sin observar de este taxón en %{place}.
+      reset_place_filter: Restablecer filtro de lugar
+      all_observations_in_this_taxon: Todas las observaciones de este taxón
+      observations_of_exactly_this_taxon: Observaciones de exactamente este taxón
+      focus_tree_on_this_taxon: Centrar el árbol en este taxón
+      expand_all_nodes_in_this_branch: Expandir todos los nodos en esta rama
+      collapse_this_branch: Contraer esta rama
+      dropdowns:
+        sort: Ordenar
+        taxonomic: Taxonomía
+        name: Nombre
+        most_observed: Más observado
+        least_observed: Menos observado
+        date_added_newest: Fecha de adición, más reciente a más antigua
+        date_added_oldest: Fecha de adición, de más antigua a más reciente
+        ancestry: Ancestro
+        show: Mostrar
+        children: Subordinado
+        simplified_tree: Árbol simplificado
+        full_taxonomy: Taxonomía completa
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5659,6 +5717,9 @@ es:
         complete_rank_desc_html: |
           Rango en el qué este taxón está completo, p. ej. si esta familia contiene
           todo sus géneros pero no todas sus especies, esto estaría indicado a "género." La respuesta por defecto es especie.
+        wikipedia_summary_desc_html: |
+          Breve resumen de este taxón basado en su página de <a target="_blank"
+          href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
       show:
         about_names_desc: |
           <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos sin ocasionar confusión. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
@@ -5669,7 +5730,7 @@ es:
         about_establishment_desc: |
           «Medios de establecimiento» describe cómo llegó una especie adonde se encuentra. Introducida significa que llegó por la actividad humana, nativa que ocurrió sin intervención humana. Las especies endémicas se encuentran solo en un lugar concreto.
         about_taxon_curators_desc: |
-          Estas personas administran la parte del árbol taxonómico que incluye este taxón. Si deseas realizar cambios, incluye una advertencia para este taxón o ponte en contacto con una de estas personas.
+          Estas personas administran la parte del árbol taxonómico que incluye este taxon. Si deseas realizar cambios, incluye una advertencia para este taxon o ponte en contacto con una de estas personas.
         charts_help_seasonality: |
           Este gráfico muestra el número de observaciones de este taxón agrupadas por mes. Tenga en cuenta que se trata del número de observaciones, por lo que dependes tanto del momento en el que el organismo puede ser observado como de cuantas personas están participando en su observación. Así, un pájaro podría parecer muy activo en mayo, pero también podría ser debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden a ignorarla los últimos meses. De manera similar, si indica más libélulas en junio que en enero, puede deberse a que hay más observadores en el hemisferio norte que en el hemisferio sur y no porque las libélulas sean más activas en junio, así que compruebe el mapa al considerar estos graficos. Siempre es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones y/o grandes discrepancias entre el número de observaciones "verificables" y de "grado de investigación".
         charts_help_history: |
@@ -5770,7 +5831,7 @@ es:
     users:
       dashboard:
         taxon_change_desc: |
-          Cambios de taxón representan cambios en %{site_name}'s taxonomía.
+          Cambios de taxon representan cambios en %{site_name}'s taxonomía.
           La mayor parte del tiempo de %{site_name} mantendrá automáticamente
           a su contenido hasta al fecha, cuando esos cambios ocurren (a menos que
           optado por no), pero todavía queremos saber cuándo y cómo sus datos
@@ -5953,7 +6014,7 @@ es:
         scientific_name_first_desc: |
           Mostrar los nombres científicos antes de los vernáculos.
         taxon_change_desc: |
-          Cuando los taxones se fusionan o cambian de nombre  en %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.
+          Cuando los táxones se fusionan o cambian de nombre en %{site_name}, sus observaciones, táxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxon si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.
         thanks_for_supporting_us!: '¡Gracias por apoyarnos!'
         this_only_applies_to_traditional_projects: |
           Esto sólo se aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o paraguas, que son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
@@ -6537,6 +6598,7 @@ es:
         mushroom_observer_import_flow_task:
           attributes:
             base:
+              api_key_in_use: "La importación para ese usuario Observador de Hongos está siendo ejecutada o en proceso de importación"
               api_key_missing: "Falta la clave API de Mushroom Observer"
         observation:
           attributes:

@@ -706,6 +706,7 @@ it:
   cc_by_sa_name: Attribuzione-Condividi allo Stesso Modo
   cc_used_under_a: "Creative Commons, utilizzato sotto una"
   change_admin: Cambia amministratore
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambia copertina
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
@@ -769,6 +770,7 @@ it:
   check_out_my_observations_at: Se vuoi, puoi vedere le mie osservazioni a
   check_out_our_blog: Scopri il nostro Blog
   check_out_what_the_observation: Guarda come appare l'osservazione che vuoi identificare.
+  check_out_your_new_and_improved_list_list: Scopri la nostra nuova e migliorata Lista degli Esseri Viventi!
   check_this_box_if_html: |
     Seleziona questa casella se vuoi applicare una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
@@ -1075,6 +1077,7 @@ it:
   delete: Cancella
   delete_all: Cancella tutto
   delete_conversation: Elimina conversazione
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: eliminare la copertina?
   delete_icon?: Eliminare l'icona?
   delete_photo: Elimina foto
@@ -1136,6 +1139,11 @@ it:
     Se non sei stato tu ad aver richiesto il cambio password, ignora questa email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La tua password verrà modificata solo se accedi al link riportato sopra e ne crei una nuova.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Il tuo profilo è stato bloccato a causa di un numero eccessivo di tentativi di accesso falliti.
+  devise_unlock_instructions_click_the_link: |
+    Clicca il collegamento sotto per sbloccare il tuo profilo
+  devise_unlock_instructions_unlock: Sblocca il Tuo Profilo
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
@@ -1761,6 +1769,7 @@ it:
   learn: Impara
   learn_about_the_species_live_in: Scopri le specie che vivono in
   learn_more: Scopri di più
+  learn_more_on_the_blog: Scopri di più sul blog
   learn_more_raquo: "Scopri di più &raquo;"
   learn_what_these_licenses_mean: Scopri cosa significa questa licenza
   least_concern: Minor Preoccupazione
@@ -1803,6 +1812,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
+    latvian: Lettone
     lithuanian: Lituano
     luxembourgish: Lussemburghese
     maltese: Maltese
@@ -1913,6 +1923,7 @@ it:
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
+    lv: Lettone
     mk: Macedone
     nb: Norvegese Bokmål
     nl: Olandese
@@ -1986,7 +1997,7 @@ it:
   managers_can_do: I gestori possono fare tutto quello che fanno i curatori come editare le impostazioni del progetto e scrivere il post del diario.
   managing_projects: Gestione progetti
   map: Mappa
-  map_legend: legenda della mappa
+  map_legend: Legenda della Mappa
   map_marker_size: dimensione dell'indicatore della mappa
   map_of_observations: Mappa delle osservazioni
   maps:
@@ -2163,12 +2174,12 @@ it:
   needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da iNaturalist.org verso %{site_name} e condividere i dati con le istituzioni locali?
+    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da <strong>%{inat_site_name}</strong> verso <strong>%{site_name}</strong> e condividere i dati con le istituzioni locali?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da iNaturalist.org ad iNaturalist Suomi e condividere i dati con le istituzioni locali?
+    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da <strong>%{inat_site_name}</strong> ad <strong>iNaturalist Suomi</strong> e condividere i dati con le istituzioni locali?
   network_affiliation_prompt_from_other_site_html: |
     Vuoi spostare l'affiliazione dell'account da <strong>%{other_site_name}</strong> verso
     <strong>%{site_name}</strong>?
@@ -3933,7 +3944,6 @@ it:
   third_person_possessive_plural: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
-  this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon basato sul suo
   this_is_a_life_list_of: Questa è una lista degli esseri viventi di
   this_is_a_life_list_from_place_html: "Questa e una lista degli esseri viventi in %{place}"
   this_is_a_life_list_of_taxon_in_place: "Questa è una lista degli esseri viventi del taxon %{taxon} in %{place}"
@@ -4233,6 +4243,7 @@ it:
   view_more_observations_of_x_project: "Visualizza più osservazioni dal progetto %{project} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visualizza più osservazioni di %{taxon} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Esamina altri tra i non esaminati."
+  view_my_life_list: Visualizza la mia lista degli esseri viventi
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
@@ -4296,7 +4307,6 @@ it:
   website: Sito web
   week_of_date: "Settimana del %{date}"
   welcome: benvenuto/a
-  welcome_back: Bentornato/a
   welcome_back!: Bentornato!
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
@@ -4344,7 +4354,6 @@ it:
     Questa voce usa materiale dalla voce di Wikipedia <a href="%{url}">"%{title}"</a>, che è stata rilasciata con
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
-  wikipedia_entry: Voce di Wikipedia
   with: con
   withdraw: Ritira
   withdrawing: Ritiro in corso...
@@ -4737,6 +4746,7 @@ it:
         taxonomic: Tassonomico
         name: Nome
         most_observed: Più Osservato
+        least_observed: Meno osservati
         date_added_newest: Data Aggiunta, dalla Più Recente alla Meno Recente
         date_added_oldest: Data Aggiunta, dalla Meno Recente alla Più Recente
         ancestry: Antenato
@@ -5643,6 +5653,10 @@ it:
           Un taxon "completo" contiene <em>tutti</em> i taxa discendenti conosciuti ad uno specifico livello in accordo con le politiche della curatela dei taxa iNaturalist. Al momento solo gli amministratori del sito possono definire i taxa completi.
         complete_rank_desc_html: |
           Livello al quale questo taxon è completo, e.g. se questa famiglia contiene tutti i generi ma non tutte le specie, questo sarà settato al "genere". Predefinito è il livello specie.
+        wikipedia_summary_desc_html: |
+          Breve descrizione sintetica di questo taxon basata sulla sua <a target="_blank"
+          href="%{url}"> pagina di Wikipedia</a> che manteniamo a tempo indeterminato fino ad un
+          aggiornamento manuale. Aggiornando questa sintesi viene aggiornata immediatamente anche la nostra cache del sottostante contenuto di Wikipedia visualizzato sul sito web, che si aggiorna automaticamente dopo una settimana.
       show:
         about_names_desc: |
           <p>

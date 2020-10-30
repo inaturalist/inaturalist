@@ -86,6 +86,12 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   outline: none;
 }
 
+.bootstrap button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
 .bootstrap .more button.btn {
   border-radius: 20px;
   padding: 5px 15px;
@@ -162,6 +168,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   h3 {
     text-align: center;
     margin-top: 5px;
+    button.nostyle {
+      outline: none;
+    }
     .fa {
       font-size: 13px;
       font-weight: 100;
@@ -234,11 +243,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 .name-label {
   display: inline-block;
-  &.featured {
+  &.featured .display-name {
     font-weight: 600;
     color: $inat-green;
   }
-  &.featured-ancestor {
+  &.featured-ancestor .display-name {
     font-weight: 600;
   }
 }
@@ -273,6 +282,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .stat {
     padding: 0 15px;
     display: block;
+    outline: none;
+    margin: 0px auto;
     &.clicky{
       cursor: pointer;
     }
@@ -282,6 +293,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     .attr {
       font-weight: 700;
       margin-right: 4px;
+      &:after {
+        content: ":"
+      }
     }
     &.selected .attr {
       font-weight: 800;
@@ -370,7 +384,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       height: 60px;
       padding: 10px;
       position: relative;
-      padding-right: 86px;
+      padding-right: 75px;
       white-space: nowrap;
       .display-name {
         font-size: 17px;
@@ -487,7 +501,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList ul.nested {
   font-size: 15px;
-  font-weight: 700;
 }
 
 #TaxaList .ancestry {
@@ -560,6 +573,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         font-size: 20px;
         float: right;
         cursor: pointer;
+        outline: none;
       }
     }
     .PlaceAutocomplete .form-group {
@@ -578,6 +592,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       border: none;
       font-weight: 700;
       padding: 5px 12px;
+      font-size: 12px;
+      margin-top: 5px;
       .caret {
         margin-left: 5px;
       }
@@ -590,6 +606,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       li {
         padding: 3px 20px;
         cursor: pointer;
+        a {
+          padding: 0;
+          line-height: inherit;
+          outline: none;
+        }
         &:not(:first-child) {
           margin-top: 2px;
         }
@@ -616,6 +637,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   }
   .modal-body {
     font-size: 16px;
+    .export-filters .intro:after {
+      content: ":"
+    }
     ul {
       list-style: none;
       padding-left: 10px;

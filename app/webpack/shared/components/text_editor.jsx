@@ -41,6 +41,10 @@ class TextEditor extends React.Component {
     }
   }
 
+  componentWillReceiveProps( props ) {
+    this.setState( { content: props.content } );
+  }
+
   componentDidUpdate( prevProps, prevState ) {
     const { changeHandler } = this.props;
     const { content } = this.state;

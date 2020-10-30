@@ -28,6 +28,23 @@ const RANK_FILTER_RANK_LEVELS = {
   species: 10
 };
 
+const NAV_VIEWS = [
+  "list",
+  "tree"
+];
+
+const DETAILS_VIEWS = [
+  "species",
+  "observations",
+  "unobservedSpecies"
+];
+
+const TREE_MODES = [
+  "simplified",
+  "full_taxonomy"
+];
+
+
 const DEFAULT_STATE = {
   loading: true,
   user: null,
@@ -83,11 +100,15 @@ function updateBrowserStateHistory( initial = false ) {
     const newURLParams = { };
     browserState.nav_view = lifelist.navView;
     browserState.details_view = lifelist.detailsView;
+    browserState.tree_mode = lifelist.treeMode;
     if ( lifelist.navView !== DEFAULT_STATE.navView ) {
       newURLParams.view = lifelist.navView;
     }
     if ( lifelist.detailsView !== DEFAULT_STATE.detailsView ) {
       newURLParams.details_view = lifelist.detailsView;
+    }
+    if ( lifelist.treeMode !== DEFAULT_STATE.treeMode ) {
+      newURLParams.tree_mode = lifelist.treeMode;
     }
     if ( lifelist.detailsTaxon ) {
       browserState.taxon_id = lifelist.detailsTaxon.id;
@@ -156,6 +177,9 @@ export function fetchAllCommonNames( callback ) {
 
 export function setNavView( view ) {
   return dispatch => {
+    if ( !_.includes( NAV_VIEWS, view ) ) {
+      return;
+    }
     updateSession( { preferred_lifelist_nav_view: view } );
     dispatch( setAttributes( { navView: view } ) );
     dispatch( updateBrowserStateHistory( ) );
@@ -164,6 +188,9 @@ export function setNavView( view ) {
 
 export function setDetailsView( view ) {
   return dispatch => {
+    if ( !_.includes( DETAILS_VIEWS, view ) ) {
+      return;
+    }
     updateSession( { preferred_lifelist_details_view: view } );
     dispatch( setAttributes( { detailsView: view } ) );
     dispatch( updateBrowserStateHistory( ) );
@@ -195,7 +222,12 @@ export function setTreeScrollIndex( scrollIndex ) {
 
 export function setTreeMode( treeMode ) {
   return dispatch => {
+    if ( !_.includes( TREE_MODES, treeMode ) ) {
+      return;
+    }
+    updateSession( { preferred_lifelist_tree_mode: treeMode } );
     dispatch( setAttributes( { treeMode } ) );
+    dispatch( updateBrowserStateHistory( ) );
   };
 }
 
@@ -517,6 +549,9 @@ export function updateWithHistoryState( state ) {
     if ( state.details_view !== lifelist.detailsView ) {
       dispatch( setDetailsView( state.details_view ) );
     }
+    if ( state.tree_mode !== lifelist.treeMode ) {
+      dispatch( setTreeMode( state.tree_mode ) );
+    }
     dispatch( setDetailsTaxon( lifelist.taxa[state.taxon_id] ) );
     dispatch( setSpeciesPlaceFilter( state.speciesPlaceFilter ) );
     dispatch( setAttributes( { initialized: true }, { skipUpdateState: true } ) );
@@ -602,7 +637,12 @@ export function fetchUser( user, options ) {
           }
           taxa[childID].milestoneParentID = milestoneTaxonID;
           if ( isLeaf ) {
-            simplifiedLeafParents[milestoneTaxonID] = true;
+            if ( milestoneTaxonID === 0 ) {
+              // this is also a root node
+              simplifiedLeafParents[childID] = true;
+            } else {
+              simplifiedLeafParents[milestoneTaxonID] = true;
+            }
           }
           ticker += 1;
         } );
@@ -651,6 +691,12 @@ export function fetchUser( user, options ) {
       } else if ( config.currentUser
         && config.currentUser.preferred_lifelist_details_view !== DEFAULT_STATE.detailsView ) {
         dispatch( setDetailsView( config.currentUser.preferred_lifelist_details_view ) );
+      }
+      if ( urlParams.tree_mode ) {
+        dispatch( setTreeMode( urlParams.tree_mode ) );
+      } else if ( config.currentUser
+        && config.currentUser.preferred_lifelist_tree_mode !== DEFAULT_STATE.treeMode ) {
+        dispatch( setTreeMode( config.currentUser.preferred_lifelist_tree_mode ) );
       }
 
       dispatch( updateBrowserStateHistory( true ) );

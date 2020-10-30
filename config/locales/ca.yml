@@ -681,6 +681,7 @@ ca:
   cc_by_sa_name: Reconeixement - Compartir igual
   cc_used_under_a: "Creative Commons, utilitzada amb una"
   change_admin: Canviar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Canvia la portada
   change_descriptions:
     split: L'antic tàxon està separat en diversos tàxons nous
@@ -1051,6 +1052,7 @@ ca:
   delete: Elimina
   delete_all: Elimineu tot
   delete_conversation: Elimineu conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: esborreu coberta?
   delete_icon?: Voleu eliminar la icona?
   delete_photo: Elimineu la foto
@@ -1962,7 +1964,6 @@ ca:
   managers_can_do: Els gestors poden realitzar les mateixes activitats que un supervisor i addicionalment poden canviar les propietats del projecte i escriure notes en el diari del projecte.
   managing_projects: Gestió de Projectes
   map: Mapa
-  map_legend: llegenda del mapa
   map_marker_size: mida del marcador del mapa
   map_of_observations: Mapa d'Observacions
   maps:
@@ -2140,13 +2141,13 @@ ca:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist
-    dedicada en la biodiversidad i les personas de %{place}. Vols canviar l'afiliació del teu compte d'iNaturalist.org a %{site_name}?
+    dedicada en la biodiversidad i les personas de %{place}. Vols canviar l'afiliació del teu compte d'<strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, part de la xarxa internacional iNaturalist està
-    dedicada a la biodiversidad i les personas de Finlàndia. Voleu canviar l'afiliació del vostre compte d'iNaturalist.org a iNaturalist Suomi?
+    dedicada a la biodiversidad i les personas de Finlàndia. Voleu canviar l'afiliació del vostre compte d'<strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Vols canviar la teva afiliació des de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
@@ -3880,7 +3881,6 @@ ca:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
-  this_is_a_cached_summary_based_on: Això és un resum de memòria cau d'aquest tàxon basat en el vostre
   this_is_a_life_list_of: Això és una llista de vida de
   this_is_a_life_list_from_place_html: "Aquesta és una llista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Aquesta és una llista de %{taxon} a %{place}"
@@ -4239,7 +4239,6 @@ ca:
   website: Lloc web
   week_of_date: "Setmana del %{date}"
   welcome: benvingut
-  welcome_back: Benvingut de nou
   welcome_back!: Benvingut de nou!
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
@@ -4286,7 +4285,6 @@ ca:
   wikipedia_attribution_cc_by_sa_3_html: |
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
-  wikipedia_entry: Entrada de Viquipèdia
   with: amb
   withdraw: Retirar
   withdrawing: Retirant...

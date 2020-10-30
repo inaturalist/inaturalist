@@ -13,14 +13,14 @@
   </div>
   <div class="header observed_on <%= "order_by #{@order}" if @order_by == 'observed_on' %>">
     <% order = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'observed_on' %>
-    <%= link_to t(:date_observed), url_for_params(:order => order, :order_by => 'observed_on') %>
+    <%= link_to t(:date_observed), url_for_params(order: order, order_by: 'observed_on', preferences: { edit_observations_sort: order, edit_observations_order: 'observed_on' }) %>
   </div>
   <div class="header place">
     <%= t(:place) %>
   </div>
   <div class="header created_at <%= "order_by #{@order}" if %w(id observations.id created_at).include?(@order_by) %>" style="display: none">
     <% order = @order == 'desc' ? 'asc' : 'desc' if %w(id observations.id created_at).include?(@order_by) %>
-    <%= link_to t(:date_added), url_for_params(:order => order, :order_by => 'created_at') %>
+    <%= link_to t(:date_added), url_for_params(order: order, order_by: 'created_at', preferences: { edit_observations_sort: order, edit_observations_order: 'created_at' }) %>
   </div>
   <div class="header details" style="display: none">
     <%=t :details %>

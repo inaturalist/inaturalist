@@ -883,6 +883,7 @@ en:
   check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
+  check_out_your_new_and_improved_list_list: Check out your new and improved Life List!
   check_this_box_if_html: |
     Check this box if you want to apply a <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1282,6 +1283,11 @@ en:
     If you didn't request this, please ignore this email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Your account has been locked due to an excessive number of unsuccessful sign-in attempts.
+  devise_unlock_instructions_click_the_link: |
+    Click the link below to unlock your account
+  devise_unlock_instructions_unlock: Unlock Your Account
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
@@ -1939,6 +1945,7 @@ en:
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
+  learn_more_on_the_blog: Learn more on the blog
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
   least_concern: Least Concern
@@ -1981,6 +1988,7 @@ en:
     italian: Italian
     japanese: Japanese
     korean: Korean
+    latvian: Latvian
     lithuanian: Lithuanian
     luxembourgish: Luxembourgish
     maltese: Maltese
@@ -2092,6 +2100,7 @@ en:
     ko: Korean
     lb: Luxembourgish
     lt: Lithuanian
+    lv: Latvian
     mk: Macedonian
     nb: Norwegian Bokmål
     nl: Dutch
@@ -2165,7 +2174,7 @@ en:
   managers_can_do: Managers can do everything curators can do as well as editing project settings and write project journal posts.
   managing_projects: Managing Projects
   map: Map
-  map_legend: map legend
+  map_legend: Map Legend
   map_marker_size: map marker size
   map_of_observations: Map of Observations
   maps:
@@ -2348,15 +2357,17 @@ en:
   # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
-    Network, is focused on biodiversity and people in %{place}. Would you like to change your
-    account affiliation from iNaturalist.org to %{site_name} and share data with local institutions?
+    Network, is focused on biodiversity and people in %{place}. Would you like
+    to change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>%{site_name}</strong> and share data with local institutions?
   # Special version for network_affiliation_prompt_from_inat_html, which cannot
   # be properly translated into Finnish with the %{place} variable. Please don't
   # feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, part of the international iNaturalist
     Network, is focused on biodiversity and people in Finland. Would you like to
-    change your account affiliation from iNaturalist.org to iNaturalist Suomi and share data with local institutions?
+    change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>iNaturalist Suomi</strong> and share data with local institutions?
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?
@@ -4222,7 +4233,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_a_life_list_from_place_html: "This is a life list from %{place}"
   this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
@@ -4544,6 +4554,7 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
+  view_my_life_list: View my life list
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -4656,7 +4667,6 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
-  wikipedia_entry: Wikipedia entry
   with: with
   withdraw: Withdraw
   withdrawing: Withdrawing...
@@ -5164,6 +5174,7 @@ en:
         taxonomic: Taxonomic
         name: Name
         most_observed: Most Observed
+        least_observed: Least Observed
         date_added_newest: Date Added, Newest to Oldest
         date_added_oldest: Date Added, Oldest to Newest
         ancestry: Ancestry
@@ -6532,6 +6543,12 @@ en:
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
           Default is species.
+        wikipedia_summary_desc_html: |
+          Short summary of this taxon based on its <a target="_blank"
+          href="%{url}">Wikipedia page</a> that we cache indefinitely until
+          manually refreshed. Refreshing this summary also immediately updates
+          our cache of the underlying Wikipedia content that we show on the
+          website, which automatically refreshes after a week.
       show:
         about_names_desc: |
           <p>
