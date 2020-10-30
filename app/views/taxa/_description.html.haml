@@ -5,7 +5,7 @@
   css_class = "clear taxon_description"
   if @describer
     css_class += " #{@describer.name.split('::').last.underscore}_description"
-    if @describer.is_a?( TaxonDescribers::Wikipedia ) || @describer.ancestors.include?( TaxonDescribers::Wikipedia )
+    if @describer.is_a?( TaxonDescribers::Wikipedia ) || @describer.class.ancestors.include?( TaxonDescribers::Wikipedia )
       css_class += " wikipedia_description"
     end
   end
@@ -14,8 +14,8 @@
     =t :description_from
     - if @describer
       = select_tag :from, options_for_select(@describers.sort_by(&:name).map{|d| [d.describer_name, d.name.split('::').last]}, :selected => @describer.name.split('::').last)
-      - if page_url = @describer.page_url(@taxon)
-        = link_to "#{t(:view_on)} #{@describer.describer_name} &rarr;".html_safe, page_url, :class => "externallink ui"
+      - if @describer_url
+        = link_to "#{t(:view_on)} #{@describer.describer_name} &rarr;".html_safe, @describer_url, :class => "externallink ui"
     - else
       %a{ href: @describer_url } Wikipedia
   - if @description.blank?

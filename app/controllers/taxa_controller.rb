@@ -1062,8 +1062,12 @@ class TaxaController < ApplicationController
       ]
     end
     # Perform caching here as opposed to caches_action so we can set request headers appropriately
-    key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
-    @description = Rails.cache.read( key )
+    key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}&v2"
+    if cached_description = Rails.cache.read( key )
+      @description = cached_description[:description]
+      @describer_url = cached_description[:url]
+      @describer = TaxonDescribers.get_describer( cached_description[:describer] )&.new( locale: I18n.locale )
+    end
     # We only need to fetch new data for logged in users and when the cache is empty
     if logged_in? || @description.blank?
       # Fall back to English wikipedia as a last resort unless the default
@@ -1098,12 +1102,15 @@ class TaxaController < ApplicationController
         response.headers["X-Describer-URL"] = @describer_url
       end
       if !@description.blank? && !logged_in?
-        Rails.cache.write( key, @description, expires_in: 1.day )
-        Rails.cache.write( "#{key}-describer", @describer.describer_name || @describer.name.split( "::" ).last, expires_in: 1.day )
+        Rails.cache.write( key, {
+          description: @description,
+          describer:  @describer.describer_name || @describer.name.split( "::" ).last,
+          url: @describer_url
+        }, expires_in: 1.day )
       end
     # If we have cached content and a cached describer name, set the response headers
-    elsif !@description.blank? && ( @describer = TaxonDescribers.get_describer( Rails.cache.read( "#{key}-describer" ) ) )
-      @describer_url = @describer.page_url( @taxon )
+    elsif !@description.blank? && @describer
+      @describer_url ||= @describer.page_url( @taxon )
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end

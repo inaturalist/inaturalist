@@ -3,18 +3,21 @@ module TaxonDescribers
   class Wikipedia < Base
     def initialize( options = {} )
       @locale = options[:locale]
+      @page_urls = {}
       super()
     end
 
     def describe( taxon )
-      title = if Rails.env.production?
-        # Redirects from the iNat taxon ID in Wikiedata to Wikipedia in a
+      title = nil
+      if Rails.env.production?
+        # Redirects from the iNat taxon ID in Wikidata to Wikipedia in a
         # particular locale. We're using it to grab the Wikipedia page title.
         # Note that this will only work with the production database, since
         # those are the taxon IDs Wikidata has ingested, so unfortunately this
         # can't really be tested
-        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale}" )
-          r.header[:location].to_s.split( "/" ).last
+        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale.to_s.split( "-" ).first}" )
+          title = r.header[:location].to_s.split( "/" ).last
+          @page_urls[taxon.id] = r.header[:location]
         end
       end
       title = CGI.unescape( title ) unless title.blank?
@@ -55,7 +58,9 @@ module TaxonDescribers
     end
 
     def page_url(taxon)
-      if Rails.env.production?
+      if @page_urls && !@page_urls[taxon.id].blank?
+        @page_urls[taxon.id]
+      elsif Rails.env.production?
         "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale}"
       else
         wname = taxon.wikipedia_title
