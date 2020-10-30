@@ -187,6 +187,26 @@ sv:
     <p>
     Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera närvaro/frånvaro-data från resor' för att generera en tabell med närvaro/frånvaro-data för arter från resor med tillhörande observationer. <a href='%{url}'>Läs mer</a>
     </p>
+  about_trusting_projects: Om att lita på projekt
+  about_trusting_projects_options_any: Alla dina observationer i detta projekt
+  about_trusting_projects_options_any_desc: |-
+    Detta inkluderar observationer där du har satt geosekretessen till "diffuserad" eller "privat", t.ex. observationer från din bakgård eller platser som du inte vill att andra människor ska känna till.
+  about_trusting_projects_options_taxon: |-
+    Endast de av dina observationer i detta projekt vars koordinater är dolda på grund av hotade taxa
+  about_trusting_projects_options_taxon_desc: |-
+    Många projekt behöver bara tillgång till koordinater som är diffuserade för att observationen är av ett hotat taxon.
+  about_trusting_projects_overview: |-
+    Genom att ge tillgång till dina dolda koordinater kan detta projekts ledare se den verkliga, odiffuserade lokalen för dina observationer i detta projekt. Detta
+    är oerhört viktigt i situationer där forskare eller resursförvaltare behöver tillgång till exakta koordinater för analys och beslutsfattande.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    De projektledare som kommer att ha tillgång till dina dolda koordinater är:
+  about_trusting_projects_warning: |-
+    Märk väl att projektledare kan ändra projektparametrarna så att vilken som helst av dina observationer inkluderas, och de kan lägga till och ta bort projektledare när som helst. Du kommer att få meddelanden om dessa ändringar, men i praktiken anförtror du detta projekt med dina privata lokalangivelser, så var försiktig.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Du kan välja att dela dolda koordinater för
   about_x: "Om %{x}"
   acc: 'Noggr (m)'
   account: Konto
@@ -953,6 +973,15 @@ sv:
   convert: Konvertera
   coordinate_systems: Koordinatsystem
   coordinates: Koordinater
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Endast m. fullständiga koordinater
+  coords_viewable_for_proj_desc: |
+    Visa bara observationer från detta projekt för vilka du kan se de "verkliga"
+    koordinaterna, inklusive odiffuserade observationer, diffuserade observationer av
+    personer som litar på dig, diffuserade observationer av personer som anförtror detta projekt med allt, och observationer som är diffuserad p.g.a. hotade taxa av människor som bara litar på detta projekt likadant.
   copy: Kopiera
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
@@ -2052,6 +2081,7 @@ sv:
   managers_can_do: Ägare kan göra allt som förvaltarna kan göra samt ändra projektinställningar och göra inlägg i projektdagboken.
   managing_projects: Hanterar projekt
   map: Karta
+  map_legend: Kartförklaring
   map_marker_size: kartans markörstorlek
   map_of_observations: Karta över observationer
   maps:
@@ -2084,6 +2114,7 @@ sv:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem av %{partial_inat_network_tag_html}iNaturalist-nätverket</a>, ett
     gemensamt initiativ av %{cas_tag_html} och %{nat_geo_tag_html}.
+  #As in members of a project
   members: Medlemmar
   membership_model: Modell för medlemskap
   mentioned_you_in_noun_html: "%{user} nämnde dig i %{noun}"
@@ -3398,6 +3429,7 @@ sv:
   reason_you_are_flagging_this_item: Orsaken till att du flaggar detta objekt.
   recaptcha_verification_failed: reCAPTCHA-verifiering misslyckades
   receive_email_notifications_when_people_leave_you: Få e-postaviseringar om
+  receive_project_journal_notifications?: Ta emot meddelanden om projektdagboken?
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   recent: Senaste
   recent_evidence_of_organism: Färska tecken på en organism
@@ -4172,9 +4204,12 @@ sv:
   trending: Trender
   trends: Trender
   trip_target_list_info: 'Alla arter på denna mållista som inte hittades inom området under tiden för denna utflykt kommer att tolkas som nollboservationer. <a href="/pages/trips">Läs mer</a>.'
+  #Noun
+  trust: Förtroende
   trusted: Betrodd
   trusted_project?: Betrott projekt?
   trust_this_person_with_your_private_coordinates: Lita på denna person med dina dolda koordinater
+  trust_this_project_with_your_private_coordinates?: Anförtro detta projekt med dolda koordinater?
   trust_with_private_coordinates: Anförtro med dolda koordinater
   try_adding_species_form: Försök att lägga till några arter via formuläret på denna sida.
   twitter: Twitter
@@ -4561,7 +4596,16 @@ sv:
   year_on_site: "År %{year} på %{site}"
   yellow: gul
   'yes': "Ja"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Ja, men bara för mina observationer av hotade taxa, inte när jag har satt
+    geosekretessen
   yes_find_them!: "Ja, hitta dem!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Ja, för alla mina observationer"
   yes_i_want_to_join: Ja, jag vill gå med
   yes_license_my_childs_observations: Ja, licensiera mitt barns bilder, ljud och observationer så att vetenskapsmän kan använda uppgifterna (rekommenderat).
   yes_license_my_observations_so_scientists_can_use: Ja, licensiera mina bilder, ljud och observationer så att vetenskapsmän kan använda mina data (rekommenderat).
@@ -5508,6 +5552,21 @@ sv:
           söksidan för att importera nya namn. Om namnet finns men används 
           för flera giltiga taxa, försök att använda ett mer unikt namn som bara
           matchar ett enda taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Eftersom du har anförtrott detta projekt med de dolda koordinaterna för <a
+          href="%{obs_url}">några av dina observationer</a>, kan nu administratörerna
+          ha tillgång till fler av dina dolda koordinater än de gjorde då du litade på detta
+          projekt. Du bör granska listan över administratörer samt projektkraven för att
+          försäkra dig om att du fortfarande anförtror detta projekt med dina observationer:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Observationskraven för följande projekt har nyligen ändrats:
+        subject: Projektets observationskrav har ändrats för %{project}
+        you_can_change_html: |-
+          Du kan ändra dina inställningar eller lämna projektet på
+          <a href="%{url}">projektets sida</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Din observationsexport är klar. En kopia är bifogad detta e-postmeddelande, alternativt kan du
@@ -5830,6 +5889,17 @@ sv:
         submission_models:
           any: alla
           curators: projektförvaltare
+        trust_allow_members_to_trust: |-
+          Tillåt medlemmar att anförtro detta projekt med dolda koordinater
+        trust_help_desc: |-
+          Om du vill ha tillgång till dolda koordinater för diffuserade observationer,
+          kommer det här alternativet att tillåta personer som har gått med i det
+          här projektet att anförtro projektadministratörer med dessa dolda koordinater. Projektmedlemmar kommer att kunna ge tillgång till de dolda koordinaterna
+          för alla deras observationer som finns i detta projekt, eller bara de
+          observationer som är diffuserade på grund av hotade taxa.
+        trust_help_notification: |-
+          Å andra sidan kommer detta också att meddela alla beroende projektmedlemmar
+          varje gång du ändrar projektkraven, så att de kan omvärdera om de vill fortsätta anförtro dig givet de nya kraven.
         trusted_project_means: |
           Att lita på ett projekt innebär att projektledarna kan lägga till projekt-
           tillgångar och anpassade projektattribut (t.ex. banner HTML, CSS). Åtkomst
@@ -5946,6 +6016,11 @@ sv:
           observationer som ska inkluderas automatiskt.
         start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
         traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
+        trusting_members_will_be_notified: |
+          Du har ändrat projektkraven eller aktiverat användarförtroende. Detta
+          kommer att meddelas alla de projektmedlemmar som redan har anförtrott
+          projektet med dolda koordinater så att de har en chans att avgöra om de
+          fortfarande vill lita på projektet med tanke på de nya kraven.
         umbrella_project_features: "Funktionalitet för paraplyprojekt"
         unique_url_for_outreach: Unik publik URL
         use_this_for_a_time_limited_event: |
