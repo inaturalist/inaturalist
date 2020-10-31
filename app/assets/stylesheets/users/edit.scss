@@ -218,6 +218,21 @@ button.left-nav-item {
   }
 }
 
+.ThirdPartyTrackingModal.modal {
+  .modal-dialog {
+    .modal-content {
+      padding-top: 25px;
+      padding-left: 32px;
+      padding-right: 32px;
+      min-height: 450px;
+      min-width: 766px;
+    }
+    .modal-body {
+      padding-bottom: 32px;
+    }
+  }
+}
+
 .Pagination {
   margin-top: 22px;
   margin-bottom: 53px;

@@ -10,7 +10,14 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
   >
     <Modal.Body>
       <label htmlFor="third_party_tracking">{I18n.t( "third_party_tracking" )}</label>
-      <p>{I18n.t( "prefers_no_tracking_label_desc_we_use" )}</p>
+      <button
+        type="button"
+        className="btn btn-nostyle"
+        onClick={onClose}
+      >
+        <i className="fa fa-times text-muted hide-button fa-2x" aria-hidden="true" />
+      </button>
+      <p>{I18n.t( "users.views.edit.prefers_no_tracking_label_desc_we_use" )}</p>
       <li>
         <span
           // eslint-disable-next-line react/no-danger
@@ -26,7 +33,10 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
         <span
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: I18n.t( "users.views.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html" )
+            __html:
+              I18n.t(
+                "users.views.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
+              )
           }}
         />
       </li>
