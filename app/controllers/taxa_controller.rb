@@ -1073,7 +1073,7 @@ class TaxaController < ApplicationController
       # Fall back to English wikipedia as a last resort unless the default
       # Wikipedia describer is already in English
       if I18n.locale.to_s !~ /^en/
-        @describers << TaxonDescribers::Wikipedia.new( locale: :en )
+        @describers.insert( -2, TaxonDescribers::Wikipedia.new( locale: :en ) )
       end
       if @taxon.auto_description?
         if describer_klass = TaxonDescribers.get_describer(params[:from])
