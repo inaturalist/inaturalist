@@ -125,7 +125,8 @@ const Content = ( {
     <div className="col-xs-9">
       <div className="row">
         <div className="col-md-5 col-xs-10">
-          <SettingsItem header={I18n.t( "project_settings" )} htmlFor="user_preferred_project_addition_by">
+          <SettingsItem>
+            <h4>{I18n.t( "project_settings" )}</h4>
             <p>
               <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
             </p>
@@ -142,7 +143,8 @@ const Content = ( {
               }}
             />
           </SettingsItem>
-          <SettingsItem header={I18n.t( "taxonomy_settings" )} htmlFor="user_prefers_automatic_taxonomic_changes">
+          <SettingsItem>
+            <h4>{I18n.t( "taxonomy_settings" )}</h4>
             <CheckboxRowContainer
               name="prefers_automatic_taxonomic_changes"
               label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
@@ -159,7 +161,8 @@ const Content = ( {
               )}
             />
           </SettingsItem>
-          <SettingsItem header={I18n.t( "licensing" )} htmlFor="about_licenses">
+          <SettingsItem>
+            <h4>{I18n.t( "licensing" )}</h4>
             <p>
               <span
                 className="text-muted"
@@ -230,7 +233,8 @@ const Content = ( {
         </div>
         <div className="col-md-1" />
         <div className="col-md-5 col-xs-10">
-          <SettingsItem header={I18n.t( "names" )} htmlFor="user_prefers_common_names">
+          <SettingsItem>
+            <h4>{I18n.t( "names" )}</h4>
             <p>
               <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
             </p>
@@ -250,14 +254,14 @@ const Content = ( {
             <p />
             <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
             <PlaceAutocomplete
-              // no id here
               resetOnChange={false}
               initialPlaceID={profile.place_id}
               bootstrapClear
               afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
             />
           </SettingsItem>
-          <SettingsItem header={I18n.t( "community_moderation_settings" )} htmlFor="user_prefers_community_taxa">
+          <SettingsItem>
+            <h4>{I18n.t( "community_moderation_settings" )}</h4>
             <CheckboxRowContainer
               name="prefers_community_taxa"
               label={I18n.t( "accept_community_identifications" )}
