@@ -9,10 +9,12 @@ const SettingsItem = ( {
 } ) => (
   <div className="row settings-item">
     <div className="col-xs-12">
-      <label htmlFor={htmlFor}>
-        {header}
-        {required && " *"}
-      </label>
+      {( header && htmlFor ) && (
+        <label htmlFor={htmlFor}>
+          {header}
+          {required && " *"}
+        </label>
+      )}
       {children}
     </div>
   </div>

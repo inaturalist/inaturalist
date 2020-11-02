@@ -9,7 +9,8 @@ const Notifications = ( { profile } ) => (
   <div className="col-xs-9">
     <div className="row">
       <div className="col-xs-10">
-        <SettingsItem header={I18n.t( "inaturalist_activity_notifications", { site_name: SITE.name } )} htmlFor="notifications">
+        <SettingsItem>
+          <h4>{I18n.t( "inaturalist_activity_notifications", { site_name: SITE.name } )}</h4>
           <div className="row">
             <div className="col-xs-9">
               <label>{I18n.t( "notify_me_of_mentions" )}</label>
@@ -17,6 +18,7 @@ const Notifications = ( { profile } ) => (
             </div>
             <ToggleSwitchContainer name="prefers_receive_mentions" />
           </div>
+          <p />
           <div className="row">
             <div className="col-xs-9">
               <label>{I18n.t( "confirming_ids" )}</label>
@@ -25,7 +27,8 @@ const Notifications = ( { profile } ) => (
             <ToggleSwitchContainer name="prefers_redundant_identification_notifications" />
           </div>
         </SettingsItem>
-        <SettingsItem header={I18n.t( "email_notifications" )} htmlFor="notifications">
+        <SettingsItem>
+          <h4>{I18n.t( "email_notifications" )}</h4>
           <div className="row">
             <div className="col-xs-9">
               <label>{I18n.t( "receive_email_notifications" )}</label>

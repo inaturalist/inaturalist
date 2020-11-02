@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ToggleSwitch = ( { profile, name, handleCheckboxChange } ) => (
-  <div className="col-xs-2 ToggleSwitch">
-    <div className="row flex-no-wrap space-between-items">
+  <div className="col-xs-4 col-md-3 ToggleSwitch">
+    <div className="flex-no-wrap">
       <label htmlFor={name}>{I18n.t( "off_toggle" ).toLocaleUpperCase( )}</label>
       <label className="switch">
         <input
