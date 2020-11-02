@@ -60,4 +60,5 @@ class WikipediaService < MetaService
   def sanitizer
     @sanitizer ||= HTML::WhiteListSanitizer.new
   end
+
 end

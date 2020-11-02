@@ -3,11 +3,25 @@ module TaxonDescribers
   class Wikipedia < Base
     def initialize( options = {} )
       @locale = options[:locale]
+      @page_urls = {}
       super()
     end
 
-    def describe(taxon)
-      title = taxon.wikipedia_title
+    def describe( taxon )
+      title = nil
+      if Rails.env.production?
+        # Redirects from the iNat taxon ID in Wikidata to Wikipedia in a
+        # particular locale. We're using it to grab the Wikipedia page title.
+        # Note that this will only work with the production database, since
+        # those are the taxon IDs Wikidata has ingested, so unfortunately this
+        # can't really be tested
+        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale.to_s.split( "-" ).first}" )
+          title = r.header[:location].to_s.split( "/" ).last
+          @page_urls[taxon.id] = r.header[:location]
+        end
+      end
+      title = CGI.unescape( title ) unless title.blank?
+      title = taxon.wikipedia_title if title.blank?
       title = taxon.name if title.blank?
       decoded = ""
       page_title = title
@@ -31,7 +45,6 @@ module TaxonDescribers
       decoded = coder.decode(html)
       decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
       decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
-      decoded.gsub!(/<table .*?class=.*?ambox.*?>.+?<\/table>/, '')
       decoded.gsub!(/<div .*?class=.*?hatnote.*?>.+?<\/div>/, '')
       if options[:strip_references]
         decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
@@ -45,9 +58,15 @@ module TaxonDescribers
     end
 
     def page_url(taxon)
-      wname = taxon.wikipedia_title
-      wname = taxon.name.to_s.gsub(/\s+/, '_') if wname.blank?
-      wikipedia.url_for_title(wname)
+      if @page_urls && !@page_urls[taxon.id].blank?
+        @page_urls[taxon.id]
+      elsif Rails.env.production?
+        "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale}"
+      else
+        wname = taxon.wikipedia_title
+        wname = taxon.name.to_s.gsub(/\s+/, '_') if wname.blank?
+        wikipedia.url_for_title(wname)
+      end
     end
   end
 
