@@ -479,6 +479,27 @@ fi:
   announcements: Ilmoitukset
   any: mikä tahansa
   any_: Mikä tahansa
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Mikä tahansa
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Mikä tahansa
+  #Label for an option to show content from any date
+  any_date: Mikä tahansa
+  #Label for an option to show content with any establishment means
+  any_establishment: Mikä tahansa
+  #Label for an option to show content with any license
+  any_license: Mikä tahansa
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Mikä tahansa
+  #Label for an option to show content from any project
+  any_project: Mikä tahansa
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Mikä tahansa
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Mikä tahansa
+  #Label for an option to show/include content by any user
+  any_user: Mikä tahansa
   anyone: Kuka tahansa
   apply_to_selected: Käytä valittuihin
   apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
@@ -763,6 +784,7 @@ fi:
   check_out_my_observations_at: Jos haluat, voit tarkastella havaintojani osoitteessa
   check_out_our_blog: Tutustu blogiimme
   check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa, näyttävät
+  check_out_your_new_and_improved_list_list: Tutustu uuteen ja parannettuun pinnalistaan!
   check_this_box_if_html: |
     Laita ruksi tähän jos haluat käyttää <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1123,6 +1145,11 @@ fi:
     Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Salasanasi ei muutu, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Käyttäjätilisi on lukittu, koska epäonnistuneita kirjautumisyrityksiä oli liian monta.
+  devise_unlock_instructions_click_the_link: |
+    Poista tilisi lukitus alla olevasta linkistä:
+  devise_unlock_instructions_unlock: Poista tilin lukitus
   discoveries: Löydöt
   did_not_send_invitations_because: Kutsuja ei lähetetty seuraaville koska...
   did_you_mean: 'Tarkoititko'
@@ -1286,7 +1313,7 @@ fi:
   existing_flags: Nykyiset liput
   exit_full_screen: "Poistu kokoruututilasta"
   explore: Tutki
-  export: Vie
+  export: Lataa
   export_observations: Vie havaintoja
   export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: "Viedään..."
@@ -1729,6 +1756,7 @@ fi:
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
   learn_more: Lue lisää
+  learn_more_on_the_blog: Lue lisää blogista
   learn_more_raquo: "Lisätietoja &raquo;"
   learn_what_these_licenses_mean: Opi, mitä nämä lisenssit tarkoittavat
   least_concern: Elinvoimainen
@@ -1949,6 +1977,7 @@ fi:
   managers_can_do: Managerit voivat tehdä kaiken mitä kuraattoritkin, kuten myös muokata projektin asetuksia ja kirjoittaa projektin päiväkirjajulkaisuja.
   managing_projects: Projektien hallinta
   map: Kartta
+  map_legend: karttamerkkien selitteet
   map_marker_size: karttamerkin koko
   map_of_observations: Havaintokartta
   maps:
@@ -3072,26 +3101,44 @@ fi:
   ranks:
     stateofmatter: Olomuoto
     kingdom: Kunta
+    x_kingdoms:
+      one: Kunta
+      other: Kunnat
     subkingdom: Alakunta
     phylum: Pääjakso
+    x_phyla:
+      one: Pääjakso
+      other: Pääjaksot
     subphylum: Alajakso
     superclass: Yläluokka
     class: Luokka
+    x_classes:
+      one: Luokka
+      other: Luokat
     subclass: Alaluokka
     infraclass: Osaluokka
     superorder: Ylälahko
     order: Lahko
+    x_orders:
+      one: Lahko
+      other: Lahkot
     suborder: Alalahko
     infraorder: Osalahko
     parvorder: Parvolahko
     superfamily: Yläheimo
     epifamily: Epiheimo
     family: Heimo
+    x_families:
+      one: Heimot
+      other: Heimot
     subfamily: Alaheimo
     supertribe: Ylätribus
     tribe: Tribus
     subtribe: Alatribus
     genus: Suku
+    x_genera:
+      one: Suku
+      other: Suvut
     genushybrid: Sukuristeymä
     subgenus: Alasuku
     section: Osa
@@ -3099,6 +3146,9 @@ fi:
     complex: Kompleksi
     #Singular
     species: Laji
+    x_species:
+      one: Laji
+      other: Lajit
     hybrid: Risteymä
     #Singular
     subspecies: Alalaji
@@ -3897,6 +3947,7 @@ fi:
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
   view_more_unreviewed: "Katso lisää tarkistamattomia"
+  view_my_life_list: Näytä pinnalistani
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
@@ -4261,6 +4312,42 @@ fi:
         default: Oppaan järjestys
         alphaname: Aakkosjärjestyksessä tieteellisten nimien mukaan
         alphadisplay: Aakkosjärjestyksessä näyttönimittäin
+    lifelists:
+      list_view: Listanäkymä
+      tree_view: Puunäkymä
+      observed_species: Havaitut lajit
+      unobserved_species: Ei-havaitut lajit
+      all_species: Kaikki lajit
+      all_unobserved_species: Kaikki ei-havaitut lajit
+      observations_within_this_taxon: Havainnot tästä taksonista
+      all_observations: Kaikki havainnot
+      total_observations: Havaintoja yhteensä
+      filter_by: Suodata
+      filtered_by: Suodatettu
+      apply_filters_to_export: Rajaa latausta
+      restrict_to_leaf_taxa: Vain lajit ja lajeja alemmat taksonit
+      restrict_to_taxon: Vain %{taxon}
+      restrict_to_taxa_observed_in_place: Rajaa taksoneihin, jotka on havaittu paikassa %{place}
+      exporting_all_x_taxa:
+        one: Ladataan %{count} taksoni
+        other: Ladataan %{count} taksonia
+      no_observations_found_within_this_taxon_in_place: Ei havaintoja tästä taksonista paikassa %{place}.
+      no_unobserved_species_in_place: Kaikki paikan %{place} lajit havaittu.
+      no_unobserved_species_within_this_taxon: Kaikki tämän taksonin lajit on havaittu
+      no_unobserved_species_within_this_taxon_in_place: Kaikki tämän taksonin lajit on havaittu paikassa %{place}.
+      reset_place_filter: Tyhjennä hakusuodatin
+      all_observations_in_this_taxon: Kaikki havainnot tästä lajista
+      dropdowns:
+        sort: Lajittelu
+        taxonomic: Taksonominen järjestys
+        name: Nimi
+        most_observed: Useimmin havaitut
+        least_observed: Vähiten havaitut
+        date_added_newest: Tallennuspäivä, uusimmasta vanhimpaan
+        date_added_oldest: Tallennuspäivä, vanhimmasta uusimpaan
+        show: Näytä
+        simplified_tree: Yksinkertaistettu puu
+        full_taxonomy: Koko taksonomia
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Elämänpinnalistan otsikkoa ei voi muuttaa
