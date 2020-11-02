@@ -171,6 +171,13 @@ ca:
   about_this_project: Sobre aquest projecte
   about_trips_html: |
     <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
+  about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
+  about_trusting_projects_options_any_desc: |-
+    Aquest inclou les observacions que heu marcat amb geoprivacitat "enfosquida" o "privada", p.e. observacions del teu jardí on d'indrets que no voleu donar a conèixer a altres.
+  about_trusting_projects_options_taxon: |-
+    Únicament les vostres observacions en aquest projecte que tenen les coordenades enfosquides per tractar-se de tàxons en perill.
+  about_trusting_projects_options_taxon_desc: |-
+    Molts projectes necessites accedir a coordenades que han estat enfosquides perquè l'observació és sobre un tàxon vulnerable.
   about_x: "Quant a %{x}"
   acc: 'Exactitud (m)'
   account: Compte
@@ -460,6 +467,10 @@ ca:
   announcements: Anuncis
   any: qualsevol
   any_: Qualsevol
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualsevol
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualsevol
   anyone: Qualsevol
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
@@ -4648,6 +4659,26 @@ ca:
       show:
         reuse_desc: |
           Podeu copiar aquest tàxon a una altra guia. Si sou un dels editors d'aquesta guia es copiarà tot, però si no ho sou només es copiarà el contingut amb llicència.
+    lifelists:
+      all_species: Totes les espècies
+      all_unobserved_species: Totes les espècies no observades
+      observations_at_this_taxon: Observacions d'aquest tàxon
+      filter_by: Filtra per
+      filtered_by: Filtrat per
+      apply_filters_to_export: Aplicar filtres a l'exportació
+      restrict_to_leaf_taxa: Restringir a tàxons fulla
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a tàxons observats a %{place}
+      exporting_all_x_taxa:
+        one: Exportant %{count} tàxon
+        other: Exportant %{count} tàxons
+      exporting_x_taxa:
+        one: Exportant %{count} tàxon
+        other: Exportant %{count} tàxons
+      no_observations_found_in_place: No s'ha trobat observacions a %{place}.
+      no_observations_found_within_this_taxon_in_place: No s'ha trobat aquest tàxon a %{place}.
+      no_species_found_within_this_taxon_in_place: No s'ha trobat espècies d'aquest tàxon a %{place}.
+      no_species_found_in_place: No s'ha trobat cap espècie a %{place}.
     listed_taxa:
       establishment_field:
         confirmation: |
