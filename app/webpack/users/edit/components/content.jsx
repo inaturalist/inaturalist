@@ -24,7 +24,8 @@ const Content = ( {
   handleInputChange,
   handleCustomDropdownSelect,
   handleDisplayNames,
-  handlePlaceAutocomplete
+  handlePlaceAutocomplete,
+  showModal
 } ) => {
   const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
     <div key={button}>
@@ -65,7 +66,7 @@ const Content = ( {
   const createLicenseList = name => {
     const iNatLicenses = iNaturalist.Licenses;
 
-    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-nd", "cc-by-nc-sa", "cc-by-nd", "cc-by-sa", "c"];
+    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
     const checkmark = <i className="fa fa-check blue-checkmark" aria-hidden="true" />;
 
     const menuItems = displayList.map( license => {
@@ -169,7 +170,14 @@ const Content = ( {
                   } )
                 }}
               />
-              <a href="#" id="about_licenses">{I18n.t( "learn_what_these_licenses_mean" )}</a>
+              <button
+                type="button"
+                className="btn btn-nostyle btn-link"
+                id="about_licenses"
+                onClick={showModal}
+              >
+                {I18n.t( "learn_what_these_licenses_mean" )}
+              </button>
             </p>
             <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
             <div>
@@ -284,7 +292,8 @@ Content.propTypes = {
   handleInputChange: PropTypes.func,
   handleCustomDropdownSelect: PropTypes.func,
   handleDisplayNames: PropTypes.func,
-  handlePlaceAutocomplete: PropTypes.func
+  handlePlaceAutocomplete: PropTypes.func,
+  showModal: PropTypes.func
 };
 
 export default Content;

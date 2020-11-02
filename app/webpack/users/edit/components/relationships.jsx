@@ -128,10 +128,10 @@ const Relationships = ( ) => (
         total={200}
         current={1}
         pageSize={10}
-        locale={{
-          prev_page: I18n.t( "prev" ),
-          next_page: I18n.t( "next" )
-        }}
+        // locale={{
+        //   prev_page: I18n.t( "prev" ),
+        //   next_page: I18n.t( "next" )
+        // }}
         onChange={( ) => console.log( "paginating" )}
         // onChange={page => loadPage( page )}
       />
@@ -166,7 +166,7 @@ const Relationships = ( ) => (
             __html: I18n.t( "views.users.edit.blocking_desc_html", {
               site_name: SITE.name,
               // noting that this help_email isn't populating
-              help_email: SITE.help_email
+              help_email: "help@inaturalist.org" // SITE.help_email
             } )
           }}
         />

@@ -133,6 +133,10 @@ button.left-nav-item {
   margin-bottom: 11px;
 }
 
+.about-licenses-row {
+  margin-bottom: 31px;
+}
+
 .ToggleSwitch {
   .switch {
     position: relative;
@@ -220,15 +224,41 @@ button.left-nav-item {
 
 .ThirdPartyTrackingModal.modal {
   .modal-dialog {
+    height: 48%;
     .modal-content {
+      height: 100%;
       padding-top: 25px;
       padding-left: 32px;
       padding-right: 32px;
       min-height: 450px;
       min-width: 766px;
+      padding-bottom: 25px;
     }
     .modal-body {
-      padding-bottom: 32px;
+      height: 100%;
+      overflow-x: auto;
+      max-height: none;
+    }
+  }
+}
+
+.AboutLicensingModal.modal {
+  .modal-dialog {
+    height: 60%;
+    width: 70%;
+    .modal-content {
+      height: 100%;
+      padding-top: 25px;
+      padding-left: 32px;
+      padding-right: 32px;
+      min-height: 616px;
+      min-width: 704px;
+      padding-bottom: 25px;
+    }
+    .modal-body {
+      height: 100%;
+      overflow-x: auto;
+      max-height: none;
     }
   }
 }
@@ -269,4 +299,8 @@ button.left-nav-item {
   li.rc-pagination-item-active a {
     border-color: black;
   }
+}
+
+.bold {
+  font-weight: bold;
 }

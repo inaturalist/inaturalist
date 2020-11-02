@@ -7,6 +7,7 @@ import {
   handleDisplayNames,
   handlePlaceAutocomplete
 } from "../ducks/user_settings";
+import { showModal } from "../ducks/about_licensing_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -23,7 +24,8 @@ function mapDispatchToProps( dispatch ) {
     handleDisplayNames: e => { dispatch( handleDisplayNames( e ) ); },
     handlePlaceAutocomplete: ( e, name ) => {
       dispatch( handlePlaceAutocomplete( e, name ) );
-    }
+    },
+    showModal: ( ) => { dispatch( showModal( ) ); }
   };
 }
 

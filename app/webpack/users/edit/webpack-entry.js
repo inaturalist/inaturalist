@@ -14,13 +14,15 @@ import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
+import aboutLicensingModalReducer from "./ducks/about_licensing_modal";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
   profile: userSettingsReducer,
   revokeAccess: revokeAccessModalReducer,
   apps: authenticatedAppsReducer,
-  thirdPartyTracking: thirdPartyTrackingModalReducer
+  thirdPartyTracking: thirdPartyTrackingModalReducer,
+  aboutLicensing: aboutLicensingModalReducer
 } );
 
 const store = createStore(
