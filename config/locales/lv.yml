@@ -490,6 +490,25 @@ lv:
   announcement_was_successfully_created: Piezīme veiksmīgi pievienota.
   announcement_was_successfully_updated: Piezīme veiksmīgi labota.
   announcements: Piezīmes
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Jebkāda
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Jebkāda
+  #Label for an option to show content from any date
+  any_date: Jebkad
+  #Label for an option to show content with any license
+  any_license: Jebkura
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Jebkādas
+  #Label for an option to show content from any project
+  any_project: Jebkāds
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Jebkāds
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Jebkāds
+  #Label for an option to show/include content by any user
+  any_user: Jebkurš
   anyone: Jebkurš
   apply_to_selected: Piemērot izvēlētajam
   apply_captive_cultivated: "Norādīt, vai indivīds ir nebrīvē vai kultivēts"
@@ -520,6 +539,53 @@ lv:
     Vai tiešām vēlies dzēst šo taksonu kopā ar tajā iekļautajiem augstāku pakāpju taksoniem?
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
     Vai tiešām vēlies dzēst šo taksonu, kurā ir iekļautas identifikācijas un augstāku pakāpju taksoni?
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, identifikācijām un novērojumiem?
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju un sarakstā iekļautajiem taksoniem?
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un identifikācijām?
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem, identifikācijām un novērojumiem?
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un novērojumiem?
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem un novērojumiem?
+  are_you_sure_want_delete_taxon_identifications: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar tā identifikācijām?
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar tā identifikācijām un novērojumiem?
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem?
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem un identifikācijām?
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem, identifikācijām un novērojumiem?
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem un novērojumiem?
+  are_you_sure_want_delete_taxon_observations: |
+    Vai tiešām vēlies dzēst šo taksonu kopā ar tā novērojumiem?
+  are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksona aprakstu?
+  are_you_sure_want_delete_this_name: Vai tiešām vēlies dzēst šo nosaukumu?
+  are_you_sure_want_delete_this_range: Vai tiešām vēlies dzēst šo rangu?
+  are_you_sure_you_want_to_commit_this_change: Vai tiešām vēlies veikt šīs izmaiņas? Šī darbība ir neatgriezeniska.
+  are_you_sure_you_want_to_delete_this: Vai tiešām vēlies dzēst šo?
+  are_you_sure_you_want_to_delete_this_assessment?: Vai tiešām vēlies dzēst novērtējumu?
+  are_you_sure_you_want_to_delete_this_photo?: Vai tiešām vēlies dzēst fotogrāfiju?
+  are_you_sure_you_want_to_delete_this_post: Vai tiešām vēlies dzēst ierakstu?
+  are_you_sure_you_want_to_delete_this_taxon_change: Vai tiešām vēlies dzēst izmaiņas taksonā?
+  are_you_sure_you_want_to_remove_all_tags: Vai tiešām vēlies noņemt visas kategorijas?
+  are_you_sure_you_want_to_remove_curator: Vai tiešām vēlies atņemt lietotājam %{user} pārziņa lomu?
+  are_you_sure_you_want_to_remove_from_project: Vai tiešām vēlies izraidīt lietotāju %{user} no projekta?
+  are_you_sure_you_want_to_remove_manager: Vai tiešām vēlies atņemt lietotājam %{user} vadītāja lomu?
+  are_you_sure_you_want_to_remove_spammer: |
+    Vai uzskati, ka šis lietotājs ir uzticams?
+    Visas problēmas ziņojumos par surogātpastu lietotāja publicētajā saturā tiks atrisinātas.
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Vai tiešām vēlies dzēst %{x} taksonus?"
+  are_you_sure_you_want_to_remove_this_invitation: Vai tiešām vēlies dzēst šo ielūgumu?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Vai tiešām vēlies vairs neiekļaut šo novērojumu %{project} projektā?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Vai tiešām vēlies izņemt šo taksonu no %{place} kontrollapas?"
   attention: Uzmanību!
   you_sure_delete_list: Vai tiešām vēlies dzēst šo sarakstu?
   you_sure_delete_taxon_from_list?: "Vai tiešām vēlies izņemt %{taxon} no saraksta?"
@@ -568,6 +634,126 @@ lv:
   back_to_suggestions: Atpakaļ pie ieteikumiem
   back_to_taxon: "Atvērt vēlreiz %{defaulttaxon}"
   back_to_taxon_changes: "Atpakaļ pie taksonu izmaiņu sadaļas"
+  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona apraksta"
+  back_to_viewing: "Atpakaļ uz <i>%{taxon}</i> lapu"
+  back_to_x: "Atpakaļ uz %{noun}"
+  back_to_x_assessment: "Atpakaļ pie %{project} projekta novērtējumiem"
+  back_to_x_history: "Atpakaļ uz %{x} vēsturi"
+  back_to_x_journal: "Atpakaļ uz lietotāja %{user} žurnālu"
+  back_to_x_blog: "Atpakaļ uz lietotāja %{x} emuāru"
+  back_to_your_dashboard: Atpakaļ uz informācijas paneli
+  back_to_your_lists: Atpakaļ pie taviem sarakstiem
+  back_to_your_journal: Atpakaļ uz tavu žurnālu
+  back_to_your_observations: Atpakaļ pie taviem novērojumiem
+  back_to_your_profile: Atpakaļ uz tavu profilu
+  back_to_your_projects: Atpakaļ pie taviem projektiem
+  based_on_the_evidence_can_id_be_improved: |
+    Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
+  batch: Vairākus reizē
+  batch_edit: Labot vairākus reizē
+  batch_edit_taxa_for_x_html: "Labot vairākus %{x} taksonus reizē"
+  batch_operations: Vairākas darbības reizē
+  be_the_first_to_fave_this_observation: Esi pirmais, kas pievienos šo novērojumu izlasei!
+  because_of: ', jo'
+  before_importing_photos: pirms fotogrāfiju augšupielādes
+  bg_color: Fona krāsa
+  bioblitz: '"Bioblitz"'
+  birds: putni
+  birthday: Dzimšanas diena
+  black: melns
+  block_user: Bloķēt lietotāju
+  block_removed: Lietotājs ir atbloķēts
+  blocked_users: Bloķētie lietotāji
+  blog_widget: Emuāra logrīks
+  blue: zils
+  blue_butterfly_etc: "piemēram, zils, tauriņš utt."
+  body: Teksts
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: treknraksts
+  bounding_box: Rakstzīmes lauks
+  breadcrumbs: Adreses josla
+  brief_caption: Īss apraksts
+  brown: brūns
+  browse: Pārlūkot
+  browse_all_projects: Pārlūkot visus projektus
+  browse_all_species: Pārlūkot visas sugas
+  browse_observations: Pārlūkot novērojumus
+  browse_people: Pārlūkot lietotājus
+  browse_projects: Pārlūkot projektus
+  browse_species_that_occur_near_this_observation: Apskatīt sugas, kas atrodamas šī novērojuma tuvumā.
+  built_with_site_guides_html: "Radīts, izmantojot <a href='%{url}'>%{site_name} padomus</a>"
+  bulk_import_of_filename_is_complete: "%{filename} lielapjoma importēšana ir pabeigta"
+  by: 'autors:'
+  by_everyone: Visi
+  by_user: "Autors: %{user}"
+  by_you: Tu esi autors
+  calendar: Kalendārs
+  calendars_only_show_x_observations_at_time: Kalendāri vienlaicīgi uzrāda tikai %{x} novērojumus
+  cancel: Atcelt
+  cant_edit_or_delete_hidden_content: Tev nav atļaujas labot vai dzēst saturu, ko noslēpuši lapas pārziņi
+  cant_flag_an_object_that_doesnt_exist: Nav iespējams ziņot par neeksistējošu objektu
+  cant_merge_a_taxon_with_itself: Nav iespējams apvienot taksonu ar to pašu taksonu.
+  captive: Nebrīvē
+  captive_cultivated: Nebrīvē / kultivēts
+  captive_observations: Novērojumi nebrīvē
+  card: Karte
+  casual: Hobija līm.
+  casual_: Hobija līm.
+  categories: Kategorijas
+  cc_0_description: "Ar šo licenci tavs darbs būs pieejams publikai – tā lai citi to varētu kopēt, labot un izplatīt, tai skaitā arī komerciāliem nolūkiem, nejautājot tavu piekrišanu un nenorādot tavus nopelnus. Šai no visām pieejamajām licencēm ir vismazāk ierobežojumu. Tā paredzēta pēc iespējas atvieglotākai informācijas izplatīšanai."
+  cc_0_name: Bez autortiesībām (CC0)
+  cc_attribution_license: '"Creative Commons Attribution" licence'
+  cc_by_description: "Šī licence ļauj citiem, arī komerciālos nolūkos, izplatīt, rediģēt, izmainīt un papildināt tavu darbu ar noteikumu, ka tiek norādīti oriģināla autora nopelni."
+  cc_by_name: Nopelni
+  change_admin: Mainīt administratoru
+  change_descriptions:
+    split: Vecais taksons sadalīts vairākos jaunos taksonos
+    merge: Vairāki vecie taksoni apvienoti vienā jaunā taksonā
+    swap: Samainīti taksonu nosaukumi
+    drop: Taksona jēdziens ir pavisam nepareizs un tiek paturēts tikai vēsturiskiem nolūkiem vai, lai nodrošinātu saderību ar kādu no partnerorganizācijām
+    stage: Sagatavot vēl neaktīvu jēdzienu, lai to vēlāk publicētu kā daļu no izmainīto taksonu grupas
+  change_geoprivacy: 'Mainīt ģeoprivātuma iestatījumus'
+  change_group: Mainīt grupu
+  change_icon: Mainīt ikonu
+  change_password: Mainīt paroli
+  change_types:
+    activated_soon: drīz tiks aktivizēts
+    change_types: Mainīt viedus
+    split: Sadalīt
+    merge: Apvienot
+    swap: Samainīt
+    stage: Sagatavot
+    drop: Atmest
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: atdalīt no
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: sadalīt un pievienot
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: apvienot ar
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: apvienots ar
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: 'samainīja:'
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: samainīt ar
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: samainīts ar
+    dropped: atmests
+    staged: sagatavots
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} tika sadalīts un pievienots %{output_taxa} taksonam"
+  change_your_password: Mainīt paroli
+  check_back_soon: Pārbaudi vēlreiz vēlāk!
+  check_list: Kontrollapa
+  check_out_our_blog: Iepazīsti mūsu emuāru!
+  checklist: Kontrollapa
+  maps:
+    overlays:
+      checklist_places: Vietu kontrollapa
+  source_list:
+    catalogue_of_life_2012_annual_checklist: 'Dzīvības katalogs: 2012. gada ikgadējā kontrollapa'
+    catalogue_of_life_2013_annual_checklist: 'Dzīvības katalogs: 2013. gada ikgadējā kontrollapa'
   date:
     abbr_month_names:
       - 
