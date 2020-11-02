@@ -15,7 +15,8 @@ $img-margin: 3px;
     width: 100%;
 
     .ac-label {
-      width: 100%;
+      // width: 100%;
+      flex: 2;
     }
   }
   &.projects {
@@ -45,7 +46,7 @@ $img-margin: 3px;
 }
 .ui-autocomplete .ac-thumb {
   width: $img-width + $img-margin * 2;
-  display: inline-block;
+  display: block;
   text-align: center;
   vertical-align: top;
 }
@@ -60,12 +61,11 @@ $img-margin: 3px;
   padding-left: 5px;
 }
 .ui-autocomplete .ac-view {
-  float: right;
   padding: 0 10px;
-  line-height: 46px;
-  text-align: right;
+  height: 46px;
   background: white;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 .ui-autocomplete .ac-thumb img {
   width: $img-width;
@@ -189,7 +189,7 @@ $img-margin: 3px;
   vertical-align: middle;
 }
 .ac-result.place .ac-label {
-  max-width: 100%;
+  flex: 2;
 }
 .ac-result.place .title {
   float: left;
