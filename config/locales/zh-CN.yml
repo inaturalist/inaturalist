@@ -129,6 +129,8 @@ zh-CN:
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
+  about_trusting_projects: 关于信任的项目
+  about_trusting_projects_options_any: 您在此项目中的所有观察
   about_x: "关于 %{x}"
   acc: '精度（米）'
   account: 账户
@@ -394,6 +396,12 @@ zh-CN:
   announcements: 公告
   any: 任何
   any_: 任何
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: 任何
+  #Label for an option to show content with any annotation value
+  any_annotation_value: 任何
+  #Label for an option to show content from any date
+  any_date: 任何
   anyone: 任何人
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
@@ -1037,6 +1045,7 @@ zh-CN:
     如果您没有提出这个请求，请忽略这个电子邮件。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
+  devise_unlock_instructions_unlock: 解锁您的帐户
   discoveries: 发现
   did_not_send_invitations_because: 未向以下地址发送邀请，因为...
   did_you_mean: '您是不是要找'
@@ -1687,6 +1696,7 @@ zh-CN:
     italian: 意大利语
     japanese: 日语
     korean: 韩语
+    latvian: 拉脱维亚语
     lithuanian: 立陶宛语
     luxembourgish: 卢森堡语
     maltese: 马耳他语
@@ -1797,6 +1807,7 @@ zh-CN:
     ko: 韩语
     lb: 卢森堡语
     lt: 立陶宛语
+    lv: 拉脱维亚语
     mk: 马其顿语
     nb: 挪威语(博克马尔语)
     nl: 荷兰语
@@ -1902,6 +1913,7 @@ zh-CN:
     <a href="%{url}">iNaturalist网络</a>的成员
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     %{partial_inat_network_tag_html}iNaturalist 网络</a>的成员，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同计划。
+  #As in members of a project
   members: 成员
   membership_model: 成员模型
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
@@ -1953,7 +1965,7 @@ zh-CN:
       #Short text representing %d days in the past
       dd: "%d 日前"
       #Short text representing 1 month in the past
-      M: "1分钟"
+      M: "1个月"
       #Short text representing %d months in the past
       MM: "%dm"
       #Short text representing 1 year in the past
@@ -2125,6 +2137,7 @@ zh-CN:
   no_matching_places: 没有匹配的地点
   no_matching_projects: 没有匹配的项目
   no_matching_species: 没有匹配的物种。
+  no_matching_taxa: 没有匹配的分类
   no_matching_users: 没有匹配的用户。
   no_members_yet: "尚无成员。"
   no_messages_yet: 尚无消息
@@ -3795,9 +3808,12 @@ zh-CN:
   trending: 趋向
   trends: 趋势
   trip_target_list_info: '本目标清单所涵盖的任何物种，如果在本次旅行的半径和持续时间内未被观察到，将被认为不出现。<a href="/pages/trips">了解更多细节</a>。'
+  #Noun
+  trust: 信任
   trusted: 受信
   trusted_project?: 可信任的项目？
   trust_this_person_with_your_private_coordinates: 信任此人并向其显示您的隐藏坐标
+  trust_this_project_with_your_private_coordinates?: 信任此项目并向其显示您的隐藏坐标吗？
   trust_with_private_coordinates: 信任并向其显示您的隐藏坐标
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   twitter: 推特
@@ -4012,6 +4028,7 @@ zh-CN:
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
   view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
   view_more_unreviewed: "查看更多未复核"
+  view_my_life_list: 查看我的生物列表
   view_observation: 查看观察
   view_observations: 查看观察
   view_observation_flags: 查看观察标记
@@ -4430,6 +4447,7 @@ zh-CN:
         name: 名称
         most_observed: 观察次数最多的
         show: 显示
+        children: 儿童
         simplified_tree: 简化树
     listed_taxa:
       establishment_field:

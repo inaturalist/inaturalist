@@ -1984,6 +1984,7 @@ nb:
   managers_can_do: Managere kan gjøre alt kuratorer også kan gjøre, pluss å redigere prosjektinnstillinger og skrive innlegg i prosjektjournalen.
   managing_projects: Prosjektadministrasjon
   map: Kart
+  map_legend: Kartforklaring
   map_marker_size: kartmarkørens størrelse
   map_of_observations: Observasjonskart
   maps:
@@ -2015,6 +2016,7 @@ nb:
     Medlem av <a href="%{url}">iNaturalist-nettverket</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem av %{partial_inat_network_tag_html}iNaturalist-nettverket</a>, et felles initiativ av %{cas_tag_html} og %{nat_geo_tag_html}.
+  #As in members of a project
   members: Medlemmer
   membership_model: Medlemskapsmodell
   mentioned_you_in_noun_html: "%{user} har nevnt deg i %{noun}"

@@ -45,8 +45,8 @@ es:
     one: '<span class="count">1</span> taxón que coincide'
     other: '<span class="count">%{count}</span> taxones que coinciden'
   x_misidentifications_of_this_species:
-    one: "1 identificación erronea de esta especie"
-    other: "%{count} identificaciónes erroneas de esta especie"
+    one: "%{count} identificación errónea de esta especie"
+    other: "%{count} identificaciones erróneas de esta especie"
   x_misidentifications_of_species_in_this_rank:
     one: "1 identificación errónea de especie en este %{rank}"
     other: "%{count} identificaciones erróneas de especies en este %{rank}"
@@ -867,7 +867,7 @@ es:
   conservation_status: Categoría de riesgo
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsala, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
-    description: Descripción muy corta del porque esta en la lista.
+    description: Descripción muy corta del porqué esta en la lista.
     authority: |
       Organización que declaró este estado. Por favor, utiliza el autocompletado para
       elegir una autoridad existente antes de agregar una nueva. Puedes omitir esto si
@@ -2039,6 +2039,7 @@ es:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Miembro de la red %{partial_inat_network_tag_html} iNaturalist</a>, una
     iniciativa conjunta de %{cas_tag_html} y %{nat_geo_tag_html}.
+  #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: "%{user} te ha mencionado en %{noun}"
@@ -2185,8 +2186,7 @@ es:
   needs_to_be_identified: Necesita identificarse
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
-    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    <strong>%{site_name}</strong> es parte de la red global de iNaturalist y se centra en la biodiversidad y la comunidad de naturalistas de %{place}. ¿Quieres afiliar tu cuenta de
     <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
@@ -3588,7 +3588,7 @@ es:
   some_of_those_photos_couldnt_be_saved: "Algunas de las fotos no pudierón ser guardadas: %{error}"
   some_other_reason: Otra razón que puedes explicar después.
   duplicate_observation_flag_warning: |
-    Para observaciones duplicadas, por favor pregunte a quien hizo la observación para que resuelva el asunto en vez de añadir una marca, los curadores del sitio no pueden eliminar observaciones.
+    Para observaciones duplicadas, por favor pregunta a quien hizo la observación para que resuelva el asunto en vez de añadir una marca, los curadores del sitio no pueden eliminar observaciones.
   some_rights_reserved: algunos derechos reservados
   something: Algo
   something_: algún grupo o especie

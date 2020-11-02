@@ -571,6 +571,17 @@ pl:
   announcements: Ogłoszenia
   any: dowolny
   any_: Dowolna
+  #Label for an option to show content from any date
+  any_date: Dowolna
+  #Label for an option to show content with any license
+  any_license: Dowolna
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Dowolny
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Dowolny
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Dowolny
   anyone: Ktokolwiek
   apply_to_selected: Zastosuj do wybranych
   apply_captive_cultivated: "Zastosuj żyje w niewoli / jest hodowany"
@@ -1927,6 +1938,7 @@ pl:
     Członek <a href="%{url}">Sieci iNaturalist</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Członek %{partial_inat_network_tag_html}sieci iNaturalist</a> wspólnej inicjatywy %{cas_tag_html} i %{nat_geo_tag_html}.
+  #As in members of a project
   members: Członkowie
   membership_model: Model Członkostwa
   mentioned_you_in_noun_html: "%{user} wspomniał o tobie w elemencie %{noun}"
@@ -2117,6 +2129,7 @@ pl:
   no_matching_places: Brak pasujących lokalizacji
   no_matching_projects: Brak pasujących projektów
   no_matching_species: Brak pasujących gatunków.
+  no_matching_taxa: Brak pasujących taksonów
   no_matching_users: Brak pasujących użytkowników.
   no_members_yet: "Póki co brak członków."
   no_messages_yet: Brak wiadomości
@@ -2813,15 +2826,35 @@ pl:
   rank_restrictions: Ograniczenia kategorii
   ranks:
     kingdom: Królestwo
+    x_kingdoms:
+      one: Królestwo
+      few: Królestwa
+      many: Królestw
+      other: Królestwa
     subkingdom: Podkrólestwo
     phylum: Typ
+    x_phyla:
+      one: Typ
+      few: Typy
+      many: Typów
+      other: Typu
     subphylum: Podtyp
     superclass: Nadgromada
     class: Gromada
+    x_classes:
+      one: Gromada
+      few: Gromady
+      many: Gromad
+      other: Gromady
     subclass: Podgromada
     infraclass: Infragromada
     superorder: Nadrząd
     order: Rząd
+    x_orders:
+      one: Rząd
+      few: Rzędy
+      many: Rzędów
+      other: Rzędu
     suborder: Podrząd
     infraorder: Infrarząd
     zoosection: Zoosekcja
@@ -2829,17 +2862,32 @@ pl:
     superfamily: Nadrodzina
     epifamily: Epirodzina
     family: Rodzina
+    x_families:
+      one: Rodzina
+      few: Rodziny
+      many: Rodzin
+      other: Rodziny
     subfamily: Podrodzina
     supertribe: Nadplemię
     tribe: Plemię
     subtribe: Podplemię
     genus: Rodzaj
+    x_genera:
+      one: Rodzaj
+      few: Rodzaje
+      many: Rodzajów
+      other: Rodzaju
     subgenus: Podrodzaj
     section: Sekcja
     subsection: Podsekcja
     complex: Kompleks
     #Singular
     species: Gatunek
+    x_species:
+      one: Gatunek
+      few: Gatunki
+      many: Gatunków
+      other: Gatunku
     hybrid: Hybryda
     #Singular
     subspecies: Podgatunek
@@ -3551,6 +3599,25 @@ pl:
       sorts:
         alphaname: Alfabetycznie według nazwy naukowej
         alphadisplay: Alfabetycznie według nazwy wyświetlanej
+    lifelists:
+      list_view: Widok listy
+      tree_view: Widok drzewa
+      observed_species: Gatunki zaobserwowane
+      unobserved_species: Gatunki niezaobserwowane
+      all_species: Wszystkie gatunki
+      all_unobserved_species: Wszystkie niezaobserwowane gatunki
+      all_observations: Wszystkie obserwacje
+      filter_by: Filtruj według
+      filtered_by: 'Przefiltrowane według:'
+      apply_filters_to_export: Zastosuj filtry do eksportu
+      dropdowns:
+        sort: Sortuj
+        name: Nazwa
+        most_observed: Najczęściej obserwowane
+        date_added_newest: Data dodania, od najnowszych do najstarszych
+        date_added_oldest: Data dodania, od najstarszych do najnowszych
+        simplified_tree: Uproszczone drzewo
+        full_taxonomy: Pełna taksonomia
     messages:
       from: Od
       to: Do

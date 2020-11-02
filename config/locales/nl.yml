@@ -2019,6 +2019,7 @@ nl:
   managers_can_do: Beheerders kunnen alles doen wat curatoren ook kunnen, plus projectinstellingen bewerken en artikelen in het projectdagboek schrijven.
   managing_projects: Beheer van projecten
   map: Kaart
+  map_legend: Kaart legenda
   map_marker_size: verbind marker grootte
   map_of_observations: Kaart van Waarnemingen
   maps:
@@ -2050,6 +2051,7 @@ nl:
     Lid van het <a href="%{url}">iNaturalist-netwerk</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Lid van het %{partial_inat_network_tag_html}iNaturalist netwerk</a>, een gezamenlijk initiatief van %{cas_tag_html} en %{nat_geo_tag_html}.
+  #As in members of a project
   members: Leden
   membership_model: Lidmaatschapsmodel
   mentioned_you_in_noun_html: "%{user} heeft je genoemd in %{noun}"
@@ -4073,6 +4075,8 @@ nl:
   trending: Trending
   trends: Trends
   trip_target_list_info: 'Alle soorten die onder deze doellijst vallen en die niet binnen de straal en de duur van deze route werden waargenomen, wordt geïnterpreteerd als nulwaarneming.<a href="/pages/trips">Lees meer</a>.'
+  #Noun
+  trust: Vertrouwen
   trusted: Vertrouwd
   trusted_project?: Vertrouwd project?
   trust_this_person_with_your_private_coordinates: Vertrouw deze persoon je verborgen coördinaten toe
@@ -4449,6 +4453,9 @@ nl:
   yellow: geel
   'yes': "Ja"
   yes_find_them!: "Ja, vind ze!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Ja, voor al mijn waarnemingen"
   yes_i_want_to_join: Ja, ik wil meedoen
   yes_license_my_childs_observations: Ja, licentieer de foto's, geluiden en waarnemingen van mijn kind, zodat wetenschappers de gegevens kunnen gebruiken (aanbevolen).
   yes_license_my_observations_so_scientists_can_use: Ja, licentieer mijn foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken (aanbevolen).

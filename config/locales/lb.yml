@@ -79,6 +79,7 @@ lb:
   about_this_bioblitz: Iwwer dëse Bioblitz
   about_this_map: Iwwer dës Kaart
   about_this_project: Iwwer dëse Projet
+  about_trusting_projects_options_any: All Är Observatiounen an dësem Projet
   about_x: "Iwwer %{x}"
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
@@ -897,6 +898,7 @@ lb:
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Member vum <a href="%{url}">iNaturalist Reseau</a>
+  #As in members of a project
   members: Memberen
   mentioned_you_in_noun_html: "%{user} huet Iech op %{noun} ernimmt."
   mentioned_you_in_noun_by_html: "%{user} huet Iech op %{noun} vu(n) %{by} ernimmt."
@@ -1478,7 +1480,10 @@ lb:
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
   trends: Tendenzen
+  #Noun
+  trust: Vertrauen
   trusted: Deem een traue kann
+  trust_this_project_with_your_private_coordinates?: Dësem Projet verstoppte Koordinaten uvertrauen?
   two_thirds: 2/3tel
   type: Typ
   unblock: Spär ophiewen
@@ -1591,6 +1596,9 @@ lb:
   year_on_site: "Joer %{year}op %{site}"
   yellow: giel
   'yes': "Jo"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Jo, fir egal wat fir eng vu mengen Observatiounen"
   yes_i_want_to_join: Jo, Ech wëll matmaachen
   yes_reject_it: Jo, refuséiert et
   yesterday: Gëschter
