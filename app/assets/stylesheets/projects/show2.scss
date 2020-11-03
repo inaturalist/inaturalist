@@ -1110,7 +1110,8 @@ a {
     .type {
       margin-right: 5px;
     }
-    .project-admin {
+    .project-admin,
+    .owner {
       display: inline-block;
       .project-admin-span {
         white-space: nowrap;

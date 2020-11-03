@@ -64,6 +64,7 @@ class FiltersButton extends React.Component {
 
   render( ) {
     const {
+      config,
       params,
       updateSearchParams,
       replaceSearchParams,
@@ -84,6 +85,11 @@ class FiltersButton extends React.Component {
       const diffs = _.difference( _.values( params ), _.values( defaultParams ) );
       return diffs.length > 0 ? diffs.length.toString() : "";
     };
+    const viewerCuratesProject = config && config.currentUser
+      && _.find(
+        config.currentUser.curator_projects,
+        p => [p.id, p.slug].includes( params.project_id )
+      );
     const FilterCheckboxWrapper = checkbox => (
       <FilterCheckbox
         {...Object.assign( {}, checkbox, {
@@ -517,7 +523,7 @@ class FiltersButton extends React.Component {
             />
             <input value={params.project_id} type="hidden" name="project_id" />
           </div>
-          { params.project_id && (
+          { params.project_id && viewerCuratesProject && (
             <FilterCheckboxWrapper
               param="coords_viewable_for_proj"
               label={I18n.t( "coords_viewable_for_proj_label" )}
@@ -789,6 +795,7 @@ class FiltersButton extends React.Component {
 }
 
 FiltersButton.propTypes = {
+  config: PropTypes.object,
   params: PropTypes.object,
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
