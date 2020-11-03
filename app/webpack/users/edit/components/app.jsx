@@ -88,7 +88,9 @@ class App extends Component {
           <div className="col-xs-1 hidden-xs">
             <div className="vl" />
           </div>
-          {userSettings[container]}
+          <div className="col-xs-9">
+            {userSettings[container]}
+          </div>
         </div>
         <RevokeAccessModalContainer />
         <ThirdPartyTrackingModalContainer />

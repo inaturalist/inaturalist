@@ -82,83 +82,81 @@ const Account = ( {
   };
 
   return (
-    <div className="col-sm-9">
-      <div className="row">
-        <div className="col-md-5 col-sm-10">
-          <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
-            <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-            <select id="user_time_zone" className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
-              {createTimeZoneList( )}
-            </select>
-          </SettingsItem>
-          <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
-            <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-            <select id="user_locale" className="form-control" value={profile.locale} name="locale" onChange={handleInputChange}>
-              {createLocaleList( )}
-            </select>
-          </SettingsItem>
-          <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
-            <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
-            <PlaceAutocomplete
-              // can't label this one because PlaceAutocomplete doesn't accept an id in props
-              // id="user_search_place_id"
-              resetOnChange={false}
-              initialPlaceID={profile.search_place_id}
-              bootstrapClear
-              afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
-            />
-          </SettingsItem>
-          <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
-            <CheckboxRowContainer
-              name="prefers_no_tracking"
-              label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
-              description={(
-                <p>
-                  <button type="button" className="btn btn-link" onClick={( ) => setModalState( { show: true } )}>
-                    <i className="fa fa-info-circle" />
-                    {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-                  </button>
-                </p>
+    <div className="row">
+      <div className="col-md-5 col-sm-10">
+        <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
+          <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
+          <select id="user_time_zone" className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+            {createTimeZoneList( )}
+          </select>
+        </SettingsItem>
+        <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
+          <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
+          <select id="user_locale" className="form-control" value={profile.locale} name="locale" onChange={handleInputChange}>
+            {createLocaleList( )}
+          </select>
+        </SettingsItem>
+        <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
+          <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
+          <PlaceAutocomplete
+            // can't label this one because PlaceAutocomplete doesn't accept an id in props
+            // id="user_search_place_id"
+            resetOnChange={false}
+            initialPlaceID={profile.search_place_id}
+            bootstrapClear
+            afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
+          />
+        </SettingsItem>
+        <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
+          <CheckboxRowContainer
+            name="prefers_no_tracking"
+            label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
+            description={(
+              <p>
+                <button type="button" className="btn btn-link" onClick={( ) => setModalState( { show: true } )}>
+                  <i className="fa fa-info-circle" />
+                  {` ${I18n.t( "learn_about_third_party_tracking" )}`}
+                </button>
+              </p>
+            )}
+          />
+        </SettingsItem>
+        <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
+          <p>
+            <a href="/users/delete" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
+          </p>
+        </SettingsItem>
+      </div>
+      <div className="col-md-1" />
+      <div className="col-md-5 col-sm-10">
+        <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
+          <div>
+            <DropdownButton
+              id="user_site_id"
+              onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
+              className="custom-dropdown-width"
+              title={(
+                <img
+                  className="inat-affiliation-logo-size"
+                  alt={`inat-affiliation-logo-${profile.site_id || 1}`}
+                  src={showINatAffiliationLogo( profile.site_id )}
+                />
               )}
-            />
-          </SettingsItem>
-          <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
-            <p>
-              <a href="/users/delete" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
-            </p>
-          </SettingsItem>
-        </div>
-        <div className="col-md-1" />
-        <div className="col-md-5 col-sm-10">
-          <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-            <div>
-              <DropdownButton
-                id="user_site_id"
-                onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
-                className="custom-dropdown-width"
-                title={(
-                  <img
-                    className="inat-affiliation-logo-size"
-                    alt={`inat-affiliation-logo-${profile.site_id || 1}`}
-                    src={showINatAffiliationLogo( profile.site_id )}
-                  />
-                )}
-              >
-                {createINatAffiliationList( )}
-              </DropdownButton>
-            </div>
-            <p />
-            <p
-              className="text-muted"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{
-                __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
-                  url: "https://www.inaturalist.org/sites/network"
-                } )
-              }}
-            />
-          </SettingsItem>
-        </div>
+            >
+              {createINatAffiliationList( )}
+            </DropdownButton>
+          </div>
+          <p />
+          <p
+            className="text-muted"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
+                url: "https://www.inaturalist.org/sites/network"
+              } )
+            }}
+          />
+        </SettingsItem>
       </div>
     </div>
   );

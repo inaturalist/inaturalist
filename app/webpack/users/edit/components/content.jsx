@@ -122,170 +122,168 @@ const Content = ( {
   };
 
   return (
-    <div className="col-xs-9">
-      <div className="row">
-        <div className="col-md-5 col-xs-10">
-          <SettingsItem>
-            <h4>{I18n.t( "project_settings" )}</h4>
-            <p>
-              <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
-            </p>
-            {createRadioButtons( )}
-            <p />
-            <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
-            <p
-              className="text-muted"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{
-                __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects", {
-                  url: "blog/15450-announcing-changes-to-projects-on-inaturalist"
-                } )
-              }}
-            />
-          </SettingsItem>
-          <SettingsItem>
-            <h4>{I18n.t( "taxonomy_settings" )}</h4>
-            <CheckboxRowContainer
-              name="prefers_automatic_taxonomic_changes"
-              label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
-              description={(
-                <p
-                  className="text-muted"
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{
-                    __html: I18n.t( "views.users.edit.taxon_change_desc", {
-                      site_name: SITE.name
-                    } )
-                  }}
-                />
-              )}
-            />
-          </SettingsItem>
-          <SettingsItem>
-            <h4>{I18n.t( "licensing" )}</h4>
-            <p>
-              <span
+    <div className="row">
+      <div className="col-md-5 col-xs-10">
+        <SettingsItem>
+          <h4>{I18n.t( "project_settings" )}</h4>
+          <p>
+            <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
+          </p>
+          {createRadioButtons( )}
+          <p />
+          <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
+          <p
+            className="text-muted"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects", {
+                url: "blog/15450-announcing-changes-to-projects-on-inaturalist"
+              } )
+            }}
+          />
+        </SettingsItem>
+        <SettingsItem>
+          <h4>{I18n.t( "taxonomy_settings" )}</h4>
+          <CheckboxRowContainer
+            name="prefers_automatic_taxonomic_changes"
+            label={I18n.t( "automatically_update_my_content_for_taxon_changes" )}
+            description={(
+              <p
                 className="text-muted"
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.users.edit.licensing_desc_html", {
+                  __html: I18n.t( "views.users.edit.taxon_change_desc", {
                     site_name: SITE.name
                   } )
                 }}
               />
-              <button
-                type="button"
-                className="btn btn-nostyle btn-link"
-                id="about_licenses"
-                onClick={showModal}
-              >
-                {I18n.t( "learn_what_these_licenses_mean" )}
-              </button>
-            </p>
-            <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
-            <div>
-              <DropdownButton
-                id="preferred_observation_license"
-                onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
-                title={showDefaultLicense( profile.preferred_observation_license )}
-              >
-                {createLicenseList( "preferred_observation_license" )}
-              </DropdownButton>
-            </div>
-            <p />
-            <CheckboxRowContainer
-              name="make_observation_licenses_same"
-              label={I18n.t( "update_existing_observations_with_new_license" )}
+            )}
+          />
+        </SettingsItem>
+        <SettingsItem>
+          <h4>{I18n.t( "licensing" )}</h4>
+          <p>
+            <span
+              className="text-muted"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.licensing_desc_html", {
+                  site_name: SITE.name
+                } )
+              }}
             />
-            <p />
-            <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
-            <div>
-              <DropdownButton
-                id="preferred_photo_license"
-                onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
-                title={showDefaultLicense( profile.preferred_photo_license )}
-              >
-                {createLicenseList( "preferred_photo_license" )}
-              </DropdownButton>
-            </div>
-            <p />
-            <CheckboxRowContainer
-              name="make_photo_licenses_same"
-              label={I18n.t( "update_existing_photos_with_new_license" )}
-            />
-            <p />
-            <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
-            <div>
-              <DropdownButton
-                id="preferred_sound_license"
-                onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
-                title={showDefaultLicense( profile.preferred_sound_license )}
-              >
-                {createLicenseList( "preferred_sound_license" )}
-              </DropdownButton>
-            </div>
-            <p />
-            <CheckboxRowContainer
-              name="make_sound_licenses_same"
-              label={I18n.t( "update_existing_sounds_with_new_license" )}
-            />
-          </SettingsItem>
-        </div>
-        <div className="col-md-1" />
-        <div className="col-md-5 col-xs-10">
-          <SettingsItem>
-            <h4>{I18n.t( "names" )}</h4>
-            <p>
-              <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
-            </p>
-            <div className="text-muted">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
-            <p />
-            <select
-              className="form-control"
-              id="user_prefers_common_names"
-              name="prefers_common_names"
-              onChange={handleDisplayNames}
-              value={setDisplayName( )}
+            <button
+              type="button"
+              className="btn btn-nostyle btn-link"
+              id="about_licenses"
+              onClick={showModal}
             >
-              <option value="prefers_common_names">{`${I18n.t( "common_name" )} (${I18n.t( "scientific_name" )})`}</option>
-              <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
-              <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
-            </select>
-            <p />
-            <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
-            <PlaceAutocomplete
-              resetOnChange={false}
-              initialPlaceID={profile.place_id}
-              bootstrapClear
-              afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
-            />
-          </SettingsItem>
-          <SettingsItem>
-            <h4>{I18n.t( "community_moderation_settings" )}</h4>
-            <CheckboxRowContainer
-              name="prefers_community_taxa"
-              label={I18n.t( "accept_community_identifications" )}
-              description={(
-                <p className="text-muted">
-                  {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
-                </p>
-              )}
-            />
-            <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
-            <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
-            <select
-              className="form-control"
-              id="preferred_observation_fields_by"
-              value={profile.preferred_observation_fields_by}
-              name="preferred_observation_fields_by"
-              onChange={handleInputChange}
+              {I18n.t( "learn_what_these_licenses_mean" )}
+            </button>
+          </p>
+          <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
+          <div>
+            <DropdownButton
+              id="preferred_observation_license"
+              onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
+              title={showDefaultLicense( profile.preferred_observation_license )}
             >
-              {Object.keys( obsFields ).map( value => (
-                <option value={value} key={value}>{obsFields[value]}</option>
-              ) )}
-            </select>
-          </SettingsItem>
-        </div>
+              {createLicenseList( "preferred_observation_license" )}
+            </DropdownButton>
+          </div>
+          <p />
+          <CheckboxRowContainer
+            name="make_observation_licenses_same"
+            label={I18n.t( "update_existing_observations_with_new_license" )}
+          />
+          <p />
+          <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
+          <div>
+            <DropdownButton
+              id="preferred_photo_license"
+              onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
+              title={showDefaultLicense( profile.preferred_photo_license )}
+            >
+              {createLicenseList( "preferred_photo_license" )}
+            </DropdownButton>
+          </div>
+          <p />
+          <CheckboxRowContainer
+            name="make_photo_licenses_same"
+            label={I18n.t( "update_existing_photos_with_new_license" )}
+          />
+          <p />
+          <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
+          <div>
+            <DropdownButton
+              id="preferred_sound_license"
+              onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
+              title={showDefaultLicense( profile.preferred_sound_license )}
+            >
+              {createLicenseList( "preferred_sound_license" )}
+            </DropdownButton>
+          </div>
+          <p />
+          <CheckboxRowContainer
+            name="make_sound_licenses_same"
+            label={I18n.t( "update_existing_sounds_with_new_license" )}
+          />
+        </SettingsItem>
+      </div>
+      <div className="col-md-1" />
+      <div className="col-md-5 col-xs-10">
+        <SettingsItem>
+          <h4>{I18n.t( "names" )}</h4>
+          <p>
+            <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
+          </p>
+          <div className="text-muted">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
+          <p />
+          <select
+            className="form-control"
+            id="user_prefers_common_names"
+            name="prefers_common_names"
+            onChange={handleDisplayNames}
+            value={setDisplayName( )}
+          >
+            <option value="prefers_common_names">{`${I18n.t( "common_name" )} (${I18n.t( "scientific_name" )})`}</option>
+            <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
+            <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
+          </select>
+          <p />
+          <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
+          <PlaceAutocomplete
+            resetOnChange={false}
+            initialPlaceID={profile.place_id}
+            bootstrapClear
+            afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
+          />
+        </SettingsItem>
+        <SettingsItem>
+          <h4>{I18n.t( "community_moderation_settings" )}</h4>
+          <CheckboxRowContainer
+            name="prefers_community_taxa"
+            label={I18n.t( "accept_community_identifications" )}
+            description={(
+              <p className="text-muted">
+                {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
+              </p>
+            )}
+          />
+          <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
+          <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
+          <select
+            className="form-control"
+            id="preferred_observation_fields_by"
+            value={profile.preferred_observation_fields_by}
+            name="preferred_observation_fields_by"
+            onChange={handleInputChange}
+          >
+            {Object.keys( obsFields ).map( value => (
+              <option value={value} key={value}>{obsFields[value]}</option>
+            ) )}
+          </select>
+        </SettingsItem>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const DropdownMenuMobile = ( { handleInputChange, menuIndex } ) => (
     onChange={handleInputChange}
   >
     {menuItems.map( ( item, i ) => (
-      <option value={i}>{item}</option>
+      <option value={i} key={item}>{item}</option>
     ) )}
   </select>
 );
