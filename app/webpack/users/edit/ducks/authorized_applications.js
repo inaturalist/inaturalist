@@ -41,7 +41,7 @@ export function deleteAuthorizedApp( ) {
     const { apps } = getState( );
     const { id } = apps;
 
-    inatjs.authorized_applications.delete( { id } ).then( results => {
+    return inatjs.authorized_applications.delete( { id } ).then( results => {
       console.log( results, "results delete app" );
       dispatch( fetchAuthorizedApps( ) );
     } ).catch( e => console.log( `Failed to delete authorized application: ${e}` ) );
