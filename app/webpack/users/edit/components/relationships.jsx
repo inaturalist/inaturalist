@@ -49,48 +49,44 @@ const Relationships = ( ) => (
           </div>
         </div>
       </div>
-      <div className="col-md-9">
+      <div className="col-md-2 col-sm-3 col-xs-4 relationship-margin-right">
         <div className="row flex-no-wrap">
-          <div className="col-md-3 relationship-margin-right">
-            <div className="row flex-no-wrap">
-              <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
-              <select
-                className="form-control"
-                id="following"
-                name="following"
-              >
-                <option value="following">{I18n.t( "all" )}</option>
-                <option value="following">{I18n.t( "yes" )}</option>
-                <option value="following">{I18n.t( "no" )}</option>
-              </select>
-            </div>
-          </div>
-          <div className="col-md-3 relationship-margin-right">
-            <div className="row flex-no-wrap">
-              <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
-              <select
-                className="form-control"
-                id="trusted"
-                name="trusted"
-              >
-                <option value="trusted">{I18n.t( "all" )}</option>
-                <option value="trusted">{I18n.t( "yes" )}</option>
-                <option value="trusted">{I18n.t( "no" )}</option>
-              </select>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="row flex-no-wrap">
-              <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
-              <select
-                className="form-control"
-                id="sort_by"
-                name="sort_by"
-              >
-                <option value="sort_by">{I18n.t( "recently_added" )}</option>
-              </select>
-            </div>
-          </div>
+          <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
+          <select
+            className="form-control"
+            id="following"
+            name="following"
+          >
+            <option value="following">{I18n.t( "all" )}</option>
+            <option value="following">{I18n.t( "yes" )}</option>
+            <option value="following">{I18n.t( "no" )}</option>
+          </select>
+        </div>
+      </div>
+      <div className="col-md-2 col-sm-3 col-xs-4 relationship-margin-right">
+        <div className="row flex-no-wrap search-margin">
+          <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
+          <select
+            className="form-control"
+            id="trusted"
+            name="trusted"
+          >
+            <option value="trusted">{I18n.t( "all" )}</option>
+            <option value="trusted">{I18n.t( "yes" )}</option>
+            <option value="trusted">{I18n.t( "no" )}</option>
+          </select>
+        </div>
+      </div>
+      <div className="col-md-3 col-sm-4 col-xs-4">
+        <div className="row flex-no-wrap">
+          <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
+          <select
+            className="form-control"
+            id="sort_by"
+            name="sort_by"
+          >
+            <option value="sort_by">{I18n.t( "recently_added" )}</option>
+          </select>
         </div>
       </div>
     </SettingsItem>
@@ -110,7 +106,7 @@ const Relationships = ( ) => (
         </div>
         <div className="col-sm-8">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <CheckboxRowContainer
                 name="following"
                 label={I18n.t( "following" )}
@@ -121,7 +117,7 @@ const Relationships = ( ) => (
               />
               <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: user.username } )}</dfn>
             </div>
-            <div className="col-lg-6">
+            <div className="col-md-6">
               <div>
                 <dfn className="relationship-row-margin">{`${I18n.t( "added" )} ${user.date_added}`}</dfn>
               </div>
