@@ -82,9 +82,9 @@ const Account = ( {
   };
 
   return (
-    <div className="col-xs-9">
+    <div className="col-sm-9">
       <div className="row">
-        <div className="col-md-5 col-xs-10">
+        <div className="col-md-5 col-sm-10">
           <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
             <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
             <select id="user_time_zone" className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
@@ -129,7 +129,7 @@ const Account = ( {
           </SettingsItem>
         </div>
         <div className="col-md-1" />
-        <div className="col-md-5 col-xs-10">
+        <div className="col-md-5 col-sm-10">
           <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
             <div>
               <DropdownButton
