@@ -31,71 +31,77 @@ const sampleData = [{
 }];
 
 const Relationships = ( ) => (
-  <div className="col-xs-9">
+  <div className="col-sm-9">
     <div className="row row-margin">
-      <div className="col-xs-12">
-        <SettingsItem header={I18n.t( "relationships_user_settings" )} htmlFor="relationships" />
-        <div className="col-xs-3">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="search_users">{I18n.t( "search" )}</label>
-            <div className="input-group">
-              <input
-                id="search_users"
-                type="text"
-                className="form-control"
-                name="search_users"
-                placeholder={I18n.t( "username" )}
-              />
+      <div className="col-md-12">
+        <SettingsItem>
+          <h4>{I18n.t( "relationships_user_settings" )}</h4>
+          <div className="col-md-3">
+            <div className="row flex-no-wrap">
+              <label className="margin-right" htmlFor="search_users">{I18n.t( "search" )}</label>
+              <div className="input-group">
+                <input
+                  id="search_users"
+                  type="text"
+                  className="form-control"
+                  name="search_users"
+                  placeholder={I18n.t( "username" )}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-xs-2 inat-affiliation-network-margin">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
-            <select
-              className="form-control"
-              id="following"
-              name="following"
-            >
-              <option value="following">{I18n.t( "all" )}</option>
-              <option value="following">{I18n.t( "yes" )}</option>
-              <option value="following">{I18n.t( "no" )}</option>
-            </select>
+          <div className="col-md-9">
+            <div className="row flex-no-wrap">
+              <div className="col-md-3 inat-affiliation-network-margin">
+                <div className="row flex-no-wrap">
+                  <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
+                  <select
+                    className="form-control"
+                    id="following"
+                    name="following"
+                  >
+                    <option value="following">{I18n.t( "all" )}</option>
+                    <option value="following">{I18n.t( "yes" )}</option>
+                    <option value="following">{I18n.t( "no" )}</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-3 inat-affiliation-network-margin">
+                <div className="row flex-no-wrap">
+                  <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
+                  <select
+                    className="form-control"
+                    id="trusted"
+                    name="trusted"
+                  >
+                    <option value="trusted">{I18n.t( "all" )}</option>
+                    <option value="trusted">{I18n.t( "yes" )}</option>
+                    <option value="trusted">{I18n.t( "no" )}</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-4 inat-affiliation-network-margin">
+                <div className="row flex-no-wrap">
+                  <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
+                  <select
+                    className="form-control"
+                    id="sort_by"
+                    name="sort_by"
+                  >
+                    <option value="sort_by">{I18n.t( "recently_added" )}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="col-xs-2 inat-affiliation-network-margin">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
-            <select
-              className="form-control"
-              id="trusted"
-              name="trusted"
-            >
-              <option value="trusted">{I18n.t( "all" )}</option>
-              <option value="trusted">{I18n.t( "yes" )}</option>
-              <option value="trusted">{I18n.t( "no" )}</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-xs-3 inat-affiliation-network-margin">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
-            <select
-              className="form-control"
-              id="sort_by"
-              name="sort_by"
-            >
-              <option value="sort_by">{I18n.t( "recently_added" )}</option>
-            </select>
-          </div>
-        </div>
+        </SettingsItem>
       </div>
     </div>
     <div className="row">
-      <div className="col-xs-3">
+      <div className="col-sm-3">
         <label>{I18n.t( "name" )}</label>
       </div>
-      <div className="col-xs-4">
+      <div className="col-sm-4">
         <label>{I18n.t( "actions" )}</label>
       </div>
     </div>
@@ -105,20 +111,28 @@ const Relationships = ( ) => (
         <div className="col-xs-4">
           <UserFollowing user={user} />
         </div>
-        <div className="col-xs-4">
-          <CheckboxRowContainer
-            name="following"
-            label={I18n.t( "following" )}
-          />
-          <CheckboxRowContainer
-            name="trust"
-            label={I18n.t( "trust_with_private_coordinates" )}
-          />
-          <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: user.username } )}</dfn>
-        </div>
-        <div className="col-xs-5 col-sm-4 centered-column">
-          <dfn className="relationship-row-margin">{`${I18n.t( "added" )} ${user.date_added}`}</dfn>
-          <button type="button" className="btn btn-default btn-xs">{I18n.t( "remove_relationship" )}</button>
+        <div className="col-sm-8">
+          <div className="row">
+            <div className="col-lg-6">
+              <CheckboxRowContainer
+                name="following"
+                label={I18n.t( "following" )}
+              />
+              <CheckboxRowContainer
+                name="trust"
+                label={I18n.t( "trust_with_private_coordinates" )}
+              />
+              <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: user.username } )}</dfn>
+            </div>
+            <div className="col-lg-6">
+              <div>
+                <dfn className="relationship-row-margin">{`${I18n.t( "added" )} ${user.date_added}`}</dfn>
+              </div>
+              <div>
+                <button type="button" className="btn btn-default btn-xs">{I18n.t( "remove_relationship" )}</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     ) )}
@@ -137,7 +151,7 @@ const Relationships = ( ) => (
       />
     </div>
     <div className="row">
-      <div className="col-xs-6">
+      <div className="col-md-6">
         <SettingsItem header={I18n.t( "blocked_users" )} htmlFor="blocked_users">
           <div className="input-group">
             <input
@@ -150,10 +164,10 @@ const Relationships = ( ) => (
           </div>
           {sampleData.map( user => (
             <div className="row flex-no-wrap" key={user.name}>
-              <div className="col-xs-9">
+              <div className="col-sm-9">
                 <UserFollowing user={user} />
               </div>
-              <div className="col-xs-3">
+              <div className="col-sm-3">
                 <button type="button" className="btn btn-default btn-xs">{I18n.t( "unblock" )}</button>
               </div>
             </div>
@@ -171,7 +185,7 @@ const Relationships = ( ) => (
           }}
         />
       </div>
-      <div className="col-xs-6">
+      <div className="col-md-6">
         <SettingsItem header={I18n.t( "muted_users" )} htmlFor="muted_users">
           <div className="input-group">
             <input
@@ -184,10 +198,10 @@ const Relationships = ( ) => (
           </div>
           {sampleData.map( user => (
             <div className="row flex-no-wrap" key={user.name}>
-              <div className="col-xs-9">
+              <div className="col-sm-9">
                 <UserFollowing user={user} />
               </div>
-              <div className="col-xs-3">
+              <div className="col-sm-3">
                 <button type="button" className="btn btn-default btn-xs">{I18n.t( "unmute" )}</button>
               </div>
             </div>

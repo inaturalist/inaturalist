@@ -19,7 +19,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 4
+      container: 3
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
@@ -73,10 +73,10 @@ class App extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-2 menu">
+          <div className="col-xs-2 menu hidden-xs">
             <Menu setContainerIndex={this.setContainerIndex} />
           </div>
-          <div className="col-xs-1">
+          <div className="col-xs-1 hidden-xs">
             <div className="vl" />
           </div>
           {userSettings[container]}

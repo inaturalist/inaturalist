@@ -37,9 +37,9 @@ const Profile = ( {
   }
 
   return (
-    <div className="col-xs-9">
+    <div className="col-sm-9">
       <div className="row">
-        <div className="col-md-5 col-xs-10">
+        <div className="col-md-5 col-sm-10">
           <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
             <Dropzone
               ref={iconDropzone}
@@ -51,14 +51,14 @@ const Profile = ( {
               multiple={false}
             >
               <div className="row profile-photo-margin">
-                <div className="col-xs-4">
+                <div className="col-sm-4">
                   <img
                     alt="user-icon"
                     src={showUserIcon( )}
                     className="user-photo"
                   />
                 </div>
-                <div className="col-xs-3 centered-column">
+                <div className="col-sm-3 centered-column">
                   <button
                     className="btn btn-xs btn-primary"
                     type="button"
@@ -87,7 +87,7 @@ const Profile = ( {
           <ChangePassword changePassword={changePassword} />
         </div>
         <div className="col-md-1" />
-        <div className="col-md-5 col-xs-10">
+        <div className="col-md-5 col-sm-10">
           <SettingsItem header={I18n.t( "display_name" )} required htmlFor="user_name">
             <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
             <div className="input-group">

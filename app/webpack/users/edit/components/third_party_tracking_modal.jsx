@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
+import ModalCloseButton from "./modal_close_button";
+
 const ThirdPartyTrackingModal = ( { show, onClose } ) => (
   <Modal
     show={show}
@@ -10,13 +12,7 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
   >
     <Modal.Body>
       <label className="bold" htmlFor="third_party_tracking">{I18n.t( "third_party_tracking" )}</label>
-      <button
-        type="button"
-        className="btn btn-nostyle"
-        onClick={onClose}
-      >
-        <i className="fa fa-times text-muted hide-button fa-2x" aria-hidden="true" />
-      </button>
+      <ModalCloseButton onClose={onClose} />
       <p className="bold">{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use" )}</p>
       <li>
         <span
