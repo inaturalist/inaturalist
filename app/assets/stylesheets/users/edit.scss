@@ -72,6 +72,27 @@ button.left-nav-item {
     text-decoration: none;
     outline:none;
   }
+
+  .green {
+    color: #74ac00;
+    font-weight: 600;
+    text-decoration: none;
+    outline:none;
+  }
+}
+
+.btn.mobile-menu {
+  color: white;
+  background: #74ac00;
+  min-width: 150px;
+  &[disabled] {
+    color: white;
+    background: #cccccc;
+    &:hover {
+      color: white;
+      background: #cccccc;
+    }
+  }
 }
 
 .vl {

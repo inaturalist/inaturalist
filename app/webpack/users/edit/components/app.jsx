@@ -13,6 +13,7 @@ import Relationships from "./relationships";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
 import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking_modal_container";
 import AboutLicensingModalContainer from "../containers/about_licensing_modal_container";
+import DropdownMenuMobile from "./dropdown_menu_mobile";
 
 class App extends Component {
   constructor( ) {
@@ -24,6 +25,7 @@ class App extends Component {
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
     this.handleUnload = this.handleUnload.bind( this );
+    this.handleInputChange = this.handleInputChange.bind( this );
   }
 
   componentDidMount() {
@@ -50,6 +52,10 @@ class App extends Component {
     }
   }
 
+  handleInputChange( e ) {
+    this.setState( { container: e.target.value } );
+  }
+
   render( ) {
     const { container } = this.state;
 
@@ -68,13 +74,16 @@ class App extends Component {
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
           </div>
-          <div className="col-sm-3">
+          <div className="col-xs-4 visible-xs settings-item">
+            <DropdownMenuMobile menuIndex={container} handleInputChange={this.handleInputChange} />
+          </div>
+          <div className="col-xs-9 col-sm-3 settings-item">
             <SaveButtonContainer />
           </div>
         </div>
         <div className="row">
           <div className="col-xs-2 menu hidden-xs">
-            <Menu setContainerIndex={this.setContainerIndex} />
+            <Menu menuIndex={container} setContainerIndex={this.setContainerIndex} />
           </div>
           <div className="col-xs-1 hidden-xs">
             <div className="vl" />
