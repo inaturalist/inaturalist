@@ -58,7 +58,7 @@ const Content = ( {
           alt={defaultLicense}
           className="default-license-image"
         />
-        <label className="license wrap-white-space default-license-label" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+        <label className="license white-space default-license-padding" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
       </div>
     );
   };
@@ -77,7 +77,7 @@ const Content = ( {
         <div>
           <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
           <p
-            className="text-muted wrap-white-space"
+            className="text-muted white-space"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: I18n.t( "you_retain_full_copyright", {
@@ -96,7 +96,7 @@ const Content = ( {
           className="custom-dropdown-width"
         >
           {license === "c" ? allRightsReserved : (
-            <span className="flex-no-wrap wrap-white-space">
+            <span className="flex-no-wrap white-space">
               <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
               <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
               {profile[name] === code && checkmark}

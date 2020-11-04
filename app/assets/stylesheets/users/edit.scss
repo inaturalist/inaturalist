@@ -3,20 +3,12 @@
   align-items: center;
 }
 
-.space-between-items {
-  justify-content: space-between;
-}
-
 .underline {
   text-decoration: underline;
 }
 
-.help-text {
-  margin-bottom: 13px;
-}
-
-.remove-photo-margin {
-  margin-top: 5px !important;
+.bold {
+  font-weight: bold;
 }
 
 .custom-dropdown-width {
@@ -30,13 +22,9 @@
   min-height: 63px;
 }
 
-.inat-affiliation-logo-size {
+.inat-affiliation-logo {
   max-height: 33px;
   max-width: 135px;
-}
-
-.inat-affiliation-network-margin {
-  margin-left: 12px;
 }
 
 .blue-checkmark {
@@ -49,14 +37,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.settings-item {
-  margin-bottom: 23px;
-}
-
-.menu {
-  margin-top: 12px;
 }
 
 button.left-nav-item {
@@ -100,7 +80,7 @@ button.left-nav-item {
   height: 522px;
 }
 
-.wrap-white-space {
+.white-space {
   white-space: normal;
 }
 
@@ -110,7 +90,7 @@ button.left-nav-item {
   text-align: left;
 }
 
-.default-license-label {
+.default-license-padding {
   padding-top: 15px;
 }
 
@@ -129,41 +109,53 @@ button.left-nav-item {
   display: inline !important;
 }
 
+.checkbox-description-margin {
+  margin-left: 20px;
+}
+
 .margin-right {
   margin-right: 8px;
   white-space: nowrap;
 }
 
-.relationship-margin-right {
+.margin-right-medium {
   margin-right: 12px;
 }
 
-.description-margin-left {
-  margin-left: 20px;
+.remove-photo-margin {
+  margin-top: 5px !important;
 }
 
-.row-margin {
-  margin-bottom: 21px;
+.menu {
+  margin-top: 12px;
 }
 
 .profile-photo-margin {
   margin-top: 20px;
 }
 
-.divider {
-  border-bottom: 1px solid #d8d8d8;
+.relationship-row-margin {
+  margin-bottom: 11px;
+}
+
+.help-text {
+  margin-bottom: 13px;
 }
 
 .search-margin {
   margin-bottom: 16px;
 }
 
-.relationship-row-margin {
-  margin-bottom: 11px;
+.settings-item {
+  margin-bottom: 23px;
 }
 
 .about-licenses-row {
   margin-bottom: 31px;
+}
+
+.divider {
+  border-bottom: 1px solid #d8d8d8;
 }
 
 .ToggleSwitch {
@@ -333,8 +325,4 @@ button.left-nav-item {
   li.rc-pagination-item-active a {
     border-color: black;
   }
-}
-
-.bold {
-  font-weight: bold;
 }

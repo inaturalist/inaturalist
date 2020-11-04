@@ -63,11 +63,11 @@ const Account = ( {
       >
         <span className="flex-no-wrap">
           <img
-            className="inat-affiliation-logo-size"
+            className="inat-affiliation-logo margin-right-medium"
             alt={`inat-affiliation-logo-${number}`}
             src={showINatAffiliationLogo( number )}
           />
-          <div className="text-muted small inat-affiliation-network-margin">{location.toLocaleUpperCase( )}</div>
+          <div className="text-muted small">{location.toLocaleUpperCase( )}</div>
           {profile.site_id === number && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
         </span>
       </MenuItem>
@@ -137,7 +137,7 @@ const Account = ( {
               className="custom-dropdown-width"
               title={(
                 <img
-                  className="inat-affiliation-logo-size"
+                  className="inat-affiliation-logo"
                   alt={`inat-affiliation-logo-${profile.site_id || 1}`}
                   src={showINatAffiliationLogo( profile.site_id )}
                 />

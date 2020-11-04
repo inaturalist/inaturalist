@@ -31,7 +31,7 @@ const AboutLicensingModal = ( { show, onClose } ) => {
         <div key={localizedName} className="about-licenses-row">
           {license === "c" ? allRightsReserved : (
             <div>
-              <div className="row flex-no-wrap wrap-white-space">
+              <div className="row flex-no-wrap white-space">
                 <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
                 <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
               </div>

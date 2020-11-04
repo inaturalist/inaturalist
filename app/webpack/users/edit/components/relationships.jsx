@@ -38,7 +38,7 @@ const Relationships = ( ) => (
       <div className="col-md-3">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="search_users">{I18n.t( "search" )}</label>
-          <div className="input-group relationship-margin-right">
+          <div className="input-group margin-right-medium">
             <input
               id="search_users"
               type="text"
@@ -49,7 +49,7 @@ const Relationships = ( ) => (
           </div>
         </div>
       </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 relationship-margin-right">
+      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
         <div className="row flex-no-wrap">
           <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
           <select
@@ -63,7 +63,7 @@ const Relationships = ( ) => (
           </select>
         </div>
       </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 relationship-margin-right">
+      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
           <select
@@ -91,10 +91,10 @@ const Relationships = ( ) => (
       </div>
     </SettingsItem>
     <div className="row hidden-xs">
-      <div className="col-sm-3">
+      <div className="col-xs-4">
         <label>{I18n.t( "name" )}</label>
       </div>
-      <div className="col-sm-4">
+      <div className="col-sm-8">
         <label>{I18n.t( "actions" )}</label>
       </div>
     </div>
@@ -118,9 +118,7 @@ const Relationships = ( ) => (
               <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: user.username } )}</dfn>
             </div>
             <div className="col-md-6">
-              <div>
-                <dfn className="relationship-row-margin">{`${I18n.t( "added" )} ${user.date_added}`}</dfn>
-              </div>
+              <dfn className="relationship-row-margin">{`${I18n.t( "added" )} ${user.date_added}`}</dfn>
               <div>
                 <button type="button" className="btn btn-default btn-xs">{I18n.t( "remove_relationship" )}</button>
               </div>

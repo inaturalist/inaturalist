@@ -19,7 +19,7 @@ const CheckboxRow = ( {
         onChange={handleCheckboxChange}
       />
       <label htmlFor={`user_${name}`} className="margin-left">{label}</label>
-      <div className="description-margin-left">
+      <div className="checkbox-description-margin">
         {description}
       </div>
     </div>

@@ -32,7 +32,7 @@ const Applications = ( { showModal, apps = [] } ) => {
   );
 
   const renderRow = ( app, buttonText ) => (
-    <div className="row row-margin" key={app.application.name}>
+    <div className="row settings-item" key={app.application.name}>
       <div className="col-xs-4">{app.application.name}</div>
       <div className="col-xs-4">{moment( app.created_at ).format( "LL" )}</div>
       <div className="col-xs-5 col-sm-4">

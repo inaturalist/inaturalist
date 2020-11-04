@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import moment from "moment";
 
 const SaveButton = ( { saveUserSettings, profile } ) => (
-  <div className="flex-no-wrap space-between-items">
-    <div className={profile.saved_status === "saved" ? "text-muted underline" : "collapse"}>
+  <div className="flex-no-wrap">
+    <div className={profile.saved_status === "saved" ? "text-muted underline margin-right-medium" : "collapse"}>
       {I18n.t( "saved_at" )}
       {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
     </div>
