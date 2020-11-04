@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   use_doorkeeper do
     controllers applications: "oauth_applications",
                 authorizations: "oauth_authorizations",
+                authorized_applications: "oauth_authorized_applications",
                 tokens: "oauth_tokens"
   end
 
