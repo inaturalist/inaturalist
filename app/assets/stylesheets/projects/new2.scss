@@ -182,14 +182,17 @@ body>div>.popover[role="tooltip"].popover-error {
     }
   }
   label {
+    font-weight: 700 !important;
+    line-height: 1.7em;
+  }
+  label.section-label {
     display: block;
     font-size: 16px;
-    font-weight: 700;
-    &.inline {
-      display: inline-block;
-      font-size: 14px;
-      line-height: 34px;
-    }
+  }
+  label.inline {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 34px;
   }
   .autocompletes {
     border: 1px solid #ddd;

@@ -318,7 +318,6 @@ class UsersController < ApplicationController
       format.html {
         # will_paginate collection will have total_entries
         @users = scope.paginate(page: params[:page], per_page: params[:per_page])
-        counts_for_users
       }
       format.json do
         # use .limit.offset to avoid a slow count(), since count isn't used
@@ -1033,7 +1032,7 @@ protected
   def counts_for_users
     @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
-    @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
+    @post_counts = Post.where(user_id: @users.to_a, parent_type: User).group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)

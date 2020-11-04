@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 import {
   hideCurrentObservation,
   addIdentification,
@@ -46,6 +47,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     toggleCaptive: ( ) => {
       dispatch( toggleCaptive( ) );
@@ -66,9 +68,11 @@ function mapDispatchToProps( dispatch ) {
     },
     showNextObservation: ( ) => {
       dispatch( showNextObservation( ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     chooseTab: tab => {
       dispatch( updateCurrentObservation( { tab } ) );
@@ -92,6 +96,7 @@ function mapDispatchToProps( dispatch ) {
       } ) );
     },
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
     setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
   };

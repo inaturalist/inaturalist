@@ -4992,7 +4992,10 @@ CREATE TABLE public.users (
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    species_count integer DEFAULT 0
+    species_count integer DEFAULT 0,
+    locked_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0,
+    unlock_token character varying
 );
 
 
@@ -8710,6 +8713,13 @@ CREATE INDEX index_projects_on_user_id ON public.projects USING btree (user_id);
 
 
 --
+-- Name: index_provider_authorizations_on_provider_name_and_provider_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_provider_authorizations_on_provider_name_and_provider_uid ON public.provider_authorizations USING btree (provider_name, provider_uid);
+
+
+--
 -- Name: index_provider_authorizations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9358,6 +9368,13 @@ CREATE INDEX index_users_on_spammer ON public.users USING btree (spammer);
 --
 
 CREATE INDEX index_users_on_state ON public.users USING btree (state);
+
+
+--
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
 
 
 --
@@ -10313,4 +10330,8 @@ INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
+
+INSERT INTO schema_migrations (version) VALUES ('20200910001039');
+
+INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 

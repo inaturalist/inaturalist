@@ -108,16 +108,42 @@ shared_examples_for "an ObservationFieldValuesController" do
         }
       }.not_to raise_error
     end
+
+    it "should not work if the observer prefers not to receive from the creator" do
+      u = User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER )
+      o = Observation.make!( user: u )
+      post :create, format: :json, observation_field_value: {
+        observation_id: o.id,
+        observation_field_id: observation_field.id,
+        value: "foo"
+      }
+      expect( response.status ).to eq 422
+    end
   end
 
-  it "should update" do
-    ofv = ObservationFieldValue.make!(:observation => observation, 
-      :observation_field => observation_field, :value => "foo")
-    put :update, :format => :json, :id => ofv.id, :observation_field_value => {
-      :value => "bar"
-    }
-    ofv.reload
-    expect(ofv.value).to eq("bar")
+  describe "update" do
+    it "should update" do
+      ofv = ObservationFieldValue.make!(:observation => observation,
+        :observation_field => observation_field, :value => "foo")
+      put :update, :format => :json, :id => ofv.id, :observation_field_value => {
+        :value => "bar"
+      }
+      ofv.reload
+      expect(ofv.value).to eq("bar")
+    end
+    it "should not work if the observer prefers not to receive from the updater" do
+      u = User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER )
+      o = Observation.make!( user: u )
+      ofv = ObservationFieldValue.make!(
+        observation: o,
+        user: u,
+        observation_field: observation_field
+      )
+      put :update, format: :json, id: ofv.id, observation_field_value: {
+        value: "#{ofv.value} foo"
+      }
+      expect( response.status ).to eq 422
+    end
   end
 
   it "should destroy" do

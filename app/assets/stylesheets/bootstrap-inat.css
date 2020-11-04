@@ -371,6 +371,10 @@ input[type="color"]:focus,
 .field .field_with_errors input.form-control {
   border: 1px solid DeepPink;
 }
-select {
-  max-width: inherit;
+
+.gmapv3legend .label {
+  font-size: inherit;
+  color: black;
+  white-space: normal;
+  text-align: left;
 }

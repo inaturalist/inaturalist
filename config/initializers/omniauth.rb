@@ -86,4 +86,14 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :orcid, CONFIG.orcid.client_id, CONFIG.orcid.client_secret
   end
 
+  if CONFIG.apple
+    provider :apple, CONFIG.apple.client_id, "", {
+      scope: "email name",
+      team_id: CONFIG.apple.team_id,
+      key_id: CONFIG.apple.key_id,
+      pem: CONFIG.apple.pem,
+      provider_ignores_state: true
+    }
+  end
+
 end

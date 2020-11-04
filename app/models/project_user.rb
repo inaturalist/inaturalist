@@ -25,7 +25,15 @@ class ProjectUser < ActiveRecord::Base
     CURATOR_COORDINATE_ACCESS_ANY,
     CURATOR_COORDINATE_ACCESS_NONE
   ]
+  # Specifies whether curators can see hidden coordinates based on who added the observation to the project
   preference :curator_coordinate_access, :string, :default => CURATOR_COORDINATE_ACCESS_OBSERVER
+
+  # Specifies whether curators can see hidden coordinates based on why the coordinates were hidden
+  CURATOR_COORDINATE_ACCESS_FOR_NONE = "none"     # Curators cannot view hidden coords
+  CURATOR_COORDINATE_ACCESS_FOR_TAXON = "taxon"   # Curators can view coords hidden by threatened taxon
+  CURATOR_COORDINATE_ACCESS_FOR_ANY = "any"       # Curators can view coords hidden for any reason
+  preference :curator_coordinate_access_for, :string, default: CURATOR_COORDINATE_ACCESS_FOR_NONE
+
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"

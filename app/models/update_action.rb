@@ -25,8 +25,7 @@ class UpdateAction < ActiveRecord::Base
     self.resource_owner = resource && resource.respond_to?(:user) ? resource.user : nil
   end
 
-  def bulk_insert_subscribers(subscriber_ids)
-    potential_subscriber_ids = subscriber_ids
+  def user_ids_without_blocked_and_muted( user_ids )
     notifier_user = notifier if notifier.is_a?( User )
     notifier_user ||= notifier.try(:user)
     if notifier_user
@@ -34,8 +33,13 @@ class UpdateAction < ActiveRecord::Base
         where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
         pluck(:user_id, :blocked_user_id).flatten.uniq
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
-      potential_subscriber_ids = potential_subscriber_ids - excepted_user_ids.uniq
+      return user_ids -= excepted_user_ids.uniq
     end
+    user_ids
+  end
+
+  def bulk_insert_subscribers(subscriber_ids)
+    potential_subscriber_ids = user_ids_without_blocked_and_muted( subscriber_ids )
     self.filtered_subscriber_ids ||= []
     self.filtered_subscriber_ids = ( self.filtered_subscriber_ids + potential_subscriber_ids ).uniq
   end
@@ -318,7 +322,7 @@ class UpdateAction < ActiveRecord::Base
                   }
                 }",
               params: {
-                user_ids: user_ids
+                user_ids: user_ids_without_blocked_and_muted( user_ids )
               }
             }
           }
@@ -348,7 +352,7 @@ class UpdateAction < ActiveRecord::Base
             script: {
               source: "ctx._source.subscriber_ids.retainAll( params.user_ids )",
               params: {
-                user_ids: user_ids
+                user_ids: user_ids_without_blocked_and_muted( user_ids )
               }
             }
           }

@@ -88,6 +88,8 @@ module Ratatosk
         taxon_name.source_url = @hxml.at('url').inner_text
         taxon_name.taxon = taxon
         taxon_name.name_provider = "ColNameProvider"
+        taxon_name.valid?
+        taxon_name
       end
       
       # Override taxon to make sure we always check to see if a taxon for this
@@ -193,6 +195,8 @@ module Ratatosk
         @adaptee.source_identifier  = @hxml.at('id').inner_text
         @adaptee.source_url         = @hxml.at('url').inner_text
         @adaptee.name_provider      = "ColNameProvider"
+        @adaptee.valid?
+        @adaptee
       end
     end
   end # module NameProviders

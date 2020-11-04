@@ -30,10 +30,13 @@ class ProjectForm extends React.Component {
       removeProjectManager,
       confirmSubmitProject,
       removeProject,
-      changeOwner
+      changeOwner,
+      updateProject
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
+    const viewerIsAdmin = config.currentUser && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div className="Form">
         <SharedForm {...this.props} />
@@ -55,9 +58,39 @@ class ProjectForm extends React.Component {
               </div>
             </Col>
           </Row>
+          { viewerIsAdmin && (
+            <Row>
+              <Col xs={12}>
+                <h2>{ I18n.t( "members" ) }</h2>
+                <label className="section-label">
+                  { I18n.t( "trust" ) }
+                </label>
+                <p className="help-text">
+                  { I18n.t( "views.projects.edit.trust_help_desc" ) }
+                </p>
+                <p className="help-text">
+                  { I18n.t( "views.projects.edit.trust_help_notification" ) }
+                </p>
+                <div className="checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      defaultChecked={project.prefers_user_trust}
+                      onChange={e => updateProject( {
+                        prefers_user_trust: e.target.checked || null
+                      } )}
+                    />
+                    { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
+                  </label>
+                </div>
+              </Col>
+            </Row>
+          ) }
           <Row className="admins-row">
             <Col xs={12}>
-              <label>{ I18n.t( "admin_s" ) }</label>
+              <label className="section-label">
+                { I18n.t( "admin_s" ) }
+              </label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
                 { project.id && I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }

@@ -171,6 +171,13 @@ ca:
   about_this_project: Sobre aquest projecte
   about_trips_html: |
     <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
+  about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
+  about_trusting_projects_options_any_desc: |-
+    Aquest inclou les observacions que heu marcat amb geoprivacitat "enfosquida" o "privada", p.e. observacions del teu jardí on d'indrets que no voleu donar a conèixer a altres.
+  about_trusting_projects_options_taxon: |-
+    Únicament les vostres observacions en aquest projecte que tenen les coordenades enfosquides per tractar-se de tàxons en perill.
+  about_trusting_projects_options_taxon_desc: |-
+    Molts projectes necessites accedir a coordenades que han estat enfosquides perquè l'observació és sobre un tàxon vulnerable.
   about_x: "Quant a %{x}"
   acc: 'Exactitud (m)'
   account: Compte
@@ -460,6 +467,10 @@ ca:
   announcements: Anuncis
   any: qualsevol
   any_: Qualsevol
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualsevol
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualsevol
   anyone: Qualsevol
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
@@ -681,6 +692,7 @@ ca:
   cc_by_sa_name: Reconeixement - Compartir igual
   cc_used_under_a: "Creative Commons, utilitzada amb una"
   change_admin: Canviar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Canvia la portada
   change_descriptions:
     split: L'antic tàxon està separat en diversos tàxons nous
@@ -898,7 +910,6 @@ ca:
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
-    teneral: Adult que ja pupat recentment però no ha assolit encara la seva forma adulta definitiva
     cannot_be_determined: No es pot determinar a partir de les dades aportades
   controls: Controls
   convert: Convertiu
@@ -1052,6 +1063,7 @@ ca:
   delete: Elimina
   delete_all: Elimineu tot
   delete_conversation: Elimineu conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: esborreu coberta?
   delete_icon?: Voleu eliminar la icona?
   delete_photo: Elimineu la foto
@@ -1560,8 +1572,6 @@ ca:
     tooltips:
       leading: |
         Tàxon derivat del tàxon de la comunitat. Aquesta identificació us pot orientar cap a la resposta correcta.
-      improving: |
-        Primer suggeriment d'aquest tàxon sobre el que la comunitat ha estat posteriorment d'acord. Això va ajudar a refinar el tàxon proposat per la Comunitat.
       maverick: |
         Aquest tàxon no és un descendent o avantpassat del de la comunitat, i.e. la comunitat no està d'acord amb aquest tàxon.
   id_withdrawn: ID retirat
@@ -1965,7 +1975,6 @@ ca:
   managers_can_do: Els gestors poden realitzar les mateixes activitats que un supervisor i addicionalment poden canviar les propietats del projecte i escriure notes en el diari del projecte.
   managing_projects: Gestió de Projectes
   map: Mapa
-  map_legend: llegenda del mapa
   map_marker_size: mida del marcador del mapa
   map_of_observations: Mapa d'Observacions
   maps:
@@ -1997,6 +2006,7 @@ ca:
     Membre de la <a href="%{url}">Xarxa iNaturalist</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Membre de la xarxa %{partial_inat_network_tag_html}iNaturalist</a>, una iniciativa conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
+  #As in members of a project
   members: Membres
   membership_model: Model d'adhesió
   mentioned_you_in_noun_html: "%{user} us ha esmentat a %{noun}"
@@ -2143,13 +2153,13 @@ ca:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist
-    dedicada en la biodiversidad i les personas de %{place}. Vols canviar l'afiliació del teu compte d'iNaturalist.org a %{site_name}?
+    dedicada en la biodiversidad i les personas de %{place}. Vols canviar l'afiliació del teu compte d'<strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, part de la xarxa internacional iNaturalist està
-    dedicada a la biodiversidad i les personas de Finlàndia. Voleu canviar l'afiliació del vostre compte d'iNaturalist.org a iNaturalist Suomi?
+    dedicada a la biodiversidad i les personas de Finlàndia. Voleu canviar l'afiliació del vostre compte d'<strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Vols canviar la teva afiliació des de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
@@ -3883,7 +3893,6 @@ ca:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
-  this_is_a_cached_summary_based_on: Això és un resum de memòria cau d'aquest tàxon basat en el vostre
   this_is_a_life_list_of: Això és una llista de vida de
   this_is_a_life_list_from_place_html: "Aquesta és una llista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Aquesta és una llista de %{taxon} a %{place}"
@@ -4242,7 +4251,6 @@ ca:
   website: Lloc web
   week_of_date: "Setmana del %{date}"
   welcome: benvingut
-  welcome_back: Benvingut de nou
   welcome_back!: Benvingut de nou!
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
@@ -4289,7 +4297,6 @@ ca:
   wikipedia_attribution_cc_by_sa_3_html: |
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
-  wikipedia_entry: Entrada de Viquipèdia
   with: amb
   withdraw: Retirar
   withdrawing: Retirant...
@@ -4652,6 +4659,26 @@ ca:
       show:
         reuse_desc: |
           Podeu copiar aquest tàxon a una altra guia. Si sou un dels editors d'aquesta guia es copiarà tot, però si no ho sou només es copiarà el contingut amb llicència.
+    lifelists:
+      all_species: Totes les espècies
+      all_unobserved_species: Totes les espècies no observades
+      observations_at_this_taxon: Observacions d'aquest tàxon
+      filter_by: Filtra per
+      filtered_by: Filtrat per
+      apply_filters_to_export: Aplicar filtres a l'exportació
+      restrict_to_leaf_taxa: Restringir a tàxons fulla
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a tàxons observats a %{place}
+      exporting_all_x_taxa:
+        one: Exportant %{count} tàxon
+        other: Exportant %{count} tàxons
+      exporting_x_taxa:
+        one: Exportant %{count} tàxon
+        other: Exportant %{count} tàxons
+      no_observations_found_in_place: No s'ha trobat observacions a %{place}.
+      no_observations_found_within_this_taxon_in_place: No s'ha trobat aquest tàxon a %{place}.
+      no_species_found_within_this_taxon_in_place: No s'ha trobat espècies d'aquest tàxon a %{place}.
+      no_species_found_in_place: No s'ha trobat cap espècie a %{place}.
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5698,6 +5725,9 @@ ca:
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
         license_description_attribution_html: |
           Descripcions de la llicència i les imatges&copy;%{year}Creative Commons, usades sota una <a href="http://creativecommons.org/licenses/by/3.0/">llicència d'Atribució Creative Commons</a>(quina metareferència!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Patrocinador mensual
         monthly_supporter_desc_html: |
           Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i la Xarxa d'iNaturalist.
@@ -6336,10 +6366,6 @@ ca:
           attributes:
             base:
               guide_has_too_many_taxa: "La guia només pot tenir 500 tàxons"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Clau API important-se o pendent d'importar"
         observation:
           attributes:
             base:

@@ -404,6 +404,13 @@ ja:
   announcements: お知らせ
   any: すべて
   any_: すべて
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: すべて
+  #Label for an option to show content from any date
+  any_date: 指定なし
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: 全てのメディア
+  anyone: 誰でも
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
   apply_fields: フィールドを適用する
@@ -614,6 +621,7 @@ ja:
   cc_by_sa_name: 表示—継承
   cc_used_under_a: "クリエイティブ・コモンズ："
   change_admin: 管理者を変更
+  #Button to change the cover (or banner) image for a project
   change_cover: カバーを変更
   change_descriptions:
     split: 古い分類群が複数の新しい分類群に分割されます
@@ -818,7 +826,6 @@ ja:
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
     no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
-    teneral: 羽化したばかりで、まだ成熟していない成体・成虫
     cannot_be_determined: 提供された証拠から判断することはできません
   controls: 設定
   coordinate_systems: 座標システム
@@ -966,6 +973,7 @@ ja:
   delete: 削除
   delete_all: すべて削除
   delete_conversation: このやりとりを削除
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 表紙を削除しますか？
   delete_icon?: アイコンを削除？
   delete_photo: 写真を削除
@@ -1417,8 +1425,6 @@ ja:
     tooltips:
       leading: |
         分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。
-      improving: |
-        この分類群の最初の提案は、後にコミュニティが同意したものです。この提案がコミュニティ分類群を洗練させるのに役立ちました。
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
   id_withdrawn: 同定の撤回
@@ -1816,6 +1822,7 @@ ja:
     <a href="%{url}">iNaturalistネットワーク</a>のメンバーサイトです。
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     %{partial_inat_network_tag_html}iNaturalist Network</a>のメンバーで、%{cas_tag_html}と%{nat_geo_tag_html}の共同イニシアチブです。
+  #As in members of a project
   members: メンバー一覧
   membership_model: 会員制モデル
   mentioned_you_in_noun_html: "%{user} さんが %{noun} であなたにメンションしました"
@@ -1929,9 +1936,6 @@ ja:
   needs_id_: 要同定
   needs_id_expandable_html: "<span class='full'>要</span>ID"
   needs_to_be_identified: 要同定
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>は、国際的なiNaturalistネットワークの一部で、生物多様性と %{place} の人々に焦点を当てています。アカウントの所属をiNaturalist.orgから %{site_name} に変更したいですか？
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
   new: 新規
@@ -1999,6 +2003,7 @@ ja:
     user: "%{user}さんは別のユーザーの観察記録に追加した同定がありません"
   no_ids_have_been_suggested_yet: 同定はまだ提案されていません
   no_interaction_data_available: 相互作用データはありません
+  no_its_as_good_as_it_can_be: いいえ、このままで適切です。
   no_favorites_added:
     current_user: お気に入りに登録されている項目がありません
     user: "%{user}さんはお気に入りに登録されている項目がありません"
@@ -3640,6 +3645,7 @@ ja:
   user_is_a_naturalist: "%{user}さんはナチュラリストです！"
   user_observed_on_on_date_in_place: |
     %{user} さんが %{date} に %{place} で観察しました
+  user_suggested_an_id: "%{user} さんが 同定を提案しました"
   username: ユーザー名
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
@@ -3719,7 +3725,6 @@ ja:
   we_have_no_establishment_data_for_this_taxon: "こちらの分類群の定着方法情報がありません。"
   website: ウェブサイト
   welcome: ようこそ
-  welcome_back: おかえりなさい
   welcome_to_inat: "%{site_name}へようこそ！"
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
@@ -3753,7 +3758,6 @@ ja:
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
-  wikipedia_entry: ウィキペディアの記事
   withdraw: 撤回
   withdrawing: 撤回中...
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
@@ -3765,6 +3769,7 @@ ja:
   x_journal_middot: "%{user}さんのジャーナル •"
   x_observations_failed:
     other: "%{count}件の観察失敗記録"
+  x_of_y: "全%{y}種中%{x}種"
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} 人中 %{x} 人（2/3を超える）が同意しています"
   x_project_journal: "%{project}の%{name}"
   x_project_stats: "%{project}の統計"
@@ -4136,6 +4141,9 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: マンスリーサポーター
         monthly_supporter_desc_html: |
           iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
@@ -4426,6 +4434,8 @@ ja:
       observation:
         geo_x: 東距
         geo_y: 北�距
+      observation_field_value:
+        value: '選択肢'
       project:
         title: タイトル
         project_icon: プロジェクトアイコン

@@ -18,11 +18,12 @@ const Observation = ( {
   className,
   size,
   backgroundSize,
-  config
+  config,
+  hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
   const caption = (
-    <div className="caption">
+    <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon
         taxon={observation.taxon}
         noParens
@@ -30,7 +31,7 @@ const Observation = ( {
         url={`/observations/${observation.id}`}
         noInactive
       />
-      <UserImage user={observation.user} />
+      { !hideUserIcon && ( <UserImage user={observation.user} /> ) }
       <div className="meta">
         { observation.non_owner_ids.length > 0 && (
           <span
@@ -115,6 +116,7 @@ Observation.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
+  hideUserIcon: PropTypes.bool,
   config: PropTypes.object
 };
 

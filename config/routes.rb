@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   use_doorkeeper do
     controllers applications: "oauth_applications",
                 authorizations: "oauth_authorizations",
+                authorized_applications: "oauth_authorized_applications",
                 tokens: "oauth_tokens"
   end
 
@@ -638,9 +639,9 @@ Rails.application.routes.draw do
   end
   resources :moderator_actions, only: [:create]
 
-  resources :lifelists do
+  resource :lifelists, only: [] do
     collection do
-      get ":login", to: "lifelists#by_login"
+      get ":login", to: "lifelists#by_login", as: "by_login"
     end
   end
 

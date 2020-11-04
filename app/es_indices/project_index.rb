@@ -71,6 +71,7 @@ class Project < ActiveRecord::Base
         indexes :position, type: "short"
         indexes :required, type: "boolean"
       end
+      indexes :prefers_user_trust, type: "boolean"
       indexes :project_observation_rules, type: :nested do
         indexes :id, type: "integer"
         indexes :operand_id, type: "integer"
@@ -219,7 +220,8 @@ class Project < ActiveRecord::Base
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json),
-      umbrella_project_ids: within_umbrella_ids
+      umbrella_project_ids: within_umbrella_ids,
+      prefers_user_trust: prefers_user_trust
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags

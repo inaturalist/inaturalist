@@ -1033,3 +1033,11 @@ label {
   }
 }
 
+// duplicated from bootstrap-inat, which apparently has styles that interfere on
+// this page. ugh.
+.btn.btn-nostyle {
+  padding: 0;
+  background-color: transparent;
+  border: 0 transparent;
+  line-height: inherit;
+}

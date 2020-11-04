@@ -47,6 +47,14 @@ class ProviderAuthorizationsController < ApplicationController
           auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
         end
       end
+    when "apple"
+      if auth_info["info"]["name"] && auth_info["info"]["name"]["firstName"]
+        full_name = auth_info["info"]["name"]["firstName"]
+        if auth_info["info"]["name"]["lastName"]
+          full_name += " " + auth_info["info"]["name"]["lastName"]
+        end
+        auth_info["info"]["name"] = full_name
+      end
     end
     
     
@@ -141,7 +149,6 @@ class ProviderAuthorizationsController < ApplicationController
     @provider_authorization.update_with_auth_info(auth_info)
     @provider_authorization.touch
     set_request_locale
-    flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized #{@site.site_name_short} to write to your account " +
         "on #{@provider_authorization.provider}. Thanks! Please try " +

@@ -172,7 +172,15 @@ class Annotations extends React.Component {
               <i className="fa fa-times" />
             ) : null }
           </span>
-          { this.loggedIn && <i className={`fa ${disagreeClass}`} onClick={unvoteAction} /> }
+          { this.loggedIn && (
+            <button
+              type="button"
+              onClick={unvoteAction}
+              className="btn btn-nostyle"
+            >
+              <i className={`fa ${disagreeClass}`} />
+            </button>
+          ) }
           <span className="count">{ votesAgainstCount }</span>
           { !this.loggedIn && <span className="fa" /> }
         </td>

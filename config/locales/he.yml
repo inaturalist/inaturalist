@@ -784,6 +784,7 @@ he:
   cc_by_sa_name: ייחוס–ShareAlike
   cc_used_under_a: "קריאייטיב קומונז, שימוש בכפוף"
   change_admin: שינוי מנהל
+  #Button to change the cover (or banner) image for a project
   change_cover: שינוי הכריכה
   change_descriptions:
     split: הטקסון הישן פוצל לכמה טקסונים חדשים
@@ -1130,6 +1131,7 @@ he:
   delete: מחיקה
   delete_all: מחק הכל
   delete_conversation: מחיקת דיון
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: מחיקת שכבה?
   delete_icon?: מחק סמליל?
   delete_photo: מחיקת תמונה
@@ -1875,6 +1877,7 @@ he:
   media_type: סוג המדיה
   medium: בינוני
   meet: הכירו
+  #As in members of a project
   members: חברים
   membership_model: מודל חברות
   mentioned_you_in_noun_html: "%{user} הזכיר אותך ב%{noun}"
@@ -1988,9 +1991,6 @@ he:
   needs_id: צריך זיהוי
   needs_id_: צריך זיהוי
   needs_to_be_identified: יש צורך בזיהוי
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, כחלק מרשת איי-נטוראליסט העולמית, מחבר בין מגוון מינים ואנשים ב %{place}. האם תרצו לשנות את שיוך החשבון שלכם מ iNaturalist.org ל %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     האם ברצונך לשנות את השיוך שלך מ <strong>%{other_site_name}</strong> ל <strong>%{site_name}</strong>?
   new: חדש
@@ -3576,7 +3576,6 @@ he:
   website: אתר אינטרנט
   week_of_date: "השבוע של ה%{date}"
   welcome: ברוכים הבאים
-  welcome_back: ברוכים השבים
   welcome_back!: ברוכים השבים!
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
@@ -3609,7 +3608,6 @@ he:
   widget_for: ווידג'ט בשביל
   wikipedia_attribution_cc_by_sa_3: |
     מקור: ויקיפדיה, "%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: ערך ויקיפידיה
   with: עם
   withdraw: לסגת
   with_errors: עם טעויות
@@ -4723,10 +4721,6 @@ he:
           attributes:
             base:
               guide_has_too_many_taxa: "מגדירים לא יכולים להכיל יותר מ 500 טקסונים"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "מייצא מפתח עבור תקשורת API (או ממתין לייצוא)"
         observation:
           attributes:
             base:

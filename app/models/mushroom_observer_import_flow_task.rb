@@ -34,6 +34,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def get( url, params = {} )
     try = params.delete(:try) || 1
     resp = begin
+      log "GET #{url}, #{params}"
       RestClient.get( url, params: params )
     rescue Net::ReadTimeout, RestClient::Exceptions::ReadTimeout
       raise TimeoutError.new(
@@ -77,7 +78,7 @@ class MushroomObserverImportFlowTask < FlowTask
     Emailer.moimport_finished( self, errors, @warnings ).deliver_now
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
-    logger.error "#{self.class.name} #{id}: Error: #{exception_string}" if @debug
+    log "Error: #{exception_string}\n#{e.backtrace}"
     update_attributes(
       finished_at: Time.now,
       error: "Error",
@@ -88,12 +89,13 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def log( msg )
+    msg = "#{self.class.name} #{id}: #{msg}"
     if options[:logger] == "stdout"
       puts
       puts "[INFO] #{msg}"
       puts
     else
-      Rails.logger.info "[INFO] #{msg}"
+      Rails.logger.info "#{msg}"
     end
   end
 
@@ -161,8 +163,11 @@ class MushroomObserverImportFlowTask < FlowTask
       Taxon::ICONIC_TAXA_BY_NAME["Protozoa"]
     ] )
     taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
-    taxon.reload if taxon
-    taxon
+    if taxon && taxon.persisted?
+      # make sure this isn't a Ratatosk adapter
+      return Taxon.find_by_id( taxon.id )
+    end
+    nil
   end
 
   def observation_from_result( result, options = {} )
@@ -193,6 +198,11 @@ class MushroomObserverImportFlowTask < FlowTask
       o.latitude = swlat + ( ( nelat - swlat ) / 2 )
       o.longitude = swlng + ( ( nelng - swlng ) / 2 )
       o.positional_accuracy = lat_lon_distance_in_meters(o.latitude, o.longitude, nelat, nelng)
+    end
+    if ( latitude = result.at( "latitude" ) ) && ( longitude = result.at( "longitude" ) )
+      o.latitude = latitude.text.to_f
+      o.longitude = longitude.text.to_f
+      o.positional_accuracy = nil
     end
     # This would prioritize the owner's name if we wanted to do that, but after
     # implementing this, I feel like it's probably preferrable to use the
