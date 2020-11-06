@@ -11,7 +11,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    handleCheckboxChange: newState => { dispatch( handleCheckboxChange( newState ) ); }
+    handleCheckboxChange: newState => { dispatch( handleCheckboxChange( newState ) ); },
   };
 }
 

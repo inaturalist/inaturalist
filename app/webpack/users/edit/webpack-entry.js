@@ -13,6 +13,7 @@ import {
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
+import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import aboutLicensingModalReducer from "./ducks/about_licensing_modal";
 import AppContainer from "./containers/app_container";
@@ -21,6 +22,7 @@ const rootReducer = combineReducers( {
   profile: userSettingsReducer,
   revokeAccess: revokeAccessModalReducer,
   apps: authenticatedAppsReducer,
+  relationships: relationshipsReducer,
   thirdPartyTracking: thirdPartyTrackingModalReducer,
   aboutLicensing: aboutLicensingModalReducer
 } );
@@ -38,6 +40,7 @@ const store = createStore(
 
 store.dispatch( fetchUserSettings( null ) );
 store.dispatch( fetchAuthorizedApps( ) );
+store.dispatch( fetchRelationships( true ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension

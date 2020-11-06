@@ -5,12 +5,13 @@ import SettingsItem from "./settings_item";
 import UserFollowing from "./user_following";
 
 const BlockedMutedUsers = ( {
-  sampleData,
+  users,
   headerText,
   id,
   placeholder,
   buttonText,
-  htmlDescription
+  htmlDescription,
+  searchUsers
 } ) => (
   <div className="col-md-6">
     <SettingsItem header={headerText} htmlFor={id}>
@@ -21,9 +22,10 @@ const BlockedMutedUsers = ( {
           className="form-control"
           name={id}
           placeholder={placeholder}
+          onChange={e => searchUsers( e )}
         />
       </div>
-      {sampleData.map( user => (
+      {users.map( user => (
         <div className="row flex-no-wrap" key={user.name}>
           <div className="col-sm-9">
             <UserFollowing user={user} />
@@ -45,12 +47,13 @@ const BlockedMutedUsers = ( {
 );
 
 BlockedMutedUsers.propTypes = {
-  sampleData: PropTypes.array,
+  users: PropTypes.array,
   headerText: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
   buttonText: PropTypes.string,
-  htmlDescription: PropTypes.object
+  htmlDescription: PropTypes.object,
+  searchUsers: PropTypes.func
 };
 
 export default BlockedMutedUsers;

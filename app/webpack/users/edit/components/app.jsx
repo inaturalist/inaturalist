@@ -8,8 +8,7 @@ import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
 import ApplicationsContainer from "../containers/applications_container";
-// import RelationshipsContainer from "../containers/relationships_container";
-import Relationships from "./relationships";
+import RelationshipsContainer from "../containers/relationships_container";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
 import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking_modal_container";
 import AboutLicensingModalContainer from "../containers/about_licensing_modal_container";
@@ -63,7 +62,7 @@ class App extends Component {
       <ProfileContainer />,
       <AccountContainer />,
       <NotificationsContainer />,
-      <Relationships />,
+      <RelationshipsContainer />,
       <ContentContainer />,
       <ApplicationsContainer />
     ];
