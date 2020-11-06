@@ -7726,6 +7726,13 @@ CREATE INDEX index_identifications_on_taxon_change_id ON public.identifications 
 
 
 --
+-- Name: index_identifications_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_identifications_on_taxon_id ON public.identifications USING btree (taxon_id);
+
+
+--
 -- Name: index_identifications_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10352,4 +10359,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200918230545');
 INSERT INTO schema_migrations (version) VALUES ('20200910001039');
 
 INSERT INTO schema_migrations (version) VALUES ('20200925210606');
+
+INSERT INTO schema_migrations (version) VALUES ('20201023174221');
 
