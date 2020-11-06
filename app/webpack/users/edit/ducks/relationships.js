@@ -41,34 +41,13 @@ export function setFilters( filters ) {
   };
 }
 
-// export function setRelationshipToDelete( id ) {
-//   return {
-//     type: SET_RELATIONSHIP_TO_DELETE,
-//     id
-//   };
-// }
-
-export function fetchRelationships( firstRender ) {
-  const params = { useAuth: true };
-  return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
-    if ( firstRender ) {
-      dispatch( setFilteredRelationships( results ) );
-    }
-    dispatch( setRelationships( results ) );
-  } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
-}
-
-export function handleCheckboxChange( e, friendId ) {
-  return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const friends = relationships.relationships;
-    const targetFriend = friends.filter( user => user.friendUser.id === friendId );
-
-    targetFriend[0][e.target.name] = e.target.checked;
-
-    dispatch( setRelationships( friends ) );
+export function setRelationshipToDelete( id ) {
+  return {
+    type: SET_RELATIONSHIP_TO_DELETE,
+    id
   };
 }
+
 
 export function filterRelationships( ) {
   return ( dispatch, getState ) => {
@@ -106,6 +85,38 @@ export function filterRelationships( ) {
     }
 
     dispatch( setFilteredRelationships( filteredFriends ) );
+  };
+}
+
+export function fetchRelationships( firstRender ) {
+  const params = { useAuth: true };
+  return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
+    if ( firstRender ) {
+      dispatch( setFilteredRelationships( results ) );
+    }
+    dispatch( setRelationships( results ) );
+    dispatch( filterRelationships( ) );
+  } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
+}
+
+export function updateRelationship( id, friendship ) {
+  const params = { id, friendship };
+  return dispatch => inatjs.relationships.update( params ).then( ( ) => {
+    dispatch( fetchRelationships( ) );
+  } ).catch( e => console.log( `Failed to update relationship: ${e}` ) );
+}
+
+export function handleCheckboxChange( e, friendId ) {
+  const { name, checked } = e.target;
+
+  return ( dispatch, getState ) => {
+    const { relationships } = getState( );
+    const friends = relationships.relationships;
+    const targetFriend = friends.filter( user => user.friendUser.id === friendId );
+
+    targetFriend[0][name] = checked;
+
+    dispatch( updateRelationship( friendId, { [name]: checked } ) );
   };
 }
 
@@ -159,14 +170,13 @@ export function sortRelationships( e ) {
   };
 }
 
-// export function deleteRelationship( ) {
-//   return ( dispatch, getState ) => {
-//     const { relationships } = getState( );
-//     const { id } = relationships;
+export function deleteRelationship( ) {
+  return ( dispatch, getState ) => {
+    const { relationships } = getState( );
+    const { id } = relationships;
 
-//     return inatjs.relationships.delete( { id } ).then( results => {
-//       console.log( results, "results" );
-//       dispatch( fetchRelationships( ) );
-//     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
-//   };
-// }
+    return inatjs.relationships.delete( { id } ).then( ( ) => {
+      dispatch( fetchRelationships( true ) );
+    } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
+  };
+}

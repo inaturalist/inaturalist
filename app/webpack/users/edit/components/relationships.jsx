@@ -37,7 +37,8 @@ const Relationships = ( {
   profile,
   filteredRelationships,
   updateFilters,
-  sortRelationships
+  sortRelationships,
+  showModal
 } ) => {
   const showRelationships = ( ) => filteredRelationships.map( user => {
     const { friendUser } = user;
@@ -68,7 +69,13 @@ const Relationships = ( {
                 {`${I18n.t( "added" )} ${moment( friendUser.created_at ).format( "LL" )}`}
               </dfn>
               <div>
-                <button type="button" className="btn btn-default btn-xs">{I18n.t( "remove_relationship" )}</button>
+                <button
+                  type="button"
+                  className="btn btn-default btn-xs"
+                  onClick={( ) => showModal( friendUser.id, friendUser.login )}
+                >
+                  {I18n.t( "remove_relationship" )}
+                </button>
               </div>
             </div>
           </div>
@@ -199,7 +206,8 @@ Relationships.propTypes = {
   profile: PropTypes.object,
   filteredRelationships: PropTypes.array,
   updateFilters: PropTypes.func,
-  sortRelationships: PropTypes.func
+  sortRelationships: PropTypes.func,
+  showModal: PropTypes.func
 };
 
 export default Relationships;

@@ -13,6 +13,7 @@ import RevokeAccessModalContainer from "../containers/revoke_access_modal_contai
 import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking_modal_container";
 import AboutLicensingModalContainer from "../containers/about_licensing_modal_container";
 import DropdownMenuMobile from "./dropdown_menu_mobile";
+import DeleteRelationshipModalContainer from "../containers/delete_relationship_modal_container";
 
 class App extends Component {
   constructor( ) {
@@ -94,6 +95,7 @@ class App extends Component {
         <RevokeAccessModalContainer />
         <ThirdPartyTrackingModalContainer />
         <AboutLicensingModalContainer />
+        <DeleteRelationshipModalContainer />
       </div>
     );
   }

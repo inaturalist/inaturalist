@@ -12,6 +12,7 @@ import {
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
+import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
 import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
@@ -21,6 +22,7 @@ import AppContainer from "./containers/app_container";
 const rootReducer = combineReducers( {
   profile: userSettingsReducer,
   revokeAccess: revokeAccessModalReducer,
+  deleteRelationship: deleteRelationshipModalReducer,
   apps: authenticatedAppsReducer,
   relationships: relationshipsReducer,
   thirdPartyTracking: thirdPartyTrackingModalReducer,
