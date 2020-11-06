@@ -134,7 +134,10 @@ const Relationships = ( {
               id="sort_by"
               name="sort_by"
             >
-              <option value="sort_by">{I18n.t( "recently_added" )}</option>
+              <option value="recently_added">{I18n.t( "recently_added" )}</option>
+              <option value="earliest_added">{I18n.t( "earliest_added" )}</option>
+              <option value="a_to_z">{I18n.t( "a_to_z" )}</option>
+              <option value="z_to_a">{I18n.t( "z_to_a" )}</option>
             </select>
           </div>
         </div>

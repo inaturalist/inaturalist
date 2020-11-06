@@ -182,6 +182,7 @@ en:
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
   a_member_of_taxon_html: "a member of %{taxon}"
+  a_to_z: "A to Z"
   # Used as a noun phrase in sentences like "kueda added a comment to *an
   # observation*". %{resource} could be any of the following:
   # * assessment_section
@@ -1363,6 +1364,7 @@ en:
   duplicate_verb: Duplicate
   duration_value: "Duration: %{duration} minutes"
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
+  earliest_added: Earliest Added
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
@@ -7963,6 +7965,7 @@ en:
     previous_label: "&#8592; Prev"
     next_label: "Next &#8594;"
     page_gap: "&hellip;"
+  z_to_a: Z to A
   zoom_in: Zoom In
   zoom_out: Zoom Out
   zoom_photo: Zoom Photo

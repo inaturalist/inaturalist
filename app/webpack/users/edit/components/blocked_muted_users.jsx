@@ -26,7 +26,7 @@ const BlockedMutedUsers = ( {
         />
       </div>
       {users.map( user => (
-        <div className="row flex-no-wrap" key={user.name}>
+        <div className="row flex-no-wrap profile-photo-margin" key={user.name}>
           <div className="col-sm-9">
             <UserFollowing user={user} />
           </div>

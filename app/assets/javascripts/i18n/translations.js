@@ -16425,6 +16425,7 @@ I18n.translations["el"] = {
 };
 I18n.translations["en"] = {
   "a_member_of_taxon_html": "a member of %{taxon}",
+  "a_to_z": "A to Z",
   "about": "About",
   "about_charts": "About Charts",
   "about_community_taxa": "About community taxa",
@@ -16951,6 +16952,7 @@ I18n.translations["en"] = {
   "drop_it": "Drop it",
   "duplicate_observation_flag_warning": "For duplicate observations, please ask the observer to address the issue\ninstead of adding a flag, because site curators cannot remove observations.\n",
   "duplicate_verb": "Duplicate",
+  "earliest_added": "Earliest Added",
   "edit": "Edit",
   "edit_atlas": "Edit Atlas",
   "edit_license": "Edit License",
@@ -18994,6 +18996,7 @@ I18n.translations["en"] = {
   "your_observations": "Your Observations",
   "your_pinned_locations": "Your Pinned Locations",
   "yours": "Yours",
+  "z_to_a": "Z to A",
   "zoom_in": "Zoom In",
   "zoom_out": "Zoom Out",
   "zoom_photo": "Zoom Photo"
