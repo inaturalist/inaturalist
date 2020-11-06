@@ -55,6 +55,7 @@
               %th Latitude
               %th Longitude
               %th Accuracy
+              %th Geoprivacy
               %th Place desc
               %th Description &amp; MO URL
           %tbody
@@ -79,6 +80,7 @@
                 %td
                   - unless observation.positional_accuracy.blank?
                     = "#{observation.positional_accuracy} m"
+                %td= observation.geoprivacy
                 %td= observation.place_guess
                 %td
                   = formatted_user_text observation.description
@@ -115,3 +117,15 @@
           iNat does not support uploading photos by other people. It will
           assume and state publicly that you are the copyright holder for all
           images.
+        %li
+          %strong Geoprivacy is either open or private:
+          MO allows you to "Hide exact coordinates" which will hide the exact
+          coordinates if you entered them, but will still show the general
+          locality you entered. Since that general locality might be larger than
+          an iNat obscuration cell, setting geoprivacy to "obscured" might end
+          up revealing a more specific location than you were expecting on MO,
+          so we're being conservative and setting the geoprivacy to "private" in
+          these cases. If you want to review these records after import,
+          = succeed "." do
+            = link_to observations_by_login_url( current_user.login, "field:#{@mo_url_field.name}" => "", geoprivacy: Observation::PRIVATE ) do
+              use this search
