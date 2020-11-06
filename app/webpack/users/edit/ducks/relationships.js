@@ -51,11 +51,10 @@ export function setFilters( filters ) {
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
-    dispatch( setRelationships( results ) );
-
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );
     }
+    dispatch( setRelationships( results ) );
   } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
 }
 
@@ -120,6 +119,43 @@ export function updateFilters( e ) {
     filters[name] = value;
     dispatch( setFilters( filters ) );
     dispatch( filterRelationships( ) );
+  };
+}
+
+export function sortRelationships( e ) {
+  const { value } = e.target;
+
+  return ( dispatch, getState ) => {
+    const { relationships } = getState( );
+    const { filteredRelationships } = relationships;
+
+    let sorted;
+
+    if ( value === "recently_added" ) {
+      sorted = filteredRelationships.sort(
+        ( a, b ) => new Date( b.created_at ) - new Date( a.created_at )
+      );
+    }
+
+    if ( value === "earliest_added" ) {
+      sorted = filteredRelationships.sort(
+        ( a, b ) => new Date( a.created_at ) - new Date( b.created_at )
+      );
+    }
+
+    if ( value === "a_to_z" ) {
+      sorted = filteredRelationships.sort(
+        ( a, b ) => a.friendUser.login.localeCompare( b.friendUser.login )
+      );
+    }
+
+    if ( value === "z_to_a" ) {
+      sorted = filteredRelationships.sort(
+        ( a, b ) => b.friendUser.login.localeCompare( a.friendUser.login )
+      );
+    }
+
+    dispatch( setFilteredRelationships( sorted ) );
   };
 }
 

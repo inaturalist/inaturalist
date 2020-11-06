@@ -1,21 +1,25 @@
 import { connect } from "react-redux";
 
 import Relationships from "../components/relationships";
-import { updateFilters } from "../ducks/relationships";
+import { updateFilters, sortRelationships } from "../ducks/relationships";
 
 function mapStateToProps( state ) {
   return {
     // empty array in case page loads before relationships fetched
     relationships: state.relationships.relationships || [],
     profile: state.profile,
-    filteredRelationships: state.relationships.filteredRelationships || []
+    // spread filteredRelationships to refresh props when sorting results
+    filteredRelationships:
+      state.relationships.relationships
+        ? [...state.relationships.filteredRelationships]
+        : []
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    updateFilters: e => { dispatch( updateFilters( e ) ); }
-    // sortRelationships: PropTypes.func
+    updateFilters: e => { dispatch( updateFilters( e ) ); },
+    sortRelationships: e => { dispatch( sortRelationships( e ) ); }
   };
 }
 

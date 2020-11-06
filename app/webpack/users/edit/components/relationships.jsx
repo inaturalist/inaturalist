@@ -133,6 +133,7 @@ const Relationships = ( {
               className="form-control"
               id="sort_by"
               name="sort_by"
+              onChange={sortRelationships}
             >
               <option value="recently_added">{I18n.t( "recently_added" )}</option>
               <option value="earliest_added">{I18n.t( "earliest_added" )}</option>
