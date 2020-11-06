@@ -202,6 +202,12 @@ module DarwinCore
         params[:with_photos] = false
       end
       params[:ofv_datatype] = @opts[:ofv_datatype]
+      if !( @opts[:swlat].blank? || @opts[:swlng].blank? || @opts[:nelat].blank? || @opts[:nelng].blank? )
+        params[:swlat] = @opts[:swlat]
+        params[:swlng] = @opts[:swlng]
+        params[:nelat] = @opts[:nelat]
+        params[:nelng] = @opts[:nelng]
+      end
       params
     end
 

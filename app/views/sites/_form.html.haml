@@ -59,6 +59,37 @@
     .row
       .col-md-12
         = f.text_area :homepage_data
+        = link_to_toggle_box "About homepage data" do
+          %p
+            JSON to populate the observation carousel and testimonials on the home
+            page. Should look something like this (note that arrays can have
+            multiple items even though this example only has one item per array):
+          %pre
+            :plain
+              {
+                "observations": [
+                  {
+                    "id": 1234,
+                    "image_url": "https://url.of/some-image.jpg",
+                    "place_guess": "Place where observation was made",
+                    "user": {
+                      "login": "observers-username",
+                      "name": "Observer's Full Name",
+                      "user_icon_url": "https://url.of/some-image.jpg"
+                    }
+                  }
+                ],
+                "testimonials": [
+                  {
+                    "body": "What the person had to say about iNat",
+                    "name": "Name of the person who provided the testimonial",
+                    "role": "Title or position of the person",
+                    "location": "Place the person is from",
+                    "image_url": "https://url.of/some-image-showing-what-the-person-looks-like.jpg",
+                    "url": "https://www.inaturalist.org/people/persons-username"
+                  }
+                ]
+              }
     .row
       .col-md-12
         = f.text_area :coordinate_systems_json

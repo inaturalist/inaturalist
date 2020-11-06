@@ -20,11 +20,13 @@
     </div>
     
     <div class="last column span-8">
-      <%= f.form_field t(:featured) do %>
-        <%= f.check_box :featured_at, :label_after => true, 
-          :label => t(:yes_show_this_in_the_box),
-          :description => t(:make_sure_the_default_photo_looks_good) %>
-      <% end -%>
+      <% unless taxon.featured_at.blank? %>
+        <%= f.form_field t(:featured) do %>
+          <%= f.check_box :featured_at, label_after: true,
+            label: t(:yes_show_this_in_the_box),
+            description: t(:make_sure_the_default_photo_looks_good) %>
+        <% end -%>
+      <% end %>
     </div>
   </div>
   
@@ -136,7 +138,7 @@
     </p>
     
     <p class="ui">
-      <%= f.label :wikipedia_summary %>:
+      <%= f.label :wikipedia_summary %>
       <blockquote class="quiet box">
         <% if taxon.wikipedia_summary -%>
           <span id="wikipedia_summary"><%= raw taxon.wikipedia_summary %></span>
@@ -161,9 +163,9 @@
         <% end -%>
       </blockquote>
       <span class="description">
-        <%= t(:this_is_a_cached_summary_based_on) %>
-        <%= link_to t(:wikipedia_entry), 
-          "https://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}" %>.
+        <%=t "views.taxa.edit.wikipedia_summary_desc_html",
+          url: "https://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}"
+        %>
       </span>
     </p>
   </fieldset>

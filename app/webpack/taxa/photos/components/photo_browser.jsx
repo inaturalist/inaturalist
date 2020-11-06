@@ -137,13 +137,13 @@ const PhotoBrowser = ( {
       const licenseKey = _.snakeCase( key );
       return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
     }
-    return I18n.t( "any_" );
+    return I18n.t( "any_license" );
   };
   const qualityGradeDisplay = key => {
     if ( key && key !== "any" ) {
       return I18n.t( "research_" );
     }
-    return I18n.t( "any_" );
+    return I18n.t( "any_quality_grade" );
   };
   const groupingDisplay = param => {
     if ( param === "taxon_id" ) {
@@ -252,7 +252,7 @@ const PhotoBrowser = ( {
                           {( selectedTerm && selectedTerm.id === attr.id && selectedTermValue
                             ? I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
                               { defaultValue: selectedTermValue.label } )
-                            : I18n.t( "any_" )
+                            : I18n.t( "any_annotation_attribute" )
                           ) }
                         </strong>
                       </Dropdown.Toggle>
@@ -262,7 +262,7 @@ const PhotoBrowser = ( {
                           eventKey="any"
                           active={!selectedTermValue}
                         >
-                          { I18n.t( "any_" ) }
+                          { I18n.t( "any_annotation_value" ) }
                         </MenuItem>
                         { values.map( v => {
                           const value = v.controlled_value;
@@ -325,7 +325,7 @@ const PhotoBrowser = ( {
                       eventKey="any"
                       active={!params.photo_license}
                     >
-                      { I18n.t( "any_" ) }
+                      { I18n.t( "any_license" ) }
                     </MenuItem>
                     { _.map( photoLicenses, k => (
                       <MenuItem
@@ -357,7 +357,7 @@ const PhotoBrowser = ( {
                       eventKey="any"
                       active={!params.quality_grade}
                     >
-                      { I18n.t( "any_" ) }
+                      { I18n.t( "any_quality_grade" ) }
                     </MenuItem>
                     <MenuItem
                       key="quality-grade-chooser-research"

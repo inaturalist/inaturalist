@@ -86,7 +86,7 @@ export function fetchAllControlledTerms( ) {
 // This is a utility that doesn't modify the state, but could be useful elsewhere
 export function termsForTaxon( terms, taxon = null ) {
   const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
-  return _.filter( terms, term => {
+  const filteredTerms = _.filter( terms, term => {
     // reject if it has values and those values and none are availalble
     if (
       term.values && term.values.length > 0
@@ -113,6 +113,9 @@ export function termsForTaxon( terms, taxon = null ) {
     }
     return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
   } );
+  return _.sortBy( filteredTerms, term => I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
+    defaultValue: term.label
+  } ) );
 }
 
 export function setControlledTermsForTaxon( taxon, terms = [] ) {

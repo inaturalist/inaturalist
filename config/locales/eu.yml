@@ -568,6 +568,7 @@ eu:
   cc_by_sa_name: Esleipena-Berdin partekatu
   cc_used_under_a: "Creative Commons, honen mende erabilita:"
   change_admin: Administratzailea Aldatu
+  #Button to change the cover (or banner) image for a project
   change_cover: Aldatu azala
   change_descriptions:
     split: Espeziea edo taldea bereizita dago
@@ -1128,10 +1129,6 @@ eu:
   id: Identifikazioa
   id_categories:
     tooltips:
-      improving: |
-        Komunitateak hitzartutako taxon honetako lehenengo iradokizuna. 
-        Honek lagundu zuen
-        komunitateko taxona hobetzen.
       maverick: |
         Taxona ez da taxon komunitatearen arbaso edo ondorengoa, hots, komunitateak ez du taxonekin bat egiten.
   identify: Identifikatu
@@ -1360,6 +1357,7 @@ eu:
   map: Mapa
   matching_species_will_shown_up_here: Topatzen dituzun espezieak hemen azalduko dira. Mapak maila azalduko du %{place}(e)k espezie horietakoren bat baldin badu.
   medium: erdia
+  #As in members of a project
   members: Kideak
   merge: Konbinatu
   merge_it_with_another_place: Beste leku batekin konbinatu
@@ -2206,7 +2204,6 @@ eu:
   they_have_been_invited: ...haiek dagoeneko gonbidatuak izan dira.
   third_person_possessive_singular: "%{object_phrase}-(r)en %{noun}"
   this: hau
-  this_is_a_cached_summary_based_on: 'Hau taxon honen cache-laburpena da, zure zera honetan oinarritua:'
   this_is_a_life_list_of: 'Honen bizitzako zerrenda da hau:'
   this_is_more_convenient_way_find_parent: Identifikadore nagusia topatzeko modu komenigarriagoa da hau. Identifikadore nagusia da benetan gordeta geratzen dena.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
@@ -2373,7 +2370,6 @@ eu:
   we_had_trouble_saving_comment: "Arazoak izan genituen aipamena gordetzeko:"
   we_support_flickr: Flickr-ekin bateragarriak gara irudiak biltegiratzean eta denbora laburrean irudiak biltegiratzeko beste baliabide batzuk gehitzea espero dugu.
   welcome: Ongi etorri
-  welcome_back: Ongi etorri berriro ere
   welcome_to_inat: "Ongi etorri %{site_name}-(e)ra!"
   welcome_to_x_project: "Ongi etorri %{project} proiektura"
   what: Zer
@@ -2396,7 +2392,6 @@ eu:
   widget: Widget-a
   widget_code: Widget-aren kodea
   widget_for: 'Widget-a honetarako:'
-  wikipedia_entry: Wikipegia-ko erregistroa
   with: honekin
   with_errors: Erroreekin
   wondering_what_to_do_next: Hemen urrats batzuk topa ditzakezu natura-munduaren behaketa eta identifikazioan hasteko
@@ -2843,6 +2838,12 @@ eu:
         email: Posta
         name: Izena
         time_zone: Ordu-zona
+    errors:
+      models:
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_missing: "Onddoen Behatzailearen API gakoa galdu egin da"
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"

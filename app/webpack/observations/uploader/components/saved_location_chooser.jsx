@@ -162,8 +162,9 @@ class SavedLocationChooser extends React.Component {
                 key={`saved-location-${sl.id}`}
                 className={i === current ? "current" : ""}
               >
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  className="btn btn-nostyle choose-button"
                   onClick={e => {
                     e.preventDefault( );
                     onChoose( sl );
@@ -171,6 +172,7 @@ class SavedLocationChooser extends React.Component {
                     return false;
                   }}
                   onMouseOver={( ) => this.setState( { current: i } )}
+                  onFocus={( ) => this.setState( { current: i } )}
                 >
                   { sl.title }
                   <dl className="small text-muted">
@@ -181,9 +183,10 @@ class SavedLocationChooser extends React.Component {
                     <dt>{ I18n.t( "acc" ) }</dt>
                     <dd>{ sl.positional_accuracy }</dd>
                   </dl>
-                </a>
+                </button>
                 <button
                   type="button"
+                  className="remove-button"
                   onClick={( ) => {
                     if ( confirm( I18n.t( "are_you_sure?" ) ) ) {
                       removeLocation( sl );

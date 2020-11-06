@@ -85,7 +85,10 @@ function fetchObservation( observation ) {
     const { currentUser, preferredPlace } = s.config;
     const params = {
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
-      locale: I18n.locale
+      locale: I18n.locale,
+      // Need this to check if a project curator has permission to see the
+      // coordinates
+      include_new_projects: true
     };
     return iNaturalistJS.observations.fetch( [obs.id], params )
       .then( response => {

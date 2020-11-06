@@ -70,6 +70,7 @@ class TaxonName < ActiveRecord::Base
     :PORTUGUESE          =>  'Portuguese',
     :RUMANIAN            =>  'Rumanian',
     :RUSSIAN             =>  'Russian',
+    :SINHALA             =>  'Sinhala',
     :SLOVAK              =>  'Slovak',
     :SPANISH             =>  'Spanish',
     :SWEDISH             =>  'Swedish',

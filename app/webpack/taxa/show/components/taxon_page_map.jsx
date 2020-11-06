@@ -50,6 +50,7 @@ const TaxonPageMap = ( {
         gestureHandling="auto"
         currentUser={config.currentUser}
         updateCurrentUser={updateCurrentUser}
+        showLegend
       />
     );
   } else {

@@ -86,6 +86,12 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   outline: none;
 }
 
+.bootstrap button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
 .bootstrap .more button.btn {
   border-radius: 20px;
   padding: 5px 15px;
@@ -162,6 +168,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   h3 {
     text-align: center;
     margin-top: 5px;
+    button.nostyle {
+      outline: none;
+    }
     .fa {
       font-size: 13px;
       font-weight: 100;
@@ -214,6 +223,16 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-size: 12px;
     line-height: 12px;
     vertical-align: text-top;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+  }
+  .icon-collapse + .icon-expand {
+    margin-left: 2px;
+  }
+  .icon-focus {
+    font-size: 10px;
   }
   & > .fa-chevron-down {
     margin-left: 2px;
@@ -224,14 +243,15 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 .name-label {
   display: inline-block;
-  &.featured {
+  &.featured .display-name {
     font-weight: 600;
     color: $inat-green;
   }
-  &.featured-ancestor {
+  &.featured-ancestor .display-name {
     font-weight: 600;
   }
 }
+
 .bootstrap .badge.green {
   padding: 3px 7px 1px 7px;
   vertical-align: inherit;
@@ -262,6 +282,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .stat {
     padding: 0 15px;
     display: block;
+    outline: none;
+    margin: 0px auto;
     &.clicky{
       cursor: pointer;
     }
@@ -271,6 +293,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     .attr {
       font-weight: 700;
       margin-right: 4px;
+      &:after {
+        content: ":"
+      }
     }
     &.selected .attr {
       font-weight: 800;
@@ -296,7 +321,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       margin-top: 20px;
     }
   }
-  .SpeciesGrid.unobserved .empty, .ObservationsGrid .empty {
+  .SpeciesGrid.unobserved .empty {
     margin-top: 74px;
   }
 }
@@ -359,7 +384,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       height: 60px;
       padding: 10px;
       position: relative;
-      padding-right: 86px;
+      padding-right: 75px;
       white-space: nowrap;
       .display-name {
         font-size: 17px;
@@ -466,7 +491,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList .tree > li > .name-row {
   font-size: 18px;
-  padding: 2px 0px 2px 0px;
+  padding: 3px 0px 4px 0px;
   font-weight: 300;
 }
 
@@ -476,7 +501,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList ul.nested {
   font-size: 15px;
-  font-weight: 700;
 }
 
 #TaxaList .ancestry {
@@ -549,6 +573,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         font-size: 20px;
         float: right;
         cursor: pointer;
+        outline: none;
       }
     }
     .PlaceAutocomplete .form-group {
@@ -567,6 +592,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       border: none;
       font-weight: 700;
       padding: 5px 12px;
+      font-size: 12px;
+      margin-top: 5px;
       .caret {
         margin-left: 5px;
       }
@@ -579,6 +606,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       li {
         padding: 3px 20px;
         cursor: pointer;
+        a {
+          padding: 0;
+          line-height: inherit;
+          outline: none;
+        }
         &:not(:first-child) {
           margin-top: 2px;
         }
@@ -600,8 +632,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 .ExportModal {
+  .modal-header {
+    font-size: 24px;
+  }
   .modal-body {
     font-size: 16px;
+    .export-filters .intro:after {
+      content: ":"
+    }
     ul {
       list-style: none;
       padding-left: 10px;
@@ -614,7 +652,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
           font-weight: normal;
           .filter-label {
             font-weight: 700;
-            margin-left: 4px;
           }
         }
       }

@@ -250,6 +250,27 @@ ru:
   about_this_project: Об этом Проекте
   about_trips_html: |
     <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Где</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Свести в таблицу данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии видов из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
+  about_trusting_projects: О доверительных проектах
+  about_trusting_projects_options_any: Все ваши наблюдения в этом проекте
+  about_trusting_projects_options_any_desc: |-
+    Сюда входят наблюдения, для которых вы установили значения геоприватности "скрытая" или "конфиденциальная", т.е. наблюдения в вашем дворе или в местах, о которых вы не хотите чтобы узнали другие люди.
+  about_trusting_projects_options_taxon: |-
+    Только те ваши наблюдения в этом проекте, координаты которых скрыты для находящихся под угрозой исчезновения таксонов
+  about_trusting_projects_options_taxon_desc: |-
+    Многим проектам необходим доступ к координатам, которые скрыты из-за того, что наблюдение содержит таксон, находящийся под угрозой.
+  about_trusting_projects_overview: |-
+    Предоставление доступа к скрытым координатам позволит менеджерам этого
+    проекта увидеть истинное, не скрытое местоположение ваших наблюдений в этом проекте. Это особенно важно в тех ситуациях, когда ученым или менеджерам ресурсов нужен доступ к точным координатам для анализа и принятия решений.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Вот те менеджеры проекта, у которых будет доступ к скрытым вами координатам:
+  about_trusting_projects_warning: |-
+    Обратите внимание, что менеджеры проекта могут изменить параметры проекта, включив в них любое из ваших наблюдений, и они могут добавлять или удалять в любое время менеджеров проекта. Вы будете получать уведомления об этих изменениях, но вы по существу доверяете этому проекту данные о вашем конфиденциальном местоположении, поэтому будьте осторожны.
+    .
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Вы можете выбрать, с кем готовы делиться крытыми координатами
   about_x: "О %{x}"
   acc: 'Точность (м)'
   account: Учётная запись
@@ -571,6 +592,27 @@ ru:
   announcements: Объявления
   any: любой
   any_: Любой
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Любое
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Любое
+  #Label for an option to show content from any date
+  any_date: Любая
+  #Label for an option to show content with any establishment means
+  any_establishment: Любой
+  #Label for an option to show content with any license
+  any_license: Любая
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Любой
+  #Label for an option to show content from any project
+  any_project: Любой
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Любой
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Любые
+  #Label for an option to show/include content by any user
+  any_user: Любой
   anyone: Любой
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: "Применить В неволе / культивируемое"
@@ -792,6 +834,7 @@ ru:
   cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: "Creative Commons, используется по"
   change_admin: Изменить администратора
+  #Button to change the cover (or banner) image for a project
   change_cover: Изменить обложку
   change_descriptions:
     split: Старый таксон разделяется на несколько новых таксонов
@@ -855,6 +898,7 @@ ru:
   check_out_my_observations_at: Если вы хотите, вы можете проверить мои наблюдения на
   check_out_our_blog: Загляните в наш блог
   check_out_what_the_observation: Проверьте, как выглядит наблюдение, которое вы пытаетесь идентифицировать.
+  check_out_your_new_and_improved_list_list: Выгрузить свой новый улучшенный список жизни
   check_this_box_if_html: |
     Установите этот флажок, если вы хотите использовать 
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>лицензию Creative Commons С указанием авторства-Некоммерческая</a> для загружаемого контента. Это означает, что любой может копировать и повторно использовать ваши фото и/или наблюдения, не спрашивая вашего разрешения, поскольку они признали, что не будут использовать работы в коммерческих целях. Вы можете выбрать другой вид лицензии, но эта - наилучшая для совместного использования с исследователями.
@@ -1009,12 +1053,20 @@ ru:
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
-    teneral: Взрослые, которые недавно окуклились, но еще не достигли своей окончательной взрослой формы
+    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
     cannot_be_determined: Не может быть определен на основании представленных доказательств
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
   coordinates: Координаты
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Только полные координаты
+  coords_viewable_for_proj_desc: |
+    Показывать только те наблюдения этого проекта, для которых вы можете видеть "истинные" координаты, включая не скрытые наблюдения, скрытые наблюдения
+    тех, кто вам доверяет, скрытые наблюдения тех, кто в чем-то доверяет этому проекту, и скрытые из-за таксонов , находящихся под угрозой, наблюдения, тех, кто доверяет в том же этому проекту.
   copy: Копировать
   copy_and_paste_the_following_code_to: Скопируйте и вставьте следующий код, чтобы разместить эту оценку на другой веб-странице.
   copy_and_paste_this_into_your_own_html: Скопируйте и вставьте это в ваш HTML.
@@ -1163,6 +1215,7 @@ ru:
   delete: Удалить
   delete_all: Удалить всё
   delete_conversation: Удалить переписку
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: удалить обложку?
   delete_icon?: Удалить иконку?
   delete_photo: Удалить фото
@@ -1224,6 +1277,11 @@ ru:
     Если вы не посылали этот запрос, проигнорируйте это письмо.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будет изменён, пока Вы не перейдете по указанной ссылке и не укажете новый пароль.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Ваш аккаунт был заблокирован из-за чрезмерного количества неудачных попыток входа.
+  devise_unlock_instructions_click_the_link: |
+    Нажмите на ссылку ниже, чтобы разблокировать свой аккаунт:
+  devise_unlock_instructions_unlock: Разблокировать аккаунт
   discoveries: Открытия
   did_not_send_invitations_because: Не отправил приглашения следующим, потому что...
   did_you_mean: 'Возможно, вы имеете в виду'
@@ -1678,7 +1736,7 @@ ru:
       leading: |
         Таксон происходит от таксона сообщества. Эта идентификация может привести к правильному ответу.
       improving: |
-        Первое предложение этого таксона, с которым сообщество впоследствии согласилось. Это помогло уточнить таксон сообщества.
+        Первое предложение этого таксона, с которым сообщество согласилось. Это помогло уточнить таксон сообщества.
       maverick: |
         Таксон не является потомком или предком таксона сообщества, т.е. сообщество не согласно с этим таксоном.
   id_withdrawn: Отзыв идентификации
@@ -1856,6 +1914,7 @@ ru:
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
   learn_more: Узнать больше
+  learn_more_on_the_blog: Подробнее в блоге
   learn_more_raquo: "Узнать больше &raquo;"
   learn_what_these_licenses_mean: Узнайте, что означают эти лицензии
   least_concern: Под наименьшей угрозой
@@ -1898,6 +1957,7 @@ ru:
     italian: Итальянский
     japanese: Японский
     korean: Корейский
+    latvian: Латышский
     lithuanian: Литовский
     luxembourgish: Люксембургский
     maltese: Мальтийский
@@ -2008,6 +2068,7 @@ ru:
     ko: Корейский
     lb: Люксембургский
     lt: Литовский
+    lv: Латышский
     mk: Македонский
     nb: Норвежский (букмол)
     nl: Голландский
@@ -2114,6 +2175,7 @@ ru:
     Член <a href="%{url}">iNaturalist Network</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Член %{partial_inat_network_tag_html}iNaturalist Network,</a> совместной инициативы %{cas_tag_html} и %{nat_geo_tag_html}.
+  #As in members of a project
   members: Участники
   membership_model: Модель членства
   mentioned_you_in_noun_html: "%{user} упомянул вас в %{noun}"
@@ -2258,13 +2320,12 @@ ru:
   needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, часть сети iNaturalist
-    Network, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на %{site_name}?
+    <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> и делиться данными с местными организациями?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, фокусируется на биоразнообразии и людях в Финляндии. Хотите ли вы изменить свою сетевую принадлежность с iNaturalist.org на iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в Финляндии. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>iNaturalist Suomi</strong> и делиться данными с местными организациями?
   network_affiliation_prompt_from_other_site_html: |
     Хотите ли вы изменить свою принадлежность с <strong>%{other_site_name}</strong> на
     <strong>%{site_name}</strong>?
@@ -2347,6 +2408,7 @@ ru:
   no_matching_places: Нет соответствующих мест
   no_matching_projects: Нет соответствующих проектов
   no_matching_species: Нет соответствующих видов.
+  no_matching_taxa: Нет подходящих таксонов
   no_matching_users: Нет соответствующих пользователей.
   no_members_yet: "Пока нет участников."
   no_messages_yet: Пока нет сообщений
@@ -3163,6 +3225,19 @@ ru:
     zimbabwe: Зимбабве
   places_of_interest: Достопримечательности
   places_merged_successfully: Места объединены успешно!
+  places_warning_export_complex_boundary_html: |
+    Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
+    где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
+  places_warning_look_for_existing_html: |
+    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_projects_can_have_multiple_places: |
+    Когда вы пытаетесь создать место для границы проекта, проекты могут состоять из нескольких мест. Например, если вы хотите сделать проект для Новой Зеландии и Австралии, вы можете просто добавить требования для двух мест вместо того, чтобы создавать новые.
+  places_warning_new_places_are_slow_html: |
+    Новые места - один из самых больших источников замедления iNat, поэтому <strong>пожалуйста, подумайте о том, чтобы не создавать новое место</strong>. Хотя небольшие места, содержащие только несколько тысяч наблюдений, обычно считаются приемлемыми, но если вы создаёте новое место, содержащее большое количество наблюдений, вы замедлите iNat для всех остальных. Вот несколько альтернативных подходов:
+  places_warning_editing_places_is_slow: |
+    Редактирование границ места - один из основных источников замедления работы iNat. Если вы можете этого избежать, не добавляйте, не изменяйте и не удаляйте границы мест, если только это не является абсолютно необходимым.
+  places_warning_the_future: |
+    Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
   please_add_this_observation_to: Пожалуйста, добавьте это наблюдение к
@@ -3295,15 +3370,35 @@ ru:
   ranks:
     stateofmatter: Форма
     kingdom: Царство
+    x_kingdoms:
+      one: Царство
+      few: Царства
+      many: Царств
+      other: Царств
     subkingdom: Подцарство
     phylum: Тип
+    x_phyla:
+      one: Тип
+      few: Типа
+      many: Типов
+      other: Типов
     subphylum: Подтип
     superclass: Надкласс
     class: Класс
+    x_classes:
+      one: Класс
+      few: Класса
+      many: Классов
+      other: Классов
     subclass: Подкласс
     infraclass: Инфракласс
     superorder: Надотряд
     order: Отряд
+    x_orders:
+      one: Отряд
+      few: Отряда
+      many: Отрядов
+      other: Отрядов
     suborder: Подотряд
     infraorder: Инфраотряд
     subterclass: Надкласс
@@ -3313,11 +3408,21 @@ ru:
     superfamily: Надсемейство
     epifamily: Эписемейство
     family: Семейство
+    x_families:
+      one: Семейство
+      few: Семейства
+      many: Семейств
+      other: Семейств
     subfamily: Подсемейство
     supertribe: Надтриба
     tribe: Триба
     subtribe: Подтриба
     genus: Род
+    x_genera:
+      one: Род
+      few: Рода
+      many: Родов
+      other: Родов
     genushybrid: Genus hybrid (GeoPlanet)
     subgenus: Подрод
     section: Секция
@@ -3325,6 +3430,11 @@ ru:
     complex: Комплекс
     #Singular
     species: Вид
+    x_species:
+      one: Вид
+      few: Вида
+      many: Видов
+      other: Видов
     hybrid: Гибрид
     #Singular
     subspecies: Подвид
@@ -3344,6 +3454,7 @@ ru:
   reason_you_are_flagging_this_item: Причина, по которой вы пометили этот пункт.
   recaptcha_verification_failed: ошибка проверки reCAPTCHA
   receive_email_notifications_when_people_leave_you: Получать уведомления по электронной почте о
+  receive_project_journal_notifications?: Получать уведомления от журнала проекта?
   receive_updates_from_this_project: Получать обновления этого проекта
   recent: Последние
   recent_evidence_of_organism: Свежие свидетельства существования организма
@@ -4032,7 +4143,6 @@ ru:
   third_person_possessive_plural: "%{noun}%{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
-  this_is_a_cached_summary_based_on: Это кэшированная сводка этого таксона на основе его
   this_is_a_life_list_of: Это список жизни для
   this_is_a_life_list_from_place_html: "Это список жизни для %{place}"
   this_is_a_life_list_of_taxon_in_place: "Это список жизни %{taxon} для %{place}"
@@ -4113,9 +4223,12 @@ ru:
   trending: Анализ тенденций
   trends: Тенденции
   trip_target_list_info: 'Любые виды, включённые в этот целевой список, которые не были найдены в пределах радиуса и продолжительности этой поездки, будут интерпретироваться как отсутствующие. <a href="/pages/trips">Подробнее</a>.'
+  #Noun
+  trust: Доверять
   trusted: Доверенный
   trusted_project?: Надежный проект?
   trust_this_person_with_your_private_coordinates: Доверить этому человеку ваши скрытые координаты
+  trust_this_project_with_your_private_coordinates?: Доверить этому проекту скрытые координаты?
   trust_with_private_coordinates: Доверить скрытые координаты
   try_adding_species_form: Попробуйте добавить некоторые виды, используя форму на этой странице.
   twitter: Twitter
@@ -4339,6 +4452,7 @@ ru:
   view_more_observations_of_x_project: "Посмотреть дополнительные наблюдения из %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Посмотреть ещё наблюдения %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Посмотреть ещё непроверенные"
+  view_my_life_list: Посмотреть свой список жизни
   view_observation: Посмотреть наблюдение
   view_observations: Посмотреть наблюдения
   view_observation_flags: Посмотреть флаги наблюдения
@@ -4401,7 +4515,6 @@ ru:
   website: Веб-сайт
   week_of_date: "Неделя %{date}"
   welcome: добро пожаловать
-  welcome_back: Добро пожаловать вновь
   welcome_back!: Добро пожаловать вновь!
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
@@ -4450,7 +4563,6 @@ ru:
     <a href="%{url}">"%{title}"</a>, которая выпущена под лицензией 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
-  wikipedia_entry: Источник в Википедии
   with: с
   withdraw: Отозвать
   withdrawing: Отзыв...
@@ -4502,7 +4614,15 @@ ru:
   year_on_site: "Год на %{site}%{year}"
   yellow: жёлтый
   'yes': "Да"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Да, но только для моих наблюдений таксонов, находящихся под угрозой, а не в том случае, когда я задал геоприватность
   yes_find_them!: "Да, найдите их!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Да, для любых моих наблюдений"
   yes_i_want_to_join: Да, я хочу присоединиться
   yes_license_my_childs_observations: Да, лицензируйте фото, звуки и наблюдения моего ребенка таким образом, чтобы ученые могли использовать данные.
   yes_license_my_observations_so_scientists_can_use: Да, лицензируйте мои фото, звуки и наблюдения таким образом, чтобы ученые могли использовать мои данные.
@@ -4815,6 +4935,59 @@ ru:
       show:
         reuse_desc: |
           Вы можете скопировать этот таксон в другое руководство. Если вы являетесь одним из редакторов этого руководства, будет скопировано всё, но если вы не являетесь редактором, будет скопирован только лицензионный контент.
+    lifelists:
+      list_view: В виде списка
+      tree_view: В виде дерева
+      observed_species: Наблюдаемые виды
+      unobserved_species: Виды, наблюдений которых не было
+      all_species: Все виды
+      all_unobserved_species: Все виды, наблюдений которых не было
+      observations_at_this_taxon: Наблюдения за этим таксоном
+      observations_within_this_taxon: Наблюдения в рамках этого таксона
+      all_observations: Все наблюдения
+      total_observations: Итого наблюдений
+      filter_by: Фильтр по
+      filtered_by: Отфильтровано по
+      apply_filters_to_export: Применить фильтры к экспорту
+      restrict_to_leaf_taxa: Ограничиться листьями таксонов
+      restrict_to_taxon: Ограничиться %{taxon}
+      restrict_to_taxa_observed_in_place: Ограничиться таксонами, наблюдаемыми в %{place}
+      exporting_all_x_taxa:
+        one: Экспорт %{count} таксона
+        few: Экспорт всех %{count} таксонов
+        many: Экспорт всех %{count} таксонов
+        other: Экспорт всех %{count} таксонов
+      exporting_x_taxa:
+        one: Экспорт %{count} таксона
+        few: Экспорт %{count} таксонов
+        many: Экспорт %{count} таксонов
+        other: Экспорт %{count} таксонов
+      no_observations_found_in_place: В %{place} наблюдения не найдены.
+      no_observations_found_within_this_taxon_in_place: В %{place} в рамках этого таксона наблюдения не найдены.
+      no_species_found_within_this_taxon_in_place: В %{place} виды в рамках этого таксона не найдены.
+      no_species_found_in_place: В %{place} виды не найдены.
+      no_unobserved_species_in_place: Нет наблюдаемых видов в %{place}.
+      no_unobserved_species_within_this_taxon: Не осталось ненаблюдавшихся видов в рамках этого таксона.
+      no_unobserved_species_within_this_taxon_in_place: В %{place} не осталось ненаблюдавшихся видов в рамках этого таксона.
+      reset_place_filter: Сбросить фильтр места
+      all_observations_in_this_taxon: Все наблюдения этого таксона
+      observations_of_exactly_this_taxon: Наблюдения конкретно этого таксона
+      focus_tree_on_this_taxon: Сфокусироваться в дереве на этом таксоне
+      expand_all_nodes_in_this_branch: Развернуть все узлы в этой ветке
+      collapse_this_branch: Свернуть эту ветку
+      dropdowns:
+        sort: Сортировать
+        taxonomic: Таксономический
+        name: Название
+        most_observed: Наиболее наблюдаемые
+        least_observed: Наименее наблюдаемые
+        date_added_newest: Дата добавления, от новых к старым
+        date_added_oldest: Дата добавления, от старых к новым
+        ancestry: Предки
+        show: Показать
+        children: Дети
+        simplified_tree: Упрощённое дерево
+        full_taxonomy: Полная таксономия
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5169,6 +5342,17 @@ ru:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Пожалуйста, проверьте правописание для каждой записи. Если ваше правописание правильное, найдите вид в %{search_taxa_url}. Если имя всё ещё не ищется в базе данных %{site_name}, вам нужно добавить его до того, как начнётся ваша массовая загрузка. Используйте поле внизу страницы поиска, чтобы импортировать новые имена.  Если имя присутствует, но применяется к нескольким допустимым таксонам, попробуйте использовать более или менее конкретное имя, которое соответствует только одному таксону.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Поскольку вы доверили этому проекту скрытые координаты <a
+          href="%{obs_url}">некоторых ваших наблюдений</a>, администраторы могут получить доступ к большему количеству ваших скрытых координат, чем тогда, когда вы доверяли этому проекту. Вам следует пересмотреть список администраторов и требования к проекту, чтобы убедиться, что вы по-прежнему доверяете этому проекту свои наблюдения:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Требования к наблюдениям следующего проекта недавно изменились:
+        subject: Изменились требования к наблюдениям для проекта %{project}
+        you_can_change_html: |-
+          Вы можете изменить ваши предпочтения или оставить всё как есть <a href="%{url}">на странице проекта</a>
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Экспорт ваших наблюдений готов. К этому письму прикреплена копия, либо вы можете <a href="%{url}">загрузить ваш экспорт</a>.
@@ -5398,6 +5582,12 @@ ru:
         submission_models:
           any: Любой
           curators: кураторы проекта
+        trust_allow_members_to_trust: |-
+          Разрешить пользователям доверять этому проекту скрытые координаты
+        trust_help_desc: |-
+          Если вы хотите получить доступ к скрытым координатам скрытых наблюдений, эта опция позволит людям, присоединившимся к этому проекту, разрешить администраторам проекта доступ к этим скрытым координатам. Участники проекта смогут предоставить доступ к скрытым координатам любого из своих наблюдений в этом проекте или только к наблюдениям, которые скрыты из-за таксонов, находящихся под угрозой исчезновения.
+        trust_help_notification: |-
+          В то же время, каждый раз, когда вы изменяете требования проекта, это приведёт к уведомлению всех доверяющих участников проекта с тем, чтобы они могли решить, хотят ли они продолжать доверять вам с учетом новых требований.
         trusted_project_means: |
           Доверять проекту означает, что менеджеры проекта могут добавить в проект активы и пользовательские атрибуты проекта (например, баннер HTML, CSS). Доступ к пользовательским атрибутам проекта означает, что менеджеры проектов теоретически могут добавить вредоносный JavaScript, поэтому доверяйте только тем проектам, у которых как ответственные, так и технически грамотные менеджеры.
         you_can_preview: |
@@ -5485,6 +5675,8 @@ ru:
           Укажите фильтры, по которым наблюдения будут включаться в ваш проект. Вы можете выбрать несколько видов (или таксонов), мест, дат или других критериев для автоматического включения наблюдений.
         start_and_end_times_for_bioblitzes: Дата/время начала и окончания (для событий типа биоблицев)
         traditional_projects_cannot_be_copied: Традиционный проект не может быть скопирован
+        trusting_members_will_be_notified: |
+          Вы изменили требования к проекту или задали доверие пользователя. Это приведёт к уведомлению всех участников проекта, которые уже доверили проекту скрытые координаты, чтобы у них была возможность решить, хотят ли они по-прежнему доверять проекту с учетом новых требований.
         umbrella_project_features: "Особенности зонтичного проекта:"
         unique_url_for_outreach: Уникальный URL для охвата
         use_this_for_a_time_limited_event: |
@@ -5713,6 +5905,9 @@ ru:
           "Полный" таксон содержит <em>все</em> известные потомки таксонов указанного ранга, которые соответствуют политике курирования таксонов iNaturalist, независимо от того, наблюдались они или нет.  В настоящее время только администраторы сайта могут объявить таксоны полными.
         complete_rank_desc_html: |
           Ранг, при котором этот таксон является полным, например, если это семейство содержит все его роды, но не все его виды, это будет установлено в "род". По умолчанию - вид.
+        wikipedia_summary_desc_html: |
+          Краткое описание этого таксона основано на его <a target="_blank"
+          href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
       show:
         about_names_desc: |
           <p>
@@ -5918,6 +6113,9 @@ ru:
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         license_description_attribution_html: |
           Описания и &copy; изображений лицензии %{year} Creative Commons, используемой по лицензии <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a>
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Ежемесячная поддержка
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
@@ -6438,6 +6636,7 @@ ru:
     models:
       AssessmentSection: Раздел оценки
       Atlas: Атлас
+      BlockedUser: Заблокированный пользователь
       CompleteSet: Полный набор
       #Noun
       Flag: Флаг
@@ -6448,6 +6647,9 @@ ru:
       assessment_section:
         title: Название
         body: Текст
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Заблокированный пользователь
       conservation_status:
         status: Статус
         description: Описание
@@ -6618,6 +6820,7 @@ ru:
           attributes:
             base:
               api_key_in_use: "Импорт ключей API или их ожидание в очереди на импорт"
+              api_key_missing: "Отсутствует ключ API Наблюдателя Грибов"
         observation:
           attributes:
             base:
@@ -6672,6 +6875,11 @@ ru:
                 должен наблюдаться после %{time}
               must_be_observed_before: |
                 должен наблюдаться перед %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: У наблюдения нет даты и оно не учитывается
+              no_votable_coordinates: У наблюдения нет координат и оно не учитывается
         taxon:
           attributes:
             rank:
@@ -6723,6 +6931,12 @@ ru:
             email:
               must_look_like_an_email_address: должно выглядеть как адрес электронной почты
               domain_is_not_supported: домен не поддерживается
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Вы уже заблокировали этого пользователя
+              user_cannot_be_staff: |
+                Вы не можете блокировать персонал. Персонал iNat должен иметь возможность общаться со всеми на iNat, иметь доступ ко всем данным на iNat и быть окончательным посредником в спорах, так, чтобы блокировка не помешала ему общаться с вами. Если у вас возникли проблемы с сотрудником, пожалуйста, сообщите об этом одному из содиректоров iNat, или, если у вас возникли проблемы с одним из содиректоров, вы можете связаться с научным руководителем Института биоразнообразия и устойчивого развития науки Калифорнийской академии наук.
         user_parent:
           attributes:
             email:
@@ -6895,6 +7109,8 @@ ru:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Предупреждение
   wild: Дикий
   will_paginate:
     previous_label: "&#8592; Пред"

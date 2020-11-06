@@ -170,6 +170,31 @@ da:
   about_this_project: Om dette projekt
   about_trips_html: |
     <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
+  about_trusting_projects: Om Tillid til Projekter
+  about_trusting_projects_options_any: Alle dine observationer i dette projekt
+  about_trusting_projects_options_any_desc: |-
+    Dette omfatter observationer, hvor du har sat geofortrolighed til "sløret"
+    eller "fortrolig", f.eks. observationer fra din have eller steder du ikke ønsker, at
+    andre skal kende.
+  about_trusting_projects_options_taxon: |-
+    Kun dine observationer i dette projekt, som har slørede koordinater
+    grundet truede taksa
+  about_trusting_projects_options_taxon_desc: |-
+    Mange projekter har blot brug for adgang til koordinater, som er slørede, da
+    observationen afbilder en truet takson.
+  about_trusting_projects_overview: |-
+    Adgangstildeling til dine skjulte koordinater vil give projektadministratorerne mulighed for at se den reelle, uslørede placering af dine observationer i dette
+    projekt. Dette er ekstremt vigtigt i situationer, hvor forskere eller
+    ressourceforvaltere har behov for adgang til nøjagtige koordinater mhp. analyse og beslutningstagning.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    De projektadministratorer, som vil have adgang til dine skjulte koordinater, er:
+  about_trusting_projects_warning: |-
+    Bemærk, at projektadministratorer kan ændre projektparametrene til at inkludere alle af dine observationer, og de kan til enhver tid tilføje/fjerne projektadministratorer. Du adviseres om disse ændringer, men essentielt vælger du at stole på dette projekt ved at overlade dine private placeringsdata til det, så udvis omtanke.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Du kan vælge at dele skjulte koordinater for
   about_x: "Om %{x}"
   acc: 'Nøj. (m)'
   account: Konto
@@ -462,6 +487,27 @@ da:
   announcements: Meddelelser
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Hvilken som helst
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Hvilken som helst
+  #Label for an option to show content from any date
+  any_date: Hvilken som helst
+  #Label for an option to show content with any establishment means
+  any_establishment: Hvilken som helst
+  #Label for an option to show content with any license
+  any_license: Hvilken som helst
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Hvilken som helst
+  #Label for an option to show content from any project
+  any_project: Hvilken som helst
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Hvilken som helst
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Hvilken som helst
+  #Label for an option to show/include content by any user
+  any_user: Hvilken som helst
   anyone: Enhver
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -684,6 +730,7 @@ da:
   cc_by_sa_name: Kildeangivelse - Del på samme måde
   cc_used_under_a: "Creative Commons, brugt under en"
   change_admin: Skift administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Skift bannerbillede
   change_descriptions:
     split: Gammel takson opdelt i flere nye taksa
@@ -748,6 +795,7 @@ da:
   check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer på
   check_out_our_blog: Se vores blog
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere, ser ud
+  check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
     <a href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -904,12 +952,21 @@ da:
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
-    teneral: Udvokset, der for nylig har forpubbet sig, men endnu ikke har opnået sin endelige udvokset form
+    teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
   coordinates: Koordinater
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Kun m/ fulde koordinater
+  coords_viewable_for_proj_desc: |
+    Vis kun observationer fra dette projekt, for hvilke du kan se de "reelle"
+    koordinater, herunder uslørede observationer, slørede observationer fra
+    personer, som stoler på dig, slørede observationer fra personer, som tiltror dette projekt alle datatyper, og observationer sløret grundet truede taksa fra personer, som kun tiltror dette projekt samme data.
   copy: Kopiér
   copy_and_paste_the_following_code_to: Kopiér og indsæt følgende kode for at integrere denne vurdering på en anden webside.
   copy_and_paste_this_into_your_own_html: Kopiér og indsæt dette i din egen HTML.
@@ -1058,6 +1115,7 @@ da:
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slet bannerbillede?
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
@@ -1121,6 +1179,11 @@ da:
     Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Din konto er blevet låst grundet for mange mislykkede indlogningsforsøg.
+  devise_unlock_instructions_click_the_link: |
+    Klik på linket nedenfor, for at oplåse din konto:
+  devise_unlock_instructions_unlock: Oplås din konto
   discoveries: Opdagelser
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
@@ -1576,7 +1639,7 @@ da:
         Takson stammer fra fællesskabs takson. Denne identifikation kan føre til det
         rigtige svar.
       improving: |
-        Første forslag til dette takson, som fællesskabet efterfølgende var enige i. Dette hjalp med at forbedre fællesskabs taksonen.
+        Første forslag til denne takson, som fællesskabet er enige i. Dette hjælper med at forædle fællesskabstaksonen.
       maverick: |
         Takson er ikke en efterkommer eller stamfader til fællesskabs taksonen, dvs. fællesskabet er ikke enig i denne takson
   id_withdrawn: ID trukket tilbage
@@ -1754,6 +1817,7 @@ da:
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_more: Lær mere
+  learn_more_on_the_blog: Læs mere på bloggen
   learn_more_raquo: "Lær mere &raquo;"
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: Mindste bekymring
@@ -1796,6 +1860,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
     maltese: Maltesisk
@@ -1906,6 +1971,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
+    lv: Lettisk
     mk: Makedonsk
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -1979,7 +2045,7 @@ da:
   managers_can_do: Ledere kan gøre alt, hvad kuratorer kan gøre, samt redigere projektindstillinger og skrive projekt journalindlæg.
   managing_projects: Administrerer projekter
   map: Kort
-  map_legend: signaturforklaring
+  map_legend: Kortsymbolforklaring
   map_marker_size: kortmarkør størrelse
   map_of_observations: Observationskort
   maps:
@@ -2011,6 +2077,7 @@ da:
     Medlem af <a href="%{url}">iNaturalist Network</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem af %{partial_inat_network_tag_html}iNaturalist Network</a>, et fællesinitiativ fra %{cas_tag_html} og %{nat_geo_tag_html}.
+  #As in members of a project
   members: Medlemmer
   membership_model: Medlemskabsmodel
   mentioned_you_in_noun_html: "%{user} nævnte dig i %{noun}"
@@ -2158,14 +2225,14 @@ da:
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i %{place}. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til %{site_name}?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>%{site_name}</strong>?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, en del af det internationale iNaturalist
     Network, er fokuseret på biodiversitet og folk i Finland. Ønsker du at skifte din
-    kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
+    kontotilknytning fra <strong>%{inat_site_name}</strong> til <strong>iNaturalist Suomi</strong>?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
@@ -2248,6 +2315,7 @@ da:
   no_matching_places: Ingen matchende steder
   no_matching_projects: Ingen matchende projekter
   no_matching_species: Ingen matchende arter.
+  no_matching_taxa: Ingen matchende taksa
   no_matching_users: Ingen matchende brugere.
   no_members_yet: "Ingen medlemmer endnu."
   no_messages_yet: Ingen beskeder endnu
@@ -3236,15 +3304,27 @@ da:
   ranks:
     stateofmatter: Sagens kerne
     kingdom: Rige
+    x_kingdoms:
+      one: Rige
+      other: Riger
     subkingdom: Underrige
     phylum: Række
+    x_phyla:
+      one: Stamme
+      other: Stammer
     subphylum: Underrække
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klasser
     subclass: Underklasse
     infraclass: Infraklasse
     superorder: Superorden
     order: Orden
+    x_orders:
+      one: Indordning
+      other: Indordninger
     suborder: Underorden
     infraorder: Infraorden
     subterclass: Subterklasse
@@ -3254,11 +3334,17 @@ da:
     superfamily: Superfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familier
     subfamily: Underfamilie
     supertribe: Superstamme
     tribe: Stamme
     subtribe: Understamme
     genus: Slægt
+    x_genera:
+      one: Slægt
+      other: Slægter
     genushybrid: Slægtshybrid
     subgenus: Underslægt
     section: Sektion
@@ -3266,6 +3352,9 @@ da:
     complex: Kompleks
     #Singular
     species: Arter
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underarter
@@ -3285,6 +3374,7 @@ da:
   reason_you_are_flagging_this_item: Årsag til at du markerer dette emne.
   recaptcha_verification_failed: reCAPTCHA verifikation mislykkedes
   receive_email_notifications_when_people_leave_you: Modtag e-mail meddelelser om
+  receive_project_journal_notifications?: Modtag projektjournalnotifikationer?
   receive_updates_from_this_project: Modtag underretninger om dette projekt
   recent: Seneste
   recent_evidence_of_organism: Nylige beviser på en organisme
@@ -3960,7 +4050,6 @@ da:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
@@ -4041,9 +4130,12 @@ da:
   trending: Tendenser
   trends: Tendenser
   trip_target_list_info: 'Dette er et ikke overlappende sæt af det groveste taxa på din målliste. Alle taksa repræsenteret af slørede observationer er ekskluderet.'
+  #Noun
+  trust: Hav tillid til
   trusted: Betroet
   trusted_project?: Tillidsprojekt?
   trust_this_person_with_your_private_coordinates: Betro denne person med dine skjulte koordinater
+  trust_this_project_with_your_private_coordinates?: Betro dine skjulte koordinater til dette projekt?
   trust_with_private_coordinates: Betro med skjulte koordinater
   try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne side.
   twitter: Twitter
@@ -4265,6 +4357,7 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  view_my_life_list: Vis din livsliste
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -4328,7 +4421,6 @@ da:
   website: Hjemmeside
   week_of_date: "Ugen med %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbage
   welcome_back!: Velkommen tilbage!
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
@@ -4375,7 +4467,6 @@ da:
   wikipedia_attribution_cc_by_sa_3_html: |
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
-  wikipedia_entry: Wikipedia indgang
   with: med
   withdraw: Træk tilbage
   withdrawing: Trækker tilbage...
@@ -4421,7 +4512,16 @@ da:
   year_on_site: "Året på %{site} %{year}"
   yellow: gul
   'yes': "Ja"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Ja, men kun for mine observationer af truede taksa, ikke når jeg har opsat
+    geofortrolighed
   yes_find_them!: "Ja, find dem!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Ja, for enhver af mine observationer"
   yes_i_want_to_join: Ja, jeg ønsker at blive medlem
   yes_license_my_childs_observations: Ja, licensér mit barns fotos, lyde og observationer, så forskere kan bruge dataene (anbefales).
   yes_license_my_observations_so_scientists_can_use: Ja, licensér mine fotos, lyde og observationer, så forskere kan bruge mine data (anbefales).
@@ -4784,6 +4884,55 @@ da:
         reuse_desc: |
           Du kan kopiere denne takson til en anden Guide. Hvis du er en af redaktørerne for denne Guide, skulle alt blive kopieret, men hvis du ikke er det,
           vil det kun være det licenserede indhold, der blive kopieret.
+    lifelists:
+      list_view: Listevisning
+      tree_view: Trævisning
+      observed_species: Observerede arter
+      unobserved_species: Uobserverede arter
+      all_species: Alle arter
+      all_unobserved_species: Alle uobserverede arter
+      observations_at_this_taxon: Observationer hos denne takson
+      observations_within_this_taxon: Observationer indenfor denne takson
+      all_observations: Alle observationer
+      total_observations: Observationer i alt
+      filter_by: Filtrér efter
+      filtered_by: Filtreret efter
+      apply_filters_to_export: Anvend filtre til eksport
+      restrict_to_leaf_taxa: Begræns til bladtaksa
+      restrict_to_taxon: Begræns til %{taxon}
+      restrict_to_taxa_observed_in_place: Begræns til taksaobservationer for %{place}
+      exporting_all_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer alle %{count} taksa
+      exporting_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer alle %{count} taksa
+      no_observations_found_in_place: Ingen observationer fundet for %{place}
+      no_observations_found_within_this_taxon_in_place: Ingen observationer fundet indenfor denne takson for %{place}.
+      no_species_found_within_this_taxon_in_place: Ingen arter fundet indenfor denne takson for %{place}.
+      no_species_found_in_place: Ingen arter fundet for %{place}
+      no_unobserved_species_in_place: Ingen uobserverede arter for %{place}.
+      no_unobserved_species_within_this_taxon: Ingen uobserverede arter indenfor denne takson.
+      no_unobserved_species_within_this_taxon_in_place: Ingen uobserverede arter indenfor denne takson for %{place}.
+      reset_place_filter: Nulstil placeringsfilter
+      all_observations_in_this_taxon: Alle observationer i denne takson
+      observations_of_exactly_this_taxon: Observationer præcis denne takson
+      focus_tree_on_this_taxon: Fokusér træ på denne takson
+      expand_all_nodes_in_this_branch: Udvid alle knudepunkter for denne gren
+      collapse_this_branch: Sammenfold denne gren
+      dropdowns:
+        sort: Sortér
+        taxonomic: Taksonomisk
+        name: Navn
+        most_observed: Mest observeret
+        least_observed: Mindst observeret
+        date_added_newest: Tilføjelsesdato, nyeste til ældste
+        date_added_oldest: Tilføjelsesdata, ældste til nyeste
+        ancestry: Herkomst
+        show: Vis
+        children: Underordnede
+        simplified_tree: Forenklet træ
+        full_taxonomy: Fuld taksonomi
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5206,6 +5355,20 @@ da:
           søgesiden for at importere nye navne. Hvis navnet findes, men
           gælder for flere gyldige taksa, så prøv at bruge mere eller mindre specifikke
           navne, der kun matcher en enkelt takson.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Da du har betroet dette projekt med de skjulte koordinater for <a
+          href="%{obs_url}">nogle af dine observationer</a>, kan administratorerne nu
+          have adgang til flere af dine skjulte koordinater, end de havde på det
+          tidspunkt, hvor du angav dette projekt som betroet. Du bør gennemgå listen over administratorer og projektforudsætningerne for at sikre, at du fortsat tiltror dette -projekt med dine observationer:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Observationsforudsætningerne i flg. projekt er for nylig ændret:
+        subject: Projektobservationsforudsætninger ændret for %{project}
+        you_can_change_html: |-
+          Du kan ændre dine præferencer eller forlade projektet via
+          <a href="%{url}">projektsiden</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Dine observations eksport er klar. Der er en kopi vedhæftet denne email, eller du kan
@@ -5482,6 +5645,17 @@ da:
         submission_models:
           any: alle
           curators: projektkuratorer
+        trust_allow_members_to_trust: |-
+          Tillad medlemmer at betro skjulte koordinater til dette projekt
+        trust_help_desc: |-
+          Vil du kunne tilgå de skjulte koordinater for slørede observationer,
+          vil denne indstilling tillade personer, som har tilmeldt sig dette projekt, mulighed for at betro projektadministratorer adgang til disse skjulte koordinater. Projektmedlemmer vil kunne tildele adgang til de skjulte koordinater for enhver
+          af deres observationer, som vises i dette projekt, eller kun de
+          observationer, som er slørede grundet truede taxa.
+        trust_help_notification: |-
+          Dette vil dog også advisere alle betroende projektmedlemmer, hver gang
+          du ændrer projektforudsætningerne, så de kan revurdere, hvorvidt de
+          ønsker fortsat at stole på dig baseret på de nye forudsætninger.
         trusted_project_means: |
           At stole på et projekt betyder, at projektledere kan tilføje projekt
           aktiver og brugerdefinerede projektattributter (f.eks. banner HTML, CSS). Adgang til brugerdefinerede projektattributter betyder, at projektledere
@@ -5584,6 +5758,10 @@ da:
           observationer, som automatisk bliver medtaget.
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
         traditional_projects_cannot_be_copied: Det oprindelige projekt kan ikke kopieres
+        trusting_members_will_be_notified: |
+          Du har ændret projektforudsætningerne eller slået brugertillid til. Dette
+          vil underrette alle projektmedlemmer, som allerede har betroet projektet
+          med skjulte koordinater, så de har mulighed for at beslutte, hvorvidt de ønsker fortsat at stole på projektet baseret på de nye forudsætninger.
         umbrella_project_features: "Paraplyprojekt egenskaber:"
         unique_url_for_outreach: Unik URL til opsøgning
         use_this_for_a_time_limited_event: |
@@ -5885,6 +6063,11 @@ da:
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
           Arter er standard.
+        wikipedia_summary_desc_html: |
+          Kort opsummering af denne takson baseret på dens <a target="_blank"
+          href="%{url}">Wikipedia-side</a>, der caches på ubestemt tid indtil
+          manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
+          hvilket automatisk opfriskes efter én uge.
       show:
         about_names_desc: |
           <P>
@@ -6125,6 +6308,9 @@ da:
           biodiversitets information fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedens Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
@@ -6640,6 +6826,7 @@ da:
     models:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
+      BlockedUser: Blokeret bruger
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
@@ -6650,6 +6837,9 @@ da:
       assessment_section:
         title: Titel
         body: Indhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokeret bruger
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6811,7 +7001,8 @@ da:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API nøgle import eller kø for import"
+              api_key_in_use: "Import for denne Mushroom Observer-bruger kører eller er sat i kø til import"
+              api_key_missing: "Champignonobservator API-nøgle mangler"
         observation:
           attributes:
             base:
@@ -6929,6 +7120,20 @@ da:
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
               domain_is_not_supported: domæne er uunderstøttet
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Du har allerede blokeret dén bruger
+              user_cannot_be_staff: |
+                Du kan ikke blokere personale. iNat-personale skal kunne
+                kommunikere med alle på iNat, har adgang til alle data på
+                iNat, og er de endelige mæglere af tvister, så blokering
+                vil ikke forhindre dem i at kommunikere med dig. Hvis du har et
+                problem med et medlem af personalet, bedes du rapportere dette til en af 
+                iNat-underdirektørerne eller, hvis du har et problem med en af 
+                underdirektørerne, kan du kontakte Videnskabschef på
+                Institute for Biodiviersity and Sustainability Science på
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:

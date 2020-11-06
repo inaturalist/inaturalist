@@ -1,5 +1,6 @@
 class ProjectUsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
+  before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
   before_filter :load_record, :require_owner
   def update
     respond_to do |format|
@@ -16,6 +17,11 @@ class ProjectUsersController < ApplicationController
   private
   def project_user_params(options = {})
     p = options.blank? ? (params[:project_user] || {}) : options
-    p.permit(:preferred_curator_coordinate_access, :preferred_updates)
+    p.permit(
+      :preferred_curator_coordinate_access,
+      :preferred_updates,
+      :prefers_curator_coordinate_access_for,
+      :prefers_updates
+    )
   end
 end

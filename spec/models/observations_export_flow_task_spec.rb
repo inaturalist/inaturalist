@@ -198,6 +198,175 @@ describe ObservationsExportFlowTask do
       expect(csv.size).to eq 2
       expect(csv[1]).to include o.private_latitude.to_s
     end
+
+    describe "for collection projects" do
+      let(:place) { make_place_with_geom }
+      let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+      let(:project) {
+        p = Project.make!( project_type: "collection", user: user, prefers_user_trust: true )
+        p.project_observation_rules.create( operator: "observed_in_place?", operand: place )
+        p
+      }
+      def stub_api_requests_for_observation( o, options = {} )
+        Delayed::Worker.new.work_off
+        PlaceDenormalizer.denormalize
+        es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+        # make sure it's indexed
+        expect( es_o.id.to_i ).to eq o.id
+        # When you specify a project, the export will use the API, so we're
+        # stubbing the API response here
+        # This stubs the first request
+        stub_request(:get, /\/v1\/observations\?.*id_above=1[^\d]/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                { id: o.id }
+              ],
+              test: "stub working for first request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        # This stubs second and subsequent requests
+        stub_request(:get, /\/v1\/observations\?.*id_above=[2-9]/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: 1,
+              page: 2,
+              per_page: 1,
+              results: [],
+              test: "stub working for second request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        stub_request(:get, /\/v1\/observations\?.*per_page=1/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                { id: o.id }
+              ],
+              test: "stub working for total_entries request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        # stub the request to get collection project membership
+        stub_request(:get, /\/v1\/observations\/#{o.id}\?.*include_new_projects/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                {
+                  id: o.id,
+                  non_traditional_projects: options[:coordinates_not_viewable] ? [] : [
+                    project: {
+                      id: project.id
+                    }
+                  ]
+                }
+              ],
+              test: "stub working for second request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+      end
+      def export_csv_for_project( p )
+        ft = ObservationsExportFlowTask.make( user: p.user )
+        ft.inputs.build( extra: { query: "projects[]=#{p.id}" })
+        ft.save!
+        ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+        f = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) )
+        csv = f.to_a
+        f.close
+        csv
+      end
+      it "should include private coordinates if the observer trusts you with anything" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project)
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include o.private_latitude.to_s
+      end
+      it "should include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          taxon: make_threatened_taxon
+        )
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened and geoprivacy is obscured" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          taxon: make_threatened_taxon,
+          geoprivacy: Observation::OBSCURED
+        )
+        stub_api_requests_for_observation( o, coordinates_not_viewable: true )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).not_to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observation is not in the project" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude + 10,
+          longitude: place.longitude + 10,
+          geoprivacy: Observation::OBSCURED
+        )
+        stub_api_requests_for_observation( o, obs_not_in_project: true )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 1
+        expect( csv.to_s ).not_to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observer is not in the project" do
+        o = Observation.make!(
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        stub_api_requests_for_observation( o, coordinates_not_viewable: true )
+        csv = export_csv_for_project( project)
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).not_to include o.private_latitude.to_s
+      end
+    end
   end
 
   describe "columns" do

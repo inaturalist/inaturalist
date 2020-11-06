@@ -32,9 +32,9 @@ pt:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} primeira listagem de vida"
+    one: "%{count} primeira avistagem"
     #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} primeiras listagens de vida"
+    other: "%{count} primeiras avistagens"
   x_journal_posts_html:
     one: '<span class="count">1</span> publicação do boletim'
     other: '<span class="count">%{count}</span> publicações do boletim'
@@ -300,7 +300,7 @@ pt:
   add_to_favorites: Adicionar aos favoritos
   add_to_list: Adicionar a lista
   add_to_project: Adicione ao projeto
-  add_to_your_life_list: Adicione a sua life list!
+  add_to_your_life_list: Adicione a sua Lista de Vida!
   add_to_your_list: Adicione a sua lista
   add_your_email_to_get: |
     Adicione seu email para receber retorno sobre suas observações. Se prefere não compartilhar seu email, você pode verificar na própria página depois.
@@ -464,6 +464,27 @@ pt:
   announcements: Anúncios
   any: qualquer
   any_: Qualquer
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualquer
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualquer
+  #Label for an option to show content from any date
+  any_date: Qualquer
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualquer
+  #Label for an option to show content with any license
+  any_license: Qualquer
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualquer
+  #Label for an option to show content from any project
+  any_project: Qualquer
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualquer
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualquer
+  #Label for an option to show/include content by any user
+  any_user: Qualquer
   anyone: Qualquer um
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
@@ -685,6 +706,7 @@ pt:
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: "Creative Commons, utilizada sob uma"
   change_admin: Mudar Administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Altere a capa
   change_descriptions:
     split: A espécie ou grupo foi subdividida em outras
@@ -748,6 +770,7 @@ pt:
   check_out_my_observations_at: Se desejar, você pode ver minhas observações em
   check_out_our_blog: Confira nosso Blog
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
+  check_out_your_new_and_improved_list_list: Confira a sua nova e melhorada Lista de Vida!
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
@@ -901,7 +924,7 @@ pt:
     flowering: Flores visíveis, abertas e ainda presas à planta
     fruiting: Frutos visíveis e ainda anexados à planta
     no_evidence_of_flowering: Os meios de comunicação não dão provas de estruturas reprodutivas
-    teneral: Adulto que pupou recentemente mas ainda não alcançou sua forma final de adulto
+    teneral: Adulto que emergiu recentemente, mas ainda não atingiu sua forma final de adulto
     cannot_be_determined: Não pode ser determinado a partir da evidência fornecida
   controls: Controles
   convert: Converter
@@ -1055,6 +1078,7 @@ pt:
   delete: Apagar
   delete_all: Excluir tudo
   delete_conversation: Excluir conversa
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: apagar capa?
   delete_icon?: Excluir ícone?
   delete_photo: Excluir foto
@@ -1116,6 +1140,11 @@ pt:
     Se você não solicitou isso, ignore este e-mail.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sua senha não será alterada até que você acesse o link acima e crie uma nova.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Sua conta foi bloqueada devido a um número excessivo de tentativas de login incorretas.
+  devise_unlock_instructions_click_the_link: |
+    Clique no link abaixo para desbloquear sua conta
+  devise_unlock_instructions_unlock: Desbloqueie Sua Conta
   discoveries: Descobertas
   did_not_send_invitations_because: Não foram enviados convites para estes contatos porque...
   did_you_mean: 'Você quis dizer'
@@ -1573,7 +1602,7 @@ pt:
       leading: |
         Táxon proveniente do táxon da comunidade. Esta identificação pode estar seguindo rumo à resposta correta.
       improving: |
-        Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxiliou ao refinar o táxon da comunidade
+        Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxilia a refinar o táxon da comunidade.
       maverick: |
         Táxon não é um descendente ou ancestral da comunidade táxon, i.e. a comunidade não concorda com este táxon
   id_withdrawn: ID retirada
@@ -1751,6 +1780,7 @@ pt:
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
   learn_more: Saiba mais
+  learn_more_on_the_blog: Saiba mais no blog
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
   least_concern: Pouco preocupante
@@ -1792,6 +1822,7 @@ pt:
     italian: Italiano
     japanese: Japonês
     korean: Coreano
+    latvian: Letão
     lithuanian: Lituano
     luxembourgish: Luxemburguês
     maltese: Maltês
@@ -1902,6 +1933,7 @@ pt:
     ko: Coreano
     lb: Luxemburguês
     lt: Lituano
+    lv: Letão
     mk: Macedônio
     nb: Norueguês Bokmahl
     nl: Holandês
@@ -1975,7 +2007,7 @@ pt:
   managers_can_do: Moderadores podem fazer tudo que os coordenadores fazem, assim como editar a configuração dos projetos e escrever as publicações dos boletins informativos.
   managing_projects: Gerenciando projetos
   map: Mapa
-  map_legend: legenda do mapa
+  map_legend: Legenda do Mapa
   map_marker_size: tamanho do marcador no mapa
   map_of_observations: Mapa de Observações
   maps:
@@ -2009,6 +2041,7 @@ pt:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Membro da Rede iNaturalist do %{partial_inat_network_tag_html}</a>, uma
     iniciativa conjunta dos %{cas_tag_html} e do %{nat_geo_tag_html}.
+  #As in members of a project
   members: Membros
   membership_model: Modelo de adesão
   mentioned_you_in_noun_html: "%{user} mencionou você em %{noun}"
@@ -2151,18 +2184,6 @@ pt:
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_to_be_identified: Precisa ser identificado
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte da rede internacional iNaturalist ,
-    está focada na biodiversidade e nas pessoas de %{place}. Gostaria de mudar sua
-    afiliação de conta de iNaturalist.org para %{site_name}?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, parte da rede internacional iNaturalist,
-    está focada na biodiversidade e nas pessoas da Finlândia. Gostaria de mudar sua
-    afiliação de conta de iNaturalist.org para iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Você gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
@@ -2245,6 +2266,7 @@ pt:
   no_matching_places: Não existem lugares correspondentes
   no_matching_projects: Não existem projetos correspondentes
   no_matching_species: Não existem espécies correspondentes.
+  no_matching_taxa: Nenhum táxon correspondente
   no_matching_users: Não existem usuários correspondentes.
   no_members_yet: "Nenhum membro ainda"
   no_messages_yet: Nenhuma mensagem ainda
@@ -3196,15 +3218,27 @@ pt:
   ranks:
     stateofmatter: Estado da matéria
     kingdom: Reino
+    x_kingdoms:
+      one: Reino
+      other: Reinos
     subkingdom: Subreino
     phylum: Filo
+    x_phyla:
+      one: Filo
+      other: Filos
     subphylum: Subfilo
     superclass: Superclasse
     class: Classe
+    x_classes:
+      one: Classe
+      other: Classes
     subclass: Subclasse
     infraclass: Infraclasse
     superorder: Superordem
     order: Ordem
+    x_orders:
+      one: Ordem
+      other: Ordens
     suborder: Subordem
     infraorder: Infraordem
     subterclass: Subclasse
@@ -3214,11 +3248,17 @@ pt:
     superfamily: Superfamília
     epifamily: Epifamília
     family: Família
+    x_families:
+      one: Família
+      other: Famílias
     subfamily: Subfamília
     supertribe: Supertribo
     tribe: Tribo
     subtribe: Subtribo
     genus: Gênero
+    x_genera:
+      one: Gênero
+      other: Gêneros
     genushybrid: Gênero híbrido
     subgenus: Subgênero
     section: Seção
@@ -3226,6 +3266,9 @@ pt:
     complex: Complexo
     #Singular
     species: Espécies
+    x_species:
+      one: Espécie
+      other: Espécies
     hybrid: Híbrido
     #Singular
     subspecies: Subespécies
@@ -3536,7 +3579,7 @@ pt:
   sorry_we_dont_have_any_metadata_for_that_photo: "Desculpe, não existem metadados disponível para esta imagem."
   sorry_x_is_not_responding: "Desculpe, %{x} serviço não disponível. Por favor tente novamente mais tarde."
   sorry_you_can_only_add_1000_at_a_time: "Desculpe, é possível carregar apenas 1000 por vez."
-  sorry_you_cant_delete_your_own_life_list: "Desculpe, você não pode excluir a sua life list."
+  sorry_you_cant_delete_your_own_life_list: "Desculpe, você não pode excluir a sua Lista de Vida."
   sorry_you_need_to_be_signed_in_and: Desculpe, é preciso estar logado e ter uma conta do Flickr vinculada para postar marcações diretamente do Flickr.
   sort: Ordenar
   sort_by: Ordenar por
@@ -3898,10 +3941,9 @@ pt:
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
-  this_is_a_cached_summary_based_on: Este é um resumo em cache deste táxon baseado no seu trabalho
   this_is_a_life_list_of: Esta é a Lista de Vida de
   this_is_a_life_list_from_place_html: "Esta é uma lista de vida de %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Esta é uma lifelist de %{taxon} em %{place}"
+  this_is_a_life_list_of_taxon_in_place: "Esta é uma Lista de Vida de %{taxon} em %{place}"
   this_is_more_convenient_way_find_parent: Esta é uma forma mais conveniente de encontrar um identificador pai. É o identificar pai que de fato é salvo.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Este é um método mais simples de identificar um táxon. A identidade deste táxon é que é de fato salva. Esta busca funciona apenas para táxons ativos.
@@ -4197,6 +4239,7 @@ pt:
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver mais observações de %{taxon} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver mais não revisados"
+  view_my_life_list: Ver minha Lista de Vida
   view_observation: Ver observação
   view_observations: Ver observações
   view_observation_flags: Ver observações marcadas
@@ -4260,7 +4303,6 @@ pt:
   website: Site
   week_of_date: "Semana de %{date}"
   welcome: bem vindo
-  welcome_back: Bem vindo de volta
   welcome_back!: Bem vindo de volta!
   welcome_to_inat: "Seja bem vindo a %{site_name}!"
   welcome_to_guides: "Seja bem Vindo às Guias do %{site_name}!"
@@ -4308,7 +4350,6 @@ pt:
     Este artigo usa material do artigo da Wikipédia
     <a href="%{url}">"%{title}"</a>, que é lançado sob a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
-  wikipedia_entry: Registro do Wikipédia
   with: com
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4670,6 +4711,55 @@ pt:
       show:
         reuse_desc: |
           Você pode copiar este táxon em outra guia. Se você é um dos editores desta guia isto deve copiar tudo, mas se você não é, isto irá copiar somente o conteúdo licenciado.
+    lifelists:
+      list_view: Exibição em Lista
+      tree_view: Exibição em Árvore
+      observed_species: Espécies Observadas
+      unobserved_species: Espécies Não Observadas
+      all_species: Todas as Espécies
+      all_unobserved_species: Todas as Espécies Não Observadas
+      observations_at_this_taxon: Observações neste táxon
+      observations_within_this_taxon: Observações dentro deste táxon
+      all_observations: Todas as Observações
+      total_observations: Total de Observações
+      filter_by: Filtrar por
+      filtered_by: Filtrado por
+      apply_filters_to_export: Aplicar filtros para exportação
+      restrict_to_leaf_taxa: Restringir a táxons de folha
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a táxons observados em %{place}
+      exporting_all_x_taxa:
+        one: Exportando %{count} táxon
+        other: Exportando todos os %{count} táxons
+      exporting_x_taxa:
+        one: Exportando %{count} táxon
+        other: Exportando %{count} táxons
+      no_observations_found_in_place: Não foram encontradas observações em %{place}.
+      no_observations_found_within_this_taxon_in_place: Não foram encontradas observações dentro deste táxon em %{place}.
+      no_species_found_within_this_taxon_in_place: Não foram encontradas espécies dentro deste táxon em %{place}.
+      no_species_found_in_place: Não foram encontradas espécies em %{place}.
+      no_unobserved_species_in_place: Nenhuma espécie não observada em %{place}.
+      no_unobserved_species_within_this_taxon: Nenhuma espécie não observada dentro deste táxon.
+      no_unobserved_species_within_this_taxon_in_place: Nenhuma espécie não observada dentro deste táxon em %{place}.
+      reset_place_filter: Redefinir Filtro de Lugar
+      all_observations_in_this_taxon: Todas as observações neste táxon
+      observations_of_exactly_this_taxon: Observações exatamente neste táxon
+      focus_tree_on_this_taxon: Focar árvore neste táxon
+      expand_all_nodes_in_this_branch: Expandir todos os nós neste galho
+      collapse_this_branch: Recolher este galho
+      dropdowns:
+        sort: Ordenar
+        taxonomic: Taxonomia
+        name: Nome
+        most_observed: Mais Observados
+        least_observed: Menos Observados
+        date_added_newest: Data adicionada, da mais recente para a mais antiga
+        date_added_oldest: Data adicionada, mais antiga para mais recente
+        ancestry: Ancestralidade
+        show: Mostrar
+        children: Descendentes
+        simplified_tree: Árvore Simplificada
+        full_taxonomy: Taxonomia Completa
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5843,6 +5933,9 @@ pt:
           Descrições de licença e imagens &copy; %{year} Creative Commons, usados
           sob a licença<a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution</a> (tão meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Apoiador Mensal
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
@@ -6355,6 +6448,7 @@ pt:
     models:
       AssessmentSection: Seção de avaliação
       Atlas: Atlas
+      BlockedUser: Usuário Bloqueado
       CompleteSet: Conjunto completo
       #Noun
       Flag: Alerta
@@ -6365,6 +6459,9 @@ pt:
       assessment_section:
         title: Título
         body: Corpo
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuário bloqueado
       conservation_status:
         status: Status
         description: Descrição
@@ -6523,10 +6620,6 @@ pt:
           attributes:
             base:
               guide_has_too_many_taxa: "a guia só pode ter 500 táxons"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "Chave de API sendo importada ou aguardando importação"
         observation:
           attributes:
             base:
@@ -6583,6 +6676,11 @@ pt:
                 deve ser observado depois %{time}
               must_be_observed_before: |
                 deve ser observado antes %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observação não tem data sobre a qual votar
+              no_votable_coordinates: Observação não tem coordenadas sobre as quais votar
         taxon:
           attributes:
             rank:
@@ -6638,6 +6736,10 @@ pt:
             email:
               must_look_like_an_email_address: deve parecer um endereço de e-mail
               domain_is_not_supported: domínio não é suportado
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Você já bloqueou esse usuário
         user_parent:
           attributes:
             email:
@@ -6812,6 +6914,8 @@ pt:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Atenção
   wild: Selvagem
   will_paginate:
     previous_label: "&#8592; Prévia"

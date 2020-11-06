@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   use_doorkeeper do
     controllers applications: "oauth_applications",
                 authorizations: "oauth_authorizations",
+                authorized_applications: "oauth_authorized_applications",
                 tokens: "oauth_tokens"
   end
 
@@ -181,7 +182,7 @@ Rails.application.routes.draw do
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
-  resources :relationships, controller: :friendships, only: [:index, :update, :destroy]
+  resources :relationships, controller: :relationships, only: [:index, :update, :destroy]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
@@ -638,9 +639,9 @@ Rails.application.routes.draw do
   end
   resources :moderator_actions, only: [:create]
 
-  resources :lifelists do
+  resource :lifelists, only: [] do
     collection do
-      get ":login", to: "lifelists#by_login"
+      get ":login", to: "lifelists#by_login", as: "by_login"
     end
   end
 

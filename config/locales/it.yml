@@ -171,6 +171,25 @@ it:
   about_this_project: A proposito di questo Progetto
   about_trips_html: |
     <h4>I Viaggi permettono la raccolta di dati di presenza-assenza, aggiungendo un contesto alle tue osservazioni</h4><p><strong>Perchè</strong> I dati di Presenza-Assenza includono informazioni sullo sforzo di ricerca effettuato, utile per analisi scientifiche quali i modelli di distribuzione (le osservazioni iNaturalist grezze sono dati di 'sola-presenza').</p> <p><strong>Come</strong> Un viaggio aggiunge contesto alle tue osservazioni registrando:</p> <ul> <li><strong>Cosa</strong> hai cercato (lista obbiettivi)</li> <li><strong>Dove</strong> hai cercato (area di ricerca)</li> <li><strong>Quando</strong> hai cercato (intervallo di ricerca)</li> </ul> <p>Le specie sulla tua lista di obbiettivi che sei stato in grado di osservare nell'area definita e per l'intervallo di ricerca sono interpretate come presenze. Mentre le specie sulla tua lista di obbiettivi che non sei stato in grado di osservare sono interpretate come assenze. Clicca 'Tabulato Dati Presenza Assenza Dai Viaggi' per generare una tabella di record di presenza-assenza per una specie a partire dai viaggi e dalle osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
+  about_trusting_projects: Riguardo al Fidarsi dei Progetti
+  about_trusting_projects_options_any: Tutte le tue osservazioni in questo progetto
+  about_trusting_projects_options_any_desc: |-
+    Ciò include le osservazioni dove hai impostato la geoprivacy "oscurata" o "privata", es. osservazioni nel tuo giardino o nei luoghi che non vuoi che le altre persone conoscano.
+  about_trusting_projects_options_taxon: |-
+    Solo le tue osservazioni in questo progetto che hanno coordinate oscurate perchè di taxa minacciati
+  about_trusting_projects_options_taxon_desc: |-
+    Molti progetti hanno solo bisogno di accedere alle coordinate che sono oscurate perché l'osservazione raffigura un taxon minacciato.
+  about_trusting_projects_overview: |-
+    Il permettere l'accesso alle tue coordinate nascoste consentirà ai curatori di questo progetto di vedere la posizione reale e non oscurata delle tue osservazioni in questo progetto. Questo è estremamente importante in situazioni dove gli scienziati o i gestori delle risorse devono accedere alle coordinate esatte per analisi e processi decisionali.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    I curatori del progetto che avranno accesso alle tue coordinate nascoste sono:
+  about_trusting_projects_warning: |-
+    Nota che i gestori del progetto possono modificare i parametri del progetto per includere ognuna delle tue osservazioni e possono aggiungere o rimuovere altri curatori del progetto in ogni momento. Riceverai le notifiche di queste modifiche ma affiderai essenzialmente a questo progetto i tuoi dati privati di posizione, quindi sii cauto.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Puoi scegliere di condividere le coordinate nascoste per
   about_x: "A proposito di %{x}"
   acc: 'Acc (m)'
   account: Profilo
@@ -463,6 +482,27 @@ it:
   announcements: Avvisi
   any: qualsiasi
   any_: Qualsiasi
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Qualsiasi
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Qualsiasi
+  #Label for an option to show content from any date
+  any_date: Qualsiasi
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualsiasi
+  #Label for an option to show content with any license
+  any_license: Qualsiasi
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualsiasi
+  #Label for an option to show content from any project
+  any_project: Qualsiasi
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualsiasi
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualsiasi
+  #Label for an option to show/include content by any user
+  any_user: Qualsiasi
   anyone: Chiunque
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
@@ -685,6 +725,7 @@ it:
   cc_by_sa_name: Attribuzione-Condividi allo Stesso Modo
   cc_used_under_a: "Creative Commons, utilizzato sotto una"
   change_admin: Cambia amministratore
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambia copertina
   change_descriptions:
     split: Vecchio taxon suddiviso in nuovi taxa
@@ -748,6 +789,7 @@ it:
   check_out_my_observations_at: Se vuoi, puoi vedere le mie osservazioni a
   check_out_our_blog: Scopri il nostro Blog
   check_out_what_the_observation: Guarda come appare l'osservazione che vuoi identificare.
+  check_out_your_new_and_improved_list_list: Scopri la nostra nuova e migliorata Lista degli Esseri Viventi!
   check_this_box_if_html: |
     Seleziona questa casella se vuoi applicare una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
@@ -900,12 +942,19 @@ it:
     flowering: Fiori visibili, aperti, ed ancora attaccati alla pianta
     fruiting: Frutti visibili ed ancora attaccati alla pianta
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
-    teneral: Adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
+    teneral: Individuo adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
     cannot_be_determined: Non può essere determinato in base alle prove fornite
   controls: Controlli
   convert: Converti
   coordinate_systems: Sistemi di coordinate
   coordinates: Coordinate
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Solo con coordinate complete
+  coords_viewable_for_proj_desc: |
+    Mostra solo le osservazioni di questo progetto per cui tu puoi vedere le "vere" coordinate, incluse le osservazioni non oscurate, le osservazioni oscurate di persone che si fidano di te, le osservazioni oscurate di persone che si fidano completamente di questo progetto e le osservazioni oscurate di taxa minacciati di persone che si fidano solo di questo progetto.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia e incolla il seguente codice per incorporare questa valutazione in un'altra pagina web.
   copy_and_paste_this_into_your_own_html: Copia e incolla nel tuo HTML.
@@ -1054,6 +1103,7 @@ it:
   delete: Cancella
   delete_all: Cancella tutto
   delete_conversation: Elimina conversazione
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: eliminare la copertina?
   delete_icon?: Eliminare l'icona?
   delete_photo: Elimina foto
@@ -1115,6 +1165,11 @@ it:
     Se non sei stato tu ad aver richiesto il cambio password, ignora questa email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La tua password verrà modificata solo se accedi al link riportato sopra e ne crei una nuova.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Il tuo profilo è stato bloccato a causa di un numero eccessivo di tentativi di accesso falliti.
+  devise_unlock_instructions_click_the_link: |
+    Clicca il collegamento sotto per sbloccare il tuo profilo
+  devise_unlock_instructions_unlock: Sblocca il Tuo Profilo
   discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti perché...
   did_you_mean: 'Forse cercavi'
@@ -1563,7 +1618,7 @@ it:
       leading: |
         Il taxon discende dal taxon della comunità. Questa identificazione può portare alla classificazione corretta.
       improving: |
-        Il primo suggerimento per questo taxon che la comunità ha approvato successivamente. Questo suggerimento ha aiutato ad affinare il taxon della comunità.
+        Il primo suggerimento per questo taxon su cui la comunità concorda. Questo suggerimento aiuta ad affinare il taxon della comunità.
       maverick: |
         Il taxon non è discendente o antenato del taxon della comunità, e.g., la comunità non concorda con questo taxon.
   id_withdrawn: ID ritirata
@@ -1639,7 +1694,7 @@ it:
   inat_account_action: "%{site_name} &#58; Profilo &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} crede che questa sia una lista completa di questo taxon in questo luogo."
   inat_user_profile: "%{site_name}: Profilo di %{user}"
-  inaturalist_is_a_joint_initiative: "%{site_name} è un'iziativa congiunta della California Academy of Sciences e della National Geographic Society."
+  inaturalist_is_a_joint_initiative: "%{site_name} è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_places: "Luoghi di %{site_name}"
   info: Info
   input_taxon: Inserisci un taxon
@@ -1740,6 +1795,7 @@ it:
   learn: Impara
   learn_about_the_species_live_in: Scopri le specie che vivono in
   learn_more: Scopri di più
+  learn_more_on_the_blog: Scopri di più sul blog
   learn_more_raquo: "Scopri di più &raquo;"
   learn_what_these_licenses_mean: Scopri cosa significa questa licenza
   least_concern: Minor Preoccupazione
@@ -1782,6 +1838,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
+    latvian: Lettone
     lithuanian: Lituano
     luxembourgish: Lussemburghese
     maltese: Maltese
@@ -1892,6 +1949,7 @@ it:
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
+    lv: Lettone
     mk: Macedone
     nb: Norvegese Bokmål
     nl: Olandese
@@ -1965,7 +2023,7 @@ it:
   managers_can_do: I gestori possono fare tutto quello che fanno i curatori come editare le impostazioni del progetto e scrivere il post del diario.
   managing_projects: Gestione progetti
   map: Mappa
-  map_legend: legenda della mappa
+  map_legend: Legenda della Mappa
   map_marker_size: dimensione dell'indicatore della mappa
   map_of_observations: Mappa delle osservazioni
   maps:
@@ -1998,6 +2056,7 @@ it:
     Membri del <a href="%{url}">Network iNaturalist</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Membro del %{partial_inat_network_tag_html}Network iNaturalist</a>, un'iniziativa congiunta di %{cas_tag_html} e di %{nat_geo_tag_html}.
+  #As in members of a project
   members: Membri
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: "%{user} ti ha menzionato in %{noun}"
@@ -2142,12 +2201,12 @@ it:
   needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account verso %{site_name}?
+    <strong>%{site_name}</strong>, parte del Network internazionale di iNaturalist, è focalizzato sulla biodiversità e sulle persone in %{place}. Vuoi spostare l'affiliazione dell'account da <strong>%{inat_site_name}</strong> verso <strong>%{site_name}</strong> e condividere i dati con le istituzioni locali?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da iNaturalist.org ad iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, menbro del Network iNaturalist, si concentra sulla biodiversità e sulle persone in Finlandia. Vuoi cambiare l'affiliazione del tuo account da <strong>%{inat_site_name}</strong> ad <strong>iNaturalist Suomi</strong> e condividere i dati con le istituzioni locali?
   network_affiliation_prompt_from_other_site_html: |
     Vuoi spostare l'affiliazione dell'account da <strong>%{other_site_name}</strong> verso
     <strong>%{site_name}</strong>?
@@ -2230,6 +2289,7 @@ it:
   no_matching_places: Nessun luogo corrisponde
   no_matching_projects: Nessun progetto corrisponde
   no_matching_species: Nessuna specie corrisponde.
+  no_matching_taxa: Nessun taxa corrispondente
   no_matching_users: Nessun utente corrisponde.
   no_members_yet: "Ancora nessun membro."
   no_messages_yet: Ancora nessun messaggio
@@ -3190,15 +3250,27 @@ it:
   ranks:
     stateofmatter: Stato della materia
     kingdom: Regno
+    x_kingdoms:
+      one: Regno
+      other: Regni
     subkingdom: Sottoregno
     phylum: Phylum
+    x_phyla:
+      one: Phylum
+      other: Phyla
     subphylum: Subphylum
     superclass: Superclasse
     class: Classe
+    x_classes:
+      one: Classe
+      other: Classi
     subclass: Sottoclasse
     infraclass: Infraclasse
     superorder: Superordine
     order: Ordine
+    x_orders:
+      one: Ordine
+      other: Ordini
     suborder: Sottordine
     infraorder: Infraordine
     subterclass: Superclasse
@@ -3208,11 +3280,17 @@ it:
     superfamily: Superfamiglia
     epifamily: Epifamilia
     family: Famiglia
+    x_families:
+      one: Famiglia
+      other: Famiglie
     subfamily: Sottofamiglia
     supertribe: Supertribù
     tribe: Tribù
     subtribe: Sottotribù
     genus: Genere
+    x_genera:
+      one: Genere
+      other: Generi
     genushybrid: Genereibrido
     subgenus: Sottogenere
     section: Sezione
@@ -3220,6 +3298,9 @@ it:
     complex: Complesso
     #Singular
     species: Specie
+    x_species:
+      one: Specie
+      other: Specie
     hybrid: Ibrido
     #Singular
     subspecies: Sottospecie
@@ -3239,6 +3320,7 @@ it:
   reason_you_are_flagging_this_item: Motivo per cui stai segnalando questo elemento.
   recaptcha_verification_failed: verifica reCAPTCHA fallita
   receive_email_notifications_when_people_leave_you: Ricevi notifiche email su
+  receive_project_journal_notifications?: Vuoi ricevere le notifiche del diario del progetto?
   receive_updates_from_this_project: Ricevi aggiornamenti da questo progetto
   recent: Recenti
   recent_evidence_of_organism: Evidenze recenti della presenza dell'organismo
@@ -3890,7 +3972,6 @@ it:
   third_person_possessive_plural: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
-  this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon basato sul suo
   this_is_a_life_list_of: Questa è una lista degli esseri viventi di
   this_is_a_life_list_from_place_html: "Questa e una lista degli esseri viventi in %{place}"
   this_is_a_life_list_of_taxon_in_place: "Questa è una lista degli esseri viventi del taxon %{taxon} in %{place}"
@@ -3970,9 +4051,12 @@ it:
   trending: Tendenze
   trends: Tendenze
   trip_target_list_info: 'Tutte le specie incluse in questa lista di obbiettivi che non sono state osservate nel raggio e nella durata del viaggio saranno interpretate come assenti. <a href="/pages/trips">Leggi di più</a>.'
+  #Noun
+  trust: Fidati
   trusted: Affidabile
   trusted_project?: Progetto fidato?
   trust_this_person_with_your_private_coordinates: Rivela a questa persona le tue coordinate nascoste
+  trust_this_project_with_your_private_coordinates?: Ti fidi nel rivelare a questo progetto le coordinate nascoste?
   trust_with_private_coordinates: Rivela le coordinate nascoste
   try_adding_species_form: Prova ad aggiungere alcune specie utilizzando il modulo in questa pagina.
   twitter: Twitter
@@ -4190,6 +4274,7 @@ it:
   view_more_observations_of_x_project: "Visualizza più osservazioni dal progetto %{project} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visualizza più osservazioni di %{taxon} su <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Esamina altri tra i non esaminati."
+  view_my_life_list: Visualizza la mia lista degli esseri viventi
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
@@ -4253,7 +4338,6 @@ it:
   website: Sito web
   week_of_date: "Settimana del %{date}"
   welcome: benvenuto/a
-  welcome_back: Bentornato/a
   welcome_back!: Bentornato!
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
@@ -4301,7 +4385,6 @@ it:
     Questa voce usa materiale dalla voce di Wikipedia <a href="%{url}">"%{title}"</a>, che è stata rilasciata con
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
-  wikipedia_entry: Voce di Wikipedia
   with: con
   withdraw: Ritira
   withdrawing: Ritiro in corso...
@@ -4347,7 +4430,15 @@ it:
   year_on_site: "Anno su %{site} %{year}"
   yellow: giallo
   'yes': "Sì"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Sì, ma solo per le mie osservazioni di taxa minacciati, non quando ho impostato manualmente la geoprivacy
   yes_find_them!: "Sì, trovali!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Sì, per ognuna delle mie osservazioni"
   yes_i_want_to_join: Sì, voglio partecipare
   yes_license_my_childs_observations: Si, applica la licenza alle foto, ai suoni e alle osservazioni di mio figlio affinchè gli scienziati possano usufruire dei suoi dati (raccomandato).
   yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire dei miei dati (raccomandato).
@@ -4653,6 +4744,55 @@ it:
       show:
         reuse_desc: |
           Puoi copiare questo taxon in un'altra guida. Se sei uno degli editor della guida la copia sarà completa, altrimenti verranno copiati solo i contenuti con licenza.
+    lifelists:
+      list_view: Visualizzazione Elenco
+      tree_view: Visualizzazione ad Albero
+      observed_species: Specie Osservate
+      unobserved_species: Specie Non-Osservate
+      all_species: Tutte le Specie
+      all_unobserved_species: Tutte le Specie Non-Osservate
+      observations_at_this_taxon: Osservazioni di questo taxon
+      observations_within_this_taxon: Osservazioni all'interno di questo taxon
+      all_observations: Tutte le Osservazioni
+      total_observations: Totale Osservazioni
+      filter_by: 'Filtra per:'
+      filtered_by: Filtrato per
+      apply_filters_to_export: Applica i filtri all'esportazione
+      restrict_to_leaf_taxa: Limita ai taxa foglia
+      restrict_to_taxon: Limita a %{taxon}
+      restrict_to_taxa_observed_in_place: Limita ai taxa osservati in %{place}
+      exporting_all_x_taxa:
+        one: Esportando %{count} taxon
+        other: Esportando %{count} taxa
+      exporting_x_taxa:
+        one: Esportando %{count} taxon
+        other: Esportando %{count} taxa
+      no_observations_found_in_place: Nessuna osservazione trovata in %{place}.
+      no_observations_found_within_this_taxon_in_place: Nessuna osservazione trovata all'interno di questo taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: Nessuna specie trovata in questo taxon in %{place}.
+      no_species_found_in_place: Nessuna specie trovata in %{place}.
+      no_unobserved_species_in_place: Nessuna specie non-osservata in %{place}.
+      no_unobserved_species_within_this_taxon: Nessuna specie non-osservata all'interno di questo taxon.
+      no_unobserved_species_within_this_taxon_in_place: Nessuna specie non-osservata all'interno di questo taxon in %{place}.
+      reset_place_filter: Resetta i Filtri di Luogo
+      all_observations_in_this_taxon: Tutte le osservazioni in questo taxon
+      observations_of_exactly_this_taxon: Osservazioni di questo esatto taxon
+      focus_tree_on_this_taxon: Centra l'albero su questo taxon
+      expand_all_nodes_in_this_branch: Espandi tutti i nodi in questo ramo
+      collapse_this_branch: Collassa questo ramo
+      dropdowns:
+        sort: Ordina
+        taxonomic: Tassonomico
+        name: Nome
+        most_observed: Più Osservato
+        least_observed: Meno osservati
+        date_added_newest: Data Aggiunta, dalla Più Recente alla Meno Recente
+        date_added_oldest: Data Aggiunta, dalla Meno Recente alla Più Recente
+        ancestry: Antenato
+        show: Mostra
+        children: Discendenti
+        simplified_tree: Albero Semplificato
+        full_taxonomy: Tassonomia Completa
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5005,6 +5145,16 @@ it:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Per favore controlla lo spelling di ogni voce. Se l'ortografia è corretta, cerca le specie all'indirizzo %{search_taxa_url}. Se il nome non è ancora nel database %{site_name}, dovrai aggiungerlo prima che la tua importazione possa funzionare. Usa il riquadro al fondo della pagina di ricerca per importare nuovi nomi. Se il nome è presente ma si riferisce a più di un taxon valido, cerca di usare un nome più o meno specifico che corrisponde a solo un singolo taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Dato che ti sei fidato a rivelare le coordinate nascoste di <a href="%{obs_url}">alcune delle tue osservazioni</a> a questo progetto, gli amministratori possono ora avere accesso ad un maggior numero delle tue coordinate nascoste rispetto al momento in cui ti sei fidato di questo progetto. Dovresti rivedere l'elenco degli amministratori e i requisiti del progetto per assicurarti di fidarti ancora di questo progetto per le tue osservazioni:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          I requisiti di osservazione del seguente progetto sono stati recentemente cambiati:
+        subject: I requisiti di osservazione del progetto sono cambiati per %{project}
+        you_can_change_html: |-
+          Puoi modificare le tue preferenze o lasciare il progetto dalla <a href="%{url}">pagina del progetto</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Il tuo export è pronto. Ce n'è una copia in allegato a questa mail; se preferisci puoi <a href="%{url}">scaricare l'export qui</a>.
@@ -5234,6 +5384,12 @@ it:
         submission_models:
           any: chiunque
           curators: curatori del progetto
+        trust_allow_members_to_trust: |-
+          Consenti ai membri di fidarsi di questo progetto rivelando le coordinate nascoste
+        trust_help_desc: |-
+          Se vuoi accedere alle coordinate nascoste delle osservazioni oscurate, questa opzione consentirà alle persone che hanno aderito a questo progetto di fidarsi degli amministratori del progetto permettendo l'accesso a quelle coordinate nascoste. I membri del progetto potranno concedere l'accesso alle coordinate nascoste di tutte le loro osservazioni che appaiono in questo progetto, o solo delle osservazioni oscurate a causa di taxa minacciati.
+        trust_help_notification: |-
+          Tuttavia, questo invierà una notifica anche a tutti i membri che si sono fidati del progetto ogni volta che modifichi i requisiti del progetto, in modo che possano rivalutare se vogliono continuare a fidarsi di te dati i nuovi requisiti.
         trusted_project_means: |
           Fidarsi di un progetto significa che i gestori del progetto potranno aggiungere Risorse di Progetto e caratteristiche personalizzate (es. banner HTML, CSS). Poter accedere alle caratteristiche personalizzate significa che i gestori potranno aggiungere codici Javascript malevoli, perciò dai la fiducia solo a quei progetti che hanno gestori sia responsabili che tecnicamente competenti.
         you_can_preview: |
@@ -5326,6 +5482,11 @@ it:
           È possibile selezionare più specie (o taxa), luoghi, date o altri criteri per le osservazioni da includere automaticamente.
         start_and_end_times_for_bioblitzes: Ora/data di inizio e fine (per eventi tipo bioblitz)
         traditional_projects_cannot_be_copied: I progetti tradizionali non possono essere copiati
+        trusting_members_will_be_notified: |
+          Hai cambiato i requisiti del progetto o hai attivato la fiducia dell'utente. Questo
+          invierà una notifica a tutti i membri del progetto che si sono già fidati a rivelare al progetto
+          le coordinate nascoste, affinché abbiano la possibilità di decidere se
+          vogliono ancora fidarsi del progetto dati i nuovi requisiti.
         umbrella_project_features: "Caratteristiche dei Progetti Ombrello"
         unique_url_for_outreach: Unico URL per raggiungerlo
         use_this_for_a_time_limited_event: |
@@ -5552,6 +5713,10 @@ it:
           Un taxon "completo" contiene <em>tutti</em> i taxa discendenti conosciuti ad uno specifico livello in accordo con le politiche della curatela dei taxa iNaturalist. Al momento solo gli amministratori del sito possono definire i taxa completi.
         complete_rank_desc_html: |
           Livello al quale questo taxon è completo, e.g. se questa famiglia contiene tutti i generi ma non tutte le specie, questo sarà settato al "genere". Predefinito è il livello specie.
+        wikipedia_summary_desc_html: |
+          Breve descrizione sintetica di questo taxon basata sulla sua <a target="_blank"
+          href="%{url}"> pagina di Wikipedia</a> che manteniamo a tempo indeterminato fino ad un
+          aggiornamento manuale. Aggiornando questa sintesi viene aggiornata immediatamente anche la nostra cache del sottostante contenuto di Wikipedia visualizzato sul sito web, che si aggiorna automaticamente dopo una settimana.
       show:
         about_names_desc: |
           <p>
@@ -5715,6 +5880,9 @@ it:
         license_description_attribution_html: |
           Descrizioni ed immagini delle licenze &copy; %{year} Creative Commons, usate sotto una <a href="http://creativecommons.org/licenses/by/3.0/">licenza Attribuzione Creative
           Commons</a> (così metareferenziale!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Sostenitore Mensile
         monthly_supporter_desc_html: |
           I sostenitori mensili di iNaturalist forniscono donazioni mensili automatiche che sono ricevute dalla California Academy of Sciences (IRS EIN 94-1156258 degli Stati Uniti) a sostegno dell'azione no-profit di iNaturalist e dei siti del Network di iNaturalist.
@@ -6362,7 +6530,8 @@ it:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "importando chiave API o accodato per l'importazione"
+              api_key_in_use: "L'import per l'utente Osservatore Funghi è in corso o è accodato per l'importazione"
+              api_key_missing: "Manca la chiave API Osservatore Funghi"
         observation:
           attributes:
             base:

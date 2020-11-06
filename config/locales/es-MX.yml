@@ -2,9 +2,6 @@ es-MX:
   x_comments:
     one: '1 comentario'
     other: '%{count} comentarios'
-  x_faves:
-    one: '1 Favorito'
-    other: '%{count} Favoritos'
   x_flags_resolved_html:
     one: "<span class='count'>1</span> advertencia resuelta"
     other: "<span class='count'>%{count}</span> advertencias resueltas"
@@ -17,6 +14,9 @@ es-MX:
   x_identifications_:
     one: '1 identificación'
     other: '%{count} identificaciones'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   x_journal_posts_html:
     one: '<span class="count">1</span> entrada de diario'
     other: '<span class="count">%{count}</span> entradas de diario'
@@ -47,13 +47,25 @@ es-MX:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
+  x_observers_html:
+    one: '<span class="count">1</span> Observador'
+    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people:
+    one: "persona"
+    other: "personas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
+  x_photos:
+    one: "foto"
+    other: "fotos"
   x_new_species:
     one: "1 Nueva especie"
     other: "%{count} Nuevas especies"
+  x_new_users:
+    one: 'Nuevo usuario'
+    other: 'Nuevos usuarios'
   x_species:
     one: '1 especie'
     other: '%{count} especies'
@@ -66,6 +78,9 @@ es-MX:
   x_suggestions_filtered_by_colon:
     one: "1 Sugerencia Filtrada por:"
     other: "%{count} Sugerencias Filtradas por:"
+  x_taxa:
+    one: "taxón"
+    other: "taxones"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> especie o grupo observado"
     other: "<span class='count'>%{count}</span> especies o grupos observados"
@@ -75,6 +90,9 @@ es-MX:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observación con grado de investigación identificada a especie o subespecie</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o subespecie</span>"
+  x_sounds:
+    one: "sonido"
+    other: "sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón revisado"
     other: "<span class='count'>%{count}</span> taxones revisados"
@@ -136,8 +154,12 @@ es-MX:
   add_a_comment: Añade un comentario
   add_a_field: Añade un campo
   add_a_flag: Añade una alerta
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Añadir un enlace
   add_a_name: Añade un nombre
   add_a_new_change_group: Añade un nuevo cambio en grupo
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Añadir una lista numerada
   add_a_single_observation: Añade una sola observación
   add_a_taxon: Añade una especie o grupo
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -147,6 +169,7 @@ es-MX:
   add_an_observation: Añade una observación
   add_an_observation?: '¿Quieres añadir una observación?'
   add_an_observation_of: "Añade una observación de %{taxon}"
+  add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Agrega anotaciones para "Género"
@@ -159,6 +182,8 @@ es-MX:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Añade recurso
   add_batch: Añade un grupo
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Añadir texto en negritas
   add_comma_separated_tags: "Añade etiquetas separadas por comas"
   add_comment: Añade un comentario
   add_conservation_status: Añade estado de conservación
@@ -190,6 +215,7 @@ es-MX:
   add_one_now: Añadir una ahora
   add_photos: Añade fotos
   add_place: Añade lugar
+  add_alive_or_dead_cannot_be_determined_annotation: 'Añade anotación "Vivo o Muerto: No se puede determinar"'
   add_plant_phenology_budding_annotation: 'Añade anotación "fenología de la planta: en botón"'
   add_plant_phenology_flowering_annotation: 'Agrega anotación "Fenología de la planta: floreciendo"'
   add_plant_phenology_fruiting_annotation: 'Añade anotación "fenología de la planta: fructificando"'
@@ -208,6 +234,7 @@ es-MX:
   add_several_observations_at_once: Añade varias observaciones al mismo tiempo.
   add_sex_female_annotation: 'Añade anotación "género: femenino"'
   add_sex_male_annotation: 'Añade anotación "Género: masculino"'
+  add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Añade unas ahora
   add_tag: Añade etiqueta
   add_tags: Añade etiquetas
@@ -230,6 +257,12 @@ es-MX:
   add_your_own_observations_at: "Añadir tus propias observaciones al %{site_name}"
   added: añadido
   added!: '¡Añadido!'
+  added_as_a_part_of_a_taxon_change_html: |
+    Añadido como parte de un cambio de taxón
+    <a target="%{target}" class="%{class}" href="%{url}"></a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Añadido como parte de un cambio de taxón
+    <a target="%{target}" class="%{class}" href="%{url}"></a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
   added_to_favorites_html: |
@@ -298,6 +331,7 @@ es-MX:
     plants: Plantas
     protozoans: Protozoarios
     ray_finned_fishes: Peces con aletas radiadas
+    reptiles: Reptiles
     life: Vida
     x_plantae:
       one: "1 planta"
@@ -365,6 +399,28 @@ es-MX:
   announcements: Anuncios
   any: Cualquiera
   any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
+  anyone: Cualquiera
   apply_to_selected: Apicar a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplica campos
@@ -388,7 +444,18 @@ es-MX:
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres quitar esta especie o grupo de la lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
+  are_you_sure_unresolve_flag?: |
+    ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
+    y el usuario que ha resuelto esta marca.
   are_you_sure_want_delete_taxon: "¿Estás seguro que quieres borrar esta especie o grupo?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes e identificaciones.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes, identificaciones y observaciones.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes y taxones listados.
   are_you_sure_want_delete_taxon_link: '¿Estás seguro que quieres borrar el enlace de esta especie o grupo?'
   are_you_sure_want_delete_this_name: '¿Estás seguro que quieres borrar este nombre?'
   are_you_sure_want_delete_this_range: '¿Estás seguro que quieres borrar esta distribución?'
@@ -468,7 +535,7 @@ es-MX:
   back_to_your_profile: De regreso a tu perfil
   back_to_your_projects: De regreso a tus proyectos
   based_on_the_evidence_can_id_be_improved: |
-    Basándose en la evidencia, ¿se puede confirmar o mejorar el ID de la comunidad ?
+    Basándose en la evidencia, ¿Se puede confirmar o mejorar el ID de la comunidad ?
   batch: Grupo
   batch_edit: Edita grupo
   batch_edit_taxa_for_x_html: "Edición de datos por lote para las especies o grupos de la %{x}"
@@ -536,6 +603,7 @@ es-MX:
   cc_by_sa_name: Atribución - Compartir bajo la misma licencia
   cc_used_under_a: "Creative Commons, utilizado bajo una"
   change_admin: Cambia administrador
+  #Button to change the cover (or banner) image for a project
   change_cover: Cambia la portada
   change_descriptions:
     split: La especie o grupo es separada
@@ -598,6 +666,7 @@ es-MX:
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Echa un vistazo a nuestro blog
   check_out_what_the_observation: Revisa como lucen las observaciones que estas tratando de identificar.
+  check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu nueva y mejorada lista de vida!'
   check_this_box_if_html: |
     Selecciona esta caja si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
@@ -851,6 +920,7 @@ es-MX:
   delete: Borrar
   delete_all: Elimina todo
   delete_conversation: Eliminar conversación
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: '¿Borrar la portada?'
   delete_icon?: '¿Borrar el ícono?'
   delete_photo: Elimina foto
@@ -883,6 +953,11 @@ es-MX:
     failure:
       user:
         suspended: Tu cuenta ha sido suspendida
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Tu cuenta ha sido bloqueada debido a varios intentos de ingresos fallido
+  devise_unlock_instructions_click_the_link: |
+    Haz clic en el siguiente enlace para desbloquear tu cuenta:
+  devise_unlock_instructions_unlock: Elimina tu cuenta
   discoveries: Descubrimientos
   did_not_send_invitations_because: No se enviaron invitaciones a los siguientes porque....
   did_you_mean: '¿Te refieres a'
@@ -1262,8 +1337,6 @@ es-MX:
     tooltips:
       leading: |
         El taxón desciende del taxón elegido por la comunidad. Esta identificación te podría acercar a la respuesta correcta.
-      improving: |
-        Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón de la comunidad.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, es decir que la comunidad no está de acuerdo con este taxón.
   id_withdrawn: Identificación retirada
@@ -1615,7 +1688,6 @@ es-MX:
   managers_can_do: Los gerentes pueden hacer las mismas actividades que un curador y adicionalmente pueden cambiar las propiedades del proyecto y escribir notas en el diario del proyecto.
   managing_projects: Administrar proyectos
   map: Mapa
-  map_legend: leyenda del mapa
   map_marker_size: tamaño del marcador de mapa
   map_of_observations: Mapa de observaciones
   maps:
@@ -1641,6 +1713,7 @@ es-MX:
   meet: Conoce
   member_of_the_inaturalist_network_html: |
     Miembro de la <a href="%{url}">Red iNaturalist</a>
+  #As in members of a project
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: "%{user} te ha mencionado en %{noun}"
@@ -1739,6 +1812,19 @@ es-MX:
   needs_id_: Necesita identificación
   needs_id_expandable_html: "<span class='full'>Necesita </span>ID"
   needs_to_be_identified: Necesita identificarse
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, parte de la red internacional iNaturalist
+    se centra en la biodiversidad y las personas en %{place}. ¿Quieres cambiar la afiliación de tu cuenta de
+    <strong>%{inat_site_name}</strong> a <strong>%{site_name}</strong>?
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong>, parte de la red internacional iNaturalist, se centra en la biodiversidad y la gente de Finlandia. ¿Quieres cambiar la afiliación de tu cuenta de <strong>%{inat_site_name}</strong> a <strong>iNaturalist Suomi</strong> y compartir datos con instituciones locales?
+  network_affiliation_prompt_from_other_site_html: |
+    ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
+    <strong>%{site_name}</strong>?
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
@@ -3197,7 +3283,6 @@ es-MX:
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
-  this_is_a_cached_summary_based_on: Hay un resumen guardado sobre esta especie o grupo basado en su
   this_is_a_life_list_of: Esta es la lista de vida de
   this_is_a_life_list_from_place_html: "Esta es la lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta es una lista de vida de %{taxon} en %{place}"
@@ -3506,7 +3591,6 @@ es-MX:
   website: Sitio web
   week_of_date: "Semana de %{date}"
   welcome: Bienvenido
-  welcome_back: Bienvenido de regreso
   welcome_back!: Bienvenido de vuelta
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
@@ -3547,7 +3631,6 @@ es-MX:
   without_annotation: Sin anotación
   widget_code: Código widget
   widget_for: Widget para
-  wikipedia_entry: entrada de wikipedia
   with: Con
   withdraw: Retirar
   withdrawing: Retirando...
@@ -4242,7 +4325,7 @@ es-MX:
           observed_in_place: fue observado en algún lugar
           on_list: ser una especie o grupo de la lista del proyecto
           verifiable: ser verificable
-          wild: estado salvaje/silvestre
+          wild: estado silvestre/naturalizado
         start_time_desc: "Tiempo en que empezará tu proyecto bioblitz"
         submission_models:
           any: cualquiera
@@ -4973,6 +5056,7 @@ es-MX:
   activerecord:
     models:
       AssessmentSection: Sección de evaluación
+      BlockedUser: Usuario bloqueado
       CompleteSet: Lista completa
       TaxonLink: Enlace de taxón
     attributes:
@@ -4981,6 +5065,9 @@ es-MX:
       assessment_section:
         title: Título
         body: Contenido principal
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuario bloqueado
       conservation_status:
         status: Estatus
         description: Descripción
@@ -5118,7 +5205,7 @@ es-MX:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "Clave de API importándose o en espera de importación"
+              api_key_missing: "Falta la clave API de observador de hongos"
         observation_field_value:
           attributes:
             value:
@@ -5188,6 +5275,12 @@ es-MX:
                 tiene que empezar con una letra, no contener espacios y usar sólo letras, números, guiones, y guiones bajos
             email:
               must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
   doorkeeper:
     scopes:
       write: |
@@ -5228,7 +5321,7 @@ es-MX:
         destroy:
           #Application as in a software application
           notice: 'Aplicación revocada.'
-  wild: salvaje
+  wild: Silvestre
   will_paginate:
     previous_label: "&#8592; Previo"
     next_label: "Siguiente &#8594;"

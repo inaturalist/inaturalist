@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -19,18 +18,9 @@ class AncestryBreadcrumbs extends React.Component {
     if ( !nextMilestoneParentID ) {
       return null;
     }
-    let icon;
     let breadcrumbs;
-    if ( !this.state.open ) {
-      icon = ( <span className="fa fa-caret-left expander" onClick={( ) => this.setState( { open: true } )} /> );
-    } else {
+    if ( this.state.open ) {
       breadcrumbs = [];
-      icon = (
-        <span
-          className="fa fa-caret-right expander"
-          onClick={( ) => this.setState( { open: false } )}
-        />
-      );
       while ( nextMilestoneParentID ) {
         const parentMilestoneTaxon = lifelist.taxa[nextMilestoneParentID];
         breadcrumbs.unshift( (
