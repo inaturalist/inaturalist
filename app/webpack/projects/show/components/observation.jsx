@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
@@ -73,6 +72,12 @@ const Observation = ( {
         backgroundSize={backgroundSize}
       />
     );
+  } else if ( observation.hasSounds( ) ) {
+    img = (
+      <div className="photo" style={{ height, lineHeight: `${height}px` }}>
+        <i className="sound-icon fa fa-volume-up" />
+      </div>
+    );
   } else {
     const iconicTaxonClass = observation.taxon && observation.taxon.iconic_taxon_name
       ? observation.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
@@ -91,7 +96,10 @@ const Observation = ( {
       <div
         className={`Observation ${className}`}
       >
-        <a href={`/observations/${observation.id}`}>
+        <a
+          href={`/observations/${observation.id}`}
+          className={`media ${observation.hasPhotos( ) ? "photo" : ""} ${observation.hasMedia( ) ? "" : "iconic"} ${observation.hasSounds( ) ? "sound" : ""}`}
+        >
           { img }
         </a>
         { observation.quality_grade === "research" && (
@@ -102,6 +110,11 @@ const Observation = ( {
               { __html: I18n.t( "research_grade_short_html" ) }
             }
           />
+        ) }
+        { observation.hasSounds( ) && observation.hasPhotos( ) && (
+          <span className="with-sounds">
+            <i className="sound-icon fa fa-volume-up" />
+          </span>
         ) }
         { caption }
       </div>

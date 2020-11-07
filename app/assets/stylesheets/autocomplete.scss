@@ -1,5 +1,6 @@
 $img-width: 40px;
 $img-margin: 3px;
+$label-start: 7px;
 .linky {
   color: #36C;
 }
@@ -57,12 +58,11 @@ $img-margin: 3px;
 }
 
 .ui-autocomplete .ac-message .ac-thumb {
-  width: 49px;
-  padding-left: 5px;
+  width: $img-width + $img-margin * 2;
 }
 .ui-autocomplete .ac-view {
   padding: 0 10px;
-  height: 46px;
+  height: $img-width + $img-margin * 2;
   background: white;
   display: flex;
   align-items: center;
@@ -114,7 +114,7 @@ $img-margin: 3px;
   background: #F2F2F2;
 }
 .ac-result .ac-label {
-  padding: 2px 0 0 7px;
+  padding: 2px 0 0 $label-start;
   line-height: 18px;
 }
 .ac-result.taxon .ac-label {
@@ -127,8 +127,8 @@ $img-margin: 3px;
   display: inline-block;
 }
 .ui-autocomplete .ac-message .ac-label {
-  padding: 0 0 0 12px;
-  line-height: 36px;
+  padding: 0 0 0 $label-start;
+  display: flex;
 }
 .ui-autocomplete .ac-message .ac-label .title {
   overflow: hidden;

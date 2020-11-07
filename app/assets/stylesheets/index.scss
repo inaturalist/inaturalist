@@ -1973,6 +1973,7 @@ user-icon .icon-person:before {
       .ac-view {
         padding: 0 10px;
         background: none;
+        display: flex;
 
         &.view-observations {
           padding-right: 0;

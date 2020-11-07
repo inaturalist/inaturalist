@@ -102,7 +102,7 @@ class MushroomObserverImportFlowTask < FlowTask
 
   def get_results_xml( options = {} )
     page = options[:page] || 1
-    url = "https://mushroomobserver.org/api/observations"
+    url = "https://mushroomobserver.org/api2/observations.xml"
     return [] if api_key.blank?
     return [] if mo_user_id.blank?
     resp = get( url, {
@@ -119,7 +119,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def mo_user_id( for_api_key = nil )
     unless @mo_user_id
       for_api_key ||= api_key
-      xml = Nokogiri::XML( get( "https://mushroomobserver.org/api/api_keys", api_key: for_api_key ) )
+      xml = Nokogiri::XML( get( "https://mushroomobserver.org/api2/api_keys.xml", api_key: for_api_key ) )
       @mo_user_id = xml.at( "response/user" ).try(:[], :id)
     end
     @mo_user_id
@@ -130,7 +130,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def mo_user_name( for_api_key = nil )
     if !@mo_user_name && ( user_id = mo_user_id )
       xml = Nokogiri::XML( get(
-        "https://mushroomobserver.org/api/users",
+        "https://mushroomobserver.org/api2/users.xml",
         id: user_id,
         detail: "high",
         api_key: api_key

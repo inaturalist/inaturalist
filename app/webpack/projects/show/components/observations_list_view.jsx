@@ -90,6 +90,7 @@ const ObservationsListView = ( {
                               `${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`
                             }
                           >
+                            { o.hasSounds( ) && <i className="sound-icon fa fa-volume-up" /> }
                             <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
                             { ( o.photos.length > 1 ) && (
                               <span className="photo-count">

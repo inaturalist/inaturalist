@@ -125,7 +125,9 @@
           an iNat obscuration cell, setting geoprivacy to "obscured" might end
           up revealing a more specific location than you were expecting on MO,
           so we're being conservative and setting the geoprivacy to "private" in
-          these cases. If you want to review these records after import,
-          = succeed "." do
-            = link_to observations_by_login_url( current_user.login, "field:#{@mo_url_field.name}" => "", geoprivacy: Observation::PRIVATE ) do
-              use this search
+          these cases.
+          - if @mo_url_field
+            If you want to review these records after import,
+            = succeed "." do
+              = link_to observations_by_login_url( current_user.login, "field:#{@mo_url_field.name}" => "", geoprivacy: Observation::PRIVATE ) do
+                use this search

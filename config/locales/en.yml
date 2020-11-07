@@ -5210,7 +5210,6 @@ en:
     messages:
       from: From
       to: To
-      subject: Subject
       subject_body: Subject / Body
       index:
         show_messages_from_user: Show messages from %{user}
@@ -7483,6 +7482,9 @@ en:
       listed_taxon:
         occurrence_status_level: Occurrence Status Level
         establishment_means: Establishment Means
+      message:
+        subject: Subject
+        body: Body
       observation:
         description: Notes
         geo_x: Easting
