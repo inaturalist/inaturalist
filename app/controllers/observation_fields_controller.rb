@@ -3,22 +3,21 @@ class ObservationFieldsController < ApplicationController
   before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
   before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
 
-  ORDER_BY_FIELDS = %w(name values_count users_count)
+  ORDER_BY_FIELDS = %w(created_at name values_count users_count)
   
   # GET /observation_fields
   # GET /observation_fields.xml
   def index
     @q = params[:q] || params[:term]
     scope = ObservationField.all
-    if order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first
-      order = ( %w(asc desc) & [params[:order]] ).first || "desc"
-      scope = scope.order( "#{order_by} #{order} NULLS LAST" )
-    end
+    @order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first || ORDER_BY_FIELDS.first
+    @order = ( %w(asc desc) & [params[:order]] ).first || "desc"
+    scope = scope.order( "#{@order_by} #{@order} NULLS LAST" )
     scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: "bootstrap" }
       format.json  do
         extra = params[:extra].to_s.split(',')
         opts = if extra.include?('counts')
