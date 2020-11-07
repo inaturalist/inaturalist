@@ -6,7 +6,10 @@ import {
   fetchMonthOfYearFrequency,
   openObservationsSearch
 } from "../ducks/observations";
-import { setScaledPreference } from "../actions/taxon";
+import {
+  setNoAnnotationHiddenPreference,
+  setScaledPreference
+} from "../actions/taxon";
 import { fetchTerms } from "../../shared/ducks/taxon";
 
 const TERMS_TO_CHART = ["Life Stage", "Plant Phenology", "Sex"];
@@ -84,6 +87,7 @@ function mapStateToProps( state ) {
     historyColumns,
     historyKeys,
     chartedFieldValues,
+    noAnnotationHidden: state.config.prefersNoAnnotationHidden,
     scaled: state.config.prefersScaledFrequencies,
     config: state.config
   };
@@ -94,6 +98,7 @@ function mapDispatchToProps( dispatch ) {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
     fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
     openObservationsSearch: params => dispatch( openObservationsSearch( params ) ),
+    setNoAnnotationHiddenPreference: pref => dispatch( setNoAnnotationHiddenPreference( pref ) ),
     setScaledPreference: pref => dispatch( setScaledPreference( pref ) ),
     loadFieldValueChartData: ( ) => dispatch( fetchTerms( { histograms: true } ) )
   };

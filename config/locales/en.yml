@@ -1735,6 +1735,9 @@ en:
     remarks are hidden. You cannot undo this, and only site staff can unhide
     content once it has been hidden, so be careful and only use this for very
     objectionable content.
+  # Option to hide data series that show "No Annotation" data, i.e. records that
+  # have no annotation
+  hide_no_annotation: Hide "No Annotation"
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
@@ -3766,6 +3769,9 @@ en:
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
   show_more: Show More
+  # Option to show data series that show "No Annotation" data, i.e. records that
+  # have no annotation
+  show_no_annotation: Show "No Annotation"
   show_observation_photos: show observation photos
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
