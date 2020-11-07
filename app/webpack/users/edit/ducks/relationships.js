@@ -6,6 +6,7 @@ const SET_RELATIONSHIPS = "user/edit/SET_RELATIONSHIPS";
 const SET_FILTERED_RELATIONSHIPS = "user/edit/SET_FILTERED_RELATIONSHIPS";
 const SET_FILTERS = "user/edit/SET_FILTERS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
+const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
 
 export default function reducer( state = { filters: { name: null, following: "all", trusted: "all" } }, action ) {
   switch ( action.type ) {
@@ -17,6 +18,8 @@ export default function reducer( state = { filters: { name: null, following: "al
       return { ...state, filters: action.filters };
     case SET_RELATIONSHIP_TO_DELETE:
       return { ...state, id: action.id };
+    case SET_USER_AUTOCOMPLETE:
+      return { ...state, users: action.users };
     default:
   }
   return state;
@@ -47,6 +50,13 @@ export function setRelationshipToDelete( id ) {
   return {
     type: SET_RELATIONSHIP_TO_DELETE,
     id
+  };
+}
+
+export function setUserAutocomplete( users ) {
+  return {
+    type: SET_USER_AUTOCOMPLETE,
+    users
   };
 }
 
@@ -182,7 +192,6 @@ export function deleteRelationship( ) {
     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
   };
 }
-
 
 export function muteUser( id ) {
   const params = { useAuth: true, id };

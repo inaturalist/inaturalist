@@ -175,12 +175,3 @@ export function changePassword( input ) {
     dispatch( setUserData( profile ) );
   };
 }
-
-export function searchUsers( input ) {
-  console.log( input, "searching users " );
-  return ( ) => {
-    inatjs.users.fetch( { q: input } ).then( results => {
-      console.log( results, "search user results" );
-    } ).catch( ( e ) => console.log( e, "can't fetch users" ) );
-  };
-}

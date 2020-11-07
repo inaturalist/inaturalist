@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import BlockedMutedUsers from "../components/blocked_muted_users";
-import { searchUsers } from "../ducks/user_settings";
+import { blockUser, muteUser } from "../ducks/relationships";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,13 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    searchUsers: newState => { dispatch( searchUsers( newState ) ); }
+    blockOrMute: ( item, id ) => {
+      if ( id === "blocked_users" ) {
+        dispatch( blockUser( item.user_id ) );
+      } else {
+        dispatch( muteUser( item.user_id ) );
+      }
+    }
   };
 }
 

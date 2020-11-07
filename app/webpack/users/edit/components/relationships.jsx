@@ -8,30 +8,6 @@ import RelationshipsCheckboxContainer from "../containers/relationships_checkbox
 import UserFollowing from "./user_following";
 import BlockedMutedUsersContainer from "../containers/blocked_muted_users_container";
 
-const sampleData = [{
-  name: "Carrie Seltzer",
-  username: "carrieseltzer",
-  userId: 1, // for link
-  following: false,
-  trust_with_hidden_coords: false,
-  trusts_you_with_hidden_coords: true,
-  blocked: false,
-  muted: false,
-  icon: "",
-  date_added: "Jan 02, 2020"
-}, {
-  name: "Carrie Seltzer 2",
-  username: "carrieseltzer2",
-  userId: 1, // for link
-  following: false,
-  trust_with_hidden_coords: false,
-  trusts_you_with_hidden_coords: false,
-  blocked: false,
-  muted: false,
-  icon: "",
-  date_added: "Jan 02, 2020"
-}];
-
 const Relationships = ( {
   relationships,
   profile,
@@ -171,7 +147,9 @@ const Relationships = ( {
       </div>
       <div className="row">
         <BlockedMutedUsersContainer
-          users={sampleData}
+          users={profile.blocked_user_ids
+            ? relationships.filter( u => profile.blocked_user_ids.includes( u.friendUser.id ) )
+            : []}
           headerText={I18n.t( "blocked_users" )}
           id="blocked_users"
           placeholder={I18n.t( "add_blocked_users" )}
