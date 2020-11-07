@@ -12,7 +12,8 @@ const BlockedMutedUsers = ( {
   placeholder,
   buttonText,
   htmlDescription,
-  blockOrMute
+  blockOrMute,
+  unblockOrUnmute
 } ) => (
   <div className="col-md-6">
     <SettingsItem header={headerText} htmlFor={id}>
@@ -30,7 +31,11 @@ const BlockedMutedUsers = ( {
             <UserFollowing user={user.friendUser} />
           </div>
           <div className="col-sm-3">
-            <button type="button" className="btn btn-default btn-xs">
+            <button
+              type="button"
+              className="btn btn-default btn-xs"
+              onClick={( ) => unblockOrUnmute( user.friendUser.id, id )}
+            >
               {buttonText}
             </button>
           </div>
@@ -52,7 +57,8 @@ BlockedMutedUsers.propTypes = {
   placeholder: PropTypes.string,
   buttonText: PropTypes.string,
   htmlDescription: PropTypes.object,
-  blockOrMute: PropTypes.func
+  blockOrMute: PropTypes.func,
+  unblockOrUnmute: PropTypes.func
 };
 
 export default BlockedMutedUsers;
