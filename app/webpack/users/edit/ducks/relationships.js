@@ -1,5 +1,7 @@
 import inatjs from "inaturalistjs";
 
+import { fetchUserSettings } from "./user_settings";
+
 const SET_RELATIONSHIPS = "user/edit/SET_RELATIONSHIPS";
 const SET_FILTERED_RELATIONSHIPS = "user/edit/SET_FILTERED_RELATIONSHIPS";
 const SET_FILTERS = "user/edit/SET_FILTERS";
@@ -179,4 +181,33 @@ export function deleteRelationship( ) {
       dispatch( fetchRelationships( true ) );
     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
   };
+}
+
+
+export function muteUser( id ) {
+  const params = { useAuth: true, id };
+  return dispatch => inatjs.users.mute( params ).then( ( ) => {
+    dispatch( fetchUserSettings( ) );
+  } ).catch( e => console.log( `Failed to mute user: ${e}` ) );
+}
+
+export function unmuteUser( id ) {
+  const params = { useAuth: true, id };
+  return dispatch => inatjs.users.unmute( params ).then( ( ) => {
+    dispatch( fetchUserSettings( ) );
+  } ).catch( e => console.log( `Failed to unmute user: ${e}` ) );
+}
+
+export function blockUser( id ) {
+  const params = { useAuth: true, id };
+  return dispatch => inatjs.users.block( params ).then( ( ) => {
+    dispatch( fetchUserSettings( ) );
+  } ).catch( e => console.log( `Failed to block user: ${e}` ) );
+}
+
+export function unblockUser( id ) {
+  const params = { useAuth: true, id };
+  return dispatch => inatjs.users.unmute( params ).then( ( ) => {
+    dispatch( fetchUserSettings( ) );
+  } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }
