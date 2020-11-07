@@ -525,6 +525,7 @@ class UsersController < ApplicationController
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
+        @discourse_data = nil
         # No connection or other connection issue
         nil
       end
