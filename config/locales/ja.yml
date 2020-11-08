@@ -2254,7 +2254,7 @@ ja:
   only_species_and_subspecies: 種、亜種および品種のみ
   only_staff_can_edit_large_places: 非常に大きな場所を編集できるのはサイトスタッフだけです
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
-  only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはダメですよ。
+  only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはいけません。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   only_you: 自分のみ
   open: 公開
@@ -3634,7 +3634,7 @@ ja:
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
   user_commented_on: "%{user}さんがあなたの%{title}にコメントしました（%{time}）"
-  user_disagrees_this_is_taxon: "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています"
+  user_disagrees_this_is_taxon: "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}さんが%{owner}の%{noun}をお気に入りに追加しました"
   user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
