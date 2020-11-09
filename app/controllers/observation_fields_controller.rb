@@ -12,7 +12,11 @@ class ObservationFieldsController < ApplicationController
     scope = ObservationField.all
     @order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first || ORDER_BY_FIELDS.first
     @order = ( %w(asc desc) & [params[:order]] ).first || "desc"
-    scope = scope.order( "#{@order_by} #{@order} NULLS LAST" )
+    scope = if @order_by == "name"
+      scope.order( "LOWER(name) #{@order} NULLS LAST" )
+    else
+      scope.order( "#{@order_by} #{@order} NULLS LAST" )
+    end
     scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     
