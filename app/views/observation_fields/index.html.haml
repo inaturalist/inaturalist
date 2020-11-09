@@ -6,12 +6,12 @@
       %h2= @title
     .col-xs-4
       = form_tag( observation_fields_path, method: :get, class: "pull-right", style: "margin-top: 20px" ) do
-        = hidden_fields_for_params without: [:q, :commit]
+        = hidden_fields_for_params without: [:q, :commit, :utf8, :page]
         .input-group
           = text_field_tag :q, @q, class: "form-control", placeholder: t(:search)
           .input-group-btn
             - unless @q.blank?
-              = link_to url_for_params( q: nil ), class: "btn btn-default" do
+              = link_to url_for_params( without: [:q, :page, :commit, :utf8] ), class: "btn btn-default" do
                 %i.fa.fa-times-circle.text-muted
             = submit_tag t(:search), class: "btn btn-primary"
   .row
@@ -21,7 +21,7 @@
         %thead
           %tr
             %th
-              = link_to url_for_params( order_by: "name", order: @order == "desc" ? "asc" : "desc" ) do
+              = link_to url_for_params( order_by: "name", order: @order == "desc" ? "asc" : "desc", without: [:page, :utf8, :commit] ) do
                 = t(:name)
                 - if @order_by == "name"
                   - if @order == "desc"
@@ -29,7 +29,7 @@
                   - else
                     &uarr;
             %th
-              = link_to url_for_params( order_by: "created_at", order: @order == "desc" ? "asc" : "desc" ) do
+              = link_to url_for_params( order_by: "created_at", order: @order == "desc" ? "asc" : "desc", without: [:page, :utf8, :commit] ) do
                 = t(:date_added)
                 - if @order_by == "created_at"
                   - if @order == "desc"
