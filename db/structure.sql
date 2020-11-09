@@ -10352,11 +10352,11 @@ INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
 
+INSERT INTO schema_migrations (version) VALUES ('20200910001039');
+
 INSERT INTO schema_migrations (version) VALUES ('20200918185507');
 
 INSERT INTO schema_migrations (version) VALUES ('20200918230545');
-
-INSERT INTO schema_migrations (version) VALUES ('20200910001039');
 
 INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 
