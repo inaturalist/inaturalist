@@ -1748,6 +1748,9 @@ cs:
     identifikace, identifikace je stále viditelná, ale 
     poznámky identifikátora jsou skryté. Tuto akci nelze vrátit zpět a pouze pracovníci webu mohou obsah odkrýt, jakmile je skrytý, proto buďte opatrní a používejte jej jen pro velmi
     nevhodný obsah.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Skrýt "Bez anotace"
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
@@ -3739,6 +3742,9 @@ cs:
   show_keyboard_shortcuts: Zobrazit klávesové zkratky
   show_less: Zobrazit méně
   show_more: Zobrazit více
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Zobrazit "Bez anotace"
   show_observation_photos: zobrazit fotky pozorování
   show_off_your_recent_observations: Ukažte svá poslední pozorování na svém blogu nebo webové stránce!
   show_only: Zobrazit jen
@@ -5093,7 +5099,6 @@ cs:
     messages:
       from: Od
       to: Do
-      subject: Předmět
       subject_body: Předmět nebo text
       index:
         show_messages_from_user: Zobrazit zprávy od %{user}
@@ -6116,7 +6121,7 @@ cs:
           "Life Stage=nymph": Nymfa
           "Life Stage=pupa": Kukla
           "Life Stage=adult": Dospělý
-          unannotated: Žádná anotace
+          unannotated: Bez anotace
         max_photos_desc: |
           Taxon může mít pouze %{max} fotografií. Budete muset odebrat existující
           fotografie, abyste mohli přidat další.
@@ -6862,6 +6867,9 @@ cs:
       listed_taxon:
         occurrence_status_level: Úroveň statusu výskytu
         establishment_means: Způsob vzniku
+      message:
+        subject: Předmět
+        body: Obsah
       observation:
         description: Poznámky
         geo_x: Východní směr
