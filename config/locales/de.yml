@@ -1594,6 +1594,9 @@ de:
   hide_content: Inhalt ausblenden
   hide_desc: |
     Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: '"Keine Annotation" ausblenden'
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Unzählbare Arten verstecken
   high: Obergrenze
@@ -3536,6 +3539,9 @@ de:
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: '"Keine Annotation" anzeigen'
   show_observation_photos: Beobachtungsfotos zeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: 'beschränken auf:'
@@ -4797,7 +4803,6 @@ de:
     messages:
       from: Von
       to: An
-      subject: Betreff
       subject_body: Thema / Text
       index:
         show_messages_from_user: Nachrichten von %{user} anzeigen
@@ -6364,6 +6369,9 @@ de:
       listed_taxon:
         occurrence_status_level: Verbreitungsstatus
         establishment_means: Art der Verbreitung
+      message:
+        subject: Betreff
+        body: Nachrichtentext
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
