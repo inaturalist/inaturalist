@@ -1620,6 +1620,9 @@ da:
   hide_content: Skjul indhold
   hide_desc: |
     Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Skjul "Ingen annotation"
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
   high: Høj
@@ -3598,6 +3601,9 @@ da:
   show_keyboard_shortcuts: Vis tastaturgenveje
   show_less: Vis mindre
   show_more: Vis mere
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Vis "Ingen annotation"
   show_observation_photos: vis observations foto´s
   show_off_your_recent_observations: Vis dine seneste observationer på din egen blog eller hjemmeside!
   show_only: Vis kun
@@ -6856,6 +6862,9 @@ da:
       listed_taxon:
         occurrence_status_level: Forekomst status niveau
         establishment_means: Oprindelse
+      message:
+        subject: Emne
+        body: Brødtekst
       observation:
         description: Notater
         geo_x: Østlig
