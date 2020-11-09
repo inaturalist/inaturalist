@@ -171,6 +171,7 @@ ca:
   about_this_project: Sobre aquest projecte
   about_trips_html: |
     <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
+  about_trusting_projects: Sobre la Confiança en Projectes
   about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
   about_trusting_projects_options_any_desc: |-
     Aquest inclou les observacions que heu marcat amb geoprivacitat "enfosquida" o "privada", p.e. observacions del teu jardí on d'indrets que no voleu donar a conèixer a altres.
@@ -178,6 +179,17 @@ ca:
     Únicament les vostres observacions en aquest projecte que tenen les coordenades enfosquides per tractar-se de tàxons en perill.
   about_trusting_projects_options_taxon_desc: |-
     Molts projectes necessites accedir a coordenades que han estat enfosquides perquè l'observació és sobre un tàxon vulnerable.
+  about_trusting_projects_overview: |-
+    Donar accés a les teves coordenades ocultes permetrà els administradors d'aquest projecte veure les coordenades reals de les vostres observacions en aquest projecte. Això és molt important en aquelles circumstàncies a les quals els científics o gestors de recursos naturals necessiten accedir a les coordenades exactes per l'anàlisi o la presa de decisions.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Els administradors del projecte que poden accedir a les teves coordenades ocultes són:
+  about_trusting_projects_warning: |-
+    Tingueu en compte que els administradors del projecte poden canviar els seus paràmetres per incloure qualsevol de les vostres observacions , i poden afegir o treure administradors del projecte en qualsevol moment. Sereu informat d'aquests canvis, però com heu confiat les vostres dades privades a aquest projecte, tingueu cura.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Heu escollits compartir les vostres coordenades ocultes per a
   about_x: "Quant a %{x}"
   acc: 'Exactitud (m)'
   account: Compte
@@ -471,6 +483,23 @@ ca:
   any_annotation_attribute: Qualsevol
   #Label for an option to show content with any annotation value
   any_annotation_value: Qualsevol
+  #Label for an option to show content from any date
+  any_date: Qualsevol
+  #Label for an option to show content with any establishment means
+  any_establishment: Qualsevol
+  #Label for an option to show content with any license
+  any_license: Qualsevol
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Qualsevol
+  #Label for an option to show content from any project
+  any_project: Qualsevol
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Qualsevol
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Qualsevol
+  #Label for an option to show/include content by any user
+  any_user: Qualsevol
   anyone: Qualsevol
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
@@ -756,6 +785,7 @@ ca:
   check_out_my_observations_at: Si voleu, podeu veure les meves observacions a
   check_out_our_blog: Comproveu el nostre Blog
   check_out_what_the_observation: Feu un cop d'ull a les observacions que esteu intentant identificar.
+  check_out_your_new_and_improved_list_list: Reviseu la vostra nova i millorada Llista de Vida!
   check_this_box_if_html: |
     Seleccioneu aquest botó si voleu aplicar 
     <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves fotos o observacions sense demanar-te permís indicant la vostra autoria i sembre que no l'utilitzeu per explotar-ho comercialment. Podeu escollir una llicència diferent o retirar la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.
@@ -910,11 +940,19 @@ ca:
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
+    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     cannot_be_determined: No es pot determinar a partir de les dades aportades
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
   coordinates: Coordenades
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Només amb coordenades reals visibles
+  coords_viewable_for_proj_desc: |
+    Mostra únicament les observacions d'aquest projecte que permeten veure les coordenades "reals", les quals inclouen les que es mostren per a tothom i les enfosquides, però de persones que confien en tu, les que les confien a aquest projecte i les de tàxons vulnerables de persones que les han confiat a aquest projecte.
   copy: Còpia
   copy_and_paste_the_following_code_to: Copieu i enganxeu el codi següent per incrustar aquesta avaluació en una altra pàgina web.
   copy_and_paste_this_into_your_own_html: Copieu i enganxeu en un HTML.
@@ -1125,6 +1163,11 @@ ca:
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La vostra contrasenya no canviarà fins que accediu a l'enllaç de dalt i en creeu una de nova.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    El teu compte s'ha bloquejat a causa d'un nombre excessiu d'intents d'inici de sessió incorrectes.
+  devise_unlock_instructions_click_the_link: |
+    Feu clic a l'enllaç següent per desbloquejar el teu compte
+  devise_unlock_instructions_unlock: Desbloqueu el vostre compte
   discoveries: Descobriments
   did_not_send_invitations_because: 'No ho compartirem amb els seguidors perquè:'
   did_you_mean: 'Es refereix a'
@@ -1572,6 +1615,8 @@ ca:
     tooltips:
       leading: |
         Tàxon derivat del tàxon de la comunitat. Aquesta identificació us pot orientar cap a la resposta correcta.
+      improving: |
+        Primer suggeriment d'aquest tàxon amb el qual la comunitat ha estat d'acord. Això va ajudar a acotar el tàxon proposat per la Comunitat.
       maverick: |
         Aquest tàxon no és un descendent o avantpassat del de la comunitat, i.e. la comunitat no està d'acord amb aquest tàxon.
   id_withdrawn: ID retirat
@@ -1750,6 +1795,7 @@ ca:
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
   learn_more: Informeu-vos més
+  learn_more_on_the_blog: Obteniu més informació al Blog
   learn_more_raquo: "Per saber-ne més »"
   learn_what_these_licenses_mean: Informeu-vos sobre què signifiquen aquestes llicències
   least_concern: Preocupació menor
@@ -1792,6 +1838,7 @@ ca:
     italian: Italià
     japanese: Japonès
     korean: Coreà
+    latvian: Letó
     lithuanian: Lituà
     luxembourgish: Luxemburguès
     maltese: Maltès
@@ -1902,6 +1949,7 @@ ca:
     ko: Coreà
     lb: Luxemburguès
     lt: Lituà
+    lv: Letó
     mk: Macedònic
     nb: Noruec (Bokmål)
     nl: Holandès
@@ -1975,6 +2023,7 @@ ca:
   managers_can_do: Els gestors poden realitzar les mateixes activitats que un supervisor i addicionalment poden canviar les propietats del projecte i escriure notes en el diari del projecte.
   managing_projects: Gestió de Projectes
   map: Mapa
+  map_legend: Llegenda del Mapa
   map_marker_size: mida del marcador del mapa
   map_of_observations: Mapa d'Observacions
   maps:
@@ -4679,6 +4728,17 @@ ca:
       no_observations_found_within_this_taxon_in_place: No s'ha trobat aquest tàxon a %{place}.
       no_species_found_within_this_taxon_in_place: No s'ha trobat espècies d'aquest tàxon a %{place}.
       no_species_found_in_place: No s'ha trobat cap espècie a %{place}.
+      dropdowns:
+        name: Nom
+        most_observed: Més Observat
+        least_observed: Menys Observat
+        date_added_newest: Data d'incorporació, de més recent a més antic
+        date_added_oldest: Data d'incorporació, de més antic a més nou
+        ancestry: Ancestre
+        show: Mostra
+        children: Fill
+        simplified_tree: Arbre simplificat
+        full_taxonomy: Taxonomia sencera
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5035,6 +5095,17 @@ ca:
         taxon_spelling_notice_html: |
           Comproveu l'ortografia de cada entrada. Si l'ortografia és correcte, cerqueu les espècies a %{search_taxa_url}. Si el
           nom encara no està a la base de dades de %{site_name}, haureu d'afegir-lo abans de la càrrega massiva. Utilitzeu el quadre de la part inferior de la pàgina de cerca per fer la importació de noms nous. Si el nom sí que està present però aplica a diversos tàxons vàlids, intenteu utilitzar un nom més o menys específic per què correspongui a un únic tàxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Com heu confiat les coordenades ocultes<a
+          href="%{obs_url}">d'algunes observacions</a> en aquest projecte, els administradors ara poden accedir a més coordenades ocultes de les que podien accedir quan vau confiar en el projecte. Podeu revisar la llista d'administradors i els requisits del projecte per assegurar-vos que encara confieu les vostres observacions a aquest projecte:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Els requisits de les observacions dels següents projectes han canviat recentment:
+        subject: Els requisits de les observacions de %{project} han canviat
+        you_can_change_html: |-
+          Podeu canviar les vostres preferències o abandonar el projecte a la <a href="%{url}">pàgina del projecte</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           L'exportació de les vostres observacions està llesta. Hi ha una còpia adjunta a aquest missatge de correu electrònic, o podeu <a href="%{url}">descarregar la vostra exportació</a>.
@@ -5263,6 +5334,12 @@ ca:
         submission_models:
           any: qualsevol
           curators: supervisors del projecte
+        trust_allow_members_to_trust: |-
+          Permetre als membres confiar les coordenades ocultes a aquest projecte
+        trust_help_desc: |-
+          Si voleu accedir a les coordenades ocultes d'observacions enfosquides, aquesta opció permet els usuaris units al projecte confiar aquestes coordenades ocultes als administradors del projecte. Els membres del projecte poden donar accés a les coordenades ocultes de totes les seves observacions que apareixen en el projecte, o únicament a aquelles que han estat enfosquides per tractar-se de tàxons vulnerables.
+        trust_help_notification: |-
+          Però això també es notificarà a tots els membres del projecte que hagin confiat en ell cada vegada que canvieu els requisits del projecte, per tal que ells confirmin si volen continuar confiant en vosaltres, ateses les noves condicions.
         trusted_project_means: |
           Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar atributs del projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte significa que els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos, per tant confieu únicament en projectes que tenen gestors responsables i tècnicament competents
         you_can_preview: |
@@ -5352,6 +5429,8 @@ ca:
           Podeu seleccionar diverses espècies (o tàxons), llocs, dates, o altres criteris per què s'incloguin les observacions automàticament.
         start_and_end_times_for_bioblitzes: Data i hora d'inici i final (per a projectes del tipus bioblitz)
         traditional_projects_cannot_be_copied: Els projectes tradicionals no es poden copiar
+        trusting_members_will_be_notified: |
+          Heu canviat els requisits del projecte o heu activat la confiança dels usuaris. Això es notificarà a tots el membres del projecte que hagin confiat les seves coordenades ocultes en ell perquè puguin decidir si volen continuar confiant en el projecte, ateses les noves condicions.
         umbrella_project_features: "Característiques del Projecte Paraigua:"
         unique_url_for_outreach: URL única per a la promoció
         use_this_for_a_time_limited_event: |
@@ -5561,6 +5640,9 @@ ca:
           Un tàxon "complet" inclou <em>tots</em> els tàxons descendents conegut al rang especificat que compleix amb les polítiques de supervisió d'iNaturalist, hagin estat o no observats. Únicament els administradors poden declarar un tàxon complert en l'actualitat.
         complete_rank_desc_html: |
           El rang al qual aquest taxó és complet, p.ex. si aquesta família conté tots els seus gèneres, però no totes les seves espècies, es configuraria com a "gènere". El valor per defecte és l'espècie.
+        wikipedia_summary_desc_html: |
+          Breu resum d'aquest tàxon basat a la seva <a target="_blank"
+          href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
         about_names_desc: |
           <p>
@@ -6198,6 +6280,7 @@ ca:
     models:
       AssessmentSection: Secció de valoració
       Atlas: Atles
+      BlockedUser: Usuari blocat
       CompleteSet: Conjunt complet
       #Noun
       Flag: Marca
@@ -6208,6 +6291,9 @@ ca:
       assessment_section:
         title: Títol
         body: Cos
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Usuari blocat
       conservation_status:
         status: Estat
         description: Descripció
@@ -6366,6 +6452,11 @@ ca:
           attributes:
             base:
               guide_has_too_many_taxa: "La guia només pot tenir 500 tàxons"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "La importació d'aquest usuari del 'Mushroom Observer' s'està realitzant o està en cua per a la importació"
+              api_key_missing: "Falta la clau API del 'Mushroom Observer'"
         observation:
           attributes:
             base:
@@ -6478,6 +6569,13 @@ ca:
             email:
               must_look_like_an_email_address: ha de semblar una adreça de correu electrònic
               domain_is_not_supported: domini no està suportat
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Ja heu blocat aquest usuari
+              user_cannot_be_staff: |
+                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic del Institute for Biodiversity and Sustainability Science de la 
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -6650,6 +6748,8 @@ ca:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Atenció
   wild: Salvatge
   will_paginate:
     previous_label: "← Anterior"
