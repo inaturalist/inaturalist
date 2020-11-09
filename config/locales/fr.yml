@@ -171,6 +171,25 @@ fr:
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
+  about_trusting_projects: À propos des projets de confiance
+  about_trusting_projects_options_any: Toutes vos observations de ce projet
+  about_trusting_projects_options_any_desc: |-
+    Ceci inclue vos observations dont vous avez cachés les coordonées, c'est-à-dire celles dont vous ne voulez pas que les autres naturalistes sachent les coordonées.
+  about_trusting_projects_options_taxon: |-
+    Seules vos observations aux coordonnées cachées car à propos d'une espèce menacée?
+  about_trusting_projects_options_taxon_desc: |-
+    Beaucoup de projets ont besoin d'avoir accès aux coordonnées cachées de vos observations qui contiennent un taxon menacé.
+  about_trusting_projects_overview: |-
+    Autoriser l'accès à vos coordonnées cachées va permettre aux dirigeants du projets de voir la véritable position de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Les gérants du projet qui auront accès aux coordonnées cachées sont :
+  about_trusting_projects_warning: |-
+    Prenez en compte que les gérants du projet pourrons changer les paramètres de celui-ci afin d'ajouter vos observations, et ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées cachées, donc soyez prudent.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Vous pouvez choisir de partager vos coordonnées cachées pour
   about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
@@ -940,6 +959,13 @@ fr:
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
   coordinates: Coordonnées
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Seulement avec des coordonnées complètes
+  coords_viewable_for_proj_desc: |
+    Montrez uniquement des observations du projet pour lesquelles vous pouvez voir les coordonnées réelles, incluant les coordonnées ouvertes, ou cachées par des gens qui vous font confiance, par des gens qui font confiance au projet, ou car elles sont à propos d'un taxon menacé mises par des gens qui font confiance au projet.
   copy: Copier
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   copy_and_paste_this_into_your_own_html: Copiez et collez dans votre propre HTML.
@@ -1597,6 +1623,9 @@ fr:
     remarques sont masquées. Cela n’est pas réversible, et seul le personnel
     peut réafficher du contenu une fois masqué. Soyez donc prudent et ne le
     faites que pour du contenu particulièrement répréhensible.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Masquer « Pas d'annotation »
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
   high: Haut
@@ -3345,6 +3374,7 @@ fr:
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
   recaptcha_verification_failed: échec de la vérification reCAPTCHA
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
+  receive_project_journal_notifications?: Recevoir des notifications à propos du projet ?
   receive_updates_from_this_project: Recevoir des avis pour ce projet
   recent: Récent
   recent_evidence_of_organism: Preuve récente d’un organisme
@@ -3568,6 +3598,9 @@ fr:
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_less: Afficher moins
   show_more: Afficher davantage
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Montrer « Pas d'annotation »
   show_observation_photos: afficher les photos d’observation
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blog ou site web !
   show_only: 'Montrer seulement :'
@@ -4088,9 +4121,12 @@ fr:
   trending: Tendance
   trends: Tendances
   trip_target_list_info: 'Toute espèce couverte par cette liste cible qui n’a pas été observée dans le rayon et la durée de ce voyage sera interprétée comme absente. <a href="/pages/trips">En savoir plus</a>.'
+  #Noun
+  trust: Faire confiance
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
+  trust_this_project_with_your_private_coordinates?: Faire confiance au projet pour vos coordonnées cachées ?
   trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
@@ -4312,6 +4348,7 @@ fr:
   view_more_observations_of_x_project: "Afficher plus d'observations de %{project} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Afficher plus d’observations de %{taxon} sur <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Afficher plus de non relu"
+  view_my_life_list: Liste d'êtres vivants
   view_observation: Afficher l’observation
   view_observations: Afficher les observations
   view_observation_flags: Voir les signalements pour cette observation
@@ -4470,7 +4507,15 @@ fr:
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
   'yes': "Oui"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Oui, mais seulement pour mes observations de taxon menacés.
   yes_find_them!: "Oui, trouvez-les!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Oui, mais pour toutes vos observations"
   yes_i_want_to_join: Oui, je veux me joindre
   yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
@@ -4864,6 +4909,15 @@ fr:
       filter_by: Filtrer selon
       filtered_by: Filtré selon
       apply_filters_to_export: Appliquer les filtres à l'exportation
+      restrict_to_leaf_taxa: Restreindre au taxon "feuille"
+      restrict_to_taxon: Restreindre à %{taxon}
+      restrict_to_taxa_observed_in_place: Restreindre aux taxons vu à %{place}
+      exporting_all_x_taxa:
+        one: Exporter %{count} taxon
+        other: Exporter les %{count} taxons
+      exporting_x_taxa:
+        one: Exportation de %{count} taxon
+        other: Exportation de %{count} taxons
       no_observations_found_in_place: Aucune observation trouvée dans/au/à/en/aux %{place}.
       no_observations_found_within_this_taxon_in_place: Aucune observation trouvée dans ce taxon au/à/en/aux %{place}.
       no_species_found_within_this_taxon_in_place: Aucune espèce trouvée dans ce taxon au/à/en/aux %{place}.
@@ -4874,6 +4928,7 @@ fr:
       reset_place_filter: Réinitialiser le filtre du lieu
       all_observations_in_this_taxon: Toutes les observations de ce taxon
       observations_of_exactly_this_taxon: Observations de ce taxon exact
+      focus_tree_on_this_taxon: Centrer l'arbre sur ce taxon
       expand_all_nodes_in_this_branch: Etendre tous les nœuds dans cette branche
       collapse_this_branch: Détruire cette branche
       dropdowns:
@@ -5339,6 +5394,17 @@ fr:
           avant votre envoi. Utilisez le formulaire au bas de la page de recherche pour importer de nouveaux noms. Si le nom est présent mais
           s’applique à plusieurs taxons valides, essayez d’utiliser un nom plus ou moins
           spécifique qui ne correspond qu’à un seul taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Puisque vous avez mis ce projet en "projet de confiance" en peremttant l'accès aux coordonnées de<a
+          href="%{obs_url}">certaines de vos observations</a>, les administrateurs ont désormais accès à plus de coordonnées cachées que lorsque vous avez mis ce projet "projet de confiance". Vous devriez voir la liste des administrateurs du projet et les différents règles du projet pour être sûr que vous êtes toujours en accord.
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Un ou des paramètres du projet qui suit à été récemment changé :
+        subject: Paramètre de projet changé pour %{project}
+        you_can_change_html: |-
+          Vous pouvez changer vos préférences ou quitter le projet sur la <a href="%{url}">page du projet</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Votre exportation des observations est prête. Il y a une copie jointe à ce courriel, ou vous pouvez
@@ -5651,6 +5717,12 @@ fr:
         submission_models:
           any: n’importe qui
           curators: responsables du projet
+        trust_allow_members_to_trust: |-
+          Permettre aux membres de partager leurs coordonnées cachées
+        trust_help_desc: |-
+          Si vous voulez avoir accès aux coordonnées cachées des utilisateurs, cette option leur permet de donner l'accès aux admins du projet à ces coordonnées. Les membres du projet vont être capables de donner accès aux coordonnées de leurs observations qui font partie du projet, ou juste de celles avec un taxon menacé du projet.
+        trust_help_notification: |-
+          Cependant, vous allez notifier tous les membres du projet lorsque vous changerez ce paramètre, pour leur permettre d'avoir le choix.
         trusted_project_means: |
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
@@ -5756,6 +5828,8 @@ fr:
           Vous pouvez sélectionner plusieurs espèces (ou taxons), lieux, dates ou autres critères selon lesquels les observations seront automatiquement incluses.
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
+        trusting_members_will_be_notified: |
+          Vous avez changé un ou des paramètres du projet. Ceci va notifier tous les membres du projet qui l'ont mis en projet de confiance, pour qu'ils puissent choisir si ils vont continuer de dévoiler leurs coordonnées cachées après ce changement.
         umbrella_project_features: "Fonctionnalités du projet cadre:"
         unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |
@@ -6372,6 +6446,10 @@ fr:
           Descriptions de licence et images &copy; %{year} Creative Commons, utilisés
           sous une licence <a href="http://creativecommons.org/licenses/by/3.0/">Licence d'attribution Creative
           Commons</a> (donc meta !)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
+        monthly_supporter: Donateur mensuel
         monthly_supporter_desc_html: |
           Les parrains réguliers d’iNaturalist font des contributions mensualisées
           automatiques qui sont reçues par l’Académie des sciences de Californie
@@ -6924,6 +7002,9 @@ fr:
       listed_taxon:
         occurrence_status_level: Niveau d’état de la présence
         establishment_means: Moyens d’établissement
+      message:
+        subject: Objet
+        body: Corps du texte
       observation:
         description: Notes
         geo_x: Abscisse
