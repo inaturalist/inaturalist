@@ -60,90 +60,107 @@ const Relationships = ( {
     );
   } );
 
+  const showFilters = ( ) => (
+    <div className={relationships.length === 0 && "hidden"}>
+      <div className="col-md-3">
+        <div className="row flex-no-wrap search-margin">
+          <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
+          <div className="input-group margin-right-medium">
+            <input
+              id="name"
+              type="text"
+              className="form-control"
+              name="name"
+              placeholder={I18n.t( "username" )}
+              onChange={updateFilters}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
+        <div className="row flex-no-wrap">
+          <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
+          <select
+            className="form-control"
+            id="following"
+            name="following"
+            onChange={updateFilters}
+          >
+            <option value="all">{I18n.t( "all" )}</option>
+            <option value="yes">{I18n.t( "yes" )}</option>
+            <option value="no">{I18n.t( "no" )}</option>
+          </select>
+        </div>
+      </div>
+      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
+        <div className="row flex-no-wrap search-margin">
+          <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
+          <select
+            className="form-control"
+            id="trusted"
+            name="trusted"
+            onChange={updateFilters}
+          >
+            <option value="all">{I18n.t( "all" )}</option>
+            <option value="yes">{I18n.t( "yes" )}</option>
+            <option value="no">{I18n.t( "no" )}</option>
+          </select>
+        </div>
+      </div>
+      <div className="col-md-3 col-sm-4 col-xs-4">
+        <div className="row flex-no-wrap">
+          <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
+          <select
+            className="form-control"
+            id="sort_by"
+            name="sort_by"
+            onChange={sortRelationships}
+          >
+            <option value="recently_added">{I18n.t( "recently_added" )}</option>
+            <option value="earliest_added">{I18n.t( "earliest_added" )}</option>
+            <option value="a_to_z">{I18n.t( "a_to_z" )}</option>
+            <option value="z_to_a">{I18n.t( "z_to_a" )}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+
+  const showEmptyState = ( ) => (
+    <SettingsItem>
+      <p className="bold">
+        {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
+      </p>
+    </SettingsItem>
+  );
+
   return (
     <div>
       <SettingsItem>
         <h4>{I18n.t( "relationships_user_settings" )}</h4>
-        <div className="col-md-3">
-          <div className="row flex-no-wrap search-margin">
-            <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
-            <div className="input-group margin-right-medium">
-              <input
-                id="name"
-                type="text"
-                className="form-control"
-                name="name"
-                placeholder={I18n.t( "username" )}
-                onChange={updateFilters}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
-            <select
-              className="form-control"
-              id="following"
-              name="following"
-              onChange={updateFilters}
-            >
-              <option value="all">{I18n.t( "all" )}</option>
-              <option value="yes">{I18n.t( "yes" )}</option>
-              <option value="no">{I18n.t( "no" )}</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
-          <div className="row flex-no-wrap search-margin">
-            <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
-            <select
-              className="form-control"
-              id="trusted"
-              name="trusted"
-              onChange={updateFilters}
-            >
-              <option value="all">{I18n.t( "all" )}</option>
-              <option value="yes">{I18n.t( "yes" )}</option>
-              <option value="no">{I18n.t( "no" )}</option>
-            </select>
-          </div>
-        </div>
-        <div className="col-md-3 col-sm-4 col-xs-4">
-          <div className="row flex-no-wrap">
-            <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
-            <select
-              className="form-control"
-              id="sort_by"
-              name="sort_by"
-              onChange={sortRelationships}
-            >
-              <option value="recently_added">{I18n.t( "recently_added" )}</option>
-              <option value="earliest_added">{I18n.t( "earliest_added" )}</option>
-              <option value="a_to_z">{I18n.t( "a_to_z" )}</option>
-              <option value="z_to_a">{I18n.t( "z_to_a" )}</option>
-            </select>
-          </div>
-        </div>
+        {showFilters( )}
       </SettingsItem>
-      <div className="row hidden-xs">
-        <div className="col-xs-4">
-          <label>{I18n.t( "name" )}</label>
+      {relationships.length === 0 && showEmptyState( )}
+      <div className={relationships.length === 0 && "hidden"}>
+        <div className="row hidden-xs">
+          <div className="col-xs-4">
+            <label>{I18n.t( "name" )}</label>
+          </div>
+          <div className="col-sm-8">
+            <label>{I18n.t( "actions" )}</label>
+          </div>
         </div>
-        <div className="col-sm-8">
-          <label>{I18n.t( "actions" )}</label>
+        {filteredRelationships.length > 0 && showRelationships( )}
+        <div className="divider" />
+        <div className="Pagination text-center">
+          <Pagination
+            total={filteredRelationships.length}
+            current={1}
+            pageSize={10}
+            onChange={( ) => console.log( "paginating" )}
+            // onChange={page => loadPage( page )}
+          />
         </div>
-      </div>
-      {filteredRelationships.length > 0 && showRelationships( )}
-      <div className="divider" />
-      <div className="Pagination text-center">
-        <Pagination
-          total={filteredRelationships.length}
-          current={1}
-          pageSize={10}
-          onChange={( ) => console.log( "paginating" )}
-          // onChange={page => loadPage( page )}
-        />
       </div>
       <div className="row">
         <BlockedMutedUsersContainer

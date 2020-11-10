@@ -18997,6 +18997,7 @@ I18n.translations["en"] = {
   "your_membership": "Your Membership",
   "your_observations": "Your Observations",
   "your_pinned_locations": "Your Pinned Locations",
+  "youre_not_following_anyone_on_inat": "You're not following anyone on %{site_name} yet!",
   "yours": "Yours",
   "z_to_a": "Z to A",
   "zoom_in": "Zoom In",
