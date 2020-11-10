@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     only: [ :edit ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
-    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute ],
+    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute, :block, :unblock ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
     only: [ :destroy ],
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute, :block, :unblock ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -935,6 +935,34 @@ class UsersController < ApplicationController
           render head: :no_content, layout: false, text: nil
         else
           render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not muted"] }
+        end
+      end
+    end
+  end
+
+  def block
+    @user_block = current_user.user_blocks.where( blocked_user_id: @user ).first
+    @user_block ||= current_user.user_blocks.create( blocked_user: @user )
+    respond_to do |format|
+      format.json do
+        if @user_block.valid?
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: @user_block.errors }
+        end
+      end
+    end
+  end
+
+  def unblock
+    @user_block = current_user.user_blocks.where( blocked_user_id: @user ).first
+    @user_block.destroy if @user_block
+    respond_to do |format|
+      format.json do
+        if @user_block
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not blocked"] }
         end
       end
     end

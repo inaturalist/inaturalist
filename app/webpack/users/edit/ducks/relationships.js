@@ -208,6 +208,7 @@ export function unmuteUser( id ) {
 }
 
 export function blockUser( id ) {
+  console.log( id, "block user" );
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.block( params ).then( ( ) => {
     dispatch( fetchUserSettings( ) );
@@ -215,8 +216,9 @@ export function blockUser( id ) {
 }
 
 export function unblockUser( id ) {
+  console.log( id, "unblock user" );
   const params = { useAuth: true, id };
-  return dispatch => inatjs.users.unmute( params ).then( ( ) => {
+  return dispatch => inatjs.users.unblock( params ).then( ( ) => {
     dispatch( fetchUserSettings( ) );
   } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }

@@ -147,9 +147,7 @@ const Relationships = ( {
       </div>
       <div className="row">
         <BlockedMutedUsersContainer
-          users={profile.blocked_user_ids
-            ? relationships.filter( u => profile.blocked_user_ids.includes( u.friendUser.id ) )
-            : []}
+          users={relationships.filter( u => profile.blocked_user_ids.includes( u.friendUser.id ) )}
           headerText={I18n.t( "blocked_users" )}
           id="blocked_users"
           placeholder={I18n.t( "add_blocked_users" )}

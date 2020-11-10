@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 
 import BlockedMutedUsers from "../components/blocked_muted_users";
-import { blockUser, muteUser, unblockUser, unmuteUser } from "../ducks/relationships";
+import {
+  blockUser,
+  muteUser,
+  unblockUser,
+  unmuteUser
+} from "../ducks/relationships";
 
 function mapStateToProps( state ) {
   return {
