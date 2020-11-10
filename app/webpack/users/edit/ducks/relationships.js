@@ -7,8 +7,12 @@ const SET_FILTERED_RELATIONSHIPS = "user/edit/SET_FILTERED_RELATIONSHIPS";
 const SET_FILTERS = "user/edit/SET_FILTERS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
 const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
+const SET_BLOCKED_USERS = "user/edit/SET_BLOCKED_USERS";
 
-export default function reducer( state = { filters: { name: null, following: "all", trusted: "all" } }, action ) {
+export default function reducer( state = {
+  filters: { name: null, following: "all", trusted: "all" },
+  blockedUsers: []
+}, action ) {
   switch ( action.type ) {
     case SET_RELATIONSHIPS:
       return { ...state, relationships: action.relationships };
@@ -20,6 +24,8 @@ export default function reducer( state = { filters: { name: null, following: "al
       return { ...state, id: action.id };
     case SET_USER_AUTOCOMPLETE:
       return { ...state, users: action.users };
+    case SET_BLOCKED_USERS:
+      return { ...state, blockedUsers: action.blockedUsers };
     default:
   }
   return state;
@@ -60,6 +66,12 @@ export function setUserAutocomplete( users ) {
   };
 }
 
+export function setBlockedUsers( blockedUsers ) {
+  return {
+    type: SET_BLOCKED_USERS,
+    blockedUsers
+  };
+}
 
 export function filterRelationships( ) {
   return ( dispatch, getState ) => {
@@ -99,6 +111,18 @@ export function filterRelationships( ) {
     dispatch( setFilteredRelationships( filteredFriends ) );
   };
 }
+
+export function fetchBlockedUser( id ) {
+  return ( dispatch, getState ) => {
+    const { blockedUsers } = getState( ).relationships;
+
+    return inatjs.users.fetch( id ).then( ( { results } ) => {
+      blockedUsers.push( results[0] );
+      dispatch( setBlockedUsers( blockedUsers ) );
+    } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) );
+  };
+}
+
 
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };

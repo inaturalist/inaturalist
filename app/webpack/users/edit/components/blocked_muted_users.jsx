@@ -13,19 +13,12 @@ const BlockedMutedUsers = ( {
   buttonText,
   htmlDescription,
   blockOrMute,
-  unblockOrUnmute
-} ) => (
-  <div className="col-md-6">
-    <SettingsItem header={headerText} htmlFor={id}>
-      <div className={`input-group ${users.length === 3 && id === "blocked_users" && "hidden"}`}>
-        <UserAutocomplete
-          resetOnChange={false}
-          afterSelect={( { item } ) => blockOrMute( item, id )}
-          bootstrapClear
-          placeholder={placeholder}
-        />
-      </div>
-      {users.map( user => (
+  unblockOrUnmute,
+  blockedUsers
+} ) => {
+  const displayUserList = ( ) => {
+    if ( id === "muted_users" ) {
+      return users.map( user => (
         <div className="flex-no-wrap profile-photo-margin" key={user.friendUser.id}>
           <div className="col-sm-9">
             <UserFollowing user={user.friendUser} />
@@ -40,15 +33,47 @@ const BlockedMutedUsers = ( {
             </button>
           </div>
         </div>
-      ) )}
-    </SettingsItem>
-    <p
-      className="text-muted"
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={htmlDescription}
-    />
-  </div>
-);
+      ) );
+    }
+    return blockedUsers.map( user => (
+      <div className="flex-no-wrap profile-photo-margin" key={user.id}>
+        <div className="col-sm-9">
+          <UserFollowing user={user} />
+        </div>
+        <div className="col-sm-3">
+          <button
+            type="button"
+            className="btn btn-default btn-xs"
+            onClick={( ) => unblockOrUnmute( user.id, id )}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </div>
+    ) );
+  };
+
+  return (
+    <div className="col-md-6">
+      <SettingsItem header={headerText} htmlFor={id}>
+        <div className={`input-group ${users.length === 3 && id === "blocked_users" && "hidden"}`}>
+          <UserAutocomplete
+            resetOnChange={false}
+            afterSelect={( { item } ) => blockOrMute( item, id )}
+            bootstrapClear
+            placeholder={placeholder}
+          />
+        </div>
+        {displayUserList( )}
+      </SettingsItem>
+      <p
+        className="text-muted"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={htmlDescription}
+      />
+    </div>
+  );
+};
 
 BlockedMutedUsers.propTypes = {
   users: PropTypes.array,
@@ -58,7 +83,8 @@ BlockedMutedUsers.propTypes = {
   buttonText: PropTypes.string,
   htmlDescription: PropTypes.object,
   blockOrMute: PropTypes.func,
-  unblockOrUnmute: PropTypes.func
+  unblockOrUnmute: PropTypes.func,
+  blockedUsers: PropTypes.array
 };
 
 export default BlockedMutedUsers;

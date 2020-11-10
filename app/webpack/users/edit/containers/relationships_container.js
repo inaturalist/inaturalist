@@ -18,7 +18,8 @@ function mapStateToProps( state ) {
     filteredRelationships:
       state.relationships.relationships
         ? [...state.relationships.filteredRelationships]
-        : []
+        : [],
+    blockedUsers: state.relationships.blockedUsers
   };
 }
 
