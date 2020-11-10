@@ -1176,6 +1176,9 @@ bg:
   hide_content: Скрий съдържанието
   hide_desc: |
     Скриването на съдържание ще го премахне от публичния изглед, но хората ще могат да виждат, че нещо е скрито, а кураторите на сайта и авторът на съдържанието ще могат да виждат скритото съдържание. Това се отнася за написано съдържание, например ако скриете съдържанието на разпознаване – самото разпознаване ще е видимо, но бележките към него ще са скрити. Не можете да отмените това действие, само персоналът на сайта може да отмени скриването, така че бъдете внимателни и използвайте функцията само за наистина нежелателно съдържание.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Скривай „Без анотация“
   high: Висок
   highest_rank: Най-висок ранг
   history: История
@@ -2639,6 +2642,9 @@ bg:
   show_keyboard_shortcuts: Покажи клавишните комбинации
   show_less: Покажи по-малко
   show_more: Покажи повече
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Показвай „Без анотация“
   show_observation_photos: показвай снимки от наблюденията
   show_off_your_recent_observations: Покажете най-новите си наблюдения на своя блог или сайт!
   show_only: Покажи само
@@ -4094,6 +4100,9 @@ bg:
         published_at: Публикация
       listed_taxon:
         establishment_means: Начин на заселване
+      message:
+        subject: Тема
+        body: Съдържание
       observation:
         observed_on: Дата на наблюдаване
       observation_field_value:
