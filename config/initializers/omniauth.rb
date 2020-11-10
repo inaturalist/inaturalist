@@ -46,7 +46,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
   end
   if fb_cfg = CONFIG.facebook
-    opts = { scope: "email,user_photos", image_size: "large" }
+    # Facebook requires app approval for the user_photos scope, and we're still
+    # pending as of 20201110
+    # opts = { scope: "email,user_photos", image_size: "large" }
+    opts = { scope: "email" }
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 
