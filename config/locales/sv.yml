@@ -1645,6 +1645,9 @@ sv:
     kommentarer är dolda. Du kan inte ångra detta, och endast webbplatspersonal kan ta fram
     innehåll när det väl har gömts, så var försiktig och använd endast detta för mycket
     stötande innehåll.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Dölj "Ingen anteckning"
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj oräkneliga arter
   high: Hög
@@ -3655,6 +3658,9 @@ sv:
   show_keyboard_shortcuts: Visa kortkommandon
   show_less: Visa mindre
   show_more: Visa mer
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Visa "Ingen anteckning"
   show_observation_photos: visa observationsbilder
   show_off_your_recent_observations: Visa upp dina senaste observationer på din egen blogg eller hemsida!
   show_only: Visa endast
@@ -7309,6 +7315,9 @@ sv:
       listed_taxon:
         occurrence_status_level: Nivå för förekomststatus
         establishment_means: Invandringshistoria
+      message:
+        subject: Ämne
+        body: Text
       observation:
         description: Anteckningar
         geo_x: Östlig
