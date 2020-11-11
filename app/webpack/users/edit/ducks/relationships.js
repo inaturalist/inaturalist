@@ -1,4 +1,5 @@
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 
 import { fetchUserSettings } from "./user_settings";
 
@@ -117,7 +118,11 @@ export function fetchBlockedUser( id ) {
     const { blockedUsers } = getState( ).relationships;
 
     return inatjs.users.fetch( id ).then( ( { results } ) => {
-      blockedUsers.push( results[0] );
+      const findDuplicate = blockedUsers.find( u => u.id === results[0].id );
+
+      if ( !findDuplicate ) {
+        blockedUsers.push( results[0] );
+      }
       dispatch( setBlockedUsers( blockedUsers ) );
     } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) );
   };

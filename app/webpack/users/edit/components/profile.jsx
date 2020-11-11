@@ -5,6 +5,7 @@ import Dropzone from "react-dropzone";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ChangePassword from "./change_password";
+import UserImage from "../../../shared/components/user_image";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
