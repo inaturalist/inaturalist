@@ -143,7 +143,6 @@ export function fetchBlockedUser( id ) {
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
-    console.log( results, "results" );
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );
     }
