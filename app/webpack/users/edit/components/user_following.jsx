@@ -1,15 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
+import UserImage from "../../../shared/components/user_image";
 
 const UserFollowing = ( { user } ) => (
-  <div className="row flex-no-wrap">
-    <img
-      alt="user-following"
-      src={user.icon_url || emptyProfileImage}
-      className="user-photo margin-right-medium"
-    />
+  <div className="row flex-no-wrap relationship-image">
+    <UserImage user={user} />
     <div className="centered-column">
       <a href={`/people/${user.login}`}>{user.login}</a>
       <div>{user.name}</div>

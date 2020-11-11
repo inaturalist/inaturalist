@@ -1,3 +1,7 @@
+@import "../users/_user_image";
+
+$user-image-size: 65px;
+
 .flex-no-wrap {
   display: flex;
   align-items: center;
@@ -324,5 +328,18 @@ button.left-nav-item {
   }
   li.rc-pagination-item-active a {
     border-color: black;
+  }
+}
+
+.relationship-image {
+  .UserImage {
+    margin-right: 12px;
+    width: $user-image-size;
+    height: $user-image-size;
+  }
+
+  .icon-person {
+    font-size: $user-image-size - 10;
+    line-height: $user-image-size - 10;
   }
 }

@@ -19,6 +19,9 @@ const Relationships = ( {
   const showRelationships = ( ) => filteredRelationships.map( user => {
     const { friendUser } = user;
 
+    console.log( user, "user" );
+    console.log( relationships, "relatinoships" );
+
     return (
       <div className="row relationship-row-margin" key={friendUser.login}>
         <div className="divider relationship-row-margin" />
@@ -61,7 +64,7 @@ const Relationships = ( {
   } );
 
   const showFilters = ( ) => (
-    <div className={relationships.length === 0 && "hidden"}>
+    <div className={relationships.length === 0 ? "hidden" : null}>
       <div className="col-md-3">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
@@ -141,7 +144,7 @@ const Relationships = ( {
         {showFilters( )}
       </SettingsItem>
       {relationships.length === 0 && showEmptyState( )}
-      <div className={relationships.length === 0 && "hidden"}>
+      <div className={relationships.length === 0 ? "hidden" : null}>
         <div className="row hidden-xs">
           <div className="col-xs-4">
             <label>{I18n.t( "name" )}</label>
