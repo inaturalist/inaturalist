@@ -231,22 +231,45 @@ describe UsersController, "merge" do
   let(:normal_user) { User.make! }
   let(:curator_user) { make_curator }
   let(:admin_user) { make_admin }
-  let(:keeper_user) { User.make! }
-  let(:reject_user) { User.make! }
+  let(:keeper_user) { User.make!( login: "keeper", name: "keeper" ) }
+  let(:reject_user) { User.make!( login: "reject", name: "reject" ) }
   it "should not work for normal users" do
     sign_in normal_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).not_to be_blank
   end
   it "should not work for curators" do
     sign_in curator_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).not_to be_blank
   end
   it "should work for site admins" do
     sign_in admin_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).to be_blank
+  end
+  describe "reindexing" do
+    elastic_models( Project )
+    it "should happen for projects the reject created" do
+      proj = Project.make!(:collection, user: reject_user )
+      es_proj = Project.elastic_search( where: { id: proj.id } ).results.results[0]
+      proj_admin_user = User.find_by_id( es_proj.admins.first.user_id )
+      expect( proj_admin_user ).to eq reject_user
+      sign_in admin_user
+      after_delayed_job_finishes do
+        put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+      end
+      expect( User.find_by_id( reject_user.id ) ).to be_blank
+      es_proj = Project.elastic_search( where: { id: proj.id } ).results.results[0]
+      proj_admin_user = User.find_by_id( es_proj.admins.first.user_id )
+      expect( proj_admin_user ).to eq keeper_user
+    end
   end
 end
 
