@@ -7,6 +7,7 @@ class MushroomObserverImportFlowTask < FlowTask
   class MushroomObserverImportFlowTaskError < StandardError; end
   class TooManyRequestsError < MushroomObserverImportFlowTaskError; end
   class TimeoutError < MushroomObserverImportFlowTaskError; end
+  class ForbiddenError < MushroomObserverImportFlowTaskError; end
 
   def validate_unique_hash
     return unless unique_hash && !finished_at
@@ -101,7 +102,7 @@ class MushroomObserverImportFlowTask < FlowTask
 
   def get_results_xml( options = {} )
     page = options[:page] || 1
-    url = "https://mushroomobserver.org/api/observations"
+    url = "https://mushroomobserver.org/api2/observations.xml"
     return [] if api_key.blank?
     return [] if mo_user_id.blank?
     resp = get( url, {
@@ -111,21 +112,25 @@ class MushroomObserverImportFlowTask < FlowTask
       api_key: api_key
     } )
     Nokogiri::XML( resp ).search( "result" )
+  rescue RestClient::Forbidden
+    raise ForbiddenError.new( "API key does not have permission to retrieve observations" )
   end
 
   def mo_user_id( for_api_key = nil )
     unless @mo_user_id
       for_api_key ||= api_key
-      xml = Nokogiri::XML( get( "https://mushroomobserver.org/api/api_keys", api_key: for_api_key ) )
+      xml = Nokogiri::XML( get( "https://mushroomobserver.org/api2/api_keys.xml", api_key: for_api_key ) )
       @mo_user_id = xml.at( "response/user" ).try(:[], :id)
     end
     @mo_user_id
+  rescue RestClient::Forbidden
+    raise ForbiddenError.new( "API key is not valid" )
   end
 
   def mo_user_name( for_api_key = nil )
     if !@mo_user_name && ( user_id = mo_user_id )
       xml = Nokogiri::XML( get(
-        "https://mushroomobserver.org/api/users",
+        "https://mushroomobserver.org/api2/users.xml",
         id: user_id,
         detail: "high",
         api_key: api_key
@@ -133,6 +138,8 @@ class MushroomObserverImportFlowTask < FlowTask
       @mo_user_name = xml.at( "login_name" ).try(:text)
     end
     @mo_user_name
+  rescue RestClient::Forbidden
+    raise ForbiddenError.new( "API key does not have permission to retrieve user info" )
   end
 
   def api_key
@@ -187,7 +194,7 @@ class MushroomObserverImportFlowTask < FlowTask
       log "Found existing for #{mo_url}: #{existing}"
       return existing
     end
-    o = Observation.new( user: user )
+    o = Observation.new( user: user, geoprivacy: Observation::OPEN )
     o.observation_field_values.build( observation_field: mo_url_observation_field, value: mo_url )
     if location = result.at_css( "> location" )
       o.place_guess = location.at( "name" ).text
@@ -203,6 +210,11 @@ class MushroomObserverImportFlowTask < FlowTask
       o.latitude = latitude.text.to_f
       o.longitude = longitude.text.to_f
       o.positional_accuracy = nil
+      # nesting this here b/c we probably shouldn't set geoprivacy unless viewer
+      # has permission to see the true coordinates
+      if ( gps_hidden = result.at_css( "> gps_hidden" ) ) && gps_hidden[:value] == "true"
+        o.geoprivacy = Observation::PRIVATE
+      end
     end
     # This would prioritize the owner's name if we wanted to do that, but after
     # implementing this, I feel like it's probably preferrable to use the

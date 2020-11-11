@@ -4556,7 +4556,10 @@ I18n.translations["ca"] = {
   "any_": "Qualsevol",
   "any_annotation_attribute": "Qualsevol",
   "any_annotation_value": "Qualsevol",
+<<<<<<< HEAD
   "anyone": "Qualsevol",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "aràcnids",
   "are_you_sure?": "N’esteu segur?",
   "are_you_sure_leave_this_project": "Esteu segur que voleu sortir d'aquest projecte?",
@@ -8688,8 +8691,11 @@ I18n.translations["cs"] = {
   "trust": "Důvěřovat",
   "trust_this_person_with_your_private_coordinates": "Důvěřovat této osobě se skrytými souřadnicemi",
   "trust_this_project_with_your_private_coordinates?": "Důvěřovat tomuto projektu se skrytými souřadnicemi?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Důvěřovat skrytým souřadnicím",
   "trusted": "Důvěryhodné",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Napište název druhu",
@@ -11229,8 +11235,11 @@ I18n.translations["da"] = {
   "trust": "Hav tillid til",
   "trust_this_person_with_your_private_coordinates": "Betro denne person med dine skjulte koordinater",
   "trust_this_project_with_your_private_coordinates?": "Betro dine skjulte koordinater til dette projekt?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Betro med skjulte koordinater",
   "trusted": "Betroet",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3 dele",
   "type_species_name": "Indtast artsnavn",
@@ -13685,8 +13694,11 @@ I18n.translations["de"] = {
   "trust": "Vertrauen",
   "trust_this_person_with_your_private_coordinates": "Vertrau dieser Person deine verborgenen Koordinaten an",
   "trust_this_project_with_your_private_coordinates?": "Diesem Projekt versteckte Koordinaten anvertrauen?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Verborgene Koordinaten anvertrauen",
   "trusted": "Vertrauenswürdig",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Namen der Spezies eingeben",
@@ -17087,6 +17099,7 @@ I18n.translations["en"] = {
   "hide": "Hide",
   "hide_content": "Hide Content",
   "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. Generally, this\nonly applies to written content, e.g. if you hide the content of an\nidentification, the identification is still visible but the identifier's\nremarks are hidden. You cannot undo this, and only site staff can unhide\ncontent once it has been hidden, so be careful and only use this for very\nobjectionable content.\n",
+  "hide_no_annotation": "Hide \"No Annotation\"",
   "hide_running_total": "Hide Running Total",
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
@@ -18191,6 +18204,7 @@ I18n.translations["en"] = {
   "show_hidden_content": "Show Hidden Content",
   "show_keyboard_shortcuts": "Show Keyboard Shortcuts",
   "show_more": "Show More",
+  "show_no_annotation": "Show \"No Annotation\"",
   "show_relative_proportions_of_all_observations": "Show relative proportions of all observations",
   "show_running_total": "Show Running Total",
   "show_taxa_from_everywhere": "Show taxa from everywhere",
@@ -30919,7 +30933,10 @@ I18n.translations["fi"] = {
   "any_quality_grade": "Mikä tahansa",
   "any_reviewed": "Mikä tahansa",
   "any_user": "Mikä tahansa",
+<<<<<<< HEAD
   "anyone": "Kuka tahansa",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "hämähäkkieläimet",
   "are_you_sure?": "Oletko varma?",
   "are_you_sure_leave_this_project": "Haluatko varmasti lähteä pois tästä projektista?",
@@ -44143,8 +44160,11 @@ I18n.translations["it"] = {
   "trust": "Fidati",
   "trust_this_person_with_your_private_coordinates": "Rivela a questa persona le tue coordinate nascoste",
   "trust_this_project_with_your_private_coordinates?": "Ti fidi nel rivelare a questo progetto le coordinate nascoste?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Rivela le coordinate nascoste",
   "trusted": "Affidabile",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "due terzi",
   "type_species_name": "Scrivi il nome della specie",
@@ -49233,7 +49253,10 @@ I18n.translations["lb"] = {
   "trends": "Tendenzen",
   "trust": "Vertrauen",
   "trust_this_project_with_your_private_coordinates?": "Dësem Projet verstoppte Koordinaten uvertrauen?",
+<<<<<<< HEAD
   "trusted": "Deem een traue kann",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "two_thirds": "2/3tel",
   "unblock": "Spär ophiewen",
   "unknown": "Onbekannt",
@@ -51815,7 +51838,10 @@ I18n.translations["lv"] = {
   "any_quality_grade": "Jebkāds",
   "any_reviewed": "Jebkāds",
   "any_user": "Jebkurš",
+<<<<<<< HEAD
   "anyone": "Jebkurš",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "zirnekļveidīgie",
   "are_you_sure?": "Vai esi pārliecināts?",
   "are_you_sure_leave_this_project": "Vai tiešām vēlies pamest projektu?",
@@ -51834,7 +51860,10 @@ I18n.translations["lv"] = {
   "be_the_first_to_fave_this_observation": "Esi pirmais, kas pievienos šo novērojumu izlasei!",
   "birds": "putni",
   "black": "melns",
+<<<<<<< HEAD
   "blocked_users": "Bloķētie lietotāji",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "blue": "zils",
   "blue_butterfly_etc": "piemēram, zils, tauriņš utt.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
@@ -51855,7 +51884,10 @@ I18n.translations["lv"] = {
   "cc_0_name": "Bez autortiesībām (CC0)",
   "cc_by_description": "Šī licence ļauj citiem, arī komerciālos nolūkos, izplatīt, rediģēt, izmainīt un papildināt tavu darbu ar noteikumu, ka tiek norādīti oriģināla autora nopelni.",
   "cc_by_name": "Nopelni",
+<<<<<<< HEAD
   "change_password": "Mainīt paroli",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "change_types": {
     "input_taxon_was_split_into_output_taxa_html": "%{input_taxon} tika sadalīts un pievienots %{output_taxa} taksonam"
   },
@@ -59471,7 +59503,10 @@ I18n.translations["pl"] = {
   "any_media": "Dowolny",
   "any_quality_grade": "Dowolny",
   "any_reviewed": "Dowolny",
+<<<<<<< HEAD
   "anyone": "Ktokolwiek",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "pajęczaki",
   "are_you_sure?": "Czy jesteś pewien?",
   "are_you_sure_leave_this_project": "Czy na pewno chcesz opuścić ten projekt?",
@@ -61427,6 +61462,11 @@ I18n.translations["pt"] = {
   "add_a_link": "Adicionar link",
   "add_a_name": "Adicionar um Nome",
   "add_a_numbered_list": "Adicionar lista numerada",
+<<<<<<< HEAD
+=======
+  "add_alive_or_dead_alive_annotation": "Adicionar anotação \"Vivo ou Morto: Vivo\"",
+  "add_alive_or_dead_dead_annotation": "Adicionar anotação \"Vivo ou Morto: Morto\"",
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "add_an_identification": "Adicionar uma Identificação",
   "add_annotations_for_x": "Adicionar Anotações para \"%{x}\"",
   "add_bold_text": "Adicionar texto em negrito",
@@ -63249,8 +63289,11 @@ I18n.translations["pt"] = {
   "trust": "Confiança",
   "trust_this_person_with_your_private_coordinates": "Confiar nessa pessoa com suas coordenadas ocultadas",
   "trust_this_project_with_your_private_coordinates?": "Deseja confiar neste projeto com coordenadas ocultas?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Confiar com coordenadas ocultas",
   "trusted": "Confiável",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "dois terços",
   "type_species_name": "Digitar o nome da espécie",
@@ -66175,8 +66218,11 @@ I18n.translations["ru"] = {
   "trust": "Доверять",
   "trust_this_person_with_your_private_coordinates": "Доверить этому человеку ваши скрытые координаты",
   "trust_this_project_with_your_private_coordinates?": "Доверить этому проекту скрытые координаты?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Доверить скрытые координаты",
   "trusted": "Доверенный",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Введите название вида",
@@ -71871,8 +71917,11 @@ I18n.translations["sv"] = {
   "trust": "Förtroende",
   "trust_this_person_with_your_private_coordinates": "Lita på denna person med dina dolda koordinater",
   "trust_this_project_with_your_private_coordinates?": "Anförtro detta projekt med dolda koordinater?",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "Anförtro med dolda koordinater",
   "trusted": "Betrodd",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Ange artnamn",
@@ -75585,7 +75634,10 @@ I18n.translations["zh-CN"] = {
   "any_annotation_attribute": "任何",
   "any_annotation_value": "任何",
   "any_date": "任何",
+<<<<<<< HEAD
   "anyone": "任何人",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "蛛形纲",
   "are_you_sure?": "您确定么？",
   "are_you_sure_leave_this_project": "您确定要离开这个项目么？",
@@ -77150,8 +77202,11 @@ I18n.translations["zh-CN"] = {
   "trust": "信任",
   "trust_this_person_with_your_private_coordinates": "信任此人并向其显示您的隐藏坐标",
   "trust_this_project_with_your_private_coordinates?": "信任此项目并向其显示您的隐藏坐标吗？",
+<<<<<<< HEAD
   "trust_with_private_coordinates": "信任并向其显示您的隐藏坐标",
   "trusted": "受信",
+=======
+>>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "推特",
   "two_thirds": "第2/3个",
   "type_species_name": "输入物种名称",

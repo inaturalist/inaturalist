@@ -7,6 +7,7 @@
 @import "../shared/flash_message";
 @import "../shared/modals";
 @import "../shared/flag_an_item";
+@import "./observations_grid";
 
 $background-color: #1A1A1A;
 
@@ -79,9 +80,8 @@ a.UserImage {
     margin-left: 10px;
     cursor: pointer;
   }
-  button {
+  button.btn-green {
     font-size: 14px;
-    float: right;
     line-height: 20px;
   }
 }
@@ -448,6 +448,7 @@ a {
 }
 
 .ObservationsList {
+  width: 100%;
   thead {
     tr {
       border-bottom: 2px solid #ddd;
@@ -507,13 +508,15 @@ a {
           display: block;
         }
       }
-      .icon, .sound-icon {
+      .icon,
+      .sound-icon {
         display: none;
         color: white;
         font-size: 50px;
         line-height: 70px;
       }
-      a.sound .sound-icon, a.iconic .icon {
+      a.sound .sound-icon,
+      a.iconic .icon {
         display: inline-block;
       }
     }
@@ -791,90 +794,6 @@ a {
 .empty-text {
   font-size: 16px;
   color: #858585;
-}
-
-.ObservationsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  .ObservationsGridCell {
-    flex-grow: 1;
-    padding: 2px;
-    min-width: 260px;
-    margin: 0px auto;
-  }
-  .Observation {
-    position: relative;
-    .quality {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px 10px;
-      font-size: 16px;
-      &.research {
-        background: $inat-green;
-        color: white;
-      }
-      .full {
-        display: none;
-      }
-    }
-    .photo {
-      background: #ccc;
-      text-align: center;
-      i {
-        color: white;
-        font-size: 180px;
-      }
-    }
-    .caption {
-      background: #464646;
-      color: white;
-      height: 60px;
-      padding: 10px;
-      position: relative;
-      padding-right: 86px;
-      white-space: nowrap;
-      .display-name {
-        font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .secondary-name {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .UserImage {
-        position: absolute;
-        right: 10px;
-        bottom: 40px;
-        border: 2px solid white;
-        height: 45px;
-        width: 45px;
-        i.icon-person {
-          font-size: 36px;
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .meta {
-        position: absolute;
-        bottom: 10px;
-        right: 8px;
-        color: white;
-        .count {
-          i {
-            margin-right: 1px;
-          }
-          margin-right: 5px;
-        }
-      }
-    }
-  }
 }
 
 .UmbrellaOverviewTab {

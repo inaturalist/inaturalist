@@ -471,6 +471,11 @@ $(document).ready(function() {
       showHeaderSearch( );
     } );
   }
+
+  // Set this attribute on buttons that require JS to operate normally. You will
+  // also need to disable them in the HTML so they are unclickable before this
+  // JS runs
+  $( "button[data-enable-with-js]" ).attr( "disabled", false );
 } );
 
 

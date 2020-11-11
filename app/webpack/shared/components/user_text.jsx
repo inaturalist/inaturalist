@@ -44,6 +44,7 @@ const ALLOWED_TAGS = ( `
   tbody
   td
   t
+  th
   thead
   tr
   tt
@@ -113,30 +114,18 @@ class UserText extends React.Component {
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
     if ( markdown ) {
-      const md = new MarkdownIt( { html: true, paragraph: false } );
+      const md = new MarkdownIt( {
+        html: true,
+        breaks: true
+      } );
       md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
       // If we're truncating, don't use the default paragraph insertion
       // markdown-it will apply and instead replace newlines with br tags
       if ( truncate && !more ) {
-        html = text.trim( ).replace( /\n/gm, "<br />" );
+        html = text.trim( ).replace( /\n/gm, " <br />" );
         html = md.renderInline( html );
       } else {
-        const lines = html.split( "\n" );
-        let newHtml = "";
-        for ( let i = 0; i < lines.length; i += 1 ) {
-          newHtml += lines[i];
-          if (
-            // This line is part of a table
-            lines[i].match( /^\s*\|/ )
-            // This is a blank line
-            || lines[i].match( /^\s*$/ )
-          ) {
-            newHtml += "\n";
-          } else {
-            newHtml += "<br />\n";
-          }
-        }
-        html = md.render( newHtml );
+        html = md.render( html );
       }
     } else {
       // use BRs for newlines

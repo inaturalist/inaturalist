@@ -2,6 +2,7 @@
 @import "./shared/split_taxon";
 @import "./users/user_image";
 @import "./shared/taxon_autocomplete";
+@import "./projects/observations_grid";
 
 #bodywrapper {
   // background: #ddd;
@@ -343,92 +344,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   height: 25px;
   margin: 1px;
 }
-
-.ObservationsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  .ObservationsGridCell {
-    flex-grow: 1;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    min-width: 100px;
-    margin-right: auto;
-  }
-  .Observation {
-    position: relative;
-    .quality {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px 10px;
-      font-size: 16px;
-      &.research {
-        background: $inat-green;
-        color: white;
-      }
-      .full {
-        display: none;
-      }
-    }
-    .photo {
-      background: #ccc;
-      text-align: center;
-      i {
-        color: white;
-        font-size: 180px;
-      }
-    }
-    .caption {
-      background: #464646;
-      color: white;
-      height: 60px;
-      padding: 10px;
-      position: relative;
-      padding-right: 75px;
-      white-space: nowrap;
-      .display-name {
-        font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .secondary-name {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .UserImage {
-        position: absolute;
-        right: 10px;
-        bottom: 40px;
-        border: 2px solid white;
-        height: 45px;
-        width: 45px;
-        i.icon-person {
-          font-size: 36px;
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .meta {
-        position: absolute;
-        bottom: 10px;
-        right: 8px;
-        color: white;
-        .count {
-          i {
-            margin-right: 1px;
-          }
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-}
-
 
 .tree {
   padding: 0;

@@ -1720,24 +1720,30 @@ class ObservationsController < ApplicationController
   def moimport
     if @api_key = params[:api_key]&.strip
       @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
-      @mo_user_id = @mo_import_task.mo_user_id
-      @mo_user_name = @mo_import_task.mo_user_name
-      if @mo_user_id
-        begin
-          @results = @mo_import_task.get_results_xml.map do |r|
-            [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+      begin
+        @mo_user_id = @mo_import_task.mo_user_id
+        @mo_user_name = @mo_import_task.mo_user_name
+        if @mo_user_id
+          begin
+            @results = @mo_import_task.get_results_xml.map do |r|
+              [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+            end
+          rescue RestClient::BadGateway
+            @errors ||= []
+            @errors << "Failed to connect to Mushroom Observer"
+          rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
+            @errors ||= []
+            @errors << e.message
           end
-        rescue RestClient::BadGateway
+        else
           @errors ||= []
-          @errors << "Failed to connect to Mushroom Observer"
-        rescue MushroomObserverImportFlowTaskError => e
-          @errors ||= []
-          @errors << e.message
+          @errors << "No Mushroom Observer use associated with that API key"
         end
-      else
+      rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
         @errors ||= []
-        @errors << "No Mushroom Observer use associated with that API key"
+        @errors << e.message
       end
     end
     respond_to do |format|
