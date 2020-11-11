@@ -10,17 +10,17 @@ import BlockedMutedUsersContainer from "../containers/blocked_muted_users_contai
 
 const Relationships = ( {
   relationships,
-  profile,
   filteredRelationships,
   updateFilters,
   sortRelationships,
-  showModal
+  showModal,
+  loadPage,
+  page
 } ) => {
-  const showRelationships = ( ) => filteredRelationships.map( user => {
+  const showRelationships = ( ) => filteredRelationships.slice(
+    page * 10 - 10, page * 10 // only display up to 10 items on current page
+  ).map( user => {
     const { friendUser } = user;
-
-    console.log( user, "user" );
-    console.log( relationships, "relatinoships" );
 
     return (
       <div className="row relationship-row-margin" key={friendUser.login}>
@@ -158,16 +158,14 @@ const Relationships = ( {
         <div className="Pagination text-center">
           <Pagination
             total={filteredRelationships.length}
-            current={1}
+            current={page}
             pageSize={10}
-            onChange={( ) => console.log( "paginating" )}
-            // onChange={page => loadPage( page )}
+            onChange={p => loadPage( p )}
           />
         </div>
       </div>
       <div className="row">
         <BlockedMutedUsersContainer
-          users={relationships.filter( u => profile.blocked_user_ids.includes( u.friendUser.id ) )}
           headerText={I18n.t( "blocked_users" )}
           id="blocked_users"
           placeholder={I18n.t( "add_blocked_users" )}
@@ -180,18 +178,15 @@ const Relationships = ( {
             } )
           }}
         />
-        {profile.muted_user_ids && (
-          <BlockedMutedUsersContainer
-            users={relationships.filter( u => profile.muted_user_ids.includes( u.friendUser.id ) )}
-            headerText={I18n.t( "muted_users" )}
-            id="muted_users"
-            placeholder={I18n.t( "add_muted_users" )}
-            buttonText={I18n.t( "unmute" )}
-            htmlDescription={{
-              __html: I18n.t( "views.users.edit.muting_desc_html" )
-            }}
-          />
-        )}
+        <BlockedMutedUsersContainer
+          headerText={I18n.t( "muted_users" )}
+          id="muted_users"
+          placeholder={I18n.t( "add_muted_users" )}
+          buttonText={I18n.t( "unmute" )}
+          htmlDescription={{
+            __html: I18n.t( "views.users.edit.muting_desc_html" )
+          }}
+        />
       </div>
     </div>
   );
@@ -199,11 +194,12 @@ const Relationships = ( {
 
 Relationships.propTypes = {
   relationships: PropTypes.array,
-  profile: PropTypes.object,
   filteredRelationships: PropTypes.array,
   updateFilters: PropTypes.func,
   sortRelationships: PropTypes.func,
-  showModal: PropTypes.func
+  showModal: PropTypes.func,
+  loadPage: PropTypes.func,
+  page: PropTypes.number
 };
 
 export default Relationships;

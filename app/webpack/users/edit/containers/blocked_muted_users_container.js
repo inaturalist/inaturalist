@@ -11,7 +11,8 @@ import {
 function mapStateToProps( state ) {
   return {
     profile: state.profile,
-    blockedUsers: state.relationships.blockedUsers
+    blockedUsers: state.relationships.blockedUsers,
+    relationships: state.relationships.relationships || []
   };
 }
 

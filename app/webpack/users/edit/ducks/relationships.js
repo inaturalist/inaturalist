@@ -1,5 +1,4 @@
 import inatjs from "inaturalistjs";
-import _ from "lodash";
 
 import { fetchUserSettings } from "./user_settings";
 
@@ -9,10 +8,12 @@ const SET_FILTERS = "user/edit/SET_FILTERS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
 const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
 const SET_BLOCKED_USERS = "user/edit/SET_BLOCKED_USERS";
+const SET_PAGE = "user/edit/SET_PAGE";
 
 export default function reducer( state = {
   filters: { name: null, following: "all", trusted: "all" },
-  blockedUsers: []
+  blockedUsers: [],
+  page: 1
 }, action ) {
   switch ( action.type ) {
     case SET_RELATIONSHIPS:
@@ -27,6 +28,8 @@ export default function reducer( state = {
       return { ...state, users: action.users };
     case SET_BLOCKED_USERS:
       return { ...state, blockedUsers: action.blockedUsers };
+    case SET_PAGE:
+      return { ...state, page: action.page };
     default:
   }
   return state;
@@ -74,6 +77,13 @@ export function setBlockedUsers( blockedUsers ) {
   };
 }
 
+export function setPage( page ) {
+  return {
+    type: SET_PAGE,
+    page
+  };
+}
+
 export function filterRelationships( ) {
   return ( dispatch, getState ) => {
     const { relationships } = getState( );
@@ -109,6 +119,7 @@ export function filterRelationships( ) {
       filteredFriends = filteredFriends.filter( u => ( u.trusted === false ) );
     }
 
+
     dispatch( setFilteredRelationships( filteredFriends ) );
   };
 }
@@ -132,6 +143,7 @@ export function fetchBlockedUser( id ) {
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
+    console.log( results, "results" );
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );
     }
@@ -240,12 +252,16 @@ export function blockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.block( params ).then( ( ) => {
     dispatch( fetchUserSettings( ) );
-  } ).catch( e => console.log( `Failed to block user: ${e}` ) );
+  } ).catch( e => {
+    console.log( `Failed to block user: ${e}` );
+    dispatch( fetchUserSettings( ) );
+  } );
 }
 
 export function unblockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.unblock( params ).then( ( ) => {
+    console.log( "fetching user settings" );
     dispatch( fetchUserSettings( ) );
   } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }

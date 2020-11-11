@@ -6,7 +6,8 @@ import UserFollowing from "./user_following";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 
 const BlockedMutedUsers = ( {
-  users,
+  relationships,
+  profile,
   headerText,
   id,
   placeholder,
@@ -18,7 +19,7 @@ const BlockedMutedUsers = ( {
 } ) => {
   const displayUserList = ( ) => {
     if ( id === "muted_users" ) {
-      return users.map( user => (
+      return relationships.filter( u => profile.muted_user_ids.includes( u.friendUser.id ) ).map( user => (
         <div className="flex-no-wrap profile-photo-margin" key={user.friendUser.id}>
           <div className="col-sm-9">
             <UserFollowing user={user.friendUser} />
@@ -56,7 +57,7 @@ const BlockedMutedUsers = ( {
   return (
     <div className="col-md-6">
       <SettingsItem header={headerText} htmlFor={id}>
-        <div className={`input-group ${users.length === 3 && id === "blocked_users" && "hidden"}`}>
+        <div className={`input-group ${blockedUsers.length === 3 && id === "blocked_users" && "hidden"}`}>
           <UserAutocomplete
             resetOnChange={false}
             afterSelect={( { item } ) => blockOrMute( item, id )}
@@ -76,7 +77,8 @@ const BlockedMutedUsers = ( {
 };
 
 BlockedMutedUsers.propTypes = {
-  users: PropTypes.array,
+  relationships: PropTypes.array,
+  profile: PropTypes.object,
   headerText: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
