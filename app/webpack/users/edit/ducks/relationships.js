@@ -17,7 +17,6 @@ export default function reducer( state = {
   mutedUsers: [],
   page: 1
 }, action ) {
-  console.log( action.type, "action type" );
   switch ( action.type ) {
     case SET_RELATIONSHIPS:
       return { ...state, relationships: action.relationships };
