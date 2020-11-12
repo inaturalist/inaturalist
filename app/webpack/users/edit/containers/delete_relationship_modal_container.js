@@ -13,7 +13,10 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => { dispatch( hideModal( ) ); },
-    deleteRelationship: ( ) => { dispatch( deleteRelationship( ) ); }
+    deleteRelationship: ( ) => {
+      dispatch( deleteRelationship( ) );
+      dispatch( hideModal( ) );
+    }
   };
 }
 

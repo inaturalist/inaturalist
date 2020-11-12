@@ -212,31 +212,32 @@ export function fetchRelationships( firstRender ) {
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );
+      dispatch( updateBlockedAndMutedUsers( ) );
     }
     dispatch( setRelationships( results ) );
     dispatch( filterRelationships( ) );
-    dispatch( updateBlockedAndMutedUsers( ) );
   } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
 }
 
-export function updateRelationship( id, friendship ) {
-  const params = { id, friendship };
+export function updateRelationship( id, relationship ) {
+  // user id, not friendUser id
+  const params = { id, relationship };
   return dispatch => inatjs.relationships.update( params ).then( ( ) => {
     dispatch( fetchRelationships( ) );
   } ).catch( e => console.log( `Failed to update relationship: ${e}` ) );
 }
 
-export function handleCheckboxChange( e, friendId ) {
+export function handleCheckboxChange( e, id ) {
   const { name, checked } = e.target;
 
   return ( dispatch, getState ) => {
     const { relationships } = getState( );
     const friends = relationships.relationships;
-    const targetFriend = friends.filter( user => user.friendUser.id === friendId );
+    const targetFriend = friends.filter( user => user.id === id );
 
     targetFriend[0][name] = checked;
 
-    dispatch( updateRelationship( friendId, { [name]: checked } ) );
+    dispatch( updateRelationship( id, { [name]: checked } ) );
   };
 }
 
@@ -295,6 +296,7 @@ export function deleteRelationship( ) {
     const { relationships } = getState( );
     const { id } = relationships;
 
+    // noting that the correct id to be deleted is the user id, not the friendUser id
     return inatjs.relationships.delete( { id } ).then( ( ) => {
       dispatch( fetchRelationships( true ) );
     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );

@@ -34,12 +34,12 @@ const Relationships = ( {
               <RelationshipsCheckboxContainer
                 name="following"
                 label={I18n.t( "following" )}
-                friendId={friendUser.id}
+                id={user.id}
               />
               <RelationshipsCheckboxContainer
                 name="trust"
                 label={I18n.t( "trust_with_private_coordinates" )}
-                friendId={friendUser.id}
+                id={user.id}
               />
               {user.reciprocal_trust && <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</dfn>}
             </div>
@@ -51,7 +51,7 @@ const Relationships = ( {
                 <button
                   type="button"
                   className="btn btn-default btn-xs"
-                  onClick={( ) => showModal( friendUser.id, friendUser.login )}
+                  onClick={( ) => showModal( user.id, friendUser.login )}
                 >
                   {I18n.t( "remove_relationship" )}
                 </button>

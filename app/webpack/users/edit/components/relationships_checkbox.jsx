@@ -6,16 +6,16 @@ const RelationshipsCheckbox = ( {
   handleCheckboxChange,
   label,
   relationships,
-  friendId
+  id
 } ) => (
   <div className="row">
     <div className="col-xs-12">
       <input
         id={name}
         type="checkbox"
-        checked={relationships.filter( u => u.friendUser.id === friendId )[0][name]}
+        checked={relationships.filter( u => u.id === id )[0][name]}
         name={name}
-        onChange={e => handleCheckboxChange( e, friendId )}
+        onChange={e => handleCheckboxChange( e, id )}
       />
       <label htmlFor={name} className="margin-left">{label}</label>
     </div>
@@ -27,7 +27,7 @@ RelationshipsCheckbox.propTypes = {
   handleCheckboxChange: PropTypes.func,
   label: PropTypes.string,
   relationships: PropTypes.array,
-  friendId: PropTypes.number
+  id: PropTypes.number
 };
 
 export default RelationshipsCheckbox;
