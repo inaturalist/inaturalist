@@ -20,7 +20,7 @@ class App extends Component {
     super( );
 
     this.state = {
-      container: 3
+      container: 0
     };
 
     this.setContainerIndex = this.setContainerIndex.bind( this );
