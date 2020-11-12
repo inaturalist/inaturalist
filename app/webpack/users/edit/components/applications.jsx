@@ -39,7 +39,7 @@ const Applications = ( { showModal, apps = [] } ) => {
         <button
           type="button"
           className="btn btn-default btn-xs"
-          onClick={( ) => showModal( app.application.id )}
+          onClick={( ) => showModal( app.application.id, app.application.name )}
         >
           {buttonText}
         </button>

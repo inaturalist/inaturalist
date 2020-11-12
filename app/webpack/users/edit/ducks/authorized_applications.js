@@ -3,10 +3,10 @@ import inatjs from "inaturalistjs";
 const SET_AUTHENTICATED_APPS = "user/edit/SET_AUTHENTICATED_APPS";
 const SET_APP_TO_DELETE = "user/edit/SET_APP_TO_DELETE";
 
-export default function reducer( state = { }, action ) {
+export default function reducer( state = { id: null }, action ) {
   switch ( action.type ) {
     case SET_AUTHENTICATED_APPS:
-      return { ...state, apps: action.apps };
+      return { ...state, apps: action.apps, id: null };
     case SET_APP_TO_DELETE:
       return { ...state, id: action.id };
     default:
@@ -31,7 +31,6 @@ export function setAppToDelete( id ) {
 export function fetchAuthorizedApps( ) {
   const params = { useAuth: true };
   return dispatch => inatjs.authorized_applications.search( params ).then( ( { results } ) => {
-    dispatch( setAppToDelete( null ) );
     dispatch( setApps( results ) );
   } ).catch( e => console.log( `Failed to fetch authorized applications: ${e}` ) );
 }

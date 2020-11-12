@@ -17,6 +17,7 @@ export default function reducer( state = {
   mutedUsers: [],
   page: 1
 }, action ) {
+  console.log( action.type, "action type" );
   switch ( action.type ) {
     case SET_RELATIONSHIPS:
       return { ...state, relationships: action.relationships };
@@ -164,6 +165,7 @@ export function fetchBlockedUsers( ids ) {
 
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };
+  console.log( firstRender, "first render" );
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );

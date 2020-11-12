@@ -6,7 +6,8 @@ import { hideModal } from "../ducks/revoke_access_modal";
 function mapStateToProps( state ) {
   return {
     show: state.revokeAccess.show,
-    id: state.revokeAccess.id
+    id: state.revokeAccess.id,
+    siteName: state.revokeAccess.siteName
   };
 }
 

@@ -41,6 +41,7 @@ export function fetchUserSettings( savedStatus ) {
 
     dispatch( setUserData( userSettings, savedStatus ) );
 
+    console.log( results[0].blocked_user_ids, results[0].muted_user_ids, "blocked and muted" );
     dispatch( fetchBlockedUsers( results[0].blocked_user_ids ) );
     dispatch( fetchMutedUsers( results[0].muted_user_ids ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );

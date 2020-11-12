@@ -10,7 +10,8 @@ const RevokeAccessModal = ( {
   show,
   onClose,
   deleteApp,
-  id
+  id,
+  siteName
 } ) => (
   <Modal
     show={show}
@@ -20,8 +21,8 @@ const RevokeAccessModal = ( {
     <Modal.Body>
       <h4>
         {iNatAppIds.includes( id )
-          ? I18n.t( "log_out_of_application", { site_name: "Seek" } )
-          : I18n.t( "revoke_external_application", { site_name: "Seek" } )}
+          ? I18n.t( "log_out_of_application", { site_name: siteName } )
+          : I18n.t( "revoke_external_application", { site_name: siteName } )}
       </h4>
       <ModalCloseButton onClose={onClose} />
       <p>{I18n.t( "this_will_sign_you_out_current_session" )}</p>
@@ -42,7 +43,8 @@ RevokeAccessModal.propTypes = {
   show: PropTypes.bool,
   onClose: PropTypes.func,
   deleteApp: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.number,
+  siteName: PropTypes.string
 };
 
 export default RevokeAccessModal;
