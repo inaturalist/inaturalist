@@ -6,8 +6,7 @@ import UserFollowing from "./user_following";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 
 const BlockedMutedUsers = ( {
-  relationships,
-  profile,
+  mutedUsers,
   headerText,
   id,
   placeholder,
@@ -17,42 +16,22 @@ const BlockedMutedUsers = ( {
   unblockOrUnmute,
   blockedUsers
 } ) => {
-  const displayUserList = ( ) => {
-    if ( id === "muted_users" ) {
-      return relationships.filter( u => profile.muted_user_ids.includes( u.friendUser.id ) ).map( user => (
-        <div className="flex-no-wrap profile-photo-margin" key={user.friendUser.id}>
-          <div className="col-sm-9">
-            <UserFollowing user={user.friendUser} />
-          </div>
-          <div className="col-sm-3">
-            <button
-              type="button"
-              className="btn btn-default btn-xs"
-              onClick={( ) => unblockOrUnmute( user.friendUser.id, id )}
-            >
-              {buttonText}
-            </button>
-          </div>
-        </div>
-      ) );
-    }
-    return blockedUsers.map( user => (
-      <div className="flex-no-wrap profile-photo-margin" key={user.id}>
-        <div className="col-sm-9">
-          <UserFollowing user={user} />
-        </div>
-        <div className="col-sm-3">
-          <button
-            type="button"
-            className="btn btn-default btn-xs"
-            onClick={( ) => unblockOrUnmute( user.id, id )}
-          >
-            {buttonText}
-          </button>
-        </div>
+  const displayList = user => (
+    <div className="flex-no-wrap profile-photo-margin" key={user.id}>
+      <div className="col-sm-9">
+        <UserFollowing user={user} />
       </div>
-    ) );
-  };
+      <div className="col-sm-3">
+        <button
+          type="button"
+          className="btn btn-default btn-xs"
+          onClick={( ) => unblockOrUnmute( user.id, id )}
+        >
+          {buttonText}
+        </button>
+      </div>
+    </div>
+  );
 
   return (
     <div className="col-md-6">
@@ -65,7 +44,9 @@ const BlockedMutedUsers = ( {
             placeholder={placeholder}
           />
         </div>
-        {displayUserList( )}
+        {id === "muted_users"
+          ? mutedUsers.map( user => displayList( user ) )
+          : blockedUsers.map( user => displayList( user ) )}
       </SettingsItem>
       <p
         className="text-muted"
@@ -77,8 +58,7 @@ const BlockedMutedUsers = ( {
 };
 
 BlockedMutedUsers.propTypes = {
-  relationships: PropTypes.array,
-  profile: PropTypes.object,
+  mutedUsers: PropTypes.array,
   headerText: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,

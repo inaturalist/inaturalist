@@ -8,11 +8,13 @@ const SET_FILTERS = "user/edit/SET_FILTERS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
 const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
 const SET_BLOCKED_USERS = "user/edit/SET_BLOCKED_USERS";
+const SET_MUTED_USERS = "user/edit/SET_MUTED_USERS";
 const SET_PAGE = "user/edit/SET_PAGE";
 
 export default function reducer( state = {
   filters: { name: null, following: "all", trusted: "all" },
   blockedUsers: [],
+  mutedUsers: [],
   page: 1
 }, action ) {
   switch ( action.type ) {
@@ -28,6 +30,8 @@ export default function reducer( state = {
       return { ...state, users: action.users };
     case SET_BLOCKED_USERS:
       return { ...state, blockedUsers: action.blockedUsers };
+    case SET_MUTED_USERS:
+      return { ...state, mutedUsers: action.mutedUsers };
     case SET_PAGE:
       return { ...state, page: action.page };
     default:
@@ -74,6 +78,13 @@ export function setBlockedUsers( blockedUsers ) {
   return {
     type: SET_BLOCKED_USERS,
     blockedUsers
+  };
+}
+
+export function setMutedUsers( mutedUsers ) {
+  return {
+    type: SET_MUTED_USERS,
+    mutedUsers
   };
 }
 
@@ -124,6 +135,19 @@ export function filterRelationships( ) {
   };
 }
 
+export function fetchMutedUsers( ids ) {
+  return ( dispatch, getState ) => {
+    let { mutedUsers } = getState( ).relationships;
+
+    mutedUsers = [];
+
+    ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+      mutedUsers.push( results[0] );
+      dispatch( setMutedUsers( mutedUsers ) );
+    } ).catch( e => console.log( `Failed to fetch muted users: ${e}` ) ) );
+  };
+}
+
 export function fetchBlockedUsers( ids ) {
   return ( dispatch, getState ) => {
     let { blockedUsers } = getState( ).relationships;
@@ -146,6 +170,7 @@ export function fetchRelationships( firstRender ) {
     }
     dispatch( setRelationships( results ) );
     dispatch( filterRelationships( ) );
+    dispatch( fetchMutedUsers( ) );
   } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
 }
 
