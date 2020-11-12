@@ -321,18 +321,12 @@ export function blockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.block( params ).then( ( ) => {
     dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => {
-    console.log( `Failed to block user: ${e}` );
-    dispatch( fetchUserSettings( false, true ) );
-  } );
+  } ).catch( e => console.log( `Failed to block user: ${e}` ) );
 }
 
 export function unblockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.unblock( params ).then( ( ) => {
     dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => {
-    console.log( `Failed to unblock user: ${e}` );
-    dispatch( fetchUserSettings( false, true ) );
-  } );
+  } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }
