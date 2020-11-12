@@ -136,43 +136,87 @@ export function filterRelationships( ) {
   };
 }
 
-export function fetchMutedUsers( ids ) {
+export function fetchMutedUsers( ) {
   return ( dispatch, getState ) => {
-    let { mutedUsers } = getState( ).relationships;
+    const { relationships, profile } = getState( );
+    const { mutedUsers } = relationships;
+    const currentMutedUsers = profile.muted_user_ids;
 
-    mutedUsers = [];
+    if ( mutedUsers.length === 0 ) {
+      profile.muted_user_ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+        mutedUsers.push( results[0] );
+        dispatch( setMutedUsers( mutedUsers ) );
+      } ).catch( e => console.log( `Failed to fetch muted users: ${e}` ) ) );
+    } else if ( mutedUsers.length < currentMutedUsers.length ) {
+      // find the missing index and fetch that user
+      const ids = mutedUsers.map( user => user.id );
+      const idToFetch = currentMutedUsers.filter( u => !ids.includes( u ) );
 
-    ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
-      mutedUsers.push( results[0] );
+      inatjs.users.fetch( idToFetch ).then( ( { results } ) => {
+        mutedUsers.push( results[0] );
+        dispatch( setMutedUsers( mutedUsers ) );
+      } ).catch( e => console.log( `Failed to fetch muted users: ${e}` ) );
+    } else if ( mutedUsers.length > currentMutedUsers.length ) {
+      // remove that user from the current list
+      const ids = mutedUsers.map( user => user.id );
+      const idToRemove = ids.filter( u => !currentMutedUsers.includes( u ) )[0];
+      const index = mutedUsers.findIndex( i => i.id === idToRemove );
+
+      mutedUsers.splice( index, 1 );
       dispatch( setMutedUsers( mutedUsers ) );
-    } ).catch( e => console.log( `Failed to fetch muted users: ${e}` ) ) );
+    }
   };
 }
 
-export function fetchBlockedUsers( ids ) {
+export function fetchBlockedUsers( ) {
   return ( dispatch, getState ) => {
-    let { blockedUsers } = getState( ).relationships;
+    const { relationships, profile } = getState( );
+    const { blockedUsers } = relationships;
 
-    blockedUsers = [];
+    const currentBlockedUsers = profile.blocked_user_ids;
 
-    ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
-      blockedUsers.push( results[0] );
+    if ( blockedUsers.length === 0 ) {
+      profile.blocked_user_ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+        blockedUsers.push( results[0] );
+        dispatch( setBlockedUsers( blockedUsers ) );
+      } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) ) );
+    } else if ( blockedUsers.length < currentBlockedUsers.length ) {
+      // find the missing index and fetch that user
+      const ids = blockedUsers.map( user => user.id );
+      const idToFetch = currentBlockedUsers.filter( u => !ids.includes( u ) );
+
+      inatjs.users.fetch( idToFetch ).then( ( { results } ) => {
+        blockedUsers.push( results[0] );
+        dispatch( setBlockedUsers( blockedUsers ) );
+      } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) );
+    } else if ( blockedUsers.length > currentBlockedUsers.length ) {
+      // remove that user from the current list
+      const ids = blockedUsers.map( user => user.id );
+      const idToRemove = ids.filter( u => !currentBlockedUsers.includes( u ) )[0];
+      const index = blockedUsers.findIndex( i => i.id === idToRemove );
+
+      blockedUsers.splice( index, 1 );
       dispatch( setBlockedUsers( blockedUsers ) );
-    } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) ) );
+    }
   };
 }
 
+export function updateBlockedAndMutedUsers( ) {
+  return dispatch => {
+    dispatch( fetchBlockedUsers( ) );
+    dispatch( fetchMutedUsers( ) );
+  };
+}
 
 export function fetchRelationships( firstRender ) {
   const params = { useAuth: true };
-  console.log( firstRender, "first render" );
   return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
     if ( firstRender ) {
       dispatch( setFilteredRelationships( results ) );
     }
     dispatch( setRelationships( results ) );
     dispatch( filterRelationships( ) );
-    dispatch( fetchMutedUsers( ) );
+    dispatch( updateBlockedAndMutedUsers( ) );
   } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
 }
 
@@ -261,30 +305,33 @@ export function deleteRelationship( ) {
 export function muteUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.mute( params ).then( ( ) => {
-    dispatch( fetchUserSettings( ) );
+    dispatch( fetchUserSettings( false, true ) );
   } ).catch( e => console.log( `Failed to mute user: ${e}` ) );
 }
 
 export function unmuteUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.unmute( params ).then( ( ) => {
-    dispatch( fetchUserSettings( ) );
+    dispatch( fetchUserSettings( false, true ) );
   } ).catch( e => console.log( `Failed to unmute user: ${e}` ) );
 }
 
 export function blockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.block( params ).then( ( ) => {
-    dispatch( fetchUserSettings( ) );
+    dispatch( fetchUserSettings( false, true ) );
   } ).catch( e => {
     console.log( `Failed to block user: ${e}` );
-    dispatch( fetchUserSettings( ) );
+    dispatch( fetchUserSettings( false, true ) );
   } );
 }
 
 export function unblockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.unblock( params ).then( ( ) => {
-    dispatch( fetchUserSettings( ) );
-  } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
+    dispatch( fetchUserSettings( false, true ) );
+  } ).catch( e => {
+    console.log( `Failed to unblock user: ${e}` );
+    dispatch( fetchUserSettings( false, true ) );
+  } );
 }

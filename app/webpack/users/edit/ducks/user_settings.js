@@ -1,6 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
-import { fetchBlockedUsers, fetchMutedUsers } from "./relationships";
+
+import { updateBlockedAndMutedUsers } from "./relationships";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -22,7 +23,7 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
   };
 }
 
-export function fetchUserSettings( savedStatus ) {
+export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
     // this is kind of unnecessary, but removing these since they're read-only keys
     // and don't need to be included in UI or users.update
@@ -41,9 +42,9 @@ export function fetchUserSettings( savedStatus ) {
 
     dispatch( setUserData( userSettings, savedStatus ) );
 
-    console.log( results[0].blocked_user_ids, results[0].muted_user_ids, "blocked and muted" );
-    dispatch( fetchBlockedUsers( results[0].blocked_user_ids ) );
-    dispatch( fetchMutedUsers( results[0].muted_user_ids ) );
+    if ( relationshipsPage ) {
+      dispatch( updateBlockedAndMutedUsers( ) );
+    }
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
