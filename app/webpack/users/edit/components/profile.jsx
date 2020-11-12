@@ -5,7 +5,6 @@ import Dropzone from "react-dropzone";
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ChangePassword from "./change_password";
-import UserImage from "../../../shared/components/user_image";
 
 const emptyProfileImage = "https://www.inaturalist.org/attachment_defaults/users/icons/defaults/thumb.png";
 
@@ -52,6 +51,8 @@ const Profile = ( {
           >
             <div className="row profile-photo-margin">
               <div className="col-sm-4">
+                {/* didn't user UserImage here because profile only returns icon attribute,
+                but UserImage is looking for icon_url attribute */}
                 <img
                   alt="user-icon"
                   src={showUserIcon( )}
