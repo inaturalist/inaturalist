@@ -4382,10 +4382,15 @@ I18n.translations["ca"] = {
   "about_establishment_means": "Sobre les formes d'establiment",
   "about_names": "Quant a els noms",
   "about_this_bioblitz": "Quant aquest bioblitz",
+  "about_trusting_projects": "Sobre la Confiança en Projectes",
   "about_trusting_projects_options_any": "Totes les vostres observacions en aquest projecte",
   "about_trusting_projects_options_any_desc": "Aquest inclou les observacions que heu marcat amb geoprivacitat \"enfosquida\" o \"privada\", p.e. observacions del teu jardí on d'indrets que no voleu donar a conèixer a altres.",
   "about_trusting_projects_options_taxon": "Únicament les vostres observacions en aquest projecte que tenen les coordenades enfosquides per tractar-se de tàxons en perill.",
   "about_trusting_projects_options_taxon_desc": "Molts projectes necessites accedir a coordenades que han estat enfosquides perquè l'observació és sobre un tàxon vulnerable.",
+  "about_trusting_projects_overview": "Donar accés a les teves coordenades ocultes permetrà els administradors d'aquest projecte veure les coordenades reals de les vostres observacions en aquest projecte. Això és molt important en aquelles circumstàncies a les quals els científics o gestors de recursos naturals necessiten accedir a les coordenades exactes per l'anàlisi o la presa de decisions.",
+  "about_trusting_projects_project_managers_are": "Els administradors del projecte que poden accedir a les teves coordenades ocultes són:",
+  "about_trusting_projects_warning": "Tingueu en compte que els administradors del projecte poden canviar els seus paràmetres per incloure qualsevol de les vostres observacions , i poden afegir o treure administradors del projecte en qualsevol moment. Sereu informat d'aquests canvis, però com heu confiat les vostres dades privades a aquest projecte, tingueu cura.",
+  "about_trusting_projects_you_can_choose": "Heu escollits compartir les vostres coordenades ocultes per a",
   "acc": "Exactitud (m)",
   "accept_community_identifications": "Accepta identificacions de la comunitat",
   "account": "Compte",
@@ -4556,10 +4561,15 @@ I18n.translations["ca"] = {
   "any_": "Qualsevol",
   "any_annotation_attribute": "Qualsevol",
   "any_annotation_value": "Qualsevol",
-<<<<<<< HEAD
+  "any_date": "Qualsevol",
+  "any_establishment": "Qualsevol",
+  "any_license": "Qualsevol",
+  "any_media": "Qualsevol",
+  "any_project": "Qualsevol",
+  "any_quality_grade": "Qualsevol",
+  "any_reviewed": "Qualsevol",
+  "any_user": "Qualsevol",
   "anyone": "Qualsevol",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "aràcnids",
   "are_you_sure?": "N’esteu segur?",
   "are_you_sure_leave_this_project": "Esteu segur que voleu sortir d'aquest projecte?",
@@ -4657,7 +4667,8 @@ I18n.translations["ca"] = {
     "flower_budding": "Es veuen les flors però no s'han obert",
     "flowering": "Flors visibles, obertes, i encara fixades a la planta",
     "fruiting": "Fruit visible i encara fixat a la planta",
-    "no_evidence_of_flowering": "Les imatges no aporten evidències d'estructures reproductives"
+    "no_evidence_of_flowering": "Les imatges no aporten evidències d'estructures reproductives",
+    "teneral": "Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva"
   },
   "controlled_term_labels": {
     "adult": "Adult",
@@ -4684,6 +4695,8 @@ I18n.translations["ca"] = {
     "teneral": "Imago tendre"
   },
   "convert": "Convertiu",
+  "coords_viewable_for_proj_desc": "Mostra únicament les observacions d'aquest projecte que permeten veure les coordenades \"reals\", les quals inclouen les que es mostren per a tothom i les enfosquides, però de persones que confien en tu, les que les confien a aquest projecte i les de tàxons vulnerables de persones que les han confiat a aquest projecte.\n",
+  "coords_viewable_for_proj_label": "Només amb coordenades reals visibles",
   "copyright": {
     "some_rights_reserved": "alguns drets reservats",
     "some_rights_reserved_by": "(c) %{name}, alguns drets reservats (%{license_short})",
@@ -5078,6 +5091,7 @@ I18n.translations["ca"] = {
   "i_dont_know_but_i_am_sure_this_is_taxon": "No ho sé segur, però segur que és%{taxon}",
   "id_categories": {
     "tooltips": {
+      "improving": "Primer suggeriment d'aquest tàxon amb el qual la comunitat ha estat d'acord. Això va ajudar a acotar el tàxon proposat per la Comunitat.\n",
       "leading": "Tàxon derivat del tàxon de la comunitat. Aquesta identificació us pot orientar cap a la resposta correcta.\n",
       "maverick": "Aquest tàxon no és un descendent o avantpassat del de la comunitat, i.e. la comunitat no està d'acord amb aquest tàxon.\n"
     }
@@ -5174,6 +5188,7 @@ I18n.translations["ca"] = {
     "italian": "Italià",
     "japanese": "Japonès",
     "korean": "Coreà",
+    "latvian": "Letó",
     "lithuanian": "Lituà",
     "luxembourgish": "Luxemburguès",
     "maltese": "Maltès",
@@ -5231,6 +5246,7 @@ I18n.translations["ca"] = {
     "ko": "Coreà",
     "lb": "Luxemburguès",
     "lt": "Lituà",
+    "lv": "Letó",
     "mk": "Macedònic",
     "nb": "Noruec (Bokmål)",
     "nl": "Holandès",
@@ -5268,6 +5284,7 @@ I18n.translations["ca"] = {
   "manage_names": "Gestiona noms",
   "manage_your_relationships": "Gestioneu les vostres relacions",
   "map": "Mapa",
+  "map_legend": "Llegenda del Mapa",
   "map_marker_size": "mida del marcador del mapa",
   "map_of_observations": "Mapa d'Observacions",
   "map_tooltip": "Mostra la vista del mapa",
@@ -6283,6 +6300,16 @@ I18n.translations["ca"] = {
       "all_unobserved_species": "Totes les espècies no observades",
       "apply_filters_to_export": "Aplicar filtres a l'exportació",
       "dropdowns": {
+        "ancestry": "Ancestre",
+        "children": "Fill",
+        "date_added_newest": "Data d'incorporació, de més recent a més antic",
+        "date_added_oldest": "Data d'incorporació, de més antic a més nou",
+        "full_taxonomy": "Taxonomia sencera",
+        "least_observed": "Menys Observat",
+        "most_observed": "Més Observat",
+        "name": "Nom",
+        "show": "Mostra",
+        "simplified_tree": "Arbre simplificat"
       },
       "exporting_all_x_taxa": {
         "one": "Exportant %{count} tàxon",
@@ -6382,7 +6409,10 @@ I18n.translations["ca"] = {
       "edit": {
         "admins_must_be_existing_members": "Els Administradors han de ser membres del projecte",
         "change_owner_alert": "Això eliminarà la vostra capacitat per esborrar aquest projecte o transferir la seva propietat de nou. Voleu continuar?\n",
-        "make_owner": "Fer Propietari"
+        "make_owner": "Fer Propietari",
+        "trust_allow_members_to_trust": "Permetre als membres confiar les coordenades ocultes a aquest projecte",
+        "trust_help_desc": "Si voleu accedir a les coordenades ocultes d'observacions enfosquides, aquesta opció permet els usuaris units al projecte confiar aquestes coordenades ocultes als administradors del projecte. Els membres del projecte poden donar accés a les coordenades ocultes de totes les seves observacions que apareixen en el projecte, o únicament a aquelles que han estat enfosquides per tractar-se de tàxons vulnerables.",
+        "trust_help_notification": "Però això també es notificarà a tots els membres del projecte que hagin confiat en ell cada vegada que canvieu els requisits del projecte, per tal que ells confirmin si volen continuar confiant en vosaltres, ateses les noves condicions."
       },
       "new": {
         "a_project_allows_you_to_gather": "Un Projecte de Col·lecció us permet reunir i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist. Tot allò que compleixi els paràmetres del projecte s'inclouen automàticament.\n",
@@ -6436,6 +6466,7 @@ I18n.translations["ca"] = {
         "show_projects_as_flags": "Mostra projectes com a banderes en el mapa",
         "specify_project_filters": "Especifiqueu els filtres que voleu utilitzar per incloure observacions al vostre projecte.\nPodeu seleccionar diverses espècies (o tàxons), llocs, dates, o altres criteris per què s'incloguin les observacions automàticament.\n",
         "start_and_end_times_for_bioblitzes": "Data i hora d'inici i final (per a projectes del tipus bioblitz)",
+        "trusting_members_will_be_notified": "Heu canviat els requisits del projecte o heu activat la confiança dels usuaris. Això es notificarà a tots el membres del projecte que hagin confiat les seves coordenades ocultes en ell perquè puguin decidir si volen continuar confiant en el projecte, ateses les noves condicions.\n",
         "umbrella_project_features": "Característiques del Projecte Paraigua:",
         "unique_url_for_outreach": "URL única per a la promoció",
         "use_this_for_a_time_limited_event": "Utilitzeu-lo per esdeveniments limitats en el temps, bioblitz o projectes estacionals. Seleccioneu una data concreta, un rang de dates o els mesos de l'any durant els quals es poden fer observacions (amb independència de l'any). Si utilitzeu la secció de Rang de Dates, verifiqueu que heu seleccionat correctament les hores i les zones horàries adequades, o esborreu el text hora/zona horària per incloure les observacions efectuades al llarg de tot el dia. Podeu deixar la Data d'Inici o Data Final en blanc si voleu limitar el projecte a una única data.\n",
@@ -8691,11 +8722,8 @@ I18n.translations["cs"] = {
   "trust": "Důvěřovat",
   "trust_this_person_with_your_private_coordinates": "Důvěřovat této osobě se skrytými souřadnicemi",
   "trust_this_project_with_your_private_coordinates?": "Důvěřovat tomuto projektu se skrytými souřadnicemi?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Důvěřovat skrytým souřadnicím",
   "trusted": "Důvěryhodné",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Napište název druhu",
@@ -11235,11 +11263,8 @@ I18n.translations["da"] = {
   "trust": "Hav tillid til",
   "trust_this_person_with_your_private_coordinates": "Betro denne person med dine skjulte koordinater",
   "trust_this_project_with_your_private_coordinates?": "Betro dine skjulte koordinater til dette projekt?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Betro med skjulte koordinater",
   "trusted": "Betroet",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3 dele",
   "type_species_name": "Indtast artsnavn",
@@ -13694,11 +13719,8 @@ I18n.translations["de"] = {
   "trust": "Vertrauen",
   "trust_this_person_with_your_private_coordinates": "Vertrau dieser Person deine verborgenen Koordinaten an",
   "trust_this_project_with_your_private_coordinates?": "Diesem Projekt versteckte Koordinaten anvertrauen?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Verborgene Koordinaten anvertrauen",
   "trusted": "Vertrauenswürdig",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Namen der Spezies eingeben",
@@ -30933,10 +30955,7 @@ I18n.translations["fi"] = {
   "any_quality_grade": "Mikä tahansa",
   "any_reviewed": "Mikä tahansa",
   "any_user": "Mikä tahansa",
-<<<<<<< HEAD
   "anyone": "Kuka tahansa",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "hämähäkkieläimet",
   "are_you_sure?": "Oletko varma?",
   "are_you_sure_leave_this_project": "Haluatko varmasti lähteä pois tästä projektista?",
@@ -44160,11 +44179,8 @@ I18n.translations["it"] = {
   "trust": "Fidati",
   "trust_this_person_with_your_private_coordinates": "Rivela a questa persona le tue coordinate nascoste",
   "trust_this_project_with_your_private_coordinates?": "Ti fidi nel rivelare a questo progetto le coordinate nascoste?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Rivela le coordinate nascoste",
   "trusted": "Affidabile",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "due terzi",
   "type_species_name": "Scrivi il nome della specie",
@@ -44267,7 +44283,7 @@ I18n.translations["it"] = {
         "date_added_oldest": "Data Aggiunta, dalla Meno Recente alla Più Recente",
         "full_taxonomy": "Tassonomia Completa",
         "least_observed": "Meno osservati",
-        "most_observed": "Più Osservato",
+        "most_observed": "Più Osservati",
         "name": "Nome",
         "show": "Mostra",
         "simplified_tree": "Albero Semplificato",
@@ -46567,7 +46583,7 @@ I18n.translations["ja"] = {
   "user": "ユーザー",
   "user1_and_user2_faved_this_observation": "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました",
   "user1_user2_and_x_others_faved_this_observation": "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました",
-  "user_disagrees_this_is_taxon": "%{user} さんは %{taxon} ではない(または同定に必要な情報が無い)と考えています",
+  "user_disagrees_this_is_taxon": "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています",
   "user_faved_this_observation": "%{user}さんがこの観察記録をお気に入りに追加しました",
   "user_has_opted_out_of_community_id": "利用者はコミュニティ分類群の通知を受け取りません",
   "user_suggested_an_id": "%{user} さんが 同定を提案しました",
@@ -49253,10 +49269,7 @@ I18n.translations["lb"] = {
   "trends": "Tendenzen",
   "trust": "Vertrauen",
   "trust_this_project_with_your_private_coordinates?": "Dësem Projet verstoppte Koordinaten uvertrauen?",
-<<<<<<< HEAD
   "trusted": "Deem een traue kann",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "two_thirds": "2/3tel",
   "unblock": "Spär ophiewen",
   "unknown": "Onbekannt",
@@ -51838,10 +51851,7 @@ I18n.translations["lv"] = {
   "any_quality_grade": "Jebkāds",
   "any_reviewed": "Jebkāds",
   "any_user": "Jebkurš",
-<<<<<<< HEAD
   "anyone": "Jebkurš",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "zirnekļveidīgie",
   "are_you_sure?": "Vai esi pārliecināts?",
   "are_you_sure_leave_this_project": "Vai tiešām vēlies pamest projektu?",
@@ -51860,10 +51870,7 @@ I18n.translations["lv"] = {
   "be_the_first_to_fave_this_observation": "Esi pirmais, kas pievienos šo novērojumu izlasei!",
   "birds": "putni",
   "black": "melns",
-<<<<<<< HEAD
   "blocked_users": "Bloķētie lietotāji",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "blue": "zils",
   "blue_butterfly_etc": "piemēram, zils, tauriņš utt.",
   "bold_label_colon_value_html": "<strong>%{label}:</strong> %{value}",
@@ -51884,10 +51891,7 @@ I18n.translations["lv"] = {
   "cc_0_name": "Bez autortiesībām (CC0)",
   "cc_by_description": "Šī licence ļauj citiem, arī komerciālos nolūkos, izplatīt, rediģēt, izmainīt un papildināt tavu darbu ar noteikumu, ka tiek norādīti oriģināla autora nopelni.",
   "cc_by_name": "Nopelni",
-<<<<<<< HEAD
   "change_password": "Mainīt paroli",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "change_types": {
     "input_taxon_was_split_into_output_taxa_html": "%{input_taxon} tika sadalīts un pievienots %{output_taxa} taksonam"
   },
@@ -59503,10 +59507,7 @@ I18n.translations["pl"] = {
   "any_media": "Dowolny",
   "any_quality_grade": "Dowolny",
   "any_reviewed": "Dowolny",
-<<<<<<< HEAD
   "anyone": "Ktokolwiek",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "pajęczaki",
   "are_you_sure?": "Czy jesteś pewien?",
   "are_you_sure_leave_this_project": "Czy na pewno chcesz opuścić ten projekt?",
@@ -61462,11 +61463,6 @@ I18n.translations["pt"] = {
   "add_a_link": "Adicionar link",
   "add_a_name": "Adicionar um Nome",
   "add_a_numbered_list": "Adicionar lista numerada",
-<<<<<<< HEAD
-=======
-  "add_alive_or_dead_alive_annotation": "Adicionar anotação \"Vivo ou Morto: Vivo\"",
-  "add_alive_or_dead_dead_annotation": "Adicionar anotação \"Vivo ou Morto: Morto\"",
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "add_an_identification": "Adicionar uma Identificação",
   "add_annotations_for_x": "Adicionar Anotações para \"%{x}\"",
   "add_bold_text": "Adicionar texto em negrito",
@@ -63289,11 +63285,8 @@ I18n.translations["pt"] = {
   "trust": "Confiança",
   "trust_this_person_with_your_private_coordinates": "Confiar nessa pessoa com suas coordenadas ocultadas",
   "trust_this_project_with_your_private_coordinates?": "Deseja confiar neste projeto com coordenadas ocultas?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Confiar com coordenadas ocultas",
   "trusted": "Confiável",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "dois terços",
   "type_species_name": "Digitar o nome da espécie",
@@ -66218,11 +66211,8 @@ I18n.translations["ru"] = {
   "trust": "Доверять",
   "trust_this_person_with_your_private_coordinates": "Доверить этому человеку ваши скрытые координаты",
   "trust_this_project_with_your_private_coordinates?": "Доверить этому проекту скрытые координаты?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Доверить скрытые координаты",
   "trusted": "Доверенный",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Введите название вида",
@@ -71917,11 +71907,8 @@ I18n.translations["sv"] = {
   "trust": "Förtroende",
   "trust_this_person_with_your_private_coordinates": "Lita på denna person med dina dolda koordinater",
   "trust_this_project_with_your_private_coordinates?": "Anförtro detta projekt med dolda koordinater?",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "Anförtro med dolda koordinater",
   "trusted": "Betrodd",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "Twitter",
   "two_thirds": "2/3",
   "type_species_name": "Ange artnamn",
@@ -75634,10 +75621,7 @@ I18n.translations["zh-CN"] = {
   "any_annotation_attribute": "任何",
   "any_annotation_value": "任何",
   "any_date": "任何",
-<<<<<<< HEAD
   "anyone": "任何人",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "arachnids": "蛛形纲",
   "are_you_sure?": "您确定么？",
   "are_you_sure_leave_this_project": "您确定要离开这个项目么？",
@@ -76129,7 +76113,7 @@ I18n.translations["zh-CN"] = {
   "join_project": "加入这个项目",
   "join_this_project": "加入这个项目",
   "joined!": "已加入！",
-  "journal": "杂志",
+  "journal": "日记",
   "keep_editing": "保持编辑",
   "keyboard_shortcuts": "键盘快捷键",
   "kml_file_size_error": "KML 大小必须小于 1 MB",
@@ -76318,7 +76302,7 @@ I18n.translations["zh-CN"] = {
       "hh": "%d 小时前",
       "d": "1日",
       "dd": "%d 日前",
-      "M": "1个月",
+      "M": "1个月前",
       "MM": "%dm",
       "y": "1年",
       "yy": "%d 年前"
@@ -77202,11 +77186,8 @@ I18n.translations["zh-CN"] = {
   "trust": "信任",
   "trust_this_person_with_your_private_coordinates": "信任此人并向其显示您的隐藏坐标",
   "trust_this_project_with_your_private_coordinates?": "信任此项目并向其显示您的隐藏坐标吗？",
-<<<<<<< HEAD
   "trust_with_private_coordinates": "信任并向其显示您的隐藏坐标",
   "trusted": "受信",
-=======
->>>>>>> 6c0a6dd1fc8d5be9ea13ccb400f0f372bf9183c1
   "twitter": "推特",
   "two_thirds": "第2/3个",
   "type_species_name": "输入物种名称",

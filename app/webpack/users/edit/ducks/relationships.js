@@ -124,18 +124,16 @@ export function filterRelationships( ) {
   };
 }
 
-export function fetchBlockedUser( id ) {
+export function fetchBlockedUsers( ids ) {
   return ( dispatch, getState ) => {
-    const { blockedUsers } = getState( ).relationships;
+    let { blockedUsers } = getState( ).relationships;
 
-    return inatjs.users.fetch( id ).then( ( { results } ) => {
-      const findDuplicate = blockedUsers.find( u => u.id === results[0].id );
+    blockedUsers = [];
 
-      if ( !findDuplicate ) {
-        blockedUsers.push( results[0] );
-      }
+    ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+      blockedUsers.push( results[0] );
       dispatch( setBlockedUsers( blockedUsers ) );
-    } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) );
+    } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) ) );
   };
 }
 
@@ -260,7 +258,6 @@ export function blockUser( id ) {
 export function unblockUser( id ) {
   const params = { useAuth: true, id };
   return dispatch => inatjs.users.unblock( params ).then( ( ) => {
-    console.log( "fetching user settings" );
     dispatch( fetchUserSettings( ) );
   } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }

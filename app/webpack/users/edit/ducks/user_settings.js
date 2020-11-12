@@ -1,6 +1,6 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
-import { fetchBlockedUser } from "./relationships";
+import { fetchBlockedUsers } from "./relationships";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -41,8 +41,7 @@ export function fetchUserSettings( savedStatus ) {
 
     dispatch( setUserData( userSettings, savedStatus ) );
 
-    const blockedUsers = results[0].blocked_user_ids;
-    blockedUsers.forEach( userId => dispatch( fetchBlockedUser( userId ) ) );
+    dispatch( fetchBlockedUsers( results[0].blocked_user_ids ) );
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
