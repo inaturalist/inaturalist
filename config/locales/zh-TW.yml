@@ -405,6 +405,27 @@ zh-TW:
   announcements: 公告
   any: 任何
   any_: 任何
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: 任一註解
+  #Label for an option to show content with any annotation value
+  any_annotation_value: 任一
+  #Label for an option to show content from any date
+  any_date: 任一日期
+  #Label for an option to show content with any establishment means
+  any_establishment: 任一
+  #Label for an option to show content with any license
+  any_license: 任一授權
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: 任一
+  #Label for an option to show content from any project
+  any_project: 任一
+  #Label for an option to show content with any quality grade
+  any_quality_grade: 任一
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: 任一
+  #Label for an option to show/include content by any user
+  any_user: 任一
   anyone: 任何人
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
@@ -626,6 +647,7 @@ zh-TW:
   cc_by_sa_name: 姓名標示-相同方式分享
   cc_used_under_a: "創用 CC，用於"
   change_admin: 變更管理員
+  #Button to change the cover (or banner) image for a project
   change_cover: 變更封面
   change_descriptions:
     split: 舊物種分類分拆為多項新的物種分類群
@@ -838,7 +860,6 @@ zh-TW:
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
-    teneral: 成蟲最近剛化蛹，但是尚未變成最終型態的成蟲
     cannot_be_determined: 從提供的證據當中無法判定
   controls: 控制
   convert: 轉換
@@ -992,6 +1013,7 @@ zh-TW:
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 刪除封面？
   delete_icon?: 刪除圖示？
   delete_photo: 刪除照片
@@ -1031,11 +1053,35 @@ zh-TW:
     sessions:
       signed_in: '已成功登入。'
       signed_out: '已成功登出。'
+    passwords:
+      send_instructions: '在幾分鐘內，您將收到一封電子郵件說明有關如何重置您的密碼。'
+      updated: '您的密碼已變更成功，現在已登入。'
+      updated_not_active: '您的密碼已成功變更。'
+      send_paranoid_instructions: "如果您的 email 存在我們的資料庫中，您會在幾分鐘內在您 email 中收到回復密碼的網址。"
+      no_token: "若您不是從密碼重設的 email 中點選連結，您無法存取此頁面。如果您是來自密碼重設的 email，請確保您使用所提供的完整網址。"
+    registrations:
+      signed_up: '歡迎！您已成功註冊。'
+      updated: '您已成功更新您的帳戶。'
+      destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
+    mailer:
+      confirmation_instructions:
+        subject: '帳號確認說明'
+      reset_password_instructions:
+        subject: '重設密碼的說明'
+  devise_reset_password_instructions_hello_email: 您好 %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    有人要求更改您的密碼，您可以透過下面的連結來更改密碼。
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    如果您沒有要求重設密碼，請忽略這封 email。
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    在您點擊上面網址和建立一個新密碼之前，您的密碼不會更動。
   discoveries: 發現
   did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: '您是指'
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
   disable: 停用
+  disable_comments: 關閉評論
+  disable_comments_desc: 防止其他人新增評論
   disagree_: 不同意
   disconnect_provider: "中斷連接%{provider}"
   display_link_to_checklist: 顯示連至來自於專案頁面之專案清單的連結
@@ -1131,6 +1177,7 @@ zh-TW:
   editing_project: 編輯%{project}
   editing_project_asset: 編輯專案可用物件用於
   editing_subscription_to_x_html: "編輯對%{x}的訂閱"
+  editing_taxon: 編輯 %{taxon} 中
   editing_taxon_link: 物種分類連結編輯中
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分類群名稱「%{name}」
   editing_taxon_range: 物種分類範圍編輯中
@@ -1215,6 +1262,7 @@ zh-TW:
   failed_to_find_your_location: 無法找到您的位置。
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
+  failed_to_save_record_with_errors: "儲存紀錄失敗：%{errors}"
   'false': '否'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 最愛
@@ -1236,6 +1284,7 @@ zh-TW:
   fields_can_only_be_edited_by_the_people_who: 欄位僅能被創建者或網站策展人編輯
   fields_merged: 欄位已合併
   file: 檔案
+  file_size: 檔案大小
   file_should_be_in_the_following_format: "檔案應為以下格式：物種分類、描述"
   fill_out_project_observation_fields: 填寫專案觀察欄位
   fill_out_your_profile: 完成您的個人檔案
@@ -1400,6 +1449,7 @@ zh-TW:
   got_it!: 了解！
   got_your_data_somewhere_else?: 在別的地方找到您的資料？我們可以協助。
   graft: 轉移
+  graft_taxon: 轉移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 目前轉移嘗試插入此物種分類至我們的分類樹，找尋現有的父級物種分類，或創建在此之間全部所需的物種分類群，來附加到現有的更高階物種分類。
   grant_role: "%{grant} %{role}身份"
   grid: 網格
@@ -1554,6 +1604,8 @@ zh-TW:
   insects: 昆蟲
   insect_life_stage: 昆蟲生命階段
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: 插入引用
   interactions: 互動
   internal_server_error: 內部伺服器錯誤
   internal_taxon_including_descendants: 內部分類（包含派生）
@@ -1578,6 +1630,8 @@ zh-TW:
   is_this_offensive_html: '這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯的內容嗎？'
   is_this_place_a_duplicate: 此地點有重複嗎？
   it_can_now_be_used_for_research: 現在可被用於在其它網站的研究和功能
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: 斜體字
   item_flagged_notice_html: |
     這已被標記為垃圾訊息且不再公開可見。您仍可以看到它的原因出於這是由您所創建，或是您的身份為網站策展人。若您認為目前的情況有誤，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。
     <a href="%{manage_flags_path}">管理標記</a>
@@ -1610,6 +1664,10 @@ zh-TW:
   label_to_group_a_batch_of_taxon_changes: 分組批量物種分類更改符號
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: 位置為私有的
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: 缺乏地點資訊
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: 鎖定縮放等級
@@ -1726,6 +1784,8 @@ zh-TW:
   linked_flickr_automatically: "另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？"
   linked_flickr_description: "保持您的 %{site_name} 帳號連結至您的 Flickr 帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與 Flickr 之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新 Flickr 帳號。"
   linked_flickr_password_html: "<strong>我們不會詢問您的 Flickr 密碼</strong>（但 Flickr 也許會檢查按鍵所傳給您的 URL 來確認是屬於 Flickr.com）。"
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: 連結文字
   linkedin: LinkedIn
   list: 清單
   list_deleted: 列表已刪除。
@@ -1885,6 +1945,7 @@ zh-TW:
     <a href="%{url}">iNaturalist 網路</a> 的成員
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     %{partial_inat_network_tag_html}iNaturalist 網路</a>之成員，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同計畫。
+  #As in members of a project
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
@@ -2024,9 +2085,6 @@ zh-TW:
   needs_id_: 需要鑑定
   needs_id_expandable_html: "<span class='full'>需要</span>鑑定"
   needs_to_be_identified: 需要被鑑定
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>，iNaturalist 國際附屬網路的一部分，是聚焦於 %{place} 的生物多樣性和大眾。您想要把您的帳號相關資訊從 iNaturalist.org 更改成 %{site_name} 嗎？
   network_affiliation_prompt_from_other_site_html: |
     您想要該把您的附屬網路從 <strong>%{other_site_name}</strong> 更改為 <strong>%{site_name}</strong> 嗎？
   new: 新增
@@ -2108,6 +2166,7 @@ zh-TW:
   no_matching_places: 沒有符合的地點
   no_matching_projects: 沒有符合的專案
   no_matching_species: 沒有符合的物種。
+  no_matching_taxa: 找不到符合的分類群
   no_matching_users: 沒有符合的用戶。
   no_members_yet: "尚無成員。"
   no_messages_yet: 尚無訊息
@@ -2228,6 +2287,8 @@ zh-TW:
   observations_by_you: "由您所做的觀察"
   observations_by_you_on_date: "於 %{date} 由您所做的觀察"
   observation_calendar_for: "於 %{year} 裡 %{user} 的觀察行事曆"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: 觀察紀錄限制只能有 %{limit} 張照片
   observation_curation: 觀察策展
   observation_date: 日期
   observation_date?: 日期？
@@ -2486,6 +2547,9 @@ zh-TW:
   photo_urls_repaired: 需要照片 URL
   photos_chosen_for_this_taxon: 挑選用於此物種分類的照片
   photos_from: 照片來自
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: 照片已鎖定
+  photos_locked_desc: 只有官方工作人員才能更改此分類群的預設照片
   photos_of_taxon_html: "屬於 %{taxon} 的照片"
   photos_or_sounds: 照片或聲音
   photos_or_sounds?: 照片或聲音？
@@ -3043,15 +3107,23 @@ zh-TW:
   ranks:
     stateofmatter: 事件狀態
     kingdom: 界
+    x_kingdoms:
+      other: 界
     subkingdom: 亞界
     phylum: 門
+    x_phyla:
+      other: 門
     subphylum: 亞門
     superclass: 總綱
     class: 綱
+    x_classes:
+      other: 綱
     subclass: 亞綱
     infraclass: 下綱
     superorder: 總目
     order: 目
+    x_orders:
+      other: 目
     suborder: 亞目
     infraorder: 下目
     subterclass: 準綱
@@ -3061,11 +3133,15 @@ zh-TW:
     superfamily: 總科
     epifamily: 領科
     family: 科
+    x_families:
+      other: 科
     subfamily: 亞科
     supertribe: 總族
     tribe: 族
     subtribe: 亞族
     genus: 屬
+    x_genera:
+      other: 屬
     genushybrid: 屬間雜種
     subgenus: 亞屬
     section: 節
@@ -3073,6 +3149,8 @@ zh-TW:
     complex: 複合群
     #Singular
     species: 種
+    x_species:
+      other: 種
     hybrid: 雜種
     #Singular
     subspecies: 亞種
@@ -3095,6 +3173,7 @@ zh-TW:
   receive_updates_from_this_project: 從該專案接收更新
   recent: 最近
   recent_evidence_of_organism: 近期的生物證據
+  recent_exports: 最近的匯出
   recent_new_users: 近期的新使用者
   recent_observations: 最近觀察
   recent_observations_: 最近觀察
@@ -3186,6 +3265,7 @@ zh-TW:
   resolved_by: 已解決由
   resolved_by_user_on_date_html: 由%{user}於 %{date} 所解決
   resolver_said_x_html: '<span class="meta">%{resolver} 說：</span>「%{x}」'
+  restart: 重新開始
   restore: 還原
   restoring: 正在還原...
   results: 結果
@@ -3235,8 +3315,11 @@ zh-TW:
   scale_colon: "比例："
   schemes: 綱要
   schemes_including: 包含綱要
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: 學名
   search: 搜尋
   search_all_fields: 搜尋所有欄位
+  search_by_name: 依名字搜尋
   search_by_name_or_email: 依照名稱和電子郵件來搜尋
   search_by_taxon_name_or_observation_id: 依物種分類名稱或觀察鑑定來做搜尋
   search_by_taxon_name_or_flickr_photo_id: 依物種分類名稱或 Flickr 照片鑑定來做搜尋
@@ -3349,6 +3432,8 @@ zh-TW:
   site_stats: 網站統計
   site_taxon_page: "%{site_name} 物種分類頁面"
   some_agree: 部份同意
+  some_observations_are_missing_media_or_identifications: |
+    有些觀察紀錄沒有多媒體檔案或鑑定資訊
   some_observations_failed_to_be_added: 部份觀察添加至專案失敗
   some_observations_failed_to_save: 部份觀察儲存失敗
   some_of_those_photos_couldnt_be_saved: "一些照片無法儲存：%{error}"
@@ -3700,7 +3785,6 @@ zh-TW:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
-  this_is_a_cached_summary_based_on: 這是物種分類快取摘要，基於它的
   this_is_a_life_list_of: 這生物清單屬於
   this_is_a_life_list_from_place_html: "這是來自%{place}的生物列表"
   this_is_a_life_list_of_taxon_in_place: "這是一個在 %{place} 的 %{taxon} 物種分類中的生物清單"
@@ -4037,7 +4121,6 @@ zh-TW:
   website: 網站
   week_of_date: "%{date} 該週"
   welcome: 歡迎
-  welcome_back: 歡迎回來
   welcome_back!: 歡迎回來！
   welcome_to_inat: "歡迎來到 %{site_name}！"
   welcome_to_guides: "歡迎來到 %{site_name} 指南！"
@@ -4083,7 +4166,6 @@ zh-TW:
     來源：維基百科、"%{title}"、%{url}、CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     此篇來自於維基百科條目<a href="%{url}">"%{title}"</a>裡的內容，該基於<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">創用 CC 姓名標示協議-相同方式分享 3.0 未本地化</a>授權條款所釋出。內容可能已從原始內容裡去除，但未有已更改或擴充的內容。
-  wikipedia_entry: 維基百科項目
   with: 帶
   withdraw: 撤回
   withdrawing: 正在撤回...
@@ -5337,6 +5419,9 @@ zh-TW:
           </p>
         licensing_desc_html: |
           授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: 每月支助者
         monthly_supporter_desc_html: |
           iNaturalist 的每月贊助者會在每一個月自動做出捐款，來支持非營利性運營的
@@ -5891,10 +5976,6 @@ zh-TW:
           attributes:
             base:
               guide_has_too_many_taxa: "指南僅能有 500 個物種分類"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "正在匯入或等候匯入的 API 鍵"
         observation:
           attributes:
             base:

@@ -318,7 +318,6 @@ class UsersController < ApplicationController
       format.html {
         # will_paginate collection will have total_entries
         @users = scope.paginate(page: params[:page], per_page: params[:per_page])
-        counts_for_users
       }
       format.json do
         # use .limit.offset to avoid a slow count(), since count isn't used
@@ -516,14 +515,17 @@ class UsersController < ApplicationController
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
           @discourse_data[:topics] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/latest.json?order=created", timeout: 5 ).body
+            RestClient::Request.execute( method: "get",
+              url: "#{@discourse_url}/latest.json?order=created", open_timeout: 1, timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/categories.json", timeout: 5 ).body
+            RestClient::Request.execute( method: "get",
+              url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
+        @discourse_data = nil
         # No connection or other connection issue
         nil
       end
@@ -1032,7 +1034,7 @@ protected
   def counts_for_users
     @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
-    @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
+    @post_counts = Post.where(user_id: @users.to_a, parent_type: User).group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)

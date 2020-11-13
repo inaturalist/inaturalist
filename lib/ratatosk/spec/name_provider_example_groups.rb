@@ -139,8 +139,8 @@ shared_examples_for "a TaxonName adapter" do
     expect(@adapter.is_valid?).to be(true)
   end
 
-  it "should set the lexicon for 'Western Bluebird' to 'english'" do
-    expect(@adapter.lexicon).to eq 'english'
+  it "should set the lexicon for 'Western Bluebird' to 'English'" do
+    expect(@adapter.lexicon).to eq "English"
   end
 
   it "should set the lexicon for a scientific name" do

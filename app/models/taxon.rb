@@ -97,7 +97,8 @@ class Taxon < ActiveRecord::Base
               :strip_name,
               :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
-              :ensure_parent_ancestry_in_ancestry
+              :ensure_parent_ancestry_in_ancestry,
+              :unfeature_inactive
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
@@ -1321,6 +1322,11 @@ class Taxon < ActiveRecord::Base
     if parent && parent.ancestry && ancestry && ancestry.index( parent.ancestry ) != 0
       self.ancestry = [parent.ancestry.split( "/ " ), parent.id].flatten.compact.join( "/" )
     end
+    true
+  end
+
+  def unfeature_inactive
+    self.featured_at = nil unless is_active?
     true
   end
 

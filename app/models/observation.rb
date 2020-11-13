@@ -56,7 +56,7 @@ class Observation < ActiveRecord::Base
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
-    :taxon_introduced, :taxon_endemic, :taxon_native, :wait_for_index_refresh,
+    :taxon_introduced, :taxon_endemic, :taxon_native,
     :skip_identification_indexing, :will_be_saved_with_photos
   
   # Set if you need to set the taxon from a name separate from the species 
@@ -250,7 +250,26 @@ class Observation < ActiveRecord::Base
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
-  ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
+  ALLOWED_DESCRIPTION_TAGS = %w(
+    a
+    abbr
+    acronym
+    b
+    blockquote
+    br
+    cite
+    code
+    em
+    i
+    img
+    pre
+    s
+    small
+    strike
+    strong
+    sub
+    sup
+  )
 
   preference :community_taxon, :boolean, :default => nil
   
@@ -1463,12 +1482,44 @@ class Observation < ActiveRecord::Base
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
-      project_observations.map(&:project_id)
+      project_observations.pluck(:project_id)
     end
-    viewer.project_users.select{|pu| project_ids.include?(pu.project_id) && ProjectUser::ROLES.include?(pu.role)}.each do |pu|
-      if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+    curated_project_ids = viewer.project_users.map {|pu|
+      ProjectUser::ROLES.include?( pu.role ) && pu.project_id
+    }.compact.uniq
+    curated_project_ids.each do |curated_project_id|
+      curator_coordinate_access_allowed_for_traditional = project_observations.detect do |po|
+        po.project_id == curated_project_id && po.prefers_curator_coordinate_access?
+      end
+      if curator_coordinate_access_allowed_for_traditional
         return true
       end
+    end
+    cps = collection_projects( authenticate: viewer )
+    curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
+      pu = user.project_users.where( project_id: cp.id ).first
+      if !cp.prefers_user_trust?
+        false
+      elsif pu && pu.prefers_curator_coordinate_access_for &&
+          pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
+        if GEOPRIVACIES.include?( geoprivacy ) &&
+            pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+          false
+        elsif GEOPRIVACIES.include?( taxon_geoprivacy ) &&
+            ![
+              ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+              ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+            ].include?( pu.prefers_curator_coordinate_access_for )
+          false
+        else
+          true
+        end
+      else
+        false
+      end
+    end
+    if curator_coordinate_access_allowed_for_collection
+      return true
     end
     false
   end
@@ -3181,6 +3232,26 @@ class Observation < ActiveRecord::Base
   def user_viewed_updates(user_id)
     obs_updates = UpdateAction.where(resource: self)
     UpdateAction.user_viewed_updates(obs_updates, user_id)
+  end
+
+  def in_collection_projects?( projects, api_params = {} )
+    project_ids = projects.map{|project| project.is_a?( Project ) ? project.id : project}.uniq.compact.map(&:to_i)
+    r = INatAPIService.get("/observations/#{id}", api_params.merge( include_new_projects: true ) )
+    if r && r.results && api_obs = r.results[0]
+      return ( api_obs["non_traditional_projects"] || [] ).detect{|po| project_ids.include?( po["project"]["id"].to_i )}
+    end
+    nil
+  end
+
+  def collection_projects( api_params = {} )
+    r = INatAPIService.get( "/observations/#{id}", api_params.merge( include_new_projects: true ) )
+    if r && r.results && api_obs = r.results[0]
+      project_ids = ( api_obs["non_traditional_projects"] || [] ).collect do |po|
+        po["project"]["id"].to_i
+      end
+      return Project.where( id: project_ids ).limit( 500 )
+    end
+    []
   end
 
   def self.dedupe_for_user(user, options = {})

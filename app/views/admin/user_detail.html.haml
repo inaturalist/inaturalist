@@ -136,51 +136,48 @@
         %tr
           %th User Privileges
           %td
-            - if @display_user.user_privileges.blank?
-              None yet
-            - else
-              %ul.plain
-                - UserPrivilege::PRIVILEGES.each do |privilege|
-                  %li.lined.clearfix
-                    %strong= privilege
-                    - if up = @display_user.user_privileges.where( privilege: privilege ).first
-                      %p.success
-                        Earned on
-                        = up.created_at.to_date
-                      - if up.revoked?
-                        .alert.alert-warning
-                          Revoked on
-                          = up.revoked_at
-                          by
-                          = link_to_user up.revoke_user
-                          %blockquote= up.revoke_reason
-                          = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do
-                            Restore
-                            %code= privilege
-                            privilege
-                          = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do
-                            Reset
-                            %code= privilege
-                            privilege
-                      - else
-                        = link_to_toggle_box "Revoke" do
-                          = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|
-                            = hidden_field_tag :user_id, @display_user.id
-                            = hidden_field_tag :privilege, privilege
-                            = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"
-                            = button_tag class: "btn btn-danger" do
-                              Revoke
-                              %code= privilege
-                              privilege
-                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do
+            %ul.plain
+              - UserPrivilege::PRIVILEGES.each do |privilege|
+                %li.lined.clearfix
+                  %strong= privilege
+                  - if up = @display_user.user_privileges.where( privilege: privilege ).first
+                    %p.success
+                      Earned on
+                      = up.created_at.to_date
+                    - if up.revoked?
+                      .alert.alert-warning
+                        Revoked on
+                        = up.revoked_at
+                        by
+                        = link_to_user up.revoke_user
+                        %blockquote= up.revoke_reason
+                        = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do
+                          Restore
+                          %code= privilege
+                          privilege
+                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do
                           Reset
                           %code= privilege
                           privilege
                     - else
-                      = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do
-                        Grant
+                      = link_to_toggle_box "Revoke" do
+                        = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|
+                          = hidden_field_tag :user_id, @display_user.id
+                          = hidden_field_tag :privilege, privilege
+                          = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"
+                          = button_tag class: "btn btn-danger" do
+                            Revoke
+                            %code= privilege
+                            privilege
+                      = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do
+                        Reset
                         %code= privilege
                         privilege
+                  - else
+                    = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do
+                      Grant
+                      %code= privilege
+                      privilege
         %tr
           %th Parent
           %td

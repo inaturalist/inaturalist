@@ -48,7 +48,7 @@ module INatAPIService
     options[:retries] ||= 3
     options[:timeout] ||= INatAPIService::TIMEOUT
     options[:retry_delay] ||= 0.1
-    url = INatAPIService::ENDPOINT + path;
+    url = INatAPIService::ENDPOINT + path
     headers = {}
     auth_user = params.delete(:authenticate)
     if auth_user && auth_user.is_a?( User )

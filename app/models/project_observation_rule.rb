@@ -18,6 +18,8 @@ class ProjectObservationRule < Rule
   after_save :touch_projects
   after_destroy :reset_last_aggregated_if_rules_changed
   after_destroy :touch_projects
+  after_create :notify_trusting_members
+  after_destroy :notify_trusting_members
   validate :operand_present
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
@@ -70,6 +72,11 @@ class ProjectObservationRule < Rule
         operand.touch
       end
     end
+  end
+
+  def notify_trusting_members
+    ruler.notify_trusting_members_about_changes_later
+    true
   end
 
 end

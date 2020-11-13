@@ -17,6 +17,7 @@ import {
 } from "../../identify/actions/current_observation_actions";
 import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config";
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -25,7 +26,8 @@ function mapStateToProps( state ) {
   return {
     observation,
     config: state.config,
-    activeTab: state.commentIDPanel.activeTab
+    activeTab: state.commentIDPanel.activeTab,
+    content: state.textEditor.activity
   };
 }
 
@@ -65,7 +67,8 @@ function mapDispatchToProps( dispatch ) {
     },
     showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
     hideContent: item => dispatch( showModeratorActionForm( item ) ),
-    unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) )
+    unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) ),
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) )
   };
 }
 

@@ -4,13 +4,18 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe UserBlock do
   let( :user ) { User.make! }
   let( :blocked_user ) { User.make! }
-  it "should be valid if there are less than 3 other blocks for this user" do
-    2.times { UserBlock.make!( user: user ) }
-    expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).to be_valid
-  end
-  it "should not be valid if there are 3 existing blocks for this user" do
-    3.times { UserBlock.make!( user: user ) }
-    expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).not_to be_valid
+  describe "validation" do
+    it "should pass if there are less than 3 other blocks for this user" do
+      2.times { UserBlock.make!( user: user ) }
+      expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).to be_valid
+    end
+    it "should fail if there are 3 existing blocks for this user" do
+      3.times { UserBlock.make!( user: user ) }
+      expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).not_to be_valid
+    end
+    it "should fail if the blocked user is on staff" do
+      expect( UserBlock.make( blocked_user: make_admin ) ).not_to be_valid
+    end
   end
   describe "creation" do
     it "unfollows the user from the blocked user" do

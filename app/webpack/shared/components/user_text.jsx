@@ -6,12 +6,50 @@ import linkifyHtml from "linkifyjs/html";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 
-const ALLOWED_TAGS = (
-  "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
-  + " img li ol p pre s small strike strong sub sup tt ul del ins"
-  + " table thead tbody tr td th"
-  // + " audio source embed iframe object param"
-).split( " " );
+const ALLOWED_TAGS = ( `
+  a
+  abbr
+  acronym
+  b
+  blockquote
+  br
+  cite
+  code
+  del
+  div
+  dl
+  dt
+  em
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  hr
+  i
+  img
+  ins
+  li
+  ol
+  p
+  pre
+  s
+  small
+  strike
+  strong
+  sub
+  sup
+  table
+  tbody
+  td
+  t
+  th
+  thead
+  tr
+  tt
+  ul
+` ).split( /\s+/m );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
   "href src width height alt cite title class name abbr value align target rel"
@@ -76,30 +114,18 @@ class UserText extends React.Component {
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
     if ( markdown ) {
-      const md = new MarkdownIt( { html: true, paragraph: false } );
+      const md = new MarkdownIt( {
+        html: true,
+        breaks: true
+      } );
       md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
       // If we're truncating, don't use the default paragraph insertion
       // markdown-it will apply and instead replace newlines with br tags
       if ( truncate && !more ) {
-        html = text.trim( ).replace( /\n/gm, "<br />" );
+        html = text.trim( ).replace( /\n/gm, " <br />" );
         html = md.renderInline( html );
       } else {
-        const lines = html.split( "\n" );
-        let newHtml = "";
-        for ( let i = 0; i < lines.length; i += 1 ) {
-          newHtml += lines[i];
-          if (
-            // This line is part of a table
-            lines[i].match( /^\s*\|/ )
-            // This is a blank line
-            || lines[i].match( /^\s*$/ )
-          ) {
-            newHtml += "\n";
-          } else {
-            newHtml += "<br />\n";
-          }
-        }
-        html = md.render( newHtml );
+        html = md.render( html );
       }
     } else {
       // use BRs for newlines
@@ -125,15 +151,23 @@ class UserText extends React.Component {
         </button>
       );
     }
-
-    let htmlToDisplay = sanitizeHtml(
-      linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ),
+    const sanitizedHtml = sanitizeHtml(
+      truncatedHtml || html,
       {
         allowedTags: ALLOWED_TAGS,
         allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
         exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
       }
     );
+    // Note: markdown-it has a linkifier option too, but it does not allow you
+    // to specify attributes link nofollow, so we're using linkifyjs, but we are
+    // ignoring URLs in the existing tags that might have them like a and code
+    const linkifiedHtml = linkifyHtml( sanitizedHtml, {
+      className: null,
+      attributes: { rel: "nofollow" },
+      ignoreTags: ["a", "code", "pre"]
+    } );
+    let htmlToDisplay = linkifiedHtml;
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
     }

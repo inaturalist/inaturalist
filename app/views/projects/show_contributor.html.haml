@@ -7,7 +7,7 @@
       url: person_url(@contributor.user.login), 
       project_title: @project.title)
 - content_for(:extracss) do
-  = stylesheet_link_tag 'observations/by_login', 'observations/filters'
+  = stylesheet_link_tag "observations/filters"
   :css
     .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
       width: 172px;
@@ -16,7 +16,7 @@
 - content_for(:extrajs) do
   = google_maps_js
   = javascript_include_tag 'map_bundle'
-#pageheader.clear
+#pageheader.column.span-24
   .breadcrumbs
     %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
   %h2
@@ -31,7 +31,7 @@
   #observations
     - if @project_observations.blank? && @observations.blank?
       .description.noresults
-        = link_to @contributor.user.login, observations_by_login_path(@contributor.user.login)
+        = link_to @contributor.user.login, observations_path( user_id: @contributor.user.login )
         = t(:hasnt_contributed_any_observations)
     - else
       .stacked.observationcontrols
@@ -70,8 +70,21 @@
         %label{ class: @project.is_new_project? ? "disabled" : nil }
           =t 'views.projects.curator_coordinate_access_label'
         - if @project.is_new_project?
-          .description
-            =t "views.projects.collection_and_umbrellas_do_not_support"
+          = f.form_field t(:trust_this_project_with_your_private_coordinates?), description: t(:about_trusting_projects_overview) do
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE,
+              label_after: true,
+              label: t(:no),
+              data: { autosubmit: true }
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY,
+              label_after: true,
+              label: t(:yes_for_any_of_my_observations),
+              description: t(:about_trusting_projects_options_any_desc),
+              data: { autosubmit: true }
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+              label_after: true,
+              label: t(:yes_but_only_for_threatened),
+              description: t(:about_trusting_projects_options_taxon_desc),
+              data: { autosubmit: true }
         - else
           - [ProjectUser::CURATOR_COORDINATE_ACCESS_ANY, ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER, ProjectUser::CURATOR_COORDINATE_ACCESS_NONE].each do |option|
             = f.radio_button :preferred_curator_coordinate_access, option,

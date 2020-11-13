@@ -36,6 +36,9 @@ function fetchObservationPlaces( ) {
       _.uniq( _.without( placeIDs, ...existingPlaceIDs ) ),
       100
     );
+    if ( placeIDs.length === 0 ) {
+      return Promise.resolve( );
+    }
     return iNaturalistJS.places.fetch(
       placeIDs, { per_page: 100, no_geom: true }
     ).then( response => {

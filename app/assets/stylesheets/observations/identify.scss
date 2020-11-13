@@ -179,10 +179,6 @@ li.rc-pagination-item-active a {
 .bootstrap .FiltersButton .dropdown-menu {
   left: -400px;
 }
-.bootstrap .FiltersButton .checkbox {
-  display: block;
-}
-
 
 .quality_grade {
   display: inline-block;
@@ -292,5 +288,14 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   i {
     position: relative;
     top: 2px;
+  }
+}
+
+.FilterCheckbox.checkbox {
+  display: flex;
+  justify-content: space-between;
+  margin: 7px 0;
+  i.fa {
+    margin-left: 5px;
   }
 }

@@ -249,6 +249,20 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).not_to include not_in_place.id
   end
 
+  it "should filter by bounding box" do
+    in_box = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
+    not_in_box = make_research_grade_observation( latitude: 1.5, longitude: 1.5 )
+    archive = DarwinCore::Archive.new(
+      swlat: 0,
+      swlng: 0,
+      nelat: 1,
+      nelng: 1
+    )
+    ids = CSV.read( archive.make_occurrence_data[0], headers: true ).map{|r| r[0].to_i}
+    expect( ids ).to include in_box.id
+    expect( ids ).not_to include not_in_box.id
+  end
+
   it "should filter by license" do
     o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
     o_cc_by_nd = make_research_grade_observation( license: Observation::CC_BY_ND )

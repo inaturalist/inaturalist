@@ -459,6 +459,27 @@ nb:
   announcements: Kunngjøringer
   any: alle
   any_: Alle
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Alle
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Alle
+  #Label for an option to show content from any date
+  any_date: Alle
+  #Label for an option to show content with any establishment means
+  any_establishment: Alle
+  #Label for an option to show content with any license
+  any_license: Alle
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Alle
+  #Label for an option to show content from any project
+  any_project: Alle
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Alle
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Alle
+  #Label for an option to show/include content by any user
+  any_user: Alle
   anyone: Alle
   apply_to_selected: Bruk på utvalgte
   apply_captive_cultivated: "Bruk i fangenskap / dyrket"
@@ -679,6 +700,7 @@ nb:
   cc_by_sa_name: Navngivelse-DelPåSammeVilkår
   cc_used_under_a: "Creative Commons, brukt under en "
   change_admin: Endre administrator
+  #Button to change the cover (or banner) image for a project
   change_cover: Endre coverbilde
   change_descriptions:
     split: Gammel taksonoppdeling i flere nye taksa
@@ -1039,6 +1061,8 @@ nb:
   decrease_brightness: Senk lysstyrken
   #Default option
   default: standard
+  #Default option
+  default_: Standard
   default_invite_comment: "Flott bilde! Du bør legge det ut på %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standardlisens for observasjoner
   default_photo_license: Standardlisens for bilder
@@ -1050,6 +1074,7 @@ nb:
   delete: Slett
   delete_all: Slett alle
   delete_conversation: Slett samtale
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: slett coverbilde?
   delete_icon?: Slett ikon?
   delete_photo: Slett bilde
@@ -1104,6 +1129,13 @@ nb:
         subject: 'Instruksjoner for bekreftelse'
       reset_password_instructions:
         subject: 'Instruksjoner for å tilbakestille passord'
+  devise_reset_password_instructions_hello_email: Hei %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
   did_you_mean: 'Mente du'
@@ -1552,8 +1584,6 @@ nb:
     tooltips:
       leading: |
         Takson stammer fra fellesskapstaksonet. Denne identifikasjonen kan lede til det riktige svaret.
-      improving: |
-        Første forslag av dette taksonet som fellesskapet senere var enig i. Dette hjalp med å tilspisse fellesskapstaksonet.
       maverick: |
         Takson er ikke en etterkommer eller ane av fellesskapets takson, dvs at fellesskapet er ikke enig i dette taksonet.
   id_withdrawn: ID trukket
@@ -1954,7 +1984,7 @@ nb:
   managers_can_do: Managere kan gjøre alt kuratorer også kan gjøre, pluss å redigere prosjektinnstillinger og skrive innlegg i prosjektjournalen.
   managing_projects: Prosjektadministrasjon
   map: Kart
-  map_legend: kartforklaring
+  map_legend: Kartforklaring
   map_marker_size: kartmarkørens størrelse
   map_of_observations: Observasjonskart
   maps:
@@ -1986,6 +2016,7 @@ nb:
     Medlem av <a href="%{url}">iNaturalist-nettverket</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem av %{partial_inat_network_tag_html}iNaturalist-nettverket</a>, et felles initiativ av %{cas_tag_html} og %{nat_geo_tag_html}.
+  #As in members of a project
   members: Medlemmer
   membership_model: Medlemskapsmodell
   mentioned_you_in_noun_html: "%{user} har nevnt deg i %{noun}"
@@ -2129,14 +2160,6 @@ nb:
   needs_id_: Trenger ID
   needs_id_expandable_html: "<span class='full'>Trenger </span>ID"
   needs_to_be_identified: Trenger å bli identifisert
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i %{place}. Ønsker du å endre din kontotilknytning fra iNaturalist.org til %{site_name}?
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, del av det internasjonale iNaturalist-nettverket, har fokus på biodiversitet og folk i Finland. Ønsker du å endre din kontotilknytning fra iNaturalist.org til iNaturalist Suomi?
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du å endre din tilknytning fra <strong>%{other_site_name}</strong> til <strong>%{site_name}</strong>?
   new: Ny
@@ -2218,6 +2241,7 @@ nb:
   no_matching_places: Ingen treff for steder
   no_matching_projects: Ingen matchende prosjekter
   no_matching_species: Ingen treff for arter.
+  no_matching_taxa: Ingen overensstemmende taksa
   no_matching_users: Ingen treff for brukere.
   no_members_yet: "Ingen medlemmer ennå."
   no_messages_yet: Ingen meldinger ennå
@@ -3032,6 +3056,8 @@ nb:
     zimbabwe: Zimbabwe
   places_of_interest: Punkt av interesse
   places_merged_successfully: Steder slått sammen!
+  places_warning_the_future: |
+    For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
@@ -3156,18 +3182,33 @@ nb:
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriksjoner
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Tilstand
     kingdom: Rike
+    x_kingdoms:
+      one: Rike
+      other: Riker
     subkingdom: Underrike
     phylum: Rekke
+    x_phyla:
+      one: Rekke
+      other: Rekker
     subphylum: Underrekke
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klasser
     subclass: Underklasse
     infraclass: Infraklasse
     superorder: Superorden
     order: Orden
+    x_orders:
+      one: Orden
+      other: Ordner
     suborder: Underorden
     infraorder: Infraorden
     subterclass: Subterklasse
@@ -3177,11 +3218,17 @@ nb:
     superfamily: Superfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Familier
     subfamily: Underfamilie
     supertribe: Superstamme
     tribe: Stamme
     subtribe: Understamme
     genus: Slekt
+    x_genera:
+      one: Slekt
+      other: Slekter
     genushybrid: Slektshybrid
     subgenus: Underslekt
     section: Seksjon
@@ -3189,6 +3236,9 @@ nb:
     complex: Kompleks
     #Singular
     species: Art
+    x_species:
+      one: Art
+      other: Arter
     hybrid: Hybrid
     #Singular
     subspecies: Underart
@@ -3472,6 +3522,8 @@ nb:
   site_stats: Sidestatistikker
   site_taxon_page: "%{site_name} taksonside"
   some_agree: noen er enige
+  some_observations_are_missing_media_or_identifications: |
+    Noen observasjoner mangler media eller identifikasjoner
   some_observations_failed_to_be_added: Noen observasjoner kunne ikke legges til prosjekter
   some_observations_failed_to_save: Noen observasjoner kunne ikke lagres
   some_of_those_photos_couldnt_be_saved: "Noen av disse bilder kunne ikke lagres: %{error}"
@@ -3606,6 +3658,9 @@ nb:
   subscribe_to_a_place: Abonner på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne markeringen"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Abonner%{tag_end} på kommentarer på dette innlegget"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonner%{tag_end} på kommentarer på dette taksonbyttet"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne taksonsammenslåingen"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne taksonoppdelingen"
   subscribe_to_observations_in_a_taxon: Abonner på alle observasjoner lagt ut av en art eller en gruppe med organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonner på alle observasjoner lagt ut innenfor dette stedet. Du kan også legge til et valgfritt taksonfilter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -3848,7 +3903,6 @@ nb:
   third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitzen starter om
-  this_is_a_cached_summary_based_on: Dette er et forhåndslagret sammendrag av dette taksonet basert på dets
   this_is_a_life_list_of: Dette er en livsliste av
   this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
   this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste av %{taxon} i %{place}"
@@ -4208,7 +4262,6 @@ nb:
   website: Nettsted
   week_of_date: "Uka til %{date}"
   welcome: velkommen
-  welcome_back: Velkommen tilbake
   welcome_back!: Velkommen tilbake!
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
@@ -4257,7 +4310,6 @@ nb:
     <a href="%{url}">"%{title}"</a>, som er lisensiert under en
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Navngivelse-DelPåSammeVilkår lisens 3.0</a>. Innhold fra originalen kan være utelatt, men ingen innhold har blitt endret eller utvidet.
-  wikipedia_entry: Wikipedia-innlegg
   with: med
   withdraw: Trekk
   withdrawing: Trekker...
@@ -4335,6 +4387,9 @@ nb:
     Du legger inn observasjoner uten datoer eller lokaliteter. Observasjoner uten denne informasjonen er ofte umulige å identifisere og vil standard ikke være synlige i observasjonssøk.
   you_are_subscribed_to_comments_on_this_flag: Du er abonnert på kommentarer på denne markeringen.
   you_are_subscribed_to_comments_on_this_post: Du er abonnert på kommentarer på dette innlegget.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Du er abonnert på kommentarer på dette taksonbyttet
+  you_are_subscribed_to_comments_on_this_taxon_merge: Du er abonnert på kommentarer på denne taksonsammenslåingen
+  you_are_subscribed_to_comments_on_this_taxon_split: Du er abonnert på kommentarer på denne taksonoppdelingen
   you_are_subscribed_to_observations_from_this_place: Du er abonnert på kommentarer fra dette stedet.
   you_arent_a_member_of_that_project: Du er ikke et medlem i det prosjektet.
   you_arent_following_that_person: "Du følger ikke den personen."
@@ -4587,6 +4642,14 @@ nb:
       show:
         reuse_desc: |
           Du kan kopiere dette taksonet til en annen guide. Hvis du er en av redaktørene av denne guiden bør alt kopieres, men hvis ikke kopieres kun det lisensierte innholdet.
+    lifelists:
+      list_view: Listevisning
+      tree_view: Trevisning
+      observed_species: Observerte arter
+      all_species: Alle arter
+      all_unobserved_species: Alle uobserverte arter
+      filter_by: Filtrer etter
+      filtered_by: Filtrert etter
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5664,6 +5727,9 @@ nb:
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
         license_description_attribution_html: |
           Lisensbeskrivelser og bilder &copy; %{year} Creative Commons, brukt under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Navngivelse lisens</a> (så meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Månedlig supporter
         monthly_supporter_desc_html: |
           Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
@@ -6136,6 +6202,7 @@ nb:
     models:
       AssessmentSection: Vurderingsseksjon
       Atlas: Atlas
+      BlockedUser: Blokkert bruker
       CompleteSet: Fullstendig sett
       #Noun
       Flag: Markering
@@ -6146,6 +6213,9 @@ nb:
       assessment_section:
         title: Tittel
         body: Innhold
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokkert bruker
       conservation_status:
         status: Status
         description: Beskrivelse
@@ -6307,7 +6377,7 @@ nb:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API-nøkkel importeres eller venter på import"
+              api_key_missing: "Mushroom Observer API-nøkkel mangler"
         observation:
           attributes:
             base:
@@ -6362,6 +6432,10 @@ nb:
                 må være observert etter %{time}
               must_be_observed_before: |
                 må være observert før %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Observasjon har ingen dato å stemme på
         taxon:
           attributes:
             rank:
@@ -6389,7 +6463,9 @@ nb:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke inneholde kommaer eller skråstreker
+              should_be_in_english: bør være på engelsk
             name:
+              already_exists: finnes allerede for dette taksonet i dette leksikonet
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 kan ikke matche det vitenskapelige navnet av en art for dette leksikonet
               must_match_the_taxon_if_valid: |
@@ -6581,6 +6657,8 @@ nb:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Advarsel
   wild: Viltlevende
   will_paginate:
     previous_label: "&#8592; Forrige"

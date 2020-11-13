@@ -578,6 +578,13 @@ class ListedTaxon < ActiveRecord::Base
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless list
+    Logstasher.write_hash(
+      "@timestamp": Time.now,
+      subtype: "ListedTaxon#cache_columns",
+      model: "ListedTaxon",
+      model_id: self.id,
+      model_method: "ListedTaxon::cache_columns"
+    )
     # get the specific options for this list type
     options = list.cache_columns_options(self)
     ListedTaxon.earliest_and_latest_ids(options)

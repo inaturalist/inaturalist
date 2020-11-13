@@ -1,38 +1,43 @@
 %ul.nav.nav-tabs.user-subnav
-  - if logged_in? && current_user.id == user.id
-    %li{:class => ('active' if controller.controller_name=="users" && controller.action_name=="dashboard")}
+  - if is_me?( current_user )
+    %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="dashboard" )}
       = link_to home_path do
-        %span.glyphicon.glyphicon-home>
-        \&nbsp;#{t(:home)}
-  %li{:class => ('active' if controller.controller_name=="users" && controller.action_name=="show")}
+        %span.glyphicon.glyphicon-home
+        =t :home
+  %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="show" )}
     = link_to person_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-user>
-      \&nbsp;#{t(:profile)}
-  %li{:class => ('active' if current_page?(:controller => :observations, :action => :by_login))}
-    = link_to observations_by_login_path(user.login) do
-      %i.fa.fa-binoculars>
-      \&nbsp;#{t(:observations)}
-  %li{:class => ('active' if controller.is_a?(CalendarsController))}
+      %span.glyphicon.glyphicon-user
+      =t :profile
+  %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
+    = link_to observations_path( user_id: user.login ) do
+      %i.fa.fa-binoculars
+      =t :observations
+  - if is_me?( current_user )
+    %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
+      = link_to observations_by_login_path(user.login) do
+        %i.fa.fa-pencil
+        =t :edit_observations
+  %li{:class => ( "active" if controller.is_a?(CalendarsController) )}
     = link_to calendar_path(user.login) do
-      %span.glyphicon.glyphicon-calendar>
-      \&nbsp;#{t(:calendar)}
-  %li{:class => ('active' if current_page?(:controller => :identifications, :action => :by_login))}
+      %span.glyphicon.glyphicon-calendar
+      =t :calendar
+  %li{:class => ( "active" if current_page?( controller: :identifications, action: :by_login ) )}
     = link_to identifications_by_login_path(:login => user.login) do
-      %i.glyphicon.icon.icon-identification>
-      \&nbsp;#{t(:ids)}
-  %li{:class => ('active' if current_page?(:controller => :lists, :action => :by_login))}
+      %i.glyphicon.icon.icon-identification
+      =t :ids
+  %li{:class => ( "active" if current_page?( controller: :lists, action: :by_login ) )}
     = link_to lists_by_login_path(user.login) do
-      %span.glyphicon.glyphicon-list>
-      \&nbsp;#{t(:lists)}
-  %li{:class => ('active' if request.fullpath =~ /\/journal\//)}
+      %span.glyphicon.glyphicon-list
+      =t :lists
+  %li{:class => ( "active" if request.fullpath =~ /\/journal\// )}
     = link_to journal_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-book>
-      \&nbsp;#{t(:journal)}
-  %li{:class => ('active' if current_page?(:controller => :votes, :action => :by_login))}
+      %span.glyphicon.glyphicon-book
+      =t :journal
+  %li{:class => ( "active" if current_page?( controller: :votes, action: :by_login ) )}
     = link_to faves_by_login_path(user.login) do
-      %span.glyphicon.glyphicon-star>
-      \&nbsp;#{t(:favorites)}
-  %li{:class => ('active' if current_page?(:controller => :projects, :action => :by_login))}
+      %span.glyphicon.glyphicon-star
+      =t :favorites
+  %li{:class => ( "active" if current_page?( controller: :projects, action: :by_login ) )}
     = link_to projects_by_login_path(:login => user.login) do
-      %span.glyphicon.glyphicon-briefcase>
-      \&nbsp;#{t(:projects)}
+      %span.glyphicon.glyphicon-briefcase
+      =t :projects

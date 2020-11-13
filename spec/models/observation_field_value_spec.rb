@@ -162,6 +162,18 @@ describe ObservationFieldValue, "validation" do
       ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
       expect( ofv ).to be_valid
     end
+    it "should pass on update if the updater is a curator" do
+      ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
+      expect( ofv ).to be_valid
+      ofv.updater = make_curator
+      expect( ofv ).to be_valid
+    end
+    it "should fail on update if the updater is not a curator" do
+      ofv = ObservationFieldValue.make!( observation: observation, user: observation.user )
+      expect( ofv ).to be_valid
+      ofv.updater = User.make!
+      expect( ofv ).not_to be_valid
+    end
   end
   describe "when observer prefers only themselves" do
     let(:observer) { User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER ) }
@@ -173,6 +185,13 @@ describe ObservationFieldValue, "validation" do
     it "should pass if the user is the observer" do
       ofv = ObservationFieldValue.make( observation: observation, user: observer )
       expect( ofv ).to be_valid
+    end
+    it "should fail on update if the updater is not the observer" do
+      ofv = ObservationFieldValue.make!( observation: observation, user: observer )
+      expect( ofv ).to be_valid
+      ofv.value = "something else"
+      ofv.updater = User.make!
+      expect( ofv ).not_to be_valid
     end
   end
 end

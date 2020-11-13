@@ -88,6 +88,16 @@ class EmailerPreview < ActionMailer::Preview
     DeviseMailer.devise_mail( @user, :reset_password_instructions )
   end
 
+  def unlock_instructions
+    @user ||= User.first
+    DeviseMailer.devise_mail( @user, :unlock_instructions )
+  end
+
+  def collection_project_changed_for_trusting_member
+    set_locale
+    Emailer.collection_project_changed_for_trusting_member( ProjectUser.last )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

@@ -99,40 +99,11 @@ class ObservationsController < ApplicationController
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
     if human_or_scraper && !showing_partial
-      search_taxon = Taxon.find_by_id( params[:taxon_id] ) unless params[:taxon_id].blank?
-      search_place = unless params[:place_id].blank?
-        Place.find( params[:place_id] ) rescue nil
-      end
-      search_user = unless params[:user_id].blank?
-        User.find_by_id( params[:user_id] ) || User.find_by_login( params[:user_id] )
-      end
-      search_date = Date.parse( params[:on] ) unless params[:on].blank?
-      @shareable_description = if search_taxon
-        key = "observation_brief_taxon"
-        i18n_vars = {}
-        i18n_vars[:taxon] = search_taxon.common_name( locale: I18n.locale ).try(:name)
-        i18n_vars[:taxon] = search_taxon.name if i18n_vars[:taxon].blank?
-        if search_place
-          key += "_from_place"
-          i18n_vars[:place] = search_place.localized_name
-        end
-        if search_date
-          key += "_on_day"
-          i18n_vars[:day] = I18n.l( search_date, format: :long )
-        end
-        if search_user
-          key += "_by_user"
-          i18n_vars[:user] = search_user.try_methods(:name, :login)
-        end
-        I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
-      elsif search_user
-        if search_date
-          I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )
-        else
-          I18n.t( :observations_by_user, user: search_user.try_methods(:name, :login) )
-        end
-      else
-        I18n.t( :x_site_is_a_social_network_for_naturalist, site: @site.name )
+      @shareable_description = begin
+        generate_shareable_description
+      rescue StandardError => e
+        Logstasher.write_exception( e, request: request, session: session, user: current_user )
+        ""
       end
     else
       h = observations_index_search(params)
@@ -1236,6 +1207,8 @@ class ObservationsController < ApplicationController
       :viewer => current_user, 
       :filter_spam => (current_user.blank? || current_user != @selected_user)
     )
+    params[:order_by] ||= @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
+    params[:order] ||= @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
@@ -1745,26 +1718,32 @@ class ObservationsController < ApplicationController
   end
 
   def moimport
-    if @api_key = params[:api_key].strip
+    if @api_key = params[:api_key]&.strip
       @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
-      @mo_user_id = @mo_import_task.mo_user_id
-      @mo_user_name = @mo_import_task.mo_user_name
-      if @mo_user_id
-        begin
-          @results = @mo_import_task.get_results_xml.map do |r|
-            [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+      begin
+        @mo_user_id = @mo_import_task.mo_user_id
+        @mo_user_name = @mo_import_task.mo_user_name
+        if @mo_user_id
+          begin
+            @results = @mo_import_task.get_results_xml.map do |r|
+              [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+            end
+          rescue RestClient::BadGateway
+            @errors ||= []
+            @errors << "Failed to connect to Mushroom Observer"
+          rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
+            @errors ||= []
+            @errors << e.message
           end
-        rescue RestClient::BadGateway
+        else
           @errors ||= []
-          @errors << "Failed to connect to Mushroom Observer"
-        rescue StandardError => e
-          @errors ||= []
-          @errors << e.message
+          @errors << "No Mushroom Observer use associated with that API key"
         end
-      else
+      rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
         @errors ||= []
-        @errors << "No Mushroom Observer use associated with that API key"
+        @errors << e.message
       end
     end
     respond_to do |format|
@@ -2531,7 +2510,65 @@ class ObservationsController < ApplicationController
     end
     render_404 unless @observation
   end
+
+  def search_taxon
+    return if params[:taxon_id].blank?
+
+    @search_taxon ||= Taxon.find_by_id(params[:taxon_id].to_i)
+  end
+
+  def search_place
+    return if params[:place_id].blank?
+
+    @search_place ||= Place.find_by_id( params[:place_id].to_i )
+  end
+
+  def search_user
+    return if params[:user_id].blank?
+
+    @search_user ||= ( User.find_by_id( params[:user_id].to_i ) || User.find_by_login( params[:user_id] ) )
+  end
   
+  def search_date
+    return if params[:on].blank?
+
+    begin
+      @search_date ||= Date.parse( params[:on] )
+    rescue ArgumentError
+      nil
+    end
+  end
+
+  def generate_shareable_description
+    if search_taxon
+      key = "observation_brief_taxon"
+      i18n_vars = {}
+      i18n_vars[:taxon] = search_taxon.common_name( locale: I18n.locale ).try(:name)
+      i18n_vars[:taxon] = search_taxon.name if i18n_vars[:taxon].blank?
+      if search_place
+        key += "_from_place"
+        i18n_vars[:place] = search_place.localized_name
+      end
+      if search_date
+        key += "_on_day"
+        i18n_vars[:day] = I18n.l( search_date, format: :long )
+      end
+      if search_user
+        key += "_by_user"
+        i18n_vars[:user] = search_user.try_methods(:name, :login)
+      end
+      I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+    elsif search_user
+      if search_date
+        I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )
+      else
+        I18n.t( :observations_by_user, user: search_user.try_methods(:name, :login) )
+      end
+    else
+      I18n.t( :x_site_is_a_social_network_for_naturalist, site: @site.name )
+    end
+  end
+
   def require_owner
     unless ( logged_in? && current_user.id == @observation.user_id ) || current_user.is_admin?
       msg = t(:you_dont_have_permission_to_do_that)

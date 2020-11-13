@@ -37,6 +37,7 @@
     placeLayers: undefined
     showAccuracy: true
     showAllLayer: true
+    showLegend: false
     showRange: undefined,
     taxonLayers: [
       {

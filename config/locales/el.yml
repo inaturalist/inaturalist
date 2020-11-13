@@ -630,6 +630,7 @@ el:
   cc_by_sa_name: Αναφορά δημιουργού-Παρόμοια διανομή
   cc_used_under_a: "Creative Commons, χρησιμοποιούμενη κάτω από μια"
   change_admin: Αλλαγή διαχειριστή
+  #Button to change the cover (or banner) image for a project
   change_cover: Αλλαγή εξώφυλλου
   change_descriptions:
     split: Το παλιό taxon διαχωρίστηκε σε πολλαπλά νέα taxa
@@ -841,7 +842,6 @@ el:
     flowering: Τα άνθη είναι εμφανή, ανθισμένα, και ακόμα προσκολλημένα στο φυτό.
     fruiting: Τα φρούτα είναι εμφανή και ακόμα προσκολλημένα στο φυτό.
     no_evidence_of_flowering: Τα μέσα δεν παρέχουν καμία ένδειξη από αναπαραγωγικές δομές
-    teneral: Ενήλικο άτομο που έχει περάσει το στάδιο της νύμφης αλλά δεν έχει ακόμη ενηλικιωθεί πλήρως
     cannot_be_determined: Δεν μπορεί να προσδιοριστεί με βάση τις ενδείξεις που έχουν δοθεί
   controls: Έλεγχοι
   convert: Μετατροπή
@@ -992,6 +992,7 @@ el:
   delete: Διαγραφή
   delete_all: Διαγραφή Όλων
   delete_conversation: Διαγραφή συνομιλίας
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: διαγραφή εξωφύλλου?
   delete_icon?: Διαγραφή εικόνας;
   delete_photo: Διαγραφή φωτογραφίας
@@ -1457,8 +1458,6 @@ el:
     tooltips:
       leading: |
         Η ταξινομική βαθμίδα προέρχεται από την κοινοτική ταξινομική βαθμίδα. Αυτή η ταυτοποίηση μπορεί να οδηγήσει στη σωστή απάντηση.
-      improving: |
-        Πρώτη πρόταση για αυτή την ταξινομική ομάδα για την οποία η κοινότητα συμφωνεί. Αυτό βοήθησε στη βελτίωση της κοινοτικής ταξινομικής βαθμίδας.
       maverick: |
         Η ταξινομική βαθμίδα δεν είναι απόγονος ή πρόγονος από την κοινοτική ταξινομική βαθμίδα, δηλαδή η κοινότητα δε συμφωνεί με αυτή την ταξινομική βαθμίδα.
   id_withdrawn: Το αναγνωριστικό αποσύρθηκε
@@ -1836,7 +1835,6 @@ el:
   managers_can_do: Οι διαχειριστές μπορούν να κάνουν ότι και οι χειριστές της πλατφόρμας καθώς και επεξεργασία των ρυθμίσεων των εργασιών και συγγραφή δημοσιογραφικών άρθρων πάνω στις εργασίες
   managing_projects: Διεκπεραίωση εργασιών
   map: Χάρτης
-  map_legend: υπόμνημα χάρτη
   map_marker_size: Μέγεθος μαρκαδόρου χάρτη
   map_of_observations: Χάρτης παρατηρήσεων
   maps:
@@ -1865,6 +1863,7 @@ el:
     Μέλη του <a href="%{url}">Δικτύου του iNaturalist</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Μέλος του%{partial_inat_network_tag_html} δικτύου iNaturalist</a>, μια κοινή πρωτοβουλία του %{cas_tag_html} και του%{nat_geo_tag_html}.
+  #As in members of a project
   members: Μέλη
   membership_model: Μοντέλο συμμετοχής ως μέλος
   mentioned_you_in_noun_html: "Ο %{user} σας ανέφερε στο %{noun}"
@@ -1997,9 +1996,6 @@ el:
   needs_id_: Χρειάζεται ID
   needs_id_expandable_html: "<span class='full'>Χρειάζεται </span>ID"
   needs_to_be_identified: Πρέπει να αναγνωριστεί
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, μέρος του διεθνούς δικτύου του iNaturalist, επικεντρώνεται στη βιοποικιλότητα και στους ανθρώπους σε %{place}. Θα θέλατε να αλλάξετε την υπαγωγή του λογαριασμού σας από το iNaturalist.org στο %{site_name}?
   network_affiliation_prompt_from_other_site_html: |
     Θα θέλατε να αλλάξετε την υπαγωγή σας από <strong>%{other_site_name}</strong> σε <strong>%{site_name}</strong>?
   new: Νέο
@@ -4001,7 +3997,6 @@ el:
   website: Ιστότοπος
   week_of_date: "Εβδομάδα της %{date}"
   welcome: καλώς ήρθατε
-  welcome_back: Καλωσορίσατε και πάλι
   welcome_back!: Καλωσήρθατε Πάλι!
   welcome_to_inat: "Καλώς ήρθατε στο %{site_name}!"
   welcome_to_guides: "Καλώς ήρθατε στους Οδηγούς του %{site_name}!"
@@ -4048,7 +4043,6 @@ el:
   wikipedia_attribution_cc_by_sa_3_html: |
     Αυτό το άρθρο χρησιμοποιεί υλικό από το άρθρο της Βικιπαίδεια <a href="%{url}">"%{title}"</a>, το οποίο δημοσιεύθηκε σύμφωνα με το <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Το περιεχόμενο μπορεί να παραλείπεται από το αυθεντικό άρθρο, όμως το περιεχόμενο δεν έχει αλλάξει.
-  wikipedia_entry: Εισαγωγή από τη Βικιπαίδεια
   with: με
   withdraw: Απόσυρση
   withdrawing: Αποσύρεται...
@@ -4952,6 +4946,9 @@ el:
           Να εμφανίζεται το Μηνιαίο στάτους Υποστηρικτών στο προφίλ μου
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Αν αλλάξετε γνώμη μπορείτε πάντα <a href='/users/edit'>να επεξεργαστείτε τις ρυθμίσεις σας</a>.
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Μηνιαίος υποστηρικτής
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Σχόλια

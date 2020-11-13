@@ -1288,6 +1288,7 @@ ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
 .providerlink.soundcloud { background-image: image-url('external/soundcloud_favicon.png');}
 .providerlink.orcid { background-image: image-url( 'https://orcid.org/sites/default/files/images/orcid_16x16.png' ); }
+.providerlink.apple { background-image: image-url('external/apple_favicon.png');}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}
@@ -1638,7 +1639,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .leftmenu .count.right {
   margin: 5px 10px 0 0;
 }
-.topmenu {float: right; list-style: none; padding:0; margin:0;}
+.topmenu {float: right; list-style: none; padding:0; margin:0;position: relative; z-index: 1;}
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
 .topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}
@@ -1972,6 +1973,7 @@ user-icon .icon-person:before {
       .ac-view {
         padding: 0 10px;
         background: none;
+        display: flex;
 
         &.view-observations {
           padding-right: 0;

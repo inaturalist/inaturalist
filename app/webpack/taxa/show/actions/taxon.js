@@ -89,6 +89,12 @@ export function showNewTaxon( taxon, options ) {
   };
 }
 
+export function setNoAnnotationHiddenPreference( pref ) {
+  return dispatch => {
+    dispatch( setConfig( { prefersNoAnnotationHidden: pref } ) );
+  };
+}
+
 export function setScaledPreference( pref ) {
   return ( dispatch, getState ) => {
     dispatch( setConfig( { prefersScaledFrequencies: pref } ) );

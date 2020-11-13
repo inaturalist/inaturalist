@@ -274,6 +274,34 @@ cs:
     tabulku záznamů o přítomnosti a nepřítomnosti druhu z výletů a souvisejících
     pozorování. <a href='%{url}'> Další informace </a>
     </p>
+  about_trusting_projects: O důvěryhodných projektech
+  about_trusting_projects_options_any: Všechna vaše pozorování v tomto projektu
+  about_trusting_projects_options_any_desc: |-
+    To zahrnuje pozorování, kde jste nastavili geosoukromí na "skryté"
+    nebo "soukromé," e. . pozorování z vašeho terénu nebo míst, o kterých nechcete aby věděli
+    ostatní.
+  about_trusting_projects_options_taxon: |-
+    Pouze vaše pozorování v tomto projektu, která mají zakryté souřadnice
+    kvůli ohroženým taxonům
+  about_trusting_projects_options_taxon_desc: |-
+    Mnoho projektů potřebuje pouze přístup k souřadnicím, které jsou skryté, protože pozorování
+    zobrazuje ohrožený taxon.
+  about_trusting_projects_overview: |-
+    Poskytnutí přístupu k vašim skrytým souřadnicím umožní správcům tohoto
+    projektu vidět pravdu, neskryté umístění vašich pozorování v tomto
+    projektu. To je mimořádně důležité v situacích, kdy vědci nebo
+    správci zdrojů potřebují přístup k přesným souřadnicím pro účely analýzy a
+    rozhodování.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Správci projektů, kteří budou mít přístup k vašim skrytým souřadnicím, jsou:
+  about_trusting_projects_warning: |-
+    Všimněte si, že správci projektu mohou změnit parametry projektu tak, aby zahrnovaly vaše pozorování, a mohou kdykoli přidat nebo odebrat správce projektů. Budete dostávat oznámení o těchto změnách, ale v zásadě tomuto projektu důvěřujete s vašimi soukromými daty o poloze, takže buďte
+    opatrní.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Můžete si vybrat sdílení skrytých souřadnic pro
   about_x: "O %{x}"
   acc: 'Přesnost (m)'
   account: Účet
@@ -594,11 +622,32 @@ cs:
   announcements: Oznámení
   any: libovolné
   any_: Jakýkoliv
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Jakýkoliv
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Jakýkoliv
+  #Label for an option to show content from any date
+  any_date: Kdykoliv
+  #Label for an option to show content with any establishment means
+  any_establishment: Jakýkoliv
+  #Label for an option to show content with any license
+  any_license: Jakákoliv
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Kterýkoliv
+  #Label for an option to show content from any project
+  any_project: Kterýkoliv
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Jakákoliv
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Jakýkoliv
+  #Label for an option to show/include content by any user
+  any_user: Kterýkoliv
   anyone: Kdokoliv
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
   apply_fields: Použít pole
-  apply_geoprivacy: Použít geosoukromí
+  apply_geoprivacy: Použít Soukromí zeměpisné polohy
   apply_darr: "Použít &darr;"
   apply_establishment_means_to_descendant_places: "Použít způsob vzniku pro následující místa"
   apply_these_settings_to_all: Použít toto nastavení pro všechna pozorování níže.
@@ -815,6 +864,7 @@ cs:
   cc_by_sa_name: S uvedením autora - sdílení
   cc_used_under_a: "Creative Commons, použito podle"
   change_admin: Změnit správce
+  #Button to change the cover (or banner) image for a project
   change_cover: Změnit obal
   change_descriptions:
     split: Rozdělení starého taxonu do několika nových taxonů
@@ -822,7 +872,7 @@ cs:
     swap: Nahradit vstupní taxon výstupním taxonem
     drop: Koncept taxonu zcela neplatný, udržovaný pro historické účely nebo kompatibilitu s partnerem
     stage: Připravit neaktivní koncept pro spuštění v rámci skupiny změn
-  change_geoprivacy: 'Změnit geosoukromí'
+  change_geoprivacy: 'Změnit Soukromí zeměpisné polohy'
   change_group: Změna skupiny
   change_icon: Změna ikony
   change_password: Změna hesla
@@ -860,7 +910,7 @@ cs:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} byly sloučeny do %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} budou sloučeny do %{output_taxon}"
   change_your_password: Změna vašeho hesla
-  changing_the_geoprivacy: 'Změnou geosoukromí změníte to, jak ostatní uvidí lokalitu vašeho pozorování.'
+  changing_the_geoprivacy: 'Změnou soukromí zeměpisné polohy změníte to, jak ostatní uvidí umístění vašeho pozorování.'
   check_above_for_errors: Zkontrolujte chyby výše
   check_back_soon: Brzy opět zkontrolujte!
   check_here_to_autoload_description: Označte pro automatické nahrání popisu z Wikipedie. Označení můžete zrušit, pokud je vědecký název taxonu zároveň nevědeckým výrazem nebo běžně používaným chybným označením.
@@ -878,6 +928,7 @@ cs:
   check_out_my_observations_at: Na má pozorování se můžete podívat na
   check_out_our_blog: Zkoukněte náš blog
   check_out_what_the_observation: Podívejte se, jak vypadá pozorování, které chcete identifikovat.
+  check_out_your_new_and_improved_list_list: Podívejte se na svůj nový a vylepšený Seznam života!
   check_this_box_if_html: |
     Označte toto pole, pokud chcete pro své fotky použít licenci Creative Commons s uvedením autora pro nekomerční použití <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'></a>. Můžete si zvolit jinou licenci nebo licenci později zrušit, tato licence je však nejvhodnější pro sdílení s výzkumníky.
   checklist: Seznam
@@ -977,10 +1028,10 @@ cs:
       Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
-    geoprivacy: Standardně nastavené geosoukromí pro pozorování tohoto taxonu
+    geoprivacy: Standardně nastavené soukromí zěměpisné polohy pro pozorování tohoto taxonu
     iucn: Odpovídající kód v Červeném seznamu IUCN
   conservation_status_geoprivacy_desc: |
-    Na všechna pozorování tohoto taxonu v tomto místě se vztahovalo výchozí geo soukromí (udržování soukromí své zeměpisné polohy)
+    Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
   contain_all_descendants?: Obsahuje tento seznam všechny následné taxony, které se zde vyskytují?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1028,12 +1079,19 @@ cs:
     flowering: Květiny viditelné, otevřené a stále připojené k rostlině
     fruiting: Květiny viditelné a stále připojené k rostlině
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
-    teneral: Dospělá rostlina, která nedávno zakořenila, ale dosud nedosáhla konečné dospělé formy
+    teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
     cannot_be_determined: Na základě poskytnutých důkazů nelze určit
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
   coordinates: Souřadnice
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Pouze s úplnými souřadnicemi
+  coords_viewable_for_proj_desc: |
+    Zobrazit pouze pozorování z tohoto projektu, pro které můžete vidět "skutečné" souřadnice, včetně nepozorovaných pozorování, skrytých pozorování lidí, kteří vám důvěřují, skrytá pozorování lidí, kteří důvěřují tomuto projektu a pozorování skrytých ohrožených taxonů lidmi, kteří tomuto projektu důvěřují.
   copy: kopírovat
   copy_and_paste_the_following_code_to: Zkopírujte a vložte následující kód, pokud chcete toto hodnocení vložit na jinou webovou stránku.
   copy_and_paste_this_into_your_own_html: Zkopírujte a vložte do vašeho vlastního HTML.
@@ -1100,7 +1158,7 @@ cs:
   curator: Kurátor
   curators_changed_for_x_html: "Kurátoři změněni na %{x}"
   curators: Kurátoři
-  curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a skrytých příspěvků do tohoto projektu.
+  curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
   curator_identification: Identifikace kurátora
   current_flags: Aktuální vlajky
   custom_project_fields: Pole vlastního projektu
@@ -1182,6 +1240,7 @@ cs:
   delete: Smazat
   delete_all: Smazat vše
   delete_conversation: Smazat rozhovor
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: smazat obal?
   delete_icon?: Ikonu odstranit?
   delete_photo: Smazat fotografii
@@ -1237,6 +1296,17 @@ cs:
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
   devise_reset_password_instructions_hello_email: Dobrý den %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Pokud jste o změnu hesla nežádali, prosím ignorujte tento e-mail.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Vaše heslo nebude změněno, pokud se nepřihlásíte na následující odkaz a nevytvoříte si nové heslo.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Váš účet byl uzamčen, protože došlo k mnoha neúspěšným pokusům o přihlášení.
+  devise_unlock_instructions_click_the_link: |
+    Svůj účet odemknete kliknutím na odkaz níže
+  devise_unlock_instructions_unlock: Odemknout účet
   discoveries: Objevy
   did_not_send_invitations_because: Pozvánka těmto nebyla odeslána, protože...
   did_you_mean: 'Mysleli jste'
@@ -1597,10 +1667,10 @@ cs:
   generate_your_stats: Generovat vaše statistiky
   generating_mobile_archive: "Generování mobilního archivu"
   Genus: Rod
-  geoprivacy: Geosoukromí
-  geoprivacy_is_obscured: Udržení soukromého geografického umístění je ukryta
-  geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zakrýt souřadnice.
-  geoprivacy_is_private: Udržení soukromého geografického umístění je soukromé
+  geoprivacy: Soukromí zeměpisné polohy
+  geoprivacy_is_obscured: Soukromí geografické polohy je nastaveno na přibližné
+  geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zveřejnit jen přibližné souřadnice.
+  geoprivacy_is_private: Soukromí zeměpisné polohy je nastaveno na soukromé
   geoprivacy_is_private_desc: Pozorovatel se rozhodl skrýt souřadnice.
   georeferenced: Georeference?
   get_started: Začněte
@@ -1874,6 +1944,7 @@ cs:
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
   learn_more: Více informací
+  learn_more_on_the_blog: Zjistěte více na blogu
   learn_more_raquo: "Více informací &raquo;"
   learn_what_these_licenses_mean: Zjistěte, co znamenají tyto licence
   least_concern: nejmenší obava
@@ -1915,6 +1986,7 @@ cs:
     italian: italsky
     japanese: japonsky
     korean: korejsky
+    latvian: lotyština
     lithuanian: Litevština
     luxembourgish: lucemburština
     maltese: maltsky
@@ -2025,6 +2097,7 @@ cs:
     ko: Korejština
     lb: Lucemburština
     lt: Litevština
+    lv: lotyština
     mk: makedonsky
     nb: Norština (Bokmål)
     nl: holandsky
@@ -2045,7 +2118,7 @@ cs:
   location_is_accurate: Umístění je přesné
   location_is_exact: umístění je přesné
   location_is_public: Místo je veřejné
-  location_is_obscured: Lokace je neznámá
+  location_is_obscured: Poloha je přibližná
   location_is_private: Místo je soukromé
   location_specified: Umístění určeno
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
@@ -2115,6 +2188,10 @@ cs:
       range: Rozsah
   map_tooltip: Ukázat zobrazení mapy
   mark_as_reviewed: Označit jako zkontrolované
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Označení pozorování jako recenzované znamená, že ho znovu neuvidíte v
+    výchozím nastavení v Identify. Bude stále viditelné i pro ostatní lidi v identifikaci.
   mark_all_as_reviewed: Označit vše za zkontrolované
   mark_all_as_unreviewed: Označit všechny za nezkontrolované
   matching_species_will_shown_up_here: Zde se zobrazí odpovídající druhy. Pokud má %{place} pro daný druh rozsah, zobrazí se na mapě.
@@ -2128,6 +2205,7 @@ cs:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Člen sítě %{partial_inat_network_tag_html}iNaturalist</a>, společná iniciativa
      %{cas_tag_html} a %{nat_geo_tag_html}.
+  #As in members of a project
   members: Členové
   membership_model: Členský model
   mentioned_you_in_noun_html: "uživatel %{user} se o vás zmínil v %{noun}"
@@ -2273,14 +2351,18 @@ cs:
   needs_to_be_identified: Musí být identifikován
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>, součást mezinárodní sítě iNaturalist, se
-    zaměřuje na biologickou rozmanitost a lidi v %{place}. Chtěli byste změnit
-    příslušnost svého účtu z iNaturalist.org na %{site_name}?
+    <strong>%{site_name}</strong> je součástí mezinárodní sítě iNaturalist
+    která se zaměřuje na biologickou rozmanitost a komunitu přírodovědců v %{place}. Chtěli byste
+    změnit přičlenění k účtu z <strong>%{inat_site_name}</strong> na
+    <strong>%{site_name}</strong> a sdílet data s místními institucemi?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, součást mezinárodní sítě iNaturalist, se zaměřuje na biologickou rozmanitost a obyvatele Finska. Přejete si změnit příslušnost svého účtu z iNaturalist.org na iNaturalist Suomi?
+    <strong>iNaturalist Suomi</strong>, součást mezinárodní sítě iNaturalist
+    je zaměřena na biologickou rozmanitost a komunitu přírodovědců ve Finsku. Chcete
+    změnit přičlenění k účtu z <strong>%{inat_site_name}</strong> na
+    <strong>iNaturalist Suomi</strong> a sdílet data s místními institucemi?
   network_affiliation_prompt_from_other_site_html: |
     Chtěli byste změnit příslušnost z <strong>%{other_site_name}</strong> na
     <strong>%{site_name}</strong>?
@@ -2363,6 +2445,7 @@ cs:
   no_matching_places: Žádná odpovídající místa
   no_matching_projects: Žádné odpovídající projekty
   no_matching_species: Žádné odpovídající druhy.
+  no_matching_taxa: Žádné odpovídající taxony
   no_matching_users: Žádní odpovídající uživatelé.
   no_members_yet: "Zatím žádní členové."
   no_messages_yet: Zatím žádné zprávy
@@ -2446,10 +2529,10 @@ cs:
   obs: Skr
   obs_cid_d: ID pozorování
   obs_id_d: ID pozorování
-  obscured: Skrytý
-  obscured_or_private: skrytý nebo soukromý
+  obscured: Přibližné
+  obscured_or_private: přibližný nebo soukromý
   obscured_description: |
-    Veřejné souřadnice zobrazené jako náhodný bod do 10 km od skutečných souřadnic. Skutečné souřadnice vidíte pouze vy a kurátoři projektů, k nimž přidáte své pozorování.
+    Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
   observation: Pozorování
   observation_: pozorování
   observation_added: Pozorování přidáno.
@@ -2775,7 +2858,7 @@ cs:
   pin_verb: Připnout
   pink: růžový
   pinned_locations_desc: |
-    Připojte tuto kombinaci souřadnic, přesnosti, geografické důvěrnosti a poznámky k místům pro pozdější použití.
+    Připnout tuto kombinaci souřadnic, přesnosti, soukromí zeměpisné polohy a poznámky k místu pro pozdější použití.
   place: Místo
   placeholder: Zástupný text
   place_autocomplete_placeholder: Zion National Park, Miami, atd.
@@ -3188,6 +3271,29 @@ cs:
     zimbabwe: Zimbabwe
   places_of_interest: Zajímavá místa
   places_merged_successfully: Místa byla úspěšně sloučena!
+  places_warning_export_complex_boundary_html: |
+    Pokud se pokoušíte exportovat pozorování z komplikované hranice, zvažte raději
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">jejich stažení z GBIF</a>,
+    kde můžete nakreslit libovolné hranice, nebo je exportujte z iNat pomocí
+    existujících míst nebo ohraničujícího obdélníku a pak data znovu filtrujte po stažení.
+  places_warning_look_for_existing_html: |
+    Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že nevytváříte duplikát. Již máme místa pro všechny světadíly a státy, a stejně tak i pro další dvě administrativní úrovně států.
+  places_warning_projects_can_have_multiple_places: |
+    Pokud se snažíte vytvořit místo pro ohraničení projektu, pak projekty mohou být 
+    složeny z více míst. Například, pokud chcete vytvořit projekt pro
+    Nový Zéland a Austrálii, můžete přidat do požadavků dvě místa
+    namísto vytváření nového.
+  places_warning_new_places_are_slow_html: |
+    Nová místa jsou jedním z největších zdrojů zpomalení na iNat, tak
+    <strong>prosím zvažte nevytváření nového místa</strong>. Zatímco malá místa
+    obsahující pouze několik tisíc pozorování jsou obvykle v pořádku, pokud vytvoříte
+    nové místo, které obsahuje spoustu pozorování, budete zpomalovat iNat
+    pro všechny ostatní. Zde jsou některé alternativní možnosti:
+  places_warning_editing_places_is_slow: |
+    Úprava hranic místa je jedním z největších zdrojů zpomalení na iNat.
+    Pokud se tomu můžete vyhnout, nepřidávejte, neměňte ani neodstraňujte hranice míst, pokud to není naprosto nezbytné.
+  places_warning_the_future: |
+    Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_add_this_observation_to: Přidejte prosím toto pozorování k
@@ -3321,15 +3427,35 @@ cs:
   ranks:
     stateofmatter: Stav věci
     kingdom: Říše
+    x_kingdoms:
+      one: Říše
+      few: Říše
+      many: Říší
+      other: Říše
     subkingdom: Podříše
     phylum: kmen
+    x_phyla:
+      one: kmen
+      few: kmenů
+      many: kmeny
+      other: kmenů
     subphylum: Podkmen
     superclass: Nadtřída
     class: Třída
+    x_classes:
+      one: Třída
+      few: třídy
+      many: tříd
+      other: tříd
     subclass: Podtřída
     infraclass: Infratřída
     superorder: Nadřád
     order: Řád
+    x_orders:
+      one: Řád
+      few: řády
+      many: řádů
+      other: řádů
     suborder: Podřád
     infraorder: Infrařád
     subterclass: Nadtřída
@@ -3339,11 +3465,21 @@ cs:
     superfamily: nadčeleď
     epifamily: epičeleď
     family: čeleď
+    x_families:
+      one: Čeleď
+      few: čeledi
+      many: čeledí
+      other: čeledi
     subfamily: podčeleď
     supertribe: nadkmen
     tribe: kmen
     subtribe: Podkmen
     genus: rod
+    x_genera:
+      one: Rod
+      few: rody
+      many: rodů
+      other: rodů
     genushybrid: hybridní rod
     subgenus: podrod
     section: sekce
@@ -3351,6 +3487,11 @@ cs:
     complex: Dokončit
     #Singular
     species: druh
+    x_species:
+      one: Druh
+      few: druhy
+      many: druhů
+      other: druhů
     hybrid: kříženec
     #Singular
     subspecies: poddruh
@@ -3370,6 +3511,7 @@ cs:
   reason_you_are_flagging_this_item: Důvod, proč označujete tuto položku.
   recaptcha_verification_failed: ověření reCaptcha se nezdařilo
   receive_email_notifications_when_people_leave_you: Dostávat e-mailová oznámení o
+  receive_project_journal_notifications?: Dostávat oznámení deníku projektu?
   receive_updates_from_this_project: Dostávat aktualizace z tohoto projektu
   recent: Nedávné
   recent_evidence_of_organism: Nedávné důkazy o organismu
@@ -3640,6 +3782,11 @@ cs:
   some_agree: někteří souhlasí
   some_observations_are_missing_media_or_identifications: |
     Některým pozorováním chybí média nebo identifikace
+  some_observations_are_missing_media_or_identifications_desc: |
+    Pozorování bez médií nebudou ve výchozím nastavení při hledání viditelná, a
+    osoby bez identifikace nesmí být viděny odborníky hledajícími
+    konkrétní taxony. Dokonce i velmi hrubá identifikace jako "rostliny" může pomoci
+    rostlinnému odborníkovi najít vaše pozorování.
   some_observations_failed_to_be_added: Některá pozorování se nepodařilo přidat k projektům
   some_observations_failed_to_save: Některá pozorování se nepodařilo uložit
   some_of_those_photos_couldnt_be_saved: "Některé z fotek se nepodařilo uložit: %{error}"
@@ -3776,6 +3923,11 @@ cs:
   subscribe_to_a_place: Sledovat místo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Odebírejte%{tag_end} komentáře k této vlajce"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Přihlásit se k odběru%{tag_end} komentářů k tomuto příspěvku"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Odebírat%{tag_end} komentáře u této fáze taxonu"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Odebírat%{tag_end} komentáře k této výměně taxonu"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto sloučení taxonu"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto rozdělení taxonu"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Odebírat%{tag_end} komentáře k tomuto vyloučení taxonu"
   subscribe_to_observations_in_a_taxon: Přihlaste se k odběru všech vložených pozorování druhu nebo skupiny organismů (např. „štíři“).
   subscribe_to_observations_in_a_place: Přihlaste se k odběru všech pozorování vložených k tomuto místu. Také si můžete přidat volitelný filtr taxonů (např. „štíři z Texasu“).
   subscribe_to_places_to: |
@@ -3899,9 +4051,9 @@ cs:
   taxon_is_threatened_coordinates_hidden: Taxon je ohrožen, souřadnice jsou ve výchozím nastavení skryté
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonů, které obsahují některý z těchto taxonů, je vzácný nebo ohrožený, takže umístění tohoto pozorování bylo skryto.
-  taxon_is_threatened_coordinates_obscured: Taxon je ohrožen, proto jsou výchozí souřadnice zakryty
+  taxon_is_threatened_coordinates_obscured: Taxon je ohrožen, proto jsou souřadnice záměrně přibližné
   taxon_is_threatened_coordinates_obscured_desc: |
-    Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonu, který obsahuje jeden z nich, je vzácný nebo ohrožený, takže umístění tohoto pozorování bylo ukryto.
+    Jeden z taxonů navrhovaných v identifikaci, nebo jeden z taxonů, který obsahuje jeden z nich, je vzácný nebo ohrožený, takže poloha tohoto pozorování byla změněna na přibližnou.
   taxonomy: Taxonomie
   taxon_assessments_are: |
     Hodnocení taxonů jsou dokumenty hodnotící aktuální status druhu, obvykle status ochrany. Může je využít například regionální ochranářská organizace při organizování informací a vyžadování zpětné vazby o statusu několika ohrožených taxonů v regionu.
@@ -4057,7 +4209,6 @@ cs:
   third_person_possessive_plural: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
-  this_is_a_cached_summary_based_on: Toto je skrytý přehled tohoto taxonu podle
   this_is_a_life_list_of: Toto je seznam života
   this_is_a_life_list_from_place_html: "Toto je seznam života z %{place}"
   this_is_a_life_list_of_taxon_in_place: "Toto je seznam života %{taxon} v %{place}"
@@ -4138,9 +4289,12 @@ cs:
   trending: Populární
   trends: Trendy
   trip_target_list_info: 'Jedná se o nepřekrývajcí se sadu taxonů ve vašem cílovém seznamu. Všechny taxony zastoupené skrytými komentáři jsou vyloučeny. <a href="/pages/trips"> Další informace </a>.'
+  #Noun
+  trust: Důvěřovat
   trusted: Důvěryhodné
   trusted_project?: Důvěryhodný projekt?
   trust_this_person_with_your_private_coordinates: Důvěřovat této osobě se skrytými souřadnicemi
+  trust_this_project_with_your_private_coordinates?: Důvěřovat tomuto projektu se skrytými souřadnicemi?
   trust_with_private_coordinates: Důvěřovat skrytým souřadnicím
   try_adding_species_form: Zkuste přidat některé druhy pomocí formuláře na této stránce.
   twitter: Twitter
@@ -4364,6 +4518,7 @@ cs:
   view_more_observations_of_x_project: "Zobrazit více pozorování z %{project} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Zobrazit více pozorování %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Zobrazit více nezkontrolovaných"
+  view_my_life_list: Zobrazit můj seznam života
   view_observation: Zobrazit pozorování
   view_observations: Zobrazit pozorování
   view_observation_flags: Zobrazit vlajky pozorování
@@ -4426,7 +4581,6 @@ cs:
   website: Webová stránka
   week_of_date: "Týden %{date}"
   welcome: vítejte
-  welcome_back: Vítejte zpátky
   welcome_back!: Vítejte zpátky
   welcome_to_inat: "Vítejte na %{site_name}!"
   welcome_to_guides: "Vítejte v průvodcích %{site_name}!"
@@ -4462,7 +4616,7 @@ cs:
   who_can_see_the_coordinates_trusted: Jednotlivci, kterým pozorovatel důvěřoval, se svými skrytými souřadnicemi
   who_helped_user_the_most: "Kdo uživateli %{user} nejvíce pomohl"
   who_user_helped_the_most: "Komu uživatel %{user} nejvíce pomohl"
-  why_the_coordinates_are_obscured: Proč jsou souřadnice zakryté
+  why_the_coordinates_are_obscured: Proč jsou souřadnice přibližné
   with_annotation: S anotací
   without_annotation: Bez anotace
   widget: Widget
@@ -4476,7 +4630,6 @@ cs:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Uveďte autora-Sdílej-Podobně 3.</a>Obsah byl možná
     vynechán v originálu, ale žádný obsah nebyl změněn ani rozšířen.
-  wikipedia_entry: Zápis na Wikipedii
   with: s
   withdraw: Odstranit
   withdrawing: Odstoupení...
@@ -4528,8 +4681,19 @@ cs:
   year_on_site: "Rok %{site} na %{year}"
   yellow: žlutý
   'yes': "Ano"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Ano, ale pouze pro moje pozorování ohrožených taxonů, ne když jsem nastavil
+    geosoukromí
   yes_find_them!: "Ano, najít!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Ano, pro všechna moje pozorování"
   yes_i_want_to_join: Ano, chci se připojit
+  yes_license_my_childs_observations: Ano, nastavte u mých fotografií, zvuků a pozorování licenci tak, aby vědci mohli používat data (doporučeno).
+  yes_license_my_observations_so_scientists_can_use: Ano, povolte mé fotografie, zvuky a pozorování, aby vědci mohli používat moje data (doporučeno).
   yes_reject_it: Ano, odmítnout
   yes_show_this_in_the_box: Ano, zobrazit toto ve velkém boxu v horní části/taxonech
   yesterday: Včera
@@ -4558,6 +4722,11 @@ cs:
     Nahráváte pozorování bez lokací a datumů.
   you_are_subscribed_to_comments_on_this_flag: Jste přihlášeni k odběru komentářů k tomuto listu.
   you_are_subscribed_to_comments_on_this_post: Jste přihlášeni k odběru komentářů k tomuto příspěvku.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Jste přihlášeni k odběru komentářů v této fázi taxonu
+  you_are_subscribed_to_comments_on_this_taxon_swap: Jste přihlášeni k odběru komentářů v této výměně taxonu
+  you_are_subscribed_to_comments_on_this_taxon_merge: Jste přihlášeni k odběru komentářů k tomuto sloučení taxonu
+  you_are_subscribed_to_comments_on_this_taxon_split: Jste přihlášeni k odběru komentářů k tomuto rozdělení taxonu
+  you_are_subscribed_to_comments_on_this_taxon_drop: Jste přihlášeni k odběru komentářů k tomuto vyloučení taxonu
   you_are_subscribed_to_observations_from_this_place: Jste přihlášeni k odběru komentářů z tohoto místa.
   you_arent_a_member_of_that_project: Nejste členem tohoto projektu.
   you_arent_following_that_person: "Tuto osobu nesledujete."
@@ -4580,8 +4749,7 @@ cs:
   you_cannot_delete_taxa_involved_in_taxon_changes: Nemůžete odstranit taxony zapojené do změn taxonů nebo taxony, které se podílejí na změnách taxonu
   you_curate_a_project_that_contains_this_observation: Organizujete projekt, který obsahuje toto pozorování
   you_curate_a_project_that_contains_this_observation_desc: |
-    Při organizování projektu můžete vidět skryté souřadnice
-    pozorování a pozorovatel se rozhodl sdílet souřadnice s kurátory projektu.
+    Při organizování projektu můžete vidět přibližné souřadnice pozorování, pokud se pozorovatel rozhodl sdílet souřadnice s kurátory projektu.
   you_didnt_select_any_observations: Nevybrali jste žádná pozorování.
   you_didnt_select_any_photos_to_tag: Nevybrali jste žádné fotky k označení!
   you_dont_have_permission_to_do_that: Nemáte povolení k tomuto kroku.
@@ -4852,6 +5020,59 @@ cs:
       show:
         reuse_desc: |
           Tento taxon můžete zkopírovat do jiného průvodce. Pokud jste jedním z editorů tohoto průvodce, mělo by se zkopírovat všechno, ale pokud nejste, zkopíruje se pouze obsah s licencí.
+    lifelists:
+      list_view: Zobrazení seznamu
+      tree_view: Zobrazení stromu
+      observed_species: Pozorované druhy
+      unobserved_species: Nepozorované druhy
+      all_species: Všechny druhy
+      all_unobserved_species: Všechny nepozorované druhy
+      observations_at_this_taxon: Pozorování v tomto taxonu
+      observations_within_this_taxon: Pozorování v rámci tohoto taxonu
+      all_observations: Všechna pozorování
+      total_observations: Celková pozorování
+      filter_by: Filtrovat podle
+      filtered_by: Filtrováno podle
+      apply_filters_to_export: Použít filtry pro export
+      restrict_to_leaf_taxa: Omezit na listové taxony
+      restrict_to_taxon: Omezit na %{taxon}
+      restrict_to_taxa_observed_in_place: Omezit na taxony pozorované v %{place}
+      exporting_all_x_taxa:
+        one: Exportuji taxon %{count}
+        few: Exportuji %{count} taxony
+        many: Exportuji %{count} taxonů
+        other: Export všech %{count} taxonů
+      exporting_x_taxa:
+        one: Exportuji %{count} taxon
+        few: Exportuji %{count} taxony
+        many: Exportuji %{count} taxonů
+        other: Export všech %{count} taxonů
+      no_observations_found_in_place: V %{place} nebyla nalezena žádná pozorování.
+      no_observations_found_within_this_taxon_in_place: S tímto taxonem nebyla nalezena žádná pozorování v %{place}.
+      no_species_found_within_this_taxon_in_place: V tomto taxonu nebyl nalezen žádný druh v %{place}.
+      no_species_found_in_place: V %{place} nebyl nalezen žádný druh .
+      no_unobserved_species_in_place: Žádné nepozorované druhy v %{place}.
+      no_unobserved_species_within_this_taxon: V tomto taxonu nejsou žádné nepozorované druhy.
+      no_unobserved_species_within_this_taxon_in_place: Žádné nepozorované druhy v tomto taxonu v %{place}.
+      reset_place_filter: Resetovat filtr místa
+      all_observations_in_this_taxon: Všechna pozorování v tomto taxonu
+      observations_of_exactly_this_taxon: Pozorování přesně tohoto taxonu
+      focus_tree_on_this_taxon: Zaměřit strom na tento taxon
+      expand_all_nodes_in_this_branch: Rozbalit všechny uzly v této větvi
+      collapse_this_branch: Sbalit tuto větev
+      dropdowns:
+        sort: Seřadit
+        taxonomic: Taxonomicky
+        name: Název
+        most_observed: Nejvíce pozorované
+        least_observed: Nejméně pozorované
+        date_added_newest: Datum přidání, od nejnovějšího k nejstaršímu
+        date_added_oldest: Datum přidání, od nejstaršího k nejnovějšímu
+        ancestry: Předchůdce
+        show: Zobrazit
+        children: Následovník
+        simplified_tree: Zjednodušený strom
+        full_taxonomy: Úplná taxonomie
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5075,11 +5296,11 @@ cs:
         latitude: Veřejně zobrazená zeměpisná šířka
         longitude: Veřejně zobrazená zeměpisná délka
         positional_accuracy: "Přesnost souřadnic(jo, jo, přesnost != přesnost, špatná volba názvů)"
-        private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo skryté"
-        private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo skryté"
+        private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo přibližné"
+        private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo přibližné"
         geoprivacy: "Zda si pozorovatel zvolil možnost skrýt souřadnice"
-        taxon_geoprivacy: "Nejkonzervativnější geografická důvěrnost se uplatňuje z důvodu stavu zachování taxonů v současné identifikaci."
-        coordinates_obscured: "Zda byly souřadnice skryty, buď kvůli geosoukromí nebo kvůli ohroženému taxonu"
+        taxon_geoprivacy: "Použito nejkonzervativnější soukromí zeměpisné polohy z důvodu stavu zachování taxonů v současné identifikaci."
+        coordinates_obscured: "Zda byly souřadnice přibližné, buď kvůli zachování soukromí zeměpisné polohy nebo kvůli ohroženému taxonu"
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
         user_id: Jedinečný identifikátor pro pozorovatele
         user_login: Uživatelské jméno pozorovatele
@@ -5110,7 +5331,7 @@ cs:
         date_column_format: RRRR-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
-          Sloupec geologická důvěrnost musí být v angličtině a musí být prázdný nebo mít hodnotu "skryté" nebo "soukromé"
+          Sloupec Soukromí zeměpisné polohy musí být v angličtině a musí být prázdný nebo mít hodnotu "obscured" (přibližné) nebo "private" (soukromé)
         google_photos_notice_html: |
           V únoru 2019 změnila společnost Google své rozhraní API, což nám bránilo v přístupu ke souřadnicím GPS, informacím o licenci a prakticky k jakýmkoli informacím, které bychom mohli použít k přidání ID (například značek). Odstranil také textové vyhledávání a digitální stránkování. Kromě toho požadují, aby všechny připojené účty měly dodatečné právo, a než může třetí strana požádat o toto právo uživatele, musí být třetí strana ověřena. Čekáme na ověření, ale než se to stane, nebudete moci importovat fotografie od společnosti Google. Pokud budeme přijati, budete moci nahrát fotografie, ale nebudou obsahovat žádné informace o poloze ani licenci, které by se mohly zobrazit ve službě Fotky Google. Další informace naleznete v <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>. Stahování původních souborů a jejich přidávání pomocí <a href="/observations/upload"> Nahrávání </a> je nejlepším řešením.
         project_csv_template_notice_html: |
@@ -5235,6 +5456,18 @@ cs:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Zkontrolujte prosím pravopis u všech záznamů. Pokud je váš pravopis správný, zkuste druh vyhledat na %{search_taxa_url}. Pokud název ještě není v databázi %{site_name}, budete ho muset nejdřív přidat, aby hromadné nahrání proběhlo. K importování nových názvů použijte pole v dolní části stránky vyhledávání. Pokud je název obsažen, ale vztahuje se k více platným taxonům, zkuste použít více nebo méně specifický název, který se vztahuje k jedinému taxonu.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Protože jste tomuto projektu se skrytými souřadnicemi <a href="%{obs_url}">některých vašich pozorování</a> důvěřovali, administrátoři mohou mít nyní přístup k většímu počtu vašich skrytých souřadnic než v době, než jste tomuto projektu věřili. Měli byste zkontrolovat seznam správců a požadavky projektu, abyste se ujistili, že tomuto projektu stále důvěřujete s vašimi pozorováními:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Požadavky na pozorování u následujícího projektu
+          se nedávno změnily:
+        subject: Pro %{project} se změnily požadavky pozorování projektu
+        you_can_change_html: |-
+          Můžete změnit své předvolby nebo opustit projekt na 
+          <a href="%{url}">stránce projektu</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Export vašeho pozorování je připraven. Kopie je přiložena k tomuto e-mailu, nebo si můžete
@@ -5472,6 +5705,12 @@ cs:
         submission_models:
           any: kdokoliv
           curators: Kurátoři projektu
+        trust_allow_members_to_trust: |-
+          Povolit členům důvěřovat tomuto projektu se skrytými souřadnicemi
+        trust_help_desc: |-
+          Pokud chcete přístup ke skrytým souřadnicím skrytých pozorování, tato možnost umožní lidem, kteří se připojili k tomuto projektu, důvěřovat správcům projektu s přístupem k těmto skrytým souřadnicím. Členové projektu budou moci udělit přístup ke skrytým souřadnicím všech jejich pozorování, která se objevují v tomto projektu, nebo jen pozorování, která jsou skryta kvůli ohroženým taxonům.
+        trust_help_notification: |-
+          To však také oznámí všem důvěřujícím členům projektu pokaždé, když změníte požadavky projektu, že mohou přehodnotit, zda Vám chtějí s novými požadavky nadále důvěřovat.
         trusted_project_means: |
           Důvěra v projektu znamená, že vedoucí projektu mohou přidávat projektové položky a vlastní znaky projektu (např. HTML banner, CSS). Přístup k vlastním znakům projektu znamená, že vedoucí projektu mohou potenciálně přidat škodlivý Javascript, takže důvěřujte pouze projektům, které mají vedoucí, kteří jsou zodpovědní a technicky kompetentní.
         you_can_preview: |
@@ -5569,6 +5808,8 @@ cs:
           pozorování, která mají být automaticky zahrnuta.
         start_and_end_times_for_bioblitzes: Časy začátku a konce pro bioblitzes
         traditional_projects_cannot_be_copied: Tradiční projekt nelze kopírovat
+        trusting_members_will_be_notified: |
+          Změnili jste požadavky projektu nebo jste zapnuli uživatelskou důvěru. Toto se oznámí všem členům projektu, kteří již důvěřovali projektu se skrytými souřadnicemi. Takže mají možnost se rozhodnout, zda stále chtějí projektu důvěřovat vzhledem k novým požadavkům.
         umbrella_project_features: "Vlastnosti zastřešujících projektů:"
         unique_url_for_outreach: Jedinečná adresa URL pro předávání
         use_this_for_a_time_limited_event: |
@@ -5607,7 +5848,7 @@ cs:
         any: Ano, bez ohledu na to, kdo přidává pozorování k projektu.
         none: Ne.
       curator_coordinate_access_label: |
-        Chcete, aby vaše soukromé/skryté souřadnice pozorování byly viditelné pro kurátory projektu?
+        Chcete, aby vaše soukromé/přibližné souřadnice pozorování byly viditelné pro kurátory projektu?
       curator_coordinate_access_note: |
         Také můžete sdílet soukromé souřadnice pozorování v tomto projektu jednotlivě. Toto je pouze automatické nastavení pro nová pozorování přidaná do projektu.
       project_terms_desc_html: |
@@ -5617,11 +5858,11 @@ cs:
           Opravdu chcete tento projekt převést na Sbírky projektů?
         bioblitz_results_desc_html: |
           <p>
-            Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
-            Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
+           Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
+           Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
           </p>
           <p>
-            Vezměte na vědomí, že i když tento druh projektu zobrazuje statistiky pozorování, která nebyla do projektu cíleně přidána, neumožňuje kurátorům zobrazovat soukromé nebo skryté souřadnice těchto pozorování, ani předpokládat, že pozorovatelé vyjádřili souhlas s podmínkami projektu. Jste-li kurátorem projektu a potřebujete přístup k soukromým souřadnicím, je nutné, aby vaši účastníci vyjádřili souhlas s podmínkami projektu, nebo pokud chcete, aby byla pozorování zahrnuta do seznamu spravovaného projektu, postarejte se, aby se účastníci připojili k projektu a přidali svá pozorování stejně jako v běžném projektu.
+           Vezměte na vědomí, že i když tento druh projektu zobrazuje statistiky pozorování, která nebyla do projektu cíleně přidána, neumožňuje kurátorům zobrazovat soukromé nebo přibližné souřadnice těchto pozorování, ani předpokládat, že pozorovatelé vyjádřili souhlas s podmínkami projektu. Jste-li kurátorem projektu a potřebujete přístup k soukromým souřadnicím, je nutné, aby vaši účastníci vyjádřili souhlas s podmínkami projektu, nebo pokud chcete, aby byla pozorování zahrnuta do seznamu spravovaného projektu, postarejte se, aby se účastníci připojili k projektu a přidali svá pozorování stejně jako v běžném projektu.
           </p>
         click_here_to_convert_this_project: |
           Klikněte zde, chcete-li tento projekt převést na projekt Kolekce.
@@ -5822,6 +6063,11 @@ cs:
           „Kompletní“ taxon obsahuje <em>všechny</em> známé následné taxony určité kategorie, které splňují kurátorskou politiku taxonů iNaturalist bez ohledu na to, zda byly pozorovány. V současné době mohou taxony označit jako kompletní pouze správci stránek.
         complete_rank_desc_html: |
           Kategorie, v níž je tento taxon kompletní, např. pokud tato čeleď obsahuje všechny své rody, ale ne všechny své druhy, byla by kategorie nastavena na „rod“. Automatické nastavení je na druhy.
+        wikipedia_summary_desc_html: |
+          Krátké shrnutí tohoto taxonu na základě jeho <a target="_blank"
+          href="%{url}">stránky na Wikipedii</a> , které máme natrvalo uložené, dokud jej někdo ručně neobnoví. Obnovení tohoto shrnutí také okamžitě aktualizuje
+          naši mezipaměť obsahu Wikipedie, který zobrazujeme na
+          webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
         about_names_desc: |
           <p>
@@ -5931,7 +6177,7 @@ cs:
         new_project_admin_html: |
           Nevíte, proč jste teď správcem tohoto projektu? Předchozí majitel vás buď jmenoval novým správcem, nebo si smazal účet a stránka %{site_name} vybrala vás, protože jste vedoucí projektu nebo kurátor stránky. Pokud nechcete být správcem projektu, kontaktujte prosím <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
-          Jen pro připomenutí, kurátoři projektu vidí soukromé a skryté souřadnice vašich pozorování, která do projektu přidáte.
+          Jen pro připomenutí, kurátoři projektu vidí soukromé a přibližné souřadnice vašich pozorování, která do projektu přidáte.
       delete:
         by_deleting_your_account_you_will_remove: |
           Smazáním účtu odstraníte
@@ -6009,7 +6255,15 @@ cs:
           Jestliže změníte svůj názor, můžete kdykoli
           <a href='/users/edit'>změnit své nastavení</a>.
         inaturalist_network_affiliation_desc_html: |
-          Síť <a href="%{url}" target="_blank">iNaturalist Network</a> je souborem lokalizovaných stránek napojených na globální komunitu iNaturalist. Můžete si změnit svou hlavní příslušnost na stránce, což znamená, že váš obsah bude mít na dané stránce určitou prioritu, ale zároveň to znamená, že majitelé stránky mají právo stahovat a zobrazovat veškeré vaše údaje stejně jako správci stránek iNaturalist. Pokud tato stránka ze sítě odejde, váš účet i údaje půjdou s touto stránkou.
+          <p>
+          <a href="%{url}" target="_blank"> Síť iNaturalist </a> je sbírka lokalizovaných webů, které jsou plně propojeny s globální komunitou iNaturalist. Stránky v síti jsou podporovány místními institucemi, které podepsaly dohodu s iNaturalist o podpoře místního využití a prospěchu místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím ze svých zemí, které jsou automaticky zakryty z pohledu veřejnosti za účelem ochrany ohrožených druhů.
+          </p>
+          <p>
+          Vaše uživatelské jméno a heslo funguje na všech webech, které jsou součástí sítě iNaturalist. Pokud se rozhodnete přidružit k webu v síti, místní instituce, které provozují každý web, budou mít také přístup k vaší e-mailové adrese (pouze pro komunikaci s vámi o aktivitách na webu) a přístup ke skutečným souřadnicím pozorování, která jsou veřejně zakrytá nebo soukromá.
+          </p>
+          <p>
+          Poznámka: Pokud máte více než 1 000 pozorování, neměňte experimentálně své přidružení.
+          </p>
         licensing_desc_html: |
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
@@ -6017,6 +6271,9 @@ cs:
           Popis licence a obrázky &copy; %{year} Creative Commons, použité
           pod licencí <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution licence</a> (tak meta!)
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: Měsíční podporovatel
         monthly_supporter_desc_html: |
           měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy
@@ -6067,8 +6324,8 @@ cs:
         prefers_community_taxa_desc: |
           %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
-          Když nastavíte geoprivacy pozorování na "zakryté" nebo
-          "soukromé" toto bude platit stejně k vašemu druhému pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování ve stejný čas.
+          Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
+          "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
         prefers_no_tracking_label: Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran
         prefers_no_tracking_label_desc_we_use: |
           Ke sledování stability, diagnostice chyb a problémů v našem softwaru využíváme služby třetích stran. Tyto třetí strany zahrnují
@@ -6109,7 +6366,7 @@ cs:
           a druhy dat, které s nimi sdílíte při používání iNat, nemůžeme zcela zastavit tok dat.
         project_settings_desc: |
           Nezapomeňte, že toto nedává projektům povolení k přístupu k vašim soukromým souřadnicím ani zasílání aktualizací. Abyste mohli tato povolení udělit, musíte se přidat do projektů, nebo je udělit jednotlivě.
-        same_day_geoprivacy_protection: Stejná ochrana geoprivacy
+        same_day_geoprivacy_protection: Ochrana soukromí zeměpisné polohy ve stejný den
         search_place_help_html: |
           Výchozí místo pro hledání.
         scientific_name_first_desc: |
@@ -6574,6 +6831,7 @@ cs:
     models:
       AssessmentSection: Části hodnocení
       Atlas: Atlas
+      BlockedUser: Blokovaný uživatel
       CompleteSet: Dokončit sady
       #Noun
       Flag: Označit
@@ -6584,13 +6842,16 @@ cs:
       assessment_section:
         title: Název
         body: Text
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Blokovaný uživatel
       conservation_status:
         status: Stav
         description: Popis
         authority: Orgán
         place_id: Místo
         url: URL odkaz
-        geoprivacy: Geosoukromí
+        geoprivacy: Soukromí zeměpisné polohy
         iucn: Ekvivalent IUCN
       flag:
         reason: Důvod
@@ -6754,6 +7015,7 @@ cs:
           attributes:
             base:
               api_key_in_use: "Import nebo čekání na import API klíče"
+              api_key_missing: "Chybí klíč Mushroom Observer API"
         observation:
           attributes:
             base:
@@ -6810,6 +7072,11 @@ cs:
                 musí být pozorován po %{time}
               must_be_observed_before: |
                 musí být pozorován před %{time}
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Pozorování nemá žádný datum k hodnocení
+              no_votable_coordinates: Pozorování nemá žádné souřadnice k hodnocení
         taxon:
           attributes:
             rank:
@@ -6837,6 +7104,10 @@ cs:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
+              should_match_english_translation: |
+                by měl být v angličtině, ale v současné době odpovídá %{suggested_locale} překladu "%{suggested}".
+                Použijte "%{suggested}", pokud jste to mysleli a bude přeloženo při prohlížení stránky v
+                uvedeném jazyce.
               should_be_in_english: mělo by být v angličtině
             name:
               already_exists: pro tento taxon v tomto slovníku již existuje
@@ -6860,6 +7131,13 @@ cs:
             email:
               must_look_like_an_email_address: musí vypadat jako e-mailová adresa
               domain_is_not_supported: doména není podporována
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Tohoto uživatele již blokujete
+              user_cannot_be_staff: |
+                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
+                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
         user_parent:
           attributes:
             email:
@@ -7033,6 +7311,8 @@ cs:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Upozornění
   wild: divoký
   will_paginate:
     previous_label: "&#8592; Předch"

@@ -129,6 +129,8 @@ zh-CN:
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
+  about_trusting_projects: 关于信任的项目
+  about_trusting_projects_options_any: 您在此项目中的所有观察
   about_x: "关于 %{x}"
   acc: '精度（米）'
   account: 账户
@@ -261,7 +263,7 @@ zh-CN:
     添加您的电子邮件以获取来自社区的对您的观察的反馈。
     如果您不希望分享它，请尽快核对！
   add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
-  added: 已添加
+  added: 提交日期
   added!: 已添加！
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
@@ -394,6 +396,12 @@ zh-CN:
   announcements: 公告
   any: 任何
   any_: 任何
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: 任何
+  #Label for an option to show content with any annotation value
+  any_annotation_value: 任何
+  #Label for an option to show content from any date
+  any_date: 任何
   anyone: 任何人
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
@@ -544,7 +552,7 @@ zh-CN:
   batch_edit: 批量编辑
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
   batch_operations: 批操作
-  be_the_first_to_fave_this_observation: 成为第一个发表这一观察的人！
+  be_the_first_to_fave_this_observation: 成为最先将此观察列为最爱的人！
   because_of: 因为
   before_importing_photos: 在导入照片前
   bg_color: 背景颜色
@@ -615,6 +623,7 @@ zh-CN:
   cc_by_sa_name: 署名-相同方式共享
   cc_used_under_a: "知识共享，使用"
   change_admin: 更改管理员
+  #Button to change the cover (or banner) image for a project
   change_cover: 更改封面
   change_descriptions:
     split: 旧分类单元分成多个新分类单元
@@ -823,7 +832,6 @@ zh-CN:
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
-    teneral: 最近化蛹但尚未达到最终成虫形态的成虫
     cannot_be_determined: 无法根据已提供的证据确认。
   controls: 控制
   convert: 转换
@@ -977,6 +985,7 @@ zh-CN:
   delete: 删除
   delete_all: 删除所有
   delete_conversation: 删除会话
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: 删除封面么？
   delete_icon?: 删除图标？
   delete_photo: 删除照片
@@ -1036,6 +1045,7 @@ zh-CN:
     如果您没有提出这个请求，请忽略这个电子邮件。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
+  devise_unlock_instructions_unlock: 解锁您的帐户
   discoveries: 发现
   did_not_send_invitations_because: 未向以下地址发送邀请，因为...
   did_you_mean: '您是不是要找'
@@ -1081,6 +1091,7 @@ zh-CN:
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
   drawings: 绘画
   duplicate_verb: 复制
+  duration_value: "持续时间：%{duration}分钟"
   each_place_displays_all_species_inat_knows: "每个地点页面都会显示%{site_name}已知的该地点所有分类单元的相关信息，包括其丰度，保护状态以及谁首先在%{site_name}上从该地点发现了该分类单元的信息。您可以通过分类群，颜色，保护状态等条件来检索分类单元，或通过旧版的普通搜索检索分类单元。"
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
@@ -1470,8 +1481,6 @@ zh-CN:
     tooltips:
       leading: |
         分类单元来自社区分类单元。这种认同更有可能产生正确的结果。
-      improving: |
-        此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
       maverick: |
         分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
   id_withdrawn: ID撤回
@@ -1507,6 +1516,7 @@ zh-CN:
   ignore_and_continue: 忽略并继续
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
+  image_size_control: 图片大小控制
   imperiled: 危及
   import: 导入
   import_all_photos_as_observations: 将所有照片导入为观察
@@ -1524,6 +1534,7 @@ zh-CN:
   importing: "正在导入..."
   improving: 正在改进
   in_n: "在 %{n}"
+  in_place_x: 在 %{place}
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
   inbox: 收件箱
@@ -1592,7 +1603,7 @@ zh-CN:
   'joined!': 已加入！
   joined_projects: 加入的项目
   joined_with_date: "加入于：%{date}"
-  journal: 杂志
+  journal: 日记
   journal_archives_for: 日记存档，用于
   journal_post: 日记发布
   journal_post_deleted: 日记帖子已删除。
@@ -1685,6 +1696,7 @@ zh-CN:
     italian: 意大利语
     japanese: 日语
     korean: 韩语
+    latvian: 拉脱维亚语
     lithuanian: 立陶宛语
     luxembourgish: 卢森堡语
     maltese: 马耳他语
@@ -1795,6 +1807,7 @@ zh-CN:
     ko: 韩语
     lb: 卢森堡语
     lt: 立陶宛语
+    lv: 拉脱维亚语
     mk: 马其顿语
     nb: 挪威语(博克马尔语)
     nl: 荷兰语
@@ -1900,6 +1913,7 @@ zh-CN:
     <a href="%{url}">iNaturalist网络</a>的成员
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     %{partial_inat_network_tag_html}iNaturalist 网络</a>的成员，由 %{cas_tag_html} 及 %{nat_geo_tag_html} 合作的共同计划。
+  #As in members of a project
   members: 成员
   membership_model: 成员模型
   mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
@@ -1951,7 +1965,7 @@ zh-CN:
       #Short text representing %d days in the past
       dd: "%d 日前"
       #Short text representing 1 month in the past
-      M: "1分钟"
+      M: "1个月前"
       #Short text representing %d months in the past
       MM: "%dm"
       #Short text representing 1 year in the past
@@ -1967,6 +1981,8 @@ zh-CN:
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "YYYY年M月D日"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
   month: 月
   monthly_supporter_since_date_html: |
@@ -1979,7 +1995,7 @@ zh-CN:
   more_import_options: 更多导入选项
   more_info: 更多信息
   more_info_title: 更多信息
-  more_journal_posts: 更多日志发布
+  more_journal_posts: 更多日记
   more_observations: 更多观察
   more_photos: 更多照片
   more_than_a_week_ago: 超过一周之前
@@ -2040,9 +2056,6 @@ zh-CN:
   needs_id_: 需要ID
   needs_id_expandable_html: "<span class='full'>需要</span>ID"
   needs_to_be_identified: 需要被鉴定
-  #@vow_or_con can be used here for the first letter of %{place}
-  network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong>是iNaturalist 国际附属网络的一部分，它聚焦于 %{place} 的生物多样性和人们。您想要把您的账号相关资讯 iNaturalist.org 更改为 %{site_name} 吗？
   network_affiliation_prompt_from_other_site_html: |
     您想要把您的从属关系从 <strong>%{other_site_name}</strong> 更改为 <strong>%{site_name}</strong> 吗？
   new: 新增
@@ -2124,6 +2137,7 @@ zh-CN:
   no_matching_places: 没有匹配的地点
   no_matching_projects: 没有匹配的项目
   no_matching_species: 没有匹配的物种。
+  no_matching_taxa: 没有匹配的分类
   no_matching_users: 没有匹配的用户。
   no_members_yet: "尚无成员。"
   no_messages_yet: 尚无消息
@@ -2252,6 +2266,7 @@ zh-CN:
   observation_field: 观察字段
   observation_field_details: 观察地区详情
   observation_field_type_text: 文本
+  observation_field_type_numeric: 数值
   observation_field_type_date: 日期
   observation_field_type_time: 时间
   observation_field_type_datetime: 日期时间
@@ -2318,6 +2333,8 @@ zh-CN:
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_descriptions:
+    absent: 在区域内未发生
+    common: 频繁发生
     irregular: 存在不可预测，包含流浪生物。可能会在某些年份很常见而另一些年份不存在
     present: 在此区域发生
     uncommon: 定期发生，但数量较少，需要仔细寻找正确栖息地
@@ -2646,6 +2663,8 @@ zh-CN:
       undefined: 未定义
       Unknown: 未知
       unknown: 未知
+      Village_block: 乡村街区
+      village_block: 乡村街区
       Zone: 地区
       zone: 地带
   place_guess: 地方猜想
@@ -3053,15 +3072,23 @@ zh-CN:
   ranks:
     stateofmatter: 事件的国家
     kingdom: 界
+    x_kingdoms:
+      other: 界
     subkingdom: 亚界
     phylum: 门
+    x_phyla:
+      other: 门
     subphylum: 亚门
     superclass: 总纲
     class: 纲
+    x_classes:
+      other: 纲
     subclass: 亚纲
     infraclass: 附纲
     superorder: 总目
     order: 目
+    x_orders:
+      other: 目
     suborder: 亚目
     infraorder: 下目
     subterclass: 子类
@@ -3071,11 +3098,15 @@ zh-CN:
     superfamily: 总科
     epifamily: 领科
     family: 科
+    x_families:
+      other: 科
     subfamily: 亚科
     supertribe: 总族
     tribe: 族
     subtribe: 亚族
     genus: 属
+    x_genera:
+      other: 属
     genushybrid: 属间杂种
     subgenus: 亚属
     section: 节
@@ -3083,6 +3114,8 @@ zh-CN:
     complex: 复合群
     #Singular
     species: 种
+    x_species:
+      other: 种
     hybrid: 杂种
     #Singular
     subspecies: 亚种
@@ -3334,6 +3367,9 @@ zh-CN:
   show_taxa_from_place: "显示来自%{place}的分类群"
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: 显示前 %{x}
   showing_taxa_from_everywhere: "显示来自世界各地的分类群"
   showing_taxa_from_place: "显示来自%{place}的分类群"
   showing_x_of_y_listings: "显示%{x}/%{y}个列表项"
@@ -3357,6 +3393,8 @@ zh-CN:
   site_stats: 网站统计
   site_taxon_page: "%{site_name}分类单元页"
   some_agree: 部分同意
+  some_observations_are_missing_media_or_identifications: |
+    有些观察缺少媒体（照片/音频）或鉴定
   some_observations_failed_to_be_added: 一些观察无法添加到项目中
   some_observations_failed_to_save: 部分观察保存失败
   some_of_those_photos_couldnt_be_saved: "某些照片无法保存：%{error}"
@@ -3398,6 +3436,7 @@ zh-CN:
     select_one_or_more_sounds: 请选择一个或多个声音
     selected_sounds: 已选择声音
     sound: 声音
+    sound_has_been_flagged: 此声音已被标记。
     soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
     sounds: 声音
     your_soundcloud_account: 您的SoundCloud账户
@@ -3406,6 +3445,7 @@ zh-CN:
   source_wikipedia: "来源：维基百科"
   source_list_: "来源列表"
   source_list:
+    ubio: uBio
     catalogue_of_life: 生命目录（Catalogue of Life）
     inaturalist: iNaturalist
     new_zeland_organisms_register: 新西兰生物注册
@@ -3459,15 +3499,19 @@ zh-CN:
   stats: 统计
   stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   status: 状态
+  status_in_place: '在 %{place} 为 %{status}'
   stay_and_try_again: 停留并重试
   still_no_luck?: 仍然不高兴？
   still_needs_id?: 社群可以确认/改进ID么？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
   stop_following_user: "停止关注%{user}"
+  stop_testing: 停止测试
+  stop_trusting_this_person_with_your_private_coordinates: 停止以您的隐藏坐标来信任此人
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 商店
+  studies_that_used_inaturalist_data_in_year: 在%{year} 用到过iNaturalist数据的研究
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
@@ -3551,6 +3595,8 @@ zh-CN:
     other: "%{taxon}是色藻界（褐藻及其他）中的%{rank}，共有%{count}次观察"
   taxon_is_kingdom_of_life_with_x_observations:
     other: "%{taxon}属于生物界，共有%{count}次观察"
+  taxon_is_threatened_coordinates_hidden: 分类单元为受到威胁状态，默认隐藏坐标
+  taxon_is_threatened_coordinates_obscured: 分类单元为受到威胁状态，默认隐藏坐标
   taxonomy: 分类学
   taxon_assessments_are: |
     分类评估是评估物种现状的文档，通常是其保护状况。
@@ -3685,7 +3731,6 @@ zh-CN:
   third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
-  this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
   this_is_a_life_list_of: 这是生命清单，其属于
   this_is_a_life_list_from_place_html: "这是来自 %{place} 的生命清单"
   this_is_a_life_list_of_taxon_in_place: "这是位于%{place}的%{taxon}的清单"
@@ -3763,9 +3808,12 @@ zh-CN:
   trending: 趋向
   trends: 趋势
   trip_target_list_info: '本目标清单所涵盖的任何物种，如果在本次旅行的半径和持续时间内未被观察到，将被认为不出现。<a href="/pages/trips">了解更多细节</a>。'
+  #Noun
+  trust: 信任
   trusted: 受信
   trusted_project?: 可信任的项目？
   trust_this_person_with_your_private_coordinates: 信任此人并向其显示您的隐藏坐标
+  trust_this_project_with_your_private_coordinates?: 信任此项目并向其显示您的隐藏坐标吗？
   trust_with_private_coordinates: 信任并向其显示您的隐藏坐标
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   twitter: 推特
@@ -3980,6 +4028,7 @@ zh-CN:
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
   view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
   view_more_unreviewed: "查看更多未复核"
+  view_my_life_list: 查看我的生物列表
   view_observation: 查看观察
   view_observations: 查看观察
   view_observation_flags: 查看观察标记
@@ -4039,7 +4088,6 @@ zh-CN:
   website: 网站
   week_of_date: "%{date}的一周"
   welcome: 欢迎
-  welcome_back: 欢迎回来
   welcome_back!: 欢迎回来!
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
@@ -4082,7 +4130,6 @@ zh-CN:
   widget_for: 挂件用于
   wikipedia_attribution_cc_by_sa_3: |
     资料来源：维基百科"%{title}", %{url}, CC BY-SA 3.0
-  wikipedia_entry: 维基百科记录
   with: 带
   withdraw: 放弃
   withdrawing: 正在放弃...
@@ -4374,6 +4421,34 @@ zh-CN:
       show:
         reuse_desc: |
           您可以复制此分类至其他指南。如果您是此指南的编辑者之一，它应该复制任何东西，但如果您不是，那么它将只复制获授权的内容。
+    lifelists:
+      list_view: 列表视图
+      tree_view: 树形视图
+      observed_species: 观察到的物种
+      unobserved_species: 未被观察到的物种
+      all_species: 所有物种
+      all_unobserved_species: 所有未被观察到的物种
+      observations_at_this_taxon: 在此分类单元中的观察
+      observations_within_this_taxon: 在此分类单元内的观察
+      all_observations: 所有观察
+      total_observations: 观察总数
+      filter_by: 筛选条件
+      no_observations_found_in_place: 在 %{place} 没有发现任何观察。
+      no_observations_found_within_this_taxon_in_place: 在 %{place} 中没有发现包含在该分类单元中的观察。
+      no_species_found_within_this_taxon_in_place: 在 %{place} 没有发现包含在该分类单元中的物种。
+      no_species_found_in_place: 在 %{place} 没有发现任何物种。
+      no_unobserved_species_in_place: 在 %{place} 没有未观察到的物种。
+      no_unobserved_species_within_this_taxon: 在此分类单元中没有未被观察到的物种。
+      no_unobserved_species_within_this_taxon_in_place: 此分类单元在%{place} 没有未被观察到的物种。
+      reset_place_filter: 重置位置过滤器
+      all_observations_in_this_taxon: 此分类单元中的所有观察
+      dropdowns:
+        sort: 排序
+        name: 名称
+        most_observed: 观察次数最多的
+        show: 显示
+        children: 儿童
+        simplified_tree: 简化树
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -4521,6 +4596,7 @@ zh-CN:
       import:
         coordinate_systems_help: |
           %{site_name}可接受多种不同坐标系的坐标系统，因此当您用并非纬度/经度的系统提供坐标时，我们需要知道您正在使用哪个坐标系，以便正确解析坐标。请确保您已为您的数据选择了正确的坐标系，否则记录的位置可能会与正确位置偏离很远。如果您的坐标来自GPS装置，请检查其设置以获取其正在使用的坐标系的名称。请注意，我们不会存储自定义坐标，只存储它们的纬度/经度转换结果。
+        date_column_format: YYYY-MM-DD HH:MM
         geoprivacy_must_be_in_english: |
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
         project_csv_template_notice_html: |
@@ -5003,6 +5079,8 @@ zh-CN:
         sunburst_desc_html: |
           观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
+        translators_prompt: |
+          如果您想要帮助翻译， %{link_tag}点此学习%{link_tag_end}。
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5154,6 +5232,9 @@ zh-CN:
           <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
         monthly_supporter: 每月支持者
         muting_desc_html: |
           <p>
@@ -5200,7 +5281,10 @@ zh-CN:
           在常用名前显示学名。
         taxon_change_desc: |
           当在%{site_name}上合并或重命名分类单元时，如果更改是明确的，您的观察、列出的分类单元、标识等将自动更新为新的分类单元。如果您选择退出或更改不明确（例如拆分），您将收到有关更改链接到工具的更新，如果您愿意，可以使用该工具手动更新您的内容。
+        thanks_for_supporting_us!: 感谢您对我们的支持！
         youve_used_all_of_your_blocks: 您使用了您所有的封禁权利。移除一个封禁行为来添加另一个。
+      recent:
+        about_recent_users: 关于
       show:
         take_a_chance_to_review_html: '抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。'
         this_user_was_banned: 此用户已被停用
@@ -5212,6 +5296,13 @@ zh-CN:
         child_name_private: 孩子名称 (非公开)
         create_a_minor_account: 创建一个次要账户
         create_minor_account: 创建次要账户
+        parent_name_private: 父母或法定监护人姓名(非公开)
+        parent_email: 父母或法定监护人电子邮箱(非公开)
+        parent_information_private: 家长信息(非公开)
+        step1_title: 为您的孩子创建一个帐户
+        step2_title: 通过信用卡来确认您的身份
+        step3_title: 等待用于确认的电子邮件
+        step3_donor_title: 您孩子的账号已经被激活
     welcome:
       index:
         welcome_message_html: |
@@ -5370,10 +5461,12 @@ zh-CN:
       invalid: 无效
       less_than: 必须小于 %{count}
       less_than_or_equal_to: 必须小于等于 %{count}
+      new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
       not_a_number: 不是数字
       not_an_integer: 必须是一个整数
       odd: 必须是奇数
       record_invalid: '验证失败：%{errors}'
+      requires_privilege_organizer: 要做到这一点，必须有50个可核查的观察记录
       taken: 已被使用
       too_long:
         other: 太长了（最多 %{count} 个字符）
@@ -5485,6 +5578,8 @@ zh-CN:
       AssessmentSection: 评定章节
       Atlas: 地图集
       CompleteSet: 完整集
+      #Noun
+      Flag: 标记
       TaxonLink: 分类单元链接
     attributes:
       assessment:
@@ -5492,11 +5587,15 @@ zh-CN:
       assessment_section:
         title: 标题
         body: 正文
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: 被屏蔽的用户
       conservation_status:
         status: 状态
         description: 描述
         authority: 权威
         place_id: 地方
+        url: 网址
         geoprivacy: 位置隐私
         iucn: IUCN等价物
       flag:
@@ -5509,11 +5608,19 @@ zh-CN:
         occurrence_status_level: 出现状态级别
         establishment_means: 建立手段
       observation:
+        description: 备注
         geo_x: 向东
         geo_y: 向北
+        observed_on: 观察日期
       observation_field_value:
         value: '值'
       observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: 等待中
+        #Date/time the task began processing
+        started_at: 已启动
+        #Date/time the task finished processing
+        finished_at: 已完成
         #Inputs to an export task, e.g. the query and the columns
         inputs: 输入
       post:
@@ -5631,10 +5738,6 @@ zh-CN:
           attributes:
             base:
               guide_has_too_many_taxa: "指南只能包含500个分类群"
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: "API关键字导入或用于导入的队列"
         observation:
           attributes:
             base:
@@ -5716,11 +5819,17 @@ zh-CN:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
+              should_be_in_english: 应为英文
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 不能匹配指定此词汇的物种名
               must_match_the_taxon_if_valid: |
                 如果这是一个有效的学名那它一定符合分类群名称
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                不能有超过 %{max} 张照片
         user:
           attributes:
             login:
@@ -5728,6 +5837,11 @@ zh-CN:
                 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
             email:
               must_look_like_an_email_address: 必须看起来像电子邮件地址
+              domain_is_not_supported: 域名不被支持
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: 您已经屏蔽了该用户
         user_parent:
           attributes:
             email:
@@ -5748,6 +5862,8 @@ zh-CN:
         epifamily: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
         form: "@n"
+  #Title of a section warning the user about something
+  warning_title: 警告
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 上一页"

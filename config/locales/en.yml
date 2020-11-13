@@ -249,6 +249,37 @@ en:
       table of presence-absence records for a species from trips and associated
       observations. <a href='%{url}'>Learn more</a>
     </p>
+  about_trusting_projects: About Trusting Projects
+  about_trusting_projects_options_any: All your observations in this project
+  about_trusting_projects_options_any_desc: |-
+    This includes observations where you have set the geoprivacy to "obscured"
+    or "private," e.g. observations from your backyard or spots you don't want
+    other people to know about.
+  about_trusting_projects_options_taxon: |-
+    Only your observations in this project that have obscured coordinates
+    because of threatened taxa
+  about_trusting_projects_options_taxon_desc: |-
+    Many projects just need access to coordinates that are obscured because the
+    observation depicts a threatened taxon.
+  about_trusting_projects_overview: |-
+    Granting access to your hidden coordinates will allow the managers of this
+    project to see the true, unobscured location of of your observations in this
+    project. This is extremeley important in situations where scientists or
+    resource managers need access to exact coordinates for analysis and
+    decision-making.
+  # Header for a section listing all the project managers (admins and curators)
+  # of a project
+  about_trusting_projects_project_managers_are: |-
+    The project managers who will have access to your hidden coordinates are:
+  about_trusting_projects_warning: |-
+    Note that project managers can change the project parameters to include any
+    of your observations, and they can add or remove project managers at any
+    time. You will receive notifications about these changes, but you are
+    essentially trusting this project with your private location data, so be
+    careful.
+  # Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    You can choose to share hidden coordinates for
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -544,6 +575,27 @@ en:
   announcements: Announcements
   any: any
   any_: Any
+  # Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Any
+  # Label for an option to show content with any annotation value
+  any_annotation_value: Any
+  # Label for an option to show content from any date
+  any_date: Any
+  # Label for an option to show content with any establishment means
+  any_establishment: Any
+  # Label for an option to show content with any license
+  any_license: Any
+  # Label for an option to show content with photos, sounds, or neither
+  any_media: Any
+  # Label for an option to show content from any project
+  any_project: Any
+  # Label for an option to show content with any quality grade
+  any_quality_grade: Any
+  # Label for an option to show observation with any reviewed status, i.e. both
+  # reviewed and unreviewed
+  any_reviewed: Any
+  # Label for an option to show/include content by any user
+  any_user: Any
   anyone: Anyone
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -766,6 +818,7 @@ en:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change_admin: Change Admin
+  # Button to change the cover (or banner) image for a project
   change_cover: Change cover
   change_descriptions:
       split: Old taxon split into multiple new taxa
@@ -830,6 +883,7 @@ en:
   check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
+  check_out_your_new_and_improved_list_list: Check out your new and improved Life List!
   check_this_box_if_html: |
     Check this box if you want to apply a <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -882,10 +936,14 @@ en:
   comments_on: Comments on
   comments_on_my_observations: Comments on my observations
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Commit
+  # Adjective describing a taxon change that has been committed
   committed: Committed
   committed_by_user_on_date_html: Committed by %{user} on %{date}
+  # Label for date the taxon change was committed
   committed_on: Committed on %{date}
+  # Status message while a taxon change is being committed
   committing: Committing...
   community: Community
   community_curated: Community Curated
@@ -994,17 +1052,27 @@ en:
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
-    teneral: Adult that has recently pupated but has not yet achieved its final adult form
+    teneral: Adult that has recently emerged but has not yet achieved its final adult form
     cannot_be_determined: Cannot be determined from the evidence provided
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
   coordinates: Coordinates
+  # A filter option that only shows observations for which the viewer has
+  # permission to see the "true" or "hidden" coordinates for observations in a
+  # particular project, i.e. anythign unobscured as well as anything obscured
+  # that the viewer has permission to see
+  coords_viewable_for_proj_label: Only w/ full coordinates
+  coords_viewable_for_proj_desc: |
+    Only show observations from this project for which you can see the "true"
+    coordinates, including unobscured observations, obscured observations by
+    people who trust you, obscured observations by people who trust this project
+    with anything, and observations obscured by threatened taxa by people who
+    only trust this project with same.
   copy: Copy
   copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
-  
   copyright:
     some_rights_reserved: some rights reserved        
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
@@ -1153,6 +1221,7 @@ en:
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
+  # Button to delete the cover (or banner) image for a project
   delete_cover?: delete cover?
   delete_icon?: Delete icon?
   delete_photo: Delete photo
@@ -1218,6 +1287,11 @@ en:
     If you didn't request this, please ignore this email.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Your account has been locked due to an excessive number of unsuccessful sign-in attempts.
+  devise_unlock_instructions_click_the_link: |
+    Click the link below to unlock your account
+  devise_unlock_instructions_unlock: Unlock Your Account
   discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
@@ -1665,6 +1739,9 @@ en:
     remarks are hidden. You cannot undo this, and only site staff can unhide
     content once it has been hidden, so be careful and only use this for very
     objectionable content.
+  # Option to hide data series that show "No Annotation" data, i.e. records that
+  # have no annotation
+  hide_no_annotation: Hide "No Annotation"
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
@@ -1684,8 +1761,8 @@ en:
         Taxon descends from the community taxon. This identification could be leading toward the
         right answer.
       improving: |
-        First suggestion of this taxon that the community subsequently agreed with. This helped
-        refine the community taxon.
+        First suggestion of this taxon that the community agrees with. This
+        helps refine the community taxon.
       maverick: |
         Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
         agree with this taxon.
@@ -1875,6 +1952,7 @@ en:
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
+  learn_more_on_the_blog: Learn more on the blog
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
   least_concern: Least Concern
@@ -1917,6 +1995,7 @@ en:
     italian: Italian
     japanese: Japanese
     korean: Korean
+    latvian: Latvian
     lithuanian: Lithuanian
     luxembourgish: Luxembourgish
     maltese: Maltese
@@ -2028,6 +2107,7 @@ en:
     ko: Korean
     lb: Luxembourgish
     lt: Lithuanian
+    lv: Latvian
     mk: Macedonian
     nb: Norwegian Bokmål
     nl: Dutch
@@ -2101,7 +2181,7 @@ en:
   managers_can_do: Managers can do everything curators can do as well as editing project settings and write project journal posts.
   managing_projects: Managing Projects
   map: Map
-  map_legend: map legend
+  map_legend: Map Legend
   map_marker_size: map marker size
   map_of_observations: Map of Observations
   maps:
@@ -2135,6 +2215,7 @@ en:
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Member of the %{partial_inat_network_tag_html}iNaturalist Network</a>, a
     joint initiative of the %{cas_tag_html} and the %{nat_geo_tag_html}.
+  # As in members of a project
   members: Members
   membership_model: Membership Model
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
@@ -2283,15 +2364,17 @@ en:
   # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part of the international iNaturalist
-    Network, is focused on biodiversity and people in %{place}. Would you like to change your
-    account affiliation from iNaturalist.org to %{site_name}?
+    Network, is focused on biodiversity and people in %{place}. Would you like
+    to change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>%{site_name}</strong> and share data with local institutions?
   # Special version for network_affiliation_prompt_from_inat_html, which cannot
   # be properly translated into Finnish with the %{place} variable. Please don't
   # feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, part of the international iNaturalist
     Network, is focused on biodiversity and people in Finland. Would you like to
-    change your account affiliation from iNaturalist.org to iNaturalist Suomi?
+    change your account affiliation from <strong>%{inat_site_name}</strong> to
+    <strong>iNaturalist Suomi</strong> and share data with local institutions?
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?
@@ -2375,6 +2458,7 @@ en:
   no_matching_places: No matching places
   no_matching_projects: No matching projects
   no_matching_species: No matching species.
+  no_matching_taxa: No matching taxa
   no_matching_users: No matching users.
   no_members_yet: "No members yet."
   no_messages_yet: No messages yet
@@ -3392,15 +3476,27 @@ en:
   ranks:
       stateofmatter: State of matter
       kingdom: Kingdom
+      x_kingdoms:
+        one: Kingdom
+        other: Kingdoms
       subkingdom: Subkingdom
       phylum: Phylum
+      x_phyla:
+        one: Phylum
+        other: Phyla
       subphylum: Subphylum
       superclass: Superclass
       class: Class
+      x_classes:
+        one: Class
+        other: Classes
       subclass: Subclass
       infraclass: Infraclass
       superorder: Superorder
       order: Order
+      x_orders:
+        one: Order
+        other: Orders
       suborder: Suborder
       infraorder: Infraorder
       subterclass: Subterclass
@@ -3410,11 +3506,17 @@ en:
       superfamily: Superfamily
       epifamily: Epifamily
       family: Family
+      x_families:
+        one: Family
+        other: Families
       subfamily: Subfamily
       supertribe: Supertribe
       tribe: Tribe
       subtribe: Subtribe
       genus: Genus
+      x_genera:
+        one: Genus
+        other: Genera
       genushybrid: Genushybrid
       subgenus: Subgenus
       section: Section
@@ -3422,6 +3524,9 @@ en:
       complex: Complex
       # Singular
       species: Species
+      x_species:
+        one: Species
+        other: Species
       hybrid: Hybrid
       # Singular
       subspecies: Subspecies
@@ -3441,6 +3546,7 @@ en:
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
+  receive_project_journal_notifications?: Receive project journal notifications?
   receive_updates_from_this_project: Receive updates from this project
   recent: Recent
   recent_evidence_of_organism: Recent evidence of an organism
@@ -3667,6 +3773,9 @@ en:
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
   show_more: Show More
+  # Option to show data series that show "No Annotation" data, i.e. records that
+  # have no annotation
+  show_no_annotation: Show "No Annotation"
   show_observation_photos: show observation photos
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
@@ -4134,7 +4243,6 @@ en:
   third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_a_life_list_from_place_html: "This is a life list from %{place}"
   this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
@@ -4222,9 +4330,12 @@ en:
   trending: Trending
   trends: Trends
   trip_target_list_info: 'Any species covered by this target list that were not observed within the radius and duration of this trip will be interpreted as absences. <a href="/pages/trips">Read more</a>.'
+  # Noun
+  trust: Trust
   trusted: Trusted
   trusted_project?: Trusted project?
   trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
+  trust_this_project_with_your_private_coordinates?: Trust this project with hidden coordinates?
   trust_with_private_coordinates: Trust with hidden coordinates
   try_adding_species_form: Try adding some species using the form on this page.
   twitter: Twitter
@@ -4453,6 +4564,7 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
+  view_my_life_list: View my life list
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -4516,7 +4628,6 @@ en:
   website: Website
   week_of_date: "Week of %{date}"
   welcome: welcome
-  welcome_back: Welcome back
   welcome_back!: Welcome Back!
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
@@ -4566,7 +4677,6 @@ en:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
-  wikipedia_entry: Wikipedia entry
   with: with
   withdraw: Withdraw
   withdrawing: Withdrawing...
@@ -4619,7 +4729,16 @@ en:
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
   'yes': "Yes"
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates but only for observations of
+  # threatened taxa
+  yes_but_only_for_threatened: |-
+    Yes, but only for my observations of threatened taxa, not when I've set the
+    geoprivacy
   yes_find_them!: "Yes, find them!"
+  # Used when trusting a project and the user is agreeing to trust the project
+  # with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Yes, for any of my observations"
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data (recommended).
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data (recommended).
@@ -5023,6 +5142,56 @@ en:
           You can copy this taxon into another guide. If you are one of the
           editors of this guide it should copy everything, but if you're not, it
           will only copy the licensed content.
+    lifelists:
+      list_view: List View
+      tree_view: Tree View
+      observed_species: Observed Species
+      unobserved_species: Unobserved Species
+      all_species: All Species
+      all_unobserved_species: All Unobserved Species
+      observations_at_this_taxon: Observations at this taxon
+      observations_within_this_taxon: Observations within this taxon
+      all_observations: All Observations
+      total_observations: Total Observations
+      filter_by: Filter by
+      filtered_by: Filtered by
+      apply_filters_to_export: Apply filters to export
+      restrict_to_leaf_taxa: Restrict to leaf taxa
+      restrict_to_taxon: Restrict to %{taxon}
+      restrict_to_taxa_observed_in_place: Restrict to taxa observed in %{place}
+      exporting_all_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting all %{count} taxa
+      exporting_x_taxa:
+        one: Exporting %{count} taxon
+        other: Exporting %{count} taxa
+      no_observations_found_in_place: No observations found in %{place}.
+      no_observations_found_within_this_taxon_in_place:
+        No observations found within this taxon in %{place}.
+      no_species_found_within_this_taxon_in_place: No species found within this taxon in %{place}.
+      no_species_found_in_place: No species found in %{place}.
+      no_unobserved_species_in_place: No unobserved species in %{place}.
+      no_unobserved_species_within_this_taxon: No unobserved species within this taxon.
+      no_unobserved_species_within_this_taxon_in_place: No unobserved species within this taxon in %{place}.
+      reset_place_filter: Reset Place Filter
+      all_observations_in_this_taxon: All observations in this taxon
+      observations_of_exactly_this_taxon: Observations of exactly this taxon
+      focus_tree_on_this_taxon: Focus tree on this taxon
+      expand_all_nodes_in_this_branch: Expand all nodes in this branch
+      collapse_this_branch: Collapse this branch
+      dropdowns:
+        sort: Sort
+        taxonomic: Taxonomic
+        name: Name
+        most_observed: Most Observed
+        least_observed: Least Observed
+        date_added_newest: Date Added, Newest to Oldest
+        date_added_oldest: Date Added, Oldest to Newest
+        ancestry: Ancestry
+        show: Show
+        children: Children
+        simplified_tree: Simplified Tree
+        full_taxonomy: Full Taxonomy
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5051,7 +5220,6 @@ en:
     messages:
       from: From
       to: To
-      subject: Subject
       subject_body: Subject / Body
       index:
         show_messages_from_user: Show messages from %{user}
@@ -5552,6 +5720,23 @@ en:
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
           name that only matches a single taxon. 
+      collection_project_changed_for_trusting_member:
+        # Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Since you have trusted this project with the hidden coordinates of <a
+          href="%{obs_url}">some of your observations</a>, the admins may now
+          have access to more of your hidden coordinates than they did at the
+          time that you trusted this project. You should review the list of
+          admins and the project requirements to make sure you still trust this
+          project with your observations:
+        # Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          The observation requirements of the following project have recently
+          changed:
+        subject: Project observation requirements changed for %{project}
+        you_can_change_html: |-
+          You can change your preferences or leave the project on the
+          <a href="%{url}">project's page</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Your observations export is ready. There's a copy attached to this email, or you can
@@ -5877,6 +6062,19 @@ en:
         submission_models:
           any: anyone
           curators: project curators
+        trust_allow_members_to_trust: |-
+          Allow members to trust this project with hidden coordinates
+        trust_help_desc: |-
+          If you want access to the hidden coordinates of obscured observations,
+          this option will allow people who have joined this project to trust
+          the project admins with access to those hidden coordinates. Project
+          members will be able to grant access to the hidden coordinates of any
+          of their observations that appear in this project, or just the
+          observations that are obscured because of threatened taxa.
+        trust_help_notification: |-
+          However, this will also notify all trusting project members every time
+          you change the project requirements, so they can reassess whether they
+          want to continue trusting you given the new requirements.
         trusted_project_means: |
           Trusting a project means that the project managers can add Project
           Assets and custom project attributes (e.g. banner HTML, CSS). Access
@@ -5994,6 +6192,11 @@ en:
           observations to be automatically included.
         start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         traditional_projects_cannot_be_copied: Traditional project cannot be copied
+        trusting_members_will_be_notified: |
+          You've changed the project requirements or turned on user trust. This
+          will notify any project members who have already trusted the project
+          with hidden coordinates so they have a chance to decide whether they
+          still want to trust the project given the new requirements.
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
         use_this_for_a_time_limited_event: |
@@ -6349,6 +6552,12 @@ en:
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
           Default is species.
+        wikipedia_summary_desc_html: |
+          Short summary of this taxon based on its <a target="_blank"
+          href="%{url}">Wikipedia page</a> that we cache indefinitely until
+          manually refreshed. Refreshing this summary also immediately updates
+          our cache of the underlying Wikipedia content that we show on the
+          website, which automatically refreshes after a week.
       show:
         about_names_desc: |
           <p>
@@ -6689,6 +6898,9 @@ en:
           License descriptions and images &copy; %{year} Creative Commons, used
           under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution license</a> (so meta!)
+        # Header for the section of the profile settings where you can choose to
+        # show a badge on your profile to indicate that you make a regular,
+        # monthly donation to iNat
         monthly_supporter: Monthly Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
@@ -7249,6 +7461,7 @@ en:
     models:
       AssessmentSection: Assessment Section
       Atlas: Atlas
+      BlockedUser: Blocked User
       CompleteSet: Complete Set
       # Noun
       Flag: Flag
@@ -7259,6 +7472,9 @@ en:
       assessment_section:
         title: Title
         body: Body
+      blocked_user:
+        # The user who has been blocked
+        blocked_user: Blocked user
       conservation_status:
         status: Status
         description : Description
@@ -7276,6 +7492,9 @@ en:
       listed_taxon:
         occurrence_status_level: Occurrence Status Level
         establishment_means: Establishment Means
+      message:
+        subject: Subject
+        body: Body
       observation:
         description: Notes
         geo_x: Easting
@@ -7383,7 +7602,8 @@ en:
         mushroom_observer_import_flow_task:
           attributes:
             base:
-              api_key_in_use: "API key importing or queued for import"
+              api_key_in_use: "Import for that Mushroom Observer user is running or is queued for import"
+              api_key_missing: "Mushroom Observer API key is missing"
         observation:
           attributes:
             base:
@@ -7504,6 +7724,20 @@ en:
             email:
               must_look_like_an_email_address: must look like an email address
               domain_is_not_supported: domain is not supported
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: You've already blocked that user
+              user_cannot_be_staff: |
+                You cannot block staff. iNat staff need to be able to
+                communicate with everyone on iNat, have access to all data on
+                iNat, and are the ultimate mediators of disputes, so blocking
+                will not prevent them from communicating with you. If you have a
+                problem with a member of staff, please report it to one of the
+                iNat co-directors, or, if you have a problem with one of the
+                co-directors, you can contact the Chief of Science at the
+                Institute for Biodiviersity and Sustainability Science at the
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:

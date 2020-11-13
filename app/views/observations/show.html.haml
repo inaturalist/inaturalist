@@ -22,7 +22,6 @@
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
 - content_for :extracss do
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   = stylesheet_link_tag "observations/show"
 - content_for :extrajs do
   - if logged_in?

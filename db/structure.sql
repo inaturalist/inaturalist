@@ -4992,7 +4992,10 @@ CREATE TABLE public.users (
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    species_count integer DEFAULT 0
+    species_count integer DEFAULT 0,
+    locked_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0,
+    unlock_token character varying
 );
 
 
@@ -7135,6 +7138,13 @@ CREATE INDEX index_annotations_on_resource_id_and_resource_type ON public.annota
 
 
 --
+-- Name: index_annotations_on_unique_resource_and_attribute; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_annotations_on_unique_resource_and_attribute ON public.annotations USING btree (resource_type, resource_id, controlled_attribute_id, controlled_value_id);
+
+
+--
 -- Name: index_annotations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7713,6 +7723,13 @@ CREATE INDEX index_identifications_on_previous_observation_taxon_id ON public.id
 --
 
 CREATE INDEX index_identifications_on_taxon_change_id ON public.identifications USING btree (taxon_change_id);
+
+
+--
+-- Name: index_identifications_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_identifications_on_taxon_id ON public.identifications USING btree (taxon_id);
 
 
 --
@@ -8710,6 +8727,13 @@ CREATE INDEX index_projects_on_user_id ON public.projects USING btree (user_id);
 
 
 --
+-- Name: index_provider_authorizations_on_provider_name_and_provider_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_provider_authorizations_on_provider_name_and_provider_uid ON public.provider_authorizations USING btree (provider_name, provider_uid);
+
+
+--
 -- Name: index_provider_authorizations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9361,6 +9385,13 @@ CREATE INDEX index_users_on_state ON public.users USING btree (state);
 
 
 --
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
 -- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9386,6 +9417,13 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 --
 
 CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
+
+
+--
+-- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
 
 
 --
@@ -10313,4 +10351,14 @@ INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
+
+INSERT INTO schema_migrations (version) VALUES ('20200910001039');
+
+INSERT INTO schema_migrations (version) VALUES ('20200918185507');
+
+INSERT INTO schema_migrations (version) VALUES ('20200918230545');
+
+INSERT INTO schema_migrations (version) VALUES ('20200925210606');
+
+INSERT INTO schema_migrations (version) VALUES ('20201023174221');
 

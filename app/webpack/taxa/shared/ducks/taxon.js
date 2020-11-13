@@ -248,7 +248,8 @@ export function fetchSpecies( taxon, options = { } ) {
       locale: I18n.locale,
       taxon_id: t.id,
       rank: "species,subspecies,variety",
-      verifiable: true
+      verifiable: true,
+      taxon_is_active: true
     } );
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setSpecies( response ) );
@@ -354,7 +355,8 @@ export function fetchInteractions( taxon ) {
 export function fetchTrending( ) {
   return ( dispatch, getState ) => {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
+      d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" ),
+      taxon_is_active: true
     } );
     inatjs.observations.speciesCounts( params ).then(
       response => dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
@@ -369,7 +371,8 @@ export function fetchRare( ) {
   return ( dispatch, getState ) => {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       order: "asc",
-      csi: "CR,EN"
+      csi: "CR,EN",
+      taxon_is_active: true
     } );
     inatjs.observations.speciesCounts( params ).then(
       response => dispatch( setRare( response.results.map( r => r.taxon ) ) ),
