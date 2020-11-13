@@ -5,8 +5,8 @@ require "parallel"
 OPTS = Optimist::options do
     banner <<-EOS
 
-Exports select data for a particular site within this installation to CSV files
-in a ZIP archive, including observations, users, and anything else network
+Exports select data for sites within this installation to CSV files
+in ZIP archives, including observations, users, and anything else network
 partners are contractually entitled to. This data is *not* intended to recreate
 a full instance of this application. That's what export_site_archive.rb is for.
 
@@ -18,9 +18,19 @@ Private coordinates will be included for
   * all records explicitly associated with the site
   * all records in the site's place obscured by taxon geoprivacy  
 
-Usage:
+If no single site is specified, it will create exports for *all* the active
+non-default sites.
 
+Usage:
+  
+  # Export a single archive for SITE_NAME
   rails runner tools/export_site_data.rb SITE_NAME
+
+  # Export a single archive for site 13 to a path
+  rails runner tools/export_site_data.rb -i 13 -f ~/test.zip
+
+  # Export archives for all non-default sites to the user's home dir
+  rails runner tools/export_site_data.rb --dir ~/
 
 where [options] are:
 EOS
@@ -31,6 +41,11 @@ EOS
   opt :site_name, "Site name", type: :string, short: "-s"
   opt :site_id, "Site ID", type: :string, short: "-i"
   opt :taxon_id, "Taxon ID (just for testing on smaller exports)", type: :string, short: "-t"
+end
+
+def system_call(cmd)
+  puts "Running #{cmd}" if OPTS[:debug]
+  system cmd
 end
 
 start_time = Time.now
@@ -63,8 +78,8 @@ paths = sites.to_a.compact.collect do |site|
   path
 end
 
-if sites.size == 1 && OPTS[:file]
-  system_call("mv #{archive_path} #{OPTS[:file]}")
+if paths.size == 1 && OPTS[:file]
+  system_call("mv #{paths[0]} #{OPTS[:file]}")
   paths = [OPTS[:file]]
 end
 
