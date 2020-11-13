@@ -821,9 +821,13 @@ lt:
   comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Patvirtinti
+  #Adjective describing a taxon change that has been committed
   committed: Patvirtinta
+  #Label for date the taxon change was committed
   committed_on: Patvirtinta %{date}
+  #Status message while a taxon change is being committed
   committing: Tvirtinama...
   community: Bendruomenė
   community_curated: Kuruojamas Bendruomenės
