@@ -805,10 +805,14 @@ tr:
   comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Yap
+  #Adjective describing a taxon change that has been committed
   committed: Yapıldı
   committed_by_user_on_date_html: '%{date} tarihinde%{user} tarafından yapıldı'
+  #Label for date the taxon change was committed
   committed_on: '%{date} tarihinde yapıldı'
+  #Status message while a taxon change is being committed
   committing: Yapılıyor...
   community: Topluluk
   community_curated: Topluluk Düzenlendi
