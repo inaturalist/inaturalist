@@ -844,10 +844,14 @@ fr:
   comments_on: Commentaires sur
   comments_on_my_observations: Commentaires sur mes observations
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Valider
+  #Adjective describing a taxon change that has been committed
   committed: Validé
   committed_by_user_on_date_html: Créé par %{user} le %{date}
+  #Label for date the taxon change was committed
   committed_on: Validé le %{date}
+  #Status message while a taxon change is being committed
   committing: Validation en cours…
   community: Communauté
   community_curated: Communauté organisée
