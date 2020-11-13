@@ -1207,12 +1207,12 @@ class ObservationsController < ApplicationController
       :viewer => current_user, 
       :filter_spam => (current_user.blank? || current_user != @selected_user)
     )
+    params[:order_by] ||= @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
+    params[:order] ||= @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
-    search_params[:order_by] = @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
-    search_params[:order] = @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
