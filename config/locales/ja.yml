@@ -725,10 +725,14 @@ ja:
   comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: 確定
+  #Adjective describing a taxon change that has been committed
   committed: 確定済
   committed_by_user_on_date_html: '%{user} さんが %{date} にコミットしました'
+  #Label for date the taxon change was committed
   committed_on: '%{date} にコミットされました'
+  #Status message while a taxon change is being committed
   committing: 確定中...
   community: コミュニティ
   community_curated: コミュニティ管理
