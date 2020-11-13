@@ -693,9 +693,13 @@ et:
   comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Sisesta
+  #Adjective describing a taxon change that has been committed
   committed: Sisestanud
+  #Label for date the taxon change was committed
   committed_on: Sisestatud kuupäeval %{date}
+  #Status message while a taxon change is being committed
   committing: Sisestan...
   community: Kogukond
   community_curated: Kogukondlikult kureeritud
