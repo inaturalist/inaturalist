@@ -35,19 +35,13 @@ const Account = ( {
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
 
-  const createLocaleList = ( ) => {
-    const locales = I18n.t( "locales" );
-
-    const excludeLocalizedName = ["br", "en", "eo", "oc"];
-
-    return Object.keys( locales ).map( locale => (
+  const createLocaleList = ( ) => Object.keys( I18n.t( "locales" ) ).map(
+    locale => (
       <option value={locale} key={locale}>
-        {I18n.t( `locales.${locale}` )}
-        {!excludeLocalizedName.includes( locale )
-          && ` / ${I18n.t( `locales.${locale}`, { locale } )}`}
+        {I18n.t( `locales.${locale}`, { locale } )}
       </option>
-    ) );
-  };
+    )
+  );
 
   const showINatAffiliationLogo = num => {
     const pngAssetList = [2, 6, 8, 13, 14, 18];
