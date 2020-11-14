@@ -131,8 +131,10 @@ const Relationships = ( {
 
   const showEmptyState = ( ) => (
     <SettingsItem>
-      <p className="bold">
-        {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
+      <p>
+        <strong>
+          {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
+        </strong>
       </p>
     </SettingsItem>
   );

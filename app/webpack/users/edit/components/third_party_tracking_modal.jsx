@@ -11,50 +11,71 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
     onHide={onClose}
   >
     <Modal.Body>
-      <label className="bold" htmlFor="third_party_tracking">{I18n.t( "third_party_tracking" )}</label>
+      <label htmlFor="third_party_tracking">{I18n.t( "third_party_tracking" )}</label>
       <ModalCloseButton onClose={onClose} />
-      <p className="bold">{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use" )}</p>
+      <p>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use" )}
+        </strong>
+      </p>
       <li>
-        <span
-          className="bold"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" )
-          }}
-        />
+        <strong>
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" )
+            }}
+          />
+        </strong>
       </li>
-      <li><a href="https://newrelic.com/" className="bold">New Relic</a></li>
+      <li>
+        <strong>
+          <a href="https://newrelic.com/">New Relic</a>
+        </strong>
+      </li>
       <p />
-      <p className="bold">{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share" )}</p>
+      <p>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share" )}
+        </strong>
+      </p>
       <li>
-        <span
-          className="bold"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html:
-              I18n.t(
-                "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
-              )
-          }}
-        />
-      </li>
-      <li className="bold">
-        {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" )}
-      </li>
-      <li className="bold">
-        {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" )}
-      </li>
-      <li className="bold">
-        {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
+        <strong>
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html:
+                I18n.t(
+                  "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
+                )
+            }}
+          />
+        </strong>
       </li>
       <li>
-        <span
-          className="bold"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_value_html" )
-          }}
-        />
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" )}
+        </strong>
+      </li>
+      <li>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" )}
+        </strong>
+      </li>
+      <li>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
+        </strong>
+      </li>
+      <li>
+        <strong>
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_value_html" )
+            }}
+          />
+        </strong>
       </li>
       <p />
       <p>{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_limits" )}</p>
