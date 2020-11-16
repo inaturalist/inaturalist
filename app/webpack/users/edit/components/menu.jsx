@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const menuItems = [
-  I18n.t( "profile_and_user" ),
+  I18n.t( "profile" ),
   I18n.t( "account" ),
   I18n.t( "notifications" ),
   I18n.t( "relationships_user_settings" ),
