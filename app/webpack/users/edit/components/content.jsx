@@ -126,11 +126,12 @@ const Content = ( {
       <div className="col-md-5 col-xs-10">
         <SettingsItem>
           <h4>{I18n.t( "project_settings" )}</h4>
-          <p>
+          <div className="stacked">
             <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
-          </p>
-          {createRadioButtons( )}
-          <p />
+          </div>
+          <div className="stacked">
+            {createRadioButtons( )}
+          </div>
           <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
           <p
             className="text-muted"
@@ -180,7 +181,7 @@ const Content = ( {
             </button>
           </p>
           <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
-          <div>
+          <div className="stacked">
             <DropdownButton
               id="preferred_observation_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
@@ -189,14 +190,14 @@ const Content = ( {
               {createLicenseList( "preferred_observation_license" )}
             </DropdownButton>
           </div>
-          <p />
-          <CheckboxRowContainer
-            name="make_observation_licenses_same"
-            label={I18n.t( "update_existing_observations_with_new_license" )}
-          />
-          <p />
+          <div className="stacked">
+            <CheckboxRowContainer
+              name="make_observation_licenses_same"
+              label={I18n.t( "update_existing_observations_with_new_license" )}
+            />
+          </div>
           <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
-          <div>
+          <div className="stacked">
             <DropdownButton
               id="preferred_photo_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
@@ -205,14 +206,14 @@ const Content = ( {
               {createLicenseList( "preferred_photo_license" )}
             </DropdownButton>
           </div>
-          <p />
-          <CheckboxRowContainer
-            name="make_photo_licenses_same"
-            label={I18n.t( "update_existing_photos_with_new_license" )}
-          />
-          <p />
+          <div className="stacked">
+            <CheckboxRowContainer
+              name="make_photo_licenses_same"
+              label={I18n.t( "update_existing_photos_with_new_license" )}
+            />
+          </div>
           <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
-          <div>
+          <div className="stacked">
             <DropdownButton
               id="preferred_sound_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
@@ -221,7 +222,6 @@ const Content = ( {
               {createLicenseList( "preferred_sound_license" )}
             </DropdownButton>
           </div>
-          <p />
           <CheckboxRowContainer
             name="make_sound_licenses_same"
             label={I18n.t( "update_existing_sounds_with_new_license" )}
@@ -232,13 +232,12 @@ const Content = ( {
       <div className="col-md-5 col-xs-10">
         <SettingsItem>
           <h4>{I18n.t( "names" )}</h4>
-          <p>
+          <div className="stacked">
             <label htmlFor="user_prefers_common_names">{I18n.t( "display" )}</label>
-          </p>
-          <div className="text-muted">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
-          <p />
+          </div>
+          <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
           <select
-            className="form-control"
+            className="form-control stacked"
             id="user_prefers_common_names"
             name="prefers_common_names"
             onChange={handleDisplayNames}
@@ -248,7 +247,6 @@ const Content = ( {
             <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
             <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
           </select>
-          <p />
           <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
           <PlaceAutocomplete
             resetOnChange={false}

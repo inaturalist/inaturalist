@@ -109,7 +109,7 @@ const Account = ( {
       <div className="col-md-1" />
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-          <div>
+          <div className="stacked">
             <DropdownButton
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
@@ -125,7 +125,6 @@ const Account = ( {
               {createINatAffiliationList( )}
             </DropdownButton>
           </div>
-          <p />
           <p
             className="text-muted"
             // eslint-disable-next-line react/no-danger

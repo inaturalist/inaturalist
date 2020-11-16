@@ -28,12 +28,11 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
           />
         </strong>
       </li>
-      <li>
+      <li className="stacked">
         <strong>
           <a href="https://newrelic.com/">New Relic</a>
         </strong>
       </li>
-      <p />
       <p>
         <strong>
           {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share" )}
@@ -67,7 +66,7 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
           {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
         </strong>
       </li>
-      <li>
+      <li className="stacked">
         <strong>
           <span
             // eslint-disable-next-line react/no-danger
@@ -77,7 +76,6 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
           />
         </strong>
       </li>
-      <p />
       <p>{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_limits" )}</p>
     </Modal.Body>
   </Modal>
