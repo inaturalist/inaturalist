@@ -8,28 +8,13 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 
 /* global TIMEZONES */
 
-const iNatAffiliationDict = [
-  { number: 1, location: I18n.t( "global" ) },
-  { number: 2, location: I18n.t( "places_name.mexico" ) },
-  { number: 3, location: I18n.t( "places_name.new_zealand" ) },
-  { number: 5, location: I18n.t( "places_name.canada" ) },
-  { number: 6, location: I18n.t( "places_name.colombia" ) },
-  { number: 8, location: I18n.t( "places_name.portugal" ) },
-  { number: 9, location: I18n.t( "places_name.australia" ) },
-  { number: 13, location: I18n.t( "places_name.panama" ) },
-  { number: 14, location: I18n.t( "places_name.ecuador" ) },
-  { number: 15, location: I18n.t( "places_name.italy" ) },
-  { number: 16, location: I18n.t( "places_name.argentina" ) },
-  { number: 18, location: I18n.t( "places_name.chile" ) },
-  { number: 20, location: I18n.t( "places_name.finland" ) }
-];
-
 const Account = ( {
   profile,
   handleCustomDropdownSelect,
   handleInputChange,
   handlePlaceAutocomplete,
-  setModalState
+  setModalState,
+  sites
 } ) => {
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
@@ -49,20 +34,20 @@ const Account = ( {
   };
 
   const createINatAffiliationList = ( ) => {
-    const menuItems = iNatAffiliationDict.map( ( { number, location } ) => (
+    const menuItems = sites.map( ( { id, name } ) => (
       <MenuItem
-        key={`inat-affiliation-logo-${number}`}
-        eventKey={number}
+        key={`inat-affiliation-logo-${id}`}
+        eventKey={id}
         className="inat-affiliation-width"
       >
         <span className="flex-no-wrap">
           <img
             className="inat-affiliation-logo margin-right-medium"
-            alt={`inat-affiliation-logo-${number}`}
-            src={showINatAffiliationLogo( number )}
+            alt={`inat-affiliation-logo-${id}`}
+            src={showINatAffiliationLogo( id )}
           />
-          <div className="text-muted small">{location.toLocaleUpperCase( )}</div>
-          {profile.site_id === number && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+          <div className="text-muted small">{name.toLocaleUpperCase( )}</div>
+          {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
         </span>
       </MenuItem>
     ) );
@@ -161,7 +146,8 @@ Account.propTypes = {
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
-  setModalState: PropTypes.func
+  setModalState: PropTypes.func,
+  sites: PropTypes.array
 };
 
 export default Account;

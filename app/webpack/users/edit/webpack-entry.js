@@ -11,6 +11,7 @@ import {
 } from "redux";
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
+import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
@@ -21,6 +22,7 @@ import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
   profile: userSettingsReducer,
+  sites: sitesReducer,
   revokeAccess: revokeAccessModalReducer,
   deleteRelationship: deleteRelationshipModalReducer,
   apps: authenticatedAppsReducer,
@@ -41,6 +43,7 @@ const store = createStore(
 );
 
 store.dispatch( fetchUserSettings( null ) );
+store.dispatch( fetchNetworkSites( ) );
 store.dispatch( fetchAuthorizedApps( ) );
 store.dispatch( fetchRelationships( true ) );
 

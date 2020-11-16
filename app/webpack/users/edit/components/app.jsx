@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   handleInputChange( e ) {
-    this.setState( { container: e.target.value } );
+    this.setState( { container: Number( e.target.value ) } );
   }
 
   render( ) {

@@ -10,7 +10,8 @@ import { setModalState } from "../ducks/third_party_tracking_modal";
 
 function mapStateToProps( state ) {
   return {
-    profile: state.profile
+    profile: state.profile,
+    sites: state.sites.sites
   };
 }
 
