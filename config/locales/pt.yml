@@ -272,8 +272,10 @@ pt:
   add_alive_or_dead_cannot_be_determined_annotation: 'Adicionar anotação "Vivo ou Morto: Não Pode ser Determinado"'
   add_alive_or_dead_dead_annotation: 'Adicionar anotação "Vivo ou Morto: Morto"'
   add_plant_phenology_budding_annotation: 'Adicionar anotação "Fenologia da Planta: Gemulação"'
+  add_plant_phenology_flower_budding_annotation: 'Adicionar anotação "Fenologia das Plantas: Brotação de Flor"'
   add_plant_phenology_flowering_annotation: 'Adicionar anotação "Fenologia da Planta: Floração"'
   add_plant_phenology_fruiting_annotation: 'Adicionar anotação "Fenologia da Planta: Frutificação"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Adicionar a anotação "Fenologia da Planta: Nenhuma evidência de floração"'
   add_life_stage_adult_annotation: 'Adicionar anotação "Fase da Vida: Adulto"'
   add_life_stage_teneral_annotation: 'Adicionar anotação "Fase da Vida: Pós-ecdise"'
   add_life_stage_subimago_annotation: 'Adicionar anotação "Fase da Vida: Subimago"'
@@ -289,6 +291,7 @@ pt:
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar anotação "Género: Fêmea"'
   add_sex_male_annotation: 'Adicionar anotação "Género: Macho"'
+  add_sex_cannot_be_determined_annotation: 'Adicionar a anotação "Sexo: Não pode ser determinado"'
   add_some_now: Adicionar algumas agora
   add_tag: Adicionar etiqueta
   add_tags: Adicionar etiquetas
@@ -311,11 +314,25 @@ pt:
   add_your_own_observations_at: "Adicionar as suas observações a %{site_name}"
   added: Adicionado
   added!: Adicionado!
+  added_as_a_part_of_a_taxon_change_html: |
+    Adicionado como parte de uma
+    <a target="%{target}" class="%{class}" href="%{url}">mudança de táxon</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Adicionado como parte de uma
+    <a target="%{target}" class="%{class}" href="%{url}">fusão de táxon</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Adicionado como parte de uma
+    <a target="%{target}" class="%{class}" href="%{url}">divisão de táxon</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Adicionado como parte de uma
+    <a target="%{target}" class="%{class}" href="%{url}">troca de táxon</a>
   added_by: Adicionado por
   added_by_user_on_date_html: "Adicionado(s) por %{user} em %{date}"
+  added_on_datetime: "Adicionado em %{datetime}"
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "A adicionar..."
+  adjust_brightness: Ajustar brilho
   admin: Administrador
   admin_s: Administrador(es)
   admin_only: Apenas administradores
@@ -357,6 +374,7 @@ pt:
     subgenus: Todos os subgéneros foram adicionados à base de dados
     section: Todas as secções foram adicionadas à base de dados
     subsection: Todas as subsecções foram adicionadas à base de dados
+    complex: Todos os complexos foram adicionados à base de dados
     species: Todas as espécies foram adicionadas à base de dados
     hybrid: Todos os híbridos foram adicionados à base de dados
     subspecies: Todas as subespécies foram adicionadas à base de dados
@@ -433,9 +451,12 @@ pt:
   allowed_html: HTML permitido
   allowed_occurrence_status_values: Valores permitidos para os estados de ocorrência
   allowed_values: Valores permitidos
+  almost_there_: Está Quase…
   alphabetical: Alfabético(a)
   alphabetical_order: Ordem alfabética
+  already_have_an_account_log_in_html: Já tem conta? <strong>Entrar.</strong>
   amphibians: anfíbios
+  ancestor_taxon: Táxon Ancestral
   and: e
   and_other_taxa: "&amp; Outros Táxons"
   android: Android
@@ -468,6 +489,7 @@ pt:
   any_reviewed: Qualquer
   #Label for an option to show/include content by any user
   any_user: Qualquer
+  anyone: Qualquer um
   apply_to_selected: Aplicar aos selecionados
   apply_captive_cultivated: "Aplicar em cativeiro/cultivo"
   apply_fields: Aplicar campos
@@ -628,6 +650,8 @@ pt:
   blue: azul
   blue_butterfly_etc: "azul, borboleta, etc."
   body: Corpo
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: texto em negrito
   bounding_box: Retângulo Envolvente
   breadcrumbs: Rastos de navegação
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -739,6 +763,7 @@ pt:
   check_out_our_blog: Veja o nosso Blog
   check_out_what_the_observation: Dê uma olhadela à observação que está a tentar identificar.
   check_out_your_new_and_improved_list_list: Veja a sua nova e melhorada Lista de Vida!
+  checklist: Lista de Verificação
   choose_a_field: Escolher um campo
   choose_a_list_above: Escolha uma lista acima.
   choose_a_place: Escolha um local
@@ -758,6 +783,7 @@ pt:
   citation: Citação
   classification: Classificação
   clear: limpar
+  clear_filters: Limpar filtros
   clear_search: Limpar a pesquisa
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
   close: Fechar
@@ -778,9 +804,13 @@ pt:
   comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre as minhas observações
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Confirmar
+  #Adjective describing a taxon change that has been committed
   committed: Enviado
+  #Label for date the taxon change was committed
   committed_on: Submetido em %{date}
+  #Status message while a taxon change is being committed
   committing: Enviando...
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
@@ -798,6 +828,8 @@ pt:
   comparing_versions_x_and_y: "Comparando as versões %{x} e %{y}"
   comparing_observations_from: "Comparando as observações de %{user} em %{dates}"
   compiled_by_name: "Compilado por %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Completo
   completed: Concluído
   completed_at: Concluído em
   #As in whether or not a check list is comprehensive, i.e. it contains all the

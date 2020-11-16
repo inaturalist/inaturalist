@@ -817,10 +817,14 @@ pt:
   comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre minhas observações
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Salvar.
+  #Adjective describing a taxon change that has been committed
   committed: Salvar.
   committed_by_user_on_date_html: Criada por {{user}} em {{date}}
+  #Label for date the taxon change was committed
   committed_on: Submetido em %{date}
+  #Status message while a taxon change is being committed
   committing: Enviando...
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
@@ -4779,7 +4783,6 @@ pt:
     messages:
       from: De
       to: Para
-      subject: Assunto
       subject_body: Sujeito / Corpo
       index:
         show_messages_from_user: Mostrar mensagens de %{user}

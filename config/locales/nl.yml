@@ -184,6 +184,21 @@ nl:
 
     <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
+  about_trusting_projects_options_taxon: |-
+    Alleen je waarnemingen in dit project die vervaagde coördinaten hebben
+    vanwege bedreigde taxa
+  about_trusting_projects_options_taxon_desc: |-
+    Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd worden omdat de
+    waarneming een bedreigd taxon weergeeft.
+  about_trusting_projects_overview: |-
+    Het verlenen van toegang tot je verborgen coördinaten zal de beheerders van dit
+    project de waarheid, laten zien onvervaagde locatie van je waarnemingen in dit
+    -project. Dit is extreem belangrijk in situaties waarin wetenschappers of
+    beheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en
+    besluitvorming.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Je kan kiezen om verborgen coördinaten te delen voor
   about_x: "Over %{x}"
   acc: 'Prec. (m)'
   account: Account
@@ -831,10 +846,14 @@ nl:
   comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Vastleggen
+  #Adjective describing a taxon change that has been committed
   committed: Vastgelegd
   committed_by_user_on_date_html: Vastgelegd door %{user} op %{date}
+  #Label for date the taxon change was committed
   committed_on: Vastgelegd op %{date}
+  #Status message while a taxon change is being committed
   committing: Vastleggen...
   community: Gemeenschap
   community_curated: Gecureerd door de gemeenschap
@@ -1592,6 +1611,9 @@ nl:
     Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit
     alleen van toepassing op geschreven inhoud, bijv. als je de een determinatie verbergt. De determinatie is nog steeds zichtbaar, maar de opmerkingen zijn verborgen. Je kunt dit niet ongedaan maken en alleen het personeel van de site kan de inhoud weer zichtbaar maken nadat deze is verborgen. Wees dus voorzichtig en gebruik dit alleen voor zeer
     aanstootgevende inhoud.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Verberg "Geen aantekening"
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
   high: Hoog
@@ -3281,15 +3303,27 @@ nl:
   ranks:
     stateofmatter: Toestand van de materie
     kingdom: Rijk
+    x_kingdoms:
+      one: Rijk
+      other: Rijken
     subkingdom: subrijk
     phylum: Stam
+    x_phyla:
+      one: Stam
+      other: Stammen
     subphylum: Onderstam
     superclass: Superklasse
     class: Klasse
+    x_classes:
+      one: Klasse
+      other: Klassen
     subclass: Onderklasse
     infraclass: Infraklasse
     superorder: Superorde
     order: Orde
+    x_orders:
+      one: Orde
+      other: Ordes
     suborder: Onderorde
     infraorder: Infraorde
     subterclass: Subterklasse
@@ -3299,11 +3333,17 @@ nl:
     superfamily: Superfamilie
     epifamily: Epifamilie
     family: Familie
+    x_families:
+      one: Familie
+      other: Families
     subfamily: Onderfamilie
     supertribe: Supertak
     tribe: Geslachtengroep
     subtribe: Ondertak
     genus: Geslacht
+    x_genera:
+      one: Geslacht
+      other: Geslachten
     genushybrid: Intragenerische hybride
     subgenus: Ondergeslacht
     section: Sectie
@@ -3311,6 +3351,9 @@ nl:
     complex: Complex
     #Singular
     species: Soort
+    x_species:
+      one: Soort
+      other: Soorten
     hybrid: Hybride
     #Singular
     subspecies: Ondersoort
@@ -3554,6 +3597,9 @@ nl:
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
   show_more: Meer weergeven
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Toon "Geen aantekening"
   show_observation_photos: foto's van waarnemingen weergeven
   show_off_your_recent_observations: Schep op over je recente waarnemingen op je eigen blog of website!
   show_only: Toon alleen
@@ -4797,6 +4843,12 @@ nl:
       restrict_to_leaf_taxa: Beperken tot blad taxa
       restrict_to_taxon: Beperken tot %{taxon}
       restrict_to_taxa_observed_in_place: Beperken tot taxa waargenomen in %{place}
+      exporting_all_x_taxa:
+        one: Exporteer van %{count} taxon
+        other: Exporteer alle %{count} taxa
+      exporting_x_taxa:
+        one: Exporteren van %{count} taxon
+        other: Exporteer alle %{count} taxa
       no_observations_found_in_place: Geen waarnemingen gevonden in %{place}.
       no_observations_found_within_this_taxon_in_place: Geen waarnemingen gevonden binnen dit taxon in %{place}.
       no_species_found_within_this_taxon_in_place: Geen soorten gevonden binnen dit taxon in %{place}.
@@ -4846,7 +4898,6 @@ nl:
     messages:
       from: Van
       to: Tot
-      subject: Onderwerp
       subject_body: Onderwerp / Tekst
       index:
         show_messages_from_user: Toon berichten van %{user}
@@ -6463,6 +6514,9 @@ nl:
       listed_taxon:
         occurrence_status_level: Statusniveau van voorkomen
         establishment_means: Vestigingswijze
+      message:
+        subject: Onderwerp
+        body: Berichttekst
       observation:
         description: Notities
         geo_x: Oostwaarde

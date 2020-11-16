@@ -944,10 +944,14 @@ ru:
   comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
   commercial_solicitation: Коммерческие предложения, ссылки в никуда и т. д.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Подтвердить
+  #Adjective describing a taxon change that has been committed
   committed: Подтверждено
   committed_by_user_on_date_html: Подтверждено %{user} %{date}
+  #Label for date the taxon change was committed
   committed_on: Выполнено %{date}
+  #Status message while a taxon change is being committed
   committing: В процессе выполнения...
   community: Сообщество
   community_curated: Управляется сообществом
@@ -5007,7 +5011,6 @@ ru:
     messages:
       from: От
       to: Кому
-      subject: Тема
       subject_body: Тема / Сообщение
       index:
         show_messages_from_user: Показать сообщения от %{user}

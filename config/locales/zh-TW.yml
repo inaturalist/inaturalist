@@ -754,10 +754,14 @@ zh-TW:
   comments_on: 評論在
   comments_on_my_observations: 對我觀察的評論
   commercial_solicitation: 商業招攬，無效連結等等。
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: 提交
+  #Adjective describing a taxon change that has been committed
   committed: 已提交
   committed_by_user_on_date_html: 由 %{user} 於 %{date} 所提交
+  #Label for date the taxon change was committed
   committed_on: 提交於 %{date}
+  #Status message while a taxon change is being committed
   committing: 提交中…
   community: 社群
   community_curated: 社群策劃
@@ -4493,7 +4497,6 @@ zh-TW:
     messages:
       from: 發送人
       to: 接收人
-      subject: 主旨
       subject_body: 主旨 / 正文
       index:
         show_messages_from_user: 顯示來自%{user}的訊息

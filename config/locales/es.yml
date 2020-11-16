@@ -170,6 +170,28 @@ es:
   about_this_project: Acerca de este proyecto
   about_trips_html: |
     <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos 'sólo presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Haga clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
+  about_trusting_projects: Acerca de confiar en proyectos
+  about_trusting_projects_options_any: Todas tus observaciones en este proyecto
+  about_trusting_projects_options_any_desc: |-
+    Esto incluye observaciones en las que has establecido la geoprivacidad en "oculto"
+    o "privado," p. ej., observaciones del jardín de tu casa o lugares sobre los que no quieras
+    que sepan otras personas.
+  about_trusting_projects_options_taxon: |-
+    Solo tus observaciones en este proyecto que tengan coordenadas ocultas debido a que corresponden a taxones amenazados
+  about_trusting_projects_options_taxon_desc: |-
+    Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
+    representa un taxón amenazado.
+  about_trusting_projects_overview: |-
+    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Los administradores del proyecto que tendrán acceso a tus coordenadas ocultas son:
+  about_trusting_projects_warning: |-
+    Ten en cuenta que los administradores del proyecto pueden cambiar sus parámetros para incluir cualquiera de tus observaciones, y pueden añadir o eliminar administradores de proyecto en cualquier momento. Recibirás notificaciones sobre estos cambios, pero en esencia estás confiando a este proyecto tus datos de ubicación, así que ten cuidado.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Puedes elegir compartir coordenadas ocultas para
   about_x: "Acerca de %{x}"
   acc: 'Prec.(m)'
   account: Cuenta
@@ -816,10 +838,14 @@ es:
   comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar, etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Guardar
+  #Adjective describing a taxon change that has been committed
   committed: Guardado
   committed_by_user_on_date_html: Comprometido por %{user} el %{date}
+  #Label for date the taxon change was committed
   committed_on: Guardado el %{date}
+  #Status message while a taxon change is being committed
   committing: Guardando...
   community: Comunidad
   community_curated: Supervisado por la comunidad
@@ -931,6 +957,13 @@ es:
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Solo con coordenadas que pueda ver
+  coords_viewable_for_proj_desc: |
+    Mostrar sólo observaciones de este proyecto para las que puedes ver las coordenadas "verdaderas", incluyendo observaciones no oscurecidas, observaciones oscurecidas por personas que confían en ti, o en este proyecto, o corresponden a taxones amenazados y sus observadores confían en este proyecto.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
@@ -3315,6 +3348,7 @@ es:
   reason_you_are_flagging_this_item: Razón por la cual estas marcando este elemento.
   recaptcha_verification_failed: falló la verificación de reCaptcha
   receive_email_notifications_when_people_leave_you: Reciba notificaciones por correo cuando las personas lo dejen
+  receive_project_journal_notifications?: '¿Recibir notificaciones del diario del proyecto?'
   receive_updates_from_this_project: Recibir actualizaciones de este proyecto
   recent: Recientes
   recent_evidence_of_organism: Evidencia reciente de un organismo
@@ -4047,9 +4081,12 @@ es:
   trending: Tendencias
   trends: Tendencias
   trip_target_list_info: 'Cualquier especie cubierta por esta lista de objetivos que no se observó dentro del radio y la duración de este viaje se interpretará como ausencias. <a href="/pages/trips">Leer más</a>.'
+  #Noun
+  trust: Confianza
   trusted: De confianza
   trusted_project?: '¿Es un projecto verificicado?'
   trust_this_person_with_your_private_coordinates: Confía a esta persona con tus coordenadas ocultas
+  trust_this_project_with_your_private_coordinates?: '¿Confiar a este proyecto las coordenadas ocultas?'
   trust_with_private_coordinates: Confiar con coordenadas ocultas
   try_adding_species_form: Trate de agregar algunas especies usando el formulario en esta página.
   twitter: Twitter
@@ -4425,7 +4462,15 @@ es:
   year_on_site: "El %{year} en %{site}"
   yellow: amarillo
   'yes': "Sí"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Sí, pero solo mis observaciones de taxones amenazados, no aquellas para las que he establecido geoprivacidad
   yes_find_them!: "¡Sí, encuéntrelas!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Sí, para todas mis observaciones"
   yes_i_want_to_join: Sí, deseo unirme
   yes_license_my_childs_observations: Sí, hacer una licencia de mis fotos, sonidos y observaciones para que los científicos puedan usar los datos
   yes_license_my_observations_so_scientists_can_use: Sí; dar licencia a científicos para que puedan utilizar mis fotografías, sonidos y observaciones.
@@ -4836,7 +4881,6 @@ es:
     messages:
       from: De
       to: Para
-      subject: Asunto
       subject_body: Asunto/cuerpo
       index:
         show_messages_from_user: Mostrar mensajes de %{user}
@@ -5158,6 +5202,16 @@ es:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Comprueba la ortografía de cada entrada. Si tu ortografía es correcta, busca la especie en %{search_taxa_url}. Si el nombre aún no está en la base de datos de %{site_name}, deberás agregarlo antes para que funcione la subida masiva. Utiliza el cuadro en la parte inferior de la página de búsqueda para importar los nuevos nombres. Si el nombre está presente pero aplica a varios taxones válidos, intenta usar uno menos específico que corresponda solo a un único taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Como has confiado a este proyecto las coordenadas ocultas de <a href="%{obs_url}">algunas de tus observaciones</a>, ahora los administradores pueden tener acceso a más coordenadas ocultas que antes de que confiaras en el proyecto. Deberías revisar la lista de administradores y los requisitos del proyecto para asegurarte de que sigues confiando en este proyecto:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Los requisitos para las observaciones del siguiente proyecto han cambiado recientemente:
+        subject: Requisitos para las observaciones del proyecto cambiados para %{project}
+        you_can_change_html: |-
+          Puedes cambiar tus preferencias o abandonar el proyecto en la <a href="%{url}">página del proyecto</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Tu exportación de observaciones está lista. Hay una copia adjunta en este mensaje de correo o puedes <a href="%{url}">descargar tu exportación</a>.
@@ -5390,6 +5444,13 @@ es:
         submission_models:
           any: cualquiera
           curators: curadores del proyecto
+        trust_allow_members_to_trust: |-
+          Permitir a los miembros de este proyecto confiarle sus coordenadas ocultas
+        trust_help_desc: |-
+          Si deseas acceder a las coordenadas ocultas de observaciones oscurecidas, esta opción permitirá a las personas que se han unido a este proyecto dar acceso a los administradores del proyecto a las coordenadas ocultas de sus observaciones. Los miembros del proyecto podrán conceder acceso a las coordenadas ocultas de cualquiera
+          de sus observaciones que aparezcan en este proyecto, o solo a las de las observaciones que están oscurecidas por corresponder a taxones amenazados.
+        trust_help_notification: |-
+          Sin embargo, esto también notificará a todos los miembros del proyecto que confían sus coordenadas ocultas a él cada vez que cambies los requisitos del proyecto, para que puedan decidir si quieren seguir confiando en ti con los nuevos requisitos.
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
@@ -5485,6 +5546,8 @@ es:
           observaciones se incluirán automáticamente.
         start_and_end_times_for_bioblitzes: Fecha / hora de inicio y finalización (para eventos de tipo bioblitz)
         traditional_projects_cannot_be_copied: El proyecto tradicional no se puede copiar.
+        trusting_members_will_be_notified: |
+          Has cambiado los requisitos del proyecto o has activado la confianza de los usuarios. Esto notificará a cualquier miembro del proyecto que ya haya confiado en el proyecto sus coordenadas ocultas para que tenga la oportunidad de decidir si todavía quiere confiar en el proyecto con los nuevos requisitos.
         umbrella_project_features: "Características de un proyecto paraguas:"
         unique_url_for_outreach: URL único para promoción
         use_this_for_a_time_limited_event: |
