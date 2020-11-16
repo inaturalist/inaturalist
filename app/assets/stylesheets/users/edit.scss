@@ -53,7 +53,7 @@ button.left-nav-item {
     outline:none;
   }
 
-  .green {
+  &:active {
     color: #74ac00;
     font-weight: 600;
     text-decoration: none;

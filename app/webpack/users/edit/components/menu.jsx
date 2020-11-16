@@ -10,13 +10,13 @@ const menuItems = [
   I18n.t( "applications" )
 ];
 
-const Menu = ( { menuIndex, setContainerIndex } ) => menuItems.map( ( item, i ) => (
+const Menu = ( { setContainerIndex } ) => menuItems.map( ( item, i ) => (
   <div key={item}>
     <button
       type="button"
       name={i}
       id="LeftNav"
-      className={`left-nav-item ${menuIndex && "green"}`}
+      className="left-nav-item"
       onClick={( ) => setContainerIndex( i )}
     >
       {item}
@@ -25,8 +25,7 @@ const Menu = ( { menuIndex, setContainerIndex } ) => menuItems.map( ( item, i ) 
 ) );
 
 Menu.propTypes = {
-  setContainerIndex: PropTypes.func,
-  menuIndex: PropTypes.number
+  setContainerIndex: PropTypes.func
 };
 
 export default Menu;
