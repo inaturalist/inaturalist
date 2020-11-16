@@ -41,12 +41,12 @@ const Relationships = ( {
                 label={I18n.t( "trust_with_private_coordinates" )}
                 id={user.id}
               />
-              {user.reciprocal_trust && <dfn>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</dfn>}
+              {user.reciprocal_trust && <em>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</em>}
             </div>
             <div className="col-md-6">
-              <dfn className="relationship-row-margin">
-                {`${I18n.t( "added" )} ${moment( friendUser.created_at ).format( "LL" )}`}
-              </dfn>
+              <em className="relationship-row-margin">
+                {I18n.t( "added_on_datetime", { datetime: moment( friendUser.created_at ).format( "LL" ) } ) }
+              </em>
               <div>
                 <button
                   type="button"
