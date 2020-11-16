@@ -17097,7 +17097,6 @@ I18n.translations["en"] = {
   "get_started": "Get Started",
   "give_monthly_caps": "GIVE MONTHLY",
   "give_now_caps": "GIVE NOW",
-  "global": "Global",
   "globally": "Globally",
   "go": "Go",
   "go_back": "Go back",
@@ -17390,7 +17389,7 @@ I18n.translations["en"] = {
   "lock_zoom_level": "Lock zoom level",
   "log_in_or_sign_up_to_add_comments_html": "<a href=\"/login\">Log in</a> or <a href=\"/signup\">sign up</a> to add comments.\n",
   "log_in_or_sign_up_to_add_identifications_html": "<a href=\"/login\">Log in</a> or <a href=\"/signup\">sign up</a> to add identifications.\n",
-  "log_out": "Log out",
+  "log_out_caps": "LOG OUT",
   "log_out_of_application": "Log out of %{site_name}?",
   "log_scale_label": "Log",
   "long": "Lon",
@@ -17588,11 +17587,11 @@ I18n.translations["en"] = {
   "of_places": "places",
   "of_species": "species",
   "of_this_taxon": "Of this taxon",
-  "off_toggle": "Off",
+  "off_caps": "OFF",
   "offensive_inappropriate": "Offensive / Inappropriate",
   "ok": "OK",
   "old_observation_form": "Old observation form (deprecated)",
-  "on_toggle": "On",
+  "on_caps": "ON",
   "only_you": "Only you",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
@@ -18050,7 +18049,6 @@ I18n.translations["en"] = {
   "private_": "Private",
   "proceed": "Proceed",
   "profile": "Profile",
-  "profile_and_user": "Profile & User",
   "profile_picture": "Profile Picture",
   "project": "Project",
   "project_admins": {
@@ -18166,6 +18164,7 @@ I18n.translations["en"] = {
   },
   "remove_photo": "Remove Photo",
   "remove_relationship": "Remove Relationship",
+  "remove_relationship_caps": "REMOVE RELATIONSHIP",
   "remove_relationship_question": "Remove Relationship?",
   "removing": "Removing...",
   "reptiles": "reptiles",
@@ -18181,7 +18180,7 @@ I18n.translations["en"] = {
   "restore": "Restore",
   "review_all": "Review All",
   "reviewed": "Reviewed",
-  "revoke": "Revoke",
+  "revoke_caps": "REVOKE",
   "revoke_external_application": "Revoke %{site_name}?",
   "rg_observations": "RG Observations",
   "running_total": "Running Total",
@@ -18190,7 +18189,7 @@ I18n.translations["en"] = {
   "save_comment": "Save comment",
   "save_identification": "Save identification",
   "save_photos": "Save photos",
-  "save_settings": "Save settings",
+  "save_settings_caps": "SAVE SETTINGS",
   "saved": "Saved",
   "saved_at": "Saved at",
   "saving": "Saving...",
@@ -19101,8 +19100,6 @@ I18n.translations["en-UK"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -19291,8 +19288,6 @@ I18n.translations["en-US"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -25391,8 +25386,6 @@ I18n.translations["es-CO"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -25585,8 +25578,6 @@ I18n.translations["es-CR"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -25778,8 +25769,6 @@ I18n.translations["es-ES"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -33133,8 +33122,6 @@ I18n.translations["fil"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -35838,8 +35825,6 @@ I18n.translations["fr-CA"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "some_observations_are_missing_media_or_identifications": "Certaines observations n'ont pas de photo/son ou d'identification\n",
@@ -36157,8 +36142,6 @@ I18n.translations["gd"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -40807,8 +40790,6 @@ I18n.translations["hi"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -41001,8 +40982,6 @@ I18n.translations["hu"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -41169,8 +41148,6 @@ I18n.translations["hy"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -44850,8 +44827,6 @@ I18n.translations["iw"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -46919,8 +46894,6 @@ I18n.translations["ka"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -52002,8 +51975,6 @@ I18n.translations["lv"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -53093,8 +53064,6 @@ I18n.translations["ml"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -53267,8 +53236,6 @@ I18n.translations["mr"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -53459,8 +53426,6 @@ I18n.translations["ms"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -58475,8 +58440,6 @@ I18n.translations["nn"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -64007,8 +63970,6 @@ I18n.translations["pt-BR"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -64201,8 +64162,6 @@ I18n.translations["ro"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -66978,8 +66937,6 @@ I18n.translations["si"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -68688,8 +68645,6 @@ I18n.translations["sl"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -72629,8 +72584,6 @@ I18n.translations["ta"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -75184,8 +75137,6 @@ I18n.translations["uk"] = {
     "geo_planet_place_types": {
     }
   },
-  "places_name": {
-  },
   "ranks": {
   },
   "sounds": {
@@ -75377,8 +75328,6 @@ I18n.translations["vi"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },
@@ -77786,8 +77735,6 @@ I18n.translations["zh-HK"] = {
   "place_geo": {
     "geo_planet_place_types": {
     }
-  },
-  "places_name": {
   },
   "ranks": {
   },

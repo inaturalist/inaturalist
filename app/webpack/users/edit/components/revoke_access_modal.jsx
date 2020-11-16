@@ -31,8 +31,8 @@ const RevokeAccessModal = ( {
       <div className="buttons">
         <Button bsStyle="primary" onClick={deleteApp}>
           {iNatAppIds.includes( id )
-            ? I18n.t( "log_out" ).toLocaleUpperCase( )
-            : I18n.t( "revoke" ).toLocaleUpperCase( )}
+            ? I18n.t( "log_out_caps" )
+            : I18n.t( "revoke_caps" )}
         </Button>
       </div>
     </Modal.Footer>

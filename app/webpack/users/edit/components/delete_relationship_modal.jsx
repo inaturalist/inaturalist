@@ -23,7 +23,7 @@ const DeleteRelationshipModal = ( {
     <Modal.Footer>
       <div className="buttons">
         <Button bsStyle="primary" onClick={deleteRelationship}>
-          {I18n.t( "remove_relationship" ).toLocaleUpperCase( )}
+          {I18n.t( "remove_relationship_caps" )}
         </Button>
       </div>
     </Modal.Footer>

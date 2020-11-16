@@ -13,7 +13,7 @@ const SaveButton = ( { saveUserSettings, profile } ) => (
       type="button"
       onClick={saveUserSettings}
     >
-      {I18n.t( "save_settings" ).toLocaleUpperCase()}
+      {I18n.t( "save_settings_caps" )}
     </button>
   </div>
 );

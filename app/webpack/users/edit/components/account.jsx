@@ -46,7 +46,7 @@ const Account = ( {
             alt={`inat-affiliation-logo-${id}`}
             src={showINatAffiliationLogo( id )}
           />
-          <div className="text-muted small">{name.toLocaleUpperCase( )}</div>
+          <div className="text-muted small">{name}</div>
           {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
         </span>
       </MenuItem>
