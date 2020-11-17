@@ -39,6 +39,15 @@ $user-image-size: 65px;
   align-items: center;
 }
 
+label.required {
+  color: #333;
+  &:after {
+    content: "*";
+    color: #ca5c53;
+    margin-left: 5px;
+  }
+}
+
 button.left-nav-item {
   padding: 6px 12px;
   line-height: 1.42857143;
