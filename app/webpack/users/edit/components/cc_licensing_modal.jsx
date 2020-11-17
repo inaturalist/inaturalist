@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
-const AboutLicensingModal = ( { show, onClose } ) => {
+const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
   const createLicenseList = list => {
     const iNatLicenses = iNaturalist.Licenses;
 
@@ -49,7 +49,7 @@ const AboutLicensingModal = ( { show, onClose } ) => {
   return (
     <Modal
       show={show}
-      className="AboutLicensingModal"
+      className="CreativeCommonsLicensingModal"
       onHide={onClose}
     >
       <Modal.Header closeButton>
@@ -70,9 +70,9 @@ const AboutLicensingModal = ( { show, onClose } ) => {
   );
 };
 
-AboutLicensingModal.propTypes = {
+CreativeCommonsLicensingModal.propTypes = {
   show: PropTypes.bool,
   onClose: PropTypes.func
 };
 
-export default AboutLicensingModal;
+export default CreativeCommonsLicensingModal;

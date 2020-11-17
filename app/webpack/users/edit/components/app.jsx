@@ -11,7 +11,7 @@ import ApplicationsContainer from "../containers/applications_container";
 import RelationshipsContainer from "../containers/relationships_container";
 import RevokeAccessModalContainer from "../containers/revoke_access_modal_container";
 import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking_modal_container";
-import AboutLicensingModalContainer from "../containers/about_licensing_modal_container";
+import CreativeCommonsLicensingModalContainer from "../containers/cc_licensing_modal_container";
 import DropdownMenuMobile from "./dropdown_menu_mobile";
 import DeleteRelationshipModalContainer from "../containers/delete_relationship_modal_container";
 
@@ -94,7 +94,7 @@ class App extends Component {
         </div>
         <RevokeAccessModalContainer />
         <ThirdPartyTrackingModalContainer />
-        <AboutLicensingModalContainer />
+        <CreativeCommonsLicensingModalContainer />
         <DeleteRelationshipModalContainer />
       </div>
     );
