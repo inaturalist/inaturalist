@@ -789,6 +789,60 @@ lv:
   comments_on_my_observations: Maniem novērojumiem pievienotie komentāri
   commercial_solicitation: Komerciālā aģitācija vai saites bez galamērķa u.t.m.l.
   community: Kopiena
+  community_curated: Kopienas pārbaudīts
+  community_guidelines: Kopienas vadlīnijas
+  community_id_heading: Kopienas taksons
+  community_id_at_species_or_lower?: Kopiena noteikusi sugu vai zemākas apakšgrupas taksonu
+  community_id_at_species_level_or_lower: Kopiena noteikusi sugu vai zemākas apakšgrupas taksonu
+  community_moderation_settings: Kopienas pārvaldības iestatījumi
+  community_supported_id: Vai taksonu atbalsta kopiena?
+  compare: Salīdzināt
+  compare_with: Salīdzināt ar
+  comparing: salīdzina
+  comparing_list_to_list: "%{list1} salīdzina ar %{list2}"
+  comparing_versions_x_and_y: "Salīdzina versiju %{x} ar versiju %{y}"
+  comparing_observations_from: "Salīdzina lietotāja %{user} novērojumus laika periodā: %{dates}"
+  compiled_by_name: "Apkopojis: %{name}"
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Pabeigts
+  complete_set_for_taxon_in_place_html: "%{taxon} taksona sugu kopums iekš %{place}"
+  completed: Pabeigts
+  completed_at: 'Pabeigts plkst.:'
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Pilnīgs?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Pilnīga</span>
+    kontrollapa taksonam %{taxon}
+  comprehensive_list: Pilnīga kontrollapa
+  concept_status: Jēdziena statuss
+  configure: Konfigurēt
+  configure_a_widget_to_show: Logrīku var konfigurēt tā, lai tas rādītu %{site_name} novērojumus tavā tīmekļa vietnē vai emuārā. Iespējams, ka būs jāiekļauj iegultu CSS iekš tava HTML <code>&lt;head&gt;</code>. CSS var droši rakstīt arī no jauna.
+  confirm: Apstiprināt
+  confirm_membership: Apstiprināt piederību
+  confirm_new_password: Apstiprināt jauno paroli
+  confirm_now: Apstiprināt tagad
+  confirm_your_info: Apstiprināt informāciju par sevi
+  connect_to_provider: "Savienoties ar %{provider}"
+  connected_accounts: Vienotie konti
+  connecting_flickr: "Savienojas ar Flickr... "
+  connect_to_flickr_again_to_authorize_write_permissions: Pieslēdzies vēlreiz Flickr, lai autorizētu rakstīšanas atļaujas
+  connecting_to_facebook: "Savienojas ar Facebook..."
+  connecting_your_inat_account_to_accounts_other_sites: "Savienojot savu %{site_name} kontu ar citu tīmekļa vietņu kontiem, %{site_name} vietnei būs iespējams pieslēgties ar akreditācijas datiem no šīm pārējām vietnēm."
+  cannot_be_changed_during_a_content_freeze: Izmaiņas nav iespējams veikt kamēr saturs ir bloķēts
+  conservation_status: Aizsardzības statuss
+  conservation_status_descriptions:
+    status: Statusa kods, kategorija utt. Ja pieejams īsais kods, piemēram, "E" vai "CR", lūdzu, izmanto to. Ja īsie kodi nav pieejami, lūdzu, norādi pilno statusa nosaukumu, piemēram, "apdraudēts" vai "kritiski apdraudēts".
+    description: Īss skaidrojums tam, kāpēc tas tika iekļauts sarakstā.
+    authority: |
+      Organizācija, kas norādīja šo statusu. Pirms jaunas organizācijas pievienošanas, lūdzu, izmanto automātisko nosaukuma pabeigšanu, lai izvēlētos kādu no jau pieejamajām organizācijām. Izlaid šo soli, ja vēlies, lai tu pats tiktu iekļauts organizāciju sarakstā.
+    place: Vieta, kurā nav atļauts norādīt šo statusu.
+    url: URL vietrādis uz lapu ar šī statusa aprakstu.
+    geoprivacy: Šī taksona novērojumu noklusējuma ģeoprivātuma iestatījumi
+    iucn: Līdzvērtīgs IUCN Sarkanās grāmatas kodam
+  conservation_status_geoprivacy_desc: |
+    Visiem šī taksona novērojumiem šajā vietā pielietoti noklusējuma ģeoprivātuma iestatījumi
+  contact_support: Sazināties ar atbalsta dienestu
   maps:
     overlays:
       checklist_places: Vietu kontrollapa
