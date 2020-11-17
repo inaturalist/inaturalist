@@ -874,7 +874,6 @@ sv:
   community_guidelines: Gemenskapsriktlinjer
   community_id_heading: Kollektivt taxon
   community_id_at_species_or_lower?: Kollektivt taxon på artnivå eller lägre?
-  community_id_at_genus_level_or_lower: Kollektivt taxon på släktnivå eller lägre
   community_id_at_species_level_or_lower: Kollektivt taxon på artnivå eller lägre
   community_moderation_settings: Inställningar för kollektiv moderering
   community_supported_id: Kollektivt understött taxon?
@@ -5443,72 +5442,6 @@ sv:
           förvaltarna möjlighet att se dolda koordinater för denna
           och alla andra observationer i projektet, och innebär att du
           godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
-        quality_assessment_help_html: |
-          <p>
-          Datakvalitetsbedömningen är en redovisning av en observations noggrannhet.
-          Alla observationer utgår från <strong>"grund"</strong>kvalitet, och
-          <strong>"behöver bestämmas"</strong> när
-          </p>
-
-          <ul>
-          <li>observationen <strong>är daterad</strong></li>
-          <li>the observation <strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
-          <li>the observation <strong>har bild eller ljud</strong></li>
-          <li>observationen <strong>inte är av en människa</strong></li>
-          </ul>
-          <p>
-          Observationer uppnår <strong>"forskningskvalitet"</strong> när
-          </p>
-          <ul>
-          <li>
-          %{site_name}-<strong>gemenskapen är enig på artnivå eller lägre</strong>, dvs
-          när mer än 2/3 av bestämmarna håller med om ett taxon
-          </li>
-          </ul>
-          <p>
-          Observationer återgår till <strong>"grundkvalitet"</strong> om ovanstående kvar inte uppfylls eller gemenskapen är enig
-          </p>
-          <ul>
-          <li>
-          <strong>lokalen verkar inte riktigt
-          riktig</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret etc.)
-          </li>
-          <li>
-          <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människor
-          eller intelligenta rymdvarelser)
-          </li>
-          <li>
-          observationen <strong>ger inte belägg för en
-          organism</strong>, t.ex. bilder av landskap, vattendrag,
-          stenar, etc.
-          </li>
-          <li>
-          observationen <strong>ger inte belägg för en recent (~100 years)
-          organism</strong> (t.ex. fossil, medan spår, avföring eller döda löv
-          är ok)
-          </li>
-          <li>
-          observationen behöver inte längre bestämmas <em>och</em> en gemenskapsbestämning över familjenivå
-          </li>
-          <li>
-          observatören har valt bort gemenskapsbestämning och det av gemenskapen
-          bestämda taxonet varken är en förälder eller ett barn till det taxon som är
-          knutet till observatörens bestämning
-          </li>
-          </ul>
-          <p>
-          Och om det inte var nog komplicerat, finns det även situationer då systemet får rösta:
-          </p>
-          <ul>
-          <li>
-          Systemet kommer att rösta på att observationen inte är vild/naturaliserad
-          om det finns minst 10 andra observationer på släktesnivå eller lägre i
-          den minsta plats som motsvarar ett län- stat- eller land och omfattar
-          denna observation och 80 % eller mer av de observationer som
-          har markerats som inte vilda/naturaliserade.
-          </li>
-          </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
         observation_flagged_notice_html: |
           Denna observation har flaggats som spam och är inte längre
