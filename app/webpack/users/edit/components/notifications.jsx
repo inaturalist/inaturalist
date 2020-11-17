@@ -15,14 +15,20 @@ const Notifications = ( { profile } ) => (
             <label>{I18n.t( "notify_me_of_mentions" )}</label>
             <p className="text-muted">{I18n.t( "notify_me_of_mentions_description", { site_name: SITE.name } )}</p>
           </div>
-          <ToggleSwitchContainer name="prefers_receive_mentions" />
+          <ToggleSwitchContainer
+            name="prefers_receive_mentions"
+            checked={profile.prefers_receive_mentions}
+          />
         </div>
         <div className="row">
           <div className="col-xs-9">
             <label>{I18n.t( "confirming_ids" )}</label>
             <p className="text-muted">{I18n.t( "confirming_ids_description" )}</p>
           </div>
-          <ToggleSwitchContainer name="prefers_redundant_identification_notifications" />
+          <ToggleSwitchContainer
+            name="prefers_redundant_identification_notifications"
+            checked={profile.prefers_redundant_identification_notifications}
+          />
         </div>
       </SettingsItem>
       <SettingsItem>
@@ -33,7 +39,10 @@ const Notifications = ( { profile } ) => (
             <p className="text-muted">{I18n.t( "receive_email_notifications_description", { site_name: SITE.name } )}</p>
           </div>
           <div className="stacked">
-            <ToggleSwitchContainer name="prefers_no_email" />
+            <ToggleSwitchContainer
+              name="prefers_no_email"
+              checked={profile.prefers_no_email}
+            />
           </div>
         </div>
         <div className={profile.prefers_no_email ? null : "collapse"}>

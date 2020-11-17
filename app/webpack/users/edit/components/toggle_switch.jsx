@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ToggleSwitch = ( { profile, name, handleCheckboxChange } ) => (
+const ToggleSwitch = ( { checked, name, handleCheckboxChange } ) => (
   <div className="col-xs-4 col-md-3 ToggleSwitch">
     <div className="flex-no-wrap">
       <label htmlFor={name}>{I18n.t( "off_caps" )}</label>
@@ -9,7 +9,7 @@ const ToggleSwitch = ( { profile, name, handleCheckboxChange } ) => (
         <input
           name={name}
           type="checkbox"
-          checked={profile[name] || false}
+          checked={checked || false}
           onChange={handleCheckboxChange}
         />
         <span className="slider round" />
@@ -20,7 +20,7 @@ const ToggleSwitch = ( { profile, name, handleCheckboxChange } ) => (
 );
 
 ToggleSwitch.propTypes = {
-  profile: PropTypes.object,
+  checked: PropTypes.bool,
   name: PropTypes.string,
   handleCheckboxChange: PropTypes.func
 };
