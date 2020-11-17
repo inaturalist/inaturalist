@@ -256,7 +256,7 @@ class QualityMetrics extends React.Component {
     const recentCells = this.voteCellsForMetric( "recent" );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
-      ? I18n.t( "community_id_at_genus_level_or_lower" )
+      ? I18n.t( "community_id_is_precise" )
       : I18n.t( "community_id_at_species_level_or_lower" );
     const rankPassed = needsIDInfo.mostDisagree ? atLeastGenus : atLeastSpecies;
     return (
