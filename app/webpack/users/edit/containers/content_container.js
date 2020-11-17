@@ -7,7 +7,7 @@ import {
   handleDisplayNames,
   handlePlaceAutocomplete
 } from "../ducks/user_settings";
-import { showModal } from "../ducks/about_licensing_modal";
+import { showModal } from "../ducks/cc_licensing_modal";
 
 function mapStateToProps( state ) {
   return {
