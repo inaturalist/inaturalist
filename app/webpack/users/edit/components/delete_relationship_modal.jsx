@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 
-import ModalCloseButton from "./modal_close_button";
-
 const DeleteRelationshipModal = ( {
   show,
   onClose,
@@ -15,9 +13,10 @@ const DeleteRelationshipModal = ( {
     className="RevokeAccessModal"
     onHide={onClose}
   >
+    <Modal.Header closeButton>
+      <Modal.Title>{I18n.t( "remove_relationship_question" )}</Modal.Title>
+    </Modal.Header>
     <Modal.Body>
-      <h4>{I18n.t( "remove_relationship_question" )}</h4>
-      <ModalCloseButton onClose={onClose} />
       <p>{I18n.t( "you_will_no_longer_be_following_or_trusting", { user } )}</p>
     </Modal.Body>
     <Modal.Footer>

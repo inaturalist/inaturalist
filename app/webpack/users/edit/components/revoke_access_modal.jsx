@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 
-import ModalCloseButton from "./modal_close_button";
-
 const iNatAppIds = [2, 3, 315, 333];
 
 const RevokeAccessModal = ( {
@@ -18,13 +16,14 @@ const RevokeAccessModal = ( {
     className="RevokeAccessModal"
     onHide={onClose}
   >
-    <Modal.Body>
-      <h4>
+    <Modal.Header closeButton>
+      <Modal.Title>
         {iNatAppIds.includes( id )
           ? I18n.t( "log_out_of_application", { site_name: siteName } )
           : I18n.t( "revoke_external_application", { site_name: siteName } )}
-      </h4>
-      <ModalCloseButton onClose={onClose} />
+      </Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
       <p>{I18n.t( "this_will_sign_you_out_current_session" )}</p>
     </Modal.Body>
     <Modal.Footer>

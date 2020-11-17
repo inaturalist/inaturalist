@@ -172,15 +172,11 @@ button.left-nav-item {
 
 .RevokeAccessModal.modal {
   .modal-dialog {
-    .modal-content {
-      padding-top: 22px;
-      padding-left: 32px;
-      padding-right: 32px;
-      min-height: 218px;
-      min-width: 502px;
+    .modal-header {
+      border-bottom: 0 none;
     }
-    .modal-body {
-      padding-bottom: 25px;
+    .modal-footer {
+      border-top: 0 none;
     }
   }
 }
