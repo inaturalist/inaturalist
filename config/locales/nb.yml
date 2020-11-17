@@ -827,7 +827,6 @@ nb:
   community_guidelines: Fellesskapets rettningslinjer
   community_id_heading: Fellesskapets takson
   community_id_at_species_or_lower?: Fellesskapets takson på artsnivå eller lavere?
-  community_id_at_genus_level_or_lower: Fellesskapets takson på slektsnivå eller lavere
   community_id_at_species_level_or_lower: Fellesskapets takson på artsnivå eller lavere
   community_moderation_settings: Fellesskapsmodereringsinnstillinger
   community_supported_id: Takson støttet av fellesskapet?
@@ -4928,57 +4927,6 @@ nb:
           Noen av disse bilder har blitt markert for upassende innhold eller krenkelse av opphavsrett. For detaljer se %{links}
         join_project_desc_html: |
           Å bli med i projektet vil gi prosjektets kuratorer muligheten til å se de skulte koordinatene til denne og alle andre observasjoner i prosjektet og impliserer at du samtykker til prosjektets <a href="%{url}" target="_blank">vilkår</a>.
-        quality_assessment_help_html: |
-          <p>
-          Vurderingen av datakvaliteten er et sammendrag av en observasjons nøyaktighet. Alle observasjoner starter som <strong>"uformell"</strong>, og får statusen 
-          <strong>"Trenger ID"</strong> når
-          </p>
-
-          <ul>
-          <li>observasjonen <strong>har en dato</strong></li>
-          <li>observasjonen <strong>er georeferert</strong> (dvs. har lat/lon koordinater)</li>
-          <li>observasjonen <strong>har bilder eller lyder</strong></li>
-          <li>observasjonen <strong>er ikke av et menneske</strong></li>
-          </ul>
-          <p>
-          Observasjoner blir av <strong>"Forskningskvalitet"</strong> når
-          </p>
-          <ul>
-          <li>
-          fellesskapet på %{site_name} <strong>er enig i en ID på artsnivå eller lavere</strong>, dvs. når over 2/3 av identifikatorer er enige i et takson
-          </li>
-          </ul>
-          <p>
-          Observasjoner går tilbake til <strong>"uformell"</strong> dersom kravene ovenfor ikke blir oppfylt eller fellesskapet er enig at
-          </p>
-          <ul>
-          <li>
-          <strong>lokaliteten ikke ser riktig ut</strong> (f.eks. aper midt i havet, flodhester i kontorbygg, osv.)
-          </li>
-          <li>
-          <strong>organismen ikke er viltlevende/forvillet</strong> (f.eks. i fangenskap eller dyrket av mennesker eller intelligente romvesener)
-          </li>
-          <li>
-          observasjonen <strong>ikke leverer bevis av en organisme</strong>, f.eks. bilder av landskap, vannpartier, steiner, osv.
-          </li>
-          <li>
-          observasjonen <strong>ikke leverer nylig (~100 år) bevis av organismen</strong> (f.eks. fossiler, men spor, avføring og døde løvblad er ok)
-          </li>
-          <li>
-          observasjonen trenger ikke en ID lenger <em>og</em> felleskapets ID er høyere enn familienivå
-          </li>
-          <li>
-          observatøren har valgt å ikke godta fellesskapets ID og fellesskapets ID er ikke en stamfar eller etterkommer av observatørens ID
-          </li>
-          </ul>
-          <p>
-          Og som om ikke det var komplisert nok, finnes det også tilfeller hvor systemet er med å bestemme:
-          </p>
-          <ul>
-          <li>
-          Systemet vil stemme for at observasjonen ikke er viltlevende/forvillet hvis det finnes minst 10 andre observasjoner av en slekt eller lavere i det minste stedet tilsvarende en county, stat eller land som inneholder denne observasjonen og 80% eller flere av disse observasjoner har blitt markert som ikke viltlevende/forvillet.
-          </li>
-          </ul>
         score_desc: "poengsum = totalt antall / (totalt antall + antall uenig + ane-uenigheter)"
         observation_flagged_notice_html: |
           Denne observasjonen har blitt markert som spam og er ikke lenger offentlig synlig. Du kan se det fordi du opprettet den, eller du er en sidekurator. Hvis du tror at dette er feil, vennligst <a href="mailto:%{help_email}" class="contact">ta kontakt</a>. <a href="/observations/%{observation_id}/flags">Forvalt markeringer</a>
