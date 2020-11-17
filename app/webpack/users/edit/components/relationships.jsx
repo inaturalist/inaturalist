@@ -171,8 +171,7 @@ const Relationships = ( {
           htmlDescription={{
             __html: I18n.t( "views.users.edit.blocking_desc_html", {
               site_name: SITE.name,
-              // noting that this help_email isn't populating
-              help_email: "help@inaturalist.org" // SITE.help_email
+              help_email: SITE.help_email
             } )
           }}
         />
