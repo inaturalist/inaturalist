@@ -23,8 +23,8 @@ const Relationships = ( {
     const { friendUser } = user;
 
     return (
-      <div className="row relationship-row-margin" key={friendUser.login}>
-        <div className="divider relationship-row-margin" />
+      <div className="row stacked" key={friendUser.login}>
+        <div className="divider stacked" />
         <div className="col-xs-4">
           <UserFollowing user={friendUser} />
         </div>
@@ -46,7 +46,7 @@ const Relationships = ( {
               {user.reciprocal_trust && <em>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</em>}
             </div>
             <div className="col-md-6">
-              <em className="relationship-row-margin">
+              <em className="stacked">
                 {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
               </em>
               <div>

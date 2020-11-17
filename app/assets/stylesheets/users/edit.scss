@@ -144,10 +144,6 @@ button.left-nav-item {
   margin-top: 20px;
 }
 
-.relationship-row-margin {
-  margin-bottom: 11px;
-}
-
 .help-text {
   margin-bottom: 13px;
 }
@@ -211,21 +207,18 @@ button.left-nav-item {
 
 .AboutLicensingModal.modal {
   .modal-dialog {
-    height: 60%;
     width: 70%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
     .modal-content {
       height: 100%;
-      padding-top: 25px;
       padding-left: 32px;
-      padding-right: 32px;
-      min-height: 616px;
       min-width: 704px;
-      padding-bottom: 25px;
     }
     .modal-body {
-      height: 100%;
-      overflow-x: auto;
-      max-height: none;
+      min-height: 716px;
     }
   }
 }

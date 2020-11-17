@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
-import ModalCloseButton from "./modal_close_button";
-
 const AboutLicensingModal = ( { show, onClose } ) => {
   const createLicenseList = list => {
     const iNatLicenses = iNaturalist.Licenses;
@@ -54,9 +52,10 @@ const AboutLicensingModal = ( { show, onClose } ) => {
       className="AboutLicensingModal"
       onHide={onClose}
     >
+      <Modal.Header closeButton>
+        <Modal.Title>{I18n.t( "creative_commons_licenses" )}</Modal.Title>
+      </Modal.Header>
       <Modal.Body>
-        <h4>{I18n.t( "creative_commons_licenses" )}</h4>
-        <ModalCloseButton onClose={onClose} />
         <div className="row">
           <div className="col-xs-5">
             {createLicenseList( ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa"] )}
