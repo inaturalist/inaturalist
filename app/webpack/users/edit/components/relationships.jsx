@@ -79,7 +79,7 @@ const Relationships = ( {
   );
 
   const showFilters = ( ) => (
-    <div className={relationships.length === 0 ? "hidden" : null}>
+    <div>
       <div className="col-md-3">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
@@ -87,6 +87,7 @@ const Relationships = ( {
             <UserAutocomplete
               resetOnChange={false}
               afterSelect={( { item } ) => searchUsers( item )}
+              afterUnselect={( ) => searchUsers( { item: { id: null } } )}
               bootstrapClear
               placeholder={I18n.t( "username" )}
             />

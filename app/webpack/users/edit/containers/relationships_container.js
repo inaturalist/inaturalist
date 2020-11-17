@@ -20,7 +20,10 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    searchUsers: item => { dispatch( setRelationshipFilters( { q: item.id } ) ); },
+    searchUsers: item => { 
+      console.log( item, "item" );
+      dispatch( setRelationshipFilters( { q: item.id } ) ); 
+    },
     filterRelationships: e => {
       dispatch( setRelationshipFilters( { [e.target.name]: e.target.value } ) );
     },
