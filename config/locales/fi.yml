@@ -845,7 +845,6 @@ fi:
   community_guidelines: Yhteisön pelisäännöt
   community_id_heading: Yhteisön taksoni
   community_id_at_species_or_lower?: Yhteisö tunnistanut lajilleen tai alemmalle tasolle?
-  community_id_at_genus_level_or_lower: Yhteisö tunnistanut suvulleen tai alemmalle tasolle?
   community_id_at_species_level_or_lower: Yhteisö on tunnistanut havainnon lajilleen tai tarkemmin
   community_moderation_settings: Yhteisön moderointiasetukset
   community_supported_id: Yhteisö-tuettu taksoni?
@@ -1573,6 +1572,9 @@ fi:
   hide_content: Piilota sisältö
   hide_desc: |
     Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Piilota "Ei merkintöjä"
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -3383,6 +3385,9 @@ fi:
   show_keyboard_shortcuts: Näytä pikanäppäimet
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Näytä "Ei merkintöjä"
   show_observation_photos: näytä havaintojen kuvat
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
@@ -4513,64 +4518,6 @@ fi:
           Laatuarvio on arvio havainnon täsmällisyydestä. Tutkimustason saavuttaneita havaintoja voidaan käyttää tieteelliseen tutkimukseen. Anna äänesi alla:
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
-        quality_assessment_help_html: |
-          <p>
-          Tietojen laatuarvio on yhteenveto havainnon virheettömyydestä. Kaikki havainnot aloittavat <strong>"epämuodollisina"</strong> ja saavuttavat <strong>"tutkimustason"</strong> kun
-          </p>
-
-          <ul>
-           <li>havainnolla <strong>on päivämäärä</strong></li>
-           <li>havainto <strong>on paikannettu</strong> (ts. sillä on koordinaatit)</li>
-           <li>havainnolla <strong>on kuva tai äänite</strong></li>
-           <li>havainto <strong>ei ole ihmisestä</strong></li>
-          </ul>
-          <p>
-           \ Havainnot saavuttavat <strong>"tutkimustason"</strong> kun
-          </p>
-          <ul>
-           \ <li>
-           %{site_name} <strong>yhteisö hyväksyy lajitason tai sitä alemman tunnistuksen</strong>, ts.
-           kun enemmän kuin 2/3 tunnistajista hyväksyy taksonin
-           </li>
-          </ul>
-          <p>
-           Havainnot palaavat <strong>"epämuodollisiksi"</strong> 
-           jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä että
-          </p>
-          <ul>
-           \ <li>
-           <strong>sijainti ei vaikuta
-           oikealta</strong> (esim. apinat keskellä merta,
-           virtahepoja toimistorakennuksissa, jne.)
-           </li>
-           \ <li>
-           <strong>eliö ei ole luonnonvarainen</strong> (esim. vangittu eläin tai viljelykasvi)
-           </li>
-           <li>
-           havainto <strong>ei esitä näyttöä eliöstä</strong>, esim. kuvia maisemista, vesistöistä,
-           kivistä yms.
-           </li>
-           <li>
-           havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita
-           eliöstä</strong> (esim. fossiilit, jäljet, ulosteet ja kuolleet lehdet
-           ovat ok)
-           </li>
-           <li>
-           havainto ei enää tarvitse tunnistusta<em>ja</em> yhteisön tekemä tunnistus on heimoa ylemmällä tasolla
-           </li>
-           <li>
-           havainnoija hylkäsi yhteisön tekemän tunnistuksen ja yhteisön
-           tunnistuksen taksoni ei ole havainnoijan tunnistukseen liittyvän taksonin ylempi tai alempi taksoni
-           \ </li>
-          </ul>
-          <p>
-           Ja jos tämä ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:
-          </p>
-          <ul>
-           <li>
-           Järjestelmä äänestää että havainto ei ole luonnonvarainen mikäli järjestelmässä on ainakin kymmenen muuta tunnistettua havaintoa (suku- tai alemmalta tasolta) havainnon lähiympäristöstä (pienimmällä maakunta- osavaltio- tai valtiotasolla) ja ainakin 80 % näistä havainnoista on merkitty ei-luonnonvaraiseksi.
-           </li>
-          </ul>
         observation_flagged_notice_html: |
           Tämä havainto on merkitty spammiksi ja ei ole enää julkisesti näkyvillä. Näet tietueen, koska olet luonut sen itse tai koska olet sivuston kuraattori. Jos pidät merkintää virheellisenä, ole hyvä ja <a href="mailto:%{help_email}" class="contact">ota yhteyttä</a>. <a href="/observations/%{observation_id}/flags">Liputusten hallinta</a>
         observer_does_not_allow_observation_fields: Havainnoija ei salli uusien havaintokenttien lisäämistä
@@ -5657,6 +5604,9 @@ fi:
         published_at: Julkaisu
       listed_taxon:
         establishment_means: Lajin alkuperä
+      message:
+        subject: Aihe
+        body: Sisältö
       observation:
         description: Muistiinpanot
         geo_x: Itä
