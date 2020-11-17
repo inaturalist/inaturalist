@@ -986,7 +986,6 @@ cs:
   community_guidelines: Pravidla komunity
   community_id_heading: ID komunity
   community_id_at_species_or_lower?: ID komunity na úrovni druhů nebo nižší?
-  community_id_at_genus_level_or_lower: ID komunity na úrovni rodu nebo nižší
   community_id_at_species_level_or_lower: ID komunity na úrovni druhu nebo nižší
   community_moderation_settings: Nastavení moderování komunity
   community_supported_id: ID podporované komunitou?
@@ -5382,57 +5381,6 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help_html: |
-          <p>
-          Hodnocení kvality údajů je shrnutí přesnosti pozorování. Všechna pozorování začínají na stupni <strong>„běžné“</strong> a posouvají se na stupeň
-          <strong>„potřebuje ID“</strong>, pokud
-          </p>
-
-          <ul>
-          <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>obsahuje georeferenci</strong> (tedy má souřadnice zeměpisné šířky/délky)</li>
-          <li>pozorování <strong>má fotky nebo zvuky</strong></li>
-          <li>pozorování <strong>se nevztahuje k člověku</strong></li>
-          </ul>
-          <p>
-          Pozorování se posouvají na <strong>„výzkummý stupeň“</strong>, pokud
-          </p>
-          <ul>
-          <li>
-          se komunita %{site_name} <strong> shodne na ID na úrovni druhu nebo nižší</strong>, tedy pokud se na taxonu shodnou více než 2/3 identifikujících
-          </li>
-          </ul>
-          <p>
-          Pozorování se vrátí na úroveň <strong>„běžné“</strong>, pokud výše uvedené podmínky nejsou splněny nebo se komunita shodne, že
-          </p>
-          <ul>
-          <li>
-          <strong>lokalita se zdá nepřesná</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách atd.)
-          </li>
-          <li>
-          <strong>organismus nežije ve volné přírodě/není naturalizovaný</strong> (např. žije v zajetí nebo ho pěstuje člověk nebo inteligentní mimozemšťané)
-          </li>
-          <li>
-          pozorování <strong>nepředkládá důkaz o organismu</strong>, např. obrázky krajiny, vodních prvků, kamenů atd.
-          </li>
-          <li>
-          pozorování <strong>nepředkládá aktuální (~100 let) důkaz o organismu</strong> (např. fosilie, ale stopy, trus nebo odumřelé listy jsou v pořádku)
-          </li>
-          <li>
-          pozorování už nevyžaduje ID <em>a</em> komunitní ID je na úrovni vyšší než čeleď
-          </li>
-          <li>
-          pozorovatel si zvolil možnost nepoužít komunitní ID a komunitní ID taxon není základní ani následný taxon taxonu souvisejícího s ID pozorovatele
-          </li>
-          </ul>
-          <p>
-          A pokud by to nebylo dost složité, pak jsou ještě situace, kdy se do toho může vložit systém:
-          </p>
-          <ul>
-          <li>
-          Systém určí, že pozorování není ve volné přírodě/naturalizované, pokud se v nejmenším okrese, státě nebo odpovídajícím celku nachází nejméně 10 dalších pozorování na úrovni rodu nebo nižší, která obsahují toto pozorování, a 80 % nebo více z těchto pozorování bylo označeno jako pozorování neprovedená ve volné přírodě/nenaturalizovaná.
-          </li>
-          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
