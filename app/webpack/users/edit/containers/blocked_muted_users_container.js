@@ -10,8 +10,8 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    blockedUsers: state.relationships.blockedUsers,
-    mutedUsers: state.relationships.mutedUsers
+    blockedUsers: [...state.relationships.blockedUsers],
+    mutedUsers: [...state.relationships.mutedUsers]
   };
 }
 

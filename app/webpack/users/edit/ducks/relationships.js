@@ -170,11 +170,8 @@ export function fetchRelationships( firstRender, currentPage = 1 ) {
       ...filters
     };
 
-    console.log( paramsWithFilters, "params with filters" );
     inatjs.relationships.search( paramsWithFilters ).then( response => {
       const { results, page } = response;
-
-      console.log( results, "results in relationships" );
 
       if ( firstRender ) {
         dispatch( updateBlockedAndMutedUsers( ) );
