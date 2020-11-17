@@ -187,20 +187,16 @@ button.left-nav-item {
 
 .ThirdPartyTrackingModal.modal {
   .modal-dialog {
-    height: 48%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
     .modal-content {
       height: 100%;
-      padding-top: 25px;
-      padding-left: 32px;
-      padding-right: 32px;
-      min-height: 450px;
       min-width: 766px;
-      padding-bottom: 25px;
     }
     .modal-body {
-      height: 100%;
-      overflow-x: auto;
-      max-height: none;
+      min-height: 550px;
     }
   }
 }

@@ -2,17 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
-import ModalCloseButton from "./modal_close_button";
-
 const ThirdPartyTrackingModal = ( { show, onClose } ) => (
   <Modal
     show={show}
     className="ThirdPartyTrackingModal"
     onHide={onClose}
   >
+    <Modal.Header closeButton>
+      <Modal.Title>{I18n.t( "third_party_tracking" )}</Modal.Title>
+    </Modal.Header>
     <Modal.Body>
-      <label htmlFor="third_party_tracking">{I18n.t( "third_party_tracking" )}</label>
-      <ModalCloseButton onClose={onClose} />
       <p>
         <strong>
           {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use" )}
