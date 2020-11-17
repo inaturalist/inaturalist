@@ -1,3 +1,4 @@
+@import "colors";
 @import "../users/_user_image";
 @import "../users/toggle_switch";
 
@@ -44,7 +45,7 @@ label.required {
   color: #333;
   &:after {
     content: "*";
-    color: #ca5c53;
+    color: $alert-red;
     margin-left: 5px;
   }
 }
@@ -57,14 +58,14 @@ button.left-nav-item {
   background-color: #fff;
 
   &:focus {
-    color: #74ac00;
+    color: $inat-green;
     font-weight: 600;
     text-decoration: none;
     outline:none;
   }
 
   &:active {
-    color: #74ac00;
+    color: $inat-green;
     font-weight: 600;
     text-decoration: none;
     outline:none;
@@ -73,7 +74,7 @@ button.left-nav-item {
 
 .btn.mobile-menu {
   color: white;
-  background: #74ac00;
+  background: $inat-green;
   min-width: 150px;
   &[disabled] {
     color: white;
