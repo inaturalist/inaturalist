@@ -184,6 +184,11 @@ nl:
 
     <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
+  about_trusting_projects: Over het vertrouwen in projecten
+  about_trusting_projects_options_any: Al je waarnemingen in dit project
+  about_trusting_projects_options_any_desc: |-
+    Dit omvat waarnemingen waar je de geoprivacy hebt ingesteld op "vervaagd"
+    of "privé," bijvoorbeeld waarnemingen in je achtertuin of plekken waar je geen anderen wilt hebben.
   about_trusting_projects_options_taxon: |-
     Alleen je waarnemingen in dit project die vervaagde coördinaten hebben
     vanwege bedreigde taxa
@@ -196,6 +201,10 @@ nl:
     -project. Dit is extreem belangrijk in situaties waarin wetenschappers of
     beheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en
     besluitvorming.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    De projectbeheerders die toegang zullen hebben tot je verborgen coördinaten zijn:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
@@ -860,7 +869,6 @@ nl:
   community_guidelines: Gemeenschapsrichtlijnen
   community_id_heading: Gemeenschapstaxon
   community_id_at_species_or_lower?: Gemeenschapstaxon op soort of lager?
-  community_id_at_genus_level_or_lower: Gemeenschapstaxon op geslachtsniveau of lager
   community_id_at_species_level_or_lower: Gemeenschapstaxon op soortniveau of lager
   community_moderation_settings: Instellingen voor gemeenschapsmoderatie
   community_supported_id: Gemeenschapondersteunde Taxon?
@@ -963,6 +971,17 @@ nl:
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
   coordinates: Coördinaten
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Alleen met volledige coördinaten
+  coords_viewable_for_proj_desc: |
+    Toon alleen waarnemingen van dit project waarvoor je de "echte"
+    coördinaten kunt zien, inclusief niet vervaagde waarnemingen, vervaagde waarnemingen door
+    mensen die jou vertrouwen, vervaagde waarnemingen door mensen die dit project
+    met alles vertrouwen en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
+    alleen met hetzelfde vertrouwen stellen.
   copy: Kopiëren
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
@@ -5150,44 +5169,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help_html: |
-          <p>
-          De gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
-          </p>
-
-          <ul>
-           <li>de waarneming <strong>een datum heeft</strong></li>
-             <li>de waarneming <strong>geografische referenties heeft</strong> (heeft coördinaten)</li>
-             <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
-             <li>de waarneming <strong>geen mens is</strong></li>
-          </ul>
-          <p>
-           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-          </p>
-          <ul>
-           <li>de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
-          </ul>
-
-          <p>
-          Waarnemingen worden teruggezet naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap hiermee instemt
-          </p>
-          <ul>
-           <li>de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van 
-           de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
-           <li>het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of 
-           gekweekt door mensen of intelligente ruimtewezens)</li>
-           \ <li>de waarneming <strong>levert geen bewijs op van een organisme </strong>, b.v. 
-           afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
-           \ <li>de waarneming <strong>bevat geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, poep en dode bladeren zijn oké)</li>
-           <li>de waarneming heeft niet langer een naam nodig <em>en</em> de gemeenschapsID is boven de familie</li>
-           <li>de waarnemer heeft zich afgemeld voor de gemeenschapsID en het gemeenschapsID-taxon is geen voorouder of afstammeling van het taxon van de waarnemer</li>
-          </ul>
-          <p>
-           En alsof dat nof niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:
-          </p>
-          <ul>
-           <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus zijn of lager in de kleinste provincie-, staats- of land-equivalent plaats die deze waarneming bevat en 80% of meer van die waarnemingen zijn gemarkeerd als niet wild/genaturaliseerd.</li>
-          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -5428,6 +5409,14 @@ nl:
         submission_models:
           any: iedereen
           curators: projectcuratoren
+        trust_allow_members_to_trust: |-
+          Leden toestaan dit project verborgen coördinaten toe te vertrouwen
+        trust_help_desc: |-
+          Als u toegang wilt tot de verborgen coördinaten van vervaagde waarnemingen stelt
+          deze optie mensen die zich bij dit project hebben aangesloten in staat om
+          de projectbeheerders toegang te verlenen tot de verborgen coördinaten. Projectleden kunnen toegang verlenen tot de verborgen coördinaten van elk van hun waarnemingen in dit project of alleen de waarnemingen die verborgen zijn vanwege bedreigde taxa.
+        trust_help_notification: |-
+          Dit zal echter ook alle vertrouwde projectdeelnemers elke keer als jij de projectvereisten wijzigt op de hoogte brengen zodat zij opnieuw kunnen beoordelen of zij jou blijven vertrouwen, gezien de nieuwe vereisten.
         trusted_project_means: |
           Een project vertrouwen betekent dat de projectbeheerders projectbestanden en eigen projectattributen (bijv. banner-HTML, CSS) kunnen toevoegen. Toegang tot aangepaste projectattributen betekent dat de projectbeheerders in principe kwaadwillige Javascript zouden kunnen toevoegen, dus vertrouw alleen projecten met beheerders die zowel verantwoordelijk als technisch bekwaam zijn.
         you_can_preview: |
