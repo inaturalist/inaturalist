@@ -2,12 +2,10 @@ import { connect } from "react-redux";
 
 import Relationships from "../components/relationships";
 import {
-  updateFilters,
-  sortRelationships,
   deleteRelationship,
   setRelationshipToDelete,
-  setPage,
-  filterRelationships
+  fetchRelationships,
+  setRelationshipFilters
 } from "../ducks/relationships";
 import { showModal } from "../ducks/delete_relationship_modal";
 
@@ -15,28 +13,44 @@ function mapStateToProps( state ) {
   return {
     // empty array in case page loads before relationships fetched
     relationships: state.relationships.relationships || [],
-    // spread filteredRelationships to refresh props when sorting results
-    filteredRelationships:
-      state.relationships.relationships
-        ? [...state.relationships.filteredRelationships]
-        : [],
-    page: state.relationships.page
+    page: state.relationships.page,
+    totalRelationships: state.relationships.totalRelationships
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    updateFilters: e => { dispatch( updateFilters( e ) ); },
-    sortRelationships: e => { dispatch( sortRelationships( e ) ); },
+    searchUsers: item => { dispatch( setRelationshipFilters( { q: item.id } ) ); },
+    filterRelationships: e => {
+      dispatch( setRelationshipFilters( { [e.target.name]: e.target.value } ) );
+    },
+    sortRelationships: e => {
+      const sort = e.target.value;
+      let params;
+
+      if ( sort === "recently_added" ) {
+        params = { order_by: "users.login", order: "desc" };
+      }
+
+      if ( sort === "earliest_added" ) {
+        params = { order_by: "users.login", order: "asc" };
+      }
+
+      if ( sort === "a_to_z" ) {
+        params = { order_by: null, order: "asc" };
+      }
+
+      if ( sort === "z_to_a" ) {
+        params = { order_by: null, order: "desc" };
+      }
+      dispatch( setRelationshipFilters( params ) );
+    },
     deleteRelationship: id => { dispatch( deleteRelationship( id ) ); },
     showModal: ( id, user ) => {
       dispatch( setRelationshipToDelete( id ) );
       dispatch( showModal( user ) );
     },
-    loadPage: page => {
-      dispatch( setPage( page ) );
-      dispatch( filterRelationships( ) );
-    }
+    loadPage: page => { dispatch( fetchRelationships( false, page ) ); }
   };
 }
 

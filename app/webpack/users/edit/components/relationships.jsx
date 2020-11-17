@@ -7,19 +7,19 @@ import SettingsItem from "./settings_item";
 import RelationshipsCheckboxContainer from "../containers/relationships_checkbox_container";
 import UserFollowing from "./user_following";
 import BlockedMutedUsersContainer from "../containers/blocked_muted_users_container";
+import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 
 const Relationships = ( {
   relationships,
-  filteredRelationships,
-  updateFilters,
+  filterRelationships,
   sortRelationships,
   showModal,
   loadPage,
-  page
+  page,
+  totalRelationships,
+  searchUsers
 } ) => {
-  const showRelationships = ( ) => filteredRelationships.slice(
-    page * 10 - 10, page * 10 // only display up to 10 items on current page
-  ).map( user => {
+  const showRelationships = ( ) => relationships.map( user => {
     const { friendUser } = user;
 
     return (
@@ -35,17 +35,19 @@ const Relationships = ( {
                 name="following"
                 label={I18n.t( "following" )}
                 id={user.id}
+                relationships={relationships}
               />
               <RelationshipsCheckboxContainer
                 name="trust"
                 label={I18n.t( "trust_with_private_coordinates" )}
                 id={user.id}
+                relationships={relationships}
               />
               {user.reciprocal_trust && <em>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</em>}
             </div>
             <div className="col-md-6">
               <em className="relationship-row-margin">
-                {I18n.t( "added_on_datetime", { datetime: moment( friendUser.created_at ).format( "LL" ) } ) }
+                {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
               </em>
               <div>
                 <button
@@ -63,19 +65,30 @@ const Relationships = ( {
     );
   } );
 
+  const renderDropdown = id => (
+    <select
+      className="form-control"
+      id={id}
+      name={id}
+      onChange={filterRelationships}
+    >
+      <option value="all">{I18n.t( "all" )}</option>
+      <option value="yes">{I18n.t( "yes" )}</option>
+      <option value="no">{I18n.t( "no" )}</option>
+    </select>
+  );
+
   const showFilters = ( ) => (
     <div className={relationships.length === 0 ? "hidden" : null}>
       <div className="col-md-3">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
           <div className="input-group margin-right-medium">
-            <input
-              id="name"
-              type="text"
-              className="form-control"
-              name="name"
+            <UserAutocomplete
+              resetOnChange={false}
+              afterSelect={( { item } ) => searchUsers( item )}
+              bootstrapClear
               placeholder={I18n.t( "username" )}
-              onChange={updateFilters}
             />
           </div>
         </div>
@@ -83,31 +96,13 @@ const Relationships = ( {
       <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
         <div className="row flex-no-wrap">
           <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
-          <select
-            className="form-control"
-            id="following"
-            name="following"
-            onChange={updateFilters}
-          >
-            <option value="all">{I18n.t( "all" )}</option>
-            <option value="yes">{I18n.t( "yes" )}</option>
-            <option value="no">{I18n.t( "no" )}</option>
-          </select>
+          {renderDropdown( "following" )}
         </div>
       </div>
       <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
         <div className="row flex-no-wrap search-margin">
           <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
-          <select
-            className="form-control"
-            id="trusted"
-            name="trusted"
-            onChange={updateFilters}
-          >
-            <option value="all">{I18n.t( "all" )}</option>
-            <option value="yes">{I18n.t( "yes" )}</option>
-            <option value="no">{I18n.t( "no" )}</option>
-          </select>
+          {renderDropdown( "trusted" )}
         </div>
       </div>
       <div className="col-md-3 col-sm-4 col-xs-4">
@@ -155,11 +150,11 @@ const Relationships = ( {
             <label>{I18n.t( "actions" )}</label>
           </div>
         </div>
-        {filteredRelationships.length > 0 && showRelationships( )}
+        {relationships.length > 0 && showRelationships( )}
         <div className="divider" />
         <div className="Pagination text-center">
           <Pagination
-            total={filteredRelationships.length}
+            total={totalRelationships}
             current={page}
             pageSize={10}
             onChange={p => loadPage( p )}
@@ -196,12 +191,13 @@ const Relationships = ( {
 
 Relationships.propTypes = {
   relationships: PropTypes.array,
-  filteredRelationships: PropTypes.array,
-  updateFilters: PropTypes.func,
+  filterRelationships: PropTypes.func,
   sortRelationships: PropTypes.func,
   showModal: PropTypes.func,
   loadPage: PropTypes.func,
-  page: PropTypes.number
+  page: PropTypes.number,
+  totalRelationships: PropTypes.number,
+  searchUsers: PropTypes.func
 };
 
 export default Relationships;

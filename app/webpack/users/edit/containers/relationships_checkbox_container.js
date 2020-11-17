@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 import RelationshipsCheckbox from "../components/relationships_checkbox";
 import { handleCheckboxChange } from "../ducks/relationships";
 
-function mapStateToProps( state ) {
-  // clone array to get props to propagate
-  return {
-    relationships: [...state.relationships.relationships]
-  };
+function mapStateToProps( ) {
+  return { };
 }
 
 function mapDispatchToProps( dispatch ) {

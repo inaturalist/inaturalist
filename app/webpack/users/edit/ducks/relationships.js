@@ -3,27 +3,31 @@ import inatjs from "inaturalistjs";
 import { fetchUserSettings } from "./user_settings";
 
 const SET_RELATIONSHIPS = "user/edit/SET_RELATIONSHIPS";
-const SET_FILTERED_RELATIONSHIPS = "user/edit/SET_FILTERED_RELATIONSHIPS";
-const SET_FILTERS = "user/edit/SET_FILTERS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
 const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
 const SET_BLOCKED_USERS = "user/edit/SET_BLOCKED_USERS";
 const SET_MUTED_USERS = "user/edit/SET_MUTED_USERS";
-const SET_PAGE = "user/edit/SET_PAGE";
+const SET_FILTERS = "user/edit/SET_FILTERS";
 
 export default function reducer( state = {
-  filters: { name: null, following: "all", trusted: "all" },
   blockedUsers: [],
   mutedUsers: [],
-  page: 1
+  filters: {
+    following: "all",
+    trusted: "all",
+    order_by: "users.login",
+    order: "desc",
+    q: null
+  }
 }, action ) {
   switch ( action.type ) {
     case SET_RELATIONSHIPS:
-      return { ...state, relationships: action.relationships };
-    case SET_FILTERED_RELATIONSHIPS:
-      return { ...state, filteredRelationships: action.filteredRelationships };
-    case SET_FILTERS:
-      return { ...state, filters: action.filters };
+      return {
+        ...state,
+        relationships: action.relationships,
+        page: action.page,
+        totalRelationships: action.totalRelationships
+      };
     case SET_RELATIONSHIP_TO_DELETE:
       return { ...state, id: action.id };
     case SET_USER_AUTOCOMPLETE:
@@ -32,31 +36,19 @@ export default function reducer( state = {
       return { ...state, blockedUsers: action.blockedUsers };
     case SET_MUTED_USERS:
       return { ...state, mutedUsers: action.mutedUsers };
-    case SET_PAGE:
-      return { ...state, page: action.page };
+    case SET_FILTERS:
+      return { ...state, filters: action.filters };
     default:
   }
   return state;
 }
 
-export function setRelationships( relationships ) {
+export function setRelationships( relationships, page, totalRelationships ) {
   return {
     type: SET_RELATIONSHIPS,
-    relationships
-  };
-}
-
-export function setFilteredRelationships( filteredRelationships ) {
-  return {
-    type: SET_FILTERED_RELATIONSHIPS,
-    filteredRelationships
-  };
-}
-
-export function setFilters( filters ) {
-  return {
-    type: SET_FILTERS,
-    filters
+    relationships,
+    page,
+    totalRelationships
   };
 }
 
@@ -88,50 +80,10 @@ export function setMutedUsers( mutedUsers ) {
   };
 }
 
-export function setPage( page ) {
+export function setFilters( filters ) {
   return {
-    type: SET_PAGE,
-    page
-  };
-}
-
-export function filterRelationships( ) {
-  return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const { filters } = relationships;
-
-    const friends = relationships.relationships;
-
-    let filteredFriends;
-
-    // filterByName
-    if ( filters.name !== null ) {
-      // name and login can be null for new users
-      filteredFriends = friends.filter(
-        u => ( u.friendUser.name !== null && u.friendUser.name.includes( filters.name ) )
-        || ( u.friendUser.login !== null && u.friendUser.login.includes( filters.name ) )
-      );
-    } else {
-      // if no filters by name, show all
-      filteredFriends = friends;
-    }
-
-    // filterByFollowing
-    if ( filters.following === "yes" ) {
-      filteredFriends = filteredFriends.filter( u => ( u.following === true ) );
-    } else if ( filters.following === "no" ) {
-      filteredFriends = filteredFriends.filter( u => ( u.following === false ) );
-    }
-
-    // filterByTrust
-    if ( filters.trusted === "yes" ) {
-      filteredFriends = filteredFriends.filter( u => ( u.trusted === true ) );
-    } else if ( filters.trust === "no" ) {
-      filteredFriends = filteredFriends.filter( u => ( u.trusted === false ) );
-    }
-
-
-    dispatch( setFilteredRelationships( filteredFriends ) );
+    type: SET_FILTERS,
+    filters
   };
 }
 
@@ -207,16 +159,44 @@ export function updateBlockedAndMutedUsers( ) {
   };
 }
 
-export function fetchRelationships( firstRender ) {
-  const params = { useAuth: true };
-  return dispatch => inatjs.relationships.search( params ).then( ( { results } ) => {
-    if ( firstRender ) {
-      dispatch( setFilteredRelationships( results ) );
-      dispatch( updateBlockedAndMutedUsers( ) );
-    }
-    dispatch( setRelationships( results ) );
-    dispatch( filterRelationships( ) );
-  } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
+export function fetchRelationships( firstRender, currentPage = 1 ) {
+  const params = { useAuth: true, page: currentPage, per_page: 10 };
+
+  return ( dispatch, getState ) => {
+    const { filters } = getState( ).relationships;
+
+    const paramsWithFilters = {
+      ...params,
+      ...filters
+    };
+
+    console.log( paramsWithFilters, "params with filters" );
+    inatjs.relationships.search( paramsWithFilters ).then( response => {
+      const { results, page } = response;
+
+      console.log( results, "results in relationships" );
+
+      if ( firstRender ) {
+        dispatch( updateBlockedAndMutedUsers( ) );
+      }
+
+      dispatch( setRelationships( results, page, response.total_results ) );
+    } ).catch( e => console.log( `Failed to fetch relationships: ${e}` ) );
+  };
+}
+
+export function setRelationshipFilters( newFilters ) {
+  return ( dispatch, getState ) => {
+    const { filters } = getState( ).relationships;
+
+    const updatedFilters = {
+      ...filters,
+      ...newFilters
+    };
+
+    dispatch( setFilters( updatedFilters ) );
+    dispatch( fetchRelationships( ) );
+  };
 }
 
 export function updateRelationship( id, relationship ) {
@@ -241,56 +221,6 @@ export function handleCheckboxChange( e, id ) {
   };
 }
 
-export function updateFilters( e ) {
-  const { value, name } = e.target;
-
-  return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const { filters } = relationships;
-
-    filters[name] = value;
-    dispatch( setFilters( filters ) );
-    dispatch( filterRelationships( ) );
-  };
-}
-
-export function sortRelationships( e ) {
-  const { value } = e.target;
-
-  return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const { filteredRelationships } = relationships;
-
-    let sorted;
-
-    if ( value === "recently_added" ) {
-      sorted = filteredRelationships.sort(
-        ( a, b ) => new Date( b.created_at ) - new Date( a.created_at )
-      );
-    }
-
-    if ( value === "earliest_added" ) {
-      sorted = filteredRelationships.sort(
-        ( a, b ) => new Date( a.created_at ) - new Date( b.created_at )
-      );
-    }
-
-    if ( value === "a_to_z" ) {
-      sorted = filteredRelationships.sort(
-        ( a, b ) => a.friendUser.login.localeCompare( b.friendUser.login )
-      );
-    }
-
-    if ( value === "z_to_a" ) {
-      sorted = filteredRelationships.sort(
-        ( a, b ) => b.friendUser.login.localeCompare( a.friendUser.login )
-      );
-    }
-
-    dispatch( setFilteredRelationships( sorted ) );
-  };
-}
-
 export function deleteRelationship( ) {
   return ( dispatch, getState ) => {
     const { relationships } = getState( );
@@ -298,7 +228,7 @@ export function deleteRelationship( ) {
 
     // noting that the correct id to be deleted is the user id, not the friendUser id
     return inatjs.relationships.delete( { id } ).then( ( ) => {
-      dispatch( fetchRelationships( true ) );
+      dispatch( fetchRelationships( ) );
     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
   };
 }
