@@ -13,7 +13,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def create
-    @application = OauthApplication.new(params[:application] || params[:oauth_application])
+    @application = OauthApplication.new( allowed_params )
     @application.owner = current_user
     if @application.save
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :create])
@@ -30,7 +30,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def update
-    if @application.update_attributes(params[:application] || params[:oauth_application])
+    if @application.update_attributes( allowed_params )
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :update])
       redirect_to oauth_application_path(@application)
     else
@@ -55,5 +55,20 @@ class OauthApplicationsController < ApplicationController
       flash[:error] = "You don't have permission to do that"
       return redirect_to root_url
     end
+  end
+
+  def allowed_params
+    allowed = params.require(:oauth_application).permit(
+      :image,
+      :name,
+      :redirect_uri,
+      :confidential,
+      :description,
+      :url
+    )
+    if current_user.is_admin?
+      allowed = allowed.permit(:official, :trusted)
+    end
+    allowed
   end
 end

@@ -2357,7 +2357,8 @@ CREATE TABLE public.oauth_applications (
     url character varying(255),
     description text,
     scopes character varying DEFAULT ''::character varying NOT NULL,
-    confidential boolean DEFAULT true NOT NULL
+    confidential boolean DEFAULT true NOT NULL,
+    official boolean DEFAULT false
 );
 
 
@@ -10361,4 +10362,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200918230545');
 INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 
 INSERT INTO schema_migrations (version) VALUES ('20201023174221');
+
+INSERT INTO schema_migrations (version) VALUES ('20201118012108');
 

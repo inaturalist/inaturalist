@@ -10,7 +10,8 @@
 
   - if is_admin?
     .admin.stacked
-      = f.check_box :trusted, :label_after => true
+      = f.check_box :official, label_after: true
+      = f.check_box :trusted, label_after: true
       - if Doorkeeper.configuration.native_redirect_uri
         .meta
           Use
