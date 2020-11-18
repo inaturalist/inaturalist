@@ -597,7 +597,11 @@ class UsersController < ApplicationController
       format.html do
         @monthly_supporter = @user.donorbox_plan_status == "active" &&
           @user.donorbox_plan_type == "monthly"
-        render :edit2, layout:"bootstrap"
+        if current_user.is_admin?
+          render :edit2, layout: "bootstrap"
+        else
+          render :edit
+        end
       end
       format.json do
         render :json => @user.to_json(

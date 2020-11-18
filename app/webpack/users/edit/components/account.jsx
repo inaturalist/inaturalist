@@ -16,6 +16,8 @@ const Account = ( {
   setModalState,
   sites
 } ) => {
+  const currentNetworkAffiliation = sites.filter( site => site.id === profile.site_id )[0];
+
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
@@ -28,29 +30,28 @@ const Account = ( {
     )
   );
 
-  const showINatAffiliationLogo = num => {
-    const pngAssetList = [2, 6, 8, 13, 14, 18];
-    return `https://static.inaturalist.org/sites/${num}-logo.${pngAssetList.includes( num ) ? "png" : "svg"}`;
-  };
-
   const createINatAffiliationList = ( ) => {
-    const menuItems = sites.map( ( { id, name } ) => (
-      <MenuItem
-        key={`inat-affiliation-logo-${id}`}
-        eventKey={id}
-        className="inat-affiliation-width"
-      >
-        <span className="flex-no-wrap">
-          <img
-            className="inat-affiliation-logo margin-right-medium"
-            alt={`inat-affiliation-logo-${id}`}
-            src={showINatAffiliationLogo( id )}
-          />
-          <div className="text-muted small">{name}</div>
-          {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-        </span>
-      </MenuItem>
-    ) );
+    const menuItems = sites.map( site => {
+      const { id, name } = site;
+
+      return (
+        <MenuItem
+          key={`inat-affiliation-logo-${id}`}
+          eventKey={id}
+          className="inat-affiliation-width"
+        >
+          <span className="flex-no-wrap">
+            <img
+              className="inat-affiliation-logo margin-right-medium"
+              alt={`inat-affiliation-logo-${id}`}
+              src={site.icon_url}
+            />
+            <div className="text-muted small">{name}</div>
+            {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+          </span>
+        </MenuItem>
+      );
+    } );
 
     // add a MenuItem divider between all the first and last items
     // using this instead of my own div because it's automatically styled
@@ -78,8 +79,6 @@ const Account = ( {
         <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
           <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
           <PlaceAutocomplete
-            // can't label this one because PlaceAutocomplete doesn't accept an id in props
-            // id="user_search_place_id"
             resetOnChange={false}
             initialPlaceID={profile.search_place_id}
             bootstrapClear
@@ -118,7 +117,7 @@ const Account = ( {
                 <img
                   className="inat-affiliation-logo"
                   alt={`inat-affiliation-logo-${profile.site_id || 1}`}
-                  src={showINatAffiliationLogo( profile.site_id )}
+                  src={currentNetworkAffiliation.icon_url}
                 />
               )}
             >
