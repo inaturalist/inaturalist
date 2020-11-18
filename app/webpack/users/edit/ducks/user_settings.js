@@ -168,6 +168,7 @@ export function removePhoto( ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile.icon = null;
+    profile.icon_url = null;
     profile.icon_delete = true;
     dispatch( setUserData( profile ) );
   };
