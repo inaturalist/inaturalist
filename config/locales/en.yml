@@ -943,10 +943,14 @@ en:
   comments_on: Comments on
   comments_on_my_observations: Comments on my observations
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
+  # Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Commit
+  # Adjective describing a taxon change that has been committed
   committed: Committed
   committed_by_user_on_date_html: Committed by %{user} on %{date}
+  # Label for date the taxon change was committed
   committed_on: Committed on %{date}
+  # Status message while a taxon change is being committed
   committing: Committing...
   common_name: Common Name
   community: Community
@@ -954,8 +958,8 @@ en:
   community_guidelines: Community Guidelines
   community_id_heading: Community Taxon
   community_id_at_species_or_lower?: Community Taxon at species or lower?
-  community_id_at_genus_level_or_lower: Community Taxon at genus level or lower
   community_id_at_species_level_or_lower: Community Taxon at species level or lower
+  community_id_is_precise: Community Taxon is precise
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported Taxon?
   compare: Compare
@@ -5672,8 +5676,10 @@ en:
           </p>
           <ul>
             <li>
-              the %{site_name} <strong>community agrees on species-level ID or lower</strong>, i.e.
-              when more than 2/3 of identifiers agree on a taxon
+              the %{site_name} <strong>community agrees on species-level ID or
+              lower</strong>, i.e. when more than 2/3 of identifiers agree on a
+              taxon (if the community has voted that the Community Taxon can no
+              longer be improved, this reverts to subfamily-level ID or lower)
             </li>
           </ul>
           <p>

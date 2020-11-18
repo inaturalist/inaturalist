@@ -725,10 +725,14 @@ ja:
   comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: 確定
+  #Adjective describing a taxon change that has been committed
   committed: 確定済
   committed_by_user_on_date_html: '%{user} さんが %{date} にコミットしました'
+  #Label for date the taxon change was committed
   committed_on: '%{date} にコミットされました'
+  #Status message while a taxon change is being committed
   committing: 確定中...
   community: コミュニティ
   community_curated: コミュニティ管理
@@ -3633,6 +3637,7 @@ ja:
   user_added_an_x: "%{user}さんが%{x}を追加しました"
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
+  user_commented: "%{user} さんがコメントしました"
   user_commented_on: "%{user}さんがあなたの%{title}にコメントしました（%{time}）"
   user_disagrees_this_is_taxon: "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"

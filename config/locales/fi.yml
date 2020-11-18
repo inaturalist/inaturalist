@@ -831,10 +831,14 @@ fi:
   comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Sitoutua
+  #Adjective describing a taxon change that has been committed
   committed: Sitoutunut
   committed_by_user_on_date_html: Tallentanut %{user} %{date}
+  #Label for date the taxon change was committed
   committed_on: Tehty %{date}
+  #Status message while a taxon change is being committed
   committing: Suoritetaan...
   community: Yhteisö
   community_curated: Yhteisön kuratoimat
@@ -4360,7 +4364,6 @@ fi:
     messages:
       from: Lähettäjä
       to: Johonkin/jollekin/määränpää
-      subject: Otsikko
       subject_body: Aihe / Sisältö
       show:
         flag_notice_html: |

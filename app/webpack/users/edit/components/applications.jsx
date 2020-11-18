@@ -4,8 +4,6 @@ import moment from "moment";
 
 import SettingsItem from "./settings_item";
 
-const iNatAppIds = [2, 3, 315, 333];
-
 const Applications = ( { showModal, apps = [] } ) => {
   const renderEmptyState = ( ) => (
     <p className="col-xs-9">
@@ -17,8 +15,8 @@ const Applications = ( { showModal, apps = [] } ) => {
     return renderEmptyState( );
   }
 
-  const iNatApps = apps.filter( app => iNatAppIds.includes( app.application.id ) );
-  const externalApps = apps.filter( app => !iNatAppIds.includes( app.application.id ) );
+  const iNatApps = apps.filter( app => app.application.official === true );
+  const externalApps = apps.filter( app => app.application.official === false );
 
   const renderHeader = ( headerText, htmlFor ) => (
     <div className="row">

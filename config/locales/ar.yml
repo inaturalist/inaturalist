@@ -543,9 +543,13 @@ ar:
   comments_on: تعليقات على
   comments_on_my_observations: تعليقات على ملاحظاتي
   commercial_solicitation: التماس تجاري، وصلات إلى لا مكان، إلخ.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: نفذ
+  #Adjective describing a taxon change that has been committed
   committed: نُفِّذ
+  #Label for date the taxon change was committed
   committed_on: تم التنفيذ في %{date}
+  #Status message while a taxon change is being committed
   committing: جارٍ التنفيذ...
   community: المجتمع
   community_curated: مجتمع مختار
@@ -4047,7 +4051,6 @@ ar:
     messages:
       from: من
       to: إلى
-      subject: الموضوع
       subject_body: الموضوع / الجسم
       index:
         show_messages_from_user: إظهار الرسائل من %{user}

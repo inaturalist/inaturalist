@@ -66,7 +66,7 @@ class MushroomObserverImportFlowTask < FlowTask
       results.each do |result|
         transaction do
           o = observation_from_result( result )
-          unless o && o.save
+          if o && !o.save
             mo_url = result[:url].gsub( "https", "http" )
             errors[mo_url] = o.errors.full_messages.to_sentence
             clear_warnings_for_url( mo_url )
@@ -181,7 +181,7 @@ class MushroomObserverImportFlowTask < FlowTask
     mo_url = result[:url].gsub( "https", "http" )
     log "working on result #{mo_url}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
-      warn( result[:url], "Obs not from collection location")
+      warn( result[:url], "Obs not from collection location, skipped")
       return nil
     end
     existing = Observation.by( user ).joins(:observation_field_values).

@@ -893,10 +893,14 @@ he:
   comments_on: תגובות על
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: ביצוע
+  #Adjective describing a taxon change that has been committed
   committed: בוצע
   committed_by_user_on_date_html: הופעל על־ידי %{user} בתאריך %{date}
+  #Label for date the taxon change was committed
   committed_on: הועלה ב %{date}
+  #Status message while a taxon change is being committed
   committing: מבצע...
   community: קהילה
   community_curated: נאצר על ידי הקהילה
@@ -3770,7 +3774,6 @@ he:
     messages:
       from: מ
       to: אל
-      subject: נושא
       index:
         show_messages_from_user: הצגת הודעות של %{user}
         show_messages_to_user: הצגת הודעות ל%{user}

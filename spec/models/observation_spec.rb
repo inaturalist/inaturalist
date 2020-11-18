@@ -3840,7 +3840,7 @@ describe Observation do
 
     it "generates mention updates" do
       u = User.make!
-      o = Observation.make!(description: "hey @#{ u.login }")
+      o = after_delayed_job_finishes { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
 
@@ -3850,21 +3850,25 @@ describe Observation do
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
       # mark the generated updates as viewed
       UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
-      o.update_attributes( description: "#{o.description} and some extra" )
+      after_delayed_job_finishes do
+        o.update_attributes( description: "#{o.description} and some extra" )
+      end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "removes mention updates if the description was updated to remove the mentioned user" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
-      o.update_attributes( description: "bye" )
+      after_delayed_job_finishes { o.update_attributes( description: "bye" ) }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
-      o.update_attributes( description: "#{o.description} @#{u.login}" )
+      after_delayed_job_finishes do
+        o.update_attributes( description: "#{o.description} @#{u.login}" )
+      end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
   end

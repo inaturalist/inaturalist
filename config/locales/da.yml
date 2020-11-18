@@ -843,10 +843,14 @@ da:
   comments_on: Kommentarer til
   comments_on_my_observations: Kommentarer til mine observationer
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Engagér
+  #Adjective describing a taxon change that has been committed
   committed: Udført
   committed_by_user_on_date_html: Effektueret af %{user} d. %{date}
+  #Label for date the taxon change was committed
   committed_on: Udført den %{date}
+  #Status message while a taxon change is being committed
   committing: Engagerer
   community: Fællesskab
   community_curated: Kurateret af fællesskabet
@@ -1620,6 +1624,9 @@ da:
   hide_content: Skjul indhold
   hide_desc: |
     Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og brug kun dette ved meget anstødeligt indhold.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Skjul "Ingen annotation"
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
   high: Høj
@@ -3598,6 +3605,9 @@ da:
   show_keyboard_shortcuts: Vis tastaturgenveje
   show_less: Vis mindre
   show_more: Vis mere
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Vis "Ingen annotation"
   show_observation_photos: vis observations foto´s
   show_off_your_recent_observations: Vis dine seneste observationer på din egen blog eller hjemmeside!
   show_only: Vis kun
@@ -4957,7 +4967,6 @@ da:
     messages:
       from: Fra
       to: Til
-      subject: Emne
       subject_body: Emne / Indhold
       index:
         show_messages_from_user: Vis beskeder fra %{user}
@@ -6857,6 +6866,9 @@ da:
       listed_taxon:
         occurrence_status_level: Forekomst status niveau
         establishment_means: Oprindelse
+      message:
+        subject: Emne
+        body: Brødtekst
       observation:
         description: Notater
         geo_x: Østlig

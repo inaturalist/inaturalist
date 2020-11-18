@@ -42,7 +42,7 @@ class Observation < ActiveRecord::Base
   notifies_users :mentioned_users,
     on: :save,
     notification: "mention",
-    delay: false,
+    delay: true,
     if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable

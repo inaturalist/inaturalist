@@ -607,7 +607,7 @@ class User < ActiveRecord::Base
       update_all(list_id: life_list_id)
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
-    reject.destroy
+    reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
   end
 
@@ -627,6 +627,7 @@ class User < ActiveRecord::Base
     user.reload
     user.elastic_index!
     LifeList.reload_from_observations( user.life_list_id )
+    Project.elastic_index!( ids: ProjectUser.where( user_id: user.id ).pluck(:project_id) )
   end
 
   def set_locale
