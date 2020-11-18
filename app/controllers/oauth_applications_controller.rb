@@ -58,17 +58,17 @@ class OauthApplicationsController < ApplicationController
   end
 
   def allowed_params
-    allowed = params.require(:oauth_application).permit(
+    permitted = [
       :image,
       :name,
       :redirect_uri,
       :confidential,
       :description,
       :url
-    )
+    ]
     if current_user.is_admin?
-      allowed = allowed.permit(:official, :trusted)
+      permitted += [:official, :trusted]
     end
-    allowed
+    params.require(:oauth_application).permit( *permitted )
   end
 end
