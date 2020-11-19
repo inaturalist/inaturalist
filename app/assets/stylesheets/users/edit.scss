@@ -17,16 +17,26 @@ $user-image-size: 65px;
   min-width: 275px;
 }
 
-.default-license {
+.default-title-custom-dropdown {
   display: inline-block;
   vertical-align: middle;
   min-width: 275px;
   min-height: 63px;
 }
 
+.network-min-height {
+  min-height: 36px;
+}
+
 .inat-affiliation-logo {
   max-height: 33px;
   max-width: 135px;
+}
+
+.inat-affiliation-title {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
 }
 
 .blue-checkmark {
@@ -101,11 +111,11 @@ button.left-nav-item {
   text-align: left;
 }
 
-.default-license-padding {
+.default-custom-dropdown-padding {
   padding-top: 15px;
 }
 
-.default-license-image {
+.default-title-custom-dropdown-image {
   padding-bottom: 21px;
 }
 

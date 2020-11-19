@@ -51,14 +51,14 @@ const Content = ( {
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
     return (
-      <div className="default-license">
+      <div className="default-title-custom-dropdown">
         <img
           id="image-license"
           src={iNatLicenses[defaultLicense].icon_large}
           alt={defaultLicense}
-          className="default-license-image"
+          className="default-title-custom-dropdown-image"
         />
-        <label className="license white-space default-license-padding" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+        <label className="license white-space default-custom-dropdown-padding" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
       </div>
     );
   };
