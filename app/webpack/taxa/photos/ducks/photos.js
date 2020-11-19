@@ -216,9 +216,9 @@ export function fetchObservationPhotos( options = {} ) {
     return inatjs.observations.search( params )
       .then( response => {
         let observationPhotos = observationPhotosFromObservations( response.results );
-        // For taxa above species, show one photo per observation
-        if ( s.taxon.taxon && s.taxon.taxon.rank_level > 10 ) {
-          observationPhotos = onePhotoPerObservation( observationPhotos );
+        if ( params.photo_license && params.photo_license !== "any" ) {
+          observationPhotos = _.filter( observationPhotos,
+            op => op.photo.license_code === params.photo_license );
         }
         let action = appendObservationPhotos;
         if ( options.reload ) {
