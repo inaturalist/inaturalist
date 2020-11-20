@@ -6,8 +6,8 @@ import SettingsItem from "./settings_item";
 
 const Applications = ( { showModal, apps = [] } ) => {
   const renderEmptyState = ( ) => (
-    <p className="col-xs-9">
-      {I18n.t( "you_have_not_authorized_any_applications", { site_name: SITE.name } )}
+    <p className="nocontent">
+      {I18n.t( "you_have_not_authorized_any_applications" )}
     </p>
   );
 

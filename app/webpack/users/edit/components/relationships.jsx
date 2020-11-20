@@ -127,10 +127,8 @@ const Relationships = ( {
 
   const showEmptyState = ( ) => (
     <SettingsItem>
-      <p>
-        <strong>
-          {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
-        </strong>
+      <p className="nocontent">
+        {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
       </p>
     </SettingsItem>
   );

@@ -19075,6 +19075,7 @@ I18n.translations["en"] = {
   "you_curate_a_project_that_contains_this_observation": "You curate a project that contains this observation",
   "you_curate_a_project_that_contains_this_observation_desc": "You can see obscured coordinates when you curate a project that contains an\nobservation and the observer has chosen to share coordinates with curators\nof that project.\n",
   "you_faved_this": "You faved this!",
+  "you_have_not_authorized_any_applications": "You have not authorized any applications to use your iNaturalist account.",
   "you_must_fill_out_the_required_fields": "You must fill out the required fields",
   "you_must_select_at_least_one_taxon": "You must select at least one taxon",
   "you_retain_full_copyright": "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service.",
