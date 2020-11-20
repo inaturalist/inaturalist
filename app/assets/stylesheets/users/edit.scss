@@ -71,20 +71,13 @@ button.left-nav-item {
   white-space: nowrap;
   border: 1px solid transparent;
   background-color: #fff;
+}
 
-  &:focus {
-    color: $inat-green;
-    font-weight: 600;
-    text-decoration: none;
-    outline:none;
-  }
-
-  &:active {
-    color: $inat-green;
-    font-weight: 600;
-    text-decoration: none;
-    outline:none;
-  }
+button.selected {
+  color: $inat-green;
+  font-weight: 600;
+  text-decoration: none;
+  outline:none;
 }
 
 .btn.mobile-menu {
