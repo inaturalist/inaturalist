@@ -48,13 +48,15 @@ const Relationships = ( {
           <em className="stacked">
             {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
           </em>
-          <button
-            type="button"
-            className="btn btn-default btn-xs"
-            onClick={( ) => showModal( user.id, friendUser.login )}
-          >
-            {I18n.t( "remove_relationship" )}
-          </button>
+          <div>
+            <button
+              type="button"
+              className="btn btn-default btn-xs"
+              onClick={( ) => showModal( user.id, friendUser.login )}
+            >
+              {I18n.t( "remove_relationship" )}
+            </button>
+          </div>
         </td>
       </tr>
     );

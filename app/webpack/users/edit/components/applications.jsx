@@ -57,13 +57,13 @@ const Applications = ( { showModal, apps = [] } ) => {
           {renderHeader( I18n.t( "inaturalist_applications", { site_name: SITE.name } ), "inaturalist_applications" )}
           {createiNatAppsList( )}
         </div>
-      ) }
+      )}
       {externalApps.length > 0 && (
         <div>
           {renderHeader( I18n.t( "external_applications" ), "external_applications" )}
           {createExternalAppsList( )}
         </div>
-      ) }
+      )}
     </div>
   );
 };
