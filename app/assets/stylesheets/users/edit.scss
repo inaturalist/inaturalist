@@ -132,6 +132,10 @@ td.table-row {
   vertical-align: middle !important;
 }
 
+select.inherit-width {
+  max-width: none;
+}
+
 .margin-left {
   margin-left: 9px;
   display: inline !important;

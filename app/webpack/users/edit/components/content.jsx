@@ -237,7 +237,7 @@ const Content = ( {
           </div>
           <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
           <select
-            className="form-control stacked"
+            className="form-control stacked inherit-width"
             id="user_prefers_common_names"
             name="prefers_common_names"
             onChange={handleDisplayNames}
@@ -269,7 +269,7 @@ const Content = ( {
           <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
           <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
           <select
-            className="form-control"
+            className="form-control inherit-width"
             id="preferred_observation_fields_by"
             value={profile.preferred_observation_fields_by}
             name="preferred_observation_fields_by"

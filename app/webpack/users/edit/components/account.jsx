@@ -79,13 +79,13 @@ const Account = ( {
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
           <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+          <select id="user_time_zone" className="form-control inherit-width" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
             {createTimeZoneList( )}
           </select>
         </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-          <select id="user_locale" className="form-control" value={profile.locale} name="locale" onChange={handleInputChange}>
+          <select id="user_locale" className="form-control inherit-width" value={profile.locale} name="locale" onChange={handleInputChange}>
             {createLocaleList( )}
           </select>
         </SettingsItem>
