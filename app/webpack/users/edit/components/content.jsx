@@ -28,16 +28,16 @@ const Content = ( {
   showModal
 } ) => {
   const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
-    <div key={button}>
-      <input
-        id="user_preferred_project_addition_by"
-        type="radio"
-        value={button}
-        name="preferred_project_addition_by"
-        checked={profile.preferred_project_addition_by === button}
-        onChange={handleInputChange}
-      />
-      <label className="margin-left" htmlFor="user_preferred_project_addition_by">
+    <div className="radio" key={button}>
+      <label className="radio-button">
+        <input
+          id="user_preferred_project_addition_by"
+          type="radio"
+          value={button}
+          name="preferred_project_addition_by"
+          checked={profile.preferred_project_addition_by === button}
+          onChange={handleInputChange}
+        />
         {radioButtons[button]}
       </label>
     </div>
