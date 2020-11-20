@@ -86,7 +86,7 @@ const Profile = ( {
             <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
           </div>
         </SettingsItem>
-        <SettingsItem header={I18n.t( "bio" )} required htmlFor="user_description">
+        <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
           <textarea id="user_description" className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
         </SettingsItem>
