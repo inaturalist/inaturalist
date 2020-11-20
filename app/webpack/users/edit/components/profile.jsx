@@ -90,23 +90,25 @@ const Profile = ( {
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
           <textarea id="user_description" className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
         </SettingsItem>
-        <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
-          <CheckboxRowContainer
-            name="prefers_monthly_supporter_badge"
-            label={I18n.t( "display_monthly_supporter_badge" )}
-            description={(
-              <p
-                className="text-muted"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
-                    url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
-                  } )
-                }}
-              />
-            )}
-          />
-        </SettingsItem>
+        <div className={!profile.monthly_supporter ? "hidden" : null}>
+          <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
+            <CheckboxRowContainer
+              name="prefers_monthly_supporter_badge"
+              label={I18n.t( "display_monthly_supporter_badge" )}
+              description={(
+                <p
+                  className="text-muted"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
+                      url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
+                    } )
+                  }}
+                />
+              )}
+            />
+          </SettingsItem>
+        </div>
       </div>
     </div>
   );
