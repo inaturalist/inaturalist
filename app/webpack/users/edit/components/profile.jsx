@@ -18,21 +18,11 @@ const Profile = ( {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
 
-  const showFileDialog = ( ) => hiddenFileInput.current.click();
-
-  const showPhotoPreview = icon => (
-    <img
-      alt="user-icon"
-      src={icon}
-      className="user-photo"
-    />
-  );
+  const showFileDialog = ( ) => iconDropzone.current.open( );
 
   const showUserIcon = ( ) => {
-    if ( typeof profile.icon === "object" && profile.icon !== null ) {
-      // preview means user dragged photo into dropzone;
-      // icon means they clicked 'upload new photo' file dialog
-      return showPhotoPreview( profile.icon.preview ? profile.icon.preview : profile.icon );
+    if ( profile.icon && profile.icon.preview ) {
+      return <img alt="user-icon" src={profile.icon.preview} className="user-photo" />;
     }
     return <UserImage user={profile} />;
   };
