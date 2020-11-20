@@ -14,7 +14,10 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => { dispatch( hideModal( ) ); },
-    deleteApp: id => { dispatch( deleteAuthorizedApp( id ) ); }
+    deleteApp: ( ) => {
+      dispatch( deleteAuthorizedApp( ) );
+      dispatch( hideModal( ) );
+    }
   };
 }
 

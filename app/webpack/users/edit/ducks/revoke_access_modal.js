@@ -23,7 +23,6 @@ export default function reducer( state = { show: false, id: null, siteName: null
 }
 
 export function showModal( id, siteName ) {
-  console.log( siteName, "site name show modal" );
   return {
     type: SHOW_MODAL,
     id,
