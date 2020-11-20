@@ -68,9 +68,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
-          <div className="input-group">
-            <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
-          </div>
+          <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
@@ -82,9 +80,7 @@ const Profile = ( {
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          <div className="input-group">
-            <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
-          </div>
+          <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
