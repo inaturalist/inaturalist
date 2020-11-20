@@ -17,7 +17,7 @@ const BlockedMutedUsers = ( {
   blockedUsers
 } ) => {
   const displayList = user => (
-    <div className="flex-no-wrap profile-photo-margin" key={user.id}>
+    <div className="row flex-no-wrap profile-photo-margin" key={user.id}>
       <div className="col-sm-6">
         <UserFollowing user={user} />
       </div>
