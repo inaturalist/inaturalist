@@ -18,7 +18,8 @@ export default function reducer( state = {
     order_by: "users.login",
     order: "desc",
     q: null
-  }
+  },
+  relationships: []
 }, action ) {
   switch ( action.type ) {
     case SET_RELATIONSHIPS:

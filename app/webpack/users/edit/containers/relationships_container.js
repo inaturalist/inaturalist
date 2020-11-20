@@ -11,8 +11,7 @@ import { showModal } from "../ducks/delete_relationship_modal";
 
 function mapStateToProps( state ) {
   return {
-    // empty array in case page loads before relationships fetched
-    relationships: state.relationships.relationships || [],
+    relationships: state.relationships.relationships,
     page: state.relationships.page,
     totalRelationships: state.relationships.totalRelationships
   };
