@@ -8,17 +8,15 @@ const RelationshipsCheckbox = ( {
   relationships,
   id
 } ) => (
-  <div className="row">
-    <div className="col-xs-12">
-      <input
-        id={name}
-        type="checkbox"
-        checked={relationships.filter( u => u.id === id )[0][name]}
-        name={name}
-        onChange={e => handleCheckboxChange( e, id )}
-      />
-      <label htmlFor={name} className="margin-left">{label}</label>
-    </div>
+  <div>
+    <input
+      id={name}
+      type="checkbox"
+      checked={relationships.filter( u => u.id === id )[0][name]}
+      name={name}
+      onChange={e => handleCheckboxChange( e, id )}
+    />
+    <label htmlFor={name} className="margin-left">{label}</label>
   </div>
 );
 

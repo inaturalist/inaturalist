@@ -19,49 +19,44 @@ const Relationships = ( {
   totalRelationships,
   searchUsers
 } ) => {
-  const showRelationships = ( ) => relationships.map( user => {
+  const createRelationshipRow = ( ) => relationships.map( user => {
     const { friendUser } = user;
 
     return (
-      <div className="row stacked" key={friendUser.login}>
-        <div className="divider stacked" />
-        <div className="col-xs-4">
+      <tr key={friendUser.login}>
+        <td className="col-xs-4">
           <UserFollowing user={friendUser} />
-        </div>
-        <div className="col-sm-8">
-          <div className="row">
-            <div className="col-md-6">
-              <RelationshipsCheckboxContainer
-                name="following"
-                label={I18n.t( "following" )}
-                id={user.id}
-                relationships={relationships}
-              />
-              <RelationshipsCheckboxContainer
-                name="trust"
-                label={I18n.t( "trust_with_private_coordinates" )}
-                id={user.id}
-                relationships={relationships}
-              />
-              {user.reciprocal_trust && <em>{I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}</em>}
-            </div>
-            <div className="col-md-6">
-              <em className="stacked">
-                {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
-              </em>
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-default btn-xs"
-                  onClick={( ) => showModal( user.id, friendUser.login )}
-                >
-                  {I18n.t( "remove_relationship" )}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </td>
+        <td className="table-row col-xs-4">
+          <RelationshipsCheckboxContainer
+            name="following"
+            label={I18n.t( "following" )}
+            id={user.id}
+            relationships={relationships}
+          />
+          <RelationshipsCheckboxContainer
+            name="trust"
+            label={I18n.t( "trust_with_private_coordinates" )}
+            id={user.id}
+            relationships={relationships}
+          />
+          <em className={`${!user.reciprocal_trust ? "hidden" : null}`}>
+            {I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}
+          </em>
+        </td>
+        <td className="table-row col-xs-4">
+          <em className="stacked">
+            {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
+          </em>
+          <button
+            type="button"
+            className="btn btn-default btn-xs"
+            onClick={( ) => showModal( user.id, friendUser.login )}
+          >
+            {I18n.t( "remove_relationship" )}
+          </button>
+        </td>
+      </tr>
     );
   } );
 
@@ -140,17 +135,19 @@ const Relationships = ( {
         {showFilters( )}
       </SettingsItem>
       {relationships.length === 0 && showEmptyState( )}
+      <table className={`table divider ${relationships.length === 0 ? "hidden" : null}`}>
+        <thead>
+          <tr className="hidden-xs">
+            <th>{I18n.t( "name" )}</th>
+            <th>{I18n.t( "actions" )}</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {relationships.length > 0 && createRelationshipRow( )}
+        </tbody>
+      </table>
       <div className={relationships.length === 0 ? "hidden" : null}>
-        <div className="row hidden-xs">
-          <div className="col-xs-4">
-            <label>{I18n.t( "name" )}</label>
-          </div>
-          <div className="col-sm-8">
-            <label>{I18n.t( "actions" )}</label>
-          </div>
-        </div>
-        {relationships.length > 0 && showRelationships( )}
-        <div className="divider" />
         <div className="Pagination text-center">
           <Pagination
             total={totalRelationships}
