@@ -1,32 +1,36 @@
 const SHOW_MODAL = "revoke_access_modal/SHOW_MODAL";
 const HIDE_MODAL = "revoke_access_modal/HIDE_MODAL";
 
-export default function reducer( state = { show: false, id: null, siteName: null }, action ) {
+export default function reducer( state = {
+  show: false,
+  siteName: null,
+  official: null
+}, action ) {
   switch ( action.type ) {
     case SHOW_MODAL:
       return {
         ...state,
         show: true,
-        id: action.id,
-        siteName: action.siteName
+        siteName: action.siteName,
+        official: action.official
       };
     case HIDE_MODAL:
       return {
         ...state,
         show: false,
-        id: null,
-        siteName: null
+        siteName: null,
+        official: null
       };
     default:
   }
   return state;
 }
 
-export function showModal( id, siteName ) {
+export function showModal( siteName, official ) {
   return {
     type: SHOW_MODAL,
-    id,
-    siteName
+    siteName,
+    official
   };
 }
 

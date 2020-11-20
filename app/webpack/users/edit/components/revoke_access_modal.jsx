@@ -2,14 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 
-const iNatAppIds = [2, 3, 315, 333];
-
 const RevokeAccessModal = ( {
   show,
   onClose,
   deleteApp,
-  id,
-  siteName
+  siteName,
+  official
 } ) => (
   <Modal
     show={show}
@@ -18,7 +16,7 @@ const RevokeAccessModal = ( {
   >
     <Modal.Header closeButton>
       <Modal.Title>
-        {iNatAppIds.includes( id )
+        {official
           ? I18n.t( "log_out_of_application", { site_name: siteName } )
           : I18n.t( "revoke_external_application", { site_name: siteName } )}
       </Modal.Title>
@@ -29,9 +27,7 @@ const RevokeAccessModal = ( {
     <Modal.Footer>
       <div className="buttons">
         <Button bsStyle="primary" onClick={deleteApp}>
-          {iNatAppIds.includes( id )
-            ? I18n.t( "log_out_caps" )
-            : I18n.t( "revoke_caps" )}
+          {official ? I18n.t( "log_out_caps" ) : I18n.t( "revoke_caps" )}
         </Button>
       </div>
     </Modal.Footer>
@@ -42,8 +38,8 @@ RevokeAccessModal.propTypes = {
   show: PropTypes.bool,
   onClose: PropTypes.func,
   deleteApp: PropTypes.func,
-  id: PropTypes.number,
-  siteName: PropTypes.string
+  siteName: PropTypes.string,
+  official: PropTypes.bool
 };
 
 export default RevokeAccessModal;

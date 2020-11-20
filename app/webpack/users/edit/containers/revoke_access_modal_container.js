@@ -4,10 +4,11 @@ import { deleteAuthorizedApp } from "../ducks/authorized_applications";
 import { hideModal } from "../ducks/revoke_access_modal";
 
 function mapStateToProps( state ) {
+  const { revokeAccess } = state;
   return {
-    show: state.revokeAccess.show,
-    id: state.revokeAccess.id,
-    siteName: state.revokeAccess.siteName
+    show: revokeAccess.show,
+    siteName: revokeAccess.siteName,
+    official: revokeAccess.official
   };
 }
 

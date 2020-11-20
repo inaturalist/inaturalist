@@ -12,9 +12,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showModal: ( id, siteName ) => {
+    showModal: ( id, siteName, official ) => {
       dispatch( setAppToDelete( id ) );
-      dispatch( showModal( id, siteName ) );
+      dispatch( showModal( siteName, official ) );
     }
   };
 }
