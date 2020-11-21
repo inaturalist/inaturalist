@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-import SettingsItem from "./settings_item";
-
-const Applications = ( { showModal, apps = [] } ) => {
+const Applications = ( { showModal, apps } ) => {
   const renderEmptyState = ( ) => (
     <p className="nocontent">
       {I18n.t( "you_have_not_authorized_any_applications" )}
@@ -18,22 +16,21 @@ const Applications = ( { showModal, apps = [] } ) => {
   const iNatApps = apps.filter( app => app.application.official === true );
   const externalApps = apps.filter( app => app.application.official === false );
 
-  const renderHeader = ( headerText, htmlFor ) => (
-    <div className="row">
-      <div className="col-xs-4">
-        <SettingsItem header={headerText} htmlFor={htmlFor} />
-      </div>
-      <div className="col-xs-4">
-        <label>{I18n.t( "date_authorized" )}</label>
-      </div>
-    </div>
+  const renderHeader = headerText => (
+    <thead>
+      <tr className="hidden-xs">
+        <th className="borderless">{headerText}</th>
+        <th className="borderless">{I18n.t( "date_authorized" )}</th>
+        <th className="borderless" />
+      </tr>
+    </thead>
   );
 
   const renderRow = ( app, buttonText ) => (
-    <div className="row settings-item" key={app.application.name}>
-      <div className="col-xs-4">{app.application.name}</div>
-      <div className="col-xs-4">{moment( app.created_at ).format( "LL" )}</div>
-      <div className="col-xs-5 col-sm-4">
+    <tr key={app.application.name}>
+      <td className="col-xs-4 borderless">{app.application.name}</td>
+      <td className="col-xs-4 borderless">{moment( app.created_at ).format( "LL" )}</td>
+      <td className="col-xs-4 borderless">
         <button
           type="button"
           className="btn btn-default btn-xs"
@@ -43,26 +40,30 @@ const Applications = ( { showModal, apps = [] } ) => {
         >
           {buttonText}
         </button>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 
-  const createiNatAppsList = ( ) => iNatApps.map( app => renderRow( app, I18n.t( "log_out" ) ) );
-  const createExternalAppsList = ( ) => externalApps.map( app => renderRow( app, I18n.t( "revoke" ) ) );
+  const createiNatAppsTable = ( ) => iNatApps.map( app => renderRow( app, I18n.t( "log_out" ) ) );
+  const createExternalAppsTable = ( ) => externalApps.map( app => renderRow( app, I18n.t( "revoke" ) ) );
 
   return (
-    <div className="col-xs-9">
+    <div>
       {iNatApps.length > 0 && (
-        <div>
-          {renderHeader( I18n.t( "inaturalist_applications", { site_name: SITE.name } ), "inaturalist_applications" )}
-          {createiNatAppsList( )}
-        </div>
+        <table className="table">
+          {renderHeader( I18n.t( "inaturalist_applications", { site_name: SITE.name } ) )}
+          <tbody className="borderless">
+            {createiNatAppsTable( )}
+          </tbody>
+        </table>
       )}
       {externalApps.length > 0 && (
-        <div>
-          {renderHeader( I18n.t( "external_applications" ), "external_applications" )}
-          {createExternalAppsList( )}
-        </div>
+        <table className="table">
+          {renderHeader( I18n.t( "external_applications" ) )}
+          <tbody className="borderless">
+            {createExternalAppsTable( )}
+          </tbody>
+        </table>
       )}
     </div>
   );

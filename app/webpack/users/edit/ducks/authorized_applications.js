@@ -3,7 +3,7 @@ import inatjs from "inaturalistjs";
 const SET_AUTHENTICATED_APPS = "user/edit/SET_AUTHENTICATED_APPS";
 const SET_APP_TO_DELETE = "user/edit/SET_APP_TO_DELETE";
 
-export default function reducer( state = { id: null }, action ) {
+export default function reducer( state = { id: null, apps: [] }, action ) {
   switch ( action.type ) {
     case SET_AUTHENTICATED_APPS:
       return { ...state, apps: action.apps, id: null };
