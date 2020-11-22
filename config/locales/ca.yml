@@ -848,6 +848,7 @@ ca:
   community_id_heading: Tàxon segons la Comunitat
   community_id_at_species_or_lower?: Tàxon de la Comunitat a nivell específic o inferior?
   community_id_at_species_level_or_lower: Tàxon de la Comunitat específic o inferior
+  community_id_is_precise: El tàxon de la comunitat és precís
   community_moderation_settings: Configuració de la Moderació de la Comunitat
   community_supported_id: Tàxon reconegut per la comunitat?
   compare: Compara
@@ -1601,6 +1602,9 @@ ca:
   hide_content: Amaga Contingut
   hide_desc: |
     Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Amaga "Sense anotacions"
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
   high: Alta
@@ -3549,6 +3553,9 @@ ca:
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_less: Mostrar menys
   show_more: Mostrar més
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Mostra "Sense anotacions"
   show_observation_photos: Mostra les fotos de les observacions
   show_off_your_recent_observations: Publiqueu les observacions en el vostre propi blog o pàgina web!
   show_only: Mostra només
@@ -5060,6 +5067,51 @@ ca:
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
+        quality_assessment_help_html: |
+          <p>
+          L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan
+          </p>
+
+          <ul>
+          <li>l'observació <strong>té una data</​strong></li>
+          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
+          <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
+          <li>l'observació <strong>no és d'un humà</strong></li>
+          </ul>
+          <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
+          <ul>
+          <li>
+          la comunitat de %{site_name} <strong>està d'acord amb la ID donada a escala específica o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acord amb el tàxon (si la comunitat ha indicat que el Tàxon de la Comunitat no pot ser millorat més, es reverteix al nivell d'ID de subfamília o inferior)
+          </li>
+          </ul>
+          <p>
+          Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:
+          </p>
+          <ul>
+          <li>
+          la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)
+          </li>
+          <li>
+          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)
+          </li>
+          <li>
+          l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
+          </li>
+          <li>
+          l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organisme</strong> (p.ex. fòssils, però sí s'accepten pistes, excrements i fulles mortes)
+          </li>
+          <li>
+          l'observació no necessita una ID <em>i</em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família
+          </li>
+          </ul>
+          <p>
+          I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
+          </p>
+          <ul>
+          <li>
+          El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitud (municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a no salvatge/naturalitzat.
+          </li>
+          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 
@@ -6311,6 +6363,9 @@ ca:
       listed_taxon:
         occurrence_status_level: Nivell d'estat d'ocurrència
         establishment_means: Forma d'establiment.
+      message:
+        subject: Assumpte
+        body: Cos
       observation:
         description: Notes
         geo_x: Est
