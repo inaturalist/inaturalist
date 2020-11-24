@@ -578,7 +578,13 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
+  def self.end_of_month(date)
+    n = date + 1.month
+    Date.parse( "#{n.year}-#{n.month}-01" ) - 1.day
+  end
+
   def self.observed_species_accumulation( params = { } )
+    debug = params.delete(:debug)
     interval = params.delete(:interval) || "month"
     date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -611,8 +617,24 @@ class YearStatistic < ActiveRecord::Base
       }
     )
     bucketer = Proc.new do |es_params|
-      Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
+      buckets = Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
+      if debug
+        d1_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
+        d2_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:lte] }
+        if d1_filter && d2_filter
+          d1 = Date.parse( d1_filter[:range][date_field][:gte] )
+          d2 = Date.parse( d2_filter[:range][date_field][:lte] )
+        else
+          d1 = Date.parse( "2008-01-01" )
+          d2 = Date.today
+        end
+        bucket_dates = buckets.map{|bucket| bucket["key_as_string"]}.sort
+        species_ids = buckets.map {|bucket| bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)} }.flatten.uniq
+        puts "observed_species_accumulation results for #{d1} - #{d2}: #{buckets.size} buckets, #{bucket_dates.first} - #{bucket_dates.last}, #{species_ids.size} species"
+      end
+      buckets
     end
+
     histogram_buckets = call_and_rescue_with_partitioner(
       bucketer,
       [histogram_params],
@@ -628,21 +650,27 @@ class YearStatistic < ActiveRecord::Base
         d2 = Date.parse( d2_filter[:range][date_field][:lte] )
       else
         d1 = Date.parse( "2008-01-01" )
-        d2 = Date.today
+        d2 = YearStatistic.end_of_month( Date.today )
       end
       half = ( d2 - d1 ) / 2
+      d1_1 = d1
+      d2_1 = YearStatistic.end_of_month( d1 + half.days )
+      d1_2 = d2_1 + 1.day
+      d2_2 = d2
       es_params1 = es_params.dup
       es_params1[:filters] += [
-        { range: { date_field => { gte: d1.to_s } } },
-        { range: { date_field => { lte: ( d1 + half.days ).to_s } } },
+        { range: { date_field => { gte: d1_1.to_s } } },
+        { range: { date_field => { lte: d2_1.to_s } } },
       ]
       es_params2 = es_params.dup
       es_params2[:filters] += [
-        { range: { date_field => { gte: ( d1 + ( half + 1 ).days ).to_s } } },
-        { range: { date_field => { lte: d2.to_s } } },
+        { range: { date_field => { gte: d1_2.to_s } } },
+        { range: { date_field => { lte: d2_2.to_s } } },
       ]
       new_params = [es_params1, es_params2]
-      puts "partitioned into #{new_params}"
+      if debug
+        puts "observed_species_accumulation partitions: #{d1_1.to_s} - #{d2_1.to_s}, #{d1_2.to_s} - #{d2_2.to_s}"
+      end
       new_params
     end
 
@@ -689,11 +717,12 @@ class YearStatistic < ActiveRecord::Base
     new_results = []
     data["results"].each do |result|
       if doi = result["identifiers"] && result["identifiers"]["doi"]
+        url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
-          am_response = RestClient.get( "https://api.altmetric.com/v1/doi/#{doi}" )
+          am_response = RestClient.get( url )
           result["altmetric_score"] = JSON.parse( am_response )["score"]
         rescue RestClient::NotFound => e
-          Rails.logger.debug "[DEBUG] Request failed: #{e}"
+          Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
         end
         sleep( 1 )
       end
