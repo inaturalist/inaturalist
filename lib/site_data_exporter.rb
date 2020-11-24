@@ -116,6 +116,7 @@ class SiteDataExporter
     @dbname = ActiveRecord::Base.configurations[Rails.env]["database"]
     @dbhost = ActiveRecord::Base.configurations[Rails.env]["host"]
     @max_obs_id = options[:max_obs_id] || Observation.calculate(:maximum, :id)
+    @num_processes = options[:num_processes].to_i > 0 ? options[:num_processes].to_i : 3
     @options = options
   end
 
@@ -345,7 +346,7 @@ class SiteDataExporter
     }
     base_results = Observation.elastic_search( base_es_params.merge( per_page: 0 ) )
     total_entries = base_results.total_entries
-    num_partitions = total_entries < 10000 ? 1 : 3
+    num_partitions = total_entries < 10000 ? 1 : @num_processes
     partition_offset = @max_obs_id / num_partitions
     partitions = num_partitions.times.map do |i|
       (i*partition_offset..(i+1)*partition_offset)
