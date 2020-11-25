@@ -1575,6 +1575,7 @@ class TaxaController < ApplicationController
   def do_external_lookups
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
+    start = Time.now
     @external_taxa = []
     begin
       ext_names = TaxonName.find_external(params[:q], :src => params[:external_src])
@@ -1591,6 +1592,9 @@ class TaxaController < ApplicationController
     # graft in the background
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
+      if external_taxon.created_at > start
+        external_taxon.update_attributes( creator: current_user )
+      end
     end
 
     Taxon.refresh_es_index
