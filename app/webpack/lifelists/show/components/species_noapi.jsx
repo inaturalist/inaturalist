@@ -3,66 +3,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropdownButton, MenuItem } from "react-bootstrap";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
+import { rankLabel, filteredNodes, nodeObsCount } from "../util";
 
 class SpeciesNoAPI extends Component {
   secondaryNodeList( ) {
     const {
-      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon,
-      search, setSpeciesPlaceFilter
+      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, setSpeciesPlaceFilter
     } = this.props;
-    let nodeShouldDisplay;
-    const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
-      ? ( ) => true
-      : node => node.left >= detailsTaxon.left && node.right <= detailsTaxon.right;
-    const obsCount = node => {
-      if ( lifelist.speciesPlaceFilter
-          && search
-          && search.searchResponse
-          && search.loaded
-      ) {
-        return search.searchResponse.results[node.id] || 0;
-      }
-      return node.descendant_obs_count;
-    };
-    if ( lifelist.speciesViewRankFilter === "all" ) {
-      if ( !detailsTaxon || detailsTaxon === "root" ) {
-        nodeShouldDisplay = nodeIsDescendant;
-      } else {
-        nodeShouldDisplay = node => (
-          ( detailsTaxon.left === detailsTaxon.right - 1 && node.id === detailsTaxon.id )
-          || ( node.left > detailsTaxon.left && node.right < detailsTaxon.right )
-        );
-      }
-    } else if ( lifelist.speciesViewRankFilter === "children" ) {
-      nodeShouldDisplay = node => node.parent_id === ( !detailsTaxon || detailsTaxon === "root" ? 0 : detailsTaxon.id );
-    } else if ( lifelist.speciesViewRankFilter === "major" ) {
-      nodeShouldDisplay = node => node.rank_level % 10 === 0;
-    } else if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
-      nodeShouldDisplay = node => node.rank_level === 70;
-    } else if ( lifelist.speciesViewRankFilter === "phyla" ) {
-      nodeShouldDisplay = node => node.rank_level === 60;
-    } else if ( lifelist.speciesViewRankFilter === "classes" ) {
-      nodeShouldDisplay = node => node.rank_level === 50;
-    } else if ( lifelist.speciesViewRankFilter === "orders" ) {
-      nodeShouldDisplay = node => node.rank_level === 40;
-    } else if ( lifelist.speciesViewRankFilter === "families" ) {
-      nodeShouldDisplay = node => node.rank_level === 30;
-    } else if ( lifelist.speciesViewRankFilter === "genera" ) {
-      nodeShouldDisplay = node => node.rank_level === 20;
-    } else if ( lifelist.speciesViewRankFilter === "species" ) {
-      nodeShouldDisplay = node => node.rank_level === 10;
-    } else if ( lifelist.speciesViewRankFilter === "leaves" ) {
-      nodeShouldDisplay = node => (
-        node.rank_level === 10 || (
-          node.left === node.right - 1 && node.rank_level > 10
-        ) || (
-          detailsTaxon && detailsTaxon.rank_level < 10 && detailsTaxon.id === node.id
-        )
-      );
-    }
-    if ( !nodeShouldDisplay ) return null;
-    const secondaryNodes = _.filter( lifelist.taxa,
-      t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && obsCount( t ) );
+    const obsCount = nodeObsCount( lifelist );
+    const secondaryNodes = filteredNodes( lifelist );
     let moreButton;
     if ( lifelist.speciesViewScrollPage < (
       Math.ceil( _.size( secondaryNodes ) ) / lifelist.speciesViewPerPage ) ) {
@@ -169,29 +118,10 @@ class SpeciesNoAPI extends Component {
       lifelist, detailsTaxon, setRankFilter, setSort, search
     } = this.props;
     if ( !lifelist.taxa || !lifelist.children ) { return ( <span /> ); }
-    let rankLabel = I18n.t( "views.lifelists.dropdowns.children" );
-    if ( lifelist.speciesViewRankFilter === "kingdoms" ) {
-      rankLabel = I18n.t( "ranks.x_kingdoms", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "phyla" ) {
-      rankLabel = I18n.t( "ranks.x_phyla", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "classes" ) {
-      rankLabel = I18n.t( "ranks.x_classes", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "orders" ) {
-      rankLabel = I18n.t( "ranks.x_orders", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "families" ) {
-      rankLabel = I18n.t( "ranks.x_families", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "genera" ) {
-      rankLabel = I18n.t( "ranks.x_genera", { count: 2 } );
-    } else if ( lifelist.speciesViewRankFilter === "species" ) {
-      rankLabel = I18n.t( "ranks.species" );
-    } else if ( lifelist.speciesViewRankFilter === "leaves" ) {
-      rankLabel = I18n.t( "ranks.leaves" );
-    }
-    rankLabel = `${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel}`;
 
     const rankOptions = (
       <DropdownButton
-        title={rankLabel}
+        title={`${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel( lifelist.speciesViewRankFilter )}`}
         id="rankDropdown"
         onSelect={key => setRankFilter( key )}
       >
