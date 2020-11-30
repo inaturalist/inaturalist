@@ -47,11 +47,11 @@ const Profile = ( {
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
           >
-            <div className="row flex-no-wrap">
-              <div className="col-xs-6 user-profile-image">
+            <div className="flex-no-wrap">
+              <div className="user-profile-image">
                 {showUserIcon( )}
               </div>
-              <div className="col-xs-3 centered-column">
+              <div className="centered-column">
                 <button
                   className="btn btn-primary"
                   type="button"
