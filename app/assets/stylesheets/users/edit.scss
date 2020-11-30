@@ -47,7 +47,7 @@ $user-image-size: 65px;
 .blue-checkmark {
   color: #2e78b8;
   position: absolute;
-  right: 6px
+  right: 10px
 }
 
 .centered-column {
@@ -281,6 +281,19 @@ select.inherit-width {
 }
 
 .user-profile-image {
+  .UserImage {
+    margin-right: 12px;
+    width: $user-image-size * 2;
+    height: $user-image-size * 2;
+  }
+
+  .icon-person {
+    font-size: $user-image-size * 2 - 20;
+    line-height: $user-image-size * 2 - 20;
+  }
+}
+
+.relationship-profile-image {
   .UserImage {
     margin-right: 12px;
     width: $user-image-size;
