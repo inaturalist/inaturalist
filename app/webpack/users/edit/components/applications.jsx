@@ -28,12 +28,12 @@ const Applications = ( { showModal, apps } ) => {
 
   const renderRow = ( app, buttonText ) => (
     <tr key={app.application.name}>
-      <td className="col-xs-4 borderless">{app.application.name}</td>
-      <td className="col-xs-4 borderless">{moment( app.created_at ).format( "LL" )}</td>
-      <td className="col-xs-4 borderless">
+      <td className="col-xs-4 borderless table-row">{app.application.name}</td>
+      <td className="col-xs-4 borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
+      <td className="col-xs-4 borderless table-row">
         <button
           type="button"
-          className="btn btn-default btn-xs"
+          className="btn btn-default"
           onClick={( ) => {
             showModal( app.application.id, app.application.name, app.application.official );
           }}

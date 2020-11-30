@@ -51,7 +51,7 @@ const Relationships = ( {
           <div>
             <button
               type="button"
-              className="btn btn-default btn-xs"
+              className="btn btn-default"
               onClick={( ) => showModal( user.id, friendUser.login )}
             >
               {I18n.t( "remove_relationship" )}

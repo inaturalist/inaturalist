@@ -77,6 +77,7 @@ const Account = ( {
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
+        <h4>{I18n.t( "account" )}</h4>
         <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
           <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
           <select id="user_time_zone" className="form-control inherit-width" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>

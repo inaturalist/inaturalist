@@ -24,7 +24,7 @@ const BlockedMutedUsers = ( {
       <div className="col-sm-6">
         <button
           type="button"
-          className="btn btn-default btn-xs"
+          className="btn btn-default"
           onClick={( ) => unblockOrUnmute( user.id, id )}
         >
           {buttonText}

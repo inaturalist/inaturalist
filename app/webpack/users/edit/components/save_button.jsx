@@ -9,7 +9,7 @@ const SaveButton = ( { saveUserSettings, profile } ) => (
       {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
     </div>
     <button
-      className={`btn btn-sm ${profile.saved_status === null ? "btn-default" : "btn-primary"}`}
+      className={`btn ${profile.saved_status === null ? "btn-default" : "btn-primary"}`}
       type="button"
       onClick={saveUserSettings}
     >

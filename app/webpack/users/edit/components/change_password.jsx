@@ -70,7 +70,7 @@ class ChangePassword extends Component {
                 />
               </label>
             </div>
-            <button className="btn btn-xs btn-primary" type="button" onClick={this.handleSubmit}>
+            <button className="btn btn-primary" type="button" onClick={this.handleSubmit}>
               {I18n.t( "change_password" )}
             </button>
           </form>

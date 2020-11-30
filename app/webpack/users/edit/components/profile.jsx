@@ -36,6 +36,7 @@ const Profile = ( {
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
+        <h4>{I18n.t( "profile" )}</h4>
         <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
           <Dropzone
             ref={iconDropzone}
@@ -52,14 +53,14 @@ const Profile = ( {
               </div>
               <div className="col-sm-3 centered-column">
                 <button
-                  className="btn btn-xs btn-primary"
+                  className="btn btn-primary"
                   type="button"
                   onClick={showFileDialog}
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
                 <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
-                <button className="btn btn-default btn-xs remove-photo-margin" type="button" onClick={removePhoto}>
+                <button className="btn btn-default remove-photo-margin" type="button" onClick={removePhoto}>
                   {I18n.t( "remove_photo" )}
                 </button>
               </div>
