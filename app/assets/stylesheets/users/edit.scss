@@ -131,12 +131,6 @@ button.selected {
   padding-bottom: 21px;
 }
 
-.user-photo {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-}
-
 label.radio-button {
   margin-left: 10px;
   font-weight: bold !important;
@@ -298,11 +292,19 @@ select.inherit-width {
   }
 }
 
+.user-profile-preview {
+  margin-right: 25px;
+  width: $user-image-size * 2;
+  height: $user-image-size * 2;
+  border-radius: 50%;
+}
+
 .user-profile-image {
   .UserImage {
     margin-right: 25px;
     width: $user-image-size * 2;
     height: $user-image-size * 2;
+    pointer-events: none;
   }
 
   .icon-person {

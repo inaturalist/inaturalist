@@ -22,7 +22,7 @@ const Profile = ( {
 
   const showUserIcon = ( ) => {
     if ( profile.icon && profile.icon.preview ) {
-      return <img alt="user-icon" src={profile.icon.preview} className="user-photo" />;
+      return <img alt="user-icon" src={profile.icon.preview} className="user-profile-preview" />;
     }
     return <UserImage user={profile} />;
   };
