@@ -17,7 +17,8 @@ const Relationships = ( {
   loadPage,
   page,
   totalRelationships,
-  searchUsers
+  searchUsers,
+  filters
 } ) => {
   const createRelationshipRow = ( ) => relationships.map( user => {
     const { friendUser } = user;
@@ -40,9 +41,11 @@ const Relationships = ( {
             id={user.id}
             relationships={relationships}
           />
-          <em className={`${!user.reciprocal_trust ? "hidden" : null}`}>
-            {I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}
-          </em>
+          <div className={`${!user.reciprocal_trust ? "hidden" : "reciprocal-trust"}`}>
+            <em>
+              {I18n.t( "user_trusts_you_with_their_private_coordinates", { user: friendUser.login } )}
+            </em>
+          </div>
         </td>
         <td className="table-row col-xs-4">
           <em className="stacked">
@@ -51,7 +54,7 @@ const Relationships = ( {
           <div>
             <button
               type="button"
-              className="btn btn-default"
+              className="btn btn-default btn-margin"
               onClick={( ) => showModal( user.id, friendUser.login )}
             >
               {I18n.t( "remove_relationship" )}
@@ -125,7 +128,10 @@ const Relationships = ( {
   const showEmptyState = ( ) => (
     <SettingsItem>
       <p className="nocontent">
-        {I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )}
+        {( filters.following !== "all" || filters.trusted !== "all" )
+          ? I18n.t( "no_users_found_with_those_filters" )
+          : I18n.t( "youre_not_following_anyone_on_inat", { site_name: SITE.name } )
+        }
       </p>
     </SettingsItem>
   );
@@ -194,7 +200,8 @@ Relationships.propTypes = {
   loadPage: PropTypes.func,
   page: PropTypes.number,
   totalRelationships: PropTypes.number,
-  searchUsers: PropTypes.func
+  searchUsers: PropTypes.func,
+  filters: PropTypes.object
 };
 
 export default Relationships;

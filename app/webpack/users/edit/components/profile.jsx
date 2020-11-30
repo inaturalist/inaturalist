@@ -47,11 +47,11 @@ const Profile = ( {
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
           >
-            <div className="row profile-photo-margin">
-              <div className="col-sm-4 user-profile-image">
+            <div className="row flex-no-wrap">
+              <div className="col-xs-6 user-profile-image">
                 {showUserIcon( )}
               </div>
-              <div className="col-sm-3 centered-column">
+              <div className="col-xs-3 centered-column">
                 <button
                   className="btn btn-primary"
                   type="button"
@@ -85,7 +85,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
-          <textarea id="user_description" className="form-control" value={profile.description} name="description" onChange={handleInputChange} />
+          <textarea id="user_description" className="form-control user-description" value={profile.description} name="description" onChange={handleInputChange} />
         </SettingsItem>
         <div className={!profile.monthly_supporter ? "hidden" : null}>
           <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">

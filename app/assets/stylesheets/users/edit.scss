@@ -54,6 +54,7 @@ $user-image-size: 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  vertical-align: middle;
 }
 
 label.required {
@@ -93,6 +94,18 @@ button.selected {
       background: #cccccc;
     }
   }
+}
+
+.btn-link.btn-tracking {
+  padding-left: 0px;
+}
+
+.btn-default.btn-margin {
+  margin-top: 5px;
+}
+
+.reciprocal-trust {
+  margin-top: 5px;
 }
 
 .vl {
@@ -197,6 +210,11 @@ select.inherit-width {
   top: 0px;
 }
 
+.user-description {
+  min-height: 115px;
+  resize: vertical;
+}
+
 .RevokeAccessModal.modal {
   .modal-dialog {
     .modal-header {
@@ -282,7 +300,7 @@ select.inherit-width {
 
 .user-profile-image {
   .UserImage {
-    margin-right: 12px;
+    margin-right: 25px;
     width: $user-image-size * 2;
     height: $user-image-size * 2;
   }

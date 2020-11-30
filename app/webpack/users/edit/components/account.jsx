@@ -41,7 +41,7 @@ const Account = ( {
   const showCurrentNetwork = id => (
     <div className="default-title-custom-dropdown network-min-height">
       {showNetworkLogo( id, currentNetworkAffiliation.icon_url )}
-      <div className="text-muted small inat-affiliation-title">
+      <div className="text-muted inat-affiliation-title">
         {sites.filter( site => site.id === id )[0].name}
       </div>
     </div>
@@ -59,7 +59,7 @@ const Account = ( {
         >
           <span className="flex-no-wrap">
             {showNetworkLogo( id, site.icon_url )}
-            <div className="text-muted small">{name}</div>
+            <div className="text-muted">{name}</div>
             {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
           </span>
         </MenuItem>
@@ -103,15 +103,11 @@ const Account = ( {
           <CheckboxRowContainer
             name="prefers_no_tracking"
             label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
-            description={(
-              <p>
-                <button type="button" className="btn btn-link" onClick={( ) => setModalState( { show: true } )}>
-                  <i className="fa fa-info-circle" />
-                  {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-                </button>
-              </p>
-            )}
           />
+          <button type="button" className="btn btn-link btn-tracking" onClick={( ) => setModalState( { show: true } )}>
+            <i className="fa fa-info-circle" />
+            {` ${I18n.t( "learn_about_third_party_tracking" )}`}
+          </button>
         </SettingsItem>
         <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
           <p>

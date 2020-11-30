@@ -1321,7 +1321,7 @@ en:
   display_link_to_checklist: Display link to project list from project page
   display_monthly_supporter_badge: Display Monthly Supporter Badge on profile
   display_name: Display Name
-  display_name_description: This is the name that will be displayed on your profile
+  display_name_description: This is the name that will be displayed on your profile as well as for copyright attribution
   distance_traveled_value: "Distance traveled: %{distance}m"
   distance_traveled: "Distance traveled (m)"
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
@@ -1953,7 +1953,7 @@ en:
   # the same as you move from one observation to another
   lock_zoom_level: Lock zoom level
   language_slash_locale: Language/Locale
-  language_slash_locale_description: This sets your language and date formatting preferences across iNaturalist based on your locale.
+  language_slash_locale_description: This sets your language and date formatting preferences across iNaturalist based on your locale. Changes will take effect once the page is refreshed.
   language_slash_type: Language / Type
   # Large photo size
   large: large
@@ -2543,6 +2543,7 @@ en:
   no_taxa_with_unknown_relationships: No taxa with unknown relationships
   no_taxon_framework_relationships: no taxon framework relationships
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
+  no_users_found_with_those_filters: No users found with those filters
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"

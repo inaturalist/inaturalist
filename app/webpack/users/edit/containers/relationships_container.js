@@ -13,7 +13,8 @@ function mapStateToProps( state ) {
   return {
     relationships: state.relationships.relationships,
     page: state.relationships.page,
-    totalRelationships: state.relationships.totalRelationships
+    totalRelationships: state.relationships.totalRelationships,
+    filters: state.relationships.filters
   };
 }
 
