@@ -239,34 +239,40 @@ select.inherit-width {
 
 .ThirdPartyTrackingModal.modal {
   .modal-dialog {
+    width: 90%;
     .modal-title {
       line-height: 1;
       padding: 0;
     }
     .modal-content {
+      max-height: none;
       height: 100%;
-      min-width: 766px;
+      overflow: hidden;
     }
     .modal-body {
-      min-height: 550px;
+      overflow-x: auto;
+      max-height: none;
     }
   }
 }
 
 .CreativeCommonsLicensingModal.modal {
   .modal-dialog {
-    width: 70%;
+    width: 90%;
     .modal-title {
       line-height: 1;
       padding: 0;
     }
     .modal-content {
+      max-height: none;
       height: 100%;
-      min-width: 704px;
+      overflow: hidden;
+      min-width: 500px;
     }
     .modal-body {
+      overflow-x: auto;
+      max-height: none;
       padding-left: 25px;
-      min-height: 716px;
     }
   }
 }
