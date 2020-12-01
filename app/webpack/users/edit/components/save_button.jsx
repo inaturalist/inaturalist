@@ -9,11 +9,12 @@ const SaveButton = ( { saveUserSettings, profile } ) => (
       {` ${moment( profile.updated_at ).format( "h:mm a" )}`}
     </div>
     <button
-      className={`btn ${profile.saved_status === null ? "btn-default" : "btn-primary"}`}
+      className={`btn btn-inat ${profile.saved_status === null ? "btn-default" : "btn-primary"}`}
+      disabled={profile.saved_status === null}
       type="button"
       onClick={saveUserSettings}
     >
-      {I18n.t( "save_settings_caps" )}
+      <div className="btn-save-text">{I18n.t( "save_settings_caps" )}</div>
     </button>
   </div>
 );
