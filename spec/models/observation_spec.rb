@@ -2382,8 +2382,6 @@ describe Observation do
       o.update_attributes( geoprivacy: Observation::OBSCURED )
       Delayed::Worker.new.work_off
       o.reload
-      puts "o.private_latitude: #{o.private_latitude}"
-      puts "o.latitude:         #{o.latitude}"
       expect( o.private_latitude ).not_to eq o.latitude
     end
   end
