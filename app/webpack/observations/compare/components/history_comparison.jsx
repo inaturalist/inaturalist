@@ -29,7 +29,7 @@ const HistoryComparison = ( {
     if ( historyLayout === "combined" ) {
       const series = {};
       _.forEach( queries, ( query, i ) => {
-        series[query.name] = {
+        series[`query-${query.name}`] = {
           title: query.name,
           data: _.map( histories[i], ( value, date ) => ( { date, value } ) ),
           color: colorScale( query.params ),
@@ -52,7 +52,7 @@ const HistoryComparison = ( {
         <DateHistogram
           key={`DateHistogram-${query.params}-${i}-${historyLayout}`}
           series={{
-            [query.name]: {
+            [`query-${query.name}`]: {
               title: query.name,
               data: _.map( histories[i], ( value, date ) => ( { date, value } ) ),
               color: colorScale( query.params ),

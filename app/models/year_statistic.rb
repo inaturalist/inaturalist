@@ -578,7 +578,13 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
+  def self.end_of_month(date)
+    n = date + 1.month
+    Date.parse( "#{n.year}-#{n.month}-01" ) - 1.day
+  end
+
   def self.observed_species_accumulation( params = { } )
+    debug = params.delete(:debug)
     interval = params.delete(:interval) || "month"
     date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
@@ -610,32 +616,62 @@ class YearStatistic < ActiveRecord::Base
         }
       }
     )
-    histogram_buckets = if params[:user_id] || params[:taxon_id]
-      Observation.elastic_search( histogram_params ).response.aggregations.histogram.buckets
-    else
-      # If we're not scoping this query by something that will keep the counts
-      # reasonable, we need to break this into pieces
-      [
-        ["2008-01-01", "2014-01-01"],
-        ["2014-01-01", "2016-01-01"],
-        ["2016-01-01", "2017-01-01"],
-        ["2017-01-01", "2017-06-01"],
-        ["2017-06-01", "2018-01-01"],
-        ["2018-01-01", "2018-06-01"],
-        ["2018-06-01", "2019-01-01"],
-        ["2019-01-01", "2019-06-01"],
-        ["2019-06-01", "2019-10-01"],
-        ["2019-10-01", "2020-01-01"]
-      ].inject( [] ) do |memo, range|
-        puts "range: #{range.join( " - " )}"
-        es_params = histogram_params.dup
-        es_params[:filters] += [
-          { range: { date_field => { gte: range[0] } } },
-          { range: { date_field => { lt: range[1] } } },
-        ]
-        memo += Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
-        memo
+    bucketer = Proc.new do |es_params|
+      buckets = Observation.elastic_search( es_params ).response.aggregations.histogram.buckets
+      if debug
+        d1_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
+        d2_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:lte] }
+        if d1_filter && d2_filter
+          d1 = Date.parse( d1_filter[:range][date_field][:gte] )
+          d2 = Date.parse( d2_filter[:range][date_field][:lte] )
+        else
+          d1 = Date.parse( "2008-01-01" )
+          d2 = Date.today
+        end
+        bucket_dates = buckets.map{|bucket| bucket["key_as_string"]}.sort
+        species_ids = buckets.map {|bucket| bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)} }.flatten.uniq
+        puts "observed_species_accumulation results for #{d1} - #{d2}: #{buckets.size} buckets, #{bucket_dates.first} - #{bucket_dates.last}, #{species_ids.size} species"
       end
+      buckets
+    end
+
+    histogram_buckets = call_and_rescue_with_partitioner(
+      bucketer,
+      [histogram_params],
+      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+    ) do |args|
+      es_params = args[0].dup
+      d1_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
+      d2_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:lte] }
+      es_params[:filters] = es_params[:filters].delete_if {|f| f[:range] && f[:range][date_field] }
+      if d1_filter && d2_filter
+        d1 = Date.parse( d1_filter[:range][date_field][:gte] )
+        d2 = Date.parse( d2_filter[:range][date_field][:lte] )
+      else
+        d1 = Date.parse( "2008-01-01" )
+        d2 = YearStatistic.end_of_month( Date.today )
+      end
+      half = ( d2 - d1 ) / 2
+      d1_1 = d1
+      d2_1 = YearStatistic.end_of_month( d1 + half.days )
+      d1_2 = d2_1 + 1.day
+      d2_2 = d2
+      es_params1 = es_params.dup
+      es_params1[:filters] += [
+        { range: { date_field => { gte: d1_1.to_s } } },
+        { range: { date_field => { lte: d2_1.to_s } } },
+      ]
+      es_params2 = es_params.dup
+      es_params2[:filters] += [
+        { range: { date_field => { gte: d1_2.to_s } } },
+        { range: { date_field => { lte: d2_2.to_s } } },
+      ]
+      new_params = [es_params1, es_params2]
+      if debug
+        puts "observed_species_accumulation partitions: #{d1_1.to_s} - #{d2_1.to_s}, #{d1_2.to_s} - #{d2_2.to_s}"
+      end
+      new_params
     end
 
     accumulation_with_all_species_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
@@ -681,11 +717,12 @@ class YearStatistic < ActiveRecord::Base
     new_results = []
     data["results"].each do |result|
       if doi = result["identifiers"] && result["identifiers"]["doi"]
+        url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
-          am_response = RestClient.get( "https://api.altmetric.com/v1/doi/#{doi}" )
+          am_response = RestClient.get( url )
           result["altmetric_score"] = JSON.parse( am_response )["score"]
         rescue RestClient::NotFound => e
-          Rails.logger.debug "[DEBUG] Request failed: #{e}"
+          Rails.logger.debug "[DEBUG] Request failed for #{url}: #{e}"
         end
         sleep( 1 )
       end
@@ -791,38 +828,16 @@ class YearStatistic < ActiveRecord::Base
       base_query = base_query.merge( site_id: options[:site].id )
     end
     if options[:user]
-      ranges = [["#{year}-01-01", "#{year}-12-31"]]
       base_query = base_query.merge( user_id: options[:user].id )
-    else
-      ranges = [
-        ["2008-01-01", "2013-12-31"],
-        ["2014-01-01", "2014-12-31"],
-        ["2015-01-01", "2015-12-31"],
-        ["2016-01-01", "2016-12-31"]
-      ]
-      [2017, 2018, 2019].each do |y|
-        chunks = 10
-        interval = ( 365.0 / chunks ).floor
-        d0 = Date.parse( "#{y}-01-01" )
-        d1 = d0
-        while true
-          d2 = d1 + interval.days
-          if d2 >= ( d0 + 1.year )
-            ranges << [d1.to_s, "#{y}-12-31"]
-            break
-          end
-          ranges << [d1.to_s, d2.to_s]
-          d1 = d2 + 1.day
-        end
-      end
     end
+
     streaks = []
     current_streaks = {}
     previous_user_ids = []
-    ranges.each_with_index do |range, range_i|
-      puts "range: #{range}"
-      elastic_params = Observation.params_to_elastic_query( base_query.merge( d1: range[0], d2: range[1] ) )
-      histogram_buckets = Observation.elastic_search( elastic_params.merge(
+
+    streak_bucketer = Proc.new do |query|
+      elastic_params = Observation.params_to_elastic_query( query )
+      Observation.elastic_search( elastic_params.merge(
         size: 0,
         aggs: {
           histogram: {
@@ -842,22 +857,59 @@ class YearStatistic < ActiveRecord::Base
           }
         }
       ) ).response.aggregations.histogram.buckets
-      histogram_buckets.each_with_index do |bucket, bucket_i|
-        date = bucket["key_as_string"]
-        user_ids = bucket.user_ids.buckets.map{|b| b["key"].to_i}
-        user_ids.each do |streaking_user_id|
-          current_streaks[streaking_user_id] ||= 0
-          current_streaks[streaking_user_id] += 1
-        end
+    end
+    histogram_buckets = call_and_rescue_with_partitioner(
+      streak_bucketer,
+      base_query,
+      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+    ) do |args|
+      query = args[0]
+      # Assume now one has been on a streak since before 2008-01-01
+      puts "partitioning #{query}"
+      d1 = query[:d1] && Date.parse( query[:d1] ) || Date.parse( "2008-01-01" )
+      d2 = query[:d2] && Date.parse( query[:d2] ) || Date.today
+      half = ( d2 - d1 ) / 2
+      new_queries = [
+        query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
+        query.merge( d1: ( d1 + (half + 1).days ).to_s, d2: d2.to_s )
+      ]
+      puts "partitioned into #{new_queries}"
+      new_queries
+    end
+    histogram_buckets.each_with_index do |bucket, bucket_i|
+      date = bucket["key_as_string"]
+      user_ids = bucket.user_ids.buckets.map{|b| b["key"].to_i}
+      user_ids.each do |streaking_user_id|
+        current_streaks[streaking_user_id] ||= 0
+        current_streaks[streaking_user_id] += 1
+      end
 
-        # Finished users are all the users who were present in the previous day
-        # but not in this one. For each of these, we need to add their streaks
-        # with the stop date set to the previous day
-        stop_date = ( Date.parse( date ) - 1.day )
-        finished_user_ids = []
-        finished_user_ids = previous_user_ids - user_ids
-        puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
-        finished_user_ids.each do |user_id|
+      # Finished users are all the users who were present in the previous day
+      # but not in this one. For each of these, we need to add their streaks
+      # with the stop date set to the previous day
+      stop_date = ( Date.parse( date ) - 1.day )
+      finished_user_ids = []
+      finished_user_ids = previous_user_ids - user_ids
+      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
+      finished_user_ids.each do |user_id|
+        if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+          streaks << {
+            user_id: user_id,
+            days: current_streaks[user_id],
+            stop: stop_date.to_s,
+            start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
+          }
+        end
+        current_streaks[user_id] = nil
+      end
+
+      # If this is the final day and there are still streaks in progress, we
+      # need to add their streaks with the stop today set to *this* day
+      if bucket_i == ( histogram_buckets.size - 1 ) # && range_i == ( ranges.size - 1 )
+        streaking_user_ids = current_streaks.keys
+        stop_date = Date.parse( date )
+        streaking_user_ids.each do |user_id|
           if current_streaks[user_id] && current_streaks[user_id] >= streak_length
             streaks << {
               user_id: user_id,
@@ -868,27 +920,9 @@ class YearStatistic < ActiveRecord::Base
           end
           current_streaks[user_id] = nil
         end
-
-        # If this is the final day and there are still streaks in progress, we
-        # need to add their streaks with the stop today set to *this* day
-        if bucket_i == ( histogram_buckets.size - 1 ) && range_i == ( ranges.size - 1 )
-          streaking_user_ids = current_streaks.keys
-          stop_date = Date.parse( date )
-          streaking_user_ids.each do |user_id|
-            if current_streaks[user_id] && current_streaks[user_id] >= streak_length
-              streaks << {
-                user_id: user_id,
-                days: current_streaks[user_id],
-                stop: stop_date.to_s,
-                start: ( stop_date + 1.day - ( current_streaks[user_id] ).days ).to_s
-              }
-            end
-            current_streaks[user_id] = nil
-          end
-        end
-
-        previous_user_ids = user_ids
       end
+
+      previous_user_ids = user_ids
     end
     return nil if streaks.blank?
     max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
@@ -942,8 +976,8 @@ class YearStatistic < ActiveRecord::Base
         key: project.key,
         json: true,
         format: "csv",
-        date_from: "2019-01-01+00:00",
-        date_to: "2019-12-31+23:00"
+        date_from: "#{year - 1}-01-01+00:00",
+        date_to: "#{year}-12-31+23:00"
       }
       if options[:site] && options[:site].locale
         export_params[:language] = locale_to_ci_code[options[:site].locale]

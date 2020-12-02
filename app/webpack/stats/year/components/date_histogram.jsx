@@ -75,7 +75,7 @@ class DateHistogram extends React.Component {
   enterSeries( newState = {} ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
-    const { series, onClick, showContext } = this.props;
+    const { series, onClick } = this.props;
     const {
       width,
       height,

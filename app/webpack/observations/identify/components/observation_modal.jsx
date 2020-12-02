@@ -668,7 +668,7 @@ class ObservationModal extends React.Component {
                         { taxonMap }
                         <div className="details">
                           <ul>
-                            { blind ? null : (
+                            { !blind && observation && observation.user && (
                               <li className="user-obs-count">
                                 <a
                                   href={`/people/${observation.user.login}`}

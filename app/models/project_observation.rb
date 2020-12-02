@@ -10,6 +10,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :project_allows_submitter?
   validate :observer_invited?
   validate :project_allows_observations?
+  validate :required_observation_fields_present?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -205,6 +206,21 @@ class ProjectObservation < ActiveRecord::Base
           time: I18n.l(project.preferred_end_date_or_time)
       end
     end
+  end
+
+  # Required observation fields are validated as rules, but rules are valid if
+  # *any* of them pass, while required observation fields should *all* be
+  # present
+  def required_observation_fields_present?
+    return true if !project || project.project_observation_fields.size < 2
+    missing = project.project_observation_fields.detect do |pof|
+      !observation.observation_field_values.detect do |ofv|
+        ofv.observation_field_id == pof.observation_field_id
+      end
+    end
+    return true unless missing
+    errors.add(:base, "Missing required observation field: #{missing.observation_field.name}" )
+    false
   end
 
   def refresh_project_list

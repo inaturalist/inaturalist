@@ -38,6 +38,7 @@ EOS
   opt :verbose, "Print extra log statements", :type => :boolean, :short => "-v"
   opt :file, "Where to write the zip archive. Default will be tmp path.", :type => :string, :short => "-f"
   opt :dir, "Directory to move files to; overridden by --file", type: :string
+  opt :num_processes, "Max number of parallel processes to use for exporting", type: :integer, short: "-p", default: 3
   opt :site_name, "Site name", type: :string, short: "-s"
   opt :site_id, "Site ID", type: :string, short: "-i"
   opt :taxon_id, "Taxon ID (just for testing on smaller exports)", type: :string, short: "-t"
@@ -64,7 +65,8 @@ export_params = {
   max_obs_id: max_obs_id,
   debug: OPTS.debug,
   verbose: OPTS.verbose,
-  taxon_id: OPTS.taxon_id
+  taxon_id: OPTS.taxon_id,
+  num_processes: OPTS.num_processes
 }
 paths = sites.to_a.compact.collect do |site|
   puts

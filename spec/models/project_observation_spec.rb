@@ -209,6 +209,25 @@ describe ProjectObservation, "creation" do
       expect( es_response.results.total ).to eq 15
     end
   end
+
+  it "should not allow observations that have one required field but not another" do
+    proj = Project.make!
+    pof1 = ProjectObservationField.make!( project: proj )
+    pof2 = ProjectObservationField.make!( project: proj )
+    obs_with_1 = ObservationFieldValue.make!( observation_field: pof1.observation_field ).observation
+    obs_with_1.reload
+    obs_with_2 = ObservationFieldValue.make!( observation_field: pof2.observation_field ).observation
+    obs_with_2.reload
+    obs_with_1_and_2 = ObservationFieldValue.make!( observation_field: pof1.observation_field ).observation
+    ObservationFieldValue.make!( observation_field: pof2.observation_field, observation: obs_with_1_and_2 )
+    obs_with_1_and_2.reload
+    obs_without_1_and_2 = Observation.make!
+
+    expect( ProjectObservation.make( project: proj, observation: obs_with_1 ) ).not_to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_with_2 ) ).not_to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_with_1_and_2 ) ).to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_without_1_and_2 ) ).not_to be_valid
+  end
 end
 
 describe ProjectObservation, "destruction" do

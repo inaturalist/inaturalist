@@ -1,7 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { defaultObservationParams } from "../../shared/util";
-import { objectToComparable } from "../../../shared/util";
+import { objectToComparable, updateSession } from "../../../shared/util";
 import { setConfig } from "../../../shared/ducks/config";
 
 const SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
@@ -45,6 +45,7 @@ export function setUrl( newParams, options = {} ) {
   }
   const title = `${I18n.t( "photos" )}: ${$.param( newState )}`;
   const newUrlState = _.pickBy( newState, ( v, k ) => !( k === "place_id" && v === "any" ) );
+  updateSession( { preferred_taxon_photos_query: $.param( newUrlState ) } );
   const newUrl = [
     window.location.origin,
     window.location.pathname,
@@ -216,9 +217,9 @@ export function fetchObservationPhotos( options = {} ) {
     return inatjs.observations.search( params )
       .then( response => {
         let observationPhotos = observationPhotosFromObservations( response.results );
-        // For taxa above species, show one photo per observation
-        if ( s.taxon.taxon && s.taxon.taxon.rank_level > 10 ) {
-          observationPhotos = onePhotoPerObservation( observationPhotos );
+        if ( params.photo_license && params.photo_license !== "any" ) {
+          observationPhotos = _.filter( observationPhotos,
+            op => op.photo.license_code === params.photo_license );
         }
         let action = appendObservationPhotos;
         if ( options.reload ) {
@@ -331,7 +332,15 @@ export function setGrouping( param, values ) {
 export function reloadPhotos( ) {
   return function ( dispatch, getState ) {
     const state = getState( );
-    if ( state.config.grouping ) {
+    const { taxon } = state.taxon;
+    if (
+      state.config.grouping
+      && state.config.grouping.param
+      && (
+        state.config.grouping.param !== "taxon_id"
+        || ( taxon.children && taxon.children.length > 0 )
+      )
+    ) {
       dispatch( setGrouping( state.config.grouping.param, state.config.grouping.values ) );
     } else {
       dispatch( fetchObservationPhotos( { reload: true } ) );
@@ -346,10 +355,14 @@ export function hydrateFromUrlParams( params ) {
       params = {};
     }
     if ( params.grouping ) {
-      const match = params.grouping.match( /terms:([0-9]+)$/ );
-      if ( match ) {
+      const termGroupingMatch = params.grouping.match( /terms:([0-9]+)$/ );
+      if ( termGroupingMatch ) {
         dispatch(
-          setConfig( { grouping: { param: params.grouping, values: Number( match[1] ) } } )
+          setConfig( {
+            grouping: {
+              param: params.grouping, values: Number( termGroupingMatch[1] )
+            }
+          } )
         );
       } else {
         dispatch( setConfig( { grouping: { param: params.grouping } } ) );

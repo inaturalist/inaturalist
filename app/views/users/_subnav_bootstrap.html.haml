@@ -9,7 +9,7 @@
       %span.glyphicon.glyphicon-user
       =t :profile
   %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
-    = link_to observations_path( user_id: user.login ) do
+    = link_to observations_path( user_id: user.login, verifiable: "any", place: "any" ) do
       %i.fa.fa-binoculars
       =t :observations
   - if is_me?( current_user )
