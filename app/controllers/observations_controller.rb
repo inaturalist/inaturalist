@@ -839,7 +839,7 @@ class ObservationsController < ApplicationController
     end
 
     Observation.elastic_index!(
-      ids: @observations.compact.map( &:id ),
+      ids: @observations.to_a.compact.map( &:id ),
       wait_for_index_refresh: true )
 
     respond_to do |format|
