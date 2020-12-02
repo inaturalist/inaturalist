@@ -21,7 +21,8 @@ const config = {
     "stats-year": "./stats/year/webpack-entry",
     "projects-form": "./projects/form/webpack-entry",
     "projects-show": "./projects/show/webpack-entry",
-    "observations-compare": "./observations/compare/webpack-entry"
+    "observations-compare": "./observations/compare/webpack-entry",
+    "users-edit": "./users/edit/webpack-entry"
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js

@@ -8,9 +8,13 @@ class UserBlock < ActiveRecord::Base
   validate :only_three_per_user, on: :create
   validate :cant_block_yourself
   validate :cant_block_staff
-  validate :uniquenes_of_blocked_user
+  validate :uniqueness_of_blocked_user, on: :create
 
   after_create :destroy_friendships, :notify_staff_about_potential_problem_user
+
+  def to_s
+    "<UserBlock #{id} user_id: #{user_id}, blocked_user_id: #{blocked_user_id}>"
+  end
 
   def only_three_per_user
     if user.user_blocks.count >= 3
@@ -33,7 +37,7 @@ class UserBlock < ActiveRecord::Base
     true
   end
 
-  def uniquenes_of_blocked_user
+  def uniqueness_of_blocked_user
     if blocked_user && user.user_blocks.where( blocked_user_id: blocked_user ).exists?
       errors.add( :base, :user_already_blocked )
     end
