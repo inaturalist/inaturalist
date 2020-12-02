@@ -110,10 +110,12 @@ button.selected {
   margin-top: 5px;
 }
 
-.btn-primary.btn-inat {
-  background-color: #337ab7 !important;
-  color: white;
-  border-color: #2e6da4 !important;
+#UserSettings {
+  .btn-primary.btn-inat {
+    background-color: #337ab7 !important;
+    color: white;
+    border-color: #2e6da4 !important;
+  }
 }
 
 .btn-save-text {

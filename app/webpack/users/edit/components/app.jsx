@@ -69,7 +69,7 @@ class App extends Component {
     ];
 
     return (
-      <div className="container">
+      <div className="container" id="UserSettings">
         <div className="row">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
