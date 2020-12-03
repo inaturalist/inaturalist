@@ -768,7 +768,6 @@ zh-TW:
   community_guidelines: 社群指南
   community_id_heading: 社群分類群
   community_id_at_species_or_lower?: 在物種或更低階層的社群分類群？
-  community_id_at_genus_level_or_lower: 在「屬」或較低階層的社群分類群
   community_id_at_species_level_or_lower: 屬於物種層級或是較低階層級的社群分類群
   community_moderation_settings: 社群管制設定
   community_supported_id: 社群支持的分類群？
@@ -4659,58 +4658,6 @@ zh-TW:
           一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
         join_project_desc_html: |
           加入專案將會給予專案策展人可查看任何在專案裡觀察之隱藏座標的權限，並意味著您同意專案的<a href="%{url}" target="_blank">條款</a>。
-        quality_assessment_help_html: |
-          <p>
-          資料品質評估是一項觀察準確程度的摘要。所有觀察
-          最初是從<strong>「粗略」</strong>等級開始，而成為<strong>「需要鑑定」</strong>的狀態是當
-          </p>
-
-          <ul>
-          <li>觀察<strong>擁有日期</strong></li>
-          <li>觀察<strong>具備地理參考</strong>（註：擁有經/緯度）</li>
-          <li>觀察<strong>擁有照片或聲音</strong></li>
-          <li>觀察<strong>內容不是人類</strong></li>
-          </ul>
-          <p>
-          觀察要成為<strong>「研究等級」</strong>是當
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>，註：當超過三分之二鑑定人同意同一項物種分類
-          </li>
-          </ul>
-          <p>
-          觀察會被列為<strong>「粗略」</strong>，是當不符合以上條件情況或是社群認為
-          </p>
-          <ul>
-          <li>
-          <strong>位置不精準</strong>（例如：猴子位在海洋裡，或是河馬位在辦公大樓等等）
-          </li>
-          <li>
-          <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）
-          </li>
-          <li>
-          觀察內容<strong>沒有呈現出是生物的證明</strong>，例如：僅是風景、水景、岩石之類的圖片。
-          </li>
-          <li>
-          觀察內容<strong>沒有呈現出是近代（大約一百年內）生物的證明</strong> （例如：化石，但如果是痕跡、排泄物，或枯葉是可以的）
-          </li>
-          <li>
-          觀察已不需要鑑定<em>並且</em>社群鑑定是在科級別以上
-          </li>
-          <li>
-          觀察者退出社群鑑定，並且社群鑑定不屬於關連到觀察者鑑定的物種分類之原型或派生
-          </li>
-          </ul>
-          <p>
-          如果不夠深入，會有系統投票的情況：
-          </p>
-          <ul>
-          <li>
-          若在最小的郡或州裡有至少十個屬級別或以下級別的其它觀察，或是與同等於國家層級地點包含著此觀察與
-          80% 或以上的這些觀察，有被標記為非野生/歸化的情況，系統將會投票觀察是否非野生/歸化的生物。
-          </li>
-          </ul>
         score_desc: "分數 = 累積次數 /（累積次數 + 不一致次數 + 祖先不一致次數）"
         observation_flagged_notice_html: |
           此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>

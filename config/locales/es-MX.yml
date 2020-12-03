@@ -109,6 +109,26 @@ es-MX:
     Se creará un nombre predeterminado para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos obsoletos, etc.)
   a_flag_for_x: "una alerta para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
   about: Acerca
   about_blocking: Acerca de los bloqueos
   about_charts: Acerca de los gráficos
@@ -728,7 +748,6 @@ es-MX:
   community_guidelines: Directrices de la comunidad
   community_id_heading: ID de la comunidad
   community_id_at_species_or_lower?: '¿La ID de la comunidad es como especie o inferior?'
-  community_id_at_genus_level_or_lower: ID de la comunidad a nivel de género o inferior
   community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o inferior
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: '¿Hay una identificación apoyada por la comunidad?'
@@ -4112,32 +4131,6 @@ es-MX:
           Algunas de estas fotos se han marcado por su contenido inapropiado o porque violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto, los curadores del proyecto podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a> del proyecto.
-        quality_assessment_help_html: |
-          <p>
-            La evaluación de la calidad de los datos es un resumen de la precisión de una observación. Todas las observaciones comienzan con el grado de   <strong>"casual"</strong> y alcanzan el grado de   <strong>"investigación"</strong> cuando: 
-          </p>
-          <ul>
-            <li>
-              La comunidad de %{site_name} <strong> está de acuerdo con la identificación de un observador</strong>, toda vez que una identificación
-              "en acuerdo" concuerde exactamente o es un clase o especie descendiente de la identificación del observador. Por ejemplo, si Scott dice que es un
-              mamífero y Ken-ichi dice que es un <em>Homo sapiens</em>, entonces Ken-
-              ichi está de acuerdo con Scott.
-            </li>
-            <li>La observación <strong>tiene una fecha</strong></li>
-           \ <li>La observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas de latitud y longitud)</li>
-            <li>La observación <strong>tiene una foto</strong></li>
-          </ul>
-          <p>Las observaciones volverán al grado "casual" si las condiciones  anteriores no se cumplen o:</p>
-          <ul>
-            <li>
-              La comunidad de %{site_name} acuerda que la <strong>ubicación no parece ser acertada</strong> (es decir, monos en medio del océano, hipopótamos en edificios, etc.)
-            </li>
-            <li>
-              La comunidad de %{site_name} acuerda que el
-           \   <strong>organismo no estaba en cautiverio o fue cultivado(a) </strong> (no estaba en un jardín, zoológico, acuario o alguna otra situación en la que
-              sólo estaba presente porque los seres humanos la destinaron a estar allí)
-            </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.

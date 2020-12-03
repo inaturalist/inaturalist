@@ -6,7 +6,7 @@ sv:
     one: '<span class="count">%{count}</span> kommentar'
     other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
-    one: '1 favorit'
+    one: '%{count} favorit'
     other: '%{count} favoriter'
   x_flags_resolved_html:
     one: "<span class='antal'>1</span> flagga löst"
@@ -45,7 +45,7 @@ sv:
     one: '<span class="count">1</span> matchande taxon'
     other: '<span class="count">%{count}</span> matchande taxa'
   x_misidentifications_of_this_species:
-    one: "#1 felbestämning av denna art"
+    one: "%{count} felbestämning av denna art"
     other: "%{count} felbestämningar av denna art"
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} felbestämning av arter i denna %{rank}"
@@ -66,8 +66,8 @@ sv:
     one: "<span class='antal'>1</span> observation granskad"
     other: "<span class='antal'>%{count}</span> observationer granskade"
   x_observers_html:
-    one: '<span class="count">%{count}</span> Observatör'
-    other: '<span class="count">%{count}</span> Observatörer'
+    one: '<span class="count">%{count}</span> observatör'
+    other: '<span class="count">%{count}</span> observatörer'
   x_others:
     one: "1 annan"
     other: "%{count} andra"
@@ -82,8 +82,8 @@ sv:
     one: "1 ny art"
     other: "%{count} nya arter"
   x_new_users:
-    one: '%{count} Ny användare'
-    other: '%{count} Nya användare'
+    one: '%{count} ny användare'
+    other: '%{count} nya användare'
   x_species:
     one: '1 art'
     other: '%{count} arter'
@@ -94,8 +94,8 @@ sv:
     one: "<a href='%{url}'>1 art</a>"
     other: "<a href='%{url}'>%{count} arter</a>"
   x_suggestions_filtered_by_colon:
-    one: "1 förslag filtrerades av:"
-    other: "%{count} förslag filtrerades av:"
+    one: "%{count} förslag filtrerades på:"
+    other: "%{count} förslag filtrerades på:"
   x_taxa:
     one: "%{count} taxon"
     other: "%{count} taxa"
@@ -120,7 +120,7 @@ sv:
   x_taxon_changes_added_html:
     one: "<span class='antal'>1</span> taxonändring tillagd"
     other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
-  _100_day_trends: 100 dagars trend
+  _100_day_trends: 100-dagarstrend
   _percent_ID_d: "% bestämda"
   a_community_for_naturalist: En gemenskap för naturforskare
   a_default_taxon_name_will_automatically_created: |
@@ -159,10 +159,10 @@ sv:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om invandringshistoria
   about_licenses: Om licenser
-  about_muting: Om blockering
+  about_muting: Om tystning
   #Header for a section describing taxon names
-  about_names: Om Namn
-  about_places: Om platser
+  about_names: Om namn
+  about_places: Om lokaler
   about_the_cc_licenses: Om Creative Commons-licenser
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
@@ -194,7 +194,7 @@ sv:
   about_trusting_projects_options_taxon: |-
     Endast de av dina observationer i detta projekt vars koordinater är dolda på grund av hotade taxa
   about_trusting_projects_options_taxon_desc: |-
-    Många projekt behöver bara tillgång till koordinater som är diffuserade för att observationen är av ett hotat taxon.
+    Många projekt behöver bara tillgång till koordinater som är diffuserade eftersom observationen är av ett hotat taxon.
   about_trusting_projects_overview: |-
     Genom att ge tillgång till dina dolda koordinater kan detta projekts ledare se den verkliga, odiffuserade lokalen för dina observationer i detta projekt. Detta
     är oerhört viktigt i situationer där forskare eller resursförvaltare behöver tillgång till exakta koordinater för analys och beslutsfattande.
@@ -224,10 +224,10 @@ sv:
   active_users: Aktiva användare
   activity: Aktivitet
   activity_settings: Aktivitetsinställningar
-  adapted_by_name_from_a_work_by_original: "Anpassat av %{name} från ett verk av %{original}"
+  adapted_by_name_from_a_work_by_original: "Antaget av %{name} från ett verk av %{original}"
   add: Lägg till
-  add_a_batch_of_observations: Lägg till ett gäng observationer
-  add_a_batch_of_taxa: Lägg till ett gäng med taxa
+  add_a_batch_of_observations: Lägg till flera observationer
+  add_a_batch_of_taxa: Lägg till flera taxa
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
@@ -253,14 +253,14 @@ sv:
   add_annotations_for_controlled_attribute:
     sex: Lägg till noteringar för "Kön"
     plant_phenology: Lägg till noteringar för "Växtfenologi"
-    life_stage: Lägg till noteringar för "Livsstadium"
-  add_another_flag: Lägg till en annan flagga
+    life_stage: Lägg till anteckningar för "Livsform"
+  add_another_flag: Lägg till ytterligare en flagga
   add_another_photo: Lägg till ytterligare en bild
   add_another_section: Lägg till ytterligare ett avsnitt
   add_another_subscription: Lägg till ytterligare en prenumeration
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Lägg till projektmaterial
-  add_batch: Lägg till batch
+  add_batch: Lägg till flera på en gång
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Lägg till fet text
   add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
@@ -268,7 +268,7 @@ sv:
   add_conservation_status: Lägg till bevarandestatus
   add_countries: Lägg till länder
   add_custom_project_fields: Lägg till anpassade projektfält
-  add_edit_flags: Lägg till/Ändra markeringar
+  add_edit_flags: Lägg till/Ändra flaggor
   add_editor: Lägg till redigerare
   add_description: "Lägg till %{description_name}"
   add_from_your_observations: Lägg till från dina observationer
@@ -279,13 +279,13 @@ sv:
   add_italic_text: Lägg till kursiv text
   add_new_lexicon: Lägg till nytt lexikon
   add_new_photos_by_their_ids: Lägg till nya bilder via deras Flickr-Id (måste vara Creative Commons!)
-  add_new_place: Lägg till en ny plats
+  add_new_place: Lägg till en ny lokal
   add_new_rule: Lägg till en ny regel
   add_new_source: "Lägg till en ny källa..."
   add_new_taxon_name: Lägg till ett nytt taxonnamn
   add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna plats, t.ex. var och när det påträffas.
-  add_obs_from_a_link: "Lägg till obsar från lista: %{link}"
-  add_obs_from_a_list: Lägg till obsar från en lista
+  add_obs_from_a_link: "Lägg till obs från lista: %{link}"
+  add_obs_from_a_list: Lägg till obs från en lista
   add_observations: Lägg till observationer
   add_observations_by_checking_off: Lägg till observationer genom att markera arter i en lista.
   add_observations_project: Lägg till observationer till detta projekt
@@ -295,30 +295,30 @@ sv:
   #"one" refers to a photo
   add_one_now: Lägg till en nu
   add_photos: Lägg till bilder
-  add_place: Lägg till plats
-  add_alive_or_dead_alive_annotation: 'Lägg till "Levande eller Död: Levande"-anteckning'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till "Levande eller Död: Kan inte avgöras"-anteckning'
-  add_alive_or_dead_dead_annotation: 'Lägg till "Levande eller Död: Död"-anteckning'
-  add_plant_phenology_budding_annotation: 'Lägg till notering "Växtfenologi: Knoppbristning"'
-  add_plant_phenology_flower_budding_annotation: 'Lägg till anteckning "Växtfenologi: Blomknopp"'
-  add_plant_phenology_flowering_annotation: 'Lägg till notering "Växtfenologi: Blomning"'
-  add_plant_phenology_fruiting_annotation: 'Lägg till notering "Växtfenologi: I frukt"'
+  add_place: Lägg till lokal
+  add_alive_or_dead_alive_annotation: 'Lägg till anteckningen "Levande eller Död: Levande"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till anteckningen "Levande eller Död: Kan inte avgöras"'
+  add_alive_or_dead_dead_annotation: 'Lägg till anteckningen "Levande eller Död: Död"'
+  add_plant_phenology_budding_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
+  add_plant_phenology_flower_budding_annotation: 'Lägg till anteckningen "Växtfenologi: Blomknopp"'
+  add_plant_phenology_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Blomning"'
+  add_plant_phenology_fruiting_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
-  add_life_stage_adult_annotation: 'Lägg till notering "Livsstadium: Adult"'
-  add_life_stage_teneral_annotation: 'Lägg till notering "Livsstadium: teneral"'
-  add_life_stage_subimago_annotation: 'Lägg till notering "Livsstadium: subimago"'
-  add_life_stage_pupa_annotation: 'Lägg till notering "Livsstadium: puppa"'
-  add_life_stage_nymph_annotation: 'Lägg till notering "Livsstadium: Nymf"'
-  add_life_stage_larva_annotation: 'Lägg till notering "Livsstadium: Larv"'
-  add_life_stage_juvenile_annotation: 'Lägg till notering "Livsstadium: Juvenil"'
-  add_life_stage_egg_annotation: 'Lägg till notering "Livsstadium: Ägg"'
+  add_life_stage_adult_annotation: 'Lägg till anteckningen "Livsstadium: Adult"'
+  add_life_stage_teneral_annotation: 'Lägg till anteckningen "Livsstadium: teneral"'
+  add_life_stage_subimago_annotation: 'Lägg till anteckningen "Livsstadium: subimago"'
+  add_life_stage_pupa_annotation: 'Lägg till anteckningen "Livsstadium: puppa"'
+  add_life_stage_nymph_annotation: 'Lägg till anteckningen "Livsstadium: Nymf"'
+  add_life_stage_larva_annotation: 'Lägg till anteckningen "Livsstadium: Larv"'
+  add_life_stage_juvenile_annotation: 'Lägg till anteckningen "Livsstadium: Juvenil"'
+  add_life_stage_egg_annotation: 'Lägg till anteckningen "Livsstadium: Ägg"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
   add_section: Lägg till avsnitt
   add_several_observations_at_once: Lägg till flera observationer på en gång.
-  add_sex_female_annotation: 'Lägg till anteckning "Kön: Hona"'
-  add_sex_male_annotation: 'Lägg till anteckning "Kön: Hane"'
+  add_sex_female_annotation: 'Lägg till anteckningen "Kön: Hona"'
+  add_sex_male_annotation: 'Lägg till anteckningen "Kön: Hane"'
   add_sex_cannot_be_determined_annotation: 'Lägg till anteckningen "Kön: Kan inte fastställas"'
   add_some_now: Lägg till lite nu
   add_tag: Lägg till taggning
@@ -372,12 +372,12 @@ sv:
   aka: även känd som
   all: Alla
   all_comments: Alla kommentarer
-  all_flags_must_be_resolved: Alla markeringar måste vara lösta
+  all_flags_must_be_resolved: Alla flaggor måste vara lösta
   all_life: Allt liv
   all_names: Alla namn
   all_observations: Alla observationer
   all_photos: Alla bilder
-  all_places: "Alla platser"
+  all_places: "Alla lokaler"
   all_projects: Alla projekt
   all_rank_added_to_the_database:
     phylum: All fyla har lagts till i databasen
@@ -874,8 +874,8 @@ sv:
   community_guidelines: Gemenskapsriktlinjer
   community_id_heading: Kollektivt taxon
   community_id_at_species_or_lower?: Kollektivt taxon på artnivå eller lägre?
-  community_id_at_genus_level_or_lower: Kollektivt taxon på släktnivå eller lägre
   community_id_at_species_level_or_lower: Kollektivt taxon på artnivå eller lägre
+  community_id_is_precise: Gemenskapstaxon är exakt
   community_moderation_settings: Inställningar för kollektiv moderering
   community_supported_id: Kollektivt understött taxon?
   compare: Jämför
@@ -5452,7 +5452,7 @@ sv:
 
           <ul>
           <li>observationen <strong>är daterad</strong></li>
-          <li>the observation <strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
+          <li>observationen <strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
           <li>the observation <strong>har bild eller ljud</strong></li>
           <li>observationen <strong>inte är av en människa</strong></li>
           </ul>
@@ -5461,18 +5461,18 @@ sv:
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>gemenskapen är enig på artnivå eller lägre</strong>, dvs
-          när mer än 2/3 av bestämmarna håller med om ett taxon
+          %{site_name}-<strong>gemenskapen är enig om bestämning till art eller lägre</strong>, dvs när mer än 2/3 av bestämmarna håller med om ett taxon
+          (om gemenskapen har röstat att gemenskapstaxonet inte längre kan förbättras, ändras detta till underfamilj eller lägre)
           </li>
           </ul>
           <p>
-          Observationer återgår till <strong>"grundkvalitet"</strong> om ovanstående kvar inte uppfylls eller gemenskapen är enig
+          Observationer återgår till <strong>"grundkvalitet"</strong> om ovanstående krav inte uppfylls eller om gemenskapen är enig
           </p>
           <ul>
           <li>
           <strong>lokalen verkar inte riktigt
           riktig</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret etc.)
+          flodhästar på kontoret, etc.)
           </li>
           <li>
           <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människor
@@ -5484,12 +5484,11 @@ sv:
           stenar, etc.
           </li>
           <li>
-          observationen <strong>ger inte belägg för en recent (~100 years)
-          organism</strong> (t.ex. fossil, medan spår, avföring eller döda löv
-          är ok)
+          observationen <strong>inte ger nutida (~100 år) belägg för organismen
+          </strong> (t.ex. fossil, medan spår, avföring eller döda löv är ok)
           </li>
           <li>
-          observationen behöver inte längre bestämmas <em>och</em> en gemenskapsbestämning över familjenivå
+          observationen behöver inte längre bestämmas <em>och</em> har en gemenskapsbestämning över familjenivå
           </li>
           <li>
           observatören har valt bort gemenskapsbestämning och det av gemenskapen
@@ -5498,14 +5497,14 @@ sv:
           </li>
           </ul>
           <p>
-          Och om det inte var nog komplicerat, finns det även situationer då systemet får rösta:
+          Och om det inte var nog komplicerat, finns det även situationer där systemet får rösta:
           </p>
           <ul>
           <li>
           Systemet kommer att rösta på att observationen inte är vild/naturaliserad
           om det finns minst 10 andra observationer på släktesnivå eller lägre i
-          den minsta plats som motsvarar ett län- stat- eller land och omfattar
-          denna observation och 80 % eller mer av de observationer som
+          den minsta lokal motsvarande ett län, stat eller land och omfattar
+          denna observation samt att 80 % eller fler av dessa observationer
           har markerats som inte vilda/naturaliserade.
           </li>
           </ul>

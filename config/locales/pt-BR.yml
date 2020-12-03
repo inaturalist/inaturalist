@@ -831,7 +831,6 @@ pt:
   community_guidelines: Diretrizes da comunidade
   community_id_heading: Taxon comunitário
   community_id_at_species_or_lower?: Táxon comunitário em espécie ou menor?
-  community_id_at_genus_level_or_lower: Táxon Comunitário ao nível do gênero ou inferior
   community_id_at_species_level_or_lower: Táxon comunitário a nível de espécie ou inferior
   community_moderation_settings: Configuração da Moderação da Comunidade
   community_supported_id: Táxon apoiado pela comunidade?
@@ -5030,46 +5029,44 @@ pt:
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
         quality_assessment_help_html: |
           <p>
-          A avaliação da qualidade dos dados é um resumos da acurácia (precisão) de uma observação. Todas as observações começam recebendo o status de Nível <strong>"Casual"</strong>, e são marcadas como
-          <strong>"Precisa de ID"</strong> quando
+          A avaliação da qualidade dos dados é um resumos da acurácia (precisão) de uma observação. Todas as observações começam recebendo o status de Nível <strong>"Casual"</strong>, e são marcadas como <strong>"Precisa de ID"</strong> quando
           </p>
 
           <ul>
           <li>a observação <strong>possui data</strong></li>
-          <li>a observação <strong>é georeferenciada</strong> (exemplo, possui coordenadas de latitude e longitude)</li>
+          <li>a observação <strong>é georreferenciada</strong> (exemplo, possui coordenadas de latitude e longitude)</li>
           <li>a observação <strong>possui fotos ou sons</strong></li>
           <li>a observação <strong>não é de um humano</strong></li>
           </ul>
           <p>
-          Observação recebem o status de <strong>"Nível de Pesquisa"</strong> quando
+          Observações recebem o status de <strong>"Nível de Pesquisa"</strong> quando
           </p>
           <ul>
           <li>
-          a <strong>comunidade do %{site_name} concorda a nível de espécie sobre a identificação</strong>, exemplo,
-          quando mais de 2/3 dos que identificaram o item concordam sobre um táxon
+          a <strong>comunidade do %{site_name} concorda a nível de espécie (ou menor) sobre a identificação</strong>, ou seja, quando mais de 2/3 dos que identificaram o item concordam sobre um táxon
           </li>
           </ul>
           <p>
-          O status de uma observação será revertida para <strong>"casual"</strong> se as metas abaixo não forem atingidas ou há discordância em relação a ID por parte da comunidade
+          O status de uma observação será revertida para <strong>"Casual"</strong> se as metas abaixo não forem atingidas ou a comunidade concorda que
           </p>
           <ul>
           <li>
-          a <strong>localização não parece precisa</strong> (exemplo, macacos voando no meio do oceano, hipopótamos dançando em meio a Avenida Paulista, etc.)
+          a <strong>localização não parece precisa</strong> (exemplo, macacos voando no meio do oceano, hipopótamos dançando em meio à Avenida Paulista, etc.)
           </li>
           <li>
-          o <strong>organismo não é nativo ou, selvagem</strong> (exemplo, organismo em cativeiro ou cultivado por humanos, inteligência artificial ou alienígenas do espaço sideral)
+          o <strong>organismo não é naturalizado ou selvagem</strong> (exemplo, organismo em cativeiro ou cultivado por humanos, inteligência artificial ou alienígenas do espaço sideral)
           </li>
           <li>
-          a observação <strong>não apresenta evidência de um organismo</strong>, exemplo, imagens de paisagens, rochas, nascentes,etc.
+          a observação <strong>não apresenta evidência de um organismo</strong> (exemplo, imagens de paisagens, rochas, nascentes, etc.)
           </li>
           <li>
-          a observação <strong>não apresenta uma evidência recente da existência do organismo (~100 anos) </strong> (exemplo, fósseis, mais pegadas, folhas mortas fossils e rastros são permitidos)
+          a observação <strong>não apresenta uma evidência recente da existência do organismo (~100 anos) </strong> (exemplo, fósseis; mas pegadas, folhas mortas e rastros são permitidos)
           </li>
           <li>
           a observação não precisa mais de uma identificação <em>e</em> a identificação da comunidade está acima de família
           </li>
           <li>
-          o observador rejeitou a identificação da comunidade e, a identificação do táxon pela comunidade não é um ancestral ou decendente do táxon associado com a identificação do observador
+          o observador rejeitou a identificação da comunidade e a identificação do táxon pela comunidade não é um ancestral ou descendente do táxon associado com a ID do observador
           </li>
           </ul>
           <p>
@@ -5077,7 +5074,7 @@ pt:
           </p>
           <ul>
           <li>
-          O sistema opinará classificando uma observação como não sendo nativa/selvagem se houverem na plataforma ao menos 10 outras observações a nível de gênero ou abaixo em países, estados ou locais razoavelmente pequenos que possuam observações deste tipo e 80% ou mais destas observações já foram marcadas como não sendo nativas ou selvagens.
+          O sistema opinará classificando uma observação como não sendo naturalizada/selvagem se houverem na plataforma ao menos 10 outras observações a nível de gênero ou abaixo em países, estados ou locais razoavelmente pequenos que possuam observações deste tipo e 80% ou mais destas observações já foram marcadas como não sendo nativas ou selvagens.
           </li>
           </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"

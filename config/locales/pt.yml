@@ -817,8 +817,8 @@ pt:
   community_guidelines: Normas da Comunidade
   community_id_heading: ID da Comunidade
   community_id_at_species_or_lower?: ID da Comunidade é como espécie ou inferior?
-  community_id_at_genus_level_or_lower: ID da Comunidade é como género ou inferior
   community_id_at_species_level_or_lower: ID da Comunidade é como espécie ou inferior
+  community_id_is_precise: O táxon da comunidade é preciso
   community_moderation_settings: Definições de Moderação da Comunidade
   community_supported_id: Identificação confirmada pela comunidade?
   compare: Comparar
@@ -1377,6 +1377,9 @@ pt:
   hex_color_eg: 'Cor hexadecimal, exemplo: 65644F'
   hi: Olá,
   hi_user: "Olá %{user}"
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Ocultar "Sem anotação"
   hide_running_total: Ocultar total acumulado
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alto
@@ -2757,6 +2760,9 @@ pt:
   show_keyboard_shortcuts: Mostrar as Teclas de Atalho do Teclado
   show_less: Mostrar menos
   show_more: Mostrar mais
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Mostrar registos "Sem anotação"
   show_observation_photos: mostrar as fotos das observações
   show_off_your_recent_observations: Exponha as suas observações recentes no seu próprio blog ou website!
   show_only: Mostrar apenas
@@ -3479,6 +3485,9 @@ pt:
         published_at: Publicação
       listed_taxon:
         establishment_means: Meios de estabelecimento
+      message:
+        subject: Assunto
+        body: Corpo do texto
       observation_field_value:
         value: 'valor'
       post:
