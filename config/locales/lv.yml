@@ -11,6 +11,10 @@ lv:
     zero: '%{count} reizes pievienots izlasei'
     one: '%{count} reizi pievienots izlasei'
     other: '%{count} reizes pievienots izlasei'
+  x_flags_resolved_html:
+    zero: "<span class='count'>%{count}</span> atrisināti ziņojumi"
+    one: "<span class='count'>%{count}</span> atrisināts ziņojums"
+    other: "<span class='count'>%{count}</span> atrisināti ziņojumi"
   x_identifications:
     zero: '%{count} identifikācijas'
     one: '%{count} identifikācija'
@@ -158,6 +162,7 @@ lv:
   a_default_taxon_name_will_automatically_created: |
     Noklusējuma taksona nosaukums izveidosies automātiski, vadoties pēc šī taksona zinātniskā nosaukuma.
     Kad saglabāsi jauno taksonu, varēsi pevienot arī citus nosaukumus (tautā pieņemtos, novecojušus zinātniskos nosaukums u.c.).
+  a_flag_for_x: "%{x} ziņojums"
   a_member_of_taxon_html: "%{taxon} biedrs"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -181,6 +186,7 @@ lv:
   activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: Apraksts
   about_blocking: Vairāk par bloķēšanu
+  about_charts: Vairāk par grafikiem
   about_community_taxa: Vairāk par kopienas taksoniem
   about_complete_taxa: Vairāk par pilnīgiem taksoniem
   about_conservation_status: Vairāk par aizsardzības statusu
@@ -192,8 +198,16 @@ lv:
   about_places: Vairāk par vietām
   about_the_cc_licenses: Vairāk par "Creative Commons" licencēm
   about_these_licenses: Vairāk par šīm licencēm
+  about_this_bioblitz: Vairāk par "Bioblitz"
   about_this_map: Vairāk par šo karti
   about_this_project: Vairāk par šo projektu
+  about_trusting_projects_options_any: Visi tavi novērojumi šajā projektā
+  about_trusting_projects_options_any_desc: |-
+    Šeit iekļauti novērojumi, kurus esi izvēlējies noslēpt vai padarīt par privātiem, piemēram, novērojumi tavā dārzā vai vietās, ko negribi citiem rādīt.
+  about_trusting_projects_options_taxon: |-
+    Tikai taviem novērojumiem šajā projektā ar apslēptām koordinātām apdraudēta taksona dēļ.
+  about_trusting_projects_options_taxon_desc: |-
+    Daudziem projektiem nepieciešams piekļūt apslēptajām koordinātām, jo novērojumā ir apdraudēts taksons.
   about_x: "Vairāk par %{x}"
   acc: 'Preciz. (m)'
   account: Konts
@@ -319,7 +333,12 @@ lv:
   add_to_favorites: Pievienot izlasei
   add_to_list: Pievienot sarakstam
   add_to_project: Pievienot projektam
+  add_to_your_life_list: Pievienot savam sarakstam.
   add_to_your_list: Pievienot savam sarakstam
+  add_your_email_to_get: |
+    Norādi savu e-pasta adresi, lai no kopienas saņemtu atsauksmes par novērojumu.
+    Ja nevēlies ar to dalīties, lūdzu, drīz pārbaudi vēlreiz!
+  add_your_own_observations_at: "Pievienot savus novērojumus šeit: %{site_name}"
   added: Pievienots
   added!: Pievienots!
   added_as_a_part_of_a_taxon_change_html: |
@@ -710,6 +729,8 @@ lv:
   cc_by_description: "Šī licence ļauj citiem, arī komerciālos nolūkos, izplatīt, rediģēt, izmainīt un papildināt tavu darbu ar noteikumu, ka tiek norādīti oriģināla autora nopelni."
   cc_by_name: Nopelni
   change_admin: Mainīt administratoru
+  #Button to change the cover (or banner) image for a project
+  change_cover: Mainīt titulbildi
   change_descriptions:
     split: Vecais taksons sadalīts vairākos jaunos taksonos
     merge: Vairāki vecie taksoni apvienoti vienā jaunā taksonā
@@ -745,10 +766,25 @@ lv:
     dropped: atmests
     staged: sagatavots
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} tika sadalīts un pievienots %{output_taxa} taksonam"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} tiks sadalīts %{output_taxa}"
+    input_taxon_was_dropped_html: "%{input_taxon} tika atmests"
+    input_taxon_will_be_dropped_html: "%{input_taxon} tiks atmests"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} drīz tiks aktivizēts"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} tika samainīts pret %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} tika samainīts pret %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} tika apvienots ar %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} tiks apvienots ar %{output_taxon}"
   change_your_password: Mainīt paroli
   check_back_soon: Pārbaudi vēlreiz vēlāk!
   check_list: Kontrollapa
+  check_list_for_taxon_html: "%{taxon} kontrollapa"
+  check_list_place: "%{place} kontrollapa"
+  check_list_updated: Kontrollapa ir izmainīta.
+  check_lists_for: "Citas %{place} kontrollapas"
+  check_out_my_observations_at: 'Ja vēlies, vari apskatīt manus novērojumus šeit:'
   check_out_our_blog: Iepazīsti mūsu emuāru!
+  check_out_what_the_observation: Apskati novērojumu, kuru centies identificēt!
+  check_out_your_new_and_improved_list_list: Apskati savu jauno un uzlaboto sarakstu!
   checklist: Kontrollapa
   choose_a_field: Izvēlēties lauku
   choose_a_list_above: Izvēlēties kādu no augšējiem laukiem
@@ -788,12 +824,22 @@ lv:
   comments_on: Komentāri ir ieslēgti
   comments_on_my_observations: Maniem novērojumiem pievienotie komentāri
   commercial_solicitation: Komerciālā aģitācija vai saites bez galamērķa u.t.m.l.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
+  commit: Veikt izmaiņas
+  #Adjective describing a taxon change that has been committed
+  committed: Izmaiņas veiktas
+  committed_by_user_on_date_html: 'Izmaiņas veicis lietotājs %{user} šajā laikā: %{date}'
+  #Label for date the taxon change was committed
+  committed_on: 'Izmaiņas veiktas: %{date}'
+  #Status message while a taxon change is being committed
+  committing: Veic izmaiņas...
   community: Kopiena
   community_curated: Kopienas pārbaudīts
   community_guidelines: Kopienas vadlīnijas
   community_id_heading: Kopienas taksons
   community_id_at_species_or_lower?: Kopiena noteikusi sugu vai zemākas apakšgrupas taksonu
   community_id_at_species_level_or_lower: Kopiena noteikusi sugu vai zemākas apakšgrupas taksonu
+  community_id_is_precise: Kopienas taksons ir precīzs
   community_moderation_settings: Kopienas pārvaldības iestatījumi
   community_supported_id: Vai taksonu atbalsta kopiena?
   compare: Salīdzināt
@@ -843,6 +889,80 @@ lv:
   conservation_status_geoprivacy_desc: |
     Visiem šī taksona novērojumiem šajā vietā pielietoti noklusējuma ģeoprivātuma iestatījumi
   contact_support: Sazināties ar atbalsta dienestu
+  contain_all_descendants?: Vai kontrollapā redzami visi taksoni, kam ir augstāka pakāpe par šo taksonu?
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Saturs
+  content_author: Satura autors
+  content_hidden: Slēpts saturs
+  content_hidden_by_user_on_date_because_reason_html: |
+    %{date} saturu noslēpis lietotājs: %{user}, jo: "%{reason}"
+  content_type: Satura veids
+  user_hid_this_item_because_reason_html: |
+    %{user} noslēpa %{item}, jo "%{reason}"
+  user_unhid_this_item_because_reason_html: |
+    %{user} atcēla %{item} slēpšanas funkciju, jo "%{reason}"
+  continue: Turpināt
+  continue_to_site: Turpināt %{site_name} tīmekļa vietnē
+  contributor_cannot_be_found: Atbalstītājs netika atrasts
+  contributors_to_project: "%{project} projekta atbalstītāji"
+  controlled_term_labels:
+    sex: Dzimums
+    male: Tēviņš
+    female: Mātīte
+    plant_phenology: Auga fenoloģiskās attīstības fāze
+    budding: Pumpurojas
+    flower_budding: Ziedpumpuri
+    flowering: Zied
+    fruiting: Ar augļiem
+    life_stage: Dzīves posms
+    adult: Pieaudzis
+    teneral: Tenerāls īpatnis
+    subimago: Subimago
+    pupa: Kūniņa
+    no_evidence_of_flowering: Nekas neliecina par ziedēšanu
+    nymph: Kukaiņu nimfa
+    larva: Cirmenis
+    egg: Ola
+    juvenile: Nepieaudzis
+    alive_or_dead: Dzīvs vai miris
+    alive: Dzīvs
+    dead: Miris
+    cannot_be_determined: Nenosakāms
+  controlled_term_definitions:
+    alive: Organisms ir dzīvs un nekas neliecina par pretējo
+    dead: Organisms ir miris vai novērojamas nenovēršamas nāves pazīmes
+    flower_budding: Ziedpumpuri ir redzami, bet nav uzplaukuši
+    flowering: Ziedi ir redzami, uzplaukuši un vēl aizvien klāt pie auga
+    fruiting: Augļi ir redzami un vēl aizvien klāt pie auga
+  copy_and_paste_the_following_code_to: Nokopē un ielīmē šo kodu, lai ieguldītu šo vērtējumu citā tīmekļa vietnē.
+  copy_and_paste_this_into_your_own_html: Nokopē un ielīmē šo kodu savā HTML.
+  copy_guide_taxon_to: Nokopēt un pārvietot padomā iekļauto taksonu uz...
+  copyright:
+    some_rights_reserved: daļa no tiesībām paturētas
+    some_rights_reserved_by: "(c) %{name}, daļa no tiesībām paturētas (%{license_short})"
+    all_rights_reserved: "(c) %{name}, visas tiesības paturētas"
+    no_known_copyright_restrictions: "%{name}, nav zināmu autortiesību ierobežojumu (%{license_name})"
+    no_known_copyright_restrictions_text: "nav zināmu autortiesību ierobežojumu"
+    no_rights_reserved: tiesības nav paturētas
+    no_rights_reserved_by: "%{name}, tiesības nav paturētas (%{license_name})"
+    anonymous: anonīms
+    public_domain: neaizsargātie darbi
+    copyright: autortiesības
+    no_copyright: bez autortiesībām (CC0)
+  copyright_holder: Autortiesību turētājs
+  copyright_info: Autortiesību informācija
+  copyright_info_and_more: Autortiesību un cita informācija
+  copyright_infringement: Autortiesību pārkāpums
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} taksonu iedalījums"
+  couldnt_change_your_password: "Neizdevās nomainīt paroli: %{e}"
+  couldnt_find_a_user_matching_x_param: "Neizdevās atrast lietotāju %{id}"
+  couldnt_find_that_taxon: Neizdevās atrast šādu taksonu.
+  countries: Valstis
+  create: Izveidot
+  create_a_guide: Izveidot padomu
+  create_a_new_field: Izveidot jaunu lauku
+  create_a_new_place: Izveidot jaunu vietu
+  create_a_new_taxon: Izveidot jaunu taksonu
   maps:
     overlays:
       checklist_places: Vietu kontrollapa
