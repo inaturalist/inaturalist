@@ -51,7 +51,7 @@ const Applications = ( { showModal, apps } ) => {
     <div>
       {iNatApps.length > 0 && (
         <table className="table">
-          {renderHeader( I18n.t( "inaturalist_applications", { site_name: SITE.name } ) )}
+          {renderHeader( I18n.t( "inaturalist_applications" ) )}
           <tbody className="borderless">
             {createiNatAppsTable( )}
           </tbody>

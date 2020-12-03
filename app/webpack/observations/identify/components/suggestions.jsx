@@ -319,7 +319,7 @@ class Suggestions extends React.Component {
                   key={`suggestion-row-${r.taxon.id}`}
                   taxon={r.taxon}
                   observation={observation}
-                  details={r.sourceDetails}
+                  details={r.source_details}
                   chooseTaxon={chooseTaxon}
                   source={query.source}
                   config={config}
