@@ -5027,6 +5027,56 @@ pt:
           Algumas dessas fotos foram marcadas com um alerta de conteúdo inapropriado ou infrações de direitos. Para detalhes veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help_html: |
+          <p>
+          A avaliação da qualidade dos dados é um resumos da acurácia (precisão) de uma observação. Todas as observações começam recebendo o status de Nível <strong>"Casual"</strong>, e são marcadas como <strong>"Precisa de ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>a observação <strong>possui data</strong></li>
+          <li>a observação <strong>é georreferenciada</strong> (exemplo, possui coordenadas de latitude e longitude)</li>
+          <li>a observação <strong>possui fotos ou sons</strong></li>
+          <li>a observação <strong>não é de um humano</strong></li>
+          </ul>
+          <p>
+          Observações recebem o status de <strong>"Nível de Pesquisa"</strong> quando
+          </p>
+          <ul>
+          <li>
+          a <strong>comunidade do %{site_name} concorda a nível de espécie (ou menor) sobre a identificação</strong>, ou seja, quando mais de 2/3 dos que identificaram o item concordam sobre um táxon
+          </li>
+          </ul>
+          <p>
+          O status de uma observação será revertida para <strong>"Casual"</strong> se as metas abaixo não forem atingidas ou a comunidade concorda que
+          </p>
+          <ul>
+          <li>
+          a <strong>localização não parece precisa</strong> (exemplo, macacos voando no meio do oceano, hipopótamos dançando em meio à Avenida Paulista, etc.)
+          </li>
+          <li>
+          o <strong>organismo não é naturalizado ou selvagem</strong> (exemplo, organismo em cativeiro ou cultivado por humanos, inteligência artificial ou alienígenas do espaço sideral)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidência de um organismo</strong> (exemplo, imagens de paisagens, rochas, nascentes, etc.)
+          </li>
+          <li>
+          a observação <strong>não apresenta uma evidência recente da existência do organismo (~100 anos) </strong> (exemplo, fósseis; mas pegadas, folhas mortas e rastros são permitidos)
+          </li>
+          <li>
+          a observação não precisa mais de uma identificação <em>e</em> a identificação da comunidade está acima de família
+          </li>
+          <li>
+          o observador rejeitou a identificação da comunidade e a identificação do táxon pela comunidade não é um ancestral ou descendente do táxon associado com a ID do observador
+          </li>
+          </ul>
+          <p>
+          E se tudo isso já não fosse complicado o suficiente, existem situações onde o sistema opta por dar a sua opinião:
+          </p>
+          <ul>
+          <li>
+          O sistema opinará classificando uma observação como não sendo naturalizada/selvagem se houverem na plataforma ao menos 10 outras observações a nível de gênero ou abaixo em países, estados ou locais razoavelmente pequenos que possuam observações deste tipo e 80% ou mais destas observações já foram marcadas como não sendo nativas ou selvagens.
+          </li>
+          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como SPAM e, não está mais visível ao público. Você é pode visualizá-la por que a criou ou, por que é um administrador. Se você acredita que isto possa ser um erro, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
