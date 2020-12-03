@@ -112,6 +112,26 @@ es-AR:
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
   about: Acerca de
   about_blocking: Acerca de los bloqueos
   about_charts: Acerca de los gráficos
@@ -135,6 +155,28 @@ es-AR:
   about_this_project: Acerca de este proyecto
   about_trips_html: |
     <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos 'sólo presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Haga clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
+  about_trusting_projects: Acerca de confiar en proyectos
+  about_trusting_projects_options_any: Todas tus observaciones en este proyecto
+  about_trusting_projects_options_any_desc: |-
+    Esto incluye observaciones en las que has establecido la geoprivacidad en "oculto"
+    o "privado," p. ej., observaciones del jardín de tu casa o lugares sobre los que no quieras
+    que sepan otras personas.
+  about_trusting_projects_options_taxon: |-
+    Solo tus observaciones en este proyecto que tengan coordenadas ocultas debido a que corresponden a taxones amenazados
+  about_trusting_projects_options_taxon_desc: |-
+    Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
+    representa un taxón amenazado.
+  about_trusting_projects_overview: |-
+    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Los administradores del proyecto que tendrán acceso a tus coordenadas ocultas son:
+  about_trusting_projects_warning: |-
+    Ten en cuenta que los administradores del proyecto pueden cambiar sus parámetros para incluir cualquiera de tus observaciones, y pueden añadir o eliminar administradores de proyecto en cualquier momento. Recibirás notificaciones sobre estos cambios, pero en esencia estás confiando a este proyecto tus datos de ubicación, así que ten cuidado.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Puedes elegir compartir coordenadas ocultas para
   about_x: "Acerca de %{x}"
   acc: 'Prec.(m)'
   account: Cuenta
@@ -156,6 +198,8 @@ es-AR:
   add: Agregar
   add_a_batch_of_observations: Agregar un grupo de observaciones
   add_a_batch_of_taxa: Agregar un grupo de taxones
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Agregar una lista con viñetas
   add_a_comment: Agregar un comentario
   add_a_field: Agregar un campo
   add_a_flag: Agregar una marca
@@ -187,6 +231,8 @@ es-AR:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Agregar activo
   add_batch: Agregar lote
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Añadir texto en negrita
   add_comma_separated_tags: "Agregar etiquetas separadas por comas"
   add_comment: Agregar un comentario
   add_conservation_status: Agregar estado de conservación
@@ -220,9 +266,14 @@ es-AR:
   add_one_now: Agregar una ahora
   add_photos: Agregar fotos
   add_place: Agregar lugar
+  add_alive_or_dead_alive_annotation: 'Añadir anotación "Vivo o Muerto: Vivo"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Añadir anotación "Vivo o Muerto: Indeterminado"'
+  add_alive_or_dead_dead_annotation: 'Añadir anotación "Vivo o Muerto: Muerto"'
   add_plant_phenology_budding_annotation: 'Agregar anotación «Fenología de la planta: en botón»'
+  add_plant_phenology_flower_budding_annotation: 'Agregar anotación: «Fenología de la planta: Yemas Florales»'
   add_plant_phenology_flowering_annotation: 'Agregar anotación «Fenología de la planta: floreciendo»'
   add_plant_phenology_fruiting_annotation: 'Agregar anotación "fenología de la planta: fructificando"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Agregar anotación "Fenología de la planta: sin evidencias de Floración"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
   add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
@@ -238,6 +289,7 @@ es-AR:
   add_several_observations_at_once: Agregar varias observaciones al mismo tiempo.
   add_sex_female_annotation: 'Agregar anotación "Género: femenino"'
   add_sex_male_annotation: 'Añade anotación «Género: masculino»'
+  add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Agregar algunas ahora
   add_tag: Agregar etiqueta
   add_tags: Agregar etiquetas
@@ -274,6 +326,7 @@ es-AR:
     <a target="%{target}" class="%{class}" href="%{url}"></a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
+  added_on_datetime: "Añadido el %{datetime}"
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
@@ -416,6 +469,27 @@ es-AR:
   announcements: Anuncios
   any: cualquiera
   any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
   anyone: Cualquiera
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
@@ -440,6 +514,9 @@ es-AR:
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres eliminar a este taxón de la lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
+  are_you_sure_unresolve_flag?: |
+    ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
+    y el usuario que ha resuelto esta marca.
   are_you_sure_want_delete_taxon: "¿Estás seguro que quieres eliminar este taxón?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes.
@@ -489,6 +566,8 @@ es-AR:
     Cualquier advertencia de spam en su contenido será resuelta.
   are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estás seguro que quieres eliminar estos %{x} taxones?"
   are_you_sure_you_want_to_remove_this_invitation: '¿Estás seguro que quieres cancelar la invitación?'
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "¿Estás seguro que deseas eliminar a esta especie o grupo de la lista de verificación de %{place}?"
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
@@ -506,6 +585,7 @@ es-AR:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
+  atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -576,6 +656,8 @@ es-AR:
   blue: azul
   blue_butterfly_etc: "azul, mariposa, etc."
   body: Cuerpo
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: Texto negrita
   bounding_box: Contenedor
@@ -608,6 +690,7 @@ es-AR:
   cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
   captive: En cautiverio
   captive_cultivated: Cautivo / cultivado
+  captive_observations: Observaciones en cautividad
   card: Tarjeta
   casual: casual
   casual_: Casual
@@ -634,6 +717,7 @@ es-AR:
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
     merge: Varios taxones antiguos fueron agrupados en un taxón nuevo
+    swap: Intercambio de nombres, el viejo por el nuevo
     drop: El concepto de taxón es completamente inválido, solo se mantiene por razones históricas o por compatibilidad con otros sitios
     stage: Prepara un concepto inactivo como parte de un cambio de taxonomía de un grupo de especies.
   change_geoprivacy: 'Cambiar geoprivacidad'
@@ -682,6 +766,7 @@ es-AR:
   check_list: Lista de comprobación
   check_list_description: Selecciona un taxón de más alto nivel que desees mostrar en esta lista, como "Aves" para aves, o "Anfibios" para anfibios. Cuando termines, esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si creas una lista de aves, no podrás agregarle ranas.
   check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo específico que habita aquí, ej. "Aves de %{place}".'
+  check_list_for_taxon_html: "Lista de comprobación para %{taxon}"
   check_lists_must_belong_to_a_place: |
     Las listas de verificación deben pertenecer a un lugar. Para crear una nueva lista de verificación, visita la lista de verificación de un lugar y selecciona el enlace "Crea una nueva lista de verificación".
   check_list_of_species_occuring_in: Lista de verificación de especies que ocurren en
@@ -691,6 +776,7 @@ es-AR:
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Échale un vistazo a nuestro blog
   check_out_what_the_observation: Échale un vistazo a como aparece la observación que estás tratando de identificar.
+  check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu nueva y mejorada lista de vida!'
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
@@ -741,6 +827,7 @@ es-AR:
   commit: Guardar
   #Adjective describing a taxon change that has been committed
   committed: Guardado
+  committed_by_user_on_date_html: Comprometido por %{user} el %{date}
   #Label for date the taxon change was committed
   committed_on: Guardado el %{date}
   #Status message while a taxon change is being committed
@@ -751,6 +838,7 @@ es-AR:
   community_id_heading: ID de la comunidad
   community_id_at_species_or_lower?: '¿La ID de la comunidad está a nivel de especie o inferior?'
   community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o inferior
+  community_id_is_precise: El taxón de la comunidad es preciso
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: '¿Taxón reconocido por la comunidad?'
   compare: Comparar
@@ -762,11 +850,15 @@ es-AR:
   compiled_by_name: "Compilado por %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
+  complete_set_for_taxon_in_place_html: "Lista completa para %{taxon} en %{place}"
   completed: Completado
   completed_at: Completado en
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: '¿Completa?'
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Lista exhaustiva</span>
+    de %{taxon}
   comprehensive_list: Lista completa
   concept_status: Concepto de la situación
   configure: Configurar
@@ -782,10 +874,15 @@ es-AR:
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "El conectar tu cuenta de %{site_name} con cuentas en otros sitios te permitirá ingresar a %{site_name} usando tus credenciales de esos sitios."
+  cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
   conservation_status: Categoría de riesgo
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsala, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
     description: Descripción muy corta del porque esta en la lista.
+    authority: |
+      Organización que declaró este estado. Por favor, utiliza el autocompletado para
+      elegir una autoridad existente antes de agregar una nueva. Puedes omitir esto si
+      *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
@@ -815,6 +912,7 @@ es-AR:
     female: Femenino
     plant_phenology: Fenología de la planta
     budding: En germinación
+    flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificacón
     life_stage: Etapa de vida
@@ -822,6 +920,7 @@ es-AR:
     teneral: Imago tierno
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: Sin evidencia de Floración
     nymph: Ninfa
     larva: Larva
     egg: Huevo
