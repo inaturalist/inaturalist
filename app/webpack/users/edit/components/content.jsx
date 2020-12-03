@@ -43,6 +43,21 @@ const Content = ( {
     </div>
   ) );
 
+  const noLicenseText = ( ) => (
+    <div>
+      <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
+      <p
+        className="text-muted small white-space"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "you_retain_full_copyright", {
+            site_name: SITE.name
+          } )
+        }}
+      />
+    </div>
+  );
+
   const showDefaultLicense = license => {
     const iNatLicenses = iNaturalist.Licenses;
     const selected = Object.keys( iNatLicenses ).find( i => iNatLicenses[i].code === license );
@@ -50,18 +65,12 @@ const Content = ( {
 
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
+    const caret = <div className="caret" />;
+
     const allRightsReserved = (
-      <div className="default-title-custom-dropdown">
-        <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
-        <p
-          className="text-muted white-space"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "you_retain_full_copyright", {
-              site_name: SITE.name
-            } )
-          }}
-        />
+      <div className="flex-no-wrap custom-dropdown-width">
+        {noLicenseText( )}
+        {caret}
       </div>
     );
 
@@ -70,14 +79,15 @@ const Content = ( {
     }
 
     return (
-      <div className="default-title-custom-dropdown">
+      <div className="flex-no-wrap custom-dropdown-width">
         <img
           id="image-license"
           src={iNatLicenses[defaultLicense].icon_large}
           alt={defaultLicense}
-          className="default-title-custom-dropdown-image"
+          className="margin-right-medium"
         />
-        <label className="license white-space default-custom-dropdown-padding" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+        <div className="license-width">{I18n.t( `${localizedName}_name` )}</div>
+        {caret}
       </div>
     );
   };
@@ -93,17 +103,8 @@ const Content = ( {
       const { code } = iNatLicenses[license];
 
       const allRightsReserved = (
-        <div>
-          <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
-          <p
-            className="text-muted white-space"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "you_retain_full_copyright", {
-                site_name: SITE.name
-              } )
-            }}
-          />
+        <div className="flex-no-wrap custom-dropdown-width">
+          {noLicenseText( )}
           {profile[name] === code && checkmark}
         </div>
       );
@@ -141,7 +142,7 @@ const Content = ( {
   };
 
   return (
-    <div className="row">
+    <div className="row" id="Content">
       <div className="col-md-5 col-xs-10">
         <SettingsItem>
           <h4>{I18n.t( "project_settings" )}</h4>
@@ -205,6 +206,7 @@ const Content = ( {
               id="preferred_observation_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
               title={showDefaultLicense( profile.preferred_observation_license )}
+              noCaret
             >
               {createLicenseList( "preferred_observation_license" )}
             </DropdownButton>
@@ -221,6 +223,7 @@ const Content = ( {
               id="preferred_photo_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
               title={showDefaultLicense( profile.preferred_photo_license )}
+              noCaret
             >
               {createLicenseList( "preferred_photo_license" )}
             </DropdownButton>
@@ -237,6 +240,7 @@ const Content = ( {
               id="preferred_sound_license"
               onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
               title={showDefaultLicense( profile.preferred_sound_license )}
+              noCaret
             >
               {createLicenseList( "preferred_sound_license" )}
             </DropdownButton>

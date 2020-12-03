@@ -143,18 +143,29 @@ button.selected {
   white-space: normal;
 }
 
+#Content {
+  button.dropdown-toggle {
+    min-width: 275px;
+    min-height: 63px;
+    white-space: normal;
+    text-align: left;
+  }
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.license-width {
+  width: 115px;
+  white-space: normal;
+  font-weight: bold;
+}
+
 .license {
   width: 115px;
   margin-left: 15px;
   text-align: left;
-}
-
-.default-custom-dropdown-padding {
-  padding-top: 15px;
-}
-
-.default-title-custom-dropdown-image {
-  padding-bottom: 21px;
 }
 
 label.radio-button {
