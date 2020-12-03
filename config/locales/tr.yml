@@ -4961,6 +4961,65 @@ tr:
           projedeki diğer gözlemleri görme yetkisi verecek 
           ve bu, proje <a href="%{url}" target="_blank">şartlarını</a>
           kabul ettiğiniz anlamına gelir.
+        quality_assessment_help_html: |
+          <p>
+          Veri nitelik değerlendirmesi bir gözlemin doğruluğunun bir özetidir. Bütün 
+          gözlemler <strong>"sıradan"</strong> sınıf gibi başlar ve aşağıdakiler olduğu zaman
+          <strong>tanımlama gerektirir</strong>
+          </p>
+
+          <ul>
+          <li>gözlem <strong>bir tarihe sahip</strong></li>
+          <li>gözlem <strong>coğrafi olarak kabul edilebilir</strong> (örn. enlem/boylam koordinatlarına sahip)</li>
+          <li>gözlem <strong>fotoğraflara ya da seslere sahip</strong></li>
+          <li>gözlem <strong>bir insanın değil</strong></li>
+          </ul>
+          <p>
+          Gözlemler aşağıdakiler olduğu zaman <strong>"araştırma sınıfı"</strong> olur
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>topluluğu, tür düzeyinde ya da daha düşük düzeyde tanımlamayı kabul ettiği zaman</strong>,örn.
+          tanımlayıcıların 2/3'ünden fazlası bir sınıflandırmada anlaşma sağladığı zaman
+          </li>
+          </ul>
+          <p>
+          Yukarıdaki koşullar yerine getirilmezse ya da topluluk kabul ederse, gözlemler <strong>"sıradan"</strong> sınıfa geri döner
+          </p>
+          <ul>
+          <li>
+          <strong>konum doğru görünmüyor</strong> (örn. okyanusun ortasındaki maymunlar,
+          ofis binası içerisindeki su aygırları, vb.)
+          </li>
+          <li>
+          <strong>organizma vahşi ya da doğal değil</strong> (örn. insanlar tarafından kısıtlanmış ya da ekilmiş)
+          </li>
+          <li>
+          gözlem <strong>bir organizmanın kanıtını sunmuyor</strong>,
+          örn. manzara resimleri, su özellikleri, kayalar, vb.
+          </li>
+          <li>
+          gözlem <strong>organizmanın son kanıtını (~100 yıl) sunmuyor</strong>
+          (örn. fosiller, ancak izler, dışkılar, ve ölü yapraklar kullanılabilir)
+          </li>
+          <li>
+          gözlemin bir tanımlamaya ihtiyacı yok <em>ve</em> topluluk tanımlaması ailenin üstünde
+          </li>
+          <li>
+          gözlemci, topluluk tanımlamasından vazgeçti ve topluluk tanımlamasının sınıflandırması gözlemcinin tanımlaması ile bağlantılı sınıflandırmanın atası veya soyundan gelmedi
+          </li>
+          </ul>
+          <p>
+          Ve eğer bu yeterince karmaşık değilse, sistemin oy kullanabileceği durumlar da vardır:
+          </p>
+          <ul>
+          <li>
+          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğerindeki yerde 
+          en az 10 farklı cins gözlemine ya da daha düşük düzeye sahipse ve 
+          bunların %80 ya da daha çoğu vahşi/doğal değil şeklinde işaretlenmişse,
+          gözlemi vahşi/doğal değil şeklinde oylayacaktır.
+          </li>
+          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkese açık değil. 
