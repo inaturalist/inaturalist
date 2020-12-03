@@ -813,17 +813,20 @@ nb:
   comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mine observasjoner
   commercial_solicitation: Kommersielle meldinger, lenker til ingenting, osv.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Gjennomfør
+  #Adjective describing a taxon change that has been committed
   committed: Gjennomført
   committed_by_user_on_date_html: Gjennomført av %{user} på %{date}
+  #Label for date the taxon change was committed
   committed_on: Gjennomført på %{date}
+  #Status message while a taxon change is being committed
   committing: Gjennomfører...
   community: Fellesskap
   community_curated: Kuratert av fellesskapet
   community_guidelines: Fellesskapets rettningslinjer
   community_id_heading: Fellesskapets takson
   community_id_at_species_or_lower?: Fellesskapets takson på artsnivå eller lavere?
-  community_id_at_genus_level_or_lower: Fellesskapets takson på slektsnivå eller lavere
   community_id_at_species_level_or_lower: Fellesskapets takson på artsnivå eller lavere
   community_moderation_settings: Fellesskapsmodereringsinnstillinger
   community_supported_id: Takson støttet av fellesskapet?
@@ -4669,7 +4672,6 @@ nb:
     messages:
       from: Fra
       to: Til
-      subject: Emne
       subject_body: Emne / Innhold
       index:
         show_messages_from_user: Vis beskjeder fra %{user}

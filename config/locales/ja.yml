@@ -725,17 +725,20 @@ ja:
   comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: 確定
+  #Adjective describing a taxon change that has been committed
   committed: 確定済
   committed_by_user_on_date_html: '%{user} さんが %{date} にコミットしました'
+  #Label for date the taxon change was committed
   committed_on: '%{date} にコミットされました'
+  #Status message while a taxon change is being committed
   committing: 確定中...
   community: コミュニティ
   community_curated: コミュニティ管理
   community_guidelines: コミュニティガイドライン
   community_id_heading: コミュニティ分類群
   community_id_at_species_or_lower?: 種以下の階級によるコミニュティ分類の有無は？
-  community_id_at_genus_level_or_lower: 層レベル以下のコミュニティ分類群の有無
   community_id_at_species_level_or_lower: 種以下の階級によるコミニュティ分類
   community_moderation_settings: コミュニティモデレーション設定
   community_supported_id: コミュニティが支持する分類ですか？
@@ -3552,6 +3555,8 @@ ja:
   'true': '真'
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
+  trust_this_person_with_your_private_coordinates: このユーザーを信頼して正確な位置情報を共有する
+  trust_with_private_coordinates: 信頼して正確な位置情報を共有する
   twitter: ツイッター
   type: 種類
   type_authority: 出典先を入力...
@@ -3633,6 +3638,7 @@ ja:
   user_added_an_x: "%{user}さんが%{x}を追加しました"
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
   user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
+  user_commented: "%{user} さんがコメントしました"
   user_commented_on: "%{user}さんがあなたの%{title}にコメントしました（%{time}）"
   user_disagrees_this_is_taxon: "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -3791,6 +3797,7 @@ ja:
   you_are_now_following_x: "%{friend_user}をフォローし始めました。"
   you_are_already_a_member_of_this_project: "このプロジェクトはすでに参加しています！"
   you_are_no_longer_following_x: "%{friend}はもうフォローしていません。"
+  you_are_subscribed_to_comments_on_this_flag: このフラグのコメントをフォローしています。
   you_arent_a_member_of_that_project: このプロジェクトに参加していません。
   you_arent_following_that_person: "そのユーザーをフォローしていません"
   you_can_accept_invitations: ここで招待を承諾することができます

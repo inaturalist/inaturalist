@@ -1,0 +1,350 @@
+@import "colors";
+@import "../users/_user_image";
+@import "../users/toggle_switch";
+
+$user-image-size: 65px;
+
+.flex-no-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-start-xs {
+  @media (max-width: 767.99px) {
+    justify-content: flex-start;
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.custom-dropdown-width {
+  min-width: 275px;
+}
+
+.default-title-custom-dropdown {
+  text-align: start;
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 275px;
+  min-height: 63px;
+}
+
+.network-min-height {
+  min-height: 36px;
+}
+
+.inat-affiliation-logo {
+  max-height: 33px;
+  max-width: 135px;
+}
+
+.inat-affiliation-title {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+}
+
+.blue-checkmark {
+  color: #2e78b8;
+  position: absolute;
+  right: 10px
+}
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+}
+
+label.required {
+  color: #333;
+  &:after {
+    content: "*";
+    color: $alert-red;
+    margin-left: 5px;
+  }
+}
+
+button.left-nav-item {
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+button.selected {
+  color: $inat-green;
+  font-weight: 600;
+  text-decoration: none;
+  outline:none;
+}
+
+.btn.mobile-menu {
+  color: white;
+  background: $inat-green;
+  min-width: 150px;
+  &[disabled] {
+    color: white;
+    background: #cccccc;
+    &:hover {
+      color: white;
+      background: #cccccc;
+    }
+  }
+}
+
+.btn-link.btn-tracking {
+  padding-left: 0px;
+}
+
+.btn-default.btn-margin {
+  margin-top: 5px;
+}
+
+.btn-primary.btn-inat {
+  background-color: #337ab7 !important;
+  color: white;
+  border-color: #2e6da4 !important;
+}
+
+.btn-save-text {
+  font-weight: 600px;
+  letter-spacing: 1.1px;
+}
+
+.reciprocal-trust {
+  margin-top: 5px;
+}
+
+.vl {
+  border-left: 1px solid #eee;
+  height: 522px;
+}
+
+.white-space {
+  white-space: normal;
+}
+
+.license {
+  width: 115px;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.default-custom-dropdown-padding {
+  padding-top: 15px;
+}
+
+.default-title-custom-dropdown-image {
+  padding-bottom: 21px;
+}
+
+label.radio-button {
+  margin-left: 10px;
+  font-weight: bold !important;
+}
+
+.borderless {
+  border: none !important;
+}
+
+td.table-row {
+  vertical-align: middle !important;
+}
+
+select.inherit-width {
+  max-width: none;
+}
+
+.margin-left {
+  margin-left: 9px;
+  display: inline !important;
+}
+
+.checkbox-description-margin {
+  margin-left: 20px;
+}
+
+.margin-right {
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.margin-right-medium {
+  margin-right: 12px;
+}
+
+.remove-photo-margin {
+  margin-top: 5px !important;
+}
+
+.menu {
+  margin-top: 12px;
+}
+
+.profile-photo-margin {
+  margin-top: 20px;
+}
+
+.help-text {
+  margin-bottom: 13px;
+}
+
+.search-margin {
+  margin-bottom: 16px;
+}
+
+.settings-item {
+  margin-bottom: 23px;
+}
+
+.about-licenses-row {
+  margin-bottom: 31px;
+}
+
+.divider {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.hide-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.user-description {
+  min-height: 115px;
+  resize: vertical;
+}
+
+.RevokeAccessModal.modal {
+  .modal-dialog {
+    .modal-header {
+      border-bottom: 0 none;
+    }
+    .modal-footer {
+      border-top: 0 none;
+    }
+  }
+}
+
+.ThirdPartyTrackingModal.modal {
+  .modal-dialog {
+    width: 90%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      overflow: hidden;
+    }
+    .modal-body {
+      overflow-x: auto;
+      max-height: none;
+    }
+  }
+}
+
+.CreativeCommonsLicensingModal.modal {
+  .modal-dialog {
+    width: 90%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      overflow: hidden;
+      min-width: 500px;
+    }
+    .modal-body {
+      overflow-x: auto;
+      max-height: none;
+      padding-left: 25px;
+    }
+  }
+}
+
+.Pagination {
+  margin-top: 22px;
+  margin-bottom: 53px;
+
+  .rc-pagination { padding: 0; }
+  .rc-pagination li,
+  .rc-pagination li a {
+    display: inline-block;
+  }
+  .rc-pagination li a {
+    border: 1px solid #aaa;
+    background-color: white;
+    padding: 3px 5px;
+    text-align: center;
+    min-width: 2em;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .rc-pagination-next a:before {
+    content: "\2192"
+  }
+  .rc-pagination-prev a:before {
+    content: "\2190"
+  }
+  .rc-pagination-disabled a,
+  .rc-pagination-disabled:hover a {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .rc-pagination-jump-prev a:after,
+  .rc-pagination-jump-next a:after {
+    content: "...";
+  }
+  li.rc-pagination-item-active a {
+    border-color: black;
+  }
+}
+
+.user-profile-preview {
+  margin-right: 25px;
+  width: $user-image-size * 2;
+  height: $user-image-size * 2;
+  border-radius: 50%;
+}
+
+.user-profile-image {
+  .UserImage {
+    margin-right: 25px;
+    width: $user-image-size * 2;
+    height: $user-image-size * 2;
+    pointer-events: none;
+  }
+
+  .icon-person {
+    font-size: $user-image-size * 2 - 20;
+    line-height: $user-image-size * 2 - 20;
+  }
+}
+
+.relationship-profile-image {
+  .UserImage {
+    margin-right: 12px;
+    width: $user-image-size;
+    height: $user-image-size;
+  }
+
+  .icon-person {
+    font-size: $user-image-size - 10;
+    line-height: $user-image-size - 10;
+  }
+}

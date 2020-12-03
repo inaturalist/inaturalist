@@ -415,6 +415,7 @@ lb:
   comments_on_my_observations: Bemierkungen zu mengen Observatiounen
   community: Communautéit
   community_id_heading: Communautéits-Taxon
+  community_id_is_precise: Den Community Taxon ass prezise
   compare: Vergläichen
   compare_with: Vergläiche mat
   comparing: vergläichen
@@ -697,6 +698,9 @@ lb:
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
   hi_user: "Salut %{user}"
   hide_content: Inhalt verstoppen
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: '"Keng Annotatiounen" verstoppen'
   high: Héich
   history: Geschicht
   ids_by_taxon: IDs no Taxon
@@ -1395,6 +1399,9 @@ lb:
   show_keyboard_shortcuts: Tastatur-Shortcuts weisen
   show_less: Manner weisen
   show_more: Méi weisen
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: '"Keng Annotatiounen" weisen'
   show_observation_photos: Fotoe vun der Observatioun weisen
   show_off_your_recent_observations: Weist Är rezent Observatiounen op Ärem Blog oder Ärer Websäit!
   #Text to indicate that the first X items in a list are being shown, but there
@@ -1647,7 +1654,6 @@ lb:
     messages:
       from: Vum
       to: Fir
-      subject: Sujet
       show:
         privacy_notice_html: |
           Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
@@ -1884,6 +1890,9 @@ lb:
         place_id: Plaz
       flag:
         reason: Grond
+      message:
+        subject: Sujet
+        body: Inhalt
       observation_field_value:
         value: 'Wäert'
       post:

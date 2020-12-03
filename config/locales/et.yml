@@ -693,16 +693,19 @@ et:
   comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Sisesta
+  #Adjective describing a taxon change that has been committed
   committed: Sisestanud
+  #Label for date the taxon change was committed
   committed_on: Sisestatud kuupäeval %{date}
+  #Status message while a taxon change is being committed
   committing: Sisestan...
   community: Kogukond
   community_curated: Kogukondlikult kureeritud
   community_guidelines: Kogukonna reeglid
   community_id_heading: Kogukondlik määratlus
   community_id_at_species_or_lower?: Kogukondlik määratlus liigina või sellest madalamal tasemel?
-  community_id_at_genus_level_or_lower: Kogukondlik määratlus perekonnana või sellest madalamal tasemel
   community_id_at_species_level_or_lower: Kogukondlik määratlus liigina või sellest madalamal tasemel
   community_moderation_settings: Kogukonna modereerimissätted
   community_supported_id: Kogukonna toel määramine?
@@ -3861,7 +3864,6 @@ et:
     messages:
       from: Kellelt
       to: Kellele
-      subject: Teema
     observations:
       community_id:
         agreement: Leping
@@ -3978,40 +3980,6 @@ et:
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
         join_project_desc_html: |
           Projektiga liitudes saavad projekti kuraatorid näha nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
-        quality_assessment_help_html: |
-          <p>
-          Andmete kvaliteedihinnang on vaatluse täpsuse kokkuvõte. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning muutuvad <strong>"vajab määramist"</strong> vaatlusteks kui
-          </p>
-
-          <ul>
-          <li>vaatlusel <strong>on kuupäev</strong></li>
-          <li>vaatlusel <strong>on asukoha andmed</strong> (st laius- ja pikkuskraadid)</li>
-          <li>vaatlusel <strong>on fotod või helid</strong></li>
-          <li>vaatlus <strong>ei ole inimesest</strong></li>
-          </ul>
-          <p>
-          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong> kui
-          </p>
-          <ul>
-          <li>%{site_name} <strong>kogukond nõustub liigitäpsuse või täpsema määratlusega</strong>, st kui 2/3 määratlejatest nõustuvad mingi taksoniga</li>
-          </ul>
-          <p>
-          Vaatlus muutub uuesti <strong>"juhuvaatluseks"</strong>, kui ülalolevad tingimused pole täidetud või kogukond arvab,
-          </p>
-          <ul>
-          <li>et <strong>asukoht ei näi olevat täpne</strong> (nt ahvid keset ookeani, jõehobud kontorihoones, jne)</li>
-          <li>et <strong>organism pole metsik/kohandunud</strong> (nt inimeste poolt vangistatud või kasvatatud või sisaldab intelligentseid tulnukaid)</li>
-          <li>et vaatlus <strong>ei sisalda mingi organismi olemasolu tundemärke</strong>, nt pildid maastikest, veekogudest, kividest, jne</li>
-          <li>et vaatlus <strong>ei sisalda hiljutisi (~100 aastat) märke organismi kohalolust</strong> (nt kivistised, kuid väljaheited, jäljed ja kuivanud lehed sobivad)</li>
-          <li>vaatlus ei vaja edasist määratlemist <em>ning</em> kogukondlik määratlus on vähemalt sugukonna tasemel</li>
-          <li>vaatleja ei ole soovinud kogukondliku määratlust ning kogukondlik määratlus ei ole vaatleja määratluse täpsem versioon</li>
-          </ul>
-          <p>
-          Ja kui see pole veel piisavalt keeruline, siis eksisteerivad ka olukorrad, kus süsteem ise saab otsustada:
-          </p>
-          <ul>
-          <li>Süsteem otsustab, et vaatlus pole metsik/kohandunud, kui väikseimas maakonna, osariigi või riigi tüüpi kohas, milles see vaatlus on tehtud, on vähemalt 10 teist liigi või täpsema taseme vaatlust, mis sisaldavad sama organismi, ning 80% neist on märgitud mitte metsikuks või kohandunuks.</li>
-          </ul>
         score_desc: "skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite ebakõlad)"
         observation_flagged_notice_html: |
           Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.

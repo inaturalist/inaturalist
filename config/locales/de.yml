@@ -834,18 +834,22 @@ de:
   comments_on: Kommentare zu
   comments_on_my_observations: Kommentare zu meinen Beobachtungen
   commercial_solicitation: Kommerzielle Werbung, Verknüpfungen ins Nirgendwo, usw.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Einreichen
+  #Adjective describing a taxon change that has been committed
   committed: Eingereicht
   committed_by_user_on_date_html: Von %{user} am %{date} eingereicht
+  #Label for date the taxon change was committed
   committed_on: Eingereicht am %{date}
+  #Status message while a taxon change is being committed
   committing: Übertragung …
   community: Community
   community_curated: Von Benutzern erstellt
   community_guidelines: Community-Richtlinien
   community_id_heading: Community-Taxon
   community_id_at_species_or_lower?: Community-Taxon bei Art oder genauer?
-  community_id_at_genus_level_or_lower: Community-Taxon auf Genus-Ebene oder darunter
   community_id_at_species_level_or_lower: Community-Taxon auf Art-Ebene oder darunter
+  community_id_is_precise: Das Community-Taxon ist korrekt
   community_moderation_settings: Gemeinschaftsmoderations-Einstellungen
   community_supported_id: Gemeinschafts-unterstütztes Taxon?
   compare: Vergleichen
@@ -1594,6 +1598,9 @@ de:
   hide_content: Inhalt ausblenden
   hide_desc: |
     Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: '"Keine Annotation" ausblenden'
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Unzählbare Arten verstecken
   high: Obergrenze
@@ -2091,19 +2098,19 @@ de:
       #Short text representing %d minutes in the past
       mm: "%d Min"
       #Short text representing 1 hour in the past
-      h: "1 h"
+      h: "1 Std"
       #Short text representing %d hours in the past
       hh: "%d Std."
       #Short text representing 1 day in the past
-      d: "1 d"
+      d: "1 Tag"
       #Short text representing %d days in the past
       dd: "%d T"
       #Short text representing 1 month in the past
-      M: "1Monat"
+      M: "1 Monat"
       #Short text representing %d months in the past
       MM: "%d Mo"
       #Short text representing 1 year in the past
-      'y': "1 J"
+      'y': "1 Jahr"
       #Short text representing %d years in the past
       yy: "%d J"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3452,11 +3459,11 @@ de:
   save_place: Gebiet speichern
   save_trip: Trip speichern
   saved: Gespeichert
-  saving: "Speichere…"
+  saving: "Wird gespeichert..."
   saving_num_of_count_observations:
     one: Speichere Beobachtung...
     other: Speichere %{num} von %{count} Beobachtungen...
-  saving_verb: Speichere
+  saving_verb: Wird gespeichert
   scale_colon: "Maßstab:"
   schemes: Vorlagen
   schemes_including: Schemata einschließlich
@@ -3536,6 +3543,9 @@ de:
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: '"Keine Annotation" anzeigen'
   show_observation_photos: Beobachtungsfotos zeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: 'beschränken auf:'
@@ -4797,7 +4807,6 @@ de:
     messages:
       from: Von
       to: An
-      subject: Betreff
       subject_body: Thema / Text
       index:
         show_messages_from_user: Nachrichten von %{user} anzeigen
@@ -4806,7 +4815,7 @@ de:
           Du kannst neue Nachrichten senden, nachdem Du drei überprüfbare Beobachtungen oder drei Bestimmungen für andere hinzugefügt hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere Benutzer Dir schicken.
       show:
         flag_notice_html: |
-          Du hast diese Konversation am %{date} gemeldet. Die Meldung bleibt auch dann bestehen, wenn du deine Kopie dieser Unterhaltung löschst, also ist es sicher, dies zu tun, wenn du sie nicht mehr sehen willst.
+          Du hast die Konversation am %{date} gemeldet. Falls du diese Konversation nicht mehr sehen möchtest, kannst du sie auch löschen - die Meldung bleibt weiterhin aufrecht und kann von den Kuratoren eingesehen werden.
         privacy_notice_html: |
           Während Nachrichten zwischen dir und dem Empfänger privat sind, können Mitarbeiter von iNaturalist in diese Nachrichten Einsicht nehmen und werden dies tun, falls Nachrichten
           zur Moderation gemeldet wurden. Wenn wirklich private Kommunikation stattfinden soll, verwende bitte andere Kommunikationskanäle, die eine starke Verschlüsselung unterstützen.
@@ -5023,7 +5032,7 @@ de:
           </li>
           </ul>
           <p>
-          Beobachtungen fallen auf <strong>"Hobbyqualität"</strong> zurück, falls die oben angeführten Bedingungen nicht erfüllt werden, oder die Community dahingehend übereinstimmt, dass 
+          Beobachtungen fallen auf <strong>"Hobbyqualität"</strong> zurück, falls die oben angeführten Bedingungen nicht erfüllt werden, oder die Community dahingehend übereinstimmt, dass
           </p>
           <ul>
           <li>
@@ -6364,6 +6373,9 @@ de:
       listed_taxon:
         occurrence_status_level: Verbreitungsstatus
         establishment_means: Art der Verbreitung
+      message:
+        subject: Betreff
+        body: Nachrichtentext
       observation:
         description: Bemerkungen
         geo_x: Rechtswert

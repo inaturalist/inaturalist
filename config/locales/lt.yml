@@ -534,6 +534,8 @@ lt:
   announcements: Skelbimai
   any: nesvarbu
   any_: Bet kuris
+  #Label for an option to show content from any date
+  any_date: Bet kuri
   anyone: Betkuris
   apply_to_selected: Taikyti pasirinktiems
   apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
@@ -821,16 +823,19 @@ lt:
   comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Patvirtinti
+  #Adjective describing a taxon change that has been committed
   committed: Patvirtinta
+  #Label for date the taxon change was committed
   committed_on: Patvirtinta %{date}
+  #Status message while a taxon change is being committed
   committing: Tvirtinama...
   community: Bendruomenė
   community_curated: Kuruojamas Bendruomenės
   community_guidelines: Bendruomenės gairės
   community_id_heading: Bendruomenės taksonas
   community_id_at_species_or_lower?: Bendruomenės ID rūšies lygmenyje ar žemiau?
-  community_id_at_genus_level_or_lower: Bendruomenės ID genties lygmenyje ar žemiau
   community_id_at_species_level_or_lower: Bendruomenės ID rūšies lygmenyje ar žemiau
   community_moderation_settings: Bendruomenės Moderavimo Nustatymai
   community_supported_id: Bendruomenės patvirtintas taksonas?
@@ -1112,6 +1117,13 @@ lt:
         subject: 'Patvirtinimo instrukcijos'
       reset_password_instructions:
         subject: 'Atstatyti slaptažodžio instrukcijas'
+  devise_reset_password_instructions_hello_email: Sveiki, %{email},
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   discoveries: Atradimai
   did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: 'Ar turėjote omenyje'
@@ -2127,6 +2139,7 @@ lt:
   no_matching_places: Nėra atitinkamų vietų
   no_matching_projects: Nėra atitinkamų projektų
   no_matching_species: Nėra atitinkančių rūšių.
+  no_matching_taxa: Nėra atitinkančių taksonų
   no_matching_users: Nėra atitinkančių vartotojų.
   no_members_yet: "Dar nėra narių."
   no_messages_yet: Dar nėra žinučių
@@ -2901,6 +2914,11 @@ lt:
   ranks:
     stateofmatter: Agregatinė būsena
     kingdom: Karalystė
+    x_kingdoms:
+      one: Karalystė
+      few: Karalystės
+      many: Karalystės
+      other: Karalystės
     subkingdom: Pokaralystė
     phylum: Tipas
     subphylum: Potipis
@@ -4075,7 +4093,6 @@ lt:
         lifelist_titles_cannot_be_changed: Gyvenimo sąrašo pavadinimų keisti negalima
     messages:
       from: Nuo
-      subject: Tema
       index:
         show_messages_from_user: Rodyti žinutes nuo %{user}
         show_messages_to_user: Rodyti žinutes vartotojui %{user}
@@ -4710,6 +4727,7 @@ lt:
     models:
       AssessmentSection: Vertinimo skyrius
       Atlas: Atlasas
+      BlockedUser: Užblokuotas vartotojas
       CompleteSet: Užbaigtas rinkinys
       #Noun
       Flag: Žymė
@@ -4719,6 +4737,9 @@ lt:
         description: Aprašymas
       assessment_section:
         title: Pavadinimas
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Užblokuotas vartotojas
       conservation_status:
         status: Būsena
         description: Aprašymas
@@ -4882,7 +4903,10 @@ lt:
                 gali būti pakeistas tik šio taksono kuratoriaus
         taxon_name:
           attributes:
+            lexicon:
+              should_be_in_english: turi būti anglų kalba
             name:
+              already_exists: šiame taksonui šiame leksikone jau egzistuoja
               must_match_the_taxon_if_valid: |
                 turi sutapti su taksono pavadinimu, jeigu tai teisingas mokslinis pavadinimas
         taxon_photo:
@@ -4894,6 +4918,10 @@ lt:
           attributes:
             email:
               must_look_like_an_email_address: turi atrodyti kaip el. pašto adresas
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Jūs jau užblokavote šį vartotoją
         user_parent:
           attributes:
             email:
@@ -5012,6 +5040,8 @@ lt:
         taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_drop: "@m"
+  #Title of a section warning the user about something
+  warning_title: Įspėjimas
   wild: Laukinis
   will_paginate:
     previous_label: "&#8592; Ankst."

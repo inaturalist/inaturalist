@@ -309,6 +309,9 @@ fr-CA:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Masquer « Pas d'annotation »
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web
@@ -354,6 +357,9 @@ fr-CA:
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Afficher « Pas d'annotation »
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blogue ou site Web!
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo/son ou d'identification
@@ -962,6 +968,9 @@ fr-CA:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      message:
+        subject: Objet
+        body: Corps du texte
       site:
         logo_email_banner: Bannière courriel
       user:

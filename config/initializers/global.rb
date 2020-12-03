@@ -29,6 +29,31 @@ class Object
   end
 end
 
+# Call a proc or lambda that returns something array-like, but if doing so
+# raises an exception, use the block to partition the args into smaller chunks
+# of work in the form of arrays of arrays of args to call the callable with.
+# This method recursively calls itself, breaking the work down into smaller and
+# smaller chunks until it can do the work without raising the specified
+# exceptions. This is intended to be used with burly elasticsearch queries that
+# will raise exceptions when the result set is too large. options takes an
+# optional exception_checker that is yet another callable to check whether the
+# exception should trigger partitioning. If that returns false, the exception
+# will be raised.
+def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, &block )
+  exceptions = [exceptions].flatten
+  args = [args].flatten
+  begin
+    callable.call( *args )
+  rescue *exceptions => e
+    if options[:exception_checker] && !options[:exception_checker].call( e )
+      raise e
+    end
+    block.call( args ).map {|partioned_args|
+      call_and_rescue_with_partitioner( callable, partioned_args, exceptions, options, &block )
+    }.flatten
+  end
+end
+
 def ratatosk(options = {})
   src = options[:src]
   site = options[:site] || Site.default

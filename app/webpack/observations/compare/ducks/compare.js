@@ -428,3 +428,31 @@ export function setTaxonFilter( filter ) {
     filter
   };
 }
+
+export function loadChildQueriesForTaxon( taxon ) {
+  return dispatch => {
+    if ( taxon.children ) {
+      const queries = taxon.children.map( child => ( {
+        name: child.name,
+        params: `taxon_id=${child.id}&verifiable=true`
+      } ) );
+      if ( queries.length > 0 ) {
+        dispatch( setQueries( queries ) );
+      } else {
+        alert( "That taxon has no children" );
+      }
+    } else {
+      inatjs.taxa.search( { parent_id: taxon.id, per_page: 200 } ).then( response => {
+        const queries = response.results.map( child => ( {
+          name: child.name,
+          params: `taxon_id=${child.id}&verifiable=true`
+        } ) );
+        if ( queries.length > 0 ) {
+          dispatch( setQueries( queries ) );
+        } else {
+          alert( "That taxon has no children" );
+        }
+      } );
+    }
+  };
+}

@@ -836,18 +836,22 @@ it:
   comments_on: Commenti su
   comments_on_my_observations: Commenti alle mie osservazioni
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Conferma
+  #Adjective describing a taxon change that has been committed
   committed: Confermato
   committed_by_user_on_date_html: Creato da %{user} il %{date}
+  #Label for date the taxon change was committed
   committed_on: Validato il %{date}
+  #Status message while a taxon change is being committed
   committing: Conferma in corso...
   community: Comunità
   community_curated: Curate dalla Community
   community_guidelines: Linee guida della comunità
   community_id_heading: Taxon della comunità
   community_id_at_species_or_lower?: Taxon della comunità a livello di specie o inferiore?
-  community_id_at_genus_level_or_lower: Taxon della comunità a livello di genere o inferiore
   community_id_at_species_level_or_lower: Taxon della comunità a livello di specie o inferiore
+  community_id_is_precise: Il Taxon della Comunità è preciso
   community_moderation_settings: Impostazioni della Moderazione da parte della Community
   community_supported_id: Taxon accettato dalla comunità?
   compare: Confronta
@@ -1600,6 +1604,9 @@ it:
   hide_content: Nascondi il contenuto
   hide_desc: |
     Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto. In generale, questo si applica solo al contenuto scritto, ad esempio se avete nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa operazione, e solamente il personale del sito può annullare l'occultamento di contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti particolarmente sgradevoli.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Nascondi «Nessuna annotazione»
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
   high: Superiore
@@ -3544,6 +3551,9 @@ it:
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_less: Mostra meno
   show_more: Mostra di più
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Mostra «Nessuna annotazione»
   show_observation_photos: mostra le foto delle osservazioni
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog o sul tuo sito!
   show_only: Mostra solo
@@ -4811,7 +4821,6 @@ it:
     messages:
       from: Da
       to: A
-      subject: Oggetto
       subject_body: Oggetto / Corpo
       index:
         show_messages_from_user: Mostra messaggi da %{user}
@@ -5080,7 +5089,7 @@ it:
           </p>
           <ul>
           <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon
+          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
           </li>
           </ul>
           <p>
@@ -6386,6 +6395,9 @@ it:
       listed_taxon:
         occurrence_status_level: Stato della presenza
         establishment_means: Origine del popolamento
+      message:
+        subject: Oggetto
+        body: Testo
       observation:
         description: Descrizioni
         geo_x: Est
