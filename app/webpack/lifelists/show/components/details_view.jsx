@@ -123,7 +123,7 @@ const DetailsView = ( {
     }
   } else if ( lifelist.detailsView === "species" ) {
     title = I18n.t( "views.lifelists.all_species" );
-    let count = lifelist.detailsTaxon ? _.size( filteredNodes( lifelist ) ) : lifelist.leavesCount;
+    let count = _.size( filteredNodes( lifelist ) );
     searchLoaded = true;
     if ( lifelist.speciesPlaceFilter ) {
       inatAPIsearch = inatAPI.speciesPlace;
@@ -145,7 +145,8 @@ const DetailsView = ( {
       <div className="stats">
         <span className="stat">
           <span className="attr">
-            { I18n.t( "views.lifelists.observed_rank", { rank: rankLabel( lifelist.speciesViewRankFilter ) } ) }
+            { I18n.t( "views.lifelists.observed_rank",
+              { rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ) } ) }
           </span>
           <span className="value">
             { searchLoaded

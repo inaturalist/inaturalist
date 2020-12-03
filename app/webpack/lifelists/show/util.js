@@ -61,7 +61,7 @@ function filteredNodes( lifelist ) {
     t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && obsCount( t ) );
 }
 
-function rankLabel( filter ) {
+function rankLabel( { rank: filter, withLeaves = true } = {} ) {
   switch ( filter ) {
     case "kingdoms":
     case "phyla":
@@ -72,7 +72,7 @@ function rankLabel( filter ) {
     case "species":
       return I18n.t( `ranks.x_${filter}`, { count: 2 } );
     case "leaves":
-      return I18n.t( "ranks.leaves" );
+      return ( withLeaves ? I18n.t( "ranks.leaves" ) : I18n.t( "ranks.x_species", { count: 2 } ) );
     default:
       return I18n.t( "views.lifelists.dropdowns.children" );
   }

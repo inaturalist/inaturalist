@@ -121,7 +121,9 @@ class SpeciesNoAPI extends Component {
 
     const rankOptions = (
       <DropdownButton
-        title={`${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel( lifelist.speciesViewRankFilter )}`}
+        title={`${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel(
+          { rank: lifelist.speciesViewRankFilter }
+        )}`}
         id="rankDropdown"
         onSelect={key => setRankFilter( key )}
       >
