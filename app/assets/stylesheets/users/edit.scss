@@ -19,6 +19,13 @@ $user-image-size: 65px;
   }
 }
 
+.vertical-align {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .underline {
   text-decoration: underline;
 }
