@@ -57,7 +57,7 @@ const Account = ( {
           eventKey={id}
           className="inat-affiliation-width"
         >
-          <span className="flex-no-wrap">
+          <span className="flex-no-wrap custom-dropdown-width">
             {showNetworkLogo( id, site.icon_url )}
             <div className="text-muted">{name}</div>
             {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
