@@ -5289,6 +5289,71 @@ fr:
           capacité de voir les coordonnées cachées de cette ou de toute
           autre observation dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
+        quality_assessment_help_html: |
+          <p>
+          L’assurance qualité des données est le résumé de l’exactitude d’une observation. Toutes
+          les observations démarrent à l’état de <strong>« occasionnel »</strong>, et deviennent
+          <strong>« nécessite une ID »</strong> quand
+          </p>
+
+          <ul>
+          <li>l’observation <strong>a une date</strong></li>
+          <li>l’observation <strong>est géoréférencée</strong> (c.-à-d. a des coordonnées de longitude/lattitude)</li>
+          <li>l’observation <strong>a des photos ou des sons</strong></li>
+          <li>l’observation <strong>n’est pas d’un humain</strong></li></ul>
+          <p>
+          Les observations deviennent <strong>« état recherché »</strong> quand
+          </p>
+          <ul>
+          <li>
+          la <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.
+          quand plus de 2/3 des identificateurs sont d’accord sur un taxon
+          </li>
+          </ul>
+          <p>
+          Les observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté est d’accord
+          </p>
+          <ul>
+          <li>
+          la <strong>localisation ne semble pas
+          exacte</strong> (par ex. des singes au milieu de l’océan,
+          des hippopotames dans des immeubles, etc.)
+          </li>
+          <li>
+          l’<strong>organisme n’est pas
+          sauvage/naturalisé</strong> (par ex. en captivité ou cultivé par des humains
+          ou une espèce extraterrestre intelligente)
+          </li>
+          <li>
+          l’observation <strong>ne montre aucune preuve d’un
+          organisme</strong>, par ex. des images de paysage, de pièces d’eau,
+          de rochers, etc.
+          </li>
+          <li>
+          l’observation <strong>ne présente pas de preuve récente (~100 ans) de
+          l’organisme</strong> (par ex. des fossiles, mais des traces, des excréments ou des feuilles mortes
+          sont ok)
+          </li>
+          <li>
+          l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
+          </li>
+          <li>
+          l’observateur a refusé l’ID de la communauté et l’id de taxon
+          de la communauté n’est pas un ancêtre ou un descendant du taxon associé
+          avec l’ID de l’observateur
+          </li>
+          </ul>
+          <p>
+          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système nécessite un vote :
+          </p>
+          <ul>
+          <li>
+          Le système votera que l’observation n’est pas sauvage/naturalisée
+          s’il y a au moins 10 autres observations d’un genre ou inférieur dans
+          le plus petit lieu équivalent à la région, à l’état ou au pays qui
+          contient cette observation, et 80% ou plus de ces observations
+          qui ont été marquées comme non sauvages/naturalisées.
+          </li></ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords sur les ancêtres)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
