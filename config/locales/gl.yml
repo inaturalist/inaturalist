@@ -4815,6 +4815,56 @@ gl:
           Algunhas destas fotos foron marcadas por contidos inapropiados ou violacións de dereitos de autor. Para ver detalles preme %{links}
         join_project_desc_html: |
           Unirse ó proxecto daralle ós conservadores do proxecto o poder de ver as coordenadas ocultas desta ou outras observacións no proxecto e implica que ti estás de acordo cós <a href="%{url}" target="_blank">termos</a> do proxecto.
+        quality_assessment_help_html: |
+          <p>
+          A avaliación da calidade dos dados é un resumo da exactitude dunha observación. Tódalas observacións comezan có grao <strong>"casual"</strong>, e pasa a <strong>"necesita identificación</strong> cando
+          </p>
+
+          <ul>
+          <li>a observación <strong>ten unha data</strong></li>
+          <li>a observación <strong>está xeorreferenciada</strong> (i.e. ten coordenadas lon/lat)</li>
+          <li>a observación <strong>ten fotos ou sons</strong></li>
+          <li>a observación <strong>non é dun humano</strong></li>
+          </ul>
+          <p>
+          As observacións pasan ó <strong>grao de investigación</strong> cando
+          </p>
+          <ul>
+          <li>
+          A <strong> comunidade de %{site_name} está de acordo cá identificación a nivel de especie ou inferior</strong>, p.e. cando ó menos 2/3 dos identificadores están de acordo nun taxon
+          </li>
+          </ul>
+          <p>
+          As observacións revertiranse a <strong>"casual" </strong>se as condicións anteriores non se cumpren ou se a comunidade está de acordo en que
+          </p>
+          <ul>
+          <li>
+          a <strong>ubicación non semella acertada</strong> (p.e. monos no medio do océano, hipopótamos en edificios de oficinas, etc.)
+          </li>
+          <li>
+          o <strong>organismo non é silvestre/ naturalizado</strong> (p.e. cativos ou cultidavos por humanos ou alieníxenas intelixentes do espacio exterior)
+          </li>
+          <li>
+          a observación <strong>non presenta evidencias dun organismo</strong> (p.e. imaxes de paisaxes, características acuáticas, rochas, etc.)
+          </li>
+          <li>
+          a observación <strong>non presenta evidencias recentes (~100 anos) dun organismo</strong> (p.e. fósiles, pero pegadas, dexeccións e follas mortas valen)
+          </li>
+          <li>
+          a observación xa non precisa unha identificación <em>e</em> a identificación da comunidade é superior ó nivel de familia
+          </li>
+          <li>
+          o observador rexeitou o taxon da comunidade e o taxon da comunidade non é ancestro nin descendente do taxon asociado cá identificación da observación
+          </li>
+          </ul>
+          <p>
+          E se isto non fose o suficientemente complicado, hai tamén situacións onde o sistema vota:
+          </p>
+          <ul>
+          <li>
+          O sistema votará que a observación non é silvestre/naturalizada se hai polo menos 10 observacións diferentes dun xénero ou nivel inferior no lugar equivalente menor do condado, estado ou pais que conteña esta observación e 80% ou máis desas observacións foron marcadas como non silvestre ou naturalizada.
+          </li>
+          </ul>
         score_desc: "puntuación = conta cumulativa / (conta cumulativa + conta de desacordos + desacordos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación marcouse como lixo e xa non é visible publicamente. Ti podes vela porque ti a creaches, ou es un conservador do sitio. Se pensas que isto é un erro, por favor <a href="mailto:%{help_email}" class="contact">contacta con nós</a>.
