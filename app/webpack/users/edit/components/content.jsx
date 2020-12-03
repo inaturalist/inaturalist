@@ -50,6 +50,25 @@ const Content = ( {
 
     const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
 
+    const allRightsReserved = (
+      <div className="default-title-custom-dropdown">
+        <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
+        <p
+          className="text-muted white-space"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "you_retain_full_copyright", {
+              site_name: SITE.name
+            } )
+          }}
+        />
+      </div>
+    );
+
+    if ( selected === "c" ) {
+      return allRightsReserved;
+    }
+
     return (
       <div className="default-title-custom-dropdown">
         <img
