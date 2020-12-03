@@ -210,10 +210,29 @@ describe ProjectObservation, "creation" do
     end
   end
 
-  it "should not allow observations that have one required field but not another" do
+  it "should allow observations that have one not-required field but not another" do
     proj = Project.make!
     pof1 = ProjectObservationField.make!( project: proj )
     pof2 = ProjectObservationField.make!( project: proj )
+    obs_with_1 = ObservationFieldValue.make!( observation_field: pof1.observation_field ).observation
+    obs_with_1.reload
+    obs_with_2 = ObservationFieldValue.make!( observation_field: pof2.observation_field ).observation
+    obs_with_2.reload
+    obs_with_1_and_2 = ObservationFieldValue.make!( observation_field: pof1.observation_field ).observation
+    ObservationFieldValue.make!( observation_field: pof2.observation_field, observation: obs_with_1_and_2 )
+    obs_with_1_and_2.reload
+    obs_without_1_and_2 = Observation.make!
+
+    expect( ProjectObservation.make( project: proj, observation: obs_with_1 ) ).to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_with_2 ) ).to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_with_1_and_2 ) ).to be_valid
+    expect( ProjectObservation.make( project: proj, observation: obs_without_1_and_2 ) ).to be_valid
+  end
+
+  it "should not allow observations that have one required field but not another" do
+    proj = Project.make!
+    pof1 = ProjectObservationField.make!( project: proj, required: true )
+    pof2 = ProjectObservationField.make!( project: proj, required: true )
     obs_with_1 = ObservationFieldValue.make!( observation_field: pof1.observation_field ).observation
     obs_with_1.reload
     obs_with_2 = ObservationFieldValue.make!( observation_field: pof2.observation_field ).observation
