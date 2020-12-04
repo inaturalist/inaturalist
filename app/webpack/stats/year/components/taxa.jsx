@@ -46,7 +46,11 @@ const Taxa = ( {
       ) }
       { newSpecies }
       { user && data && data.observed_taxa_changes && (
-        <ObservedTaxaChanges data={data.observed_taxa_changes} year={year} />
+        <ObservedTaxaChanges
+          data={data.observed_taxa_changes}
+          year={year}
+          user={user}
+        />
       ) }
     </div>
   );

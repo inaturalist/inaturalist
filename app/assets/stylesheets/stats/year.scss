@@ -1232,7 +1232,8 @@ $obs-grid-photo-size: 210px;
     .deltas-row {
       display: flex;
       margin-bottom: 5px;
-      align-items: flex-start;
+      // align-items: flex-start;
+      background-color: #111;
       .delta-taxon {
         width: 40%;
       }

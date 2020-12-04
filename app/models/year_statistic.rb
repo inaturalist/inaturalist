@@ -114,7 +114,7 @@ class YearStatistic < ActiveRecord::Base
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: accumulation,
-        observed_taxa_changes: observed_taxa_changes( year, user: user)
+        observed_taxa_changes: observed_taxa_changes( year, user: user )
       },
       growth: {
         observations: observations_histogram_by_created_month( user: user ),
@@ -1044,7 +1044,7 @@ class YearStatistic < ActiveRecord::Base
     # top most observose taxa to derive leaves from. since coarser rank taxa
     # will always have higher counts, the lower this number is the more coarser
     # taxa will be favored
-    leaf_cuttoff = [(0.017 * all_taxon_ids.size).ceil, final_cutoff].max
+    leaf_cuttoff = [(0.02 * all_taxon_ids.size).ceil, final_cutoff].max
     data = {}
     [:species, :observations].each do |metric|
       deltas = all_taxon_ids.inject({}) do |memo, taxon_id|
@@ -1063,9 +1063,12 @@ class YearStatistic < ActiveRecord::Base
       data[metric] = final_taxon_ids.collect do |taxon_id|
         taxon = taxa[taxon_id]
         {
-          taxon: taxon.as_indexed_json.keep_if {|k,v|
-            [:id, :name, :rank, :rank_level, :default_photo, :iconic_taxon_id, :is_active].include?( k )
-          },
+          taxon: taxon.as_indexed_json( no_details: true ).keep_if {|k,v|
+            [:id, :name, :rank, :rank_level, :default_photo, :is_active].include?( k )
+          }.merge(
+            iconic_taxon_name: taxon.iconic_taxon_name,
+            preferred_common_name: taxon.common_name( user: options[:user] ).try(:name)
+          ),
           delta: deltas[taxon_id]
         }
       end
