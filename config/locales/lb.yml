@@ -65,6 +65,9 @@ lb:
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
   a_flag_for_x: "en Markéierung fir %{x}"
   a_member_of_taxon_html: "e Member vu(n) %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A bis Z"
   about: Iwwer
   about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
@@ -263,6 +266,7 @@ lb:
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
+  applications: Applikatiounen
   appropriate?: Gëeegent?
   arachnids: Spannendéieren
   archives: Archiven
@@ -334,6 +338,7 @@ lb:
   because_of: well
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
+  bio: Bio
   birds: Vigel
   birthday: Gebuertsdag
   black: schwaarz
@@ -413,6 +418,7 @@ lb:
   comments_by_me: Bemierkunge vu mir
   comments_on: Bemierkungen iwwer
   comments_on_my_observations: Bemierkungen zu mengen Observatiounen
+  common_name: Allgemengen Numm
   community: Communautéit
   community_id_heading: Communautéits-Taxon
   community_id_is_precise: Den Community Taxon ass prezise
@@ -466,6 +472,7 @@ lb:
   created: Erstallt
   created_by_user_on_date: Ugeluecht vum %{user} de(n) %{date}
   creating_your_account: "Äre Benotzerkont gëtt ugeluecht..."
+  creative_commons_licenses: Creative Commons Lizenzen
   csv: CSV
   csv_file: CSV Fichier
   cumulative_ids: "Kumulativ IDs: %{count} vun %{total}"
@@ -617,6 +624,7 @@ lb:
   export: Exportéieren
   export_observations: Observatiounen exportéieren
   export_with_private_coordinates: Mat verstoppten Koordinaten exportéieren
+  external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
   facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
   facebook_options: Facebook-Optiounen
@@ -730,6 +738,7 @@ lb:
   in_the_past_week: An der leschter Woch
   inactive: Inaktiv
   inappropriate_content: Onubruechte Contenu?
+  inaturalist_applications: "iNaturalist Applikatiounen"
   inaturalist_is_a_joint_initiative: "%{site_name} ass eng gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society."
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
@@ -873,6 +882,8 @@ lb:
   location_is_public: D'Plaz ass ëffentlech
   location_is_private: Plaz ass privat
   log_in: Aloggen
+  log_out: Ausloggen
+  log_out_caps: AUSLOGGEN
   login_slash_username: Aloggen / Benotzernumm
   logo:
     transparent_png: transparente PNG
@@ -1020,6 +1031,7 @@ lb:
   no_suggestions_available: Keng Proposen Disponibel
   no_summary_from_wikipedia: Kee Resumé vu Wikipedia
   no_summary_has_been_set: Kee Resumé gouf festgesat.
+  no_users_found_with_those_filters: Keng Benotzer fir dëse Filter fonnt
   non_human?: Net-mënschlech?
   none: Keen
   none_found: Kee fonnt
@@ -1034,6 +1046,7 @@ lb:
   not_recorded: Net enregistréiert
   note: Notiz
   notes: Notizen
+  notifications: Notifikatioun
   number_of_observations: Zuel vun Observatiounen
   number_selected: "# erausgesicht"
   obscured: Verschleiert
@@ -1076,7 +1089,9 @@ lb:
   of_identifiers: Bestëmmer
   of_places: Plazen
   of_this_taxon: Vun desem Taxon
+  off_caps: "AUS"
   official_blog: Offizielle Blog
+  on_caps: "Un"
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
     following_panel_body: |
@@ -1189,6 +1204,7 @@ lb:
     antigua_and_barbuda: Antigua a Barbuda
     argentina: Argentinien
     armenia: Armenien
+    asia: Asien
     australia: Australien
     austria: Éisträich
     belarus: Wäissrussland
@@ -1292,6 +1308,7 @@ lb:
   probably_spam: Wahrscheinlech Spam
   processing: Verschaffen
   profile: Profil
+  profile_picture: Profilbild
   project: Projet
   project_group_label: Grupp
   project_members: "%{project} Memberen"
@@ -1341,6 +1358,7 @@ lb:
     not_external: net extern
     not_internal: net intern
     error: Feeler
+  relationships_user_settings: Relatiounen
   relationship_html: "Relatioun: %{link}"
   remove: Ewechhuelen
   remove_photo: Foto ewechhuelen
@@ -1375,7 +1393,9 @@ lb:
   save_comment: Bemierkung späicheren
   save_observation: Observatioun späicheren
   save_photos: Fotoe späicheren
+  save_settings_caps: ASTELLUNGEN SPÄICHEREN
   saved: Gespäichert
+  saved_at_time: Gespäichert um %{time}
   saving: "Späicheren..."
   search: Sichen
   search_by_name: No engem Numm sichen
