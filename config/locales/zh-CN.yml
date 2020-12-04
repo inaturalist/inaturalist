@@ -2715,6 +2715,7 @@ zh-CN:
     argentina: 阿根廷
     armenia: 亚美尼亚
     aruba: 阿鲁巴
+    asia: 亚洲
     australia: 澳大利亚
     austria: 奥地利
     azerbaijan: 阿塞拜疆
@@ -3293,6 +3294,7 @@ zh-CN:
   save_place: 保存地点
   save_trip: 保存旅行
   saved: 已提交
+  saved_at_time: 保存于 %{time}
   saving: "正在保存..."
   saving_num_of_count_observations:
     other: 正在保存 %{num} 个观察，共 %{count} 个...
@@ -5247,8 +5249,6 @@ zh-CN:
           any: 任何
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
-        prefers_community_taxa_desc: |
-          %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
         project_settings_desc: |
           记住，这不会给项目提供访问您私有坐标或向您发送更新的权限。为了获得这些权限，您必须加入项目，或在个案中授予他们权限。
         search_place_help_html: |
