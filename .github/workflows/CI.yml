@@ -96,11 +96,12 @@ jobs:
 
   notify:
     name: Notify Slack
-    needs: [build]
+    needs: build
     if: always()
     runs-on: ubuntu-18.04
     steps:
       - uses: iRoachie/slack-github-actions@v2.0.1
+        if: env.SLACK_WEBHOOK_URL != null
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
