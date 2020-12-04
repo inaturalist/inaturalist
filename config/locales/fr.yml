@@ -128,6 +128,9 @@ fr:
     Quand vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs, noms scientifiques obsolètes, etc.).
   a_flag_for_x: "un signalement pour %{x}"
   a_member_of_taxon_html: "un membre de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A – Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -509,6 +512,7 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
+  applications: Applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique captif/cultivé"
   apply_fields: Appliquer les champs
@@ -651,6 +655,7 @@ fr:
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   back_to_your_projects: Retourner à vos projets
+  badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Lot
@@ -661,6 +666,8 @@ fr:
   because_of: en raison de
   before_importing_photos: avant d’importer des photos
   bg_color: Couleur de fond
+  bio: Biographie
+  bio_description: Présentez-vous aux autres utilisateurs d'iNaturalist!
   bioblitz: Bioblitz
   birds: oiseaux
   birthday: Anniversaire
@@ -853,6 +860,7 @@ fr:
   committed_on: Validé le %{date}
   #Status message while a taxon change is being committed
   committing: Validation en cours…
+  common_name: Nom vernaculaire
   community: Communauté
   community_curated: Communauté organisée
   community_guidelines: Règles de la communauté
@@ -889,6 +897,8 @@ fr:
   confirm_new_password: Confirmer le nouveau mot de passe
   confirm_now: Confirmer maintenant
   confirm_your_info: Confirmer votre information
+  confirming_ids: M'informer des confirmations
+  confirming_ids_description: Si vous désactivez cette option, vous ne recevrez plus de notification quand une identification concorde avec la vôtre.
   connect_to_provider: "Connectez-vous à %{provider}"
   connected_accounts: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
@@ -914,6 +924,7 @@ fr:
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants de ce taxon qui sont présents ici ?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenu
+  content_and_display: Contenu et affichage
   content_author: Auteur du contenu
   content_hidden: Contenu masqué
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1021,6 +1032,7 @@ fr:
   created_on: Créé@{f:e|} le
   creating_your_account: "Création de votre compte…"
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
+  creative_commons_licenses: Licences Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
   critically_endangered: Gravement menacée
   css_description: Sera inclus après tous les autres CSS de la page.
@@ -1053,6 +1065,7 @@ fr:
   datatype: Type de données
   date_: Date
   date_added: Date d’ajout
+  date_authorized: Date d'autorisation
   date_created: Date de création
   date_format:
     date_long:
@@ -1110,6 +1123,8 @@ fr:
   default_invite_comment: "Belle photo! Vous devriez la publier sur %{site_name} : {{INVITE_LINK}}"
   default_observation_license: Licence par défaut des observations
   default_photo_license: Licence des photos par défaut
+  default_search_place: Lieu de recherche par défaut
+  default_search_place_description: Votre lieu par défaut pour toutes les recherches sous Explorer
   default_sound_license: Licence des sons par défaut
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
   defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
@@ -1197,7 +1212,9 @@ fr:
   disable_comments_desc: Empêcher les utilisateurs d'ajouter de nouveaux commentaires
   disagree_: Refuser
   disconnect_provider: "Déconnecter %{provider}"
+  display: Affichage
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
+  display_name: Nom affiché
   distance_traveled_value: "Distance parcourue : %{distance} m"
   distance_traveled: "Distance parcourue (m)"
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les développeurs</a>
@@ -1241,6 +1258,7 @@ fr:
   duplicate_verb: Doublon
   duration_value: "Durée : %{duration} minutes"
   each_place_displays_all_species_inat_knows: "Chaque page de lieu affiche toutes les espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations sur leur abondance, leur statut de conservation et le nom de la première personne ayant observé cette espèce dans ce lieu selon %{site_name}. Vous pouvez filtrer les espèces par groupe taxinomique, par couleur, selon leur statut de conservation ou par recherche habituelle."
+  earliest_added: Ajouté le plus tôt
   edit: Modifier
   edit_a_batch_of_observations: Modifier un lot d’observations
   edit_account_settings_and_profile: "Modifier les paramètres &amp; le profil"
@@ -1362,6 +1380,7 @@ fr:
   export_observations: Exporter les observations
   export_with_private_coordinates: Exporter avec les coordonnées masquées
   exporting: "Exportation en cours…"
+  external_applications: Applications externes
   external_taxon_including_children: Taxon externe (incluant les enfants)
   external_taxon_rank: Rang du taxon externe
   extinct: disparue
@@ -1726,6 +1745,8 @@ fr:
   inat_account_action: "%{site_name} &#58; Compte &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} pense que c’est une liste complète de ce taxon dans ce lieu."
   inat_user_profile: "%{site_name} : Profil de %{user}"
+  inaturalist_activity_notifications: "Notifications d'activité sur %{site_name}"
+  inaturalist_applications: "Applications iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} est une initiative conjointe de l’Académie des sciences de Californie et de la National Geographic Society."
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
@@ -1803,6 +1824,8 @@ fr:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Verrouiller le niveau de zoom
+  language_slash_locale: Langue et paramètres régionaux
+  language_slash_locale_description: Ceci définit vos préférences de langue et de format de date sur iNaturalist. Les modifications prendront effet une fois la page actualisée.
   language_slash_type: Langue / Type
   #Large photo size
   large: grand
@@ -1829,6 +1852,7 @@ fr:
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
+  learn_about_third_party_tracking: En savoir plus sur le suivi par des sites tiers
   learn_more: En apprendre d'avantage
   learn_more_on_the_blog: Apprenez-en plus sur le blogue
   learn_more_raquo: "En apprendre d'avantage &raquo;"
@@ -2014,6 +2038,7 @@ fr:
     <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
+  log_out: Se déconnecter
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2397,7 +2422,9 @@ fr:
   note: Note
   notes: Notes
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l’attribut 'height' pour l’adapter à l’espace disponible sur votre page web."
+  notifications: Notifications
   notify_me_of_mentions: M’informer des mentions (par ex. @username)
+  notify_me_of_mentions_description: "Si vous désactivez cette option, vous ne recevrez aucune notification lorsque quelqu'un vous mentionnera sur %{site_name}."
   notify_me_about_redundant_identifications: M’avertir des confirmations d’identité
   notify_me_about_redundant_identifications_desc: |
     Recevoir des notifications pour les identifications qui confirment la vôtre. Si vous décochez cette case, vous ne recevrez des avertissements que pour les identifications qui ne correspondent pas parfaitement à votre propre détermination.
@@ -2551,10 +2578,12 @@ fr:
   of_places: lieux
   of_this_taxon: De ce taxon
   offensive_inappropriate: Injurieux/inapproprié
+  off_caps: "DÉSACTIVÉ"
   official_blog: Blog officiel
   offline_access_enabled: Accès hors ligne activé
   old_observation_form: Ancien formulaire d’observation (désuet)
   ok: "OK"
+  on_caps: "ACTIVÉ"
   on_day: "le"
   onboarding:
     observe_panel_title: Commençons par publier quelques observations
@@ -2909,6 +2938,7 @@ fr:
     argentina: Argentine
     armenia: Arménie
     aruba: Aruba
+    asia: Asie
     australia: Australie
     austria: Autriche
     azerbaijan: Azerbaïdjan
@@ -3228,6 +3258,7 @@ fr:
   processing: Traitement
   processing3p: "Traitement en cours…"
   profile: Profil
+  profile_picture: Photo de profil
   profile_visibility_desc: |
     Afin de combattre les spams sur %{site_name}, les profils des utilisateurs sont seulement visibles publiquement après qu'ils aient contribué à plusieurs observations de niveau "Research Grade".
   project: Projet
@@ -3390,6 +3421,7 @@ fr:
   recent_atom_observations_by: "Observations récentes de %{login} (Atom)"
   recent_observations_by: "Observations récentes de %{login}"
   recently_active: Actifs récemment
+  recently_added: Ajouté récemment
   recently_created: Créé récemment
   recently_finished: Récemment terminé
   recently_observed: Récemment observé
@@ -3415,6 +3447,7 @@ fr:
     not_external: pas externe
     not_internal: non interne
     error: erreur
+  relationships_user_settings: Relations
   relationship_html: "Relation : %{link}"
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: 'Délai de rechargement écoulé. Veuillez réessayer plus tard.'
@@ -3481,6 +3514,8 @@ fr:
   results: résultats
   review_all: Relire tout
   reviewed: Relu
+  revoke: Révoquer
+  revoke_external_application: "Révoquer %{site_name}?"
   rg_observations: Observations RG
   role: Rôle
   rotate_left: Pivoter vers la gauche
@@ -3516,8 +3551,10 @@ fr:
   save_observation: Enregistrer l’observation
   save_photos: Enregistrer les photos
   save_place: Enregistrer le lieu
+  save_settings_caps: ENREGISTRER LES PARAMÈTRES
   save_trip: Enregistrer le voyage
   saved: Enregistré
+  saved_at_time: Enregistré à %{time}
   saving: "Enregistrement en cours…"
   saving_num_of_count_observations:
     one: Enregistrement de l’observation…
@@ -6508,8 +6545,6 @@ fr:
           any: Tout
           joined: Projets que vous avez rejoints
           none: "Non, vous seul pouvez ajouter vos observations aux projets"
-        prefers_community_taxa_desc: |
-          %{site_name} enregistre vos observations ainsi que votre identification et les identifications de la communauté. L’identification que nous communiquons à nos partenaires d’échange de données est celle de la communauté, mais si vous pensez que l’opinion de la communauté ne doit jamais primer sur la vôtre, vous pouvez changer ici le paramètre par défaut. Les autres utilisateurs pourront toujours ajouter des identifications, mais l’opinion de la communauté n'aura pas plus de poids que la vôtre. Autrement dit, vos observations ne pourront avoir le calibre recherche que si vous êtes d’accord avec la communauté.
         prefers_coordinate_interpolation_protection_desc: |
           Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
           « private », cela appliquera la même confidentialité géographique à toutes vos autres
@@ -7469,6 +7504,10 @@ fr:
     previous_label: "&#8592; Précédent"
     next_label: "Suivant &#8594;"
     page_gap: "&hellip;"
+  you_have_not_authorized_any_applications: "Vous n'avez autorisé aucune application à utiliser votre compte iNaturalist."
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z – A
   zoom_in: Zoom avant
   zoom_out: Zoom arrière
   zoom_photo: Élargir la photo
