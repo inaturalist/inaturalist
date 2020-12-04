@@ -207,6 +207,8 @@ cs:
     Z vědeckého názvu tohoto taxonu bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké názvy atd.).
   a_flag_for_x: "prapor pro %{x}"
   a_member_of_taxon_html: "člen %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
   a_to_z: "A až Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -1693,7 +1695,6 @@ cs:
   give_it_some_detail: Přidejte nějaký detail!
   give_monthly_caps: DÁT MĚSÍČNĚ
   give_now_caps: DÁT NYNÍ
-  global: Globální
   global_names: Globální názvy
   globally: globálně
   go: Jít
@@ -3051,6 +3052,7 @@ cs:
     argentina: Argentina
     armenia: Arménie
     aruba: Aruba
+    asia: Asie
     australia: Austrálie
     austria: Rakousko
     azerbaijan: Azerbajdžán
@@ -3688,6 +3690,7 @@ cs:
   save_settings_caps: ULOŽIT NASTAVENÍ
   save_trip: Uložit cestu
   saved: Uloženo
+  saved_at_time: Uloženo v %{time}
   saving: "Ukládá se…"
   saving_num_of_count_observations:
     one: Ukládání pozorování...
@@ -6307,8 +6310,6 @@ cs:
           any: Jakýkoliv
           joined: Projekty, ke kterým jste se přidali
           none: "Žádný, k projektům můžete přidávat svá pozorování pouze vy"
-        prefers_community_taxa_desc: |
-          %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
