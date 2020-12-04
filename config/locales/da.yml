@@ -127,6 +127,8 @@ da:
     Et standard taksonnavn vil automatisk blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige navne osv.)
   a_flag_for_x: "en markering for %{x}"
   a_member_of_taxon_html: "et medlem af %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
   a_to_z: "A til Å"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -1584,7 +1586,6 @@ da:
   give_it_some_detail: Giv det nogle detaljer!
   give_monthly_caps: GIV MÅNEDLIGT
   give_now_caps: GIV NU
-  global: Globalt
   global_names: Globale navne
   globally: Globalt
   go: Start
@@ -2944,6 +2945,7 @@ da:
     argentina: Argentina
     armenia: Armenien
     aruba: Aruba
+    asia: Asien
     australia: Australien
     austria: Østrig
     azerbaijan: Aserbajdsjan
@@ -3570,6 +3572,7 @@ da:
   save_settings_caps: GEM INDSTILLINGER
   save_trip: Gem tur
   saved: Gemt
+  saved_at_time: Gemt %{time}
   saving: "Gemmer..."
   saving_num_of_count_observations:
     one: Gemmer observation...
@@ -6420,12 +6423,6 @@ da:
           any: Alle
           joined: Projekter du er medlem af
           none: "Ingen. Det er kun dig der kan tilføje dine observationer til projekter"
-        prefers_community_taxa_desc: |
-          %{site_name} holder styr på, hvad du tror dine observationer er, og hvad
-          fællesskabet mener at de er. Den identifikation, vi deler med data
-          partnere er fællesskabs identifikationen, men hvis du ikke mener at
-          fællesskabets mening nogensinde bør underkende din egen, kan du fravælge det. Andre personer vil stadig kunne tilføje identifikationer, men
-          fællesskabets mening vil ikke blive foretrukket frem for din. Det betyder samtidigt at dine observationer ikke vil kunne opnå status af forskningskvalitet, medmindre du er enig med fællesskabet.
         prefers_coordinate_interpolation_protection_desc: |
           Når du indstiller geofortroligheden for en observation til "sløret" eller
           "fortrolig", gælder den for alle observationer for denne dag for at gøre det sværere for andre personer at gætte de reelle koordinater baseret på observationer foretaget omkring samme tidspunkt.
@@ -7384,6 +7381,8 @@ da:
     page_gap: "&hellip;"
   you_have_not_authorized_any_applications: "Du har ikke godkendt nogle programmer til brug af din iNaturalist-konto."
   you_will_no_longer_be_following_or_trusting: "Du vil ikke længere følge eller stole på %{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
   z_to_a: Å til A
   zoom_in: Zoom ind
   zoom_out: Zoom ud
