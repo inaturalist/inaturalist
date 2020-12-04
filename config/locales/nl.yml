@@ -127,7 +127,9 @@ nl:
     Een standaard taxonnaam wordt automatisch aangemaakt op basis van de wetenschappelijke naam van dit taxon. Als je het nieuwe taxon hebt opgeslagen kun je hier andere namen aan toevoegen (lokale namen, verouderde wetenschappelijke namen, etc.).
   a_flag_for_x: "een melding voor %{x}"
   a_member_of_taxon_html: "een lid van %{taxon}"
-  a_to_z: "A tot Zs"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "Van A naar Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -1593,7 +1595,6 @@ nl:
   give_it_some_detail: Geef het wat detail!
   give_monthly_caps: GEEF MAANDELIJKS
   give_now_caps: GEEF NU
-  global: Wereldwijd
   global_names: Globale Namen
   globally: Wereldwijd
   go: Ok
@@ -1742,10 +1743,10 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
-  include_places: Plaatsen inbegrijpen
-  include_projects: Projecten inbegrijpen
-  include_taxa: Taxa inbegrijpen
-  include_users: Gebruikers inbegrijpen
+  include_places: Includeer plaatsen
+  include_projects: Includeer projecten
+  include_taxa: Includeer taxa
+  include_users: Includeer gebruikers
   including: inclusief
   increase_brightness: Helderheid verhogen
   in_progress: bezig
@@ -1865,6 +1866,7 @@ nl:
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
+  learn_about_third_party_tracking: Lees meer over het volgen door derden
   learn_more: Lees meer
   learn_more_on_the_blog: Meer informatie in de blog
   learn_more_raquo: "Leer meer &raquo;"
@@ -2955,6 +2957,7 @@ nl:
     argentina: Argentinië
     armenia: Armenië
     aruba: Aruba
+    asia: Azië
     australia: Australië
     austria: Oostenrijk
     azerbaijan: Azerbeidzjan
@@ -3502,6 +3505,7 @@ nl:
   remove_range: Reeks verwijderen
   remove_relationship: Relatie verwijderen
   remove_relationship_caps: VERWIJDER RELATIE
+  remove_relationship_question: Relatie verwijderen?
   remove_section: Verwijder sectie
   remove_selected: Selectie verwijderen
   remove_tags: Labels verwijderen
@@ -3543,6 +3547,9 @@ nl:
   results: resultaten
   review_all: Alles nakijken
   reviewed: Nagekeken
+  revoke: Intrekken
+  revoke_caps: INTREKKEN
+  revoke_external_application: "%{site_name} intrekken?"
   rg_observations: RG Waarnemingen
   role: Rol
   rotate_left: Linksom draaien
@@ -3578,8 +3585,10 @@ nl:
   save_observation: Waarneming opslaan
   save_photos: Foto's opslaan
   save_place: Plaats opslaan
+  save_settings_caps: INSTELLINGEN OPSLAAN
   save_trip: Route opslaan
   saved: Opgeslagen
+  saved_at_time: Opgeslagen om %{time}
   saving: "Aan het opslaan..."
   saving_num_of_count_observations:
     one: Waarneming opslaan...
@@ -4105,6 +4114,7 @@ nl:
     Deze waarnemingen werden nog niet geüpload.
   they_already_have_iNat_accounts: "... ze hebben reeds %{site_name}-accounts"
   they_have_been_invited: ... zij werden reeds uitgenodigd
+  third_party_tracking: Volgen door derden
   third_person_possessive_singular: "%{noun} van %{object_phrase}"
   third_person_possessive_plural: "%{noun} van %{object_phrase}"
   this: deze
@@ -4116,6 +4126,7 @@ nl:
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Dit is een handigere manier om een taxon-ID te vinden. Het is het taxon-ID
     dat echt wordt gered. Deze zoekopdracht werkt alleen voor actieve taxa.
+  this_is_how_taxon_names_will_be_displayed: Dit is hoe alle taxonnamen voor jou worden weergegeven op %{site_name}
   this_is_taking_forever: Dit blijft duren. Probeer later nog een keer.
   this_is_the_primary_listing: Dit is je hoofdlijst
   this_is_your_observation: Dit is jouw waarneming
@@ -4148,6 +4159,7 @@ nl:
   this_will_refresh_listed_taxa: Hiermee worden de opgevoerde taxa in deze lijst vernieuwd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
   this_will_re_apply_all_list_rules: |
     Hiermee worden alle lijstregels opnieuw toegepast op de vermelde taxa en worden deze  geassocieerde stats bijgewerkt', bijv. het afwijzen van taxa die niet binnen de lijst taxon vallen of zijn niet van de geselecteerde rang zijn. Het voegt geen nieuwe taxa toe. Het kan een paar minuten duren.
+  this_will_sign_you_out_current_session: Dit zal je uitloggen uit je huidige sessie voor deze toepassing.
   this_will_try_to_add_tags_to_your_flickr: Hierdoor worden labels aan je Flickr-foto's toegevoegd. Verdergaan?
   this_year: Dit jaar
   those_observations_no_longer_exist: Deze waarneming bestaat niet langer.
@@ -4264,6 +4276,7 @@ nl:
   upload_a_csv_file: Upload CSV-bestand
   upload_a_csv_file_with_observation: |
     Upload een CSV-bestand met waarnemingen. Als je gegevens in een spreadsheet of database staan is dit waarschijnlijk de beste manier.
+  upload_new_photo: Nieuwe foto uploaden
   upload_photo: Upload foto
   upload_range: Upload Reeks
   uploaded_by: Geüpload door
@@ -4365,6 +4378,7 @@ nl:
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schreef,
   username: Gebruikersnaam
+  username_description: Dit is de gebruikersnaam die je gebruikt om in te loggen, en die andere gebruikers kunnen gebruiken om je te identificeren op iNaturalist
   username_or_email: Gebruikersnaam of e-mail
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
@@ -4504,6 +4518,7 @@ nl:
   which_projects_can_add_your_observations?: Welke traditionele projecten kunnen je waarnemingen toevoegen?
   white: wit
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
+  who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
   who_can_see_the_coordinates: Wie kan de coördinaten zien
   who_can_see_the_coordinates_observer: De persoon die de waarneming gedaan heeft
@@ -4711,6 +4726,7 @@ nl:
     waarnemingen bij te houden. Ontdek wat anderen 
     <a href="%{observations_path}">waarnemen</a> en leer nieuwe 
     <a href="%{people_path}">mensen</a> kennen.
+  youre_not_following_anyone_on_inat: Je volgt nog niemand op %{site_name}!
   youve_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account en je Google-account gekoppeld. Hiermee kun je je Google-foto's koppelen aan je waarnemingen op %{site_name}."
   youve_seen_it_want_to: "Je hebt het gezien! Willen"
   youve_successfully_linked_your_provider_account: "Je hebt je %{provider}-account succesvol gekoppeld."
@@ -6099,8 +6115,6 @@ nl:
           any: Alle
           joined: Projecten waar je lid van bent
           none: "Geen, je bent de enige die je waarnemingen aan projecten kan toevoegen"
-        prefers_community_taxa_desc: |
-          %{site_name} volgt wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met gegevenspartners delen, is de determinatie van de gemeenschap, maar als je denkt dat de mening van de gemeenschap jouw eigen mening nooit mag vervangen, kunt je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar de mening van de gemeenschap heeft geen voorkeur boven die van jou. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.
         prefers_coordinate_interpolation_protection_desc: |
           Wanneer je de geoprivacy van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast om het moeilijker te maken voor andere mensen om de ware coördinaten af te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
         prefers_no_tracking_label: Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden
@@ -7041,6 +7055,11 @@ nl:
     previous_label: "&#8592; Vorige"
     next_label: "Volgende &#8594;"
     page_gap: "&hellip;"
+  you_have_not_authorized_any_applications: "Je hebt geen applicaties toestemming gegeven om je iNaturalist account te gebruiken."
+  you_will_no_longer_be_following_or_trusting: "Je zal %{user} niet langer volgen of vertrouwen"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Van Z naar A
   zoom_in: Inzoomen
   zoom_out: Uitzoomen
   zoom_photo: Inzoomen op foto
