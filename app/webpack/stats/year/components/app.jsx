@@ -30,7 +30,7 @@ const App = ( {
   rootTaxonID,
   updatedAt
 } ) => {
-  let body = "todo";
+  let body;
   const inatUser = user ? new inatjs.User( user ) : null;
   const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
   if ( !year ) {

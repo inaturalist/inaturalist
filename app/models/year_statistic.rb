@@ -113,7 +113,8 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation: accumulation
+        accumulation: accumulation,
+        observed_taxa_changes: observed_taxa_changes( year, user: user)
       },
       growth: {
         observations: observations_histogram_by_created_month( user: user ),
@@ -1005,6 +1006,68 @@ class YearStatistic < ActiveRecord::Base
           data[:users][username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
           data[:users][username][:languages] = languages
         end
+      end
+    end
+    data
+  end
+
+  def self.observed_taxa_counts( year, options = {} )
+    params = options.merge( year: year, verifiable: true, page: 1 )
+    params[:user_id] = options[:user].id if options[:user]
+    data = {}
+    while true
+      puts "Fetching results for #{params}"
+      results = INatAPIService.observations_species_counts( params ).results
+      break if results.size == 0
+      results.each do |r|
+        r["taxon"]["ancestor_ids"].each do |tid|
+          data[tid] ||= {}
+          data[tid][:observations] = data[tid][:observations].to_i + r["count"]
+          if r["taxon"]["id"] == tid
+            data[tid][:species] = 1
+          else
+            data[tid][:species] = data[tid][:species].to_i + 1
+          end
+        end
+      end
+      params[:page] += 1
+    end
+    data
+  end
+
+  def self.observed_taxa_changes( year, options = {} )
+    # final number of top gains and losses to return
+    final_cutoff = 30
+    this_years_taxa = observed_taxa_counts( year, options )
+    last_years_taxa = observed_taxa_counts( year - 1, options )
+    all_taxon_ids = ( this_years_taxa.keys + last_years_taxa.keys ).uniq
+    # top most observose taxa to derive leaves from. since coarser rank taxa
+    # will always have higher counts, the lower this number is the more coarser
+    # taxa will be favored
+    leaf_cuttoff = [(0.017 * all_taxon_ids.size).ceil, final_cutoff].max
+    data = {}
+    [:species, :observations].each do |metric|
+      deltas = all_taxon_ids.inject({}) do |memo, taxon_id|
+        memo[taxon_id] = this_years_taxa[taxon_id].try(:[], metric).to_i - last_years_taxa[taxon_id].try(:[], metric).to_i
+        memo
+      end
+      top_losses = deltas.select{|k,v| v < 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_gains = deltas.select{|k,v| v > 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      taxa = Taxon.where( id: top_taxon_ids ).index_by(&:id)
+      losses_ancestor_ids = taxa.fetch_values( *top_losses.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_losses = top_losses.reject{|taxon_id, delta| losses_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      gains_ancestor_ids = taxa.fetch_values( *top_gains.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_gains = top_gains.reject{|taxon_id, delta| gains_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      final_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      data[metric] = final_taxon_ids.collect do |taxon_id|
+        taxon = taxa[taxon_id]
+        {
+          taxon: taxon.as_indexed_json.keep_if {|k,v|
+            [:id, :name, :rank, :rank_level, :default_photo, :iconic_taxon_id, :is_active].include?( k )
+          },
+          delta: deltas[taxon_id]
+        }
       end
     end
     data

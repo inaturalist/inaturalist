@@ -1216,3 +1216,53 @@ $obs-grid-photo-size: 210px;
     }
   }
 }
+
+.ObservedTaxaChanges {
+  .metrics {
+    display: flex;
+    justify-content: stretch;
+
+    > div {
+      width: 50%;
+      margin-right: 20px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+    .deltas-row {
+      display: flex;
+      margin-bottom: 5px;
+      align-items: flex-start;
+      .delta-taxon {
+        width: 40%;
+      }
+      .delta {
+        width: 60%;
+        display: flex;
+        .delta-bar {
+          background-color: $inat-green;
+          padding: 3px 5px;
+        }
+      }
+    }
+    .fewer {
+      .delta {
+        justify-content: flex-end;
+        .delta-bar {
+          background-color: $fail-red;
+          text-align: end;
+        }
+      }
+    }
+    .more {
+      .deltas-row {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+  .metric-buttons {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+  }
+}
