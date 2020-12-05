@@ -43,6 +43,67 @@ const Content = ( {
     </div>
   ) );
 
+  const gbifTag = ( ) => (
+    <div className="license-tag">
+      {I18n.t( "gbif" )}
+    </div>
+  );
+
+  const wikimediaTag = ( ) => (
+    <div className="license-tag wikimedia">
+      {I18n.t( "wikimedia" )}
+    </div>
+  );
+
+  const addTags = license => {
+    const gbif = ["cc0", "cc-by", "cc-by-nc"];
+    const wikimedia = ["cc0", "cc-by", "cc-by-nc-sa"];
+
+    if ( gbif.includes( license ) && wikimedia.includes( license ) ) {
+      return (
+        <div className="flex-no-wrap">
+          {gbifTag( )}
+          {wikimediaTag( )}
+        </div>
+      );
+    }
+
+    if ( gbif.includes( license ) ) {
+      return (
+        <div className="flex-no-wrap">
+          {gbifTag( )}
+        </div>
+      );
+    }
+
+    if ( wikimedia.includes( license ) ) {
+      return (
+        <div className="flex-no-wrap">
+          {wikimediaTag( )}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const showLicenseImage = license => (
+    <img
+      id="image-license"
+      src={iNaturalist.Licenses[license].icon_large}
+      alt={license}
+      className="margin-right-medium"
+    />
+  );
+
+  const showLicenseName = ( localizedName, license ) => (
+    <div>
+      <div className="license-width">
+        {I18n.t( `${localizedName}_name` )}
+      </div>
+      {addTags( license )}
+    </div>
+  );
+
   const noLicenseText = ( ) => (
     <div>
       <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
@@ -80,13 +141,8 @@ const Content = ( {
 
     return (
       <div className="flex-no-wrap custom-dropdown-width">
-        <img
-          id="image-license"
-          src={iNatLicenses[defaultLicense].icon_large}
-          alt={defaultLicense}
-          className="margin-right-medium"
-        />
-        <div className="license-width">{I18n.t( `${localizedName}_name` )}</div>
+        {showLicenseImage( defaultLicense )}
+        {showLicenseName( localizedName, defaultLicense )}
         {caret}
       </div>
     );
@@ -117,8 +173,8 @@ const Content = ( {
         >
           {license === "c" ? allRightsReserved : (
             <span className="flex-no-wrap white-space">
-              <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-              <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+              {showLicenseImage( license )}
+              {showLicenseName( localizedName, license )}
               {profile[name] === code && checkmark}
             </span>
           )}

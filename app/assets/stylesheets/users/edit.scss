@@ -368,3 +368,17 @@ select.inherit-width {
     line-height: $user-image-size - 10;
   }
 }
+
+.license-tag {
+  background-color: $inat-green;
+  color:white;
+  padding: 4px !important;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+.license-tag.wikimedia {
+  background-color: #2e78b8;
+}

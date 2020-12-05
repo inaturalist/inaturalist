@@ -17141,6 +17141,7 @@ I18n.translations["en"] = {
     "one": "fungus",
     "other": "fungi"
   },
+  "gbif": "GBIF",
   "gbif_occurrences": "GBIF Occurrences",
   "generate_your_stats": "Generate Your Stats",
   "geoprivacy": "Geoprivacy",
@@ -18903,6 +18904,7 @@ I18n.translations["en"] = {
   "who_user_helped_the_most": "Who %{user} Helped the Most",
   "why_the_coordinates_are_obscured": "Why the Coordinates Are Obscured",
   "why_you_can_see_the_coordinates": "Why You Can See the Coordinates",
+  "wikimedia": "Wikimedia",
   "wild": "Wild",
   "with_annotation": "With Annotation",
   "withdraw": "Withdraw",
