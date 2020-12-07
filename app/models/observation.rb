@@ -1322,6 +1322,7 @@ class Observation < ActiveRecord::Base
   def appropriate?
     return false if flagged?
     return false if photos.detect{ |p| p.flagged? }
+    return false if sounds.detect{ |p| p.flagged? }
     true
   end
   

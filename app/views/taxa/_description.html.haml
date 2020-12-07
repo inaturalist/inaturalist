@@ -51,8 +51,18 @@
         if taxon_photo = @taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.detect{|tp| tp.photo.is_a?( WikimediaCommonsPhoto ) }
           image = taxon_photo.photo.native_photo_id
         end
+        formatted_taxon_name = if @taxon.rank_level <= Taxon::GENUS_LEVEL
+          "''#{@taxon.name}''"
+        else
+          @taxon.name
+        end
+        ref = "<ref name=\"inaturalist-#{@taxon.name}\">{{cite web |title=#{render( "taxa/taxon.txt.erb", taxon: @taxon )} |url=#{taxon_url(@taxon)} |website=#{@site.name} |access-date=#{l Date.today} |language=#{I18n.locale}}}</ref>"
+        ref_link = "<ref name=\"inaturalist-#{@taxon.name}\" />"
         structure = <<-WIKI
-          #{I18n.t(:taxon_is_a_rank, taxon: @taxon.name, rank: translated_rank )}.
+          #{I18n.t(:taxon_is_a_rank,
+            taxon: "'''#{formatted_taxon_name}'''",
+            rank: "[[#{translated_rank}]]" )
+          }.#{ref}
           ==Description==
         WIKI
         if @taxon.species?
@@ -62,9 +72,19 @@
             ==Ecology==
           WIKI
         end
+        children = nil
+        unless @taxon.children.blank?
+          children = <<-WIKI
+            #{formatted_taxon_name} contains the following #{@taxon.children.first.try(:rank).try(:pluralize)}:
+            #{@taxon.children.map{|c|
+              c.rank_level <= Taxon::GENUS_LEVEL ? "* ''[[#{c.name}]]''#{ref_link}" : "* [[#{c.name}]]#{ref_link}"
+            }.join( "\n" )}
+          WIKI
+        end
         structure += <<-WIKI
           ==Etymology==
           ==Taxonomy==
+          #{children}
           ==References==
         {{Reflist}}
         WIKI
@@ -72,16 +92,18 @@
           @taxon.parent.wikipedia_title.blank? ? @taxon.parent.name : @taxon.parent.wikipedia_title
         end
         box = <<-WIKI
-          {{automatic taxobox
+          {{Automatic taxobox
           | taxon = #{@taxon.name}
-          | rank = #{@taxon.rank}
+          #{"| rank = #{Taxon::WIKIPEDIA_RANKS[@taxon.rank]}" unless @taxon.rank.blank?}
           #{"| parent = #{parent_title}" if parent_title}
+          #{"| image = #{image}" if image}
           }}
         WIKI
         if @taxon.species? && @taxon.genus
           box = <<-WIKI
             {{Speciesbox
             | parent = #{@taxon.genus.name}
+            | taxon = #{@taxon.name}
             #{"| image = #{image}" if image}
             }}
           WIKI
