@@ -182,6 +182,8 @@ en:
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
   a_member_of_taxon_html: "a member of %{taxon}"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A to Z"
   # Used as a noun phrase in sentences like "kueda added a comment to *an
   # observation*". %{resource} could be any of the following:
@@ -1692,7 +1694,6 @@ en:
   give_it_some_detail: Give it some detail!
   give_monthly_caps: GIVE MONTHLY
   give_now_caps: GIVE NOW
-  global: Global
   global_names: Global Names
   globally: Globally
   go: Go
@@ -7016,14 +7017,13 @@ en:
           joined: Projects you've joined
           none: "None, only you can add your observations to projects"
         prefers_community_taxa_desc: |
-          %{site_name} tracks what you think your observations are and what
-          the community thinks they are. The identification we share with data
-          partners is the community identification, but if you don't think the
-          community's opinion should ever overrule your own, you can opt out
-          here. People will still be able to add identifications, but the
-          community opinion won't be favored over yours. This means your
-          observations will not be eligible for research grade unless you
-          agree with the community.
+          %{site_name} tracks what you think your observations are and what the
+          community thinks they are. If you don't think the community's opinion
+          should overrule your own, you can opt out here. People will still be
+          able to add identifications, but your observations will remain
+          associated with the taxon from your identification. This means your
+          observations will not be eligible for Research Grade status unless
+          your identification matches the community's opinion.
         prefers_coordinate_interpolation_protection_desc: |
           When you set the geoprivacy of an observation to "obscured" or
           "private" this will apply the same geoprivacy to all your other
@@ -7987,6 +7987,8 @@ en:
     page_gap: "&hellip;"
   you_have_not_authorized_any_applications: "You have not authorized any applications to use your iNaturalist account."
   you_will_no_longer_be_following_or_trusting: "You will no longer be following or trusting %{user}"
+  # Descending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (descending)"
   z_to_a: Z to A
   zoom_in: Zoom In
   zoom_out: Zoom Out
