@@ -5993,6 +5993,8 @@ it:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito
           none: "Nessuno, solo tu puoi aggiungere le tue osservazioni ai progetti"
+        prefers_community_taxa_desc: |
+          %{site_name} tiene traccia di cosa tu pensi siano le tue osservazioni e di ciò che ne pensa la communità. Se non pensi che l'opinione della community debba avere priorità sulla tua, puoi deselezionare qui l'opzione. Le persone continueranno ad essere in grado di aggiungere identificazioni, ma la tua osservazione rimarrà associata al taxon della tua identificazione. Ciò significa che le tue osservazioni non potranno raggiungere il Livello Ricerca a meno che la tua identificazione non sia in accordo con l'opinione della communità.
         prefers_coordinate_interpolation_protection_desc: |
           Quando imposti la geoprivacy di un osservazione come "oscurata" o "privata" questa impostazione si applicherà a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere più difficile alle altre persone ipotizzare le coordinate reali basandosi sulle osservazioni fatte lì intorno nello stesso periodo.
         prefers_no_tracking_label: Non raccogliere i dati di stabilità e utilizzo utilizzando servizi di terze parti
