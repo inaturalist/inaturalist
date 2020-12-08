@@ -18570,6 +18570,7 @@ I18n.translations["en"] = {
       "observations_of_exactly_this_taxon": "Observations of exactly this taxon",
       "observations_within_this_taxon": "Observations within this taxon",
       "observed_species": "Observed Species",
+      "observed_rank": "Observed %{rank}",
       "reset_place_filter": "Reset Place Filter",
       "restrict_to_leaf_taxa": "Restrict to leaf taxa",
       "restrict_to_taxa_observed_in_place": "Restrict to taxa observed in %{place}",
