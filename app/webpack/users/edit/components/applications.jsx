@@ -15,6 +15,7 @@ const Applications = ( { showModal, apps } ) => {
 
   const iNatApps = apps.filter( app => app.application.official === true );
   // tbd on what the endpoint will return
+  // note: remember to change revoke access modal to reflect 'disconnect' text
   const connectedApps = apps.filter( app => app.application.official === "connected" );
   const externalApps = apps.filter( app => app.application.official === false );
 
