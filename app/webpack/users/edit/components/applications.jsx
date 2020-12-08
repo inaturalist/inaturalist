@@ -14,12 +14,14 @@ const Applications = ( { showModal, apps } ) => {
   }
 
   const iNatApps = apps.filter( app => app.application.official === true );
+  // tbd on what the endpoint will return
+  const connectedApps = apps.filter( app => app.application.official === "connected" );
   const externalApps = apps.filter( app => app.application.official === false );
 
-  const renderHeader = headerText => (
+  const renderHeader = ( ) => (
     <thead>
       <tr className="hidden-xs">
-        <th className="borderless">{headerText}</th>
+        <th className="borderless">{I18n.t( "application" )}</th>
         <th className="borderless">{I18n.t( "date_authorized" )}</th>
         <th className="borderless" />
       </tr>
@@ -44,26 +46,36 @@ const Applications = ( { showModal, apps } ) => {
     </tr>
   );
 
-  const createiNatAppsTable = ( ) => iNatApps.map( app => renderRow( app, I18n.t( "log_out" ) ) );
-  const createExternalAppsTable = ( ) => externalApps.map( app => renderRow( app, I18n.t( "revoke" ) ) );
+  const createTable = ( appList, buttonText ) => (
+    <table className="table">
+      {renderHeader( )}
+      <tbody className="borderless">
+        {appList.map( app => renderRow( app, buttonText ) )}
+      </tbody>
+    </table>
+  );
 
   return (
-    <div>
+    <div id="ApplicationsTable">
       {iNatApps.length > 0 && (
-        <table className="table">
-          {renderHeader( I18n.t( "inaturalist_applications", { site_name: SITE.name } ) )}
-          <tbody className="borderless">
-            {createiNatAppsTable( )}
-          </tbody>
-        </table>
+        <div>
+          <h4>{I18n.t( "inaturalist_applications", { site_name: SITE.name } )}</h4>
+          {createTable( iNatApps, I18n.t( "log_out" ) )}
+        </div>
+      )}
+      {connectedApps.length > 0 && (
+        <div>
+          <h4>{I18n.t( "connected_accounts_titlecase" )}</h4>
+          <p className="text-muted app-description-width">{I18n.t( "connected_accounts_description" )}</p>
+          {createTable( connectedApps, I18n.t( "disconnect" ) )}
+        </div>
       )}
       {externalApps.length > 0 && (
-        <table className="table">
-          {renderHeader( I18n.t( "external_applications" ) )}
-          <tbody className="borderless">
-            {createExternalAppsTable( )}
-          </tbody>
-        </table>
+        <div>
+          <h4>{I18n.t( "external_applications" )}</h4>
+          <p className="text-muted app-description-width">{I18n.t( "external_applications_description" )}</p>
+          {createTable( externalApps, I18n.t( "revoke" ) )}
+        </div>
       )}
     </div>
   );

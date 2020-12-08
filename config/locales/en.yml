@@ -600,6 +600,7 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  application: Application
   applications: Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -996,6 +997,8 @@ en:
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   connect_to_provider: "Connect to %{provider}"
   connected_accounts: Connected accounts
+  connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
+  connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
   connecting_to_facebook: "Connecting to Facebook..."
@@ -1316,6 +1319,7 @@ en:
   disable_comments: Disable comments
   disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
+  disconnect: Disconnect
   disconnect_provider: "Disconnect %{provider}"  
   display: Display
   display_link_to_checklist: Display link to project list from project page
@@ -1493,6 +1497,7 @@ en:
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
   external_applications: External Applications
+  external_applications_description: External Applications are apps or websites that you have allowed to access your iNaturalist account. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them access.
   external_taxon_including_children: External taxon (including children)
   external_taxon_rank: External taxon rank
   extinct: EXTINCT

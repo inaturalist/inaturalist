@@ -177,6 +177,15 @@ label.radio-button {
   border: none !important;
 }
 
+#ApplicationsTable {
+  .table > thead > tr > th {
+    padding-left: 0px;
+  }
+  .table > tbody > tr > td {
+    padding-left: 0px;
+  }
+}
+
 td.table-row {
   vertical-align: middle !important;
 }
@@ -379,6 +388,11 @@ select.inherit-width {
   margin-right: 5px;
   border-radius: 3px;
 }
+
 .license-tag.wikimedia {
   background-color: #2e78b8;
+}
+
+.app-description-width {
+  max-width: 419px;
 }
