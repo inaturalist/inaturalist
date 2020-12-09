@@ -8,6 +8,7 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 import Observations from "./observations";
 import Species from "./species";
 import SpeciesNoAPIContainer from "../containers/species_noapi_container";
+import { filteredNodes, rankLabel } from "../util";
 
 const ObservationsGridContainer = APIWrapper( "observations", Observations );
 const UnobservedSpeciesGridContainer = APIWrapper( "unobservedSpecies", Species );
@@ -122,8 +123,7 @@ const DetailsView = ( {
     }
   } else if ( lifelist.detailsView === "species" ) {
     title = I18n.t( "views.lifelists.all_species" );
-    let count = lifelist.detailsTaxon
-      ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount;
+    let count = _.size( filteredNodes( lifelist ) );
     searchLoaded = true;
     if ( lifelist.speciesPlaceFilter ) {
       inatAPIsearch = inatAPI.speciesPlace;
@@ -145,7 +145,8 @@ const DetailsView = ( {
       <div className="stats">
         <span className="stat">
           <span className="attr">
-            { I18n.t( "views.lifelists.observed_species" ) }
+            { I18n.t( "views.lifelists.observed_rank",
+              { rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ) } ) }
           </span>
           <span className="value">
             { searchLoaded

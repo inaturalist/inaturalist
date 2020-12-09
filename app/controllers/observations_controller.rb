@@ -1146,7 +1146,16 @@ class ObservationsController < ApplicationController
       memo[ft.id] = Delayed::Job.find_by_unique_hash( ft.enqueue_options[:unique_hash].to_s )
       memo
     end
-    @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    if params[:projects] && params[:projects].is_a?( String )
+      @projects = params[:projects].to_s.split( "," ).collect{|id| Project.find( id ) rescue nil}.compact
+    elsif params[:projects] && params[:projects].is_a?( Array )
+      @projects = params[:projects].collect{|id| Project.find( id ) rescue nil}.compact
+    end
+    @observation_fields = if @projects
+      @projects.collect{|proj| proj.project_observation_fields.collect(&:observation_field)}.flatten
+    else
+      ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    end
     set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     @identification_fields = if @ident_user
       %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}

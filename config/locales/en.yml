@@ -3587,7 +3587,7 @@ en:
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications: Receive Email Notifications
-  receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications. You will receive notifications for everything checked below:"
+  receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications."
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_project_journal_notifications?: Receive project journal notifications?
   receive_updates_from_this_project: Receive updates from this project
@@ -5205,6 +5205,7 @@ en:
       list_view: List View
       tree_view: Tree View
       observed_species: Observed Species
+      observed_rank: Observed %{rank}
       unobserved_species: Unobserved Species
       all_species: All Species
       all_unobserved_species: All Unobserved Species
