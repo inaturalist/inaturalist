@@ -207,6 +207,7 @@ cs:
     Z vědeckého názvu tohoto taxonu bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké názvy atd.).
   a_flag_for_x: "prapor pro %{x}"
   a_member_of_taxon_html: "člen %{taxon}"
+  a_to_z: "A až Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -356,6 +357,7 @@ cs:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Přidejte položku
   add_batch: Vložit skupinu
+  add_blocked_users: Přidat blokované uživatele
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Přidat tučný text
   add_comma_separated_tags: "Vložit tagy oddělené čárkou"
@@ -372,6 +374,7 @@ cs:
   add_id: Vložit ID
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Přidat text v kurzívě
+  add_muted_users: Přidat ztlumené uživatele
   add_new_lexicon: Vložit nový pojem
   add_new_photos_by_their_ids: Vložit nové fotografie podle jejich ID na Flicekru (musí být pod licencí Creative Commons!)
   add_new_place: Vložit nové místo
@@ -644,6 +647,7 @@ cs:
   #Label for an option to show/include content by any user
   any_user: Kterýkoliv
   anyone: Kdokoliv
+  applications: Aplikace
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
   apply_fields: Použít pole
@@ -787,6 +791,7 @@ cs:
   back_to_your_observations: Zpátky na vaše pozorování
   back_to_your_profile: Zpátky na váš profil
   back_to_your_projects: Zpátky na vaše projekty
+  badges: Odznaky
   based_on_the_evidence_can_id_be_improved: |
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
   batch: Série
@@ -797,6 +802,7 @@ cs:
   because_of: kvůli
   before_importing_photos: před importováním fotek
   bg_color: Barva pozadí
+  bio_description: Řekněte ostatním uživatelům na iNaturalist něco o sobě!
   bioblitz: Bioblitz
   birds: ptáci
   birthday: Narozeniny
@@ -981,12 +987,12 @@ cs:
   committed_on: Provedeno dne %{date}
   #Status message while a taxon change is being committed
   committing: Commituji...
+  common_name: Obecný název
   community: Komunita
   community_curated: Komunitní organizace
   community_guidelines: Pravidla komunity
   community_id_heading: ID komunity
   community_id_at_species_or_lower?: ID komunity na úrovni druhů nebo nižší?
-  community_id_at_genus_level_or_lower: ID komunity na úrovni rodu nebo nižší
   community_id_at_species_level_or_lower: ID komunity na úrovni druhu nebo nižší
   community_moderation_settings: Nastavení moderování komunity
   community_supported_id: ID podporované komunitou?
@@ -1147,6 +1153,7 @@ cs:
   created_on: Vytvořeno dne
   creating_your_account: "Zakládám váš účet..."
   creative_commons_flickr_tagged: Označeny fotky Creative Commons na Flickru
+  creative_commons_licenses: Licence Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, pokud není uvedeno jinak."
   critically_endangered: kriticky ohrožený
   css_description: Toto bude přidáno následně po všech ostatních css na stránce.
@@ -1171,6 +1178,7 @@ cs:
   customize_location: Upravit lokalitu
   darr_apply_darr: "&darr; Použít &darr;"
   daily_users: Denní uživatelé
+  danger_zone: Nebezpečná zóna
   dashboard: Nástěnka
   data_deficient: chybějící údaje
   data_quality: Kvalita údajů
@@ -1426,10 +1434,12 @@ cs:
   either_that_user_doesnt_exist_or: "Tento uživatel buď neexistuje, nebo už ho sledujete."
   eligible_for_research_grade: Vhodný pro výzkumnou klasifikaci
   email: E-mail
+  email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_addresses_description: E-mailové adresy oddělené čárkami, maximálně 60 každých 30 dní.
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
   email_addresses_to_receive_invites: E-mailové adresy pro přijímání pozvánek
   email_copyright: "Copyright &copy; %{x}, všechna práva vyhrazena"
+  email_notifications: E-mailová upozornění
   email_settings: Nastavení e-mailu
   embed: 'Vložit'
   embed_place_widget: Vložit widget místa
@@ -1485,6 +1495,7 @@ cs:
   export_observations: Exportovat pozorování
   export_with_private_coordinates: Exportovat se skrytými souřadnicemi
   exporting: "Exportování..."
+  external_applications: Externí aplikace
   external_taxon_including_children: Externí taxon (včetně mláďat)
   external_taxon_rank: Externí pořadí taxonů
   extinct: vyhynulý
@@ -1682,6 +1693,7 @@ cs:
   give_it_some_detail: Přidejte nějaký detail!
   give_monthly_caps: DÁT MĚSÍČNĚ
   give_now_caps: DÁT NYNÍ
+  global: Globální
   global_names: Globální názvy
   globally: globálně
   go: Jít
@@ -1849,6 +1861,8 @@ cs:
   inat_account_action: "%{site_name} &#58; Účet &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "Podle %{site_name} je toto je kompletní výpis tohoto taxonu na tomto místě."
   inat_user_profile: "%{site_name}: Profil uživatele %{user}"
+  inaturalist_activity_notifications: "Oznámení o aktivitě %{site_name}"
+  inaturalist_applications: "Aplikace iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} je společná iniciativa Kalifornské akademie věd a Národní geografické společnosti."
   inaturalist_places: "%{site_name} Místa"
   info: Informace
@@ -1924,6 +1938,7 @@ cs:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zamknout úroveň přiblížení
+  language_slash_locale: Jazyk/Lokalizace
   language_slash_type: Jazyk / Typ
   #Large photo size
   large: velký
@@ -2134,6 +2149,9 @@ cs:
     Pro přidávání komentářů se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
   log_in_or_sign_up_to_add_identifications_html: |
     Pro přidávání identifikací se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+  log_out: Odhlášení
+  log_out_caps: ODHLÁSIT SE
+  log_out_of_application: "Odhlásit se z %{site_name}?"
   log_scale_label: Protokol
   login_slash_username: Prihlášení / uživatelské jméno
   logo:
@@ -2503,6 +2521,7 @@ cs:
   no_taxa_with_unknown_relationships: Žádné taxony s neznámými vztahy
   no_taxon_framework_relationships: Žádné rámcové vztahy mezi taxonem
   no_taxonomic_changes_match_those_criteria: Těmto kritériím neodpovídají žádné taxonomické změny
+  no_users_found_with_those_filters: S těmito filtry nebyli nalezeni žádní uživatelé
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
   no_x_this_y: "Žádný %{x} tohoto %{y}"
   noble_curators: "Vybraní kurátoři stránky %{site}"
@@ -2525,7 +2544,9 @@ cs:
   note: Poznámka
   notes: Poznámky
   note_you_can_modify_the_height_attribute: "Poznámka: Můžete upravit vlastnost „výška“, aby se vešla do určeného prostoru na vaší webové stránce."
+  notifications: Oznámení
   notify_me_of_mentions: Informovat mě o zmínkách (např. @uživatelské jméno)
+  notify_me_of_mentions_description: "Pokud toto vypnete, nedostanete žádná oznámení, když Vás na %{site_name} někdo zmíní."
   notify_me_about_redundant_identifications: Informovat mě o potvrzení identifikací
   notify_me_about_redundant_identifications_desc: |
     Dostávejte oznámení o identifikacích, které odpovídají vašim vlastním. Pokud tuto možnost zrušíte, budete dostávat oznámení pouze o identifikacích taxonů, které přesně neodpovídají taxonu ve vaší vlastní identifikaci.
@@ -2672,10 +2693,12 @@ cs:
   of_places: místa
   of_this_taxon: Z tohoto taxonu
   offensive_inappropriate: útočný / nevhodný
+  off_caps: "VYP"
   official_blog: Oficiální blog
   offline_access_enabled: Offline přístup povolen
   old_observation_form: Původní formulář pozorování (zastaralý)
   ok: "Jo"
+  on_caps: "ZAP"
   on_day: "dne"
   onboarding:
     observe_panel_title: Začněme odesláním nějakých pozorování
@@ -3352,6 +3375,7 @@ cs:
   processing: Zpracovává se
   processing3p: "Zpracovává se..."
   profile: Profil
+  profile_picture: Profilový obrázek
   profile_visibility_desc: |
     Ve snaze bojovat proti spamu na %{site_name} jsou profily uživatelů veřejně viditelné až poté, co uživatel přispěl k několika pozorováním programu Research Grade.
   project: Projekt
@@ -3517,6 +3541,8 @@ cs:
   reason: Důvod
   reason_you_are_flagging_this_item: Důvod, proč označujete tuto položku.
   recaptcha_verification_failed: ověření reCaptcha se nezdařilo
+  receive_email_notifications: Dostávat e-mailová upozornění
+  receive_email_notifications_description: "Pokud toto vypnete, již nebudete dostávat žádné e-maily z %{site_name} týkající se oznámení. Budete dostávat upozornění na vše zaškrtnuté níže:"
   receive_email_notifications_when_people_leave_you: Dostávat e-mailová oznámení o
   receive_project_journal_notifications?: Dostávat oznámení deníku projektu?
   receive_updates_from_this_project: Dostávat aktualizace z tohoto projektu
@@ -3530,6 +3556,7 @@ cs:
   recent_atom_observations_by: "Nedávná pozorování uživatele %{login} (Atom)"
   recent_observations_by: "Nedávná pozorování uživatele %{login}"
   recently_active: Nedávno aktivní
+  recently_added: Nedávno přidané
   recently_created: Nedávno vytvořené
   recently_finished: Nedávno dokončené
   recently_observed: Nedávno pozorované
@@ -3658,6 +3685,7 @@ cs:
   save_observation: Uložit pozorování
   save_photos: Uložit fotky
   save_place: Uložit místo
+  save_settings_caps: ULOŽIT NASTAVENÍ
   save_trip: Uložit cestu
   saved: Uloženo
   saving: "Ukládá se…"
@@ -5382,57 +5410,6 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help_html: |
-          <p>
-          Hodnocení kvality údajů je shrnutí přesnosti pozorování. Všechna pozorování začínají na stupni <strong>„běžné“</strong> a posouvají se na stupeň
-          <strong>„potřebuje ID“</strong>, pokud
-          </p>
-
-          <ul>
-          <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>obsahuje georeferenci</strong> (tedy má souřadnice zeměpisné šířky/délky)</li>
-          <li>pozorování <strong>má fotky nebo zvuky</strong></li>
-          <li>pozorování <strong>se nevztahuje k člověku</strong></li>
-          </ul>
-          <p>
-          Pozorování se posouvají na <strong>„výzkummý stupeň“</strong>, pokud
-          </p>
-          <ul>
-          <li>
-          se komunita %{site_name} <strong> shodne na ID na úrovni druhu nebo nižší</strong>, tedy pokud se na taxonu shodnou více než 2/3 identifikujících
-          </li>
-          </ul>
-          <p>
-          Pozorování se vrátí na úroveň <strong>„běžné“</strong>, pokud výše uvedené podmínky nejsou splněny nebo se komunita shodne, že
-          </p>
-          <ul>
-          <li>
-          <strong>lokalita se zdá nepřesná</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách atd.)
-          </li>
-          <li>
-          <strong>organismus nežije ve volné přírodě/není naturalizovaný</strong> (např. žije v zajetí nebo ho pěstuje člověk nebo inteligentní mimozemšťané)
-          </li>
-          <li>
-          pozorování <strong>nepředkládá důkaz o organismu</strong>, např. obrázky krajiny, vodních prvků, kamenů atd.
-          </li>
-          <li>
-          pozorování <strong>nepředkládá aktuální (~100 let) důkaz o organismu</strong> (např. fosilie, ale stopy, trus nebo odumřelé listy jsou v pořádku)
-          </li>
-          <li>
-          pozorování už nevyžaduje ID <em>a</em> komunitní ID je na úrovni vyšší než čeleď
-          </li>
-          <li>
-          pozorovatel si zvolil možnost nepoužít komunitní ID a komunitní ID taxon není základní ani následný taxon taxonu souvisejícího s ID pozorovatele
-          </li>
-          </ul>
-          <p>
-          A pokud by to nebylo dost složité, pak jsou ještě situace, kdy se do toho může vložit systém:
-          </p>
-          <ul>
-          <li>
-          Systém určí, že pozorování není ve volné přírodě/naturalizované, pokud se v nejmenším okrese, státě nebo odpovídajícím celku nachází nejméně 10 dalších pozorování na úrovni rodu nebo nižší, která obsahují toto pozorování, a 80 % nebo více z těchto pozorování bylo označeno jako pozorování neprovedená ve volné přírodě/nenaturalizovaná.
-          </li>
-          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,

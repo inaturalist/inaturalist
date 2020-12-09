@@ -212,8 +212,10 @@ class ProjectObservation < ActiveRecord::Base
   # *any* of them pass, while required observation fields should *all* be
   # present
   def required_observation_fields_present?
-    return true if !project || project.project_observation_fields.size < 2
-    missing = project.project_observation_fields.detect do |pof|
+    return true if !project
+    required_pofs = project.project_observation_fields.select(&:required?)
+    return true if required_pofs.size < 2
+    missing = required_pofs.detect do |pof|
       !observation.observation_field_values.detect do |ofv|
         ofv.observation_field_id == pof.observation_field_id
       end

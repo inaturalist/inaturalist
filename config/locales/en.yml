@@ -182,6 +182,8 @@ en:
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
   a_member_of_taxon_html: "a member of %{taxon}"
+  # Ascending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (ascending)"
   a_to_z: "A to Z"
   # Used as a noun phrase in sentences like "kueda added a comment to *an
   # observation*". %{resource} could be any of the following:
@@ -1497,10 +1499,7 @@ en:
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
   external_applications: External Applications
-  external_applications_description: External Applications are apps or websites that you have allowed to access your iNaturalist account. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them access.
   external_taxon_including_children: External taxon (including children)
-  external_taxon_rank: External taxon rank
-  extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
@@ -1880,7 +1879,7 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
-  inaturalist_applications: "%{site_name} Applications"
+  inaturalist_applications: "iNaturalist Applications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
   info: Info
@@ -3103,6 +3102,7 @@ en:
     argentina: Argentina
     armenia: Armenia
     aruba: Aruba
+    asia: Asia
     australia: Australia
     austria: Austria
     azerbaijan: Azerbaijan
@@ -3591,7 +3591,7 @@ en:
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications: Receive Email Notifications
-  receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications. You will receive notifications for everything checked below:"
+  receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications."
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_project_journal_notifications?: Receive project journal notifications?
   receive_updates_from_this_project: Receive updates from this project
@@ -3741,7 +3741,7 @@ en:
   save_settings_caps: SAVE SETTINGS
   save_trip: Save trip
   saved: Saved
-  saved_at: Saved at
+  saved_at_time: Saved at %{time}
   saving: "Saving..."
   saving_num_of_count_observations:
     one: Saving observation...
@@ -5209,6 +5209,7 @@ en:
       list_view: List View
       tree_view: Tree View
       observed_species: Observed Species
+      observed_rank: Observed %{rank}
       unobserved_species: Unobserved Species
       all_species: All Species
       all_unobserved_species: All Unobserved Species
@@ -7021,14 +7022,13 @@ en:
           joined: Projects you've joined
           none: "None, only you can add your observations to projects"
         prefers_community_taxa_desc: |
-          %{site_name} tracks what you think your observations are and what
-          the community thinks they are. The identification we share with data
-          partners is the community identification, but if you don't think the
-          community's opinion should ever overrule your own, you can opt out
-          here. People will still be able to add identifications, but the
-          community opinion won't be favored over yours. This means your
-          observations will not be eligible for research grade unless you
-          agree with the community.
+          %{site_name} tracks what you think your observations are and what the
+          community thinks they are. If you don't think the community's opinion
+          should overrule your own, you can opt out here. People will still be
+          able to add identifications, but your observations will remain
+          associated with the taxon from your identification. This means your
+          observations will not be eligible for Research Grade status unless
+          your identification matches the community's opinion.
         prefers_coordinate_interpolation_protection_desc: |
           When you set the geoprivacy of an observation to "obscured" or
           "private" this will apply the same geoprivacy to all your other
@@ -7993,6 +7993,8 @@ en:
     page_gap: "&hellip;"
   you_have_not_authorized_any_applications: "You have not authorized any applications to use your iNaturalist account."
   you_will_no_longer_be_following_or_trusting: "You will no longer be following or trusting %{user}"
+  # Descending alphabetical sort option. Could be alternatively be translated as
+  # "Alphabetical (descending)"
   z_to_a: Z to A
   zoom_in: Zoom In
   zoom_out: Zoom Out

@@ -415,6 +415,7 @@ lb:
   comments_on_my_observations: Bemierkungen zu mengen Observatiounen
   community: Communautéit
   community_id_heading: Communautéits-Taxon
+  community_id_is_precise: Den Community Taxon ass prezise
   compare: Vergläichen
   compare_with: Vergläiche mat
   comparing: vergläichen
@@ -1889,6 +1890,9 @@ lb:
         place_id: Plaz
       flag:
         reason: Grond
+      message:
+        subject: Sujet
+        body: Inhalt
       observation_field_value:
         value: 'Wäert'
       post:

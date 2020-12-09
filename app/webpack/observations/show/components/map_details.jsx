@@ -21,7 +21,9 @@ class MapDetails extends React.Component {
       return (
         <span className="place" key={`place-${p.id}`}>
           <a href={`/observations?place_id=${p.id}`}>
-            { p.display_name || p.name }
+            { I18n.t( `places_name.${_.snakeCase( p.name )}`, {
+              defaultValue: p.display_name || p.name
+            } ) }
           </a>
           { label }
         </span>

@@ -290,7 +290,7 @@ export function fetchSuggestions( query ) {
         payload.lng = s.suggestions.observation.geojson.coordinates[0];
       }
     }
-    return inatjs.taxa.suggest( payload ).then( suggestions => {
+    return inatjs.taxa.suggest( _.omitBy( payload, _.isNull ) ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );

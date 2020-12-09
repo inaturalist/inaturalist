@@ -129,7 +129,7 @@ class ObservationsExportFlowTask < FlowTask
     site = user.site || Site.default
     search_params = params.merge( viewer: user, authenticate: user )
     CSV.open(fpath, "w") do |csv|
-      csv << columns
+      csv << columns.map {|c| CGI.unescape( c ) }
       batch_i = 0
       obs_i = 0
       Observation.search_in_batches( search_params ) do |batch|
