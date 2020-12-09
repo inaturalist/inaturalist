@@ -3370,7 +3370,7 @@ ca:
   reason_you_are_flagging_this_item: Raó per la qual esteu comunicant aquest contingut.
   recaptcha_verification_failed: La verificació reCaptcha ha fallat
   receive_email_notifications: Rebre notificacions per correu electrònic
-  receive_email_notifications_description: "Si ho desactiveu no rebreu més correus electrònics de %{site_name} sobre les notificacions. Rebreu notificacions de tot allò marcar a sota:"
+  receive_email_notifications_description: "Si ho desactiveu no rebreu més correus electrònics de %{site_name} sobre les notificacions."
   receive_email_notifications_when_people_leave_you: Rebeu una notificació per correu electrònic quan algú deixi de seguir-vos.
   receive_project_journal_notifications?: Rebre les publicacions del projecte
   receive_updates_from_this_project: Rebre les actualitzacions d'aquest projecte
@@ -4828,6 +4828,7 @@ ca:
       list_view: Vista de Llista
       tree_view: Vista d'Arbre
       observed_species: Espècies Observades
+      observed_rank: '%{rank} observats'
       unobserved_species: Espècies no Observades
       all_species: Totes les espècies
       all_unobserved_species: Totes les espècies no observades
