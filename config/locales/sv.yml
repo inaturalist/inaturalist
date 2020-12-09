@@ -3477,7 +3477,7 @@ sv:
   reason_you_are_flagging_this_item: Orsaken till att du flaggar detta objekt.
   recaptcha_verification_failed: reCAPTCHA-verifiering misslyckades
   receive_email_notifications: Få e-postaviseringar
-  receive_email_notifications_description: "Om du stänger av detta kommer du inte längre att få någon e-post från %{site_name} med aviseringar. Du kommer att få aviseringar om allt som är markerat nedan:"
+  receive_email_notifications_description: "Om du stänger av detta kommer du inte längre att få någon e-post från %{site_name} med aviseringar."
   receive_email_notifications_when_people_leave_you: Få e-postaviseringar om
   receive_project_journal_notifications?: Ta emot meddelanden om projektdagboken?
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
@@ -5082,6 +5082,7 @@ sv:
       list_view: Listvy
       tree_view: Trädvy
       observed_species: Observerade arter
+      observed_rank: Observerad %{rank}
       unobserved_species: Ej observerade arter
       all_species: Alla arter
       all_unobserved_species: Alla ej observerade arter
@@ -6836,6 +6837,10 @@ sv:
           any: Alla
           joined: Projekt du har gått med i
           none: "Ingen, bara du kan lägga till dina observationer till projekt"
+        prefers_community_taxa_desc: |
+          %{site_name} spårar vad du tror att dina observationer är och vad gemenskapen tycker att de är. Om du inte tycker att gemenskapens åsikt ska upphäva din egen, kan du välja bort det här. Folk kommer fortfarande att kunna lägga till bestämningar, men din observation kommer fortsatt vara knuten till din bestämnings
+          taxon. Detta innebär att dina observationer inte kommer att kvalificera för forskningskvalitet såvida inte din bestämning överensstämmer med
+          gemenskapens åsikt.
         prefers_coordinate_interpolation_protection_desc: |
           När du sätter geosekretessen för en observation till "diffuserad" eller
           "privat" kommer samma geosekretess att sättas för alla dina andra
