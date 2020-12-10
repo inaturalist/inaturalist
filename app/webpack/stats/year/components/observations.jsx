@@ -181,6 +181,7 @@ const Observations = ( {
         <Streaks
           year={year}
           data={data.streaks.slice( 0, 20 )}
+          hideUsers={!!user}
         />
       ) }
     </div>

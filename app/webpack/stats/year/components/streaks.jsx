@@ -140,48 +140,50 @@ const Streaks = ( {
           );
         } ) }
       </div>
-      <div className="legend">
-        <p className="text-muted">
-          { I18n.t( "views.stats.year.observation_streaks_color_desc" ) }
-        </p>
-        <div style={{ width: "100%" }}>
-          <div className="ticks" style={{ position: "relative", height: 50 }}>
-            { dayScaleTicks.map( ( tick, i ) => {
-              const v = dayScale( tick );
-              const left = i === 0 ? 0 : dayScale( dayScaleTicks[i - 1] );
-              const width = i === 0 ? v : v - dayScale( dayScaleTicks[i - 1] );
-              const cssGradient = `
-                linear-gradient(
-                  to right,
-                  ${interpolateWarm( dayColorScale( v - width ) )},
-                  ${interpolateWarm( dayColorScale( v ) )}
-                )
-              `;
-              const tickDays = I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( tick, { precision: 0 } ) } );
-              return (
-                <div
-                  className="tick"
-                  key={`color-tick-${tick}`}
-                  style={{
-                    left: `${left * 100}%`,
-                    width: `${width * 100}%`
-                  }}
-                >
-                  <div className="line" alt={tickDays} title={tickDays}>
-                    { i >= dayScaleTicks.length - 1 ? tickDays : tick }
-                  </div>
+      { data.length > 1 && (
+        <div className="legend">
+          <p className="text-muted">
+            { I18n.t( "views.stats.year.observation_streaks_color_desc" ) }
+          </p>
+          <div style={{ width: "100%" }}>
+            <div className="ticks" style={{ position: "relative", height: 50 }}>
+              { dayScaleTicks.map( ( tick, i ) => {
+                const v = dayScale( tick );
+                const left = i === 0 ? 0 : dayScale( dayScaleTicks[i - 1] );
+                const width = i === 0 ? v : v - dayScale( dayScaleTicks[i - 1] );
+                const cssGradient = `
+                  linear-gradient(
+                    to right,
+                    ${interpolateWarm( dayColorScale( v - width ) )},
+                    ${interpolateWarm( dayColorScale( v ) )}
+                  )
+                `;
+                const tickDays = I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( tick, { precision: 0 } ) } );
+                return (
                   <div
-                    className="bar"
+                    className="tick"
+                    key={`color-tick-${tick}`}
                     style={{
-                      backgroundImage: cssGradient
+                      left: `${left * 100}%`,
+                      width: `${width * 100}%`
                     }}
-                  />
-                </div>
-              );
-            } ) }
+                  >
+                    <div className="line" alt={tickDays} title={tickDays}>
+                      { i >= dayScaleTicks.length - 1 ? tickDays : tick }
+                    </div>
+                    <div
+                      className="bar"
+                      style={{
+                        backgroundImage: cssGradient
+                      }}
+                    />
+                  </div>
+                );
+              } ) }
+            </div>
           </div>
         </div>
-      </div>
+      ) }
     </div>
   );
 };
