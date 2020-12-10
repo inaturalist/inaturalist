@@ -65,6 +65,9 @@ class YearStatistic < ActiveRecord::Base
     if options[:site].blank?
       json[:publications] = publications( year, options )
       json[:growth][:countries] = observation_counts_by_country( year, options )
+      json[:budget] = {
+        donors: donors( year, options )
+      }
     end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
@@ -822,6 +825,8 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.streaks( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
     streak_length = 5
     ranges = []
     base_query = { quality_grade: "research,needs_id" }
@@ -867,7 +872,7 @@ class YearStatistic < ActiveRecord::Base
     ) do |args|
       query = args[0]
       # Assume now one has been on a streak since before 2008-01-01
-      puts "partitioning #{query}"
+      puts "partitioning #{query}" if debug
       d1 = query[:d1] && Date.parse( query[:d1] ) || Date.parse( "2008-01-01" )
       d2 = query[:d2] && Date.parse( query[:d2] ) || Date.today
       half = ( d2 - d1 ) / 2
@@ -875,7 +880,7 @@ class YearStatistic < ActiveRecord::Base
         query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
         query.merge( d1: ( d1 + (half + 1).days ).to_s, d2: d2.to_s )
       ]
-      puts "partitioned into #{new_queries}"
+      puts "partitioned into #{new_queries}" if debug
       new_queries
     end
     histogram_buckets.each_with_index do |bucket, bucket_i|
@@ -892,7 +897,7 @@ class YearStatistic < ActiveRecord::Base
       stop_date = ( Date.parse( date ) - 1.day )
       finished_user_ids = []
       finished_user_ids = previous_user_ids - user_ids
-      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
+      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
       finished_user_ids.each do |user_id|
         if current_streaks[user_id] && current_streaks[user_id] >= streak_length
           streaks << {
@@ -1074,6 +1079,84 @@ class YearStatistic < ActiveRecord::Base
       end
     end
     data
+  end
+
+  def self.donors( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
+    limit = options.delete(:limit)
+    donorbox_email = CONFIG.donorbox.email
+    donorbox_key = CONFIG.donorbox.key
+    return if donorbox_key.blank?
+    page = 1
+    per_page = 100
+    donations = []
+    donation_encountered = {}
+    while true
+      break if limit && donations.size >= limit
+      url = "https://donorbox.org/api/v1/donations?page=#{page}&per_page=#{per_page}"
+      puts "Fetching #{url}" if debug
+      response = RestClient.get( url, {
+        "Authorization" => "Basic #{Base64.strict_encode64( "#{donorbox_email}:#{donorbox_key}" ).strip}",
+        "User-Agent" => "iNaturalist/Donorbox"
+      } )
+      json = JSON.parse( response )
+      puts "Received #{json.size} donations" if debug
+      break if json.size == 0
+      page_donations = json.select{|d| DateTime.parse( d["donation_date"] ).year == year }
+      puts "Received #{page_donations.size} donations for #{year}" if debug
+      if page_donations.size == 0
+        break
+      end
+      page_donations.each do |d|
+        next if d["amount_refunded"].to_f > 0
+        next unless d["status"] == "paid"
+        next if donation_encountered[d["id"]]
+        donation_encountered[d["id"]] = true
+        net_amount_usd = d["converted_net_amount"] || d["converted_amount"] || d["amount"]
+        next unless net_amount_usd
+        donations << {
+          # net_amount_usd: net_amount_usd.to_f,
+          date: Date.parse( d["donation_date"] ),
+          donor_id: d["donor"]["id"],
+          recurring: d["recurring"],
+          # monthly: d["campaign"] && d["campaign"]["name"].to_s =~ /Monthly Support/
+        }
+      end
+      puts "#{donations.size} total donations for #{year} so far" if debug
+      page += 1
+    end
+    puts "Received #{donations.size} total donations" if debug
+    monthly = donations.inject( {} ) do |memo, d|
+      key = d[:date].strftime( "%Y-%m-01" )
+      memo[key] ||= {}
+      # memo[key][:total_net_amount_usd] = memo[key][:total_net_amount_usd].to_f + d[:net_amount_usd]
+      memo[key][:total_donors] ||= Set.new
+      memo[key][:total_donors] << d[:donor_id]
+      if d[:recurring]
+        # memo[key][:recurring_net_amount_usd] = memo[key][:recurring_net_amount_usd].to_f + d[:net_amount_usd]
+        memo[key][:recurring_donors] ||= Set.new
+        memo[key][:recurring_donors] << d[:donor_id]
+      end
+      # if d[:monthly]
+      #   memo[key][:monthly_net_amount_usd] = memo[key][:monthly_net_amount_usd].to_f + d[:net_amount_usd]
+      #   memo[key][:monthly_donors] ||= Set.new
+      #   memo[key][:monthly_donors] << d[:donor_id]
+      # end
+      memo
+    end
+    data = monthly.keys.sort.map do |key|
+      d = monthly[key]
+      {
+        date: key,
+        # total_net_amount_usd: d[:total_net_amount_usd],
+        total_donors: d[:total_donors].size,
+        # recurring_net_amount_usd: d[:recurring_net_amount_usd],
+        recurring_donors: d[:recurring_donors].size,
+        # monthly_net_amount_usd: d[:monthly_net_amount_usd],
+        # monthly_donors: d[:monthly_donors].size
+      }
+    end
   end
 
   private

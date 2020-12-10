@@ -75,7 +75,12 @@ class DateHistogram extends React.Component {
   enterSeries( newState = {} ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
-    const { series, onClick, showContext } = this.props;
+    const {
+      series,
+      onClick,
+      showContext,
+      yExtent
+    } = this.props;
     const {
       width,
       height,
@@ -98,7 +103,11 @@ class DateHistogram extends React.Component {
       } ) );
     } );
     const combinedData = _.flatten( _.values( localSeries ) );
-    y.domain( d3.extent( combinedData, d => d.value ) );
+    if ( yExtent ) {
+      y.domain( yExtent );
+    } else {
+      y.domain( [0, d3.max( combinedData, d => d.value + ( d.offset || 0 ) )] );
+    }
     const line = d3.line( )
       .x( d => x( d.date ) )
       .y( d => y( d.value ) );
@@ -191,7 +200,6 @@ class DateHistogram extends React.Component {
       .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
       .classPrefix( "legend" )
       .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
-      .shapePadding( 5 )
       .scale( legendScale );
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
@@ -256,11 +264,70 @@ class DateHistogram extends React.Component {
     } );
   }
 
+  renderGuides( newState ) {
+    const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const svg = d3.select( mountNode ).select( "svg" );
+    const { guides } = this.props;
+    const {
+      x,
+      y,
+      clipID
+    } = Object.assign( {}, this.state, newState );
+    if ( !guides ) {
+      return;
+    }
+    const focus = svg.select( ".focus" );
+    const guideGroups = focus.selectAll( ".guides" ).data( guides );
+    const xRangeMin = x.range( )[0];
+    const xRangeMax = x.range( )[1];
+    const yRangeMin = y.range( )[0];
+    const yRangeMax = y.range( )[1];
+    const guideLineGroups = guideGroups.enter( )
+      .append( "g" )
+        .attr( "style", `clip-path: url(#${clipID})` )
+        .attr( "class", "guide" );
+    guideLineGroups
+      .append( "line" )
+        .attr( "stroke-width", 1 )
+        .attr( "stroke", guide => guide.color || "white" )
+        .attr( "stroke-dasharray", guide => guide.dasharray )
+        .attr( "opacity", guide => guide.opacity )
+        .attr( "x1", guide => (
+          guide.axis === "x" ? x( guide.value ) : xRangeMin
+        ) )
+        .attr( "x2", guide => (
+          guide.axis === "x" ? x( guide.value ) : xRangeMax
+        ) )
+        .attr( "y1", guide => (
+          guide.axis === "x" ? yRangeMin : y( guide.value )
+        ) )
+        .attr( "y2", guide => (
+          guide.axis === "x" ? yRangeMax : y( guide.value )
+        ) );
+    const otherOffset = 5;
+    guideLineGroups
+      .append( "text" )
+        .attr( "fill", "white" )
+        .attr( "text-anchor", guide => guide.textAnchor || "start" )
+        .attr( "x", guide => {
+          if ( guide.axis === "x" ) return x( guide.value ) + ( guide.offset || 0 );
+          return guide.textAnchor === "end" ? xRangeMax - otherOffset : xRangeMin + otherOffset;
+        } )
+        .attr( "y", guide => {
+          if ( guide.axis === "x" ) {
+            return guide.textAnchor === "end" ? yRangeMax - otherOffset : yRangeMin + otherOffset;
+          }
+          return y( guide.value ) + ( guide.offset || 0 );
+        } )
+        .text( guide => guide.label );
+  }
+
   renderHistogram( ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const {
       series,
       xExtent,
+      yExtent,
       tickFormatBottom,
       legendPosition,
       showContext,
@@ -306,7 +373,7 @@ class DateHistogram extends React.Component {
         .attr( "transform", `translate(${margin2.left}, ${margin2.top})` );
     }
 
-    const parseTime = d3.isoParse;
+    const parseTime = date => moment( date ).toDate( );
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
@@ -325,7 +392,11 @@ class DateHistogram extends React.Component {
     } else {
       x.domain( d3.extent( combinedData, d => d.date ) );
     }
-    y.domain( d3.extent( combinedData, d => d.value ) );
+    if ( yExtent ) {
+      y.domain( yExtent );
+    } else {
+      y.domain( [0, d3.max( combinedData, d => d.value + ( d.offset || 0 ) )] );
+    }
 
     let axisBottom = d3.axisBottom( x );
     if ( tickFormatBottom ) {
@@ -387,6 +458,9 @@ class DateHistogram extends React.Component {
     svg.append( "g" )
       .attr( "class", "legendOrdinal" )
       .attr( "transform", ( ) => {
+        if ( legendPosition.indexOf( "translate" ) >= 0 ) {
+          return legendPosition;
+        }
         if ( legendPosition === "nw" ) {
           return "translate(70,20)";
         }
@@ -394,6 +468,7 @@ class DateHistogram extends React.Component {
       } );
     this.setState( newState );
     this.enterSeries( newState );
+    this.renderGuides( newState );
 
     // Zoom and Brush
     if ( showContext ) {
@@ -497,6 +572,7 @@ DateHistogram.propTypes = {
   tickFormatLeft: PropTypes.func,
   onClick: PropTypes.func,
   xExtent: PropTypes.array,
+  yExtent: PropTypes.array,
   legendPosition: PropTypes.string,
   showContext: PropTypes.bool,
   className: PropTypes.string,
@@ -506,7 +582,17 @@ DateHistogram.propTypes = {
     right: PropTypes.number,
     bottom: PropTypes.number,
     left: PropTypes.number
-  } )
+  } ),
+  guides: PropTypes.arrayOf( PropTypes.shape( {
+    axis: PropTypes.oneOf( ["x", "y"] ),
+    value: PropTypes.node,
+    className: PropTypes.string,
+    label: PropTypes.string,
+    // Whether to anchor the label at the start or the end of the guide
+    textAnchor: PropTypes.oneOf( ["start", "end"] ),
+    // How much to offset the label from the guide
+    offset: PropTypes.number
+  } ) )
 };
 
 DateHistogram.defaultProps = {

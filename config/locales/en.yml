@@ -6418,12 +6418,14 @@ en:
           <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
           the community support, collaborations, and integrations that keep
           things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than 0.2%
-          of contributors. We are especially grateful to Monthly Supporters
-          whose recurring gifts help us plan for the future. You can donate in
-          more than 30 currencies to support iNaturalist’s core operations.
-          Thank you to everyone for your part in making 2019 iNaturalist’s
-          biggest year yet!
+          grants and donations, including charitable gifts from less than tiny
+          fraction of contributors. We are especially grateful to Monthly
+          Supporters whose recurring gifts help us plan for the future. You can
+          donate in multiple currencies to support iNaturalist’s core
+          operations. Thank you to everyone for your part in making %{year}
+          iNaturalist’s biggest year yet!
+        donors: Donors
+        donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Check out the Year in Review for the members of the iNaturalist Network.
@@ -6468,6 +6470,8 @@ en:
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
         obs_in_year: Obs in %{year}
+        # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
@@ -6493,6 +6497,8 @@ en:
           recorded new, verifiable observations every single day. Here we're
           showing the longest streaks that began this year or were in progress
           when these stats were generated.
+        # Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recurring
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat

@@ -993,11 +993,36 @@ $obs-grid-photo-size: 210px;
 }
 
 .Donate {
+  .support-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+    @media (max-width: 500px) {
+      flex-direction: column; 
+    }
+  }
   .support {
-    margin: 30px 0;
+    width: 20%;
+    @media (max-width: 500px) { width: 100%; }
     text-align: center;
-    .btn:last-child {
-      margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .btn {
+      margin: 10px 20px;
+    }
+  }
+  .Donors {
+    margin-left: 20px;
+    width: 80%;
+    @media (max-width: 500px) {
+      width: 100%;
+      margin-left: 0px;
+    }
+    h4 {
+      margin-bottom: 0;
     }
   }
   p {
@@ -1008,6 +1033,10 @@ $obs-grid-photo-size: 210px;
   }
   .btn {
     font-weight: bold !important;
+  }
+  .Donors .chart svg {
+    min-height: 200px;
+    height: 200px;
   }
   .store {
     display: flex;
@@ -1025,7 +1054,7 @@ $obs-grid-photo-size: 210px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 30%;
+      width: 20%;
       @media (max-width: 500px) {
         width: 100%;
         flex-direction: row;
@@ -1034,7 +1063,7 @@ $obs-grid-photo-size: 210px;
     }
     .img-link {
       width: 80%;
-      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 }
