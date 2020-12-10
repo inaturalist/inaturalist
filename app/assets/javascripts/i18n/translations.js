@@ -35,9 +35,6 @@ I18n.translations["ar"] = {
   "add_id": "أضف معرفا",
   "add_link": "إضافة رابط",
   "add_one_now": "إضافة واحد الآن",
-  "add_plant_phenology_budding_annotation": "إضافة شرح \"الفينولوجيا النباتي: التبرعم\"",
-  "add_plant_phenology_flowering_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإزهار\"",
-  "add_plant_phenology_fruiting_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإثمار\"",
   "add_tag": "إضافة وسم",
   "add_tags": "إضافة وسوم",
   "add_to_a_project": "إضافة إلى مشروع",
@@ -376,6 +373,7 @@ I18n.translations["ar"] = {
   "details": "تفاصيل",
   "did_you_mean": "هل تقصد",
   "disagree_": "أعارض",
+  "disconnect_provider": "افصل %{provider}",
   "discoveries": "اكتشافات",
   "do_not_show_this_message_again": "لا تظهر هذه الرسالة مرة أخرى",
   "doh_something_went_wrong": "أوه، حدث خطأ ما.",
@@ -1890,9 +1888,6 @@ I18n.translations["bg"] = {
   "add_id": "Добави разпознаване",
   "add_italic_text": "Добави курсив текст",
   "add_link": "Добави препратка",
-  "add_plant_phenology_budding_annotation": "Добави анотация „Фенология на растение: Напъпване“",
-  "add_plant_phenology_flowering_annotation": "Добави анотация „Фенология на растение: Цъфтене“",
-  "add_plant_phenology_fruiting_annotation": "Добави анотация „Фенология на растение: Плодообразуване“",
   "add_tag": "Добавяне на етикет",
   "add_tags": "Добавяне на етикети",
   "add_to_a_project": "Добавяне към проект",
@@ -2303,6 +2298,7 @@ I18n.translations["bg"] = {
   "description_slash_tags": "Описание / етикети",
   "details": "Подробно",
   "disagree_": "Несъгласен",
+  "disconnect_provider": "Откачи %{provider}",
   "do_not_show_this_message_again": "Не показвай това събщение повече",
   "doh_something_went_wrong": "Ох, нещо се обърка.",
   "done": "Готово",
@@ -4012,6 +4008,7 @@ I18n.translations["br"] = {
   "descending": "War zigresk",
   "details": "Munudoù",
   "did_you_mean": "N'hoc'h eus ket soñjet kentoc'h e",
+  "disconnect_provider": "Digevreañ %{provider}",
   "download": "Pellgargañ",
   "edit": "Kemmañ",
   "edit_license": "Kemmañ an aotre-implijout",
@@ -4449,9 +4446,6 @@ I18n.translations["ca"] = {
   "add_italic_text": "Afegeix text en cursiva",
   "add_link": "Afegeix un enllaç",
   "add_one_now": "Afegir-ne un ara",
-  "add_plant_phenology_budding_annotation": "Afegir l'anotació «Fenologia de la planta: gemmació»",
-  "add_plant_phenology_flowering_annotation": "Afegiu nota \"Fenologia de la planta: Floració\"",
-  "add_plant_phenology_fruiting_annotation": "Afegiu nota \"Fenologia de la planta: Fructificació\"",
   "add_tag": "Afegiu etiqueta",
   "add_tags": "Afegiu etiquetes",
   "add_to_a_project": "Afegiu al projecte",
@@ -4675,10 +4669,7 @@ I18n.translations["ca"] = {
   "community_curated": "Supervisat per la Comunitat",
   "community_id_at_species_level_or_lower": "Tàxon de la Comunitat específic o inferior",
   "community_id_heading": "Tàxon segons la Comunitat",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "El tàxon de la comunitat és precís",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Configuració de la Moderació de la Comunitat",
   "compare": "Compara",
   "comprehensive_list": "Llista completa",
@@ -4903,6 +4894,7 @@ I18n.translations["ca"] = {
   "details": "Detalls",
   "did_you_mean": "Es refereix a",
   "disagree_": "En desacord",
+  "disconnect_provider": "Desconnecteu-vos de %{provider}",
   "discoveries": "Descobriments",
   "do_not_show_this_message_again": "No tornar a mostrar aquest missatge",
   "doh_something_went_wrong": "Alguna cosa no ha anat bé.",
@@ -6411,7 +6403,6 @@ I18n.translations["ca"] = {
       "observations_at_this_taxon": "Observacions d'aquest tàxon",
       "observations_of_exactly_this_taxon": "Observacions, exactament, d'aquest tàxon",
       "observations_within_this_taxon": "Observacions dins d'aquest tàxon",
-      "observed_species": "Espècies Observades",
       "reset_place_filter": "Restablir el Filtre de Lloc",
       "restrict_to_leaf_taxa": "Restringir a tàxons fulla",
       "restrict_to_taxa_observed_in_place": "Restringir a tàxons observats a %{place}",
@@ -6937,9 +6928,6 @@ I18n.translations["cs"] = {
   "add_link": "Přidat odkaz",
   "add_muted_users": "Přidat ztlumené uživatele",
   "add_one_now": "Přidat nyní",
-  "add_plant_phenology_budding_annotation": "Přidat anotaci „Fenologie rostliny: pučení“",
-  "add_plant_phenology_flowering_annotation": "Přidat anotaci „Fenologie rostliny: kvetení“",
-  "add_plant_phenology_fruiting_annotation": "Přidat anotaci „Fenologie rostliny: plození“",
   "add_tag": "Přidat tag",
   "add_tags": "Přidat tagy",
   "add_to_a_project": "Přidat do projektu",
@@ -7115,10 +7103,7 @@ I18n.translations["cs"] = {
   "any_reviewed": "Jakýkoliv",
   "any_user": "Kterýkoliv",
   "anyone": "Kdokoliv",
-<<<<<<< HEAD
-=======
   "applications": "Aplikace",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "arachnids": "pavoukovci",
   "are_you_sure?": "Jste si jistý?",
   "are_you_sure_leave_this_project": "Jste si jisti, že chcete opustit tento pojekt?",
@@ -7434,6 +7419,7 @@ I18n.translations["cs"] = {
   "details": "Podrobnosti",
   "did_you_mean": "Mysleli jste",
   "disagree_": "Nesouhlasím",
+  "disconnect_provider": "Odpojit %{provider}",
   "discoveries": "Objevy",
   "do_not_show_this_message_again": "Nezobrazovat znovu toto upozornění",
   "doh_something_went_wrong": "Ajaj, něco je špatně.",
@@ -7465,11 +7451,8 @@ I18n.translations["cs"] = {
   },
   "eligible_for_research_grade": "Vhodný pro výzkumnou klasifikaci",
   "email": "E-mail",
-<<<<<<< HEAD
-=======
   "email_description": "Váš e-mail není sdílen s ostatními uživateli iNaturalist",
   "email_notifications": "E-mailová upozornění",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "encompassing_places": "Okolní místa",
   "end": "Konec",
   "end_date_time": "Datum a čas konce",
@@ -7688,11 +7671,8 @@ I18n.translations["cs"] = {
   "in_the_past_week": "v minulém týdnu",
   "inactive_taxon": "neaktivní taxon",
   "inappropriate_content": "Nevhodný obsah?",
-<<<<<<< HEAD
-=======
   "inaturalist_activity_notifications": "Oznámení o aktivitě %{site_name}",
   "inaturalist_applications": "Aplikace iNaturalist",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "inaturalist_network_affiliation": "Příslušnost k síti iNaturalist",
   "include_places": "Zahrnout místa",
   "include_projects": "Zahrnout projekty",
@@ -8003,13 +7983,9 @@ I18n.translations["cs"] = {
   "not_evaluated": "nehodnoceno",
   "not_recorded": "Nezaznamenáno",
   "notes": "Poznámky",
-<<<<<<< HEAD
-  "notify_me_of_mentions": "Informovat mě o zmínkách (např. @uživatelské jméno)",
-=======
   "notifications": "Oznámení",
   "notify_me_of_mentions": "Informovat mě o zmínkách (např. @uživatelské jméno)",
   "notify_me_of_mentions_description": "Pokud toto vypnete, nedostanete žádná oznámení, když Vás na %{site_name} někdo zmíní.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "number": {
     "format": {
       "delimiter": ",",
@@ -8062,10 +8038,7 @@ I18n.translations["cs"] = {
   "offensive_inappropriate": "útočný / nevhodný",
   "ok": "Jo",
   "old_observation_form": "Původní formulář pozorování (zastaralý)",
-<<<<<<< HEAD
-=======
   "on_caps": "ZAP",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "only_you": "Jen vy",
   "open_": "Otevřený",
   "open_street_map": "OpenStreetMap",
@@ -9010,7 +8983,6 @@ I18n.translations["cs"] = {
       "observations_at_this_taxon": "Pozorování v tomto taxonu",
       "observations_of_exactly_this_taxon": "Pozorování přesně tohoto taxonu",
       "observations_within_this_taxon": "Pozorování v rámci tohoto taxonu",
-      "observed_species": "Pozorované druhy",
       "reset_place_filter": "Resetovat filtr místa",
       "restrict_to_leaf_taxa": "Omezit na listové taxony",
       "restrict_to_taxa_observed_in_place": "Omezit na taxony pozorované v %{place}",
@@ -9597,9 +9569,6 @@ I18n.translations["da"] = {
   "add_link": "Tilføj link",
   "add_muted_users": "Tilføj brugere, hvis lyd er slået fra",
   "add_one_now": "Tilføj en nu",
-  "add_plant_phenology_budding_annotation": "Tilføj \"Plantefænologi: Knopbærende\" anmærkning",
-  "add_plant_phenology_flowering_annotation": "Tilføj noten \"Plantefænologi: Blomstrende\"",
-  "add_plant_phenology_fruiting_annotation": "Tilføj anmærkningen \"Plantefænologi: I frugt\"",
   "add_tag": "Tilføj tag",
   "add_tags": "Tilføj tags",
   "add_to_a_project": "Tilføj til et projekt",
@@ -9747,10 +9716,7 @@ I18n.translations["da"] = {
   "any_reviewed": "Hvilken som helst",
   "any_user": "Hvilken som helst",
   "anyone": "Enhver",
-<<<<<<< HEAD
-=======
   "applications": "Applikationer",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "arachnids": "spindler",
   "are_you_sure?": "Er du sikker?",
   "are_you_sure_leave_this_project": "Er du sikker på, at du vil forlade dette projekt?",
@@ -9831,10 +9797,7 @@ I18n.translations["da"] = {
   "community_curated": "Kurateret af fællesskabet",
   "community_id_at_species_level_or_lower": "Fællesskabs ID af artsniveau eller lavere",
   "community_id_heading": "Fællesskabs ID",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Fællesskabstakson er præcis",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Fællesskabs indstillinger",
   "compare": "Sammenlign",
   "comprehensive_list": "omfattende liste",
@@ -9842,11 +9805,8 @@ I18n.translations["da"] = {
   "computer_vision_suggestion_desc": "Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.\n",
   "confirm": "Bekræft",
   "confirm_new_password": "Bekræft ny adgangskode",
-<<<<<<< HEAD
-=======
   "confirming_ids": "Bekræfter ID'er",
   "confirming_ids_description": "Slås dette fra, får du ikke længere besked om ID'er, som er i overensstemmelse med dine.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "conservation_status": "Bevaringsstatus",
   "conservation_status_geoprivacy_desc": "Standard lokalitetsbeskyttelse anvendt på alle observationer af dette takson på dette sted\n",
   "contact_support": "Kontakt support",
@@ -10057,11 +10017,8 @@ I18n.translations["da"] = {
   "default_": "Standard",
   "default_observation_license": "Standard observations licens",
   "default_photo_license": "Standard foto licens",
-<<<<<<< HEAD
-=======
   "default_search_place": "Standard søgested",
   "default_search_place_description": "Dette bliver dit standardsted for alle søgninger i Explore.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "default_sound_license": "Standard lyd licens",
   "delete": "Slet",
   "delete_your_account": "Slet din konto",
@@ -10073,6 +10030,7 @@ I18n.translations["da"] = {
   "details": "Detaljer",
   "did_you_mean": "Mente du",
   "disagree_": "Uenig",
+  "disconnect_provider": "Frakobl %{provider}",
   "discoveries": "Opdagelser",
   "display": "Visning",
   "display_monthly_supporter_badge": "Vis Månedlig Supporter-badge på min profil",
@@ -10107,11 +10065,8 @@ I18n.translations["da"] = {
   },
   "eligible_for_research_grade": "Kvalificeret til forskningskvalitet",
   "email": "E-mail",
-<<<<<<< HEAD
-=======
   "email_description": "Din e-mail deles ikke med andre brugere på iNaturalist",
   "email_notifications": "E-mailnotifikationer",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "encompassing_places": "Omfatter steder",
   "end": "Slut",
   "end_date_time": "Slut dato / tidspunkt",
@@ -10328,11 +10283,8 @@ I18n.translations["da"] = {
   "in_the_past_week": "I den sidste uge",
   "inactive_taxon": "inaktiv takson",
   "inappropriate_content": "Upassende indhold?",
-<<<<<<< HEAD
-=======
   "inaturalist_activity_notifications": "%{site_name}-aktivitetsnotifikationer",
   "inaturalist_applications": "iNaturalist-applikationer",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "inaturalist_network_affiliation": "iNaturalist Network-tilknytning",
   "include_places": "Inkludér steder",
   "include_projects": "Inkludér projekter",
@@ -10374,10 +10326,7 @@ I18n.translations["da"] = {
   "layers": "Lag",
   "leaderboard": "Topliste",
   "leading": "Førende",
-<<<<<<< HEAD
-=======
   "learn_about_third_party_tracking": "Få mere at vide om tredjepartssporing",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "learn_what_these_licenses_mean": "Lær hvad disse licenser betyder",
   "least_concern": "Mindste bekymring",
   "leave": "Forlad",
@@ -10648,13 +10597,9 @@ I18n.translations["da"] = {
   "not_evaluated": "Ikke evalueret",
   "not_recorded": "Ikke registreret",
   "notes": "Noter",
-<<<<<<< HEAD
-  "notify_me_of_mentions": "Underret mig hvis nævnt (f.eks. @brugernavn)",
-=======
   "notifications": "Notifikationer",
   "notify_me_of_mentions": "Underret mig hvis nævnt (f.eks. @brugernavn)",
   "notify_me_of_mentions_description": "Slås dette fra, får du ingen notifikationer, når nogen nævner dig på %{site_name}.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "number": {
     "format": {
       "delimiter": ",",
@@ -10707,10 +10652,7 @@ I18n.translations["da"] = {
   "offensive_inappropriate": "fornærmende / upassende",
   "ok": "OK",
   "old_observation_form": "Gammel observations formular (forældet)",
-<<<<<<< HEAD
-=======
   "on_caps": "TIL",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "only_you": "Kun dig",
   "open_": "Åben",
   "open_street_map": "OpenStreetMap",
@@ -11289,11 +11231,8 @@ I18n.translations["da"] = {
   },
   "remove_photo": "Fjern foto",
   "remove_relationship": "Fjern forbindelse",
-<<<<<<< HEAD
-=======
   "remove_relationship_caps": "FJERN RELATIONER",
   "remove_relationship_question": "Fjern relationer?",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "removing": "Fjerner...",
   "reptiles": "krybdyr",
   "request_failed": "Forespørgsel mislykkedes",
@@ -11564,10 +11503,7 @@ I18n.translations["da"] = {
   "user_trusts_you_with_their_private_coordinates_desc": "Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.\n",
   "user_wrote_html": "<a href=\"%{url}\" target=\"_blank\">%{user}</a> skrev,",
   "username": "Brugernavn",
-<<<<<<< HEAD
-=======
   "username_description": "Dette er det brugernavn, du benytter til indlogning, og som andre brugere kan identificere dig med på iNaturalist",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "username_or_user_id": "Brugernavn eller bruger ID",
   "users": "Brugere",
   "value": "Værdi",
@@ -11640,7 +11576,6 @@ I18n.translations["da"] = {
       "observations_at_this_taxon": "Observationer hos denne takson",
       "observations_of_exactly_this_taxon": "Observationer præcis denne takson",
       "observations_within_this_taxon": "Observationer indenfor denne takson",
-      "observed_species": "Observerede arter",
       "reset_place_filter": "Nulstil placeringsfilter",
       "restrict_to_leaf_taxa": "Begræns til bladtaksa",
       "restrict_to_taxa_observed_in_place": "Begræns til taksaobservationer for %{place}",
@@ -12096,7 +12031,6 @@ I18n.translations["da"] = {
   "you_curate_a_project_that_contains_this_observation": "Du er kurator på et projekt, som indeholder denne observation",
   "you_curate_a_project_that_contains_this_observation_desc": "Du kan se slørede koordinater, når du er kurator på et projekt, der indeholder en observation, og observatøren har valgt at dele koordinaterne med projektkuratorer.\n",
   "you_faved_this": "Du gjorde denne til favorit!",
-  "you_have_not_authorized_any_applications": "Du har ikke godkendt nogle programmer til brug af din iNaturalist-konto.",
   "you_must_fill_out_the_required_fields": "Du skal udfylde de obligatoriske felter",
   "you_must_select_at_least_one_taxon": "Du skal vælge mindst en takson",
   "you_retain_full_copyright": "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår.",
@@ -12168,9 +12102,6 @@ I18n.translations["de"] = {
   "add_italic_text": "Text in Kursivdruck",
   "add_link": "Link hinzufügen",
   "add_one_now": "Jetzt hinzufügen",
-  "add_plant_phenology_budding_annotation": "Vermerk \"Pflanzenphänologie: Knospend\" hinzufügen",
-  "add_plant_phenology_flowering_annotation": "Vermerk \"Pflanzenphänologie: Blühend\" hinzufügen",
-  "add_plant_phenology_fruiting_annotation": "Vermerk \"Pflanzenphänologie: Fruchttragend\" hinzufügen",
   "add_tag": "Tag hinzufügen",
   "add_tags": "Stichwörter hinzufügen",
   "add_to_a_project": "Zu einem Projekt hinzufügen",
@@ -12394,10 +12325,7 @@ I18n.translations["de"] = {
   "community_curated": "Von Benutzern erstellt",
   "community_id_at_species_level_or_lower": "Community-Taxon auf Art-Ebene oder darunter",
   "community_id_heading": "Community-Taxon",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Das Community-Taxon ist korrekt",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Gemeinschaftsmoderations-Einstellungen",
   "compare": "Vergleichen",
   "comprehensive_list": "Umfassende Liste",
@@ -12621,6 +12549,7 @@ I18n.translations["de"] = {
   "details": "Details",
   "did_you_mean": "Meintest du",
   "disagree_": "Widersprechen",
+  "disconnect_provider": "%{provider} trennen",
   "discoveries": "Entdeckungen",
   "do_not_show_this_message_again": "Diese Nachricht nicht erneut anzeigen",
   "doh_something_went_wrong": "Ups, etwas ist schief gelaufen.",
@@ -14111,7 +14040,6 @@ I18n.translations["de"] = {
       "observations_at_this_taxon": "Beobachtungen von genau diesem Taxon",
       "observations_of_exactly_this_taxon": "Beobachtungen von genau diesem Taxon",
       "observations_within_this_taxon": "Beobachtungen innerhalb dieses Taxons",
-      "observed_species": "Beobachtete Arten",
       "reset_place_filter": "Gebietsfilter zurücksetzen",
       "restrict_to_leaf_taxa": "Auf einzigartige End-Taxa beschränken",
       "restrict_to_taxa_observed_in_place": "Auf Taxa in %{place} beschränken",
@@ -14603,9 +14531,6 @@ I18n.translations["el"] = {
   "add_id": "Προσθήκη ID",
   "add_link": "Προσθήκη συνδέσμου",
   "add_one_now": "Προσθήκη ενός τώρα",
-  "add_plant_phenology_budding_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Βλάστηση\"",
-  "add_plant_phenology_flowering_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Ανθισμένο\"",
-  "add_plant_phenology_fruiting_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Καρποφορία\"",
   "add_tag": "Πρόσθεση Eτικέτας",
   "add_tags": "Προσθήκη Eτικετών",
   "add_to_a_project": "Προσθήκη σε ένα Πρότζεκτ",
@@ -15037,6 +14962,7 @@ I18n.translations["el"] = {
   "details": "Λεπτομέρειες",
   "did_you_mean": "Μήπως εννοείτε",
   "disagree_": "Διαφωνώ",
+  "disconnect_provider": "Αποσύνδεση %{provider}",
   "discoveries": "Ανακαλύψεις",
   "do_not_show_this_message_again": "Να μην εμφανιστεί ξανά αυτό το μήνυμα",
   "doh_something_went_wrong": "Ωχ, κάτι πήγε στραβά.",
@@ -16782,9 +16708,6 @@ I18n.translations["en"] = {
   "add_link": "Add Link",
   "add_muted_users": "Add muted users",
   "add_one_now": "Add One Now",
-  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
-  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
-  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
   "add_tag": "Add Tag",
   "add_tags": "Add Tags",
   "add_to_a_project": "Add to a Project",
@@ -16932,10 +16855,7 @@ I18n.translations["en"] = {
   "any_reviewed": "Any",
   "any_user": "Any",
   "anyone": "Anyone",
-<<<<<<< HEAD
   "application": "Application",
-=======
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "applications": "Applications",
   "arachnids": "arachnids",
   "are_you_sure?": "Are you sure?",
@@ -17027,11 +16947,9 @@ I18n.translations["en"] = {
   "confirm_new_password": "Confirm New Password",
   "confirming_ids": "Confirming ID's",
   "confirming_ids_description": "If you turn this off, you will no longer be notified about IDs that agree with yours.",
-<<<<<<< HEAD
+  "connect": "Connect",
   "connected_accounts_description": "Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.",
   "connected_accounts_titlecase": "Connected Accounts",
-=======
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "conservation_status": "Conservation Status",
   "conservation_status_geoprivacy_desc": "Default geoprivacy applied to all observations of this taxon in this place\n",
   "contact_support": "Contact Support",
@@ -17256,6 +17174,8 @@ I18n.translations["en"] = {
   "did_you_mean": "Did you mean",
   "disagree_": "Disagree",
   "disconnect": "Disconnect",
+  "disconnect_caps": "DISCONNECT",
+  "disconnect_provider": "Disconnect %{provider}",
   "discoveries": "Discoveries",
   "display": "Display",
   "display_monthly_supporter_badge": "Display Monthly Supporter Badge on profile",
@@ -17326,10 +17246,6 @@ I18n.translations["en"] = {
   "export_observations": "Export Observations",
   "exporting": "Exporting...",
   "external_applications": "External Applications",
-<<<<<<< HEAD
-  "external_applications_description": "External Applications are apps or websites that you have allowed to access your iNaturalist account. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them access.",
-=======
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "extinct": "extinct",
   "extinct_in_the_wild": "Extinct in the Wild",
   "facebook": "Facebook",
@@ -17514,11 +17430,7 @@ I18n.translations["en"] = {
   "inactive_taxon": "Inactive Taxon",
   "inappropriate_content": "Inappropriate content?",
   "inaturalist_activity_notifications": "%{site_name} Activity Notifications",
-<<<<<<< HEAD
-  "inaturalist_applications": "%{site_name} Applications",
-=======
   "inaturalist_applications": "iNaturalist Applications",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "inaturalist_network_affiliation": "iNaturalist Network Affiliation",
   "include_places": "Include Places",
   "include_projects": "Include Projects",
@@ -18444,11 +18356,7 @@ I18n.translations["en"] = {
   "ray_finned_fishes": "ray-finned fishes",
   "read_more": "Read More",
   "receive_email_notifications": "Receive Email Notifications",
-<<<<<<< HEAD
-  "receive_email_notifications_description": "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications. You will receive notifications for everything checked below:",
-=======
   "receive_email_notifications_description": "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "receive_project_journal_notifications?": "Receive project journal notifications?",
   "recent": "Recent",
   "recent_evidence_of_organism": "Recent evidence of an organism",
@@ -18498,11 +18406,7 @@ I18n.translations["en"] = {
   "save_photos": "Save photos",
   "save_settings_caps": "SAVE SETTINGS",
   "saved": "Saved",
-<<<<<<< HEAD
-  "saved_at": "Saved at",
-=======
   "saved_at_time": "Saved at %{time}",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "saving": "Saving...",
   "saving_num_of_count_observations": {
     "one": "Saving observation...",
@@ -18823,7 +18727,6 @@ I18n.translations["en"] = {
       "observations_at_this_taxon": "Observations at this taxon",
       "observations_of_exactly_this_taxon": "Observations of exactly this taxon",
       "observations_within_this_taxon": "Observations within this taxon",
-      "observed_species": "Observed Species",
       "observed_rank": "Observed %{rank}",
       "reset_place_filter": "Reset Place Filter",
       "restrict_to_leaf_taxa": "Restrict to leaf taxa",
@@ -19111,11 +19014,7 @@ I18n.translations["en"] = {
         "notification_preferences_taxon_changes": "Taxonomy changes",
         "notification_preferences_taxon_or_place_observations": "Observations of taxa or from places that I subscribe to",
         "notification_preferences_user_observations": "Observations by people I follow",
-<<<<<<< HEAD
-        "prefers_community_taxa_desc": "%{site_name} tracks what you think your observations are and what\nthe community thinks they are. The identification we share with data\npartners is the community identification, but if you don't think the\ncommunity's opinion should ever overrule your own, you can opt out\nhere. People will still be able to add identifications, but the\ncommunity opinion won't be favored over yours. This means your\nobservations will not be eligible for research grade unless you\nagree with the community.\n",
-=======
         "prefers_community_taxa_desc": "%{site_name} tracks what you think your observations are and what the\ncommunity thinks they are. If you don't think the community's opinion\nshould overrule your own, you can opt out here. People will still be\nable to add identifications, but your observations will remain\nassociated with the taxon from your identification. This means your\nobservations will not be eligible for Research Grade status unless\nyour identification matches the community's opinion.\n",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
         "prefers_no_tracking_label": "Do not collect stability and usage data using third party services",
         "prefers_no_tracking_label_desc_info_we_share": "Information we might share with these third parties include\n",
         "prefers_no_tracking_label_desc_info_we_share_browser_details": "Browser details, like make, model, and version\n",
@@ -19336,7 +19235,6 @@ I18n.translations["en"] = {
   "you_curate_a_project_that_contains_this_observation": "You curate a project that contains this observation",
   "you_curate_a_project_that_contains_this_observation_desc": "You can see obscured coordinates when you curate a project that contains an\nobservation and the observer has chosen to share coordinates with curators\nof that project.\n",
   "you_faved_this": "You faved this!",
-  "you_have_not_authorized_any_applications": "You have not authorized any applications to use your iNaturalist account.",
   "you_must_fill_out_the_required_fields": "You must fill out the required fields",
   "you_must_select_at_least_one_taxon": "You must select at least one taxon",
   "you_retain_full_copyright": "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service.",
@@ -19416,15 +19314,12 @@ I18n.translations["en-UK"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -19614,15 +19509,12 @@ I18n.translations["en-US"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -19738,8 +19630,6 @@ I18n.translations["eo"] = {
   "add_italic_text": "Aldoni kursivan tekston",
   "add_link": "Aldoni Ligilon",
   "add_one_now": "Aldoni Unu Nun",
-  "add_plant_phenology_budding_annotation": "Aldonu komenton \"Planta fenologio: florbukedoj\"",
-  "add_plant_phenology_flowering_annotation": "Aldonu komenton \"Planta fenologio: florado\"",
   "add_tag": "Aldoni Etikedon",
   "add_tags": "Aldoni Etikedojn",
   "add_to_a_project": "Aldoni al Projekto",
@@ -20059,6 +19949,7 @@ I18n.translations["eo"] = {
   "details": "Detaloj",
   "did_you_mean": "Ĉu vi intencis",
   "disagree_": "Malkonsenti",
+  "disconnect_provider": "Malkonekti provizanton %{provider}",
   "discoveries": "Eltrovoj",
   "doh_something_went_wrong": "Domaĝe, io misfunkciis.",
   "doh_something_went_wrong_error": "Domaĝe, io misfunkciis: %{error}",
@@ -21034,9 +20925,6 @@ I18n.translations["es"] = {
   "add_italic_text": "Añadir texto en cursiva",
   "add_link": "Agregar enlace",
   "add_one_now": "Agregar una ahora",
-  "add_plant_phenology_budding_annotation": "Agregar anotación «Fenología de la planta: en botón»",
-  "add_plant_phenology_flowering_annotation": "Agregar anotación «Fenología de la planta: floreciendo»",
-  "add_plant_phenology_fruiting_annotation": "Agregar anotación \"fenología de la planta: fructificando\"",
   "add_tag": "Agregar etiqueta",
   "add_tags": "Agregar etiquetas",
   "add_to_a_project": "Agregar a un proyecto",
@@ -21260,10 +21148,7 @@ I18n.translations["es"] = {
   "community_curated": "Supervisado por la comunidad",
   "community_id_at_species_level_or_lower": "ID de la comunidad a nivel de especie o inferior",
   "community_id_heading": "ID de la comunidad",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "El taxón de la comunidad es preciso",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Configuración de la moderación de la comunidad",
   "compare": "Comparar",
   "comprehensive_list": "Lista completa",
@@ -21488,6 +21373,7 @@ I18n.translations["es"] = {
   "details": "Detalles",
   "did_you_mean": "¿Te refieres a",
   "disagree_": "No aceptar",
+  "disconnect_provider": "Desconectarse de %{provider}",
   "discoveries": "Descubrimientos",
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
@@ -22996,7 +22882,6 @@ I18n.translations["es"] = {
       "observations_at_this_taxon": "Observaciones en este taxón",
       "observations_of_exactly_this_taxon": "Observaciones de exactamente este taxón",
       "observations_within_this_taxon": "Observaciones dentro de este taxón",
-      "observed_species": "Especies observadas",
       "reset_place_filter": "Restablecer filtro de lugar",
       "restrict_to_leaf_taxa": "Restringir a taxones de hoja",
       "restrict_to_taxa_observed_in_place": "Restringir a los táxones observados en %{place}",
@@ -23518,9 +23403,6 @@ I18n.translations["es-AR"] = {
   "add_italic_text": "Añadir texto en cursiva",
   "add_link": "Agregar enlace",
   "add_one_now": "Agregar una ahora",
-  "add_plant_phenology_budding_annotation": "Agregar anotación «Fenología de la planta: en botón»",
-  "add_plant_phenology_flowering_annotation": "Agregar anotación «Fenología de la planta: floreciendo»",
-  "add_plant_phenology_fruiting_annotation": "Agregar anotación \"fenología de la planta: fructificando\"",
   "add_tag": "Agregar etiqueta",
   "add_tags": "Agregar etiquetas",
   "add_to_a_project": "Agregar a un proyecto",
@@ -23657,8 +23539,6 @@ I18n.translations["es-AR"] = {
   "annotation": "Anotación",
   "annotations": "Anotaciones",
   "any_": "Cualquiera",
-<<<<<<< HEAD
-=======
   "any_annotation_attribute": "Cualquiera",
   "any_annotation_value": "Cualquiera",
   "any_date": "Cualquiera",
@@ -23669,7 +23549,6 @@ I18n.translations["es-AR"] = {
   "any_quality_grade": "Cualquiera",
   "any_reviewed": "Cualquiera",
   "any_user": "Cualquiera",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "anyone": "Cualquiera",
   "arachnids": "arácnidos",
   "are_you_sure?": "¿Estás seguro?",
@@ -23747,10 +23626,7 @@ I18n.translations["es-AR"] = {
   "community_curated": "Supervisado por la comunidad",
   "community_id_at_species_level_or_lower": "ID de la comunidad a nivel de especie o inferior",
   "community_id_heading": "ID de la comunidad",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "El taxón de la comunidad es preciso",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Configuración de la moderación de la comunidad",
   "compare": "Comparar",
   "comprehensive_list": "Lista completa",
@@ -23953,6 +23829,7 @@ I18n.translations["es-AR"] = {
   "details": "Detalles",
   "did_you_mean": "¿Te refieres a",
   "disagree_": "No aceptar",
+  "disconnect_provider": "Desconectarse de %{provider}",
   "discoveries": "Descubrimientos",
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo salió mal.",
@@ -25802,15 +25679,12 @@ I18n.translations["es-CO"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -26003,15 +25877,12 @@ I18n.translations["es-CR"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -26204,15 +26075,12 @@ I18n.translations["es-ES"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -26330,9 +26198,6 @@ I18n.translations["es-MX"] = {
   "add_id": "Añade ID",
   "add_link": "Añade enlace",
   "add_one_now": "Añadir una ahora",
-  "add_plant_phenology_budding_annotation": "Añade anotación \"fenología de la planta: en botón\"",
-  "add_plant_phenology_flowering_annotation": "Agrega anotación \"Fenología de la planta: floreciendo\"",
-  "add_plant_phenology_fruiting_annotation": "Añade anotación \"fenología de la planta: fructificando\"",
   "add_tag": "Añade etiqueta",
   "add_tags": "Añade etiquetas",
   "add_to_a_project": "Añade a un proyecto",
@@ -26727,6 +26592,7 @@ I18n.translations["es-MX"] = {
   "details": "Detalles",
   "did_you_mean": "¿Te refieres a",
   "disagree_": "En desacuerdo",
+  "disconnect_provider": "Desconecta  %{provider}",
   "discoveries": "Descubrimientos",
   "do_not_show_this_message_again": "No volver a mostrar este mensaje",
   "doh_something_went_wrong": "Algo no sucedió bien.",
@@ -28218,9 +28084,6 @@ I18n.translations["et"] = {
   "add_id": "Lisa määratlus",
   "add_link": "Lisa link",
   "add_one_now": "Lisa",
-  "add_plant_phenology_budding_annotation": "Lisa märge \"Taime fenoloogia: võrsuv\" (Plant Phenology: Budding)",
-  "add_plant_phenology_flowering_annotation": "Lisa märge \"Taime fenoloogia: õitsev\" (Plant Phenology: Flowering)",
-  "add_plant_phenology_fruiting_annotation": "Lisa märge \"Taime fenoloogia: viljakandev\" (Plant Phenology: Fruiting)",
   "add_tag": "Lisa märksõna",
   "add_tags": "Lisa märksõnad",
   "add_to_a_project": "Lisa projekti alla",
@@ -28619,6 +28482,7 @@ I18n.translations["et"] = {
   "details": "Üksikasjad",
   "did_you_mean": "Kas mõtlesid",
   "disagree_": "Ei nõustu",
+  "disconnect_provider": "Katkesta ühendus %{provider} kontoga",
   "discoveries": "Avastused",
   "do_not_show_this_message_again": "Ära seda teadet enam näita",
   "doh_something_went_wrong": "Oi-oi, miski läks valesti.",
@@ -30147,9 +30011,6 @@ I18n.translations["eu"] = {
   "add_italic_text": "Gehitu testu etzana",
   "add_link": "Gehitu lotura",
   "add_one_now": "Gehitu bat orain",
-  "add_plant_phenology_budding_annotation": "Gehitu \"Landare fenologia: gemazioa\" iruzkina",
-  "add_plant_phenology_flowering_annotation": "Gehitu \"Landare Fenologia: Loratzen\" oharra",
-  "add_plant_phenology_fruiting_annotation": "Gehitu \"Landare Fenologia: Fruituak ematen\" oharra",
   "add_tag": "Etiketa gehitu",
   "add_tags": "Etiketak gehitu",
   "add_to_a_project": "Proiektu batera gehitu",
@@ -30538,6 +30399,7 @@ I18n.translations["eu"] = {
   "description_slash_tags": "Deskribapena / Etiketak",
   "details": "Xehetasunak",
   "did_you_mean": "Honi buruz ari zara?",
+  "disconnect_provider": "Hemendik deskonektatu: %{provider}",
   "doh_something_went_wrong": "Zerbait ez da ondo atera.",
   "done": "Eginda",
   "download": "Deskargatu:",
@@ -31291,9 +31153,6 @@ I18n.translations["fi"] = {
   "add_italic_text": "Lisää kursivoitu teksti",
   "add_link": "Lisää linkki",
   "add_one_now": "Lisää yksi nyt",
-  "add_plant_phenology_budding_annotation": "Lisää \"Kasvin fenologia: Verso puhkeamssa\" selitys",
-  "add_plant_phenology_flowering_annotation": "Lisää \"Plant Phenology: Flowering\" selitys",
-  "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
   "add_tag": "Lisää merkintä",
   "add_tags": "Lisää merkintöjä",
   "add_to_a_project": "Lisää projektiin",
@@ -31517,10 +31376,7 @@ I18n.translations["fi"] = {
   "community_curated": "Yhteisön kuratoimat",
   "community_id_at_species_level_or_lower": "Yhteisö on tunnistanut havainnon lajilleen tai tarkemmin",
   "community_id_heading": "Yhteisön taksoni",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Yhteisön taksoni on tarkka",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Yhteisön moderointiasetukset",
   "compare": "Vertaa",
   "comprehensive_list": "Kattava luettelo",
@@ -31741,6 +31597,7 @@ I18n.translations["fi"] = {
   "details": "Tiedot",
   "did_you_mean": "Tarkoititko",
   "disagree_": "Eri mieltä",
+  "disconnect_provider": "Katkaise yhteys palveluun %{provider}",
   "discoveries": "Löydöt",
   "do_not_show_this_message_again": "Älä näytä tätä viestiä uudelleen",
   "doh_something_went_wrong": "Pahus, jotain meni pieleen.",
@@ -33133,7 +32990,6 @@ I18n.translations["fi"] = {
       "no_unobserved_species_within_this_taxon": "Kaikki tämän taksonin lajit on havaittu",
       "no_unobserved_species_within_this_taxon_in_place": "Kaikki tämän taksonin lajit on havaittu paikassa %{place}.",
       "observations_within_this_taxon": "Havainnot tästä taksonista",
-      "observed_species": "Havaitut lajit",
       "reset_place_filter": "Tyhjennä hakusuodatin",
       "restrict_to_leaf_taxa": "Vain lajit ja lajeja alemmat taksonit",
       "restrict_to_taxa_observed_in_place": "Rajaa taksoneihin, jotka on havaittu paikassa %{place}",
@@ -33626,15 +33482,12 @@ I18n.translations["fil"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -33761,9 +33614,6 @@ I18n.translations["fr"] = {
   "add_italic_text": "Ajouter un texte en italique",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter une",
-  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénologie végétale : bourgeonnement »",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie végétale : floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie végétale : fruits»",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des balises",
   "add_to_a_project": "Ajouter à un projet",
@@ -33987,10 +33837,7 @@ I18n.translations["fr"] = {
   "community_curated": "Communauté organisée",
   "community_id_at_species_level_or_lower": "Taxon de communauté au rang d’espèce ou inférieur",
   "community_id_heading": "Taxon de communauté",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "La Taxon de la Communauté est précis",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Paramètres pour modérer la communauté",
   "compare": "Comparer",
   "comprehensive_list": "Liste complète",
@@ -34215,6 +34062,7 @@ I18n.translations["fr"] = {
   "details": "Détails",
   "did_you_mean": "Voulez-vous dire",
   "disagree_": "Refuser",
+  "disconnect_provider": "Déconnecter %{provider}",
   "discoveries": "Découvertes",
   "do_not_show_this_message_again": "Ne plus afficher ce message",
   "doh_something_went_wrong": "Oups, quelque chose s’est mal passé.",
@@ -35723,7 +35571,6 @@ I18n.translations["fr"] = {
       "observations_at_this_taxon": "Observations de ce taxon",
       "observations_of_exactly_this_taxon": "Observations de ce taxon exact",
       "observations_within_this_taxon": "Observations dans ce taxon",
-      "observed_species": "Espèces observées",
       "reset_place_filter": "Réinitialiser le filtre du lieu",
       "restrict_to_leaf_taxa": "Restreindre au taxon \"feuille\"",
       "restrict_to_taxa_observed_in_place": "Restreindre aux taxons vu à %{place}",
@@ -36229,9 +36076,6 @@ I18n.translations["fr-CA"] = {
   "add_italic_text": "Ajouter un texte en italique",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter une",
-  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénologie végétale : bourgeonnement »",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie végétale : floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie végétale : fruits »",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des balises",
   "add_to_a_project": "Ajouter à un projet",
@@ -36388,15 +36232,12 @@ I18n.translations["fr-CA"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -36716,15 +36557,12 @@ I18n.translations["gd"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -36842,9 +36680,6 @@ I18n.translations["gl"] = {
   "add_italic_text": "Engadir texto en cursiva",
   "add_link": "Engadir ligazón",
   "add_one_now": "Engadir Unha Agora",
-  "add_plant_phenology_budding_annotation": "Engadir anotación \"Fenoloxía da Planta: A Agromar\"",
-  "add_plant_phenology_flowering_annotation": "Engadir anotación \"Fenoloxía da Planta: Florecendo\"",
-  "add_plant_phenology_fruiting_annotation": "Engadir anotación \"Fenoloxía da Planta: A Fructificar\"",
   "add_tag": "Engadir Etiqueta",
   "add_tags": "Engadir Etiquetas",
   "add_to_a_project": "Engadir a un Proxecto",
@@ -37277,6 +37112,7 @@ I18n.translations["gl"] = {
   "details": "Detalles",
   "did_you_mean": "Refíreste a?",
   "disagree_": "En Desacordo",
+  "disconnect_provider": "Desconectarse de %{provider}",
   "discoveries": "Descubertas",
   "do_not_show_this_message_again": "Non amosar esta mensaxe de novo",
   "doh_something_went_wrong": "Algo non saíu ben.",
@@ -39188,9 +39024,6 @@ I18n.translations["he"] = {
   "add_italic_text": "הוסף טקסט נטוי",
   "add_link": "הוספת קישור",
   "add_one_now": "הוסף אחד עכשיו",
-  "add_plant_phenology_budding_annotation": "הוספת תווית \"פנולוגיית צומח: ניצן\"",
-  "add_plant_phenology_flowering_annotation": "הוספת תווית \"פנולוגיית צומח: פריחה\"",
-  "add_plant_phenology_fruiting_annotation": "הוספת תווית \"פנולוגיית צומח: יצירת פרי\"",
   "add_tag": "הוספת תגית",
   "add_tags": "הוספת תגיות",
   "add_to_a_project": "הוספה לפרויקט",
@@ -39653,6 +39486,7 @@ I18n.translations["he"] = {
   "details": "פרטים",
   "did_you_mean": "האם התכוונת ל",
   "disagree_": "לא מסכים/מה",
+  "disconnect_provider": "ניתוק %{provider}",
   "discoveries": "תגליות",
   "do_not_show_this_message_again": "לא להציג את ההודעה הזאת שוב",
   "doh_something_went_wrong": "אופס... משהו לא הלך כמו שצריך.",
@@ -41388,15 +41222,12 @@ I18n.translations["hi"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -41589,15 +41420,12 @@ I18n.translations["hu"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -41765,15 +41593,12 @@ I18n.translations["hy"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -41882,9 +41707,6 @@ I18n.translations["id"] = {
   "add_id": "tambahkan identitas",
   "add_link": "Tambahkan pranala",
   "add_one_now": "Tambah Satu Sekarang",
-  "add_plant_phenology_budding_annotation": "Tambah catatan \"Fenologi Tumbuhan: Bertunas\"",
-  "add_plant_phenology_flowering_annotation": "Tambah catatan \"Fenologi Tumbuhan: Berbunga\"",
-  "add_plant_phenology_fruiting_annotation": "Tambah catatan \"Fenologi Tumbuhan: Berbuah\"",
   "add_tag": "Tambah Penanda",
   "add_tags": "Tambah penanda",
   "add_to_a_project": "Tambahkan ke proyek",
@@ -42143,6 +41965,7 @@ I18n.translations["id"] = {
   "description_slash_tags": "Deskripsi",
   "details": "Rincian",
   "did_you_mean": "Apakah yang kamu maksud",
+  "disconnect_provider": "Koneksi terputus %{provider}",
   "do_not_show_this_message_again": "Jangan tampilkan pesan ini lagi",
   "doh_something_went_wrong": "oh, Ada yang tidak beres.",
   "download": "Unduh",
@@ -42978,9 +42801,6 @@ I18n.translations["it"] = {
   "add_italic_text": "Aggiungi testo in corsivo",
   "add_link": "Aggiungi collegamento",
   "add_one_now": "Aggiungi una ora",
-  "add_plant_phenology_budding_annotation": "Aggiungi nota \"Fenologia della Pianta: Germinazione\"",
-  "add_plant_phenology_flowering_annotation": "Aggiungi nota \"Fenologia della Pianta: Fioritura\"",
-  "add_plant_phenology_fruiting_annotation": "Aggiungi nota \"Fenologia della Pianta: Fruttificazione\"",
   "add_tag": "Aggiungi etichetta",
   "add_tags": "Aggiungi etichetta",
   "add_to_a_project": "Aggiungi a un progetto",
@@ -43204,10 +43024,7 @@ I18n.translations["it"] = {
   "community_curated": "Curate dalla Community",
   "community_id_at_species_level_or_lower": "Taxon della comunità a livello di specie o inferiore",
   "community_id_heading": "Taxon della comunità",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Il Taxon della Comunità è preciso",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Impostazioni della Moderazione da parte della Community",
   "compare": "Confronta",
   "comprehensive_list": "Elenco completo",
@@ -43432,6 +43249,7 @@ I18n.translations["it"] = {
   "details": "Dettagli",
   "did_you_mean": "Forse cercavi",
   "disagree_": "Non d'accordo",
+  "disconnect_provider": "Disconnettere %{provider}",
   "discoveries": "Scoperte",
   "do_not_show_this_message_again": "Non mostrare più questo messaggio",
   "doh_something_went_wrong": "Oh, qualcosa è andato storto.",
@@ -44940,7 +44758,6 @@ I18n.translations["it"] = {
       "observations_at_this_taxon": "Osservazioni di questo taxon",
       "observations_of_exactly_this_taxon": "Osservazioni di questo esatto taxon",
       "observations_within_this_taxon": "Osservazioni all'interno di questo taxon",
-      "observed_species": "Specie Osservate",
       "reset_place_filter": "Resetta i Filtri di Luogo",
       "restrict_to_leaf_taxa": "Limita ai taxa foglia",
       "restrict_to_taxa_observed_in_place": "Limita ai taxa osservati in %{place}",
@@ -45475,15 +45292,12 @@ I18n.translations["iw"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -45600,9 +45414,6 @@ I18n.translations["ja"] = {
   "add_italic_text": "斜体にする",
   "add_link": "リンクを追加",
   "add_one_now": "今すぐ追加",
-  "add_plant_phenology_budding_annotation": "\"植物季節学：つぼみ\"の注釈を追加する",
-  "add_plant_phenology_flowering_annotation": "\"植物季節学：開花中（花あり）\"の注釈を追加する",
-  "add_plant_phenology_fruiting_annotation": "\"植物季節学：果実あり\"の注釈を追加する",
   "add_tag": "新規タグ",
   "add_tags": "タグを追加",
   "add_to_a_project": "プロジェクトに追加",
@@ -46011,6 +45822,7 @@ I18n.translations["ja"] = {
   "details": "詳細",
   "did_you_mean": "もしかして:",
   "disagree_": "同意しない",
+  "disconnect_provider": "%{provider}とリンク解除",
   "discoveries": "発見",
   "do_not_show_this_message_again": "今後このメッセージを表示しない",
   "doh_something_went_wrong": "エラーが発生しました。",
@@ -47563,15 +47375,12 @@ I18n.translations["ka"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -48007,6 +47816,7 @@ I18n.translations["ko"] = {
   "details": "자세한 사항",
   "did_you_mean": "이것을 찾으셨나요:",
   "disagree_": "동의하지 않음",
+  "disconnect_provider": "%{provider} 연결 끊기",
   "do_not_show_this_message_again": "다시는 이 메시지 표시하지 않기",
   "doh_something_went_wrong": "문제가 생겼습니다.",
   "doh_something_went_wrong_error": "무언가 잘못되었습니다: %{error}",
@@ -49086,8 +48896,6 @@ I18n.translations["lb"] = {
   "add_italic_text": "Kursiven Text afügen",
   "add_link": "Link derbäisetzen",
   "add_one_now": "Elo eng derbäisetzen",
-  "add_plant_phenology_flowering_annotation": "Setz d'Informatioun \"Planzephänologie: Blitt\" derbäi",
-  "add_plant_phenology_fruiting_annotation": "Setz d'Informatioun \"Planzephänologie: Dréit Friichten\" derbäi",
   "add_tag": "Markéierung derbäisetzen",
   "add_tags": "Markéierungen derbäisetzen",
   "add_to_a_project": "E Projet derbäisetzen",
@@ -49348,6 +49156,7 @@ I18n.translations["lb"] = {
   "details": "Detailer",
   "did_you_mean": "Mengt Dir",
   "disagree_": "Refuséieren",
+  "disconnect_provider": "%{provider} trennen",
   "discoveries": "Entdeckungen",
   "do_not_show_this_message_again": "Dëse Message net,méi weisen",
   "doh_something_went_wrong": "Ups, da ass eppes schif gaang.",
@@ -50197,9 +50006,6 @@ I18n.translations["lt"] = {
   "add_italic_text": "Pridėti pakreiptą tekstą",
   "add_link": "Pridėti Nuorodą",
   "add_one_now": "Pridėti dabar",
-  "add_plant_phenology_budding_annotation": "Pridėti „Augalų fenologija: sprogsta“ pastabą",
-  "add_plant_phenology_flowering_annotation": "Pridėti „Augalų fenologija: žydi“ pastabą",
-  "add_plant_phenology_fruiting_annotation": "Pridėti pastabą \"Augalo fenologija: vaisių vedimas\"",
   "add_tag": "Pridėti žymą",
   "add_tags": "Pridėti žymes",
   "add_to_a_project": "Pridėti į projektą",
@@ -50357,10 +50163,7 @@ I18n.translations["lt"] = {
   "annotation": "Komentaras",
   "annotations": "Pastabos",
   "any_": "Bet kuris",
-<<<<<<< HEAD
-=======
   "any_date": "Bet kuri",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "anyone": "Betkuris",
   "arachnids": "voragyviai",
   "are_you_sure?": "Ar tikrai?",
@@ -50644,6 +50447,7 @@ I18n.translations["lt"] = {
   "details": "Informacija",
   "did_you_mean": "Ar turėjote omenyje",
   "disagree_": "Nesutikti",
+  "disconnect_provider": "Atjungti %{provider}",
   "discoveries": "Atradimai",
   "do_not_show_this_message_again": "Daugiau neberodyti šio pranešimo",
   "doh_something_went_wrong": "Oi, kažkas nutiko.",
@@ -52387,9 +52191,6 @@ I18n.translations["lv"] = {
   "add_italic_text": "Pievienot tekstu slīprakstā",
   "add_link": "Pievienot saiti",
   "add_one_now": "Pievienot tagad",
-  "add_plant_phenology_budding_annotation": "Pievienot piezīmi \"auga fenoloģija: pumpurojas\"",
-  "add_plant_phenology_flowering_annotation": "Pievienot piezīmi \"auga fenoloģija: zied\"",
-  "add_plant_phenology_fruiting_annotation": "Pievienot piezīmi \"auga fenoloģija: ar augļiem\"",
   "add_tag": "Pievienot kategoriju",
   "add_tags": "Pievienot kategorijas",
   "add_to_a_project": "Pievienot projektam",
@@ -52611,8 +52412,6 @@ I18n.translations["lv"] = {
   "combine": "Kombinēt",
   "comment_": "Komentēt",
   "commercial_solicitation": "Komerciālā aģitācija vai saites bez galamērķa u.t.m.l.",
-<<<<<<< HEAD
-=======
   "community_curated": "Kopienas pārbaudīts",
   "community_id_at_species_level_or_lower": "Kopiena noteikusi sugu vai zemākas apakšgrupas taksonu",
   "community_id_heading": "Kopienas taksons",
@@ -52628,7 +52427,6 @@ I18n.translations["lv"] = {
   "content_hidden": "Slēpts saturs",
   "content_hidden_by_user_on_date_because_reason_html": "%{date} saturu noslēpis lietotājs: %{user}, jo: \"%{reason}\"\n",
   "continue": "Turpināt",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "controlled_term_definitions": {
     "alive": "Organisms ir dzīvs un nekas neliecina par pretējo",
     "dead": "Organisms ir miris vai novērojamas nenovēršamas nāves pazīmes",
@@ -52773,15 +52571,12 @@ I18n.translations["lv"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -53255,6 +53050,7 @@ I18n.translations["mk"] = {
   "descending": "опаѓачки",
   "details": "Подробно",
   "did_you_mean": "Дали мислевте на",
+  "disconnect_provider": "Отстрани ја врската со %{provider}",
   "download": "Преземи",
   "edit": "Измени",
   "edit_license": "Измени лиценца",
@@ -53877,15 +53673,12 @@ I18n.translations["ml"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -54059,15 +53852,12 @@ I18n.translations["mr"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -54258,15 +54048,12 @@ I18n.translations["ms"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -54387,9 +54174,6 @@ I18n.translations["nb"] = {
   "add_italic_text": "Legg til kursiv tekst",
   "add_link": "Legg til lenke",
   "add_one_now": "Legg til et nå",
-  "add_plant_phenology_budding_annotation": "Legg til merknaden \"Plantefenologi: Knopper\"",
-  "add_plant_phenology_flowering_annotation": "Legg til merknaden \"Plantefenologi: Blomstrende\"",
-  "add_plant_phenology_fruiting_annotation": "Legg til merknaden \"Plantefenologi: Fruktbærende\"",
   "add_tag": "Legg til etikett",
   "add_tags": "Legg til etiketter",
   "add_to_a_project": "Legg til i et prosjekt",
@@ -54835,6 +54619,7 @@ I18n.translations["nb"] = {
   "details": "Detaljer",
   "did_you_mean": "Mente du",
   "disagree_": "Uenig",
+  "disconnect_provider": "Koble fra %{provider}",
   "discoveries": "Oppdagelser",
   "do_not_show_this_message_again": "Ikke vis denne beskjeden igjen",
   "doh_something_went_wrong": "Æsj, noe gikk galt.",
@@ -56298,7 +56083,6 @@ I18n.translations["nb"] = {
       "filter_by": "Filtrer etter",
       "filtered_by": "Filtrert etter",
       "list_view": "Listevisning",
-      "observed_species": "Observerte arter",
       "tree_view": "Trevisning"
     },
     "observations": {
@@ -56769,11 +56553,6 @@ I18n.translations["nl"] = {
   "about_establishment_means": "Over vestigingswijze",
   "about_names": "Over namen",
   "about_this_bioblitz": "Over deze bioblitz",
-<<<<<<< HEAD
-  "about_trusting_projects_options_taxon": "Alleen je waarnemingen in dit project die vervaagde coördinaten hebben\nvanwege bedreigde taxa",
-  "about_trusting_projects_options_taxon_desc": "Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd worden omdat de\nwaarneming een bedreigd taxon weergeeft.",
-  "about_trusting_projects_overview": "Het verlenen van toegang tot je verborgen coördinaten zal de beheerders van dit\nproject de waarheid, laten zien onvervaagde locatie van je waarnemingen in dit\n-project. Dit is extreem belangrijk in situaties waarin wetenschappers of\nbeheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en\nbesluitvorming.",
-=======
   "about_trusting_projects": "Over het vertrouwen in projecten",
   "about_trusting_projects_options_any": "Al je waarnemingen in dit project",
   "about_trusting_projects_options_any_desc": "Dit omvat waarnemingen waar je de geoprivacy hebt ingesteld op \"vervaagd\"\nof \"privé,\" bijvoorbeeld waarnemingen in je achtertuin of plekken waar je geen anderen wilt hebben.",
@@ -56782,7 +56561,6 @@ I18n.translations["nl"] = {
   "about_trusting_projects_overview": "Het verlenen van toegang tot je verborgen coördinaten zal de beheerders van dit\nproject de waarheid, laten zien onvervaagde locatie van je waarnemingen in dit\n-project. Dit is extreem belangrijk in situaties waarin wetenschappers of\nbeheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en\nbesluitvorming.",
   "about_trusting_projects_project_managers_are": "De projectbeheerders die toegang zullen hebben tot je verborgen coördinaten zijn:",
   "about_trusting_projects_warning": "Projectmanagers kunnen de projectparameters wijzigen zodat ze alle parameters bevatten\nvan jouw waarnemingen en ze kunnen op elk gewenst moment projectmanagers toevoegen of verwijderen. Jij ontvangt meldingen van deze wijzigingen maar je vertrouwt dit project vertrouwen jouw privé-locatiegegevens toe dus wees zo\nvoorzichtig.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "about_trusting_projects_you_can_choose": "Je kan kiezen om verborgen coördinaten te delen voor",
   "acc": "Prec. (m)",
   "accept_community_identifications": "Gemeenschapsdeterminaties accepteren",
@@ -56818,9 +56596,6 @@ I18n.translations["nl"] = {
   "add_link": "Voeg link toe",
   "add_muted_users": "Gedempte gebruikers toevoegen",
   "add_one_now": "Voeg er nu één toe",
-  "add_plant_phenology_budding_annotation": "Aantekening \"Plantenfenologie: Knopvormend\" toevoegen",
-  "add_plant_phenology_flowering_annotation": "Aantekening \"Plantenfenologie: Bloeiend\" toevoegen",
-  "add_plant_phenology_fruiting_annotation": "Aantekening \"Plantenfenologie: Vruchtdragend\" toevoegen",
   "add_tag": "Label toevoegen",
   "add_tags": "Labels toevoegen",
   "add_to_a_project": "Aan een project toevoegen",
@@ -56968,10 +56743,7 @@ I18n.translations["nl"] = {
   "any_reviewed": "Alle",
   "any_user": "Alle",
   "anyone": "Iedereen",
-<<<<<<< HEAD
-=======
   "applications": "Toepassingen",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "arachnids": "spinachtigen",
   "are_you_sure?": "Weet je het zeker?",
   "are_you_sure_leave_this_project": "Weet je zeker dat je dit project wilt verlaten?",
@@ -57052,10 +56824,7 @@ I18n.translations["nl"] = {
   "community_curated": "Gecureerd door de gemeenschap",
   "community_id_at_species_level_or_lower": "Gemeenschapstaxon op soortniveau of lager",
   "community_id_heading": "Gemeenschapstaxon",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Gemeenschapstaxon is precies",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Instellingen voor gemeenschapsmoderatie",
   "compare": "Vergelijken",
   "comprehensive_list": "Volledige lijst",
@@ -57063,11 +56832,8 @@ I18n.translations["nl"] = {
   "computer_vision_suggestion_desc": "Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.\n",
   "confirm": "Bevestigen",
   "confirm_new_password": "Bevestig nieuw wachtwoord",
-<<<<<<< HEAD
-=======
   "confirming_ids": "ID's bevestigen",
   "confirming_ids_description": "Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "conservation_status": "Natuurbeschermingstatus",
   "conservation_status_geoprivacy_desc": "Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.\n",
   "contact_support": "Neem contact op met support",
@@ -57278,11 +57044,8 @@ I18n.translations["nl"] = {
   "default_": "Standaard",
   "default_observation_license": "Standaard waarnemingslicentie",
   "default_photo_license": "Standaard fotolicentie",
-<<<<<<< HEAD
-=======
   "default_search_place": "Standaard zoekmachine",
   "default_search_place_description": "Dit zal je standaard plaats zijn voor alle zoekopdrachten in Verkenner.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "default_sound_license": "Standaard opname licentie",
   "delete": "Verwijderen",
   "delete_your_account": "Verwijder je account",
@@ -57294,6 +57057,7 @@ I18n.translations["nl"] = {
   "details": "Details",
   "did_you_mean": "Bedoelde u",
   "disagree_": "Niet akkoord",
+  "disconnect_provider": "Verbinding verbreken met %{provider}",
   "discoveries": "Ontdekkingen",
   "display": "Tonen",
   "display_monthly_supporter_badge": "Toon status als maandelijkse supporter op mijn profiel",
@@ -57328,11 +57092,8 @@ I18n.translations["nl"] = {
   },
   "eligible_for_research_grade": "Komt in aanmerking voor onderzoekskwaliteit",
   "email": "E-mail",
-<<<<<<< HEAD
-=======
   "email_description": "Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist",
   "email_notifications": "E-mailnotificaties",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "encompassing_places": "Plaatsen omvatten",
   "end": "Tot",
   "end_date_time": "Einddatum /Tijd",
@@ -57549,11 +57310,8 @@ I18n.translations["nl"] = {
   "in_the_past_week": "Vorige week",
   "inactive_taxon": "Inactief taxon",
   "inappropriate_content": "Ongepaste inhoud?",
-<<<<<<< HEAD
-=======
   "inaturalist_activity_notifications": "%{site_name} activiteitsnotificaties",
   "inaturalist_applications": "iNaturalist Toepassingen",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "inaturalist_network_affiliation": "iNaturalist netwerk affiliatie",
   "include_places": "Plaatsen inbegrijpen",
   "include_projects": "Projecten inbegrijpen",
@@ -57865,13 +57623,9 @@ I18n.translations["nl"] = {
   "not_evaluated": "Niet beoordeeld",
   "not_recorded": "Niet opgenomen",
   "notes": "Notities",
-<<<<<<< HEAD
-  "notify_me_of_mentions": "Breng me op de hoogte van vermeldingen (bv. @gebruikersnaam)",
-=======
   "notifications": "Notificaties",
   "notify_me_of_mentions": "Breng me op de hoogte van vermeldingen (bv. @gebruikersnaam)",
   "notify_me_of_mentions_description": "Als je dit uitschakelt krijg je geen notificaties meer wanneer iemand je noemt in %{site_name}.",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "number": {
     "format": {
       "delimiter": ".",
@@ -57924,10 +57678,7 @@ I18n.translations["nl"] = {
   "offensive_inappropriate": "Aanstootgevend/ongepast",
   "ok": "OK",
   "old_observation_form": "Oud waarnemingsformulier (verouderd)",
-<<<<<<< HEAD
-=======
   "on_caps": "AAN",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "only_you": "Alleen jij",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
@@ -58506,10 +58257,7 @@ I18n.translations["nl"] = {
   },
   "remove_photo": "Foto verwijderen",
   "remove_relationship": "Relatie verwijderen",
-<<<<<<< HEAD
-=======
   "remove_relationship_caps": "VERWIJDER RELATIE",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "removing": "Bezig met verwijderen...",
   "reptiles": "reptielen",
   "request_failed": "Verzoek mislukt",
@@ -58709,10 +58457,7 @@ I18n.translations["nl"] = {
   "trends": "Trends",
   "trust": "Vertrouwen",
   "trust_this_person_with_your_private_coordinates": "Vertrouw deze persoon je verborgen coördinaten toe",
-<<<<<<< HEAD
-=======
   "trust_this_project_with_your_private_coordinates?": "Wil je dit project je verborgen coördinaten toevertrouwen?",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "trust_with_private_coordinates": "Vertrouw je verborgen coördinaten toe",
   "trusted": "Vertrouwd",
   "twitter": "Twitter",
@@ -58847,7 +58592,6 @@ I18n.translations["nl"] = {
       "observations_at_this_taxon": "Waarnemingen op dit taxon",
       "observations_of_exactly_this_taxon": "Waarnemingen van precies dit taxon",
       "observations_within_this_taxon": "Waarnemingen binnen dit taxon",
-      "observed_species": "Waargenomen soorten",
       "reset_place_filter": "Reset plaatsfilter",
       "restrict_to_leaf_taxa": "Beperken tot blad taxa",
       "restrict_to_taxa_observed_in_place": "Beperken tot taxa waargenomen in %{place}",
@@ -59432,15 +59176,12 @@ I18n.translations["nn"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -59767,6 +59508,7 @@ I18n.translations["oc"] = {
   "descending": "descendent",
   "details": "Detalhs",
   "did_you_mean": "Volètz dire",
+  "disconnect_provider": "Desconnectar %{provider}",
   "download": "Telecargar",
   "drop_it": "Lo depausar",
   "edit": "Modificar",
@@ -60309,9 +60051,6 @@ I18n.translations["pl"] = {
   "add_italic_text": "Dodaj tekst pochyły",
   "add_link": "Dodaj link",
   "add_one_now": "Dodaj jakieś teraz",
-  "add_plant_phenology_budding_annotation": "Dodaj adnotację \"Fenologia roślin: Pączkuje\"",
-  "add_plant_phenology_flowering_annotation": "Dodaj adnotację \"Fenologia roślin: Kwitnie\"",
-  "add_plant_phenology_fruiting_annotation": "Dodaj adnotację \"Fenologia roślin: Owocuje\"",
   "add_tag": "Dodaj tag",
   "add_tags": "Dodaj tagi",
   "add_to_a_project": "Dodaj do projektu",
@@ -60782,6 +60521,7 @@ I18n.translations["pl"] = {
   "details": "Szczegóły",
   "did_you_mean": "Czy chodziło ci o",
   "disagree_": "Nie zgadzam się",
+  "disconnect_provider": "Rozłącz %{provider}",
   "discoveries": "Odkrycia",
   "do_not_show_this_message_again": "Nie pokazuj ponownie tego komunikatu",
   "doh_something_went_wrong": "Ups, coś poszło nie tak.",
@@ -62065,7 +61805,6 @@ I18n.translations["pl"] = {
       "filter_by": "Filtruj według",
       "filtered_by": "Przefiltrowane według:",
       "list_view": "Widok listy",
-      "observed_species": "Gatunki zaobserwowane",
       "tree_view": "Widok drzewa",
       "unobserved_species": "Gatunki niezaobserwowane"
     },
@@ -62450,9 +62189,6 @@ I18n.translations["pt"] = {
   "add_italic_text": "Adicionar texto em itálico",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Um(a) Agora",
-  "add_plant_phenology_budding_annotation": "Adicionar anotação \"Fenologia da Planta: Gemulação\"",
-  "add_plant_phenology_flowering_annotation": "Adicionar anotação \"Fenologia da Planta: Floração\"",
-  "add_plant_phenology_fruiting_annotation": "Adicionar anotação \"Fenologia da Planta: Frutificação\"",
   "add_tag": "Adicionar etiqueta",
   "add_tags": "Adicionar etiquetas",
   "add_to_a_project": "Adicionar a um projeto",
@@ -62676,10 +62412,7 @@ I18n.translations["pt"] = {
   "community_curated": "Supervisionado pela Comunidade",
   "community_id_at_species_level_or_lower": "ID da Comunidade é como espécie ou inferior",
   "community_id_heading": "ID da Comunidade",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "O táxon da comunidade é preciso",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Definições de Moderação da Comunidade",
   "compare": "Comparar",
   "comprehensive_list": "Lista compreensiva",
@@ -62904,6 +62637,7 @@ I18n.translations["pt"] = {
   "details": "Detalhes",
   "did_you_mean": "Será que quis dizer",
   "disagree_": "Não concordo",
+  "disconnect_provider": "Desconectar-se de %{provider}",
   "discoveries": "Descobertas",
   "do_not_show_this_message_again": "Não mostrar esta mensagem novamente",
   "doh_something_went_wrong": "Ups, algo correu mal.",
@@ -64412,7 +64146,6 @@ I18n.translations["pt"] = {
       "observations_at_this_taxon": "Observações neste táxon",
       "observations_of_exactly_this_taxon": "Observações exatamente neste táxon",
       "observations_within_this_taxon": "Observações dentro deste táxon",
-      "observed_species": "Espécies Observadas",
       "reset_place_filter": "Redefinir Filtro de Lugar",
       "restrict_to_leaf_taxa": "Restringir a táxons de folha",
       "restrict_to_taxa_observed_in_place": "Restringir a táxons observados em %{place}",
@@ -64998,15 +64731,12 @@ I18n.translations["pt-BR"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -65200,15 +64930,12 @@ I18n.translations["ro"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -65338,9 +65065,6 @@ I18n.translations["ru"] = {
   "add_italic_text": "Добавить текст курсивом",
   "add_link": "Добавить ссылку",
   "add_one_now": "Добавьте его сейчас",
-  "add_plant_phenology_budding_annotation": "Добавить значение \"Фенология растений: Бутонизация\"",
-  "add_plant_phenology_flowering_annotation": "Добавить значение \"Фенология растений: Цветение\"",
-  "add_plant_phenology_fruiting_annotation": "Добавить значение \"Фенология растений: Плодоношение\"",
   "add_tag": "Добавить тег",
   "add_tags": "Добавить теги",
   "add_to_a_project": "Добавить в проект",
@@ -65592,10 +65316,7 @@ I18n.translations["ru"] = {
   "community_curated": "Управляется сообществом",
   "community_id_at_species_level_or_lower": "Таксон сообщества на уровне вида или ниже",
   "community_id_heading": "Таксон сообщества",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Таксон сообщества является точным",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Настройки модерации сообщества",
   "compare": "Сравнить",
   "comprehensive_list": "Полный список",
@@ -65830,6 +65551,7 @@ I18n.translations["ru"] = {
   "details": "Подробности",
   "did_you_mean": "Возможно, вы имеете в виду",
   "disagree_": "Не согласен",
+  "disconnect_provider": "Отключить %{provider}",
   "discoveries": "Открытия",
   "do_not_show_this_message_again": "Больше не показывать это сообщение",
   "doh_something_went_wrong": "Ой, что-то пошло не так.",
@@ -67374,7 +67096,6 @@ I18n.translations["ru"] = {
       "observations_at_this_taxon": "Наблюдения за этим таксоном",
       "observations_of_exactly_this_taxon": "Наблюдения конкретно этого таксона",
       "observations_within_this_taxon": "Наблюдения в рамках этого таксона",
-      "observed_species": "Наблюдаемые виды",
       "reset_place_filter": "Сбросить фильтр места",
       "restrict_to_leaf_taxa": "Ограничиться листьями таксонов",
       "restrict_to_taxa_observed_in_place": "Ограничиться таксонами, наблюдаемыми в %{place}",
@@ -67998,15 +67719,12 @@ I18n.translations["si"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -68122,9 +67840,6 @@ I18n.translations["sk"] = {
   "add_id": "Vložiť ID",
   "add_link": "Pridať odkaz",
   "add_one_now": "Pridať teraz",
-  "add_plant_phenology_budding_annotation": "Pridať anotáciu „Fenológia rastliny: pučenie“",
-  "add_plant_phenology_flowering_annotation": "Pridať anotáciu „Fenológia rastliny: kvitnutie“",
-  "add_plant_phenology_fruiting_annotation": "Pridať anotáciu „Fenológia rastliny: plodenie“",
   "add_tag": "Pridať tag",
   "add_tags": "Pridať tagy",
   "add_to_a_project": "Pridať do projektu",
@@ -68453,6 +68168,7 @@ I18n.translations["sk"] = {
   "details": "Podrobnosti",
   "did_you_mean": "Mali ste na mysli",
   "disagree_": "Nesúhlasím",
+  "disconnect_provider": "Odpojiť %{provider}",
   "discoveries": "Objavy",
   "do_not_show_this_message_again": "Znova nezobrazovať túto správu",
   "doh_something_went_wrong": "Och, niečo je zle.",
@@ -69724,15 +69440,12 @@ I18n.translations["sl"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -69846,9 +69559,6 @@ I18n.translations["sq"] = {
   "add_id": "Shto ID-në",
   "add_link": "Shto vegëzen",
   "add_one_now": "Shto një tani",
-  "add_plant_phenology_budding_annotation": "Shto shënimin \"Fenologjia e Bimëve: Nxjerrja e sytheve\"",
-  "add_plant_phenology_flowering_annotation": "Shto shënimin \"Fenologjia e Bimëve: Lulëzimi\"",
-  "add_plant_phenology_fruiting_annotation": "Shto shënimin \"Fenologjia e Bimëve: Frytëzimi\"",
   "add_tag": "Shto etiketën",
   "add_tags": "Shto etiketat",
   "add_to_a_project": "Shto në një projekt",
@@ -70208,6 +69918,7 @@ I18n.translations["sq"] = {
   "details": "Detajet",
   "did_you_mean": "Kishit në mendje",
   "disagree_": "Nuk bie dakort",
+  "disconnect_provider": "Shkëput %{provider}",
   "discoveries": "Zbulimet",
   "do_not_show_this_message_again": "Mos e shfaq këtë mesazh përsëri",
   "doh_something_went_wrong": "D'oh, diçka shkoi keq.",
@@ -71145,9 +70856,6 @@ I18n.translations["sv"] = {
   "add_italic_text": "Lägg till kursiv text",
   "add_link": "Lägg till länk",
   "add_one_now": "Lägg till en nu",
-  "add_plant_phenology_budding_annotation": "Lägg till anteckningen \"Växtfenologi: I frukt\"",
-  "add_plant_phenology_flowering_annotation": "Lägg till anteckningen \"Växtfenologi: Blomning\"",
-  "add_plant_phenology_fruiting_annotation": "Lägg till anteckningen \"Växtfenologi: I frukt\"",
   "add_tag": "Lägg till taggning",
   "add_tags": "Lägg till taggningar",
   "add_to_a_project": "Lägg till ett projekt",
@@ -71371,10 +71079,7 @@ I18n.translations["sv"] = {
   "community_curated": "Kollektivt underhållen",
   "community_id_at_species_level_or_lower": "Kollektivt taxon på artnivå eller lägre",
   "community_id_heading": "Kollektivt taxon",
-<<<<<<< HEAD
-=======
   "community_id_is_precise": "Gemenskapstaxon är exakt",
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
   "community_moderation_settings": "Inställningar för kollektiv moderering",
   "compare": "Jämför",
   "comprehensive_list": "Omfattande lista",
@@ -71599,6 +71304,7 @@ I18n.translations["sv"] = {
   "details": "Detaljer",
   "did_you_mean": "Menade du",
   "disagree_": "Håller inte med",
+  "disconnect_provider": "Koppla från %{provider}",
   "discoveries": "Upptäckter",
   "do_not_show_this_message_again": "Visa inte detta meddelande igen",
   "doh_something_went_wrong": "Typiskt, något gick fel.",
@@ -73107,7 +72813,6 @@ I18n.translations["sv"] = {
       "observations_at_this_taxon": "Observationer på detta taxon",
       "observations_of_exactly_this_taxon": "Observationer av just detta taxon",
       "observations_within_this_taxon": "Observationer under detta taxon",
-      "observed_species": "Observerade arter",
       "reset_place_filter": "Återställ lokalfilter",
       "restrict_to_leaf_taxa": "Begränsa till lövtaxa",
       "restrict_to_taxa_observed_in_place": "Begränsa till taxa som observerats i %{place}",
@@ -73693,15 +73398,12 @@ I18n.translations["ta"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -73822,9 +73524,6 @@ I18n.translations["tr"] = {
   "add_italic_text": "Eğik yazı ekle",
   "add_link": "Bağlantı Ekle",
   "add_one_now": "Şimdi Bir Tane Ekle",
-  "add_plant_phenology_budding_annotation": "\"Bitki Fenolojisi: Tomurcuklanma\" açıklaması ekle",
-  "add_plant_phenology_flowering_annotation": "\"Bitki Fenolojisi: Çiçeklenme\" açıklaması ekle",
-  "add_plant_phenology_fruiting_annotation": "\"Bitki Fenolojisi: Meyveli\" açıklaması ekle",
   "add_tag": "Etiket Ekle",
   "add_tags": "Etiket Ekle",
   "add_to_a_project": "Bir Projeye Ekle",
@@ -74259,6 +73958,7 @@ I18n.translations["tr"] = {
   "details": "Ayrıntılar",
   "did_you_mean": "Bunu mu demek istediniz",
   "disagree_": "Katılmıyorum",
+  "disconnect_provider": "%{provider} bağlantısını kes",
   "discoveries": "Keşifler",
   "do_not_show_this_message_again": "Bu mesajı bir daha gösterme",
   "doh_something_went_wrong": "D'oh, bir şeyler ters gitti.",
@@ -76263,15 +75963,12 @@ I18n.translations["uk"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -76464,15 +76161,12 @@ I18n.translations["vi"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -76597,9 +76291,6 @@ I18n.translations["zh-CN"] = {
   "add_italic_text": "添加斜体文本",
   "add_link": "添加链接",
   "add_one_now": "现在添加一个",
-  "add_plant_phenology_budding_annotation": "添加“植物物候学：发芽”注释",
-  "add_plant_phenology_flowering_annotation": "添加“植物物候学：开花”注释",
-  "add_plant_phenology_fruiting_annotation": "添加“植物物候学：结果”注释",
   "add_tag": "添加标签",
   "add_tags": "添加标签",
   "add_to_a_project": "添加至一个项目",
@@ -77014,6 +76705,7 @@ I18n.translations["zh-CN"] = {
   "details": "详情",
   "did_you_mean": "您是不是要找",
   "disagree_": "不同意",
+  "disconnect_provider": "取消连接 %{provider}",
   "discoveries": "发现",
   "do_not_show_this_message_again": "不要再次显示这条消息",
   "doh_something_went_wrong": "生气啊，发生了一些错误。",
@@ -78410,7 +78102,6 @@ I18n.translations["zh-CN"] = {
       "no_unobserved_species_within_this_taxon_in_place": "此分类单元在%{place} 没有未被观察到的物种。",
       "observations_at_this_taxon": "在此分类单元中的观察",
       "observations_within_this_taxon": "在此分类单元内的观察",
-      "observed_species": "观察到的物种",
       "reset_place_filter": "重置位置过滤器",
       "total_observations": "观察总数",
       "tree_view": "树形视图",
@@ -78898,15 +78589,12 @@ I18n.translations["zh-HK"] = {
   },
   "place_geo": {
     "geo_planet_place_types": {
-<<<<<<< HEAD
-=======
       "<%= name": {
         "parameterize": {
           "underscore": {
           }
         }
       }
->>>>>>> b78a98cea408cbeebf7d75ed55c64998c992a64a
     }
   },
   "ranks": {
@@ -79026,9 +78714,6 @@ I18n.translations["zh-TW"] = {
   "add_italic_text": "加入斜體字",
   "add_link": "新增連結",
   "add_one_now": "現在新增一個",
-  "add_plant_phenology_budding_annotation": "新增「植物物候：發新芽」的註解",
-  "add_plant_phenology_flowering_annotation": "新增「植物物候學：開花」的註解",
-  "add_plant_phenology_fruiting_annotation": "新增「植物物候：結果」註解",
   "add_tag": "添加標籤",
   "add_tags": "添加標籤",
   "add_to_a_project": "新增至專案",
@@ -79453,6 +79138,7 @@ I18n.translations["zh-TW"] = {
   "details": "詳細資料",
   "did_you_mean": "您是指",
   "disagree_": "不同意",
+  "disconnect_provider": "中斷連接%{provider}",
   "discoveries": "發現",
   "do_not_show_this_message_again": "不要再顯示此訊息",
   "doh_something_went_wrong": "噢噢，出現了一些問題。",

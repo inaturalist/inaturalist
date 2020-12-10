@@ -2,22 +2,38 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const Applications = ( { showModal, apps } ) => {
-  const renderEmptyState = ( ) => (
-    <p className="nocontent">
-      {I18n.t( "you_have_not_authorized_any_applications" )}
-    </p>
-  );
+/* global AUTH_PROVIDER_URLS */
+/* global AUTH_PROVIDER_NAMES */
 
-  if ( apps.length === 0 ) {
-    return renderEmptyState( );
-  }
-
+const Applications = ( { showModal, apps, providerApps } ) => {
+  // removed empty state, since connected accounts section will always be displayed
   const iNatApps = apps.filter( app => app.application.official === true );
-  // tbd on what the endpoint will return
-  // note: remember to change revoke access modal to reflect 'disconnect' text
-  const connectedApps = apps.filter( app => app.application.official === "connected" );
   const externalApps = apps.filter( app => app.application.official === false );
+
+  const createConnectedAppsList = ( ) => {
+    const connectedApps = providerApps;
+
+    const userAppNames = connectedApps.filter( app => app.provider_name );
+
+    // if a user hasn't connected to one of the AUTH_PROVIDER_URLS apps
+    // we need to display it under connected apps with an option to connect
+    // if an app is already in their provider_authorizations list
+    // the user will see an option to disconnect
+    Object.keys( AUTH_PROVIDER_URLS ).forEach( app => {
+      if ( !userAppNames.includes( AUTH_PROVIDER_NAMES[app] ) ) {
+        connectedApps.push( {
+          id: null,
+          provider_name: AUTH_PROVIDER_NAMES[app],
+          created_at: null,
+          appKey: app
+        } );
+      }
+    } );
+
+    return connectedApps;
+  };
+
+  const connectedApps = createConnectedAppsList( );
 
   const renderHeader = ( ) => (
     <thead>
@@ -29,29 +45,70 @@ const Applications = ( { showModal, apps } ) => {
     </thead>
   );
 
-  const renderRow = ( app, buttonText ) => (
-    <tr key={app.application.name}>
-      <td className="col-xs-4 borderless table-row">{app.application.name}</td>
-      <td className="col-xs-4 borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
-      <td className="col-xs-4 borderless table-row">
-        <button
-          type="button"
-          className="btn btn-default"
-          onClick={( ) => {
-            showModal( app.application.id, app.application.name, app.application.official );
-          }}
-        >
-          {buttonText}
-        </button>
-      </td>
-    </tr>
-  );
+  const renderRow = ( app, buttonText ) => {
+    const { id, name, official } = app.application;
 
-  const createTable = ( appList, buttonText ) => (
+    return (
+      <tr key={name}>
+        <td className="col-xs-4 borderless table-row">{name}</td>
+        <td className="col-xs-4 borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
+        <td className="col-xs-4 borderless table-row">
+          <button
+            type="button"
+            className="btn btn-default"
+            onClick={( ) => showModal( id, name, official === true ? "official" : "external" )}
+          >
+            {buttonText}
+          </button>
+        </td>
+      </tr>
+    );
+  };
+
+  const renderConnectedAppsRow = app => {
+    const { id, appKey } = app;
+    const name = app.provider_name;
+    const date = app.created_at ? moment( app.created_at ).format( "LL" ) : null;
+
+    const disconnectButton = (
+      <button
+        type="button"
+        className="btn btn-default"
+        onClick={( ) => showModal( id, name, "connectedApp" )}
+      >
+        {I18n.t( "disconnect" )}
+      </button>
+    );
+
+    const connectForm = (
+      <form action={AUTH_PROVIDER_URLS[appKey]} method="post" target="_blank">
+        <button
+          type="submit"
+          className="btn btn-default"
+        >
+          {I18n.t( "connect" )}
+        </button>
+      </form>
+    );
+
+    return (
+      <tr key={name}>
+        <td className="col-xs-4 borderless table-row">{name}</td>
+        <td className="col-xs-4 borderless table-row">{date}</td>
+        <td className="col-xs-4 borderless table-row">
+          {app.created_at ? disconnectButton : connectForm}
+        </td>
+      </tr>
+    );
+  };
+
+  const createTable = ( appList, buttonText = null ) => (
     <table className="table">
       {renderHeader( )}
       <tbody className="borderless">
-        {appList.map( app => renderRow( app, buttonText ) )}
+        {buttonText
+          ? appList.map( app => renderRow( app, buttonText ) )
+          : appList.map( app => renderConnectedAppsRow( app ) )}
       </tbody>
     </table>
   );
@@ -64,13 +121,11 @@ const Applications = ( { showModal, apps } ) => {
           {createTable( iNatApps, I18n.t( "log_out" ) )}
         </div>
       )}
-      {connectedApps.length > 0 && (
-        <div>
-          <h4>{I18n.t( "connected_accounts_titlecase" )}</h4>
-          <p className="text-muted app-description-width">{I18n.t( "connected_accounts_description" )}</p>
-          {createTable( connectedApps, I18n.t( "disconnect" ) )}
-        </div>
-      )}
+      <div>
+        <h4>{I18n.t( "connected_accounts_titlecase" )}</h4>
+        <p className="text-muted app-description-width">{I18n.t( "connected_accounts_description" )}</p>
+        {createTable( connectedApps )}
+      </div>
       {externalApps.length > 0 && (
         <div>
           <h4>{I18n.t( "external_applications" )}</h4>
@@ -84,7 +139,8 @@ const Applications = ( { showModal, apps } ) => {
 
 Applications.propTypes = {
   showModal: PropTypes.func,
-  apps: PropTypes.array
+  apps: PropTypes.array,
+  providerApps: PropTypes.array
 };
 
 export default Applications;
