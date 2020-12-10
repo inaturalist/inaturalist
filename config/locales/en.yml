@@ -6492,11 +6492,12 @@ en:
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
           Color represents the number of days on a logarithmic scale:
-        observation_streaks_desc: |
-          An observation streak is a period of time when someone got outside and
-          recorded new, verifiable observations every single day. Here we're
-          showing the longest streaks that began this year or were in progress
-          when these stats were generated.
+        observation_streaks_desc2: |
+          An observation streak is a period of at least five days when someone
+          got outside and recorded new, verifiable observations every single
+          day. Here we're showing the longest streaks that began this year or
+          were in progress when these stats were generated (for individual users
+          we're also including streaks that ended this year).
         # Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Recurring
         stats_generated_datetime: Stats generated on %{datetime}

@@ -10,15 +10,15 @@
 - content_for :extrajs do
   :javascript
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
-    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
     var YEAR = #{ @year };
+    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
     var DISPLAY_USER = #{ @display_user ? 
       @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url, display_donor_since: @display_user.display_donor_since ).to_json.html_safe
       :
       "null"
     };
     var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
-    var SITES = #{ Site.where( "NOT draft" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( s.logo_square.url ), logo_url: FakeView.asset_url( s.logo.url ) ) }.to_json.html_safe };
+    var SITES = #{ Site.where( "NOT draft AND created_at <= '#{@year}-12-31'" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( s.logo_square.url ), logo_url: FakeView.asset_url( s.logo.url ) ) }.to_json.html_safe };
     var DEFAULT_SITE_ID = #{ Site.default.id };
     var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
     var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";

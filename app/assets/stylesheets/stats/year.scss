@@ -787,6 +787,14 @@ $obs-grid-photo-size: 210px;
 
 .Streaks {
   $streak-height: 30px;
+  &.multiyear {
+    .tick {
+      font-size: 10px;
+      @media (max-width: 500px) {
+        color: rgba(0,0,0,0);
+      }
+    }
+  }
   .streak {
     display: flex;
     width: "100%";

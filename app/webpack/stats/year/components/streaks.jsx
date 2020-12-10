@@ -19,10 +19,16 @@ const Streaks = ( {
   year,
   hideUsers
 } ) => {
+  let startYear = year;
+  if ( _.filter( data, streak => streak.days > 300 ).length / data.length > 0.5 ) {
+    const years = _.map( data, streak => moment( streak.start ).year( ) ).sort( );
+    startYear = years[Math.round( years.length / 2 )];
+  }
+  const multiYear = startYear < year;
   const scale = scaleTime( )
-    .domain( [new Date( `${year}-01-01` ), new Date( `${year}-12-31` )] )
+    .domain( [new Date( `${startYear}-01-01` ), new Date( `${year}-12-31` )] )
     .range( [0, 1.0] );
-  const ticks = scale.ticks();
+  const ticks = scale.ticks( ( ( year - startYear + 1 ) * 12 ) );
   const days = data.map( d => d.days );
   const dayScale = scaleLog( )
     .domain( [d3min( days ), d3max( days )] )
@@ -44,14 +50,14 @@ const Streaks = ( {
   } );
   const shortDate = d3Locale.format( I18n.t( "date.formats.compact" ) );
   return (
-    <div className="Streaks">
+    <div className={`Streaks ${multiYear ? "multiyear" : ""}`}>
       <h3>
         <a name="streaks" href="#streaks">
           <span>{ I18n.t( "views.stats.year.observation_streaks" ) }</span>
         </a>
       </h3>
       <p className="text-muted">
-        { I18n.t( "views.stats.year.observation_streaks_desc" ) }
+        { I18n.t( "views.stats.year.observation_streaks_desc2" ) }
       </p>
       <div className="rows">
         <div
@@ -78,7 +84,7 @@ const Streaks = ( {
                     width: `${tickWidth * 100}%`
                   }}
                 >
-                  { moment( tick ).format( "MMM" ) }
+                  { moment( tick ).format( multiYear ? "MMM 'YY" : "MMM" ) }
                 </div>
               );
             } ) }
@@ -94,8 +100,8 @@ const Streaks = ( {
             icon_url: streak.icon_url
           };
           const xDays = I18n.t( "datetime.distance_in_words.x_days", { count: I18n.toNumber( streak.days, { precision: 0 } ) } );
-          const streakStartedBeforeYear = moment( streak.start ) < moment( `${year}-01-01` );
-          const d1 = streakStartedBeforeYear
+          const streakStartedBeforeStartYear = moment( streak.start ) < moment( `${startYear}-01-01` );
+          const d1 = streakStartedBeforeStartYear
             ? moment( streak.start ).format( "ll" )
             : shortDate( moment( streak.start ) );
           const d2 = shortDate( moment( streak.stop ) );
@@ -121,7 +127,7 @@ const Streaks = ( {
                   }}
                   title={`${I18n.t( "date_to_date", { d1, d2 } )} • ${xDays}`}
                 >
-                  { streakStartedBeforeYear && (
+                  { streakStartedBeforeStartYear && (
                     <span
                       className="triangle"
                       style={{

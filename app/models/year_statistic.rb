@@ -900,7 +900,13 @@ class YearStatistic < ActiveRecord::Base
       finished_user_ids = previous_user_ids - user_ids
       puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
       finished_user_ids.each do |user_id|
+        if debug && options[:user]
+          puts "\tFinished streak of length #{current_streaks[user_id]}"
+        end
         if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+          if debug && options[:user]
+            puts "\tAdding streak #{( stop_date + 1.day - ( current_streaks[user_id] ).days )} - #{stop_date}"
+          end
           streaks << {
             user_id: user_id,
             days: current_streaks[user_id],
@@ -933,9 +939,22 @@ class YearStatistic < ActiveRecord::Base
     end
     return nil if streaks.blank?
     max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
+    year_start = Date.parse( "#{year}-01-01" )
+    year_stop = Date.parse( "#{year}-12-31" )
+    year_range = (year_start..year_stop)
     top_streaks = streaks.select do |s|
-      Date.parse( s[:stop] ) >= max_stop_date ||
-        Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
+      streak_in_progress = Date.parse( s[:stop] ) >= max_stop_date
+      start_date = Date.parse( s[:start] )
+      stop_date = Date.parse( s[:stop] )
+      streak_started_this_year  = year_range.include?( start_date )
+      streak_stopped_this_year  = year_range.include?( stop_date )
+      # Only counting streaks in progress and streaks started this year EXCEPT
+      # when looking at an individual user's streaks
+      if options[:user]
+        streak_in_progress || streak_stopped_this_year
+      else
+        streak_in_progress || streak_started_this_year
+      end
     end
     top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
     top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
