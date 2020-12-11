@@ -750,7 +750,6 @@ zh-CN:
   community_guidelines: 社群指引
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
-  community_id_at_genus_level_or_lower: 属于“属”或更低一级的社区ID
   community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
@@ -4652,56 +4651,6 @@ zh-CN:
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
-        quality_assessment_help_html: |
-          <p>
-          数据质量评估是观察准确性的总结。所有观察均以<strong>“随意”</strong>级别开始，并在以下情形时变更为<strong>“需要ID”</strong>级别：
-          </p>
-
-          <ul>
-          <li>此观察<strong>具有日期</strong></li>
-          <li>此观察<strong>有地理位置定位</strong>（即，有经纬度信息）</li>
-          <li>此观察<strong>有照片或录音</strong></li>
-          <li>此观察<strong>并非人造物</strong></li>
-          </ul>
-          <p>
-          在以下情形时，观察变更为<strong>"研究级别"</strong>：
-          </p>
-          <ul>
-          <li>
-          %{site_name}<strong>的社区同意物种级别或更低的ID</strong>，即，超过2/3的分类者同意该分类单元时
-          </li>
-          </ul>
-          <p>
-          如果上述条件未得到满足或社群不同意，观察将恢复至<strong>“随意”</strong>
-          </p>
-          <ul>
-          <li>
-          <strong>位置看起来不准确</strong>（例如海洋中的猴子，办公楼的河马等）
-          </li>
-          <li>
-          <strong>生物体并不是野生/纯天然的</strong>（例如，由人类或智能外星人驯化或培养）
-          </li>
-          <li>
-          观察<strong>没有提供有机体的证据</strong>，例如，景观、水景、岩石等的图像
-          </li>
-          <li>
-          观察<strong>没有提供最近（约100年内）是有机体的证据</strong>（例如化石，但是足迹、粪便和枯叶都可以）
-          </li>
-          <li>
-          观察不再需要ID<em>并且</em>社区已有ID是更高级的家族
-          </li>
-          <li>
-          观察者选择退出社区ID，并且社区ID分类单元并非是与观察者ID相关的分类单元的祖先或后代
-          </li>
-          </ul>
-          <p>
-          如果这不够复杂，还有一些系统获得投票的情形：
-          </p>
-          <ul>
-          <li>
-          如果在包含该观察的最小的县、州或国家级行政单位中存在至少10个属或更低的其他观察，并且其中80％或以上被标记为非野生/非纯天然，则系统将投票认为此观察不是野生/纯天然的。
-          </li>
-          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>

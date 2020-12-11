@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, DropdownButton, MenuItem } from "react-bootstrap";
 import SpeciesComparisonContainer from "../containers/species_comparison_container";
 import MapComparisonContainer from "../containers/map_comparison_container";
 import HistoryComparisonContainer from "../containers/history_comparison_container";
@@ -25,19 +25,35 @@ class Tabs extends React.Component {
   }
 
   render( ) {
-    const { chosenTab } = this.props;
+    const { chosenTab, showTaxonChildrenModal } = this.props;
     return (
       <div className="Tabs stacked">
         <Row>
           <Col xs={12}>
+            <div className="pull-right">
+              <DropdownButton
+                title="Tools"
+                id="tools-dropdown"
+                pullRight
+                onSelect={key => {
+                  if ( key === "taxon-children" ) {
+                    showTaxonChildrenModal( );
+                  }
+                }}
+              >
+                <MenuItem eventKey="taxon-children">
+                  Show taxon children
+                </MenuItem>
+              </DropdownButton>
+            </div>
             <ul id="main-tabs" className="nav nav-tabs" role="tablist">
-              <li role="presentation" className={ chosenTab === "species" ? "active" : "" }>
+              <li role="presentation" className={chosenTab === "species" ? "active" : ""}>
                 <a href="#species-tab" role="tab" data-toggle="tab">{ I18n.t( "species" ) }</a>
               </li>
-              <li role="presentation" className={ chosenTab === "map" ? "active" : "" }>
+              <li role="presentation" className={chosenTab === "map" ? "active" : ""}>
                 <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
               </li>
-              <li role="presentation" className={ chosenTab === "history" ? "active" : "" }>
+              <li role="presentation" className={chosenTab === "history" ? "active" : ""}>
                 <a href="#history-tab" role="tab" data-toggle="tab">{ I18n.t( "history" ) }</a>
               </li>
             </ul>
@@ -77,7 +93,8 @@ class Tabs extends React.Component {
 
 Tabs.propTypes = {
   chosenTab: PropTypes.string,
-  chooseTab: PropTypes.func
+  chooseTab: PropTypes.func,
+  showTaxonChildrenModal: PropTypes.func
 };
 
 Tabs.defaultProps = {

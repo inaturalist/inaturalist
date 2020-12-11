@@ -751,7 +751,6 @@ el:
   community_guidelines: Κανονισμός Κοινότητας
   community_id_heading: ID Κοινότητας
   community_id_at_species_or_lower?: ID Κοινότητας σε είδος ή χαμηλότερα;
-  community_id_at_genus_level_or_lower: ID Κοινότητας σε επίπεδο γένους ή χαμηλότερα
   community_id_at_species_level_or_lower: ID Κοινότητας σε επίπεδο είδους ή χαμηλότερα
   community_moderation_settings: Διαχείριση Ρυθμίσεων Κοινότητας
   community_supported_id: Υποστηριζόμενο από την Κοινότητα ID;
@@ -1339,6 +1338,9 @@ el:
   followed_projects: Ακολουθούμενα πρότζεκτ
   followers: Ακόλουθοι
   following: Ακολουθεί
+  following_x_people:
+    one: 'Ακολουθείτε %{count} Άτομα'
+    other: 'Ακολουθείτε %{count} Άτομα'
   for_a_taxon: για ένα taxon
   formatting: Μορφοποίηση
   forgot_your_password: Ξεχάσατε τον κωδικό σας;
@@ -4170,6 +4172,7 @@ el:
   you_sure_delete_asset?: Είστε σίγουροι πως θέλετε να διαγράψετε αυτό το πρότζεκτ;
   you_sure_delete_check_list: "Είστε σίγουρος/η ότι θέλετε να διαγράψετε αυτή τη λίστα; Κάποιοι άνθρωποι ίσως έχουν δουλέψει πού πάνω σε αυτήν..."
   you_sure_delete_comment?: Είστε σίγουρος/η πως θέλετε να αφαιρέσετε αυτό το σχόλιο;
+  you_sure_delete_identification?: Είσαι σίγουρος/η ότι θέλεις να διαγράψεις αυτή την ταυτοποίηση;
   you_sure_delete_custom_field?: Είστε σίγουροι πως θέλετε να διαγράψετε αυτά τα προσαρμοσμένα πεδία;
   you_sure_delete_flag?: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την αναφορά;
   you_sure_delete_project?: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το πρότζεκτ;
@@ -5375,6 +5378,9 @@ el:
         published_at: Δημοσίευση
       listed_taxon:
         establishment_means: Μέσα ίδρυσης
+      message:
+        subject: Θέμα
+        body: Κύριο Μέρος
       observation:
         geo_x: Ανατολικό
         geo_y: Τίποτα

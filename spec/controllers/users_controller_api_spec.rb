@@ -244,6 +244,17 @@ shared_examples_for "a signed in UsersController" do
     end
   end
 
+  describe "block" do
+    let(:blocked_user) { User.make! }
+    it "should block the specified user on behalf of the authenticated user" do
+      expect( user.user_blocks.where( blocked_user_id: blocked_user.id ).first ).to be_blank
+      post :block, format: :json, id: blocked_user.id
+      expect( response ).to be_success
+      user.reload
+      expect( user.user_blocks.where( blocked_user_id: blocked_user.id ).first ).not_to be_blank
+    end
+  end
+
 end
 
 describe UsersController, "oauth authentication" do
