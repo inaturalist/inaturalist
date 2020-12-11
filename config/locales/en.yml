@@ -6466,6 +6466,10 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        compare_desc: |
+          How did this year compare to your previous years? With three years of
+          usage or more we can start comparing yearly activity metrics.
+        compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
         donate_desc_html: |
           Thank you for being generous with your time, attention, expertise, and
@@ -6478,12 +6482,14 @@ en:
           <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
           the community support, collaborations, and integrations that keep
           things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than 0.2%
-          of contributors. We are especially grateful to Monthly Supporters
-          whose recurring gifts help us plan for the future. You can donate in
-          more than 30 currencies to support iNaturalist’s core operations.
-          Thank you to everyone for your part in making 2019 iNaturalist’s
-          biggest year yet!
+          grants and donations, including charitable gifts from less than tiny
+          fraction of contributors. We are especially grateful to Monthly
+          Supporters whose recurring gifts help us plan for the future. You can
+          donate in multiple currencies to support iNaturalist’s core
+          operations. Thank you to everyone for your part in making %{year}
+          iNaturalist’s biggest year yet!
+        donors: Donors
+        donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Check out the Year in Review for the members of the iNaturalist Network.
@@ -6527,7 +6533,11 @@ en:
           include higher or lower level taxa, so an observation identified as
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
+        new_species_per_year: New Species / Year
+        new_species_per_year_by_date_added: By date added
         obs_in_year: Obs in %{year}
+        # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
@@ -6544,15 +6554,22 @@ en:
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observations / Year
+        observations_per_year_by_date_observed: By date observed
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
           Color represents the number of days on a logarithmic scale:
-        observation_streaks_desc: |
-          An observation streak is a period of time when someone got outside and
-          recorded new, verifiable observations every single day. Here we're
-          showing the longest streaks that began this year or were in progress
-          when these stats were generated.
+        observation_streaks_desc2: |
+          An observation streak is a period of at least five days when someone
+          got outside and recorded new, verifiable observations every single
+          day. Here we're showing the longest streaks that began this year or
+          were in progress when these stats were generated (for individual users
+          we're also including streaks that ended this year).
+        # Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recurring
+        species_per_year: Species / Year
+        species_per_year_by_date_added: By date added
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat

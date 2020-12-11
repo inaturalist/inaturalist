@@ -30,7 +30,7 @@ const App = ( {
   rootTaxonID,
   updatedAt
 } ) => {
-  let body = "todo";
+  let body;
   const inatUser = user ? new inatjs.User( user ) : null;
   const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
   if ( !year ) {
@@ -103,7 +103,11 @@ const App = ( {
           )
         }
         { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
-        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
+        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
+          <div>
+            <Donate year={year} data={data} />
+          </div>
+        ) }
         { updatedAt && (
           <p className="updated-at text-center text-muted">
             { I18n.t( "views.stats.year.stats_generated_datetime", {

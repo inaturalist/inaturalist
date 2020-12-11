@@ -65,6 +65,9 @@ class YearStatistic < ActiveRecord::Base
     if options[:site].blank?
       json[:publications] = publications( year, options )
       json[:growth][:countries] = observation_counts_by_country( year, options )
+      json[:budget] = {
+        donors: donors( year, options )
+      }
     end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
@@ -94,7 +97,8 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
-        popular: popular_observations( year, user: user )
+        popular: popular_observations( year, user: user ),
+        streaks: streaks( year, user: user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 
@@ -114,6 +118,7 @@ class YearStatistic < ActiveRecord::Base
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: accumulation
+        # observed_taxa_changes: observed_taxa_changes( year, user: user )
       },
       growth: {
         observations: observations_histogram_by_created_month( user: user ),
@@ -200,7 +205,6 @@ class YearStatistic < ActiveRecord::Base
       aggregate: {
         histogram: {
           date_histogram: {
-
             field: "created_at",
             interval: interval,
             format: "yyyy-MM-dd"
@@ -821,9 +825,11 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.streaks( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
     streak_length = 5
     ranges = []
-    base_query = { quality_grade: "research,needs_id" }
+    base_query = { quality_grade: "research,needs_id", d2: "#{year}-12-31" }
     if options[:site]
       base_query = base_query.merge( site_id: options[:site].id )
     end
@@ -850,7 +856,7 @@ class YearStatistic < ActiveRecord::Base
               user_ids: {
                 terms: {
                   field: "user.id",
-                  size: 30000
+                  size: 300000
                 }
               }
             }
@@ -866,7 +872,7 @@ class YearStatistic < ActiveRecord::Base
     ) do |args|
       query = args[0]
       # Assume now one has been on a streak since before 2008-01-01
-      puts "partitioning #{query}"
+      puts "partitioning #{query}" if debug
       d1 = query[:d1] && Date.parse( query[:d1] ) || Date.parse( "2008-01-01" )
       d2 = query[:d2] && Date.parse( query[:d2] ) || Date.today
       half = ( d2 - d1 ) / 2
@@ -874,7 +880,7 @@ class YearStatistic < ActiveRecord::Base
         query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
         query.merge( d1: ( d1 + (half + 1).days ).to_s, d2: d2.to_s )
       ]
-      puts "partitioned into #{new_queries}"
+      puts "partitioned into #{new_queries}" if debug
       new_queries
     end
     histogram_buckets.each_with_index do |bucket, bucket_i|
@@ -891,9 +897,15 @@ class YearStatistic < ActiveRecord::Base
       stop_date = ( Date.parse( date ) - 1.day )
       finished_user_ids = []
       finished_user_ids = previous_user_ids - user_ids
-      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
+      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
       finished_user_ids.each do |user_id|
+        if debug && options[:user]
+          puts "\tFinished streak of length #{current_streaks[user_id]}"
+        end
         if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+          if debug && options[:user]
+            puts "\tAdding streak #{( stop_date + 1.day - ( current_streaks[user_id] ).days )} - #{stop_date}"
+          end
           streaks << {
             user_id: user_id,
             days: current_streaks[user_id],
@@ -926,9 +938,22 @@ class YearStatistic < ActiveRecord::Base
     end
     return nil if streaks.blank?
     max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
+    year_start = Date.parse( "#{year}-01-01" )
+    year_stop = Date.parse( "#{year}-12-31" )
+    year_range = (year_start..year_stop)
     top_streaks = streaks.select do |s|
-      Date.parse( s[:stop] ) >= max_stop_date ||
-        Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
+      streak_in_progress = Date.parse( s[:stop] ) >= max_stop_date
+      start_date = Date.parse( s[:start] )
+      stop_date = Date.parse( s[:stop] )
+      streak_started_this_year  = year_range.include?( start_date )
+      streak_stopped_this_year  = year_range.include?( stop_date )
+      # Only counting streaks in progress and streaks started this year EXCEPT
+      # when looking at an individual user's streaks
+      if options[:user]
+        streak_in_progress || streak_stopped_this_year
+      else
+        streak_in_progress || streak_started_this_year
+      end
     end
     top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
     top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
@@ -1007,6 +1032,252 @@ class YearStatistic < ActiveRecord::Base
         end
       end
     end
+    data
+  end
+
+  def self.observed_taxa_counts( year, options = {} )
+    params = options.merge( year: year, verifiable: true, page: 1 )
+    params[:user_id] = options[:user].id if options[:user]
+    data = {}
+    while true
+      puts "Fetching results for #{params}"
+      results = INatAPIService.observations_species_counts( params ).results
+      break if results.size == 0
+      results.each do |r|
+        r["taxon"]["ancestor_ids"].each do |tid|
+          data[tid] ||= {}
+          data[tid][:observations] = data[tid][:observations].to_i + r["count"]
+          if r["taxon"]["id"] == tid
+            data[tid][:species] = 1
+          else
+            data[tid][:species] = data[tid][:species].to_i + 1
+          end
+        end
+      end
+      params[:page] += 1
+    end
+    data
+  end
+
+  def self.observed_taxa_changes( year, options = {} )
+    # final number of top gains and losses to return
+    final_cutoff = 30
+    this_years_taxa = observed_taxa_counts( year, options )
+    last_years_taxa = observed_taxa_counts( year - 1, options )
+    all_taxon_ids = ( this_years_taxa.keys + last_years_taxa.keys ).uniq
+    # top most observose taxa to derive leaves from. since coarser rank taxa
+    # will always have higher counts, the lower this number is the more coarser
+    # taxa will be favored
+    leaf_cuttoff = [(0.02 * all_taxon_ids.size).ceil, final_cutoff].max
+    data = {}
+    [:species, :observations].each do |metric|
+      deltas = all_taxon_ids.inject({}) do |memo, taxon_id|
+        memo[taxon_id] = this_years_taxa[taxon_id].try(:[], metric).to_i - last_years_taxa[taxon_id].try(:[], metric).to_i
+        memo
+      end
+      top_losses = deltas.select{|k,v| v < 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_gains = deltas.select{|k,v| v > 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      taxa = Taxon.where( id: top_taxon_ids ).index_by(&:id)
+      losses_ancestor_ids = taxa.fetch_values( *top_losses.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_losses = top_losses.reject{|taxon_id, delta| losses_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      gains_ancestor_ids = taxa.fetch_values( *top_gains.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_gains = top_gains.reject{|taxon_id, delta| gains_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      final_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      data[metric] = final_taxon_ids.collect do |taxon_id|
+        taxon = taxa[taxon_id]
+        {
+          taxon: taxon.as_indexed_json( no_details: true ).keep_if {|k,v|
+            [:id, :name, :rank, :rank_level, :default_photo, :is_active].include?( k )
+          }.merge(
+            iconic_taxon_name: taxon.iconic_taxon_name,
+            preferred_common_name: taxon.common_name( user: options[:user] ).try(:name)
+          ),
+          delta: deltas[taxon_id]
+        }
+      end
+    end
+    data
+  end
+
+  def self.donors( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
+    limit = options.delete(:limit)
+    donorbox_email = CONFIG.donorbox.email
+    donorbox_key = CONFIG.donorbox.key
+    return if donorbox_key.blank?
+    page = 1
+    per_page = 100
+    donations = []
+    donation_encountered = {}
+    while true
+      break if limit && donations.size >= limit
+      url = "https://donorbox.org/api/v1/donations?page=#{page}&per_page=#{per_page}"
+      puts "Fetching #{url}" if debug
+      response = RestClient.get( url, {
+        "Authorization" => "Basic #{Base64.strict_encode64( "#{donorbox_email}:#{donorbox_key}" ).strip}",
+        "User-Agent" => "iNaturalist/Donorbox"
+      } )
+      json = JSON.parse( response )
+      puts "Received #{json.size} donations" if debug
+      break if json.size == 0
+      page_donations = json.select{|d| DateTime.parse( d["donation_date"] ).year == year }
+      puts "Received #{page_donations.size} donations for #{year}" if debug
+      if page_donations.size == 0
+        break
+      end
+      page_donations.each do |d|
+        next if d["amount_refunded"].to_f > 0
+        next unless d["status"] == "paid"
+        next if donation_encountered[d["id"]]
+        donation_encountered[d["id"]] = true
+        net_amount_usd = d["converted_net_amount"] || d["converted_amount"] || d["amount"]
+        next unless net_amount_usd
+        donations << {
+          # net_amount_usd: net_amount_usd.to_f,
+          date: Date.parse( d["donation_date"] ),
+          donor_id: d["donor"]["id"],
+          recurring: d["recurring"],
+          # monthly: d["campaign"] && d["campaign"]["name"].to_s =~ /Monthly Support/
+        }
+      end
+      puts "#{donations.size} total donations for #{year} so far" if debug
+      page += 1
+    end
+    puts "Received #{donations.size} total donations" if debug
+    monthly = donations.inject( {} ) do |memo, d|
+      key = d[:date].strftime( "%Y-%m-01" )
+      memo[key] ||= {}
+      # memo[key][:total_net_amount_usd] = memo[key][:total_net_amount_usd].to_f + d[:net_amount_usd]
+      memo[key][:total_donors] ||= Set.new
+      memo[key][:total_donors] << d[:donor_id]
+      if d[:recurring]
+        # memo[key][:recurring_net_amount_usd] = memo[key][:recurring_net_amount_usd].to_f + d[:net_amount_usd]
+        memo[key][:recurring_donors] ||= Set.new
+        memo[key][:recurring_donors] << d[:donor_id]
+      end
+      # if d[:monthly]
+      #   memo[key][:monthly_net_amount_usd] = memo[key][:monthly_net_amount_usd].to_f + d[:net_amount_usd]
+      #   memo[key][:monthly_donors] ||= Set.new
+      #   memo[key][:monthly_donors] << d[:donor_id]
+      # end
+      memo
+    end
+    data = monthly.keys.sort.map do |key|
+      d = monthly[key]
+      {
+        date: key,
+        # total_net_amount_usd: d[:total_net_amount_usd],
+        total_donors: d[:total_donors].size,
+        # recurring_net_amount_usd: d[:recurring_net_amount_usd],
+        recurring_donors: d[:recurring_donors].size,
+        # monthly_net_amount_usd: d[:monthly_net_amount_usd],
+        # monthly_donors: d[:monthly_donors].size
+      }
+    end
+  end
+
+  # Maximum distance in meters between obs created by a single user for each
+  # month of the year. Calculates pairwise comparisons between all obs made by
+  # the user in that month so it's pretty slow.
+  def max_obs_distances_for_user( year, user )
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      sql = <<-SQL
+        SELECT
+          o1.id,
+          o2.id,
+          ST_DistanceSphere(o1.private_geom, o2.private_geom) AS distance
+        FROM
+          observations o1,
+          observations o2
+        WHERE
+          o1.user_id = #{user.id}
+          AND o2.user_id = #{user.id}
+          AND o1.id != o2.id
+          AND o1.geom IS NOT NULL
+          AND o2.geom IS NOT NULL
+          AND o1.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+          AND o2.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+        ORDER BY distance DESC
+        LIMIT 1
+      SQL
+      r = ActiveRecord::Base.connection.execute( sql )
+      data << [d1.to_s, (r && r.count > 0 ? r[0]["distance"] : 0).to_f]
+    end
+    # CSV(STDOUT) do |csv|
+    #   csv << %w(date distance)
+    #   data.each do |row|
+    #     csv << row
+    #   end
+    # end
+    data
+  end
+
+  # Stats on maximum distance in meters between obs created by all users for
+  # each month of the year. Instead of pairwise comparisons, this just
+  # calculates the bounding box for each user's observations within a month and
+  # uses the box's diagonal as the "distance," so it's just an approximation.
+  def est_max_obs_distances( year, options = {} )
+    debug = options.clone.delete(:debug)
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      params = { geo: true, d1: d1.to_s, d2: d2.to_s }
+      elastic_params = Observation.params_to_elastic_query( params )
+      geo_bounds_params = elastic_params.merge(
+        size: 0,
+        track_total_hits: true,
+        aggs: {
+          user_ids: {
+            terms: {
+              field: "user.id",
+              size: 300000
+            },
+            aggs: {
+              bounding_box: {
+                geo_bounds: {
+                  field: "private_location"
+                }
+              }
+            }
+          }
+        }
+      )
+      distances = []
+      buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
+      puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
+      buckets.buckets.each do |bucket|
+        next unless bucket.bounding_box && bucket.bounding_box.bounds
+        next if bucket.doc_count <= 1
+        d = lat_lon_distance_in_meters(
+          bucket.bounding_box.bounds.bottom_right.lat,
+          bucket.bounding_box.bounds.bottom_right.lon,
+          bucket.bounding_box.bounds.top_left.lat,
+          bucket.bounding_box.bounds.top_left.lon
+        )
+        next if d == 0
+        distances << d
+      end
+      data << {
+        date: d1.to_s,
+        avg: distances.sum / distances.size.to_f,
+        med: distances.median,
+        # min: distances.min,
+        # max: distances.max
+      }
+    end
+    # headers = data[0].keys
+    # CSV(STDOUT) do |csv|
+    #   csv << headers
+    #   data.each do |row|
+    #     csv << headers.map{|h| row[h] }
+    #   end
+    # end
     data
   end
 
