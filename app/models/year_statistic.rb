@@ -117,8 +117,8 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation: accumulation,
-        observed_taxa_changes: observed_taxa_changes( year, user: user )
+        accumulation: accumulation
+        # observed_taxa_changes: observed_taxa_changes( year, user: user )
       },
       growth: {
         observations: observations_histogram_by_created_month( user: user ),
@@ -205,7 +205,6 @@ class YearStatistic < ActiveRecord::Base
       aggregate: {
         histogram: {
           date_histogram: {
-
             field: "created_at",
             interval: interval,
             format: "yyyy-MM-dd"
@@ -857,7 +856,7 @@ class YearStatistic < ActiveRecord::Base
               user_ids: {
                 terms: {
                   field: "user.id",
-                  size: 30000
+                  size: 300000
                 }
               }
             }
@@ -1177,6 +1176,109 @@ class YearStatistic < ActiveRecord::Base
         # monthly_donors: d[:monthly_donors].size
       }
     end
+  end
+
+  # Maximum distance in meters between obs created by a single user for each
+  # month of the year. Calculates pairwise comparisons between all obs made by
+  # the user in that month so it's pretty slow.
+  def max_obs_distances_for_user( year, user )
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      sql = <<-SQL
+        SELECT
+          o1.id,
+          o2.id,
+          ST_DistanceSphere(o1.private_geom, o2.private_geom) AS distance
+        FROM
+          observations o1,
+          observations o2
+        WHERE
+          o1.user_id = #{user.id}
+          AND o2.user_id = #{user.id}
+          AND o1.id != o2.id
+          AND o1.geom IS NOT NULL
+          AND o2.geom IS NOT NULL
+          AND o1.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+          AND o2.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+        ORDER BY distance DESC
+        LIMIT 1
+      SQL
+      r = ActiveRecord::Base.connection.execute( sql )
+      data << [d1.to_s, (r && r.count > 0 ? r[0]["distance"] : 0).to_f]
+    end
+    # CSV(STDOUT) do |csv|
+    #   csv << %w(date distance)
+    #   data.each do |row|
+    #     csv << row
+    #   end
+    # end
+    data
+  end
+
+  # Stats on maximum distance in meters between obs created by all users for
+  # each month of the year. Instead of pairwise comparisons, this just
+  # calculates the bounding box for each user's observations within a month and
+  # uses the box's diagonal as the "distance," so it's just an approximation.
+  def est_max_obs_distances( year, options = {} )
+    debug = options.clone.delete(:debug)
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      params = { geo: true, d1: d1.to_s, d2: d2.to_s }
+      elastic_params = Observation.params_to_elastic_query( params )
+      geo_bounds_params = elastic_params.merge(
+        size: 0,
+        track_total_hits: true,
+        aggs: {
+          user_ids: {
+            terms: {
+              field: "user.id",
+              size: 300000
+            },
+            aggs: {
+              bounding_box: {
+                geo_bounds: {
+                  field: "private_location"
+                }
+              }
+            }
+          }
+        }
+      )
+      distances = []
+      buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
+      puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
+      buckets.buckets.each do |bucket|
+        next unless bucket.bounding_box && bucket.bounding_box.bounds
+        next if bucket.doc_count <= 1
+        d = lat_lon_distance_in_meters(
+          bucket.bounding_box.bounds.bottom_right.lat,
+          bucket.bounding_box.bounds.bottom_right.lon,
+          bucket.bounding_box.bounds.top_left.lat,
+          bucket.bounding_box.bounds.top_left.lon
+        )
+        next if d == 0
+        distances << d
+      end
+      data << {
+        date: d1.to_s,
+        avg: distances.sum / distances.size.to_f,
+        med: distances.median,
+        # min: distances.min,
+        # max: distances.max
+      }
+    end
+    # headers = data[0].keys
+    # CSV(STDOUT) do |csv|
+    #   csv << headers
+    #   data.each do |row|
+    #     csv << headers.map{|h| row[h] }
+    #   end
+    # end
+    data
   end
 
   private

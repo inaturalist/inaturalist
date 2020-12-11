@@ -48,8 +48,8 @@ const Compare = ( { data, year } ) => {
     obsChart = (
       <div className="row stacked">
         <div className="col-xs-12 col-md-2">
-          <strong>Observations / Year</strong>
-          <div className="text-muted">By date observed</div>
+          <strong>{ I18n.t( "views.stats.year.observations_per_year" ) }</strong>
+          <div className="text-muted">{ I18n.t( "views.stats.year.observations_per_year_by_date_observed" ) }</div>
         </div>
         <div className="col-xs-12 col-md-10">
           <BulletGraph
@@ -77,9 +77,7 @@ const Compare = ( { data, year } ) => {
       </h3>
 
       <p className="text-muted">
-        How did this year stack up to your previous years? With three years of
-        usage or more we can start comparing yearly activity for a couple of
-        metrics.
+        { I18n.t( "views.stats.year.compare_desc" ) }
       </p>
 
       <div className="legend">
@@ -94,8 +92,8 @@ const Compare = ( { data, year } ) => {
       </div>
       <div className="row stacked">
         <div className="col-xs-12 col-md-2">
-          <strong>New Species / Year</strong>
-          <div className="text-muted">By date added</div>
+          <strong>{ I18n.t( "views.stats.year.new_species_per_year" ) }</strong>
+          <div className="text-muted">{ I18n.t( "views.stats.year.new_species_per_year_by_date_added" ) }</div>
         </div>
         <div className="col-xs-12 col-md-10">
           <BulletGraph
@@ -114,8 +112,8 @@ const Compare = ( { data, year } ) => {
       </div>
       <div className="row stacked">
         <div className="col-xs-12 col-md-2">
-          <strong>Species / Year</strong>
-          <div className="text-muted">By date added</div>
+          <strong>{ I18n.t( "views.stats.year.species_per_year" ) }</strong>
+          <div className="text-muted">{ I18n.t( "views.stats.year.species_per_year_by_date_added" ) }</div>
         </div>
         <div className="col-xs-12 col-md-10">
           <BulletGraph

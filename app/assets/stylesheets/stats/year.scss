@@ -19,6 +19,18 @@ $ribbon-backfold-width: 59px;
 $ribbon-backfold-x-offset: 2em;
 $ribbon-midfold-width: 40px;
 
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  > * {
+    flex-grow: 1;
+    margin-left: 20px;
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+}
+
 #logo {
   text-align: center;
   padding: 50px;
@@ -1002,16 +1014,13 @@ $obs-grid-photo-size: 210px;
 
 .Donate {
   .support-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     margin-bottom: 20px;
     @media (max-width: 500px) {
       flex-direction: column; 
     }
   }
   .support {
-    width: 20%;
+    width: 30%;
     @media (max-width: 500px) { width: 100%; }
     text-align: center;
     display: flex;
@@ -1024,7 +1033,7 @@ $obs-grid-photo-size: 210px;
   }
   .Donors {
     margin-left: 20px;
-    width: 80%;
+    width: 70%;
     @media (max-width: 500px) {
       width: 100%;
       margin-left: 0px;

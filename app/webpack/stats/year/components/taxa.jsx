@@ -45,7 +45,7 @@ const Taxa = ( {
         />
       ) }
       { newSpecies }
-      { user && data && data.observed_taxa_changes && (
+      { window.location.search.match( /test=taxa-changes/ ) && user && data && data.observed_taxa_changes && (
         <ObservedTaxaChanges
           data={data.observed_taxa_changes}
           year={year}

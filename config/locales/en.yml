@@ -6406,6 +6406,10 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        compare_desc: |
+          How did this year compare to your previous years? With three years of
+          usage or more we can start comparing yearly activity metrics.
+        compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
         donate_desc_html: |
           Thank you for being generous with your time, attention, expertise, and
@@ -6469,6 +6473,8 @@ en:
           include higher or lower level taxa, so an observation identified as
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
+        new_species_per_year: New Species / Year
+        new_species_per_year_by_date_added: By date added
         obs_in_year: Obs in %{year}
         # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: One-time
@@ -6488,6 +6494,8 @@ en:
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observations / Year
+        observations_per_year_by_date_observed: By date observed
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
@@ -6500,6 +6508,8 @@ en:
           we're also including streaks that ended this year).
         # Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Recurring
+        species_per_year: Species / Year
+        species_per_year_by_date_added: By date added
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat
