@@ -141,6 +141,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
   post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
+  delete "/provider_authorizations/:id" => 'provider_authorizations#destroy'
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
