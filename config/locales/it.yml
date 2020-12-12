@@ -5706,9 +5706,6 @@ it:
           o quelli del <a href="%{url}">Network di iNaturalist</a>
       year:
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
-        donate_desc_html: |
-          Grazie per il tuo tempo, la tua attenzione, la tua competenza e le tue donazioni! iNaturalist è un'iniziativa no profit congiunta della California Academy of Sciences e della National Geographic Society. È supportato da un <a href="%{team_url}">piccolo team</a> che si occupa del design e dell'ingenieria software per il web, per l'app mobile e per l'app <a href="%{seek_url}">Seek by iNaturalist</a>, oltre che della gestione del supporto alla comunità, delle collaborazioni e delle integrazioni che mantengono le cose in funzione (e che crescono rapidamente!). Il programma conta su numerose sovvenzioni e donazioni, compresa la beneficenza da parte di meno dello 0,2% dei collaboratori. Siamo particolarmente grati ai sostenitori mensili, le cui donazioni ricorrenti ci aiutano a fare progetti per il futuro. Puoi fare una donazione in più di 30 valute per sostenere le operazioni base di iNaturalist.
-          Grazie a tutti per aver reso il 2019 il miglior anno iNaturalist di sempre!
         inaturalist_network: Il Network di iNaturalist
         inaturalist_network_desc: |
           Guarda il Bilanco dell'Anno per i membri del Network iNaturalist.
@@ -5738,8 +5735,6 @@ it:
         observation_streaks: Sequenze di Osservazioni
         observation_streaks_color_desc: |
           Il colore rappresenta il numero di giorni in scala logaritmica:
-        observation_streaks_desc: |
-          Una sequenza di osservazioni è un periodo di tempo in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate.
         stats_generated_datetime: Statistiche generate il %{datetime}
         store_prompt: |
           Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!
