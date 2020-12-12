@@ -920,6 +920,7 @@ bg:
   devise_unlock_instructions_click_the_link: |
     Щракнете препратката по-долу, за да отключите акаунта си
   devise_unlock_instructions_unlock: Отключете акаунта си
+  did_you_photos_flickr?: Качихте ли някакви снимки на Flickr?
   disable: Изключване
   disable_comments: Изключи коментарите
   disable_comments_desc: Забрани на хората да добавят нови коментари
@@ -935,6 +936,7 @@ bg:
   do_not_show_this_message_again: Не показвай това събщение повече
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Може би изучавате нематодите? Или сте най-изтъкнатият експерт по таксономия на веслоногите? Може би просто се захласвате по красивите цветя? Попълването на профила Ви му придава по-личен характер и способства за установяване на Вашият авторитет когато помагате на други хора с разпознаването.
+  doesnt_have_default_photo: все още няма илюстрираща снимка
   doh_something_went_wrong: Ох, нещо се обърка.
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
@@ -1008,6 +1010,7 @@ bg:
   endemic_to_x: "Ендемичен за %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
+  error_updating_photo: "Грешка при обновяване на снимката: %{photo_errors}"
   establishment:
     endemic: ендемичен
     establishment: Заселване
@@ -1048,6 +1051,7 @@ bg:
   facebook: Фейсбук
   facebook_account_information: Информация за вашия акаунт на Facebook
   facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
+  failed_to_repair_photo: "Неуспешно възстановяване на снимка: %{errors}"
   'false': 'Невярно'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Харесвания
@@ -1142,6 +1146,7 @@ bg:
   flags_for_x_html: Маркер за %{x}
   flags_on_users_content: "Маркери на съдържанието на %{user}"
   flickr_account_information: Информация за Вашия акаунт на Flickr
+  flickr_has_no_creative_commons: Flickr няма снимки с лиценз Криейтив комънс от това място.
   flickr_needs_to_confirm: "Flickr трябва да потвърди, че искате да свържете акаунта си с %{site_name}."
   flickr_tags: Flickr етикети
   follow: Следвай
@@ -1176,6 +1181,7 @@ bg:
   fungi:
     one: гъба
     other: гъби
+  generate_taxonomic_tags_for_flickr: Генерирай таксономични етикети за снимките си от Flickr
   generate_widget: Генериране на приставка
   generate_your_stats: Генерирай своята статистика
   Genus: Род
@@ -1219,6 +1225,8 @@ bg:
   header_your_identifications: Вашите разпознавания
   header_your_projects: Вашите проекти
   header_your_profile: Вашият профил
+  heads_up_this_photo_has_been_flagged: "ВНИМАНИЕ: снимката е била маркирана."
+  heads_up_this_photo_is_already_associated_with: "Внимание: тази снимка вече е свързана с <a target='_blank' href='%{url}'>друго наблюдение</a>"
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   help_support_inaturalist: "Подкрепете iNaturalist"
@@ -1265,6 +1273,7 @@ bg:
   if_your_project_is: Ако проектът е за конкретно място, задайте координати чрез щракване върху картата или ги въведете ръчно.
   image_must_be_exactly: изображението трябва да бъде точно 950 пиксела широко и най-много 400 пиксела високо
   import: Импортиране
+  import_all_photos_as_observations: Импортирай всички снимки като наблюдения
   import_date_time_location_taxonomic: "Извлечи дата, време, място, описание и таксономична информация от снимката."
   import_from_csv: Импорт от CSV
   import_from_other_photo_sites: Импорт от други фото сайтове
@@ -1427,6 +1436,7 @@ bg:
     turkish: турски
     waray_waray: варайски
   less: По-малко
+  licensed_site_photos: "Лицензирани снимки от %{site_name}"
   license: Лиценз
   licensing: Лицензиране
   life: Живот
@@ -1553,6 +1563,7 @@ bg:
   make_curator: Направи куратор
   make_it_a_life_list?: Направи житейски списък?
   make_manager: Направи управител
+  make_sure_the_default_photo_looks_good: Уверете се, че илюстриращата снимка изглежда добре при увеличение.
   mammals: бозайници
   manage_all_your_subscriptions: Управление на всичките Ви абонаменти
   manage_your_projects: Управление на проекти
@@ -1747,6 +1758,7 @@ bg:
   'no': 'Не'
   no_but_it_is_a_member_of_taxon: "Не, но е представител на %{taxon}"
   no_comments_yet: Няма коментари.
+  no_creative_commons_flickr_photos_tagged_x: 'Няма снимки на Flickr с лиценз Криейтив комънс и етикет „%{x}“'
   no_curators_set: Не са зададени куратори
   no_description: Липсва описание
   no_identifications: Няма разпознавания
@@ -2027,7 +2039,12 @@ bg:
   photo_hosting_accounts: Акаунти за съхранение на снимки
   photo_licensing: Лиценз на снимката
   photo_type: Тип снимка
+  photo_urls_repaired: Връзките на снимките бяха поправени
+  photos_chosen_for_this_taxon: Снимки избрани за този таксон
   photos_from: Снимки от
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Снимките са заключени
+  photos_locked_desc: Само персоналът може да променя илюстриращите снимки за този таксон
   photos_of_taxon_html: "Снимки на %{taxon}"
   photos_or_sounds: Снимки или звуци
   photos_or_sounds?: Снимки или звуци?
@@ -2604,12 +2621,15 @@ bg:
   remove_observations:
     one: Премахни 1 наблюдение?
     other: Премахни %{count} наблюдения?
+  remove_photo: Премахни снимката
   remove_relationship_caps: ПРЕМАХНИ ВЗАИМООТНОШЕНИЕ
   remove_relationship_question: Премахни взаимоотношение?
   remove_tags: Премахване на етикети
   removed: Премахнато
   removing: "Премахване..."
   reorder_by_taxonomy: Пренареди според таксономия
+  repair_doesnt_work_for_that_kind_of_photo: Възстановяването не е възможно за такива снимка
+  repair_external_photos: Възстанови външни снимки
   reptiles: влечуги
   required: задължително
   required_: Задължително
@@ -2757,6 +2777,7 @@ bg:
     Някои от наблюденията нямат аудио/визуални свидетелства или разпознаване
   some_observations_are_missing_media_or_identifications_desc: |
     Наблюдения без визуални или аудио свидетелства, няма да бъдат видими по подразбиране при търсене. А тези без никакво разпознаване, може да не бъдат намерени от експертите преглеждащи конкретни таксони. Дори и най-общо разпознаване като „Растение“, може да помогне на ботаник да намери наблюдението и да помогне с разпознаването му.
+  some_of_those_photos_couldnt_be_saved: "Някои от тези снимки не можаха да бъдат съхранени: %{error}"
   some_other_reason: Други причини, които можете да обясните по-долу.
   duplicate_observation_flag_warning: |
     При дублирани наблюдения, моля обърнете се към наблюдателя за разрешаване на проблема, вместо да добавяте маркер. Кураторите на сайта не могат да изтриват наблюдения.
@@ -2930,6 +2951,7 @@ bg:
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> наблюдавано от
   taxon_observed_by_user: "%{taxon}, наблюдавано от %{user}"
+  taxon_photos_updated: Снимките на таксона бяха обновени!
   taxon_ranks: Таксономични рангове
   taxon_removed_from_list: Таксонът е премахнат от списъка.
   taxon_scheme: Таксономична схема
@@ -2970,6 +2992,7 @@ bg:
   the_below_items_are_needed_to_achieve: |
     Долните елементи са необходими за достигане на <span className="bold">Изследователско качество:</span>
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
+  the_following_photos_have_been_tagged: "Следните снимки бяга тагнати:"
   the_people_of_inat: "Хората на %{site_name}"
   the_user_x_has_been_suspended: "Потребителят %{user} беше запориран"
   the_user_x_has_been_unsuspended: "Потребителят %{user} беше възстановен"
@@ -2996,6 +3019,7 @@ bg:
     other: Това наблюдение се използва на %{count} сайта
   this_observation_is_research_grade: Това наблюдение е с Изследователско качество!
   this_observation_was_created_using: "Това наблюдение е създадено със:"
+  this_photo_is_already_associated: Тази снимка вече е свързана с едно от Вашите наблюдения.
   this_place_has_no_check_list: "Това място няма видов списък."
   this_taxon_concept_is_inactive: този таксон е неактивен
   this_taxon_has_no_default_photo: Този таксон няма примерна снимка!
@@ -3066,9 +3090,11 @@ bg:
   updated_by: Обновено от
   updated_by_user_on_date_html: Обновено от %{user} на %{date}
   updated_daily: Обновявано ежедневно
+  updated_photo: Обновена снимка
   upload: Качване
   upload_a_csv_file: Качи CSV файл
   upload_new_photo: Качи нова снимка
+  upload_photo: Качи снимка
   uploaded_by: Качено от
   uploader:
     errors:
@@ -3156,6 +3182,7 @@ bg:
   view_field_options: Виж възможните полета
   view_flags_for_x_html: "Виж маркерите за %{x}"
   view_full_observation: Виж цялото наблюдение
+  view_full_size_photo: Виж снимката в пълен размер
   view_invitation: Виж поканата
   view_journal: Виж дневника
   view_leaderboard_from_last_month: Виж водачеството от миналия месец
@@ -3208,6 +3235,7 @@ bg:
   we_can_only_understand_csv_in: Разбираме CSV само в следния формат
   we_couldnt_find_a_user: Не намерихме потребител с такъв имейл адрес.
   we_couldnt_find_a_user_with_that_activation_code: "Не намерихме потребител с такъв код за активиране. Може би вече сте активирали акаунта си, моля опитайте се да влезете."
+  we_didnt_find_any_photos: Не намерихме никакви снимки по зададените думи за търсене.
   we_have_no_conservation_status_for_this_taxon: Нямаме данни за природозащитния статут на този таксон
   we_have_no_establishment_data_for_this_taxon: "Нямаме данни за начина на заселване на този таксон"
   weather: Време
@@ -3304,8 +3332,10 @@ bg:
   you_cant_delete_observation_fields_that_people_are_using: "Не можете да изтривате полета (за наблюдения), които хората използват"
   you_cant_do_that_for_the_default_check_list_place: Не можете да правите това за подразбиращия се видов списък на място!
   you_cant_leave_a_project_you_created: Не можете да напуснете проект, който самите Вие сте създали.
+  you_cant_rotate_photos_hostde_outside: "Не можете да завъртате снимки, които не се съхраняват на %{site_name}."
   you_curate_a_project_that_contains_this_observation_desc: |
     Можете да виждате замаскираните координати на наблюдение, когато то е част от проект който курирате и наблюдателят е решил да сподели координатите с кураторите на проекта.
+  you_didnt_select_any_photos_to_tag: Не сте избрали никакви снимки за тагване!
   you_dont_have_permission_to_edit_those_photos: Нямате права за редактиране на тези снимки.
   you_faved_this: Вие харесахте това!
   you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
@@ -3488,10 +3518,24 @@ bg:
         subject: Променени изисквания към наблюдения за проекта %{project}
         you_can_change_html: |-
           Можете да промените настройките си или да напуснете проекта на <a href="%{url}">страницата на проекта</a>.
+      photos_missing:
+        subject: Някои снимки се нуждаят от възстановяване
+        we_have_been_housekeeping: |
+          При извършена поддръжка на сайта, открихме снимки свързани с Ваши наблюдения, които вече не са достъпни на оригиналния източник. Снимките се съхраняват на %{providers}.
+        we_would_like_to_remove: |
+          Бихме искали да премахнем всички неработещи препратки към снимки в близкото бъдеще, но не бихме искали да премахнем нещо, което може да бъде възстановено. Възможно е някои от тези снимки все още да съществуват на външния сървър и да могат да бъдат възстановени. Някои снимки може да са били качени чрез свързване на Вашия <a href='%{account_url}'>акаунт на %{site_name}</a> към друг акаунт за съхранение на снимки и тази връзка може да е изтекла и да се нуждае от опресняване.
+        you_can_attempt_repair: |
+          Можете да опитате да възстановите снимките като посетите страницата на снимката и щракнете на препратката „%{repair_link_text}“. Ако знаете, че снимката вече не съществува, можете да я изтриете.
+        please_address: |
+          Моля, погрижете се за тези проблеми <b>през следващите 30 дни</b>. След 30 дни ще започнем да премахваме нефункциониращите снимки от iNaturalist. Всичките Ви наблюдения ще си останат. Но ще бъдат преоценени след премахването на снимките и е възможно някои наблюдения с Изследователско качество да се променят на Тривиално качество, ако са останали без никакви снимки.
+        we_included_links: |
+          Добавили сме препратки към всички засегнати снимки по-долу.
       users_updates_suspended:
         message: |
           От известно време не сте били активни в %{site_name}, затова преустановихме вашите абонаменти за обновления. За да възобновите получаването на обновления за активността на сайта, моля <a href="%{login_url}">влезте в акаунта си</a> отново.
     photos:
+      forbidden_notice_html: |
+        В момента нямаме разрешение за достъп до тези снимки. Може да се наложи да разкачите и наново да свържете акаунта от <a href="/users/edit">настройките си</a> за да възобновите достъпа ни.
       show:
         view_original_html: |
           Можете да видите оригинала тук: <a href="%{url}">%{url}</a>. Моля, оставете маркерите за нарушение на авторски права неразрешени, ако снимката наистина е в нарушение.
@@ -3724,9 +3768,6 @@ bg:
           или чрез сайтове от <a href="%{url}">Мрежата на iNaturalist</a>
       year:
         donate_title: "Специални благодарности на всичките ни поддръжници"
-        donate_desc_html: |
-          Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество.
-          Поддържа се от <a href="%{team_url}">малък екип</a>, който разработва целия дизайн и софтуер за уебсайта, мобилните приложения, включително <a href="%{seek_url}">Seek by iNaturalist</a>, и освен това ръководи поддръжката на общността, сътрудничеството и интеграциите необходими за функционирането и разрастването на платформата. А тя разчита на множество субсидии и дарения, включително на благотворителни дарения на по-малко от 0,2% от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие. Можете да дарите в повече от 30 валути, за да поддържате основната дейност на iNaturalist. Благодарим на всички, които превърнаха 2019-та в най-успешната година за iNaturalist досега!
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
@@ -3767,6 +3808,12 @@ bg:
           "Life Stage=pupa": Какавида
           "Life Stage=adult": Възрастен
           unannotated: Без анотация
+        max_photos_desc: |
+          Един таксон може да има най-много %{max} снимки. За да добавите нови снимки, трябва да премахнете някои от старите.
+        photo_chooser_modal_desc: |
+          Чрез влачене можете да добавяте снимки от ляво или да ги пренареждате тук.
+        photo_chooser_modal_explanation: |
+          Имайте предвид, че страницата на таксона ще показва снимки както на таксона, така и на негови подтаксони. Снимките на самия таксон ще се показват първи. Първата снимка ще е илюстрира таксона из целия сайт.
         rare_desc: Най-малко наблюдаваните застрашени таксони
         rare_in_place_desc_html: Най-малко наблюдаваните застрашени таксони във <a href="%{url}">%{place}</a>
         trending_desc: Най-наблюдаваните таксони през последния месец
@@ -4335,6 +4382,11 @@ bg:
             name:
               bad_format: |
                 може да съдържа единствено стандартни латински символи, тирета, интервали и ×; имайте предвид, че предполагаеми таксони и култивари не са позволени
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                не може да има повече от %{max} снимки
         user:
           attributes:
             login:
