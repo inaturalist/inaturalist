@@ -5684,10 +5684,6 @@ es:
           o <a href="%{url}">la red iNaturalist</a>
       year:
         donate_title: "Gracias a todos nuestros colaboradores"
-        donate_desc_html: |
-          ¡Gracias por ser tan generoso con su tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la Academia de Ciencias de California y la Sociedad Geográfica Nacional.
-          Es sostenido por un equipo <a href="%{team_url}">pequeño</a> que realiza todo el diseño y ingeniería de software para web, móvil, y <a href="%{seek_url}">Búsqueda de iNaturalist</a>, además de administrar el apoyo de la comunidad, colaboraciones e integraciones que mantienen el proyecto en funcionamiento (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, incluyendo donaciones de beneficencia de menos del 0.2% de los colaboradores. Agradecemos especialmente a los Donadores Mensuales, cuyos regalos recurrentes nos ayudan a planear para el futuro. Puedes donar en más de 30 monedas para apoyar las operaciones centrales de iNaturalist.
-          ¡Gracias a todos por hacer del 2019 el año más grande de iNaturalist hasta la fecha!
         inaturalist_network: Red de iNaturalist
         inaturalist_network_desc: |
           Echa un vistazo a la Revisión del Año para miembros de la Red de iNaturalist.
@@ -5731,8 +5727,6 @@ es:
         observation_streaks: Racha de Observaciones
         observation_streaks_color_desc: |
           El color representa el número de días en una escala logarítmica:
-        observation_streaks_desc: |
-          Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.
         stats_generated_datetime: Estadísticas generadas el %{datetime}
         store_prompt: |
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
