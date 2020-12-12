@@ -82,6 +82,11 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
     const connectForm = (
       <form action={AUTH_PROVIDER_URLS[appKey]} method="post" target="_blank">
+        <input
+          type="hidden"
+          name="authenticity_token"
+          value={$( "meta[name=csrf-token]" ).attr( "content" )}
+        />
         <button
           type="submit"
           className="btn btn-default"
