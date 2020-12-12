@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+import _ from "lodash";
 
 /* global AUTH_PROVIDER_URLS */
 /* global AUTH_PROVIDER_NAMES */
@@ -19,7 +20,7 @@ const Applications = ( { showModal, apps, providerApps } ) => {
     // we need to display it under connected apps with an option to connect
     // if an app is already in their provider_authorizations list
     // the user will see an option to disconnect
-    Object.keys( AUTH_PROVIDER_URLS ).forEach( app => {
+    _.difference( Object.keys( AUTH_PROVIDER_URLS ), userAppNames ).forEach( app => {
       if ( !userAppNames.includes( AUTH_PROVIDER_NAMES[app] ) ) {
         connectedApps.push( {
           id: null,
@@ -50,7 +51,11 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
     return (
       <tr key={name}>
-        <td className="col-xs-4 borderless table-row">{name}</td>
+        <td className="col-xs-4 borderless table-row">
+          <a href={`/oauth/applications/${id}`}>
+            {name}
+          </a>
+        </td>
         <td className="col-xs-4 borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
         <td className="col-xs-4 borderless table-row">
           <button
@@ -92,8 +97,8 @@ const Applications = ( { showModal, apps, providerApps } ) => {
     );
 
     return (
-      <tr key={name}>
-        <td className="col-xs-4 borderless table-row">{name}</td>
+      <tr key={AUTH_PROVIDER_NAMES[name]}>
+        <td className="col-xs-4 borderless table-row">{AUTH_PROVIDER_NAMES[name]}</td>
         <td className="col-xs-4 borderless table-row">{date}</td>
         <td className="col-xs-4 borderless table-row">
           {app.created_at ? disconnectButton : connectForm}
@@ -123,13 +128,13 @@ const Applications = ( { showModal, apps, providerApps } ) => {
       )}
       <div>
         <h4>{I18n.t( "connected_accounts_titlecase" )}</h4>
-        <p className="text-muted app-description-width">{I18n.t( "connected_accounts_description" )}</p>
+        <p className="text-muted">{I18n.t( "connected_accounts_description" )}</p>
         {createTable( connectedApps )}
       </div>
       {externalApps.length > 0 && (
         <div>
           <h4>{I18n.t( "external_applications" )}</h4>
-          <p className="text-muted app-description-width">{I18n.t( "external_applications_description" )}</p>
+          <p className="text-muted">{I18n.t( "external_applications_description" )}</p>
           {createTable( externalApps, I18n.t( "revoke" ) )}
         </div>
       )}

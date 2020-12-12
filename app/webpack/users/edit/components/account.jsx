@@ -47,32 +47,22 @@ const Account = ( {
     </div>
   );
 
-  const createINatAffiliationList = ( ) => {
-    const menuItems = sites.map( site => {
-      const { id, name } = site;
+  const createINatAffiliationList = ( ) => sites.map( site => {
+    const { id, name } = site;
 
-      return (
-        <MenuItem
-          key={`inat-affiliation-logo-${id}`}
-          eventKey={id}
-          className="inat-affiliation-width"
-        >
-          <span className="flex-no-wrap custom-dropdown-width">
-            {showNetworkLogo( id, site.icon_url )}
-            <div className="text-muted">{name}</div>
-            {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-          </span>
-        </MenuItem>
-      );
-    } );
-
-    // add a MenuItem divider between all the first and last items
-    // using this instead of my own div because it's automatically styled
-    // to be the same width as the menu
-    return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
-    ) ).reduce( ( a, b ) => a.concat( b ) );
-  };
+    return (
+      <MenuItem
+        key={`inat-affiliation-logo-${id}`}
+        eventKey={id}
+      >
+        <span className="flex-no-wrap">
+          {showNetworkLogo( id, site.icon_url )}
+          <div className="text-muted">{name}</div>
+          {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+        </span>
+      </MenuItem>
+    );
+  } );
 
   return (
     <div className="row">
@@ -118,7 +108,7 @@ const Account = ( {
       <div className="col-md-1" />
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-          <div className="stacked">
+          <div className="stacked" id="AffiliationList">
             <DropdownButton
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}

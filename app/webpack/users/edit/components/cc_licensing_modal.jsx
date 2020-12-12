@@ -53,7 +53,7 @@ const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
       onHide={onClose}
     >
       <Modal.Header closeButton>
-        <Modal.Title>{I18n.t( "creative_commons_licenses" )}</Modal.Title>
+        <Modal.Title>{I18n.t( "about_license_options" )}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="row">

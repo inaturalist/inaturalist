@@ -216,6 +216,7 @@ en:
   # about_establishment_desc key or
   # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: About Establishment Means
+  about_license_options: About License Options
   about_licenses: About licenses
   about_muting: About Muting
   # Header for a section describing taxon names
@@ -1137,7 +1138,6 @@ en:
   created_on: Created on
   creating_your_account: "Creating your account..."
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
-  creative_commons_licenses: Creative Commons Licenses
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: Critically Endangered
   css_description: This will get included after all other css on the page.
@@ -4042,6 +4042,8 @@ en:
   suggest_an_identification: Suggest an Identification
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   suggestions: Suggestions
+  suitable_for_the_global_biodiversity_information_facility: Suitable for the Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
   support_inaturalist: Support iNaturalist
@@ -4349,6 +4351,10 @@ en:
     associated stats`, e.g. rejecting taxa that are not within the list taxon
     or aren't of the selected rank. It will not add any new taxa. It may take
     a few minutes.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    This will remove iNaturalist's ability to access this account on your behalf 
+    until you grant access again. You may need to change your settings on the 
+    external site to completely prevent access.
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year

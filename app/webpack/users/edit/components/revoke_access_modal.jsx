@@ -45,7 +45,11 @@ const RevokeAccessModal = ( {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{I18n.t( "this_will_sign_you_out_current_session" )}</p>
+        <p>
+          {appType === "connectedApp"
+            ? I18n.t( "this_will_remove_inaturalists_ability_to_access_this_account" )
+            : I18n.t( "this_will_sign_you_out_current_session" )}
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <div className="buttons">

@@ -30,7 +30,11 @@ $user-image-size: 65px;
   text-decoration: underline;
 }
 
-.custom-dropdown-width {
+.affiliation-option {
+  min-width: 275px;
+}
+
+.license-option {
   min-width: 275px;
 }
 
@@ -393,6 +397,20 @@ select.inherit-width {
   background-color: #2e78b8;
 }
 
-.app-description-width {
-  max-width: 419px;
+#AffiliationList {
+  button.dropdown-toggle, .dropdown-menu > li > a > span {
+    min-width: 275px;
+  }
+
+  .btn.btn-default {
+    padding: 0px 12px;
+    min-height: 36px;
+  }
+
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
 }

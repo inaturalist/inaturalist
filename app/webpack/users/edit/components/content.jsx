@@ -44,20 +44,20 @@ const Content = ( {
   ) );
 
   const gbifTag = ( ) => (
-    <div className="license-tag">
+    <div className="license-tag" title={I18n.t( "suitable_for_the_global_biodiversity_information_facility" )}>
       {I18n.t( "gbif" )}
     </div>
   );
 
   const wikimediaTag = ( ) => (
-    <div className="license-tag wikimedia">
+    <div className="license-tag wikimedia" title={I18n.t( "suitable_for_wikipedia_and_other_wikimedia_foundation_projects" )}>
       {I18n.t( "wikimedia" )}
     </div>
   );
 
   const addTags = license => {
     const gbif = ["cc0", "cc-by", "cc-by-nc"];
-    const wikimedia = ["cc0", "cc-by", "cc-by-nc-sa"];
+    const wikimedia = ["cc0", "cc-by", "cc-by-sa"];
 
     if ( gbif.includes( license ) && wikimedia.includes( license ) ) {
       return (
@@ -129,7 +129,7 @@ const Content = ( {
     const caret = <div className="caret" />;
 
     const allRightsReserved = (
-      <div className="flex-no-wrap custom-dropdown-width">
+      <div className="flex-no-wrap license-option">
         {noLicenseText( )}
         {caret}
       </div>
@@ -140,7 +140,7 @@ const Content = ( {
     }
 
     return (
-      <div className="flex-no-wrap custom-dropdown-width">
+      <div className="flex-no-wrap license-option">
         {showLicenseImage( defaultLicense )}
         {showLicenseName( localizedName, defaultLicense )}
         {caret}
@@ -159,7 +159,7 @@ const Content = ( {
       const { code } = iNatLicenses[license];
 
       const allRightsReserved = (
-        <div className="flex-no-wrap custom-dropdown-width">
+        <div className="flex-no-wrap license-option">
           {noLicenseText( )}
           {profile[name] === code && checkmark}
         </div>
@@ -169,7 +169,7 @@ const Content = ( {
         <MenuItem
           key={`${name}-${license}`}
           eventKey={code}
-          className="custom-dropdown-width"
+          className="license-option"
         >
           {license === "c" ? allRightsReserved : (
             <span className="flex-no-wrap white-space">
