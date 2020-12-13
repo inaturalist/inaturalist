@@ -5640,7 +5640,12 @@ de:
           Erstellt mittels <a href="https://www.inaturalist.org">iNaturalist</a>
           oder <a href="%{url}">iNaturalist Network</a>-Webseiten
       year:
+        compare_desc: |
+          Wie verlief dieses Jahr im Vergleich zu den Vorjahren? Mit mindestens drei Jahren iNaturalist-Verwendung können wir anfangen, jährliche Aktivitätsmetriken zu vergleichen.
+        compared_to_previous_years: Mit früheren Jahren vergleichen
         donate_title: "Besonderer Dank an alle unsere Unterstützer"
+        donors: Spender
+        donors_guide_label_our_goal_is_1000: Unser Ziel sind 1000 regelmäßige Spender pro Monat
         inaturalist_network: iNaturalist-Netzwerk
         inaturalist_network_desc: |
           Schau dir den Jahresrückblick für die Mitglieder des iNaturalist-Netzwerks an.
@@ -5674,7 +5679,11 @@ de:
           Arten, die in diesem Jahr zum ersten Mal hinzugefügt wurden.
           Klick auf einen Monat, um einige der neuen Arten zu sehen, die in diesem Monat hinzugefügt wurden.
           Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
+        new_species_per_year: Neue Arten / Jahr
+        new_species_per_year_by_date_added: Nach Datum hinzugefügt
         obs_in_year: Beob in %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Einmalig
         percent_growth_in_year: "% Wachstum in %{year}"
         percent_of_total_growth: "% des Gesamtwachstums"
         publications_desc_html: |
@@ -5683,10 +5692,18 @@ de:
           <a href="%{url}">Alle %{numStudies} Studien anzeigen</a>
         publications_desc_short_html: |
           Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Beobachtungen / Jahr
+        observations_per_year_by_date_observed: Nach Beobachtungsdatum
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Beobachtungssträhnen
         observation_streaks_color_desc: |
           Die Farbe repräsentiert die Anzahl der Tage auf einer logarithmischen Skala:
+        observation_streaks_desc2: |
+          Eine Beobachtungssträhne ist ein Zeitraum, in dem jemand nach draußen gegangen ist und jeden Tag neue, verifizierbare Beobachtungen aufgenommen hat. Hier zeigen wir die längsten solche Strähnen, die in diesem Jahr begannen oder im Gange waren, als diese Statistiken erstellt wurden.
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Wiederkehrend
+        species_per_year: Arten / Jahr
+        species_per_year_by_date_added: Nach Hinzufügungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
