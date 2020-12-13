@@ -5705,7 +5705,15 @@ it:
           Create tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
           o quelli del <a href="%{url}">Network di iNaturalist</a>
       year:
+        compare_desc: |
+          Come è quest'anno in confronto ai tuoi anni precedenti? Con tre anni o più di utilizzo possiamo iniziare a confrontare le statistiche di attività annuali.
+        compared_to_previous_years: Confronta con Anni Precedenti
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
+        donate_desc_html: |
+          Grazie per il tuo tempo, la tua attenzione, la tua competenza e le tue donazioni! iNaturalist è un'iniziativa no profit congiunta della California Academy of Sciences e della National Geographic Society. È supportato da un <a href="%{team_url}">piccolo team</a> che si occupa del design e dell'ingenieria software per il web, per l'app mobile e per l'app <a href="%{seek_url}">Seek by iNaturalist</a>, oltre che della gestione del supporto alla comunità, delle collaborazioni e delle integrazioni che mantengono le cose in funzione (e che crescono rapidamente!). Il programma conta su numerose sovvenzioni e donazioni, compresa la beneficenza da parte di una piccolissima frazione dei collaboratori. Siamo particolarmente grati ai Sostenitori Sensili, le cui donazioni ricorrenti ci aiutano a fare progetti per il futuro. Puoi fare una donazione in moltissime valute per sostenere le operazioni base di iNaturalist.
+          Grazie a tutti per aver reso il %{year} il miglior anno iNaturalist di sempre!
+        donors: Donatori
+        donors_guide_label_our_goal_is_1000: Il nostro obiettivo è 1'000 donatori ricorrenti al mese
         inaturalist_network: Il Network di iNaturalist
         inaturalist_network_desc: |
           Guarda il Bilanco dell'Anno per i membri del Network iNaturalist.
@@ -5722,7 +5730,11 @@ it:
         new_species_desc_html: |
           Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.
           <i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.
+        new_species_per_year: Nuove Specie / Anno
+        new_species_per_year_by_date_added: Per data di inserimento
         obs_in_year: Osservazioni nel %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Una-volta
         percent_growth_in_year: "% Crescita in %{year}"
         percent_of_total_growth: "% di crescita totale"
         publications_desc_html: |
@@ -5731,10 +5743,18 @@ it:
           <a href="%{url}">Visualizza tutti gli %{numStudies} studi</a>
         publications_desc_short_html: |
           Clicca sui grafici "a fiore" per maggiori informazioni sul significato di numeri e colori. I dati di impatto per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici del <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Osservazioni / Anno
+        observations_per_year_by_date_observed: Per data di osservazione
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Sequenze di Osservazioni
         observation_streaks_color_desc: |
           Il colore rappresenta il numero di giorni in scala logaritmica:
+        observation_streaks_desc2: |
+          Una sequenza di osservazioni è un periodo di almeno 5 anni in cui qualcuno è uscito ed ha registrato nuove osservazioni verificabili ogni singolo giorno. Qui presentiamo le sequenze più lunghe iniziate quest'anno o quelle che sono in corso mentre queste statistiche vengono generate (per i singoli utenti stiamo includendo anche le sequenze finite quest'anno).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Ricorrente
+        species_per_year: Specie / Anno
+        species_per_year_by_date_added: Per data di inserimento
         stats_generated_datetime: Statistiche generate il %{datetime}
         store_prompt: |
           Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!
