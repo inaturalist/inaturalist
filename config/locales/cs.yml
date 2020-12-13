@@ -5952,7 +5952,10 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        compared_to_previous_years: Porovnat s předchozími roky
         donate_title: "Zvláštní poděkování všem našim podporovatelům"
+        donors: Dárci
+        donors_guide_label_our_goal_is_1000: Naším cílem je 1000 pravidelných dárců měsíčně
         inaturalist_network: síť iNaturalist
         inaturalist_network_desc: |
           Podívejte se na rok v recenzi pro členy sítě iNaturalist.
@@ -5971,7 +5974,11 @@ cs:
           Druhy, které byly letos poprvé pozorovány na %{site_name}. Zobrazeno %{x}z<a href="%{url}">%{y} druyh</a>.
         new_species_desc_html: |
           Druhy přidané poprvé v tomto roce. Kliknutím na měsíc zobrazíte některé nové druhy přidané během daného měsíce. Můžete také zobrazit celkový akumulovaný druh nebo přesunout kurzor v čase, abyste viděli další nově pozorované druhy. Tento graf ukazuje druhy, jejichž pozorování je ověřitelné podle měsíce, kdy byly odeslány na %{site_name} (a ​​ne měsíc jejich pozorování). Nezahrnuje taxony vyšší nebo nižší úrovně, takže pozorování identifikované jako savec se nepočítá a pozorování poddruhu <i>Canis lupus</i> <i>arctos</i> se bude počítat pouze jako <i>Canis lupus</i>.
+        new_species_per_year: Nové druhy / rok
+        new_species_per_year_by_date_added: Dle data přidání
         obs_in_year: Pozorování v %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Jednorázově
         percent_growth_in_year: "% Růst v %{year}"
         percent_of_total_growth: "% z celkového růstu"
         publications_desc_html: |
@@ -5987,10 +5994,16 @@ cs:
           <a href="https://www.altmetric.com"> Altmetric </a>. Informace
           o využití dat se svolením našich přátel na internetu
           <a href="https://www.gbif.org/"> Globální informační středisko o biodiverzitě </a>.
+        observations_per_year: Pozorování / rok
+        observations_per_year_by_date_observed: Dle data pozorování
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Série pozorování
         observation_streaks_color_desc: |
           Barva představuje počet dní v logaritmické stupnici:
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Pravidelně
+        species_per_year: Druhy / rok
+        species_per_year_by_date_added: Dle data přidání
         stats_generated_datetime: Statistiky generované na %{datetime}
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
