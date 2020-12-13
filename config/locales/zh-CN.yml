@@ -5039,16 +5039,22 @@ zh-CN:
         website_desc_html: |
           通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a href="%{url}">iNaturalist网络</a>网站创建
       year:
+        compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
+        donors: 捐赠者
         inaturalist_network: iNaturalist 网络
         inaturalist_network_desc: |
           查看iNaturalist Network成员的年评。
         include_usa: 包括美国
         growth_by_country_title: 按国家/地区显示增长
         growth_title: 增长
+        new_species_per_year_by_date_added: 按添加日期
         obs_in_year: 在%{year}的观察
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: 一次性
         percent_growth_in_year: "% 增长在%{year}"
         percent_of_total_growth: "% 总增长"
+        observations_per_year_by_date_observed: 按观察日期
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: 观察记录的规则
         observation_streaks_color_desc: |
