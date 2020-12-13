@@ -5546,7 +5546,13 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        compare_desc: |
+          Hvordan ble dette året sammenlignet med dine foregående år? Med tre år med
+          bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
+        compared_to_previous_years: Sammenlign med foregående år
         donate_title: "Særlig takk til alle våre støttere"
+        donors: Givere
+        donors_guide_label_our_goal_is_1000: Vårt mål er 1000 faste givere per måned
         inaturalist_network: iNaturalist-nettverk
         inaturalist_network_desc: |
           Sjekk årsoversiktet for medlemmer av iNaturalist-nettverket.
@@ -5562,7 +5568,11 @@ nb:
           Arter som ble observert for første gang på %{site_name} dette året. Viser %{x} av <a href="%{url}">%{y} arter</a>.
         new_species_desc_html: |
           Arter som ble lagt til for første gang dette året. Trykk på en måned for å se noen av de nye artene som ble lagt til i den måneden. Du kan også se det sammenlagte antallet, eller skyve knappen tilbake i tid for å se andre nye observasjoner av arter. Denne grafen viser arter fra verifiserbare observasjoner etter hvilken måned de ble lastet opp til %{site_name} (ikke måneden de ble observert i). Den inkluderer ikke taksa sv høyere eller lavere nivå, så en observasjon identifisert som Mammalia telles ikke, og en observasjon av <i>Canis lupus</i> ssp. <i>arctos</i> telles bare som <i>Canis lupus</i>.
+        new_species_per_year: Nye arter / år
+        new_species_per_year_by_date_added: Etter dato lagt til
         obs_in_year: Obs i %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Engangs
         percent_growth_in_year: "% vekst i %{year}"
         percent_of_total_growth: "% av total vekst"
         publications_desc_html: |
@@ -5571,10 +5581,22 @@ nb:
           <a href="%{url}">Vis alle %{numStudies} studier</a>
         publications_desc_short_html: |
           Trykk på blomstergrafene for mer informasjon om hva tallene og fargene betyr. Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+        observations_per_year: Observasjoner / år
+        observations_per_year_by_date_observed: Etter dato observert
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observasjonsserier
         observation_streaks_color_desc: |
           Farge representerer antall dager på en logaritmisk skala:
+        observation_streaks_desc2: |
+          En observasjonsserie er en periode på minst fem dager der noen
+          kom seg ut og registrerte nye, verifiserbare observasjoner hver eneste
+          dag. Her viser vi de lengste seriene som startet i år eller
+          pågikk da disse statistikkene ble generert (for enkeltbrukere
+          inkluderer vi også serier som endte i år).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Gjentakende
+        species_per_year: Arter / år
+        species_per_year_by_date_added: Etter dato lagt til
         stats_generated_datetime: Statistikker generert på %{datetime}
         store_prompt: |
           Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!
