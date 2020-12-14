@@ -2862,12 +2862,16 @@ bg:
   submitted: Публикувано
   subscribe_to_a_taxon: Абонирай се за таксон
   subscribe_to_a_place: Абонирай се за място
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Абонирай се%{tag_end} за коментари към този маркер"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Абонирай се%{tag_end} за коментари към тази публикация"
   subscribe_to_observations_in_a_taxon: Абонирай се за всички публикувани наблюдения на вид или група от организми (например „скорпиони“).
   subscribe_to_observations_in_a_place: Абонирай се за всички наблюдения от това място. Можете да добавите и филтър по таксон (например „скорпиони от България“).
   subscribe_to_places_to: |
     Абонирайте се за места за да получавате известия за нови наблюдения направени там. Известията от хора които следвате и неща които сте коментирали също се управляват чрез „абонаменти“, така че ако искате да видите за какво сте абонирани или да се отпишете от нещо, щракнете „Управление на абонаменти“ по-долу. Можете също да се отпишете от нещо и като посетите страницата му на сайта.
   subscribe_to_this: Абонирай се за това
+  subscribe_to_x_from_this_y_html: |
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Абонирай се</a>
+    за %{x} от този %{y}.
   subscriptions: Абонаменти
   subscriptions_arent_available_for: Абонирането не е достъпно за места нямащи граници.
   successfully_changed_your_password: Паролата е обновена успешно.
