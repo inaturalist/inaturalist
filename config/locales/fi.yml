@@ -2139,7 +2139,7 @@ fi:
   most_agree: suurin osa samaa mieltä
   most_browser_print_pdf: "Huomaa: useimmilla selaimilla on mahdollisuus tulostaa PDF-muotoon"
   most_disagree: suurin osa eri mieltä
-  most_comments_and_faves: Eniten kommentoidut ja suositellut
+  most_comments_and_faves: Eniten kommentteja ja suosikkimerkintöjä
   most_observations: Eniten havaintoja
   most_recent_observation_by_date_observed: Viimeisin varmistettavissa oleva havainto havaintopäivämäärän mukaan
   most_species: Eniten lajeja
@@ -3237,7 +3237,7 @@ fi:
   redo_search_in_map_area: Tee haku uudestaan kartalla
   refresh: Päivitä
   refreshing: päivitetään
-  regenerate_stats: Uudelleenluo tilastot
+  regenerate_stats: Luo tilastot uudelleen
   reject?: Hylkää?
   relative_observations: Vastaavat havainnot
   relationship: "Suhde"
@@ -3572,6 +3572,7 @@ fi:
   start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
   start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
   stats: Tilastot
+  stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?
@@ -4039,7 +4040,7 @@ fi:
   view_the_observation: Näytä havainnot
   view_user_observations: "Näytä käyttäjän %{user} havainnot"
   view_x: "Näytä %{x}"
-  view_year_stats_for_site: "Näytä %{site}in vuoden %{year} tilastot"
+  view_year_stats_for_site: "Näytä vuoden %{year} tilastot sivustolta %{site}"
   view_your_dashboard: Näytä kojelautasi
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Tarkastele kojelaudaltasi</a> lisää päivityksiä"
   view_your_inbox: Näytä saapuneet-kansiosi
@@ -5041,6 +5042,8 @@ fi:
         percent_of_total_growth: "% kokonaiskasvusta"
         observation_streaks_color_desc: |
           Väri kuvastaa päivien lukumäärää logaritmisella asteikolla:
+        sunburst_desc_html: |
+          Havaitut lajit sunburst-kaaviona. Kaavion keskellä on kaikki elämä, ja ulkokehällä lajit. Jokaisen kaaren koko on suhteessa havaintomäärään tästä taksonista. Värit vastaavat taksonien värejä (vihreä kasveille, punainen hyönteisille, sininen useimmille muille eläimille jne.). <strong>Klikkaa kaarta asettaaksesi tämä taksoni kaavion keskustaksi</strong>, tai <strong>klikkaa keskustaa siirtyäksesi hierarkiassa ylöspäin</strong>.
         translators_title: Kääntäjät
         translators_desc: |
           Tiesitkö, että iNaturalistin %{x_languages} on käännetty lähes kokonaisuudessaan sellaisten %{x_people} toimesta, jotka eivät välttämättä edes käytä palvelua. Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käänöksiä tänä vuonna mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, meidän%{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös saada tietoa kaikista kielenkääntämistä tukeneista henkilöistä aiemmiltakin vuosilta ja Transwikin henkilöistä meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodi repositorioissa.
@@ -5303,7 +5306,7 @@ fi:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
         observations_to_date: 'havaintoa tällä hetkellä'
-        species_observed: 'lajia havaittu'
+        species_observed: 'Havaitut lajit'
         people_signed_up: 'rekisteröitynyttä käyttäjää'
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
