@@ -172,27 +172,24 @@
   
   <fieldset class="last column span-11">
     <legend><%= t(:source) %></legend>
-    <% if taxon.name_provider.nil? || !taxon.creator_id.nil? -%>
+    <% if taxon.name_provider.blank? -%>
       <div class="last column span-7">
         <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
       </div>
-    <% else %>
-      <% unless taxon.source_identifier.blank? -%>
-        <div class="last column span-7">
-          <div class="description ui">
-            <%= t(:this_taxon_was_originally_imported_from) %>:
-          </div>
-          <p class="ui">
-            <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
-            <div class="description"><%= t :unique_identifier_of_this_taxon %></div>
-          </p>
-          
-          <p class="ui">
-            <%= f.text_field :source_url, :disabled => true, :class => "text" %>
-            <div class="description"><%= t :url_of_this_taxon_on_the_source_website %></div>
-          </p>
+    <% elsif !taxon.source_identifier.blank? %>
+      <div class="last column span-7">
+        <div class="description ui">
+          <%= t(:this_taxon_was_originally_imported_from) %>:
         </div>
-      <% end -%>
+        <p class="ui">
+          <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
+          <div class="description"><%= t :unique_identifier_of_this_taxon %></div>
+        </p>
+        <p class="ui">
+          <%= f.text_field :source_url, :disabled => true, :class => "text" %>
+          <div class="description"><%= t :url_of_this_taxon_on_the_source_website %></div>
+        </p>
+      </div>
     <% end -%>
   </fieldset>
 
