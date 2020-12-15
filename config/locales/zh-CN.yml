@@ -1241,7 +1241,7 @@ zh-CN:
   failed_to_repair_photo: "修复照片失败：%{errors}"
   failed_to_save_record: "保存记录失败。请重试。"
   failed_to_save_record_with_errors: "保存记录失败： %{errors}"
-  'false': '假'
+  'false': '否'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 喜爱
   Family: 家庭
@@ -1849,9 +1849,9 @@ zh-CN:
   locked_taxa_will_not_allow_new: 锁定的分类群不允许将新的分类群添加到它们中。因此，如果你锁定了两栖动物，并且有人试图从外部名称提供者那里导入<i>Rana catesbeiana</i>，那么将会创建新的分类单元，但它不能被分类为两栖动物。当发生这种情况时，新添加的分类群应该被打上标记，以引起馆长的注意。 这应该只适用于我们认为我们已经囊括了所有后代的分类群。馆长可以通过编辑分类单元并直接输入父ID来覆盖此项，但请考虑将新分类单元合并为现有分类单元。
   log_in: 登录
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="@login">登录</a>或<a href="@register">注册</a>以发表评论
+    <a href="/login">登录</a>或<a href="/signup">注册</a>以发表评论
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="@login">登录</a>或<a href="@register">注册</a>以添加鉴定
+    <a href="/login">登录</a>或<a href="/signup">注册</a>以添加鉴定
   log_scale_label: 日志
   login_slash_username: 登录 / 用户名
   logo:
@@ -2715,6 +2715,7 @@ zh-CN:
     argentina: 阿根廷
     armenia: 亚美尼亚
     aruba: 阿鲁巴
+    asia: 亚洲
     australia: 澳大利亚
     austria: 奥地利
     azerbaijan: 阿塞拜疆
@@ -3293,6 +3294,7 @@ zh-CN:
   save_place: 保存地点
   save_trip: 保存旅行
   saved: 已提交
+  saved_at_time: 保存于 %{time}
   saving: "正在保存..."
   saving_num_of_count_observations:
     other: 正在保存 %{num} 个观察，共 %{count} 个...
@@ -3825,7 +3827,7 @@ zh-CN:
   total_species_observed: 总计观察物种
   total_unique_observers: 总计独立观察者
   translated_languages: 翻译的语言
-  'true': '真'
+  'true': '是'
   trending: 趋向
   trends: 趋势
   trip_target_list_info: '本目标清单所涵盖的任何物种，如果在本次旅行的半径和持续时间内未被观察到，将被认为不出现。<a href="/pages/trips">了解更多细节</a>。'
@@ -4450,6 +4452,7 @@ zh-CN:
       list_view: 列表视图
       tree_view: 树形视图
       observed_species: 观察到的物种
+      observed_rank: 已被观察到%{rank}
       unobserved_species: 未被观察到的物种
       all_species: 所有物种
       all_unobserved_species: 所有未被观察到的物种
@@ -5036,22 +5039,26 @@ zh-CN:
         website_desc_html: |
           通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a href="%{url}">iNaturalist网络</a>网站创建
       year:
+        compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
+        donors: 捐赠者
         inaturalist_network: iNaturalist 网络
         inaturalist_network_desc: |
           查看iNaturalist Network成员的年评。
         include_usa: 包括美国
         growth_by_country_title: 按国家/地区显示增长
         growth_title: 增长
+        new_species_per_year_by_date_added: 按添加日期
         obs_in_year: 在%{year}的观察
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: 一次性
         percent_growth_in_year: "% 增长在%{year}"
         percent_of_total_growth: "% 总增长"
+        observations_per_year_by_date_observed: 按观察日期
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: 观察记录的规则
         observation_streaks_color_desc: |
           颜色表示在对数比例尺上的天数：
-        observation_streaks_desc: |
-          连续观察记录是在一段时间内，每天有人走出室外记录新的、可核实的观察结果。这里是我们展示的今年或者是在这些统计数据产生时正在进行的最长的连续记录。
         sunburst_desc_html: |
           观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
@@ -5247,8 +5254,6 @@ zh-CN:
           any: 任何
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
-        prefers_community_taxa_desc: |
-          %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
         project_settings_desc: |
           记住，这不会给项目提供访问您私有坐标或向您发送更新的权限。为了获得这些权限，您必须加入项目，或在个案中授予他们权限。
         search_place_help_html: |
