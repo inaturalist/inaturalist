@@ -248,6 +248,12 @@ select.inherit-width {
       padding-left: 25px;
     }
   }
+
+  .license-name {
+    width: 115px;
+    white-space: normal;
+    font-weight: bold;
+  }
 }
 
 .Pagination {
@@ -325,7 +331,7 @@ select.inherit-width {
 .license-tag {
   background-color: $inat-green;
   color:white;
-  padding: 4px !important;
+  padding: 2px 4px !important;
   font-size: 10px;
   font-weight: 600;
   margin-top: 2px;
@@ -434,4 +440,30 @@ select.inherit-width {
     white-space: normal;
     font-weight: bold;
   }
+}
+
+.license-row {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  min-height: 66px;
+}
+
+.license-image {
+  margin-right: 12px;
+}
+
+.no-license-description {
+  white-space: normal;
+  max-width: 233px;
+}
+
+.license-name {
+  width: 115px;
+  white-space: normal;
+  font-weight: bold;
+}
+
+.license-description {
+  margin-top: 9px;
 }

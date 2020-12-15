@@ -85,9 +85,7 @@ const Content = ( {
 
   const showLicenseName = ( localizedName, license ) => (
     <div>
-      <div className="license-name">
-        {I18n.t( `${localizedName}_name` )}
-      </div>
+      <div className="license-name">{I18n.t( `${localizedName}_name` )}</div>
       {addTags( license )}
     </div>
   );
