@@ -30,43 +30,6 @@ $user-image-size: 65px;
   text-decoration: underline;
 }
 
-.affiliation-option {
-  min-width: 275px;
-}
-
-.license-option {
-  min-width: 275px;
-}
-
-.default-title-custom-dropdown {
-  text-align: start;
-  display: inline-block;
-  vertical-align: middle;
-  min-width: 275px;
-  min-height: 63px;
-}
-
-.network-min-height {
-  min-height: 36px;
-}
-
-.inat-affiliation-logo {
-  max-height: 33px;
-  max-width: 135px;
-}
-
-.inat-affiliation-title {
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 5px;
-}
-
-.blue-checkmark {
-  color: #2e78b8;
-  position: absolute;
-  right: 10px
-}
-
 .centered-column {
   display: flex;
   flex-direction: column;
@@ -141,29 +104,6 @@ button.selected {
 .vl {
   border-left: 1px solid #eee;
   height: 522px;
-}
-
-.white-space {
-  white-space: normal;
-}
-
-#Content {
-  button.dropdown-toggle {
-    min-width: 275px;
-    min-height: 63px;
-    white-space: normal;
-    text-align: left;
-  }
-  div.caret {
-    position: absolute;
-    right: 10px;
-  }
-}
-
-.license-width {
-  width: 115px;
-  white-space: normal;
-  font-weight: bold;
 }
 
 .license {
@@ -397,20 +337,101 @@ select.inherit-width {
   background-color: #2e78b8;
 }
 
+.blue-checkmark {
+  color: #2e78b8;
+  position: absolute;
+  right: 10px
+}
+
 #AffiliationList {
-  button.dropdown-toggle, .dropdown-menu > li > a > span {
+  // current network only
+  button {
     min-width: 275px;
   }
 
-  .btn.btn-default {
-    padding: 0px 12px;
-    min-height: 36px;
+  .current-network {
+    display: flex;
+    align-items: center;
   }
 
+  .current-network-name {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // current network and dropdown logo
+  .network-logo {
+    max-height: 33px;
+    max-width: 135px;
+    margin-right: 12px;
+  }
+
+  // dropdown items
   li {
     border-bottom: 1px solid #e5e5e5;
     &:last-child {
       border: 0 transparent;
     }
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+  }
+}
+
+#LicenseDropdown {
+  // current license only
+  button.dropdown-toggle {
+    min-width: 275px;
+    min-height: 66px;
+    text-align: left;
+  }
+
+  .current-license {
+    display: flex;
+    align-items: center;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // current license and dropdown item license
+  .license-image {
+    margin-right: 12px;
+  }
+
+  .no-license-description {
+    white-space: normal;
+    max-width: 233px;
+  }
+
+  // dropdown items
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+    min-height: 66px;
+  }
+  
+  .license-name {
+    width: 115px;
+    white-space: normal;
+    font-weight: bold;
   }
 }

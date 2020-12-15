@@ -30,20 +30,15 @@ const Account = ( {
     )
   );
 
-  const showNetworkLogo = ( id, logo ) => (
-    <img
-      className="inat-affiliation-logo margin-right-medium"
-      alt={`inat-affiliation-logo-${id}`}
-      src={logo}
-    />
-  );
+  const showNetworkLogo = ( id, logo ) => <img className="network-logo" alt={`inat-affiliation-logo-${id}`} src={logo} />;
 
   const showCurrentNetwork = id => (
-    <div className="default-title-custom-dropdown network-min-height">
+    <div className="current-network">
       {showNetworkLogo( id, currentNetworkAffiliation.icon_url )}
-      <div className="text-muted inat-affiliation-title">
+      <div className="text-muted current-network-name">
         {sites.filter( site => site.id === id )[0].name}
       </div>
+      <div className="caret" />
     </div>
   );
 
@@ -55,11 +50,9 @@ const Account = ( {
         key={`inat-affiliation-logo-${id}`}
         eventKey={id}
       >
-        <span className="flex-no-wrap">
-          {showNetworkLogo( id, site.icon_url )}
-          <div className="text-muted">{name}</div>
-          {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-        </span>
+        {showNetworkLogo( id, site.icon_url )}
+        <div className="text-muted">{name}</div>
+        {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
       </MenuItem>
     );
   } );
@@ -113,6 +106,7 @@ const Account = ( {
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
               title={showCurrentNetwork( profile.site_id )}
+              noCaret
             >
               {createINatAffiliationList( )}
             </DropdownButton>

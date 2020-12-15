@@ -27,6 +27,9 @@ const Content = ( {
   handlePlaceAutocomplete,
   showModal
 } ) => {
+  const iNatLicenses = iNaturalist.Licenses;
+  const licenseList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
+
   const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
     <div className="radio" key={button}>
       <label className="radio-button">
@@ -59,45 +62,30 @@ const Content = ( {
     const gbif = ["cc0", "cc-by", "cc-by-nc"];
     const wikimedia = ["cc0", "cc-by", "cc-by-sa"];
 
-    if ( gbif.includes( license ) && wikimedia.includes( license ) ) {
-      return (
-        <div className="flex-no-wrap">
-          {gbifTag( )}
-          {wikimediaTag( )}
-        </div>
-      );
+    if ( !gbif.includes( license ) && !wikimedia.includes( license ) ) {
+      return null;
     }
 
-    if ( gbif.includes( license ) ) {
-      return (
-        <div className="flex-no-wrap">
-          {gbifTag( )}
-        </div>
-      );
-    }
-
-    if ( wikimedia.includes( license ) ) {
-      return (
-        <div className="flex-no-wrap">
-          {wikimediaTag( )}
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className="flex-no-wrap">
+        {gbif.includes( license ) && gbifTag( )}
+        {wikimedia.includes( license ) && wikimediaTag( )}
+      </div>
+    );
   };
 
   const showLicenseImage = license => (
     <img
       id="image-license"
-      src={iNaturalist.Licenses[license].icon_large}
+      src={iNatLicenses[license].icon_large}
       alt={license}
-      className="margin-right-medium"
+      className="license-image"
     />
   );
 
   const showLicenseName = ( localizedName, license ) => (
     <div>
-      <div className="license-width">
+      <div className="license-name">
         {I18n.t( `${localizedName}_name` )}
       </div>
       {addTags( license )}
@@ -108,7 +96,7 @@ const Content = ( {
     <div>
       <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
       <p
-        className="text-muted small white-space"
+        className="text-muted small no-license-description"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: I18n.t( "you_retain_full_copyright", {
@@ -119,73 +107,41 @@ const Content = ( {
     </div>
   );
 
-  const showDefaultLicense = license => {
-    const iNatLicenses = iNaturalist.Licenses;
-    const selected = Object.keys( iNatLicenses ).find( i => iNatLicenses[i].code === license );
-    const defaultLicense = selected || "cc-by-nc";
+  const localizeName = license => {
+    if ( license === "cc0" ) { return "cc_0"; }
+    return license.replaceAll( "-", "_" );
+  };
 
-    const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
-
-    const caret = <div className="caret" />;
-
-    const allRightsReserved = (
-      <div className="flex-no-wrap license-option">
-        {noLicenseText( )}
-        {caret}
-      </div>
-    );
-
-    if ( selected === "c" ) {
-      return allRightsReserved;
-    }
+  const showDefaultLicense = defaultLicense => {
+    const current = Object.keys( iNatLicenses )
+      .find( i => iNatLicenses[i].code === defaultLicense );
+    const license = current || "cc-by-nc";
+    const localizedName = localizeName( license );
 
     return (
-      <div className="flex-no-wrap license-option">
-        {showLicenseImage( defaultLicense )}
-        {showLicenseName( localizedName, defaultLicense )}
-        {caret}
+      <div className="current-license">
+        {license === "c" ? noLicenseText( ) : showLicenseImage( license )}
+        {license === "c" ? null : showLicenseName( localizedName, license )}
+        <div className="caret" />
       </div>
     );
   };
 
-  const createLicenseList = name => {
-    const iNatLicenses = iNaturalist.Licenses;
+  const createLicenseList = name => licenseList.map( license => {
+    const localizedName = localizeName( license );
+    const { code } = iNatLicenses[license];
 
-    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
-    const checkmark = <i className="fa fa-check blue-checkmark" aria-hidden="true" />;
-
-    const menuItems = displayList.map( license => {
-      const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
-      const { code } = iNatLicenses[license];
-
-      const allRightsReserved = (
-        <div className="flex-no-wrap license-option">
-          {noLicenseText( )}
-          {profile[name] === code && checkmark}
-        </div>
-      );
-
-      return (
-        <MenuItem
-          key={`${name}-${license}`}
-          eventKey={code}
-          className="license-option"
-        >
-          {license === "c" ? allRightsReserved : (
-            <span className="flex-no-wrap white-space">
-              {showLicenseImage( license )}
-              {showLicenseName( localizedName, license )}
-              {profile[name] === code && checkmark}
-            </span>
-          )}
-        </MenuItem>
-      );
-    } );
-
-    return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
-    ) ).reduce( ( a, b ) => a.concat( b ) );
-  };
+    return (
+      <MenuItem
+        key={`${name}-${license}`}
+        eventKey={code}
+      >
+        {license === "c" ? noLicenseText( ) : showLicenseImage( license )}
+        {license === "c" ? null : showLicenseName( localizedName, license )}
+        {profile[name] === code && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+      </MenuItem>
+    );
+  } );
 
   const setDisplayName = ( ) => {
     if ( profile.prefers_common_names ) {
@@ -198,7 +154,7 @@ const Content = ( {
   };
 
   return (
-    <div className="row" id="Content">
+    <div className="row">
       <div className="col-md-5 col-xs-10">
         <SettingsItem>
           <h4>{I18n.t( "project_settings" )}</h4>
@@ -256,50 +212,52 @@ const Content = ( {
               {I18n.t( "learn_what_these_licenses_mean" )}
             </button>
           </p>
-          <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_observation_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
-              title={showDefaultLicense( profile.preferred_observation_license )}
-              noCaret
-            >
-              {createLicenseList( "preferred_observation_license" )}
-            </DropdownButton>
-          </div>
-          <div className="stacked">
-            <CheckboxRowContainer
-              name="make_observation_licenses_same"
-              label={I18n.t( "update_existing_observations_with_new_license" )}
-            />
-          </div>
-          <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_photo_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
-              title={showDefaultLicense( profile.preferred_photo_license )}
-              noCaret
-            >
-              {createLicenseList( "preferred_photo_license" )}
-            </DropdownButton>
-          </div>
-          <div className="stacked">
-            <CheckboxRowContainer
-              name="make_photo_licenses_same"
-              label={I18n.t( "update_existing_photos_with_new_license" )}
-            />
-          </div>
-          <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_sound_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
-              title={showDefaultLicense( profile.preferred_sound_license )}
-              noCaret
-            >
-              {createLicenseList( "preferred_sound_license" )}
-            </DropdownButton>
+          <div id="LicenseDropdown">
+            <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_observation_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
+                title={showDefaultLicense( profile.preferred_observation_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_observation_license" )}
+              </DropdownButton>
+            </div>
+            <div className="stacked">
+              <CheckboxRowContainer
+                name="make_observation_licenses_same"
+                label={I18n.t( "update_existing_observations_with_new_license" )}
+              />
+            </div>
+            <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_photo_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
+                title={showDefaultLicense( profile.preferred_photo_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_photo_license" )}
+              </DropdownButton>
+            </div>
+            <div className="stacked">
+              <CheckboxRowContainer
+                name="make_photo_licenses_same"
+                label={I18n.t( "update_existing_photos_with_new_license" )}
+              />
+            </div>
+            <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_sound_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
+                title={showDefaultLicense( profile.preferred_sound_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_sound_license" )}
+              </DropdownButton>
+            </div>
           </div>
           <CheckboxRowContainer
             name="make_sound_licenses_same"
