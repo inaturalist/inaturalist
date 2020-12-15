@@ -2072,9 +2072,9 @@ sv:
   locked_taxa_will_not_allow_new: Man kan inte lägga till nya barn till låsta taxa. T.ex., om du har låst Amphibia och någon försöker importera <i>Rana catesbeiana</i> från en extern namnkälla, skulle ett nytt taxon skapas men inte kunna klassificeras som ett groddjur. När det händer bör detta nyligen tillagda taxon flaggas för att komma till en förvaltares kännedom. Låsning bör egentligen bara användas för taxa där vi tror att alla barn redan är tillagda. Förvaltare kan åsidosätta detta genom att redigera taxa och ange föräldra-ID direkt, men överväg att slå ihop nya taxa med befintliga istället.
   log_in: Logga in
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till kommentarer.
+    <a href="/login">Logga in</a> eller <a href="/signup">registrera dig</a> för att lägga till kommentarer.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Logga in</a> eller <a href="/sign_up">registrera dig</a> för att lägga till bestämningar.
+    <a href="/login">Logga in</a> eller <a href="/signup">registrera dig</a> för att lägga till bestämningar.
   log_out: Logga ut
   log_out_caps: LOGGA UT
   log_out_of_application: "Logga ut från %{site_name}?"
