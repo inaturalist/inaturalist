@@ -1849,9 +1849,9 @@ zh-CN:
   locked_taxa_will_not_allow_new: 锁定的分类群不允许将新的分类群添加到它们中。因此，如果你锁定了两栖动物，并且有人试图从外部名称提供者那里导入<i>Rana catesbeiana</i>，那么将会创建新的分类单元，但它不能被分类为两栖动物。当发生这种情况时，新添加的分类群应该被打上标记，以引起馆长的注意。 这应该只适用于我们认为我们已经囊括了所有后代的分类群。馆长可以通过编辑分类单元并直接输入父ID来覆盖此项，但请考虑将新分类单元合并为现有分类单元。
   log_in: 登录
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="@login">登录</a>或<a href="@register">注册</a>以发表评论
+    <a href="/login">登录</a>或<a href="/signup">注册</a>以发表评论
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="@login">登录</a>或<a href="@register">注册</a>以添加鉴定
+    <a href="/login">登录</a>或<a href="/signup">注册</a>以添加鉴定
   log_scale_label: 日志
   login_slash_username: 登录 / 用户名
   logo:
