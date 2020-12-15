@@ -2036,9 +2036,9 @@ da:
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje kommentarer.
+    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje kommentarer.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje identifikationer.
+    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje identifikationer.
   log_out: Log ud
   log_out_caps: LOG UD
   log_out_of_application: "Log ud af %{site_name}?"
