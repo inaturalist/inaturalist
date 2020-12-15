@@ -251,6 +251,7 @@ fr:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Ajouter un actif
   add_batch: Ajouter un lot
+  add_blocked_users: Bloquer l'utilisateur
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Ajouter un texte en gras
   add_comma_separated_tags: "Ajouter des balises séparées par des virgules"
@@ -267,6 +268,7 @@ fr:
   add_id: Ajouter une identification
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Ajouter un texte en italique
+  add_muted_users: Muter l'utilisateur
   add_new_lexicon: Ajouter un nouveau lexique
   add_new_photos_by_their_ids: Ajouter de nouvelles photos à partir de leur identifiant Flickr (la licence doit être Creative Commons !)
   add_new_place: Ajouter un nouveau lieu
@@ -1057,6 +1059,7 @@ fr:
   customize_location: Personnaliser l’emplacement
   darr_apply_darr: "&darr; Appliquez &darr;"
   daily_users: Utilisateurs journaliers
+  danger_zone: Zone dangereuse
   dashboard: Tableau de bord
   data_deficient: Données insuffisantes
   data_quality: Qualité des données
@@ -1214,7 +1217,9 @@ fr:
   disconnect_provider: "Déconnecter %{provider}"
   display: Affichage
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
+  display_monthly_supporter_badge: Afficher le badge de Soutient Mensuel sur le profil
   display_name: Nom affiché
+  display_name_description: Ceci est le nom qui sera affiché sur votre profil et sur les mentions au droit d'auteur
   distance_traveled_value: "Distance parcourue : %{distance} m"
   distance_traveled: "Distance parcourue (m)"
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les développeurs</a>
@@ -1320,10 +1325,12 @@ fr:
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
+  email_description: Vôtre e-mail n'est pas partagé avec d'autres utilisateurs
   email_addresses_description: Adresses électroniques séparées par des virgules, limitées à 60 tous les 30 jours.
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
   email_addresses_to_receive_invites: Adresses électroniques pour recevoir les invitations
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
+  email_notifications: Notifications par mail
   email_settings: Paramètres de courriel
   embed: 'Intégrer'
   embed_place_widget: Intégrer un widget du lieu
@@ -2035,10 +2042,12 @@ fr:
   locked_taxa_will_not_allow_new: Les taxons verrouillés ne permettront pas l’ajout de nouveaux taxons descendants. Conséquemment, si vous verrouillez les amphibiens et que quelqu’un essaye d’importer <i>Rana catesbeiana</i> à partir d’un fournisseur externe de noms, le nouveau taxon sera créé, mais ne pourra pas être classé comme amphibien. Lorsque ça se produit, les taxons nouvellement ajoutés devront être signalés aux fins d’organisation. Cette action doit seulement être utilisée pour des taxons pour lesquels nous pensons déjà avoir tous les descendants. Un responsable de l’organisation peut annuler cette action en modifiant les taxons et en entrant directement les identifications de rang supérieur, mais il est préférable de fusionner les nouveaux taxons avec les taxons existants.
   log_in: Connexion
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
   log_out: Se déconnecter
+  log_out_caps: SE DECONNECTER
+  log_out_of_application: "Se déconnecter de %{site_name}?"
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2400,6 +2409,7 @@ fr:
   no_taxa_with_unknown_relationships: Aucun taxon avec des relations inconnues
   no_taxon_framework_relationships: aucune relation de cadre de taxon
   no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond à ces critères
+  no_users_found_with_those_filters: Pas d'utilisateurs trouvés ave ces filtres
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
   no_x_this_y: "Aucun %{x} durant %{y}"
   noble_curators: "Responsables éminents de l’organisation d’%{site}"
@@ -3408,6 +3418,8 @@ fr:
   reason: Motif
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
   recaptcha_verification_failed: échec de la vérification reCAPTCHA
+  receive_email_notifications: Recevoir les notifications par mail
+  receive_email_notifications_description: "Si vous désactivez cette option, vous ne recevrez plus de mail de notification par %{site_name}"
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   receive_project_journal_notifications?: Recevoir des notifications à propos du projet ?
   receive_updates_from_this_project: Recevoir des avis pour ce projet
@@ -3473,6 +3485,8 @@ fr:
   remove_place: Supprimer lieu
   remove_range: Supprimer la classification
   remove_relationship: Supprimer la relation
+  remove_relationship_caps: RETIRER LA RELATION
+  remove_relationship_question: Retirer la relation ?
   remove_section: Supprimer la section
   remove_selected: Supprimer la sélection
   remove_tags: Supprimer les étiquettes
@@ -3515,6 +3529,7 @@ fr:
   review_all: Relire tout
   reviewed: Relu
   revoke: Révoquer
+  revoke_caps: REVOQUER
   revoke_external_application: "Révoquer %{site_name}?"
   rg_observations: Observations RG
   role: Rôle
@@ -4078,6 +4093,7 @@ fr:
     Ces observations n’ont pas encore été téléversées.
   they_already_have_iNat_accounts: "… ils ont déjà des comptes sur %{site_name}"
   they_have_been_invited: '…ils ont déjà été invités'
+  third_party_tracking: Suivi par des partis tiers
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: ce
@@ -4088,6 +4104,7 @@ fr:
   this_is_more_convenient_way_find_parent: C’est un moyen plus facile de trouver l’identifiant d’un taxon de rang supérieur. C’est l’identifiant du taxon de rang supérieur qui est vraiment enregistré.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     C’est un moyen plus facile de trouver l’identifiant d&un taxon. C’est l’identifiant du taxon qui est effectivement enregistré. Cette recherche ne fonctionne que pour les taxons actifs.
+  this_is_how_taxon_names_will_be_displayed: Voici comment les noms des taxons vont vous être montrés sur %{site_name}
   this_is_taking_forever: Cette action prend trop de temps. Veuillez réessayer plus tard.
   this_is_the_primary_listing: C’est la liste principale
   this_is_your_observation: Ceci est votre observation
@@ -4121,6 +4138,7 @@ fr:
   this_will_refresh_listed_taxa: Cette action rafraîchira les taxons répertoriés de la liste. Elle peut prendre un certain temps; veuillez l’utiliser avec modération et uniquement avec de petites listes de contrôle
   this_will_re_apply_all_list_rules: |
     Cette action appliquera de nouveau toutes les règles relatives à la liste aux taxons répertoriés et mettra à jour toutes les statistiques connexes, par ex. le rejet des taxons qui ne font pas partie des taxons répertoriés ou qui ne sont pas du rang sélectionné. Elle n’ajoutera aucun nouveau taxon. Cette action peut prendre un certain temps.
+  this_will_sign_you_out_current_session: Cela va vous déconnecter de votre session sur cette application
   this_will_try_to_add_tags_to_your_flickr: Cette action tentera d’ajouter des étiquettes à vos photos Flickr. Voulez-vous continuer ?
   this_year: Cette année
   those_observations_no_longer_exist: Ces observations n’existent plus.
@@ -4236,6 +4254,7 @@ fr:
   upload_a_csv_file: Uploader le fichier CSV
   upload_a_csv_file_with_observation: |
     Uploader les données d’observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c’est la meilleure méthode à adopter.
+  upload_new_photo: Uploader une nouvelle photo
   upload_photo: Uploader des photos
   upload_range: Uploader l'aire de répartition
   uploaded_by: Téléversé par
@@ -4341,6 +4360,7 @@ fr:
     L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives aux observations associées.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
+  username_description: Ce sera le nom d'utilisateur que vous utiliserez pour vous identifier et que les autres verrons pour vous tagger sur iNaturalist
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom ou ID d’utilisateur
   users: Utilisateurs
@@ -4481,6 +4501,7 @@ fr:
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter vos observations ?
   white: blanc
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
+  who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
@@ -4697,6 +4718,7 @@ fr:
     suivre leurs dernières observations. Découvrez ce que les gens
     <a href="%{observations_path}">observent</a> et faites-vous de nouveaux
     <a href="%{people_path}">contacts</a>.
+  youre_not_following_anyone_on_inat: Vous ne suivez personne sur %{site_name} pour l'instant !
   youve_linked_your_inaturalist_google_account: "Vous êtes en train de lier votre compte %{site_name} avec votre compte Google. Cela vous permettra d’associer vos photos Google avec vos observations sur %{site_name}."
   youve_seen_it_want_to: "Vous l’avez vu! Vous voulez"
   youve_successfully_linked_your_provider_account: "Vous avez bien lié votre compte %{provider}"
@@ -6058,7 +6080,10 @@ fr:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
+        compare_desc: |
+          Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        donors: Donateurs
         inaturalist_network: Réseau iNaturalist
         inaturalist_network_desc: |
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
@@ -6085,6 +6110,8 @@ fr:
           de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
           Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
           <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
+        new_species_per_year: Nouvelle espèce / Année
+        new_species_per_year_by_date_added: Par date d'ajout
         obs_in_year: Obs en %{year}
         percent_growth_in_year: "% de croissance en %{year}"
         percent_of_total_growth: "% de croissance totale"
@@ -6102,10 +6129,16 @@ fr:
           <a href="https://www.altmetric.com">Altmetric</a>. L'information
           sur l'utilisation des données est fournie par nos amis de 
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observations / Année
+        observations_per_year_by_date_observed: Par date d'observation
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Séries d’observation
         observation_streaks_color_desc: |
           La couleur représente le nombre de jours sur une échelle logarithmique :
+        observation_streaks_desc2: |
+          Une série d'observations est une période d'au moins cinq jours où quelqu'un à enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ou qui étaient en cours lorsque nous avons généré ces statistiques (pour les utilisateurs individuels, nous incluons également les séries qui se sont terminées cette année).
+        species_per_year: Espèce / Année
+        species_per_year_by_date_added: Par date d'ajout
         stats_generated_datetime: Statistiques générées le %{datetime}
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
@@ -6526,6 +6559,8 @@ fr:
           any: Tout
           joined: Projets que vous avez rejoints
           none: "Non, vous seul pouvez ajouter vos observations aux projets"
+        prefers_community_taxa_desc: |
+          %{site_name} enregistre vos observations ainsi que votre identification et les identifications de la communauté. L’identification que nous communiquons à nos partenaires d’échange de données est celle de la communauté, mais si vous pensez que l’opinion de la communauté ne doit jamais primer sur la vôtre, vous pouvez changer ici le paramètre par défaut. Les autres utilisateurs pourront toujours ajouter des identifications, mais l’opinion de la communauté n'aura pas plus de poids que la vôtre. Autrement dit, vos observations ne pourront avoir le calibre recherche que si vous êtes d’accord avec la communauté.
         prefers_coordinate_interpolation_protection_desc: |
           Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
           « private », cela appliquera la même confidentialité géographique à toutes vos autres
@@ -7486,6 +7521,7 @@ fr:
     next_label: "Suivant &#8594;"
     page_gap: "&hellip;"
   you_have_not_authorized_any_applications: "Vous n'avez autorisé aucune application à utiliser votre compte iNaturalist."
+  you_will_no_longer_be_following_or_trusting: "Vous ne suivrez ou ne ferez plus confiance à %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z – A
