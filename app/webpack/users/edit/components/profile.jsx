@@ -51,7 +51,7 @@ const Profile = ( {
               <div className="user-profile-image">
                 {showUserIcon( )}
               </div>
-              <div className="centered-column">
+              <div className="add-remove-user-photo">
                 <button
                   className="btn btn-primary"
                   type="button"

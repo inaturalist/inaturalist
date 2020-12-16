@@ -9,11 +9,8 @@ $user-image-size: 65px;
   align-items: center;
 }
 
-.flex-end {
+.save-button {
   justify-content: flex-end;
-}
-
-.flex-start-xs {
   @media (max-width: 767.99px) {
     justify-content: flex-start;
   }
@@ -26,11 +23,12 @@ $user-image-size: 65px;
   }
 }
 
-.underline {
+.saved-time {
   text-decoration: underline;
+  margin-right: 12px;
 }
 
-.centered-column {
+.add-remove-user-photo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +78,7 @@ button.selected {
   padding-left: 0px;
 }
 
-.btn-default.btn-margin {
+.btn-default.btn-remove-relationship {
   margin-top: 5px;
 }
 
@@ -106,19 +104,9 @@ button.selected {
   height: 522px;
 }
 
-.license {
-  width: 115px;
-  margin-left: 15px;
-  text-align: left;
-}
-
 label.radio-button {
   margin-left: 10px;
   font-weight: bold !important;
-}
-
-.borderless {
-  border: none !important;
 }
 
 #ApplicationsTable {
@@ -128,17 +116,21 @@ label.radio-button {
   .table > tbody > tr > td {
     padding-left: 0px;
   }
+
+  .borderless {
+    border: none !important;
+  }
 }
 
 td.table-row {
   vertical-align: middle !important;
 }
 
-select.inherit-width {
+select.dropdown {
   max-width: none;
 }
 
-.margin-left {
+.checkbox-label {
   margin-left: 9px;
   display: inline !important;
 }
@@ -147,12 +139,12 @@ select.inherit-width {
   margin-left: 20px;
 }
 
-.margin-right {
+.relationship-label {
   margin-right: 8px;
   white-space: nowrap;
 }
 
-.margin-right-medium {
+.relationship-filter {
   margin-right: 12px;
 }
 
@@ -172,7 +164,7 @@ select.inherit-width {
   margin-bottom: 13px;
 }
 
-.search-margin {
+.relationship-spacing {
   margin-bottom: 16px;
 }
 
@@ -248,12 +240,6 @@ select.inherit-width {
       padding-left: 25px;
     }
   }
-
-  .license-name {
-    width: 115px;
-    white-space: normal;
-    font-weight: bold;
-  }
 }
 
 .Pagination {
@@ -328,21 +314,6 @@ select.inherit-width {
   }
 }
 
-.license-tag {
-  background-color: $inat-green;
-  color:white;
-  padding: 2px 4px !important;
-  font-size: 10px;
-  font-weight: 600;
-  margin-top: 2px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-
-.license-tag.wikimedia {
-  background-color: #2e78b8;
-}
-
 .blue-checkmark {
   color: #2e78b8;
   position: absolute;
@@ -410,16 +381,6 @@ select.inherit-width {
     right: 10px;
   }
 
-  // current license and dropdown item license
-  .license-image {
-    margin-right: 12px;
-  }
-
-  .no-license-description {
-    white-space: normal;
-    max-width: 233px;
-  }
-
   // dropdown items
   li {
     border-bottom: 1px solid #e5e5e5;
@@ -433,12 +394,6 @@ select.inherit-width {
     align-items: center;
     min-width: 275px;
     min-height: 66px;
-  }
-  
-  .license-name {
-    width: 115px;
-    white-space: normal;
-    font-weight: bold;
   }
 }
 
@@ -466,4 +421,19 @@ select.inherit-width {
 
 .license-description {
   margin-top: 9px;
+}
+
+.license-tag {
+  background-color: $inat-green;
+  color:white;
+  padding: 2px 4px !important;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.license-tag.wikimedia {
+  background-color: #2e78b8;
 }

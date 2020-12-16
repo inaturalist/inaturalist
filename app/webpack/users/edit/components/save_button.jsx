@@ -6,8 +6,8 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
   const disabled = profile.saved_status === null || profile.saved_status === "saved";
 
   return (
-    <div className="flex-no-wrap flex-start-xs flex-end">
-      <div className={profile.saved_status === "saved" ? "text-muted underline margin-right-medium" : "collapse"}>
+    <div className="flex-no-wrap save-button">
+      <div className={profile.saved_status === "saved" ? "text-muted saved-time" : "collapse"}>
         {I18n.t( "saved_at_time", { time: moment( profile.updated_at ).format( "h:mm a" ) } )}
       </div>
       <button

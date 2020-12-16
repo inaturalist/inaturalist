@@ -13,7 +13,6 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
   const createConnectedAppsList = ( ) => {
     const connectedApps = providerApps;
-
     const userAppNames = connectedApps.filter( app => app.provider_name );
 
     // if a user hasn't connected to one of the AUTH_PROVIDER_URLS apps
@@ -24,9 +23,8 @@ const Applications = ( { showModal, apps, providerApps } ) => {
       if ( !userAppNames.includes( AUTH_PROVIDER_NAMES[app] ) ) {
         connectedApps.push( {
           id: null,
-          provider_name: AUTH_PROVIDER_NAMES[app],
-          created_at: null,
-          appKey: app
+          provider_name: app,
+          created_at: null
         } );
       }
     } );
@@ -102,7 +100,7 @@ const Applications = ( { showModal, apps, providerApps } ) => {
     );
 
     return (
-      <tr key={AUTH_PROVIDER_NAMES[name]}>
+      <tr key={name}>
         <td className="col-xs-4 borderless table-row">{AUTH_PROVIDER_NAMES[name]}</td>
         <td className="col-xs-4 borderless table-row">{date}</td>
         <td className="col-xs-4 borderless table-row">

@@ -4,7 +4,7 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
-
+import LicenseImageRow from "./license_image_row";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 const radioButtons = {
@@ -46,87 +46,20 @@ const Content = ( {
     </div>
   ) );
 
-  const gbifTag = ( ) => (
-    <div className="license-tag" title={I18n.t( "suitable_for_the_global_biodiversity_information_facility" )}>
-      {I18n.t( "gbif" )}
-    </div>
-  );
-
-  const wikimediaTag = ( ) => (
-    <div className="license-tag wikimedia" title={I18n.t( "suitable_for_wikipedia_and_other_wikimedia_foundation_projects" )}>
-      {I18n.t( "wikimedia" )}
-    </div>
-  );
-
-  const addTags = license => {
-    const gbif = ["cc0", "cc-by", "cc-by-nc"];
-    const wikimedia = ["cc0", "cc-by", "cc-by-sa"];
-
-    if ( !gbif.includes( license ) && !wikimedia.includes( license ) ) {
-      return null;
-    }
-
-    return (
-      <div className="flex-no-wrap">
-        {gbif.includes( license ) && gbifTag( )}
-        {wikimedia.includes( license ) && wikimediaTag( )}
-      </div>
-    );
-  };
-
-  const showLicenseImage = license => (
-    <img
-      id="image-license"
-      src={iNatLicenses[license].icon_large}
-      alt={license}
-      className="license-image"
-    />
-  );
-
-  const showLicenseName = ( localizedName, license ) => (
-    <div>
-      <div className="license-name">{I18n.t( `${localizedName}_name` )}</div>
-      {addTags( license )}
-    </div>
-  );
-
-  const noLicenseText = ( ) => (
-    <div>
-      <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
-      <p
-        className="text-muted small no-license-description"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: I18n.t( "you_retain_full_copyright", {
-            site_name: SITE.name
-          } )
-        }}
-      />
-    </div>
-  );
-
-  const localizeName = license => {
-    if ( license === "cc0" ) { return "cc_0"; }
-    return license.replaceAll( "-", "_" );
-  };
-
   const showDefaultLicense = defaultLicense => {
     const current = Object.keys( iNatLicenses )
       .find( i => iNatLicenses[i].code === defaultLicense );
     const license = current || "cc-by-nc";
-    const localizedName = localizeName( license );
 
     return (
       <div className="current-license">
-        {license === "c" ? noLicenseText( ) : showLicenseImage( license )}
-        {license === "c" ? null : showLicenseName( localizedName, license )}
+        <LicenseImageRow license={license} />
         <div className="caret" />
       </div>
     );
   };
 
   const createLicenseList = name => licenseList.map( license => {
-    const localizedName = localizeName( license );
     const { code } = iNatLicenses[license];
 
     return (
@@ -134,8 +67,7 @@ const Content = ( {
         key={`${name}-${license}`}
         eventKey={code}
       >
-        {license === "c" ? noLicenseText( ) : showLicenseImage( license )}
-        {license === "c" ? null : showLicenseName( localizedName, license )}
+        <LicenseImageRow license={license} />
         {profile[name] === code && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
       </MenuItem>
     );
@@ -272,7 +204,7 @@ const Content = ( {
           </div>
           <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
           <select
-            className="form-control stacked inherit-width"
+            className="form-control stacked dropdown"
             id="user_prefers_common_names"
             name="prefers_common_names"
             onChange={handleDisplayNames}
@@ -304,7 +236,7 @@ const Content = ( {
           <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
           <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
           <select
-            className="form-control inherit-width"
+            className="form-control dropdown"
             id="preferred_observation_fields_by"
             value={profile.preferred_observation_fields_by}
             name="preferred_observation_fields_by"
