@@ -13,17 +13,18 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
   const createConnectedAppsList = ( ) => {
     const connectedApps = providerApps;
-    const userAppNames = connectedApps.filter( app => app.provider_name );
+    // app.provider_name is the key in the AUTH_PROVIDER_NAMES key-value pair
+    const userAppNames = connectedApps.map( app => app.provider_name );
 
     // if a user hasn't connected to one of the AUTH_PROVIDER_URLS apps
     // we need to display it under connected apps with an option to connect
     // if an app is already in their provider_authorizations list
     // the user will see an option to disconnect
-    _.difference( Object.keys( AUTH_PROVIDER_URLS ), userAppNames ).forEach( app => {
-      if ( !userAppNames.includes( AUTH_PROVIDER_NAMES[app] ) ) {
+    _.difference( Object.keys( AUTH_PROVIDER_URLS ), userAppNames ).forEach( appName => {
+      if ( !userAppNames.includes( appName ) ) {
         connectedApps.push( {
           id: null,
-          provider_name: app,
+          provider_name: appName,
           created_at: null
         } );
       }
