@@ -126,7 +126,7 @@
     .medium.observations.grid
       .nocontent
         = loading t(:loading), :class => "inline"
-    = link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore"
+    = link_to t(:view_more_observations_from_this_place), observations_url(:place_id => @place.id), :class => "readmore"
   - unless @projects.blank?
     #projectstab
       .clear
