@@ -628,14 +628,14 @@ de:
   back_to_all_species: Zurück zu Alle Arten
   back_to_browsing_people: Zurück zur Personensuche
   back_to_calendar: "Zurück zu %{user}s Kalender"
-  back_to_editing_observation: Zurück zur Beobachtungsbearbeitung
+  back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
   back_to_flags_html: "&laquo; Zurück zu den Meldungen"
   back_to_lists: "Zurück zu den %{name}-Listen"
   back_to_observation: Zurück zur Beobachtung
   back_to_observation_fields: Zurück zu den Beobachtungsfeldern
   back_to_people: Zurück zu Personen
-  back_to_places: Zurück zu Gebiete
+  back_to_places: Zurück zu Gebieten
   back_to_possessive_user_profile: "Zurück zum Profil von %{possuser}"
   back_to_post: '&laquo; Zurück zum Beitrag'
   back_to_projects: Zurück zu den Projekten
@@ -644,12 +644,12 @@ de:
   back_to_taxon_changes: "Zurück zu Taxonänderungen"
   back_to_taxon_framework_for_x: "Zurück zum Taxon-Framework für %{taxon_name}"
   back_to_viewing: "Zurück zu <i>%{taxon}</i>-Ansicht"
-  back_to_x: "Zurück zu %{noun}"
+  back_to_x: "Zurück zu: %{noun}"
   back_to_x_assessment: "Zurück zu %{project}-Bewertungen"
-  back_to_x_history: "Zurück zu %{x}-Verlauf"
+  back_to_x_history: "Zurück zum %{x}-Verlauf"
   back_to_x_journal: "Zurück zum Journal von %{user}"
   back_to_x_blog: "Zurück zum Blog von %{x}"
-  back_to_your_dashboard: Zurück zu Deinem Dashboard
+  back_to_your_dashboard: Zurück zu deinem Dashboard
   back_to_your_lists: Zurück zu deinen Listen
   back_to_your_journal: Zurück zu deinem Journal
   back_to_your_observations: Zurück zu deinen Beobachtungen
@@ -710,7 +710,7 @@ de:
   cancel: Abbrechen
   cant_edit_or_delete_hidden_content: Du kannst keine Inhalte bearbeiten oder löschen, die von Kuratoren versteckt wurden
   cant_flag_an_object_that_doesnt_exist: Nicht vorhandenes Objekt kann nicht gemeldet werden.
-  cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
+  cant_merge_a_taxon_with_itself: Ein Taxon kann nicht mit sich selbst vereinigt werden.
   captive: Haltung/Zucht
   captive_cultivated: In Haltung/kultiviert
   captive_observations: Beobachtungen in Haltung/Zucht
@@ -750,7 +750,7 @@ de:
     activated_soon: bald aktiviert
     change_types: Typen ändern
     split: Aufteilen
-    merge: Zusammenführen
+    merge: Vereinigen
     swap: Tauschen
     stage: Vorbereitungsphase
     drop: Löschen
@@ -792,7 +792,7 @@ de:
   check_lists_must_belong_to_a_place: |
     Checklisten müssen zu einem Gebiet gehören. Um eine neue Checkliste zu erstellen, rufe die Standardprüfliste des Ortes auf und klicke auf die Verknüpfung "Neue Checkliste erstellen".
   check_list_of_species_occuring_in: Checkliste von Arten vorkommend in
-  check_list_place: "%{place}-Checkliste"
+  check_list_place: "Checkliste von %{place}"
   check_list_updated: Checkliste aktualisiert!
   check_lists_for: "Andere Checklisten für %{place}"
   check_out_my_observations_at: 'Wenn Du möchtest, kannst Du hier ein Auge auf meine Beobachtungen werfen:'
@@ -1312,7 +1312,7 @@ de:
   email_notifications: E-Mail-Benachrichtigungen
   email_settings: E-Mail-Einstellungen
   embed: 'Einbetten'
-  embed_place_widget: Eingebettetes Orts Widget
+  embed_place_widget: Gebiets-Widget einbetten
   embed_this_assessment: Diese Bewertung einbetten
   embed_widget_project: Ein Widget für dieses Projekt auf deiner Webseite einbinden
   enable_offline_access: Offline-Zugriff ermöglichen
@@ -1508,7 +1508,7 @@ de:
   flickr_tagger: Flickr Tagger
   flickr_tags: Flickr Tags
   #Adjective, as in a fluid layout of images
-  fluid: Flüssigkeit
+  fluid: Flexibel
   follow: Folgen
   follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
   follow_user: "Folge %{user}"
@@ -1788,7 +1788,7 @@ de:
   kml: KML
   kml_file_size_error: "KML muss kleiner als 1 MB sein"
   label_colon: "%{label}:"
-  labels: Etikett
+  labels: Beschreibungen
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Standort privat
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -2103,11 +2103,11 @@ de:
   mentioned_you_in_a_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
   merge: Verbinden
-  merge_it_with_another_place: Zusammenführen mit einem anderen Gebiet
+  merge_it_with_another_place: Mit einem anderen Gebiet fusionieren
   merge_two_places_together: Führe zwei Gebiete zusammen. Alle Arten auf den Checklisten werden zusammengeführt, ebenso wie alle geographischen Daten.
   merge_observation_field_x_into: 'Beobachtungsfeld "%{x}" zusammenführen in...'
   merging: Verbinden
-  merging_places: Gebiete zusammenführen
+  merging_places: Gebiete fusionieren
   message: Nachricht
   message_deleted: Nachricht gelöscht
   message_from_user_at_time: Von %{user} um %{time}
@@ -2372,7 +2372,7 @@ de:
   non_human?: Nichtmenschlich?
   none: Keine
   none_found: nichts gefunden
-  normal: Normal
+  normal: normal
   not_completed: Nicht komplett
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
   not_evaluated: nicht beurteilt
@@ -2477,7 +2477,7 @@ de:
     Beobachtung verbundene Daten, wie die Anzahl der beobachteten Individuen, Habitatbeschreibung, oder was immer du willst! Projekte können auch Felder festlegen, die ausgefüllt werden sollen.
   observations_from: Beobachtungen vom %{date}
   observations_from_people_taxa_and_places_youre_following: "Beobachtungen von Menschen, Orten und Taxa, denen du folgst."
-  observations_from_this_place: Beobachtungen von diesem Ort
+  observations_from_this_place: Beobachtungen aus diesem Gebiet
   observations_from_this_project: Beobachtungen aus diesem Projekt
   observations_in_this_project_must: Die Beobachtungen in diesem Projekt müssen folgende Kriterien erfüllen
   observations_map: Beobachtungen/Karte
@@ -3153,7 +3153,7 @@ de:
     für alle anderen langsamer machen, falls du einen neuen Ort erstellst, der viele Beobachtungen enthält. Hier sind einige alternative Ansätze:
   places_warning_editing_places_is_slow: |
     Die Bearbeitung von Gebietsgrenzen ist eine der größten Ursachen für Verlangsamungen auf iNat.
-    Wenn du es vermeiden kannst, füge keine Ortsgrenzen hinzu, ändere oder entferne sie nicht, es sei denn, es ist unbedingt notwendig.
+    Wenn du es vermeiden kannst, füge keine Grenzen hinzu, ändere oder entferne sie nicht - außer es ist unbedingt notwendig.
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
@@ -3181,7 +3181,7 @@ de:
   posted_on: Gepostet am
   posts: Beiträge
   potential_disagreement: Möglicher Widerspruch
-  powered_by: Betrieben mit
+  powered_by: Betrieben von
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
   press: Presse
@@ -3769,16 +3769,16 @@ de:
     other: '%{count} Beobachtungen absenden'
   submitted: Hinzugefügt
   subscribe_to_a_taxon: Taxon abonnieren
-  subscribe_to_a_place: Einen Ort abonnieren
+  subscribe_to_a_place: Ein Gebiet abonnieren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
-  subscribe_to_comments_on_this_post_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}abonniere%{tag_end} Kommentare zu diesem Beitrag"
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Vorbereitung"
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu diesem Taxon-Tausch"
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Zusammenführung"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnieren Sie%{tag_end} Kommentare zu dieser Taxon-Aufteilung"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Löschung"
-  subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Skorpione").
-  subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Skorpione aus Texas').
+  subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Heuschrecken").
+  subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
   subscribe_to_places_to: |
     Du kannst bestimmte Gebiete abonnieren, um über neue Beobachtungen informiert zu werden, die dort gemacht wurden.
     Mittels Abonnements siehst du auch die Aktivitäten von Personen, denen du folgst, und Sachen,
@@ -3788,7 +3788,7 @@ de:
   subscribe_to_this: Abonnieren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonniere</a>
-    von %{x} bis %{y}.
+     %{x} aus diesem %{y}.
   subscriptions: Abonnements
   subscriptions_arent_available_for: Abonnements sind für Orte ohne Begrenzungen nicht möglich.
   successfully_changed_your_password: Dein Passwort wurde erfolgreich geändert.
@@ -4284,7 +4284,7 @@ de:
   view_all_observations: Alle Beobachtungen ansehen
   view_all_photocount_photos: "Alle %{photo_count} Bilder anzeigen"
   view_assessment: Bewertung ansehen
-  view_check_list_page: Checklist-Seite anzeigen
+  view_check_list_page: Checkliste für das Gebiet anzeigen
   view_contributions: Beiträge anzeigen
   view_details: Details anzeigen
   view_field_options: Feldoptionen anzeigen
@@ -4304,7 +4304,7 @@ de:
   view_moderation_history_for_this_comment: Moderationsverlauf für diesen Kommentar anzeigen
   view_more: Mehr ansehen
   view_more_about_x: "Mehr über %{x} anzeigen"
-  view_more_observations_from: Mehr Beobachtungen anzeigen von
+  view_more_observations_from: Mehr Beobachtungen aus diesem Gebiet anzeigen 
   view_more_observations_near_x_place: "Mehr Beobachtungen in der Nähe von %{place} auf <nobr>%{site_name} &raquo;</nobr> anzeigen"
   view_more_observations_of_x_project: "Weitere Beobachtungen von %{project} auf <nobr>%{site_name} &raquo;</nobr> ansehen"
   view_more_observations_of_x_taxon: "Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name} &raquo;</nobr> anzeigen"
@@ -5644,6 +5644,8 @@ de:
           Wie verlief dieses Jahr im Vergleich zu den Vorjahren? Mit mindestens drei Jahren iNaturalist-Verwendung können wir anfangen, jährliche Aktivitätsmetriken zu vergleichen.
         compared_to_previous_years: Mit früheren Jahren vergleichen
         donate_title: "Besonderer Dank an alle unsere Unterstützer"
+        donate_desc_html: |
+          Vielen Dank dass du uns mit deiner Zeit, Aufmerksamkeit, Kompetenz und Spenden unterstützt! iNaturalist ist ein gemeinnütziges Projekt der California Academy of Sciences und der National Geographic Society. Es wird von einem <a href="%{team_url}">kleinem Team</a> betrieben, welches sich um Design und die Softwareentwicklung für Web, Smartphone und <a href="%{seek_url}">Seek von iNaturalist</a> kümmert und zusätzlich den Support für die Community, Kollaborationen und Integrationen betreibt, damit die Dinge am Laufen bleiben (und beständig größer werden!). Das Projekt ist dabei angewiesen auf zahlreiche Förderungen und Spenden, einschließlich der karitativen Beiträge von einem kleinen Anteil der Benutzer. Besonders dankbar sind wir den monatlichen Unterstützern, deren regelmäßige Spenden uns helfen, für die Zukunft planen zu können. Du kannst in mehr als 30 Währungen spenden, um die Kernaktivitäten von iNaturalist zu unterstützen. Vielen Dank an alle, die dazu beigetragen haben, dass %{year} das bisher erfolgreichste Jahr überhaupt für iNaturalist war!
         donors: Spender
         donors_guide_label_our_goal_is_1000: Unser Ziel sind 1000 regelmäßige Spender pro Monat
         inaturalist_network: iNaturalist-Netzwerk
