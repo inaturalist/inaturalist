@@ -4016,6 +4016,7 @@ en:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon merge"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon split"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon drop"
+  subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
   subscribe_to_places_to: |
@@ -4616,7 +4617,7 @@ en:
   view_moderation_history_for_this_comment: View Moderation History for this Comment
   view_more: View More
   view_more_about_x: "View More About %{x}"
-  view_more_observations_from: View More Observations from
+  view_more_observations_from_this_place: View more observations from this place
   view_more_observations_near_x_place: "View more observations near %{place} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
@@ -4849,7 +4850,9 @@ en:
   you_can_edit_this_default_check_list_because: |
     You can edit this default check list because you're an
     admin, but there shouldn't really be a need to do so.
-  you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
+  you_can_only_destroy_taxa_you_created2: |
+    You can only delete taxa you created that aren't associated with taxon
+    changes, identifications, or other content
   you_can_only_block_three_users: You can only block three users
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"

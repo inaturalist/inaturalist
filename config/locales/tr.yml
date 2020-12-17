@@ -1930,9 +1930,9 @@ tr:
   locked_taxa_will_not_allow_new: Kilitli sınıflar, yeni alt sınıfların kendisine eklenmesine izin vermez. Eğer Amphibia'yı kilitlediyseniz ve birisi <i>Rana catesbeiana'yı</i> dış bir sağlayıcıdan içe aktarmaya çalıştıysa, yeni sınıf oluşturulacak ancak bir yüzergezer olarak sınıflandırılamayacak. Bu olduğunda, yeni eklenen sınıfların, sorumlunun dikkat etmesi için işaretlenmesi gerekir. Bu, yalnızca alt sınıf olduğunu düşündüğümüz sınıflar için kullanılmalıdır. Sorumlu bunu sınıfları düzenleyerek ve doğrudan üst kimlik ekleyerek geçersiz kılabilir ancak bunun yerine yeni sınıfları var olanlarla birleştirmeyi düşünün.
   log_in: Oturum Aç
   log_in_or_sign_up_to_add_comments_html: |
-    Yorum eklemek için <a href="/login">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
+    Yorum eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Tanımlama eklemek için <a href="/login">giriş yap</a> ya da <a href="/sign_up">üye ol</a>.
+    Tanımlama eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
   log_scale_label: Günlük
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
@@ -5658,8 +5658,6 @@ tr:
           <a href="%{url}">iNaturalist Ağı</a> internet siteleri üzerinden oluşturuldu
       year:
         donate_title: "Tüm Destekçilerimize Özel Teşekkürler"
-        donate_desc_html: |
-          Zamanınız, ilginiz, uzmanlığınız ve bağışlarınızla cömert olduğunuz için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society'nin kâr amacı gütmeyen ortak bir girişimidir. Bu girişim; topluluk desteği, işbirliği ve işleri yürüten (ve hızla büyüyen) bütünleşmelerin yanı sıra iNaturalist tarafından genel ağ, mobil ve <a href="%{seek_url}">Seek</a> için tüm tasarım ve yazılım mühendisliğini yapan <a href="%{team_url}">küçük bir ekip</a> tarafından desteklenmektedir. Program, katkıda bulunanların %0.2'sinden azıyla hayırsever armağanları da içermek üzere çok sayıda yardım ve bağışa dayanıyor. Özellikle sürekli armağanlar yollayarak geleceği tasarlamamıza yardımcı olan Aylık Destekçilere minnettarız. iNaturalist’in temel işlemlerini desteklemek için 30’dan çok para biriminde bağış yapabilirsiniz. 2019 iNaturalist'i en büyük yıl yapmadaki katkıları için herkese teşekkür ederiz!
         inaturalist_network: iNaturalist Ağı
         inaturalist_network_desc: |
           iNaturalist Ağı üyeleri için İnceleme Yılı’na göz atın.
@@ -5712,10 +5710,6 @@ tr:
         observation_streaks: Gözlem Serileri
         observation_streaks_color_desc: |
           Renk, bir logaritmik ölçekte günlerin sayısını gösterir:
-        observation_streaks_desc: |
-          Bir gözlem serisi, birisinin dışarı çıkıp her gün yeni ve doğrulanabilir
-          gözlemler kaydettiği bir zaman dilimidir. Burada, bu yıl başlayan veya bu
-          istatistikler oluşturulduğunda devam eden en uzun serileri gösteriyoruz.
         stats_generated_datetime: İstatistikler %{datetime} tarihinde oluşturuldu
         store_prompt: |
           Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!
@@ -6087,13 +6081,6 @@ tr:
           any: Herhangi
           joined: Katıldığınız projeler
           none: "Hiç kimse, projeye yalnızca siz gözlemlerinizi ekleyebilirsiniz"
-        prefers_community_taxa_desc: |
-          %{site_name}, gözlemlerinizin ne olduğunu ve topluluğun ne düşündüğünü izler. 
-          Veri ortaklarıyla paylaştığımız kimlik, topluluk kimliğidir, ancak topluluğun görüşünün 
-          kendi kararlarınızı geçersiz kılması gerektiğini düşünmüyorsanız, buradan vazgeçebilirsiniz. 
-          İnsanlar hala tanımlama ekleyebilecekler, ancak topluluk görüşü sizinkinden yana olmayacak. 
-          Bu, topluluğa katılmadığınız sürece gözlemlerinizin araştırma için uygun 
-          olmayacağı anlamına gelir.
         prefers_coordinate_interpolation_protection_desc: |
           Bir gözlemin coğrafi gizliliğini "gizlenmiş" veya "özel" olarak ayarladığınızda, 
           aynı coğrafi gizliliği, diğer insanların aynı zamanda yapılan gözlemlerine dayanarak 

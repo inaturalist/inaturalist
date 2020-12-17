@@ -207,6 +207,8 @@ cs:
     Z vědeckého názvu tohoto taxonu bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké názvy atd.).
   a_flag_for_x: "prapor pro %{x}"
   a_member_of_taxon_html: "člen %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
   a_to_z: "A až Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -1693,7 +1695,6 @@ cs:
   give_it_some_detail: Přidejte nějaký detail!
   give_monthly_caps: DÁT MĚSÍČNĚ
   give_now_caps: DÁT NYNÍ
-  global: Globální
   global_names: Globální názvy
   globally: globálně
   go: Jít
@@ -2146,9 +2147,9 @@ cs:
   locked_taxa_will_not_allow_new: Zamčené taxony neumožňují přidávání nových následných taxonů. Takže pokud jste zamkli Obojživelníky a někdo se pokusil importovat <i>Rana catesbeiana</i> od externího poskytovatele názvů, nový taxon bude vytvořen, ale nelze ho klasifikovat jako obojživelníka. Pokud k tomuto dojde, nově přidané taxony by měly být označeny pro kurátory. Tento postup by se měl používat pouze pro taxony, u nichž jsme přesvědčeni, že už máme všechny následné. Kurátor může provést úpravu editací taxonů a přímým zadáním základních ID, zvažte však prosím sloučení nových taxonů s existujícími taxony.
   log_in: Přihlásit se
   log_in_or_sign_up_to_add_comments_html: |
-    Pro přidávání komentářů se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+    Pro přidávání komentářů se <a href="/login">přihlaste</a> nebo <a href="/signup">zaregistrujte</a>.
   log_in_or_sign_up_to_add_identifications_html: |
-    Pro přidávání identifikací se <a href="/log_in">přihlaste</a> nebo <a href="/sign_up">zaregistrujte</a>.
+    Pro přidávání identifikací se <a href="/login">přihlaste</a> nebo <a href="/signup">zaregistrujte</a>.
   log_out: Odhlášení
   log_out_caps: ODHLÁSIT SE
   log_out_of_application: "Odhlásit se z %{site_name}?"
@@ -3051,6 +3052,7 @@ cs:
     argentina: Argentina
     armenia: Arménie
     aruba: Aruba
+    asia: Asie
     australia: Austrálie
     austria: Rakousko
     azerbaijan: Azerbajdžán
@@ -3542,7 +3544,6 @@ cs:
   reason_you_are_flagging_this_item: Důvod, proč označujete tuto položku.
   recaptcha_verification_failed: ověření reCaptcha se nezdařilo
   receive_email_notifications: Dostávat e-mailová upozornění
-  receive_email_notifications_description: "Pokud toto vypnete, již nebudete dostávat žádné e-maily z %{site_name} týkající se oznámení. Budete dostávat upozornění na vše zaškrtnuté níže:"
   receive_email_notifications_when_people_leave_you: Dostávat e-mailová oznámení o
   receive_project_journal_notifications?: Dostávat oznámení deníku projektu?
   receive_updates_from_this_project: Dostávat aktualizace z tohoto projektu
@@ -3688,6 +3689,7 @@ cs:
   save_settings_caps: ULOŽIT NASTAVENÍ
   save_trip: Uložit cestu
   saved: Uloženo
+  saved_at_time: Uloženo v %{time}
   saving: "Ukládá se…"
   saving_num_of_count_observations:
     one: Ukládání pozorování...
@@ -5950,23 +5952,10 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        compared_to_previous_years: Porovnat s předchozími roky
         donate_title: "Zvláštní poděkování všem našim podporovatelům"
-        donate_desc_html: |
-          Děkujeme za vaši štědrost týkající se času, pozornosti, odborností a
-          darů! iNaturalist je nezisková společná iniciativa
-          Kalifornské Akademie věd a National Geographic Society.
-          Je podporována a
-          <a href="%{team_url}"> malým týmem </a>, který 
-          dělá veškerý design a software
-          pro web, mobilní zařízení a
-          <a href="%{seek_url}"> Hledání pomocí iNaturalistem </a>, kromě správy, 
-          podpory komunity, spolupráce a integrací, se všechno vyvíjí (a rychle roste!). Program se opírá o četné
-          granty a dary, včetně charitativních darů od nejméně než 0,2%
-          přispěvatelů. Jsme obzvláště vděční měsíčním podporovatelům
-          jejichž opakované dary nám pomáhají plánovat budoucnost. Můžete darovat
-          ve více než 30 měnách na podporu základních operací iNaturalist.
-          Děkujeme vám všem za účast na tvorbě v roce 2019 iNaturalistů, 
-          zatím největší podpory za rok!
+        donors: Dárci
+        donors_guide_label_our_goal_is_1000: Naším cílem je 1000 pravidelných dárců měsíčně
         inaturalist_network: síť iNaturalist
         inaturalist_network_desc: |
           Podívejte se na rok v recenzi pro členy sítě iNaturalist.
@@ -5985,7 +5974,11 @@ cs:
           Druhy, které byly letos poprvé pozorovány na %{site_name}. Zobrazeno %{x}z<a href="%{url}">%{y} druyh</a>.
         new_species_desc_html: |
           Druhy přidané poprvé v tomto roce. Kliknutím na měsíc zobrazíte některé nové druhy přidané během daného měsíce. Můžete také zobrazit celkový akumulovaný druh nebo přesunout kurzor v čase, abyste viděli další nově pozorované druhy. Tento graf ukazuje druhy, jejichž pozorování je ověřitelné podle měsíce, kdy byly odeslány na %{site_name} (a ​​ne měsíc jejich pozorování). Nezahrnuje taxony vyšší nebo nižší úrovně, takže pozorování identifikované jako savec se nepočítá a pozorování poddruhu <i>Canis lupus</i> <i>arctos</i> se bude počítat pouze jako <i>Canis lupus</i>.
+        new_species_per_year: Nové druhy / rok
+        new_species_per_year_by_date_added: Dle data přidání
         obs_in_year: Pozorování v %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Jednorázově
         percent_growth_in_year: "% Růst v %{year}"
         percent_of_total_growth: "% z celkového růstu"
         publications_desc_html: |
@@ -6001,14 +5994,16 @@ cs:
           <a href="https://www.altmetric.com"> Altmetric </a>. Informace
           o využití dat se svolením našich přátel na internetu
           <a href="https://www.gbif.org/"> Globální informační středisko o biodiverzitě </a>.
+        observations_per_year: Pozorování / rok
+        observations_per_year_by_date_observed: Dle data pozorování
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Série pozorování
         observation_streaks_color_desc: |
           Barva představuje počet dní v logaritmické stupnici:
-        observation_streaks_desc: |
-          Pozorovací série je doba, kdy se někdo dostal ven, a
-          zaznamenával každý den nová, ověřitelná pozorování. Tady jsme
-          ukázali nejdelší etapy, které začaly v tomto roce nebo byly v procesu, když byly tyto statistiky vytvořeny.
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Pravidelně
+        species_per_year: Druhy / rok
+        species_per_year_by_date_added: Dle data přidání
         stats_generated_datetime: Statistiky generované na %{datetime}
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
@@ -6307,8 +6302,6 @@ cs:
           any: Jakýkoliv
           joined: Projekty, ke kterým jste se přidali
           none: "Žádný, k projektům můžete přidávat svá pozorování pouze vy"
-        prefers_community_taxa_desc: |
-          %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
