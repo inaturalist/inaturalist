@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
@@ -35,8 +36,9 @@ const IdentificationForm = ( {
         ) {
           observationTaxon = o.community_taxon || o.taxon;
         }
-        return observationTaxon.id !== idTaxon.id
-          && observationTaxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
+        return observationTaxon
+          && idTaxon.id !== observationTaxon.id
+          && _.includes( observationTaxon.ancestor_ids, idTaxon.id );
       };
       const params = {
         observation_id: o.id,

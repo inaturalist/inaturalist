@@ -8,10 +8,10 @@ import { rankLabel, filteredNodes, nodeObsCount } from "../util";
 class SpeciesNoAPI extends Component {
   secondaryNodeList( ) {
     const {
-      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, setSpeciesPlaceFilter
+      lifelist, detailsTaxon, setScrollPage, config, zoomToTaxon, setSpeciesPlaceFilter, search
     } = this.props;
-    const obsCount = nodeObsCount( lifelist );
-    const secondaryNodes = filteredNodes( lifelist );
+    const obsCount = nodeObsCount( lifelist, search );
+    const secondaryNodes = filteredNodes( lifelist, search );
     let moreButton;
     if ( lifelist.speciesViewScrollPage < (
       Math.ceil( _.size( secondaryNodes ) ) / lifelist.speciesViewPerPage ) ) {
