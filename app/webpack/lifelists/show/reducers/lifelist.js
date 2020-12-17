@@ -299,7 +299,8 @@ export function updateObservationsSearch( reload = false ) {
     const searchParams = {
       user_id: lifelist.user.id,
       order_by: "observed_on",
-      order: "desc"
+      order: "desc",
+      locale: I18n.locale
     };
     if ( lifelist.observationSort === "dateAsc" ) {
       searchParams.order = "asc";
@@ -340,7 +341,8 @@ export function updateSpeciesPlaceSearch( reload = false ) {
         force: true,
         searchParams: {
           user_id: lifelist.user.id,
-          place_id: lifelist.speciesPlaceFilter.id
+          place_id: lifelist.speciesPlaceFilter.id,
+          locale: I18n.locale
         },
         resultsModify: results => {
           const allTaxa = {};
@@ -382,7 +384,8 @@ export function updateUnobservedSpeciesSearch( reload = false ) {
         taxon_id: lifelist.detailsTaxon ? lifelist.detailsTaxon.id : null,
         place_id: lifelist.speciesPlaceFilter ? lifelist.speciesPlaceFilter.id : null,
         quality_grade: "research",
-        lrank: "species"
+        lrank: "species",
+        locale: I18n.locale
       }
     } ) );
     if ( reload ) {
