@@ -3195,7 +3195,7 @@ bg:
   view_moderation_history: Виж историята на модерирането
   view_moderation_history_for_this_comment: Виж историята на модерирането на този коментар
   view_more: Виж още
-  view_more_observations_from: Виж още наблюдения от
+  view_more_observations_from_this_place: Виж още наблюдения от това място
   view_more_observations_near_x_place: "Виж още наблюдения край %{place} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Виж още наблюдения от %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Виж още наблюдения на %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
@@ -3771,7 +3771,26 @@ bg:
           Създадено чрез <a href="https://www.inaturalist.org">iNaturalist</a>
           или чрез сайтове от <a href="%{url}">Мрежата на iNaturalist</a>
       year:
+        compare_desc: |
+          Каква беше тази година в сравнение с предходните Ви години? При потребление от три или повече години, можем да направим сравнение на годишните показатели за активност.
+        compared_to_previous_years: Сравни с предишни години
         donate_title: "Специални благодарности на всичките ни поддръжници"
+        donors: Дарители
+        donors_guide_label_our_goal_is_1000: Целта ни е 1 000 редовни дарители на месец
+        new_species_per_year: Нови видове / Година
+        new_species_per_year_by_date_added: По дата на добавяне
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Еднократен
+        observations_per_year: Наблюдения / Година
+        observations_per_year_by_date_observed: По дата на наблюдаване
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Серии от наблюдения
+        observation_streaks_desc2: |
+          „Серия от наблюдения“ е период от поне пет дни, през който някой е излизал и правил нови потвърдими наблюдения всеки ден. Тук показваме най-дългите серии, които са започнали тази година, включително тези които още не са били завършили при генерирането на статистиката (за отделните потребители включваме и серии, които са завършили тази година).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Редовен
+        species_per_year: Видове / Година
+        species_per_year_by_date_added: По дата на добавяне
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
