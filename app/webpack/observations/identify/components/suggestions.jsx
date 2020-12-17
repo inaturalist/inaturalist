@@ -194,6 +194,22 @@ class Suggestions extends React.Component {
     } else if ( response.results.length > 0 ) {
       title = I18n.t( "x_suggestions_filtered_by_colon", { count: response.results.length } );
     }
+    const sources = [
+      "observations",
+      "rg_observations",
+      "captive_observations",
+      "checklist"
+    ];
+    if ( query && query.taxon && query.taxon.rank_level <= 20 ) {
+      sources.push( "misidentifications" );
+    }
+    if (
+      observation
+      && observation.observation_photos
+      && observation.observation_photos.length > 0
+    ) {
+      sources.push( "visual" );
+    }
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
@@ -227,14 +243,7 @@ class Suggestions extends React.Component {
                   label={I18n.t( "source" )}
                   container={$( ".ObservationModal" ).get( 0 )}
                   chosen={query.source}
-                  choices={[
-                    "observations",
-                    "rg_observations",
-                    "captive_observations",
-                    "checklist",
-                    "misidentifications",
-                    "visual"
-                  ]}
+                  choices={sources}
                   choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
                   preIconClass={false}
