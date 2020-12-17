@@ -5,6 +5,7 @@ import TaxonAutocomplete from "../../../observations/uploader/components/taxon_a
 import TreeViewContainer from "../containers/tree_view_container";
 import DetailsViewContainer from "../containers/details_view_container";
 import ExportModalContainer from "../containers/export_modal_container";
+import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 
 
 /* global inaturalist */
@@ -23,6 +24,7 @@ class App extends React.Component {
     } = this.props;
     return (
       <div id="Lifelist" className="container">
+        <FlashMessagesContainer />
         <div className="lifelist-title">
           <h1>
             { I18n.t( "life_list", { user: lifelist.user.login } ) }

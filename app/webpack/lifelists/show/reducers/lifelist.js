@@ -147,9 +147,10 @@ export function fetchAllCommonNames( callback ) {
     if ( _.isEmpty( idsToLookup ) ) {
       return;
     }
-    inatjs.taxa.lifelist_metadata(
-      { observed_by_user_id: lifelist.user.login }
-    ).then( response => {
+    inatjs.taxa.lifelist_metadata( {
+      observed_by_user_id: lifelist.user.login,
+      locale: I18n.locale
+    } ).then( response => {
       const commonNames = { };
       const photos = { };
       _.each( response.results, t => {
@@ -187,8 +188,12 @@ export function setNavView( view ) {
 }
 
 export function setDetailsView( view ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const { lifelist } = getState( );
     if ( !_.includes( DETAILS_VIEWS, view ) ) {
+      return;
+    }
+    if ( lifelist.detailsView === view ) {
       return;
     }
     updateSession( { preferred_lifelist_details_view: view } );
@@ -306,7 +311,7 @@ export function updateObservationsSearch( reload = false ) {
         searchParams.taxon_id = lifelist.detailsTaxon.id;
       }
     } else if ( lifelist.detailsTaxonExact ) {
-      searchParams.identified = false;
+      searchParams.without_taxon = true;
     }
     if ( lifelist.speciesPlaceFilter ) {
       searchParams.place_id = lifelist.speciesPlaceFilter.id;
@@ -602,9 +607,7 @@ export function fetchUser( user, options ) {
           ) {
             milestoneLeaf = true;
           }
-          if ( milestoneTaxonID === 0 || milestoneTaxa[childID]
-            || milestoneLeaf || taxa[childID].rank_level === 10
-          ) {
+          if ( milestoneTaxonID === 0 || milestoneTaxa[childID] || milestoneLeaf ) {
             nextMilestoneTaxonID = childID;
           }
           if ( children[childID] ) {
@@ -627,7 +630,7 @@ export function fetchUser( user, options ) {
           taxa[childID].ancestors = ancestors;
           const isLeaf = ( taxa[childID].right === taxa[childID].left + 1 );
           if ( taxa[childID].rank_level === 70
-            || isLeaf
+            || ( isLeaf && taxa[childID].rank_level >= 10 )
             || milestoneTaxa[childID]
             || milestoneLeaf
             || taxa[childID].rank_level === 10
