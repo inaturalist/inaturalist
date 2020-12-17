@@ -234,8 +234,7 @@ DetailsView.propTypes = {
   inatAPI: PropTypes.object,
   setDetailsTaxon: PropTypes.func,
   setSpeciesPlaceFilter: PropTypes.func,
-  setObservationSort: PropTypes.func,
-  placeSearch: PropTypes.object
+  setObservationSort: PropTypes.func
 };
 
 export default DetailsView;
