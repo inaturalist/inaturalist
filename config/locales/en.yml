@@ -716,6 +716,9 @@ en:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
+  avg: Avg
   back: Back
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
@@ -6523,6 +6526,10 @@ en:
           currently affiliated with %{site_name} joined iNaturalist.
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
+        # Label when a mark on a chart has a value that is too small to
+        # visualize. low_value is the the value (usually a number), low_desc is
+        # a description of what that value represents
+        low_too_small: "Low: %{low_value} (%{low_desc}), too small to show"
         new_species_desc: |
           Species that were observed for the first time on %{site_name} this year.
           Showing %{x} of <a href="%{url}">%{y} species</a>.

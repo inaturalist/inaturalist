@@ -12,6 +12,10 @@ const Compare = ( { data, year } ) => {
     memo[y] = ( memo[y] || 0 ) + row.novel_species_ids.length;
     return memo;
   }, {} );
+  // If there's only one year represented, there's nothing to compare
+  if ( _.keys( newSpeciesPerYear ).length < 2 ) {
+    return <div />;
+  }
   const newSpeciesValues = _.values( newSpeciesPerYear );
   const minNewSpeciesValue = _.min( _.values( newSpeciesValues ) );
   const minNewSpeciesYear = _.findKey( newSpeciesPerYear, v => v === minNewSpeciesValue );
@@ -56,12 +60,12 @@ const Compare = ( { data, year } ) => {
             performance={obsPerYear[year]}
             comparison={obsPerYear[year - 1]}
             low={minObsValue}
-            lowLabel="Min"
+            lowLabel={I18n.t( "low" )}
             lowLabelExtra={minObsYear}
             medium={_.mean( _.values( obsValues ) )}
-            mediumLabel="Mean"
+            mediumLabel={I18n.t( "avg" )}
             high={_.max( _.values( obsValues ) )}
-            highLabel="Max"
+            highLabel={I18n.t( "high" )}
             highLabelExtra={maxObsYear}
           />
         </div>
@@ -71,7 +75,7 @@ const Compare = ( { data, year } ) => {
   return (
     <div className="Compare">
       <h3>
-        <a name="compare" href="#compare">
+        <a id="compare" name="compare" href="#compare">
           <span>{ I18n.t( "views.stats.year.compared_to_previous_years" ) }</span>
         </a>
       </h3>

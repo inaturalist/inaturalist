@@ -24,15 +24,14 @@ const Publications = ( { data, year } ) => {
           />
         </Col>
         <Col xs={9}>
-          <p>
-            { authors }
-            { pub.year }
-            { ". " }
-            <a href={pub.websites[0]}>{ `"${pub.title}." ` }</a>
-            <i>{ pub.source }</i>
-            { ". " }
+          <p className="publication">
+            <div className="authors">
+              { authors }
+            </div>
+            <a className="title" href={pub.websites[0]}>{ pub.title }</a>
+            <i className="source">{ pub.source }</i>
             { pub._gbifDOIs && (
-              <span className="data-dois">
+              <div className="data-dois">
                 { I18n.t( "data_used" )}
                 { " " }
                 { pub._gbifDOIs.map( doi => (
@@ -43,7 +42,7 @@ const Publications = ( { data, year } ) => {
                     { doi }
                   </a>
                 ) ) }
-              </span>
+              </div>
             ) }
           </p>
         </Col>

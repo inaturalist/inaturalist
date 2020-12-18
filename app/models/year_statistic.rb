@@ -143,7 +143,7 @@ class YearStatistic < ActiveRecord::Base
 
   def self.regenerate_defaults_for_year( year )
     generate_for_year( year )
-    Site.find_each do |site|
+    Site.live.find_each do |site|
       next if Site.default && Site.default.id == site.id
       generate_for_site_year( site, year )
     end

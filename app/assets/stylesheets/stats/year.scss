@@ -184,6 +184,14 @@ $ribbon-midfold-width: 40px;
     }
     .btn {
       min-width: 97px;
+      margin-left: 20px;
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+    .btn-bordered {
+      padding: 5.5px 15px;
+      text-transform: none;
     }
     .facebook-share-button {
       background-color: $facebook-blue;
@@ -199,7 +207,6 @@ $ribbon-midfold-width: 40px;
     }
     .twitter-share-button {
       vertical-align: top;
-      margin-left: 20px;
       background-color: $twitter-blue;
       border-color: $twitter-blue;
       color: white;
@@ -653,6 +660,18 @@ $obs-grid-photo-size: 210px;
   }
   a:hover, a:active, a:focus {
     color: lighten( $inat-green, 10% );
+  }
+  .publication {
+    display: flex;
+    flex-direction: column;
+    color: $text-grey;
+    .authors {
+      font-size: smaller;
+    }
+    a.title {
+      font-size: larger;
+      color: white;
+    }
   }
   .data-dois {
     a {
@@ -1181,6 +1200,7 @@ $obs-grid-photo-size: 210px;
   $dim: 40px;
   $bullet-color: #444;
   $bullet-font-size: 9px;
+  $bullet-label-margin: 5px;
   .high {
     position: relative;
     height: $dim;
@@ -1193,10 +1213,17 @@ $obs-grid-photo-size: 210px;
       left: 0;
       overflow: hidden;
     }
+    .low-too-small {
+      position: absolute;
+      left: $bullet-label-margin;
+      top: 0;
+      font-size: $bullet-font-size;
+      opacity: 0.2;
+    }
     .qual-label {
       position: absolute;
-      top: 5px;
-      right: 5px;
+      top: $bullet-label-margin;
+      right: $bullet-label-margin;
       font-size: $bullet-font-size;
       line-height: $bullet-font-size;
       opacity: 0.2;
@@ -1204,7 +1231,7 @@ $obs-grid-photo-size: 210px;
     .qual-label-extra {
       position: absolute;
       bottom: 4px;
-      right: 5px;
+      right: $bullet-label-margin;
       font-size: $bullet-font-size;
       line-height: $bullet-font-size;
       opacity: 0.2;
