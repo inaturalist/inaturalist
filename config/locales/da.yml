@@ -3846,6 +3846,7 @@ da:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonsammenfletning"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til dette taksonopdeling"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonfjernelse"
+  subscribe_to_observations_from_this_place_html: <a>Abonnér</a> på observationer fra dette sted
   subscribe_to_observations_in_a_taxon: Abonnér på alle observationer indsendt af en art eller gruppe af organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonnér på alle observationer indsendt inden for dette sted. Du kan også tilføje et valgfrit takson filter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -4637,7 +4638,8 @@ da:
   you_can_edit_this_default_check_list_because: |
     Du kan redigere denne standard tjekliste fordi du er en
     administrator, men der burde ikke være et behov for at gøre det.
-  you_can_only_destroy_taxa_you_created: "Du kan kun ødelægge taksa du har oprettet, og du kan ikke ødelægge taksa, der bruges i takson ændringer."
+  you_can_only_destroy_taxa_you_created2: |
+    Du kan kun slette taksa, du har oprettet, som ikke er knyttet til taksonændringer, identifikationer eller andet indhold
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
   you_can_sign_free_at: "Du kan tilmelde dig og få en gratis %{site_name} konto på"
