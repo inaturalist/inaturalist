@@ -177,17 +177,17 @@ fr:
   about_trusting_projects: À propos des projets de confiance
   about_trusting_projects_options_any: Toutes vos observations de ce projet
   about_trusting_projects_options_any_desc: |-
-    Ceci inclue vos observations dont vous avez cachés les coordonées, c'est-à-dire celles dont vous ne voulez pas que les autres naturalistes sachent les coordonées.
+    Ceci inclut vos observations dont vous avez masqué les coordonnées, comme les observations faites chez vous ou à des endroits que vous ne voulez pas révéler.
   about_trusting_projects_options_taxon: |-
-    Seules vos observations aux coordonnées cachées car à propos d'une espèce menacée?
+    Seulement vos observations aux coordonnées masquées parce qu'elles représentent un taxon menacé
   about_trusting_projects_options_taxon_desc: |-
-    Beaucoup de projets ont besoin d'avoir accès aux coordonnées cachées de vos observations qui contiennent un taxon menacé.
+    Beaucoup de projets ont besoin d'avoir accès aux coordonnées masquées de vos observations qui contiennent un taxon menacé.
   about_trusting_projects_overview: |-
-    Autoriser l'accès à vos coordonnées cachées va permettre aux dirigeants du projets de voir la véritable position de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
+    Autoriser l'accès à vos coordonnées masquées va permettre aux dirigeants de projets de voir le véritable emplacement de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-    Les gérants du projet qui auront accès aux coordonnées cachées sont :
+    Les gérants du projet qui auront accès aux coordonnées masquées sont :
   about_trusting_projects_warning: |-
     Prenez en compte que les gérants du projet pourrons changer les paramètres de celui-ci afin d'ajouter vos observations, et ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées cachées, donc soyez prudent.
   #Header for a section listing the different ways you can trust a project
@@ -2213,7 +2213,7 @@ fr:
   most_agree: la plupart sont d’accord
   most_browser_print_pdf: "Note : la plupart des navigateurs ont une option pour imprimer en PDF"
   most_disagree: la plupart ne sont pas d’accord
-  most_comments_and_faves: La plupart des commentaires et favoris
+  most_comments_and_faves: Observations avec le plus de commentaires et Favoris
   most_observations: Par nombre d'observations
   most_recent_observation_by_date_observed: Observation vérifiable la plus récente observée par date
   most_species: Par nombre d'espèces
@@ -2295,7 +2295,7 @@ fr:
   new_message: Nouveau message
   new_observation_field: Nouveau champ de l’observation
   new_observations: Nouvelles observations
-  new_observations_in_year: "Nouvelles observations dans %{year}"
+  new_observations_in_year: "Nouvelles observations en %{year}"
   new_observations_ellispsis: "Nouvelles observations…"
   new_observations_from_place_html: "Nouvelles observations à %{place}"
   new_observations_may_take_up_to: Les nouvelles observations peuvent prendre jusqu’à %{widget_expiration} minutes avant d’apparaître dans le widget.
@@ -2316,12 +2316,12 @@ fr:
   new_trip: Nouveau voyage
   new_updates_in_the_last_24_hours_from: "Nouvelles mises à jour dans les dernières 24 heures d’%{site_name}"
   new_users: Nouveaux utilisateurs
-  new_users_in_year: "Nouveaux utilisateurs dans %{year}"
+  new_users_in_year: "Nouveaux utilisateurs en %{year}"
   new_users_w_7_obs: Nouveaux utilisateurs avec 7 Obs
-  newly_added: Ajouté récemment
-  newly_added_species: Espèces ajoutées récemment
+  newly_added: Nouvelles espèces observées
+  newly_added_species: Nouvelles espèces observées
   newly_observed_species: Nouvelles espèces observées
-  newly_observed_species_in_year: "Espèces nouvellement ajoutées dans %{year}"
+  newly_observed_species_in_year: "Nouvelles espèces observées en %{year}"
   next: Suivant
   next_observation: Observation suivante
   next_page: Page suivante
@@ -3841,6 +3841,7 @@ fr:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette fusion de taxon"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce partage de taxon"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette désactivation de taxon"
+  subscribe_to_observations_from_this_place_html: <a>Abonnez-vous</a> aux observations de cet endroit
   subscribe_to_observations_in_a_taxon: S’abonner à toutes les observations publiées sur une espèce ou un groupe d’organismes (par ex. 'scorpions').
   subscribe_to_observations_in_a_place: S’abonner à toutes les observations publiées dans cet emplacement. Vous pouvez aussi ajouter un filtre de taxon facultatif (par ex. 'scorpions du Texas').
   subscribe_to_places_to: |
@@ -4404,7 +4405,7 @@ fr:
   view_moderation_history_for_this_comment: Afficher l’historique de modération de ce commentaire
   view_more: Afficher plus
   view_more_about_x: "Afficher plus sur %{x}"
-  view_more_observations_from_this_place: Voir plus d'observations localisées à cet endroit
+  view_more_observations_from_this_place: Voir plus d'observations de cet endroit
   view_more_observations_near_x_place: "Afficher plus d'observations près de %{place} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "Afficher plus d'observations de %{project} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Afficher plus d’observations de %{taxon} sur <nobr>%{site_name} &raquo;</nobr>"
@@ -4628,7 +4629,9 @@ fr:
   you_can_edit_this_default_check_list_because: |
     Vous pouvez modifier cette liste de contrôle par défaut parce que vous êtes un
     administrateur, mais il ne devrait pas être nécessaire de le faire.
-  you_can_only_destroy_taxa_you_created: "Vous ne pouvez détruire que les taxons que vous avez créés, et vous ne pouvez pas détruire des taxons qui sont utilisés dans des modifications de taxon."
+  you_can_only_destroy_taxa_you_created2: |
+    Vous ne pouvez supprimer que les taxons que vous avez créés qui ne sont associés ni à des modifications
+    de taxon, ni à des identifications, ni à aucun autre contenu.
   you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
   you_can_show_the_boundary_of: Vous pouvez afficher les limites géographiques du lieu sur votre page de projet s’il en a une.
   you_can_sign_free_at: "Vous pouvez demander un compte gratuit sur %{site_name} à"
@@ -6082,8 +6085,10 @@ fr:
       year:
         compare_desc: |
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
+        compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
         donors: Donateurs
+        donors_guide_label_our_goal_is_1000: Notre objectif est d'atteindre 1000 donateurs récurrents par mois
         inaturalist_network: Réseau iNaturalist
         inaturalist_network_desc: |
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
@@ -6102,17 +6107,19 @@ fr:
           Espèces ayant été observées pour la première fois cette année sur %{site_name} .
           Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
         new_species_desc_html: |
-          Espèces ajoutées pour la première fois cette année.
+          Nombre d'espèces qui ont été observées pour la première fois cette année.
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
-          Vous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur
+          Vous pouvez aussi afficher le total des espèces, ou faire remonter le curseur
           dans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre
-          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été uploadées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
+          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été enregistrées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
           de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
-          Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
+          Mammifère ne comptera pas, et une observation d’une sous-espèce comme <i>Canis lupus</i>
           <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
         new_species_per_year: Nouvelle espèce / Année
         new_species_per_year_by_date_added: Par date d'ajout
         obs_in_year: Obs en %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Unique
         percent_growth_in_year: "% de croissance en %{year}"
         percent_of_total_growth: "% de croissance totale"
         publications_desc_html: |
@@ -6136,7 +6143,9 @@ fr:
         observation_streaks_color_desc: |
           La couleur représente le nombre de jours sur une échelle logarithmique :
         observation_streaks_desc2: |
-          Une série d'observations est une période d'au moins cinq jours où quelqu'un à enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ou qui étaient en cours lorsque nous avons généré ces statistiques (pour les utilisateurs individuels, nous incluons également les séries qui se sont terminées cette année).
+          Une série d'observations est une période d'au moins cinq jours pendant laquelle quelqu'un a enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ainsi que celles qui étaient en cours lorsque nous avons généré ces statistiques (pour les utilisateurs individuels, nous incluons également les séries qui se sont terminées cette année).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Récurrent
         species_per_year: Espèce / Année
         species_per_year_by_date_added: Par date d'ajout
         stats_generated_datetime: Statistiques générées le %{datetime}
