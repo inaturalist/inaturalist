@@ -3865,6 +3865,7 @@ nl:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsamenvoeging"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonsplitsing"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze taxonverwijdering"
+  subscribe_to_observations_from_this_place_html: <a>Abonneer</a> op waarnemingen van deze plaats
   subscribe_to_observations_in_a_taxon: Op alle waarnemingen van een soort of groep organismen (bijv. 'schorpioenen') abonneren.
   subscribe_to_observations_in_a_place: Op alle waarnemingen die op deze plaats worden gerapporteerd abonneren. Je kunt eventueel ook een taxonfilter toevoegen (bijv. 'Paardenbloemen in Utrecht').
   subscribe_to_places_to: |
@@ -4422,6 +4423,7 @@ nl:
   view_moderation_history_for_this_comment: Moderatiegeschiedenis bekijken voor deze reactie
   view_more: Meer weergeven
   view_more_about_x: "Meer weergeven over %{x}"
+  view_more_observations_from_this_place: Toon meer waarnemingen van deze plaats
   view_more_observations_near_x_place: "Geef meer waarnemingen weer in de buurt van %{place} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
@@ -4635,7 +4637,8 @@ nl:
   you_can_edit_this_default_check_list_because: |
     Je kunt deze standaard-checklist bewerken omdat je een administrator
     bent, maar daar zou eigenlijk niet nodig moeten zijn.
-  you_can_only_destroy_taxa_you_created: "Je kunt alleen taxa die je zelf hebt gemaakt vernietigen maar je kunt geen taxa vernietigen die worden gebruikt in taxonwijzingen."
+  you_can_only_destroy_taxa_you_created2: |
+    Je kunt alleen taxa die je hebt aangekaant verwijderen die niet zijn gekoppeld aan taxonveranderingen, determinaties of andere inhoud
   you_can_only_block_three_users: Je kan slechts drie gebruikers blokkeren
   you_can_show_the_boundary_of: Je kunt de grens van de plaats op je projectpagina weergeven als de plaats een grens heeft.
   you_can_sign_free_at: "Je kunt je aanmelden voor een gratis %{site_name}-account op"
@@ -5241,6 +5244,42 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
+        quality_assessment_help_html: |
+          <p>
+           De gegevenskwaliteit is een overzicht over de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
+           </p>
+           <ul>
+           <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>geografische referenties heeft</strong> (d.w.z. coördinaten heeft)</li>
+           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+           <li>de waarneming <strong>niet van een mens is</strong></li>
+           </ul>
+           <p>
+           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
+           </p>
+           <ul>
+           <li>de %{site_name}<strong>-gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
+           </ul>
+           <p>
+          Waarnemingen worden teruggezet naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap het eens is dat
+           </p>
+           <ul>
+           <li>de locatie <strong>niet nauwkeurig lijkt</strong> (bijvoorbeeld apen in het midden van 
+           de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
+           <li>het <strong>organisme niet wild/genaturaliseerd is</strong> (bijv. gevangen of 
+           gekweekt door mensen of intelligente ruimtewezens)</li>
+          <li>de waarneming <strong>geen bewijs op van een organisme levert</strong>, b.v. 
+           afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
+          <li>de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme levert</strong> (bijv. fossielen, maar sporen, ontlasting en dode bladeren zijn oké)</li>
+           <li>de waarneming niet langer een determinatie nodig heeft <em>en</em> het gemeenschaps-ID hoger dan familie is</li>
+           <li>de waarnemer zich heeft afgemeld voor het gemeenschaps-ID en het taxon van het gemeenschaps-ID geen voorouder of afstammeling van het taxon van de waarnemer is</li>
+           </ul>
+           <p>
+           En alsof dat nog niet ingewikkeld genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
+           </p>
+           <ul>
+           <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus of lager zijn in de kleinste equivalent van provincie, staat of land waarin deze waarneming valt en 80% of meer van die waarnemingen als niet wild/genaturaliseerd gemakreerd zijn.</li>
+           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
