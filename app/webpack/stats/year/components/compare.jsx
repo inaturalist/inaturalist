@@ -35,8 +35,8 @@ const Compare = ( { data, year } ) => {
   const maxSpeciesValue = _.max( _.values( speciesValues ) );
   const maxSpeciesYear = _.findKey( speciesPerYear, v => v === maxSpeciesValue );
   let obsChart;
-  if ( data.observations && data.observations.month_histogram ) {
-    const obsPerYear = _.reduce( data.observations.month_histogram, ( memo, count, date ) => {
+  if ( data.growth && data.growth.observations ) {
+    const obsPerYear = _.reduce( data.growth.observations, ( memo, count, date ) => {
       const y = parseInt( date.split( "-" )[0], 0 );
       if ( y > year ) {
         return memo;
