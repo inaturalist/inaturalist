@@ -716,6 +716,9 @@ en:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
+  avg: Avg
   back: Back
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
@@ -6523,6 +6526,10 @@ en:
           currently affiliated with %{site_name} joined iNaturalist.
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
+        # Label when a mark on a chart has a value that is too small to
+        # visualize. low_value is the the value (usually a number), low_desc is
+        # a description of what that value represents
+        low_too_small: "Low: %{low_value} (%{low_desc}), too small to show"
         new_species_desc: |
           Species that were observed for the first time on %{site_name} this year.
           Showing %{x} of <a href="%{url}">%{y} species</a>.
@@ -6538,6 +6545,7 @@ en:
           <i>arctos</i> will just count as <i>Canis lupus</i>.
         new_species_per_year: New Species / Year
         new_species_per_year_by_date_added: By date added
+        new_species_per_year_by_date_observed: By date observed
         obs_in_year: Obs in %{year}
         # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: One-time
@@ -6558,6 +6566,7 @@ en:
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observations / Year
+        observations_per_year_by_date_added: By date added
         observations_per_year_by_date_observed: By date observed
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
@@ -6573,6 +6582,7 @@ en:
         recurring: Recurring
         species_per_year: Species / Year
         species_per_year_by_date_added: By date added
+        species_per_year_by_date_observed: By date observed
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat

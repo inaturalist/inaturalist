@@ -86,8 +86,8 @@ const App = ( {
             site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
         ) }
-        { window.location.search.match( /test=compare/ ) && data && data.taxa && data.taxa.accumulation && (
-          <Compare data={data} year={year} />
+        { data && data.taxa && data.taxa.accumulation && (
+          <Compare data={data} year={year} forUser />
         ) }
         { data.publications && (
           <Publications data={data.publications} year={year} />
@@ -148,6 +148,22 @@ const App = ( {
               <i className="fa fa-twitter" />
               { I18n.t( "twitter" ) }
             </a>
+            { /* eslint-disable-next-line no-undef */ }
+            { SHAREABLE_IMAGE_URL && (
+              <a
+                className="btn btn-bordered"
+                href={
+                  /* eslint-disable-next-line no-undef */
+                  SHAREABLE_IMAGE_URL
+                }
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa fa-download" />
+                { I18n.t( "download" ) }
+              </a>
+            ) }
           </center>
         </div>
       </div>

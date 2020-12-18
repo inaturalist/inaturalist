@@ -439,6 +439,8 @@ namespace :inaturalist do
             elsif Rails.env.development?
               puts "WARNING: Failed to translate #{locale}.#{key}"
             end
+          elsif h[key].is_a?( String )
+            raise "Expected a nested object but got a string. You probably have a typo in this translation string: #{split_keys.join( "." )}"
           else
             h[key] ||= { }
           end

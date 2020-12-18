@@ -21,12 +21,20 @@ const Streaks = ( {
 } ) => {
   let startYear = year;
   if ( _.filter( data, streak => streak.days > 300 ).length / data.length > 0.5 ) {
-    const years = _.map( data, streak => moment( streak.start ).year( ) ).sort( );
-    startYear = years[Math.round( years.length / 2 )];
+    const years = _.uniq( _.flatten( _.map(
+      data,
+      streak => [moment( streak.start ).year( ), moment( streak.stop ).year( )]
+    ) ) ).sort( );
+    if ( years.length <= 2 ) {
+      startYear = years[0];
+    } else {
+      startYear = years[Math.round( years.length / 2 )];
+    }
   }
   const multiYear = startYear < year;
+  const dates = [new Date( `${startYear}-01-01` ), new Date( `${year}-12-31` )];
   const scale = scaleTime( )
-    .domain( [new Date( `${startYear}-01-01` ), new Date( `${year}-12-31` )] )
+    .domain( dates )
     .range( [0, 1.0] );
   const ticks = scale.ticks( ( ( year - startYear + 1 ) * 12 ) );
   const days = data.map( d => d.days );

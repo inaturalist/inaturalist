@@ -8,7 +8,7 @@ import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
 import moment from "moment";
-import { objectToComparable } from "../../../shared/util";
+import { objectToComparable, shortFormattedNumber } from "../../../shared/util";
 
 class DateHistogram extends React.Component {
   constructor( props ) {
@@ -58,18 +58,7 @@ class DateHistogram extends React.Component {
     if ( tickFormatLeft ) {
       return axisLeft.tickFormat( tickFormatLeft );
     }
-    return axisLeft.tickFormat( d => {
-      if ( d >= 1000000000 ) {
-        return I18n.t( "number.format.si.giga", { number: _.round( d / 1000000000, 3 ) } );
-      }
-      if ( d >= 1000000 ) {
-        return I18n.t( "number.format.si.mega", { number: _.round( d / 1000000, 3 ) } );
-      }
-      if ( d >= 1000 ) {
-        return I18n.t( "number.format.si.kilo", { number: _.round( d / 1000, 3 ) } );
-      }
-      return d;
-    } );
+    return axisLeft.tickFormat( shortFormattedNumber );
   }
 
   enterSeries( newState = {} ) {
