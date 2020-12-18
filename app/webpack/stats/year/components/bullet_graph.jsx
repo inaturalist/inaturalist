@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { scaleLinear } from "d3";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { shortFormattedNumber } from "../../../shared/util";
 
 const BulletGraph = ( {
   performance,
@@ -29,23 +30,31 @@ const BulletGraph = ( {
           <div className="qual-label">{ mediumLabel }</div>
           <div className="qual-label-extra">{ mediumLabelExtra }</div>
         </div>
-        <div className="low" style={{ [valueDimension]: `${scale( low )}%` }} title={low}>
-          <div className="qual-label">{ lowLabel }</div>
-          <div className="qual-label-extra">{ lowLabelExtra }</div>
-        </div>
-        { scale( low ) < 5 && (
-          <div className="low-too-small">
-            <OverlayTrigger
-              overlay={(
-                <Tooltip id={`bullet-low-too-small-${low}-${medium}-${high}`}>
-                  { I18n.t( "views.stats.year.low_too_small", { low_value: low, low_desc: lowLabelExtra } ) }
-                </Tooltip>
-              )}
-            >
-              <i className="fa fa-info-circle" />
-            </OverlayTrigger>
-          </div>
-        ) }
+        { scale( low ) < 5
+          ? (
+            <div className="low-too-small">
+              <OverlayTrigger
+                placement="top"
+                trigger="click"
+                rootClose
+                container={$( "#wrapper.bootstrap" ).get( 0 )}
+                overlay={(
+                  <Tooltip id={`bullet-low-too-small-${low}-${medium}-${high}`}>
+                    { I18n.t( "views.stats.year.low_too_small", { low_value: low, low_desc: lowLabelExtra } ) }
+                  </Tooltip>
+                )}
+              >
+                <i className="fa fa-info-circle" />
+              </OverlayTrigger>
+            </div>
+          )
+          : (
+            <div className="low" style={{ [valueDimension]: `${scale( low )}%` }} title={low}>
+              <div className="qual-label">{ lowLabel }</div>
+              <div className="qual-label-extra">{ lowLabelExtra }</div>
+            </div>
+          )
+        }
         <div
           className="comparison"
           style={{ [valueDimension]: `${scale( comparison )}%` }}
@@ -64,7 +73,7 @@ const BulletGraph = ( {
             className={`tick ${tick === 0 ? "zero" : ""} ${i % 2 === 0 ? "even" : "odd"}`}
             style={{ [valueDimension]: `${scale( tick )}%` }}
           >
-            <span>{ tick }</span>
+            <span>{ shortFormattedNumber( tick ) }</span>
           </div>
         ) ) }
       </div>

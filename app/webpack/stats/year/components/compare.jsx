@@ -104,12 +104,12 @@ const Compare = ( { data, year } ) => {
             performance={newSpeciesPerYear[year]}
             comparison={newSpeciesPerYear[year - 1]}
             low={minNewSpeciesValue}
-            lowLabel="Min"
+            lowLabel={I18n.t( "low" )}
             lowLabelExtra={minNewSpeciesYear}
             medium={_.mean( _.values( newSpeciesValues ) )}
-            mediumLabel="Mean"
+            mediumLabel={I18n.t( "avg" )}
             high={maxNewSpeciesValue}
-            highLabel="Max"
+            highLabel={I18n.t( "high" )}
             highLabelExtra={maxNewSpeciesYear}
           />
         </div>
@@ -124,12 +124,12 @@ const Compare = ( { data, year } ) => {
             performance={speciesPerYear[year]}
             comparison={speciesPerYear[year - 1]}
             low={minSpeciesValue}
-            lowLabel="Min"
+            lowLabel={I18n.t( "low" )}
             lowLabelExtra={minSpeciesYear}
             medium={_.mean( _.values( speciesValues ) )}
-            mediumLabel="Mean"
+            mediumLabel={I18n.t( "avg" )}
             high={_.max( _.values( speciesValues ) )}
-            highLabel="Max"
+            highLabel={I18n.t( "high" )}
             highLabelExtra={maxSpeciesYear}
           />
         </div>

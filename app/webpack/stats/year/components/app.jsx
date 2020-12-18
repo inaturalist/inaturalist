@@ -157,6 +157,8 @@ const App = ( {
                   SHAREABLE_IMAGE_URL
                 }
                 download
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fa fa-download" />
                 { I18n.t( "download" ) }

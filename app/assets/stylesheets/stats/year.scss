@@ -190,7 +190,7 @@ $ribbon-midfold-width: 40px;
       }
     }
     .btn-bordered {
-      padding: 5.5px 15px;
+      padding: 6px 15px;
       text-transform: none;
     }
     .facebook-share-button {
@@ -667,6 +667,7 @@ $obs-grid-photo-size: 210px;
     color: $text-grey;
     .authors {
       font-size: smaller;
+      line-height: 1.4;
     }
     a.title {
       font-size: larger;
