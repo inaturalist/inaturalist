@@ -2156,7 +2156,7 @@ de:
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "MMMM T, JJJJ"
+    date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM T"
   month: Monat
@@ -3777,6 +3777,7 @@ de:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Zusammenführung"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnieren Sie%{tag_end} Kommentare zu dieser Taxon-Aufteilung"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonniere%{tag_end} Kommentare zu dieser Taxon-Löschung"
+  subscribe_to_observations_from_this_place_html: Beobachtungen von diesem Ort <a>abonnieren</a>
   subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Heuschrecken").
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
   subscribe_to_places_to: |
@@ -4515,7 +4516,8 @@ de:
   you_can_choose_observations_associated: Du kannst Beobachtungen auswählen, die mit diesem Journalbeitrag assoziiert werden sollen.
   you_can_edit_this_default_check_list_because: |
     Du kannst diese Standard-Checkliste ändern, weil Du Admin bist, aber eigentlich sollte dafür keine Notwendigkeit bestehen.
-  you_can_only_destroy_taxa_you_created: "Du kannst nur die Taxa zerstören, die du selbst erstellt hast, und Taxa, die in Taxon-Änderungen verwendet wurden, können nicht zerstört werden."
+  you_can_only_destroy_taxa_you_created2: |
+    Du kannst nur Taxa löschen, die nicht mit Taxon-Änderungen, Identifikationen oder anderen Inhalten verknüpft sind
   you_can_only_block_three_users: Du kannst nur drei Benutzer sperren
   you_can_show_the_boundary_of: Du kannst die Gebietsgrenze auf deiner Projektseite anzeigen lassen, falls der Ort eine Grenze hat.
   you_can_sign_free_at: "Du kannst dich für ein kostenloses %{site_name}-Konto anmelden unter"
@@ -5023,7 +5025,7 @@ de:
       import:
         coordinate_systems_help: |
           %{site_name} akzeptiert Koordinaten aus verschiedenen Koordinatensystemen; wenn Du ein anderes System als geographische Breite und Länge verwendest, müssen wir Dein verwendetes Koordinatensystem wissen, um die Koordinaten richtig zu interpretieren. Bitte versichere Dich, dass Du das richtige Koordinatensystem für Deine Daten gewählt hast, sonst könnte der Ort weit entfernt von dort landen, wo er sollte. Hast Du die Koordinaten aus einem GPS-Gerät, erfährst Du das Koordinatensystem in dessen Einstellungen. Beachte, dass wir keine benutzerdefinierten Koordinaten speichern, nur deren Umrechnung in geographische Breite und Länge.
-        date_column_format: JJJJ-MM-TT HH:MM
+        date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Die Geo-Privatsphäre muss in Englisch und leer sein oder auf "verdeckt" oder "privat" gesetzt sein.
@@ -5404,7 +5406,7 @@ de:
           on_list: ein Taxon auf der Projektliste sein
           verifiable: verifizierbar sein
           wild: wild/verwildert sein
-        start_time_desc: "Startzeit für deinen Bioblitz. Format: JJJJ-MM-TTZh:mm:ss±hh:mm"
+        start_time_desc: "Startzeit für deinen Bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: Jeder
           curators: Projekt Kuratoren
