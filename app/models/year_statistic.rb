@@ -35,7 +35,7 @@ class YearStatistic < ActiveRecord::Base
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
-        month_histogram: observations_histogram( year, options.merge( interval: "month" ) ),
+        month_histogram: observations_histogram( year, options.merge( interval: "month", d1: "2008-01-01" ) ),
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
@@ -84,10 +84,6 @@ class YearStatistic < ActiveRecord::Base
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
     year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
-    accumulation = observed_species_accumulation(
-      user: user,
-      verifiable: true
-    )
     users_who_helped_arr, total_users_who_helped, total_ids_received = users_who_helped( year, user )
     users_helped_arr, total_users_helped, total_ids_given = users_helped( year, user )
     json = {
@@ -117,7 +113,15 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation: accumulation
+        accumulation: observed_species_accumulation(
+          user: user,
+          verifiable: true
+        ),
+        accumulation_by_date_observed: observed_species_accumulation(
+          user: user,
+          verifiable: true,
+          date_field: "observed_on"
+        )
         # observed_taxa_changes: observed_taxa_changes( year, user: user )
       },
       growth: {
@@ -183,9 +187,9 @@ class YearStatistic < ActiveRecord::Base
     params = {
       d1: "#{year}-01-01",
       d2: "#{year}-12-31",
-      interval: options[:interval] || "day",
-      quality_grade: options[:quality_grade] || "research,needs_id"
-    }
+      interval: "day",
+      quality_grade: "research,needs_id"
+    }.merge( options )
     if user = options[:user]
       params[:user_id] = user.id
     end

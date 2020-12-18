@@ -24,7 +24,7 @@ const Publications = ( { data, year } ) => {
           />
         </Col>
         <Col xs={9}>
-          <p className="publication">
+          <div className="publication stacked">
             <div className="authors">
               { authors }
             </div>
@@ -44,7 +44,7 @@ const Publications = ( { data, year } ) => {
                 ) ) }
               </div>
             ) }
-          </p>
+          </div>
         </Col>
       </Row>
     );

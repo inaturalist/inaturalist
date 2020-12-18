@@ -17,9 +17,13 @@ const Observations = ( {
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
+    const monthHistogramThisYear = _.pickBy(
+      data.month_histogram,
+      ( value, date ) => date.indexOf( `${year}-` ) >= 0
+    );
     series.month = {
       title: I18n.t( "per_month" ),
-      data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( monthHistogramThisYear, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
       label: d => I18n.t( "bold_label_colon_value_html", {
