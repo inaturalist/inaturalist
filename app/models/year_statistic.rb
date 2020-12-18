@@ -35,7 +35,7 @@ class YearStatistic < ActiveRecord::Base
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
-        month_histogram: observations_histogram( year, options.merge( interval: "month", d1: "2008-01-01" ) ),
+        month_histogram: observations_histogram( year, options.merge( interval: "month", d1: "1908-01-01" ) ),
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
@@ -89,7 +89,7 @@ class YearStatistic < ActiveRecord::Base
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
-        month_histogram: observations_histogram( year, user: user, interval: "month" ),
+        month_histogram: observations_histogram( year, user: user, interval: "month", d1: "1908-01-01" ),
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),

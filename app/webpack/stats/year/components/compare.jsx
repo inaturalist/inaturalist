@@ -12,7 +12,7 @@ class Compare extends Component {
   }
 
   render( ) {
-    const { data, year } = this.props;
+    const { data, year, forUser } = this.props;
     const { dateField } = this.state;
     const taxaAccumulation = (
       dateField === "observed_on"
@@ -111,9 +111,11 @@ class Compare extends Component {
           </a>
         </h3>
 
-        <p className="text-muted">
-          { I18n.t( "views.stats.year.compare_desc" ) }
-        </p>
+        { forUser && (
+          <p className="text-muted">
+            { I18n.t( "views.stats.year.compare_desc" ) }
+          </p>
+        ) }
 
         <div className="legend-controls">
           <div className="legend">
@@ -204,11 +206,13 @@ class Compare extends Component {
 Compare.propTypes = {
   year: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
-  dateField: PropTypes.oneOf( ["created_at", "observed_on"] )
+  dateField: PropTypes.oneOf( ["created_at", "observed_on"] ),
+  forUser: PropTypes.bool
 };
 
 Compare.defaultProps = {
-  dateField: "created_at"
+  dateField: "created_at",
+  forUser: false
 };
 
 export default Compare;

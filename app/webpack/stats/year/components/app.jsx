@@ -87,7 +87,7 @@ const App = ( {
           />
         ) }
         { data && data.taxa && data.taxa.accumulation && (
-          <Compare data={data} year={year} />
+          <Compare data={data} year={year} forUser />
         ) }
         { data.publications && (
           <Publications data={data.publications} year={year} />
