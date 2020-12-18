@@ -11,7 +11,7 @@ const Donate = ( { year, data } ) => (
       >
         <img
           alt={I18n.t( "store" )}
-          src="https://static.inaturalist.org/misc/yir-inat-shirts.png"
+          src="https://static.inaturalist.org/misc/yir-inat-shirts-2020.png"
           className="img-responsive"
         />
       </a>

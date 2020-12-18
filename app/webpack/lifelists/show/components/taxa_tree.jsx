@@ -43,7 +43,8 @@ class TaxaTree extends React.Component {
       setDetailsView
     } = this.props;
     const simplified = lifelist.treeMode === "simplified";
-    const children = simplified ? lifelist.milestoneChildren : lifelist.children;
+    const children = ( simplified && !( taxon && taxon.rank_level <= 10 ) )
+      ? lifelist.milestoneChildren : lifelist.children;
     const taxonID = taxon ? taxon.id : 0;
     const isLeaf = !children[taxonID];
     const showDirectCount = !taxon || taxon.rank_level > 10;
