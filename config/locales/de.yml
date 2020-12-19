@@ -9,8 +9,8 @@ de:
     one: '1 Stimme'
     other: '%{count} Stimmen'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> Meldung geklärt"
-    other: "<span class='count'>%{count}</span> Meldungen geklärt"
+    one: "<span class='count'>%{count}</span> Meldung gelöst"
+    other: "<span class='count'>%{count}</span> Meldungen gelöst"
   x_identifications:
     one: 'Eine Bestimmung'
     other: '%{count} Bestimmungen'
@@ -624,6 +624,9 @@ de:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatisch Beobachtungen zu diesem Projekt hinzufügen
   automatically_update_my_content_for_taxon_changes: Automatisch meine Inhalte bei Taxonänderungen aktualisieren
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Mittl.
   back: Zurück
   back_to_all_species: Zurück zu Alle Arten
   back_to_browsing_people: Zurück zur Personensuche
@@ -1442,7 +1445,7 @@ de:
   flag: Melden
   flag_as_inappropriate: Jetzt melden
   flag_an_item: Objekt melden
-  flag_as_spammer: Als Spammer markieren
+  flag_as_spammer: Als Spammer melden
   flag_as_non_spammer: Als Nicht-Spammer markieren
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
@@ -1494,9 +1497,9 @@ de:
     Bitte keine Probleme melden, die auch anderweitig gelöst werden können, z.B. durch Bestimmungen, die Qualitätsprüfung oder im Gespräch mit der Person, die den Inhalt erstellt hat.
   flagger: Melder
   flags: Meldungen
-  flags_with_count: Markierungen (%{count})
+  flags_with_count: Meldungen (%{count})
   flags_explanation: "%{site_name}-Benutzer melden Sachverhalte, die die Aufmerksamkeit von Website-Kuratoren und/oder -Administratoren benötigen."
-  flags_for_x_html: Markierungen für %{x}
+  flags_for_x_html: Meldungen für %{x}
   flags_on_users_content: "Gemeldete Inhalte von %{user}"
   flickr_account_information: Informationen zu deinem Flickr-Konto
   flickr_has_no_creative_commons: Bei Flickr gibt es keine Bilder von diesem Ort unter Creative-Commons-Lizenz.
@@ -5603,11 +5606,11 @@ de:
           nicht funktionieren.
       spam:
         message_for_owner_and_curators_html: |
-          Dieser Eintrag wurde als Spam markiert und ist nicht mehr öffentlich
+          Dieser Eintrag wurde als Spam gemeldet und ist nicht mehr öffentlich
           sichtbar. Du kannst es sehen, weil du es erstellt hast, oder weil du sind ein 
           Kurator bist. Wenn du glaubst, dass dies ein Fehler ist, 
           <a href="mailto:%{email}">kontaktiere uns bitte</a>.
-        this_has_been_flagged_as_spam: Dies wurde als Spam markiert
+        this_has_been_flagged_as_spam: Dies wurde als Spam gemeldet
       not_found:
         sorry_that_doesnt_exist: Sorry, die Seite gibt es nicht!
         even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Suchmaulwurf" konnte nichts finden!
@@ -5685,6 +5688,7 @@ de:
           Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
         new_species_per_year: Neue Arten / Jahr
         new_species_per_year_by_date_added: Nach Datum hinzugefügt
+        new_species_per_year_by_date_observed: Nach Beobachtungsdatum
         obs_in_year: Beob in %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Einmalig
@@ -5697,6 +5701,7 @@ de:
         publications_desc_short_html: |
           Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Beobachtungen / Jahr
+        observations_per_year_by_date_added: Nach Hinzufügungsdatum
         observations_per_year_by_date_observed: Nach Beobachtungsdatum
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Beobachtungssträhnen
@@ -5708,6 +5713,7 @@ de:
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr
         species_per_year_by_date_added: Nach Hinzufügungsdatum
+        species_per_year_by_date_observed: Nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
@@ -6570,7 +6576,7 @@ de:
         flag:
           attributes:
             user_id:
-              already_flagged: "hat diesen Artikel bereits markiert"
+              already_flagged: "hat diesen Artikel bereits gemeldet"
         guide:
           attributes:
             published_at:
