@@ -608,11 +608,10 @@ class YearStatistic < ActiveRecord::Base
     else
       "#{FakeView.image_url( "bird.png" )}".gsub(/([^\:])\/\//, '\\1/')
     end
-    puts "icon_url: #{icon_url}"
+    icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
     system "curl -s -o #{icon_path} #{icon_url}"
-    puts "icon_path: #{icon_path}"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.jpg")
@@ -649,6 +648,7 @@ class YearStatistic < ActiveRecord::Base
     system "composite -gravity northwest -geometry +145+#{left_vertical_offset + 230} #{circle_icon_path} #{background_path} #{background_with_icon_path}", exception: true
     wordmark_site = ( user && user.site ) || site || Site.default
     wordmark_url = "#{FakeView.image_url( wordmark_site.logo.url )}".gsub(/([^\:])\/\//, '\\1/')
+    wordmark_url = wordmark_url.sub( "staticdev", "static" )
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
     system "curl -s -o #{wordmark_path} #{wordmark_url}"
