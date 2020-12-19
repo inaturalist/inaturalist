@@ -628,6 +628,9 @@ da:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Tilføj automatisk observationer til dette projekt
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold med taksonændringer
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Gns.
   back: Tilbage
   back_to_all_species: Tilbage til Alle arter
   back_to_browsing_people: Tilbage til "at browse" personer
@@ -6053,6 +6056,10 @@ da:
           Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.
         growth_in_year_obs: "Vækst i %{year} (obs)"
         growth_title: Vækst
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Lav: %{low_value} (%{low_desc}), for lille til at vise"
         new_species_desc: |
           Arter der blev observeret for første gang på%{site_name} dette år.
           Viser %{x} af <a href="%{url}">%{y} arter</a>.
@@ -6067,6 +6074,7 @@ da:
           <i>arctos</i> vil bare tælle som <i>Canis lupus</i>.
         new_species_per_year: Nye Arter/år
         new_species_per_year_by_date_added: Efter tilføjelsesdato
+        new_species_per_year_by_date_observed: Efter observationsdato
         obs_in_year: Obs i %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Én gang
@@ -6083,6 +6091,7 @@ da:
           Information om databrug med tilladelse fra vores venner fra
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observationer/år
+        observations_per_year_by_date_added: Efter tilføjelsesdato
         observations_per_year_by_date_observed: Efter observationsdato
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsstræk
@@ -6095,6 +6104,7 @@ da:
         recurring: Tilbagevendende
         species_per_year: Arter/år
         species_per_year_by_date_added: Efter tilføjelsesdato
+        species_per_year_by_date_observed: Efter observationsdato
         stats_generated_datetime: Statistikker genereret %{datetime}
         store_prompt: |
           Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!
