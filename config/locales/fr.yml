@@ -174,12 +174,12 @@ fr:
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
-  about_trusting_projects: À propos des projets de confiance
-  about_trusting_projects_options_any: Toutes vos observations de ce projet
+  about_trusting_projects: Ce qu'on veut dire par "faire confiance à ce projet"
+  about_trusting_projects_options_any: Toutes vos observations dans ce projet.
   about_trusting_projects_options_any_desc: |-
     Ceci inclut vos observations dont vous avez masqué les coordonnées, comme les observations faites chez vous ou à des endroits que vous ne voulez pas révéler.
   about_trusting_projects_options_taxon: |-
-    Seulement vos observations aux coordonnées masquées parce qu'elles représentent un taxon menacé
+    Seulement vos observations aux coordonnées masquées parce qu'elles représentent un taxon menacé.
   about_trusting_projects_options_taxon_desc: |-
     Beaucoup de projets ont besoin d'avoir accès aux coordonnées masquées de vos observations qui contiennent un taxon menacé.
   about_trusting_projects_overview: |-
@@ -187,12 +187,12 @@ fr:
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-    Les gérants du projet qui auront accès aux coordonnées masquées sont :
+    Les gérants du projet qui auront accès à vos coordonnées masquées sont :
   about_trusting_projects_warning: |-
-    Prenez en compte que les gérants du projet pourrons changer les paramètres de celui-ci afin d'ajouter vos observations, et ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées cachées, donc soyez prudent.
+    Prenez en compte que les gérants du projet pourront changer les paramètres de celui-ci afin d'y ajouter vos observations, et pour ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées privées, donc soyez prudent.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    Vous pouvez choisir de partager vos coordonnées cachées pour
+    Vous pouvez choisir de partager vos coordonnées masquées pour :
   about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
@@ -1572,9 +1572,9 @@ fr:
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
   geoprivacy: Géoconfidentialité
-  geoprivacy_is_obscured: La confidentialité géographique est dissimulée
+  geoprivacy_is_obscured: La géoconfidentialité est masquée
   geoprivacy_is_obscured_desc: L'observateur a choisi de griser les coordonnées.
-  geoprivacy_is_private: La confidentialité géographique est privée
+  geoprivacy_is_private: La géoconfidentialité est privée
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé ?
   get_started: Commencer
@@ -3935,7 +3935,7 @@ fr:
   taxon_is_threatened_coordinates_hidden: Le taxon est menacé, les coordonnées sont masquées par défaut
   taxon_is_threatened_coordinates_hidden_desc: |
     Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
-  taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été dissimulées par défaut
+  taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été masquées par défaut
   taxon_is_threatened_coordinates_obscured_desc: |
     Un des taxons suggérés dans les identifications, ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
   taxonomy: Taxinomie
@@ -4186,7 +4186,7 @@ fr:
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Faire confiance au projet pour vos coordonnées cachées ?
+  trust_this_project_with_your_private_coordinates?: Faire confiance à ce projet avec vos coordonnées masquées?
   trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
@@ -4510,7 +4510,7 @@ fr:
   who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance, avec leur coordonnées masquées
   who_helped_user_the_most: "Qui a le plus aidé %{user}"
   who_user_helped_the_most: "Qui %{user} a le plus aidé"
-  why_the_coordinates_are_obscured: Pourquoi les coordonnées sont grisées
+  why_the_coordinates_are_obscured: Pourquoi les coordonnées sont masquées
   with_annotation: Avec annotation
   without_annotation: Sans annotation
   widget: Widget
@@ -4565,7 +4565,7 @@ fr:
   x_wrote_a_new_post_html: "%{x} a écrit un nouveau message"
   x_wrote_y_new_posts_html: "%{x} a écrit %{y} nouveaux messages"
   year: Année
-  year_in_review: "Année %{year} en revue"
+  year_in_review: "Revue de l'année %{year}"
   year_month: année/mois
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
@@ -4574,11 +4574,11 @@ fr:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Oui, mais seulement pour mes observations de taxon menacés.
+    Oui, mais seulement pour mes observations de taxons menacés, et non celles dont j'ai masqué les coordonnées moi-même.
   yes_find_them!: "Oui, trouvez-les!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
-  yes_for_any_of_my_observations: "Oui, mais pour toutes vos observations"
+  yes_for_any_of_my_observations: "Oui, pour toutes mes observations"
   yes_i_want_to_join: Oui, je veux me joindre
   yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
@@ -6571,11 +6571,7 @@ fr:
         prefers_community_taxa_desc: |
           %{site_name} enregistre vos observations ainsi que votre identification et les identifications de la communauté. L’identification que nous communiquons à nos partenaires d’échange de données est celle de la communauté, mais si vous pensez que l’opinion de la communauté ne doit jamais primer sur la vôtre, vous pouvez changer ici le paramètre par défaut. Les autres utilisateurs pourront toujours ajouter des identifications, mais l’opinion de la communauté n'aura pas plus de poids que la vôtre. Autrement dit, vos observations ne pourront avoir le calibre recherche que si vous êtes d’accord avec la communauté.
         prefers_coordinate_interpolation_protection_desc: |
-          Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
-          « private », cela appliquera la même confidentialité géographique à toutes vos autres
-          observations du même jour, pour rendre plus difficile aux autres personnes de
-          deviner les vraies coordonnées d’après les observations faites alentour au même
-          moment.
+          Quand vous fixez la géoconfidentialité d’une observation à « masquée » ou « privée », le même niveau de géoconfidentialité sera appliqué à toutes vos observations faites le même jour, pour qu'il soit plus difficile pour les autres de deviner les vraies coordonnées d’après les observations faites dans ce secteur-là au même moment.
         prefers_no_tracking_label: Ne pas collecter de données de performance et d'utilisation par le biais de services tiers
         prefers_no_tracking_label_desc_we_use: |
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bugs. Ces programmes tiers incluent
@@ -6598,7 +6594,7 @@ fr:
           Notez que cette option ne s'applique qu'aux données de statistiques et d'erreurs que nous envoyons explicitement à ces entreprises. Tous les serveurs d'iNaturalist sont fournis et hébergés par Microsoft, toutes les images d'iNaturalist sont hébergées par Amazon, et presque toutes les cartes d'iNaturalist sont fournies par Google, ce qui signifie que chaque fois que vous regardez une observation sur iNaturalist, vous vous connectez aux services fournis par ces entreprises et leur exposez au minimum votre adresse IP (dans l’application pour iPhone nous utilisons les cartes d’Apple). iNaturalist n'existerait probablement pas sans les services fournis par ces sociétés, et bien que nous puissions limiter la quantité et les types de données que vous partagez avec eux en utilisant iNat, nous ne pouvons pas supprimer complètement ce flux de données.
         project_settings_desc: |
           N'oubliez pas que cela ne donne pas aux projets le droit d’accéder à vos coordonnées masquées ou de vous contacter. Pour accorder ces droits, vous devez rejoindre les projets en question ou accorder des autorisations au cas par cas.
-        same_day_geoprivacy_protection: Protection de confidentialité géographique du même jour
+        same_day_geoprivacy_protection: Protection de géoconfidentialité le jour même
         search_place_help_html: |
           Endroit par défaut pour les recherches d’observation.
         scientific_name_first_desc: |
@@ -7055,7 +7051,7 @@ fr:
         authority: Autorité
         place_id: Lieu
         url: URL
-        geoprivacy: Géoonfidentialité
+        geoprivacy: Géoconfidentialité
         iucn: Équivalent de l’UICN
       flag:
         reason: Motif
