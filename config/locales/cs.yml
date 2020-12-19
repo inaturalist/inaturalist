@@ -762,6 +762,9 @@ cs:
   automatic_short: Automaticky
   automatically_add_observations_to_this_project: Automaticky přidat pozorování k tomuto projektu
   automatically_update_my_content_for_taxon_changes: Automaticky aktualizovat můj obsah při změnách taxonů
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Prům.
   back: Zpět
   back_to_all_species: Zpět na Všechny Druhy
   back_to_browsing_people: Zpět k procházení lidí
@@ -5975,6 +5978,7 @@ cs:
           Druhy přidané poprvé v tomto roce. Kliknutím na měsíc zobrazíte některé nové druhy přidané během daného měsíce. Můžete také zobrazit celkový akumulovaný druh nebo přesunout kurzor v čase, abyste viděli další nově pozorované druhy. Tento graf ukazuje druhy, jejichž pozorování je ověřitelné podle měsíce, kdy byly odeslány na %{site_name} (a ​​ne měsíc jejich pozorování). Nezahrnuje taxony vyšší nebo nižší úrovně, takže pozorování identifikované jako savec se nepočítá a pozorování poddruhu <i>Canis lupus</i> <i>arctos</i> se bude počítat pouze jako <i>Canis lupus</i>.
         new_species_per_year: Nové druhy / rok
         new_species_per_year_by_date_added: Dle data přidání
+        new_species_per_year_by_date_observed: Dle data pozorování
         obs_in_year: Pozorování v %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Jednorázově
@@ -5994,6 +5998,7 @@ cs:
           o využití dat se svolením našich přátel na internetu
           <a href="https://www.gbif.org/"> Globální informační středisko o biodiverzitě </a>.
         observations_per_year: Pozorování / rok
+        observations_per_year_by_date_added: Dle data přidání
         observations_per_year_by_date_observed: Dle data pozorování
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Série pozorování
@@ -6003,6 +6008,7 @@ cs:
         recurring: Pravidelně
         species_per_year: Druhy / rok
         species_per_year_by_date_added: Dle data přidání
+        species_per_year_by_date_observed: Dle data pozorování
         stats_generated_datetime: Statistiky generované na %{datetime}
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
