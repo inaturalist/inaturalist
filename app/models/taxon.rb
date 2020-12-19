@@ -1803,6 +1803,7 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return true if new_record?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
     return false if children.exists?
     return false if identifications.exists?
