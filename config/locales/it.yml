@@ -623,6 +623,9 @@ it:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Aggiungi automaticamente le osservazioni a questo progetto
   automatically_update_my_content_for_taxon_changes: Aggiorna automaticamente i miei contenuti con le modifiche del taxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Media
   back: Indietro
   back_to_all_species: Torna a Tutte le Specie
   back_to_browsing_people: Torna a navigare tra le persone
@@ -3790,6 +3793,7 @@ it:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Iscriviti%{tag_end} per aggiungere commenti relativi a questa unione di taxa"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Iscriviti%{tag_end} per aggiungere commenti relativi a questa divisione del taxon"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Iscriviti%{tag_end} per aggiungere commenti relativi a questa eliminazione di taxon"
+  subscribe_to_observations_from_this_place_html: <a>Iscriviti</a> alle osservazioni da questo luogo
   subscribe_to_observations_in_a_taxon: Iscriviti a tutte le osservazioni per una specie o un gruppo di organismi (ad esempio, 'scorpioni').
   subscribe_to_observations_in_a_place: Iscriviti a tutte le osservazioni all'interno di questo luogo. È inoltre possibile aggiungere un filtro di taxon (ad esempio 'scorpioni dal Texas').
   subscribe_to_places_to: |
@@ -4550,6 +4554,8 @@ it:
   you_can_choose_observations_associated: Tu puoi scegliere le osservazioni da associare a questo post del diario.
   you_can_edit_this_default_check_list_because: |
     Tu puoi modificare questa checklist predefinita perché sei un amministratore, ma non dovrebbe esserci bisogno di farlo.
+  you_can_only_destroy_taxa_you_created2: |
+    Puoi eliminare solo i taxa che hai creato e che non sono associati a modifiche del taxon, identificazioni o altri contenuti
   you_can_only_block_three_users: Puoi bloccare solo tre utenti
   you_can_show_the_boundary_of: Puoi mostrare i confini del luogo sulla pagina del tuo progetto se il luogo ha i confini definiti.
   you_can_sign_free_at: "Puoi registrati per un account %{site_name} gratuito alla pagina"
@@ -5724,6 +5730,10 @@ it:
           I Grafici "Osservazioni" e "Taxa" possono includere dati visibili su %{site_name} forniti da persone che non sono affiliate a %{site_name}, mentre i grafici "Utenti" mostrano solo le date in cui gli utenti al momento affiliati a %{site_name} si sono uniti ad iNaturalist.
         growth_in_year_obs: "Crescita in %{year} (obs)"
         growth_title: Crescita
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Basso: %{low_value} (%{low_desc}), troppo piccolo per essere mostrato"
         new_species_desc: |
           Specie che sono state osservate per la prima volta su %{site_name} quest'anno. Visualizzando %{x} di <a href="%{url}">%{y} specie</a>.
         new_species_desc_html: |
@@ -5731,6 +5741,7 @@ it:
           <i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.
         new_species_per_year: Nuove Specie / Anno
         new_species_per_year_by_date_added: Per data di inserimento
+        new_species_per_year_by_date_observed: Per data di osservazione
         obs_in_year: Osservazioni nel %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Una-volta
@@ -5743,6 +5754,7 @@ it:
         publications_desc_short_html: |
           Clicca sui grafici "a fiore" per maggiori informazioni sul significato di numeri e colori. I dati di impatto per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici del <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Osservazioni / Anno
+        observations_per_year_by_date_added: Per data di inserimento
         observations_per_year_by_date_observed: Per data di osservazione
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Sequenze di Osservazioni
@@ -5754,6 +5766,7 @@ it:
         recurring: Ricorrente
         species_per_year: Specie / Anno
         species_per_year_by_date_added: Per data di inserimento
+        species_per_year_by_date_observed: Per data di osservazione
         stats_generated_datetime: Statistiche generate il %{datetime}
         store_prompt: |
           Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!
