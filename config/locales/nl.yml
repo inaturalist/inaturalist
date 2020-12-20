@@ -644,6 +644,9 @@ nl:
   automatic_short: Automatisch
   automatically_add_observations_to_this_project: Voeg automatisch waarnemingen aan dit project toe
   automatically_update_my_content_for_taxon_changes: Werk mijn inhoud automatisch bij voor aanpassingen van het taxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Gem.
   back: Terug
   back_to_all_species: Terug naar Alle Soorten
   back_to_browsing_people: Terug naar door personen bladeren
@@ -5829,6 +5832,10 @@ nl:
           De grafieken "Waarnemingen" en "Taxa" kunnen data bevatten die zichtbaar is op %{site_name} die afkomstig is van mensen zonder banden met %{site_name}, terwijl de grafiek "Gebruikers" alleen de data laten zien wanneer gebruikers die nu verbonden zijn aan %{site_name} zich voor iNaturalist hebben aangemeld.
         growth_in_year_obs: "Groei in %{year} (wrn)"
         growth_title: Groei
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Laag: %{low_value} (%{low_desc}), te klein om te laten zien"
         new_species_desc: |
           Soorten die dit jaar voor het eerst werden waargenomen op %{site_name}.
           %{x} van de <a href="%{url}">%{y} soorten</a> worden weergegeven.
@@ -5843,6 +5850,7 @@ nl:
           <i>arctos</i> telt slechts als <i>Canis lupus</i>.
         new_species_per_year: Nieuwe soorten / jaar
         new_species_per_year_by_date_added: Op datum toegevoegd
+        new_species_per_year_by_date_observed: Op waarnemingsdatum
         obs_in_year: Wrn in %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Eenmalig
@@ -5855,6 +5863,7 @@ nl:
         publications_desc_short_html: |
           Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
         observations_per_year: Waarnemingen / jaar
+        observations_per_year_by_date_added: Op datum toegevoegd
         observations_per_year_by_date_observed: Op datum waargenomen
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Waarnemingsreeksen
@@ -5866,6 +5875,7 @@ nl:
         recurring: Terugkerend
         species_per_year: Soorten / jaar
         species_per_year_by_date_added: Op datum toegevoegd
+        species_per_year_by_date_observed: Op waarnemingsdatum
         stats_generated_datetime: Statistieken gegenereerd op %{datetime}
         store_prompt: |
           Wil je je iNat trots overal laten zien? Check de iNat winkel!
