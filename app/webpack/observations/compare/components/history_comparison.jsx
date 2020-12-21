@@ -160,9 +160,11 @@ const HistoryComparison = ( {
             ) ) }
           </select>
         </div>
-        <div className="alert alert-info pull-right alert-sm">
-          { intervalLimitWarning }
-        </div>
+        { intervalLimitWarning && (
+          <div className="alert alert-info pull-right alert-sm">
+            { intervalLimitWarning }
+          </div>
+        ) }
       </div>
       <div className={`charts charts-${historyLayout}`}>
         { charts }

@@ -6,8 +6,7 @@ import {
   interpolateCool,
   scaleLinear,
   scaleOrdinal,
-  schemeCategory10,
-  color as d3color
+  schemeCategory10
 } from "d3";
 
 const SET_QUERIES = "observations-compare/compare/SET_QUERIES";
@@ -70,7 +69,7 @@ const colorizeQueries = state => {
   } else if ( colorScheme === "sequential_gray" ) {
     colorScale = scaleLinear( )
       .domain( [_.min( indices ), _.max( indices )] )
-      .range( ["lightgray", "black"] );
+      .range( ["black", "lightgray"] );
   }
   return _.map( queries, ( q, i ) => {
     let color;
@@ -120,6 +119,7 @@ export const DEFAULT_STATE = {
   histories: [],
   colorScheme: "categorical"
 };
+DEFAULT_STATE.queries = colorizeQueries( DEFAULT_STATE );
 
 export default function reducer( state = DEFAULT_STATE, action ) {
   const newState = _.cloneDeep( state );
@@ -130,6 +130,7 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       break;
     case SET_QUERIES: {
       newState.queries = action.queries;
+      newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
     }
