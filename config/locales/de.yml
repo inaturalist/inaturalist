@@ -1833,7 +1833,7 @@ de:
   learn_more: Mehr erfahren
   learn_more_on_the_blog: Mehr dazu in unserem Blog
   learn_more_raquo: "Mehr erfahren &raquo;"
-  learn_what_these_licenses_mean: Lerne, was diese Lizenzen bedeuten
+  learn_what_these_licenses_mean: Erfahre hier, was diese Lizenzen bedeuten
   least_concern: nicht gefährdet
   leave: Verlassen
   leave_a_comment: Einen Kommentar hinterlassen
@@ -2888,6 +2888,7 @@ de:
     argentina: Argentinien
     armenia: Armenien
     aruba: Aruba
+    asia: Asien
     australia: Australien
     austria: Österreich
     azerbaijan: Aserbaidschan
@@ -3362,6 +3363,7 @@ de:
   reason_you_are_flagging_this_item: Der Grund für deine Meldung.
   recaptcha_verification_failed: reCAPTCHA-Verifizierung fehlgeschlagen
   receive_email_notifications: E-Mail-Benachrichtigungen erhalten
+  receive_email_notifications_description: "Wenn du dies ausschaltest, erhältst du keine E-Mails mehr von %{site_name} zu Benachrichtigungen. Du erhältst weiterhin Benachrichtigungen für alles, was unten angegeben ist:"
   receive_email_notifications_when_people_leave_you: E-Mail-Benachrichtigungen erhalten über
   receive_project_journal_notifications?: Projektjournal-Benachrichtigungen erhalten?
   receive_updates_from_this_project: Updates zu diesem Projekt erhalten
@@ -3511,6 +3513,7 @@ de:
   save_settings_caps: EINSTELLUNGEN SPEICHERN
   save_trip: Trip speichern
   saved: Gespeichert
+  saved_at_time: Gespeichert am %{time}
   saving: "Wird gespeichert..."
   saving_num_of_count_observations:
     one: Speichere Beobachtung...
@@ -3954,6 +3957,8 @@ de:
   terms_service: Nutzungsbedingungen
   terrain: Gelände
   text: Text
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Textformatierungskontrollen
   thanks!: Danke!
   thanks_from_all_of_us_here_at: Danke von uns allen hier bei
   that_photo_doesnt_exist: Dieses Foto existiert nicht.
@@ -4609,6 +4614,7 @@ de:
     Du folgst bisher niemandem. Indem du anderen Benutzern folgst, erhältst du Benachrichtigungen über deren neueste Beobachtungen. Finde heraus, was Personen <a href="%{observations_path}">beobachten</a> und mache einige neue <a href="%{people_path}">Bekanntschaften</a>.
   youre_not_following_anyone_on_inat: Du folgst noch niemandem auf %{site_name}!
   youve_linked_your_inaturalist_google_account: "Du hast Dein %{site_name}-Konto mit Deinem Google-Konto verbunden. Jetzt kannst Du Deine Google-Fotos mit %{site_name}-Beobachtungen verknüpfen."
+  youve_seen_it_want_to: "Du hast es gesehen! Willst du"
   youve_successfully_linked_your_provider_account: "Du hast erfolgreich dein %{provider}-Konto verknüpft"
   verifiable: verifizierbar
   verifiable_observations: Verifizierbare Beobachtungen
@@ -5679,6 +5685,10 @@ de:
           %{site_name} verbunden sind, während das Diagramm "Benutzer" nur die Daten anzeigt, wenn derzeit mit %{site_name} verbundene Benutzer iNaturalist beigetreten sind.
         growth_in_year_obs: "Wachstum in %{year} (Beob)"
         growth_title: Wachstum
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Niedrig: %{low_value} (%{low_desc}), zu klein zum Anzeigen"
         new_species_desc: |
           Arten, die dieses Jahr zum ersten Mal auf %{site_name} beobachtet wurden.
           Zeige %{x} von <a href="%{url}">%{y} Arten</a>.
@@ -5952,9 +5962,11 @@ de:
           Hinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.
           </p>
         licensing_desc_html: |
-          Die Lizenzierung deines Inhalts gibt jedem das Recht, ihn ohne deine Zustimmung zu nutzen, wenn er sich an die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. So nehmen wir beispielsweise Kein Copyright (CC0), Namensnennung (CC BY) und Namensnennung-Nicht kommerziell 
-           (CC BY-NC) Datensätze in das Archiv auf, die wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
-          Facility</a> (GBIF) generieren, eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
+          Die Lizenzierung deines Inhalts verleiht das Recht, dass ihn andere ohne deine Zustimmung nutzen, solange die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. 
+
+          So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
+           (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
+          Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
         license_description_attribution_html: |
           Lizenzbeschreibungen und Bilder &copy; %{year} Creative Commons, verwendet
           unter <a href="http://creativecommons.org/licenses/by/3.0/">Creative
@@ -6005,6 +6017,8 @@ de:
           any: alle
           joined: Projekte, denen du beigetreten bist
           none: "Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen."
+        prefers_community_taxa_desc: |
+          %{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht "Forschungsqualität" erhalten, es sei denn, du stimmst der Mehrheit zu.
         prefers_coordinate_interpolation_protection_desc: |
           Wenn du die Geo-Privatsphäre einer Beobachtung auf "verdeckt" oder "privat" stellst, wird das die Einstellungen aller deiner anderen Beobachtungen vom gleichen Tag ebenfalls betreffen. Damit wird es für andere Personen schwieriger, die wahren Koordinaten herauszufinden aufgrund deiner anderen Beobachtungen in der Nähe
         prefers_no_tracking_label: Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen
@@ -6422,6 +6436,7 @@ de:
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
       BlockedUser: Blockierter Benutzer
+      CompleteSet: Vollständiges Set
       #Noun
       Flag: Meldung
       TaxonLink: Taxon-Link
@@ -6516,6 +6531,7 @@ de:
         wikipedia_summary: Wikipedia-Zusammenfassung
         source_url: Quell-URL
       taxon_name:
+        name_provider: Namensanbieter
         source_url: Quellen-URL
       user:
         email: E-Mail
@@ -6759,6 +6775,12 @@ de:
       "@vow_or_con":
         vow: Vokal
         con: Konsonant
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: Männlich
         f: Weiblich
