@@ -31,12 +31,36 @@ class Tabs extends React.Component {
   }
 
   render( ) {
-    const { chosenTab, showTaxonChildrenModal } = this.props;
+    const {
+      chosenTab,
+      showTaxonChildrenModal,
+      colorScheme,
+      chooseColorScheme
+    } = this.props;
     return (
       <div className="Tabs stacked">
         <Row>
           <Col xs={12}>
-            <div className="pull-right">
+            <div className="pull-right btn-toolbar">
+              <DropdownButton
+                title={`Colors: ${colorScheme}`}
+                id="colors-dropdown"
+                pullRight
+                onSelect={chooseColorScheme}
+              >
+                <MenuItem eventKey="categorical">
+                  Categorical
+                </MenuItem>
+                <MenuItem eventKey="sequential">
+                  Sequential
+                </MenuItem>
+                <MenuItem eventKey="sequential_cool">
+                  Sequential (cool)
+                </MenuItem>
+                <MenuItem eventKey="sequential_gray">
+                  Sequential (gray)
+                </MenuItem>
+              </DropdownButton>
               <DropdownButton
                 title="Tools"
                 id="tools-dropdown"
@@ -104,11 +128,20 @@ class Tabs extends React.Component {
 Tabs.propTypes = {
   chosenTab: PropTypes.string,
   chooseTab: PropTypes.func,
+  chooseColorScheme: PropTypes.func,
+  colorScheme: PropTypes.oneOf( [
+    "categorical",
+    "sequential",
+    "sequential_cool",
+    "sequential_gray",
+    "custom"
+  ] ),
   showTaxonChildrenModal: PropTypes.func
 };
 
 Tabs.defaultProps = {
-  chosenTab: "species"
+  chosenTab: "species",
+  colorScheme: "categorical"
 };
 
 export default Tabs;

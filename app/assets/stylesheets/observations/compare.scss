@@ -6,6 +6,7 @@
       .name {
         width: 100px;
         margin-right: 10px;
+        margin-left: 10px;
       }
       .params {
         flex: 2;
@@ -13,6 +14,11 @@
       > .btn,
       > .btn-group {
         margin-left: 10px;
+      }
+      .color {
+        width: 34px;
+        height: 34px;
+        color: transparent;
       }
     }
   }

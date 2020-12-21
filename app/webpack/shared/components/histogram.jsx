@@ -30,7 +30,6 @@ class Histogram extends React.Component {
   shouldComponentUpdate( nextProps ) {
     const { series } = this.props;
     const shouldUpdate = objectToComparable( nextProps.series ) !== objectToComparable( series );
-    console.log( "[DEBUG] shouldUpdate: ", shouldUpdate );
     return shouldUpdate;
   }
 
@@ -38,7 +37,6 @@ class Histogram extends React.Component {
     const { series } = this.props;
     const shouldUpdateSeries = objectToComparable( prevProps.series ) !== objectToComparable( series );
     if ( shouldUpdateSeries ) {
-      console.log( "[DEBUG] updating series" );
       this.enterSeries( );
     }
   }
@@ -83,7 +81,6 @@ class Histogram extends React.Component {
       tip
     } = Object.assign( {}, this.state, newState );
     if ( !x ) {
-      console.log( "[DEBUG] no x, skipping enterSeries" );
       return;
     }
     // const parseTime = date => moment( date ).toDate( );
@@ -391,7 +388,6 @@ class Histogram extends React.Component {
     } else {
       x.domain( d3.extent( combinedData, d => d[xAttr] ) );
     }
-    console.log( "[DEBUG] x.domain( ): ", x.domain( ) );
     if ( yExtent ) {
       y.domain( yExtent );
     } else {

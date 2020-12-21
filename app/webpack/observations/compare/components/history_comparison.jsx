@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  scaleOrdinal,
-  schemeCategory10,
   timeFormat,
   extent,
   isoParse
@@ -20,7 +18,6 @@ const HistoryComparison = ( {
   setHistoryInterval
 } ) => {
   let charts;
-  const colorScale = scaleOrdinal( schemeCategory10 );
   if ( histories.length === queries.length ) {
     let labeler;
     if ( historyInterval === "hour" ) {
@@ -54,7 +51,7 @@ const HistoryComparison = ( {
             histories[i],
             ( value, key ) => ( { [xAttr]: key, value } )
           ),
-          color: colorScale( query.params ),
+          color: query.color,
           label: labeler
         };
       } );
@@ -86,7 +83,7 @@ const HistoryComparison = ( {
             [`query-${query.name}`]: {
               title: query.name,
               data: _.map( histories[i], ( value, key ) => ( { [xAttr]: key, value } ) ),
-              color: colorScale( query.params ),
+              color: query.color,
               label: labeler
             }
           }}
