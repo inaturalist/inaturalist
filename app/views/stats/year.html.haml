@@ -23,6 +23,7 @@
     var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
     var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";
     var YEAR_STATISTIC_UPDATED_AT = #{@year_statistic ? "new Date( '#{@year_statistic.updated_at.iso8601.html_safe}' )".html_safe : "null"};
+    var FB_LOGO_URL = #{image_url( "facebook-f-logo-white.svg" ).inspect.html_safe};
   :javascript
     $( document ).ready( function() {
       if ( typeof( Object.assign ) !== 'function' ) {

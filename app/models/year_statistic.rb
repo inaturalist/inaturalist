@@ -456,6 +456,14 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def generate_shareable_image
+    if year >= 2020 && ( user.blank? || user.is_admin? )
+      generate_shareable_image_no_obs
+    else
+      generate_shareable_image_obs_grid
+    end
+  end
+
+  def generate_shareable_image_obs_grid
     return unless data && data["observations"] && data["observations"]["popular"]
     return if data["observations"]["popular"].size == 0
     work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
@@ -582,6 +590,263 @@ class YearStatistic < ActiveRecord::Base
       BASH
     end
 
+    self.shareable_image = open( final_path )
+    save!
+  end
+
+  def generate_shareable_image_no_obs
+    return unless data && data["observations"]
+    work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
+    FileUtils.mkdir_p work_path, mode: 0755
+    # Get the icon
+    icon_url = if user
+      "#{FakeView.image_url( user.icon.url(:large) )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif site
+      "#{FakeView.image_url( site.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif Site.default
+      "#{FakeView.image_url( Site.default.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    else
+      "#{FakeView.image_url( "bird.png" )}".gsub(/([^\:])\/\//, '\\1/')
+    end
+    icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
+    icon_ext = File.extname( URI.parse( icon_url ).path )
+    icon_path = File.join( work_path, "icon#{icon_ext}" )
+    system "curl -s -o #{icon_path} #{icon_url}"
+
+    # Resize icon to a 500x500 square
+    square_icon_path = File.join( work_path, "square_icon.jpg")
+    system <<-BASH
+      convert #{icon_path} -resize "500x500" \
+                        -gravity Center  \
+                        -extent 500x500  \
+              #{square_icon_path}
+    BASH
+
+    final_logo_path = File.join( work_path, "final-logo.png" )
+    if user
+      # Apply circle mask
+      circle_path = File.join( work_path, "circle.png" )
+      system "convert -size 500x500 xc:black -fill white -draw \"translate 250,250 circle 0,0 0,250\" -alpha off #{circle_path}"
+      system <<-BASH
+        convert #{square_icon_path} #{circle_path} \
+          -alpha Off -compose CopyOpacity -composite \
+          -scale 212x212 \
+          #{final_logo_path}
+      BASH
+    else
+      system "convert #{square_icon_path} -resize 212x212 #{final_logo_path}", exception: true
+    end
+
+    background_url = "#{FakeView.image_url( "yir-background.png" )}".gsub(/([^\:])\/\//, '\\1/')
+    background_path = File.join( work_path, "background.png" )
+    system "curl -s -o #{background_path} #{background_url}", exception: true
+
+    left_vertical_offset = if user
+      0
+    else
+      30
+    end
+
+    # Overlay the icon onto the montage
+    background_with_icon_path = File.join( work_path, "background_with_icon.png" )
+    system "composite -gravity northwest -geometry +145+#{left_vertical_offset + 230} #{final_logo_path} #{background_path} #{background_with_icon_path}", exception: true
+    wordmark_site = ( user && user.site ) || site || Site.default
+    wordmark_url = "#{FakeView.image_url( wordmark_site.logo.url )}".gsub(/([^\:])\/\//, '\\1/')
+    wordmark_url = wordmark_url.sub( "staticdev", "static" )
+    wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
+    wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
+    system "curl -s -o #{wordmark_path} #{wordmark_url}"
+    wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
+    system "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}", exception: true
+    wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
+    system "convert -resize x65 -background none #{wordmark_path} #{wordmark_resized_path}"
+    wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
+    wordmark_cmd = <<-BASH
+      convert #{wordmark_composite_bg_path} \
+        #{wordmark_resized_path} \
+        -type TrueColorAlpha \
+        -gravity north -geometry +0+#{left_vertical_offset + 70} \
+        -composite \
+        #{wordmark_composite_path}
+    BASH
+    system wordmark_cmd, exception: true
+    background_icon_wordmark_path = File.join( work_path, "background-icon-wordmark.png" )
+    system "convert #{background_with_icon_path} #{wordmark_composite_path} -gravity west -composite #{background_icon_wordmark_path}", exception: true
+
+    # Add the text
+    # background_with_icon_and_text_path = File.join( work_path, "background_with_icon_and_text.jpg" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
+    final_path = File.join( work_path, "final.jpg" )
+    owner = if user
+      "@#{user.login}"
+    else
+      ""
+    end
+    title = if user
+      user_site = user.site || Site.default
+      locale = user.locale || user_site.locale || I18n.locale
+      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
+      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+    elsif site
+      locale = site.locale || I18n.locale
+      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    else
+      default_site = Site.default
+      locale = default_site.locale || I18n.locale
+      site_name = default_site.site_name_short.blank? ? default_site.name : default_site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    end
+    title = title.mb_chars.upcase
+    obs_count = if data["observations"]["quality_grade_counts"]
+      if user
+        data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
+      else
+        data["observations"]["quality_grade_counts"].inject( 0 ) {|sum, keyval| sum += keyval[1].to_i }
+      end
+    else
+      0
+    end
+    species_count = ( data["taxa"] && data["taxa"]["leaf_taxa_count"] ).to_i
+    identifications_count = (
+      data["identifications"] && data["identifications"]["category_counts"] &&
+      data["identifications"]["category_counts"].inject( 0 ) {|sum, keyval| sum += keyval[1].to_i }
+    ).to_i
+
+    locale = user.locale if user
+    locale ||= site.locale if site
+    locale ||= I18n.locale
+    label_method = if locale.to_s =~ /^(il|he|ar)/
+      "pango"
+    else
+      "label"
+    end
+    obs_translation = I18n.t( "x_observations_html",
+      count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+      locale: locale
+    )
+    obs_count_txt = obs_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    obs_label_txt = obs_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    species_translation = I18n.t( "x_species_html",
+      count: FakeView.number_with_delimiter( species_count, locale: locale ),
+      locale: locale
+    )
+    species_count_txt = species_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    species_label_txt = species_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    identifications_translation = I18n.t( "x_identifications_html",
+      count: FakeView.number_with_delimiter( identifications_count, locale: locale ),
+      locale: locale
+    )
+    identifications_count_txt = identifications_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    identifications_label_txt = identifications_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    if [owner, title, species_label_txt, identifications_label_txt, obs_label_txt].detect{|s| s.to_s.non_latin_chars?}
+      if Rails.env.production?
+        if locale =~ /^(ja|ko|zh)/
+          medium_font_path = "Noto-Sans-CJK-HK"
+          light_font_path = "Noto-Sans-CJK-HK"
+          semibold_font_path = "Noto-Sans-CJK-HK-Bold"
+        else
+          medium_font_path = "DejaVu-Sans"
+          light_font_path = "DejaVu-Sans-ExtraLight"
+          semibold_font_path = "DejaVu-Sans-Bold"
+        end
+      else
+        medium_font_path = "Helvetica"
+        light_font_path = "Helvetica-Narrow"
+        semibold_font_path = "Helvetica-Bold"
+      end
+    end
+    if label_method == "pango"
+      title = "<span size='#{1024 * 22}'>#{title}</span>"
+      owner = "<span size='#{1024 * 20}'>#{owner}</span>" unless owner.blank?
+      obs_count_txt = "<span size='#{1024 * 24}'>#{obs_count_txt}</span>"
+      obs_label_txt = "<span size='#{1024 * 20}'>#{obs_label_txt}</span>"
+      species_count_txt = "<span size='#{1024 * 24}'>#{species_count_txt}</span>"
+      species_label_txt = "<span size='#{1024 * 20}'>#{species_label_txt}</span>"
+      identifications_count_txt = "<span size='#{1024 * 24}'>#{identifications_count_txt}</span>"
+      identifications_label_txt = "<span size='#{1024 * 20}'>#{identifications_label_txt}</span>"
+    end
+    title_composite = <<-BASH
+      \\( \
+        -size 500x30 \
+        -background transparent \
+        -font #{light_font_path} \
+        -kerning 2 \
+        #{label_method}:"#{title}" \
+        -trim \
+        -gravity center \
+        -extent 500x30 \
+      \\) \
+      -gravity northwest \
+      -geometry +0+#{left_vertical_offset + 165} \
+      -composite
+    BASH
+    owner_composite = <<-BASH
+      \\( \
+        -size 500x40 \
+        -background transparent \
+        -font #{medium_font_path} \
+        #{label_method}:"#{owner}" \
+        -trim \
+        -gravity center \
+        -extent 500x40 \
+      \\) \
+      -gravity northwest \
+      -geometry +0+#{left_vertical_offset + 480} \
+      -composite
+    BASH
+    composites = [title_composite]
+    composites << owner_composite unless owner.blank?
+    [
+      [obs_count_txt, obs_label_txt],
+      [species_count_txt, species_label_txt],
+      [identifications_count_txt, identifications_label_txt]
+    ].each_with_index do |texts, idx|
+      count_txt, label_txt = texts
+      x = 80 + idx * 145
+      # text_width = 332 # this would go to the right edge
+      text_width = 312 # this provides a bit of margin
+      # Note that the use of label below will automatically try to choose the
+      # best font size to fit the space
+      composites << <<-BASH
+        \\( \
+          -size #{text_width}x60 \
+          -background transparent \
+          -font #{semibold_font_path} \
+          -fill white \
+          #{label_method}:"#{count_txt}" \
+          -trim \
+          -gravity west \
+          -extent #{text_width}x60 \
+        \\) \
+        -gravity northwest \
+        -geometry +668+#{x} \
+        -composite \
+        \\( \
+          -size #{text_width}x34 \
+          -background transparent \
+          -font #{medium_font_path} \
+          -kerning 2 \
+          -fill white \
+          #{label_method}:"#{label_txt}" \
+          -trim \
+          -gravity west \
+          -extent #{text_width}x34 \
+        \\) \
+        -gravity northwest \
+        -geometry +668+#{x + (148 - 80)} \
+        -composite
+      BASH
+    end
+    cmd = <<-BASH
+      convert #{background_icon_wordmark_path} \
+        #{composites.map(&:strip).join( " \\\n" )} \
+        #{final_path}
+    BASH
+    system cmd, exception: true
+    # puts "final_path: #{final_path}"
     self.shareable_image = open( final_path )
     save!
   end
