@@ -379,6 +379,7 @@ export function setHistoryInterval( historyInterval ) {
 
 export function fetchHistories( ) {
   return ( dispatch, getState ) => {
+    dispatch( setHistories( [] ) );
     const s = getState( ).compare;
     const promises = s.queries.map( query => {
       const params = $.deparam( query.params );

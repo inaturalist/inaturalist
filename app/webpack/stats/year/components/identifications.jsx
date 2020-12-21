@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
 import UserWithIcon from "../../../observations/show/components/user_with_icon";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 
 const Identifications = ( {

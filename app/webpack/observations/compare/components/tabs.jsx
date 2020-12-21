@@ -1,16 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Row, Col, DropdownButton, MenuItem } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  DropdownButton,
+  MenuItem
+} from "react-bootstrap";
 import SpeciesComparisonContainer from "../containers/species_comparison_container";
 import MapComparisonContainer from "../containers/map_comparison_container";
 import HistoryComparisonContainer from "../containers/history_comparison_container";
+// import SeasonalityComparisonContainer from "../containers/seasonality_comparison_container";
 
 class Tabs extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      this.props.chooseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
+      this.props.chooseTab( e.target.hash.match( /#(.+)-tab/ )[1] );
     } );
   }
 
@@ -54,7 +60,11 @@ class Tabs extends React.Component {
                 <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
               </li>
               <li role="presentation" className={chosenTab === "history" ? "active" : ""}>
-                <a href="#history-tab" role="tab" data-toggle="tab">{ I18n.t( "history" ) }</a>
+                <a href="#history-tab" role="tab" data-toggle="tab">
+                  { I18n.t( "history" ) }
+                  { " / " }
+                  { I18n.t( "seasonality" ) }
+                </a>
               </li>
             </ul>
           </Col>

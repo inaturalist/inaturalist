@@ -8,7 +8,8 @@ import {
   isoParse
 } from "d3";
 import _ from "lodash";
-import DateHistogram from "../../../stats/year/components/date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
+import Histogram from "../../../shared/components/histogram";
 
 const HistoryComparison = ( {
   historyLayout,
@@ -21,46 +22,77 @@ const HistoryComparison = ( {
   let charts;
   const colorScale = scaleOrdinal( schemeCategory10 );
   if ( histories.length === queries.length ) {
-    let dateLabeler;
+    let labeler;
     if ( historyInterval === "hour" ) {
       const hourFormat = timeFormat( "%H:%M" );
-      dateLabeler = d => `<strong>${hourFormat( d.date )}</strong>: ${d.value}`;
+      labeler = d => `<strong>${hourFormat( d.date )}</strong>: ${d.value}`;
+    }
+    let xAttr;
+    let HistogramComponent;
+    let xParser;
+    switch ( historyInterval ) {
+      case "week_of_year":
+        xAttr = "week";
+        HistogramComponent = Histogram;
+        xParser = x => parseInt( x, 0 );
+        break;
+      case "month_of_year":
+        xAttr = "month";
+        HistogramComponent = Histogram;
+        xParser = x => parseInt( x, 0 );
+        break;
+      default:
+        xAttr = "date";
+        HistogramComponent = DateHistogram;
     }
     if ( historyLayout === "combined" ) {
       const series = {};
       _.forEach( queries, ( query, i ) => {
         series[`query-${query.name}`] = {
           title: query.name,
-          data: _.map( histories[i], ( value, date ) => ( { date, value } ) ),
+          data: _.map(
+            histories[i],
+            ( value, key ) => ( { [xAttr]: key, value } )
+          ),
           color: colorScale( query.params ),
-          label: dateLabeler
+          label: labeler
         };
       } );
       charts = (
-        <DateHistogram
+        <HistogramComponent
+          key={`Histogram-${queries.map( q => q.name ).join( "_" )}-${historyLayout}-${historyInterval}`}
           series={series}
+          xAttr={xAttr}
+          xParser={xParser}
         />
       );
     } else {
-      const allDates = _.flatten(
+      let allXValues = _.flatten(
         _.map( histories, history => _.keys( history ) )
-      ).map( isoParse );
-      const allValues = _.flatten( _.map( histories, history => _.values( history ) ) );
-      const xExtent = extent( allDates );
-      const yExtent = extent( allValues );
+      );
+      if ( xAttr === "date" ) {
+        allXValues = allXValues.map( isoParse );
+      } else {
+        allXValues = allXValues.map( x => parseInt( x, 0 ) );
+      }
+      const allYValues = _.flatten( _.map( histories, history => _.values( history ) ) );
+      const xExtent = extent( allXValues );
+      const yExtent = extent( allYValues );
       charts = queries.map( ( query, i ) => (
-        <DateHistogram
-          key={`DateHistogram-${query.params}-${i}-${historyLayout}`}
+        <HistogramComponent
+          key={`Histogram-${query.params}-${i}-${historyLayout}-${historyInterval}`}
+          xAttr={xAttr}
           series={{
             [`query-${query.name}`]: {
               title: query.name,
-              data: _.map( histories[i], ( value, date ) => ( { date, value } ) ),
+              data: _.map( histories[i], ( value, key ) => ( { [xAttr]: key, value } ) ),
               color: colorScale( query.params ),
-              label: dateLabeler
+              label: labeler
             }
           }}
           xExtent={xExtent}
           yExtent={yExtent}
+          xParser={xParser}
         />
       ) );
     }
@@ -79,8 +111,12 @@ const HistoryComparison = ( {
     case "month":
       intervalLimitWarning = I18n.t( "views.observations.compare.interval_limit_warning_month" );
       break;
-    default:
+    case "year":
       intervalLimitWarning = I18n.t( "views.observations.compare.interval_limit_warning_year" );
+      break;
+    default:
+      // No need to show a warning for the seasonality intervals
+      intervalLimitWarning = null;
   }
   return (
     <div className="HistoryComparison">
@@ -117,7 +153,7 @@ const HistoryComparison = ( {
             onChange={e => setHistoryInterval( e.target.value )}
             defaultValue={historyInterval}
           >
-            { ["hour", "day", "week", "month", "year"].map( interval => (
+            { ["hour", "day", "week", "month", "year", "week_of_year", "month_of_year"].map( interval => (
               <option
                 key={`interval-select-${interval}`}
                 value={interval}

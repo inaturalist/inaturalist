@@ -90,13 +90,13 @@
   }
 
   .HistoryComparison {
-    .DateHistogram svg {
+    .Histogram svg {
       width: 100%;
       min-height: 300px;
     }
     .charts-horizontal {
       display: flex;
-      .DateHistogram {
+      .Histogram {
         flex-grow: 1;
         width: 100%;
       }
@@ -112,4 +112,3 @@
 .compare-popover {
   max-width: 400px;
 }
-
