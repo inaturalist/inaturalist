@@ -626,6 +626,9 @@ fr:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations à ce projet
   automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour mon contenu pour les modifications de taxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Moy.
   back: Précédent
   back_to_all_species: Retourner à la liste des espèces
   back_to_browsing_people: Retourner à la recherche par personne
@@ -4965,6 +4968,7 @@ fr:
       list_view: Affichage par liste
       tree_view: Vue arborescente
       observed_species: Espèces observées
+      observed_rank: '%{rank} observé(s)'
       unobserved_species: Espèces non observées
       all_species: Toutes les espèces
       all_unobserved_species: Toutes les espèces non observées
@@ -6087,6 +6091,15 @@ fr:
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
         compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        donate_desc_html: |
+          Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et
+          vos dons! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society.
+          Le projet est porté par une
+          <a href="%{team_url}">petite équipe</a> qui
+          s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et
+          <a href="%{seek_url}">Seek par iNaturalist</a>, et qui gère
+          l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide!). Le programme existe grâce à de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez
+          faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist jusqu'à présent!
         donors: Donateurs
         donors_guide_label_our_goal_is_1000: Notre objectif est d'atteindre 1000 donateurs récurrents par mois
         inaturalist_network: Réseau iNaturalist
@@ -6103,6 +6116,10 @@ fr:
           actuellement affiliés à %{site_name} ont rejoint iNaturalist.
         growth_in_year_obs: "Croissance pendant %{year} (obs)"
         growth_title: Croissance
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Bas : %{low_value} (%{low_desc}), trop petit pour être affiché"
         new_species_desc: |
           Espèces ayant été observées pour la première fois cette année sur %{site_name} .
           Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
@@ -6117,6 +6134,7 @@ fr:
           <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
         new_species_per_year: Nouvelle espèce / Année
         new_species_per_year_by_date_added: Par date d'ajout
+        new_species_per_year_by_date_observed: Par date d'observation
         obs_in_year: Obs en %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Unique
@@ -6137,6 +6155,7 @@ fr:
           sur l'utilisation des données est fournie par nos amis de 
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observations / Année
+        observations_per_year_by_date_added: Par date d'ajout
         observations_per_year_by_date_observed: Par date d'observation
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Séries d’observation
@@ -6148,6 +6167,7 @@ fr:
         recurring: Récurrent
         species_per_year: Espèce / Année
         species_per_year_by_date_added: Par date d'ajout
+        species_per_year_by_date_observed: Par date d'observation
         stats_generated_datetime: Statistiques générées le %{datetime}
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
