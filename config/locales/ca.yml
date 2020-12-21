@@ -619,6 +619,9 @@ ca:
   automatic_short: Automàtic
   automatically_add_observations_to_this_project: Afegeix automàticament observacions a aquest projecte
   automatically_update_my_content_for_taxon_changes: Actualitza el meu contingut automàticament quan hi hagi un canvi en el tàxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Mtj.
   back: Torna
   back_to_all_species: Torna a totes les espècies
   back_to_browsing_people: Tornar a cerca de persones
@@ -3792,6 +3795,7 @@ ca:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscriure-us%{tag_end} als comentaris sobre aquesta unió de tàxons"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscriure-us%{tag_end} als comentaris sobre aquesta divisió de tàxon"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscriure-us%{tag_end} als comentaris sobre aquesta supressió de tàxon"
+  subscribe_to_observations_from_this_place_html: <a>Subscriure-us</a> a les observacions a aquest lloc
   subscribe_to_observations_in_a_taxon: Subscriure's a totes les observacions publicades sobre una espècie o grup d'organismes (per exemple, 'escorpins').
   subscribe_to_observations_in_a_place: Subscriure's a totes les observacions publicades sobre aquest lloc. També podeu afegir un filtre opcional per un tàxon (per exemple, 'escorpins de Tarragona').
   subscribe_to_places_to: |
@@ -4338,7 +4342,7 @@ ca:
   view_moderation_history_for_this_comment: Veure història de la moderació d'aquest comentari
   view_more: Veure més
   view_more_about_x: "Veures més sobre %{x}"
-  view_more_observations_from: Veure més observacions de
+  view_more_observations_from_this_place: Mostra més observacions d'aquest lloc
   view_more_observations_near_x_place: "Mostra més observacions a prop de %{place} a <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "Mostra més observacions del projecte %{project} a <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Mostra més observacions de %{taxon} a <nobr>%{site_name} »</nobr>"
@@ -4550,7 +4554,8 @@ ca:
   you_can_choose_observations_associated: Podeu seleccionar observacions per associar-les amb aquest article del diari.
   you_can_edit_this_default_check_list_because: |
     Podeu editar aquesta llista de comprovació per defecte per que sou Administrador, però no hauria de ser necessari que ho féssiu.
-  you_can_only_destroy_taxa_you_created: "Només podeu destruir tàxons que heu creat, i no es poden destruir tàxons que s'utilitzen en canvis de tàxons."
+  you_can_only_destroy_taxa_you_created2: |
+    Només podeu esborrar tàxons que hagueu crear i que no estiguin associats a canvis del tàxon, identificacions o altre contingut
   you_can_only_block_three_users: Podeu blocar tres usuaris com a màxim
   you_can_show_the_boundary_of: Podeu mostrar els límits del lloc a la pàgina del vostre projecte només si el lloc té límits.
   you_can_sign_free_at: "Podeu registrar-vos a %{site_name} amb un compte gratuït a"
@@ -5711,6 +5716,10 @@ ca:
           Les gràfiques d'"Observacions" i "Tàxons" poden incloure dades visibles a %{site_name} aportades per persones no afiliades a %{site_name}, mentre que les gràfiques d'"Usuaris" només mostren les dades d'usuaris actualment afiliats al %{site_name} unit a iNaturalist.
         growth_in_year_obs: "Creixement l'any %{year} (obs.)"
         growth_title: Creixement
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Baix:%{low_value} (%{low_desc}), massa petit per mostrar-lo"
         new_species_desc: |
           Espècies que han estat observades per primer cop a %{site_name} aquest any. Mostrant %{x} de <a href="%{url}">%{y} espècies</a>.
         new_species_desc_html: |
@@ -5720,6 +5729,7 @@ ca:
           arctos només comptarà com a <i>Canis lupus</i>.
         new_species_per_year: Noves espècies/Any
         new_species_per_year_by_date_added: Per data d'adició
+        new_species_per_year_by_date_observed: Per data d'observació
         obs_in_year: Obs. l'any %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Una única vegada
@@ -5732,6 +5742,7 @@ ca:
         publications_desc_short_html: |
           Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observacions/Any
+        observations_per_year_by_date_added: Per data d'adició
         observations_per_year_by_date_observed: Per data d'observació
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Sèrie d'observacions
@@ -5743,6 +5754,7 @@ ca:
         recurring: Recurrent
         species_per_year: Espècies/Any
         species_per_year_by_date_added: Per data d'adició
+        species_per_year_by_date_observed: Per data d'observació
         stats_generated_datetime: Estadístiques generades el %{datetime}
         store_prompt: |
           Vols mostrar amb orgull la teva pertinença a iNat allà on vagis? Fes-li una ullada a la Botiga d'iNat!

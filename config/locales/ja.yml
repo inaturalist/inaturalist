@@ -86,6 +86,9 @@ ja:
     保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   a_flag_for_x: "%{x}用のフラグ"
   a_member_of_taxon_html: "%{taxon} のメンバー"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "アルファベット昇順"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -127,6 +130,9 @@ ja:
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    非表示の座標を共有するか選択できます
   about_x: "%{x}について"
   acc: '精度（m）'
   account: アカウント
@@ -181,6 +187,7 @@ ja:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: アセットを追加
   add_batch: 一括追加
+  add_blocked_users: ブロックするユーザーを追加
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: 太字にする
   add_comma_separated_tags: "カンマ区切りタグを追加"
@@ -197,6 +204,7 @@ ja:
   add_id: 同定を追加
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: 斜体にする
+  add_muted_users: ミュートするユーザーを追加
   add_new_lexicon: 新しい言語を追加
   add_new_photos_by_their_ids: Flickr IDを検索して画像を追加（Creative Commonsを遵守すること）
   add_new_place: 新しい場所を追加
@@ -2841,7 +2849,7 @@ ja:
     title: "%{owner_name}のチェックリスト"
     description: '%{owner_name}の種リスト'
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a>のキューレータがあなたの観察記録を追加しました
+    <a href="%{url}">%{project}</a>のキュレーター管理者があなたの観察記録を追加しました
   project_members: "%{project}のメンバー"
   project_members_only: プロジェクトメンバー限定
   project_membership_model_description: このプロジェクトは一般公開か招待制？
@@ -3687,7 +3695,6 @@ ja:
   view_listing: リストを表示
   view_more: もっと表示
   view_more_about_x: "%{x}について詳しく"
-  view_more_observations_from: 次のユーザーの観察記録をさらに表示：
   view_observation: 観察記録を表示
   view_observations: 観測記録を表示
   view_observation_flags: 観測記録フラグを表示
@@ -4188,6 +4195,8 @@ ja:
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
           none: "許可しない。あなただけがあなたの観察記録をプロジェクトに追加することができます。"
+        prefers_community_taxa_desc: |
+          %{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。
         prefers_no_tracking_label: サードパーティのサービスを使用して安定性や利用状況のデータを収集しない
         project_settings_desc: |
           これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。

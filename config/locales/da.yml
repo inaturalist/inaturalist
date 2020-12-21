@@ -628,6 +628,9 @@ da:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Tilføj automatisk observationer til dette projekt
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold med taksonændringer
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Gns.
   back: Tilbage
   back_to_all_species: Tilbage til Alle arter
   back_to_browsing_people: Tilbage til "at browse" personer
@@ -3846,6 +3849,7 @@ da:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonsammenfletning"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til dette taksonopdeling"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonfjernelse"
+  subscribe_to_observations_from_this_place_html: <a>Abonnér</a> på observationer fra dette sted
   subscribe_to_observations_in_a_taxon: Abonnér på alle observationer indsendt af en art eller gruppe af organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonnér på alle observationer indsendt inden for dette sted. Du kan også tilføje et valgfrit takson filter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -4419,7 +4423,7 @@ da:
   view_moderation_history_for_this_comment: Vis ændringshistorik for denne kommentar
   view_more: Se flere
   view_more_about_x: "Vis mere om %{x}"
-  view_more_observations_from: Vis flere observationer fra
+  view_more_observations_from_this_place: Få vist flere observationer fra dette sted
   view_more_observations_near_x_place: "Vis flere observationer i nærheden af %{place} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
@@ -4637,7 +4641,8 @@ da:
   you_can_edit_this_default_check_list_because: |
     Du kan redigere denne standard tjekliste fordi du er en
     administrator, men der burde ikke være et behov for at gøre det.
-  you_can_only_destroy_taxa_you_created: "Du kan kun ødelægge taksa du har oprettet, og du kan ikke ødelægge taksa, der bruges i takson ændringer."
+  you_can_only_destroy_taxa_you_created2: |
+    Du kan kun slette taksa, du har oprettet, som ikke er knyttet til taksonændringer, identifikationer eller andet indhold
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
   you_can_sign_free_at: "Du kan tilmelde dig og få en gratis %{site_name} konto på"
@@ -6051,6 +6056,10 @@ da:
           Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.
         growth_in_year_obs: "Vækst i %{year} (obs)"
         growth_title: Vækst
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Lav: %{low_value} (%{low_desc}), for lille til at vise"
         new_species_desc: |
           Arter der blev observeret for første gang på%{site_name} dette år.
           Viser %{x} af <a href="%{url}">%{y} arter</a>.
@@ -6065,6 +6074,7 @@ da:
           <i>arctos</i> vil bare tælle som <i>Canis lupus</i>.
         new_species_per_year: Nye Arter/år
         new_species_per_year_by_date_added: Efter tilføjelsesdato
+        new_species_per_year_by_date_observed: Efter observationsdato
         obs_in_year: Obs i %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Én gang
@@ -6081,6 +6091,7 @@ da:
           Information om databrug med tilladelse fra vores venner fra
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observationer/år
+        observations_per_year_by_date_added: Efter tilføjelsesdato
         observations_per_year_by_date_observed: Efter observationsdato
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsstræk
@@ -6093,6 +6104,7 @@ da:
         recurring: Tilbagevendende
         species_per_year: Arter/år
         species_per_year_by_date_added: Efter tilføjelsesdato
+        species_per_year_by_date_observed: Efter observationsdato
         stats_generated_datetime: Statistikker genereret %{datetime}
         store_prompt: |
           Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!

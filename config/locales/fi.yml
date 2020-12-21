@@ -619,6 +619,9 @@ fi:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Lisää automaattisesti kaikki havainnot tähän projektiin
   automatically_update_my_content_for_taxon_changes: Päivitä taksonimuutokset automaattisesti omiin havaintoihini.
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Keskiarvo
   back: Takaisin
   back_to_all_species: Takaisin kaikkiin lajeihin
   back_to_browsing_people: Takaisin ihmisten selailuun
@@ -3216,6 +3219,7 @@ fi:
   reason_you_are_flagging_this_item: Syy, jonka vuoksi liputat tätä kohdetta.
   recaptcha_verification_failed: reCAPTCHA-varmistus epäonnistui
   receive_email_notifications: Vastaanota sähköposti-ilmoituksia
+  receive_email_notifications_description: "Jos poistat tämän käytöstä, et enää saa sähköposteja %{site_name} koskien ilmoituksia. Saat ilmoitukset kaikista alla valituista asioista:"
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   recent: Viimeaikainen
@@ -3601,6 +3605,7 @@ fi:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Tilaa%{tag_end}tähän taksonin liittämiseen liittyvät kommentit"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Tilaa%{tag_end}tähän taksonijakoon liittyvät kommentit"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Tilaa%{tag_end}tähän taksonipoistoon liittyvät kommentit"
+  subscribe_to_observations_from_this_place_html: <a>Tilaa</a> tämän paikan havainnot
   subscribe_to_observations_in_a_taxon: Seuraa kaikkia lajien tai eliöryhmien havaintoja (esim. 'skorpionit')
   subscribe_to_observations_in_a_place: Seuraa kaikkia tältä paikalta tallennettuja havaintoja. Voit myös lisätä valinnaisen taksonisuodattimen (esim. 'skorpionit Texasista'
   subscribe_to_places_to: |
@@ -3982,6 +3987,7 @@ fi:
   value: Arvo
   values: Arvot
   verbing_x_of_y: "%{verb} %{x}/%{y}..."
+  verifiable_observations_by_observation_date: Varmennettavissa olevat havainnot havaintopäivän mukaan
   view: Näytä
   view_all: Näytä kaikki
   view_all_flags: Näytä kaikki liput
@@ -4010,7 +4016,7 @@ fi:
   view_moderation_history_for_this_comment: Näytä moderointihistoria tälle kommentille
   view_more: Näytä lisää
   view_more_about_x: "Katso lisätietoja kohteesta %{x}"
-  view_more_observations_from: Näytä lisää havaintoja paikasta
+  view_more_observations_from_this_place: Näytä lisää havaintoja tästä paikasta
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
   view_more_unreviewed: "Katso lisää tarkistamattomia"
@@ -4190,7 +4196,8 @@ fi:
   you_can_choose_observations_associated: Voit valita havaintoja liittääksesi ne tähän päiväkirjamerkintään.
   you_can_edit_this_default_check_list_because: |
     Voit editoida tätä oletusluetteloa, koska olet ylläpitäjä. Mutta tarvetta editoinnille ei oikeastaan pitäisi olla.
-  you_can_only_destroy_taxa_you_created: "Voit poistaa vain itse luomiasi taksoneita, etkä voi poistaa taksoneita, joita käytetään taksonimuutoksissa."
+  you_can_only_destroy_taxa_you_created2: |
+    Voit poistaa vain luomiasi taksoneita, joihin ei liity taksonimuutoksia, tunnisteita tai muuta sisältöä
   you_can_only_block_three_users: Voit estää vain kolme käyttäjää
   you_can_show_the_boundary_of: Voit näyttää paikan rajan projektisivullasi jos paikalla on raja.
   you_can_sign_free_at: "Voit rekisteröidä ilmaisen %{site_name}-tilin:"
@@ -4385,6 +4392,7 @@ fi:
       list_view: Listanäkymä
       tree_view: Puunäkymä
       observed_species: Havaitut lajit
+      observed_rank: Havaittu %{rank}
       unobserved_species: Ei-havaitut lajit
       all_species: Kaikki lajit
       all_unobserved_species: Kaikki ei-havaitut lajit
@@ -5026,7 +5034,15 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist-verkon</a> verkkosivustojen kautta
       year:
+        compare_desc: |
+          Kuinka tämä vuosi sujui verrattuna edellisiin vuosiin? Kun olet käyttänyt iNaturalistia kolmen vuoden ajan
+          tai pidempään, voimme alkaa vertailla vuotuisia toimintatietoja.
+        compared_to_previous_years: Vertaa edelliseen vuoteen
+        donors: Lahjoittajat
+        donors_guide_label_our_goal_is_1000: Tavoitteenamme on 1000 kuukausilahjoittajaa
         inaturalist_network: iNaturalist-verkosto
+        inaturalist_network_desc: |
+          Tutustu vuosikatsaukseen
         include_usa: Sisällytä Yhdysvallat
         growth_by_country_desc_html: |
           Missä kasvua tapahtuu? Tämä kartta ja taulukko koettavat kuvata kasvua maittain, mutta se on mutkikasta, koska kasvu maittain voi olla hyvin epätasapainossa. Tässä on oletusasetuksena jätetty Yhdysvallat pois ja käytetty logaritmista asteikkoa muiden maiden välisten erojen korostamiseksi. Maan musta väri tarkoittaa, että sillä ei ollut merkittävää vaikutusta prosenttiosuuteen, havaintomäärät eivät kasvaneet tänä vuonna, tai havaintoja ei ollut tänä vuonna enempää kuin viime vuonna (lisätietoja saat viemällä hiiren maan kohdalle). <strong>"% kokonaiskasvusta"</strong> tarkoittaa tietyn maan osuutta maailmanlaajuisesta kasvusta. Esimerkiksi jos vuonna 2018 olisi 20 havaintoa, vuonna 2017 10 havaintoa, kasvua olisi 10 havainnon verran ja jos 5 havainnosta olisi Beninistä, Beninin osuus kokonaiskasvusta olisi 50%. <strong>"% kasvua"</strong> tarkoittaa tämänvuotisten havaintojen määrää prosentteina viime vuotisista havainnoista kyseisessä maassa. Esimerkiksi jos Laosista on 10 havaintoa viime vuodelta, mutta 20 tältä vuodelta, kasvuprosentti olisi 100%. Ja jos havaintoja ei ollut ollenkaan viime vuonna ja tänä vuonna 1, on kasvuprosentti ääretön.
@@ -5035,13 +5051,36 @@ fi:
           "Havainnot" ja "Taksoni" taulukko voi pitää sisällään tietoa, joka liittyy paikkaan %{site_name}, jonka tiedonkeruuseen on voinut osallistua henkilöitä, joita ei ole liitetty kyseiseen paikkaan %{site_name}, mutta "Käyttäjät" taulukko näyttää vain päivämäärät, jolloin käyttäjät, jotka on liitetty paikkaan %{site_name} ovat liittyneet iNaturalistiin.
         growth_in_year_obs: "Kasvu vuonna %{year} (havaintoja)"
         growth_title: Kasvu
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Matala: %{low_value} (%{low_desc}), liian pieni näytettäväksi"
         new_species_desc_html: |
           Lajit, jotka lisättiin ensimmäistä kertaa tänä vuonna. Klikkaa kuukautta nähdäksesi joitakin siinä kuussa listättyjä lajeja, Voit myös tarkastella kokonaiskertymää, tai liikuttaa liukukytkintä ajassa taaksepäin nähdäksesi muita hiljattain havaittuja lajeja. Tämä kaavio näyttää lajit varmistettavissa olevista havainnoista sen kuukauden mukaan, jolloin ne kirjattiin %{site_name}iin (eikä sen kuukauden mukaan, jolloin ne havaittiin). Se ei näytä lajia ylemmän tai alemman tason taksoneita, joten esim. nisäkkääksi (Mammalia) tunnistettuja havaintoja ei oteta siinä huomioon, ja havainto <i>Canis lupus</i> ssp. <i>arctosista</i> lasketaan vain <i>Canis lupukseksi</i>.
+        new_species_per_year: Uudet lajit / vuosi
+        new_species_per_year_by_date_added: Lisäyspäivämäärän mukaan
+        new_species_per_year_by_date_observed: Havainnointipäivämäärän mukaan
         obs_in_year: Havainnot vuonna %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Kertaluonteinen
         percent_growth_in_year: "% kasvua vuonna %{year}"
         percent_of_total_growth: "% kokonaiskasvusta"
+        observations_per_year: Havainnot / vuosi
+        observations_per_year_by_date_added: Lisäyspäivämäärän mukaan
+        observations_per_year_by_date_observed: Havainnointipäivämäärän mukaan
         observation_streaks_color_desc: |
           Väri kuvastaa päivien lukumäärää logaritmisella asteikolla:
+        observation_streaks_desc2: |
+          Havaintoputki on vähintään viiden päivän jakso, jolloin joku
+          on käynyt ulkona ja tallentanut uusia, varmistettavissa olevia havaintoja joka ikinen
+          päivä. Tässä näytetään pisimmät putket, jotka alkoivat tänä vuonna tai
+          olivat käynnissä, kun nämä tilastot luotiin (yksittäisille käyttäjille
+          mukaan lukien myös tänä vuonna päättyneet putket).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Toistuva
+        species_per_year: Lajit / vuosi
+        species_per_year_by_date_added: Lisäyspäivämäärän mukaan
+        species_per_year_by_date_observed: Havainnointipäivämäärän mukaan
         sunburst_desc_html: |
           Havaitut lajit sunburst-kaaviona. Kaavion keskellä on kaikki elämä, ja ulkokehällä lajit. Jokaisen kaaren koko on suhteessa havaintomäärään tästä taksonista. Värit vastaavat taksonien värejä (vihreä kasveille, punainen hyönteisille, sininen useimmille muille eläimille jne.). <strong>Klikkaa kaarta asettaaksesi tämä taksoni kaavion keskustaksi</strong>, tai <strong>klikkaa keskustaa siirtyäksesi hierarkiassa ylöspäin</strong>.
         translators_title: Kääntäjät
@@ -5232,6 +5271,8 @@ fi:
           any: Kaikki
           joined: Projektit, joihin olet liittynyt
           none: "Ei mitkään, vain sinä voit lisätä havaintojasi projekteihin"
+        prefers_community_taxa_desc: |
+          %{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Laitteen tiedot, kuten puhelimen valmistaja ja malli
         prefers_no_tracking_label_desc_value_html: |

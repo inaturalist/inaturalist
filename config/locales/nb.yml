@@ -602,6 +602,9 @@ nb:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Legg til observasjoner til dette prosjektet automatisk
   automatically_update_my_content_for_taxon_changes: Oppdater mitt innhold automatisk ved taksonendringer
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Snitt
   back: Tilbake
   back_to_all_species: Tilbake til alle arter
   back_to_browsing_people: Tilbake til å bla gjennom personer
@@ -3310,6 +3313,7 @@ nb:
   reason: Grunn
   reason_you_are_flagging_this_item: Grunnen til at du melder dette.
   recaptcha_verification_failed: reCAPTCHA verifisering mislykket
+  receive_email_notifications: Motta e-postvarsler
   receive_email_notifications_when_people_leave_you: Få e-postvarslinger om
   receive_updates_from_this_project: Få oppdateringer om dette prosjektet
   recent: Siste
@@ -4256,7 +4260,6 @@ nb:
   view_moderation_history_for_this_comment: Vis historikk for moderering for denne kommentaren
   view_more: Vis mer
   view_more_about_x: "Vis mer om %{x}"
-  view_more_observations_from: Vis flere observasjoner fra
   view_more_observations_near_x_place: "Vis flere observasjoner i nærheten av %{place} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Vis flere observasjoner fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observasjoner av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
@@ -4457,7 +4460,6 @@ nb:
   you_can_choose_observations_associated: Du kan velge observasjoner som skal knyttes til dette journal-innlegget.
   you_can_edit_this_default_check_list_because: |
     Du kan redigere denne standard sjekkliste fordi du er en admin, men det bør egentlig ikke være noe grunn til å gjøre det.
-  you_can_only_destroy_taxa_you_created: "Du kan kun ødelegge taksa som du selv har opprettet, og du kan ikke ødelegge taksa som brukes i taksonendringer."
   you_can_only_block_three_users: Du kan kun blokkere tre brukere
   you_can_show_the_boundary_of: Du kan vise grensen til stedet på din prosjektside hvis dette stedet har en grense.
   you_can_sign_free_at: "Du kan registrere deg for en gratis konto på %{site_name} på"
@@ -4706,15 +4708,47 @@ nb:
       list_view: Listevisning
       tree_view: Trevisning
       observed_species: Observerte arter
+      observed_rank: Observert %{rank}
       unobserved_species: Uobserverte arter
       all_species: Alle arter
       all_unobserved_species: Alle uobserverte arter
+      observations_at_this_taxon: Observasjoner av dette taksonet
+      observations_within_this_taxon: Observasjoner innen dette taksonet
       all_observations: Alle observasjoner
       total_observations: Samlet antall observasjoner
       filter_by: Filtrer etter
       filtered_by: Filtrert etter
+      apply_filters_to_export: Bruk filtre for eksport
+      restrict_to_taxon: Begrens til %{taxon}
+      exporting_all_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer alle %{count} taksa
+      exporting_x_taxa:
+        one: Eksporterer %{count} takson
+        other: Eksporterer %{count} taksa
+      no_observations_found_in_place: Ingen observasjoner funnet i %{place}.
+      no_observations_found_within_this_taxon_in_place: Ingen observasjoner funnet i dette taksonet i %{place}.
+      no_species_found_within_this_taxon_in_place: Ingen arter funnet i dette taksonet i %{place}.
+      no_species_found_in_place: Ingen arter funnet i %{place}.
+      no_unobserved_species_in_place: Ingen uobserverte arter i %{place}.
+      no_unobserved_species_within_this_taxon: Ingen uobserverte arter i dette taksonet.
+      no_unobserved_species_within_this_taxon_in_place: Ingen uobserverte arter i dette taksonet i %{place}.
+      reset_place_filter: Nullstill stedsfilter
+      all_observations_in_this_taxon: Vis observasjoner i dette taksonet
+      observations_of_exactly_this_taxon: Observasjoner av nøyaktig dette taksonet
+      focus_tree_on_this_taxon: Fokuser treet på dette taksonet
+      expand_all_nodes_in_this_branch: Utvid alle noder i denne grenen
       dropdowns:
         sort: Sortér
+        taxonomic: Taksonomisk
+        name: Navn
+        most_observed: Mest observert
+        least_observed: Minst observert
+        date_added_newest: Dato lagt til, nyest til eldst
+        date_added_oldest: Dato lagt til, eldst til nyest
+        show: Vis
+        simplified_tree: Forenklet tre
+        full_taxonomy: Full taksonomi
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5551,6 +5585,8 @@ nb:
           bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
         compared_to_previous_years: Sammenlign med foregående år
         donate_title: "Særlig takk til alle våre støttere"
+        donate_desc_html: |
+          Takk for at du er generøs med din tid, oppmerksomhet, ekspertise, og donasjoner! iNaturalist er et non-profit felles initiativ av California Academy of Sciences og National Geographic Society. Det støttes av et <a href="%{team_url}">lite team</a> som gjør all design og koding for nettet, mobil, og <a href="%{seek_url}">Seek av iNaturalist</a>, i tillegg til å administrere støtte til fellesskapet, og integreringer som holder ting i drift (og stadig vekst!) Programmet er avhengig av flere tilskudd og donasjoner, hvorunder frivillige gaver fra under 0,2% av bidragsytere. Vi er særlig takknemlig til våre månedlige givere, hvems gjentagende gaver hjelper oss i å planlegge for fremtiden. Du kan donere i over 30 valuta for å støtte kjerneoppgavene til iNaturalist. Takk til alle for ditt bidrag i å gjøre 2019 til det største året for iNaturalist hittil!
         donors: Givere
         donors_guide_label_our_goal_is_1000: Vårt mål er 1000 faste givere per måned
         inaturalist_network: iNaturalist-nettverk
@@ -5570,6 +5606,7 @@ nb:
           Arter som ble lagt til for første gang dette året. Trykk på en måned for å se noen av de nye artene som ble lagt til i den måneden. Du kan også se det sammenlagte antallet, eller skyve knappen tilbake i tid for å se andre nye observasjoner av arter. Denne grafen viser arter fra verifiserbare observasjoner etter hvilken måned de ble lastet opp til %{site_name} (ikke måneden de ble observert i). Den inkluderer ikke taksa sv høyere eller lavere nivå, så en observasjon identifisert som Mammalia telles ikke, og en observasjon av <i>Canis lupus</i> ssp. <i>arctos</i> telles bare som <i>Canis lupus</i>.
         new_species_per_year: Nye arter / år
         new_species_per_year_by_date_added: Etter dato lagt til
+        new_species_per_year_by_date_observed: Etter observasjonsdato
         obs_in_year: Obs i %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Engangs
@@ -5582,6 +5619,7 @@ nb:
         publications_desc_short_html: |
           Trykk på blomstergrafene for mer informasjon om hva tallene og fargene betyr. Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
         observations_per_year: Observasjoner / år
+        observations_per_year_by_date_added: Etter dato lagt til
         observations_per_year_by_date_observed: Etter dato observert
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observasjonsserier
@@ -5597,6 +5635,7 @@ nb:
         recurring: Gjentakende
         species_per_year: Arter / år
         species_per_year_by_date_added: Etter dato lagt til
+        species_per_year_by_date_observed: Etter observasjonsdato
         stats_generated_datetime: Statistikker generert på %{datetime}
         store_prompt: |
           Vil du vise din stolthet over iNat hvor enn du går? Sjekk iNat butikken!
@@ -5854,6 +5893,8 @@ nb:
           any: Alle
           joined: Prosjekter som du er med i
           none: "Ingen, bare du kan legge til dine observasjoner til prosjekter"
+        prefers_community_taxa_desc: |
+          %{site_name} holder rede på hva du tror dine observasjoner er og hva felleskapet tror det er. Identifikasjonen vi deler med datapartnere er felleskapets identifikasjon, men hvis synes at felleskapets mening aldri skal overstyre din egen, kan du melde deg av her. Folk vil fortsatt kunne legge til identifikasjoner, men felleskapets mening blir ikke prioritert over din. Dette betyr at dine observasjoner ikke vil kunne nå forskingskvalitet med mindre du er enig med felleskapet.
         prefers_coordinate_interpolation_protection_desc: |
           Når du setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
         prefers_no_tracking_label: Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester
@@ -6314,6 +6355,7 @@ nb:
         occurrence_status_level: Forekomststatus-nivå
         establishment_means: Etableringsmåter
       message:
+        subject: Emne
         body: Innhold
       observation:
         description: Notater

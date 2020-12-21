@@ -4184,7 +4184,6 @@ tr:
   view_moderation_history_for_this_comment: Bu Yorum için Denetim Geçmişini Görüntüle
   view_more: Daha Fazla Görüntüle
   view_more_about_x: "%{x} Hakkında Daha Fazla Görüntüle"
-  view_more_observations_from: Şuradan Daha Çok Gözlemi Görüntüle
   view_more_observations_near_x_place: "<nobr>%{site_name} &raquo;</nobr> sayfasında %{place} yakınındaki daha çok gözlemi görüntüle"
   view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> sayfasında %{project} projesinden daha çok gözlemi görüntüle"
   view_more_observations_of_x_taxon: "<nobr>%{site_name} &raquo;</nobr> sayfasında %{taxon} sınıfından daha çok gözlemi görüntüle"
@@ -4394,7 +4393,6 @@ tr:
   you_can_choose_observations_associated: Bu yayın gönderisiyle ilişkilendirmek için gözlem seçebilirsin.
   you_can_edit_this_default_check_list_because: |
     Yönetici olduğunuz için bu varsayılan kontrol listesini düzenleyebilirsiniz ancak gerçekten yapmanız gerekmemelidir.
-  you_can_only_destroy_taxa_you_created: "Yalnızca kendi oluşturduğunuz sınıfları imha edebilirsiniz ve sınıf değişikliklerinde kullanılan sınıfları imha edemezsiniz."
   you_can_only_block_three_users: Yalnızca üç kullanıcıyı engelleyebilirsiniz
   you_can_show_the_boundary_of: Eğer bir yerin sınırı varsa, bu yerin sınırını proje sayfanızda gösterebilirsiniz.
   you_can_sign_free_at: "Şu adresten ücretsiz bir %{site_name} hesabına kaydolabilirsiniz"
@@ -6081,6 +6079,13 @@ tr:
           any: Herhangi
           joined: Katıldığınız projeler
           none: "Hiç kimse, projeye yalnızca siz gözlemlerinizi ekleyebilirsiniz"
+        prefers_community_taxa_desc: |
+          %{site_name}, gözlemlerinizin ne olduğunu ve topluluğun ne düşündüğünü izler. 
+          Veri ortaklarıyla paylaştığımız kimlik, topluluk kimliğidir, ancak topluluğun görüşünün 
+          kendi kararlarınızı geçersiz kılması gerektiğini düşünmüyorsanız, buradan vazgeçebilirsiniz. 
+          İnsanlar hala tanımlama ekleyebilecekler, ancak topluluk görüşü sizinkinden yana olmayacak. 
+          Bu, topluluğa katılmadığınız sürece gözlemlerinizin araştırma için uygun 
+          olmayacağı anlamına gelir.
         prefers_coordinate_interpolation_protection_desc: |
           Bir gözlemin coğrafi gizliliğini "gizlenmiş" veya "özel" olarak ayarladığınızda, 
           aynı coğrafi gizliliği, diğer insanların aynı zamanda yapılan gözlemlerine dayanarak 

@@ -174,25 +174,25 @@ fr:
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
-  about_trusting_projects: À propos des projets de confiance
-  about_trusting_projects_options_any: Toutes vos observations de ce projet
+  about_trusting_projects: Ce qu'on veut dire par "faire confiance à ce projet"
+  about_trusting_projects_options_any: Toutes vos observations dans ce projet.
   about_trusting_projects_options_any_desc: |-
-    Ceci inclue vos observations dont vous avez cachés les coordonées, c'est-à-dire celles dont vous ne voulez pas que les autres naturalistes sachent les coordonées.
+    Ceci inclut vos observations dont vous avez masqué les coordonnées, comme les observations faites chez vous ou à des endroits que vous ne voulez pas révéler.
   about_trusting_projects_options_taxon: |-
-    Seules vos observations aux coordonnées cachées car à propos d'une espèce menacée?
+    Seulement vos observations aux coordonnées masquées parce qu'elles représentent un taxon menacé.
   about_trusting_projects_options_taxon_desc: |-
-    Beaucoup de projets ont besoin d'avoir accès aux coordonnées cachées de vos observations qui contiennent un taxon menacé.
+    Beaucoup de projets ont besoin d'avoir accès aux coordonnées masquées de vos observations qui contiennent un taxon menacé.
   about_trusting_projects_overview: |-
-    Autoriser l'accès à vos coordonnées cachées va permettre aux dirigeants du projets de voir la véritable position de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
+    Autoriser l'accès à vos coordonnées masquées va permettre aux dirigeants de projets de voir le véritable emplacement de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-    Les gérants du projet qui auront accès aux coordonnées cachées sont :
+    Les gérants du projet qui auront accès à vos coordonnées masquées sont :
   about_trusting_projects_warning: |-
-    Prenez en compte que les gérants du projet pourrons changer les paramètres de celui-ci afin d'ajouter vos observations, et ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées cachées, donc soyez prudent.
+    Prenez en compte que les gérants du projet pourront changer les paramètres de celui-ci afin d'y ajouter vos observations, et pour ajouter ou supprimer des gérants n'importe quand. Vous recevrez des notifications, mais vous acceptez de faire confiance à ce projet en donnant vos coordonnées privées, donc soyez prudent.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    Vous pouvez choisir de partager vos coordonnées cachées pour
+    Vous pouvez choisir de partager vos coordonnées masquées pour :
   about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
@@ -626,6 +626,9 @@ fr:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations à ce projet
   automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour mon contenu pour les modifications de taxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Moy.
   back: Précédent
   back_to_all_species: Retourner à la liste des espèces
   back_to_browsing_people: Retourner à la recherche par personne
@@ -1572,9 +1575,9 @@ fr:
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
   geoprivacy: Géoconfidentialité
-  geoprivacy_is_obscured: La confidentialité géographique est dissimulée
+  geoprivacy_is_obscured: La géoconfidentialité est masquée
   geoprivacy_is_obscured_desc: L'observateur a choisi de griser les coordonnées.
-  geoprivacy_is_private: La confidentialité géographique est privée
+  geoprivacy_is_private: La géoconfidentialité est privée
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé ?
   get_started: Commencer
@@ -2213,7 +2216,7 @@ fr:
   most_agree: la plupart sont d’accord
   most_browser_print_pdf: "Note : la plupart des navigateurs ont une option pour imprimer en PDF"
   most_disagree: la plupart ne sont pas d’accord
-  most_comments_and_faves: La plupart des commentaires et favoris
+  most_comments_and_faves: Observations avec le plus de commentaires et Favoris
   most_observations: Par nombre d'observations
   most_recent_observation_by_date_observed: Observation vérifiable la plus récente observée par date
   most_species: Par nombre d'espèces
@@ -2295,7 +2298,7 @@ fr:
   new_message: Nouveau message
   new_observation_field: Nouveau champ de l’observation
   new_observations: Nouvelles observations
-  new_observations_in_year: "Nouvelles observations dans %{year}"
+  new_observations_in_year: "Nouvelles observations en %{year}"
   new_observations_ellispsis: "Nouvelles observations…"
   new_observations_from_place_html: "Nouvelles observations à %{place}"
   new_observations_may_take_up_to: Les nouvelles observations peuvent prendre jusqu’à %{widget_expiration} minutes avant d’apparaître dans le widget.
@@ -2316,12 +2319,12 @@ fr:
   new_trip: Nouveau voyage
   new_updates_in_the_last_24_hours_from: "Nouvelles mises à jour dans les dernières 24 heures d’%{site_name}"
   new_users: Nouveaux utilisateurs
-  new_users_in_year: "Nouveaux utilisateurs dans %{year}"
+  new_users_in_year: "Nouveaux utilisateurs en %{year}"
   new_users_w_7_obs: Nouveaux utilisateurs avec 7 Obs
-  newly_added: Ajouté récemment
-  newly_added_species: Espèces ajoutées récemment
+  newly_added: Nouvelles espèces observées
+  newly_added_species: Nouvelles espèces observées
   newly_observed_species: Nouvelles espèces observées
-  newly_observed_species_in_year: "Espèces nouvellement ajoutées dans %{year}"
+  newly_observed_species_in_year: "Nouvelles espèces observées en %{year}"
   next: Suivant
   next_observation: Observation suivante
   next_page: Page suivante
@@ -3841,6 +3844,7 @@ fr:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette fusion de taxon"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce partage de taxon"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette désactivation de taxon"
+  subscribe_to_observations_from_this_place_html: <a>Abonnez-vous</a> aux observations de cet endroit
   subscribe_to_observations_in_a_taxon: S’abonner à toutes les observations publiées sur une espèce ou un groupe d’organismes (par ex. 'scorpions').
   subscribe_to_observations_in_a_place: S’abonner à toutes les observations publiées dans cet emplacement. Vous pouvez aussi ajouter un filtre de taxon facultatif (par ex. 'scorpions du Texas').
   subscribe_to_places_to: |
@@ -3934,7 +3938,7 @@ fr:
   taxon_is_threatened_coordinates_hidden: Le taxon est menacé, les coordonnées sont masquées par défaut
   taxon_is_threatened_coordinates_hidden_desc: |
     Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
-  taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été dissimulées par défaut
+  taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été masquées par défaut
   taxon_is_threatened_coordinates_obscured_desc: |
     Un des taxons suggérés dans les identifications, ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
   taxonomy: Taxinomie
@@ -4185,7 +4189,7 @@ fr:
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Faire confiance au projet pour vos coordonnées cachées ?
+  trust_this_project_with_your_private_coordinates?: Faire confiance à ce projet avec vos coordonnées masquées?
   trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
@@ -4404,7 +4408,7 @@ fr:
   view_moderation_history_for_this_comment: Afficher l’historique de modération de ce commentaire
   view_more: Afficher plus
   view_more_about_x: "Afficher plus sur %{x}"
-  view_more_observations_from: Afficher plus d’observations de
+  view_more_observations_from_this_place: Voir plus d'observations de cet endroit
   view_more_observations_near_x_place: "Afficher plus d'observations près de %{place} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "Afficher plus d'observations de %{project} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Afficher plus d’observations de %{taxon} sur <nobr>%{site_name} &raquo;</nobr>"
@@ -4509,7 +4513,7 @@ fr:
   who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance, avec leur coordonnées masquées
   who_helped_user_the_most: "Qui a le plus aidé %{user}"
   who_user_helped_the_most: "Qui %{user} a le plus aidé"
-  why_the_coordinates_are_obscured: Pourquoi les coordonnées sont grisées
+  why_the_coordinates_are_obscured: Pourquoi les coordonnées sont masquées
   with_annotation: Avec annotation
   without_annotation: Sans annotation
   widget: Widget
@@ -4564,7 +4568,7 @@ fr:
   x_wrote_a_new_post_html: "%{x} a écrit un nouveau message"
   x_wrote_y_new_posts_html: "%{x} a écrit %{y} nouveaux messages"
   year: Année
-  year_in_review: "Année %{year} en revue"
+  year_in_review: "Revue de l'année %{year}"
   year_month: année/mois
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
@@ -4573,11 +4577,11 @@ fr:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Oui, mais seulement pour mes observations de taxon menacés.
+    Oui, mais seulement pour mes observations de taxons menacés, et non celles dont j'ai masqué les coordonnées moi-même.
   yes_find_them!: "Oui, trouvez-les!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
-  yes_for_any_of_my_observations: "Oui, mais pour toutes vos observations"
+  yes_for_any_of_my_observations: "Oui, pour toutes mes observations"
   yes_i_want_to_join: Oui, je veux me joindre
   yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
@@ -4628,7 +4632,9 @@ fr:
   you_can_edit_this_default_check_list_because: |
     Vous pouvez modifier cette liste de contrôle par défaut parce que vous êtes un
     administrateur, mais il ne devrait pas être nécessaire de le faire.
-  you_can_only_destroy_taxa_you_created: "Vous ne pouvez détruire que les taxons que vous avez créés, et vous ne pouvez pas détruire des taxons qui sont utilisés dans des modifications de taxon."
+  you_can_only_destroy_taxa_you_created2: |
+    Vous ne pouvez supprimer que les taxons que vous avez créés qui ne sont associés ni à des modifications
+    de taxon, ni à des identifications, ni à aucun autre contenu.
   you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
   you_can_show_the_boundary_of: Vous pouvez afficher les limites géographiques du lieu sur votre page de projet s’il en a une.
   you_can_sign_free_at: "Vous pouvez demander un compte gratuit sur %{site_name} à"
@@ -4962,6 +4968,7 @@ fr:
       list_view: Affichage par liste
       tree_view: Vue arborescente
       observed_species: Espèces observées
+      observed_rank: '%{rank} observé(s)'
       unobserved_species: Espèces non observées
       all_species: Toutes les espèces
       all_unobserved_species: Toutes les espèces non observées
@@ -6082,8 +6089,19 @@ fr:
       year:
         compare_desc: |
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
+        compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
+        donate_desc_html: |
+          Merci de la générosité dont vous faites preuve en offrant votre temps, votre attention, votre expertise et
+          vos dons! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society.
+          Le projet est porté par une
+          <a href="%{team_url}">petite équipe</a> qui
+          s'occupe de toute la conception et du génie logiciel pour le web, la plateforme mobile et
+          <a href="%{seek_url}">Seek par iNaturalist</a>, et qui gère
+          l'aide à la communauté, les collaborations et les intégrations qui sont la clé du succès (et d'un développement rapide!). Le programme existe grâce à de nombreux dons et subventions, entre autres les dons d'une infime partie des utilisateurs. Nous sommes particulièrement reconnaissants aux personnes qui font un don chaque mois. Ces dons récurrents nous aident à préparer l'avenir. Vous pouvez
+          faire un don dans différentes devises pour soutenir les activités de base d'iNaturalist. Grâce à vous, %{year} sera la meilleure année qu'aura connu iNaturalist jusqu'à présent!
         donors: Donateurs
+        donors_guide_label_our_goal_is_1000: Notre objectif est d'atteindre 1000 donateurs récurrents par mois
         inaturalist_network: Réseau iNaturalist
         inaturalist_network_desc: |
           Consultez la rétrospective de l'année des membres du réseau iNaturalist.
@@ -6098,21 +6116,28 @@ fr:
           actuellement affiliés à %{site_name} ont rejoint iNaturalist.
         growth_in_year_obs: "Croissance pendant %{year} (obs)"
         growth_title: Croissance
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Bas : %{low_value} (%{low_desc}), trop petit pour être affiché"
         new_species_desc: |
           Espèces ayant été observées pour la première fois cette année sur %{site_name} .
           Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
         new_species_desc_html: |
-          Espèces ajoutées pour la première fois cette année.
+          Nombre d'espèces qui ont été observées pour la première fois cette année.
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
-          Vous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur
+          Vous pouvez aussi afficher le total des espèces, ou faire remonter le curseur
           dans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre
-          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été uploadées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
+          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été enregistrées sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
           de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
-          Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
+          Mammifère ne comptera pas, et une observation d’une sous-espèce comme <i>Canis lupus</i>
           <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
         new_species_per_year: Nouvelle espèce / Année
         new_species_per_year_by_date_added: Par date d'ajout
+        new_species_per_year_by_date_observed: Par date d'observation
         obs_in_year: Obs en %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Unique
         percent_growth_in_year: "% de croissance en %{year}"
         percent_of_total_growth: "% de croissance totale"
         publications_desc_html: |
@@ -6130,15 +6155,19 @@ fr:
           sur l'utilisation des données est fournie par nos amis de 
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observations / Année
+        observations_per_year_by_date_added: Par date d'ajout
         observations_per_year_by_date_observed: Par date d'observation
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Séries d’observation
         observation_streaks_color_desc: |
           La couleur représente le nombre de jours sur une échelle logarithmique :
         observation_streaks_desc2: |
-          Une série d'observations est une période d'au moins cinq jours où quelqu'un à enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ou qui étaient en cours lorsque nous avons généré ces statistiques (pour les utilisateurs individuels, nous incluons également les séries qui se sont terminées cette année).
+          Une série d'observations est une période d'au moins cinq jours pendant laquelle quelqu'un a enregistré de nouvelles observations vérifiables chaque jour. Nous vous montrons ici les séries les plus longues ayant commencé cette année, ainsi que celles qui étaient en cours lorsque nous avons généré ces statistiques (pour les utilisateurs individuels, nous incluons également les séries qui se sont terminées cette année).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Récurrent
         species_per_year: Espèce / Année
         species_per_year_by_date_added: Par date d'ajout
+        species_per_year_by_date_observed: Par date d'observation
         stats_generated_datetime: Statistiques générées le %{datetime}
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
@@ -6562,11 +6591,7 @@ fr:
         prefers_community_taxa_desc: |
           %{site_name} enregistre vos observations ainsi que votre identification et les identifications de la communauté. L’identification que nous communiquons à nos partenaires d’échange de données est celle de la communauté, mais si vous pensez que l’opinion de la communauté ne doit jamais primer sur la vôtre, vous pouvez changer ici le paramètre par défaut. Les autres utilisateurs pourront toujours ajouter des identifications, mais l’opinion de la communauté n'aura pas plus de poids que la vôtre. Autrement dit, vos observations ne pourront avoir le calibre recherche que si vous êtes d’accord avec la communauté.
         prefers_coordinate_interpolation_protection_desc: |
-          Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
-          « private », cela appliquera la même confidentialité géographique à toutes vos autres
-          observations du même jour, pour rendre plus difficile aux autres personnes de
-          deviner les vraies coordonnées d’après les observations faites alentour au même
-          moment.
+          Quand vous fixez la géoconfidentialité d’une observation à « masquée » ou « privée », le même niveau de géoconfidentialité sera appliqué à toutes vos observations faites le même jour, pour qu'il soit plus difficile pour les autres de deviner les vraies coordonnées d’après les observations faites dans ce secteur-là au même moment.
         prefers_no_tracking_label: Ne pas collecter de données de performance et d'utilisation par le biais de services tiers
         prefers_no_tracking_label_desc_we_use: |
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bugs. Ces programmes tiers incluent
@@ -6589,7 +6614,7 @@ fr:
           Notez que cette option ne s'applique qu'aux données de statistiques et d'erreurs que nous envoyons explicitement à ces entreprises. Tous les serveurs d'iNaturalist sont fournis et hébergés par Microsoft, toutes les images d'iNaturalist sont hébergées par Amazon, et presque toutes les cartes d'iNaturalist sont fournies par Google, ce qui signifie que chaque fois que vous regardez une observation sur iNaturalist, vous vous connectez aux services fournis par ces entreprises et leur exposez au minimum votre adresse IP (dans l’application pour iPhone nous utilisons les cartes d’Apple). iNaturalist n'existerait probablement pas sans les services fournis par ces sociétés, et bien que nous puissions limiter la quantité et les types de données que vous partagez avec eux en utilisant iNat, nous ne pouvons pas supprimer complètement ce flux de données.
         project_settings_desc: |
           N'oubliez pas que cela ne donne pas aux projets le droit d’accéder à vos coordonnées masquées ou de vous contacter. Pour accorder ces droits, vous devez rejoindre les projets en question ou accorder des autorisations au cas par cas.
-        same_day_geoprivacy_protection: Protection de confidentialité géographique du même jour
+        same_day_geoprivacy_protection: Protection de géoconfidentialité le jour même
         search_place_help_html: |
           Endroit par défaut pour les recherches d’observation.
         scientific_name_first_desc: |
@@ -7046,7 +7071,7 @@ fr:
         authority: Autorité
         place_id: Lieu
         url: URL
-        geoprivacy: Géoonfidentialité
+        geoprivacy: Géoconfidentialité
         iucn: Équivalent de l’UICN
       flag:
         reason: Motif

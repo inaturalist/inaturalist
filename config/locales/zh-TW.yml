@@ -107,7 +107,7 @@ zh-TW:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 關於
   about_blocking: 關於封鎖
   about_charts: 關於圖表
@@ -4056,7 +4056,6 @@ zh-TW:
   view_moderation_history_for_this_comment: 檢視此評論的調節歷史
   view_more: 檢視更多
   view_more_about_x: "檢視更多關於%{x}"
-  view_more_observations_from: 檢視更多貢獻來自於
   view_more_observations_near_x_place: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多接近%{place}的觀察"
   view_more_observations_of_x_project: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多來自於%{project}的觀察"
   view_more_observations_of_x_taxon: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多屬於%{taxon}的觀察"
@@ -4241,7 +4240,6 @@ zh-TW:
   you_can_choose_observations_associated: 您可挑選觀察來與此日誌發佈文章做關聯。
   you_can_edit_this_default_check_list_because: |
     您可編輯此預設清單因為您是個管理員，但實際上不需要這麼做。
-  you_can_only_destroy_taxa_you_created: "您僅能銷毀您所創建的物種分類群，另外您不能夠銷毀已被用於變更裡的物種分類群。"
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
   you_can_sign_free_at: "您可註冊一個免費 %{site_name} 帳號在："

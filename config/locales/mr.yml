@@ -1,8 +1,13 @@
 mr:
   x_people_helped_user_with_y_ids_html: "<strong>%{x}व्यक्ती </strong> मदत%{user} करणाऱ्या <strong>%{y} ओळखण्यासाठी</strong>"
+  _100_day_trends: १०० दिवसांचा कल
+  _percent_ID_d: "% ओळख पटलेले"
   a_community_for_naturalist: एक समुदाय निसर्गवादींसाठी
   a_flag_for_x: "निशाण %{x} साठी"
   a_member_of_taxon_html: "%{taxon} चा सदस्य"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A ते Z, वर्णमालेनुसार"
   about: च्या बाबत
   about_blocking: प्रतिबंधाबाबत
   about_charts: तक्त्यांबाबत
@@ -22,6 +27,27 @@ mr:
   about_the_cc_licenses: '"क्रिएटिव्ह कॉमन्स लायसन्स" विषयी'
   about_these_licenses: विविध परवानान्यांविषयी
   about_this_bioblitz: '"बायोब्लिट्झ" विषयी'
+  view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
+  views:
+    stats:
+      year:
+        compare_desc: |
+          हे वर्ष तुमच्या याआधीच्या वर्षांच्या तुलनेत कसे होते? तीन वर्षे किंवा त्यापेक्षा अधिक वापरानंतर आम्ही वार्षिक गतिविधींची तुलना करू शकतो.
+        compared_to_previous_years: याआधीच्या वर्षांशी तुलना करा
+        donors: देणगीदार
+        donors_guide_label_our_goal_is_1000: आमचे लक्ष्य दरमहा १,००० आवर्ती देणगीदार आहेत
+        new_species_per_year: नवीन जाती/वर्ष
+        new_species_per_year_by_date_added: तारखेनुसार जोडलेले
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: एकावेळी
+        observations_per_year: निरीक्षणे/वर्ष
+        observations_per_year_by_date_observed: पाहिलेल्या तारखेनुसार
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: निरीक्षणांची मालिका
+        observation_streaks_color_desc: |
+          रंग लॉगेरिथमिक स्केलवर (घातांक श्रेणी) दिवसांची संख्या दर्शवितो
+        observation_streaks_desc2: |
+          एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
   date:
     abbr_month_names:
       - 

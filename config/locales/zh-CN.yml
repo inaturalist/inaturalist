@@ -88,6 +88,9 @@ zh-CN:
     当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   a_flag_for_x: "用于%{x}的旗帜"
   a_member_of_taxon_html: "%{taxon} 的成员"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A 到 Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -107,7 +110,7 @@ zh-CN:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 关于
   about_blocking: 关于封禁
   about_charts: 关于图表
@@ -188,6 +191,7 @@ zh-CN:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 添加优点
   add_batch: 添加批量
+  add_blocked_users: 添加被屏蔽的用户
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: 添加粗体文本
   add_comma_separated_tags: "添加逗号分隔的标签"
@@ -410,6 +414,7 @@ zh-CN:
   #Label for an option to show content with any establishment means
   any_establishment: 任意
   anyone: 任何人
+  applications: 应用程序
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
   apply_fields: 申请字段
@@ -522,6 +527,9 @@ zh-CN:
   automatic_short: 自动
   automatically_add_observations_to_this_project: 自动添加观察至此项目
   automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: 平均值
   back: 返回
   back_to_all_species: 返回所有物种
   back_to_browsing_people: 回到查找人
@@ -553,6 +561,7 @@ zh-CN:
   back_to_your_observations: 回到您的观察
   back_to_your_profile: 回到您的详细信息
   back_to_your_projects: 回到您的项目
+  badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
     根据此证据，社区ID能否得到确认或改善？
   batch: 批
@@ -563,6 +572,7 @@ zh-CN:
   because_of: 因为
   before_importing_photos: 在导入照片前
   bg_color: 背景颜色
+  bio_description: 向其他iNaturalist用户介绍自己！
   bioblitz: 生物限时寻
   birds: 鸟
   birthday: 生日
@@ -745,12 +755,14 @@ zh-CN:
   committed_on: 提交于%{date}
   #Status message while a taxon change is being committed
   committing: 提交中……
+  common_name: 常用名
   community: 社区
   community_curated: 社区策划
   community_guidelines: 社群指引
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
   community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
+  community_id_is_precise: 社区分类单元是精确的
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
   compare: 比较
@@ -779,6 +791,7 @@ zh-CN:
   confirm_new_password: 确认新密码
   confirm_now: 现在确认
   confirm_your_info: 确认您的信息
+  confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
   connect_to_provider: "连接至 %{provider}"
   connected_accounts: 已连接账户
   connecting_flickr: "正在连接至Flickr..."
@@ -800,6 +813,7 @@ zh-CN:
   contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: 内容
+  content_and_display: 内容和显示
   content_author: 内容作者
   content_hidden: 内容已被隐藏
   content_hidden_by_user_on_date_because_reason_html: |
@@ -923,6 +937,7 @@ zh-CN:
   customize_location: 自定义位置
   darr_apply_darr: "&darr; 申请 &darr;"
   daily_users: 日常用户
+  danger_zone: 危险操作区
   dashboard: 仪表板
   data_deficient: 数据有缺陷
   data_quality: 数据质量
@@ -931,6 +946,7 @@ zh-CN:
   datatype: 数据类型
   date_: 日期
   date_added: 日期已加入
+  date_authorized: 授权日期
   date_created: 创建日期
   date_format:
     date_long:
@@ -988,6 +1004,7 @@ zh-CN:
   default_invite_comment: "好照片！您应该将其发布至%{site_name}：{{INVITE_LINK}}"
   default_observation_license: 默认观察协议
   default_photo_license: 默认照片协议
+  default_search_place: 默认搜索地点
   default_sound_license: 默认声音协议
   defaults_to_your_name_or_username: 默认为您的名字或用户名
   defines_a_taxon_framework_for: 定义用于%{taxon_name}的物种分类框架
@@ -1056,6 +1073,8 @@ zh-CN:
     如果您没有提出这个请求，请忽略这个电子邮件。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
+  devise_unlock_instructions_your_account_has_been_locked: |
+    因登录失败次数过多，您的帐户已被锁定。
   devise_unlock_instructions_click_the_link: |
     点击以下链接解锁您的账号
   devise_unlock_instructions_unlock: 解锁您的帐户
@@ -1068,7 +1087,10 @@ zh-CN:
   disable_comments_desc: 阻止人们添加新评论
   disagree_: 不同意
   disconnect_provider: "取消连接 %{provider}"
+  display: 界面设置
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
+  display_monthly_supporter_badge: 在个人资料上显示每月支持者徽章
+  display_name: 显示名称
   distance_traveled_value: "行程距离: %{distance}米"
   distance_traveled: "行程距离(米)"
   documentation_for_developers_html: 面向<a href="/pages/developers">开发者</a>的文档
@@ -1106,6 +1128,7 @@ zh-CN:
   duplicate_verb: 复制
   duration_value: "持续时间：%{duration}分钟"
   each_place_displays_all_species_inat_knows: "每个地点页面都会显示%{site_name}已知的该地点所有分类单元的相关信息，包括其丰度，保护状态以及谁首先在%{site_name}上从该地点发现了该分类单元的信息。您可以通过分类群，颜色，保护状态等条件来检索分类单元，或通过旧版的普通搜索检索分类单元。"
+  earliest_added: 最早添加
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
   edit_account_settings_and_profile: "编辑账户设置和详细信息"
@@ -1165,10 +1188,12 @@ zh-CN:
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
+  email_description: 您的电子邮件不会显示给其他iNaturalist用户
   email_addresses_description: 用半角逗号（,）隔开的email地址，每30天限60条。
   email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
   email_addresses_to_receive_invites: 接收邀请的email地址
   email_copyright: "版权所有 &copy; %{x}，保留所有权利"
+  email_notifications: 电子邮件通知
   email_settings: 电子邮件设置
   embed: '已嵌入'
   embed_place_widget: 嵌入地点小部件
@@ -1852,6 +1877,7 @@ zh-CN:
     <a href="/login">登录</a>或<a href="/signup">注册</a>以发表评论
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">登录</a>或<a href="/signup">注册</a>以添加鉴定
+  log_out: 退出登录
   log_scale_label: 日志
   login_slash_username: 登录 / 用户名
   logo:
@@ -2225,6 +2251,7 @@ zh-CN:
   notes: 注释
   note_you_can_modify_the_height_attribute: "注意：您可以调整“height”属性来适应您页面的空间。"
   notify_me_of_mentions: 通知提及我的（例如@username）
+  notify_me_of_mentions_description: "如果您关闭此功能，当有人在 %{site_name} 提及您时，您将不会收到任何通知。"
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
   notify_me_about_redundant_identifications_desc: |
     接收与您自己相匹配的标识的通知。如果您选择退出此选项，您将只会收到关于与您自己的身份标识中的分类单元并不完全匹配的分类群标识的通知。
@@ -2368,10 +2395,12 @@ zh-CN:
   of_places: 地点
   of_this_taxon: 属于此分类单元
   offensive_inappropriate: 冒犯性的/不恰当的
+  off_caps: "关闭"
   official_blog: 官方博客
   offline_access_enabled: 启用离线访问
   old_observation_form: 旧观察表单（已弃用）
   ok: "确定"
+  on_caps: "开启"
   on_day: "于"
   onboarding:
     observe_panel_title: 让我们开始发表一些观察吧
@@ -3017,6 +3046,7 @@ zh-CN:
   processing: 处理中
   processing3p: "处理中..."
   profile: 个人信息
+  profile_picture: 资料头像
   profile_visibility_desc: |
     为防止在 %{site_name} 上出现垃圾邮件，使用者的个人档案仅在使用者有贡献出数个研究等级的观察后才会公开可见。
   project: 项目
@@ -3155,7 +3185,9 @@ zh-CN:
   reason: 原因
   reason_you_are_flagging_this_item: 您标记此项目的原因。
   recaptcha_verification_failed: reCaptcha验证失败
+  receive_email_notifications: 接收电子邮件通知
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
+  receive_project_journal_notifications?: 接收项目日记通知吗？
   receive_updates_from_this_project: 从此项目接收更新
   recent: 最近
   recent_evidence_of_organism: 生物的最新证据
@@ -3167,6 +3199,7 @@ zh-CN:
   recent_atom_observations_by: "由 %{login} 做出的最新观察（Atom）"
   recent_observations_by: "由 %{login} 做出的最新观察"
   recently_active: 最近的活动
+  recently_added: 最近添加
   recently_created: 最近创建
   recently_finished: 最近完成
   recently_observed: 最近观察
@@ -3192,6 +3225,7 @@ zh-CN:
     not_external: 非外部
     not_internal: 非外部
     error: 错误
+  relationships_user_settings: 关系
   relationship_html: "关联：%{link}"
   reload_from_observations: 从观察里重新加载
   reload_timed_out: '加载超时。请过一会再试。'
@@ -3216,6 +3250,8 @@ zh-CN:
   remove_place: 移除地点
   remove_range: 移除范围
   remove_relationship: 移除关联
+  remove_relationship_caps: 移除关系
+  remove_relationship_question: 是否移除关系？
   remove_section: 移除章节
   remove_selected: 移除已选
   remove_tags: 移除标签
@@ -3257,6 +3293,7 @@ zh-CN:
   results: 结果
   review_all: 复核全部
   reviewed: 已复核
+  revoke: 撤销
   rg_observations: RG观察
   role: 角色
   rotate_left: 向左旋转
@@ -3904,6 +3941,7 @@ zh-CN:
   upload_a_csv_file: 上传CSV文件
   upload_a_csv_file_with_observation: |
     上传带观察数据的CSV文件。如果您在电子表格或数据库中有您的数据，这可能是需要做的事。
+  upload_new_photo: 上传新照片
   upload_photo: 上传照片
   upload_range: 上传范围
   uploaded_by: 上传者
@@ -3957,7 +3995,7 @@ zh-CN:
   user_added_an_observation_field_value_html: "%{user}添加了一个观察字段值"
   user_added_an_observation_html: "%{user}添加了一个观察"
   user_added_an_x: "%{user} 添加了一个 %{x}"
-  user_added_an_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
+  user_added_an_x_to_noun_by_html: "%{user}将%{x}添加至%{by}的%{noun}"
   user_added_an_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"
   user_added_an_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
   user_added_an_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
@@ -4046,7 +4084,7 @@ zh-CN:
   view_moderation_history_for_this_comment: 查看此评论的管理历史记录
   view_more: 查看更多
   view_more_about_x: "查看更多有关 %{x}"
-  view_more_observations_from: 查看更多观察，来自
+  view_more_observations_from_this_place: 查看更多来自此地的观察
   view_more_observations_near_x_place: "查看更多在 <nobr>%{site_name}</nobr> 上 %{place} 附近的观察 &raquo;"
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
   view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
@@ -4237,7 +4275,6 @@ zh-CN:
   you_can_choose_observations_associated: 您可以选择与此刊物帖子相关联的观察结果。
   you_can_edit_this_default_check_list_because: |
     您可以编辑这个默认的检查列表，因为您是一位管理员，但真的不应该需要这样做。
-  you_can_only_destroy_taxa_you_created: "您只能销毁您创建的分类群，并且不能销毁正在分类单元的修改中使用的分类群。"
   you_can_only_block_three_users: 您只可以封禁3位用户
   you_can_show_the_boundary_of: 如果地点有边界，您可以在项目页面上显示地点的边界。
   you_can_sign_free_at: "您可以免费注册一个%{site_name}账户在"
@@ -4248,6 +4285,7 @@ zh-CN:
   you_cant_flag_that: 您不能标记那个
   you_cant_leave_a_project_you_created: 您不能离开您创建的项目。
   you_cant_rotate_photos_hostde_outside: "您无法轮播在%{site_name}之外托管的照片。"
+  you_curate_a_project_that_contains_this_observation: 您管理了一个包含此观察记录的项目
   you_didnt_select_any_observations: 您没有选择任何观察。
   you_didnt_select_any_photos_to_tag: 您没有选择任何照片至标签！
   you_dont_have_permission_to_do_that: 您没有权限做那件事。
@@ -4319,6 +4357,7 @@ zh-CN:
   yours: 您的
   youre_not_following_anyone: |-
     您没有关注任何人。关注其他自然法学派将允许您更容易的追踪他们的最新观察。去看看哪些人<a href="%{observations_path}">正在观察</a>并结交一些<a href="%{people_path}">新人</a>吧。
+  youre_not_following_anyone_on_inat: 您还没有关注 %{site_name} 上的任何人！
   youve_linked_your_inaturalist_google_account: "您已链接您的%{site_name}账户与您的Google账户。这将允许您关联您的Google照片与您的%{site_name}观察。"
   youve_seen_it_want_to: "您看见了它！想要"
   youve_successfully_linked_your_provider_account: "您刚刚成功连接了您的 %{provider} 账户"
@@ -4475,6 +4514,7 @@ zh-CN:
         sort: 排序
         name: 名称
         most_observed: 观察次数最多的
+        least_observed: 最少观察
         show: 显示
         children: 儿童
         simplified_tree: 简化树
@@ -4897,7 +4937,9 @@ zh-CN:
         project_summary_help: |
           简要说明您的项目。大约前200个字符将显示在项目主屏幕横幅的右侧，因此首先放入最好的东西！
         project_summary_placeholder: 探索和追踪金门公园的鸟类......
+        show_projects_as_flags: 在地图中以标志显示项目
         start_and_end_times_for_bioblitzes: 用于bioblitz的开始和结束时间
+        traditional_projects_cannot_be_copied: 传统项目无法复制
         umbrella_project_features: "雨伞项目功能："
         unique_url_for_outreach: 用于拓展的唯一URL
         users_can_follow_your_project: 用户可以通过期刊帖子关注您的项目以获取更新
@@ -5042,6 +5084,7 @@ zh-CN:
         compared_to_previous_years: 与往年相比
         donate_title: "特别感谢我们所有的支持者"
         donors: 捐赠者
+        donors_guide_label_our_goal_is_1000: 我们的目标是1000 个月捐人
         inaturalist_network: iNaturalist 网络
         inaturalist_network_desc: |
           查看iNaturalist Network成员的年评。
@@ -5049,6 +5092,7 @@ zh-CN:
         growth_by_country_title: 按国家/地区显示增长
         growth_title: 增长
         new_species_per_year_by_date_added: 按添加日期
+        new_species_per_year_by_date_observed: 按观察日期
         obs_in_year: 在%{year}的观察
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: 一次性
@@ -5059,6 +5103,7 @@ zh-CN:
         observation_streaks: 观察记录的规则
         observation_streaks_color_desc: |
           颜色表示在对数比例尺上的天数：
+        species_per_year_by_date_added: 按添加日期
         sunburst_desc_html: |
           观察到的分类群被安排为分层的“森伯斯特”图。层次结构的基础位于中心，从“生命”开始，到外边缘的物种结束。每个弧的大小与该分类单元的观察数量成正比，颜色大略地对应于我们通常的“标志性”分类颜色（植物为绿色，昆虫为橙色，大多数其他动物为蓝色等），所以如果您看到很多绿色，这意味着您观察了很多植物。<strong>点击圆弧以将该分类单元放置在中心</strong>及其周围的子项，或<strong>单击中心以向上移动层次结构</strong>。
         translators_title: 翻译人员
@@ -5254,6 +5299,8 @@ zh-CN:
           any: 任何
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
+        prefers_community_taxa_desc: |
+          %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
         project_settings_desc: |
           记住，这不会给项目提供访问您私有坐标或向您发送更新的权限。为了获得这些权限，您必须加入项目，或在个案中授予他们权限。
         search_place_help_html: |
