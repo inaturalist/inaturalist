@@ -97,7 +97,7 @@ jobs:
   notify:
     name: Notify Slack
     needs: build
-    if: always()
+    if: ${{ success() || failure() }}
     runs-on: ubuntu-18.04
     steps:
       - uses: iRoachie/slack-github-actions@v2.0.1

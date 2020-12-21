@@ -1,6 +1,14 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import utf8 from "utf8";
+import {
+  interpolateWarm,
+  interpolateCool,
+  scaleLinear,
+  scaleOrdinal,
+  schemeCategory10,
+  color as d3color
+} from "d3";
 
 const SET_QUERIES = "observations-compare/compare/SET_QUERIES";
 const SET_TAB = "observations-compare/compare/SET_TAB";
@@ -18,6 +26,7 @@ const SET_MAP_LAYOUT = "observations-compare/compare/SET_MAP_LAYOUT";
 const SET_HISTORY_LAYOUT = "observations-compare/compare/SET_HISTORY_LAYOUT";
 const SET_HISTORIES = "observations-compare/compare/SET_HISTORIES";
 const SET_HISTORY_INTERVAL = "observations-compare/compare/SET_HISTORY_INTERVAL";
+const SET_COLOR_SCHEME = "observations-compare/compare/SET_COLOR_SCHEME";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -28,7 +37,8 @@ const setUrl = state => {
     "taxonFrequenciesSortOrder",
     "mapLayout",
     "historyLayout",
-    "historyInterval"
+    "historyInterval",
+    "colorScheme"
   ] ) );
   const bytes = utf8.encode( json );
   const encoded = btoa( bytes );
@@ -43,16 +53,50 @@ const setUrl = state => {
   history.pushState( urlState, title, newUrl );
 };
 
+const colorizeQueries = state => {
+  const { queries, colorScheme } = state;
+  let colorScale = scaleOrdinal( schemeCategory10 );
+  const indices = _.map( queries, ( q, i ) => i );
+  if ( colorScheme === "sequential" ) {
+    const sequentialScale = scaleLinear( )
+      .domain( [_.min( indices ), _.max( indices )] )
+      .range( [0, 1] );
+    colorScale = v => interpolateWarm( sequentialScale( v ) );
+  } else if ( colorScheme === "sequential_cool" ) {
+    const sequentialScale = scaleLinear( )
+      .domain( [_.min( indices ), _.max( indices )] )
+      .range( [0, 1] );
+    colorScale = v => interpolateCool( sequentialScale( v ) );
+  } else if ( colorScheme === "sequential_gray" ) {
+    colorScale = scaleLinear( )
+      .domain( [_.min( indices ), _.max( indices )] )
+      .range( ["lightgray", "black"] );
+  }
+  return _.map( queries, ( q, i ) => {
+    let color;
+    if ( colorScheme === "categorical" ) {
+      color = colorScale( q.name );
+    } else if ( colorScheme === "custom" ) {
+      color = q.color || colorScale( i );
+    } else {
+      color = colorScale( i );
+    }
+    return Object.assign( {}, q, { color } );
+  } );
+};
+
 export const DEFAULT_STATE = {
   tab: "species",
   queries: [
     {
       name: "Query 1",
-      params: `year=${( new Date( ) ).getYear( ) + 1900 - 1}`
+      params: `year=${( new Date( ) ).getYear( ) + 1900 - 1}`,
+      color: null
     },
     {
       name: "Query 2",
-      params: `year=${( new Date( ) ).getYear( ) + 1900}`
+      params: `year=${( new Date( ) ).getYear( ) + 1900}`,
+      color: null
     }
   ],
   taxa: {},
@@ -73,7 +117,8 @@ export const DEFAULT_STATE = {
   mapLayout: "combined",
   historyLayout: "combined",
   historyInterval: "week",
-  histories: []
+  histories: [],
+  colorScheme: "categorical"
 };
 
 export default function reducer( state = DEFAULT_STATE, action ) {
@@ -99,6 +144,7 @@ export default function reducer( state = DEFAULT_STATE, action ) {
         name: `Query ${newState.queries.length + 1}`,
         params: `year=${( new Date( ) ).getYear( ) + 1900}`
       } );
+      newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
     case REMOVE_QUERY_AT_INDEX:
@@ -106,7 +152,9 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       setUrl( newState );
       break;
     case UPDATE_QUERY_AT_INDEX:
-      newState.queries[action.index] = Object.assign( { }, newState.queries[action.index], action.updates );
+      newState.queries[action.index] = Object.assign( { },
+        newState.queries[action.index], action.updates );
+      newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
     case SORT_FREQUENCIES_BY_INDEX:
@@ -129,6 +177,7 @@ export default function reducer( state = DEFAULT_STATE, action ) {
         const item = newState[arrKey].splice( action.index, 1 )[0];
         newState[arrKey].splice( action.newIndex, 0, item );
       } );
+      newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
     }
@@ -145,6 +194,11 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       break;
     case SET_HISTORY_INTERVAL:
       newState.historyInterval = action.historyInterval;
+      setUrl( newState );
+      break;
+    case SET_COLOR_SCHEME:
+      newState.colorScheme = action.colorScheme;
+      newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
     default:
@@ -288,10 +342,12 @@ export function fetchTaxa( ) {
           }
         } );
       } );
-      
 
       dispatch( setTaxa( taxa ) );
-      const taxonFrequenciesArray = _.map( taxonFrequencies, ( frequencies, taxonID ) => _.flatten( [taxonID, frequencies] ) );
+      const taxonFrequenciesArray = _.map(
+        taxonFrequencies,
+        ( frequencies, taxonID ) => _.flatten( [taxonID, frequencies] )
+      );
       dispatch( setTaxonFrequencies( taxonFrequenciesArray ) );
     } );
   };
@@ -377,8 +433,16 @@ export function setHistoryInterval( historyInterval ) {
   };
 }
 
+export function setColorScheme( colorScheme ) {
+  return {
+    type: SET_COLOR_SCHEME,
+    colorScheme
+  };
+}
+
 export function fetchHistories( ) {
   return ( dispatch, getState ) => {
+    dispatch( setHistories( [] ) );
     const s = getState( ).compare;
     const promises = s.queries.map( query => {
       const params = $.deparam( query.params );

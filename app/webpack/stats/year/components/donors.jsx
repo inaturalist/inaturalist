@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { COLORS } from "../../../shared/util";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 
 const Donations = ( {
   year,

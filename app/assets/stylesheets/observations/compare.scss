@@ -6,6 +6,7 @@
       .name {
         width: 100px;
         margin-right: 10px;
+        margin-left: 10px;
       }
       .params {
         flex: 2;
@@ -13,6 +14,11 @@
       > .btn,
       > .btn-group {
         margin-left: 10px;
+      }
+      .color {
+        width: 34px;
+        height: 34px;
+        color: transparent;
       }
     }
   }
@@ -90,13 +96,13 @@
   }
 
   .HistoryComparison {
-    .DateHistogram svg {
+    .Histogram svg {
       width: 100%;
       min-height: 300px;
     }
     .charts-horizontal {
       display: flex;
-      .DateHistogram {
+      .Histogram {
         flex-grow: 1;
         width: 100%;
       }
@@ -112,4 +118,3 @@
 .compare-popover {
   max-width: 400px;
 }
-
