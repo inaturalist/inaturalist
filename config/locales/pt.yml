@@ -128,6 +128,9 @@ pt:
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   a_flag_for_x: "um sinalizador para %{x}"
   a_member_of_taxon_html: "um membro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A – Z"
   about: Acerca de
   about_blocking: Sobre Bloquear
   about_charts: Acerca dos gráficos
@@ -233,6 +236,7 @@ pt:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Adicionar Recurso
   add_batch: Adicionar um Conjunto
+  add_blocked_users: Adicionar utilizadores bloqueados
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Adicionar texto em negrito
   add_comma_separated_tags: "Adicionar Etiquetas Separadas por Vírgulas"
@@ -249,6 +253,7 @@ pt:
   add_id: Adicionar identificação
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Adicionar texto em itálico
+  add_muted_users: Adicionar utilizadores silenciados
   add_new_lexicon: Adicionar novo léxico
   add_new_photos_by_their_ids: Adicionar novas fotografias a partir das suas identificações no Flickr (têm de ser Creative Commons!)
   add_new_place: Adicionar um lugar novo
@@ -490,6 +495,7 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  applications: Aplicações
   apply_to_selected: Aplicar aos selecionados
   apply_captive_cultivated: "Aplicar em cativeiro/cultivo"
   apply_fields: Aplicar campos
@@ -598,6 +604,9 @@ pt:
   automatic_short: Automático
   automatically_add_observations_to_this_project: Adicionar automaticamente observações a este projeto
   automatically_update_my_content_for_taxon_changes: Atualizar automaticamente o meu conteúdo quando existir alterações taxonómicas
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Média
   back: Voltar
   back_to_all_species: Voltar a Todas as Espécies
   back_to_browsing_people: Voltar à busca de pessoas
@@ -629,6 +638,7 @@ pt:
   back_to_your_observations: Voltar às suas observações
   back_to_your_profile: Voltar ao seu perfil
   back_to_your_projects: Voltar aos seus projetos
+  badges: Emblemas
   based_on_the_evidence_can_id_be_improved: |
     Baseando na evidência, a ID da comunidade pode ainda ser confirmado ou melhorado?
   batch: Conjunto
@@ -639,6 +649,8 @@ pt:
   because_of: devido a
   before_importing_photos: antes de importar fotografias
   bg_color: Cor do Fundo do Ecrã
+  bio: Biografia
+  bio_description: Conte sobre si a outros utilizadores do iNaturalist!
   bioblitz: Bioblitz
   birds: aves
   birthday: Aniversário
@@ -812,6 +824,7 @@ pt:
   committed_on: Submetido em %{date}
   #Status message while a taxon change is being committed
   committing: Enviando...
+  common_name: Nome Comum
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
   community_guidelines: Normas da Comunidade
@@ -844,6 +857,8 @@ pt:
   confirm_new_password: Confirmar Nova Palavra-passe
   confirm_now: Confirme agora
   confirm_your_info: Confirme as suas informações
+  confirming_ids: Confirmando identificações
+  confirming_ids_description: Se desativar isto, não voltará a ser notificado sobre os IDs que concordam com os seus.
   connect_to_provider: "Ligar a %{provider}"
   connected_accounts: Contas vinculadas
   connecting_flickr: "Ligando ao Flickr..."
@@ -858,6 +873,7 @@ pt:
     geoprivacy: Geoprivacidade padrão para as observações deste taxon
     iucn: Equivalente na Lista Vermelha da IUCN (IUCN Red List)
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
+  content_and_display: Conteúdo & Exibição
   continue: Continuar
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
@@ -934,6 +950,7 @@ pt:
   created_on: 'Criado em:'
   creating_your_account: "A criar a sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons do Flickr marcadas
+  creative_commons_licenses: Licença «Creative Commons»
   creative_commons_unless_otherwise_noted: "Creative Commons salvo indicação em contrário."
   critically_endangered: criticamente em perigo de extinção
   css_description: Esta será incluída após todos os outros css na página.
@@ -954,12 +971,14 @@ pt:
   custom_project_fields: Personalize os campos de projeto
   customize_location: Personalizar a Localização
   darr_apply_darr: "&darr; Aplicar &darr;"
+  danger_zone: Zona perigosa
   data_deficient: informação insuficiente
   data_quality: Qualidade dos Dados
   data_quality_assessment: Avaliação da Qualidade dos Dados
   datatype: Tipo de dados
   date_: Data
   date_added: Adicionado na data
+  date_authorized: Data de autorização
   date_created: Data de criação
   date_format:
     date_long:
@@ -1008,6 +1027,8 @@ pt:
   default_invite_comment: "Que foto espetacular! Você devia publicá-la em %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licença padrão para suas observações
   default_photo_license: Licença padrão para suas fotos
+  default_search_place: Lugar de Pesquisa Padrão
+  default_search_place_description: Este será seu local padrão para todas as pesquisas em Explorar.
   default_sound_license: Licença padrão para sons
   defaults_to_your_name_or_username: Padrões predefinidos para o seu nome ou nome de utilizador
   definitions: Definições
@@ -1058,7 +1079,11 @@ pt:
   did_you_photos_flickr?: Carregou algumas fotografias no Flickr?
   disagree_: Não concordo
   disconnect_provider: "Desconectar-se de %{provider}"
+  display: Exibição
   display_link_to_checklist: Mostrar ligação para a lista do projeto a partir da página do projeto
+  display_monthly_supporter_badge: Exibir o Emblema de Apoiante Mensal no perfil
+  display_name: Nome a exibir
+  display_name_description: Este é o nome que será exibido no seu perfil, bem como para atribuição de direitos de autor
   distance_traveled: "Distância percorrida (m)"
   documentation_for_developers_html: Documentação para <a href="/pages/developers">programadores</a>
   do_not_show_this_message_again: Não mostrar esta mensagem novamente
@@ -1090,6 +1115,7 @@ pt:
   drawings: Desenhos
   duplicate_verb: Duplicar
   each_place_displays_all_species_inat_knows: "Cada página de local apresenta todas as espécies que %{site_name} tem conhecimento desse local, incluindo informação sobre a sua abundância, estatuto de conservação e quem a observou primeiro nesse local %{site_name}. Pode filtrar as espécies por grupo taxonómico, cor, estatuto de conservação ou uma simples pesquisa anterior."
+  earliest_added: Mais Antigo
   edit: Editar
   edit_a_batch_of_observations: Editar um Conjunto de Observações
   edit_account_settings_and_profile: "Editar as definições da conta &amp; e do perfil"
@@ -1144,10 +1170,12 @@ pt:
   either_that_user_doesnt_exist_or: "Este utilizador não existe ou já está a seguir ele."
   eligible_for_research_grade: Elegível para Grau de Pesquisa
   email: Email
+  email_description: O seu e-mail não é compartilhado com outros utilizadores do iNaturalist
   email_addresses_description: Endereços email separados por vírgula, limite de 60 a cada 30 dias.
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
   email_addresses_to_receive_invites: Endereços email para receber convites
   email_copyright: "Direitos de autor &copy; %{x}, todos os direitos reservados"
+  email_notifications: Notificações por e-mail
   email_settings: Definições do email
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
@@ -1196,6 +1224,7 @@ pt:
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com as coordenadas privadas
   exporting: "A exportar..."
+  external_applications: Aplicações externas
   extinct: extinto
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
@@ -1458,6 +1487,8 @@ pt:
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que esta é a lista completa deste táxon para este local."
   inat_user_profile: "%{site_name}: %{user}'s Perfil"
+  inaturalist_activity_notifications: "Notificações de Atividade do %{site_name}"
+  inaturalist_applications: "Aplicações iNaturalist"
   inaturalist_places: "%{site_name} Locais"
   info: Informação
   input_taxon: Introduzir táxon
@@ -1512,6 +1543,8 @@ pt:
   label_to_group_a_batch_of_taxon_changes: Etiqueta para agrupar um lote de alterações do táxon
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Localização Privada
+  language_slash_locale: Idioma/Local
+  language_slash_locale_description: Define as suas preferências de formatação de idioma e data em todo o iNaturalist com base na sua localização. As alterações terão efeito quando a página for atualizada.
   language_slash_type: Língua / Tipo
   #Large photo size
   large: grande
@@ -1536,6 +1569,7 @@ pt:
   leading: Principal
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
+  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_on_the_blog: Ler mais no nosso blog
   learn_more_raquo: "Saiba mais &raquo;"
@@ -1691,6 +1725,9 @@ pt:
   location_specified: Localização específica
   locked_taxa_will_not_allow_new: Aos táxons bloqueados não se pode adicionar um novo táxon descendente. Por exemplo, se bloquear os anfíbios (Amphibia) e alguém tentar importar <i>Rana catesbeiana</i> a partir de um provedor de nome externo, é criado um novo táxon, mas que não pode ser classificado como anfíbio. Quando tal acontece, os táxons adicionados recentemente devem ser sinalizados para que sejam revistos por um curador. Este procedimento só deve ser usado para os táxons que já possuem todos os descendentes. O curador pode corrigir esta situação editando o táxon e inserindo diretamente a identificação do ancestral, mas, em alternativa, recomenda-se juntar os novos táxons aos já existentes.
   log_in: Entrar
+  log_out: Sair
+  log_out_caps: ENCERRAR SESSÃO
+  log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Logarítmica
   login_slash_username: Iniciar sessão / nome de utilizador
   logo:
@@ -1973,6 +2010,7 @@ pt:
   no_taxa_listed: Não existem táxons listados
   no_taxa_selected: Nenhum táxon selecionado!
   no_taxonomic_changes_match_those_criteria: Nenhuma mudança taxonômica corresponde a estes critérios
+  no_users_found_with_those_filters: Não foram encontrados utilizadores com estes filtros!
   no_wikipedia_page_for_taxon: Nenhuma página da Wikipédia foi encontrada para este táxon.
   no_x_this_y: "Não existe %{x} deste %{y}"
   noble_curators: "Nobres Curadores do %{site}"
@@ -1992,7 +2030,9 @@ pt:
   note: Nota
   notes: Notas
   note_you_can_modify_the_height_attribute: "Nota: pode modificar o atributo \"altura\" para que se adeque ao espaço disponível no seu site."
+  notifications: Notificações
   notify_me_of_mentions: Notifique-me quando for mencionado (e.g. @username)
+  notify_me_of_mentions_description: "Se desativar isso, não receberá nenhuma notificação quando alguém o(a) mencionar no %{site_name}."
   notify_me_about_redundant_identifications: Notifique-me sobre confirmações de identificação
   notify_me_about_redundant_identifications_desc: |
     Receber notificações sobre identificações que correspondem às minhas. Se você desactivar esta opção, apenas receberá notificações sobre identificações de taxons que não correspondam à sua própria identificação.
@@ -2091,9 +2131,11 @@ pt:
   of_places: lugares
   of_this_taxon: Deste táxon
   offensive_inappropriate: ofensivo / inapropriado
+  off_caps: "Desligar"
   official_blog: Blogue oficial
   offline_access_enabled: Acesso offline permitido
   old_observation_form: Formulário antigo de registo de observação (descontinuado)
+  on_caps: "Ligar"
   on_day: "no"
   onboarding:
     observe_panel_title: Vamos começar adicionando algumas observações
@@ -2479,6 +2521,7 @@ pt:
   processing: A processar
   processing3p: "A processar..."
   profile: Perfil
+  profile_picture: Imagem de perfil
   project: Projeto
   project_admins:
     one: Administrador do projecto
@@ -2579,6 +2622,8 @@ pt:
   reason: Motivo
   reason_you_are_flagging_this_item: Razão pela qual está a sinalizar este item.
   recaptcha_verification_failed: Verificação reCaptcha falhou
+  receive_email_notifications: Receber notificações de email
+  receive_email_notifications_description: "Se desativar esta opção, não receberá mais e-mails de %{site_name} sobre as notificações. Você receberá notificações de tudo marcado abaixo:"
   receive_email_notifications_when_people_leave_you: Receba notificações por email sobre
   receive_project_journal_notifications?: Receber notificações do boletim informativo do projeto?
   receive_updates_from_this_project: Receber atualizações deste projeto
@@ -2590,6 +2635,7 @@ pt:
   recent_atom_observations_by: "Observações recentes por %{login} (Atom)"
   recent_observations_by: "Observações recentes por %{login}"
   recently_active: Activos recentemente
+  recently_added: Adicionado Recentemente
   recently_created: Criados recentemente
   recently_finished: Terminado recentemente
   recently_observed: Observado recentemente
@@ -2603,6 +2649,7 @@ pt:
   register_for_this_event_at_x_html: "Registar neste evento em %{x}"
   reject?: Rejeitar?
   relative_observations: Observações Relacionadas
+  relationships_user_settings: Relações
   reload_from_observations: Volta a carregar a partir das observações
   reload_timed_out: 'O tempo expirou. Por favor, tente novamente mais tarde.'
   remarks_optional: 'Comentários <span class="small description">(optional)</span>'
@@ -2623,6 +2670,8 @@ pt:
   remove_photo: Remover a foto
   remove_place: Remover o lugar
   remove_range: Remover a área de distribuição
+  remove_relationship_caps: REMOVER RELAÇÃO
+  remove_relationship_question: Remover Relação?
   remove_section: Remover a secção
   remove_selected: Remover o selecionado
   remove_tags: Remover as etiquetas
@@ -2657,6 +2706,9 @@ pt:
   results: resultados
   review_all: Rever Todas
   reviewed: Revisto
+  revoke: Anular
+  revoke_caps: ANULAR
+  revoke_external_application: "Anular %{site_name}?"
   rg_observations: Observações GP
   role: Função
   rotate_left: Girar à esquerda
@@ -2689,6 +2741,7 @@ pt:
   save_observation: Guardar observação
   save_photos: Guardar fotos
   save_place: Guardar local
+  save_settings_caps: GUARDAR CONFIGURAÇÕES
   save_trip: Guardar viagem
   saved: Guardado
   saving: "A guardar..."
@@ -2886,6 +2939,7 @@ pt:
     other: Submeter %{count} observations
   submitted: Enviado
   subscribe_to_a_place: Subscrever um Lugar
+  subscribe_to_observations_from_this_place_html: <a>subscreva</a> as observações deste lugar
   subscribe_to_this: Subscrever isto
   subscriptions: Subscrições
   suggestions: Sugestões
@@ -2962,10 +3016,12 @@ pt:
     e escolhendo um registo pai. Por exemplo, o pai do Homo sapiens seria
     o gênero Homo. Também poderá querer verificar se existem táxons com o mesmo significado e
     combiná-los.
+  third_party_tracking: Rastreamento de terceiros
   this: isto
   this_is_a_life_list_of: Esta é uma Lista de Vida de
   this_is_a_life_list_from_place_html: "Esta é uma lista de vida de %{place}"
   this_is_a_life_list_of_taxon_in_place: "Esta é uma lista de vida de %{taxon} em %{place}"
+  this_is_how_taxon_names_will_be_displayed: É assim que todos os nomes de táxon serão exibidos para si no %{site_name}
   this_observation_is_featured_on_x_sites:
     one: Esta observação é destacada em %{count} site
     other: Esta observação é destacada em %{count} sites
@@ -3076,6 +3132,7 @@ pt:
   view_flags: Ver sinalizadores
   view_flags_for_x_html: "Ver sinalizadores para %{x}"
   view_more: Ver mais
+  view_more_observations_from_this_place: Ver mais observações deste local
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
   view_my_life_list: Ver a minha lista de vida
   view_observation: Ver observação
@@ -3114,6 +3171,9 @@ pt:
   yes_for_any_of_my_observations: "Sim, para qualquer uma das minhas observações"
   yes_i_want_to_join: Sim, quero participar
   yesterday: Ontem
+  you_can_only_destroy_taxa_you_created2: |
+    Só pode excluir táxons que você criou que não estão associados a
+    alterações, identificações ou outro conteúdo
   you_cant_flag_that: Não pode sinalizar isso
   you_sure_delete_flag?: Tem a certeza que quer eliminar este sinalizador?
   your_account_has_been_activated: A sua conta foi ativada!
@@ -3132,6 +3192,7 @@ pt:
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
     lifelists:
       list_view: Ver em lista
+      observed_rank: Observado %{rank}
       dropdowns:
         least_observed: Menos observados
     lists:
@@ -3218,7 +3279,35 @@ pt:
         welcome_to_projects: Bem-vindo ao projeto!
     stats:
       year:
+        compare_desc: |
+          Como foi este ano comparado com os seus anos anteriores? Com três anos de uso de
+          ou mais, podemos começar a comparar métricas de atividade anual.
+        compared_to_previous_years: Comparar com anos anteriores
+        donors: Doadores
+        donors_guide_label_our_goal_is_1000: A nossa meta é 1.000 doadores recorrentes por mês
         growth_title: Crescimento
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Baixo: %{low_value} (%{low_desc}), muito pequeno para mostrar"
+        new_species_per_year: Novas espécies / ano
+        new_species_per_year_by_date_added: Por data de adição
+        new_species_per_year_by_date_observed: Por data de observação
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: vez única
+        observations_per_year: Observações / Ano
+        observations_per_year_by_date_added: Por data de adição
+        observations_per_year_by_date_observed: Por data de observação
+        observation_streaks_desc2: |
+          Uma sucessão de observações é um período de pelo menos cinco dias em que alguém saiu e registou novas observações verificáveis em cada
+          dia. Aqui mostramos as maiores séries que começaram este ano ou
+          estavam em curso quando estas estatísticas foram geradas (para utilizadores individuais
+          , também incluímos séries que terminaram este ano).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recorrente
+        species_per_year: Espécies / Ano
+        species_per_year_by_date_added: Por data de adição
+        species_per_year_by_date_observed: Por data de observação
     taxa:
       edit:
         wikipedia_summary_desc_html: |
