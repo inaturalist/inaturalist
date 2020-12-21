@@ -28,18 +28,6 @@ class Compare extends Component {
       memo[y] = ( memo[y] || 0 ) + row.novel_species_ids.length;
       return memo;
     }, {} );
-    // If there's only one year represented, there's nothing to compare
-    if ( _.keys( newSpeciesPerYear ).length < 2 ) {
-      return <div />;
-    }
-    if ( year < 2020 ) {
-      return <div />;
-    }
-    const newSpeciesValues = _.values( newSpeciesPerYear );
-    const minNewSpeciesValue = _.min( _.values( newSpeciesValues ) );
-    const minNewSpeciesYear = _.findKey( newSpeciesPerYear, v => v === minNewSpeciesValue );
-    const maxNewSpeciesValue = _.max( _.values( newSpeciesValues ) );
-    const maxNewSpeciesYear = _.findKey( newSpeciesPerYear, v => v === maxNewSpeciesValue );
     const speciesPerYear = _.reduce( taxaAccumulation, ( memo, row ) => {
       const y = parseInt( row.date.split( "-" )[0], 0 );
       if ( y > year ) {
@@ -48,10 +36,22 @@ class Compare extends Component {
       memo[y] = ( memo[y] || 0 ) + row.species_count;
       return memo;
     }, {} );
-    const speciesValues = _.values( speciesPerYear );
-    const minSpeciesValue = _.min( _.values( speciesValues ) );
+    // If there's only one year represented, there's nothing to compare
+    if ( _.keys( speciesPerYear ).length < 2 ) {
+      // return <div />;
+    }
+    if ( year < 2020 ) {
+      return <div />;
+    }
+    const newSpeciesValues = _.filter( _.values( newSpeciesPerYear ), v => v > 0 );
+    const minNewSpeciesValue = _.min( newSpeciesValues );
+    const minNewSpeciesYear = _.findKey( newSpeciesPerYear, v => v === minNewSpeciesValue );
+    const maxNewSpeciesValue = _.max( newSpeciesValues );
+    const maxNewSpeciesYear = _.findKey( newSpeciesPerYear, v => v === maxNewSpeciesValue );
+    const speciesValues = _.filter( _.values( speciesPerYear ), v => v > 0 );
+    const minSpeciesValue = _.min( speciesValues );
     const minSpeciesYear = _.findKey( speciesPerYear, v => v === minSpeciesValue );
-    const maxSpeciesValue = _.max( _.values( speciesValues ) );
+    const maxSpeciesValue = _.max( speciesValues );
     const maxSpeciesYear = _.findKey( speciesPerYear, v => v === maxSpeciesValue );
     let obsChart;
     const obsMonths = (
@@ -70,10 +70,10 @@ class Compare extends Component {
         memo[y] = ( memo[y] || 0 ) + count;
         return memo;
       }, {} );
-      const obsValues = _.values( obsPerYear );
-      const minObsValue = _.min( _.values( obsValues ) );
+      const obsValues = _.filter( _.values( obsPerYear ), v => v > 0 );
+      const minObsValue = _.min( obsValues );
       const minObsYear = _.findKey( obsPerYear, v => v === minObsValue );
-      const maxObsValue = _.max( _.values( obsValues ) );
+      const maxObsValue = _.max( obsValues );
       const maxObsYear = _.findKey( obsPerYear, v => v === maxObsValue );
       obsChart = (
         <div className="row stacked">
@@ -93,9 +93,9 @@ class Compare extends Component {
               low={minObsValue}
               lowLabel={I18n.t( "low" )}
               lowLabelExtra={minObsYear}
-              medium={_.mean( _.values( obsValues ) )}
+              medium={_.mean( obsValues )}
               mediumLabel={I18n.t( "avg" )}
-              high={_.max( _.values( obsValues ) )}
+              high={_.max( obsValues )}
               highLabel={I18n.t( "high" )}
               highLabelExtra={maxObsYear}
             />
@@ -164,7 +164,7 @@ class Compare extends Component {
               low={minNewSpeciesValue}
               lowLabel={I18n.t( "low" )}
               lowLabelExtra={minNewSpeciesYear}
-              medium={_.mean( _.values( newSpeciesValues ) )}
+              medium={_.mean( newSpeciesValues )}
               mediumLabel={I18n.t( "avg" )}
               high={maxNewSpeciesValue}
               highLabel={I18n.t( "high" )}
@@ -189,9 +189,9 @@ class Compare extends Component {
               low={minSpeciesValue}
               lowLabel={I18n.t( "low" )}
               lowLabelExtra={minSpeciesYear}
-              medium={_.mean( _.values( speciesValues ) )}
+              medium={_.mean( speciesValues )}
               mediumLabel={I18n.t( "avg" )}
-              high={_.max( _.values( speciesValues ) )}
+              high={_.max( speciesValues )}
               highLabel={I18n.t( "high" )}
               highLabelExtra={maxSpeciesYear}
             />
