@@ -456,10 +456,10 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def generate_shareable_image
-    if year < 2020
-      generate_shareable_image_obs_grid
-    else
+    if year >= 2020 && ( user.blank? || user.is_admin? )
       generate_shareable_image_no_obs
+    else
+      generate_shareable_image_obs_grid
     end
   end
 
