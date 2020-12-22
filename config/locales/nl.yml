@@ -5031,8 +5031,6 @@ nl:
           </p>
         you_have_opted_out: Je hebt je afgemeld voor gemeenschapsdeterminaties
         opt_in_for_this_observation: Kies voor deze waarneming
-        your_id_does_not_match: |
-          Je determinatie (<span class = "bold">%{taxon_name}</span>) komt niet overeen met het gemeenschaps-ID
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
@@ -5810,9 +5808,6 @@ nl:
           Gemaakt met <a href="https://www.inaturalist.org">iNaturalist</a>
           of <a href="%{url}">iNaturalist Network</a> websites
       year:
-        compare_desc: |
-          Hoe verhoudt dit jaar zich tot voorgaande jaren? Met drie jaar
-          gebruik of meer kunnen we beginnen jaarlijkse activiteitsstatistieken te vergelijken.
         compared_to_previous_years: Vergelijk met voorgaande jaren
         donate_title: "Speciale dank aan al onze supporters"
         donate_desc_html: |
@@ -5833,7 +5828,7 @@ nl:
         growth_in_year_obs: "Groei in %{year} (wrn)"
         growth_title: Groei
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Laag: %{low_value} (%{low_desc}), te klein om te laten zien"
         new_species_desc: |
