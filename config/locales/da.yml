@@ -5074,8 +5074,6 @@ da:
           </p>
         you_have_opted_out: Du fravalgte fælleskabs identifikationerne
         opt_in_for_this_observation: Opt ind for denne observation
-        your_id_does_not_match: |
-          Dit ID (<span class="bold">%{taxon_name}</span>) matcher ikke fællesskabs ID
       copy_tip: "Tilføj en ny observation ved at kopiere denne observations dato, sted, fotos og observationsfelter."
       captive_help_html: |
         Var organismen <strong> dyrket </strong> eller
@@ -6007,9 +6005,9 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
-        compare_desc: |
-          Hvordan sammenligner i år sig med dine tidligere år? Med minimum tre års brug
-          kan vi begynde at sammenligne årlige aktivitetsmålinger.
+        compare_site_desc: |
+          Hvordan var i år sammenlignet med tidligere år? Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
+          alle år.
         compared_to_previous_years: Sammenlign med tiligere år
         donate_title: "En særlig tak til alle vores støtter"
         donate_desc_html: |
@@ -6057,7 +6055,7 @@ da:
         growth_in_year_obs: "Vækst i %{year} (obs)"
         growth_title: Vækst
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Lav: %{low_value} (%{low_desc}), for lille til at vise"
         new_species_desc: |
