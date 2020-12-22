@@ -5119,8 +5119,6 @@ ru:
           </p>
         you_have_opted_out: Вы отказались от идентификаций сообщества
         opt_in_for_this_observation: Выбрать принятие помощи для идентификации этого наблюдения
-        your_id_does_not_match: |
-          Ваша идентификация (<span class="bold">%{taxon_name}</span>) не соответствует идентификации сообществом
       copy_tip: "Добавить новое наблюдение путём копирования даты данного наблюдения, места, фото и полей наблюдения."
       captive_help_html: |
         Был ли организм <strong>культивирован</strong> или содержался ли он <strong>в неволе</strong>? Например, находился ли он в саду, зоопарке, аквариуме или в другой подобной обстановке <strong>только потому, что его туда поместил человек</strong>? Приветствуются все наблюдения живых существ, но желательно знать, когда они не являются дикими / натурализованными.
@@ -5903,8 +5901,6 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
-        compare_desc: |
-          Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compared_to_previous_years: Сравнить с предыдущими годами
         donate_title: "Особая благодарность всем нашим спонсорам"
         donors: Спонсоры
@@ -5922,7 +5918,7 @@ ru:
         growth_in_year_obs: "Рост в %{year} (набл)"
         growth_title: Рост
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Малое: %{low_value} (%{low_desc}), слишком мал для отображения"
         new_species_desc: |
