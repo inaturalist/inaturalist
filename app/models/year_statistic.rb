@@ -594,7 +594,8 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
-  def generate_shareable_image_no_obs
+  def generate_shareable_image_no_obs( options = {} )
+    debug = options.delete(:debug)
     return unless data && data["observations"]
     work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
     FileUtils.mkdir_p work_path, mode: 0755
@@ -611,16 +612,29 @@ class YearStatistic < ActiveRecord::Base
     icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
-    system "curl -s -o #{icon_path} #{icon_url}"
+    system "curl -s -o #{icon_path} \"#{icon_url}\"", exception: true
 
     # Resize icon to a 500x500 square
-    square_icon_path = File.join( work_path, "square_icon.jpg")
-    system <<-BASH
-      convert #{icon_path} -resize "500x500" \
-                        -gravity Center  \
-                        -extent 500x500  \
-              #{square_icon_path}
-    BASH
+    square_icon_path = File.join( work_path, "square_icon.png")
+    if user
+      system <<-BASH
+        convert #{icon_path} \
+          -fill transparent \
+          -resize "500x500^" \
+          -gravity Center  \
+          -extent 500x500  \
+          #{square_icon_path}
+      BASH
+    else
+      system <<-BASH
+        convert #{icon_path} \
+          -fill transparent \
+          -resize 500x500 \
+          -gravity Center  \
+          -extent 500x500  \
+          #{square_icon_path}
+      BASH
+    end
 
     final_logo_path = File.join( work_path, "final-logo.png" )
     if user
@@ -659,7 +673,13 @@ class YearStatistic < ActiveRecord::Base
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     system "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}", exception: true
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
-    system "convert -resize x65 -background none #{wordmark_path} #{wordmark_resized_path}"
+    density = 1024
+    begin
+      system "convert -resize x65 -background none +antialias -density #{density} #{wordmark_path} #{wordmark_resized_path}", exception: true
+    rescue RuntimeError
+      density /= 2
+      retry
+    end
     wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
     wordmark_cmd = <<-BASH
       convert #{wordmark_composite_bg_path} \

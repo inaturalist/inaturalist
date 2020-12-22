@@ -129,12 +129,12 @@ const App = ( {
               data-mobile-iframe="true"
             >
               <a
-                // className="fb-xfbml-parse-ignore"
                 className="btn btn-primary btn-inat facebook-share-button"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
               >
+                { /* eslint-disable-next-line no-undef */ }
                 <img src={FB_LOGO_URL} alt={I18n.t( "facebook" )} />
                 { I18n.t( "facebook" ) }
               </a>
@@ -143,6 +143,7 @@ const App = ( {
               className="btn btn-primary btn-inat twitter-share-button"
               href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
               data-size="large"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <i className="fa fa-twitter" />
