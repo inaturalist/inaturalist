@@ -825,24 +825,24 @@ class YearStatistic < ActiveRecord::Base
       [identifications_count_txt, identifications_label_txt]
     ].each_with_index do |texts, idx|
       count_txt, label_txt = texts
-      x = 80 + idx * 145
+      y = 80 + idx * 145
       # text_width = 332 # this would go to the right edge
       text_width = 312 # this provides a bit of margin
       # Note that the use of label below will automatically try to choose the
       # best font size to fit the space
       composites << <<-BASH
         \\( \
-          -size #{text_width}x60 \
+          -size #{text_width}x55 \
           -background transparent \
           -font #{semibold_font_path} \
           -fill white \
           #{label_method}:"#{count_txt}" \
           -trim \
           -gravity west \
-          -extent #{text_width}x60 \
+          -extent #{text_width}x55 \
         \\) \
         -gravity northwest \
-        -geometry +668+#{x} \
+        -geometry +668+#{y} \
         -composite \
         \\( \
           -size #{text_width}x34 \
@@ -856,7 +856,7 @@ class YearStatistic < ActiveRecord::Base
           -extent #{text_width}x34 \
         \\) \
         -gravity northwest \
-        -geometry +668+#{x + (148 - 80)} \
+        -geometry +668+#{y + (148 - 80)} \
         -composite
       BASH
     end
@@ -866,7 +866,7 @@ class YearStatistic < ActiveRecord::Base
         #{final_path}
     BASH
     system cmd, exception: true
-    # puts "final_path: #{final_path}"
+    puts "final_path: #{final_path}" if debug
     self.shareable_image = open( final_path )
     save!
   end
@@ -1263,7 +1263,10 @@ class YearStatistic < ActiveRecord::Base
 
   def self.translators( year, options = {} )
     return unless CONFIG.crowdin && CONFIG.crowdin.projects
-    locale_to_ci_code = {}
+    locale_to_ci_code = {
+      "es" => "es-ES",
+      "pt" => "pt-PT"
+    }
     data = { languages: {}, users: {} }
     staff_usernames = User.admins.pluck(:login) + %w(alexinat)
     CONFIG.crowdin.projects.to_h.keys.each do |project_name|
@@ -1279,10 +1282,10 @@ class YearStatistic < ActiveRecord::Base
           data[:languages][lang["name"]]["code"] = lang["code"]
           if translated_locales.include?( lang["code"] )
             data[:languages][lang["name"]][:locale] = lang["code"]
-            locale_to_ci_code[lang["code"]] = lang["code"]
+            locale_to_ci_code[lang["code"].to_s] ||= lang["code"]
           elsif ( two_letter = lang["code"].split( "-" )[0] ) && translated_locales.include?( two_letter )
             data[:languages][lang["name"]][:locale] = two_letter
-            locale_to_ci_code[two_letter] = lang["code"]
+            locale_to_ci_code[two_letter.to_s] ||= lang["code"]
           end
         end
       end
