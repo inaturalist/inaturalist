@@ -3279,15 +3279,12 @@ pt:
         welcome_to_projects: Bem-vindo ao projeto!
     stats:
       year:
-        compare_desc: |
-          Como foi este ano comparado com os seus anos anteriores? Com três anos de uso de
-          ou mais, podemos começar a comparar métricas de atividade anual.
         compared_to_previous_years: Comparar com anos anteriores
         donors: Doadores
         donors_guide_label_our_goal_is_1000: A nossa meta é 1.000 doadores recorrentes por mês
         growth_title: Crescimento
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Baixo: %{low_value} (%{low_desc}), muito pequeno para mostrar"
         new_species_per_year: Novas espécies / ano
