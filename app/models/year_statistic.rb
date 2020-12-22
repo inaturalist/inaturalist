@@ -149,7 +149,7 @@ class YearStatistic < ActiveRecord::Base
     generate_for_year( year )
     Site.live.find_each do |site|
       next if Site.default && Site.default.id == site.id
-      generate_for_site_year( site, year )
+      YearStatistic.generate_for_site_year( site, year )
     end
   end
 
@@ -931,8 +931,11 @@ class YearStatistic < ActiveRecord::Base
     histogram_buckets = call_and_rescue_with_partitioner(
       bucketer,
       [histogram_params],
-      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+      [
+        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Faraday::TimeoutError
+      ],
+      exception_checker: Proc.new {|e| e.message =~ /(timed out|too_many_buckets_exception)/ }
     ) do |args|
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -1156,11 +1159,14 @@ class YearStatistic < ActiveRecord::Base
     histogram_buckets = call_and_rescue_with_partitioner(
       streak_bucketer,
       base_query,
-      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+      [
+        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Faraday::TimeoutError
+      ],
+      exception_checker: Proc.new {|e| e.message =~ /(timed out|too_many_buckets_exception)/ }
     ) do |args|
       query = args[0]
-      # Assume now one has been on a streak since before 2008-01-01
+      # Assume no one has been on a streak since before 2008-01-01
       puts "partitioning #{query}" if debug
       d1 = query[:d1] && Date.parse( query[:d1] ) || Date.parse( "2008-01-01" )
       d2 = query[:d2] && Date.parse( query[:d2] ) || Date.today
@@ -1543,7 +1549,7 @@ class YearStatistic < ActiveRecord::Base
       distances = []
       buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
       puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
-      buckets.buckets.each do |bucket|
+      buckets.each do |bucket|
         next unless bucket.bounding_box && bucket.bounding_box.bounds
         next if bucket.doc_count <= 1
         d = lat_lon_distance_in_meters(
@@ -1563,13 +1569,13 @@ class YearStatistic < ActiveRecord::Base
         # max: distances.max
       }
     end
-    # headers = data[0].keys
-    # CSV(STDOUT) do |csv|
-    #   csv << headers
-    #   data.each do |row|
-    #     csv << headers.map{|h| row[h] }
-    #   end
-    # end
+    headers = data[0].keys
+    CSV(STDOUT) do |csv|
+      csv << headers
+      data.each do |row|
+        csv << headers.map{|h| row[h] }
+      end
+    end
     data
   end
 
