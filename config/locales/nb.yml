@@ -4800,6 +4800,8 @@ nb:
           <p>Hvis brukere for en eller annen grunn ikke er enig i fellesskapets takson, kan de forkaste det, noe som betyr at deres ID er den som brukes til å lenke det til andre observasjoner, oppdatering av livslister, osv. Det betyr også at deres observasjon kun kan oppnå forskningskvalitet når fellesskapet er enig med dem.</p><p>Fellesskapets ID vises imidlertid fortsatt, slik at alle kan se de ulike ID-er som har blitt foreslått.</p>
         you_have_opted_out: Du har meldt deg ut av fellesskapets identifikasjoner
         opt_in_for_this_observation: Meld på for denne observasjonen
+        your_id_does_not_match: |
+          Din id (<span class="bold">%{taxon_name}</span>) stemmer ikke overens med fellesskapets ID
       copy_tip: "Legg til en ny observasjon ved å kopiere denne observasjonens dato, sted, bilder, og observasjonsfelt."
       captive_help_html: |
         Var organismen <strong>dyrket</strong> eller
@@ -5578,6 +5580,9 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        compare_desc: |
+          Hvordan ble dette året sammenlignet med dine foregående år? Med tre år med
+          bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
         compared_to_previous_years: Sammenlign med foregående år
         donate_title: "Særlig takk til alle våre støttere"
         donate_desc_html: |
