@@ -5209,8 +5209,6 @@ cs:
           </p>
         you_have_opted_out: Zvolili jste možnost nepoužívat komunitní identifikace
         opt_in_for_this_observation: Vybrat pro toto pozorování
-        your_id_does_not_match: |
-          Vaše ID (<span class="bold">%{taxon_name}</span>) neodpovídá komunitnímu ID
       copy_tip: "Přidat nové pozorování zkopírováním datumu, místa, fotografií a polí z tohoto pozorování."
       captive_help_html: |
         Byl organismus <strong>pěstovaný</strong> nebo 
@@ -5988,6 +5986,11 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        compare_site_desc: |
+          Jaký byl tento rok v porovnání s roky předchozími? Zelený sloupec ukazuje tento
+          rok, bílý svislý sloupec zobrazuje minulý rok, a šedé oblasti na pozadí
+          ukazují nejnižší a nejvyšší roky a také průměr za
+          za všechny roky.
         compared_to_previous_years: Porovnat s předchozími roky
         donate_title: "Zvláštní poděkování všem našim podporovatelům"
         donors: Dárci

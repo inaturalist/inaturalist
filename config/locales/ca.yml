@@ -4935,8 +4935,6 @@ ca:
           </p>
         you_have_opted_out: Heu optat per acceptar les Identificacions de la Comunitat
         opt_in_for_this_observation: Escollir aquesta observació
-        your_id_does_not_match: |
-          La vostra identificació (%{taxon_name}) no s'ajusta a la Identificació de la comunitat
       copy_tip: "Afegiu una nova observació copiant-ne la data, el lloc, les fotos i els camps d'aquesta."
       captive_help_html: |
         L'organisme que vas observar era <strong>conreat</strong> o estava en <strong>captivitat</strong>? Per exemple,
@@ -5717,7 +5715,7 @@ ca:
         growth_in_year_obs: "Creixement l'any %{year} (obs.)"
         growth_title: Creixement
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Baix:%{low_value} (%{low_desc}), massa petit per mostrar-lo"
         new_species_desc: |

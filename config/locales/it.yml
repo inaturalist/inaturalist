@@ -4923,8 +4923,6 @@ it:
           </p>
         you_have_opted_out: Hai deciso di non seguire le identificazioni della community
         opt_in_for_this_observation: Includi questa osservazione
-        your_id_does_not_match: |
-          La tua ID (<span class="bold">%{taxon_name}</span>) non corrisponde con quella della comunità
       copy_tip: "Aggiungi una nuova osservazione copiando la data, il luogo, le foto e i campi dell'osservazione."
       captive_help_html: |
         L'organismo è <strong>coltivato</strong> o
@@ -5713,6 +5711,9 @@ it:
       year:
         compare_desc: |
           Come è quest'anno in confronto ai tuoi anni precedenti? Con tre anni o più di utilizzo possiamo iniziare a confrontare le statistiche di attività annuali.
+        compare_site_desc: |
+          Com'è andato quest'anno rispetto agli anni precedenti? La barra verde mostra questo
+          anno, la barra verticale bianca mostra l'anno scorso, e le aree a sfondo grigio mostrano gli anni più bassi e più alti, così come la media per tutti gli anni.
         compared_to_previous_years: Confronta con Anni Precedenti
         donate_title: "Un Ringraziamento Speciale a Tutti i Nostri Sostenitori"
         donate_desc_html: |
@@ -5732,7 +5733,7 @@ it:
         growth_in_year_obs: "Crescita in %{year} (obs)"
         growth_title: Crescita
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Basso: %{low_value} (%{low_desc}), troppo piccolo per essere mostrato"
         new_species_desc: |

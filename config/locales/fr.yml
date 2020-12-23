@@ -6089,6 +6089,8 @@ fr:
       year:
         compare_desc: |
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
+        compare_site_desc: |
+          Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte montre cette année, la barre blanche l'année dernière, et les zones de fond gris les années les plus faibles et les plus fortes, ainsi que la moyenne de toutes les années.
         compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
         donate_desc_html: |
@@ -6117,7 +6119,7 @@ fr:
         growth_in_year_obs: "Croissance pendant %{year} (obs)"
         growth_title: Croissance
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Bas : %{low_value} (%{low_desc}), trop petit pour être affiché"
         new_species_desc: |

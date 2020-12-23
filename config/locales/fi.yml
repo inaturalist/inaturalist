@@ -4466,8 +4466,6 @@ fi:
           <p>
           Yhteisön taksoni näytetään kuitenkin aina, joten kaikki voivat nähdä kaikki havainnolle ehdotetut tunnistukset.
           </p>
-        your_id_does_not_match: |
-          Tunnistuksesi (<span class="bold">%{taxon_name}</span>) ei vastaa yhteisön tekemää tunnistusta
       captive_help_html: |
         Oliko eliö <strong>vangittu</strong> tai <strong>viljelty</strong>? Oliko se esimerkiksi <strong>puutarhassa, eläintarhassa, akvaatiossa</strong> tai jotenkin muuten paikalla <strong>vain koska ihmiset halusivat sen sinne</strong>? Kaikki havainnot elävistä asioista ovat tervetulleita, mutta me haluamme tietää milloin eliö ei ole villi tai luonnonvarainen.
       compare:
@@ -5037,6 +5035,8 @@ fi:
         compare_desc: |
           Kuinka tämä vuosi sujui verrattuna edellisiin vuosiin? Kun olet käyttänyt iNaturalistia kolmen vuoden ajan
           tai pidempään, voimme alkaa vertailla vuotuisia toimintatietoja.
+        compare_site_desc: |
+          Miten tämä vuosi sujui edellisiin verrattuna? Vihreä palkki näyttää tämän vuoden, valkoinen pystysuora viime vuoden ja harmaat tausta-alueet matalimmat ja korkeimmat vuodet sekä kaikkien vuosien keskiarvon.
         compared_to_previous_years: Vertaa edelliseen vuoteen
         donors: Lahjoittajat
         donors_guide_label_our_goal_is_1000: Tavoitteenamme on 1000 kuukausilahjoittajaa
@@ -5052,7 +5052,7 @@ fi:
         growth_in_year_obs: "Kasvu vuonna %{year} (havaintoja)"
         growth_title: Kasvu
         #Label when a mark on a chart has a value that is too small to
-        #visualize. low_value is the the value (usually a number), low_desc is
+        #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Matala: %{low_value} (%{low_desc}), liian pieni näytettäväksi"
         new_species_desc_html: |
