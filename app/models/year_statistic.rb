@@ -721,11 +721,7 @@ class YearStatistic < ActiveRecord::Base
     end
     title = title.mb_chars.upcase
     obs_count = if data["observations"]["quality_grade_counts"]
-      if user
-        data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
-      else
-        data["observations"]["quality_grade_counts"].inject( 0 ) {|sum, keyval| sum += keyval[1].to_i }
-      end
+      data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
     else
       0
     end

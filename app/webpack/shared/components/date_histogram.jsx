@@ -20,7 +20,7 @@ const DateHistogram = props => {
     if ( timeHour( d ) < d ) return md.format( "hh:mm" );
     if ( timeDay( d ) < d ) return md.format( "h A" );
     if ( timeMonth( d ) < d ) {
-      if ( timeWeek( d ) < d ) return md.format( "MMM D" );
+      // if ( timeWeek( d ) < d ) return md.format( "MMM D" );
       return md.format( "MMM D" );
     }
     if ( timeYear( d ) < d ) return md.format( "MMM D" );
@@ -31,7 +31,7 @@ const DateHistogram = props => {
     xParser: date => moment( date ).toDate( ),
     xFormatter: timeFormat( "%d %b" ),
     className: `DateHistogram ${props.className}`,
-    timeFormatBottom: props.tickFormatBottom || defaultTickFormatBottom
+    tickFormatBottom: props.tickFormatBottom || defaultTickFormatBottom
   } );
   return <Histogram {...newProps} />;
 };
