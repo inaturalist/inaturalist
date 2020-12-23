@@ -3923,6 +3923,8 @@ ja:
           しかしその場合でも、コミュニティ同定は表示されるため、判定の違いを誰でも確認できます。
           </p>
         you_have_opted_out: コミュニティ同定の通知を解除しました
+        your_id_does_not_match: |
+          あなたの同定（<span class="bold">%{taxon_name}</span>）はコミュニティ同定と一致しません
       export:
         choose_columns_desc: エキスポート対象の列を選択してください
         ident_by_user_desc_html: |
