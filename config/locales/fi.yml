@@ -5032,6 +5032,11 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist-verkon</a> verkkosivustojen kautta
       year:
+        compare_desc: |
+          Kuinka tämä vuosi sujui verrattuna edellisiin vuosiin? Kun olet käyttänyt iNaturalistia kolmen vuoden ajan
+          tai pidempään, voimme alkaa vertailla vuotuisia toimintatietoja.
+        compare_site_desc: |
+          Miten tämä vuosi sujui edellisiin verrattuna? Vihreä palkki näyttää tämän vuoden, valkoinen pystysuora viime vuoden ja harmaat tausta-alueet matalimmat ja korkeimmat vuodet sekä kaikkien vuosien keskiarvon.
         compared_to_previous_years: Vertaa edelliseen vuoteen
         donors: Lahjoittajat
         donors_guide_label_our_goal_is_1000: Tavoitteenamme on 1000 kuukausilahjoittajaa
