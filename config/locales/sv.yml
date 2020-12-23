@@ -5201,6 +5201,8 @@ sv:
           </p>
         you_have_opted_out: Du har valt bort gemenskapens bestämningar
         opt_in_for_this_observation: Välj gemenskapen för denna observation
+        your_id_does_not_match: |
+          Din best. (<span class="bold">%{taxon_name}</span>) stämmer inte överens med gemenskapens best.
       copy_tip: "Lägg till en ny observation genom att kopiera observationens datum, plats, bilder och observationsfält."
       captive_help_html: |
         Var organismen <strong>odlad</strong> eller
@@ -6291,6 +6293,8 @@ sv:
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
           eller <a href="%{url}">iNaturalist Network</a> webbplatser
       year:
+        compare_desc: |
+          Hur var detta år jämfört med dina tidigare år? Med tre års användning eller mer kan vi börja jämföra årliga aktivitetsmått.
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
         donate_desc_html: |
