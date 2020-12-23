@@ -53,8 +53,8 @@ const Streaks = ( {
     periods: [I18n.t( "time.am" ), I18n.t( "time.pm" )],
     days: I18n.t( "date.day_names" ),
     shortDays: I18n.t( "date.abbr_day_names" ),
-    months: _.compact( I18n.t( "date.month_names" ) ),
-    shortMonths: _.compact( I18n.t( "date.abbr_month_names" ) )
+    months: _.compact( I18n.t( "date.month_names" ) ).map( n => n.toString( ) ),
+    shortMonths: _.compact( I18n.t( "date.abbr_month_names" ) ).map( n => n.toString( ) )
   } );
   const shortDate = d3Locale.format( I18n.t( "date.formats.compact" ) );
   return (
