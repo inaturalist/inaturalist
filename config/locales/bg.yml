@@ -495,6 +495,9 @@ bg:
   authorize: Разрешавам
   automatic_short: Автоматично
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието ми при промяна на таксон
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Средно
   back: Назад
   back_to_all_species: Обратно към всички видове
   back_to_calendar: "Обратно към календара на %{user}"
@@ -657,7 +660,7 @@ bg:
   comma_separated_please: Разделени със запетая, моля
   comment: коментар
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_: Коментар
+  comment_: Коментирай
   comment_deleted: Коментарът е изтрит
   comments: Коментари
   comments_by_me: Коментари от мен
@@ -810,6 +813,7 @@ bg:
   data_deficient: недостатъчно данни
   data_quality: Качество на данните
   data_quality_assessment: Оценка на качеството на данните
+  data_used: "Използвани данни:"
   datatype: Тип данни
   date_: Дата
   date_added: Дата на добавяне
@@ -974,6 +978,7 @@ bg:
   edit_photos: Редактиране на снимки
   edit_photos_for_observation_id: "Редактиране на снимки на наблюдение %{obs_id}"
   edit_project: Редактирай проекта
+  edit_taxa: Редактирай таксони
   edit_taxon_link: Редактирай таксономична препратка
   edit_your_account_and_profile_html: "Редактиране на вашия акаунт и профил"
   edit_your_global_project_settings: Редактирай общите настройки за проекти
@@ -1345,6 +1350,7 @@ bg:
   journal_post_deleted: Публикацията в дневника е изтрита.
   journal_posts: Публикации в дневник
   jpg_png_or_gif: "JPG, PNG или GIF"
+  just_added!: Току-що добавено!
   keep_editing: Продължи с редактирането
   keyboard_shortcuts: Клавишни комбинации
   kml: KML
@@ -1360,6 +1366,8 @@ bg:
   last_active_with_date: "Последна активност: %{date}"
   last_confirmed_observation: Последно потвърдено наблюдение
   last_observation: Последно наблюдение
+  last_seen: Последно видяно
+  last_year: Миналата година
   lat: г.ш.
   latitude: Геогр. ширина
   latitude_in_decimals: 'Геогр. ширина в десетични градуси, например 38.123'
@@ -1444,6 +1452,7 @@ bg:
   life_list_updated: Житейският списък е обновен!
   life_list_updated_we_also_saved_a: Житейският списък е обновен! Записахме и едно непопълнено наблюдение на този таксон.
   life_lists_automatically_fill: Житейските списъци автоматично се допълват с нови таксони когато ги наблюдавате и могат да бъдат ограничени до някакъв родителски таксон. Например можете да създадете житейски списък на наблюдаваните от Вас птици от семейство Вранови (Corvidae).
+  linear_scale_label: Линейна
   link_or_unlink_your_facebook_account: Свържи или не своя Facebook акаунт
   link_or_unlink_your_flickr_account: Свържи или не своя Flickr акаунт
   link_or_unlink_your_google_account: Свържи или не своя Гугъл акаунт
@@ -1542,6 +1551,7 @@ bg:
   log_out: Излизане
   log_out_caps: ИЗЛИЗАНЕ
   log_out_of_application: "Излизане от %{site_name}?"
+  log_scale_label: Лог.
   login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
@@ -1913,6 +1923,7 @@ bg:
   observations_specifying_this_field: Наблюдения указващи това поле
   observations_text_search_warning: |
     Текстовите търсения могат да върнат странни резултати когато са комбинирани с други филтри. Ако искате да намерите наблюдения на конкретен вид, използвайте филтъра за таксони.
+  observations_this_year_vs_last_year: Наблюдения от тази година в сравнение с миналата
   observations_total: Общо наблюдения
   observations_w: Наблюдения със
   observations_w_field: наблюдения с поле
@@ -2603,6 +2614,7 @@ bg:
   redo_search_in_map_area: Повтори търсенето в площта на картата
   refresh: Опресни
   refreshing: опресняване
+  regenerate_stats: Повторно генериране на статиката
   reject?: Отхвърли?
   relative_observations: Относителен дял на наблюденията
   relationships_user_settings: Взаимоотношения
@@ -2688,6 +2700,7 @@ bg:
     one: Запазване на наблюдение...
     other: Запазване на %{num} от %{count} наблюдения...
   saving_verb: Запазване
+  scale_colon: "Скала:"
   schemes: Схеми
   schemes_including: Схеми включващи
   search: Търси
@@ -2768,6 +2781,8 @@ bg:
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Администратори на сайта
   site_name_place: "Място от %{site_name}"
   site_site_admin: "Администратор на сайта %{site_name}"
   site_staff: "Персонал на %{site_name}"
@@ -2809,6 +2824,7 @@ bg:
     photos_sounds: Снимки / звуци
     select_one_or_more_sounds: Изберете един или повече звуци
     sound: Звук
+    soundcloud_replied_with_an_error: SoundCloud отвърна с грешка. Моля, опитайте пак по-късно.
     sounds: Звуци
   source: Източник
   source_: 'Източник:'
@@ -2848,12 +2864,15 @@ bg:
   start_typing_taxon_name: Започни да въвеждаш таксон...
   start_typing_someones_name: "Започни да въвеждаш нечие име..."
   stats: Статистика
+  stats_for_this_year_have_not_been_generated: Не е генерирана статистика за тази година.
   status: Статус
   still_no_luck?: Пак ли нищо?
   stop_following_user: "Спри да следваш %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: МАГАЗИН
+  studies_that_used_inaturalist_data_in_year: Изследвания използвали данни на iNaturalist през %{year}
+  stuff_just_added: "Неща, които току-що сте добавили..."
   submission_model: Начин на добавяне
   submission_model_description: Кой може да добавя наблюдения към Вашия проект?
   submit_observations:
@@ -2985,6 +3004,7 @@ bg:
   terms_service: Условия за ползване
   terrain: терен
   text: Текст
+  thanks_from_all_of_us_here_at: Благодарности от всички нас тук на
   that_photo_doesnt_exist: Тази снимка не съществува.
   that_observation_doesnt_exist: Това наблюдение не съществува.
   that_observation_doesnt_have_any_photos: "Това наблюдение няма никакви снимки."
@@ -3036,6 +3056,7 @@ bg:
   this_will_re_apply_all_list_rules: |
     Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
   this_will_sign_you_out_current_session: Това ще ви отпише от текущата Ви сесия на това приложение.
+  this_year: Тази година
   threatened: Застрашен
   time_ago: "преди %{time}"
   #As in the title of a book or a blog post
@@ -3148,6 +3169,7 @@ bg:
   user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
   user_faved_this_observation: "%{user} хареса това наблюдение"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
+  user_helped_x_people_with_y_ids_html: "%{user} е помогнал на <strong>%{x} човека</strong> със <strong>%{y} разпознавания</strong>"
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение "%{observation}" към проекта %{project}.'
   user_invited_you_to_join_html: "%{user} Ви покани да се включите"
   user_invited_you_to_join_project: "%{user} Ви покани да се включите в %{project}"
@@ -3174,7 +3196,7 @@ bg:
   users_profile: "Профила на %{user}"
   value: Стойност
   values: Стойности
-  verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдение
+  verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдаване
   view: Виж
   view_all: Виж всички
   view_all_flags: Виж всички маркери
@@ -3271,6 +3293,8 @@ bg:
   who_can_see_the_coordinates_observer: Човекът направил наблюдението
   who_can_see_the_coordinates_projects: Кураторите на следните проекти
   who_can_see_the_coordinates_trusted: Хора, на които наблюдателят е доверил скритите си координати
+  who_helped_user_the_most: "Кой е помогнал най-много на %{user}"
+  who_user_helped_the_most: "На кого е помогнал най-много %{user}"
   why_the_coordinates_are_obscured: Защо координатите са замаскирани
   with_annotation: С анотация
   without_annotation: Без анотация
@@ -3281,6 +3305,7 @@ bg:
     Източник: Уикипедия, „%{title}“, %{url}, CC BY-SA 3.0
   withdraw: Оттегли
   withdrawing: Оттегляне...
+  with_errors: С грешки
   wondering_what_to_do_next: Ето няколко неща, с които можете да започнете своя път на наблюдаване и опознаване на природата
   would_you_prefer_to_view_common_names_used_in_place_html: Предпочитате ли да виждате народните имена използвани в <strong>%{place}</strong>?
   x_blog: "Блог на %{x}"
@@ -3303,6 +3328,7 @@ bg:
   x_wrote_a_new_post_html: "%{x} написа нова публикация"
   x_wrote_y_new_posts_html: "%{x} написа %{y} нови публикации"
   year: Година
+  year_in_review: "Годишен обзор, %{year}"
   year_month: година/месец
   yellow: жълто
   'yes': "Да"
@@ -3776,24 +3802,51 @@ bg:
       year:
         compare_desc: |
           Каква беше тази година в сравнение с предходните Ви години? При потребление от три или повече години, можем да направим сравнение на годишните показатели за активност.
+        compare_site_desc: |
+          Каква беше тази година в сравнение с предходните години? Зеленият стълб показва тази година, белият вертикален стълб показва предходната година, а сивите площи на фона показват най-слабите и най-силните години, както и средните стойности за всички години.
         compared_to_previous_years: Сравни с предишни години
         donate_title: "Специални благодарности на всичките ни поддръжници"
         donors: Дарители
         donors_guide_label_our_goal_is_1000: Целта ни е 1 000 редовни дарители на месец
+        inaturalist_network: Мрежа на iNaturalist
+        inaturalist_network_desc: |
+          Погледнете Годишния обзор на членовете на Мрежата на iNaturalist.
+        include_usa: Включи САЩ
+        growth_by_country_title: Растеж по държави
+        growth_in_year_obs: "Растеж през %{year} (набл.)"
+        growth_title: Растеж
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Ниска стойност: %{low_value} (%{low_desc}), твърде ниска за да се изобрази"
         new_species_per_year: Нови видове / Година
         new_species_per_year_by_date_added: По дата на добавяне
+        new_species_per_year_by_date_observed: По дата на наблюдаване
+        obs_in_year: Набл. през %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Еднократен
+        percent_growth_in_year: "% Растеж през %{year}"
+        percent_of_total_growth: "% от общия растеж"
         observations_per_year: Наблюдения / Година
+        observations_per_year_by_date_added: По дата на добавяне
         observations_per_year_by_date_observed: По дата на наблюдаване
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Серии от наблюдения
+        observation_streaks_color_desc: |
+          Цветът отговаря на броя дни в логаритмична скала:
         observation_streaks_desc2: |
-          „Серия от наблюдения“ е период от поне пет дни, през който някой е излизал и правил нови потвърдими наблюдения всеки ден. Тук показваме най-дългите серии, които са започнали тази година, включително тези които още не са били завършили при генерирането на статистиката (за отделните потребители включваме и серии, които са завършили тази година).
+          „Серия от наблюдения“ е период от поне пет дни, през който някой е излизал и правил нови потвърдими наблюдения всеки ден. Тук показваме най-дългите серии, които са започнали тази година или все още били в ход при генерирането на статистиката (за отделните потребители включваме и серии, които са завършили тази година).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Редовен
         species_per_year: Видове / Година
         species_per_year_by_date_added: По дата на добавяне
+        species_per_year_by_date_observed: По дата на наблюдаване
+        stats_generated_datetime: Статистиката е генерирана на %{datetime}
+        translators_title: Преводачи
+        translators_desc: |
+          Знаете ли, че iNaturalist е преведен на %{x_languages}, основно благодарение на %{x_people}, някои от които дори не използват iNat? Ето ги невероятните преводачи добавяли преводи тази година, заедно с броя думи, които са превели за %{website_link_tag}уебсайта%{link_tag_end}, нашите приложения за %{iphone_link_tag}iPhone%{link_tag_end} и %{android_link_tag}Android%{link_tag_end}, както и приложението %{seek_link_tag}Seek%{link_tag_end}. Можете да видите всички хора, които са допринесли с преводи – включително през изминалите години и хората от Translatewiki – на хранилищата ни за код за %{view_all_web_link_tag}уебсайта%{link_tag_end} и %{view_all_mobile_link_tag}приложенията%{link_tag_end}.
+        translators_desc_for_site: |
+          Знаете ли, че %{site_name} е преведен основно благодарение на %{x_people}? Ето ги невероятните преводачи добавяли преводи тази година, заедно с броя думи, които са превели за %{website_link_tag}уебсайта%{link_tag_end}, приложенията на iNaturalist за %{iphone_link_tag}iPhone%{link_tag_end} и %{android_link_tag}Android%{link_tag_end}, както и приложението %{seek_link_tag}Seek%{link_tag_end}. Можете да видите всички хора, които са допринесли с преводи на всички езици – включително през изминалите години и хората от Translatewiki – на хранилищата ни за код за %{view_all_web_link_tag}уебсайта%{link_tag_end} и %{view_all_mobile_link_tag}приложенията%{link_tag_end}.
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
