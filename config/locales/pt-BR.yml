@@ -129,6 +129,9 @@ pt:
     Quando você salvar este novo táxon, você será capaz de adicionar outros nomes aqui (nomes comuns, nomes em desuso, antigos nomes científicos, entre outros.).
   a_flag_for_x: "Um alerta para %{x}"
   a_member_of_taxon_html: "um membro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A até Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -172,6 +175,21 @@ pt:
   about_this_project: Sobre este Projeto
   about_trips_html: |
     <h4>Viagens permitem a coleção de dados de presença-ausência por adicionar contexto as suas observações</h4><p><strong>Por quê</strong> Dado de presença-ausência inclui informação sobre esforço de amostragem que é útil para analises cientificas como modelagem de distribuição (Observações cruas do iNaturalist são dados de "somente-presença").</p> <p><strong>Como</strong> Uma viagem adiciona contexto as suas observações por recordar:</p> <ul> <li><strong>O que</strong> você pesquisou (lista alvo)</li> <li><strong>Onde</strong> você pesquisou (área de pesquisa)</li> <li><strong>Quando</strong> você pesquisou (intervalo de pesquisa)</li> </ul> <p>Especies da lista alvo que você conseguiu observar dentro da área de pesquisa e intervalo são interpretadas como presenças. Enquanto espécies da sua lista alvo que não foi capaz de observar são interpretadas como ausências. Clique 'Tabular Dados de Presença-Ausência De Viagens' para gerar uma tabela de registros de presença-ausência para espécies de viagens e observações associadas. <a href='%{url}'>Saber mais</a></p>
+  about_trusting_projects: Sobre Confiar em Projetos
+  about_trusting_projects_options_any: Todas as suas observações neste projeto
+  about_trusting_projects_options_any_desc: |-
+    Isso inclui observações onde você colocou a geoprivacidade como "obscurecida" ou "privada"; por ex.: observações do seu quintal ou de pontos que você não quer que outras pessoas saibam.
+  about_trusting_projects_options_taxon: |-
+    Apenas as suas observações neste projeto que obscureceram coordenadas devido a táxons ameaçados
+  about_trusting_projects_options_taxon_desc: |-
+    Muitos projetos só precisam de acesso a coordenadas que são obscurecidas porque a observação
+    retrata um táxon ameaçado.
+  about_trusting_projects_overview: |-
+    Conceder acesso às suas coordenadas ocultadas permitirá que os gerentes deste projeto vejam a localização verdadeira e desobscurecida das suas observações neste projeto. Isto é extremamente importante em situações em que cientistas ou gerentes de recursos necessitam das coordenadas exatas para a análise e para a tomada de decisão.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Os gerentes do projeto que terão acesso às suas coordenadas ocultadas são:
   about_x: "Sobre %{x}"
   acc: 'Precisão exata - Acurácia (m)'
   account: Conta
@@ -242,6 +260,7 @@ pt:
   add_id: Adicionar identificação (ID)
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Adicionar texto em itálico
+  add_muted_users: Adicionar usuários silenciados
   add_new_lexicon: Adicionar um novo léxico
   add_new_photos_by_their_ids: Adicionar novas fotos a partir de suas identificações no Flickr (é obrigatório que sejam Creative Commons!)
   add_new_place: Adicione um novo local
@@ -629,6 +648,7 @@ pt:
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   back_to_your_projects: Voltar aos seus projetos
+  badges: Insígnias
   based_on_the_evidence_can_id_be_improved: |
     Com base nas evidências, o Táxon comunitário ainda pode ser confirmado ou melhorado?
   batch: Grupo
@@ -639,6 +659,7 @@ pt:
   because_of: por causa de
   before_importing_photos: antes de importar fotos
   bg_color: Cor BG
+  bio: Biografia
   bioblitz: Bioblitz
   birds: aves
   birthday: Aniversário
@@ -884,6 +905,7 @@ pt:
   contain_all_descendants?: Este check list contém todos os representantes deste táxon que ocorrem na área?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Conteúdo
+  content_and_display: Conteúdo & Exibição
   content_author: Autor do Conteúdo
   content_hidden: Conteúdo oculto
   content_hidden_by_user_on_date_because_reason_html: |
@@ -933,6 +955,13 @@ pt:
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Somente com coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Mostra apenas observações deste projeto em que você consegue ver as coordenadas "verdadeiras", incluindo observações não ocultas, observações obscurecidas de pessoas que confiam em você, observações ocultas de pessoas que confiam neste projeto com qualquer coisa e observações obscurecidas de táxons ameaçados por pessoas que confiam neste projeto.
   copy: Copiar
   copy_and_paste_the_following_code_to: Copie e cole o seguinte código para inserir está avaliação em outro site.
   copy_and_paste_this_into_your_own_html: Copie e cole isto no seu próprio HTML.
@@ -984,6 +1013,7 @@ pt:
   created_on: Criado em
   creating_your_account: "Criando sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons marcadas no Flickr
+  creative_commons_licenses: Licenças Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons a não ser que prefira não licenciar desta maneira."
   critically_endangered: Criticamente em perigo
   css_description: Isto será incluído depois de todas as outras css na página
@@ -1008,6 +1038,7 @@ pt:
   customize_location: Personalizar Localização
   darr_apply_darr: "&darr; Aplicar &darr;"
   daily_users: Usuários diários
+  danger_zone: Zona de Perigo
   dashboard: Painel de controle
   data_deficient: Dados insuficientes
   data_quality: Qualidade dos Dados
@@ -1016,6 +1047,7 @@ pt:
   datatype: Tipo de dados
   date_: Data
   date_added: Data de inclusão
+  date_authorized: Data de Autorização
   date_created: Data de criação
   date_format:
     date_long:
@@ -1073,6 +1105,8 @@ pt:
   default_invite_comment: "Ótima foto! Você deveria publicar ela no %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licença padrão para suas observações
   default_photo_license: Licença padrão para suas fotos
+  default_search_place: Lugar de Busca Padrão
+  default_search_place_description: Este será seu local padrão para todas as pesquisas em Explorar.
   default_sound_license: Licença padrão para sons
   defaults_to_your_name_or_username: Padrão para seu nome e nome de usuário
   defines_a_taxon_framework_for: Definir um quadro de táxon para %{taxon_name}
@@ -1157,7 +1191,11 @@ pt:
   disable_comments_desc: Impedir que pessoas adicionem novos comentários
   disagree_: Não concordo
   disconnect_provider: "Desconecte-se de %{provider}"
+  display: Exibição
   display_link_to_checklist: Mostra link para a lista do projeto a partir da página
+  display_monthly_supporter_badge: Exibir o status de apoiador mensal no perfil
+  display_name: Nome em Exibição
+  display_name_description: Este é o nome que será exibido no seu perfil, bem como para atribuição de direitos autorais
   distance_traveled_value: "Distância viajada: %{distance}m"
   distance_traveled: "Distância viajada (m)"
   documentation_for_developers_html: Documentação para <a href="/pages/developers">desenvolvedores</a>
@@ -1200,6 +1238,7 @@ pt:
   duplicate_verb: Duplicar
   duration_value: "Duração: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada pagina do local mostra todas as espécies que %{site_name} conhece daquele lugar, incluindo informação sobre sua abundância, estado de conservação, e quem foi o primeiro a observar aquela espécie naquele local no %{site_name}. Você pode filtrar as espécies por grupo taxonômico, cor, estado de conservação, ou buscando da maneira comum."
+  earliest_added: Adicionados Primeiro
   edit: Alterar
   edit_a_batch_of_observations: Editar um grupo de observações
   edit_account_settings_and_profile: "Edite as configurações da conta &amp; perfil"
@@ -1587,6 +1626,9 @@ pt:
     observações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir
     conteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para
     conteúdo censurável.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Ocultar "Sem Anotação"
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alta
@@ -1681,6 +1723,8 @@ pt:
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
   inat_user_profile: "%{site_name}: Perfil de %{user}"
+  inaturalist_activity_notifications: "Notificações de Atividade do %{site_name}"
+  inaturalist_applications: "Aplicativos do iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
   info: Informação
@@ -1756,6 +1800,8 @@ pt:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Bloquear nível de zoom
+  language_slash_locale: Idioma/Localização
+  language_slash_locale_description: Isso define suas preferências de idioma e de formatação de data em todo o iNaturalist com base na sua localidade. Alterações terão efeito quando a página for atualizada.
   language_slash_type: Idioma / Tipo
   #Large photo size
   large: grande
@@ -1782,6 +1828,7 @@ pt:
   leading: Conduzindo
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
+  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_on_the_blog: Saiba mais no blog
   learn_more_raquo: "Saiba mais &raquo;"
@@ -1806,7 +1853,7 @@ pt:
     chinese_traditional: Chinês (tradicional)
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
-    czech: Checo
+    czech: Tcheco
     danish: Dinamarquês
     davawenyo: Davao Chavacano
     dutch: Holandês
@@ -1914,7 +1961,7 @@ pt:
     bg: Húngaro
     br: Bretão
     ca: Catalão
-    cs: Checo
+    cs: Tcheco
     da: Dinamarquês
     de: Alemão
     el: Grego
@@ -1966,6 +2013,9 @@ pt:
     <a href="/login">Entre</a> ou <a href="/signup">se cadastre</a> para adicionar comentários.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Entre</a> ou <a href="/signup">se cadastre</a> para adicionar identificações.
+  log_out: Sair
+  log_out_caps: SAIR
+  log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Registro
   login_slash_username: Login / nome de usuário
   logo:
@@ -2886,7 +2936,7 @@ pt:
     cuba: Cuba
     curacao: Curaçao
     cyprus: Chipre
-    czech_republic: República Checa
+    czech_republic: República Tcheca
     democratic_republic_of_the_congo: República Democrática do Congo
     denmark: Dinamarca
     djibouti: Djibuti
@@ -3088,6 +3138,8 @@ pt:
     zimbabwe: Zimbábue
   places_of_interest: Locais de interesse
   places_merged_successfully: Lugares combinados com sucesso!
+  places_warning_projects_can_have_multiple_places: |
+    Se você está tentando criar um lugar para a área de um projeto, projetos podem ser compostos de vários lugares. Por exemplo, se você quer fazer um projeto para a Nova Zelândia e a Austrália, você pode apenas adicionar requisitos para os dois lugares em vez de criar um novo.
   plants: plantas
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta mudança.
   please_add_this_observation_to: Por favor adicione esta observação a
@@ -3139,6 +3191,7 @@ pt:
   processing: Processando
   processing3p: "Processando…"
   profile: Perfil
+  profile_picture: Imagem de Perfil
   profile_visibility_desc: |
     Em um esforço para manter o spam fora de %{site_name}, perfis de usuário são apenas
     publicamente visível após um usuário ter contribuído com vários Graus de Pesquisa
@@ -3514,6 +3567,9 @@ pt:
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_less: Mostrar menos
   show_more: Mostrar mais
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Mostrar "Sem Anotação"
   show_observation_photos: Exibir observações relacionadas a fotos
   show_off_your_recent_observations: Publicar suas observações mais recentes em seu blog ou site!
   show_only: 'Mostrar somente:'
@@ -5602,6 +5658,8 @@ pt:
           Criado via <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">a rede iNaturalist</a>
       year:
+        compare_desc: |
+          Como este ano foi, comparado com seus anos anteriores? Com três anos de uso de ou mais, podemos começar a comparar métricas de atividade anual. A barra verde mostra este ano, a barra vertical branca mostra o ano passado, e as áreas de fundo cinza mostram os anos mais baixos e mais altos, bem como a média para todos os anos. As estatísticas não incluem anos onde a contagem foi zero.
         donate_title: "Agradecimentos Especiais a Todos os Nossos Apoiadores"
         inaturalist_network: Rede iNaturalist
         inaturalist_network_desc: |
@@ -5633,6 +5691,10 @@ pt:
           atualmente afiliados com %{site_name} se juntaram ao iNaturalist.
         growth_in_year_obs: "Crescimento em %{year} (observações)"
         growth_title: Crescimento
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Baixo: %{low_value} (%{low_desc}), muito baixo para mostrar"
         new_species_desc: |
           Espécies que foram observadas pela primeira vez no %{site_name} este ano.
           Mostrando %{x} de <a href="%{url}">%{y} espécies</a>.
@@ -6903,6 +6965,10 @@ pt:
     previous_label: "&#8592; Prévia"
     next_label: "Próxima &#8594;"
     page_gap: "&hellip;"
+  you_have_not_authorized_any_applications: "Você não autorizou nenhum aplicativo a usar a sua conta iNaturalist."
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z até A
   zoom_in: Aumentar o Zoom
   zoom_out: Diminuir o Zoom
   zoom_photo: Ampliar Foto
