@@ -1,0 +1,5 @@
+version: "2"
+services:
+  pg:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password

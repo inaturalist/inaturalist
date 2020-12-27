@@ -26,6 +26,7 @@ config/deploy
 *.DS_Store
 config/*.mapnik.xml
 config/*.ogr.vrt
+docker-compose.override.yml
 elasticsearch
 node_modules
 public/assets
