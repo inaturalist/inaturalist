@@ -711,6 +711,7 @@ lb:
   hide_no_annotation: '"Keng Annotatiounen" verstoppen'
   high: Héich
   history: Geschicht
+  id: ID
   ids_by_taxon: IDs no Taxon
   identify: Identifizéieren
   identify_observations: "Observatiounen bestëmmen"
@@ -926,6 +927,9 @@ lb:
   momentjs:
     shortRelativeTime:
       future: "an %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1s"
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
@@ -1870,6 +1874,31 @@ lb:
     submit:
       submit: '%{model} späicheren'
   number:
+    currency:
+      format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: '.'
+        precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
+        separator: ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: '$'
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -1878,6 +1907,10 @@ lb:
       format:
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        units:
+          gb: GB
+          kb: KB
   support:
     array:
       last_word_connector: ', an'
