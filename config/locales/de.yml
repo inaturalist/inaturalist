@@ -1439,7 +1439,7 @@ de:
   first_connect_your_provider_account_to_your_site: "Verknüpfe zunächst Dein %{provider}-Konto mit %{site_name}:"
   first_inat_observation: "Erste %{site_name} Beobachtung"
   first_observation: Erste Beobachtung
-  first_observation_by_date_added: Erste Beobachtung nach Datum hinzugefügt
+  first_observation_by_date_added: Erste Beobachtung nach Hinzufügungs-Datum
   first_observer: Erster Beobachter
   #Verb form, as in "Flag this item"
   flag: Melden
@@ -3897,6 +3897,7 @@ de:
   taxon_ids: Taxon-IDs
   taxon_map:
     gbif_occurrences: GBIF Vorkommnisse
+    it_may_take_google_a_while_to: Es kann eine Weile dauern, dass Google diese Daten lädt - vorausgesetzt, es gibt überhaupt welche in GBIF.
     data_url: Daten-URL
     overlays: Ebenen
   taxon_changes: Taxon-Änderungen
@@ -5701,7 +5702,7 @@ de:
           Klick auf einen Monat, um einige der neuen Arten zu sehen, die in diesem Monat hinzugefügt wurden.
           Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
         new_species_per_year: Neue Arten / Jahr
-        new_species_per_year_by_date_added: Nach Datum hinzugefügt
+        new_species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
         new_species_per_year_by_date_observed: Nach Beobachtungsdatum
         obs_in_year: Beob in %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
@@ -5715,7 +5716,7 @@ de:
         publications_desc_short_html: |
           Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Beobachtungen / Jahr
-        observations_per_year_by_date_added: Nach Hinzufügungsdatum
+        observations_per_year_by_date_added: im jewlg. Jahr hinzugefügt
         observations_per_year_by_date_observed: Nach Beobachtungsdatum
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Beobachtungssträhnen
@@ -5726,7 +5727,7 @@ de:
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr
-        species_per_year_by_date_added: Nach Hinzufügungsdatum
+        species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
         species_per_year_by_date_observed: Nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
         store_prompt: |

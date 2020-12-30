@@ -1096,6 +1096,7 @@ bg:
   find_your_current_location: Намери твоето текущо местоположение
   first_confirmed_inat_observation: "Първо потвърдено наблюдение на %{site_name}"
   first_inat_observation: "Първо наблюдения на %{site_name}"
+  first_observation_by_date_added: Първо наблюдение по дата на добавяне
   first_observer: 1-ви наблюдател
   #Verb form, as in "Flag this item"
   flag: Маркирай
@@ -1248,6 +1249,7 @@ bg:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Скривай „Без анотация“
+  hide_running_total: Скрий нарастващия сбор
   high: Висок
   highest_rank: Най-висок ранг
   history: История
@@ -1755,11 +1757,17 @@ bg:
   new_post: Нова публикация
   new_project: Нов проект
   new_source: Нов източник
+  new_species_added_in_interval: Нови видове добавени през %{interval}
+  new_species_added_in_interval_x_of_y: Нови видове добавени през %{interval} (Показване на %{x} от %{y})
   new_taxon_change: Нова таксономична промяна
   new_taxon_link: Нова таксономична препратка
   new_taxon_name_for: Ново име на таксон за
   new_users: Нови потребители
   new_users_w_7_obs: Нови потребители със 7 набл.
+  newly_added: Новодобавени
+  newly_added_species: Новодобавени видове
+  newly_observed_species: Новонаблюдавани видове
+  newly_observed_species_in_year: "Новодобавени видове през %{year}"
   next: След.
   next_observation: Следващо наблюдение
   next_page: След. страница
@@ -2677,6 +2685,7 @@ bg:
     must_be_identified: трябва да е разпознато
     must_be_in: трябва да бъде от таксон
     must_be_coordinates_shareable_by_project_curators: наблюдателят трябва да позволи на кураторите на проекта да виждат координатите.
+  running_total: Нарастващ сбор
   said: каза
   satellite: сателит
   save: Съхраняване
@@ -2763,6 +2772,7 @@ bg:
   show_off_your_recent_observations: Покажете най-новите си наблюдения на своя блог или сайт!
   show_only: Покажи само
   show_relative_proportions_of_all_observations: Покажи относителният дял на наблюденията към общия брой наблюдения
+  show_running_total: Покажи нарастващия сбор
   show_scientific_name_first: Показвай първо научните имена
   show_taxa_from_both: (покажи таксони и от двата списъка)
   show_taxa_from_everywhere: "Покажи таксони отвсякъде"
@@ -2914,6 +2924,7 @@ bg:
   taxa: Таксони
   taxa_info: Информация за таксони
   taxa_needing_curation: Таксони нуждаещи се от куриране
+  taxa_observed: наблюдавани таксони
   taxa_to_include: Таксони които да се включват
   taxon: Таксон
   taxon_autocomplete_placeholder: Птици, пеперуди и т.н.
@@ -3467,6 +3478,7 @@ bg:
         alphaname: Азбучно по научно име
         alphadisplay: Азбучно по имената показвани по подразбиране
     lifelists:
+      restrict_to_taxa_observed_in_place: Ограничи до таксони наблюдавани във %{place}
       dropdowns:
         least_observed: Най-малко наблюдаван
     lists:
@@ -3819,6 +3831,8 @@ bg:
         #visualize. low_value is the value (usually a number), low_desc is
         #a description of what that value represents
         low_too_small: "Ниска стойност: %{low_value} (%{low_desc}), твърде ниска за да се изобрази"
+        new_species_desc_html: |
+          Видове добавени за първи път тази година. Щракнете върху месец, за да видите някои от новодобавените видове през месеца. Можете да видите и нарастващия общ брой видове или да преместите плъзгача назад във времето за да видите предишни новодобавени видове. Диаграмата показва видовете от „проверими“ наблюдения, според месеца в който са били качени на %{site_name} (а не когато са били наблюдавани). Не се включват по-висши или по-нисши от вид таксони, така че наблюдение разпознато като „бозайник“, няма да се включи, а наблюдение на подвида <i>Canis lupus</i> ssp. <i>arctos</i> ще се отчете като наблюдение на вида <i>Canis lupus</i>.
         new_species_per_year: Нови видове / Година
         new_species_per_year_by_date_added: По дата на добавяне
         new_species_per_year_by_date_observed: По дата на наблюдаване
@@ -3842,6 +3856,8 @@ bg:
         species_per_year_by_date_added: По дата на добавяне
         species_per_year_by_date_observed: По дата на наблюдаване
         stats_generated_datetime: Статистиката е генерирана на %{datetime}
+        sunburst_desc_html: |
+          Наблюдавани таксони, подредени в йерархична радиална диаграма. В центъра е основата на йерархията (Живот), която се разклонява към периферията до по-нисши таксони. Размерът на арките е пропорционален на броя наблюдения на съответния таксон. Цветовете приблизително отговарят на обичайните ни цветни кодове за различните таксони (зелено за растения, оранжево за насекоми, синьо за повечето останали животни и т.н.), така че ако виждате много зелено, значи сте наблюдавали много растения. <strong>Щракнете върху арка, за да поставите таксона ѝ в центъра</strong>, заобиколен от подтаксоните му или <strong>щракнете в центъра, за да се върнете едно ниво нагоре в йерархията</strong>.
         translators_title: Преводачи
         translators_desc: |
           Знаете ли, че iNaturalist е преведен на %{x_languages}, основно благодарение на %{x_people}, някои от които дори не използват iNat? Ето ги невероятните преводачи добавяли преводи тази година, заедно с броя думи, които са превели за %{website_link_tag}уебсайта%{link_tag_end}, нашите приложения за %{iphone_link_tag}iPhone%{link_tag_end} и %{android_link_tag}Android%{link_tag_end}, както и приложението %{seek_link_tag}Seek%{link_tag_end}. Можете да видите всички хора, които са допринесли с преводи – включително през изминалите години и хората от Translatewiki – на хранилищата ни за код за %{view_all_web_link_tag}уебсайта%{link_tag_end} и %{view_all_mobile_link_tag}приложенията%{link_tag_end}.
@@ -3889,6 +3905,7 @@ bg:
           unannotated: Без анотация
         max_photos_desc: |
           Един таксон може да има най-много %{max} снимки. За да добавите нови снимки, трябва да премахнете някои от старите.
+        no_trending_desc: Нищо от този таксон не е наблюдавано за последния един месец.
         photo_chooser_modal_desc: |
           Чрез влачене можете да добавяте снимки от ляво или да ги пренареждате тук.
         photo_chooser_modal_explanation: |

@@ -4935,6 +4935,8 @@ ca:
           </p>
         you_have_opted_out: Heu optat per acceptar les Identificacions de la Comunitat
         opt_in_for_this_observation: Escollir aquesta observació
+        your_id_does_not_match: |
+          La vostra identificació (<span class="bold">%{taxon_name}</span>) no s'ajusta a la de la comunitat
       copy_tip: "Afegiu una nova observació copiant-ne la data, el lloc, les fotos i els camps d'aquesta."
       captive_help_html: |
         L'organisme que vas observar era <strong>conreat</strong> o estava en <strong>captivitat</strong>? Per exemple,
@@ -5696,6 +5698,8 @@ ca:
       year:
         compare_desc: |
           Com ha estat aquest any comparat amb els vostres darrers anys? Després de tres o més anys d'ús podem comparar les mètriques anuals d'activitat.
+        compare_site_desc: |
+          Com ha estat aquest any en comparació amb l'anterior? La barra verda mostra aquest any, la barra vertical blanca mostra l'any passat i l'àrea grisa mostra el menor i el major, així com la mitjana de tots els anys.
         compared_to_previous_years: Compara amb Anys Anteriors
         donate_title: "Moltes gràcies a tots els nostres Patrocinadors"
         donate_desc_html: |
