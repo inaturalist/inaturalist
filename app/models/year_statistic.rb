@@ -1419,7 +1419,8 @@ class YearStatistic < ActiveRecord::Base
       page_donations = json.select{|d| DateTime.parse( d["donation_date"] ).year == year }
       puts "Received #{page_donations.size} donations for #{year}" if debug
       if page_donations.size == 0
-        break
+        page += 1
+        next
       end
       page_donations.each do |d|
         next if d["amount_refunded"].to_f > 0
