@@ -526,6 +526,8 @@ sv:
   #Label for an option to show/include content by any user
   any_user: Alla
   anyone: Vem som helst
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikationer
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
@@ -917,7 +919,10 @@ sv:
   confirm_your_info: Bekräfta din info
   confirming_ids: Bekräftande bestämningar
   confirming_ids_description: Om du stänger av detta kommer du inte längre att meddelas om bestämningar som stämmer med din.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Anslut till %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Anslutna konton
   connecting_flickr: "Ansluter till Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Anslut till Flickr igen för att godkänna skrivrättigheter
@@ -1050,7 +1055,6 @@ sv:
   created_on: Skapades den
   creating_your_account: "Skapar ditt konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr-bilder taggade
-  creative_commons_licenses: Creative Commons-licenser
   creative_commons_unless_otherwise_noted: "Creative Commons om inte annat anges."
   critically_endangered: Akut hotad
   css_description: Detta kommer att inkluderas efter all annan css på sidan.
@@ -1407,9 +1411,10 @@ sv:
   export_observations: Exportera observationer
   export_with_private_coordinates: Exportera med dolda koordinater
   exporting: "Exporterar..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Externa applikationer
   external_taxon_including_children: Externt taxon (inklusive barn)
-  external_taxon_rank: Extern taxonrang
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
   extra_properties: Ytterligare egenskaper
@@ -1783,6 +1788,7 @@ sv:
   inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna plats."
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_activity_notifications: "%{site_name} aktivitetsmeddelanden"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
   inaturalist_places: "%{site_name} platser"
@@ -2077,6 +2083,7 @@ sv:
     <a href="/login">Logga in</a> eller <a href="/signup">registrera dig</a> för att lägga till bestämningar.
   log_out: Logga ut
   log_out_caps: LOGGA UT
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logga ut från %{site_name}?"
   log_scale_label: Logg
   login_slash_username: Logga in / användarnamn
@@ -3588,6 +3595,8 @@ sv:
   reviewed: Granskad
   revoke: Återkalla
   revoke_caps: ÅTERKALLA
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Återkalla %{site_name}?"
   rg_observations: RG-observationer
   role: Roll
@@ -4228,6 +4237,8 @@ sv:
     uppdatera all tillhörande statistik, bl.a. avvisa taxa som inte ingår i
     listtaxonet eller är av den valda rangen. Inga nya taxa kommer att
     läggas till. Det kan ta några minuter.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Detta kommer att logga ut dig från din nuvarande session på denna applikation.
   this_will_try_to_add_tags_to_your_flickr: Detta kommer att försöka lägga till taggningar till dina Flickr-bilder. Vill du fortsätta?
   this_year: Detta år
@@ -5173,8 +5184,14 @@ sv:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Auktorisera %{application} att använda ditt konto?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Denna applikation kommer att kunna:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Mer om %{application}
     observations:
       community_id:
@@ -7852,7 +7869,6 @@ sv:
     previous_label: "&#8592; Föreg"
     next_label: "Nästa &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Du har inte auktoriserat några applikationer att använda ditt iNaturalist-konto."
   you_will_no_longer_be_following_or_trusting: "Du kommer inte längre att följa eller lita på %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

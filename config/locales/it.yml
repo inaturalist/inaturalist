@@ -162,6 +162,7 @@ it:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: A proposito dell'origine del popolamento
+  about_license_options: Informazioni sulle Opzioni di Licenza
   about_licenses: A proposito delle licenze
   about_muting: Riguardo il silenziamento
   #Header for a section describing taxon names
@@ -509,6 +510,11 @@ it:
   #Label for an option to show/include content by any user
   any_user: Qualsiasi
   anyone: Chiunque
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Applicazione
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applicazioni
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
@@ -895,8 +901,16 @@ it:
   confirm_your_info: Conferma le tue informazioni
   confirming_ids: Conferme di ID
   confirming_ids_description: Se disattivato, non sarai più avvisato delle ID che sono in accordo con la tua.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Connetti
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Connettiti a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Utenze connesse
+  connected_accounts_description: Gli account connessi sono i tuoi account da altre applicazioni o siti web a cui hai consentito l'accesso a iNaturalist per tuo conto, per supportare l'accesso, importazione fotografica, o altre funzionalità.
+  connected_accounts_titlecase: Account Connessi
   connecting_flickr: "Connessione a Flickr in corso..."
   connect_to_flickr_again_to_authorize_write_permissions: Connettiti nuovamente a Flickr per autorizzare i permessi di scrittura
   connecting_to_facebook: "Connessione a Facebook in corso..."
@@ -1026,7 +1040,6 @@ it:
   created_on: Creato il
   creating_your_account: "Creazione del tuo account in corso..."
   creative_commons_flickr_tagged: Foto di Flickr Creative Commons Etichettate
-  creative_commons_licenses: Licenze Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, salvo diversamente indicato."
   critically_endangered: In Pericolo Critico
   css_description: Questo verrà incluso dopo tutti gli altri css della pagina.
@@ -1203,6 +1216,12 @@ it:
   disable_comments: Disabilita commenti
   disable_comments_desc: Impedisci alle persone di aggiungere nuovi commenti
   disagree_: Non d'accordo
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Disconnetti
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: DISCONNETTI
   disconnect_provider: "Disconnettere %{provider}"
   display: Visualizzazione
   display_link_to_checklist: Visualizza il link alla lista del progetto sulla pagina del progetto
@@ -1375,9 +1394,10 @@ it:
   export_observations: Esporta le osservazioni
   export_with_private_coordinates: Esporta con coordinate nascoste
   exporting: "Esportazione in corso..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Applicazioni Esterne
   external_taxon_including_children: Taxon esterno (inclusi discendenti)
-  external_taxon_rank: Rango del taxon esterno
   extinct: Estinta
   extinct_in_the_wild: Estinta in Natura
   extra_properties: Proprietà aggiuntive
@@ -1392,6 +1412,7 @@ it:
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
   failed_to_save_record_with_errors: "Impossibile salvare il record: %{errors}"
+  failed_to_unlink_your_account: Impossibile scollegare il tuo account
   'false': 'Falso'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Preferiti
@@ -1552,6 +1573,7 @@ it:
   fungi:
     one: fungo
     other: funghi
+  gbif: GBIF
   gbif_occurrences: Dati di presenza da GBIF
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto Flickr.
   generate_widget: Genera il Widget
@@ -1731,6 +1753,7 @@ it:
   inat_believes_this_is_a_complete_listing: "%{site_name} crede che questa sia una lista completa di questo taxon in questo luogo."
   inat_user_profile: "%{site_name}: Profilo di %{user}"
   inaturalist_activity_notifications: "Notifiche Attività %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Applicazioni iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society."
   inaturalist_places: "Luoghi di %{site_name}"
@@ -2022,6 +2045,7 @@ it:
     <a href="/login">Accedi</a> o <a href="/signup">iscriviti</a> per aggiungere identificazioni.
   log_out: Esci
   log_out_caps: ESCI
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Vuoi uscire da %{site_name}?"
   log_scale_label: Logaritmica
   login_slash_username: Login / nome utente
@@ -3482,6 +3506,8 @@ it:
   reviewed: Revisionata
   revoke: Revoca
   revoke_caps: REVOCA
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Revoca %{site_name}?"
   rg_observations: Osservazioni LR
   role: Ruolo
@@ -3808,6 +3834,8 @@ it:
   suggest_an_identification: Suggerisci un'identificazione
   suggest_or_require_that: Suggerisci o richiedi che chi contribuisce riempia questi campi per le osservazioni che aggiunge al progetto.
   suggestions: Suggerimenti
+  suitable_for_the_global_biodiversity_information_facility: Adatto per il Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adatto per Wikipedia e altri progetti della Wikimedia Foundation
   summary: Riassunto
   supporting: Di supporto
   support_inaturalist: Sostieni iNaturalist
@@ -4078,6 +4106,11 @@ it:
   this_will_refresh_listed_taxa: Questa operazione aggiornerà l'elenco dei taxa della lista. L'operazione durerà un po', quindi usala con moderazione e con brevi checklist
   this_will_re_apply_all_list_rules: |
     Questa operazione riapplicherà le regole ai taxa elencati e aggiornerà le statistiche associate, ad esempio eliminando i taxa che non sono elencati o non sono compresi nel rango selezionato. Non aggiungerà nessun nuovo taxa. Potrà impiegarci alcuni minuti.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Questo rimuoverà la capacità di iNaturalist di accedere a questo account per tuo conto
+    finché non concedi nuovamente l'accesso. Potrebbe essere necessario modificare le impostazioni sul sito esterno per impedire completamente l'accesso.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Questo ti farà uscire dalla sessione corrente su questa applicazione.
   this_will_try_to_add_tags_to_your_flickr: Questa operazione proverà ad aggiungere etichette alle tue foto Flickr. Continuare?
   this_year: Questo anno
@@ -4900,8 +4933,14 @@ it:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autorizzi %{application} ad usare il tuo account?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Questa applicazione potrà:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Di più su %{application}
     observations:
       community_id:
@@ -6926,12 +6965,12 @@ it:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Avvertenza
+  wikimedia: Wikimedia
   wild: Selvatico
   will_paginate:
     previous_label: "&#8592; Precedente"
     next_label: "Successivo &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Non hai autorizzato nessuna applicazione ad utilizzare il tuo account iNaturalist."
   you_will_no_longer_be_following_or_trusting: "Non potrai più seguire o fidarti di %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

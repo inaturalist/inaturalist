@@ -162,6 +162,7 @@ ca:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre les formes d'establiment
+  about_license_options: Sobre les opcions de Llicències
   about_licenses: Sobre les llicències
   about_muting: Quant a Silenciar
   #Header for a section describing taxon names
@@ -506,6 +507,11 @@ ca:
   #Label for an option to show/include content by any user
   any_user: Qualsevol
   anyone: Qualsevol
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicació
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicacions
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
@@ -893,8 +899,16 @@ ca:
   confirm_your_info: Confirmeu les vostres dades
   confirming_ids: Confirmació d'Identificació
   confirming_ids_description: Si ho desactiveu no sereu informats quan algú fa una identificació que correspon amb la vostra.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Connectar
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Connecteu-vos a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes vinculats
+  connected_accounts_description: Els comptes connectats són els comptes d'altres Apps o llocs Web a les quals heu autoritzat a accedir a iNaturalist per facilitar l'inici de la vostra sessió, la importació de fotografies o altres funcions.
+  connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
   connecting_to_facebook: "Connectant-se a Facebook..."
@@ -1024,7 +1038,6 @@ ca:
   created_on: Creat el
   creating_your_account: "Creant el vostre compte..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
-  creative_commons_licenses: Llicències Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, llevat que s'indiqui el contrari."
   critically_endangered: En perill crític
   css_description: Això s'inclourà després de tots els altres CSS de la pàgina.
@@ -1201,6 +1214,12 @@ ca:
   disable_comments: Desactiva els comentaris
   disable_comments_desc: Evitar que altres persones puguin afegir nous comentaris
   disagree_: En desacord
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Desconnectar
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: DESCONNECTAR
   disconnect_provider: "Desconnecteu-vos de %{provider}"
   display: Mostra
   display_link_to_checklist: Mostrar un enllaç a la llista del projecte des de la pàgina del projecte
@@ -1372,9 +1391,10 @@ ca:
   export_observations: Exporta observacions
   export_with_private_coordinates: Exporteu amb coordenades ocultes
   exporting: "Exportant..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Aplicacions externes
   external_taxon_including_children: Tàxon extern (inclosos els inferiors)
-  external_taxon_rank: Rang del tàxon extern
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
@@ -1389,6 +1409,7 @@ ca:
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
   failed_to_save_record_with_errors: "No s'han pogut desar els registres(s): %{errors}."
+  failed_to_unlink_your_account: Error en desconnectar els comptes
   'false': 'Fals'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorits
@@ -1550,6 +1571,7 @@ ca:
   fungi:
     one: fong
     other: fongs
+  gbif: GBIF
   gbif_occurrences: Registres de GBIF
   generate_taxonomic_tags_for_flickr: Genera etiquetes taxonòmiques per a les vostres fotos de Flickr.
   generate_widget: Genera el giny
@@ -1729,6 +1751,7 @@ ca:
   inat_believes_this_is_a_complete_listing: "%{site_name} creu que el llistat d'aquest tàxon en aquest lloc és complet."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
   inaturalist_activity_notifications: "Notificacions d'Activitat de %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacions d'iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
   inaturalist_places: "Llocs %{site_name}"
@@ -2022,6 +2045,7 @@ ca:
     <a href="/login">Inicieu sessió</a> o <a href="/signup">Registreu-vos</a> per afegir identificacions.
   log_out: Surt
   log_out_caps: SURT
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sortir de %{site_name}?"
   log_scale_label: Registre
   login_slash_username: Entrada/nom d'usuari
@@ -3484,6 +3508,8 @@ ca:
   reviewed: Revisat
   revoke: Revoca
   revoke_caps: REVOCAR
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Revocar %{site_name}?"
   rg_observations: Observacions de Grau de Recerca
   role: Permís
@@ -3811,6 +3837,8 @@ ca:
   suggest_an_identification: Suggeriu una Identificació
   suggest_or_require_that: Suggereix o sol·licita que els col·laboradors omplin aquests camps per a les observacions que afegeixin al vostre projecte.
   suggestions: Suggeriments
+  suitable_for_the_global_biodiversity_information_facility: Adequat pel Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adequat per a la Wikipedia i altres projectes de la Wikimedia Foundation
   summary: Resum
   supporting: Recolzar
   support_inaturalist: Ajudeu iNaturalist
@@ -4082,6 +4110,10 @@ ca:
   this_will_refresh_listed_taxa: Això actualitzarà els taxons llistats. Això pot requerir una mica de temps, així que utilitzeu-lo amb moderació i amb llistes de comprovació curtes
   this_will_re_apply_all_list_rules: |
     S’aplicaran novament totes les normes de la llista als tàxons, per exemple, per rebutjar tàxons que no estan dins el tàxon de la llista de vida o dins el rang seleccionat. No agregarà cap tàxon. Aquesta acció pot trigar uns minuts.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Això eliminarà l'autorització a iNaturalist per accedir a aquest compte en nom vostre fins que la torneu a atorgar. Pot ser que necessiteu canviar les vostres preferències al lloc extern per evitar l'accés completament.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Això us farà sortir de la sessió actual d'aquesta aplicació.
   this_will_try_to_add_tags_to_your_flickr: Això intentarà afegir etiquetes a les vostres fotos de Flickr. Voleu continuar?
   this_year: Aquest any
@@ -4912,8 +4944,14 @@ ca:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autoritzeu a %{application} per utilitzar el vostre compte?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Aquesta aplicació podrà:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Més sobre %{application}
     observations:
       community_id:
@@ -6894,12 +6932,12 @@ ca:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Atenció
+  wikimedia: Wikimedia
   wild: Salvatge
   will_paginate:
     previous_label: "← Anterior"
     next_label: "Següent →"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "No heu autoritzat cap aplicació a utilitzar el vostre compte d'iNaturalist."
   you_will_no_longer_be_following_or_trusting: "Ja no seguireu ni confiareu en %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

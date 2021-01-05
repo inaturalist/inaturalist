@@ -774,7 +774,10 @@ es-MX:
   confirm_new_password: Confirma la nueva contraseña
   confirm_now: Confirma ahora
   confirm_your_info: Confirma tu información
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conecta a  %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas conectadas
   connecting_flickr: "Conectando a Flickr"
   connecting_to_facebook: "Conectando a Facebook..."
@@ -1137,7 +1140,6 @@ es-MX:
   export_with_private_coordinates: Exportar con coordenadas privadas
   exporting: "Exportando..."
   external_taxon_including_children: Taxón externo (incluyendo descendientes)
-  external_taxon_rank: Rango de taxón externo
   extinct: Extinta
   extinct_in_the_wild: Extinta en vida silvestre
   extra_properties: Propiedades adicionales
@@ -3997,8 +3999,14 @@ es-MX:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autoriza a la %{application} para usar su cuenta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
       community_id:

@@ -161,6 +161,7 @@ da:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om oprindelse
+  about_license_options: Om Licensmuligheder
   about_licenses: Om licenser
   about_muting: Om slukning
   #Header for a section describing taxon names
@@ -514,6 +515,11 @@ da:
   #Label for an option to show/include content by any user
   any_user: Hvilken som helst
   anyone: Enhver
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Program
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikationer
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -903,8 +909,16 @@ da:
   confirm_your_info: Bekræft din info
   confirming_ids: Bekræfter ID'er
   confirming_ids_description: Slås dette fra, får du ikke længere besked om ID'er, som er i overensstemmelse med dine.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Forbind
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Tilknyt %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Tilknyttede konti
+  connected_accounts_description: Forbundne konti er dine konti fra andre apps eller websteder, som du har givet iNaturalist adgang til på dine vegne for at understøtte indlogning, fotoimport eller anden funktionalitet.
+  connected_accounts_titlecase: Forbundne konti
   connecting_flickr: "Tilknytter til Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Forbind til Flickr igen for at godkende skriverettigheder
   connecting_to_facebook: "Tilknytter til Facebook"
@@ -1038,7 +1052,6 @@ da:
   created_on: Oprettet den
   creating_your_account: "Opretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr fotos tagget
-  creative_commons_licenses: Creative Commons-licenser
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre andet er noteret."
   critically_endangered: kritisk truet
   css_description: Dette vil blive inkluderet efter alle andre CSS på siden.
@@ -1217,6 +1230,12 @@ da:
   disable_comments: Deaktivér kommentarer
   disable_comments_desc: Forhindr folk i at tilføje nye kommentarer
   disagree_: Uenig
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Frakobl
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: FRAKOBL
   disconnect_provider: "Frakobl %{provider}"
   display: Visning
   display_link_to_checklist: Vis link til projektliste fra projektside
@@ -1392,9 +1411,10 @@ da:
   export_observations: Eksportér observationer
   export_with_private_coordinates: Eksportér med skjulte koordinater
   exporting: "Eksporterer..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Eksterne applikationer
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
-  external_taxon_rank: Ekstern takson rang
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
@@ -1409,6 +1429,7 @@ da:
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
   failed_to_save_record_with_errors: "Mislykkedes at gemme post: %{errors}"
+  failed_to_unlink_your_account: Kunne ikke fjerne din kontotilknytning
   'false': 'Falsk'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
@@ -1572,6 +1593,7 @@ da:
   fungi:
     one: svamp
     other: svampe
+  gbif: GBIF
   gbif_occurrences: GBIF forekomster
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
@@ -1752,6 +1774,7 @@ da:
   inat_believes_this_is_a_complete_listing: "%{site_name} mener, at dette er en komplet liste over denne taxon på dette sted."
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_activity_notifications: "%{site_name}-aktivitetsnotifikationer"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_is_a_joint_initiative: "%{site_name} er et fælles initiativ fra California Academy of Sciences og National Geographic Society."
   inaturalist_places: "%{site_name} steder"
@@ -2044,6 +2067,7 @@ da:
     <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje identifikationer.
   log_out: Log ud
   log_out_caps: LOG UD
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log ud af %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / brugernavn
@@ -3536,6 +3560,8 @@ da:
   reviewed: Gennemgået
   revoke: Tilbagekald
   revoke_caps: TILBAGEKALD
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Tilbagekald %{site_name}?"
   rg_observations: FK observationer
   role: Rolle
@@ -3865,6 +3891,8 @@ da:
   suggest_an_identification: Foreslå en identifikation
   suggest_or_require_that: Opret observationsfelter, som KAN eller SKAL udfyldes af dem der bidrager med observationer til dit projekt.
   suggestions: Forslag
+  suitable_for_the_global_biodiversity_information_facility: Velegnet til Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Velegnet til Wikipedia og andre Wikimedia Foundation-projekter
   summary: Oversigt
   supporting: Støtter
   support_inaturalist: Støt iNaturalist
@@ -4157,6 +4185,10 @@ da:
   this_will_refresh_listed_taxa: Dette opdaterer de angivne taksa på denne liste. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
   this_will_re_apply_all_list_rules: |
     Dette vil gendanne alle listeregler til den opførte taksa og opdatere eventuelle tilknyttet statistik ", f.eks. afvises taksa, der ikke er inden for takson listen eller ikke er af den valgte rang. Det tilføjer ikke nogen nye taksa. Det kan tage et par minutter.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Dette fjerner iNaturalists mulighed for at opnå adgang til denne konto på dine vegne, indtil du gentildeler adgang. Du skal muligvis ændre dine indstillinger på det eksterne websted for helt at forhindre adgang.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Dette vil logge dig ud af din nuværende session i denne applikation.
   this_will_try_to_add_tags_to_your_flickr: Dette vil forsøge at tilføje tags til dine Flickr foto´s. Fortsæt?
   this_year: Dette år
@@ -5051,8 +5083,14 @@ da:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Tillad %{application} at bruge din konto?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Denne applikation vil være i stand til:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Mere om %{application}
     observations:
       community_id:
@@ -5074,6 +5112,8 @@ da:
           </p>
         you_have_opted_out: Du fravalgte fælleskabs identifikationerne
         opt_in_for_this_observation: Opt ind for denne observation
+        your_id_does_not_match: |
+          Dit ID (<span class="bold">%{taxon_name}</span>) matcher ikke fællesskabets ID
       copy_tip: "Tilføj en ny observation ved at kopiere denne observations dato, sted, fotos og observationsfelter."
       captive_help_html: |
         Var organismen <strong> dyrket </strong> eller
@@ -7409,12 +7449,12 @@ da:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Advarsel
+  wikimedia: Wikimedia
   wild: vild
   will_paginate:
     previous_label: "&#8592; Forrige."
     next_label: "Næste &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Du har ikke godkendt nogle programmer til brug af din iNaturalist-konto."
   you_will_no_longer_be_following_or_trusting: "Du vil ikke længere følge eller stole på %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

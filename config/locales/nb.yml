@@ -490,6 +490,8 @@ nb:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Alle
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikasjoner
   apply_to_selected: Bruk på utvalgte
   apply_captive_cultivated: "Bruk i fangenskap / dyrket"
@@ -878,7 +880,10 @@ nb:
   confirm_your_info: Bekreft din info
   confirming_ids: Bekreftende ID'er
   confirming_ids_description: Hvis du skrur av dette vil du ikke lenger bli varslet om ID-er som er enige med deg.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Koble til %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Koblete kontoer
   connecting_flickr: "Kobler til Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
@@ -1007,7 +1012,6 @@ nb:
   created_on: Opprettet på
   creating_your_account: "Oppretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr bilder merket
-  creative_commons_licenses: Creative Commons-lisenser
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre annet er angitt."
   critically_endangered: Kritisk truet
   css_description: Dette vil inkluderes etter resten av css'en på siden.
@@ -1348,9 +1352,10 @@ nb:
   export_observations: Eksporter observasjoner
   export_with_private_coordinates: Eksporter med skulte koordinater
   exporting: "Eksporterer..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Eksterne applikasjoner
   external_taxon_including_children: Externt takson (inklusiv etterkommere)
-  external_taxon_rank: Ekstern taksonrang
   extinct: utdødd
   extinct_in_the_wild: Utdødd i vill tilstand
   extra_properties: Ekstra egenskaper
@@ -1703,6 +1708,7 @@ nb:
   inat_account_action: "%{site_name}&#58; Konto &#58;% %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} tror at dette er en dekkende liste over taksonet på dette stedet."
   inat_user_profile: "%{site_name}: %{user} sin profil"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist applikasjoner"
   inaturalist_is_a_joint_initiative: "%{site_name} er et felles initiativ av California Academy of Sciences og National Geographic Society."
   inaturalist_places: "%{site_name}-steder"
@@ -1989,6 +1995,7 @@ nb:
     <a href="/login">Logg på</a> eller <a href="/signup">registrer deg</a> for å legge til bestemmelser.
   log_out: Logg ut
   log_out_caps: LOGG UT
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logg ut av %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / brukernavn
@@ -4782,8 +4789,14 @@ nb:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Tillat at %{application} kan bruke din konto?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Dette programmet vil kunne:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Mer om %{application}
     observations:
       community_id:

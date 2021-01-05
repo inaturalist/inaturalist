@@ -495,6 +495,8 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicações
   apply_to_selected: Aplicar aos selecionados
   apply_captive_cultivated: "Aplicar em cativeiro/cultivo"
@@ -859,7 +861,10 @@ pt:
   confirm_your_info: Confirme as suas informações
   confirming_ids: Confirmando identificações
   confirming_ids_description: Se desativar isto, não voltará a ser notificado sobre os IDs que concordam com os seus.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Ligar a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas vinculadas
   connecting_flickr: "Ligando ao Flickr..."
   connecting_to_facebook: "Ligando ao Facebook..."
@@ -950,7 +955,6 @@ pt:
   created_on: 'Criado em:'
   creating_your_account: "A criar a sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons do Flickr marcadas
-  creative_commons_licenses: Licença «Creative Commons»
   creative_commons_unless_otherwise_noted: "Creative Commons salvo indicação em contrário."
   critically_endangered: criticamente em perigo de extinção
   css_description: Esta será incluída após todos os outros css na página.
@@ -1224,6 +1228,8 @@ pt:
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com as coordenadas privadas
   exporting: "A exportar..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Aplicações externas
   extinct: extinto
   extinct_in_the_wild: extinto na natureza
@@ -1488,6 +1494,7 @@ pt:
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que esta é a lista completa deste táxon para este local."
   inat_user_profile: "%{site_name}: %{user}'s Perfil"
   inaturalist_activity_notifications: "Notificações de Atividade do %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicações iNaturalist"
   inaturalist_places: "%{site_name} Locais"
   info: Informação
@@ -1727,6 +1734,7 @@ pt:
   log_in: Entrar
   log_out: Sair
   log_out_caps: ENCERRAR SESSÃO
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Logarítmica
   login_slash_username: Iniciar sessão / nome de utilizador
@@ -2708,6 +2716,8 @@ pt:
   reviewed: Revisto
   revoke: Anular
   revoke_caps: ANULAR
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Anular %{site_name}?"
   rg_observations: Observações GP
   role: Função

@@ -241,6 +241,7 @@ cs:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O způsobu vzniku
+  about_license_options: O možnostech licence
   about_licenses: O licencích
   about_muting: O ztlumení
   #Header for a section describing taxon names
@@ -649,6 +650,11 @@ cs:
   #Label for an option to show/include content by any user
   any_user: Kterýkoliv
   anyone: Kdokoliv
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplikace
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplikace
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
@@ -1032,8 +1038,16 @@ cs:
   confirm_your_info: Potvrďte vaše informace
   confirming_ids: Potvrzování ID
   confirming_ids_description: Pokud toto vypnete, již nebudete upozorňováni na ID, která s vámi souhlasí.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Připojit
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Připojit se k %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Připojené účty
+  connected_accounts_description: Připojené účty jsou vaše účty z jiných aplikací nebo webových stránek, ke kterým jste povolili iNaturalist přístup vaším jménem, za účelem přihlášení, importu fotek nebo jiných funkcí.
+  connected_accounts_titlecase: Připojené účty
   connecting_flickr: "Připojování k Flickru..."
   connect_to_flickr_again_to_authorize_write_permissions: Připojte se znovu k Flickru a autorizujte oprávnění pro zápis
   connecting_to_facebook: "Připojování k Facebooku..."
@@ -1163,7 +1177,6 @@ cs:
   created_on: Vytvořeno dne
   creating_your_account: "Zakládám váš účet..."
   creative_commons_flickr_tagged: Označeny fotky Creative Commons na Flickru
-  creative_commons_licenses: Licence Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, pokud není uvedeno jinak."
   critically_endangered: kriticky ohrožený
   css_description: Toto bude přidáno následně po všech ostatních css na stránce.
@@ -1340,6 +1353,12 @@ cs:
   disable_comments: Zakázat komentáře
   disable_comments_desc: Zabránit lidem přidávat nové komentáře
   disagree_: Nesouhlasím
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Odpojit
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: ODPOJIT
   disconnect_provider: "Odpojit %{provider}"
   display: Zobrazení
   display_link_to_checklist: Zobrazit odkaz na seznam projektu ze stránky projektu
@@ -1513,9 +1532,10 @@ cs:
   export_observations: Exportovat pozorování
   export_with_private_coordinates: Exportovat se skrytými souřadnicemi
   exporting: "Exportování..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Externí aplikace
   external_taxon_including_children: Externí taxon (včetně mláďat)
-  external_taxon_rank: Externí pořadí taxonů
   extinct: vyhynulý
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
@@ -1530,6 +1550,7 @@ cs:
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
   failed_to_save_record: "Nelze uložit záznam. Prosím, zkuste to znovu o chvíli později."
   failed_to_save_record_with_errors: "Chyba při ukládání modelu: %{errors}"
+  failed_to_unlink_your_account: Nepodařilo se odpojit váš účet
   'false': 'Nepravda'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Oblíbené
@@ -1694,6 +1715,7 @@ cs:
     few: hub
     many: hub
     other: houby
+  gbif: GBIF
   gbif_occurrences: Výskyty GBIF
   generate_taxonomic_tags_for_flickr: Generovat taxonomické tagy pro vaše fotky na Flickru.
   generate_widget: Generovat widget
@@ -1879,6 +1901,7 @@ cs:
   inat_believes_this_is_a_complete_listing: "Podle %{site_name} je toto je kompletní výpis tohoto taxonu na tomto místě."
   inat_user_profile: "%{site_name}: Profil uživatele %{user}"
   inaturalist_activity_notifications: "Oznámení o aktivitě %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplikace iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} je společná iniciativa Kalifornské akademie věd a Národní geografické společnosti."
   inaturalist_places: "%{site_name} Místa"
@@ -2170,6 +2193,7 @@ cs:
     Pro přidávání identifikací se <a href="/login">přihlaste</a> nebo <a href="/signup">zaregistrujte</a>.
   log_out: Odhlášení
   log_out_caps: ODHLÁSIT SE
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
   log_scale_label: Protokol
   login_slash_username: Prihlášení / uživatelské jméno
@@ -3675,6 +3699,8 @@ cs:
   reviewed: Zkontrolováno
   revoke: Odvolat
   revoke_caps: ODVOLAT
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Odmítnout %{site_name}?"
   rg_observations: Pozorování VS
   role: Funkce
@@ -4008,6 +4034,8 @@ cs:
   suggest_an_identification: Navrhnout identifikaci
   suggest_or_require_that: Navrhnout nebo požadovat, aby přispěvatelé vyplnili tato pole pro pozorování, která přidají k vašemu projektu.
   suggestions: Návrhy
+  suitable_for_the_global_biodiversity_information_facility: Vhodné pro Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Vhodné pro Wikipedii a další projekty Wikimedia Foundation
   summary: Přehled
   supporting: Podpora
   support_inaturalist: Podpora iNaturalist
@@ -4317,6 +4345,10 @@ cs:
   this_will_refresh_listed_taxa: Tímto se obnoví taxony v tomto seznamu. Může to chvíli trvat, proto prosíme, abyste tento nástroj používali střídmě a pro malé seznamy.
   this_will_re_apply_all_list_rules: |
     Tímto se znovu nastaví všechna pravidla v seznamu pro taxony v seznamu a aktualizují se veškeré související statistiky, např. odmítnutí taxonů, které nejsou na seznamu taxonů nebo nepatří do vybrané kategorie. Nepřidají se žádné nové taxony. Může to pár minut trvat.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Tímto odstraníte možnost iNaturalist přistupovat k tomuto účtu vaším jménem, dokud znovu neudělíte přístup. Možná budete muset změnit nastavení na externím webu, abyste zcela zabránili přístupu.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Toto vás odhlásí z vaší aktuální relace v této aplikaci.
   this_will_try_to_add_tags_to_your_flickr: Tímto dojde k pokusu o přidání tagů k vašim fotkám na Flickru. Pokračovat?
   this_year: Tento rok
@@ -5186,8 +5218,14 @@ cs:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Chcete autorizovat %{application} k použití vašeho účtu?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Tato aplikace bude moci:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Více o %{application}
     observations:
       community_id:
@@ -7337,12 +7375,12 @@ cs:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Upozornění
+  wikimedia: Wikimedia
   wild: divoký
   will_paginate:
     previous_label: "&#8592; Předch"
     next_label: "Další &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Neautorizovali jste žádné aplikace pro používání vašeho účtu iNaturalist."
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Od Z do A

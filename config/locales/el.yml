@@ -780,7 +780,10 @@ el:
   confirm_new_password: Επιβεβαίωση νέου κωδικού πρόσβασης
   confirm_now: Επιβεβαίωση τώρα
   confirm_your_info: Επιβεβαίωση των πληροφοριών σας
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Σύνδεση με %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Συνδεδεμένοι λογαριασμοί
   connecting_flickr: "Σύνδεση με το Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Συνδεθείτε στο Flickr ξανά για να εγκρίνετε τα δικαιώματα εγγραφής
@@ -1195,7 +1198,6 @@ el:
   export_with_private_coordinates: Εξαγωγή με απόκρυψη γεωγραφικών συντεταγμένων
   exporting: "Εξαγωγή..."
   external_taxon_including_children: Εξωτερική ταξινομική βαθμίδα (συμπεριλαμβανομένων παιδιών)
-  external_taxon_rank: Εξωτερική κατάταξη ταξινομικής βαθμίδας
   extinct: εξαφανισμένο
   extinct_in_the_wild: εξαφανισμένο στη φύση
   extra_properties: Πρόσθετες ιδιότητες
@@ -4368,8 +4370,14 @@ el:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Εξουσιοδοτείτε το %{application} να χρησιμοποιήσει τον λογαριασμό σας;
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Αυτή η εφαρμογή θα μπορεί να:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Περισσότερα για το %{application}
     observations:
       community_id:

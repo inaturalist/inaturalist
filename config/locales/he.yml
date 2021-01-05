@@ -936,7 +936,10 @@ he:
   confirm_new_password: אישור ססמה חדשה
   confirm_now: אשר עכשיו
   confirm_your_info: אשר את המידע שלך
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "התחבר ל %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
@@ -3777,6 +3780,8 @@ he:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: עוד מידע על %{application}
     observations:
       community_id:

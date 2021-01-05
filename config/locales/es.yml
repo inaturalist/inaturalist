@@ -161,6 +161,7 @@ es:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
+  about_license_options: Acerca de las opciones de licencia
   about_licenses: Acerca de las licencias
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
@@ -511,6 +512,11 @@ es:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquiera
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicación
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicaciones
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
@@ -898,8 +904,16 @@ es:
   confirm_your_info: Confirma tu información
   confirming_ids: Confirmación de Identificación
   confirming_ids_description: Si lo desactivas, ya no se te notificará sobre identificaciones que coincidan con la tuya.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Conectar
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conectar a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas vinculadas
+  connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para permitir iniciar sesión, importar de fotos u otra funciones.
+  connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
@@ -1031,7 +1045,6 @@ es:
   created_on: Creado el
   creating_your_account: "Creando tu cuenta..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
-  creative_commons_licenses: Licencia Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
   css_description: Esto se incluirá después de todas las otras css en la página.
@@ -1208,6 +1221,12 @@ es:
   disable_comments: Desactivar comentarios
   disable_comments_desc: Evitar que la gente añada nuevos comentarios
   disagree_: No aceptar
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Desconectar
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconectarse de %{provider}"
   display: Muestra
   display_link_to_checklist: Mostrar enlace a la lista del proyecto desde la página del proyecto
@@ -1380,9 +1399,10 @@ es:
   export_observations: Exporta observaciones
   export_with_private_coordinates: Exporta con coordenadas privadas
   exporting: "Exportando..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Aplicaciones externas
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
-  external_taxon_rank: Rango de taxón externo
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
   extra_properties: Propiedades extra
@@ -1397,6 +1417,7 @@ es:
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   failed_to_save_record_with_errors: "Error al guardar el registro: %{errors}"
+  failed_to_unlink_your_account: Error al desconectar tu cuenta
   'false': 'No'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
@@ -1559,6 +1580,7 @@ es:
   fungi:
     one: hongo
     other: hongos
+  gbif: GBIF
   gbif_occurrences: Registros de GBIF
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para tus fotos de Flickr.
   generate_widget: Genera el widget
@@ -1740,6 +1762,7 @@ es:
   inat_believes_this_is_a_complete_listing: "%{site_name} cree que este es un listado completo de este taxón en este lugar."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
   inaturalist_activity_notifications: "Notificaciones de Actividad de %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicaciones de iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society."
   inaturalist_places: "Lugares %{site_name}"
@@ -2033,6 +2056,7 @@ es:
     <a href="/login">Inicie sesión</a> o <a href="/signup">regístrese</a> para añadir identificaciones.
   log_out: Cerrar Sesión
   log_out_caps: CERRAR SESIÓN
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "¿Cerrar sesión de %{site_name}?"
   log_scale_label: Registro
   login_slash_username: Registro / nombre de usuario
@@ -3506,6 +3530,8 @@ es:
   reviewed: Revisada
   revoke: Revocar
   revoke_caps: REVOCAR
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "¿Revocar %{site_name}?"
   rg_observations: GI Observaciones
   role: Permiso
@@ -3836,6 +3862,8 @@ es:
   suggest_an_identification: Sugerir una identificación
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes llenen estos campos para las observaciones que añadan a tu proyecto.
   suggestions: Sugerencias
+  suitable_for_the_global_biodiversity_information_facility: Adecuado para el Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adecuado para Wikipedia y otros proyectos de la Wikimedia Foundation
   summary: Resumen
   supporting: Apoyo a
   support_inaturalist: Apoya iNaturalist
@@ -4106,6 +4134,10 @@ es:
   this_will_refresh_listed_taxa: Esto actualizará los taxones incluidos en esta lista. Esto puede tomar un tiempo así que por favor utilícelo con moderación y con pequeñas listas de comprobación
   this_will_re_apply_all_list_rules: |
     Esto aplicará nuevamente todas las reglas de la lista a los taxones, por ejemplo rechazar taxones que no están dentro del taxón de la lista de vida o dentro del rango seleccionado. No agregará ningún taxón. Esto podría tardar unos minutos.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Esto eliminará la capacidad de iNaturalist para acceder a esta cuenta en tu nombre hasta que le permitas el acceso de nuevo. Puede que necesites cambiar la configuración en el sitio externo para impedir completamente el acceso.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Esto cerrará la sesión actual en esta aplicación.
   this_will_try_to_add_tags_to_your_flickr: Esto tratará de agregar etiquetas a tus fotos de Flickr. ¿Deseas continuar?
   this_year: Este año
@@ -4969,8 +5001,14 @@ es:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar tu cuenta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
       community_id:
@@ -5779,8 +5817,18 @@ es:
       year:
         compare_desc: |
           ¿Cómo ha sido este año comparado con tus años anteriores? Con un uso de tres o más años de uso podemos empezar a comparar estadísticas de vuestra actividad anual.
+        compare_site_desc: |
+          ¿Cómo ha sido este año comparado con los anteriores? La barra verde muestra este
+          año, la barra vertical blanca muestra el año pasado y las áreas de fondo gris
+          muestran el año con menos y más observaciones, así como el promedio de
+          todos los años.
         compared_to_previous_years: Comparar con el año anterior
         donate_title: "Gracias a todos nuestros colaboradores"
+        donate_desc_html: |
+          Gracias por haber sido tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin fines de lucro de California Academy of Sciences y National Geographic Society..
+          Está respaldado por un
+          <a href="%{team_url}"> reducido equipo</a> que desarrolla el diseño y la ingeniería del software para web, móvil y de <a href="%{seek_url}"> Seek de iNaturalist </a>, además de administrar el soporte de la comunidad, las colaboraciones y las integraciones que mantienen todo en funcionamiento (¡y que crecen rápidamente!). El programa se soporta gracias a las numerosas subvenciones y donaciones, incluidas las donaciones de pequeños importes recibidas de muchos contribuyentes. Estamos especialmente agradecidos con los Donantes Mensuales cuyas contribuciones recurrentes nos ayudan a planificar el futuro. Usted puede donar en varias monedas para apoyar el núcleo de operaciones de iNaturalist operaciones. ¡Gracias a todos por su participación en hacer del %{year}
+          el año más importante de iNaturalist hasta ahora!
         donors: Donantes
         donors_guide_label_our_goal_is_1000: Nuestro objetivo es conseguir 1000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
@@ -7053,12 +7101,12 @@ es:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Aviso
+  wikimedia: Wikimedia
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"
     next_label: "Siguiente &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "No has autorizado ninguna aplicación a usar tu cuenta de iNaturalista."
   you_will_no_longer_be_following_or_trusting: "Ya no seguirás o confiarás en %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

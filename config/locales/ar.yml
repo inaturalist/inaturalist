@@ -582,7 +582,10 @@ ar:
   confirm_new_password: تأكيد كلمة السر الجديدة
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "الاتصال بـ%{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
   connecting_to_facebook: "جارٍ الاتصال بفيسبوك..."
@@ -961,7 +964,6 @@ ar:
   export_with_private_coordinates: تصدير بإحداثيات مخفية
   exporting: "جارٍ التصدير..."
   external_taxon_including_children: الأصنوفة الخارجية (بما في ذلك الأطفال)
-  external_taxon_rank: تصنيف الأصنوفة الخارجية
   extinct: منقرض
   extinct_in_the_wild: منقرض في البرية
   extra_properties: خصائص إضافية
@@ -4059,8 +4061,14 @@ ar:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: تخويل %{application} لاستخدام حسابك؟
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "سيكون هذا التطبيق قادرا على:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: المزيد عن %{application}
     observations:
       community_id:

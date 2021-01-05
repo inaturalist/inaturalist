@@ -514,6 +514,8 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique captif/cultivé"
@@ -904,7 +906,10 @@ fr:
   confirm_your_info: Confirmer votre information
   confirming_ids: M'informer des confirmations
   confirming_ids_description: Si vous désactivez cette option, vous ne recevrez plus de notification quand une identification concorde avec la vôtre.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Connectez-vous à %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
   connect_to_flickr_again_to_authorize_write_permissions: Se connecter à nouveau à Flickr pour autoriser les autorisations d'écriture
@@ -1037,7 +1042,6 @@ fr:
   created_on: Créé@{f:e|} le
   creating_your_account: "Création de votre compte…"
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
-  creative_commons_licenses: Licences Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
   critically_endangered: Gravement menacée
   css_description: Sera inclus après tous les autres CSS de la page.
@@ -1390,9 +1394,10 @@ fr:
   export_observations: Exporter les observations
   export_with_private_coordinates: Exporter avec les coordonnées masquées
   exporting: "Exportation en cours…"
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Applications externes
   external_taxon_including_children: Taxon externe (incluant les enfants)
-  external_taxon_rank: Rang du taxon externe
   extinct: disparue
   extinct_in_the_wild: Disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
@@ -1568,6 +1573,7 @@ fr:
   fungi:
     one: champignon
     other: champignons
+  gbif: GBIF
   gbif_occurrences: Présences selon le SMIB
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos photos ''Flickr''.
   generate_widget: Générer le widget
@@ -1756,6 +1762,7 @@ fr:
   inat_believes_this_is_a_complete_listing: "%{site_name} pense que c’est une liste complète de ce taxon dans ce lieu."
   inat_user_profile: "%{site_name} : Profil de %{user}"
   inaturalist_activity_notifications: "Notifications d'activité sur %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Applications iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} est une initiative conjointe de l’Académie des sciences de Californie et de la National Geographic Society."
   inaturalist_places: "Lieux d’%{site_name}"
@@ -2050,6 +2057,7 @@ fr:
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
   log_out: Se déconnecter
   log_out_caps: SE DECONNECTER
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Se déconnecter de %{site_name}?"
   log_scale_label: Trace
   login_slash_username: Connexion/nom d’utilisateur
@@ -3533,6 +3541,8 @@ fr:
   reviewed: Relu
   revoke: Révoquer
   revoke_caps: REVOQUER
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Révoquer %{site_name}?"
   rg_observations: Observations RG
   role: Rôle
@@ -4142,6 +4152,8 @@ fr:
   this_will_refresh_listed_taxa: Cette action rafraîchira les taxons répertoriés de la liste. Elle peut prendre un certain temps; veuillez l’utiliser avec modération et uniquement avec de petites listes de contrôle
   this_will_re_apply_all_list_rules: |
     Cette action appliquera de nouveau toutes les règles relatives à la liste aux taxons répertoriés et mettra à jour toutes les statistiques connexes, par ex. le rejet des taxons qui ne font pas partie des taxons répertoriés ou qui ne sont pas du rang sélectionné. Elle n’ajoutera aucun nouveau taxon. Cette action peut prendre un certain temps.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Cela va vous déconnecter de votre session sur cette application
   this_will_try_to_add_tags_to_your_flickr: Cette action tentera d’ajouter des étiquettes à vos photos Flickr. Voulez-vous continuer ?
   this_year: Cette année
@@ -5062,8 +5074,14 @@ fr:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autoriser %{application} à utiliser votre compte ?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Cette application pourra :"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Plus sur %{application}
     observations:
       community_id:
@@ -6090,7 +6108,7 @@ fr:
         compare_desc: |
           Quelle a été votre activité cette année par rapport aux années précédentes ? À partir de trois ans d'utilisation, nous pouvons commencer à comparer les paramètres d'activité sur une base annuelle.
         compare_site_desc: |
-          Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte montre cette année, la barre blanche l'année dernière, et les zones de fond gris les années les plus faibles et les plus fortes, ainsi que la moyenne de toutes les années.
+          Comment cette année s'est-elle déroulée par rapport aux précédentes ? La barre verte représente l'année en cours, la barre blanche l'année dernière, et les zones de fond gris les années les plus basses et les plus élevées, ainsi que la moyenne de toutes les années.
         compared_to_previous_years: Comparer aux années précédentes
         donate_title: "Remerciements Spéciaux à Tous Nos Soutiens"
         donate_desc_html: |
@@ -7542,12 +7560,12 @@ fr:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Avertissement
+  wikimedia: Wikimédia
   wild: Sauvage
   will_paginate:
     previous_label: "&#8592; Précédent"
     next_label: "Suivant &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Vous n'avez autorisé aucune application à utiliser votre compte iNaturalist."
   you_will_no_longer_be_following_or_trusting: "Vous ne suivrez ou ne ferez plus confiance à %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
