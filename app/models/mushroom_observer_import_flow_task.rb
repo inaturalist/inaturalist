@@ -264,6 +264,18 @@ class MushroomObserverImportFlowTask < FlowTask
         o.description = notes.text
       end
     end
+    if notes_fields = result.at_css( "> notes_fields" )
+      o.description ||= ""
+      notes_fields_hash = notes_fields.children.inject( {} ) do |memo, notes_field|
+        key = notes_field.at( "key" ).try(:text)
+        val = notes_field.at( "value" ).try(:text)
+        memo[key] = val if key && val
+        memo
+      end
+      unless notes_fields_hash.blank?
+        o.description += "\n\n#{notes_fields_hash.map{|k,v| "<strong>#{k}</strong>: #{v}"}.join( "\n\n" )}"
+      end
+    end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
       images.each do |image|
         image_url = "https://mushroomobserver.nyc3.digitaloceanspaces.com/orig/#{image[:id]}.jpg"
