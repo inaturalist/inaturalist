@@ -1031,7 +1031,6 @@ es:
   created_on: Creado el
   creating_your_account: "Creando tu cuenta..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
-  creative_commons_licenses: Licencia Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
   css_description: Esto se incluirá después de todas las otras css en la página.
@@ -1382,7 +1381,6 @@ es:
   exporting: "Exportando..."
   external_applications: Aplicaciones externas
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
-  external_taxon_rank: Rango de taxón externo
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
   extra_properties: Propiedades extra
@@ -5779,8 +5777,18 @@ es:
       year:
         compare_desc: |
           ¿Cómo ha sido este año comparado con tus años anteriores? Con un uso de tres o más años de uso podemos empezar a comparar estadísticas de vuestra actividad anual.
+        compare_site_desc: |
+          ¿Cómo ha sido este año comparado con los anteriores? La barra verde muestra este
+          año, la barra vertical blanca muestra el año pasado y las áreas de fondo gris
+          muestran el año con menos y más observaciones, así como el promedio de
+          todos los años.
         compared_to_previous_years: Comparar con el año anterior
         donate_title: "Gracias a todos nuestros colaboradores"
+        donate_desc_html: |
+          Gracias por haber sido tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin fines de lucro de California Academy of Sciences y National Geographic Society..
+          Está respaldado por un
+          <a href="%{team_url}"> reducido equipo</a> que desarrolla el diseño y la ingeniería del software para web, móvil y de <a href="%{seek_url}"> Seek de iNaturalist </a>, además de administrar el soporte de la comunidad, las colaboraciones y las integraciones que mantienen todo en funcionamiento (¡y que crecen rápidamente!). El programa se soporta gracias a las numerosas subvenciones y donaciones, incluidas las donaciones de pequeños importes recibidas de muchos contribuyentes. Estamos especialmente agradecidos con los Donantes Mensuales cuyas contribuciones recurrentes nos ayudan a planificar el futuro. Usted puede donar en varias monedas para apoyar el núcleo de operaciones de iNaturalist operaciones. ¡Gracias a todos por su participación en hacer del %{year}
+          el año más importante de iNaturalist hasta ahora!
         donors: Donantes
         donors_guide_label_our_goal_is_1000: Nuestro objetivo es conseguir 1000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
@@ -7058,7 +7066,6 @@ es:
     previous_label: "&#8592; Previa"
     next_label: "Siguiente &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "No has autorizado ninguna aplicación a usar tu cuenta de iNaturalista."
   you_will_no_longer_be_following_or_trusting: "Ya no seguirás o confiarás en %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
