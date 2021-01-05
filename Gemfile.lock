@@ -417,7 +417,7 @@ GEM
     mime-types-data (3.2018.0812)
     mimemagic (0.3.3)
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.0)
     minitest (5.14.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -427,8 +427,9 @@ GEM
     net-ssh (5.1.0)
     netrc (0.11.0)
     newrelic_rpm (6.2.0.354)
-    nokogiri (1.10.9)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.0)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
@@ -481,6 +482,7 @@ GEM
     polyglot (0.3.5)
     public_suffix (3.0.3)
     puma (3.12.6)
+    racc (1.5.2)
     rack (1.6.13)
     rack-cors (1.0.6)
       rack (>= 1.6.0)
@@ -728,7 +730,7 @@ DEPENDENCIES
   koala
   machinist!
   newrelic_rpm (~> 6.2.0)
-  nokogiri (~> 1.10.8)
+  nokogiri (~> 1.11.0)
   non-stupid-digest-assets
   objectify-xml!
   omniauth (>= 1.9.0)
