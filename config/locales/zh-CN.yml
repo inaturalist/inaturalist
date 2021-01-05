@@ -413,6 +413,19 @@ zh-CN:
   any_date: 任何
   #Label for an option to show content with any establishment means
   any_establishment: 任意
+  #Label for an option to show content with any license
+  any_license: 任意授权
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: 任何
+  #Label for an option to show content from any project
+  any_project: 任何
+  #Label for an option to show content with any quality grade
+  any_quality_grade: 任意
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: 任意
+  #Label for an option to show/include content by any user
+  any_user: 任意
   anyone: 任何人
   applications: 应用程序
   apply_to_selected: 申请选择
@@ -572,6 +585,7 @@ zh-CN:
   because_of: 因为
   before_importing_photos: 在导入照片前
   bg_color: 背景颜色
+  bio: 个人简介
   bio_description: 向其他iNaturalist用户介绍自己！
   bioblitz: 生物限时寻
   birds: 鸟
@@ -1251,7 +1265,6 @@ zh-CN:
   export_with_private_coordinates: 带私有坐标导出
   exporting: "正在导出……"
   external_taxon_including_children: 外部分类（包含子项）
-  external_taxon_rank: 外部分类级别
   extinct: 灭绝
   extinct_in_the_wild: 在野外已绝灭
   extra_properties: 额外属性
@@ -1667,6 +1680,7 @@ zh-CN:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: 锁定缩放等级
+  language_slash_locale: 本地语言
   language_slash_type: 语言/种类
   #Large photo size
   large: 大
@@ -1878,6 +1892,8 @@ zh-CN:
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">登录</a>或<a href="/signup">注册</a>以添加鉴定
   log_out: 退出登录
+  log_out_caps: 登出
+  log_out_of_application: "登出 %{site_name}？"
   log_scale_label: 日志
   login_slash_username: 登录 / 用户名
   logo:
@@ -2250,6 +2266,7 @@ zh-CN:
   note: 注释
   notes: 注释
   note_you_can_modify_the_height_attribute: "注意：您可以调整“height”属性来适应您页面的空间。"
+  notifications: 通知
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_of_mentions_description: "如果您关闭此功能，当有人在 %{site_name} 提及您时，您将不会收到任何通知。"
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
@@ -3329,6 +3346,7 @@ zh-CN:
   save_observation: 保存观察
   save_photos: 保存照片
   save_place: 保存地点
+  save_settings_caps: 保存设置
   save_trip: 保存旅行
   saved: 已提交
   saved_at_time: 保存于 %{time}
@@ -3415,6 +3433,9 @@ zh-CN:
   show_keyboard_shortcuts: 显示键盘快捷键
   show_less: 显示更少
   show_more: 显示更多
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: 显示“无批注”
   show_observation_photos: 显示观察照片
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
@@ -3449,6 +3470,7 @@ zh-CN:
   site_admins: 站点管理员
   site_name_place: "地点%{site_name}"
   site_observations_export_from_date: "于%{date}导出的%{site_name}观察"
+  site_staff: "%{site_name} 人员"
   site_stats: 网站统计
   site_taxon_page: "%{site_name}分类单元页"
   some_agree: 部分同意
@@ -4177,6 +4199,7 @@ zh-CN:
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
   white: 白色
   why_you_can_see_the_coordinates: 为什么你可以看到坐标
+  who_can_add_observation_fields_to_my_obs: 谁可以将观察字段添加到我的观察记录？
   who_can_add_observations_to_this_project?: 谁可以添加观察至此项目？
   who_can_see_the_coordinates: 谁可以查看坐标
   who_can_see_the_coordinates_observer: 观察者
