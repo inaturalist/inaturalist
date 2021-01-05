@@ -1008,7 +1008,6 @@ fi:
   created_on: Luotu
   creating_your_account: "Käyttäjätunnustasi luodaan..."
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
-  creative_commons_licenses: Creative Commons -lisenssit
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
   css_description: Tämä liitetään sivulle kaiken muun css-muotoilun jälkeen.
@@ -1095,6 +1094,8 @@ fi:
   decrease_brightness: Vähennä kirkkautta
   #Default option
   default: oletus
+  #Default option
+  default_: Oletus
   default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
   default_photo_license: Oletuslisenssi kuville
@@ -1350,7 +1351,6 @@ fi:
   export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: "Viedään..."
   external_applications: Ulkopuolinen sovellus
-  external_taxon_rank: Ulkoinen taksonitaso
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
@@ -1839,6 +1839,7 @@ fi:
     italian: Italia
     japanese: Japani
     korean: Korea
+    latvian: Latvia
     lithuanian: Liettua
     luxembourgish: Luksemburgi
     maltese: Malta
@@ -1945,6 +1946,7 @@ fi:
     ko: korea
     lb: luxemburg
     lt: liettua
+    lv: Latvia
     mk: makedonia
     nb: kirjanorja
     nl: hollanti
@@ -6019,7 +6021,6 @@ fi:
     previous_label: "&#8592; Edellinen"
     next_label: "Seuraava &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Et ole antanut lupaa millekään sovellukselle käyttää iNaturalist-tiliäsi."
   you_will_no_longer_be_following_or_trusting: "Et enää seuraa tai luota käyttäjään %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
