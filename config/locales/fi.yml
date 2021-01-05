@@ -506,6 +506,8 @@ fi:
   #Label for an option to show/include content by any user
   any_user: Mikä tahansa
   anyone: Kuka tahansa
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Sovellukset
   apply_to_selected: Käytä valittuihin
   apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
@@ -888,7 +890,10 @@ fi:
   confirm_your_info: Vahvista tietosi
   confirming_ids: Tunnistusten vahvistus
   confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Yhdistä palveluun %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
@@ -1350,6 +1355,8 @@ fi:
   export_observations: Vie havaintoja
   export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: "Viedään..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Ulkopuolinen sovellus
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
@@ -1690,6 +1697,7 @@ fi:
   inat_believes_this_is_a_complete_listing: "%{site_name} uskoo, että tämä on täydellinen luettelo tästä taksonista tässä paikassa."
   inat_user_profile: "%{site_name}: Käyttäjän %{user} profiili"
   inaturalist_activity_notifications: "%{site_name} tapahtumailmoitukset"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist sovellukset"
   inaturalist_is_a_joint_initiative: "%{site_name} on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite."
   inaturalist_places: "%{site_name} Paikat"
@@ -1978,6 +1986,7 @@ fi:
     <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi tunnistuksia.
   log_out: Kirjaudu ulos
   log_out_caps: Kirjaudu ulos
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kirjaudu ulos %{site_name}?"
   log_scale_label: Loki
   login_slash_username: Kirjautumis / käyttäjänimi
@@ -3328,6 +3337,8 @@ fi:
   reviewed: Tarkistettu
   revoke: Peruuta
   revoke_caps: PERUUTA
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Peru %{site_name}?"
   rg_observations: RG havainnot
   role: Rooli
@@ -3798,6 +3809,8 @@ fi:
   this_user_has_been_suspended_message: |
     Jos tämä on sinun tilisi ja luulet että tämä on tehty vahingossa, <a href="mailto:%{email}">ota yhteyttä</a>.
   this_will_add_listed_taxa: Tämä päivittää luettelon havaintojesi perusteella. Tämä voi kestää jonkin aikaa, joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Tämä kirjaa sinut pois nykyisestä istunnostasi tässä sovelluksessa.
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
   this_year: Tänä vuonna
@@ -4448,8 +4461,14 @@ fi:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Annatko sovellukselle %{application} luvan käyttää tunnustasi?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Tämä sovellus:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Lisätietoa sovelluksesta %{application}
     observations:
       community_id:
