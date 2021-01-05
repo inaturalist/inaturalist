@@ -531,6 +531,8 @@ nl:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Iedereen
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Toepassingen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
@@ -919,7 +921,10 @@ nl:
   confirm_your_info: Bevestig je informatie
   confirming_ids: ID's bevestigen
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Verbinden met %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
@@ -1402,6 +1407,8 @@ nl:
   export_observations: Waarnemingen exporteren
   export_with_private_coordinates: Exporteer met verborgen coördinaten
   exporting: "Aan het exporteren..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Externe toepassingen
   external_taxon_including_children: Extern taxon (inclusief kinderen)
   extinct: uitgestorven
@@ -1761,6 +1768,7 @@ nl:
   inat_believes_this_is_a_complete_listing: "%{site_name} gelooft dat dit een volledige lijst is van dit taxon op deze plaats."
   inat_user_profile: "%{site_name}: Profiel van %{user}"
   inaturalist_activity_notifications: "%{site_name} activiteitsnotificaties"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Toepassingen"
   inaturalist_is_a_joint_initiative: "%{site_name} is een gezamelijk initiatief van de 'California Academy of Sciences' en 'National Geographic Society'."
   inaturalist_places: "%{site_name} Plaatsen"
@@ -2055,6 +2063,7 @@ nl:
     <a href="/login">Log in</a> of <a href="/signup">meld je aan</a> om determinaties toe te voegen.
   log_out: Afmelden
   log_out_caps: AFMELDEN
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Afmelden bij %{site_name}?"
   log_scale_label: Logboek
   login_slash_username: Login / gebruikersnaam
@@ -3550,6 +3559,8 @@ nl:
   reviewed: Nagekeken
   revoke: Intrekken
   revoke_caps: INTREKKEN
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "%{site_name} intrekken?"
   rg_observations: RG Waarnemingen
   role: Rol
@@ -4161,6 +4172,8 @@ nl:
   this_will_refresh_listed_taxa: Hiermee worden de opgevoerde taxa in deze lijst vernieuwd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
   this_will_re_apply_all_list_rules: |
     Hiermee worden alle lijstregels opnieuw toegepast op de vermelde taxa en worden deze  geassocieerde stats bijgewerkt', bijv. het afwijzen van taxa die niet binnen de lijst taxon vallen of zijn niet van de geselecteerde rang zijn. Het voegt geen nieuwe taxa toe. Het kan een paar minuten duren.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Dit zal je uitloggen uit je huidige sessie voor deze toepassing.
   this_will_try_to_add_tags_to_your_flickr: Hierdoor worden labels aan je Flickr-foto's toegevoegd. Verdergaan?
   this_year: Dit jaar
@@ -5007,8 +5020,14 @@ nl:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Toestaan dat %{application} jouw account gebruikt?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Deze applicatie zal in staat zijn om:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Meer over %{application}
     observations:
       community_id:
