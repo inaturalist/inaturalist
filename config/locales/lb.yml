@@ -472,7 +472,6 @@ lb:
   created: Erstallt
   created_by_user_on_date: Ugeluecht vum %{user} de(n) %{date}
   creating_your_account: "Äre Benotzerkont gëtt ugeluecht..."
-  creative_commons_licenses: Creative Commons Lizenzen
   csv: CSV
   csv_file: CSV Fichier
   cumulative_ids: "Kumulativ IDs: %{count} vun %{total}"
@@ -503,6 +502,7 @@ lb:
       june: Juni
       july: Juli
       october: Oktober
+      november: November
       december: Dezember
   date_is_accurate: Datum ass richteg
   date_observed_: Datum vun der Observatioun
@@ -1095,7 +1095,9 @@ lb:
   of_this_taxon: Vun desem Taxon
   off_caps: "AUS"
   official_blog: Offizielle Blog
+  ok: "OK"
   on_caps: "Un"
+  on_day: "um"
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
     following_panel_body: |
@@ -1235,6 +1237,7 @@ lb:
     europe: Europa
     france: Frankräich
     gabon: Gabun
+    gambia: Gambia
     georgia: Georgien
     germany: Däitschland
     greece: Griicheland
@@ -1292,6 +1295,8 @@ lb:
     turkey: Tierkei
     west_africa: Westafrika
     yemen: Jemen
+    zambia: Sambia
+    zimbabwe: Simbabwe
   places_of_interest: Interessant Plazen
   plants: Planzen
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt
@@ -1881,6 +1886,7 @@ lb:
         #"$1,000,002.50" in English, and "," is the delimiter. This should not
         #be the same as the separator.
         delimiter: '.'
+        format: '%u%n'
         precision: 2
         #The separator separates an integer from a decimal fraction, so if the
         #number is "one million and two and a half dollars" this would be
@@ -1897,24 +1903,42 @@ lb:
       #the same as the separator.
       delimiter: '.'
       precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
+        format: '%n %u'
         units:
+          billion: Milliard
           million: Millioun
           thousand: Dausend
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
+        format: '%n %u'
         units:
+          byte:
+            one: Byte
+            other: Bytes
           gb: GB
           kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', an'
       two_words_connector: 'a(n)'
+      words_connector: ', '
+  time:
+    am: am
+    pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
