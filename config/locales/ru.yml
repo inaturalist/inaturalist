@@ -241,6 +241,7 @@ ru:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: О Способах Возникновения
+  about_license_options: О вариантах лицензирования
   about_licenses: О лицензиях
   about_muting: Об отключении
   #Header for a section describing taxon names
@@ -619,6 +620,11 @@ ru:
   #Label for an option to show/include content by any user
   any_user: Любой
   anyone: Любой
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Приложение
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Приложения
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: "Применить В неволе / культивируемое"
@@ -1004,8 +1010,16 @@ ru:
   confirm_your_info: Подтвердите вашу информацию
   confirming_ids: Подтверждение ID
   confirming_ids_description: Если вы отключите эту настройку, вы не будете получать уведомления об идентификациях, подтверждающих вашу.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Подключиться
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Подключиться к %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Связанные учётные записи
+  connected_accounts_description: Подключенные учетные записи - это ваши учетные записи других приложений или веб-сайтов, к которым вы разрешили iNaturalist-доступ от вашего имени для поддержки входа в систему, импорта фотографий или других функций.
+  connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Подключитесь к Flickr снова для авторизации прав на запись
   connecting_to_facebook: "Подключение к Facebook..."
@@ -1314,6 +1328,12 @@ ru:
   disable_comments: Отключить комментарии
   disable_comments_desc: Запретить добавлять новые комментарии
   disagree_: Не согласен
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Отключиться
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: ОТКЛЮЧИТЬСЯ
   disconnect_provider: "Отключить %{provider}"
   display: Отображение
   display_link_to_checklist: Показывать ссылку на список проектов на странице проекта
@@ -1488,6 +1508,8 @@ ru:
   export_observations: Экспорт наблюдений
   export_with_private_coordinates: Экспорт со скрытыми координатами
   exporting: "Экспортируется..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Внешние приложения
   external_taxon_including_children: Внешний таксон (включая потомков)
   extinct: вымерший
@@ -1504,6 +1526,7 @@ ru:
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
   failed_to_save_record_with_errors: "Не удалось сохранить запись: %{errors}"
+  failed_to_unlink_your_account: Не удалось отвязать ваш аккаунт
   'false': 'Нет'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
@@ -1668,6 +1691,7 @@ ru:
     few: гриба
     many: грибов
     other: грибов
+  gbif: GBIF
   gbif_occurrences: Записи GBIF
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото на Flickr.
   generate_widget: Сгенерировать виджет
@@ -1847,6 +1871,7 @@ ru:
   inat_believes_this_is_a_complete_listing: "%{site_name} считает, что это полный перечень этого таксона для данного места."
   inat_user_profile: "%{site_name}: Профиль %{user}"
   inaturalist_activity_notifications: "Уведомления %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Приложения iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} является совместной инициативой Калифорнийской академии наук и Национального географического общества."
   inaturalist_places: "%{site_name} Места"
@@ -2139,6 +2164,7 @@ ru:
     Для добавления идентификаций<a href="/login">войдите</a> или <a href="/signup">зарегистрируйтесь</a>.
   log_out: Выйти
   log_out_caps: ВЫЙТИ
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйти из %{site_name}?"
   log_scale_label: Логарифмическая
   login_slash_username: Логин / имя пользователя
@@ -3616,6 +3642,8 @@ ru:
   reviewed: Проверено
   revoke: Отмена
   revoke_caps: ОТМЕНА
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Отменить регистрацию на %{site_name}?"
   rg_observations: Наблюдения статуса "исследовательский"
   role: Роль
@@ -3945,6 +3973,8 @@ ru:
   suggest_an_identification: Предложить идентификацию
   suggest_or_require_that: Предложить или потребовать, чтобы вносители информации заполняли эти поля наблюдений, добавляемых в ваш проект.
   suggestions: Предложения
+  suitable_for_the_global_biodiversity_information_facility: Подходит для глобального информационного фонда по биоразнообразию (GBIF)
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Подходит для Википедии и других проектов Фонда Викимедиа
   summary: Обзор
   supporting: Поддерживающее мнение
   support_inaturalist: Поддержи iNaturalist
@@ -4249,6 +4279,10 @@ ru:
   this_will_refresh_listed_taxa: Это приведёт к обновлению перечисленных таксонов в этом списке. Это может занять некоторое время, поэтому проводите эту операцию экономно и на небольших контрольных списках
   this_will_re_apply_all_list_rules: |
     Это приведет к повторному применению всех правил списка к указанным таксонам и обновлению любых связанных статистических данных, например, к отсечению таксонов, которые не входят в список таксонов или не относятся к выбранному рангу. Это не добавит новых таксонов. Это может занять несколько минут.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Это лишит iNaturalist возможности доступа к этой учетной записи от вашего имени до тех пор, пока вы не предоставите доступ снова. Возможно, вам придется изменить настройки на внешнем сайте, чтобы полностью запретить доступ.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Вы выйдете из текущей сессии этого приложения.
   this_will_try_to_add_tags_to_your_flickr: Будет сделана попытка добавить теги к вашим фото на Flickr. Продолжить?
   this_year: В этом году
@@ -5094,8 +5128,14 @@ ru:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Авторизовать %{application} для использования вашей учётной записи?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Это приложение сможет:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Подробнее о %{application}
     observations:
       community_id:
@@ -7207,6 +7247,7 @@ ru:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Предупреждение
+  wikimedia: Викимедиа
   wild: Дикий
   will_paginate:
     previous_label: "&#8592; Пред"
