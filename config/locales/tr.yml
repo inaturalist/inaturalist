@@ -848,7 +848,10 @@ tr:
   confirm_new_password: Yeni Şifreyi Onayla
   confirm_now: Şimdi onayla
   confirm_your_info: Bilgini onayla
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "%{provider}'a bağlandı"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Hesaplara bağlandı
   connecting_flickr: "Flickr'ye bağlanıyor... "
   connect_to_flickr_again_to_authorize_write_permissions: Yazma izinlerini yetkilendirmek için Flickr'ye yeniden bağlanın
@@ -4698,8 +4701,14 @@ tr:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Hesabınızı kullanması için %{application} yetkilendirilsin mi?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Bu uygulama şunları yapabilecek:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: '%{application} hakkında daha fazlası'
     observations:
       community_id:
