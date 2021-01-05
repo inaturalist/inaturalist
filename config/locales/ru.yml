@@ -1138,7 +1138,6 @@ ru:
   created_on: Создано в
   creating_your_account: "Создаётся ваша учётная запись..."
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
-  creative_commons_licenses: Лицензии Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, если не указано иное."
   critically_endangered: На грани исчезновения
   css_description: Это будет включено после всех других CSS на странице.
@@ -1491,7 +1490,6 @@ ru:
   exporting: "Экспортируется..."
   external_applications: Внешние приложения
   external_taxon_including_children: Внешний таксон (включая потомков)
-  external_taxon_rank: Ранг внешнего таксона
   extinct: вымерший
   extinct_in_the_wild: Вымершие в дикой природе
   extra_properties: Дополнительные свойства
@@ -5119,6 +5117,8 @@ ru:
           </p>
         you_have_opted_out: Вы отказались от идентификаций сообщества
         opt_in_for_this_observation: Выбрать принятие помощи для идентификации этого наблюдения
+        your_id_does_not_match: |
+          Ваша идентификация (<span class="bold">%{taxon_name}</span>) не соответствует идентификации сообществом
       copy_tip: "Добавить новое наблюдение путём копирования даты данного наблюдения, места, фото и полей наблюдения."
       captive_help_html: |
         Был ли организм <strong>культивирован</strong> или содержался ли он <strong>в неволе</strong>? Например, находился ли он в саду, зоопарке, аквариуме или в другой подобной обстановке <strong>только потому, что его туда поместил человек</strong>? Приветствуются все наблюдения живых существ, но желательно знать, когда они не являются дикими / натурализованными.
@@ -7212,7 +7212,6 @@ ru:
     previous_label: "&#8592; Пред"
     next_label: "Следующий &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Вы не разрешили никаким приложениям использовать вашу учетную запись iNaturalist."
   you_will_no_longer_be_following_or_trusting: "Вы больше не подписаны на %{user} и не доверяете ему"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
