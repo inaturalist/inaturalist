@@ -603,7 +603,11 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  # An app or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   application: Application
+  # Apps or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   applications: Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -1001,8 +1005,13 @@ en:
   confirm_your_info: Confirm your info
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect: Connect
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect_to_provider: "Connect to %{provider}"
+  # Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Connected accounts
   connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
   connected_accounts_titlecase: Connected Accounts
@@ -1325,7 +1334,11 @@ en:
   disable_comments: Disable comments
   disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
   disconnect: Disconnect
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
   disconnect_caps: DISCONNECT
   disconnect_provider: "Disconnect %{provider}"  
   display: Display
@@ -1503,6 +1516,8 @@ en:
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
+  # A third-party app or service the user has authorized to access their iNat
+  # account, e.g. Flickr
   external_applications: External Applications
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
@@ -1703,7 +1718,6 @@ en:
   give_it_some_detail: Give it some detail!
   give_monthly_caps: GIVE MONTHLY
   give_now_caps: GIVE NOW
-  global: Global
   global_names: Global Names
   globally: Globally
   go: Go
@@ -1885,6 +1899,7 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
+  # Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
@@ -2180,6 +2195,7 @@ en:
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_out: Log out
   log_out_caps: LOG OUT
+  # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / username
@@ -3708,6 +3724,8 @@ en:
   reviewed: Reviewed
   revoke: Revoke
   revoke_caps: REVOKE
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   revoke_external_application: "Revoke %{site_name}?"
   rg_observations: RG Observations
   role: Role
@@ -4360,6 +4378,8 @@ en:
     This will remove iNaturalist's ability to access this account on your behalf 
     until you grant access again. You may need to change your settings on the 
     external site to completely prevent access.
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
@@ -5321,8 +5341,14 @@ en:
     oauth:
       authorizations:
         new:
+          # Application is a third-party app or service the user is about to
+          # authorize to access their iNat account
           authorize_application_to_use_your_account?: Authorize %{application} to use your account?
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           this_application_will_be_able_to_colon: "This application will be able to:"
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           more_about_application: More about %{application}
     observations:
       community_id:

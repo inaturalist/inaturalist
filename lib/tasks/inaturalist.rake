@@ -350,6 +350,7 @@ namespace :inaturalist do
       "something_went_wrong_adding",
       "status_globally",
       "status_in_place",
+      "subscribe_to_observations_from_this_place_html",
       "supporting",
       "taxon_drop",
       "taxon_merge",
