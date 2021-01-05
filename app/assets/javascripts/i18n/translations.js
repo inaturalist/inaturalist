@@ -17244,6 +17244,7 @@ I18n.translations["en"] = {
   "export_observations": "Export Observations",
   "exporting": "Exporting...",
   "external_applications": "External Applications",
+  "external_applications_description": "External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.",
   "extinct": "extinct",
   "extinct_in_the_wild": "Extinct in the Wild",
   "facebook": "Facebook",

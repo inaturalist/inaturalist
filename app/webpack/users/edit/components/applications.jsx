@@ -70,7 +70,7 @@ const Applications = ( { showModal, apps, providerApps } ) => {
   };
 
   const renderConnectedAppsRow = app => {
-    const { id, appKey } = app;
+    const { id } = app;
     const name = app.provider_name;
     const date = app.created_at ? moment( app.created_at ).format( "LL" ) : null;
 
@@ -78,14 +78,14 @@ const Applications = ( { showModal, apps, providerApps } ) => {
       <button
         type="button"
         className="btn btn-default"
-        onClick={( ) => showModal( id, name, "connectedApp" )}
+        onClick={( ) => showModal( id, AUTH_PROVIDER_NAMES[name], "connectedApp" )}
       >
         {I18n.t( "disconnect" )}
       </button>
     );
 
     const connectForm = (
-      <form action={AUTH_PROVIDER_URLS[appKey]} method="post" target="_blank">
+      <form action={AUTH_PROVIDER_URLS[name]} method="post" target="_blank">
         <input
           type="hidden"
           name="authenticity_token"
