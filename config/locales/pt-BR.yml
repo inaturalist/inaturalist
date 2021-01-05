@@ -511,6 +511,8 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicativos
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
@@ -897,7 +899,10 @@ pt:
   confirm_your_info: Confirme sua informação
   confirming_ids: Confirmações de identificações
   confirming_ids_description: Se você desativar isso, você não será mais notificado sobre IDs que concordam com as suas.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conectar com %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas conectadas
   connecting_flickr: "Conectando ao Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conecte-se ao Flickr novamente para autorizar permissões de gravação
@@ -1376,6 +1381,8 @@ pt:
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com coordenadas ocultadas
   exporting: "Exportando..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Aplicativos externos
   external_taxon_including_children: Táxon externo (incluindo crianças)
   extinct: extinto
@@ -1740,6 +1747,7 @@ pt:
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que é uma lista completa de táxons deste local."
   inat_user_profile: "%{site_name}: Perfil de %{user}"
   inaturalist_activity_notifications: "Notificações de Atividade do %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicativos do iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society."
   inaturalist_places: "%{site_name} Lugares"
@@ -2031,6 +2039,7 @@ pt:
     <a href="/login">Entre</a> ou <a href="/signup">se cadastre</a> para adicionar identificações.
   log_out: Sair
   log_out_caps: SAIR
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Registro
   login_slash_username: Login / nome de usuário
@@ -4883,8 +4892,14 @@ pt:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autorizar %{application} a usar sua conta?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicação será capaz de:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Mais sobre %{application}
     observations:
       community_id:
