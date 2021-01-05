@@ -848,7 +848,10 @@ gl:
   confirm_new_password: Confirmar contrasinal novo
   confirm_now: Confirmar agora
   confirm_your_info: Confirma a túa información
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conectarse a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas vinculadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr outra vez para autorizar os permisos de escritura
@@ -4596,8 +4599,14 @@ gl:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar a túa conta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación poderá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Máis sobre %{application}
     observations:
       community_id:
