@@ -864,7 +864,10 @@ lt:
   confirm_new_password: Patvirtinkite Naują Slaptažodį
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Prisijungti prie %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
   connecting_to_facebook: "Prisijungiama prie Facebook..."
@@ -4098,6 +4101,8 @@ lt:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Daugiau apie %{application}
     observations:
       community_id:
