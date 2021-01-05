@@ -69,15 +69,15 @@ class App extends Component {
     ];
 
     return (
-      <div className="container">
-        <div className="row">
+      <div className="container" id="UserSettings">
+        <div className="row vertical-align">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
           </div>
           <div className="col-xs-4 visible-xs settings-item">
             <DropdownMenuMobile menuIndex={container} handleInputChange={this.handleInputChange} />
           </div>
-          <div className="col-xs-9 col-sm-3 settings-item">
+          <div className="col-xs-9 col-sm-3">
             <SaveButtonContainer />
           </div>
         </div>

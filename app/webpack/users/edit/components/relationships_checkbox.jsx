@@ -16,7 +16,7 @@ const RelationshipsCheckbox = ( {
       name={name}
       onChange={e => handleCheckboxChange( e, id )}
     />
-    <label htmlFor={name} className="margin-left">{label}</label>
+    <label htmlFor={name} className="checkbox-label">{label}</label>
   </div>
 );
 

@@ -14,7 +14,7 @@ import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
-import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
+import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
 import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
@@ -45,6 +45,7 @@ const store = createStore(
 store.dispatch( fetchUserSettings( null ) );
 store.dispatch( fetchNetworkSites( ) );
 store.dispatch( fetchAuthorizedApps( ) );
+store.dispatch( fetchProviderApps( ) );
 store.dispatch( fetchRelationships( true ) );
 
 render(

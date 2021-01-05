@@ -2,49 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal } from "react-bootstrap";
 
+import LicenseImageRow from "./license_image_row";
+
 const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
-  const createLicenseList = list => {
-    const iNatLicenses = iNaturalist.Licenses;
+  const iNatLicenses = iNaturalist.Licenses;
 
-    return list.map( license => {
-      const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
+  const showLicenseDescription = license => {
+    const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
 
-      const allRightsReserved = (
-        <div>
-          <label className="row" htmlFor="license_reserved">{I18n.t( "no_license_all_rights_reserved" )}</label>
-          <p
-            id="license_reserved"
-            className="row text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "you_retain_full_copyright", {
-                site_name: SITE.name
-              } )
-            }}
-          />
-        </div>
-      );
-
-      return (
-        <div key={localizedName} className="about-licenses-row">
-          {license === "c" ? allRightsReserved : (
-            <div>
-              <div className="row flex-no-wrap white-space">
-                <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-                <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
-              </div>
-              <div className="row text-muted">
-                {I18n.t( `${localizedName}_description` )}
-                <a href={iNatLicenses[license].url}>
-                  {` ${I18n.t( "view_license" )}`}
-                </a>
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    } );
+    return (
+      <div className="text-muted license-description">
+        {I18n.t( `${localizedName}_description` )}
+        <a href={iNatLicenses[license].url}>
+          {` ${I18n.t( "view_license" )}`}
+        </a>
+      </div>
+    );
   };
+
+  const createLicenseList = list => list.map( license => (
+    <div key={license} className="about-licenses-row">
+      <LicenseImageRow license={license} isModal />
+      {license !== "c" && showLicenseDescription( license )}
+    </div>
+  ) );
 
   return (
     <Modal
@@ -53,7 +34,7 @@ const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
       onHide={onClose}
     >
       <Modal.Header closeButton>
-        <Modal.Title>{I18n.t( "creative_commons_licenses" )}</Modal.Title>
+        <Modal.Title>{I18n.t( "about_license_options" )}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="row">

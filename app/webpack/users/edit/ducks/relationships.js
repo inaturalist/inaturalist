@@ -92,10 +92,10 @@ export function fetchMutedUsers( ) {
   return ( dispatch, getState ) => {
     const { relationships, profile } = getState( );
     const { mutedUsers } = relationships;
-    const currentMutedUsers = profile.muted_user_ids;
+    const currentMutedUsers = profile.muted_user_ids || [];
 
     if ( mutedUsers.length === 0 ) {
-      profile.muted_user_ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+      currentMutedUsers.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
         mutedUsers.push( results[0] );
         dispatch( setMutedUsers( mutedUsers ) );
       } ).catch( e => console.log( `Failed to fetch muted users: ${e}` ) ) );
@@ -124,11 +124,10 @@ export function fetchBlockedUsers( ) {
   return ( dispatch, getState ) => {
     const { relationships, profile } = getState( );
     const { blockedUsers } = relationships;
-
-    const currentBlockedUsers = profile.blocked_user_ids;
+    const currentBlockedUsers = profile.blocked_user_ids || [];
 
     if ( blockedUsers.length === 0 ) {
-      profile.blocked_user_ids.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
+      currentBlockedUsers.forEach( id => inatjs.users.fetch( id ).then( ( { results } ) => {
         blockedUsers.push( results[0] );
         dispatch( setBlockedUsers( blockedUsers ) );
       } ).catch( e => console.log( `Failed to fetch blocked users: ${e}` ) ) );

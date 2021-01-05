@@ -95,7 +95,12 @@ export function saveUserSettings( ) {
 export function handleCheckboxChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile[e.target.name] = e.target.checked;
+
+    if ( e.target.name === "prefers_no_email" ) {
+      profile[e.target.name] = !e.target.checked;
+    } else {
+      profile[e.target.name] = e.target.checked;
+    }
     dispatch( setUserData( profile ) );
   };
 }

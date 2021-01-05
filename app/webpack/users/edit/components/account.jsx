@@ -30,49 +30,32 @@ const Account = ( {
     )
   );
 
-  const showNetworkLogo = ( id, logo ) => (
-    <img
-      className="inat-affiliation-logo margin-right-medium"
-      alt={`inat-affiliation-logo-${id}`}
-      src={logo}
-    />
-  );
+  const showNetworkLogo = ( id, logo ) => <img className="network-logo" alt={`inat-affiliation-logo-${id}`} src={logo} />;
 
   const showCurrentNetwork = id => (
-    <div className="default-title-custom-dropdown network-min-height">
+    <div className="current-network">
       {showNetworkLogo( id, currentNetworkAffiliation.icon_url )}
-      <div className="text-muted inat-affiliation-title">
+      <div className="text-muted current-network-name">
         {sites.filter( site => site.id === id )[0].name}
       </div>
+      <div className="caret" />
     </div>
   );
 
-  const createINatAffiliationList = ( ) => {
-    const menuItems = sites.map( site => {
-      const { id, name } = site;
+  const createINatAffiliationList = ( ) => sites.map( site => {
+    const { id, name } = site;
 
-      return (
-        <MenuItem
-          key={`inat-affiliation-logo-${id}`}
-          eventKey={id}
-          className="inat-affiliation-width"
-        >
-          <span className="flex-no-wrap">
-            {showNetworkLogo( id, site.icon_url )}
-            <div className="text-muted">{name}</div>
-            {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-          </span>
-        </MenuItem>
-      );
-    } );
-
-    // add a MenuItem divider between all the first and last items
-    // using this instead of my own div because it's automatically styled
-    // to be the same width as the menu
-    return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
-    ) ).reduce( ( a, b ) => a.concat( b ) );
-  };
+    return (
+      <MenuItem
+        key={`inat-affiliation-logo-${id}`}
+        eventKey={id}
+      >
+        {showNetworkLogo( id, site.icon_url )}
+        <div className="text-muted">{name}</div>
+        {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+      </MenuItem>
+    );
+  } );
 
   return (
     <div className="row">
@@ -80,13 +63,13 @@ const Account = ( {
         <h4>{I18n.t( "account" )}</h4>
         <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
           <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control inherit-width" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
             {createTimeZoneList( )}
           </select>
         </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-          <select id="user_locale" className="form-control inherit-width" value={profile.locale} name="locale" onChange={handleInputChange}>
+          <select id="user_locale" className="form-control dropdown" value={profile.locale} name="locale" onChange={handleInputChange}>
             {createLocaleList( )}
           </select>
         </SettingsItem>
@@ -118,11 +101,12 @@ const Account = ( {
       <div className="col-md-1" />
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-          <div className="stacked">
+          <div className="stacked" id="AffiliationList">
             <DropdownButton
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
               title={showCurrentNetwork( profile.site_id )}
+              noCaret
             >
               {createINatAffiliationList( )}
             </DropdownButton>
