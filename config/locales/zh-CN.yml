@@ -427,6 +427,8 @@ zh-CN:
   #Label for an option to show/include content by any user
   any_user: 任意
   anyone: 任何人
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: 应用程序
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
@@ -806,7 +808,10 @@ zh-CN:
   confirm_now: 现在确认
   confirm_your_info: 确认您的信息
   confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "连接至 %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已连接账户
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
@@ -1893,6 +1898,7 @@ zh-CN:
     <a href="/login">登录</a>或<a href="/signup">注册</a>以添加鉴定
   log_out: 退出登录
   log_out_caps: 登出
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "登出 %{site_name}？"
   log_scale_label: 日志
   login_slash_username: 登录 / 用户名
@@ -4572,8 +4578,14 @@ zh-CN:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: 授权 %{application} 来使用您的账号？
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "此应用程序将能够："
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: 更多有关 %{application}
     observations:
       community_id:
