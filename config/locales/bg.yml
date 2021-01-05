@@ -441,6 +441,8 @@ bg:
   any: без значение
   any_: Без значение
   anyone: Всеки
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Приложения
   apply_to_selected: Приложи към избраното
   apply_geoprivacy: Приложи геоповерителност
@@ -694,7 +696,10 @@ bg:
   confirm_your_info: Потвърдете данните си
   confirming_ids: Потвърждаващи разпознавания
   confirming_ids_description: Ако изключите това, повече няма да получавате известия за разпознавания потвърждаващи Вашето.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Свържи с %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
   connecting_to_facebook: "Свързване с Facebook..."
@@ -1047,6 +1052,8 @@ bg:
   export_observations: Експортирай наблюдения
   export_with_private_coordinates: Експортирай с лични координати
   exporting: "Експортиране..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Външни приложения
   extinct: изчезнал
   extinct_in_the_wild: изчезнал в природата
@@ -1306,6 +1313,7 @@ bg:
   inat_believes_this_is_a_complete_listing: "%{site_name} смята, че това е пълен списък за този таксон на това място."
   inat_user_profile: "%{site_name}: Профил на %{user}"
   inaturalist_activity_notifications: "Известия за активност на %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Приложения на iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} е съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество."
   inaturalist_places: "%{site_name} Места"
@@ -1551,6 +1559,7 @@ bg:
     <a href="/login">Влезте</a> или <a href="/signup">се регистрирайте</a> за да добавяте разпознавания.
   log_out: Излизане
   log_out_caps: ИЗЛИЗАНЕ
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Излизане от %{site_name}?"
   log_scale_label: Лог.
   login_slash_username: Вход / потребителско име
@@ -2672,6 +2681,8 @@ bg:
   reviewed: Рецензиран
   revoke: Отмени
   revoke_caps: ОТМЕНИ
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Отмени %{site_name}?"
   role: Роля
   rotate_left: Завърти наляво
@@ -3065,6 +3076,8 @@ bg:
     Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
   this_will_re_apply_all_list_rules: |
     Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Това ще ви отпише от текущата Ви сесия на това приложение.
   this_year: Тази година
   threatened: Застрашен
@@ -3499,8 +3512,14 @@ bg:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Разрешавате ли на %{application} да използва Вашия акаунт?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Това приложение ще може да:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Повече относно %{application}
     observations:
       community_id:
