@@ -797,7 +797,10 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "連接至%{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
@@ -4505,8 +4508,14 @@ zh-TW:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: 授權 %{application} 來使用您的帳號？
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "此應用程式將能夠："
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: 更多有關 %{application}
     observations:
       community_id:
