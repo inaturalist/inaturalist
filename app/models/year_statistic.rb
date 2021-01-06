@@ -211,7 +211,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: "created_at",
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -895,7 +896,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: date_field,
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( params )
           },
           aggs: {
             taxon_ids: {
@@ -1048,9 +1050,6 @@ class YearStatistic < ActiveRecord::Base
         filters << { terms: { site_id: [site.id] } }
       end
     end
-    if site = options[:user]
-      filters << { term: { "user.id" => options[:user].id } }
-    end
     es_params = {
       size: 0,
       filters: filters,
@@ -1059,7 +1058,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: "created_at_details.date",
             interval: "month",
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -1138,7 +1138,8 @@ class YearStatistic < ActiveRecord::Base
             date_histogram: {
               field: "observed_on",
               calendar_interval: "day",
-              format: "yyyy-MM-dd"
+              format: "yyyy-MM-dd",
+              time_zone: time_zone_for_options( options )
             },
             aggs: {
               user_ids: {
@@ -1591,6 +1592,13 @@ class YearStatistic < ActiveRecord::Base
         { exists: { field: "taxon_change_id" } }
       ]
     }
+  end
+
+  def self.time_zone_for_options( options = {} )
+    return "UTC" unless options[:user]
+    return "UTC" if options[:user].time_zone.blank?
+    return "UTC" unless tz = ActiveSupport::TimeZone[options[:user].time_zone]
+    tz.tzinfo.name
   end
 
 end
