@@ -131,7 +131,7 @@ class YearStatistic < ActiveRecord::Base
     year_statistic.update_attributes( data: json )
     year_statistic.delay(
       priority: USER_PRIORITY,
-      unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::year"
+      unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
     ).generate_shareable_image
     year_statistic
   end
