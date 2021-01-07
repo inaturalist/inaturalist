@@ -68,11 +68,9 @@ function mapDispatchToProps( dispatch ) {
     },
     showNextObservation: ( ) => {
       dispatch( showNextObservation( ) );
-      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
-      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     chooseTab: tab => {
       dispatch( updateCurrentObservation( { tab } ) );

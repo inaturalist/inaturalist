@@ -1568,7 +1568,8 @@ class Observation < ActiveRecord::Base
     if (
       ( latitude == private_latitude || longitude == private_longitude ) &&
       !( private_latitude_changed? || private_longitude_changed? ) &&
-      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was
+      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was &&
+      !( latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank? )
     )
       self.latitude, self.longitude = [latitude_was, longitude_was]
       set_geom_from_latlon
@@ -2068,6 +2069,14 @@ class Observation < ActiveRecord::Base
   def set_geom_from_latlon(options = {})
     if longitude.blank? || latitude.blank?
       self.geom = nil
+      # If the coordinates are blank because they've changed *and* not because
+      # the geoprivacy is PRIVATE, assume the user intended to remove the
+      # coordinates and remove both public and private values
+      coordinates_removed_in_update = persisted? && ( latitude_changed? || longitude_changed? )
+      if coordinates_removed_in_update && geoprivacy != PRIVATE
+        self.private_latitude = nil
+        self.private_longitude = nil
+      end
     elsif options[:force] || longitude_changed? || latitude_changed?
       self.geom = "POINT(#{longitude} #{latitude})"
     end
@@ -2834,7 +2843,7 @@ class Observation < ActiveRecord::Base
       # Returns an array of lat, lon
       transform = RGeo::CoordSys::Proj4.transform_coords(from, to, self.geo_x.to_d, self.geo_y.to_d)
 
-      # Set the transfor
+      # Set the transform
       self.longitude, self.latitude = transform
     end
     true

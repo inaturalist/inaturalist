@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { scaleOrdinal, schemeCategory10 } from "d3";
 import TaxonMap from "../../identify/components/taxon_map";
 
 class MapComparison extends React.Component {
@@ -60,10 +59,9 @@ class MapComparison extends React.Component {
       updateCurrentUser
     } = this.props;
     let maps;
-    const colorScale = scaleOrdinal( schemeCategory10 );
     const layerForQuery = query => {
       const layer = $.deparam( query.params );
-      layer.color = colorScale( query.params );
+      layer.color = query.color;
       layer.title = `<div style="width: 15px; height: 15px; display: inline-block; vertical-align: middle; margin-right: 5px; background-color: ${layer.color};"></div>${query.name}`;
       return layer;
     };
@@ -84,7 +82,7 @@ class MapComparison extends React.Component {
     } else {
       maps = _.map( queries, ( query, i ) => {
         const observationLayers = [layerForQuery( query )];
-        const reloadKey = `map-${query.params}-${mapLayout}-${i}`;
+        const reloadKey = `map-${query.params}-${query.color}-${mapLayout}-${i}`;
         return (
           <div key={reloadKey} className="map">
             <h5>{ query.name }</h5>

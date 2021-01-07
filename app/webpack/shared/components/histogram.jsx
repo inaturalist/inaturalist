@@ -7,10 +7,9 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
-import moment from "moment";
-import { objectToComparable } from "../../../shared/util";
+import { objectToComparable, shortFormattedNumber } from "../util";
 
-class DateHistogram extends React.Component {
+class Histogram extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
@@ -30,12 +29,14 @@ class DateHistogram extends React.Component {
 
   shouldComponentUpdate( nextProps ) {
     const { series } = this.props;
-    return objectToComparable( nextProps.series ) !== objectToComparable( series );
+    const shouldUpdate = objectToComparable( nextProps.series ) !== objectToComparable( series );
+    return shouldUpdate;
   }
 
   componentDidUpdate( prevProps ) {
     const { series } = this.props;
-    if ( objectToComparable( prevProps.series ) !== objectToComparable( series ) ) {
+    const shouldUpdateSeries = objectToComparable( prevProps.series ) !== objectToComparable( series );
+    if ( shouldUpdateSeries ) {
       this.enterSeries( );
     }
   }
@@ -58,24 +59,19 @@ class DateHistogram extends React.Component {
     if ( tickFormatLeft ) {
       return axisLeft.tickFormat( tickFormatLeft );
     }
-    return axisLeft.tickFormat( d => {
-      if ( d >= 1000000000 ) {
-        return I18n.t( "number.format.si.giga", { number: _.round( d / 1000000000, 3 ) } );
-      }
-      if ( d >= 1000000 ) {
-        return I18n.t( "number.format.si.mega", { number: _.round( d / 1000000, 3 ) } );
-      }
-      if ( d >= 1000 ) {
-        return I18n.t( "number.format.si.kilo", { number: _.round( d / 1000, 3 ) } );
-      }
-      return d;
-    } );
+    return axisLeft.tickFormat( shortFormattedNumber );
   }
 
   enterSeries( newState = {} ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
-    const { series, onClick } = this.props;
+    const {
+      series,
+      onClick,
+      xAttr,
+      xParser,
+      yExtent
+    } = this.props;
     const {
       width,
       height,
@@ -87,20 +83,24 @@ class DateHistogram extends React.Component {
     if ( !x ) {
       return;
     }
-    const parseTime = date => moment( date ).toDate( );
+    // const parseTime = date => moment( date ).toDate( );
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
-        date: parseTime( d.date ),
+        [xAttr]: xParser ? xParser( d[xAttr] ) : d[xAttr],
         value: d.value,
         offset: d.offset,
         seriesName
       } ) );
     } );
     const combinedData = _.flatten( _.values( localSeries ) );
-    y.domain( d3.extent( combinedData, d => d.value ) );
+    if ( yExtent ) {
+      y.domain( yExtent );
+    } else {
+      y.domain( [0, d3.max( combinedData, d => d.value + ( d.offset || 0 ) )] );
+    }
     const line = d3.line( )
-      .x( d => x( d.date ) )
+      .x( d => x( d[xAttr] ) )
       .y( d => y( d.value ) );
     const focus = svg.select( ".focus" );
     const seriesGroups = focus.selectAll( ".series" ).data( _.keys( localSeries ), d => d );
@@ -119,11 +119,11 @@ class DateHistogram extends React.Component {
         const barWidth = ( d, i ) => {
           let nextX = width;
           if ( seriesData[i + 1] ) {
-            nextX = x( seriesData[i + 1].date );
+            nextX = x( seriesData[i + 1][xAttr] );
           } else if ( seriesData[i - 1] ) {
-            return x( d.date ) - x( seriesData[i - 1].date );
+            return x( d[xAttr] ) - x( seriesData[i - 1][xAttr] );
           }
-          return nextX - x( d.date );
+          return nextX - x( d[xAttr] );
         };
         const barHeight = d => {
           const h = height - y( d.value );
@@ -140,20 +140,20 @@ class DateHistogram extends React.Component {
           .attr( "fill", colorForDatum )
           .attr( "transform", d => {
             if ( d.offset ) {
-              return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+              return `translate( ${x( d[xAttr] )}, ${y( d.value + d.offset )} )`;
             }
-            return `translate( ${x( d.date )}, ${y( d.value )} )`;
+            return `translate( ${x( d[xAttr] )}, ${y( d.value )} )`;
           } );
         const barsEnter = bars.enter( )
             .append( "rect" )
-              .attr( "data-date", d => d.date.toString( ) )
+              .attr( `data-${xAttr}`, d => d[xAttr].toString( ) )
               .attr( "width", barWidth )
               .attr( "height", barHeight )
               .attr( "transform", d => {
                 if ( d.offset ) {
-                  return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+                  return `translate( ${x( d[xAttr] )}, ${y( d.value + d.offset )} )`;
                 }
-                return `translate( ${x( d.date )}, ${y( d.value )} )`;
+                return `translate( ${x( d[xAttr] )}, ${y( d.value )} )`;
               } )
               .attr( "fill", colorForDatum )
               .on( "mouseover", tip.show )
@@ -172,7 +172,7 @@ class DateHistogram extends React.Component {
             .attr( "d", line );
         const points = seriesGroup.selectAll( "circle" ).data( seriesData )
           .enter().append( "circle" )
-            .attr( "cx", d => x( d.date ) )
+            .attr( "cx", d => x( d[xAttr] ) )
             .attr( "cy", d => y( d.value ) )
             .attr( "r", 2 )
             .attr( "fill", "white" )
@@ -191,7 +191,6 @@ class DateHistogram extends React.Component {
       .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
       .classPrefix( "legend" )
       .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
-      .shapePadding( 5 )
       .scale( legendScale );
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
@@ -218,9 +217,9 @@ class DateHistogram extends React.Component {
 
   rescaleSeries( newState ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
-    const { series } = this.props;
+    const { series, xParser, xAttr } = this.props;
     const localSeries = {};
-    const parseTime = date => moment( date ).toDate( );
+    // const parseTime = date => moment( date ).toDate( );
     const {
       width,
       x,
@@ -231,7 +230,7 @@ class DateHistogram extends React.Component {
     }
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
-        date: parseTime( d.date ),
+        [xAttr]: xParser ? xParser( d[xAttr] ) : xAttr,
         value: d.value,
         offset: d.offset,
         seriesName
@@ -243,17 +242,75 @@ class DateHistogram extends React.Component {
         .attr( "width", ( d, i ) => {
           let nextX = width;
           if ( seriesData[i + 1] ) {
-            nextX = x( seriesData[i + 1].date );
+            nextX = x( seriesData[i + 1][xAttr] );
           }
-          return Math.max( nextX - x( d.date ), 0 );
+          return Math.max( nextX - x( d[xAttr] ), 0 );
         } )
         .attr( "transform", d => {
           if ( d.offset ) {
-            return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+            return `translate( ${x( d[xAttr] )}, ${y( d.value + d.offset )} )`;
           }
-          return `translate( ${x( d.date )}, ${y( d.value )} )`;
+          return `translate( ${x( d[xAttr] )}, ${y( d.value )} )`;
         } );
     } );
+  }
+
+  renderGuides( newState ) {
+    const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const svg = d3.select( mountNode ).select( "svg" );
+    const { guides } = this.props;
+    const {
+      x,
+      y,
+      clipID
+    } = Object.assign( {}, this.state, newState );
+    if ( !guides ) {
+      return;
+    }
+    const focus = svg.select( ".focus" );
+    const guideGroups = focus.selectAll( ".guides" ).data( guides );
+    const xRangeMin = x.range( )[0];
+    const xRangeMax = x.range( )[1];
+    const yRangeMin = y.range( )[0];
+    const yRangeMax = y.range( )[1];
+    const guideLineGroups = guideGroups.enter( )
+      .append( "g" )
+        .attr( "style", `clip-path: url(#${clipID})` )
+        .attr( "class", "guide" );
+    guideLineGroups
+      .append( "line" )
+        .attr( "stroke-width", 1 )
+        .attr( "stroke", guide => guide.color || "white" )
+        .attr( "stroke-dasharray", guide => guide.dasharray )
+        .attr( "opacity", guide => guide.opacity )
+        .attr( "x1", guide => (
+          guide.axis === "x" ? x( guide.value ) : xRangeMin
+        ) )
+        .attr( "x2", guide => (
+          guide.axis === "x" ? x( guide.value ) : xRangeMax
+        ) )
+        .attr( "y1", guide => (
+          guide.axis === "x" ? yRangeMin : y( guide.value )
+        ) )
+        .attr( "y2", guide => (
+          guide.axis === "x" ? yRangeMax : y( guide.value )
+        ) );
+    const otherOffset = 5;
+    guideLineGroups
+      .append( "text" )
+        .attr( "fill", "white" )
+        .attr( "text-anchor", guide => guide.textAnchor || "start" )
+        .attr( "x", guide => {
+          if ( guide.axis === "x" ) return x( guide.value ) + ( guide.offset || 0 );
+          return guide.textAnchor === "end" ? xRangeMax - otherOffset : xRangeMin + otherOffset;
+        } )
+        .attr( "y", guide => {
+          if ( guide.axis === "x" ) {
+            return guide.textAnchor === "end" ? yRangeMax - otherOffset : yRangeMin + otherOffset;
+          }
+          return y( guide.value ) + ( guide.offset || 0 );
+        } )
+        .text( guide => guide.label );
   }
 
   renderHistogram( ) {
@@ -261,6 +318,10 @@ class DateHistogram extends React.Component {
     const {
       series,
       xExtent,
+      xAttr,
+      xFormatter,
+      xParser,
+      yExtent,
       tickFormatBottom,
       legendPosition,
       showContext,
@@ -276,7 +337,7 @@ class DateHistogram extends React.Component {
       .attr( "height", svgHeight )
       .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
-    const margin = Object.assign( { }, DateHistogram.defaultProps.margin, propMargin );
+    const margin = Object.assign( { }, Histogram.defaultProps.margin, propMargin );
     const width = $( "svg", mountNode ).width( ) - margin.left - margin.right;
     const height2 = 50;
     const space = 50;
@@ -306,44 +367,36 @@ class DateHistogram extends React.Component {
         .attr( "transform", `translate(${margin2.left}, ${margin2.top})` );
     }
 
-    const parseTime = d3.isoParse;
+    // const parseTime = date => moment( date ).toDate( );
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
-        date: parseTime( d.date ),
+        [xAttr]: xParser ? xParser( d[xAttr] ) : d[xAttr],
         value: d.value,
         offset: d.offset,
         seriesName
       } ) );
     } );
-    const x = d3.scaleTime( ).rangeRound( [0, width] );
+    const x = xAttr === "date"
+      ? d3.scaleTime( ).rangeRound( [0, width] )
+      : d3.scaleLinear( ).rangeRound( [0, width] );
     const y = d3.scaleLinear( ).rangeRound( [height, 0] );
 
     const combinedData = _.flatten( _.values( localSeries ) );
     if ( xExtent && !showContext ) {
       x.domain( xExtent );
     } else {
-      x.domain( d3.extent( combinedData, d => d.date ) );
+      x.domain( d3.extent( combinedData, d => d[xAttr] ) );
     }
-    y.domain( d3.extent( combinedData, d => d.value ) );
+    if ( yExtent ) {
+      y.domain( yExtent );
+    } else {
+      y.domain( [0, d3.max( combinedData, d => d.value + ( d.offset || 0 ) )] );
+    }
 
     let axisBottom = d3.axisBottom( x );
     if ( tickFormatBottom ) {
       axisBottom = axisBottom.tickFormat( tickFormatBottom );
-    } else {
-      axisBottom = axisBottom.tickFormat( d => {
-        const md = moment( d );
-        if ( d3.timeSecond( d ) < d ) return md.format( ".SSS" );
-        if ( d3.timeMinute( d ) < d ) return md.format( ":s" );
-        if ( d3.timeHour( d ) < d ) return md.format( "hh:mm" );
-        if ( d3.timeDay( d ) < d ) return md.format( "h A" );
-        if ( d3.timeMonth( d ) < d ) {
-          if ( d3.timeWeek( d ) < d ) return md.format( "MMM D" );
-          return md.format( "MMM D" );
-        }
-        if ( d3.timeYear( d ) < d ) return md.format( "MMM D" );
-        return md.format( "YYYY" );
-      } );
     }
 
     g.append( "g" )
@@ -359,7 +412,7 @@ class DateHistogram extends React.Component {
       .select( ".domain" )
         .remove( );
 
-    const dateFormatter = d3.timeFormat( "%d %b" );
+    // const dateFormatter = d3.timeFormat( "%d %b" );
     const tip = d3tip()
       .attr( "class", "d3-tip" )
       .offset( [-10, 0] )
@@ -369,7 +422,7 @@ class DateHistogram extends React.Component {
           return currentSeries[d.seriesName].label( d );
         }
         return I18n.t( "bold_label_colon_value_html", {
-          label: dateFormatter( d.date ),
+          label: xFormatter( d[xAttr] ),
           value: I18n.toNumber( d.value, { precision: 0 } )
         } );
       } );
@@ -387,6 +440,9 @@ class DateHistogram extends React.Component {
     svg.append( "g" )
       .attr( "class", "legendOrdinal" )
       .attr( "transform", ( ) => {
+        if ( legendPosition.indexOf( "translate" ) >= 0 ) {
+          return legendPosition;
+        }
         if ( legendPosition === "nw" ) {
           return "translate(70,20)";
         }
@@ -394,12 +450,13 @@ class DateHistogram extends React.Component {
       } );
     this.setState( newState );
     this.enterSeries( newState );
+    this.renderGuides( newState );
 
     // Zoom and Brush
     if ( showContext ) {
       const x2 = d3.scaleTime( ).rangeRound( [0, width] );
       const y2 = d3.scaleLinear( ).rangeRound( [height2, 0] );
-      x2.domain( d3.extent( combinedData, d => d.date ) );
+      x2.domain( d3.extent( combinedData, d => d[xAttr] ) );
       y2.domain( d3.extent( combinedData, d => d.value ) );
       const focus = g;
       const zoomed = ( ) => {
@@ -443,17 +500,17 @@ class DateHistogram extends React.Component {
           .attr( "width", ( d, i ) => {
             let nextX = width;
             if ( contextSeriesData[i + 1] ) {
-              nextX = x( contextSeriesData[i + 1].date );
+              nextX = x( contextSeriesData[i + 1][xAttr] );
             }
-            return nextX - x( d.date );
+            return nextX - x( d[xAttr] );
           } )
           .attr( "height", d => height2 - y2( d.value ) )
           .attr( "fill", colorForDatum )
           .attr( "transform", d => {
             if ( d.offset ) {
-              return `translate( ${x( d.date )}, ${y2( d.value + d.offset )} )`;
+              return `translate( ${x( d[xAttr] )}, ${y2( d.value + d.offset )} )`;
             }
-            return `translate( ${x( d.date )}, ${y2( d.value )} )`;
+            return `translate( ${x( d[xAttr] )}, ${y2( d.value )} )`;
           } );
       let defaultBrushRange = x.range( );
       if ( xExtent ) {
@@ -484,19 +541,20 @@ class DateHistogram extends React.Component {
   render( ) {
     const { id, className } = this.props;
     return (
-      <div id={id} className={`DateHistogram ${className}`}>
+      <div id={id} className={`Histogram ${className}`}>
         <div className="chart" />
       </div>
     );
   }
 }
 
-DateHistogram.propTypes = {
+Histogram.propTypes = {
   series: PropTypes.object,
   tickFormatBottom: PropTypes.func,
   tickFormatLeft: PropTypes.func,
   onClick: PropTypes.func,
   xExtent: PropTypes.array,
+  yExtent: PropTypes.array,
   legendPosition: PropTypes.string,
   showContext: PropTypes.bool,
   className: PropTypes.string,
@@ -506,10 +564,26 @@ DateHistogram.propTypes = {
     right: PropTypes.number,
     bottom: PropTypes.number,
     left: PropTypes.number
-  } )
+  } ),
+  guides: PropTypes.arrayOf( PropTypes.shape( {
+    axis: PropTypes.oneOf( ["x", "y"] ),
+    value: PropTypes.node,
+    className: PropTypes.string,
+    label: PropTypes.string,
+    // Whether to anchor the label at the start or the end of the guide
+    textAnchor: PropTypes.oneOf( ["start", "end"] ),
+    // How much to offset the label from the guide
+    offset: PropTypes.number
+  } ) ),
+  // Name of the attribute for the x axis in each datum
+  xAttr: PropTypes.string.isRequired,
+  // If the data comes in as a string but needs some processing, each datum will
+  // get transformed by this function
+  xParser: PropTypes.func,
+  xFormatter: PropTypes.func
 };
 
-DateHistogram.defaultProps = {
+Histogram.defaultProps = {
   series: {},
   legendPosition: "ne",
   margin: {
@@ -517,7 +591,8 @@ DateHistogram.defaultProps = {
     right: 20,
     bottom: 30,
     left: 50
-  }
+  },
+  xFormatter: x => x.toString( )
 };
 
-export default DateHistogram;
+export default Histogram;

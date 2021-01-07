@@ -1,5 +1,4 @@
-function nodeObsCount( lifelist ) {
-  const { search } = lifelist;
+function nodeObsCount( lifelist, search ) {
   return function ( node ) {
     if ( lifelist.speciesPlaceFilter
       && search
@@ -12,8 +11,8 @@ function nodeObsCount( lifelist ) {
   };
 }
 
-function filteredNodes( lifelist ) {
-  const { detailsTaxon, search } = lifelist;
+function filteredNodes( lifelist, search ) {
+  const { detailsTaxon } = lifelist;
   let nodeShouldDisplay;
   const nodeIsDescendant = ( !detailsTaxon || detailsTaxon === "root" )
     ? ( ) => true

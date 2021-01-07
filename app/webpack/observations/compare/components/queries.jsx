@@ -6,6 +6,7 @@ const Queries = ( {
   addQuery,
   removeQueryAtIndex,
   updateQueryAtIndex,
+  updateQueryAtIndexAndFetchData,
   moveQueryUp,
   moveQueryDown
 } ) => (
@@ -13,19 +14,38 @@ const Queries = ( {
     { queries.map( ( query, i ) => (
       // eslint-disable-next-line react/no-array-index-key
       <div className="query" key={`query-${i}-${query.params}`}>
+        <div className="color" style={{ backgroundColor: query.color }}>
+          { query.color }
+        </div>
         <input
           type="text"
           defaultValue={query.name}
           className="name form-control"
           placeholder="Label"
-          onBlur={e => updateQueryAtIndex( i, { name: e.target.value } )}
+          onChange={e => {
+            e.target._valueChanged = e.target._lastValue !== e.target.value;
+            e.target._lastValue = e.target.value;
+          }}
+          onBlur={e => {
+            if ( e.target._valueChanged ) {
+              updateQueryAtIndex( i, { name: e.target.value } );
+            }
+          }}
         />
         <input
           type="text"
           placeholder="Obs search URL params (everything after ?)"
           defaultValue={query.params}
           className="params form-control"
-          onBlur={e => updateQueryAtIndex( i, { params: e.target.value } )}
+          onChange={e => {
+            e.target._valueChanged = e.target._lastValue !== e.target.value;
+            e.target._lastValue = e.target.value;
+          }}
+          onBlur={e => {
+            if ( e.target._valueChanged ) {
+              updateQueryAtIndexAndFetchData( i, { params: e.target.value } );
+            }
+          }}
         />
         <div className="btn-group" role="group" aria-label="Query Actions">
           <button
@@ -70,6 +90,7 @@ Queries.propTypes = {
   addQuery: PropTypes.func.isRequired,
   removeQueryAtIndex: PropTypes.func.isRequired,
   updateQueryAtIndex: PropTypes.func.isRequired,
+  updateQueryAtIndexAndFetchData: PropTypes.func.isRequired,
   moveQueryDown: PropTypes.func.isRequired,
   moveQueryUp: PropTypes.func.isRequired
 };

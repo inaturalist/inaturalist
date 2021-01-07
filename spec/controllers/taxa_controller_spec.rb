@@ -107,56 +107,88 @@ describe TaxaController do
   end
 
   describe "destroy" do
+    let(:curator) { make_curator }
+    let(:admin) { make_admin }
     it "should be possible if user did create the record" do
-      u = make_curator
-      sign_in u
-      t = Taxon.make!( creator: u, rank: Taxon::FAMILY )
-      delete :destroy, :id => t.id
-      expect(Taxon.find_by_id(t.id)).to be_blank
+      sign_in curator
+      t = Taxon.make!( creator: curator, rank: Taxon::FAMILY )
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).to be_blank
     end
 
     it "should not be possible if user did not create the record" do
-      u = make_curator
-      sign_in u
+      sign_in curator
       t = Taxon.make!( rank: Taxon::FAMILY )
-      delete :destroy, :id => t.id
-      expect(Taxon.find_by_id(t.id)).not_to be_blank
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
     end
 
     it "should always be possible for admins" do
-      u = make_admin
-      sign_in u
+      sign_in admin
       t = Taxon.make!( rank: Taxon::FAMILY )
-      delete :destroy, :id => t.id
-      expect(Taxon.find_by_id(t.id)).to be_blank
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).to be_blank
     end
 
     it "should not be possible for taxa inolved in taxon changes" do
-      u = make_curator
-      t = Taxon.make!( creator: u, rank: Taxon::FAMILY )
-      ts = make_taxon_swap(:input_taxon => t)
-      sign_in u
-      delete :destroy, :id => t.id
-      expect(Taxon.find_by_id(t.id)).not_to be_blank
+      t = Taxon.make!( creator: curator, rank: Taxon::FAMILY )
+      ts = make_taxon_swap( input_taxon: t)
+      sign_in curator
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
     end
 
     it "should not be possible if descendants are associated with taxon changes" do
-      u = make_curator
-      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
-      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      fam = Taxon.make!( creator: curator, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: curator, rank: Taxon::GENUS, parent: fam )
       ts = make_taxon_swap( input_taxon: gen )
-      sign_in u
+      sign_in curator
       delete :destroy, id: fam.id
       expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
     end
     it "should not be possible if descendants are associated with taxon change taxa" do
-      u = make_curator
-      fam = Taxon.make!( creator: u, rank: Taxon::FAMILY )
-      gen = Taxon.make!( creator: u, rank: Taxon::GENUS, parent: fam )
+      fam = Taxon.make!( creator: curator, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: curator, rank: Taxon::GENUS, parent: fam )
       ts = make_taxon_split( input_taxon: gen )
-      sign_in u
+      sign_in curator
       delete :destroy, id: fam.id
       expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
+    it "should not be possible if the taxon has children" do
+      fam = Taxon.make!( creator: curator, rank: Taxon::FAMILY )
+      gen = Taxon.make!( creator: curator, rank: Taxon::GENUS, parent: fam )
+      sign_in curator
+      delete :destroy, id: fam.id
+      expect( Taxon.find_by_id( fam.id ) ).not_to be_blank
+    end
+    it "should not be possible if the taxon is used in identifications" do
+      t = Taxon.make!(:species, creator: curator)
+      i = Identification.make!( taxon: t )
+      sign_in curator
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not be possible if the taxon is used in project observation rules" do
+      t = Taxon.make!(:species, creator: curator)
+      por = ProjectObservationRule.make!( operator: "in_taxon?", operand: t )
+      sign_in curator
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not be possible if the taxon is used in observation field values" do
+      t = Taxon.make!(:species, creator: curator)
+      of = ObservationField.make!( datatype: "taxon" )
+      ofv = ObservationFieldValue.make!( observation_field: of, value: t.id )
+      sign_in curator
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not be possible if the taxon is used in controlled term taxa" do
+      t = Taxon.make!(:species, creator: curator)
+      ctt = ControlledTermTaxon.make!( taxon: t )
+      sign_in curator
+      delete :destroy, id: t.id
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
     end
   end
   

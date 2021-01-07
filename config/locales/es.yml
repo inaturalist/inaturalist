@@ -127,6 +127,9 @@ es:
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A a la Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -158,6 +161,7 @@ es:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
+  about_license_options: Acerca de las opciones de licencia
   about_licenses: Acerca de las licencias
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
@@ -246,6 +250,7 @@ es:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Agregar activo
   add_batch: Agregar lote
+  add_blocked_users: Añadir usuarios bloqueados
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Añadir texto en negrita
   add_comma_separated_tags: "Agregar etiquetas separadas por comas"
@@ -262,6 +267,7 @@ es:
   add_id: Agregar ID
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Añadir texto en cursiva
+  add_muted_users: Añadir usuarios silenciados
   add_new_lexicon: Agregar léxico nuevo
   add_new_photos_by_their_ids: Agregar nuevas fotos por sus identificadores en Flickr (¡Deben ser de Creative Commons!)
   add_new_place: Agregar un lugar nuevo
@@ -506,6 +512,12 @@ es:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquiera
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicación
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Aplicaciones
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplicar campos
@@ -619,6 +631,9 @@ es:
   automatic_short: Autom.
   automatically_add_observations_to_this_project: Añadir automáticamente observaciones a este proyecto
   automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxon
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Media
   back: Volver
   back_to_all_species: Volver a todas las especies
   back_to_browsing_people: Volver a la búsqueda de personas
@@ -650,6 +665,7 @@ es:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   back_to_your_projects: Regresa a tus proyectos
+  badges: Insignias
   based_on_the_evidence_can_id_be_improved: |
     Basándose en las evidencias, ¿la ID de la comunidad puede ser confirmada o mejorada?
   batch: Grupo
@@ -660,6 +676,8 @@ es:
   because_of: debido a
   before_importing_photos: antes de importar fotos
   bg_color: Color de fondo
+  bio: Biografía
+  bio_description: '¡Explica a otros usuarios de iNaturalist sobre ti mismo!'
   bioblitz: Maratón naturalista
   birds: aves
   birthday: Cumpleaños
@@ -847,6 +865,7 @@ es:
   committed_on: Guardado el %{date}
   #Status message while a taxon change is being committed
   committing: Guardando...
+  common_name: Nombre vulgar
   community: Comunidad
   community_curated: Supervisado por la comunidad
   community_guidelines: Directrices de la comunidad
@@ -883,8 +902,18 @@ es:
   confirm_new_password: Confirmar nueva contraseña
   confirm_now: Confirmar ahora
   confirm_your_info: Confirma tu información
+  confirming_ids: Confirmación de Identificación
+  confirming_ids_description: Si lo desactivas, ya no se te notificará sobre identificaciones que coincidan con la tuya.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Conectar
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conectar a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas vinculadas
+  connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para permitir iniciar sesión, importar de fotos u otra funciones.
+  connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
@@ -908,6 +937,7 @@ es:
   contain_all_descendants?: '¿Esta lista de verificación contiene todos los descendientes de este taxón que se producen aquí?'
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenido
+  content_and_display: Contenido y Presentación
   content_author: Autor de contenido
   content_hidden: Contenido oculto
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1039,6 +1069,7 @@ es:
   customize_location: Personaliza la ubicación
   darr_apply_darr: "&darr; Aplica &darr;"
   daily_users: Usuarios Diarios
+  danger_zone: Zona de Peligro
   dashboard: Tablero
   data_deficient: Datos insuficientes
   data_quality: Calidad de datos
@@ -1047,6 +1078,7 @@ es:
   datatype: Tipo de datos
   date_: Fecha
   date_added: Fecha añadida
+  date_authorized: Fecha de autorización
   date_created: Fecha de creación
   date_format:
     date_long:
@@ -1104,6 +1136,8 @@ es:
   default_invite_comment: "¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
   default_photo_license: 'Licencia para sus fotos:'
+  default_search_place: Lugar de búsqueda por defecto
+  default_search_place_description: Este será su lugar predeterminado para todas las búsquedas en "Explora".
   default_sound_license: Licencia predeterminada de sonido
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
   defines_a_taxon_framework_for: Define un marco de taxon para %{taxon_name}
@@ -1187,8 +1221,18 @@ es:
   disable_comments: Desactivar comentarios
   disable_comments_desc: Evitar que la gente añada nuevos comentarios
   disagree_: No aceptar
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Desconectar
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconectarse de %{provider}"
+  display: Muestra
   display_link_to_checklist: Mostrar enlace a la lista del proyecto desde la página del proyecto
+  display_monthly_supporter_badge: Mostrar Imagen del Patrocinador Mensual en el perfil
+  display_name: Mostrar Nombre
+  display_name_description: Este es el nombre que se mostrará en tu perfil, junto a la atribución de derechos de autor
   distance_traveled_value: "Distancia recorrida: %{distance}m"
   distance_traveled: "Distancia recorrida (m)"
   documentation_for_developers_html: Documentación para <a href="/pages/developers">desarrolladores</a>
@@ -1232,6 +1276,7 @@ es:
   duplicate_verb: Duplicar
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
+  earliest_added: Primeros añadidos
   edit: Editar
   edit_a_batch_of_observations: Editar un grupo de observaciones
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
@@ -1293,10 +1338,12 @@ es:
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
   email: Correo
+  email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_addresses_description: Direcciones de correo separadas por coma, límite 60 cada 30 días.
   email_address_for_comments_and_other_feedback: Dirección de correo electrónico para comentarios y retroalimentación
   email_addresses_to_receive_invites: Direcciones de correo para recibir invitaciones
   email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
+  email_notifications: Notificaciones por correo electrónico
   email_settings: Configuración del correo
   embed: 'Inserta'
   embed_place_widget: Integra widget de lugar
@@ -1352,8 +1399,10 @@ es:
   export_observations: Exporta observaciones
   export_with_private_coordinates: Exporta con coordenadas privadas
   exporting: "Exportando..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Aplicaciones externas
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
-  external_taxon_rank: Rango de taxón externo
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
   extra_properties: Propiedades extra
@@ -1368,6 +1417,7 @@ es:
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
   failed_to_save_record_with_errors: "Error al guardar el registro: %{errors}"
+  failed_to_unlink_your_account: Error al desconectar tu cuenta
   'false': 'No'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
@@ -1530,6 +1580,7 @@ es:
   fungi:
     one: hongo
     other: hongos
+  gbif: GBIF
   gbif_occurrences: Registros de GBIF
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para tus fotos de Flickr.
   generate_widget: Genera el widget
@@ -1710,6 +1761,9 @@ es:
   inat_account_action: "%{site_name} : Cuenta : %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} cree que este es un listado completo de este taxón en este lugar."
   inat_user_profile: "%{site_name}:  perfil de %{user}"
+  inaturalist_activity_notifications: "Notificaciones de Actividad de %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "Aplicaciones de iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society."
   inaturalist_places: "Lugares %{site_name}"
   info: Información
@@ -1786,6 +1840,8 @@ es:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Bloquear nivel de zoom
+  language_slash_locale: Idioma/Localización
+  language_slash_locale_description: Esto establecerá tus preferencias de idioma y formato de fecha de iNaturalist basándose en tu localización. Los cambios surtirán efecto cuando la página se actualice.
   language_slash_type: Idioma / Tipo
   #Large photo size
   large: gran
@@ -1812,6 +1868,7 @@ es:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
+  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_on_the_blog: Lee nuestro blog para saber más
   learn_more_raquo: "Saber más &raquo;"
@@ -1997,6 +2054,10 @@ es:
     <a href="/login">Inicia sesión</a> o <a href="/signup">regístrate</a> para añadir comentarios.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Inicie sesión</a> o <a href="/signup">regístrese</a> para añadir identificaciones.
+  log_out: Cerrar Sesión
+  log_out_caps: CERRAR SESIÓN
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "¿Cerrar sesión de %{site_name}?"
   log_scale_label: Registro
   login_slash_username: Registro / nombre de usuario
   logo:
@@ -2362,6 +2423,7 @@ es:
   no_taxa_with_unknown_relationships: Ningún taxón con relaciones desconocidas.
   no_taxon_framework_relationships: No existen relaciones entre marcos de referencia de taxones
   no_taxonomic_changes_match_those_criteria: No hay cambios taxonómicos con ese criterio de búsqueda
+  no_users_found_with_those_filters: No hay usuarios que cumplan estos filtros
   no_wikipedia_page_for_taxon: No hay página en Wikipedia para este taxón.
   no_x_this_y: "No hay %{x} de este %{y}"
   noble_curators: "Curadores activos de %{site}"
@@ -2384,7 +2446,9 @@ es:
   note: Nota
   notes: Notas
   note_you_can_modify_the_height_attribute: "Nota: Puedes modificar el atributo \"altura\" para llenar el espacio disponible en tu página web."
+  notifications: Notificaciones
   notify_me_of_mentions: Notificarme sobre las menciones (p. ej. @username)
+  notify_me_of_mentions_description: "Si lo desactivas, no recibirás notificaciones cuando alguien te mencione en %{site_name}."
   notify_me_about_redundant_identifications: Notificarme sobre la confirmación de identificaciones
   notify_me_about_redundant_identifications_desc: |
     Recibe notificaciones sobre identificaciones que coincidan con la tuya. Si lo desactivas únicamente recibirás notificaciones sobre aquellas identificaciones de taxones que no se correspondan exactamente con la tuya.
@@ -2534,10 +2598,12 @@ es:
   of_places: lugares
   of_this_taxon: De este taxón
   offensive_inappropriate: Ofensivo / inapropiado
+  off_caps: "DESACTIVA"
   official_blog: Blog oficial
   offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
+  on_caps: "ACTIVA"
   on_day: "el"
   onboarding:
     observe_panel_title: Vamos a añadir observaciones
@@ -2887,6 +2953,7 @@ es:
     argentina: Argentina
     armenia: Armenia
     aruba: Aruba
+    asia: Asia
     australia: Australia
     austria: Austria
     azerbaijan: Azerbaiyán
@@ -3202,6 +3269,7 @@ es:
   processing: Procesando
   processing3p: "Procesando..."
   profile: Perfil
+  profile_picture: Foto del perfil
   profile_visibility_desc: |
     En un esfuerzo para mantener %{site_name} libre de basura, los perfiles de los usuario son sólo visibles públicamente después de que el usuario haya contribuido varias Observaciones de Grado de Investigación.
   project: Proyecto
@@ -3350,6 +3418,8 @@ es:
   reason: Razón
   reason_you_are_flagging_this_item: Razón por la cual estas marcando este elemento.
   recaptcha_verification_failed: falló la verificación de reCaptcha
+  receive_email_notifications: Recibir notificaciones por correo electrónico
+  receive_email_notifications_description: "Si lo desactivas ya no recibirás ningún correo electrónico de %{site_name} respecto a las notificaciones. Recibirás notificaciones de todo lo que marcado a continuación:"
   receive_email_notifications_when_people_leave_you: Reciba notificaciones por correo cuando las personas lo dejen
   receive_project_journal_notifications?: '¿Recibir notificaciones del diario del proyecto?'
   receive_updates_from_this_project: Recibir actualizaciones de este proyecto
@@ -3363,6 +3433,7 @@ es:
   recent_atom_observations_by: "Observaciones recientes por %{login} (Atom)"
   recent_observations_by: "Observaciones recientes por %{login}"
   recently_active: Activo recientemente
+  recently_added: Añadido recientemente
   recently_created: Creado recientemente
   recently_finished: Terminado recientemente
   recently_observed: Observado recientemente
@@ -3388,6 +3459,7 @@ es:
     not_external: no externo
     not_internal: no interno
     error: error
+  relationships_user_settings: Relaciones
   relationship_html: "Relación: %{link}"
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: 'El tiempo de carga expiró.  Por favor trate de nuevo en un momento.'
@@ -3413,6 +3485,8 @@ es:
   remove_place: Quitar lugar
   remove_range: Quitar distribución
   remove_relationship: Eliminar relación
+  remove_relationship_caps: ELIMINAR RELACIÓN
+  remove_relationship_question: Eliminar relación?
   remove_section: Quitar sección
   remove_selected: Eliminar los elementos seleccionados
   remove_tags: Quite las etiquetas
@@ -3454,6 +3528,11 @@ es:
   results: resultados
   review_all: Revisar todas
   reviewed: Revisada
+  revoke: Revocar
+  revoke_caps: REVOCAR
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  revoke_external_application: "¿Revocar %{site_name}?"
   rg_observations: GI Observaciones
   role: Permiso
   rotate_left: Gira a la izquierda
@@ -3489,8 +3568,10 @@ es:
   save_observation: Guardar observación
   save_photos: Guardar fotos
   save_place: Guardar lugar
+  save_settings_caps: GUARDAR AJUSTES
   save_trip: Guarda el viaje
   saved: Guardado
+  saved_at_time: Guardado a las %{time}
   saving: "Guardando..."
   saving_num_of_count_observations:
     one: Guardando observación...
@@ -3762,6 +3843,7 @@ es:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta fusión de taxones"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta división de taxón"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Suscribirse%{tag_end} a los comentarios sobre esta eliminación de taxón"
+  subscribe_to_observations_from_this_place_html: <a>Suscríbete</a> a las observaciones de este lugar
   subscribe_to_observations_in_a_taxon: Suscribirse a todas las observaciones publicadas de una especie o grupo de organismos (por ejemplo, 'escorpiones').
   subscribe_to_observations_in_a_place: Suscribirse a todas las observaciones publicadas en este lugar. También puede agregar un filtro opcional especie o grupo de organismos (por ejemplo, 'escorpiones de Chiapas').
   subscribe_to_places_to: |
@@ -3780,6 +3862,8 @@ es:
   suggest_an_identification: Sugerir una identificación
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes llenen estos campos para las observaciones que añadan a tu proyecto.
   suggestions: Sugerencias
+  suitable_for_the_global_biodiversity_information_facility: Adecuado para el Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adecuado para Wikipedia y otros proyectos de la Wikimedia Foundation
   summary: Resumen
   supporting: Apoyo a
   support_inaturalist: Apoya iNaturalist
@@ -4007,6 +4091,7 @@ es:
     Estas observaciones no se han subido aún.
   they_already_have_iNat_accounts: "...que ya tienen cuentas %{site_name}"
   they_have_been_invited: ...ellos ya han sido invitados.
+  third_party_tracking: Seguimiento de Terceros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   third_person_possessive_plural: "%{object_phrase} del  %{noun}"
   this: este
@@ -4017,6 +4102,7 @@ es:
   this_is_more_convenient_way_find_parent: Esta es una forma más conveniente de encontrar un Identificador padre. El Identificador padre es el que realmente queda guardado.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Esta es una forma más conveniente para encontrar el identificador del taxón. Es el identificador del taxón que quedará guardado. Esta búsqueda solo funciona para taxones activos.
+  this_is_how_taxon_names_will_be_displayed: Así es como todos los nombres de taxones se mostrarán en %{site_name}
   this_is_taking_forever: Esto está tardando demasiado. Por favor inténtalo más tarde.
   this_is_the_primary_listing: Es la especies listado principal
   this_is_your_observation: Esta es tu observación
@@ -4048,6 +4134,11 @@ es:
   this_will_refresh_listed_taxa: Esto actualizará los taxones incluidos en esta lista. Esto puede tomar un tiempo así que por favor utilícelo con moderación y con pequeñas listas de comprobación
   this_will_re_apply_all_list_rules: |
     Esto aplicará nuevamente todas las reglas de la lista a los taxones, por ejemplo rechazar taxones que no están dentro del taxón de la lista de vida o dentro del rango seleccionado. No agregará ningún taxón. Esto podría tardar unos minutos.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Esto eliminará la capacidad de iNaturalist para acceder a esta cuenta en tu nombre hasta que le permitas el acceso de nuevo. Puede que necesites cambiar la configuración en el sitio externo para impedir completamente el acceso.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  this_will_sign_you_out_current_session: Esto cerrará la sesión actual en esta aplicación.
   this_will_try_to_add_tags_to_your_flickr: Esto tratará de agregar etiquetas a tus fotos de Flickr. ¿Deseas continuar?
   this_year: Este año
   those_observations_no_longer_exist: Esas observaciones ya no existen.
@@ -4161,6 +4252,7 @@ es:
   upload_a_csv_file: Carga un archivo CSV
   upload_a_csv_file_with_observation: |
     Cargar un archivo CSV con datos de observación. Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente la forma de hacerlo.
+  upload_new_photo: Cargar una foto nueva
   upload_photo: Cargar foto
   upload_range: Cargar distribución
   uploaded_by: Subido por
@@ -4263,6 +4355,7 @@ es:
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
   user_wrote_html: '<a href="%{url}" target="_blank">%{user}</a> escribió:'
   username: Nombre de usuario
+  username_description: Este es el nombre de usuario que usarás para iniciar sesión, y por el cual pueden identificarte otros usuarios en iNaturalist
   username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
@@ -4306,7 +4399,7 @@ es:
   view_moderation_history_for_this_comment: Ver el historial de moderación de este comentario
   view_more: Ve más
   view_more_about_x: "Ve más sobre %{x}"
-  view_more_observations_from: Ve más observaciones de
+  view_more_observations_from_this_place: Ver más observaciones de este lugar
   view_more_observations_near_x_place: "Ver más observaciones cerca de %{place} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Ver más observaciones de %{project} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver más observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
@@ -4403,6 +4496,7 @@ es:
   which_projects_can_add_your_observations?: '¿Qué proyectos tradicionales pueden añadir tus observaciones?'
   white: blanco
   why_you_can_see_the_coordinates: Por qué Puedes Ver las Coordenadas
+  who_can_add_observation_fields_to_my_obs: '¿Quién puede añadir campos de observación a mis observaciones?'
   who_can_add_observations_to_this_project?: '¿Quiénes pueden añadir observaciones a este proyecto?'
   who_can_see_the_coordinates: Quiénes pueden ver las coordenadas
   who_can_see_the_coordinates_observer: La persona quién hizo la observación
@@ -4521,7 +4615,8 @@ es:
   you_can_edit_this_default_check_list_because: |
     Puedes editar esta página porque eres administrador,
     pero realmente no debería haber la necesidad de hacerlo.
-  you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se están utilizando en los cambios de taxones."
+  you_can_only_destroy_taxa_you_created2: |
+    Solo puedes eliminar los taxones que creaste que no están asociados con los cambios del taxón, identificaciones u otro contenido
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límites del lugar en la página de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: "Puedes registrar una cuenta gratis con %{site_name} en"
@@ -4610,6 +4705,7 @@ es:
   yours: Tuyos
   youre_not_following_anyone: |-
     No sigues a nadie. Seguir a otros naturalistas te permitirá llevar un control de sus observaciones más recientes. Averigua lo que la gente está <a href="%{observations_path}">observando</a> y haz nuevos <a href="%{people_path}">conocidos</a>.
+  youre_not_following_anyone_on_inat: '¡Aún no estás siguiendo a nadie en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Has enlazado tus cuentas de %{site_name} y de Google. Esto te permitirá asociar tus fotografías de Google con tus observaciones en %{site_name}."
   youve_seen_it_want_to: "¡Lo ha visto¿Desea"
   youve_successfully_linked_your_provider_account: "Has vinculado con éxito tu cuenta de %{provider}"
@@ -4822,6 +4918,7 @@ es:
       list_view: Ver lista
       tree_view: Vista en árbol
       observed_species: Especies observadas
+      observed_rank: '%{rank} observados'
       unobserved_species: Especies no observadas
       all_species: Todas las especies
       all_unobserved_species: Todas las especies no observadas
@@ -4904,8 +5001,14 @@ es:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar tu cuenta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
       community_id:
@@ -5138,6 +5241,35 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
+        quality_assessment_help_html: |
+          <p>
+          La evaluación de la calidad de datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con el grado de <strong>"casual"</strong> y se marcan como <strong>"necesita ID"</strong> cuando:</p>
+          <ul><li>la observación <strong>tiene una fecha</strong></li>
+          <li>la observación <strong>está georeferenciada</strong> (es decir, tiene coordenadas Latitud/Longitud)</li>
+          <li>la observación se acompaña de <strong>fotos o sonidos</strong></li>
+          <li>la observación <strong> no es de humanos</strong></li></ul>
+          <p>Las observaciones alcanzan el grado de <strong>"investigación"</strong> cuando
+          </p>
+          <ul>
+          <li>la comunidad de %{site_name}<strong> está de acuerdo con la identificación específica o inferior</strong>, esto es que 2/3 de los identificadores coinciden en el taxón (si la comunidad vota que el Taxón de la Comunidad no puede ser mejorado, se revertirá a la identificación al nivel de subfamilia o inferior)</li>
+          </ul>
+          <p>Las observaciones volverán al grado <strong>"casual"</strong> si no se cumplen las condiciones anteriores o la comunidad acuerda</p>
+          <ul>
+          <li> que la <strong>ubicación no parece acertada</strong> (por ejemplo: monos en medio del océano, hipopótamos en edificios de oficinas, etc.)</li>
+          <li>que el <strong>organismo no es silvestre/naturalizado</strong> (es decir, es cautivo o cultivado por humanos u organismos alienígenas inteligentes)</li>
+          <li>que la observación <strong>no muestra evidencias</strong> de ningún organismo concreto (por ejemplo imágenes de paisajes, masas de aguas, piedras...)</li>
+          <li>que <strong>no se presentan restos recientes (de menos de 100 años) de ningún organismo </strong> (como fósiles, pero sí que se aceptan rastros, restos u hojas secas)</li>
+          <li>que la observación ya no necesita una Identificación <em>y</em> la identificación de la comunidad supera el nivel de familias</li>
+          <li>el observador ha optado por no estar de acuerdo con la Identificación de la comunidad y el taxón de la Identificación de la comunidad no es un ancestro o descendiente del taxón asociado con la Identificación del observador</li>
+          </ul>
+          <p>
+          Y si eso no fuera lo suficientemente complicado, también hay situaciones en las que el sistema también tiene un voto:
+          </p>
+          <ul>
+          <li>
+          El sistema considera que la observación no es salvaje/naturalizada si hay al menos otras 10 observaciones de un género o inferior en el lugar más pequeño equivalente a una provincia, estado o país que contiene esta observación y 80% o más de esas las observaciones se han marcado como no silvestres/naturalizadas.
+          </li>
+          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -5683,11 +5815,22 @@ es:
           Creado vía <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">la red iNaturalist</a>
       year:
+        compare_desc: |
+          ¿Cómo ha sido este año comparado con tus años anteriores? Con un uso de tres o más años de uso podemos empezar a comparar estadísticas de vuestra actividad anual.
+        compare_site_desc: |
+          ¿Cómo ha sido este año comparado con los anteriores? La barra verde muestra este
+          año, la barra vertical blanca muestra el año pasado y las áreas de fondo gris
+          muestran el año con menos y más observaciones, así como el promedio de
+          todos los años.
+        compared_to_previous_years: Comparar con el año anterior
         donate_title: "Gracias a todos nuestros colaboradores"
         donate_desc_html: |
-          ¡Gracias por ser tan generoso con su tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la Academia de Ciencias de California y la Sociedad Geográfica Nacional.
-          Es sostenido por un equipo <a href="%{team_url}">pequeño</a> que realiza todo el diseño y ingeniería de software para web, móvil, y <a href="%{seek_url}">Búsqueda de iNaturalist</a>, además de administrar el apoyo de la comunidad, colaboraciones e integraciones que mantienen el proyecto en funcionamiento (¡y creciendo rápidamente!). El programa se basa en numerosas donaciones, incluyendo donaciones de beneficencia de menos del 0.2% de los colaboradores. Agradecemos especialmente a los Donadores Mensuales, cuyos regalos recurrentes nos ayudan a planear para el futuro. Puedes donar en más de 30 monedas para apoyar las operaciones centrales de iNaturalist.
-          ¡Gracias a todos por hacer del 2019 el año más grande de iNaturalist hasta la fecha!
+          Gracias por haber sido tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin fines de lucro de California Academy of Sciences y National Geographic Society..
+          Está respaldado por un
+          <a href="%{team_url}"> reducido equipo</a> que desarrolla el diseño y la ingeniería del software para web, móvil y de <a href="%{seek_url}"> Seek de iNaturalist </a>, además de administrar el soporte de la comunidad, las colaboraciones y las integraciones que mantienen todo en funcionamiento (¡y que crecen rápidamente!). El programa se soporta gracias a las numerosas subvenciones y donaciones, incluidas las donaciones de pequeños importes recibidas de muchos contribuyentes. Estamos especialmente agradecidos con los Donantes Mensuales cuyas contribuciones recurrentes nos ayudan a planificar el futuro. Usted puede donar en varias monedas para apoyar el núcleo de operaciones de iNaturalist operaciones. ¡Gracias a todos por su participación en hacer del %{year}
+          el año más importante de iNaturalist hasta ahora!
+        donors: Donantes
+        donors_guide_label_our_goal_is_1000: Nuestro objetivo es conseguir 1000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
         inaturalist_network_desc: |
           Echa un vistazo a la Revisión del Año para miembros de la Red de iNaturalist.
@@ -5709,6 +5852,10 @@ es:
           %{site_name}, mientras que el gráfico "Usuarios" sólo muestra las fechas cuando los usuarios actualmente afiliados con %{site_name} se unieron a iNaturalist.
         growth_in_year_obs: "Crecimiento en %{year} (obs)"
         growth_title: Crecimiento
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Bajo: %{low_value} (%{low_desc}), demasiado pequeño para mostrarlo"
         new_species_desc: |
           Especie observada por primera vez en %{site_name} este año.
           Mostrando %{x} de <a href="%{url}">%{y} especies</a>.
@@ -5717,7 +5864,12 @@ es:
           Marca sobre un mes para ver algunas de las especies nuevas añadidas en ese mes.
           También puedes ver el total acumulado de la especie, o mover el cursor 
           hacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.
+        new_species_per_year: Nuevas especies / Año
+        new_species_per_year_by_date_added: Por fecha de incorporación
+        new_species_per_year_by_date_observed: Por fecha de observación
         obs_in_year: Obs En %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Una sola vez
         percent_growth_in_year: "% Crecimiento en %{year}"
         percent_of_total_growth: "% del Crecimiento Total"
         publications_desc_html: |
@@ -5727,12 +5879,20 @@ es:
         publications_desc_short_html: |
           Haz click en los gráficos para acceder a la información sobre el significado de los números y de los colores. Datos de impacto y visualizaciones cortesía de <a href="https://www.altmetric.com">Altmetric</a>. Información
           sobre uso de los datos cortesía de nuestros amigos en <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observaciones / Año
+        observations_per_year_by_date_added: Por fecha de incorporación
+        observations_per_year_by_date_observed: Por fecha de observación
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Racha de Observaciones
         observation_streaks_color_desc: |
           El color representa el número de días en una escala logarítmica:
-        observation_streaks_desc: |
-          Una racha de observaciones es un período de tiempo en el que una persona registra observaciones a diario. Aquí mostramos las rachas más largas que comenzaron este año o bien estaban en progreso cuando se generaron estas estadísticas.
+        observation_streaks_desc2: |
+          Una serie de observaciones es un período de tiempo de al menos cinco días durante los que alguien sale y registra nuevas observaciones verificables a diario. Aquí mostramos las series más largas que comenzaron este año o estaban en progreso cuando se generaron estas estadísticas (para los usuarios individuales también las series que acabaron este año).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recurrente
+        species_per_year: Especies / Año
+        species_per_year_by_date_added: Por fecha de incorporación
+        species_per_year_by_date_observed: Por fecha de observación
         stats_generated_datetime: Estadísticas generadas el %{datetime}
         store_prompt: |
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
@@ -6941,11 +7101,16 @@ es:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Aviso
+  wikimedia: Wikimedia
   wild: Silveste
   will_paginate:
     previous_label: "&#8592; Previa"
     next_label: "Siguiente &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Ya no seguirás o confiarás en %{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z a la A
   zoom_in: Acercar Zoom
   zoom_out: Alejar Zoom
   zoom_photo: Ampliar foto

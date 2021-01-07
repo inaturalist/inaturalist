@@ -123,23 +123,11 @@ const DetailsView = ( {
     }
   } else if ( lifelist.detailsView === "species" ) {
     title = I18n.t( "views.lifelists.all_species" );
-    let count = _.size( filteredNodes( lifelist ) );
+    inatAPIsearch = inatAPI.speciesPlace;
+    const count = _.size( filteredNodes( lifelist, inatAPIsearch ) );
     searchLoaded = true;
     if ( lifelist.speciesPlaceFilter ) {
-      inatAPIsearch = inatAPI.speciesPlace;
       searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
-      if ( searchLoaded ) {
-        const nodeIsDescendant = ( !lifelist.detailsTaxon || lifelist.detailsTaxon === "root" )
-          ? ( ) => true
-          : node => node.left >= lifelist.detailsTaxon.left
-            && node.right <= lifelist.detailsTaxon.right;
-        count = _.size( _.filter( lifelist.taxa, t => (
-          nodeIsDescendant( t ) && (
-            ( t.right === t.left + 1 )
-              && inatAPIsearch.searchResponse.results[t.id]
-          )
-        ) ) );
-      }
     }
     stats = (
       <div className="stats">

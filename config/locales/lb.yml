@@ -65,6 +65,9 @@ lb:
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
   a_flag_for_x: "en Markéierung fir %{x}"
   a_member_of_taxon_html: "e Member vu(n) %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A bis Z"
   about: Iwwer
   about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
@@ -263,6 +266,12 @@ lb:
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Applikatioun
+  #Apps or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Applikatiounen
   appropriate?: Gëeegent?
   arachnids: Spannendéieren
   archives: Archiven
@@ -334,6 +343,7 @@ lb:
   because_of: well
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
+  bio: Bio
   birds: Vigel
   birthday: Gebuertsdag
   black: schwaarz
@@ -413,6 +423,7 @@ lb:
   comments_by_me: Bemierkunge vu mir
   comments_on: Bemierkungen iwwer
   comments_on_my_observations: Bemierkungen zu mengen Observatiounen
+  common_name: Allgemengen Numm
   community: Communautéit
   community_id_heading: Communautéits-Taxon
   community_id_is_precise: Den Community Taxon ass prezise
@@ -431,6 +442,10 @@ lb:
   confirm_new_password: Neit Passwuert confirméieren
   confirm_now: Elo confirméieren
   confirm_your_info: Confirméiert Är Informatioun
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Connectéieren
+  connected_accounts_titlecase: Connectéiert Kontoen
   connecting_to_facebook: "Mat Facebook verbannen..."
   conservation_status: Erhalungszoustand
   continue: Virufueren
@@ -496,6 +511,7 @@ lb:
       june: Juni
       july: Juli
       october: Oktober
+      november: November
       december: Dezember
   date_is_accurate: Datum ass richteg
   date_observed_: Datum vun der Observatioun
@@ -550,6 +566,9 @@ lb:
   did_you_photos_flickr?: Hutt Dir Fotoen op Flickr gesat?
   disable: Ausschalten
   disagree_: Refuséieren
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Déconnectéieren
   disconnect_provider: "%{provider} trennen"
   documentation_for_developers_html: Dokumentatioun fir <a href="/pages/developers">Entwéckler</a>
   do_not_show_this_message_again: Dëse Message net,méi weisen
@@ -617,6 +636,9 @@ lb:
   export: Exportéieren
   export_observations: Observatiounen exportéieren
   export_with_private_coordinates: Mat verstoppten Koordinaten exportéieren
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Exterm Applikatiounen
   extinct: ausgestuerwen
   facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
   facebook_options: Facebook-Optiounen
@@ -675,6 +697,7 @@ lb:
   from_photos: Vu Fotoen
   from_soundcloud: Vun Soundcloud
   full_screen: Ganzen Ecran
+  gbif: GBIF
   generate_your_stats: Generéiert Är Statistiken
   get_started: Fir unzefänken
   getting_started_guide: Guide fir unzefänken
@@ -703,6 +726,7 @@ lb:
   hide_no_annotation: '"Keng Annotatiounen" verstoppen'
   high: Héich
   history: Geschicht
+  id: ID
   ids_by_taxon: IDs no Taxon
   identify: Identifizéieren
   identify_observations: "Observatiounen bestëmmen"
@@ -730,6 +754,8 @@ lb:
   in_the_past_week: An der leschter Woch
   inactive: Inaktiv
   inappropriate_content: Onubruechte Contenu?
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist Applikatiounen"
   inaturalist_is_a_joint_initiative: "%{site_name} ass eng gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society."
   inaturalist_places: "%{site_name} Plazen"
   info: Informatioun
@@ -873,6 +899,8 @@ lb:
   location_is_public: D'Plaz ass ëffentlech
   location_is_private: Plaz ass privat
   log_in: Aloggen
+  log_out: Ausloggen
+  log_out_caps: AUSLOGGEN
   login_slash_username: Aloggen / Benotzernumm
   logo:
     transparent_png: transparente PNG
@@ -915,6 +943,9 @@ lb:
   momentjs:
     shortRelativeTime:
       future: "an %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1s"
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
@@ -1020,6 +1051,7 @@ lb:
   no_suggestions_available: Keng Proposen Disponibel
   no_summary_from_wikipedia: Kee Resumé vu Wikipedia
   no_summary_has_been_set: Kee Resumé gouf festgesat.
+  no_users_found_with_those_filters: Keng Benotzer fir dëse Filter fonnt
   non_human?: Net-mënschlech?
   none: Keen
   none_found: Kee fonnt
@@ -1034,6 +1066,7 @@ lb:
   not_recorded: Net enregistréiert
   note: Notiz
   notes: Notizen
+  notifications: Notifikatioun
   number_of_observations: Zuel vun Observatiounen
   number_selected: "# erausgesicht"
   obscured: Verschleiert
@@ -1076,7 +1109,11 @@ lb:
   of_identifiers: Bestëmmer
   of_places: Plazen
   of_this_taxon: Vun desem Taxon
+  off_caps: "AUS"
   official_blog: Offizielle Blog
+  ok: "OK"
+  on_caps: "Un"
+  on_day: "um"
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
     following_panel_body: |
@@ -1189,6 +1226,7 @@ lb:
     antigua_and_barbuda: Antigua a Barbuda
     argentina: Argentinien
     armenia: Armenien
+    asia: Asien
     australia: Australien
     austria: Éisträich
     belarus: Wäissrussland
@@ -1215,6 +1253,7 @@ lb:
     europe: Europa
     france: Frankräich
     gabon: Gabun
+    gambia: Gambia
     georgia: Georgien
     germany: Däitschland
     greece: Griicheland
@@ -1272,6 +1311,8 @@ lb:
     turkey: Tierkei
     west_africa: Westafrika
     yemen: Jemen
+    zambia: Sambia
+    zimbabwe: Simbabwe
   places_of_interest: Interessant Plazen
   plants: Planzen
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt
@@ -1292,6 +1333,7 @@ lb:
   probably_spam: Wahrscheinlech Spam
   processing: Verschaffen
   profile: Profil
+  profile_picture: Profilbild
   project: Projet
   project_group_label: Grupp
   project_members: "%{project} Memberen"
@@ -1341,6 +1383,7 @@ lb:
     not_external: net extern
     not_internal: net intern
     error: Feeler
+  relationships_user_settings: Relatiounen
   relationship_html: "Relatioun: %{link}"
   remove: Ewechhuelen
   remove_photo: Foto ewechhuelen
@@ -1375,7 +1418,9 @@ lb:
   save_comment: Bemierkung späicheren
   save_observation: Observatioun späicheren
   save_photos: Fotoe späicheren
+  save_settings_caps: ASTELLUNGEN SPÄICHEREN
   saved: Gespäichert
+  saved_at_time: Gespäichert um %{time}
   saving: "Späicheren..."
   search: Sichen
   search_by_name: No engem Numm sichen
@@ -1651,6 +1696,8 @@ lb:
     guides:
       pdf_layouts:
         book: Buch
+    lifelists:
+      observed_rank: Observeiert %{rank}
     messages:
       from: Vum
       to: Fir
@@ -1660,6 +1707,8 @@ lb:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Méi iwwer %{application}
     observations:
       community_id:
@@ -1848,18 +1897,66 @@ lb:
     submit:
       submit: '%{model} späicheren'
   number:
+    currency:
+      format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half dollars" this would be written as
+        #"$1,000,002.50" in English, and "," is the delimiter. This should not
+        #be the same as the separator.
+        delimiter: '.'
+        format: '%u%n'
+        precision: 2
+        #The separator separates an integer from a decimal fraction, so if the
+        #number is "one million and two and a half dollars" this would be
+        #written as "$1,000,002.50" in English, and "." is the separator. This
+        #should not be the same as the delimiter.
+        separator: ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: '$'
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
+        format: '%n %u'
         units:
+          billion: Milliard
           million: Millioun
           thousand: Dausend
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', an'
       two_words_connector: 'a(n)'
+      words_connector: ', '
+  time:
+    am: am
+    pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
@@ -1939,6 +2036,7 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
+  wikimedia: Wikimedia
   wild: Wëll
   will_paginate:
     previous_label: "&#8592; Vireg"

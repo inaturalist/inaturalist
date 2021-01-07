@@ -495,7 +495,7 @@ module ApplicationHelper
   end
   
   def image_url(source, options = {})
-    abs_path = asset_path(source).to_s
+    abs_path = source =~ /^\// ? source : asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
      abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
     end

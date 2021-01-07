@@ -603,6 +603,8 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  # An app or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   application: Application
   applications: Applications
   apply_to_selected: Apply to selected
@@ -718,6 +720,9 @@ en:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
+  avg: Avg
   back: Back
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
@@ -998,8 +1003,11 @@ en:
   confirm_your_info: Confirm your info
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
   connect: Connect
   connect_to_provider: "Connect to %{provider}"
+  # Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Connected accounts
   connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
   connected_accounts_titlecase: Connected Accounts
@@ -1322,6 +1330,8 @@ en:
   disable_comments: Disable comments
   disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
   disconnect: Disconnect
   disconnect_caps: DISCONNECT
   disconnect_provider: "Disconnect %{provider}"  
@@ -1500,6 +1510,8 @@ en:
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
+  # A third-party app or service the user has authorized to access their iNat
+  # account, e.g. Flickr
   external_applications: External Applications
   external_applications_description: External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.
   external_taxon_including_children: External taxon (including children)
@@ -1883,6 +1895,7 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
+  # Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
@@ -2178,6 +2191,7 @@ en:
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_out: Log out
   log_out_caps: LOG OUT
+  # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / username
@@ -3706,6 +3720,8 @@ en:
   reviewed: Reviewed
   revoke: Revoke
   revoke_caps: REVOKE
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   revoke_external_application: "Revoke %{site_name}?"
   rg_observations: RG Observations
   role: Role
@@ -4024,6 +4040,7 @@ en:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon merge"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon split"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon drop"
+  subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
   subscribe_to_places_to: |
@@ -4357,6 +4374,8 @@ en:
     This will remove iNaturalist's ability to access this account on your behalf 
     until you grant access again. You may need to change your settings on the 
     external site to completely prevent access.
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
@@ -4630,7 +4649,7 @@ en:
   view_moderation_history_for_this_comment: View Moderation History for this Comment
   view_more: View More
   view_more_about_x: "View More About %{x}"
-  view_more_observations_from: View More Observations from
+  view_more_observations_from_this_place: View more observations from this place
   view_more_observations_near_x_place: "View more observations near %{place} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
@@ -4863,7 +4882,9 @@ en:
   you_can_edit_this_default_check_list_because: |
     You can edit this default check list because you're an
     admin, but there shouldn't really be a need to do so.
-  you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
+  you_can_only_destroy_taxa_you_created2: |
+    You can only delete taxa you created that aren't associated with taxon
+    changes, identifications, or other content
   you_can_only_block_three_users: You can only block three users
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
@@ -5316,8 +5337,14 @@ en:
     oauth:
       authorizations:
         new:
+          # Application is a third-party app or service the user is about to
+          # authorize to access their iNat account
           authorize_application_to_use_your_account?: Authorize %{application} to use your account?
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           this_application_will_be_able_to_colon: "This application will be able to:"
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           more_about_application: More about %{application}
     observations:
       community_id:
@@ -5346,7 +5373,7 @@ en:
         you_have_opted_out: You have opted out of community identifications
         opt_in_for_this_observation: Opt in for this observation
         your_id_does_not_match: |
-          Your ID (<span class="bold">%{taxon_name}</span>) does not match the the community ID
+          Your ID (<span class="bold">%{taxon_name}</span>) does not match the community ID
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observation fields."
       captive_help_html: |
         Was the organism <strong>cultivated</strong> or
@@ -6480,6 +6507,19 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        compare_desc: |
+          How did this year compare to your previous years? With three years of
+          usage or more we can start comparing yearly activity metrics. The
+          green bar shows this year, the white vertical bar shows last year, and
+          the gray background areas show the lowest and highest years, as well
+          as the average for all years. Stats do not include years where the
+          count was zero.
+        compare_site_desc: |
+          How did this year compare to previous years? The green bar shows this
+          year, the white vertical bar shows last year, and the gray background
+          areas show the lowest and highest years, as well as the average for
+          all years.
+        compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
         donate_desc_html: |
           Thank you for being generous with your time, attention, expertise, and
@@ -6492,12 +6532,14 @@ en:
           <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
           the community support, collaborations, and integrations that keep
           things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than 0.2%
-          of contributors. We are especially grateful to Monthly Supporters
-          whose recurring gifts help us plan for the future. You can donate in
-          more than 30 currencies to support iNaturalist’s core operations.
-          Thank you to everyone for your part in making 2019 iNaturalist’s
-          biggest year yet!
+          grants and donations, including charitable gifts from less than tiny
+          fraction of contributors. We are especially grateful to Monthly
+          Supporters whose recurring gifts help us plan for the future. You can
+          donate in multiple currencies to support iNaturalist’s core
+          operations. Thank you to everyone for your part in making %{year}
+          iNaturalist’s biggest year yet!
+        donors: Donors
+        donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Check out the Year in Review for the members of the iNaturalist Network.
@@ -6528,6 +6570,10 @@ en:
           currently affiliated with %{site_name} joined iNaturalist.
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
+        # Label when a mark on a chart has a value that is too small to
+        # visualize. low_value is the value (usually a number), low_desc is
+        # a description of what that value represents
+        low_too_small: "Low: %{low_value} (%{low_desc}), too small to show"
         new_species_desc: |
           Species that were observed for the first time on %{site_name} this year.
           Showing %{x} of <a href="%{url}">%{y} species</a>.
@@ -6541,7 +6587,12 @@ en:
           include higher or lower level taxa, so an observation identified as
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
+        new_species_per_year: New Species / Year
+        new_species_per_year_by_date_added: By date added
+        new_species_per_year_by_date_observed: By date observed
         obs_in_year: Obs in %{year}
+        # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
@@ -6558,15 +6609,24 @@ en:
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observations / Year
+        observations_per_year_by_date_added: By date added
+        observations_per_year_by_date_observed: By date observed
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
           Color represents the number of days on a logarithmic scale:
-        observation_streaks_desc: |
-          An observation streak is a period of time when someone got outside and
-          recorded new, verifiable observations every single day. Here we're
-          showing the longest streaks that began this year or were in progress
-          when these stats were generated.
+        observation_streaks_desc2: |
+          An observation streak is a period of at least five days when someone
+          got outside and recorded new, verifiable observations every single
+          day. Here we're showing the longest streaks that began this year or
+          were in progress when these stats were generated (for individual users
+          we're also including streaks that ended this year).
+        # Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recurring
+        species_per_year: Species / Year
+        species_per_year_by_date_added: By date added
+        species_per_year_by_date_observed: By date observed
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat

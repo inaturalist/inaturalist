@@ -25,13 +25,15 @@ if OPTS[:dir] == "slim_export_YYYYMMDD"
 end
 
 if OPTS[:filter_taxon_ids]
-  filter_taxa = Taxon.where(id: OPTS[:filter_taxon_ids])
+  filter_taxa = Taxon.where( id: OPTS[:filter_taxon_ids] )
   if filter_taxa.empty?
     puts "Could not find filter taxa. Exiting.\n\n"
     exit( 0 )
   end
   filter_taxon_ids = filter_taxa.map{ |t| Taxon.self_and_descendants_of(t).pluck(:id) }.flatten.uniq
   filter_taxon_ancestor_ids = filter_taxa.map{ |t| t.ancestry.split("/").map(&:to_i) }.flatten.uniq
+else
+  filter_taxon_ids = nil
 end
 
 puts "\n\n"
@@ -56,15 +58,10 @@ if !root_taxon
 end
 puts "Root taxon: #{root_taxon.name} [#{root_taxon.id}]"
 
-
-
-TEST_FLOOR = 50
-TEST_CEIL = 50
-TRAIN_FLOOR = 45
-TRAIN_CEIL = 995
-VAL_FLOOR = 5
-VAL_CEIL = 5
-VAL_PERCENT_OF_TRAIN = 0.1
+TRAIN_FLOOR = 50
+TRAIN_CEIL = 1000
+TEST_NUM = 25
+VAL_NUM = 25
 DATA_CSV_COLUMNS = [:id, :filename, :multitask_labels, :multitask_texts, :file_content_type]
 BAD_OBSERVATION_IDS = { }
 
@@ -77,7 +74,7 @@ quality_metrics_query = <<-SQL
     WHERE metric != 'wild'
     GROUP BY observation_id, metric
     HAVING
-      count(CASE WHEN agree THEN 1 ELSE null END) < count(CASE WHEN agree THEN null ELSE 1 END)
+      count( CASE WHEN agree THEN 1 ELSE null END ) < count( CASE WHEN agree THEN null ELSE 1 END )
   ) as subq;
 SQL
 
@@ -116,8 +113,8 @@ end
 # Part 1: determine the taxonomy
 
 if filter_taxon_ids
-  obs_taxon_filter_clause = "AND (observations.community_taxon_id IN (#{filter_taxon_ids.join(',')})
-      OR observations.taxon_id IN (#{filter_taxon_ids.join(',')}))"
+  obs_taxon_filter_clause = "AND ( observations.community_taxon_id IN ( #{filter_taxon_ids.join( ',' )} )
+      OR observations.taxon_id IN ( #{filter_taxon_ids.join( ',' )} ) )"
 end
 
 # Create a hash of the candidate observation counts for each node descending from the root (*where candidate means photos, no flags, no failing quality_metrics other than 'wild') for test (must have CID) and otherwise
@@ -129,8 +126,8 @@ CANDIDATE_OBSERVATIONS_SQL = <<-SQL
     observations.user_id,
     observations.quality_grade,
     observations.license,
-    COUNT(failing_metrics.observation_id) AS num_failing_metrics,
-    COALESCE(observations.community_taxon_id, observations.taxon_id) AS joinable_taxon_id
+    COUNT( failing_metrics.observation_id ) AS num_failing_metrics,
+    COALESCE( observations.community_taxon_id, observations.taxon_id ) AS joinable_taxon_id
   FROM
     observations
       LEFT OUTER JOIN (
@@ -138,28 +135,28 @@ CANDIDATE_OBSERVATIONS_SQL = <<-SQL
         FROM quality_metrics
         WHERE metric != 'wild'
         GROUP BY observation_id, metric
-        HAVING count(CASE WHEN agree THEN 1 ELSE null END) < count(CASE WHEN agree THEN null ELSE 1 END)
+        HAVING count( CASE WHEN agree THEN 1 ELSE null END ) < count( CASE WHEN agree THEN null ELSE 1 END )
       ) failing_metrics ON failing_metrics.observation_id = observations.id
       LEFT OUTER JOIN flags ON flags.flaggable_type = 'Observation' AND flags.flaggable_id = observations.id AND NOT flags.resolved
   WHERE
     observations.observation_photos_count > 0
-    AND (observations.community_taxon_id IS NOT NULL OR observations.taxon_id IS NOT NULL)
+    AND ( observations.community_taxon_id IS NOT NULL OR observations.taxon_id IS NOT NULL )
     #{ obs_taxon_filter_clause }
   GROUP BY
     observations.id
   HAVING
-    COUNT(failing_metrics.observation_id) = 0
-    AND COUNT(flags.id) = 0
+    COUNT( failing_metrics.observation_id ) = 0
+    AND COUNT( flags.id ) = 0
 SQL
 
 sql_query = <<-SQL
-  SELECT t.id AS taxa_id, COUNT(*)
+  SELECT t.id AS taxa_id, COUNT( * )
   FROM taxa t
   JOIN ( #{CANDIDATE_OBSERVATIONS_SQL} ) o ON o.taxon_id = t.id
   WHERE t.is_active = true
   AND o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id
   AND ( t.id = #{root_taxon.id} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
-  AND t.id NOT IN (#{extinct_taxon_ids.join("," )})
+  AND t.id NOT IN ( #{extinct_taxon_ids.join( "," )} )
   GROUP BY t.id;
 SQL
 puts "Looking up taxon CID supported obs counts..."
@@ -167,12 +164,12 @@ taxonomy = ActiveRecord::Base.connection.execute( sql_query )
 test_obs_counts = taxonomy.map{|row| [row["taxa_id"], row["count"].to_i]}.to_h
 
 sql_query = <<-SQL
-  SELECT t.id AS taxa_id, COUNT(*)
+  SELECT t.id AS taxa_id, COUNT( * )
   FROM taxa t
   JOIN ( #{CANDIDATE_OBSERVATIONS_SQL} ) o ON o.taxon_id = t.id
   WHERE t.is_active = true
   AND ( t.id = #{root_taxon.id} OR t.ancestry = '#{ ancestry_string }' OR t.ancestry LIKE ( '#{ ancestry_string }/%' ) )
-  AND t.id NOT IN (#{extinct_taxon_ids.join("," )})
+  AND t.id NOT IN ( #{extinct_taxon_ids.join( "," )} )
   GROUP BY t.id;
 SQL
 puts "Looking up taxon obs counts..."
@@ -189,7 +186,7 @@ species_and_above_rank_levels.each do |rank_level|
   enough_set = enough.map{ |row| row[:taxon_id] }.to_set
   taxa_scope = Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
     where( "is_active = true AND rank_level = ?", rank_level ).
-    where("id NOT IN (?)", extinct_taxon_ids )
+    where( "id NOT IN ( ? )", extinct_taxon_ids )
   if filter_taxon_ids
     taxa_scope = taxa_scope.where(id: filter_taxon_ids + filter_taxon_ancestor_ids)
   end
@@ -198,23 +195,22 @@ species_and_above_rank_levels.each do |rank_level|
     # internode
     if ( dset & enough_set ).count > 0
       enough << {
-        taxon_id: t.id
+        taxon_id: t.id, count: nil
       } 
     # leaf
-    elsif ( ( [
+    elsif ( [
           test_obs_counts[t.id.to_s],
           t.descendants.pluck( :id ).map{ |j|
             test_obs_counts[j.to_s]
           }
-        ].flatten.compact.sum >= TEST_FLOOR ) && ( [
+        ].flatten.compact.sum >= TEST_NUM + VAL_NUM )
+        total_count = [
           total_obs_counts[t.id.to_s],
           t.descendants.pluck( :id ).map{ |j|
             total_obs_counts[j.to_s]
           }
-        ].flatten.compact.sum >= ( TEST_FLOOR + TRAIN_FLOOR + VAL_FLOOR ) ) )
-        enough << {
-          taxon_id: t.id
-        } 
+        ].flatten.compact.sum
+        enough << { taxon_id: t.id, count: total_count } if total_count >= ( TRAIN_FLOOR + VAL_NUM + TEST_NUM ) 
     end
   end
 end
@@ -231,7 +227,8 @@ export_taxonomy = taxa.map{|i|
       id: i[:id],
       name: i[:name],
       rank_level: i[:rank_level],
-      ancestors: i[:ancestry].split( "/" ).map{ |j| j.to_i } - [Taxon::LIFE.id]
+      ancestors: i[:ancestry].split( "/" ).map{ |j| j.to_i } - [Taxon::LIFE.id],
+      count: enough.select{|j| j[:taxon_id]==i[:id]}.map{|j| j[:count]}.first
     }
   }; nil
 
@@ -243,7 +240,8 @@ unless root_taxon.rank_level == Taxon::ROOT_LEVEL
       id: row.id,
       name: row.name,
       rank_level: row.rank_level,
-      ancestors: root_ancestors.map{|i| i.id}[0..-j]
+      ancestors: root_ancestors.map{|i| i.id}[0..-j],
+      count: nil
     }
     j+=1
   end
@@ -263,7 +261,7 @@ CSV.open( "#{export_dir_fullpath}/taxonomy_data.csv", "wb" ) do |csv|
   end
 end; nil
 
-
+puts "#{export_taxonomy.count} nodes: #{taxon_ids.count} leaves and #{INTERNODES.count} internodes"
 
 # Part 2: Fetch the photos on the taxonomy
 
@@ -280,6 +278,8 @@ end
 
 def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   row_id = row[:id]
+  puts "working on taxon #{row_id}..."
+  
   while !row_id.is_a? Numeric
     row_id = FAKE_KEY[row_id]
   end
@@ -292,66 +292,73 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   if INTERNODES.include? row_id
     taxon_ids_scope = taxon_ids_scope.where("taxa.rank_level > #{ row[:rank_level] - 10 }")
   end
-  taxon_ids = taxon_ids_scope.pluck(:id)
+  taxon_ids = taxon_ids_scope.pluck( :id )
   if taxon_ids.empty?
     return
   end
-
-  sql_query = <<-SQL
-    SELECT op.photo_id AS id, p.medium_url AS filename, p.file_content_type AS file_content_type, o.id AS observation_id, CASE WHEN (o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id )THEN 0 ELSE 1 END AS has_cid
-    FROM observations o
-    JOIN observation_photos op ON op.observation_id = o.id
-    JOIN photos p ON op.photo_id = p.id
-    WHERE p.original_url NOT LIKE '%attachment%'
-    AND p.original_url NOT LIKE '%copyright%'
-    AND p.type = 'LocalPhoto'
-    AND o.taxon_id IN (#{taxon_ids.join(",")})
-    ORDER BY has_cid DESC
-    LIMIT 2000;
-  SQL
-  raw_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
   
-  i = 0
-  photos = []
-  while i <= 1000
-    if p = raw_photos[i]
-      photos << p unless BAD_OBSERVATION_IDS[p["observation_id"].to_i]
+  base_sql_query = <<-SQL
+      SELECT op.photo_id AS id, o.id AS oid
+      FROM observations o
+      JOIN observation_photos op ON op.observation_id = o.id
+      JOIN photos p ON op.photo_id = p.id
+      WHERE p.original_url NOT LIKE '%attachment%'
+      AND p.original_url NOT LIKE '%copyright%'
+      AND p.type = 'LocalPhoto'
+      AND o.taxon_id IN ( #{taxon_ids.join( "," )} )
+  SQL
+
+  sql_query = base_sql_query + "AND ( o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id );"
+  raw_photos_cid = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i} }; nil
+  sql_query = base_sql_query + "AND ( o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id );"
+  raw_photos_no_cid = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i} }; nil
+  raw_photo_ids = [raw_photos_cid.shuffle,raw_photos_no_cid.shuffle].flatten; nil
+  photo_ids = []
+  raw_photo_ids.each do |raw_photo_id|
+    unless BAD_OBSERVATION_IDS[raw_photo_id[:oid]]
+      photo_ids << {id: raw_photo_id[:id], oid: raw_photo_id[:oid]}
     end
-    i+=1
   end
-  if photos.count >= TEST_CEIL
-    train_val_count = photos[TEST_CEIL..photos.length].count
-    train_count = ( train_val_count * ( 1 - VAL_PERCENT_OF_TRAIN ) ).round
-    val_count = photos.length - TEST_CEIL - train_count
-    if val_count > VAL_CEIL
-      train_count = train_val_count - VAL_CEIL
-      val_count = VAL_CEIL
-    end
-    test_photos = photos[0..( TEST_CEIL - 1 )]
-    train_photos = photos[TEST_CEIL..( ( TEST_CEIL - 1 ) + train_count )]
-    val_photos = photos[( TEST_CEIL + train_count )..photos.length]
-  else
-    photos_count = photos.count
-    test_photos = photos[0..( photos_count - 1 )]
-    train_photos = nil
-    val_photos = nil
+  photo_ids = photo_ids[0..( TEST_NUM + VAL_NUM + TRAIN_CEIL - 1 )]
+  photo_ids[0..TEST_NUM].map{|i| i[:set] = "test"}
+  photo_ids[TEST_NUM..( TEST_NUM  + VAL_NUM - 1 )].map{|i| i[:set] = "val"}
+  photo_ids[( TEST_NUM  + VAL_NUM )..( TEST_NUM + VAL_NUM + TRAIN_CEIL - 1 )].map{|i| i[:set] = "train"}
+
+  base_sql_query = <<-SQL
+    SELECT DISTINCT p.id AS id, p.medium_url AS filename, p.file_content_type AS file_content_type, o.id AS observation_id
+    FROM photos p
+    JOIN observation_photos op ON op.photo_id = p.id
+    JOIN observations o ON op.observation_id = o.id
+  SQL
+
+  ids = photo_ids.select{|i| i[:set]=="train"}.map{|i| i[:id]}.join( "," )
+  oids = photo_ids.select{|i| i[:set]=="train"}.map{|i| i[:oid]}.join( "," )
+  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
+  train_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
+  
+  ids = photo_ids.select{|i| i[:set]=="val"}.map{|i| i[:id]}.join( "," )
+  oids = photo_ids.select{|i| i[:set]=="val"}.map{|i| i[:oid]}.join( "," )
+  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
+  val_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
+
+  ids = photo_ids.select{|i| i[:set]=="test"}.map{|i| i[:id]}.join( "," )
+  oids = photo_ids.select{|i| i[:set]=="test"}.map{|i| i[:oid]}.join( "," )
+  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
+  test_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
+
+  puts "\t #{train_photos.count} training photos"
+
+  val_photos.each do |item|
+    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
+    val_csv << out_row
   end
   test_photos.each do |item|
     out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
     test_csv << out_row
   end
-  return unless photos.count > TEST_CEIL
-  unless train_photos.nil?
-    train_photos.each do |item|
-      out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
-      train_csv << out_row
-    end
-  end
-  unless val_photos.nil?
-    val_photos.each do |item|
-      out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
-      val_csv << out_row
-    end
+  train_photos.each do |item|
+    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
+    train_csv << out_row
   end
 end
 
@@ -381,6 +388,10 @@ CSV.open( "#{export_dir_fullpath}/test_data.csv", "w" ) do |test_csv|
     end
   end
 end; nil
+
+#copy the file to script
+src = "#{FileUtils.pwd}/tools/export_multitier_vision_data.rb"
+FileUtils.cp( src, "#{export_dir_fullpath}/export_multitier_vision_data.rb" )
 
 puts "Done\n\n"
 

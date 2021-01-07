@@ -1803,7 +1803,13 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return true if new_record?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
+    return false if children.exists?
+    return false if identifications.exists?
+    return false if controlled_term_taxa.exists?
+    return false if ProjectObservationRule.where( operand_type: "Taxon", operand_id: id ).exists?
+    return false if ObservationFieldValue.joins(:observation_field).where( "observation_fields.datatype = 'taxon' AND value = ?", id.to_s ).exists?
     return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     creator_id == user.id

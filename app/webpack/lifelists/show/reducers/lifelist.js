@@ -147,9 +147,10 @@ export function fetchAllCommonNames( callback ) {
     if ( _.isEmpty( idsToLookup ) ) {
       return;
     }
-    inatjs.taxa.lifelist_metadata(
-      { observed_by_user_id: lifelist.user.login }
-    ).then( response => {
+    inatjs.taxa.lifelist_metadata( {
+      observed_by_user_id: lifelist.user.login,
+      locale: I18n.locale
+    } ).then( response => {
       const commonNames = { };
       const photos = { };
       _.each( response.results, t => {
@@ -187,8 +188,12 @@ export function setNavView( view ) {
 }
 
 export function setDetailsView( view ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const { lifelist } = getState( );
     if ( !_.includes( DETAILS_VIEWS, view ) ) {
+      return;
+    }
+    if ( lifelist.detailsView === view ) {
       return;
     }
     updateSession( { preferred_lifelist_details_view: view } );
@@ -294,7 +299,8 @@ export function updateObservationsSearch( reload = false ) {
     const searchParams = {
       user_id: lifelist.user.id,
       order_by: "observed_on",
-      order: "desc"
+      order: "desc",
+      locale: I18n.locale
     };
     if ( lifelist.observationSort === "dateAsc" ) {
       searchParams.order = "asc";
@@ -306,7 +312,7 @@ export function updateObservationsSearch( reload = false ) {
         searchParams.taxon_id = lifelist.detailsTaxon.id;
       }
     } else if ( lifelist.detailsTaxonExact ) {
-      searchParams.identified = false;
+      searchParams.without_taxon = true;
     }
     if ( lifelist.speciesPlaceFilter ) {
       searchParams.place_id = lifelist.speciesPlaceFilter.id;
@@ -335,7 +341,8 @@ export function updateSpeciesPlaceSearch( reload = false ) {
         force: true,
         searchParams: {
           user_id: lifelist.user.id,
-          place_id: lifelist.speciesPlaceFilter.id
+          place_id: lifelist.speciesPlaceFilter.id,
+          locale: I18n.locale
         },
         resultsModify: results => {
           const allTaxa = {};
@@ -377,7 +384,8 @@ export function updateUnobservedSpeciesSearch( reload = false ) {
         taxon_id: lifelist.detailsTaxon ? lifelist.detailsTaxon.id : null,
         place_id: lifelist.speciesPlaceFilter ? lifelist.speciesPlaceFilter.id : null,
         quality_grade: "research",
-        lrank: "species"
+        lrank: "species",
+        locale: I18n.locale
       }
     } ) );
     if ( reload ) {
@@ -602,9 +610,7 @@ export function fetchUser( user, options ) {
           ) {
             milestoneLeaf = true;
           }
-          if ( milestoneTaxonID === 0 || milestoneTaxa[childID]
-            || milestoneLeaf || taxa[childID].rank_level === 10
-          ) {
+          if ( milestoneTaxonID === 0 || milestoneTaxa[childID] || milestoneLeaf ) {
             nextMilestoneTaxonID = childID;
           }
           if ( children[childID] ) {
@@ -627,7 +633,7 @@ export function fetchUser( user, options ) {
           taxa[childID].ancestors = ancestors;
           const isLeaf = ( taxa[childID].right === taxa[childID].left + 1 );
           if ( taxa[childID].rank_level === 70
-            || isLeaf
+            || ( isLeaf && taxa[childID].rank_level >= 10 )
             || milestoneTaxa[childID]
             || milestoneLeaf
             || taxa[childID].rank_level === 10

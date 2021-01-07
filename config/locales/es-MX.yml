@@ -774,7 +774,10 @@ es-MX:
   confirm_new_password: Confirma la nueva contraseña
   confirm_now: Confirma ahora
   confirm_your_info: Confirma tu información
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
   connect_to_provider: "Conecta a  %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas conectadas
   connecting_flickr: "Conectando a Flickr"
   connecting_to_facebook: "Conectando a Facebook..."
@@ -1137,7 +1140,6 @@ es-MX:
   export_with_private_coordinates: Exportar con coordenadas privadas
   exporting: "Exportando..."
   external_taxon_including_children: Taxón externo (incluyendo descendientes)
-  external_taxon_rank: Rango de taxón externo
   extinct: Extinta
   extinct_in_the_wild: Extinta en vida silvestre
   extra_properties: Propiedades adicionales
@@ -3546,7 +3548,6 @@ es-MX:
   view_listing: Ve listado
   view_more: Ver más
   view_more_about_x: "Ve más sobre %{x}"
-  view_more_observations_from: Ve mas observaciones de
   view_more_observations_near_x_place: "Ver mas observaciones cerca del lugar %{place} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Ver mas observaciones del proyecto %{project} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver mas observaciones de la especie o grupo %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
@@ -3720,7 +3721,6 @@ es-MX:
   you_can_edit_this_default_check_list_because: |
     Puedes editar esta página porque eres un administrador,
     pero no debería haber la necesidad de hacer eso.
-  you_can_only_destroy_taxa_you_created: "Sólo puedes destruir taxa que ha creado, y no se puedes destruir taxs que se están utilizando en los cambios de taxa."
   you_can_only_block_three_users: Puedes bloquear a solo tres usuarios
   you_can_show_the_boundary_of: Puedes mostrar los límetes del lugar en la pagina de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: "Puedes obtener una cuenta %{site_name} gratis en"
@@ -3999,8 +3999,14 @@ es-MX:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autoriza a la %{application} para usar su cuenta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
       community_id:
@@ -4022,8 +4028,6 @@ es-MX:
           </p>
         you_have_opted_out: Decidiste aceptar identificaciones comunitarias
         opt_in_for_this_observation: Optar por esta observación
-        your_id_does_not_match: |
-          Tu ID (%{taxon_name}) no coincide con la de la comunidad
       copy_tip: "Añade una nueva observación copiando la fecha de esta observación, el lugar, las fotos y los campos de observación."
       captive_help_html: |
         ¿Estaba el organismo observado en cautiverio, cultivado o criado? Por ejemplo, estaba en un jardín,
@@ -4750,8 +4754,6 @@ es-MX:
           any: Cualquiera
           joined: Proyectos a los que te has unido
           none: "Ninguno: solo tú puedes añadir observaciones a los proyectos"
-        prefers_community_taxa_desc: |
-          %{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.
         prefers_coordinate_interpolation_protection_desc: |
           Cuando configuras la geoprivacidad de una observación como "oculto" o "privado" se aplicará la misma geoprivacidad a todas las observaciones del mismo día para evitar sacar conclusiones de coordenadas mediante observaciones que se hicieron alrededor del mismo tiempo.
         project_settings_desc: |
