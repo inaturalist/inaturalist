@@ -34,6 +34,10 @@ class ProjectUser < ActiveRecord::Base
   CURATOR_COORDINATE_ACCESS_FOR_ANY = "any"       # Curators can view coords hidden for any reason
   preference :curator_coordinate_access_for, :string, default: CURATOR_COORDINATE_ACCESS_FOR_NONE
 
+  # The period of time a collection project curator must wait between changing
+  # the observation requirements and accessing hidden coordinates
+  CURATOR_COORDINATE_ACCESS_WAIT_PERIOD = 1.week
+
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"
