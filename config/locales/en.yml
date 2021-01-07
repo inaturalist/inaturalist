@@ -268,7 +268,7 @@ en:
   about_trusting_projects_overview: |-
     Granting access to your hidden coordinates will allow the managers of this
     project to see the true, unobscured location of of your observations in this
-    project. This is extremeley important in situations where scientists or
+    project. This is extremely important in situations where scientists or
     resource managers need access to exact coordinates for analysis and
     decision-making.
   # Header for a section listing all the project managers (admins and curators)
@@ -5841,6 +5841,9 @@ en:
           The observation requirements of the following project have recently
           changed:
         subject: Project observation requirements changed for %{project}
+        wondering_what_this_means_html: |
+          Wondering what "geoprivacy" is?
+          <a href="%{url}">Learn more in our documentation</a>.
         you_can_change_html: |-
           You can change your preferences or leave the project on the
           <a href="%{url}">project's page</a>.
