@@ -42,9 +42,11 @@ class App extends Component {
 
   handleUnload( e ) {
     const { profile } = this.props;
-    e.preventDefault( );
 
     if ( profile.saved_status === "unsaved" ) {
+      // preventing default within this if statement makes this work on both Chrome and Firefox
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event#browser_compatibility
+      e.preventDefault( );
       // Chrome requires returnValue to be set
       e.returnValue = "";
     } else {

@@ -606,8 +606,6 @@ en:
   # An app or service the user has authorized to access their iNat account, e.g.
   # the iNaturalist Android app or Flickr
   application: Application
-  # Apps or service the user has authorized to access their iNat account, e.g.
-  # the iNaturalist Android app or Flickr
   applications: Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
@@ -1008,8 +1006,6 @@ en:
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
   connect: Connect
-  # Label for a button to connect your iNat account to another account, e.g.
-  # connecting to Flickr
   connect_to_provider: "Connect to %{provider}"
   # Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Connected accounts
@@ -1337,8 +1333,6 @@ en:
   # Label for a button to disconnect your iNat account from another account,
   # e.g. disconnecting your Flickr account
   disconnect: Disconnect
-  # Label for a button to disconnect your iNat account from another account,
-  # e.g. disconnecting your Flickr account
   disconnect_caps: DISCONNECT
   disconnect_provider: "Disconnect %{provider}"  
   display: Display
@@ -1519,6 +1513,7 @@ en:
   # A third-party app or service the user has authorized to access their iNat
   # account, e.g. Flickr
   external_applications: External Applications
+  external_applications_description: External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
@@ -1718,6 +1713,7 @@ en:
   give_it_some_detail: Give it some detail!
   give_monthly_caps: GIVE MONTHLY
   give_now_caps: GIVE NOW
+  global: Global
   global_names: Global Names
   globally: Globally
   go: Go
