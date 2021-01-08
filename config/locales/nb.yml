@@ -5116,6 +5116,10 @@ nb:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Vennligst sjekk stavingen for hver post. Hvis din stavelse er korrekt, søk for arten på %{search_taxa_url}. Hvis navnet ikke er i databasen til %{site_name} ennå, må du legge det til før din masse-opplasting vil fungere. Bruk boksen nederst på søkesiden for å importere nye navn. Hvis navnet finnes men brukes for flere godkjente taksa, prøv å bruke et mer eller mindre spesifikt navn som kun matcher et eneste takson.
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Lurer du på hva "geosperring" er?
+          <a href="%{url}">Lær mer i vår dokumentasjon</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Din eksport av observasjoner er klar. En kopi er vedlagt i denne e-posten, eller du kan <a href="%{url}">laste ned din eksport</a>.
