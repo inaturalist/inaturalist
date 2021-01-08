@@ -161,6 +161,7 @@ nl:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Over vestigingswijze
+  about_license_options: Over licentieopties
   about_licenses: Over licenties
   about_muting: Over verstommen
   #Header for a section describing taxon names
@@ -199,10 +200,10 @@ nl:
     Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd worden omdat de
     waarneming een bedreigd taxon weergeeft.
   about_trusting_projects_overview: |-
-    Het verlenen van toegang tot je verborgen coördinaten zal de beheerders van dit
-    project de waarheid, laten zien onvervaagde locatie van je waarnemingen in dit
-    -project. Dit is extreem belangrijk in situaties waarin wetenschappers of
-    beheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en
+    Het verlenen van toegang tot je verborgen coördinaten staat beheerders van dit
+    project toe de echte, onvervaagde locatie van je waarnemingen in dit
+    project te zien. Dit is extreem belangrijk in situaties waarin wetenschappers of
+    beheerders toegang nodig hebben tot exacte coördinaten voor analyse en
     besluitvorming.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
@@ -531,6 +532,9 @@ nl:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Iedereen
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Toepassing
   #Apps or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Toepassingen
@@ -5359,6 +5363,9 @@ nl:
           De waarnemingvereisten van het volgende project zijn onlangs
           gewijzigd:
         subject: Vereisten voor projectwaarnemingen gewijzigd voor %{project}
+        wondering_what_this_means_html: |
+          Vraag je je af wat "geoprivacy" is?
+          <a href="%{url}">Lees meer in onze documentatie</a>.
         you_can_change_html: |-
           Je kan jouw voorkeuren wijzigen of het project verlaten op de 
           <a href="%{url}">pagina van het project</a>.
