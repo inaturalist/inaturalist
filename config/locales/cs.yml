@@ -290,12 +290,6 @@ cs:
   about_trusting_projects_options_taxon_desc: |-
     Mnoho projektů potřebuje pouze přístup k souřadnicím, které jsou skryté, protože pozorování
     zobrazuje ohrožený taxon.
-  about_trusting_projects_overview: |-
-    Poskytnutí přístupu k vašim skrytým souřadnicím umožní správcům tohoto
-    projektu vidět pravdu, neskryté umístění vašich pozorování v tomto
-    projektu. To je mimořádně důležité v situacích, kdy vědci nebo
-    správci zdrojů potřebují přístup k přesným souřadnicím pro účely analýzy a
-    rozhodování.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1723,7 +1717,7 @@ cs:
   generating_mobile_archive: "Generování mobilního archivu"
   Genus: Rod
   geoprivacy: Soukromí zeměpisné polohy
-  geoprivacy_is_obscured: Soukromí geografické polohy je nastaveno na přibližné
+  geoprivacy_is_obscured: Soukromí zeměpisné polohy je nastaveno na přibližné
   geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zveřejnit jen přibližné souřadnice.
   geoprivacy_is_private: Soukromí zeměpisné polohy je nastaveno na soukromé
   geoprivacy_is_private_desc: Pozorovatel se rozhodl skrýt souřadnice.
@@ -5525,6 +5519,9 @@ cs:
           Požadavky na pozorování u následujícího projektu
           se nedávno změnily:
         subject: Pro %{project} se změnily požadavky pozorování projektu
+        wondering_what_this_means_html: |
+          Zajímá vás, co to je "soukromí zeměpisné polohy"?
+          <a href="%{url}">Zjistěte více v naší dokumentaci</a>.
         you_can_change_html: |-
           Můžete změnit své předvolby nebo opustit projekt na 
           <a href="%{url}">stránce projektu</a>.
