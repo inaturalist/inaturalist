@@ -401,7 +401,7 @@ export function hydrateFromUrlParams( params ) {
       newObservationParams.quality_grade = params.quality_grade;
     }
     if ( taxon ) {
-      const controlledAttrIDs = _.keys( taxon.fieldValues ).map( parseInt );
+      const controlledAttrIDs = _.keys( taxon.fieldValues ).map( k => parseInt( k, 0 ) );
       const controlledValueIDs = _.flatten( _.values( taxon.fieldValues ) )
         .map( v => v.controlled_value.id );
       _.forEach( params, ( value, key ) => {
