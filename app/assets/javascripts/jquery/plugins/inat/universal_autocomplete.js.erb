@@ -120,7 +120,7 @@ $.fn.universalAutocomplete = function( options ) {
         break;
       case "User":
         itemUrl = "/people/" + item.record.login;
-        obsUrl = "/observations?user_id=" + item.record.login;
+        obsUrl = "/observations?place_id=any&user_id=" + item.record.login + "&verifiable=any";
         if ( item.record.icon_url ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon_url.replace( /medium\./, "thumb." ) ).addClass( "usericon" );
         } else {
