@@ -186,12 +186,6 @@ de:
   about_trusting_projects_options_taxon_desc: |-
     Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
     Beobachtung ein bedrohtes Taxon darstellt.
-  about_trusting_projects_overview: |-
-    Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
-    Projekts die unverschleierte Position deiner Beobachtungen in diesem
-    Projekt sehen. Dies ist extrem wichtig in Situationen, in denen Wissenschaftler oder
-    Ressourcenmanager Zugriff auf exakte Koordinaten für Analysen und
-    Entscheidungsfindung benötigen.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -5225,6 +5219,9 @@ de:
           Die Beobachtungsanforderungen des folgenden Projekts haben sich kürzlich
           geändert:
         subject: Projekt-Beobachtungsanforderungen für %{project} geändert
+        wondering_what_this_means_html: |
+          Du fragst dich was "Geoprivatsphäre" ist?
+          <a href="%{url}">Erfahre es hier in unserer Dokumentation</a>.
         you_can_change_html: |-
           Du kannst deine Einstellungen ändern oder das Projekt auf der 
           <a href="%{url}">Projektseite</a> verlassen.
