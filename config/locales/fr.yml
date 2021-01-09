@@ -516,8 +516,6 @@ fr:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Application
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique captif/cultivé"
@@ -911,8 +909,6 @@ fr:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connecter
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Connectez-vous à %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes connectés
@@ -1231,8 +1227,6 @@ fr:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Déconnecter
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: DÉCONNECTER
   disconnect_provider: "Déconnecter %{provider}"
   display: Affichage
@@ -1410,6 +1404,7 @@ fr:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Applications externes
+  external_applications_description: Les applications externes sont des applications logicielles tierces auxquelles vous avez donné accès à votre compte iNaturalist. En général, elles peuvent exécuter tout ce que vous pouvez faire dans votre compte; assurez-vous ainsi de faire confiance aux développeurs de ces applis avant de leur donner quelconque permission.
   external_taxon_including_children: Taxon externe (incluant les enfants)
   extinct: disparue
   extinct_in_the_wild: Disparue à l’état sauvage
@@ -5510,6 +5505,9 @@ fr:
         requirements_have_changed: |-
           Un ou des paramètres du projet qui suit à été récemment changé :
         subject: Paramètre de projet changé pour %{project}
+        wondering_what_this_means_html: |
+          Vous vous demandez ce que nous entendons par géoconfidentialité?
+          <a href="%{url}">Découvrez-le dans notre documentation</a>.
         you_can_change_html: |-
           Vous pouvez changer vos préférences ou quitter le projet sur la <a href="%{url}">page du projet</a>.
       observations_export_notification:
