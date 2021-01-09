@@ -2614,6 +2614,10 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
+  observation_belongs_to_project_requiring_field: |
+    The observation belongs to a project that requires this field. The
+    observation must be removed from that project before this field value can be
+    deleted.
   observation_brief_something_on_day: "Something on %{day}"
   observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
   observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
