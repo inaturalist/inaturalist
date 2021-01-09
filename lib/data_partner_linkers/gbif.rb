@@ -17,16 +17,19 @@ module DataPartnerLinkers
           predicates: [
             {
               type: "equals",
-              key: "INSTITUTION_CODE",
-              value: "iNaturalist"
-            },
-            {
-              type: "equals",
-              key: "TAXON_KEY",
-              # Uncomment one of the following for testing
-              # value: 5420950 # Clarkia breweri
-              # value: 3114255 # Hemizonella
+              key: "DATASET_KEY",
+              # I know, hardcoding, not great, but does this really need to be
+              # configurable?
+              value: "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
             }
+            # {
+            #   type: "equals",
+            #   key: "TAXON_KEY",
+            #   # Uncomment one of the following for testing. Note that this is
+            #   # the GBIF species ID
+            #   # value: 5420950 # Clarkia breweri
+            #   # value: 3114255 # Hemizonella
+            # }
           ]
         }
       }.to_json
@@ -61,7 +64,7 @@ module DataPartnerLinkers
       work_path = @tmp_path
       FileUtils.mkdir_p @tmp_path, mode: 0755
       unless File.exists?("#{@tmp_path}/#{filename}")
-        system_call "curl -o #{@tmp_path}/#{filename} #{url}"
+        system_call "curl -L -o #{@tmp_path}/#{filename} #{url}"
       end
       system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
     end
@@ -125,7 +128,7 @@ module DataPartnerLinkers
       obs_ids_to_index = obs_ids_to_index.compact.uniq
       obs_ids_to_index.in_groups_of( 500 ) do |group|
         print "."
-        Observation.elastic_index!( ids: group.compact )
+        Observation.elastic_index!( ids: group.compact ) unless @opts[:debug]
       end
       logger.info "[#{Time.now}] Finished linking for #{@data_partner}"
     end

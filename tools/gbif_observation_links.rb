@@ -47,9 +47,9 @@ def request
       :type => "and",
       :predicates => [
         {
-          :type => "equals",
-          :key => "INSTITUTION_CODE",
-          :value => "iNaturalist"
+          type: "equals",
+          key: "DATASET_KEY",
+          value: "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
         }
         # {
         #   :type => "equals",
@@ -91,7 +91,7 @@ def download
   work_path = @tmp_path
   FileUtils.mkdir_p @tmp_path, :mode => 0755
   unless File.exists?("#{@tmp_path}/#{filename}")
-    system_call "curl -o #{@tmp_path}/#{filename} #{url}"
+    system_call "curl -L -o #{@tmp_path}/#{filename} #{url}"
   end
   system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
 end
@@ -137,6 +137,9 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
   count += 1
 end
 
+puts
+puts "#{new_count} created, #{old_count} updated"
+
 links_to_delete_scope = ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time)
 delete_count = links_to_delete_scope.count
 puts
@@ -144,12 +147,12 @@ puts "[#{Time.now}] Deleting #{delete_count} observation links..."
 links_to_delete_scope.delete_all unless @opts[:debug]
 
 puts
-puts "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
 obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 obs_ids_to_index = obs_ids_to_index.compact.uniq
+puts "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
 obs_ids_to_index.in_groups_of( 500 ) do |group|
   print '.'
-  Observation.elastic_index!( ids: group.compact )
+  Observation.elastic_index!( ids: group.compact ) unless @opts[:debug]
 end
 puts
 puts
