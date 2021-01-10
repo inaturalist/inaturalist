@@ -518,8 +518,6 @@ da:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Program
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Applikationer
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -912,8 +910,6 @@ da:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Forbind
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Tilknyt %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Tilknyttede konti
@@ -1233,8 +1229,6 @@ da:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Frakobl
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: FRAKOBL
   disconnect_provider: "Frakobl %{provider}"
   display: Visning
@@ -1414,6 +1408,7 @@ da:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Eksterne applikationer
+  external_applications_description: Eksterne programmer er tredjepartsprogrammer, som du har tilladt at tilgå din iNaturalist-konto på dine vegne. Generelt kan de gøre alt det med din konto, som du selv kan, så sørg for at du har tillid til programmerne, inden du giver tildeler dem adgangsrettigheder.
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
@@ -1611,6 +1606,7 @@ da:
   give_it_some_detail: Giv det nogle detaljer!
   give_monthly_caps: GIV MÅNEDLIGT
   give_now_caps: GIV NU
+  global: Globalt
   global_names: Globale navne
   globally: Globalt
   go: Start
