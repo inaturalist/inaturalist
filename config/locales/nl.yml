@@ -535,8 +535,6 @@ nl:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Toepassing
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Toepassingen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
@@ -925,8 +923,6 @@ nl:
   confirm_your_info: Bevestig je informatie
   confirming_ids: ID's bevestigen
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Verbinden met %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Gekoppelde accounts
@@ -1414,6 +1410,7 @@ nl:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe toepassingen
+  external_applications_description: Externe applicaties zijn applicaties van derden die namens jou toegang hebben tot je iNaturalist account. Over het algemeen kunnen ze alles doen met je account wat jij kunt, dus zorg ervoor dat je de app-ontwikkelaars vertrouwt voordat je ze toestemming geeft.
   external_taxon_including_children: Extern taxon (inclusief kinderen)
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
@@ -1607,6 +1604,7 @@ nl:
   give_it_some_detail: Geef het wat detail!
   give_monthly_caps: GEEF MAANDELIJKS
   give_now_caps: GEEF NU
+  global: Wereldwijd
   global_names: Globale Namen
   globally: Wereldwijd
   go: Ok
