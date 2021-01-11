@@ -1354,6 +1354,7 @@ fi:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Ulkopuolinen sovellus
+  external_applications_description: Ulkoiset sovellukset ovat kolmannen osapuolen ohjelmistosovelluksia, jotka olet valtuuttanut käyttämään iNaturalist-tiliäsi puolestasi. Yleensä ne voivat tehdä tililläsi kaiken saman kuin itsekin, joten varmista, että luotat sovelluskehittäjiin, ennen kuin myönnät luvan.
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
@@ -4623,6 +4624,10 @@ fi:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Ole hyvä ja tarkista jokaisen tietueen oikeinkirjoitus. Jos kaikki on oikein, etsi lajia osoitteessa %{search_taxa_url}. Jos nimeä ei vielä ole %{site_name} tietokannassa, sinun täytyy lisätä se, jotta massalataus toimii. Käytä sivuon alalaidasta löytyvää tekstikenttää tuodaksesi sisään uusia nimiä, Jos nimi löytyy, mutta on kytketty useaan validiin taksoniin, yritä käyttää tarkempia tai epätarkempia nimiä, jotka täsmäävät vain yhden taksonin kanssa.
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Mietitkö mitä "sijainnin tietosuoja" on?
+          <a href="%{url}">Lue lisää ohjeista</a>.
       parental_consent:
         subject: Lapsesi haluaa käyttää iNaturalistia
         content_html: |
