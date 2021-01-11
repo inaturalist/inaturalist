@@ -185,6 +185,8 @@ es:
   about_trusting_projects_options_taxon_desc: |-
     Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
     representa un taxón amenazado.
+  about_trusting_projects_overview: |-
+    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1394,6 +1396,7 @@ es:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
+  external_applications_description: Las aplicaciones externas son aplicaciones de terceros a las cuales has autorizado acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que tú puedes hacer en tu cuenta, así que asegúrate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
@@ -5314,6 +5317,9 @@ es:
         requirements_have_changed: |-
           Los requisitos para las observaciones del siguiente proyecto han cambiado recientemente:
         subject: Requisitos para las observaciones del proyecto cambiados para %{project}
+        wondering_what_this_means_html: |
+          ¿Te preguntas qué es la "geoprivacidad"?
+          <a href="%{url}">Mira en nuestra documentación</a>.
         you_can_change_html: |-
           Puedes cambiar tus preferencias o abandonar el proyecto en la <a href="%{url}">página del proyecto</a>.
       observations_export_notification:
