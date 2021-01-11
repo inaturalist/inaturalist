@@ -183,6 +183,8 @@ it:
     Solo le tue osservazioni in questo progetto che hanno coordinate oscurate perchè di taxa minacciati
   about_trusting_projects_options_taxon_desc: |-
     Molti progetti hanno solo bisogno di accedere alle coordinate che sono oscurate perché l'osservazione raffigura un taxon minacciato.
+  about_trusting_projects_overview: |-
+    Il permettere l'accesso alle tue coordinate nascoste consentirà ai curatori di questo progetto di vedere la posizione reale e non oscurata delle tue osservazioni in questo progetto. Questo è estremamente importante in situazioni dove gli scienziati o i gestori delle risorse devono accedere alle coordinate esatte per analisi e processi decisionali.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1389,6 +1391,7 @@ it:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Applicazioni Esterne
+  external_applications_description: Le applicazioni esterne sono applicazioni software di terze parti che hai autorizzato ad accedere al tuo account iNaturalist per tuo conto. In generale, possono fare tutto con il tuo account che è possibile, quindi assicurati di fidarti degli sviluppatori di app prima di concedere loro il permesso.
   external_taxon_including_children: Taxon esterno (inclusi discendenti)
   extinct: Estinta
   extinct_in_the_wild: Estinta in Natura
@@ -2445,6 +2448,10 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
+  observation_belongs_to_project_requiring_field: |
+    L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
+    deve essere rimossa da quel progetto prima che questo valore di campo possa essere
+    eliminato.
   observation_brief_something_on_day: "Qualcosa il %{day}"
   observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
   observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
@@ -5258,6 +5265,9 @@ it:
         requirements_have_changed: |-
           I requisiti di osservazione del seguente progetto sono stati recentemente cambiati:
         subject: I requisiti di osservazione del progetto sono cambiati per %{project}
+        wondering_what_this_means_html: |
+          Ti stai chiedendo cosa è "geoprivacy"?
+          <a href="%{url}">Scopri di più nella nostra documentazione</a>.
         you_can_change_html: |-
           Puoi modificare le tue preferenze o lasciare il progetto dalla <a href="%{url}">pagina del progetto</a>.
       observations_export_notification:
