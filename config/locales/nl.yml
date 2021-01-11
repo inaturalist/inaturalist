@@ -923,9 +923,14 @@ nl:
   confirm_your_info: Bevestig je informatie
   confirming_ids: ID's bevestigen
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Koppelen
   connect_to_provider: "Verbinden met %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Gekoppelde accounts
+  connected_accounts_description: Gekoppelde accounts zijn accounts van jou van andere apps of websites waar jij iNaturalist toegang tot hebt gegeven om inloggen te ondersteunen, voor de import van foto's of een andere toepassing.
+  connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
   connecting_to_facebook: "Verbinden met Facebook ..."
@@ -1235,6 +1240,10 @@ nl:
   disable_comments: Reacties uitschakelen
   disable_comments_desc: Voorkom dat mensen nieuwe reacties toevoegen
   disagree_: Niet akkoord
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Ontkoppelen
+  disconnect_caps: ONTKOPPELEN
   disconnect_provider: "Verbinding verbreken met %{provider}"
   display: Tonen
   display_link_to_checklist: Toon link naar de projectlijst van de project pagina
@@ -1426,6 +1435,7 @@ nl:
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
   failed_to_save_record_with_errors: "Opslaan record is mislukt: %{errors}"
+  failed_to_unlink_your_account: Ontkoppelen van je account is mislukt
   'false': 'Onwaar'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorieten
@@ -1587,6 +1597,7 @@ nl:
   fungi:
     one: schimmel
     other: schimmels
+  gbif: GBIF
   gbif_occurrences: GBIF verspreidingsdata
   generate_taxonomic_tags_for_flickr: Genereer taxonomie tags voor je Flickr foto's.
   generate_widget: Genereer Widget
@@ -1604,7 +1615,6 @@ nl:
   give_it_some_detail: Geef het wat detail!
   give_monthly_caps: GEEF MAANDELIJKS
   give_now_caps: GEEF NU
-  global: Wereldwijd
   global_names: Globale Namen
   globally: Wereldwijd
   go: Ok
@@ -3894,6 +3904,8 @@ nl:
   suggest_an_identification: Stel een determinatie voor
   suggest_or_require_that: Stel voor of eis dat de deelnemers deze velden invullen voor de waarnemingen die ze aan je project toevoegen.
   suggestions: Suggesties
+  suitable_for_the_global_biodiversity_information_facility: Geschikt voor Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geschikt voor Wikipedia en andere Wikimedia Foundation projecten
   summary: Samenvatting
   supporting: Ondersteunend
   support_inaturalist: Steun iNaturalist
@@ -4174,6 +4186,10 @@ nl:
   this_will_refresh_listed_taxa: Hiermee worden de opgevoerde taxa in deze lijst vernieuwd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
   this_will_re_apply_all_list_rules: |
     Hiermee worden alle lijstregels opnieuw toegepast op de vermelde taxa en worden deze  geassocieerde stats bijgewerkt', bijv. het afwijzen van taxa die niet binnen de lijst taxon vallen of zijn niet van de geselecteerde rang zijn. Het voegt geen nieuwe taxa toe. Het kan een paar minuten duren.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Dit verwijdert de toegang van iNaturalist tot dit account namens jou
+    totdat jij weer toegang geeft. Je moet je instellingen op de externe site van
+    wijzigen om toegang volledig te voorkomen.
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   this_will_sign_you_out_current_session: Dit zal je uitloggen uit je huidige sessie voor deze toepassing.
@@ -7144,6 +7160,7 @@ nl:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Waarschuwing
+  wikimedia: Wikimedia
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorige"
