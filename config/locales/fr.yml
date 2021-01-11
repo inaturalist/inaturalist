@@ -162,6 +162,7 @@ fr:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: À propos des moyens d’implantation
+  about_license_options: À propos des options de licence
   about_licenses: À propos des licences
   about_muting: À propos du mode muet
   #Header for a section describing taxon names
@@ -514,8 +515,9 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
-  #Apps or service the user has authorized to access their iNat account, e.g.
+  #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
+  application: Application
   applications: Applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique captif/cultivé"
@@ -908,9 +910,12 @@ fr:
   confirming_ids_description: Si vous désactivez cette option, vous ne recevrez plus de notification quand une identification concorde avec la vôtre.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
+  connect: Connecter
   connect_to_provider: "Connectez-vous à %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes connectés
+  connected_accounts_description: Les comptes connectés sont vos comptes dans d'autres applications et sur d'autres sites Web, auxquels vous avez donné l'accès à iNaturalist pour lui permettre d'ouvrir une session, d'importer des photos et de tirer parti d'autres fonctionnalités.
+  connected_accounts_titlecase: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
   connect_to_flickr_again_to_authorize_write_permissions: Se connecter à nouveau à Flickr pour autoriser les autorisations d'écriture
   connecting_to_facebook: "Connexion à Facebook…"
@@ -1221,6 +1226,10 @@ fr:
   disable_comments: Désactiver les commentaires
   disable_comments_desc: Empêcher les utilisateurs d'ajouter de nouveaux commentaires
   disagree_: Refuser
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Déconnecter
+  disconnect_caps: DÉCONNECTER
   disconnect_provider: "Déconnecter %{provider}"
   display: Affichage
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
@@ -1397,6 +1406,7 @@ fr:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Applications externes
+  external_applications_description: Les applications externes sont des applications logicielles tierces auxquelles vous avez donné accès à votre compte iNaturalist. En général, elles peuvent exécuter tout ce que vous pouvez faire dans votre compte; assurez-vous ainsi de faire confiance aux développeurs de ces applis avant de leur donner quelconque permission.
   external_taxon_including_children: Taxon externe (incluant les enfants)
   extinct: disparue
   extinct_in_the_wild: Disparue à l’état sauvage
@@ -1412,6 +1422,7 @@ fr:
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
   failed_to_save_record: "Échec à la sauvegarde de l’enregistrement. Veuillez réessayer ultérieurement."
   failed_to_save_record_with_errors: "Échec de l'enregistrement : %{errors}"
+  failed_to_unlink_your_account: Déconnexion de votre compte échouée
   'false': 'Non'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoris
@@ -3869,6 +3880,8 @@ fr:
   suggest_an_identification: Suggérer une identification
   suggest_or_require_that: Suggérez ou demandez que les collaborateurs remplissent ces champs pour les observations que vous avez ajoutées à votre projet.
   suggestions: Suggestions
+  suitable_for_the_global_biodiversity_information_facility: Convient au Centre mondial d'information sur la biodiversité
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
   summary: Résumé
   supporting: Soutenir
   support_inaturalist: Soutenir iNaturalist
@@ -4152,6 +4165,9 @@ fr:
   this_will_refresh_listed_taxa: Cette action rafraîchira les taxons répertoriés de la liste. Elle peut prendre un certain temps; veuillez l’utiliser avec modération et uniquement avec de petites listes de contrôle
   this_will_re_apply_all_list_rules: |
     Cette action appliquera de nouveau toutes les règles relatives à la liste aux taxons répertoriés et mettra à jour toutes les statistiques connexes, par ex. le rejet des taxons qui ne font pas partie des taxons répertoriés ou qui ne sont pas du rang sélectionné. Elle n’ajoutera aucun nouveau taxon. Cette action peut prendre un certain temps.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Ceci empêchera iNaturalist d'accéder à ce compte en votre nom
+    jusqu'à ce que vous accordiez à nouveau l'accès. Vous devrez peut-être modifier vos paramètres sur le site externe pour empêcher complètement l'accès.
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   this_will_sign_you_out_current_session: Cela va vous déconnecter de votre session sur cette application
@@ -5491,6 +5507,9 @@ fr:
         requirements_have_changed: |-
           Un ou des paramètres du projet qui suit à été récemment changé :
         subject: Paramètre de projet changé pour %{project}
+        wondering_what_this_means_html: |
+          Vous vous demandez ce que nous entendons par géoconfidentialité?
+          <a href="%{url}">Découvrez-le dans notre documentation</a>.
         you_can_change_html: |-
           Vous pouvez changer vos préférences ou quitter le projet sur la <a href="%{url}">page du projet</a>.
       observations_export_notification:

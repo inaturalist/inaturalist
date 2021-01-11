@@ -427,8 +427,6 @@ zh-CN:
   #Label for an option to show/include content by any user
   any_user: 任意
   anyone: 任何人
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: 应用程序
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
@@ -808,11 +806,10 @@ zh-CN:
   confirm_now: 现在确认
   confirm_your_info: 确认您的信息
   confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "连接至 %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已连接账户
+  connected_accounts_titlecase: 已关联的账号
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
   connecting_to_facebook: "连接至Facebook..."
@@ -1105,6 +1102,9 @@ zh-CN:
   disable_comments: 禁用评论
   disable_comments_desc: 阻止人们添加新评论
   disagree_: 不同意
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: 断开连接
   disconnect_provider: "取消连接 %{provider}"
   display: 界面设置
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
@@ -1443,6 +1443,7 @@ zh-CN:
   full_screen: 全屏
   fungi:
     other: 真菌
+  gbif: GBIF
   gbif_occurrences: GBIF发现
   generate_taxonomic_tags_for_flickr: 为您的Flickr照片生成分类学标签
   generate_widget: 生成小部件
@@ -1521,6 +1522,9 @@ zh-CN:
   #Verb, usually a button to hide an interface element
   hide: 隐藏
   hide_content: 隐藏内容
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: 隐藏“无批注”
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高

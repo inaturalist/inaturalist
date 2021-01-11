@@ -513,8 +513,6 @@ it:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applicazione
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Applicazioni
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
@@ -904,8 +902,6 @@ it:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connetti
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Connettiti a %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Utenze connesse
@@ -1219,8 +1215,6 @@ it:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Disconnetti
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: DISCONNETTI
   disconnect_provider: "Disconnettere %{provider}"
   display: Visualizzazione
@@ -1397,6 +1391,7 @@ it:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Applicazioni Esterne
+  external_applications_description: Le applicazioni esterne sono applicazioni software di terze parti che hai autorizzato ad accedere al tuo account iNaturalist per tuo conto. In generale, possono fare tutto con il tuo account che è possibile, quindi assicurati di fidarti degli sviluppatori di app prima di concedere loro il permesso.
   external_taxon_including_children: Taxon esterno (inclusi discendenti)
   extinct: Estinta
   extinct_in_the_wild: Estinta in Natura
@@ -2453,6 +2448,10 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
+  observation_belongs_to_project_requiring_field: |
+    L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
+    deve essere rimossa da quel progetto prima che questo valore di campo possa essere
+    eliminato.
   observation_brief_something_on_day: "Qualcosa il %{day}"
   observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
   observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
@@ -5266,6 +5265,9 @@ it:
         requirements_have_changed: |-
           I requisiti di osservazione del seguente progetto sono stati recentemente cambiati:
         subject: I requisiti di osservazione del progetto sono cambiati per %{project}
+        wondering_what_this_means_html: |
+          Ti stai chiedendo cosa è "geoprivacy"?
+          <a href="%{url}">Scopri di più nella nostra documentazione</a>.
         you_can_change_html: |-
           Puoi modificare le tue preferenze o lasciare il progetto dalla <a href="%{url}">pagina del progetto</a>.
       observations_export_notification:

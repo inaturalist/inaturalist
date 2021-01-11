@@ -521,8 +521,6 @@ de:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Apps
   apply_to_selected: Für Ausgewählte übernehmen
   apply_captive_cultivated: "In Haltung/kultiviert anwenden"
@@ -903,8 +901,6 @@ de:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Verbinden
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Verbinde mit %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Verbundene Konten
@@ -1219,8 +1215,6 @@ de:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Verbindung trennen
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: VERBINDUNG TRENNEN
   disconnect_provider: "%{provider} trennen"
   display: Anzeige
@@ -1391,6 +1385,7 @@ de:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe Anwendungen
+  external_applications_description: Externe Anwendungen sind Softwareanwendungen von Drittanbietern, die in deinem Namen auf dein iNaturalist-Konto zugreifen dürfen. Im Allgemeinen können sie alles mit deinem Konto tun, was du kannst, also stelle sicher, dass du den App-Entwicklern vertraust, bevor du ihnen die Erlaubnis erteilst.
   external_taxon_including_children: Externes Taxon (einschließlich Nachfahren)
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
@@ -5024,7 +5019,7 @@ de:
           in der Liste am Ende der Seite erscheinen.
         receive_an_email_with_your_data: Eine Email mit deinen Daten erhalten
         receive_an_email_with_your_data_help: Du wirst eine Email erhalten mit deinem Export als Anhang.
-        well_email_you: "Ok, wir schicken Ihnen eine Email wenn es bereit ist."
+        well_email_you: "Ok, du wirst über die Fertigstellung per E-Mail benachrichtigt"
         taking_a_while: "Dies braucht einige Zeit. Bitte versuche eine der folgenden Optionen."
         date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
@@ -5225,6 +5220,9 @@ de:
           Die Beobachtungsanforderungen des folgenden Projekts haben sich kürzlich
           geändert:
         subject: Projekt-Beobachtungsanforderungen für %{project} geändert
+        wondering_what_this_means_html: |
+          Du fragst dich was "Geoprivatsphäre" ist?
+          <a href="%{url}">Erfahre es hier in unserer Dokumentation</a>.
         you_can_change_html: |-
           Du kannst deine Einstellungen ändern oder das Projekt auf der 
           <a href="%{url}">Projektseite</a> verlassen.

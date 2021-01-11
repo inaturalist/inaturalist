@@ -184,7 +184,7 @@ ca:
   about_trusting_projects_options_taxon_desc: |-
     Molts projectes necessites accedir a coordenades que han estat enfosquides perquè l'observació és sobre un tàxon vulnerable.
   about_trusting_projects_overview: |-
-    Donar accés a les teves coordenades ocultes permetrà els administradors d'aquest projecte veure les coordenades reals de les vostres observacions en aquest projecte. Això és molt important en aquelles circumstàncies a les quals els científics o gestors de recursos naturals necessiten accedir a les coordenades exactes per l'anàlisi o la presa de decisions.
+    Donant accés a les vostres coordenades ocultes permetreu els administradors d'aquest projecte veure les coordenades reals de les vostres observacions en aquest projecte. Això és molt important en aquells casos en els quals els científics o gestors de recursos naturals necessiten accedir a les coordenades exactes per l'anàlisi o la presa de decisions.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -510,8 +510,6 @@ ca:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicació
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Aplicacions
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
@@ -902,8 +900,6 @@ ca:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connectar
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Connecteu-vos a %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes vinculats
@@ -1217,8 +1213,6 @@ ca:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconnectar
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: DESCONNECTAR
   disconnect_provider: "Desconnecteu-vos de %{provider}"
   display: Mostra
@@ -1394,6 +1388,7 @@ ca:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicacions externes
+  external_applications_description: Les aplicacions externes són aplicacions de tercer a les quals heu autoritzat per accedir al vostre compte d'iNaturalist en nom vostre. En general, poden fer les mateixes coses que podeu fer en el vostre compte, per tant, assegureu-vos de confiar en els seus desenvolupadors abans de concedir-los el permís.
   external_taxon_including_children: Tàxon extern (inclosos els inferiors)
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
@@ -5259,6 +5254,9 @@ ca:
         requirements_have_changed: |-
           Els requisits de les observacions dels següents projectes han canviat recentment:
         subject: Els requisits de les observacions de %{project} han canviat
+        wondering_what_this_means_html: |
+          Us pregunteu què és la "geoprivacitat"?
+          <a href="%{url}">Podeu conèixer més a la nostra documentació</a>.
         you_can_change_html: |-
           Podeu canviar les vostres preferències o abandonar el projecte a la <a href="%{url}">pàgina del projecte</a>.
       observations_export_notification:

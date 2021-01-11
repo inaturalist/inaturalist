@@ -623,8 +623,6 @@ ru:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Приложение
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Приложения
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: "Применить В неволе / культивируемое"
@@ -1013,8 +1011,6 @@ ru:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Подключиться
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Подключиться к %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Связанные учётные записи
@@ -1331,8 +1327,6 @@ ru:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Отключиться
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: ОТКЛЮЧИТЬСЯ
   disconnect_provider: "Отключить %{provider}"
   display: Отображение
@@ -1511,6 +1505,7 @@ ru:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Внешние приложения
+  external_applications_description: Внешние приложения - это сторонние программные приложения, которым вы разрешили доступ к своей учетной записи iNaturalist от вашего имени. В общем, они могут делать с вашей учетной записью все, что можете вы, поэтому убедитесь, что вы доверяете разработчикам приложений, прежде чем предоставлять им разрешение.
   external_taxon_including_children: Внешний таксон (включая потомков)
   extinct: вымерший
   extinct_in_the_wild: Вымершие в дикой природе
@@ -5464,6 +5459,9 @@ ru:
         requirements_have_changed: |-
           Требования к наблюдениям следующего проекта недавно изменились:
         subject: Изменились требования к наблюдениям для проекта %{project}
+        wondering_what_this_means_html: |
+          Хотите знать, что такое "геоприватность"?
+          <a href="%{url}">Читайте подробности в нашей документации</a>.
         you_can_change_html: |-
           Вы можете изменить ваши предпочтения или оставить всё как есть <a href="%{url}">на странице проекта</a>
       observations_export_notification:

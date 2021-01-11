@@ -142,6 +142,7 @@ pt:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre os meios de estabelecimento
+  about_license_options: Sobre as opções de licença
   about_licenses: Acerca das licenças
   about_muting: Sobre Silenciar
   #Header for a section describing taxon names
@@ -495,8 +496,9 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
-  #Apps or service the user has authorized to access their iNat account, e.g.
+  #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
+  application: Aplicação
   applications: Aplicações
   apply_to_selected: Aplicar aos selecionados
   apply_captive_cultivated: "Aplicar em cativeiro/cultivo"
@@ -863,9 +865,12 @@ pt:
   confirming_ids_description: Se desativar isto, não voltará a ser notificado sobre os IDs que concordam com os seus.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
+  connect: Conectar
   connect_to_provider: "Ligar a %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas vinculadas
+  connected_accounts_description: Contas conectadas são as suas contas de outras aplicações ou sites aos quais você permitiu o acesso iNaturalist em seu nome para suportar fazer login, importar fotos ou outras funcionalidades.
+  connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Ligando ao Flickr..."
   connecting_to_facebook: "Ligando ao Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Ligar a sua conta do %{site_name} a contas em outros sites permite-lhe fazer login em %{site_name} usando as credenciais desses sites."
@@ -1082,6 +1087,10 @@ pt:
   did_you_mean: 'Será que quis dizer'
   did_you_photos_flickr?: Carregou algumas fotografias no Flickr?
   disagree_: Não concordo
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Desconectar
+  disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconectar-se de %{provider}"
   display: Exibição
   display_link_to_checklist: Mostrar ligação para a lista do projeto a partir da página do projeto
@@ -1231,6 +1240,7 @@ pt:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicações externas
+  external_applications_description: Aplicativos externos são aplicativos de terceiros que você autorizou a aceder à sua conta iNaturalist em seu nome. Em geral, eles podem fazer tudo com a sua conta que você puder, por isso certifique-se de confiar nos mesmos antes de lhes conceder permissão.
   extinct: extinto
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
@@ -1243,6 +1253,7 @@ pt:
   failed_to_find_your_location: Falha ao procurar a sua localização.
   failed_to_repair_photo: "Não foi possível reparar a fotografia: %{errors}"
   failed_to_save_record: "Não foi possível gravar o registo. Por favor, tente novamente mais tarde."
+  failed_to_unlink_your_account: Falha ao desvincular a sua conta
   'false': 'Falso'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
@@ -1351,6 +1362,7 @@ pt:
   fungi:
     one: fungo
     other: fungos
+  gbif: GBIF
   gbif_occurrences: Registos do GBIF
   generate_taxonomic_tags_for_flickr: Gerar etiquetas taxonómicas para as suas fotografias do Flickr.
   generate_widget: Gerar componente
@@ -2953,6 +2965,8 @@ pt:
   subscribe_to_this: Subscrever isto
   subscriptions: Subscrições
   suggestions: Sugestões
+  suitable_for_the_global_biodiversity_information_facility: Adequado para o GBIF (Global Biodiversity Information Facility)
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adequado para Wikipédia e outros projetos da Wikimedia Foundation
   summary: Resumo
   suspend_user: Suspender utilizador
   sync: Sincronizar?
@@ -3039,6 +3053,10 @@ pt:
   this_taxon_concept_is_inactive: este conceito de táxon está inativo
   this_taxon_has_no_default_photo: Este táxon não tem foto predefinidaǃ
   this_user_has_been_suspended: Este utilizador foi suspenso
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Isto excluirá a capacidade do iNaturalist de aceder a esta conta em seu nome
+    até que você conceda acesso novamente. Você pode precisar alterar as suas configurações no
+    site externo para impedir completamente o acesso.
   this_year: Este Ano
   threatened: ameaçado
   time_: hora
@@ -3238,6 +3256,9 @@ pt:
         requirements_have_changed: |-
           Os requisitos do seguinte projeto foram alterados recentemente:
         subject: Requisitos de observações foram alterados para o projeto %{project}
+        wondering_what_this_means_html: |
+          Quer saber o que "geoprivacy" é?
+          <a href="%{url}">Saiba mais na nossa documentação</a>.
         you_can_change_html: |-
           Você pode alterar as suas preferências ou deixar o projeto na página
           <a href="%{url}">do projeto</a>.
@@ -3685,6 +3706,7 @@ pt:
                 tem obrigatoriamente de começar por uma letra, sem conter espaços e usar só letras, números, traços e sublinhados
             email:
               must_look_like_an_email_address: deve parecer-se com um endereço email
+  wikimedia: Wikimedia
   wild: selvagem
   will_paginate:
     previous_label: "&#8592; Anterior"

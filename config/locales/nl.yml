@@ -161,6 +161,7 @@ nl:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Over vestigingswijze
+  about_license_options: Over licentieopties
   about_licenses: Over licenties
   about_muting: Over verstommen
   #Header for a section describing taxon names
@@ -199,10 +200,10 @@ nl:
     Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd worden omdat de
     waarneming een bedreigd taxon weergeeft.
   about_trusting_projects_overview: |-
-    Het verlenen van toegang tot je verborgen coördinaten zal de beheerders van dit
-    project de waarheid, laten zien onvervaagde locatie van je waarnemingen in dit
-    -project. Dit is extreem belangrijk in situaties waarin wetenschappers of
-    beheerders van hulpbronnen toegang nodig hebben tot exacte coördinaten voor analyse en
+    Het verlenen van toegang tot je verborgen coördinaten staat beheerders van dit
+    project toe de echte, onvervaagde locatie van je waarnemingen in dit
+    project te zien. Dit is extreem belangrijk in situaties waarin wetenschappers of
+    beheerders toegang nodig hebben tot exacte coördinaten voor analyse en
     besluitvorming.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
@@ -531,8 +532,9 @@ nl:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Iedereen
-  #Apps or service the user has authorized to access their iNat account, e.g.
+  #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
+  application: Toepassing
   applications: Toepassingen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
@@ -923,9 +925,12 @@ nl:
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
+  connect: Koppelen
   connect_to_provider: "Verbinden met %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Gekoppelde accounts
+  connected_accounts_description: Gekoppelde accounts zijn accounts van jou van andere apps of websites waar jij iNaturalist toegang tot hebt gegeven om inloggen te ondersteunen, voor de import van foto's of een andere toepassing.
+  connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
   connecting_to_facebook: "Verbinden met Facebook ..."
@@ -1235,6 +1240,10 @@ nl:
   disable_comments: Reacties uitschakelen
   disable_comments_desc: Voorkom dat mensen nieuwe reacties toevoegen
   disagree_: Niet akkoord
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Ontkoppelen
+  disconnect_caps: ONTKOPPELEN
   disconnect_provider: "Verbinding verbreken met %{provider}"
   display: Tonen
   display_link_to_checklist: Toon link naar de projectlijst van de project pagina
@@ -1410,6 +1419,7 @@ nl:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe toepassingen
+  external_applications_description: Externe applicaties zijn applicaties van derden die namens jou toegang hebben tot je iNaturalist account. Over het algemeen kunnen ze alles doen met je account wat jij kunt, dus zorg ervoor dat je de app-ontwikkelaars vertrouwt voordat je ze toestemming geeft.
   external_taxon_including_children: Extern taxon (inclusief kinderen)
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
@@ -1425,6 +1435,7 @@ nl:
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
   failed_to_save_record_with_errors: "Opslaan record is mislukt: %{errors}"
+  failed_to_unlink_your_account: Ontkoppelen van je account is mislukt
   'false': 'Onwaar'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorieten
@@ -1586,6 +1597,7 @@ nl:
   fungi:
     one: schimmel
     other: schimmels
+  gbif: GBIF
   gbif_occurrences: GBIF verspreidingsdata
   generate_taxonomic_tags_for_flickr: Genereer taxonomie tags voor je Flickr foto's.
   generate_widget: Genereer Widget
@@ -3892,6 +3904,8 @@ nl:
   suggest_an_identification: Stel een determinatie voor
   suggest_or_require_that: Stel voor of eis dat de deelnemers deze velden invullen voor de waarnemingen die ze aan je project toevoegen.
   suggestions: Suggesties
+  suitable_for_the_global_biodiversity_information_facility: Geschikt voor Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geschikt voor Wikipedia en andere Wikimedia Foundation projecten
   summary: Samenvatting
   supporting: Ondersteunend
   support_inaturalist: Steun iNaturalist
@@ -4172,6 +4186,10 @@ nl:
   this_will_refresh_listed_taxa: Hiermee worden de opgevoerde taxa in deze lijst vernieuwd. Dit kan een tijdje duren dus gebruik dit alsjeblieft spaarzaam en op kleine checklijsten
   this_will_re_apply_all_list_rules: |
     Hiermee worden alle lijstregels opnieuw toegepast op de vermelde taxa en worden deze  geassocieerde stats bijgewerkt', bijv. het afwijzen van taxa die niet binnen de lijst taxon vallen of zijn niet van de geselecteerde rang zijn. Het voegt geen nieuwe taxa toe. Het kan een paar minuten duren.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Dit verwijdert de toegang van iNaturalist tot dit account namens jou
+    totdat jij weer toegang geeft. Je moet je instellingen op de externe site van
+    wijzigen om toegang volledig te voorkomen.
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   this_will_sign_you_out_current_session: Dit zal je uitloggen uit je huidige sessie voor deze toepassing.
@@ -5359,6 +5377,9 @@ nl:
           De waarnemingvereisten van het volgende project zijn onlangs
           gewijzigd:
         subject: Vereisten voor projectwaarnemingen gewijzigd voor %{project}
+        wondering_what_this_means_html: |
+          Vraag je je af wat "geoprivacy" is?
+          <a href="%{url}">Lees meer in onze documentatie</a>.
         you_can_change_html: |-
           Je kan jouw voorkeuren wijzigen of het project verlaten op de 
           <a href="%{url}">pagina van het project</a>.
@@ -7139,6 +7160,7 @@ nl:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Waarschuwing
+  wikimedia: Wikimedia
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Vorige"

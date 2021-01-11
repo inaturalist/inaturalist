@@ -490,8 +490,6 @@ nb:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Alle
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Applikasjoner
   apply_to_selected: Bruk på utvalgte
   apply_captive_cultivated: "Bruk i fangenskap / dyrket"
@@ -880,8 +878,6 @@ nb:
   confirm_your_info: Bekreft din info
   confirming_ids: Bekreftende ID'er
   confirming_ids_description: Hvis du skrur av dette vil du ikke lenger bli varslet om ID-er som er enige med deg.
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Koble til %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Koblete kontoer
@@ -5116,6 +5112,10 @@ nb:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Vennligst sjekk stavingen for hver post. Hvis din stavelse er korrekt, søk for arten på %{search_taxa_url}. Hvis navnet ikke er i databasen til %{site_name} ennå, må du legge det til før din masse-opplasting vil fungere. Bruk boksen nederst på søkesiden for å importere nye navn. Hvis navnet finnes men brukes for flere godkjente taksa, prøv å bruke et mer eller mindre spesifikt navn som kun matcher et eneste takson.
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Lurer du på hva "geosperring" er?
+          <a href="%{url}">Lær mer i vår dokumentasjon</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Din eksport av observasjoner er klar. En kopi er vedlagt i denne e-posten, eller du kan <a href="%{url}">laste ned din eksport</a>.

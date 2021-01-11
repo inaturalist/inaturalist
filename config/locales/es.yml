@@ -515,8 +515,6 @@ es:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicación
-  #Apps or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
   applications: Aplicaciones
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
@@ -907,8 +905,6 @@ es:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Conectar
-  #Label for a button to connect your iNat account to another account, e.g.
-  #connecting to Flickr
   connect_to_provider: "Conectar a %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas vinculadas
@@ -1224,8 +1220,6 @@ es:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconectar
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
   disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconectarse de %{provider}"
   display: Muestra
@@ -1402,6 +1396,7 @@ es:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
+  external_applications_description: Las aplicaciones externas son aplicaciones de terceros a las cuales has autorizado acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que tú puedes hacer en tu cuenta, así que asegúrate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
@@ -5322,6 +5317,9 @@ es:
         requirements_have_changed: |-
           Los requisitos para las observaciones del siguiente proyecto han cambiado recientemente:
         subject: Requisitos para las observaciones del proyecto cambiados para %{project}
+        wondering_what_this_means_html: |
+          ¿Te preguntas qué es la "geoprivacidad"?
+          <a href="%{url}">Mira en nuestra documentación</a>.
         you_can_change_html: |-
           Puedes cambiar tus preferencias o abandonar el proyecto en la <a href="%{url}">página del proyecto</a>.
       observations_export_notification:
