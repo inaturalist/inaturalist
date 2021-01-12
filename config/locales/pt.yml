@@ -2069,6 +2069,10 @@ pt:
   observation_added: Observação adicionada.
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
+  observation_belongs_to_project_requiring_field: |
+    A observação pertence a um projeto que requer este campo. A observação
+    deve ser removida desse projeto antes que este valor de campo possa ser
+    excluído.
   observations_by_category: "Observações Por categoria"
   observations_by_app: Observações Por App
   observations_by_rank: Observações Classificadas
