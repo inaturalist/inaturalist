@@ -1156,7 +1156,7 @@ class ObservationsController < ApplicationController
         proj.project_observation_fields.collect(&:observation_field)
       end.flatten
     end
-    if @observation_fields.empty?
+    if @observation_fields.blank?
       @observation_fields = ObservationField.recently_used_by(current_user).
         limit(50).sort_by{ |of| of.name.downcase }
     end
