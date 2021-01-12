@@ -220,6 +220,7 @@ const Content = ( {
             initialPlaceID={profile.place_id}
             bootstrapClear
             afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
+            afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "place_id" )}
           />
         </SettingsItem>
         <SettingsItem>
