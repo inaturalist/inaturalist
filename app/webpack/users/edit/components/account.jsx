@@ -80,6 +80,7 @@ const Account = ( {
             initialPlaceID={profile.search_place_id}
             bootstrapClear
             afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
+            afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
           />
         </SettingsItem>
         <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">

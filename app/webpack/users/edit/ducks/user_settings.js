@@ -143,6 +143,13 @@ export function handleCustomDropdownSelect( eventKey, name ) {
 export function handlePlaceAutocomplete( { item }, name ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
+
+    if ( profile[name] === null && item.id === 0 ) {
+      // do nothing if the afterClear is triggered when the place input field starts empty
+      // this ensures save settings button shows correctly
+      return;
+    }
+
     profile[name] = item.id;
     dispatch( setUserData( profile ) );
   };
