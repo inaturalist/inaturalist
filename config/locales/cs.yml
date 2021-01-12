@@ -2603,6 +2603,10 @@ cs:
   observation_added: Pozorování přidáno.
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
+  observation_belongs_to_project_requiring_field: |
+    Toto pozorování patří k projektu, který vyžaduje toto pole.
+    Pozorování musí být z tohoto projektu odebráno, než může být tato hodnota pole
+    odstraněna.
   observation_brief_something_on_day: "Něco na %{day}"
   observation_brief_something_on_day_at_time: "Něco v %{day} v %{time}"
   observation_brief_something_on_day_at_time_by_user: "Něco dne %{day} v %{time} od %{user}"
