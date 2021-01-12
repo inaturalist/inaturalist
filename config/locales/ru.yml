@@ -2566,6 +2566,8 @@ ru:
   observation_added: Наблюдение добавлено
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
+  observation_belongs_to_project_requiring_field: |
+    Наблюдение относится к проекту, который требует наличия этого поля. Наблюдение должно быть удалено из этого проекта, прежде чем это значение поля можно будет удалить.
   observation_brief_something_on_day: "Некоторые за %{day}"
   observation_brief_something_on_day_at_time: "Некоторые за %{day} в %{time}"
   observation_brief_something_on_day_at_time_by_user: "Некоторые от %{user} за %{day} в %{time}"
