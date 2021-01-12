@@ -57,36 +57,66 @@ module ApplicationHelper
   end
   
   def friend_button(user, potential_friend, html_options = {})
-    url_options = {
-      :controller => 'users',
-      :action => 'update',
-      :id => current_user.id,
-      :format => "json"
-    }
-    
-    already_friends = user.friendships.where( friend_id: potential_friend.id ).exists?
-    
-    unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
-      url_options.merge(:remove_friend_id => potential_friend.id), 
-      html_options.merge(
-        :remote => true,
-        :datatype => "json",
-        :method => :put,
-        :id => dom_id(potential_friend, 'unfriend_link'),
-        :class => "btn btn-primary btn-xs unfriend_link",
-        :style => already_friends ? "" : "display:none"
+    existing_relat = user.friendships.where( friend_id: potential_friend.id ).first
+    if existing_relat && existing_relat.trust?
+      # friend button updates with following
+      friend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :follow_user, user: potential_friend.login )}".html_safe,
+        relationship_url( existing_relat, "relationship[following]" => true ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "friend_link" ),
+          class: "btn btn-primary btn-xs friend_link",
+          style: existing_relat.following? ? "display:none" : ""
+        )
       )
-    friend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:follow_user, :user=> potential_friend.login)}".html_safe, 
-      url_options.merge(:friend_id => potential_friend.id), 
-      html_options.merge(
-        :remote => true,
-        :method => :put,
-        :datatype => "json",
-        :id => dom_id(potential_friend, 'friend_link'),
-        :class => "btn btn-primary btn-xs friend_link",
-        :style => (!already_friends && user != potential_friend) ? "" : "display:none"
+      # unfriend button removes following
+      unfriend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :stop_following_user, user: potential_friend.login )}".html_safe,
+        relationship_url( existing_relat, "relationship[following]" => false ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "unfriend_link" ),
+          class: "btn btn-primary btn-xs unfriend_link",
+          style: existing_relat.following? ? "" : "display:none"
+        )
       )
-    
+    else
+      url_options = {
+        controller: "users",
+        action: "update",
+        id: current_user.id,
+        format: "json"
+      }
+      friend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :follow_user, user: potential_friend.login )}".html_safe,
+        url_options.merge( friend_id: potential_friend.id ),
+        html_options.merge(
+          remote: true,
+          method: :put,
+          datatype: "json",
+          id: dom_id( potential_friend, "friend_link" ),
+          class: "btn btn-primary btn-xs friend_link",
+          style: existing_relat && existing_relat.following? ? "display:none" : ""
+        )
+      )
+      unfriend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :stop_following_user, user: potential_friend.login )}".html_safe,
+        url_options.merge( remove_friend_id: potential_friend.id ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "unfriend_link" ),
+          class: "btn btn-primary btn-xs unfriend_link",
+          style: existing_relat && existing_relat.following? ? "" : "display:none"
+        )
+      )
+    end
     content_tag :span, (friend_link + unfriend_link).html_safe
   end
   
