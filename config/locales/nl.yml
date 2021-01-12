@@ -2486,6 +2486,10 @@ nl:
   observation_added: Waarneming toegevoegd.
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
+  observation_belongs_to_project_requiring_field: |
+    De waarneming hoort bij een project dat dit veld vereist. De waarneming
+    moet uit dat project worden verwijderd voordat deze waarde
+    kan worden verwijderd.
   observation_brief_something_on_day: "Iets op %{day}"
   observation_brief_something_on_day_at_time: "Iets op %{day} om %{time}"
   observation_brief_something_on_day_at_time_by_user: "Iets op %{day} om %{time} door %{user}"

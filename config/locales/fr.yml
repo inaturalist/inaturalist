@@ -2476,6 +2476,10 @@ fr:
   observation_added: Observation ajoutée.
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
+  observation_belongs_to_project_requiring_field: |
+    L'observation appartient à un projet dans lequel ce champ est obligatoire. Elle
+    doit être retirée de ce projet pour que la valeur de ce champ puisse être
+    effacée.
   observation_brief_something_on_day: "Quelque chose le %{day}"
   observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
   observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"

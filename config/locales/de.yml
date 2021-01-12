@@ -2429,6 +2429,10 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  observation_belongs_to_project_requiring_field: |
+    Die Beobachtung gehört zu einem Projekt, das dieses Feld erfordert. Die
+    Beobachtung muss aus dem Projekt entfernt werden, bevor dieser Feldwert
+    gelöscht werden kann.
   observation_brief_something_on_day: "Irgendetwas am %{day}"
   observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
   observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
@@ -2614,7 +2618,7 @@ de:
   only_the_project_admin_can_delete_this_project: Nur der Projektadministrator kann dieses Projekt löschen.
   only_you: Nur dir
   open: offen
-  open_: Öffnen
+  open_: öffentlich
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
   optional: optional
