@@ -2476,6 +2476,8 @@ da:
   observation_added: Observation tilføjet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
+  observation_belongs_to_project_requiring_field: |
+    Observationen hører til et projekt, hvor dette felt kræves. Observationen skal fjernes fra det pågældende projekt, før denne feltværdi kan slettes.
   observation_brief_something_on_day: "Noget den %{day}"
   observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
