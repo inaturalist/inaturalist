@@ -49,7 +49,7 @@ const Content = ( {
   const showDefaultLicense = defaultLicense => {
     const current = Object.keys( iNatLicenses )
       .find( i => iNatLicenses[i].code === defaultLicense );
-    const license = current || "cc-by-nc";
+    const license = defaultLicense === null ? "c" : current;
 
     return (
       <div className="current-license">
