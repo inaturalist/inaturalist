@@ -401,6 +401,7 @@ class Suggestions extends React.Component {
                   }
                   <h4>{ I18n.t( "observations_map" ) }</h4>
                   <TaxonMap
+                    placement="suggestion-detail"
                     showAllLayer={false}
                     minZoom={2}
                     gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}

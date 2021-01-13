@@ -130,6 +130,7 @@ const SuggestionRow = ( {
             ) ) }
           </div>
           <TaxonMap
+            placement="suggestion-row"
             showAllLayer={false}
             minZoom={2}
             zoomLevel={6}

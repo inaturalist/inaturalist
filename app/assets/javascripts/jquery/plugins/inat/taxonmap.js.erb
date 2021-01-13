@@ -93,15 +93,13 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
   var map,
       mapOptions = $.extend( true, { }, {
+        backgroundColor: '#E3EAF6',
+        gestureHandling: options.gestureHandling,
         mapTypeControl: (options.mapTypeControl !== false),
         mapTypeControlOptions: options.mapTypeControlOptions,
         minZoom: options.minZoom,
-        backgroundColor: '#E3EAF6',
-        zoomControl: (options.zoomControl !== false),
-        zoomControlOptions: options.zoomControlOptions,
+        placement: options.placement,
         scrollwheel: (options.scrollwheel !== false),
-        gestureHandling: options.gestureHandling,
-        tilt: options.tilt,
         styles: [
           {
             stylers: [
@@ -109,7 +107,10 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
               {saturation: -50}
             ]
           }
-        ]
+        ],
+        tilt: options.tilt,
+        zoomControl: (options.zoomControl !== false),
+        zoomControlOptions: options.zoomControlOptions
       } );
   if ( $(elt).data('taxonMap') ) {
     map = $(elt).data('taxonMap');
