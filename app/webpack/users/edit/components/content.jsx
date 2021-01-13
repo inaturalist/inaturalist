@@ -16,7 +16,7 @@ const radioButtons = {
 const obsFields = {
   anyone: I18n.t( "anyone" ),
   curators: I18n.t( "curators" ),
-  only_you: I18n.t( "only_you" )
+  observer: I18n.t( "only_you" )
 };
 
 const Content = ( {
