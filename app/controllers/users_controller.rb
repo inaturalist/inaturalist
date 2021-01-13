@@ -597,7 +597,7 @@ class UsersController < ApplicationController
       format.html do
         @monthly_supporter = @user.donorbox_plan_status == "active" &&
           @user.donorbox_plan_type == "monthly"
-        if params[:test] == "profile"
+        if true || params[:test] == "profile"
           render :edit2, layout: "bootstrap"
         else
           render :edit
