@@ -12,13 +12,13 @@ sv:
     one: "<span class='antal'>1</span> flagga löst"
     other: "<span class='antal'>%{count}</span> flaggor lösta"
   x_identifications:
-    one: '1 bestämning'
-    other: '%{count} bestämning'
+    one: '%{count} bestämning'
+    other: '%{count} bestämningar'
   x_identifications_html:
     one: '<span class="count">1</span> bestämning'
     other: '<span class="count">%{count}</span> bestämningar'
   x_identifications_:
-    one: '1 bestämning'
+    one: '%{count} bestämning'
     other: '%{count} bestämningar'
   #Number of people who have added identifications
   x_identifiers_html:
@@ -39,7 +39,7 @@ sv:
     one: '<span class="antal">1</span> dagboksinlägg'
     other: '<span class="antal">%{count}</span> dagboksinlägg'
   x_matching_taxa:
-    one: '1 matchande taxon'
+    one: '%{count} matchande taxon'
     other: '%{count} matchande taxa'
   x_matching_taxa_html:
     one: '<span class="count">1</span> matchande taxon'
@@ -54,7 +54,7 @@ sv:
     one: "%{count} observation"
     other: "%{count} observationer"
   x_observations_:
-    one: "1 observation"
+    one: "%{count} observation"
     other: "%{count} observationer"
   x_observations_html:
     one: "<span class='count'>%{count}</span> observation"
@@ -69,14 +69,14 @@ sv:
     one: '<span class="count">%{count}</span> observatör'
     other: '<span class="count">%{count}</span> observatörer'
   x_others:
-    one: "1 annan"
+    one: "%{count} annan"
     other: "%{count} andra"
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
   x_photos:
-    one: "1 bild"
+    one: "%{count} bild"
     other: "%{count} bilder"
   x_new_species:
     one: "1 ny art"
@@ -161,6 +161,7 @@ sv:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om invandringshistoria
+  about_license_options: Om licensalternativ
   about_licenses: Om licenser
   about_muting: Om tystning
   #Header for a section describing taxon names
@@ -526,6 +527,9 @@ sv:
   #Label for an option to show/include content by any user
   any_user: Alla
   anyone: Vem som helst
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Applikation
   applications: Applikationer
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
@@ -640,6 +644,9 @@ sv:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Lägg till observationer automatiskt till detta projekt
   automatically_update_my_content_for_taxon_changes: Uppdatera automatiskt mitt innehåll vid taxonändringar
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Medel
   back: Tillbaka
   back_to_all_species: Tillbaka till alla arter
   back_to_browsing_people: Tillbaka till alla personer
@@ -917,9 +924,14 @@ sv:
   confirm_your_info: Bekräfta din info
   confirming_ids: Bekräftande bestämningar
   confirming_ids_description: Om du stänger av detta kommer du inte längre att meddelas om bestämningar som stämmer med din.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Koppla
   connect_to_provider: "Anslut till %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Anslutna konton
+  connected_accounts_description: Kopplade konton är dina konton i andra appar eller webbplatser som du har låtit iNaturalist ha tillgång till för att kunna stödja inloggning, bildimport eller annan funktionalitet åt dig.
+  connected_accounts_titlecase: Kopplade konton
   connecting_flickr: "Ansluter till Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Anslut till Flickr igen för att godkänna skrivrättigheter
   connecting_to_facebook: "Ansluter till Facebook..."
@@ -1143,7 +1155,6 @@ sv:
   default_observation_license: Standard observation licens
   default_photo_license: Standard foto licens
   default_search_place: Standardsöklokal
-  default_search_place_description: Detta kommer att vara din standardlokal för alla sökningar i Utforska.
   default_sound_license: Standard ljud licens
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
   defines_a_taxon_framework_for: Definierar taxonsammanhanget för %{taxon_name}
@@ -1231,6 +1242,10 @@ sv:
   disable_comments: Inaktivera kommentarer
   disable_comments_desc: Förhindra personer från att lägga till nya kommentarer
   disagree_: Håller inte med
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Koppla ifrån
+  disconnect_caps: KOPPLA IFRÅN
   disconnect_provider: "Koppla från %{provider}"
   display: Visning
   display_link_to_checklist: Visa länk till projektlistan från projektsidan
@@ -1410,6 +1425,7 @@ sv:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externa applikationer
+  external_applications_description: Externa applikationer är program från tredje part som du har gett behörighet att komma åt ditt iNaturalist-konto. I allmänhet kan de göra allt med ditt konto som du kan, så se till att du litar på apputvecklare innan du ger dem tillstånd.
   external_taxon_including_children: Externt taxon (inklusive barn)
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
@@ -1425,6 +1441,7 @@ sv:
   failed_to_repair_photo: "Kunde inte reparera bild: %{errors}"
   failed_to_save_record: "Det gick inte att spara posten. Försök igen senare."
   failed_to_save_record_with_errors: "Lyckades inte spara posten: %{errors}"
+  failed_to_unlink_your_account: Lyckades inte koppla ifrån ditt konto
   'false': 'Falskt'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriter
@@ -1588,6 +1605,7 @@ sv:
   fungi:
     one: svamp
     other: svampar
+  gbif: GBIF
   gbif_occurrences: GBIF-förekomster
   generate_taxonomic_tags_for_flickr: Generera taxonomiska taggningar för dina Flickr-bilder.
   generate_widget: Generera widget
@@ -2495,6 +2513,9 @@ sv:
   observation_added: Observation tillagd.
   observation_added_to_the_project: "Observation tillagd till projektet \"%{project}\""
   observation_aggregation: Aggregering av observationer
+  observation_belongs_to_project_requiring_field: |
+    Observationen tillhör ett projekt som kräver detta fält. Observationen
+    måste tas bort från projektet innan detta fältvärde kan raderas.
   observation_brief_something_on_day: "Något på %{day}"
   observation_brief_something_on_day_at_time: "Något på %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Något på %{day} kl. %{time} av %{user}"
@@ -3910,6 +3931,7 @@ sv:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer om denna hopslagning av taxa"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna uppdelning av taxa"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på detta taxons avlägsnande"
+  subscribe_to_observations_from_this_place_html: <a>Prenumerera</a> på observationer från denna lokal
   subscribe_to_observations_in_a_taxon: Prenumerera på alla observationer av en art eller grupp av organismer (t.ex. 'skorpioner').
   subscribe_to_observations_in_a_place: Prenumerera på alla observationer som publiceras på denna plats. Du kan också lägga till ett valfritt taxonfilter (t.ex. 'skorpioner från Texas').
   subscribe_to_places_to: |
@@ -3929,6 +3951,8 @@ sv:
   suggest_an_identification: Föreslå en bestämning
   suggest_or_require_that: Föreslå eller kräv att medverkare fyller i dessa fält för de observationer de lägger till i ditt projekt.
   suggestions: Förslag
+  suitable_for_the_global_biodiversity_information_facility: Lämpad för Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Lämpad för Wikipedia och andra Wikimedia Foundation-projekt
   summary: Sammanfattning
   supporting: Stödjer
   support_inaturalist: Stöd iNaturalist
@@ -4233,6 +4257,10 @@ sv:
     uppdatera all tillhörande statistik, bl.a. avvisa taxa som inte ingår i
     listtaxonet eller är av den valda rangen. Inga nya taxa kommer att
     läggas till. Det kan ta några minuter.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Detta tar bort iNaturalists möjlighet att komma åt detta konto åt dig
+    tills du beviljar åtkomst igen. Du kan behöva ändra dina inställningar på den
+    externa webbplatsen för att helt förhindra åtkomst.
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   this_will_sign_you_out_current_session: Detta kommer att logga ut dig från din nuvarande session på denna applikation.
@@ -4733,6 +4761,9 @@ sv:
   you_can_edit_this_default_check_list_because: |
     Du kan redigera denna standardchecklista eftersom du är en
     administratör, men det borde egentligen inte behövas.
+  you_can_only_destroy_taxa_you_created2: |
+    Du kan bara ta bort taxa du skapat som inte är associerade med
+    taxonändringar, bestämningar eller annat innehåll
   you_can_only_block_three_users: Du kan bara blockera tre användare
   you_can_show_the_boundary_of: Du kan visa platsens gräns på din projektsida om platsen har en gräns.
   you_can_sign_free_at: "Du kan registrera dig för ett gratis %{site_name}-konto på"
@@ -5644,6 +5675,9 @@ sv:
         requirements_have_changed: |-
           Observationskraven för följande projekt har nyligen ändrats:
         subject: Projektets observationskrav har ändrats för %{project}
+        wondering_what_this_means_html: |
+          Undrar du vad "geosekretess" är?
+          <a href="%{url}">Läs mer i vår dokumentation</a>.
         you_can_change_html: |-
           Du kan ändra dina inställningar eller lämna projektet på
           <a href="%{url}">projektets sida</a>.
@@ -6308,6 +6342,11 @@ sv:
       year:
         compare_desc: |
           Hur var detta år jämfört med dina tidigare år? Med tre års användning eller mer kan vi börja jämföra årliga aktivitetsmått.
+        compare_site_desc: |
+          Hur står sig detta år jämfört med tidigare år? Den gröna stapeln visar
+          detta år, den vita lodräta stapeln visar förra året och de grå områdena
+          i bakgrunden visar min och max för tidigare år, samt genomsnittet för
+          alla år.
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
         donate_desc_html: |
@@ -6359,6 +6398,10 @@ sv:
           användare som redan är anslutna till %{site_name} gick med i iNaturalist.
         growth_in_year_obs: "Tillväxt i %{year} (obs)"
         growth_title: Tillväxt
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Lågt: %{low_value} (%{low_desc}), för litet för att visa"
         new_species_desc: |
           Arter som observerades för första gången på %{site_name} i år.
           Visar %{x} av <a href="%{url}">%{y} arter</a>.
@@ -6374,6 +6417,7 @@ sv:
           räknas bara som <i>Canis lupus</i>.
         new_species_per_year: Nya arter / År
         new_species_per_year_by_date_added: Efter datum tillagda
+        new_species_per_year_by_date_observed: Efter observationsdatum
         obs_in_year: Obs i %{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Engångs
@@ -6394,6 +6438,7 @@ sv:
           om dataanvändning tack vare våra vänner på
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observationer / År
+        observations_per_year_by_date_added: Efter tilläggsdatum
         observations_per_year_by_date_observed: Efter datum observerad
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsräcka
@@ -6408,6 +6453,7 @@ sv:
         recurring: Återkommande
         species_per_year: Arter / År
         species_per_year_by_date_added: Efter datum tillagda
+        species_per_year_by_date_observed: Efter observationsdatum
         stats_generated_datetime: Statistik skapad den %{datetime}
         store_prompt: |
           Vill du visa din stolthet över iNat vart du än är? Kolla in iNat-butiken!
@@ -7860,6 +7906,7 @@ sv:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Varning
+  wikimedia: Wikimedia
   wild: Vilda
   will_paginate:
     previous_label: "&#8592; Föreg"
