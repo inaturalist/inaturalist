@@ -84,13 +84,13 @@ class App extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-2 menu hidden-xs">
+          <div className="col-sm-2 menu hidden-xs">
             <Menu setContainerIndex={this.setContainerIndex} currentContainer={container} />
           </div>
-          <div className="col-xs-1 hidden-xs">
+          <div className="col-sm-1 hidden-xs">
             <div className="vl" />
           </div>
-          <div className="col-xs-9">
+          <div className="col-sm-9">
             {userSettings[container]}
           </div>
         </div>

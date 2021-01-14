@@ -24,7 +24,14 @@ class UsersController < ApplicationController
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
-  before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
+  before_filter :return_here, only: [
+    :curation,
+    :dashboard,
+    :edit,
+    :index,
+    :relationships,
+    :show
+  ]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
 
   protect_from_forgery unless: -> {

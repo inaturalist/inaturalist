@@ -77,8 +77,7 @@ const Profile = ( {
         </SettingsItem>
         <ChangePassword changePassword={changePassword} />
       </div>
-      <div className="col-md-1" />
-      <div className="col-md-5 col-sm-10">
+      <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
           <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
