@@ -2297,6 +2297,21 @@ en:
   message_from_user_at_time: From %{user} at %{time}
   message_from_user_on_date: From %{user} on %{date}
   messages: Messages
+  messages_new_correspondent_it_looks_like: |
+    It looks like you've never corresponded with this person before, so please
+    keep these things in mind:
+  messages_new_correspondent_specimens: |
+    Be careful about requests for specimens or hidden data. Try to verify the
+    identity of the person making the request and if they are asking for
+    specimens, ask to see their permit.
+  messages_new_correspondent_personal: |
+    Don't disclose personal information about yourself to people you don't
+    trust.
+  messages_new_correspondent_actions_html: |
+    If you suspect this person is violating our <a href="%{tos_url}"
+    target="_blank">Terms of Service</a> or not acting in accordance with our <a
+    href="%{guidelines_url}" target="_blank">Community Guidelines</a>, please
+    flag this message below.
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
