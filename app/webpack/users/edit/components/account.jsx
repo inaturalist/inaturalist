@@ -17,18 +17,17 @@ const Account = ( {
   sites
 } ) => {
   const currentNetworkAffiliation = sites.filter( site => site.id === profile.site_id )[0];
+  const localeList = Object.keys( I18n.t( "locales" ) );
 
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
 
-  const createLocaleList = ( ) => Object.keys( I18n.t( "locales" ) ).map(
-    locale => (
-      <option value={locale} key={locale}>
-        {I18n.t( `locales.${locale}`, { locale } )}
-      </option>
-    )
-  );
+  const createLocaleList = ( ) => localeList.map( locale => (
+    <option value={locale} key={locale}>
+      {I18n.t( `locales.${locale}`, { locale } )}
+    </option>
+  ) );
 
   const showNetworkLogo = ( id, logo ) => <img className="network-logo" alt={`inat-affiliation-logo-${id}`} src={logo} />;
 
@@ -57,6 +56,17 @@ const Account = ( {
     );
   } );
 
+  const setLocale = ( ) => {
+    const { locale } = profile;
+
+    if ( localeList.includes( locale ) ) {
+      return locale;
+    }
+    // this provides fallbacks with users for unsupported locales, like "en-US"
+    const twoLetterLanguageCode = locale.split( "-" )[0];
+    return localeList.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
+  };
+
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
@@ -69,7 +79,7 @@ const Account = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-          <select id="user_locale" className="form-control dropdown" value={profile.locale} name="locale" onChange={handleInputChange}>
+          <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
             {createLocaleList( )}
           </select>
         </SettingsItem>
