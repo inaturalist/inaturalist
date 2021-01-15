@@ -248,6 +248,7 @@ class User < ActiveRecord::Base
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
+  before_save :remove_email_from_name
   before_save :set_pi_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
@@ -280,10 +281,6 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  email_name_regex  = '[\w\.%\+\-]+'.freeze
-  domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
-  domain_tld_regex  = '(?:[A-Z]+)'.freeze
-  email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   
   validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
@@ -294,7 +291,8 @@ class User < ActiveRecord::Base
 
   validates_length_of       :name,      maximum: 100, allow_blank: true
 
-  validates_format_of       :email,     with: email_regex, message: :must_look_like_an_email_address, allow_blank: true
+  validates_format_of       :email,     with: Devise.email_regexp,
+    message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
   validate :validate_email_pattern, on: :create
@@ -729,8 +727,8 @@ class User < ActiveRecord::Base
     auth_info_name = auth_info["info"]["nickname"]
     auth_info_name = auth_info["info"]["first_name"] if auth_info_name.blank?
     auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
+    auth_info_name = User.remove_email_from_string( auth_info_name )
     autogen_login = User.suggest_login(auth_info_name)
-    autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login( DEFAULT_LOGIN ) if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     icon_url = auth_info["info"]["image"]
@@ -1337,6 +1335,19 @@ class User < ActiveRecord::Base
 
   def privileged_with?( privilege )
     user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
+  end
+
+  # Apparently some people, and maybe some third-party auth providers, sometimes
+  # stick the email in the name field... which is not ok
+  def remove_email_from_name
+    self.name = User.remove_email_from_string( self.name )
+    true
+  end
+
+  def self.remove_email_from_string( s )
+    return s if s.blank?
+    email_pattern = /#{Devise.email_regexp.to_s.gsub("\\A" , "").gsub( "\\z", "" )}/
+    s.gsub( email_pattern, "" )
   end
 
   def set_pi_consent_at
