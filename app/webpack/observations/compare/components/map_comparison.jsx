@@ -68,6 +68,7 @@ class MapComparison extends React.Component {
     if ( mapLayout === "combined" ) {
       maps = (
         <TaxonMap
+          placement={`observations-compare-${mapLayout}`}
           showAllLayer={false}
           gestureHandling="auto"
           minX={bounds.swlng}
@@ -87,6 +88,7 @@ class MapComparison extends React.Component {
           <div key={reloadKey} className="map">
             <h5>{ query.name }</h5>
             <TaxonMap
+              placement={`observations-compare-${mapLayout}`}
               reloadKey={reloadKey}
               showAllLayer={false}
               gestureHandling="auto"

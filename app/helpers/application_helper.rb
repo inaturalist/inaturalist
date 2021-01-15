@@ -743,7 +743,8 @@ module ApplicationHelper
       "map-style" => options[:map_style],
       "elastic_params" => options[:elastic_params] ?
         options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil,
-      "gesture-handling" => options[:gesture_handling]
+      "gesture-handling" => options[:gesture_handling],
+      "placement" => options[:placement]
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)

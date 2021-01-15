@@ -14,6 +14,7 @@ const ObservationsMapView = ( { project, config, updateCurrentUser } ) => {
         <Row>
           <Col xs={12}>
             <TaxonMap
+              placement="projects-show-observations"
               observationLayers={[Object.assign( { captive: "any" }, project.search_params )]}
               showAccuracy
               enableShowAllLayer={false}

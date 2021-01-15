@@ -36,6 +36,7 @@ const TaxonPageMap = ( {
     }
     taxonMap = (
       <TaxonMap
+        placement="taxa-show"
         showAllLayer={false}
         minZoom={2}
         gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}

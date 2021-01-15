@@ -24,6 +24,13 @@
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
+      <% if @site %>
+        var SITE = {
+          name: "<%= @site.name %>",
+          short_name: "<%= @site.site_name_short %>",
+          logo_square: "<%= @site.logo_square.url %>"
+        };
+      <% end %>
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place -%>
       <% if site_place -%>

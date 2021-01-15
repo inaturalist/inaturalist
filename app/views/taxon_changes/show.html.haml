@@ -85,7 +85,7 @@
   .row
     .col-xs-12
       #mapwrapper.stacked
-        %iframe.stacked{:height => "600", :src => "#{taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id})}", :width => "100%"}
+        %iframe.stacked{:height => "600", :src => "#{taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id}, placement: "taxon-changes-show" )}", :width => "100%"}
   .row
     .col-xs-12
       #comments.column.span-18
