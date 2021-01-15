@@ -8,7 +8,9 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
   return (
     <div className="flex-no-wrap save-button">
       <div className={profile.saved_status === "saved" ? "text-muted saved-time" : "collapse"}>
-        {I18n.t( "saved_at_time", { time: moment( profile.updated_at ).format( "h:mm a" ) } )}
+        { I18n.t( "saved_at_time", {
+          time: moment( profile.updated_at ).format( I18n.t( "momentjs.time_hours" ) )
+        } ) }
       </div>
       <button
         className={`btn btn-inat ${disabled ? "btn-default" : "btn-primary"}`}

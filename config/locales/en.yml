@@ -2359,6 +2359,7 @@ en:
     date_long: "MMMM D, YYYY"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
+    time_hours: "h:mm a"
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}

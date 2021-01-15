@@ -80,10 +80,10 @@ const Relationships = ( {
 
   const showFilters = ( ) => (
     <div>
-      <div className="col-md-3">
-        <div className="row flex-no-wrap relationship-spacing">
+      <div id="relationships-filters">
+        <div className="filter">
           <label className="relationship-label" htmlFor="name">{I18n.t( "search" )}</label>
-          <div className="input-group relationship-filter">
+          <div className="input-group">
             <UserAutocomplete
               resetOnChange={false}
               afterSelect={( { item } ) => searchUsers( item )}
@@ -93,21 +93,15 @@ const Relationships = ( {
             />
           </div>
         </div>
-      </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 relationship-filter">
-        <div className="row flex-no-wrap">
+        <div className="filter">
           <label className="relationship-label" htmlFor="following">{I18n.t( "following" )}</label>
           {renderDropdown( "following" )}
         </div>
-      </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 relationship-filter">
-        <div className="row flex-no-wrap relationship-spacing">
+        <div className="filter">
           <label className="relationship-label" htmlFor="trusted">{I18n.t( "trusted" )}</label>
           {renderDropdown( "trusted" )}
         </div>
-      </div>
-      <div className="col-md-3 col-sm-4 col-xs-4">
-        <div className="row flex-no-wrap">
+        <div className="filter">
           <label className="relationship-label" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
           <select
             className="form-control"

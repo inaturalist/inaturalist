@@ -145,10 +145,6 @@ select.dropdown {
   white-space: nowrap;
 }
 
-.relationship-filter {
-  margin-right: 12px;
-}
-
 .remove-photo-margin {
   margin-top: 5px !important;
 }
@@ -437,4 +433,18 @@ select.dropdown {
 
 .license-tag.wikimedia {
   background-color: #2e78b8;
+}
+
+#relationships-filters {
+  display: flex;
+  .filter {
+    @extend .flex-no-wrap;
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0px;
+    }
+    label {
+      margin-bottom: 0px;
+    }
+  }
 }
