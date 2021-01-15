@@ -58,15 +58,12 @@ export function saveUserSettings( ) {
       user: profile
     };
 
-    const updateOnlyAttributes = [
-      "icon_delete",
-      "make_observation_licenses_same",
-      "make_photo_licenses_same",
-      "make_sound_licenses_same"
+    const topLevelAttributes = [
+      "icon_delete"
     ];
 
     // move these attributes so they're nested under params, not params.user
-    updateOnlyAttributes.forEach( attr => {
+    topLevelAttributes.forEach( attr => {
       if ( !profile[attr] ) return;
 
       params[attr] = true;

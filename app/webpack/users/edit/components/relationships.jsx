@@ -132,10 +132,8 @@ const Relationships = ( {
 
   return (
     <div>
-      <SettingsItem>
-        <h4>{I18n.t( "relationships_user_settings" )}</h4>
-        {showFilters( )}
-      </SettingsItem>
+      <h4>{I18n.t( "relationships_user_settings" )}</h4>
+      {showFilters( )}
       {relationships.length === 0 && showEmptyState( )}
       <table className={`table divider ${relationships.length === 0 ? "hidden" : null}`}>
         <thead>
