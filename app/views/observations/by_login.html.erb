@@ -15,7 +15,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready( function( ) {
       // render map
-      $("#map").taxonMap({ appendMarkerToList: true });
+      $("#map").taxonMap({ appendMarkerToList: true, placement: "observations-login" });
       window.map = $("#map").data("taxonMap");
       // Reveal columns
       $('.created_at').show();
