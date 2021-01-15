@@ -183,4 +183,12 @@ class Flag < ActiveRecord::Base
     end
     !flaggable_content.blank? && user && user.is_curator?
   end
+
+  def deletable_by?( user )
+    return false if new_record? || user.blank?
+    return true if user.is_admin?
+    return true if user.id === self.user_id && !resolved? && !comments.any?
+    false
+  end
+
 end

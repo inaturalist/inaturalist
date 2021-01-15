@@ -7,7 +7,6 @@ import {
 } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
-import { setActiveTab } from "../ducks/comment_id_panel";
 import {
   fetchSuggestions,
   updateWithObservation as updateSuggestionsWithObservation
@@ -26,7 +25,6 @@ function mapStateToProps( state ) {
   return {
     observation,
     config: state.config,
-    activeTab: state.commentIDPanel.activeTab,
     content: state.textEditor.activity
   };
 }
@@ -48,7 +46,6 @@ function mapDispatchToProps( dispatch ) {
       dispatch( createFlag( className, id, flag, body ) );
     },
     deleteFlag: id => { dispatch( deleteFlag( id ) ); },
-    setActiveTab: activeTab => { dispatch( setActiveTab( activeTab ) ); },
     review: ( ) => { dispatch( review( ) ); },
     unreview: ( ) => { dispatch( unreview( ) ); },
     onClickCompare: ( e, taxon, observation ) => {
