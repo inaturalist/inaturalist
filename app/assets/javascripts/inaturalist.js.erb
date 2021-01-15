@@ -114,8 +114,9 @@ var iNaturalist = window.iNaturalist = new function(){
       opts.pathname = window.location.pathname
         ? window.location.pathname.replace( /\d+(\-[^\/\?]+)?$/, ":id" )
         : "unknwown";
-      opts.pathname = opts.pathname.replace( /projects\/[^\/]+$/, "projects/:id" );
-      opts.pathname = opts.pathname.replace( /observations\/[^\/]+$/, "observations/:login" );
+      opts.pathname = opts.pathname.replace( /projects\/[^\/\:]+$/, "projects/:id" );
+      opts.pathname = opts.pathname.replace( /observations\/[^\/\:\d]+$/, "observations/:login" );
+      opts.pathname = opts.pathname.replace( /places\/[^\/\:]+$/, "places/:id" );
       url += "?" + $.param( params );
       var ajaxOpts = { url: url };
       if ( jwt && jwt.length > 0 ) {
