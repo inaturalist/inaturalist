@@ -59,6 +59,10 @@ const Account = ( {
   const setLocale = ( ) => {
     const { locale } = profile;
 
+    if ( locale === null ) {
+      return "en";
+    }
+
     if ( localeList.includes( locale ) ) {
       return locale;
     }
