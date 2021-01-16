@@ -60,6 +60,8 @@ module ActsAsElasticModel
       def elastic_index!(options = { })
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
+        options[:sleep] ||=
+          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
         # this method will accept an existing scope
@@ -105,11 +107,13 @@ module ActsAsElasticModel
           scope = scope.load_for_index
         end
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
+        batch_sleep = options.delete(:sleep)
         scope.find_in_batches(options) do |batch|
           if debug && batch && batch.length > 0
             Rails.logger.info "[INFO #{Time.now}] Starting to index #{self.name} :: #{batch[0].id}"
           end
           bulk_index(batch, wait_for_index_refresh: wait_for_index_refresh)
+          sleep batch_sleep.to_i
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
       end

@@ -97,7 +97,7 @@ module DataPartnerLinkers
           ].join(' ')
         observation = Observation.find_by_id(observation_id)
         if observation.blank?
-          logger.info "\tobservation #{observation_id} doesn't exist, skipping..."
+          logger.info "\tobservation #{observation_id} doesn't exist, skipping..." if @opts[:debug]
           next
         end
         href = "http://www.gbif.org/occurrence/#{gbif_id}"
@@ -105,7 +105,7 @@ module DataPartnerLinkers
         if existing
           existing.touch unless @opts[:debug]
           old_count += 1
-          logger.info "\tobservation link already exists for observation #{observation_id}, skipping"
+          logger.info "\tobservation link already exists for observation #{observation_id}, skipping" if @opts[:debug]
         else
           ol = ObservationLink.new( observation: observation, href: href, href_name: "GBIF", rel: "alternate" )
           ol.save unless @opts[:debug]
@@ -127,8 +127,9 @@ module DataPartnerLinkers
       obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
       obs_ids_to_index = obs_ids_to_index.compact.uniq
       obs_ids_to_index.in_groups_of( 500 ) do |group|
-        print "."
         Observation.elastic_index!( ids: group.compact ) unless @opts[:debug]
+        num_indexed += group_size
+        puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / obs_ids_to_index.size.to_f * 100 ).round( 2 )})"
       end
       logger.info "[#{Time.now}] Finished linking for #{@data_partner}"
     end
