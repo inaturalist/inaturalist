@@ -17,7 +17,23 @@ const Account = ( {
   sites
 } ) => {
   const currentNetworkAffiliation = sites.filter( site => site.id === profile.site_id )[0];
-  const localeList = Object.keys( I18n.t( "locales" ) );
+
+  // these locales are not available for all regions (like "en-US")
+  // so taking the list of keys from the english version
+  const localeListKeys = Object.keys( I18n.t( "locales", { locale: "en" } ) );
+
+  const setLocale = ( ) => {
+    const { locale } = profile;
+
+    if ( localeListKeys.includes( locale ) ) {
+      return locale;
+    }
+    // this provides fallbacks with users for unsupported locales, like "en-US"
+    const twoLetterLanguageCode = locale.split( "-" )[0];
+    return localeListKeys.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
+  };
+
+  const localeList = Object.keys( I18n.t( "locales", { locale: setLocale( ) } ) );
 
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
@@ -55,21 +71,6 @@ const Account = ( {
       </MenuItem>
     );
   } );
-
-  const setLocale = ( ) => {
-    const { locale } = profile;
-
-    if ( locale === null ) {
-      return "en";
-    }
-
-    if ( localeList.includes( locale ) ) {
-      return locale;
-    }
-    // this provides fallbacks with users for unsupported locales, like "en-US"
-    const twoLetterLanguageCode = locale.split( "-" )[0];
-    return localeList.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
-  };
 
   return (
     <div className="row">
