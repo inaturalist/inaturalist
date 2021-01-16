@@ -51,6 +51,7 @@
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>"
         };
       <% end -%>
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
