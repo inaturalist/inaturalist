@@ -34,7 +34,7 @@
           %td
             %h3=t :reply
           %td{ colspan: 2 }
-            - if @new_correspondent && current_user.is_admin?
+            - if @new_correspondent
               .alert.alert-warning
                 %p=t :messages_new_correspondent_it_looks_like
                 %ul
