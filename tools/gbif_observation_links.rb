@@ -150,9 +150,12 @@ puts
 obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 obs_ids_to_index = obs_ids_to_index.compact.uniq
 puts "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
-obs_ids_to_index.in_groups_of( 500 ) do |group|
-  print '.'
+num_indexed = 0
+group_size = 500
+obs_ids_to_index.in_groups_of( group_size ) do |group|
   Observation.elastic_index!( ids: group.compact ) unless @opts[:debug]
+  num_indexed += group_size
+  puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / obs_ids_to_index.size.to_f * 100 ).round( 2 )})"
 end
 puts
 puts
