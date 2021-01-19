@@ -1007,7 +1007,7 @@ ru:
   confirm_now: Подтвердить сейчас
   confirm_your_info: Подтвердите вашу информацию
   confirming_ids: Подтверждение ID
-  confirming_ids_description: Если вы отключите эту настройку, вы не будете получать уведомления об идентификациях, подтверждающих вашу.
+  confirming_ids_description: Если вы отключите эту настройку, вы не будете получать уведомления об идентификациях, подтверждающих вашу идентификацию.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Подключиться
@@ -3525,7 +3525,7 @@ ru:
   reason_you_are_flagging_this_item: Причина, по которой вы пометили этот пункт.
   recaptcha_verification_failed: ошибка проверки reCAPTCHA
   receive_email_notifications: Получать уведомления по электронной почте
-  receive_email_notifications_description: "Если вы отключите эту настройку, вы больше не будете получать никаких писем от %{site_name} об уведомлениях. Вы будете получать уведомления для всех отмеченных ниже:"
+  receive_email_notifications_description: "Если вы отключите эту настройку, вы больше не будете получать никаких писем от %{site_name} об уведомлениях. Вы будете получать уведомления обо всех отмеченных ниже событиях:"
   receive_email_notifications_when_people_leave_you: Получать уведомления по электронной почте о
   receive_project_journal_notifications?: Получать уведомления от журнала проекта?
   receive_updates_from_this_project: Получать обновления этого проекта
@@ -6273,7 +6273,7 @@ ru:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Сообщения журнала проекта
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_added_your_observations: Когда в проект добавлены ваши наблюдения
+        notification_preferences_project_added_your_observations: Добавление в проект ваших наблюдений
         #Checkbox label for user preference about what to receive in the daily
         #email update. This one controls whether or not you get notifications
         #when the curators change in a project you've joined
@@ -6301,8 +6301,7 @@ ru:
         prefers_no_tracking_label_desc_info_we_share: |
           Информация, которой мы можем делиться с этими третьими сторонами, включает в себя
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP-адреса (которые можно использовать для определения местоположения с разрешением на уровне города, а также для отслеживания вас на различных веб-сайтах и службах; обратите внимание, что мы включили <a href="https://support.google.com/analytics/answer/2763052">анонимизацию IP</a> в Google Analytics, и что <a
-          href="https://firebase.google.com/support/privacy">Firebase
+          IP-адреса (которые можно использовать для определения местоположения с разрешением на уровне города, а также для отслеживания вас на различных веб-сайтах и службах; обратите внимание, что мы включили <a href="https://support.google.com/analytics/answer/2763052">анонимизацию IP</a> в Google Analytics, и что <a href="https://firebase.google.com/support/privacy">Firebase
           Crashlytics</a>, насколько нам известно, не регистрирует IP адрес)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Сведения о браузере, такие как производитель, название и версия

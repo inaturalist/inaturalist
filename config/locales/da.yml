@@ -2165,6 +2165,19 @@ da:
   message_from_user_at_time: Fra %{user} kl. %{time}
   message_from_user_on_date: Fra %{user} den %{date}
   messages: Beskeder
+  messages_new_correspondent_it_looks_like: |
+    Det ser ud til, at du ikke tidligere har kommunikeret med vedkommende, så
+    hav disse forbehold i tankerne:
+  messages_new_correspondent_specimens: |
+    Vær forsigtig med anmodninger om prøver eller skjulte data. Forsøg at verificere identiteten på den amodende person, og anmodes der om
+    prøver, så udbed dig vedkommende tilladelse.
+  messages_new_correspondent_personal: |
+    Videregiv ingen af dine personlige oplysninger til ikke-betroede parter.
+  messages_new_correspondent_actions_html: |
+    Har du mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
+    target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
+    href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
+    markér venligst denne besked nedenfor.
   misidentifications: Fejlidentifikationer
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
@@ -2211,6 +2224,7 @@ da:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    time_hours: "HH.mm"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
@@ -6512,8 +6526,7 @@ da:
           IP-adresser (som kan benyttes til placeringsudledning på byniveauplan samt for at spore dig på tværs af forskellige websteder og tjenester;
           bemærk, at vi har aktiveret
           <a href="https://support.google.com/analytics/answer/2763052">IP anonymisering</a>
-          i Google Analytics, og <a
-          href="https://firebase.google.com/support/privacy">Firebase
+          i Google Analytics, og <a href="https://firebase.google.com/support/privacy">Firebase
           Crashlytics</a> registrerer os bekendt ikke IP-adressen)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browserdetaljer, såsom mærke, model og version

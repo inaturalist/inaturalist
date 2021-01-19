@@ -2224,6 +2224,7 @@ nl:
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    time_hours: "H:mm"
   month: Maand
   monthly_supporter_since_date_html: |
     <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
@@ -6237,9 +6238,9 @@ nl:
         prefers_no_tracking_label_desc_info_we_share: |
           Informatie die we kunnen delen met deze derden omvat
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP-adressen (die kunnen worden gebruikt om positie op stadsniveau vast te stellen, en je over verschillende websites en diensten te volgen; merk op dat we
+          IP-adressen (die kunnen worden gebruikt om jouw positie op stadsniveau vast te stellen en je over verschillende websites en diensten te volgen; merk op dat we
           <a href="https://support.google.com/analytics/answer/2763052">IP-anonimisering</a> hebben aangezet
-          in Google Analytics en <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> slaat geen IP-adressen op voor zover we weten)
+          in Google Analytics; <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics</a> slaat geen IP-adressen op voor zover we weten)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browserdetails, zoals maker, model, en versie
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

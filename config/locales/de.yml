@@ -2134,6 +2134,21 @@ de:
   message_from_user_at_time: Von %{user} um %{time}
   message_from_user_on_date: Von %{user} am %{date}
   messages: Nachrichten
+  messages_new_correspondent_it_looks_like: |
+    Es sieht so aus, als hättest du mit dieser Person bisher nicht korrespondiert, also bitte
+    behalte diese Dinge im Hinterkopf:
+  messages_new_correspondent_specimens: |
+    Sei vorsichtig bei Anfragen nach Belegexemplaren oder geschützten Daten. Versuche, die
+    Identität der Person, die die Anfrage stellt, zu verifizieren und wenn um 
+    Exemplare gebeten wird, frage nach einer entsprechenden Erlaubnis.
+  messages_new_correspondent_personal: |
+    Gib keine persönlichen Informationen über dich an Personen weiter, denen du nicht
+    vertraust.
+  messages_new_correspondent_actions_html: |
+    Wenn du den Verdacht hast, dass diese Person unsere <a href="%{tos_url}"
+    target="_blank">Nutzungsbedingungen</a> verletzt oder nicht gemäß unseren <a
+    href="%{guidelines_url}" target="_blank">Richtlinien agiert</a>, melde bitte
+    diese Nachricht weiter unten.
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
     Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 

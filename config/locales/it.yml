@@ -196,8 +196,8 @@ it:
     Puoi scegliere di condividere le coordinate nascoste per
   about_x: "A proposito di %{x}"
   acc: 'Acc (m)'
-  account: Profilo
-  account_creation: Creazione utenza
+  account: Account
+  account_creation: Creazione Utenza
   account_settings: Impostazioni del profilo
   accept: accetta
   accept_community_identifications: Accetta le identificazioni della community
@@ -1128,6 +1128,8 @@ it:
   default_observation_license: Licenza predefinita delle osservazioni
   default_photo_license: Licenza predefinita delle foto
   default_search_place: Luogo Predefinoto di Ricerca
+  default_search_place_description: |
+    Questo sarà il tuo luogo predefinito per tutte le ricerche in "Esplora" ed "Identifica".
   default_sound_license: Licenza predefinita dei suoni
   defaults_to_your_name_or_username: Utilizza in maniera predefinita il tuo nome o il tuo nome utente
   defines_a_taxon_framework_for: Definisce un quadro del taxon per %{taxon_name}
@@ -2144,6 +2146,16 @@ it:
   message_from_user_at_time: Da %{user} alle %{time}
   message_from_user_on_date: Da %{user} il %{date}
   messages: Messaggi
+  messages_new_correspondent_it_looks_like: |
+    Sembra che tu non abbia mai interagito con questa persona prima, quindi per favore tieni a mente queste cose:
+  messages_new_correspondent_specimens: |
+    Fai attenzione alle richieste di campioni o di dati nascosti. Cerca di verificare l'identità della persona che fa la richiesta e, se chiedono esemplari, chiedete di vedere la loro autorizzazione.
+  messages_new_correspondent_personal: |
+    Non rivelare le tue informazioni personali a persone di cui non ti fidi.
+  messages_new_correspondent_actions_html: |
+    Se sospetti che questa persona stia violando i nostri <a href="%{tos_url}"
+    target="_blank">Termini di Servizio</a> onon agendo secondo le nostre <a
+    href="%{guidelines_url}" target="_blank">Linne Guida della Comunità</a>, per favore contrassegna questo messaggio qui sotto.
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
     Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href="/help#inappropriate">FAQ</a>.
@@ -2189,6 +2201,7 @@ it:
     date_long: "MMMM D, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
+    time_hours: "H:mm"
   month: Mese
   monthly_supporter_since_date_html: |
     <a href="%{url}">Sostenitore mensile</a> dal %{date}

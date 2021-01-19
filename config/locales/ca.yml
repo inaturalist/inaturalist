@@ -1126,6 +1126,8 @@ ca:
   default_observation_license: 'Llicència per a les vostres observacions:'
   default_photo_license: 'Llicència per a les vostres fotos:'
   default_search_place: Lloc de cerca per defecte
+  default_search_place_description: |
+    Aquest serà el vostre lloc per defecte de totes les cerques a "Explora".
   default_sound_license: Llicències del so predeterminades
   defaults_to_your_name_or_username: Per defecte al vostre nom o nom d'usuari
   defines_a_taxon_framework_for: Definiu un marc taxonòmic per a %{taxon_name}
@@ -2143,6 +2145,16 @@ ca:
   message_from_user_at_time: De %{user} a les %{time}
   message_from_user_on_date: De %{user} el %{date}
   messages: Missatges
+  messages_new_correspondent_it_looks_like: |
+    Sembla que no us havíeu comunicat amb aquesta persona abans, per tant tingueu en compte el següent:
+  messages_new_correspondent_specimens: |
+    Vigileu les peticions de dades ocultes o sobre alguns individus. Intenteu verificar la identitat de la persones que demanen aquesta informació, i si us pregunten sobre alguns exemplars, comproveu la seva autorització.
+  messages_new_correspondent_personal: |
+    No faciliteu informació personal a persones en les que no confieu.
+  messages_new_correspondent_actions_html: |
+    Si sospiteu que aquesta persona està violant les nostres<a href="%{tos_url}"
+    target="_blank">Condicions d'Ús</a> o no actua segons les nostres <a
+    href="%{guidelines_url}" target="_blank">Directrius de la Comunitat</a>, si us plau, marqueu aquest missatge a sota.
   misidentifications: Identificacions incorrectes
   misleading_or_illegal_content_html: |
     Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de "inapropiat" consulteu el
@@ -2189,6 +2201,7 @@ ca:
     date_long: "D MMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    time_hours: "h.mm a"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
@@ -2448,6 +2461,8 @@ ca:
   observation_added: Observació afegida
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
+  observation_belongs_to_project_requiring_field: |
+    L'observació pertany a un projecte que necessita aquest camp. L'observació haurà d'esser eliminada del projecte si el valor d'aquest camp es pot esborrar.
   observation_brief_something_on_day: "Quelcom el %{day}"
   observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
   observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
@@ -6035,10 +6050,10 @@ ca:
         prefers_no_tracking_label_desc_info_we_share: |
           Les informacions que podríem compartir amb aquests tercers inclouen
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          Resolució d'adreces IP (les quals poden ser emprades per obtenir la localització a nivell de ciutat), i seguir-vos a través de diferents llocs web i serveis; noteu que hem activat 
+          Resolució d'adreces IP (les quals poden ser emprades per obtenir la localització a escala de ciutat), i seguir-vos a través de diferents llocs web i serveis; noteu que hem activat
           <a href="https://support.google.com/analytics/answer/2763052">l'anonimització IP</a>
           a Google Analytics; Firebase Crashlytics
-          <a href="<a href="https://firebase.google.com/support/privacy">
+          <a href="https://firebase.google.com/support/privacy">
           pot emmagatzemar les adreces IP </a>temporalment)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Detalls del navegador, com la marca, el model i la versió
