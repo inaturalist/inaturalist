@@ -115,10 +115,10 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
     gbif_id.to_s.ljust(20), 
     "#{count} of #{@status['totalRecords']} (#{(count / @status['totalRecords'].to_f * 100).round(2)}%)".ljust(30),
     "#{((Time.now - start_time) / 60.0).round(2)} mins"
-    ].join(' ')
+    ].join(' ') if @opts[:debug]
   observation = Observation.find_by_id(observation_id)
   if observation.blank?
-    puts "\tobservation #{observation_id} doesn't exist, skipping..."
+    puts "\tobservation #{observation_id} doesn't exist, skipping..." if @opts[:debug]
     next
   end
   href = "http://www.gbif.org/occurrence/#{gbif_id}"
@@ -126,7 +126,7 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
   if existing
     existing.touch unless @opts[:debug]
     old_count += 1
-    puts "\tobservation link already exists for observation #{observation_id}, skipping"
+    puts "\tobservation link already exists for observation #{observation_id}, skipping" if @opts[:debug]
   else
     ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "GBIF", :rel => "alternate")
     ol.save unless @opts[:debug]

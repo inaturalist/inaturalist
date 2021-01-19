@@ -128,7 +128,7 @@ class CloudfrontACLUpdater
       end
       PREFIXES_TO_LIMIT.each do |prefix|
         if bucket["key"].starts_with?( prefix )
-          ips_over_limit += bucket["key"]
+          ips_over_limit << bucket["key"]
         end
       end
     end

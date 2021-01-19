@@ -2,6 +2,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Flag, "creation" do
+  elastic_models( Observation )
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+
   it "should not allow flags that are too long" do
     f = Flag.make(
       :flag => <<-EOT
@@ -34,6 +38,17 @@ describe Flag, "creation" do
     o = Observation.make!( description: "some bad stuff" )
     f = Flag.make!( flaggable: o )
     expect( f.flaggable_content ).to eq o.description
+  end
+
+  it "should make flagged observations casual" do
+    o = Observation.make!( observed_on_string: "2021-01-01", latitude: 1, longitude: 1 )
+    expect( o.quality_grade ).to eq Observation::CASUAL
+    make_observation_photo( observation: o )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    Flag.make!( flaggable: o.photos.first )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
   end
 
   [Post, Comment, Identification].each do |model|
