@@ -3,7 +3,7 @@ class Observation < ActiveRecord::Base
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 30
-  DEFAULT_ES_BATCH_SLEEP = 5
+  DEFAULT_ES_BATCH_SLEEP = 8
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
