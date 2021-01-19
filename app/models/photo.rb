@@ -147,6 +147,10 @@ class Photo < ActiveRecord::Base
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
     Photo.where(user_id: user_id).update_all(license: license)
+    Photo.where(user_id: user_id).pluck(:id).each do |photo_id|
+      LocalPhoto.delay.change_photo_bucket_if_needed( photo_id )
+    end
+    user.index_observations_later
     true
   end
 

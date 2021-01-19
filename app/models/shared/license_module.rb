@@ -31,6 +31,10 @@ module Shared::LicenseModule
     CC_BY_NC_SA,
     CC0
   ]
+  ODP_LICENSES = [
+    CC_LICENSES,
+    PD
+  ].flatten
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
 
   attr_accessor :make_license_default

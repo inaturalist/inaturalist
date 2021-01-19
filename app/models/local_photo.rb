@@ -3,6 +3,7 @@ class LocalPhoto < Photo
   include LogsDestruction
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
+  after_update :change_photo_bucket_if_needed
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
@@ -35,9 +36,9 @@ class LocalPhoto < Photo
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
-      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
-      s3_region: CONFIG.s3_region,
-      bucket: CONFIG.s3_bucket,
+      s3_host_alias: Proc.new{ |a| a.instance.s3_host_alias },
+      s3_region: Proc.new{ |a| a.instance.s3_region },
+      bucket: Proc.new{ |a| a.instance.s3_bucket },
       #
       #  NOTE: the path used to be "photos/:id/:style.:extension" as of
       #  2016-07-15, but that wasn't setting the extension based on the detected
@@ -66,13 +67,15 @@ class LocalPhoto < Photo
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
+  after_initialize :set_license, :set_s3_account
+
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
   validates_presence_of :user, unless: :subtype
   validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
+  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation, :s3_account
 
   BRANDED_DESCRIPTIONS = [
     "OLYMPUS DIGITAL CAMERA",
@@ -84,7 +87,66 @@ class LocalPhoto < Photo
     "SAMSUNG CAMERA PICTURES",
     "MINOLTA DIGITAL CAMERA"
   ]
-  
+
+  def self.s3_host_alias( public = false )
+    unless ( CONFIG.s3_public_host || CONFIG.s3_public_bucket )
+      return ( CONFIG.s3_host || CONFIG.s3_bucket )
+    end
+    public ?
+      ( CONFIG.s3_public_host || CONFIG.s3_public_bucket ) :
+      ( CONFIG.s3_host || CONFIG.s3_bucket )
+  end
+
+  def self.s3_region( public = false )
+    return CONFIG.s3_region unless CONFIG.s3_public_region
+    public ? CONFIG.s3_public_region : CONFIG.s3_region
+  end
+
+  def self.s3_bucket( public = false )
+    return CONFIG.s3_bucket unless CONFIG.s3_public_bucket
+    public ? CONFIG.s3_public_bucket : CONFIG.s3_bucket
+  end
+
+  def s3_host_alias
+    LocalPhoto.s3_host_alias( self.s3_account )
+  end
+
+  def s3_region
+    LocalPhoto.s3_region( self.s3_account )
+  end
+
+  def s3_bucket
+    LocalPhoto.s3_bucket( self.s3_account )
+  end
+
+  def set_s3_account
+    self.s3_account = self.is_public ? "public" : nil
+  end
+
+  def is_public
+    self.large_url ? !! self.large_url.match( LocalPhoto.s3_bucket( true ) ) :
+      could_be_public
+  end
+
+  def could_be_public
+    Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+  end
+
+  def self.change_photo_bucket_if_needed( p )
+    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
+    p.change_photo_bucket_if_needed
+  end
+
+  def change_photo_bucket_if_needed
+    return unless large_url
+    return unless CONFIG.s3_public_bucket
+    if could_be_public && !is_public
+      LocalPhoto.move_photos( self )
+    elsif !could_be_public && is_public
+      LocalPhoto.move_photos( self )
+    end
+  end
+
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
@@ -392,6 +454,86 @@ class LocalPhoto < Photo
       end
       sizes
     end
+  end
+
+  private
+
+  def self.move_photos( p )
+    return unless CONFIG.s3_public_bucket
+    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
+    is_public = p.is_public
+    p.s3_account = is_public ? "public" : nil
+    s3_credentials = LocalPhoto.new.file.s3_credentials
+    source_client = ::Aws::S3::Client.new(
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: LocalPhoto.s3_region( is_public )
+    )
+    target_client = ::Aws::S3::Client.new(
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: LocalPhoto.s3_region( !is_public )
+    )
+    source_bucket = LocalPhoto.s3_bucket( is_public )
+    target_bucket = LocalPhoto.s3_bucket( !is_public )
+
+    # fetch list of files at the source
+    begin
+      s3_objects = source_client.list_objects( bucket: source_bucket, prefix: "photos/#{ p.id }/" )
+      images = s3_objects.contents
+      if !( s3_objects && s3_objects.data &&
+        s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput ) && images.any? )
+        return
+      end
+    rescue
+      # failed to fetch list of photo files, so just return
+      return
+    end
+
+    # copy them over to the target
+    begin
+      images.each do |image|
+        puts "Copying #{ image.key }..."
+        key = image.key
+        target_client.copy_object(
+          bucket: target_bucket,
+          copy_source: "#{ source_bucket }/#{ key }",
+          key: image.key,
+          acl: "public-read"
+        )
+      end
+    rescue
+      # failed to copy all photo files to the new bucket,
+      # so clean up anything that did get copied over and return
+      puts "Deleting/cleaning up target"
+      target_client.delete_objects(
+        bucket: target_bucket,
+        delete: {
+          objects: images.map{ |image| { key: image.key } }
+        }
+      )
+      return
+    end
+
+    # remove them from the source
+    begin
+      puts "Deleting/cleaning up source"
+      source_client.delete_objects(
+        bucket: source_bucket,
+        delete: {
+          objects: images.map{ |image| { key: image.key } }
+        }
+      )
+    rescue
+      # failed to delete source photos. Should retry this a few times
+      puts "Failed to delete from source"
+      return
+    end
+
+    # update photo URLs in the DB
+    p.s3_account = is_public ? nil : "public"
+    p.set_urls
+    p.reload
   end
 
 end

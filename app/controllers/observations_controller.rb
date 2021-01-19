@@ -277,6 +277,7 @@ class ObservationsController < ApplicationController
           @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
+          Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
           render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
         else
           I18n.t( "something" )
@@ -2113,8 +2114,10 @@ class ObservationsController < ApplicationController
         photo = if photo_class == LocalPhoto
           if photo_id.is_a?(Integer) || photo_id.is_a?(String)
             LocalPhoto.find_by_id(photo_id)
-          else
-            LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
+          elsif !photo_id.blank?
+            lp = LocalPhoto.new( user: current_user )
+            lp.file = photo_id
+            lp
           end
         else
           api_response ||= begin
