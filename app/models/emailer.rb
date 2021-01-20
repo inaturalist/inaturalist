@@ -247,6 +247,17 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def curator_application( user, application )
+    set_site
+    opts = set_site_specific_opts
+    opts[:to] = CONFIG.help_email.to_s.sub( "@", "+curator@" )
+    opts[:from] = user.email || opts[:from]
+    opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
+    @user = user
+    @application = application
+    mail( opts )
+  end
+
   private
   def mail_with_defaults( defaults = {} )
     opts = set_site_specific_opts.merge( defaults )
