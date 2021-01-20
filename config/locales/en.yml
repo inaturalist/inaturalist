@@ -1211,11 +1211,15 @@ en:
   # Message shown when the viewer is not yet elligible to apply to become a
   # curator
   curator_application_inelligible: |
-    In order to apply to be a site curator you must have had an account for 60
+    In order to apply to be a site curator you must have an account for 60
     days or more and have added 100 improving identifications to anyone's
     observations, including your own (you've added %{num_idents}). When you've
     met either of those requirements, return here and you'll be able to submit
     the application.
+  curator_application_inelligible_error: |
+    In order to apply to be a site curator you must have an account for 60
+    days or more and have added 100 improving identifications to anyone's
+    observations, including your own.
   # Message shown when a curator application has been succesfully submitted
   curator_application_success: Curator application submitted
   # Header

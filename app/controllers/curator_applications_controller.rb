@@ -15,6 +15,10 @@ class CuratorApplicationsController < ApplicationController
       flash[:error] = t(:curator_application_explanation_required)
       @application = params[:application] || {}
       render :new
+    elsif !@eligible
+      flash[:error] = t(:curator_application_inelligible_error)
+      @application = params[:application] || {}
+      render :new
     else
       Emailer.curator_application( current_user, params[:application] ).deliver_now
       flash[:notice] = t(:curator_application_success)

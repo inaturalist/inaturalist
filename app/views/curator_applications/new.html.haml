@@ -51,4 +51,4 @@
           = f.submit t(:apply_curator), class: "btn btn-primary"
       - else
         .alert.alert-warning
-          %p=t :curator_application_inelligible
+          %p=t :curator_application_inelligible, num_idents: @num_improving_idents
