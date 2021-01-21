@@ -371,9 +371,9 @@ class Project < ActiveRecord::Base
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
     if old_params == new_params
-      puts "no change"
+      # puts "no change"
     else
-      puts "params changed"
+      # puts "params changed"
       self.observation_requirements_updated_at = Time.now
     end
   end

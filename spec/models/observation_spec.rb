@@ -2094,7 +2094,6 @@ describe Observation do
     end
 
     describe "curator_coordinate_access_for" do
-      # elastic_models( Observation )
       let(:place) { make_place_with_geom }
       let(:project) do
         proj = Project.make(:collection)
