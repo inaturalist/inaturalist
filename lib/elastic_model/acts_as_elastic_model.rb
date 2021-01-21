@@ -70,10 +70,17 @@ module ActsAsElasticModel
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
           filter_ids.compact!
+          batch_sleep = options.delete(:sleep)
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice))
+              if batch_sleep
+                # sleep after index an ID batch, since during indexing
+                # we only sleep when indexing multiple batches, and here
+                # we explicitly requested a single batch to be indexed
+                sleep batch_sleep.to_i
+              end
             end
             return
           end
@@ -108,12 +115,17 @@ module ActsAsElasticModel
         end
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
         batch_sleep = options.delete(:sleep)
+        batches_indexed = 0
         scope.find_in_batches(options) do |batch|
+          if batch_sleep && batches_indexed > 0
+            # sleep only if more than one batch is being indexed
+            sleep batch_sleep.to_i
+          end
           if debug && batch && batch.length > 0
             Rails.logger.info "[INFO #{Time.now}] Starting to index #{self.name} :: #{batch[0].id}"
           end
           bulk_index(batch, wait_for_index_refresh: wait_for_index_refresh)
-          sleep batch_sleep.to_i
+          batches_indexed += 1
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
       end
