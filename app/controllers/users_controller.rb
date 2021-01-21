@@ -521,9 +521,16 @@ class UsersController < ApplicationController
       begin
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
+          if @site.discourse_category.blank?
+            url = "#{@discourse_url}/latest.json?order=created"
+            @discourse_topics_url = @discourse_url
+          else
+            url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
+            @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
+          end
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute( method: "get",
-              url: "#{@discourse_url}/latest.json?order=created", open_timeout: 1, timeout: 5 ).body
+              url: url, open_timeout: 1, timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",
