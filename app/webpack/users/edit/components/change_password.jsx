@@ -32,6 +32,7 @@ class ChangePassword extends Component {
 
   render( ) {
     const { showPasswordForm } = this.state;
+    const { showError } = this.props;
 
     return (
       <div className="settings-item">
@@ -51,6 +52,7 @@ class ChangePassword extends Component {
             <div className="form-group">
               <label>
                 {I18n.t( "new_password" )}
+                {showError( "password", "new_password" )}
                 <input
                   type="password"
                   className="form-control"
@@ -62,6 +64,7 @@ class ChangePassword extends Component {
             <div className="form-group">
               <label>
                 {I18n.t( "confirm_new_password" )}
+                {showError( "password_confirmation", "confirm_new_password" )}
                 <input
                   type="password"
                   className="form-control"
@@ -81,7 +84,8 @@ class ChangePassword extends Component {
 }
 
 ChangePassword.propTypes = {
-  changePassword: PropTypes.func
+  changePassword: PropTypes.func,
+  showError: PropTypes.func
 };
 
 export default ChangePassword;

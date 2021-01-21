@@ -44,6 +44,11 @@ label.required {
   }
 }
 
+.error-message {
+  color: $alert-red;
+  margin-bottom: 13px;
+}
+
 button.left-nav-item {
   padding: 6px 12px;
   line-height: 1.42857143;

@@ -33,6 +33,20 @@ const Profile = ( {
     return null;
   }
 
+  const showError = ( errorType, attribute ) => {
+    const errors = profile.errors && profile.errors[errorType];
+
+    return (
+      <div className={!errors ? "hidden" : null}>
+        {errors && profile.errors[errorType].map( reason => (
+          <div className="error-message" key={reason}>
+            {`${I18n.t( attribute || errorType )} ${reason}`}
+          </div>
+        ) )}
+      </div>
+    );
+  };
+
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
@@ -69,13 +83,15 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
+          {showError( "login", "username" )}
           <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
+          {showError( "email" )}
           <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
         </SettingsItem>
-        <ChangePassword changePassword={changePassword} />
+        <ChangePassword changePassword={changePassword} showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
