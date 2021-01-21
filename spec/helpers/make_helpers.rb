@@ -27,7 +27,8 @@ module MakeHelpers
   
   def make_user_with_role(role_name, opts = {})
     user = User.make!(opts)
-    user.roles << Role.make!(:name => role_name.to_s)
+    role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
+    user.roles << role
     user
   end
 

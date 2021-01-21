@@ -23,7 +23,7 @@
                 - else
                   %li
                     = link_to t(:unsuspend_user), unsuspend_user_path(@user)
-              - if current_user.is_admin? && !@user.is_admin?
+              - if is_site_admin? && !@user.is_admin?
                 - if @user.is_curator?
                   %li
                     = link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete

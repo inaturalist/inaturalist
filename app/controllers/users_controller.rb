@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
   check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
-  before_filter :admin_required, :only => [:curation, :merge, :add_role, :remove_role]
+  before_filter :admin_required, :only => [:curation, :merge]
+  before_filter :site_admin_required, only: [:add_role, :remove_role]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
   before_filter :return_here, only: [
     :curation,
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
       return redirect_back_or_default @user
     end
     
-    if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
@@ -113,12 +114,12 @@ class UsersController < ApplicationController
       flash[:error] = t(:that_role_doesnt_exist)
       return redirect_back_or_default @user
     end
-    
-    unless current_user.has_role?(@role.name)
+
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
-    
+
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
       if @role.name === Role::CURATOR
