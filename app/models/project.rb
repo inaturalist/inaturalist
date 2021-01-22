@@ -370,7 +370,7 @@ class Project < ActiveRecord::Base
     end
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
-    if old_params == new_params
+    if old_params == new_params && !prefers_user_trust_changed?
       # puts "no change"
     else
       # puts "params changed"

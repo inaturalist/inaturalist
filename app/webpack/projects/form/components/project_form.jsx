@@ -1,4 +1,5 @@
 import _ from "lodash";
+import moment from "moment";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -37,6 +38,9 @@ class ProjectForm extends React.Component {
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
     const viewerIsAdmin = config.currentUser && config.currentUser.roles
       && config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const coordinatesAccessible = project.prefers_user_trust
+      && project.observation_requirements_updated_at
+      && moment( project.observation_requirements_updated_at ) < moment( ).subtract( 1, "week" );
     return (
       <div className="Form">
         <SharedForm {...this.props} />
@@ -69,7 +73,7 @@ class ProjectForm extends React.Component {
                   { I18n.t( "views.projects.edit.trust_help_desc" ) }
                 </p>
                 <p className="help-text">
-                  { I18n.t( "views.projects.edit.trust_help_notification" ) }
+                  { I18n.t( "views.projects.edit.trust_help_notification2" ) }
                 </p>
                 <div className="checkbox">
                   <label>
@@ -83,6 +87,39 @@ class ProjectForm extends React.Component {
                     { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
                   </label>
                 </div>
+                { project.prefers_user_trust && project.observation_requirements_updated_at && (
+                  <div className={coordinatesAccessible ? "alert alert-success" : "alert alert-info"}>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "bold_label_colon_value_html", {
+                          label: I18n.t( "observation_requirements_updated_at" ),
+                          value: moment( project.observation_requirements_updated_at )
+                            .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                        } )
+                      }}
+                    />
+                    { coordinatesAccessible
+                      ? (
+                        <p>
+                          <i className="fa fa-check-circle" />
+                          { " " }
+                          { I18n.t( "project_coordinate_access_enabled" ) }
+                        </p>
+                      )
+                      : (
+                        <p>
+                          <i className="fa fa-info-circle" />
+                          { " " }
+                          { I18n.t( "project_coordinate_access_enabled", {
+                            datetime: moment( project.observation_requirements_updated_at )
+                              .add( 1, "week" )
+                              .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                          } ) }
+                        </p>
+                      )
+                    }
+                  </div>
+                ) }
               </Col>
             </Row>
           ) }

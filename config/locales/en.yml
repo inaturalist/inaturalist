@@ -2647,6 +2647,9 @@ en:
   observed_on_datetime: Observed on %{datetime}
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
+  # Label for a field showing the date when the observation requirements for a
+  # project were last updated
+  observation_requirements_updated_at: Observation requirements updated at
   observation_rules: Observation rules
   observation_rules_description: |
     You can choose rules to determine what observations can be added to this
@@ -3445,6 +3448,11 @@ en:
     observations of specific taxa or taxa on a list
   project_assessments: Project Assessments
   project_assets: Project Assets
+  project_coordinate_access_enabled: |
+    You should be able to view hidden coordinates for observations by trusting
+    members.
+  project_coordinate_access_disabled_until_datetime: |
+    You will not be able to access hidden coordinates until %{datetime}
   project_cover: Project cover
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
@@ -6132,10 +6140,12 @@ en:
           members will be able to grant access to the hidden coordinates of any
           of their observations that appear in this project, or just the
           observations that are obscured because of threatened taxa.
-        trust_help_notification: |-
+        trust_help_notification2: |-
           However, this will also notify all trusting project members every time
-          you change the project requirements, so they can reassess whether they
-          want to continue trusting you given the new requirements.
+          you change the project observation requirements, so they can reassess
+          whether they want to continue trusting you given the new requirements.
+          Your access to hidden coordinates will be revoked for one week after
+          changing the observation requirements so members have time to do this
         trusted_project_means: |
           Trusting a project means that the project managers can add Project
           Assets and custom project attributes (e.g. banner HTML, CSS). Access
