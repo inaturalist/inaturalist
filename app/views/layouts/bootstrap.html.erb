@@ -180,6 +180,7 @@
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
       var SITE = {
+        id: <%= @site.id %>,
         name: "<%= @site.name %>",
         short_name: "<%= @site.site_name_short %>",
         help_email: "<%= @site.email_help %>",
