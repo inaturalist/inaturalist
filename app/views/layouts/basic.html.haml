@@ -9,14 +9,11 @@
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
     - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
+    = render "shared/i18n"
     = yield :extrahead
   %body
     = content_for?(:content) ? yield(:content) : yield
     %script{ type: "text/javascript" }
-      if( I18n === undefined ) { var I18n = { }; }
-      I18n.defaultLocale = "en";
-      I18n.locale = "#{ I18n.locale }";
-      I18n.fallbacks = true;
       - site_place = @site && @site.place
       - user_place = current_user && current_user.place
       var PREFERRED_PLACE;
