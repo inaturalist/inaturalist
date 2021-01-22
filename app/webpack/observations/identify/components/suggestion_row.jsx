@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import LazyLoad from "react-lazy-load";
+import LazyLoad from "react-lazyload";
 import { Button } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
@@ -107,7 +107,7 @@ const SuggestionRow = ( {
           </Button>
         </div>
       </h3>
-      <LazyLoad height={200} offsetVertical={1000}>
+      <LazyLoad height={200} offset={1000}>
         <div className="suggestion-row-content">
           <div className="photos">
             { taxonPhotos.length === 0 ? (
