@@ -110,7 +110,7 @@ class ProjectForm extends React.Component {
                         <p>
                           <i className="fa fa-info-circle" />
                           { " " }
-                          { I18n.t( "project_coordinate_access_enabled", {
+                          { I18n.t( "project_coordinate_access_disabled_until_datetime", {
                             datetime: moment( project.observation_requirements_updated_at )
                               .add( 1, "week" )
                               .format( I18n.t( "momentjs.datetime_with_zone" ) )
