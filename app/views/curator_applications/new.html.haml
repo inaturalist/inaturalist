@@ -1,10 +1,14 @@
 - content_for :title do
   =t :curator_application_title
+- content_for :extracss do
+  :css
+    .container .field {
+      margin-bottom: 20px;
+    }
 .container
   .row
     .col-xs-8.col-xs-offset-2
       %h1=t :curator_application_title
-      %h2=t :curator_application_about_site_curators
       %p=t :curator_application_about_site_curators_desc_html
       %h3=t :curator_application_what_curators_can_do
       %ul
