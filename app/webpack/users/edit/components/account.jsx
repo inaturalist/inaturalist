@@ -34,7 +34,7 @@ const Account = ( {
     return localeListKeys.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
   };
 
-  const localeList = Object.keys( I18n.t( "locales", { locale: setLocale( ) } ) );
+  const localeList = Object.keys( I18n.t( "locales", { locale: "en" } ) );
 
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )

@@ -11,8 +11,17 @@ $user-image-size: 65px;
 
 .save-button {
   justify-content: flex-end;
+  .saved-time {
+    text-decoration: underline;
+    margin-right: 12px;
+  }
   @media (max-width: 767.99px) {
-    justify-content: flex-start;
+    flex-direction: row-reverse;
+    .saved-time {
+      text-decoration: underline;
+      margin-right: 0;
+      margin-left: 12px;
+    }
   }
 }
 
@@ -21,11 +30,6 @@ $user-image-size: 65px;
     display: flex;
     align-items: center;
   }
-}
-
-.saved-time {
-  text-decoration: underline;
-  margin-right: 12px;
 }
 
 .add-remove-user-photo {
