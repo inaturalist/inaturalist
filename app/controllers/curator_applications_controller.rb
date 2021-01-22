@@ -34,6 +34,6 @@ class CuratorApplicationsController < ApplicationController
       { term: { "user.id" => current_user.id } },
       { term: { category: "improving" } }
     ] ).total_entries
-    @eligible = current_user.is_admin? || ( current_user.created_at > 60.days.ago && num_improving_idents > 100 )
+    @eligible = current_user.is_admin? || ( current_user.created_at < 60.days.ago && @num_improving_idents > 100 )
   end
 end
