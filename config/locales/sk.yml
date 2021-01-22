@@ -559,6 +559,7 @@ sk:
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Pripojené účty
   connecting_flickr: "Pripájanie k Flickr..."
   connecting_to_facebook: "Pripájanie k Facebooku..."
@@ -910,7 +911,6 @@ sk:
   export_with_private_coordinates: Exportovať so skrytými súradnicami
   exporting: "Exportovanie..."
   external_taxon_including_children: Externý taxón (vrátane dcérskych)
-  external_taxon_rank: Externé poradie taxónu
   extinct: vyhynutý
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
@@ -3072,11 +3072,10 @@ sk:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Viac o %{application}
     observations:
-      community_id:
-        your_id_does_not_match: |
-          Vaše ID (<span class="bold">%{taxon_name}</span>) nesúhlasí s komunitným ID
       export:
         geo_help_html: |
           Pole mesta, okresu, štátu podľa súradníc. Pre pozorovánia, na ktoré sa tieto typy nevzťahujú, budú použité odpovedajúcej správnej úrovne.

@@ -239,6 +239,70 @@ class Taxon < ActiveRecord::Base
     'subspecies',
     'variety'
   ]
+
+  WIKIPEDIA_RANKS = {
+    "infratribe" => "infratribus",
+    "infraphylum" => "infraphylum",
+    "infraorder" => "infraordo",
+    "cohort" => "cohort",
+    "microrder" => "micrordo",
+    "genus" => "genus",
+    "subsection" => "zoosubsectio",
+    "grandorder" => "grandordo",
+    "microphylum" => "microphylum",
+    "sublegion" => "sublegio",
+    "subdivision" => "zoosubdivisio",
+    "parvclass" => "parvclassis",
+    "supercohort" => "supercohort",
+    "nanorder" => "nanordo",
+    "parafamily" => "parafamilia",
+    "superdivision" => "superdivisio",
+    "superlegion" => "superlegio",
+    "magnorder" => "magnordo",
+    "variety" => "varietas",
+    "tribe" => "tribus",
+    "parvorder" => "parvordo",
+    "superfamily" => "superfamilia",
+    "subphylum" => "subphylum",
+    "superphylum" => "superphylum",
+    "infrakingdom" => "infraregnum",
+    "mb" => "grandordo",
+    "supertribe" => "supertribus",
+    "division" => "zoodivisio",
+    "hyperfamily" => "hyperfamilia",
+    "section" => "zoosectio",
+    "superclass" => "superclassis",
+    "subtribe" => "subtribus",
+    "subterclass" => "subterclassis",
+    "division" => "divisio",
+    "subspecies" => "subspecies",
+    "class" => "classis",
+    "subsection" => "subsectio",
+    "infraclass" => "infraclassis",
+    "subcohort" => "subcohort",
+    "subfamily" => "subfamilia",
+    "subkingdom" => "subregnum",
+    "superkingdom" => "superregnum",
+    "species" => "species",
+    "suborder" => "subordo",
+    "subgenus" => "subgenus",
+    "subdivision" => "subdivisio",
+    "order" => "ordo",
+    "subclass" => "subclassis",
+    "section" => "sectio",
+    "legion" => "legio",
+    "kingdom" => "regnum",
+    "domain" => "domain",
+    "superdomain" => "superdomain",
+    "superorder" => "superordo",
+    "nanophylum" => "nanophylum",
+    "family" => "familia",
+    "mirordo" => "mirordo-mb",
+    "infralegion" => "infralegio",
+    "form" => "forma",
+    "mirorder" => "mirordo",
+    "phylum" => "phylum"
+  }
   
   # In case you don't feel like looking up TaxonNames
   ICONIC_TAXON_NAMES = {
@@ -1739,7 +1803,13 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return true if new_record?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
+    return false if children.exists?
+    return false if identifications.exists?
+    return false if controlled_term_taxa.exists?
+    return false if ProjectObservationRule.where( operand_type: "Taxon", operand_id: id ).exists?
+    return false if ObservationFieldValue.joins(:observation_field).where( "observation_fields.datatype = 'taxon' AND value = ?", id.to_s ).exists?
     return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     creator_id == user.id
@@ -1821,7 +1891,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def atlased?
-    atlas && atlas.is_active?
+    atlas && atlas.is_active? && atlas.presence_places.exists?
   end
 
   def cached_atlas_presence_places

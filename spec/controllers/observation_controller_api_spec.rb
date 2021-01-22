@@ -880,6 +880,18 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.created_at ).to be <= 2.week.ago
     end
+
+    it "should allow coordinate removal when obscured" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      puts "making request"
+      put :update, id: o.id, format: :json, observation: { latitude: "", longitude: "" }
+      puts "received response: #{response.status}"
+      expect( response ).to be_success
+      o.reload
+      expect( o.latitude ).to be_blank
+      expect( o.private_latitude ).to be_blank
+      expect( o ).not_to be_georeferenced
+    end
   end
 
   describe "by_login" do

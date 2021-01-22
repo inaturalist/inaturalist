@@ -733,6 +733,7 @@ et:
   confirm_now: Konnita kohe
   confirm_your_info: Kinnita oma info
   connect_to_provider: "Ühendan: %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
   connecting_to_facebook: "Ühendan Facebookiga..."
@@ -3462,7 +3463,6 @@ et:
   view_listing: Näita nimekirja
   view_more: Vaata veel
   view_more_about_x: "Rohkem infot %{x} kohta"
-  view_more_observations_from: Näita teisi vaatluseid
   view_more_observations_near_x_place: "Näita teisi koha %{place} lähedal tehtud vaatluseid lehel <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Näita teisi projekti %{project} vaatluseid lehel<nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näita teisi taksoni %{taxon} vaatluseid lehel <nobr>%{site_name} &raquo;</nobr>"
@@ -3633,7 +3633,6 @@ et:
   you_can_choose_observations_associated: Vali soovikorral selle päevikukandega seotud vaatlused.
   you_can_edit_this_default_check_list_because: |
     Saad muuta vaikimisi kontrollnimekirja, sest oled administraator, kuigi selleks ei tohiks tegelikult põhjust olla.
-  you_can_only_destroy_taxa_you_created: "Saad hävitada ainult enda loodud taksoneid ning ei saa hävitada taksoneid, mida kasutatakse taksonimuudatustes."
   you_can_only_block_three_users: Saad kokku blokeerida kolm kasutajat
   you_can_show_the_boundary_of: Saad enda projekti juures näidata koha piirjoont kui kohal on piirjoon.
   you_can_sign_free_at: "Saad endale hankida tasuta %{site_name} konto lehel"
@@ -3884,8 +3883,6 @@ et:
           </p>
         you_have_opted_out: Sa ei soovi kogukondlike määratlusi
         opt_in_for_this_observation: Kasuta selle vaatluse puhul
-        your_id_does_not_match: |
-          Siinu määratlus (<span class="bold">%{taxon_name}</span>) ei kattu kogukondliku määratlusega
       copy_tip: "Lisa selle vaatluse kuupäeva, asukohta, fotosid ja muidu vaatluse välju kasutades uus vaatlus."
       captive_help_html: |
         Oli see organism <strong>kasvatatud</strong> või <strong>vangistatud</strong>? Näiteks <strong>aias, loomaaias, akvaariumis</strong> või mõnes muus kohas, kus lihtsalt <strong>inimesed soovisid, et see seal oleks</strong>? Kõik eluslooduse vaatlused on teretulnud, kuid me sooviksime teada, kui miski ei ole metsik või on elukohaga kohandunud.
@@ -4488,8 +4485,6 @@ et:
           any: Kõik
           joined: Projektid, millega oled liitunud
           none: "Ei ühelegi, ainult sina saad enda vaatluseid projektidesse lisada"
-        prefers_community_taxa_desc: |
-          %{site_name} jälgib, kuidas sina oma vaatluseid määratled ja kuidas kogukond neid määralteb. Andmepartneritega jagame kogukondliku määratlust, aga kui sa arvad, et kogukonna arvamus ei tohiks kunagi sinu omast üle olla, võid sellest siin keelduda. Inimesed saavad ikkagi lisada määratlusi, kuid kogukonna arvamust ei eelistata sinu omale. See tähendab, et su vaatlused ei saa olla teaduskõlbulikud, kui just sinu ja kogukonna määratlus kokku ei lange.
         project_settings_desc: |
           Pea meeles, et see ei anna projektidele luba näha sinu peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead projektidega liituma või andma neile igale ühele eraldi load.
         search_place_help_html: |

@@ -413,6 +413,8 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
+  var placement = options.placement;
+  delete options.placement;
   options = $.extend({}, {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
@@ -424,11 +426,12 @@ iNaturalist.Map.createMap = function(options) {
     clickableIcons: false,
     gestureHandling: "greedy",
     controlSize: 26,
+    scaleControl: true,
     tilt: 0
   }, options);
   
   var map;
-  
+  iNaturalist.log( { "map-placement": placement || "unknown" } );
   if (typeof options.div == 'string') {
     map = new google.maps.Map(document.getElementById(options.div), options);
   }

@@ -117,7 +117,9 @@ class TaxaList extends React.Component {
       const children = _.map( lifelist.milestoneChildren[taxon.id], id => lifelist.taxa[id] );
       // listing milestone leaf children of the taxon,
       // or non-leaf species (sp with ssp) since ssp aren't shown in list view
-      taxaToList = _.filter( children, t => ( ( t.right === t.left + 1 ) || t.rank_level === 10 ) );
+      taxaToList = _.filter( children, t => (
+        ( t.right === t.left + 1 && t.rank_level >= 10 )
+        || t.rank_level === 10 ) );
       if ( searchTaxonListLeaf ) {
         taxaToList = _.filter( taxaToList,
           t => t.left >= searchTaxonListLeaf.left && t.right <= searchTaxonListLeaf.right );

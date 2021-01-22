@@ -22,6 +22,22 @@ describe FlagsController do
       json = JSON.parse( response.body )
       expect( json["id"] ).to eq comment.flags.last.id
     end
+    it "should make associated observation casual when flagging a sound as a copyright infringement" do
+      obs = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2020-01-09" )
+      obs_sound = ObservationSound.make!( observation: obs, sound: Sound.make!( user: obs.user ) )
+      obs.reload
+      expect( obs ).to be_verifiable
+      post :create, foramt: :json, flag: {
+        flaggable_type: "Sound",
+        flaggable_id: obs_sound.sound_id,
+        flag: Flag::COPYRIGHT_INFRINGEMENT
+      }
+      Delayed::Worker.new.work_off
+      obs_sound.reload
+      expect( obs_sound.sound ).to be_flagged
+      obs.reload
+      expect( obs ).not_to be_verifiable
+    end
   end
 
   describe "update" do

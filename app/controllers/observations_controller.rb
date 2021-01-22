@@ -1146,7 +1146,20 @@ class ObservationsController < ApplicationController
       memo[ft.id] = Delayed::Job.find_by_unique_hash( ft.enqueue_options[:unique_hash].to_s )
       memo
     end
-    @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    if params[:projects] && params[:projects].is_a?( String )
+      @projects = params[:projects].to_s.split( "," ).collect{|id| Project.find( id ) rescue nil}.compact
+    elsif params[:projects] && params[:projects].is_a?( Array )
+      @projects = params[:projects].collect{|id| Project.find( id ) rescue nil}.compact
+    end
+    if @projects
+      @observation_fields = @projects.collect do |proj|
+        proj.project_observation_fields.collect(&:observation_field)
+      end.flatten
+    end
+    if @observation_fields.blank?
+      @observation_fields = ObservationField.recently_used_by(current_user).
+        limit(50).sort_by{ |of| of.name.downcase }
+    end
     set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     @identification_fields = if @ident_user
       %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}
@@ -2795,7 +2808,11 @@ class ObservationsController < ApplicationController
       else
         # no job id, no job, let's get this party started
         Rails.cache.delete(cache_key)
-        job = Observation.delay(:priority => NOTIFICATION_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        job = Observation.delay(
+          priority: NOTIFICATION_PRIORITY,
+          queue: "csv",
+          unique_hash: "Observations::delayed_csv::#{cache_key}"
+        ).generate_csv_for( parent, path: path_for_csv, user: current_user )
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching

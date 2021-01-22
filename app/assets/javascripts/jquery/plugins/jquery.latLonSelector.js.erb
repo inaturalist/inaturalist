@@ -629,6 +629,23 @@
           $.fn.latLonSelector.toggleEditAccuracy()
         }
       })
+      google.maps.event.addListener($.fn.latLonSelector._circle, "center_changed", function( e ) {
+        var input = getCurrentInput();
+        var latField = findFormField( input, "latitude" );
+        var lonField = findFormField( input, "longitude" );
+        var markerLat = preciseRound( $( latField ).val( ), 6 );
+        var markerLon = preciseRound( $( lonField ).val( ), 6 );
+        var circleLat = preciseRound( this.getCenter( ).lat( ), 6 );
+        var circleLon = preciseRound( this.getCenter( ).lng( ), 6 );
+        if (
+          circleLat && markerLat && circleLat === markerLat
+          && circleLon && markerLon && circleLon === markerLon
+        ) {
+          return;
+        }
+        $.fn.latLonSelector.updateFormLatLon( circleLat, circleLon );
+        getMarker( ).setPosition( this.getCenter( ) );
+      } );
     }
     
     accuracy = parseInt(accuracy)

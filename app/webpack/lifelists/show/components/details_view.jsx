@@ -8,6 +8,7 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 import Observations from "./observations";
 import Species from "./species";
 import SpeciesNoAPIContainer from "../containers/species_noapi_container";
+import { filteredNodes, rankLabel } from "../util";
 
 const ObservationsGridContainer = APIWrapper( "observations", Observations );
 const UnobservedSpeciesGridContainer = APIWrapper( "unobservedSpecies", Species );
@@ -122,30 +123,18 @@ const DetailsView = ( {
     }
   } else if ( lifelist.detailsView === "species" ) {
     title = I18n.t( "views.lifelists.all_species" );
-    let count = lifelist.detailsTaxon
-      ? lifelist.detailsTaxon.descendantCount : lifelist.leavesCount;
+    inatAPIsearch = inatAPI.speciesPlace;
+    const count = _.size( filteredNodes( lifelist, inatAPIsearch ) );
     searchLoaded = true;
     if ( lifelist.speciesPlaceFilter ) {
-      inatAPIsearch = inatAPI.speciesPlace;
       searchLoaded = inatAPIsearch && inatAPIsearch.searchResponse;
-      if ( searchLoaded ) {
-        const nodeIsDescendant = ( !lifelist.detailsTaxon || lifelist.detailsTaxon === "root" )
-          ? ( ) => true
-          : node => node.left >= lifelist.detailsTaxon.left
-            && node.right <= lifelist.detailsTaxon.right;
-        count = _.size( _.filter( lifelist.taxa, t => (
-          nodeIsDescendant( t ) && (
-            ( t.right === t.left + 1 )
-              && inatAPIsearch.searchResponse.results[t.id]
-          )
-        ) ) );
-      }
     }
     stats = (
       <div className="stats">
         <span className="stat">
           <span className="attr">
-            { I18n.t( "views.lifelists.observed_species" ) }
+            { I18n.t( "views.lifelists.observed_rank",
+              { rank: rankLabel( { rank: lifelist.speciesViewRankFilter, withLeaves: false } ) } ) }
           </span>
           <span className="value">
             { searchLoaded

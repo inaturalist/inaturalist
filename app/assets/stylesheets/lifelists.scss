@@ -3,6 +3,7 @@
 @import "./users/user_image";
 @import "./shared/taxon_autocomplete";
 @import "./projects/observations_grid";
+@import "./shared/flash_message";
 
 #bodywrapper {
   // background: #ddd;
@@ -653,6 +654,10 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       }
     }
   }
+}
+
+.FlashMessage .alert {
+  margin: 10px 0px 0px;
 }
 
 @media (min-width: 1345px) {

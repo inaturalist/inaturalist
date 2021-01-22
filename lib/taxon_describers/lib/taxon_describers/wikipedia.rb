@@ -58,15 +58,21 @@ module TaxonDescribers
     end
 
     def page_url(taxon)
-      if @page_urls && !@page_urls[taxon.id].blank?
+      url = if @page_urls && !@page_urls[taxon.id].blank?
         @page_urls[taxon.id]
-      elsif Rails.env.production?
-        "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale}"
-      else
+      end
+      url ||= if Rails.env.production?
+        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale.to_s.split( "-" ).first}" )
+          title = r.header[:location].to_s.split( "/" ).last
+          @page_urls[taxon.id] = r.header[:location]
+        end
+      end
+      if url.blank?
         wname = taxon.wikipedia_title
         wname = taxon.name.to_s.gsub(/\s+/, '_') if wname.blank?
-        wikipedia.url_for_title(wname)
+        url = wikipedia.url_for_title(wname)
       end
+      url
     end
   end
 

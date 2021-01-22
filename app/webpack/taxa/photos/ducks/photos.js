@@ -189,18 +189,18 @@ function observationPhotosFromObservations( observations ) {
   );
 }
 
-function onePhotoPerObservation( observationPhotos ) {
-  const singleObservationPhotos = [];
-  const obsPhotoHash = {};
-  for ( let i = 0; i < observationPhotos.length; i += 1 ) {
-    const observationPhoto = observationPhotos[i];
-    if ( !obsPhotoHash[observationPhoto.observation.id] ) {
-      obsPhotoHash[observationPhoto.observation.id] = true;
-      singleObservationPhotos.push( observationPhoto );
-    }
-  }
-  return singleObservationPhotos;
-}
+// function onePhotoPerObservation( observationPhotos ) {
+//   const singleObservationPhotos = [];
+//   const obsPhotoHash = {};
+//   for ( let i = 0; i < observationPhotos.length; i += 1 ) {
+//     const observationPhoto = observationPhotos[i];
+//     if ( !obsPhotoHash[observationPhoto.observation.id] ) {
+//       obsPhotoHash[observationPhoto.observation.id] = true;
+//       singleObservationPhotos.push( observationPhoto );
+//     }
+//   }
+//   return singleObservationPhotos;
+// }
 
 export function fetchObservationPhotos( options = {} ) {
   return function ( dispatch, getState ) {
@@ -350,10 +350,11 @@ export function reloadPhotos( ) {
 
 // Sets state from URL params. Should not itself alter the URL.
 export function hydrateFromUrlParams( params ) {
-  return function ( dispatch ) {
+  return function ( dispatch, getState ) {
     if ( !params ) {
       params = {};
     }
+    const { taxon } = getState( );
     if ( params.grouping ) {
       const termGroupingMatch = params.grouping.match( /terms:([0-9]+)$/ );
       if ( termGroupingMatch ) {
@@ -399,14 +400,23 @@ export function hydrateFromUrlParams( params ) {
     if ( params.quality_grade ) {
       newObservationParams.quality_grade = params.quality_grade;
     }
-    _.forEach( params, ( value, key ) => {
-      if ( !key.match( /^term(_value)?_id$/ ) ) {
-        return;
+    if ( taxon ) {
+      const controlledAttrIDs = _.keys( taxon.fieldValues ).map( k => parseInt( k, 0 ) );
+      const controlledValueIDs = _.flatten( _.values( taxon.fieldValues ) )
+        .map( v => v.controlled_value.id );
+      _.forEach( params, ( value, key ) => {
+        if ( !key.match( /^term(_value)?_id$/ ) ) {
+          return;
+        }
+        const attrRelevant = key === "term_id" && controlledAttrIDs.includes( parseInt( value, 0 ) );
+        const valueRelevant = key === "term_value_id" && controlledValueIDs.includes( parseInt( value, 0 ) );
+        if ( attrRelevant || valueRelevant ) {
+          newObservationParams[key] = value;
+        }
+      } );
+      if ( !_.isEmpty( newObservationParams ) ) {
+        dispatch( setObservationParams( newObservationParams ) );
       }
-      newObservationParams[key] = value;
-    } );
-    if ( !_.isEmpty( newObservationParams ) ) {
-      dispatch( setObservationParams( newObservationParams ) );
     }
   };
 }

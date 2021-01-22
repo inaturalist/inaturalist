@@ -38,5 +38,6 @@
         methods: [ :logo ],                             |
         include: { place: { only: [ :id, :name ] } }    |
       ).html_safe };                                    |
+      var CONTROLLER_ACTION = "#{controller.class.to_s}::#{action_name}";
     - if content_for?(:delayed_js)
       = yield(:delayed_js)

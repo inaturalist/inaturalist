@@ -330,9 +330,9 @@ fr-CA:
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: texte lié
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
   mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
   #Label shown when a date has not been entered
   missing_date: Date manquante
@@ -781,23 +781,6 @@ fr-CA:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites Web <a href="%{url}">Réseau iNaturalist</a>
       year:
-        donate_desc_html: |
-          Merci d'être généreux par votre temps, votre attention, votre expertise et vos
-          dons! iNaturalist est une initiative conjointe sans but lucratif de la
-          California Academy of Sciences et de la National Geographic Society.
-          Il est géré par une
-          <a href="%{team_url}">petite équipe</a> qui
-          fait toute l'ingénierie de conception et de logiciel
-          pour le web, les mobiles et
-          <a href="%{seek_url}">Seek by iNaturalist</a>, en plus de gérer
-          le soutien de la communauté, les collaborations et les intégrations qui maintiennent
-          les choses en marche (et qui se développent rapidement!). Le programme repose sur de nombreuses
-          subventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %
-          contributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels
-          dont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en
-          plus de 30 devises pour soutenir les opérations principales d'iNaturalist.
-          Merci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande
-          d'iNaturalist!
         new_species_desc_html: |
           Espèces ajoutées pour la première fois cette année.
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
@@ -909,8 +892,8 @@ fr-CA:
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bogues. Ces programmes tiers incluent
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites Web et services; notez que vous avons activé
-           l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
-          <a href="<a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
+          l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
+          <a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
           Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.

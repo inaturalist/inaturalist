@@ -48,6 +48,14 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
   } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
 }
 
+export async function handleSaveError( e ) {
+  if ( !e.response || e.response.status !== 422 ) {
+    return null;
+  }
+  const body = await e.response.json( );
+  return body.error.original.errors;
+}
+
 export function saveUserSettings( ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
@@ -58,15 +66,12 @@ export function saveUserSettings( ) {
       user: profile
     };
 
-    const updateOnlyAttributes = [
-      "icon_delete",
-      "make_observation_licenses_same",
-      "make_photo_licenses_same",
-      "make_sound_licenses_same"
+    const topLevelAttributes = [
+      "icon_delete"
     ];
 
     // move these attributes so they're nested under params, not params.user
-    updateOnlyAttributes.forEach( attr => {
+    topLevelAttributes.forEach( attr => {
       if ( !profile[attr] ) return;
 
       params[attr] = true;
@@ -79,23 +84,33 @@ export function saveUserSettings( ) {
     }
 
     // could leave these, but they're unpermitted parameters
-    delete params.user.id;
     delete params.user.updated_at;
     delete params.user.saved_status;
+    delete params.user.errors;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth
       // currently users.me returns different results than
       // dispatching setUserData( results[0] ) from users.update response
       dispatch( fetchUserSettings( "saved" ) );
-    } ).catch( e => console.log( `Failed to update via users.update: ${e}` ) );
+    } ).catch( e => {
+      handleSaveError( e ).then( errors => {
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } );
+    } );
   };
 }
 
 export function handleCheckboxChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile[e.target.name] = e.target.checked;
+
+    if ( e.target.name === "prefers_no_email" ) {
+      profile[e.target.name] = !e.target.checked;
+    } else {
+      profile[e.target.name] = e.target.checked;
+    }
     dispatch( setUserData( profile ) );
   };
 }
@@ -138,6 +153,13 @@ export function handleCustomDropdownSelect( eventKey, name ) {
 export function handlePlaceAutocomplete( { item }, name ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
+
+    if ( profile[name] === null && item.id === 0 ) {
+      // do nothing if the afterClear is triggered when the place input field starts empty
+      // this ensures save settings button shows correctly
+      return;
+    }
+
     profile[name] = item.id;
     dispatch( setUserData( profile ) );
   };

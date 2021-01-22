@@ -107,7 +107,7 @@ zh-TW:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 關於
   about_blocking: 關於封鎖
   about_charts: 關於圖表
@@ -798,6 +798,7 @@ zh-TW:
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
   connect_to_provider: "連接至%{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
@@ -1251,7 +1252,6 @@ zh-TW:
   export_with_private_coordinates: 以隱藏座標匯出
   exporting: "匯出中..."
   external_taxon_including_children: 外部分類（包含子項）
-  external_taxon_rank: 外部分類級別
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
   extra_properties: 額外屬性
@@ -4056,7 +4056,6 @@ zh-TW:
   view_moderation_history_for_this_comment: 檢視此評論的調節歷史
   view_more: 檢視更多
   view_more_about_x: "檢視更多關於%{x}"
-  view_more_observations_from: 檢視更多貢獻來自於
   view_more_observations_near_x_place: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多接近%{place}的觀察"
   view_more_observations_of_x_project: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多來自於%{project}的觀察"
   view_more_observations_of_x_taxon: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多屬於%{taxon}的觀察"
@@ -4241,7 +4240,6 @@ zh-TW:
   you_can_choose_observations_associated: 您可挑選觀察來與此日誌發佈文章做關聯。
   you_can_edit_this_default_check_list_because: |
     您可編輯此預設清單因為您是個管理員，但實際上不需要這麼做。
-  you_can_only_destroy_taxa_you_created: "您僅能銷毀您所創建的物種分類群，另外您不能夠銷毀已被用於變更裡的物種分類群。"
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
   you_can_sign_free_at: "您可註冊一個免費 %{site_name} 帳號在："
@@ -4508,8 +4506,14 @@ zh-TW:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: 授權 %{application} 來使用您的帳號？
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "此應用程式將能夠："
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: 更多有關 %{application}
     observations:
       community_id:
@@ -4533,8 +4537,6 @@ zh-TW:
           </p>
         you_have_opted_out: 您已選擇退出社群鑑定
         opt_in_for_this_observation: 用於此觀察的選項
-        your_id_does_not_match: |
-          您的鑑定(<span class="bold">%{taxon_name}</span>) 與社群鑑定不符合
       copy_tip: "透過複製此觀察的資料、地點、照片，以及觀察欄位來添加新的觀察。"
       captive_help_html: |
         生物是屬於<strong>培育</strong>或是
@@ -5414,8 +5416,6 @@ zh-TW:
           any: 任何
           joined: 您已加入的專案
           none: "不，僅有您可添加您的觀察至專案"
-        prefers_community_taxa_desc: |
-          %{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇排除。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。
         prefers_coordinate_interpolation_protection_desc: |
           當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google 分析</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)

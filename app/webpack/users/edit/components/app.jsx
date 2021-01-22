@@ -42,9 +42,11 @@ class App extends Component {
 
   handleUnload( e ) {
     const { profile } = this.props;
-    e.preventDefault( );
 
     if ( profile.saved_status === "unsaved" ) {
+      // preventing default within this if statement makes this work on both Chrome and Firefox
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event#browser_compatibility
+      e.preventDefault( );
       // Chrome requires returnValue to be set
       e.returnValue = "";
     } else {
@@ -69,26 +71,26 @@ class App extends Component {
     ];
 
     return (
-      <div className="container">
-        <div className="row">
+      <div className="container" id="UserSettings">
+        <div className="row vertical-align">
           <div className="col-sm-9">
             <h1>{I18n.t( "settings" )}</h1>
+          </div>
+          <div className="col-xs-9 col-sm-3">
+            <SaveButtonContainer />
           </div>
           <div className="col-xs-4 visible-xs settings-item">
             <DropdownMenuMobile menuIndex={container} handleInputChange={this.handleInputChange} />
           </div>
-          <div className="col-xs-9 col-sm-3 settings-item">
-            <SaveButtonContainer />
-          </div>
         </div>
         <div className="row">
-          <div className="col-xs-2 menu hidden-xs">
+          <div className="col-sm-2 menu hidden-xs">
             <Menu setContainerIndex={this.setContainerIndex} currentContainer={container} />
           </div>
-          <div className="col-xs-1 hidden-xs">
+          <div className="col-sm-1 hidden-xs">
             <div className="vl" />
           </div>
-          <div className="col-xs-9">
+          <div className="col-sm-9">
             {userSettings[container]}
           </div>
         </div>

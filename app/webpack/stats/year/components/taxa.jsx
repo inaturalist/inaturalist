@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxaSunburst from "./taxa_sunburst";
 import NewSpecies from "./new_species";
+import ObservedTaxaChanges from "./observed_taxa_changes";
 
 const Taxa = ( {
   site,
@@ -25,7 +26,6 @@ const Taxa = ( {
       />
     );
   }
-  let newSpeciesObservations;
   return (
     <div className="Taxa">
       { user && data && data.tree_taxa && rootTaxonID && (
@@ -45,7 +45,13 @@ const Taxa = ( {
         />
       ) }
       { newSpecies }
-      { newSpeciesObservations }
+      { window.location.search.match( /test=taxa-changes/ ) && user && data && data.observed_taxa_changes && (
+        <ObservedTaxaChanges
+          data={data.observed_taxa_changes}
+          year={year}
+          user={user}
+        />
+      ) }
     </div>
   );
 };

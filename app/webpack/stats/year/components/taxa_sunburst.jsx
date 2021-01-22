@@ -10,7 +10,6 @@ import * as d3 from "d3";
 
 // Based on https://bl.ocks.org/maybelinot/5552606564ef37b5de7e47ed2b7dc099
 class TaxaSunburst extends React.Component {
-
   componentDidMount( ) {
     this.renderHistogram( );
   }

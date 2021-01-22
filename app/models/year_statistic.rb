@@ -35,7 +35,7 @@ class YearStatistic < ActiveRecord::Base
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
-        month_histogram: observations_histogram( year, options.merge( interval: "month" ) ),
+        month_histogram: observations_histogram( year, options.merge( interval: "month", d1: "1908-01-01" ) ),
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
@@ -65,6 +65,9 @@ class YearStatistic < ActiveRecord::Base
     if options[:site].blank?
       json[:publications] = publications( year, options )
       json[:growth][:countries] = observation_counts_by_country( year, options )
+      json[:budget] = {
+        donors: donors( year, options )
+      }
     end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
@@ -81,20 +84,17 @@ class YearStatistic < ActiveRecord::Base
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
     year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
-    accumulation = observed_species_accumulation(
-      user: user,
-      verifiable: true
-    )
     users_who_helped_arr, total_users_who_helped, total_ids_received = users_who_helped( year, user )
     users_helped_arr, total_users_helped, total_ids_given = users_helped( year, user )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
-        month_histogram: observations_histogram( year, user: user, interval: "month" ),
+        month_histogram: observations_histogram( year, user: user, interval: "month", d1: "1908-01-01" ),
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
-        popular: popular_observations( year, user: user )
+        popular: popular_observations( year, user: user ),
+        streaks: streaks( year, user: user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 
@@ -113,14 +113,26 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation: accumulation
+        accumulation: observed_species_accumulation(
+          user: user,
+          verifiable: true
+        ),
+        accumulation_by_date_observed: observed_species_accumulation(
+          user: user,
+          verifiable: true,
+          date_field: "observed_on"
+        )
+        # observed_taxa_changes: observed_taxa_changes( year, user: user )
       },
       growth: {
         observations: observations_histogram_by_created_month( user: user ),
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic.delay(
+      priority: USER_PRIORITY,
+      unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
+    ).generate_shareable_image
     year_statistic
   end
 
@@ -138,9 +150,9 @@ class YearStatistic < ActiveRecord::Base
 
   def self.regenerate_defaults_for_year( year )
     generate_for_year( year )
-    Site.find_each do |site|
+    Site.live.find_each do |site|
       next if Site.default && Site.default.id == site.id
-      generate_for_site_year( site, year )
+      YearStatistic.generate_for_site_year( site, year )
     end
   end
 
@@ -178,9 +190,9 @@ class YearStatistic < ActiveRecord::Base
     params = {
       d1: "#{year}-01-01",
       d2: "#{year}-12-31",
-      interval: options[:interval] || "day",
-      quality_grade: options[:quality_grade] || "research,needs_id"
-    }
+      interval: "day",
+      quality_grade: "research,needs_id"
+    }.merge( options )
     if user = options[:user]
       params[:user_id] = user.id
     end
@@ -200,10 +212,10 @@ class YearStatistic < ActiveRecord::Base
       aggregate: {
         histogram: {
           date_histogram: {
-
             field: "created_at",
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -448,6 +460,14 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def generate_shareable_image
+    if year >= 2020
+      generate_shareable_image_no_obs
+    else
+      generate_shareable_image_obs_grid
+    end
+  end
+
+  def generate_shareable_image_obs_grid
     return unless data && data["observations"] && data["observations"]["popular"]
     return if data["observations"]["popular"].size == 0
     work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
@@ -578,6 +598,279 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
+  def generate_shareable_image_no_obs( options = {} )
+    debug = options.delete(:debug)
+    return unless data && data["observations"]
+    work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
+    FileUtils.mkdir_p work_path, mode: 0755
+    # Get the icon
+    icon_url = if user
+      "#{FakeView.image_url( user.icon.url(:large) )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif site
+      "#{FakeView.image_url( site.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif Site.default
+      "#{FakeView.image_url( Site.default.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    else
+      "#{FakeView.image_url( "bird.png" )}".gsub(/([^\:])\/\//, '\\1/')
+    end
+    icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
+    icon_ext = File.extname( URI.parse( icon_url ).path )
+    icon_path = File.join( work_path, "icon#{icon_ext}" )
+    system "curl -s -o #{icon_path} \"#{icon_url}\"", exception: true
+
+    # Resize icon to a 500x500 square
+    square_icon_path = File.join( work_path, "square_icon.png")
+    if user
+      system <<-BASH
+        convert #{icon_path} \
+          -fill transparent \
+          -resize "500x500^" \
+          -gravity Center  \
+          -extent 500x500  \
+          #{square_icon_path}
+      BASH
+    else
+      system <<-BASH
+        convert #{icon_path} \
+          -fill transparent \
+          -resize 500x500 \
+          -gravity Center  \
+          -extent 500x500  \
+          #{square_icon_path}
+      BASH
+    end
+
+    final_logo_path = File.join( work_path, "final-logo.png" )
+    if user
+      # Apply circle mask
+      circle_path = File.join( work_path, "circle.png" )
+      system "convert -size 500x500 xc:black -fill white -draw \"translate 250,250 circle 0,0 0,250\" -alpha off #{circle_path}"
+      system <<-BASH
+        convert #{square_icon_path} #{circle_path} \
+          -alpha Off -compose CopyOpacity -composite \
+          -scale 212x212 \
+          #{final_logo_path}
+      BASH
+    else
+      system "convert #{square_icon_path} -resize 212x212 #{final_logo_path}", exception: true
+    end
+
+    background_url = "#{FakeView.image_url( "yir-background.png" )}".gsub(/([^\:])\/\//, '\\1/')
+    background_path = File.join( work_path, "background.png" )
+    system "curl -s -o #{background_path} #{background_url}", exception: true
+
+    left_vertical_offset = if user
+      0
+    else
+      30
+    end
+
+    # Overlay the icon onto the montage
+    background_with_icon_path = File.join( work_path, "background_with_icon.png" )
+    system "composite -gravity northwest -geometry +145+#{left_vertical_offset + 230} #{final_logo_path} #{background_path} #{background_with_icon_path}", exception: true
+    wordmark_site = ( user && user.site ) || site || Site.default
+    wordmark_url = "#{FakeView.image_url( wordmark_site.logo.url )}".gsub(/([^\:])\/\//, '\\1/')
+    wordmark_url = wordmark_url.sub( "staticdev", "static" )
+    wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
+    wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
+    system "curl -s -o #{wordmark_path} #{wordmark_url}"
+    wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
+    system "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}", exception: true
+    wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
+    density = 1024
+    begin
+      system "convert -resize x65 -background none +antialias -density #{density} #{wordmark_path} #{wordmark_resized_path}", exception: true
+    rescue RuntimeError
+      density /= 2
+      retry
+    end
+    wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
+    wordmark_cmd = <<-BASH
+      convert #{wordmark_composite_bg_path} \
+        #{wordmark_resized_path} \
+        -type TrueColorAlpha \
+        -gravity north -geometry +0+#{left_vertical_offset + 70} \
+        -composite \
+        #{wordmark_composite_path}
+    BASH
+    system wordmark_cmd, exception: true
+    background_icon_wordmark_path = File.join( work_path, "background-icon-wordmark.png" )
+    system "convert #{background_with_icon_path} #{wordmark_composite_path} -gravity west -composite #{background_icon_wordmark_path}", exception: true
+
+    # Add the text
+    # background_with_icon_and_text_path = File.join( work_path, "background_with_icon_and_text.jpg" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    semibold_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Semibold-Pro.otf" )
+    final_path = File.join( work_path, "final.jpg" )
+    owner = if user
+      "@#{user.login}"
+    else
+      ""
+    end
+    title = if user
+      user_site = user.site || Site.default
+      locale = user.locale || user_site.locale || I18n.locale
+      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
+      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+    elsif site
+      locale = site.locale || I18n.locale
+      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    else
+      default_site = Site.default
+      locale = default_site.locale || I18n.locale
+      site_name = default_site.site_name_short.blank? ? default_site.name : default_site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    end
+    title = title.mb_chars.upcase
+    obs_count = if data["observations"]["quality_grade_counts"]
+      data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
+    else
+      0
+    end
+    species_count = ( data["taxa"] && data["taxa"]["leaf_taxa_count"] ).to_i
+    identifications_count = (
+      data["identifications"] && data["identifications"]["category_counts"] &&
+      data["identifications"]["category_counts"].inject( 0 ) {|sum, keyval| sum += keyval[1].to_i }
+    ).to_i
+
+    locale = user.locale if user
+    locale ||= site.locale if site
+    locale ||= I18n.locale
+    label_method = if locale.to_s =~ /^(il|he|ar)/
+      "pango"
+    else
+      "label"
+    end
+    obs_translation = I18n.t( "x_observations_html",
+      count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+      locale: locale
+    )
+    obs_count_txt = obs_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    obs_label_txt = obs_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    species_translation = I18n.t( "x_species_html",
+      count: FakeView.number_with_delimiter( species_count, locale: locale ),
+      locale: locale
+    )
+    species_count_txt = species_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    species_label_txt = species_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    identifications_translation = I18n.t( "x_identifications_html",
+      count: FakeView.number_with_delimiter( identifications_count, locale: locale ),
+      locale: locale
+    )
+    identifications_count_txt = identifications_translation[/<span.*?>(.+)<\/span>(.+)/, 1].to_s.mb_chars.upcase
+    identifications_label_txt = identifications_translation[/<span.*?>(.+)<\/span>(.+)/, 2].to_s.strip.mb_chars.upcase
+    if [owner, title, species_label_txt, identifications_label_txt, obs_label_txt].detect{|s| s.to_s.non_latin_chars?}
+      if Rails.env.production?
+        if locale =~ /^(ja|ko|zh)/
+          medium_font_path = "Noto-Sans-CJK-HK"
+          light_font_path = "Noto-Sans-CJK-HK"
+          semibold_font_path = "Noto-Sans-CJK-HK-Bold"
+        else
+          medium_font_path = "DejaVu-Sans"
+          light_font_path = "DejaVu-Sans-ExtraLight"
+          semibold_font_path = "DejaVu-Sans-Bold"
+        end
+      else
+        medium_font_path = "Helvetica"
+        light_font_path = "Helvetica-Narrow"
+        semibold_font_path = "Helvetica-Bold"
+      end
+    end
+    if label_method == "pango"
+      title = "<span size='#{1024 * 22}'>#{title}</span>"
+      owner = "<span size='#{1024 * 20}'>#{owner}</span>" unless owner.blank?
+      obs_count_txt = "<span size='#{1024 * 24}'>#{obs_count_txt}</span>"
+      obs_label_txt = "<span size='#{1024 * 20}'>#{obs_label_txt}</span>"
+      species_count_txt = "<span size='#{1024 * 24}'>#{species_count_txt}</span>"
+      species_label_txt = "<span size='#{1024 * 20}'>#{species_label_txt}</span>"
+      identifications_count_txt = "<span size='#{1024 * 24}'>#{identifications_count_txt}</span>"
+      identifications_label_txt = "<span size='#{1024 * 20}'>#{identifications_label_txt}</span>"
+    end
+    title_composite = <<-BASH
+      \\( \
+        -size 500x30 \
+        -background transparent \
+        -font #{light_font_path} \
+        -kerning 2 \
+        #{label_method}:"#{title}" \
+        -trim \
+        -gravity center \
+        -extent 500x30 \
+      \\) \
+      -gravity northwest \
+      -geometry +0+#{left_vertical_offset + 165} \
+      -composite
+    BASH
+    owner_composite = <<-BASH
+      \\( \
+        -size 500x40 \
+        -background transparent \
+        -font #{medium_font_path} \
+        #{label_method}:"#{owner}" \
+        -trim \
+        -gravity center \
+        -extent 500x40 \
+      \\) \
+      -gravity northwest \
+      -geometry +0+#{left_vertical_offset + 480} \
+      -composite
+    BASH
+    composites = [title_composite]
+    composites << owner_composite unless owner.blank?
+    [
+      [obs_count_txt, obs_label_txt],
+      [species_count_txt, species_label_txt],
+      [identifications_count_txt, identifications_label_txt]
+    ].each_with_index do |texts, idx|
+      count_txt, label_txt = texts
+      y = 80 + idx * 145
+      # text_width = 332 # this would go to the right edge
+      text_width = 312 # this provides a bit of margin
+      # Note that the use of label below will automatically try to choose the
+      # best font size to fit the space
+      composites << <<-BASH
+        \\( \
+          -size #{text_width}x55 \
+          -background transparent \
+          -font #{semibold_font_path} \
+          -fill white \
+          #{label_method}:"#{count_txt}" \
+          -trim \
+          -gravity west \
+          -extent #{text_width}x55 \
+        \\) \
+        -gravity northwest \
+        -geometry +668+#{y} \
+        -composite \
+        \\( \
+          -size #{text_width}x34 \
+          -background transparent \
+          -font #{medium_font_path} \
+          -kerning 2 \
+          -fill white \
+          #{label_method}:"#{label_txt}" \
+          -trim \
+          -gravity west \
+          -extent #{text_width}x34 \
+        \\) \
+        -gravity northwest \
+        -geometry +668+#{y + (148 - 80)} \
+        -composite
+      BASH
+    end
+    cmd = <<-BASH
+      convert #{background_icon_wordmark_path} \
+        #{composites.map(&:strip).join( " \\\n" )} \
+        #{final_path}
+    BASH
+    system cmd, exception: true
+    puts "final_path: #{final_path}" if debug
+    self.shareable_image = open( final_path )
+    save!
+  end
+
   def self.end_of_month(date)
     n = date + 1.month
     Date.parse( "#{n.year}-#{n.month}-01" ) - 1.day
@@ -606,7 +899,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: date_field,
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( params )
           },
           aggs: {
             taxon_ids: {
@@ -638,8 +932,11 @@ class YearStatistic < ActiveRecord::Base
     histogram_buckets = call_and_rescue_with_partitioner(
       bucketer,
       [histogram_params],
-      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+      [
+        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Faraday::TimeoutError
+      ],
+      exception_checker: Proc.new {|e| e.message =~ /(timed out|too_many_buckets_exception)/ }
     ) do |args|
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect{|f| f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -756,9 +1053,6 @@ class YearStatistic < ActiveRecord::Base
         filters << { terms: { site_id: [site.id] } }
       end
     end
-    if site = options[:user]
-      filters << { term: { "user.id" => options[:user].id } }
-    end
     es_params = {
       size: 0,
       filters: filters,
@@ -767,7 +1061,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: "created_at_details.date",
             interval: "month",
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -821,9 +1116,11 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.streaks( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
     streak_length = 5
     ranges = []
-    base_query = { quality_grade: "research,needs_id" }
+    base_query = { quality_grade: "research,needs_id", d2: "#{year}-12-31" }
     if options[:site]
       base_query = base_query.merge( site_id: options[:site].id )
     end
@@ -844,13 +1141,14 @@ class YearStatistic < ActiveRecord::Base
             date_histogram: {
               field: "observed_on",
               calendar_interval: "day",
-              format: "yyyy-MM-dd"
+              format: "yyyy-MM-dd",
+              time_zone: time_zone_for_options( options )
             },
             aggs: {
               user_ids: {
                 terms: {
                   field: "user.id",
-                  size: 30000
+                  size: 300000
                 }
               }
             }
@@ -861,12 +1159,15 @@ class YearStatistic < ActiveRecord::Base
     histogram_buckets = call_and_rescue_with_partitioner(
       streak_bucketer,
       base_query,
-      Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-      exception_checker: Proc.new {|e| e.message =~ /too_many_buckets_exception/ }
+      [
+        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Faraday::TimeoutError
+      ],
+      exception_checker: Proc.new {|e| e.message =~ /(timed out|too_many_buckets_exception)/ }
     ) do |args|
       query = args[0]
-      # Assume now one has been on a streak since before 2008-01-01
-      puts "partitioning #{query}"
+      # Assume no one has been on a streak since before 2008-01-01
+      puts "partitioning #{query}" if debug
       d1 = query[:d1] && Date.parse( query[:d1] ) || Date.parse( "2008-01-01" )
       d2 = query[:d2] && Date.parse( query[:d2] ) || Date.today
       half = ( d2 - d1 ) / 2
@@ -874,7 +1175,7 @@ class YearStatistic < ActiveRecord::Base
         query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
         query.merge( d1: ( d1 + (half + 1).days ).to_s, d2: d2.to_s )
       ]
-      puts "partitioned into #{new_queries}"
+      puts "partitioned into #{new_queries}" if debug
       new_queries
     end
     histogram_buckets.each_with_index do |bucket, bucket_i|
@@ -891,9 +1192,15 @@ class YearStatistic < ActiveRecord::Base
       stop_date = ( Date.parse( date ) - 1.day )
       finished_user_ids = []
       finished_user_ids = previous_user_ids - user_ids
-      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished"
+      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
       finished_user_ids.each do |user_id|
+        if debug && options[:user]
+          puts "\tFinished streak of length #{current_streaks[user_id]}"
+        end
         if current_streaks[user_id] && current_streaks[user_id] >= streak_length
+          if debug && options[:user]
+            puts "\tAdding streak #{( stop_date + 1.day - ( current_streaks[user_id] ).days )} - #{stop_date}"
+          end
           streaks << {
             user_id: user_id,
             days: current_streaks[user_id],
@@ -926,9 +1233,22 @@ class YearStatistic < ActiveRecord::Base
     end
     return nil if streaks.blank?
     max_stop_date = Date.parse( streaks.map{|s| s[:stop]}.max ) - 2.days
+    year_start = Date.parse( "#{year}-01-01" )
+    year_stop = Date.parse( "#{year}-12-31" )
+    year_range = (year_start..year_stop)
     top_streaks = streaks.select do |s|
-      Date.parse( s[:stop] ) >= max_stop_date ||
-        Date.parse( s[:start]) >= Date.parse( "#{year}-01-01" )
+      streak_in_progress = Date.parse( s[:stop] ) >= max_stop_date
+      start_date = Date.parse( s[:start] )
+      stop_date = Date.parse( s[:stop] )
+      streak_started_this_year  = year_range.include?( start_date )
+      streak_stopped_this_year  = year_range.include?( stop_date )
+      # Only counting streaks in progress and streaks started this year EXCEPT
+      # when looking at an individual user's streaks
+      if options[:user]
+        streak_in_progress || streak_stopped_this_year
+      else
+        streak_in_progress || streak_started_this_year
+      end
     end
     top_streaks = top_streaks.sort_by{|s| s[:days] * -1}[0..100]
     top_streaks_user_ids = top_streaks.map{|u| u[:user_id]}
@@ -949,7 +1269,10 @@ class YearStatistic < ActiveRecord::Base
 
   def self.translators( year, options = {} )
     return unless CONFIG.crowdin && CONFIG.crowdin.projects
-    locale_to_ci_code = {}
+    locale_to_ci_code = {
+      "es" => "es-ES",
+      "pt" => "pt-PT"
+    }
     data = { languages: {}, users: {} }
     staff_usernames = User.admins.pluck(:login) + %w(alexinat)
     CONFIG.crowdin.projects.to_h.keys.each do |project_name|
@@ -965,10 +1288,10 @@ class YearStatistic < ActiveRecord::Base
           data[:languages][lang["name"]]["code"] = lang["code"]
           if translated_locales.include?( lang["code"] )
             data[:languages][lang["name"]][:locale] = lang["code"]
-            locale_to_ci_code[lang["code"]] = lang["code"]
+            locale_to_ci_code[lang["code"].to_s] ||= lang["code"]
           elsif ( two_letter = lang["code"].split( "-" )[0] ) && translated_locales.include?( two_letter )
             data[:languages][lang["name"]][:locale] = two_letter
-            locale_to_ci_code[two_letter] = lang["code"]
+            locale_to_ci_code[two_letter.to_s] ||= lang["code"]
           end
         end
       end
@@ -1010,6 +1333,253 @@ class YearStatistic < ActiveRecord::Base
     data
   end
 
+  def self.observed_taxa_counts( year, options = {} )
+    params = options.merge( year: year, verifiable: true, page: 1 )
+    params[:user_id] = options[:user].id if options[:user]
+    data = {}
+    while true
+      puts "Fetching results for #{params}"
+      results = INatAPIService.observations_species_counts( params ).results
+      break if results.size == 0
+      results.each do |r|
+        r["taxon"]["ancestor_ids"].each do |tid|
+          data[tid] ||= {}
+          data[tid][:observations] = data[tid][:observations].to_i + r["count"]
+          if r["taxon"]["id"] == tid
+            data[tid][:species] = 1
+          else
+            data[tid][:species] = data[tid][:species].to_i + 1
+          end
+        end
+      end
+      params[:page] += 1
+    end
+    data
+  end
+
+  def self.observed_taxa_changes( year, options = {} )
+    # final number of top gains and losses to return
+    final_cutoff = 30
+    this_years_taxa = observed_taxa_counts( year, options )
+    last_years_taxa = observed_taxa_counts( year - 1, options )
+    all_taxon_ids = ( this_years_taxa.keys + last_years_taxa.keys ).uniq
+    # top most observose taxa to derive leaves from. since coarser rank taxa
+    # will always have higher counts, the lower this number is the more coarser
+    # taxa will be favored
+    leaf_cuttoff = [(0.02 * all_taxon_ids.size).ceil, final_cutoff].max
+    data = {}
+    [:species, :observations].each do |metric|
+      deltas = all_taxon_ids.inject({}) do |memo, taxon_id|
+        memo[taxon_id] = this_years_taxa[taxon_id].try(:[], metric).to_i - last_years_taxa[taxon_id].try(:[], metric).to_i
+        memo
+      end
+      top_losses = deltas.select{|k,v| v < 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_gains = deltas.select{|k,v| v > 0}.sort_by {|k,v| -1 * v.abs}[0..leaf_cuttoff]
+      top_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      taxa = Taxon.where( id: top_taxon_ids ).index_by(&:id)
+      losses_ancestor_ids = taxa.fetch_values( *top_losses.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_losses = top_losses.reject{|taxon_id, delta| losses_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      gains_ancestor_ids = taxa.fetch_values( *top_gains.map(&:first) ).collect(&:ancestor_ids).flatten.uniq
+      top_gains = top_gains.reject{|taxon_id, delta| gains_ancestor_ids.include?( taxon_id ) }[0..final_cutoff]
+      final_taxon_ids = (top_losses.map(&:first) + top_gains.map(&:first)).uniq
+      data[metric] = final_taxon_ids.collect do |taxon_id|
+        taxon = taxa[taxon_id]
+        {
+          taxon: taxon.as_indexed_json( no_details: true ).keep_if {|k,v|
+            [:id, :name, :rank, :rank_level, :default_photo, :is_active].include?( k )
+          }.merge(
+            iconic_taxon_name: taxon.iconic_taxon_name,
+            preferred_common_name: taxon.common_name( user: options[:user] ).try(:name)
+          ),
+          delta: deltas[taxon_id]
+        }
+      end
+    end
+    data
+  end
+
+  def self.donors( year, options = {} )
+    options = options.clone
+    debug = options.delete(:debug)
+    limit = options.delete(:limit)
+    donorbox_email = CONFIG.donorbox.email
+    donorbox_key = CONFIG.donorbox.key
+    return if donorbox_key.blank?
+    page = 1
+    per_page = 100
+    donations = []
+    donation_encountered = {}
+    while true
+      break if limit && donations.size >= limit
+      url = "https://donorbox.org/api/v1/donations?page=#{page}&per_page=#{per_page}"
+      puts "Fetching #{url}" if debug
+      response = RestClient.get( url, {
+        "Authorization" => "Basic #{Base64.strict_encode64( "#{donorbox_email}:#{donorbox_key}" ).strip}",
+        "User-Agent" => "iNaturalist/Donorbox"
+      } )
+      json = JSON.parse( response )
+      puts "Received #{json.size} donations" if debug
+      break if json.size == 0
+      page_donations = json.select{|d| DateTime.parse( d["donation_date"] ).year == year }
+      puts "Received #{page_donations.size} donations for #{year}" if debug
+      if page_donations.size == 0
+        page += 1
+        next
+      end
+      page_donations.each do |d|
+        next if d["amount_refunded"].to_f > 0
+        next unless d["status"] == "paid"
+        next if donation_encountered[d["id"]]
+        donation_encountered[d["id"]] = true
+        net_amount_usd = d["converted_net_amount"] || d["converted_amount"] || d["amount"]
+        next unless net_amount_usd
+        donations << {
+          # net_amount_usd: net_amount_usd.to_f,
+          date: Date.parse( d["donation_date"] ),
+          donor_id: d["donor"]["id"],
+          recurring: d["recurring"],
+          # monthly: d["campaign"] && d["campaign"]["name"].to_s =~ /Monthly Support/
+        }
+      end
+      puts "#{donations.size} total donations for #{year} so far" if debug
+      page += 1
+    end
+    puts "Received #{donations.size} total donations" if debug
+    monthly = donations.inject( {} ) do |memo, d|
+      key = d[:date].strftime( "%Y-%m-01" )
+      memo[key] ||= {}
+      # memo[key][:total_net_amount_usd] = memo[key][:total_net_amount_usd].to_f + d[:net_amount_usd]
+      memo[key][:total_donors] ||= Set.new
+      memo[key][:total_donors] << d[:donor_id]
+      if d[:recurring]
+        # memo[key][:recurring_net_amount_usd] = memo[key][:recurring_net_amount_usd].to_f + d[:net_amount_usd]
+        memo[key][:recurring_donors] ||= Set.new
+        memo[key][:recurring_donors] << d[:donor_id]
+      end
+      # if d[:monthly]
+      #   memo[key][:monthly_net_amount_usd] = memo[key][:monthly_net_amount_usd].to_f + d[:net_amount_usd]
+      #   memo[key][:monthly_donors] ||= Set.new
+      #   memo[key][:monthly_donors] << d[:donor_id]
+      # end
+      memo
+    end
+    data = monthly.keys.sort.map do |key|
+      d = monthly[key]
+      {
+        date: key,
+        # total_net_amount_usd: d[:total_net_amount_usd],
+        total_donors: d[:total_donors].size,
+        # recurring_net_amount_usd: d[:recurring_net_amount_usd],
+        recurring_donors: d[:recurring_donors].size,
+        # monthly_net_amount_usd: d[:monthly_net_amount_usd],
+        # monthly_donors: d[:monthly_donors].size
+      }
+    end
+  end
+
+  # Maximum distance in meters between obs created by a single user for each
+  # month of the year. Calculates pairwise comparisons between all obs made by
+  # the user in that month so it's pretty slow.
+  def max_obs_distances_for_user( year, user )
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      sql = <<-SQL
+        SELECT
+          o1.id,
+          o2.id,
+          ST_DistanceSphere(o1.private_geom, o2.private_geom) AS distance
+        FROM
+          observations o1,
+          observations o2
+        WHERE
+          o1.user_id = #{user.id}
+          AND o2.user_id = #{user.id}
+          AND o1.id != o2.id
+          AND o1.geom IS NOT NULL
+          AND o2.geom IS NOT NULL
+          AND o1.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+          AND o2.observed_on BETWEEN '#{d1.to_s}' AND '#{d2.to_s}'
+        ORDER BY distance DESC
+        LIMIT 1
+      SQL
+      r = ActiveRecord::Base.connection.execute( sql )
+      data << [d1.to_s, (r && r.count > 0 ? r[0]["distance"] : 0).to_f]
+    end
+    # CSV(STDOUT) do |csv|
+    #   csv << %w(date distance)
+    #   data.each do |row|
+    #     csv << row
+    #   end
+    # end
+    data
+  end
+
+  # Stats on maximum distance in meters between obs created by all users for
+  # each month of the year. Instead of pairwise comparisons, this just
+  # calculates the bounding box for each user's observations within a month and
+  # uses the box's diagonal as the "distance," so it's just an approximation.
+  def est_max_obs_distances( year, options = {} )
+    debug = options.clone.delete(:debug)
+    data = []
+    ( 1..12 ).each do |month|
+      d1 = Date.new( year, month )
+      d2 = d1.end_of_month
+      params = { geo: true, d1: d1.to_s, d2: d2.to_s }
+      elastic_params = Observation.params_to_elastic_query( params )
+      geo_bounds_params = elastic_params.merge(
+        size: 0,
+        track_total_hits: true,
+        aggs: {
+          user_ids: {
+            terms: {
+              field: "user.id",
+              size: 300000
+            },
+            aggs: {
+              bounding_box: {
+                geo_bounds: {
+                  field: "private_location"
+                }
+              }
+            }
+          }
+        }
+      )
+      distances = []
+      buckets = Observation.elastic_search( geo_bounds_params ).response.aggregations.user_ids.buckets
+      puts "#{d1}, calculating distances for #{buckets.size} users..." if debug
+      buckets.each do |bucket|
+        next unless bucket.bounding_box && bucket.bounding_box.bounds
+        next if bucket.doc_count <= 1
+        d = lat_lon_distance_in_meters(
+          bucket.bounding_box.bounds.bottom_right.lat,
+          bucket.bounding_box.bounds.bottom_right.lon,
+          bucket.bounding_box.bounds.top_left.lat,
+          bucket.bounding_box.bounds.top_left.lon
+        )
+        next if d == 0
+        distances << d
+      end
+      data << {
+        date: d1.to_s,
+        avg: distances.sum / distances.size.to_f,
+        med: distances.median,
+        # min: distances.min,
+        # max: distances.max
+      }
+    end
+    headers = data[0].keys
+    CSV(STDOUT) do |csv|
+      csv << headers
+      data.each do |row|
+        csv << headers.map{|h| row[h] }
+      end
+    end
+    data
+  end
+
   private
   def self.identifications_es_base_params( year )
     {
@@ -1025,6 +1595,13 @@ class YearStatistic < ActiveRecord::Base
         { exists: { field: "taxon_change_id" } }
       ]
     }
+  end
+
+  def self.time_zone_for_options( options = {} )
+    return "UTC" unless options[:user]
+    return "UTC" if options[:user].time_zone.blank?
+    return "UTC" unless tz = ActiveSupport::TimeZone[options[:user].time_zone]
+    tz.tzinfo.name
   end
 
 end
