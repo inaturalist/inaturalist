@@ -519,6 +519,9 @@ da:
   #the iNaturalist Android app or Flickr
   application: Program
   applications: Applikationer
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Anvend
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
   apply_fields: Tilføj felter
@@ -1061,6 +1064,115 @@ da:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist-webstedskuratorer er betroede frivillige med mulighed for at
+    redigere iNaturalists taksonomi og moderere brugerindhold. Webstedskuratorer er integrerede i iNaturalist, da de holder vores taksonomi up-to-date og kommknikationen på iNaturalist anstændig og høflig. Nedenfor er en beskrivelse af, hvad det vil sige at være en kurator. Læs den venligst, hvis du ønsker at blive kurator, Læs omhyggeligt
+    <a href="/pages/curator+guide" target="_blank">Kurator Guide</a> og udfyld derefter ansøgningen på denne side.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Du skal forklare, hvorfor du ønsker at blive kurator
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Hvorfor vil du gerne være kurator?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Ønsker du at redigere iNaturalists taksonomi, så angiv et eksempel eller to på taksonomiændringer, du gerne vil foretage, og inkludér links til de relevante taksonomimyndigheder, som anført i Kurator Guide
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Ønsker du at redigere almindelige navne, så angiv et eksempel eller to på
+    ændringer, du ønsker at foretage
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Ønsker du at moderere adfærd på iNaturalist, så angiv et eksempel
+    eller to på Fællesskabsretningslinje-overtrædelser, og hvad du vil gøre i disse
+    situationer
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hvordan en kurator mister sin bemyndigelse
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat-personale kan fjerne kuratorbemyndigelsen, hvis en kurator gentagne gange:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignorerer politikkerne i Kurator Guide.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Ikke selv udviser passende adfærd.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    For at ansøge om at blive webstedskurator skal du have haft en konto i 60+
+    dage og have tilføjet 100 forbedrende identifikationer til nogens
+    observationer, herunder dine egne (du har tilføjet %{num_idents}). Når du
+    har opfyldt begge disse krav, så returnér hertil, og du vil nu være i stand til at indsende ansøgningen.
+  curator_application_inelligible_error: |
+    For at ansøge om at blive webstedskurator skal du have en konto i 60+
+    dage og have tilføjet 100 forbedrende identifikationer til nogens
+    observationer, herunder dine egne.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuratoransøgning indsendt
+  #Header
+  curator_application_what_curators_can_do: Hvad kuratorer kan gøre
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigere iNaturalists taksonomi efter de politikker, som er beskrevet under <a href="/pages/curator+guide#policies" target="_blank">Politikker i Kurator Guide</a>. Det betyder, at de kan tilføje, opdele, ombytte, sammenlægge, deaktivere og slette taksa på iNaturalist. De kan også redigere bevaringsstatus og taksongeofortrolighed, samt redigere og administrere almindelige navne tilføjet af enhver bruger.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Skjule kommentarer og suspendere brugere for overtrædelse af <a
+    href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Udrede <a href="/flags" target="_blank">flagninger</a> på taksa og brugerindhold.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Oprette og redigere wikisider, såsom <a href="/pages/help"
+    target="_blank">iNaturalist FAQ-side</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Redigere Fællesskabs-kurerede Steder og uploade KML-filer større end 1 MB (men mindre end 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Hvad kuratorer ikke kan gøre
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Påvirke fællesskabets takson- eller datakvalitet af en observation mere end nogen anden bruger kan.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Slette indhold oprettet af andre brugere.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Læse direkte beskeder fra andre personer.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kuratoransøgning
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Du bør kun ansøge om at blive en kurator, hvis:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Du har tilføjet identifikationer og/eller observationer i nogle måneder
+    og har til hensigt at fortsætte.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Du er villig og i stand til at udføre kurationsarbejde på regelmæssig basis. Hvis du kun ønsker at tilføje et par taxa, så anmod venligst om, at eksisterende kuratorer tilføjer disse taksa ved at føje flag til højereniveau taksa.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Du kan forme passende adfærd på iNaturalist og overholde Fællesskabsretningslinjer. Sammen med kuratorprivilegier følger forventningen om din ageren som en eksemplarisk iNaturalist-bruger.
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
