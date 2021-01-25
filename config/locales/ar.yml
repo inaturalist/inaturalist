@@ -583,6 +583,7 @@ ar:
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
   connect_to_provider: "الاتصال بـ%{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
   connecting_to_facebook: "جارٍ الاتصال بفيسبوك..."
@@ -961,7 +962,6 @@ ar:
   export_with_private_coordinates: تصدير بإحداثيات مخفية
   exporting: "جارٍ التصدير..."
   external_taxon_including_children: الأصنوفة الخارجية (بما في ذلك الأطفال)
-  external_taxon_rank: تصنيف الأصنوفة الخارجية
   extinct: منقرض
   extinct_in_the_wild: منقرض في البرية
   extra_properties: خصائص إضافية
@@ -3534,7 +3534,6 @@ ar:
   view_moderation_history_for_this_comment: عرض سجل الإشراف لهذا التعليق
   view_more: أظهر المزيد
   view_more_about_x: "عرض المزيد حول %{x}"
-  view_more_observations_from: عرض المزيد من الملاحظات من
   view_more_observations_near_x_place: "عرض المزيد من الملاحظات بالقرب من %{place} في <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "عرض المزيد من الملاحظات من %{project} في <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "عرض المزيد من ملاحظات %{taxon} في <nobr>%{site_name} &raquo;</nobr>"
@@ -3720,7 +3719,6 @@ ar:
   you_can_edit_this_default_check_list_because: |
     يمكنك تعديل قائمة الفحص الافتراضية هذه لأنك إداري،
     ولكن لا ينبغي أن تكون هناك حاجة فعليا لذلك.
-  you_can_only_destroy_taxa_you_created: "يمكنك فقط تدمير الأصناف التي قمت بإنشائها، وأنت لا يمكن أن تدمر التي تستخدم في تغييرات الأصناف."
   you_can_only_block_three_users: يمكنك حظر ثلاثة مستخدمين فقط
   you_can_show_the_boundary_of: يمكنك إظهار حدود المكان على صفحة المشروع إذا كان المكان لديه حدود.
   you_can_sign_free_at: "يمكنك الاشتراك للحصول على حساب مجاني في %{site_name}"
@@ -4061,8 +4059,14 @@ ar:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: تخويل %{application} لاستخدام حسابك؟
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "سيكون هذا التطبيق قادرا على:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: المزيد عن %{application}
     observations:
       community_id:
@@ -4089,8 +4093,6 @@ ar:
           </p>
         you_have_opted_out: لقد ألغيت هوية المجتمع
         opt_in_for_this_observation: الاشتراك في هذه الملاحظة
-        your_id_does_not_match: |
-          معرفك (<span class="bold">%{taxon_name}</span>) لا يطابق معرف المجتمع
       copy_tip: "إضافة ملاحظة جديدة عن طريق نسخ تاريخ، ومكان، وصور، وحقول هذه الملاحظة."
       captive_help_html: |
         هل كان <strong>مزروعا</strong> أو
@@ -5317,15 +5319,6 @@ ar:
           any: أي
           joined: المشاريع التي انضممت إليها
           none: "لا شيء، فقط يمكنك إضافة ملاحظاتك إلى المشاريع"
-        prefers_community_taxa_desc: |
-          يتتبع %{site_name} ما تراه ملاحظاتك وما 
-          يعتقده المجتمع، إن الهوية الذي نتشاركها مع 
-          شركاء البيانات هي هوية المجتمع، ولكن إذا كنت لا تعتقد أن 
-          رأي المجتمع يجب أن يلغي حسابك، يمكنك تعطيله 
-          هنا، سيظل الناس قادرين على إضافة هويات، ولكن 
-          لن يتم تفضيل الرأي المجتمعي على رأيك: وهذا يعني أن ملاحظاتك 
-          لن تكون مؤهلة للحصول على درجة بحثية ما لم 
-          توافق على المجتمع.
         prefers_coordinate_interpolation_protection_desc: |
           عندما تقوم بتعيين الخصوصية الجغرافية لملاحظة ما على "غامضة" أو 
           "خاصة"، فسوف يطبق هذا نفس الخصوصية الجغرافية على جميع ملاحظاتك الأخرى 

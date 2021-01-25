@@ -274,26 +274,57 @@ describe UsersController, "merge" do
 end
 
 describe UsersController, "add_role" do
-  it "should set curator_sponsor to current user" do
+  let(:normal_user) { User.make! }
+  before { Role.make!( name: Role::CURATOR ) }
+  it "should not work for a curator" do
     curator_user = make_curator
-    normal_user = User.make!
     sign_in curator_user
-    put :add_role, id: normal_user.id, role: "curator"
+    put :add_role, id: normal_user.id, role: Role::CURATOR
+    normal_user.reload
+    expect( normal_user ).not_to be_is_curator
+  end
+  it "should work for a site_admin" do
+    Site.make! if Site.default.blank?
+    sa = SiteAdmin.make!( site: Site.default )
+    sign_in sa.user
+    put :add_role, id: normal_user.id, role: Role::CURATOR
     normal_user.reload
     expect( normal_user ).to be_is_curator
-    expect( normal_user.curator_sponsor ).to eq curator_user
+  end
+  it "should set curator_sponsor to current user" do
+    admin_user = make_admin
+    sign_in admin_user
+    put :add_role, id: normal_user.id, role: Role::CURATOR
+    normal_user.reload
+    expect( normal_user ).to be_is_curator
+    expect( normal_user.curator_sponsor ).to eq admin_user
   end
 end
 
 describe UsersController, "remove_role" do
+  let(:curator_user) { make_curator }
+  let(:target_curator_user) { make_curator }
+  it "should not work for a curator" do
+    sign_in curator_user
+    put :remove_role, id: target_curator_user.id, role: Role::CURATOR
+    target_curator_user.reload
+    expect( target_curator_user ).to be_is_curator
+  end
+  it "should work for a site_admin" do
+    Site.make! if Site.default.blank?
+    sa = SiteAdmin.make!( site: Site.default )
+    sign_in sa.user
+    put :remove_role, id: target_curator_user.id, role: Role::CURATOR
+    target_curator_user.reload
+    expect( target_curator_user ).not_to be_is_curator
+  end
   it "should nilify curator_sponsor" do
-    curator_user = make_curator
     admin_user = make_admin
     sign_in admin_user
-    put :remove_role, id: curator_user.id, role: "curator"
-    curator_user.reload
-    expect( curator_user ).not_to be_is_curator
-    expect( curator_user.curator_sponsor ).to be_blank
+    put :remove_role, id: curator_user.id, role: Role::CURATOR
+    updated_curator_user = User.find_by_id( curator_user.id )
+    expect( updated_curator_user ).not_to be_is_curator
+    expect( updated_curator_user.curator_sponsor ).to be_blank
   end
 end
 

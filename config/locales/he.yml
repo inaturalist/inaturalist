@@ -937,6 +937,7 @@ he:
   confirm_now: אשר עכשיו
   confirm_your_info: אשר את המידע שלך
   connect_to_provider: "התחבר ל %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
@@ -1302,6 +1303,7 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
+  external_applications_description: אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -3536,7 +3538,6 @@ he:
   view_lists: הצגת הרשימות
   view_more: צפייה בעוד
   view_more_about_x: "צפייה בעוד על %{x}"
-  view_more_observations_from: צפייה בתצפיות נוספות
   view_more_unreviewed: "הצגת תצפיות נוספות שטרם נסקרו"
   view_observations: צפייה בתצפיות
   view_observation_flags: צפייה בדגלים עבור תצפית זו
@@ -3661,7 +3662,6 @@ he:
   you_are_subscribed_to_comments_on_this_flag: הינך מנוי לדגל זה.
   you_can_accept_invitations: ביכולתך לקבל את ההזמנה כאן
   you_can_choose_observations_associated: את/ה יכול/ה להגדיר תצפיות כמשויכות לפוסט זה.
-  you_can_only_destroy_taxa_you_created: "אתה יכול למחוק רק טקסונים שאתה יצרת, ולא ניתן למחוק טקסון אשר מעורב בשינוי טקסונומי"
   you_can_only_block_three_users: ביכולתך לחסום רק שלושה משתמשים
   you_can_show_the_boundary_of: ניתן להציג את גבולות המקום בפרוייקט שלך רק אם למקום גבול קיים.
   you_can_sign_free_at: "ניתן להרשם לחשבון חינם ב%{site_name}"
@@ -3779,6 +3779,8 @@ he:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: עוד מידע על %{application}
     observations:
       community_id:
@@ -4042,8 +4044,6 @@ he:
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: רצף תצפיות
-        observation_streaks_desc: |
-          רצף תצפיות הינו תקופת זמן שבה צופה יצא לשטח ודיווח על תצפיות חדשות וברות זיהוי בכל יום. כאן ניתן לראות את הרצפים הארוכים ביותר שהתחילו השנה, או שהיה בתהליך בעת יצירת נתונים אלו.
         stats_generated_datetime: הנתונים עובדו ב %{datetime}
         translators_title: מתרגמים
         translators_prompt: |
@@ -4120,7 +4120,7 @@ he:
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          כתובות IP. ניתן איתן לחשב את מיקומך עד לרמת עיר מסוימת, ולעקוב אחרייך באינטרנט. שים לב כי הפעלנו <a href="https://support.google.com/analytics/answer/2763052">IPים אנונימיים</a> בGoogle Analytics. Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy">יכולים לשמור כתובות IP לזמנים מוגבלים</a>.
+          כתובות IP. ניתן איתן לחשב את מיקומך עד לרמת עיר מסוימת, ולעקוב אחרייך באינטרנט. שים לב כי הפעלנו <a href="https://support.google.com/analytics/answer/2763052">IPים אנונימיים</a> בGoogle Analytics. Firebase Crashlytics <a href="https://firebase.google.com/support/privacy">יכולים לשמור כתובות IP לזמנים מוגבלים</a>.
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           פרטי דפדפן כגון בית יוצר, מודל וגריסה
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

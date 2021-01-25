@@ -4,7 +4,7 @@ import { MenuItem, DropdownButton } from "react-bootstrap";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
-
+import LicenseImageRow from "./license_image_row";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 const radioButtons = {
@@ -16,7 +16,7 @@ const radioButtons = {
 const obsFields = {
   anyone: I18n.t( "anyone" ),
   curators: I18n.t( "curators" ),
-  only_you: I18n.t( "only_you" )
+  observer: I18n.t( "only_you" )
 };
 
 const Content = ( {
@@ -27,6 +27,9 @@ const Content = ( {
   handlePlaceAutocomplete,
   showModal
 } ) => {
+  const iNatLicenses = iNaturalist.Licenses;
+  const licenseList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
+
   const createRadioButtons = ( ) => Object.keys( radioButtons ).map( button => (
     <div className="radio" key={button}>
       <label className="radio-button">
@@ -43,73 +46,32 @@ const Content = ( {
     </div>
   ) );
 
-  const showDefaultLicense = license => {
-    const iNatLicenses = iNaturalist.Licenses;
-    const selected = Object.keys( iNatLicenses ).find( i => iNatLicenses[i].code === license );
-    const defaultLicense = selected || "cc-by-nc";
-
-    const localizedName = defaultLicense === "cc0" ? "cc_0" : defaultLicense.replaceAll( "-", "_" );
+  const showDefaultLicense = defaultLicense => {
+    const current = Object.keys( iNatLicenses )
+      .find( i => iNatLicenses[i].code === defaultLicense );
+    const license = defaultLicense === null ? "c" : current;
 
     return (
-      <div className="default-title-custom-dropdown">
-        <img
-          id="image-license"
-          src={iNatLicenses[defaultLicense].icon_large}
-          alt={defaultLicense}
-          className="default-title-custom-dropdown-image"
-        />
-        <label className="license white-space default-custom-dropdown-padding" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
+      <div className="current-license">
+        <LicenseImageRow license={license} />
+        <div className="caret" />
       </div>
     );
   };
 
-  const createLicenseList = name => {
-    const iNatLicenses = iNaturalist.Licenses;
+  const createLicenseList = name => licenseList.map( license => {
+    const { code } = iNatLicenses[license];
 
-    const displayList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
-    const checkmark = <i className="fa fa-check blue-checkmark" aria-hidden="true" />;
-
-    const menuItems = displayList.map( license => {
-      const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
-      const { code } = iNatLicenses[license];
-
-      const allRightsReserved = (
-        <div>
-          <label htmlFor="image-license">{I18n.t( "no_license_all_rights_reserved" )}</label>
-          <p
-            className="text-muted white-space"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "you_retain_full_copyright", {
-                site_name: SITE.name
-              } )
-            }}
-          />
-          {profile[name] === code && checkmark}
-        </div>
-      );
-
-      return (
-        <MenuItem
-          key={`${name}-${license}`}
-          eventKey={code}
-          className="custom-dropdown-width"
-        >
-          {license === "c" ? allRightsReserved : (
-            <span className="flex-no-wrap white-space">
-              <img id="image-license" src={iNatLicenses[license].icon_large} alt={license} />
-              <label className="license" htmlFor="image-license">{I18n.t( `${localizedName}_name` )}</label>
-              {profile[name] === code && checkmark}
-            </span>
-          )}
-        </MenuItem>
-      );
-    } );
-
-    return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
-    ) ).reduce( ( a, b ) => a.concat( b ) );
-  };
+    return (
+      <MenuItem
+        key={`${name}-${license}`}
+        eventKey={code}
+      >
+        <LicenseImageRow license={license} />
+        {profile[name] === code && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+      </MenuItem>
+    );
+  } );
 
   const setDisplayName = ( ) => {
     if ( profile.prefers_common_names ) {
@@ -180,47 +142,52 @@ const Content = ( {
               {I18n.t( "learn_what_these_licenses_mean" )}
             </button>
           </p>
-          <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_observation_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
-              title={showDefaultLicense( profile.preferred_observation_license )}
-            >
-              {createLicenseList( "preferred_observation_license" )}
-            </DropdownButton>
-          </div>
-          <div className="stacked">
-            <CheckboxRowContainer
-              name="make_observation_licenses_same"
-              label={I18n.t( "update_existing_observations_with_new_license" )}
-            />
-          </div>
-          <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_photo_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
-              title={showDefaultLicense( profile.preferred_photo_license )}
-            >
-              {createLicenseList( "preferred_photo_license" )}
-            </DropdownButton>
-          </div>
-          <div className="stacked">
-            <CheckboxRowContainer
-              name="make_photo_licenses_same"
-              label={I18n.t( "update_existing_photos_with_new_license" )}
-            />
-          </div>
-          <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
-          <div className="stacked">
-            <DropdownButton
-              id="preferred_sound_license"
-              onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
-              title={showDefaultLicense( profile.preferred_sound_license )}
-            >
-              {createLicenseList( "preferred_sound_license" )}
-            </DropdownButton>
+          <div id="LicenseDropdown">
+            <label htmlFor="preferred_observation_license">{I18n.t( "default_observation_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_observation_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
+                title={showDefaultLicense( profile.preferred_observation_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_observation_license" )}
+              </DropdownButton>
+            </div>
+            <div className="stacked">
+              <CheckboxRowContainer
+                name="make_observation_licenses_same"
+                label={I18n.t( "update_existing_observations_with_new_license" )}
+              />
+            </div>
+            <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_photo_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
+                title={showDefaultLicense( profile.preferred_photo_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_photo_license" )}
+              </DropdownButton>
+            </div>
+            <div className="stacked">
+              <CheckboxRowContainer
+                name="make_photo_licenses_same"
+                label={I18n.t( "update_existing_photos_with_new_license" )}
+              />
+            </div>
+            <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
+            <div className="stacked">
+              <DropdownButton
+                id="preferred_sound_license"
+                onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
+                title={showDefaultLicense( profile.preferred_sound_license )}
+                noCaret
+              >
+                {createLicenseList( "preferred_sound_license" )}
+              </DropdownButton>
+            </div>
           </div>
           <CheckboxRowContainer
             name="make_sound_licenses_same"
@@ -237,7 +204,7 @@ const Content = ( {
           </div>
           <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
           <select
-            className="form-control stacked inherit-width"
+            className="form-control stacked dropdown"
             id="user_prefers_common_names"
             name="prefers_common_names"
             onChange={handleDisplayNames}
@@ -253,6 +220,7 @@ const Content = ( {
             initialPlaceID={profile.place_id}
             bootstrapClear
             afterSelect={e => handlePlaceAutocomplete( e, "place_id" )}
+            afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "place_id" )}
           />
         </SettingsItem>
         <SettingsItem>
@@ -269,7 +237,7 @@ const Content = ( {
           <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
           <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
           <select
-            className="form-control inherit-width"
+            className="form-control dropdown"
             id="preferred_observation_fields_by"
             value={profile.preferred_observation_fields_by}
             name="preferred_observation_fields_by"

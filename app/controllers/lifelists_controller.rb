@@ -6,6 +6,7 @@ class LifelistsController < ApplicationController
     if params[:place_id]
       @place = Place.find_by_id(params[:place_id])
     end
+    @flash_js = true
     render layout: "bootstrap"
   end
 

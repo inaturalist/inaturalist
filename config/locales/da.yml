@@ -127,6 +127,8 @@ da:
     Et standard taksonnavn vil automatisk blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige navne osv.)
   a_flag_for_x: "en markering for %{x}"
   a_member_of_taxon_html: "et medlem af %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
   a_to_z: "A til Å"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
@@ -159,6 +161,7 @@ da:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Om oprindelse
+  about_license_options: Om Licensmuligheder
   about_licenses: Om licenser
   about_muting: Om slukning
   #Header for a section describing taxon names
@@ -512,6 +515,9 @@ da:
   #Label for an option to show/include content by any user
   any_user: Hvilken som helst
   anyone: Enhver
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Program
   applications: Applikationer
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
@@ -626,6 +632,9 @@ da:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Tilføj automatisk observationer til dette projekt
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold med taksonændringer
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Gns.
   back: Tilbage
   back_to_all_species: Tilbage til Alle arter
   back_to_browsing_people: Tilbage til "at browse" personer
@@ -898,8 +907,14 @@ da:
   confirm_your_info: Bekræft din info
   confirming_ids: Bekræfter ID'er
   confirming_ids_description: Slås dette fra, får du ikke længere besked om ID'er, som er i overensstemmelse med dine.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Forbind
   connect_to_provider: "Tilknyt %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Tilknyttede konti
+  connected_accounts_description: Forbundne konti er dine konti fra andre apps eller websteder, som du har givet iNaturalist adgang til på dine vegne for at understøtte indlogning, fotoimport eller anden funktionalitet.
+  connected_accounts_titlecase: Forbundne konti
   connecting_flickr: "Tilknytter til Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Forbind til Flickr igen for at godkende skriverettigheder
   connecting_to_facebook: "Tilknytter til Facebook"
@@ -1033,7 +1048,6 @@ da:
   created_on: Oprettet den
   creating_your_account: "Opretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr fotos tagget
-  creative_commons_licenses: Creative Commons-licenser
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre andet er noteret."
   critically_endangered: kritisk truet
   css_description: Dette vil blive inkluderet efter alle andre CSS på siden.
@@ -1126,7 +1140,6 @@ da:
   default_observation_license: Standard observations licens
   default_photo_license: Standard foto licens
   default_search_place: Standard søgested
-  default_search_place_description: Dette bliver dit standardsted for alle søgninger i Explore.
   default_sound_license: Standard lyd licens
   defaults_to_your_name_or_username: Standard til dit navn eller brugernavn
   defines_a_taxon_framework_for: Definerer en taksonramme for %{taxon_name}
@@ -1212,6 +1225,10 @@ da:
   disable_comments: Deaktivér kommentarer
   disable_comments_desc: Forhindr folk i at tilføje nye kommentarer
   disagree_: Uenig
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Frakobl
+  disconnect_caps: FRAKOBL
   disconnect_provider: "Frakobl %{provider}"
   display: Visning
   display_link_to_checklist: Vis link til projektliste fra projektside
@@ -1387,9 +1404,11 @@ da:
   export_observations: Eksportér observationer
   export_with_private_coordinates: Eksportér med skjulte koordinater
   exporting: "Eksporterer..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Eksterne applikationer
+  external_applications_description: Eksterne programmer er tredjepartsprogrammer, som du har tilladt at tilgå din iNaturalist-konto på dine vegne. Generelt kan de gøre alt det med din konto, som du selv kan, så sørg for at du har tillid til programmerne, inden du giver tildeler dem adgangsrettigheder.
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
-  external_taxon_rank: Ekstern takson rang
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
@@ -1404,6 +1423,7 @@ da:
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
   failed_to_save_record_with_errors: "Mislykkedes at gemme post: %{errors}"
+  failed_to_unlink_your_account: Kunne ikke fjerne din kontotilknytning
   'false': 'Falsk'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
@@ -1567,6 +1587,7 @@ da:
   fungi:
     one: svamp
     other: svampe
+  gbif: GBIF
   gbif_occurrences: GBIF forekomster
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
@@ -1584,7 +1605,6 @@ da:
   give_it_some_detail: Giv det nogle detaljer!
   give_monthly_caps: GIV MÅNEDLIGT
   give_now_caps: GIV NU
-  global: Globalt
   global_names: Globale navne
   globally: Globalt
   go: Start
@@ -1748,6 +1768,7 @@ da:
   inat_believes_this_is_a_complete_listing: "%{site_name} mener, at dette er en komplet liste over denne taxon på dette sted."
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_activity_notifications: "%{site_name}-aktivitetsnotifikationer"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_is_a_joint_initiative: "%{site_name} er et fælles initiativ fra California Academy of Sciences og National Geographic Society."
   inaturalist_places: "%{site_name} steder"
@@ -2035,11 +2056,12 @@ da:
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje kommentarer.
+    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje kommentarer.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Log ind</a> eller <a href="/sign_up">opret konto</a> for at tilføje identifikationer.
+    <a href="/login">Log ind</a> eller <a href="/signup">opret konto</a> for at tilføje identifikationer.
   log_out: Log ud
   log_out_caps: LOG UD
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log ud af %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / brugernavn
@@ -2143,6 +2165,19 @@ da:
   message_from_user_at_time: Fra %{user} kl. %{time}
   message_from_user_on_date: Fra %{user} den %{date}
   messages: Beskeder
+  messages_new_correspondent_it_looks_like: |
+    Det ser ud til, at du ikke tidligere har kommunikeret med vedkommende, så
+    hav disse forbehold i tankerne:
+  messages_new_correspondent_specimens: |
+    Vær forsigtig med anmodninger om prøver eller skjulte data. Forsøg at verificere identiteten på den amodende person, og anmodes der om
+    prøver, så udbed dig vedkommende tilladelse.
+  messages_new_correspondent_personal: |
+    Videregiv ingen af dine personlige oplysninger til ikke-betroede parter.
+  messages_new_correspondent_actions_html: |
+    Har du mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
+    target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
+    href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
+    markér venligst denne besked nedenfor.
   misidentifications: Fejlidentifikationer
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
@@ -2189,6 +2224,7 @@ da:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    time_hours: "HH.mm"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
@@ -2453,6 +2489,8 @@ da:
   observation_added: Observation tilføjet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
+  observation_belongs_to_project_requiring_field: |
+    Observationen hører til et projekt, hvor dette felt kræves. Observationen skal fjernes fra det pågældende projekt, før denne feltværdi kan slettes.
   observation_brief_something_on_day: "Noget den %{day}"
   observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
@@ -2944,6 +2982,7 @@ da:
     argentina: Argentina
     armenia: Armenien
     aruba: Aruba
+    asia: Asien
     australia: Australien
     austria: Østrig
     azerbaijan: Aserbajdsjan
@@ -3420,7 +3459,7 @@ da:
   reason_you_are_flagging_this_item: Årsag til at du markerer dette emne.
   recaptcha_verification_failed: reCAPTCHA verifikation mislykkedes
   receive_email_notifications: Modtag e-mailnotifikationer
-  receive_email_notifications_description: "Slås dette fra, får du ikke længere e-mails fra %{site_name} vedr. notifikationer. Du vil få notifikationer om alt afkrydset nedenfor:"
+  receive_email_notifications_description: "Slås dette fra, modtager du ikke længere e-mails fra %{site_name} vedr. notifikationer."
   receive_email_notifications_when_people_leave_you: Modtag e-mail meddelelser om
   receive_project_journal_notifications?: Modtag projektjournalnotifikationer?
   receive_updates_from_this_project: Modtag underretninger om dette projekt
@@ -3531,6 +3570,8 @@ da:
   reviewed: Gennemgået
   revoke: Tilbagekald
   revoke_caps: TILBAGEKALD
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Tilbagekald %{site_name}?"
   rg_observations: FK observationer
   role: Rolle
@@ -3570,6 +3611,7 @@ da:
   save_settings_caps: GEM INDSTILLINGER
   save_trip: Gem tur
   saved: Gemt
+  saved_at_time: Gemt %{time}
   saving: "Gemmer..."
   saving_num_of_count_observations:
     one: Gemmer observation...
@@ -3843,6 +3885,7 @@ da:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonsammenfletning"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til dette taksonopdeling"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne taksonfjernelse"
+  subscribe_to_observations_from_this_place_html: <a>Abonnér</a> på observationer fra dette sted
   subscribe_to_observations_in_a_taxon: Abonnér på alle observationer indsendt af en art eller gruppe af organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonnér på alle observationer indsendt inden for dette sted. Du kan også tilføje et valgfrit takson filter (f.eks. 'skorpioner fra Texas').
   subscribe_to_places_to: |
@@ -3858,6 +3901,8 @@ da:
   suggest_an_identification: Foreslå en identifikation
   suggest_or_require_that: Opret observationsfelter, som KAN eller SKAL udfyldes af dem der bidrager med observationer til dit projekt.
   suggestions: Forslag
+  suitable_for_the_global_biodiversity_information_facility: Velegnet til Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Velegnet til Wikipedia og andre Wikimedia Foundation-projekter
   summary: Oversigt
   supporting: Støtter
   support_inaturalist: Støt iNaturalist
@@ -4150,6 +4195,10 @@ da:
   this_will_refresh_listed_taxa: Dette opdaterer de angivne taksa på denne liste. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
   this_will_re_apply_all_list_rules: |
     Dette vil gendanne alle listeregler til den opførte taksa og opdatere eventuelle tilknyttet statistik ", f.eks. afvises taksa, der ikke er inden for takson listen eller ikke er af den valgte rang. Det tilføjer ikke nogen nye taksa. Det kan tage et par minutter.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Dette fjerner iNaturalists mulighed for at opnå adgang til denne konto på dine vegne, indtil du gentildeler adgang. Du skal muligvis ændre dine indstillinger på det eksterne websted for helt at forhindre adgang.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Dette vil logge dig ud af din nuværende session i denne applikation.
   this_will_try_to_add_tags_to_your_flickr: Dette vil forsøge at tilføje tags til dine Flickr foto´s. Fortsæt?
   this_year: Dette år
@@ -4416,7 +4465,7 @@ da:
   view_moderation_history_for_this_comment: Vis ændringshistorik for denne kommentar
   view_more: Se flere
   view_more_about_x: "Vis mere om %{x}"
-  view_more_observations_from: Vis flere observationer fra
+  view_more_observations_from_this_place: Få vist flere observationer fra dette sted
   view_more_observations_near_x_place: "Vis flere observationer i nærheden af %{place} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
@@ -4634,7 +4683,8 @@ da:
   you_can_edit_this_default_check_list_because: |
     Du kan redigere denne standard tjekliste fordi du er en
     administrator, men der burde ikke være et behov for at gøre det.
-  you_can_only_destroy_taxa_you_created: "Du kan kun ødelægge taksa du har oprettet, og du kan ikke ødelægge taksa, der bruges i takson ændringer."
+  you_can_only_destroy_taxa_you_created2: |
+    Du kan kun slette taksa, du har oprettet, som ikke er knyttet til taksonændringer, identifikationer eller andet indhold
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
   you_can_sign_free_at: "Du kan tilmelde dig og få en gratis %{site_name} konto på"
@@ -4954,6 +5004,7 @@ da:
       list_view: Listevisning
       tree_view: Trævisning
       observed_species: Observerede arter
+      observed_rank: Observeret %{rank}
       unobserved_species: Uobserverede arter
       all_species: Alle arter
       all_unobserved_species: Alle uobserverede arter
@@ -5042,8 +5093,14 @@ da:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Tillad %{application} at bruge din konto?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Denne applikation vil være i stand til:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Mere om %{application}
     observations:
       community_id:
@@ -5066,7 +5123,7 @@ da:
         you_have_opted_out: Du fravalgte fælleskabs identifikationerne
         opt_in_for_this_observation: Opt ind for denne observation
         your_id_does_not_match: |
-          Dit ID (<span class="bold">%{taxon_name}</span>) matcher ikke fællesskabs ID
+          Dit ID (<span class="bold">%{taxon_name}</span>) matcher ikke fællesskabets ID
       copy_tip: "Tilføj en ny observation ved at kopiere denne observations dato, sted, fotos og observationsfelter."
       captive_help_html: |
         Var organismen <strong> dyrket </strong> eller
@@ -5431,6 +5488,9 @@ da:
         requirements_have_changed: |-
           Observationsforudsætningerne i flg. projekt er for nylig ændret:
         subject: Projektobservationsforudsætninger ændret for %{project}
+        wondering_what_this_means_html: |
+          Og hvad er "geofortrolighed" så?
+          <a href="%{url}">Find svaret i vores dokumentation</a>.
         you_can_change_html: |-
           Du kan ændre dine præferencer eller forlade projektet via
           <a href="%{url}">projektsiden</a>.
@@ -5998,23 +6058,33 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a>-websteder
       year:
+        compare_desc: |
+          Hvordan var i år sammenlignet med tidligere år? Med minimum tre års brug
+          kan vi begynde at sammenligne årlige aktivitetsmålinger. Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
+          alle år. Statistikkerne inkluderer ikke år, hvor den
+          optællingen var nul.
+        compare_site_desc: |
+          Hvordan var i år sammenlignet med tidligere år? Den grønne bjælke viser dette år, den hvide lodrette bjælke viser sidste år, og de grå baggrundsområder viser de laveste og højeste år, samt gennemsnittet for
+          alle år.
+        compared_to_previous_years: Sammenlign med tiligere år
         donate_title: "En særlig tak til alle vores støtter"
         donate_desc_html: |
           Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og
           donationer! iNaturalist er et non-profit fællesinitiativ fra California
           Academy of Sciences og National Geographic Society.
-          Det støttes af et
+          Det understøttes af et
           <a href="%{team_url}">lille team</a>, som
           foretager al design- og software-
           udvikling til web, mobil og
-          <a href="%{seek_url}">Seek fra iNaturalist</a>, samt administrerer fællesskabssupporten, samarbejder og integrationer, som holder
+          <a href="%{seek_url}">Seek fra iNaturalist</a>, samt håndterer fællesskabssupporten, samarbejder og integrationer, som holder
           tingene kørende (og hastigt voksende!). Programmet er afhængigt af
-          talrige tilskud og donationer inkl. velgørende gaver fra færre end 0,2%
-          af bidragsydere. Vi er særligt taknemmelige overfor Månedlige
+          talrige tilskud og donationer inkl. velgørende gaver fra mindre end en lille brøkdel af bidragsydere. Vi er særligt taknemmelige for Månedlige
           Supportere, hvis tilbagevendende gaver hjælper os med fremtidig
           planlægning. Du kan donere i flere end 30 valutaer for at støtte
-          iNaturalists kernefunktioner. Tak til alle for jeres andel i at gøre 2019 til 
+          iNaturalists kernefunktioner. Tak til alle for jeres andel i at gøre %{year} til
           Naturalists største år indtil nu!
+        donors: Donorer
+        donors_guide_label_our_goal_is_1000: Vores mål er 1.000 tilbagevendende donorer pr. måned
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Tjek Året i tilbageblik for medlemmerne af iNaturalist Network.
@@ -6042,6 +6112,10 @@ da:
           Observations- og Taksadiagrammerne kan inkludere data, som er synlige på %{site_name}, og er bidraget af personer uden tilknytning til %{site_name}, mens Brugerdiagrammerne kun viser de datoer, hvor brugere aktuelt tilknyttet %{site_name} blev medlemmer af iNaturalist.
         growth_in_year_obs: "Vækst i %{year} (obs)"
         growth_title: Vækst
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Lav: %{low_value} (%{low_desc}), for lille til at vise"
         new_species_desc: |
           Arter der blev observeret for første gang på%{site_name} dette år.
           Viser %{x} af <a href="%{url}">%{y} arter</a>.
@@ -6054,7 +6128,12 @@ da:
           til %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som
           Mammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.
           <i>arctos</i> vil bare tælle som <i>Canis lupus</i>.
+        new_species_per_year: Nye Arter/år
+        new_species_per_year_by_date_added: Efter tilføjelsesdato
+        new_species_per_year_by_date_observed: Efter observationsdato
         obs_in_year: Obs i %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Én gang
         percent_growth_in_year: "% Vækst i %{year}"
         percent_of_total_growth: "% af samlet vækst"
         publications_desc_html: |
@@ -6067,12 +6146,21 @@ da:
           tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>.
           Information om databrug med tilladelse fra vores venner fra
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observationer/år
+        observations_per_year_by_date_added: Efter tilføjelsesdato
+        observations_per_year_by_date_observed: Efter observationsdato
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsstræk
         observation_streaks_color_desc: |
           Farve repræsenterer antallet af dage i en logaritmisk skala:
-        observation_streaks_desc: |
-          Et observationsstræk er en periode, hvori nogen har været ude at registrerer nye observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var undervejs, da disse statistikker blev udarbejdet.
+        observation_streaks_desc2: |
+          Et observationsstræk er en periode på min. fem dage, hvori nogen har været udenfor og registreret nye, kontrollerbare observationer hver eneste dag. Her vises de længste stræk, som startede i år eller stadig var i gang, da disse statistikker blev udarbejdet (for individuelle brugere
+          er tillige inkluderet stræk, som blev afsluttet i år).
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Tilbagevendende
+        species_per_year: Arter/år
+        species_per_year_by_date_added: Efter tilføjelsesdato
+        species_per_year_by_date_observed: Efter observationsdato
         stats_generated_datetime: Statistikker genereret %{datetime}
         store_prompt: |
           Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!
@@ -6421,11 +6509,8 @@ da:
           joined: Projekter du er medlem af
           none: "Ingen. Det er kun dig der kan tilføje dine observationer til projekter"
         prefers_community_taxa_desc: |
-          %{site_name} holder styr på, hvad du tror dine observationer er, og hvad
-          fællesskabet mener at de er. Den identifikation, vi deler med data
-          partnere er fællesskabs identifikationen, men hvis du ikke mener at
-          fællesskabets mening nogensinde bør underkende din egen, kan du fravælge det. Andre personer vil stadig kunne tilføje identifikationer, men
-          fællesskabets mening vil ikke blive foretrukket frem for din. Det betyder samtidigt at dine observationer ikke vil kunne opnå status af forskningskvalitet, medmindre du er enig med fællesskabet.
+          %{site_name} holder styr på, hvad du mener, dine observationer er, og hvad
+          fællesskabet mener, at de er. Mener du ikke, at fællesskabets mening bør tilsidesætte din egen, kan dette fravælges her. Andre vil stadig kunne tilføje identifikationer, men dine observationer vil forblive tilknyttet taksonen fra din observation. Det betyder, at dine observationer ikke vil være berettiget til status af Forskningskvalitet, medmindre din identifikation matcher fællesskabets mening.
         prefers_coordinate_interpolation_protection_desc: |
           Når du indstiller geofortroligheden for en observation til "sløret" eller
           "fortrolig", gælder den for alle observationer for denne dag for at gøre det sværere for andre personer at gætte de reelle koordinater baseret på observationer foretaget omkring samme tidspunkt.
@@ -6441,8 +6526,7 @@ da:
           IP-adresser (som kan benyttes til placeringsudledning på byniveauplan samt for at spore dig på tværs af forskellige websteder og tjenester;
           bemærk, at vi har aktiveret
           <a href="https://support.google.com/analytics/answer/2763052">IP anonymisering</a>
-          i Google Analytics, og <a
-          href="https://firebase.google.com/support/privacy">Firebase
+          i Google Analytics, og <a href="https://firebase.google.com/support/privacy">Firebase
           Crashlytics</a> registrerer os bekendt ikke IP-adressen)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browserdetaljer, såsom mærke, model og version
@@ -7377,13 +7461,15 @@ da:
         default: "@m"
   #Title of a section warning the user about something
   warning_title: Advarsel
+  wikimedia: Wikimedia
   wild: vild
   will_paginate:
     previous_label: "&#8592; Forrige."
     next_label: "Næste &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Du har ikke godkendt nogle programmer til brug af din iNaturalist-konto."
   you_will_no_longer_be_following_or_trusting: "Du vil ikke længere følge eller stole på %{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
   z_to_a: Å til A
   zoom_in: Zoom ind
   zoom_out: Zoom ud

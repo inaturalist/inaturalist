@@ -1,4 +1,19 @@
 uk:
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "А до Я"
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Додати нумерований список
+  add_a_single_observation: Додати окреме спостереження
+  add_a_taxon: Додати таксон
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Додайте <a target="_blank" href="%{url}">заміну таксона</a> якщо ви хочете змінити назву
+  add_an_assessment: Додати оцінку
+  add_an_identification: Додати визначення
+  view_more_observations_from_this_place: Показати більше спостережень з цього місця
+  views:
+    lifelists:
+      observed_rank: '%{rank} спостережуваного'
   date:
     abbr_month_names:
       - 

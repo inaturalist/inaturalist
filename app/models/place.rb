@@ -1059,11 +1059,11 @@ class Place < ActiveRecord::Base
     ids = Observation.joins(:observations_places).
       where("observations_places.place_id = ?", place_id).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids)
+    Observation.elastic_index!(ids: ids, sleep: 2)
     # observations not touched above that are in this place
     ids = Observation.in_place(place_id).where("last_indexed_at < ?", start_time).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids)
+    Observation.elastic_index!(ids: ids, sleep: 2)
   end
 
 end

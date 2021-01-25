@@ -114,7 +114,10 @@ class StatsController < ApplicationController
       return render_404
     end
     delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
-      @job = YearStatistic.delay( priority: USER_PRIORITY ).generate_for_user_year( current_user.id, @year )
+      @job = YearStatistic.delay(
+        priority: USER_PRIORITY,
+        unique_hash: "YearStatistic::generate_for_user_year::#{current_user.id}::#{@year}"
+      ).generate_for_user_year( current_user.id, @year )
     end
     respond_to do |format|
       format.json do

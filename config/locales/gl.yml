@@ -849,6 +849,7 @@ gl:
   confirm_now: Confirmar agora
   confirm_your_info: Confirma a túa información
   connect_to_provider: "Conectarse a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas vinculadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr outra vez para autorizar os permisos de escritura
@@ -1285,7 +1286,6 @@ gl:
   export_with_private_coordinates: Exportar con Coordenadas Ocultas
   exporting: "Exportando..."
   external_taxon_including_children: Taxons esternos (incluíndo descendencia)
-  external_taxon_rank: Rango de taxon externo
   extinct: Extinto
   extinct_in_the_wild: Extinguido en estado silvestre
   extra_properties: Propiedades extra
@@ -4115,7 +4115,6 @@ gl:
   view_moderation_history_for_this_comment: Ver Histórico de Moderación para este Comentario
   view_more: Ver máis
   view_more_about_x: "Ver máis sobre %{x}"
-  view_more_observations_from: Ver máis observacións de
   view_more_observations_near_x_place: "Ver máis observacións preto de %{place} en <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "Ver máis observacións do proxecto %{project} en <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Ver máis observacións de %{taxon} en <nobr>%{site_name} »</nobr>"
@@ -4308,7 +4307,6 @@ gl:
   you_can_choose_observations_associated: Podes seleccionar observacións para asocialas con este artigo do diario.
   you_can_edit_this_default_check_list_because: |
     Podes editar esta listaxe de verificación predeterminada porque es un administrador, pero non debería haber necesidade de facelo.
-  you_can_only_destroy_taxa_you_created: "Só podes destruir taxons que ti creaches, e non podes destruir taxons que están sendo usados en cambios de taxon."
   you_can_only_block_three_users: Só podes bloquear tres usuarios
   you_can_show_the_boundary_of: Podes mostrar os límites do lugar na páxina do teu proxecto só se o lugar ten límites.
   you_can_sign_free_at: "Podes rexistrarse nunha conta gratis con %{site_name} neste enlace"
@@ -4599,8 +4597,14 @@ gl:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar a túa conta?'
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación poderá:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Máis sobre %{application}
     observations:
       community_id:
@@ -5367,8 +5371,6 @@ gl:
           Creado vía <a href="https://www.inaturalist.org">iNaturalist</a> ou sitios web da<a href="%{url}">Rede de iNaturalist</a>
       year:
         donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
-        donate_desc_html: |
-          ¡Grazas por ser xeneroso/a có teu tempo, atención, experiencia e doazóns! iNaturalist é unha iniciativa sen ánimo de lucro conxunta da Academia de Ciencias De California e a Sociedade National Geographic. É levada a cabo por un <a href="%{team_url}">pequeno equipo</a> que fai todo o traballo de deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, ademáis de xestionar o apoio á comunidade, colaboracións e integracións para manter as cousas marchando (¡e crecendo rapidamente!). O programa depende de numerosas becas e doazóns, incluíndo regalos caritativos de menos de 0.2% dos contribuíntes. Agradecemos particularmente ós nosos Patrocinadores Mensuais, cuxos regalos recorrentes nos fan posible planificar para o futuro. Podes doar en máis de 30 moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos por facer de 2019 o meriande ano ata o de agora!
         inaturalist_network: Rede iNaturalist
         inaturalist_network_desc: |
           Bótalle unha ollada á Revisión do Ano para os membros da Rede iNaturalist.
@@ -5401,8 +5403,6 @@ gl:
         observation_streaks: Series de Observacións
         observation_streaks_color_desc: |
           A cor representa o número de días nunha escala logarítmica:
-        observation_streaks_desc: |
-          Unha serie de observacións é un periodo de tempo cando alguén saíu fóra e rexistrou observacións novas e verificables tódolos días. Aquí mostramos as series máis longas que comezaron este ano ou estaban progresando cando estas estatísticas foron xeradas.
         stats_generated_datetime: Estatísticas xeradas no %{datetime}
         store_prompt: |
           ¿Queres amosar o teu orgullo iNat onde queira que vaias? ¡Entra na Tenda iNat!
@@ -5648,8 +5648,6 @@ gl:
           any: Calquera
           joined: Proxectos ós que te uniches
           none: "Ningún, só ti podes engadir as túas observacións a proxectos"
-        prefers_community_taxa_desc: |
-          %{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. A identificación que compartimos cós nosos socios de dados é a identificación da comunidade, pero se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda será capaz de engadir identificacións, pero a opinión da comunidade non será favorecida perante a túa. Isto significa que as túas observacións non poderán optar ó grao de investigación, non sendo que tí esteas de acordo cá comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Cando pós a xeoprivacidade dunha observación "escurecida" ou "privada", aplicarase a mesma xeoprivacidade a tódalas outras observacións do mesmo día para dificutar que outra xente atope as coordenadas verdadeiras baseándose nas observacións feitas ó redor do mesmo tempo.
         prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
@@ -5659,7 +5657,7 @@ gl:
         prefers_no_tracking_label_desc_info_we_share: |
           A información que poderiamos compartir con estes terceiros inclúe
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          Enderezos IP (que poden ser empregados para derivar a ubicación con resolución a nivel cidade, e para rastrexarte por diferentes sitios web e servicios; repara que activamos a <a href="https://support.google.com/analytics/answer/2763052">anonimación de IP</a> en Google Analytics; Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy"> pode gardar enderezos IP</a> temporalmente)
+          Enderezos IP (que poden ser empregados para derivar a ubicación con resolución a nivel cidade, e para rastrexarte por diferentes sitios web e servicios; repara que activamos a <a href="https://support.google.com/analytics/answer/2763052">anonimación de IP</a> en Google Analytics; Firebase Crashlytics <a href="https://firebase.google.com/support/privacy"> pode gardar enderezos IP</a> temporalmente)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Detalles do buscador, como marca, modelo e versión
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

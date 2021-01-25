@@ -2,6 +2,7 @@ import iNaturalistJS from "inaturalistjs";
 import moment from "moment";
 import _ from "lodash";
 import { setConfig } from "../../../shared/ducks/config";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 import {
   incrementReviewed,
   decrementReviewed
@@ -224,6 +225,7 @@ function showNextObservation( ) {
       dispatch( hideCurrentObservation( ) );
       dispatch( showFinishedModal( ) );
     }
+    dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
   };
 }
 
@@ -244,6 +246,7 @@ function showPrevObservation( ) {
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );
     }
+    dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
   };
 }
 

@@ -9,54 +9,30 @@ $user-image-size: 65px;
   align-items: center;
 }
 
-.flex-end {
+.save-button {
   justify-content: flex-end;
-}
-
-.flex-start-xs {
+  .saved-time {
+    text-decoration: underline;
+    margin-right: 12px;
+  }
   @media (max-width: 767.99px) {
-    justify-content: flex-start;
+    flex-direction: row-reverse;
+    .saved-time {
+      text-decoration: underline;
+      margin-right: 0;
+      margin-left: 12px;
+    }
   }
 }
 
-.underline {
-  text-decoration: underline;
+.vertical-align {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
 }
 
-.custom-dropdown-width {
-  min-width: 275px;
-}
-
-.default-title-custom-dropdown {
-  text-align: start;
-  display: inline-block;
-  vertical-align: middle;
-  min-width: 275px;
-  min-height: 63px;
-}
-
-.network-min-height {
-  min-height: 36px;
-}
-
-.inat-affiliation-logo {
-  max-height: 33px;
-  max-width: 135px;
-}
-
-.inat-affiliation-title {
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 5px;
-}
-
-.blue-checkmark {
-  color: #2e78b8;
-  position: absolute;
-  right: 10px
-}
-
-.centered-column {
+.add-remove-user-photo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +46,11 @@ label.required {
     color: $alert-red;
     margin-left: 5px;
   }
+}
+
+.error-message {
+  color: $alert-red;
+  margin-bottom: 13px;
 }
 
 button.left-nav-item {
@@ -92,6 +73,12 @@ button.selected {
   color: white;
   background: $inat-green;
   min-width: 150px;
+  margin-top: 20px;
+  &:active,
+  &:focus,
+  &:hover {
+    color: white;
+  }
   &[disabled] {
     color: white;
     background: #cccccc;
@@ -106,18 +93,21 @@ button.selected {
   padding-left: 0px;
 }
 
-.btn-default.btn-margin {
+.btn-default.btn-remove-relationship {
   margin-top: 5px;
 }
 
-.btn-primary.btn-inat {
-  background-color: #337ab7 !important;
-  color: white;
-  border-color: #2e6da4 !important;
+#UserSettings {
+  .btn-primary.btn-inat {
+    background-color: #337ab7 !important;
+    color: white;
+    border-color: #2e6da4 !important;
+  }
 }
 
 .btn-save-text {
-  font-weight: 600px;
+  padding-top: 2px;
+  font-weight: 600;
   letter-spacing: 1.1px;
 }
 
@@ -130,42 +120,33 @@ button.selected {
   height: 522px;
 }
 
-.white-space {
-  white-space: normal;
-}
-
-.license {
-  width: 115px;
-  margin-left: 15px;
-  text-align: left;
-}
-
-.default-custom-dropdown-padding {
-  padding-top: 15px;
-}
-
-.default-title-custom-dropdown-image {
-  padding-bottom: 21px;
-}
-
 label.radio-button {
   margin-left: 10px;
   font-weight: bold !important;
 }
 
-.borderless {
-  border: none !important;
+#ApplicationsTable {
+  .table > thead > tr > th {
+    padding-left: 0px;
+  }
+  .table > tbody > tr > td {
+    padding-left: 0px;
+  }
+
+  .borderless {
+    border: none !important;
+  }
 }
 
 td.table-row {
   vertical-align: middle !important;
 }
 
-select.inherit-width {
+select.dropdown {
   max-width: none;
 }
 
-.margin-left {
+.checkbox-label {
   margin-left: 9px;
   display: inline !important;
 }
@@ -174,13 +155,9 @@ select.inherit-width {
   margin-left: 20px;
 }
 
-.margin-right {
+.relationship-label {
   margin-right: 8px;
   white-space: nowrap;
-}
-
-.margin-right-medium {
-  margin-right: 12px;
 }
 
 .remove-photo-margin {
@@ -199,7 +176,7 @@ select.inherit-width {
   margin-bottom: 13px;
 }
 
-.search-margin {
+.relationship-spacing {
   margin-bottom: 16px;
 }
 
@@ -222,7 +199,7 @@ select.inherit-width {
 }
 
 .user-description {
-  min-height: 115px;
+  min-height: 300px;
   resize: vertical;
 }
 
@@ -346,5 +323,144 @@ select.inherit-width {
   .icon-person {
     font-size: $user-image-size - 10;
     line-height: $user-image-size - 10;
+  }
+}
+
+.blue-checkmark {
+  color: #2e78b8;
+  position: absolute;
+  right: 10px
+}
+
+#AffiliationList {
+  // current network only
+  button {
+    min-width: 275px;
+  }
+
+  .current-network {
+    display: flex;
+    align-items: center;
+  }
+
+  .current-network-name {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // current network and dropdown logo
+  .network-logo {
+    max-height: 33px;
+    max-width: 135px;
+    margin-right: 12px;
+  }
+
+  // dropdown items
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+  }
+}
+
+#LicenseDropdown {
+  // current license only
+  button.dropdown-toggle {
+    min-width: 275px;
+    min-height: 66px;
+    text-align: left;
+  }
+
+  .current-license {
+    display: flex;
+    align-items: center;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // dropdown items
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+    min-height: 66px;
+  }
+}
+
+.license-row {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  min-height: 66px;
+}
+
+.license-image {
+  margin-right: 12px;
+}
+
+.no-license-description {
+  white-space: normal;
+  max-width: 233px;
+}
+
+.license-name {
+  width: 115px;
+  white-space: normal;
+  font-weight: bold;
+}
+
+.license-description {
+  margin-top: 9px;
+}
+
+.license-tag {
+  background-color: $inat-green;
+  color:white;
+  padding: 2px 4px !important;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.license-tag.wikimedia {
+  background-color: #2e78b8;
+}
+
+#relationships-filters {
+  display: flex;
+  flex-wrap: wrap;
+  .filter {
+    @extend .flex-no-wrap;
+    margin: 0 15px 10px 0;
+    &:last-child {
+      margin-right: 0px;
+    }
+    label {
+      margin-bottom: 0px;
+    }
   }
 }

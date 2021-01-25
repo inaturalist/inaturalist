@@ -216,6 +216,7 @@ en:
   # about_establishment_desc key or
   # https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: About Establishment Means
+  about_license_options: About License Options
   about_licenses: About licenses
   about_muting: About Muting
   # Header for a section describing taxon names
@@ -267,7 +268,7 @@ en:
   about_trusting_projects_overview: |-
     Granting access to your hidden coordinates will allow the managers of this
     project to see the true, unobscured location of of your observations in this
-    project. This is extremeley important in situations where scientists or
+    project. This is extremely important in situations where scientists or
     resource managers need access to exact coordinates for analysis and
     decision-making.
   # Header for a section listing all the project managers (admins and curators)
@@ -602,7 +603,13 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  # An app or service the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
+  application: Application
   applications: Applications
+  # Button label and section header when submitting a form to request to be a
+  # curator
+  apply_curator: Apply
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
   apply_fields: Apply fields
@@ -716,6 +723,9 @@ en:
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
+  # Abbreviation of "average," i.e. the sum of all values divided by the numer
+  # of values, and not a synonym of "typical" or "normal"
+  avg: Avg
   back: Back
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
@@ -996,8 +1006,14 @@ en:
   confirm_your_info: Confirm your info
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
+  # Label for a button to connect your iNat account to another account, e.g.
+  # connecting to Flickr
+  connect: Connect
   connect_to_provider: "Connect to %{provider}"
+  # Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Connected accounts
+  connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
+  connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
   connecting_to_facebook: "Connecting to Facebook..."
@@ -1133,7 +1149,6 @@ en:
   created_on: Created on
   creating_your_account: "Creating your account..."
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
-  creative_commons_licenses: Creative Commons Licenses
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: Critically Endangered
   css_description: This will get included after all other css on the page.
@@ -1147,6 +1162,145 @@ en:
   curating: Curating
   curation: Curation
   curator: Curator
+  # A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist site curators are trusted volunteers who have the ability to
+    edit iNaturalist's taxonomy and moderate user content. Site curators are
+    integral to iNaturalist, as they keep our taxonomy up-to-date and the
+    discourse on iNaturalist appropriate and civil. Below is a description
+    of what being a curator means. Please read it and, if you would like to
+    be a curator, carefully read through the
+    <a href="/pages/curator+guide" target="_blank">Curator Guide</a> then fill
+    out the application on this page.
+  # Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    You must explain why you want to become a curator
+  # Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Why do you want to be a curator?
+  # Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    If you want to edit iNaturalist's taxonomy, please provide an example or two
+    of taxonomic changes you would like to make, and include links to the proper
+    taxonomic authorities as listed in the Curator Guide
+  # Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    If you want to edit common names, please provide an example or two of
+    changes you would like to make
+  # Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    If you want to moderate behavior on iNaturalist, please provide an example
+    or two of Community Guideline violations and what you would do in those
+    situations
+  # Header
+  curator_application_how_curators_lose_their_powers: |
+    How a Curator Loses Their Powers
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat staff may remove curatorial powers if a curator repeatedly:
+  # Description of one way a curator may lose their curator status; part of list
+  # of things, so you might imagine it is preceded with "iNat staff may remove
+  # curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Disregards the policies in the Curator Guide.
+  # Description of one way a curator may lose their curator status; part of list
+  # of things, so you might imagine it is preceded with "iNat staff may remove
+  # curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Fails to demonstrate appropriate behavior themselves.
+  # Message shown when the viewer is not yet elligible to apply to become a
+  # curator
+  curator_application_inelligible: |
+    In order to apply to be a site curator you must have had an account for 60
+    days or more and have added 100 improving identifications to anyone's
+    observations, including your own (you've added %{num_idents}). When you've
+    met both of those requirements, return here and you'll be able to submit the
+    application.
+  curator_application_inelligible_error: |
+    In order to apply to be a site curator you must have an account for 60
+    days or more and have added 100 improving identifications to anyone's
+    observations, including your own.
+  # Message shown when a curator application has been succesfully submitted
+  curator_application_success: Curator application submitted
+  # Header
+  curator_application_what_curators_can_do: What Curators Can Do
+  # Description of a curator's ability to edit the taxonomy; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html:
+    Edit iNaturalist's taxonomy following the policies laid out in the <a
+    href="/pages/curator+guide#policies" target="_blank">Policies section of
+    the Curator Guide</a>. This means they can add, split, swap, merge,
+    deactivate, and delete taxa on iNaturalist. They can also edit conservation
+    statuses and taxon geoprivacy, as well as edit and manage common names added
+    by any user.
+  # Description of a curator's ability to hide comments; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Hide comments and suspend users for violating the <a
+    href="/pages/community+guidelines" target="_blank">Community
+    Guidelines</a>.
+  # Description of a curator's ability to resolve flags; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Resolve <a href="/flags" target="_blank">flags</a> on taxa and user content.
+  # Description of a curator's ability to edit wiki pages; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Create and edit wiki pages, such as the <a href="/pages/help"
+    target="_blank">iNaturalist FAQ page</a>.
+  # Description of a curator's ability to edit places; part of a list of
+  # things curators can do, so you might imagine it is preceded with "Curators
+  # can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Edit Community-curated Places and upload KML files larger than 1 MB (but
+    smaller than 5 MB).
+  # Header
+  curator_application_what_curators_cannot_do: What Curators Cannot Do
+  # Description of the fact that a curator cannot change certain attributes of
+  # observations any more than anyone else can; part of a list of things
+  # curators can do, so you might imagine it is preceded with "Curators
+  # cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Affect the Community Taxon or Data Quality of an observation more than any
+    other user can.
+  # Description of the fact that a curator cannot commit taxon changes for
+  # complete taxa; part of a list of things curators can do, so you might
+  # imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Commit taxon changes for <a href="/pages/curator+guide#completetaxa"
+    target="_blank">complete taxa</a>.
+  # Description of the fact that a curator cannot delete content; part of a list
+  # of things curators can do, so you might imagine it is preceded with
+  # "Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Delete content made by other users.
+  # Description of the fact that a curator cannot read other peoples' messages;
+  # part of a list of things curators can do, so you might imagine it is
+  # preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Read direct messages by other people.
+  # Title of a page where people apply to become a curator
+  curator_application_title: Curator Application
+  # Header followed by a list
+  curator_application_you_should_apply_if: |
+    You Should Only Apply to be a Curator If:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    You have been adding identifications and/or observations for a few months
+    and intend to continue.
+  # A requirement for becoming a curator; part of a list, so you might imagine
+  # it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    You are willing and able to perform curation work on a regular basis. If you
+    only want to add a few taxa, please just request that existing curators add
+    these taxa by adding flags to higher-level taxa.
+  # A requirement for becoming a curator; part of a list, so you might imagine
+  # it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    You can model appropriate behavior on iNaturalist and abide by the Community
+    Guidelines. Along with curatorial powers comes the expectation that you will
+    be an exemplary user of iNaturalist.
   curators_changed_for_x_html: "Curators changed for %{x}"
   curators: Curators
   curators_can_remove_observations_from:
@@ -1230,7 +1384,8 @@ en:
   default_observation_license: Default observation license
   default_photo_license: Default photo license
   default_search_place: Default Search Place
-  default_search_place_description: This will be your default place for all searches in Explore.
+  default_search_place_description: |
+    This will be your default place for all searches in Explore and Identify.
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
@@ -1318,6 +1473,10 @@ en:
   disable_comments: Disable comments
   disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
+  # Label for a button to disconnect your iNat account from another account,
+  # e.g. disconnecting your Flickr account
+  disconnect: Disconnect
+  disconnect_caps: DISCONNECT
   disconnect_provider: "Disconnect %{provider}"  
   display: Display
   display_link_to_checklist: Display link to project list from project page
@@ -1494,10 +1653,11 @@ en:
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
+  # A third-party app or service the user has authorized to access their iNat
+  # account, e.g. Flickr
   external_applications: External Applications
+  external_applications_description: External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.
   external_taxon_including_children: External taxon (including children)
-  external_taxon_rank: External taxon rank
-  extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
   extra_properties: Extra Properties
@@ -1512,6 +1672,7 @@ en:
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
   failed_to_save_record_with_errors: "Failed to save record: %{errors}"
+  failed_to_unlink_your_account: Failed to unlink your account
   'false': 'False'
   # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
@@ -1677,6 +1838,7 @@ en:
   fungi:
     one: fungus
     other: fungi
+  gbif: GBIF
   gbif_occurrences: GBIF Occurrences
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
@@ -1875,6 +2037,7 @@ en:
   inat_believes_this_is_a_complete_listing: "%{site_name} believes this is a complete listing of this taxon in this place."
   inat_user_profile: "%{site_name}: %{user}'s Profile"
   inaturalist_activity_notifications: "%{site_name} Activity Notifications"
+  # Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applications"
   inaturalist_is_a_joint_initiative: "%{site_name} is a joint initiative of the California Academy of Sciences and the National Geographic Society."
   inaturalist_places: "%{site_name} Places"
@@ -2170,6 +2333,7 @@ en:
     <a href="/login">Log in</a> or <a href="/signup">sign up</a> to add identifications.
   log_out: Log out
   log_out_caps: LOG OUT
+  # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
   login_slash_username: Login / username
@@ -2275,6 +2439,21 @@ en:
   message_from_user_at_time: From %{user} at %{time}
   message_from_user_on_date: From %{user} on %{date}
   messages: Messages
+  messages_new_correspondent_it_looks_like: |
+    It looks like you've never corresponded with this person before, so please
+    keep these things in mind:
+  messages_new_correspondent_specimens: |
+    Be careful about requests for specimens or hidden data. Try to verify the
+    identity of the person making the request and if they are asking for
+    specimens, ask to see their permit.
+  messages_new_correspondent_personal: |
+    Don't disclose personal information about yourself to people you don't
+    trust.
+  messages_new_correspondent_actions_html: |
+    If you suspect this person is violating our <a href="%{tos_url}"
+    target="_blank">Terms of Service</a> or not acting in accordance with our <a
+    href="%{guidelines_url}" target="_blank">Community Guidelines</a>, please
+    flag this message below.
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
@@ -2322,6 +2501,8 @@ en:
     date_long: "MMMM D, YYYY"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
@@ -2592,6 +2773,10 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
+  observation_belongs_to_project_requiring_field: |
+    The observation belongs to a project that requires this field. The
+    observation must be removed from that project before this field value can be
+    deleted.
   observation_brief_something_on_day: "Something on %{day}"
   observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
   observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
@@ -3698,6 +3883,8 @@ en:
   reviewed: Reviewed
   revoke: Revoke
   revoke_caps: REVOKE
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   revoke_external_application: "Revoke %{site_name}?"
   rg_observations: RG Observations
   role: Role
@@ -4016,6 +4203,7 @@ en:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon merge"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon split"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscribe%{tag_end} to comments on this taxon drop"
+  subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
   subscribe_to_places_to: |
@@ -4036,6 +4224,8 @@ en:
   suggest_an_identification: Suggest an Identification
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   suggestions: Suggestions
+  suitable_for_the_global_biodiversity_information_facility: Suitable for the Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
   support_inaturalist: Support iNaturalist
@@ -4343,6 +4533,12 @@ en:
     associated stats`, e.g. rejecting taxa that are not within the list taxon
     or aren't of the selected rank. It will not add any new taxa. It may take
     a few minutes.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    This will remove iNaturalist's ability to access this account on your behalf 
+    until you grant access again. You may need to change your settings on the 
+    external site to completely prevent access.
+  # Application is a third-party app or service the user has authorized to
+  # access their iNat account
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
@@ -4616,7 +4812,7 @@ en:
   view_moderation_history_for_this_comment: View Moderation History for this Comment
   view_more: View More
   view_more_about_x: "View More About %{x}"
-  view_more_observations_from: View More Observations from
+  view_more_observations_from_this_place: View more observations from this place
   view_more_observations_near_x_place: "View more observations near %{place} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
@@ -4849,7 +5045,9 @@ en:
   you_can_edit_this_default_check_list_because: |
     You can edit this default check list because you're an
     admin, but there shouldn't really be a need to do so.
-  you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
+  you_can_only_destroy_taxa_you_created2: |
+    You can only delete taxa you created that aren't associated with taxon
+    changes, identifications, or other content
   you_can_only_block_three_users: You can only block three users
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
@@ -5302,8 +5500,14 @@ en:
     oauth:
       authorizations:
         new:
+          # Application is a third-party app or service the user is about to
+          # authorize to access their iNat account
           authorize_application_to_use_your_account?: Authorize %{application} to use your account?
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           this_application_will_be_able_to_colon: "This application will be able to:"
+          # Application is a third-party app or service the user has authorized to
+          # access their iNat account
           more_about_application: More about %{application}
     observations:
       community_id:
@@ -5332,7 +5536,7 @@ en:
         you_have_opted_out: You have opted out of community identifications
         opt_in_for_this_observation: Opt in for this observation
         your_id_does_not_match: |
-          Your ID (<span class="bold">%{taxon_name}</span>) does not match the the community ID
+          Your ID (<span class="bold">%{taxon_name}</span>) does not match the community ID
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observation fields."
       captive_help_html: |
         Was the organism <strong>cultivated</strong> or
@@ -5796,6 +6000,9 @@ en:
           The observation requirements of the following project have recently
           changed:
         subject: Project observation requirements changed for %{project}
+        wondering_what_this_means_html: |
+          Wondering what "geoprivacy" is?
+          <a href="%{url}">Learn more in our documentation</a>.
         you_can_change_html: |-
           You can change your preferences or leave the project on the
           <a href="%{url}">project's page</a>.
@@ -6466,6 +6673,19 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        compare_desc: |
+          How did this year compare to your previous years? With three years of
+          usage or more we can start comparing yearly activity metrics. The
+          green bar shows this year, the white vertical bar shows last year, and
+          the gray background areas show the lowest and highest years, as well
+          as the average for all years. Stats do not include years where the
+          count was zero.
+        compare_site_desc: |
+          How did this year compare to previous years? The green bar shows this
+          year, the white vertical bar shows last year, and the gray background
+          areas show the lowest and highest years, as well as the average for
+          all years.
+        compared_to_previous_years: Compare to Previous Years
         donate_title: "Special Thanks to All Our Supporters"
         donate_desc_html: |
           Thank you for being generous with your time, attention, expertise, and
@@ -6478,12 +6698,14 @@ en:
           <a href="%{seek_url}">Seek by iNaturalist</a>, in addition to managing
           the community support, collaborations, and integrations that keep
           things running (and growing rapidly!). The program relies on numerous
-          grants and donations, including charitable gifts from less than 0.2%
-          of contributors. We are especially grateful to Monthly Supporters
-          whose recurring gifts help us plan for the future. You can donate in
-          more than 30 currencies to support iNaturalist’s core operations.
-          Thank you to everyone for your part in making 2019 iNaturalist’s
-          biggest year yet!
+          grants and donations, including charitable gifts from less than tiny
+          fraction of contributors. We are especially grateful to Monthly
+          Supporters whose recurring gifts help us plan for the future. You can
+          donate in multiple currencies to support iNaturalist’s core
+          operations. Thank you to everyone for your part in making %{year}
+          iNaturalist’s biggest year yet!
+        donors: Donors
+        donors_guide_label_our_goal_is_1000: Our goal is 1,000 recurring donors per month
         inaturalist_network: iNaturalist Network
         inaturalist_network_desc: |
           Check out the Year in Review for the members of the iNaturalist Network.
@@ -6514,6 +6736,10 @@ en:
           currently affiliated with %{site_name} joined iNaturalist.
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
+        # Label when a mark on a chart has a value that is too small to
+        # visualize. low_value is the value (usually a number), low_desc is
+        # a description of what that value represents
+        low_too_small: "Low: %{low_value} (%{low_desc}), too small to show"
         new_species_desc: |
           Species that were observed for the first time on %{site_name} this year.
           Showing %{x} of <a href="%{url}">%{y} species</a>.
@@ -6527,7 +6753,12 @@ en:
           include higher or lower level taxa, so an observation identified as
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
+        new_species_per_year: New Species / Year
+        new_species_per_year_by_date_added: By date added
+        new_species_per_year_by_date_observed: By date observed
         obs_in_year: Obs in %{year}
+        # Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
@@ -6544,15 +6775,24 @@ en:
           <a href="https://www.altmetric.com">Altmetric</a>. Information
           about data usage courtesy of our friends at the
           <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Observations / Year
+        observations_per_year_by_date_added: By date added
+        observations_per_year_by_date_observed: By date observed
         # Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observation Streaks
         observation_streaks_color_desc: |
           Color represents the number of days on a logarithmic scale:
-        observation_streaks_desc: |
-          An observation streak is a period of time when someone got outside and
-          recorded new, verifiable observations every single day. Here we're
-          showing the longest streaks that began this year or were in progress
-          when these stats were generated.
+        observation_streaks_desc2: |
+          An observation streak is a period of at least five days when someone
+          got outside and recorded new, verifiable observations every single
+          day. Here we're showing the longest streaks that began this year or
+          were in progress when these stats were generated (for individual users
+          we're also including streaks that ended this year).
+        # Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Recurring
+        species_per_year: Species / Year
+        species_per_year_by_date_added: By date added
+        species_per_year_by_date_observed: By date observed
         stats_generated_datetime: Stats generated on %{datetime}
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat
@@ -7047,7 +7287,7 @@ en:
           note that we have enabled
           <a href="https://support.google.com/analytics/answer/2763052">IP anonymization</a>
           in Google Analytics; Firebase Crashlytics
-          <a href="<a href="https://firebase.google.com/support/privacy">
+          <a href="https://firebase.google.com/support/privacy">
           may store IP addresses</a> temporarily)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Browser details, like make, model, and version
@@ -7981,12 +8221,12 @@ en:
         default: "@n"
   # Title of a section warning the user about something
   warning_title: Warning
+  wikimedia: Wikimedia
   wild: Wild
   will_paginate:
     previous_label: "&#8592; Prev"
     next_label: "Next &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "You have not authorized any applications to use your iNaturalist account."
   you_will_no_longer_be_following_or_trusting: "You will no longer be following or trusting %{user}"
   # Descending alphabetical sort option. Could be alternatively be translated as
   # "Alphabetical (descending)"

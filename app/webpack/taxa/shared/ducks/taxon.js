@@ -28,6 +28,19 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
+      newState.counts = {};
+      delete newState.description;
+      delete newState.fieldValues;
+      delete newState.interactions;
+      delete newState.links;
+      delete newState.names;
+      delete newState.rare;
+      delete newState.recent;
+      delete newState.similar;
+      delete newState.species;
+      delete newState.taxonChange;
+      delete newState.trending;
+      delete newState.wanted;
       break;
     case SET_DESCRIPTION:
       newState.description = {

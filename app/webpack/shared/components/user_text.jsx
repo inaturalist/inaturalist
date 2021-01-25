@@ -119,10 +119,7 @@ class UserText extends React.Component {
         breaks: true
       } );
       md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
-      // If we're truncating, don't use the default paragraph insertion
-      // markdown-it will apply and instead replace newlines with br tags
       if ( truncate && !more ) {
-        html = text.trim( ).replace( /\n/gm, " <br />" );
         html = md.renderInline( html );
       } else {
         html = md.render( html );

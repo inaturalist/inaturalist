@@ -865,6 +865,7 @@ lt:
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
   connect_to_provider: "Prisijungti prie %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
   connecting_to_facebook: "Prisijungiama prie Facebook..."
@@ -3782,7 +3783,6 @@ lt:
   view_moderation_history_for_this_comment: Rodyti šio komentaro moderavimo istoriją
   view_more: Rodyti daugiau
   view_more_about_x: "Rodyti daugiau apie: %{x}"
-  view_more_observations_from: Žiūrėti daugiau stebėjimų iš
   view_more_observations_near_x_place: "Rodyti daugiau stebėjimų prie %{place} <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Rodyti daugiau stebėjimų iš %{project} <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Rodyti daugiau %{taxon} stebėjimų <nobr>%{site_name} &raquo;</nobr>"
@@ -4099,6 +4099,8 @@ lt:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Daugiau apie %{application}
     observations:
       community_id:
@@ -4391,7 +4393,7 @@ lt:
         prefers_no_tracking_label_desc_info_we_share: |
           Informacija, kuria dalinamės su trečiosiomis šalimis gali būti
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP adresai (kurie gali būti naudojami nustatyti vietą miesto lygiu ir sekti jus per skirtingus tinklalapius bei paslaugas; atkreipkite dėmesį, kad mes įgalinome Google Analytics <a href="https://support.google.com/analytics/answer/2763052">IP anonimizaciją</a> ; Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy"> gali laikinai saugoti IP adresus</a>)
+          IP adresai (kurie gali būti naudojami nustatyti vietą miesto lygiu ir sekti jus per skirtingus tinklalapius bei paslaugas; atkreipkite dėmesį, kad mes įgalinome Google Analytics <a href="https://support.google.com/analytics/answer/2763052">IP anonimizaciją</a> ; Firebase Crashlytics <a href="https://firebase.google.com/support/privacy"> gali laikinai saugoti IP adresus</a>)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Naršyklės detalės, pavyzdžiui versija
         prefers_no_tracking_label_desc_info_we_share_crash_details: |

@@ -689,7 +689,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     if ( urlParams.created_on ) {
       $scope.params.createdDateType = 'exact';
-    } else if ( urlParams.created_d1 ) {
+    } else if ( urlParams.created_d1 || urlParams.created_d2 ) {
       $scope.params.createdDateType = 'range';
     }
     $scope.currentView = $scope.currentView || $scope.defaultView;
@@ -1163,6 +1163,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.map ) { return; }
     var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
     $( "#map" ).taxonMap({
+      placement: "observations-search",
       urlCoords: false,
       mapType: defaultMapType,
       showAllLayer: false,

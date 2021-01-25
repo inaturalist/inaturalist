@@ -54,7 +54,7 @@ const Relationships = ( {
           <div>
             <button
               type="button"
-              className="btn btn-default btn-margin"
+              className="btn btn-default btn-remove-relationship"
               onClick={( ) => showModal( user.id, friendUser.login )}
             >
               {I18n.t( "remove_relationship" )}
@@ -80,10 +80,10 @@ const Relationships = ( {
 
   const showFilters = ( ) => (
     <div>
-      <div className="col-md-3">
-        <div className="row flex-no-wrap search-margin">
-          <label className="margin-right" htmlFor="name">{I18n.t( "search" )}</label>
-          <div className="input-group margin-right-medium">
+      <div id="relationships-filters">
+        <div className="filter">
+          <label className="relationship-label" htmlFor="name">{I18n.t( "search" )}</label>
+          <div className="input-group">
             <UserAutocomplete
               resetOnChange={false}
               afterSelect={( { item } ) => searchUsers( item )}
@@ -93,22 +93,16 @@ const Relationships = ( {
             />
           </div>
         </div>
-      </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
-        <div className="row flex-no-wrap">
-          <label className="margin-right" htmlFor="following">{I18n.t( "following" )}</label>
+        <div className="filter">
+          <label className="relationship-label" htmlFor="following">{I18n.t( "following" )}</label>
           {renderDropdown( "following" )}
         </div>
-      </div>
-      <div className="col-md-2 col-sm-3 col-xs-4 margin-right-medium">
-        <div className="row flex-no-wrap search-margin">
-          <label className="margin-right" htmlFor="trusted">{I18n.t( "trusted" )}</label>
+        <div className="filter">
+          <label className="relationship-label" htmlFor="trusted">{I18n.t( "trusted" )}</label>
           {renderDropdown( "trusted" )}
         </div>
-      </div>
-      <div className="col-md-3 col-sm-4 col-xs-4">
-        <div className="row flex-no-wrap">
-          <label className="margin-right" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
+        <div className="filter">
+          <label className="relationship-label" htmlFor="sort_by">{I18n.t( "sort_by" )}</label>
           <select
             className="form-control"
             id="sort_by"
@@ -138,10 +132,8 @@ const Relationships = ( {
 
   return (
     <div>
-      <SettingsItem>
-        <h4>{I18n.t( "relationships_user_settings" )}</h4>
-        {showFilters( )}
-      </SettingsItem>
+      <h4>{I18n.t( "relationships_user_settings" )}</h4>
+      {showFilters( )}
       {relationships.length === 0 && showEmptyState( )}
       <table className={`table divider ${relationships.length === 0 ? "hidden" : null}`}>
         <thead>

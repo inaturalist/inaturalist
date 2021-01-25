@@ -16,63 +16,62 @@ const Account = ( {
   setModalState,
   sites
 } ) => {
-  const currentNetworkAffiliation = sites.filter( site => site.id === profile.site_id )[0];
+  const siteId = profile.site_id || 1;
+  const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
+
+  // these locales are not available for all regions (like "en-US")
+  // so taking the list of keys from the english version
+  const localeListKeys = Object.keys( I18n.t( "locales", { locale: "en" } ) );
+
+  const setLocale = ( ) => {
+    const { locale } = profile;
+
+    if ( localeListKeys.includes( locale ) ) {
+      return locale;
+    }
+    // this provides fallbacks with users for unsupported locales, like "en-US"
+    const twoLetterLanguageCode = locale.split( "-" )[0];
+    return localeListKeys.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
+  };
+
+  const localeList = Object.keys( I18n.t( "locales", { locale: "en" } ) );
 
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
   );
 
-  const createLocaleList = ( ) => Object.keys( I18n.t( "locales" ) ).map(
-    locale => (
-      <option value={locale} key={locale}>
-        {I18n.t( `locales.${locale}`, { locale } )}
-      </option>
-    )
-  );
+  const createLocaleList = ( ) => localeList.map( locale => (
+    <option value={locale} key={locale}>
+      {I18n.t( `locales.${locale}`, { locale } )}
+    </option>
+  ) );
 
-  const showNetworkLogo = ( id, logo ) => (
-    <img
-      className="inat-affiliation-logo margin-right-medium"
-      alt={`inat-affiliation-logo-${id}`}
-      src={logo}
-    />
-  );
+  const showNetworkLogo = ( id, logo ) => <img className="network-logo" alt={`inat-affiliation-logo-${id}`} src={logo} />;
 
-  const showCurrentNetwork = id => (
-    <div className="default-title-custom-dropdown network-min-height">
-      {showNetworkLogo( id, currentNetworkAffiliation.icon_url )}
-      <div className="text-muted inat-affiliation-title">
-        {sites.filter( site => site.id === id )[0].name}
+  const showCurrentNetwork = ( ) => (
+    <div className="current-network">
+      {showNetworkLogo( siteId, currentNetworkAffiliation.icon_url )}
+      <div className="text-muted current-network-name">
+        {currentNetworkAffiliation.name}
       </div>
+      <div className="caret" />
     </div>
   );
 
-  const createINatAffiliationList = ( ) => {
-    const menuItems = sites.map( site => {
-      const { id, name } = site;
+  const createINatAffiliationList = ( ) => sites.map( site => {
+    const { id, name } = site;
 
-      return (
-        <MenuItem
-          key={`inat-affiliation-logo-${id}`}
-          eventKey={id}
-          className="inat-affiliation-width"
-        >
-          <span className="flex-no-wrap">
-            {showNetworkLogo( id, site.icon_url )}
-            <div className="text-muted">{name}</div>
-            {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-          </span>
-        </MenuItem>
-      );
-    } );
-
-    // add a MenuItem divider between all the first and last items
-    // using this instead of my own div because it's automatically styled
-    // to be the same width as the menu
-    return menuItems.map( ( e, i ) => (
-      i < menuItems.length - 1 ? [e, <MenuItem divider key={`divider-${i.toString( )}`} />] : [e]
-    ) ).reduce( ( a, b ) => a.concat( b ) );
-  };
+    return (
+      <MenuItem
+        key={`inat-affiliation-logo-${id}`}
+        eventKey={id}
+      >
+        {showNetworkLogo( id, site.icon_url )}
+        <div className="text-muted">{name}</div>
+        {siteId === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+      </MenuItem>
+    );
+  } );
 
   return (
     <div className="row">
@@ -80,13 +79,13 @@ const Account = ( {
         <h4>{I18n.t( "account" )}</h4>
         <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
           <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control inherit-width" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
             {createTimeZoneList( )}
           </select>
         </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-          <select id="user_locale" className="form-control inherit-width" value={profile.locale} name="locale" onChange={handleInputChange}>
+          <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
             {createLocaleList( )}
           </select>
         </SettingsItem>
@@ -97,6 +96,7 @@ const Account = ( {
             initialPlaceID={profile.search_place_id}
             bootstrapClear
             afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
+            afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
           />
         </SettingsItem>
         <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
@@ -118,11 +118,12 @@ const Account = ( {
       <div className="col-md-1" />
       <div className="col-md-5 col-sm-10">
         <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-          <div className="stacked">
+          <div className="stacked" id="AffiliationList">
             <DropdownButton
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
-              title={showCurrentNetwork( profile.site_id )}
+              title={showCurrentNetwork( )}
+              noCaret
             >
               {createINatAffiliationList( )}
             </DropdownButton>

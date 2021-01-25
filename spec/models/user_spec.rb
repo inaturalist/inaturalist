@@ -173,6 +173,19 @@ describe User do
       expect( u.name ).to eq name
     end
 
+    it "should strip an email out of the name" do
+      email = "foo@bar.com"
+      u = User.make!( name: email )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "this is my email: #{email}" )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "#{email} is my email" )
+      expect( u.name ).not_to include email
+    end
+
+    it "should allow @ sign in name if it doesn't look like an email" do
+      expect( User.make!( name: "@username" ) ).to be_valid
+    end
   end
 
   describe "update" do
@@ -1308,6 +1321,35 @@ describe User do
         observed_on_string: 1.week.ago.to_s
       )
       expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
+    end
+  end
+
+  describe "create_from_omniauth" do
+    let(:email) { Faker::Internet.email }
+    let(:auth_info) { {
+      "info" => {
+        "email" => email,
+        "name" => email
+      },
+      "extra" => {
+        "user_hash" => {
+          "email" => email
+        }
+      }
+    } }
+    it "should not allow an email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.email ).to eq email
+      expect( u.name ).not_to include email
+    end
+    it "should not automatically suggest something like the email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.name ).to be_blank
+    end
+    it "should not automatically suggest something like the email in the login field" do
+      email_login_suggestion = User.suggest_login( email )
+      u = User.create_from_omniauth( auth_info )
+      expect( u.login ).not_to include email_login_suggestion
     end
   end
 

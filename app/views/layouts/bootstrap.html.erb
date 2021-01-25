@@ -180,6 +180,7 @@
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
       var SITE = {
+        id: <%= @site.id %>,
         name: "<%= @site.name %>",
         short_name: "<%= @site.site_name_short %>",
         help_email: "<%= @site.email_help %>",
@@ -196,6 +197,7 @@
           square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
         }
       };
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
     </script>
     <%= javascript_include_tag "bootstrap_bundle" %>
     <script type="text/javascript">

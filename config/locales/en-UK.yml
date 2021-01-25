@@ -9,6 +9,20 @@ en-GB:
       new:
         project_background_color: Project Summary Background Colour
         project_background_color_help: Make sure to choose a colour dark enough so the white overlaid text is legible.
+    stats:
+      year:
+        compare_desc: |
+          How did this year compare to your previous years? With three years of
+          usage or more we can start comparing yearly activity metrics. The
+          green bar shows this year, the white vertical bar shows last year, and
+          the grey background areas show the lowest and highest years, as well
+          as the average for all years. Stats do not include years where the
+          count was zero.
+        compare_site_desc: |
+          How did this year compare to previous years? The green bar shows this
+          year, the white vertical bar shows last year, and the grey background
+          areas show the lowest and highest years, as well as the average for
+          all years.
   date:
     abbr_month_names:
       - 
