@@ -59,7 +59,7 @@ class IdentificationsController < ApplicationController
   end
     
   def show
-    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.uuid}")
   end
   
   def by_login
