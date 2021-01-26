@@ -170,10 +170,13 @@ end
 
 describe TripsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
-    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
   end
   it_behaves_like "a TripsController"
 end
