@@ -22,3 +22,6 @@ RAILS_ENV=test bundle exec rake --trace db:setup
 
 echo "Setting up ES"
 RAILS_ENV=test bundle exec rake --trace es:rebuild
+
+echo "Building translation JS files"
+RAILS_ENV=test bundle exec rake --trace inaturalist:generate_translations_js
