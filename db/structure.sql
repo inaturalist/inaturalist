@@ -2819,7 +2819,6 @@ CREATE TABLE public.observations (
     positional_accuracy integer,
     private_latitude numeric(15,10),
     private_longitude numeric(15,10),
-    private_positional_accuracy integer,
     geoprivacy character varying(255),
     quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
@@ -10365,4 +10364,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 INSERT INTO schema_migrations (version) VALUES ('20201023174221');
 
 INSERT INTO schema_migrations (version) VALUES ('20201118012108');
+
+INSERT INTO schema_migrations (version) VALUES ('20210125233250');
 

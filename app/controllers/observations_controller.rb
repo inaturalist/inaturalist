@@ -2692,7 +2692,7 @@ class ObservationsController < ApplicationController
     only = (first + Observation::CSV_COLUMNS).uniq
     except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent cached_tag_list)
     unless options[:show_private] == true
-      except += %w(private_latitude private_longitude private_positional_accuracy)
+      except += %w(private_latitude private_longitude private_place_guess)
     end
     only = only - except
     unless @ofv_params.blank?
