@@ -79,19 +79,19 @@ sv:
     one: "%{count} bild"
     other: "%{count} bilder"
   x_new_species:
-    one: "1 ny art"
+    one: "%{count} ny art"
     other: "%{count} nya arter"
   x_new_users:
     one: '%{count} ny användare'
     other: '%{count} nya användare'
   x_species:
-    one: '1 art'
+    one: '%{count} art'
     other: '%{count} arter'
   x_species_html:
-    one: "<span class='count'>1</span> art"
+    one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
   x_species_link_html:
-    one: "<a href='%{url}'>1 art</a>"
+    one: "<a href='%{url}'>%{count} art</a>"
     other: "<a href='%{url}'>%{count} arter</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} förslag filtrerades på:"
@@ -100,31 +100,31 @@ sv:
     one: "%{count} taxon"
     other: "%{count} taxa"
   x_taxa_observed_html:
-    one: "<span class='count'>1</span> observerat taxon"
+    one: "<span class='count'>%{count}</span> observerat taxon"
     other: "<span class='count'>%{count}</span> observerade taxa"
   x_research_grade_observations_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet"
+    one: "<span class='antal'>%{count}</span> observation av forskningskvalitet"
     other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet"
   x_research_grade_observations_to_species_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet bestämd till art eller lägre"
+    one: "<span class='antal'>%{count}</span> observation av forskningskvalitet bestämd till art eller lägre"
     other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet bestämda till art eller lägre"
   x_sounds:
     one: "%{count} ljud"
     other: "%{count} ljud"
   x_taxa_curated_html:
-    one: "<span class='antal'>1</span> förvaltat taxon"
+    one: "<span class='antal'>%{count}</span> förvaltat taxon"
     other: "<span class='antal'>%{count}</span> förvaltade taxa"
   x_taxa_matching_current_filters:
-    one: "1 taxon matchar nuvarande filter"
+    one: "%{count} taxon matchar nuvarande filter"
     other: "%{count} taxa matchar nuvarande filter"
   x_taxon_changes_added_html:
-    one: "<span class='antal'>1</span> taxonändring tillagd"
+    one: "<span class='antal'>%{count}</span> taxonändring tillagd"
     other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
   _100_day_trends: 100-dagarstrend
   _percent_ID_d: "% bestämda"
   a_community_for_naturalist: En gemenskap för naturforskare
   a_default_taxon_name_will_automatically_created: |
-    Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
+    Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon kommer du kunna lägga till andra namn här (vardagliga namn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -154,7 +154,7 @@ sv:
   about_blocking: Om blockering
   about_charts: Om diagram
   about_community_taxa: Om gemenskapstaxa
-  about_complete_taxa: Om fullständiga taxa
+  about_complete_taxa: Om kompletta taxa
   about_conservation_status: Om bevarandestatus
   about_editing_observation_fields: Om redigering av observationsfält
   #Header for a section explaining Establishment Means. See the
