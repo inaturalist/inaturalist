@@ -250,7 +250,8 @@ class Emailer < ActionMailer::Base
   def curator_application( user, application )
     set_site
     opts = set_site_specific_opts
-    opts[:to] = CONFIG.help_email.to_s.sub( "@", "+curator@" )
+    # Always send this email to iNat staff
+    opts[:to] = Site.default.email_help.to_s.sub( "@", "+curator@" )
     opts[:from] = user.email || opts[:from]
     opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
     @user = user
