@@ -450,11 +450,23 @@ namespace :inaturalist do
       end
     end
 
-    # output what should be the new contents of app/assets/javascripts/i18n/translations.js
-    File.open(output_path, "w") do |file|
-      file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translations|
+    # Make a JS file for translations in each locale
+    all_translations.sort.each do |locale, translations|
+      locale_file_path = "app/assets/javascripts/i18n/translations/#{locale}.js"
+      File.open( locale_file_path, "w" ) do |file|
+        file.puts "I18n.translations || (I18n.translations = {});"
         file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
+        # Add translations for each locale name translated into that locale's
+        # language so we can show language pickers that show the language
+        # translated into that language
+        all_translations.each do |locale_name_locale, locale_name_translations|
+          next if locale_name_locale == locale
+          file.puts "I18n.translations[\"#{locale_name_locale}\"] = I18n.translations[\"#{locale_name_locale}\"] || {};"
+          json = JSON.pretty_generate( locale_name_translations[:locales].select{ |k,v|
+            k == locale_name_locale
+          } )
+          file.puts "I18n.translations[\"#{locale_name_locale}\"][\"locales\"] = #{json};"
+        end
       end
     end
   end

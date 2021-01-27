@@ -8,6 +8,7 @@ import {
   SplitButton,
   MenuItem
 } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -110,7 +111,6 @@ const App = ( {
   if ( config && config.currentUser && config.currentUser.time_zone ) {
     viewerTimeZone = config.currentUser.time_zone;
   }
-
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
@@ -279,30 +279,36 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <div className="data_quality_assessment">
-        <AssessmentContainer />
-      </div>
-      <div className="more_from">
-        <Grid>
-          <Row>
-            <Col xs={12}>
-              <MoreFromUserContainer />
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-      <div className="other_observations">
-        <Grid>
-          <Row>
-            <Col xs={6}>
-              <NearbyContainer />
-            </Col>
-            <Col xs={6}>
-              <SimilarContainer />
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+      <LazyLoad height={748} verticalOffset={500}>
+        <div className="data_quality_assessment">
+          <AssessmentContainer />
+        </div>
+      </LazyLoad>
+      <LazyLoad height={325} offset={500}>
+        <div className="more_from">
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <MoreFromUserContainer />
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      </LazyLoad>
+      <LazyLoad height={190} offset={500}>
+        <div className="other_observations">
+          <Grid>
+            <Row>
+              <Col xs={6}>
+                <NearbyContainer />
+              </Col>
+              <Col xs={6}>
+                <SimilarContainer />
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      </LazyLoad>
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <DisagreementAlertContainer />

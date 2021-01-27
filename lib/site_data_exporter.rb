@@ -30,7 +30,7 @@ class SiteDataExporter
     private_place_guess
     private_latitude
     private_longitude
-    private_positional_accuracy
+    public_positional_accuracy
     geoprivacy
     taxon_geoprivacy
     coordinates_obscured
