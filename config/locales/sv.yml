@@ -184,7 +184,7 @@ sv:
     <strong>Hur</strong> En resa ger sammanhang till din observation genom att spara:
     </p>
     <ul>
-    <li><strong>Det</strong> letade efter (mållista)</li>
+    <li><strong>Det</strong> du letade efter (mållista)</li>
     <li><strong>Var</strong> du letade (sökområde)</li>
     <li><strong>När</strong> du letade (sökintervall)</li>
     </ul>
@@ -221,10 +221,10 @@ sv:
   accuracy: Noggrannhet
   accuracy_meters: Noggrannhet (meter)
   accuracy_of_the_coordinates: |
-    Koordinaternas noggrannhet i meter. Du kan redigera noggrannheten genom att trycka på "Redigera" ovanför eller genom att kicka på kartmarkören och dra den på kartan. Försök att göra cirkeln så stor att du är säker på att du var någonstans innanför den.
+    Koordinaternas noggrannhet i meter. Du kan redigera detta genom att klicka på "redigera"-länken ovan eller genom att klicka på kartmarkören och dra i handtagen. Försök att göra cirkeln så stor att du är säker på att du var någonstans inne i den.
   action: Åtgärd
   actions: Åtgärder
-  active: Aktiv
+  active: Aktiva
   active_users: Aktiva användare
   activity: Aktivitet
   activity_settings: Aktivitetsinställningar
@@ -255,8 +255,8 @@ sv:
   add_an_observation_to_project_html: Lägg till en observation till %{project}
   add_annotations_for_x: Lägg till noteringar för "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Lägg till noteringar för "Kön"
-    plant_phenology: Lägg till noteringar för "Växtfenologi"
+    sex: Lägg till anteckningar för "Kön"
+    plant_phenology: Lägg till anteckningar för "Växtfenologi"
     life_stage: Lägg till anteckningar för "Livsform"
   add_another_flag: Lägg till ytterligare en flagga
   add_another_photo: Lägg till ytterligare en bild
@@ -289,7 +289,7 @@ sv:
   add_new_rule: Lägg till en ny regel
   add_new_source: "Lägg till en ny källa..."
   add_new_taxon_name: Lägg till ett nytt taxonnamn
-  add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna plats, t.ex. var och när det påträffas.
+  add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna lokal, t.ex. var och när det påträffas.
   add_obs_from_a_link: "Lägg till obs från lista: %{link}"
   add_obs_from_a_list: Lägg till obs från en lista
   add_observations: Lägg till observationer
@@ -305,7 +305,7 @@ sv:
   add_alive_or_dead_alive_annotation: 'Lägg till anteckningen "Levande eller Död: Levande"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till anteckningen "Levande eller Död: Kan inte avgöras"'
   add_alive_or_dead_dead_annotation: 'Lägg till anteckningen "Levande eller Död: Död"'
-  add_plant_phenology_budding_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
+  add_plant_phenology_budding_annotation: 'Lägg till anteckningen "Växtfenologi: Knoppbristning"'
   add_plant_phenology_flower_budding_annotation: 'Lägg till anteckningen "Växtfenologi: Blomknopp"'
   add_plant_phenology_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Blomning"'
   add_plant_phenology_fruiting_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
@@ -313,7 +313,7 @@ sv:
   add_life_stage_adult_annotation: 'Lägg till anteckningen "Livsstadium: Adult"'
   add_life_stage_teneral_annotation: 'Lägg till anteckningen "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Lägg till anteckningen "Livsstadium: subimago"'
-  add_life_stage_pupa_annotation: 'Lägg till anteckningen "Livsstadium: puppa"'
+  add_life_stage_pupa_annotation: 'Lägg till anteckningen "Livsstadium: Puppa"'
   add_life_stage_nymph_annotation: 'Lägg till anteckningen "Livsstadium: Nymf"'
   add_life_stage_larva_annotation: 'Lägg till anteckningen "Livsstadium: Larv"'
   add_life_stage_juvenile_annotation: 'Lägg till anteckningen "Livsstadium: Juvenil"'
@@ -335,7 +335,7 @@ sv:
   add_taxon_range: Lägg till område för taxon
   add_taxonomic_tags_to: "Lägg taxonomiska taggningar till valda Flickr-bilder &raquo;"
   add_to_a_scheme: Lägg till i ett schema
-  add_to_a_project: Lägg till ett projekt
+  add_to_a_project: Lägg till i ett projekt
   add_to_calendar: Lägg till i kalender
   add_to_checklist: Lägg till i checklista
   add_to_favorites: Lägg till i favoriter
@@ -344,7 +344,7 @@ sv:
   add_to_your_life_list: Lägg till i din livslista!
   add_to_your_list: Lägg till i din lista
   add_your_email_to_get: |
-    Lägg till din e-postadress för att få feedback på din observation från gemenskapen. Om du helst inte vill dela den, kom tillbaka snart!
+    Lägg till din e-postadress för att få respons på din observation från gemenskapen. Om du helst inte vill dela den, kolla igen snart!
   add_your_own_observations_at: "Lägg till dina egna observationer på %{site_name}"
   added: Tillagd
   added!: Tillagd!
@@ -369,11 +369,11 @@ sv:
   adjust_brightness: Ställ in ljusstyrka
   admin: Admin
   admin_s: Administratör(er)
-  admin_only: Endast admin.
+  admin_only: Endast admin
   admin_tools: Admin-verktyg
   agree_: Håller med
-  agree?: Håller med?
-  agree_with_current_taxon: Håller med om aktuellt taxon
+  agree?: Håller du med?
+  agree_with_current_taxon: Håll med om aktuellt taxon
   agreeing: Håller med...
   aka: även känd som
   all: Alla
@@ -433,46 +433,46 @@ sv:
     reptiles: Reptiler
     life: Liv
     x_plantae:
-      one: "1 växt"
+      one: "%{count} växt"
       other: "%{count} växter"
     x_animalia:
-      one: "1 djur"
+      one: "%{count} djur"
       other: "%{count} djur"
     x_mollusca:
-      one: "#1 blötdjur"
+      one: "%{count} blötdjur"
       other: "%{count} blötdjur"
     x_amphibia:
-      one: "1 groddjur"
+      one: "%{count} groddjur"
       other: "%{count} groddjur"
     x_mammalia:
-      one: "1 däggdjur"
+      one: "%{count} däggdjur"
       other: "%{count} däggdjur"
     x_actinopterygii:
-      one: "#1 strålfenig fisk"
+      one: "%{count} strålfenig fisk"
       other: "%{count} strålfeniga fiskar"
     x_reptilia:
-      one: "1 reptil"
+      one: "%{count} reptil"
       other: "%{count} reptiler"
     x_aves:
-      one: "1 fågel"
+      one: "%{count} fågel"
       other: "%{count} fåglar"
     x_insecta:
-      one: "1 insekt"
+      one: "%{count} insekt"
       other: "%{count} insekter"
     x_arachnida:
-      one: "1 spindel"
+      one: "%{count} spindel"
       other: "%{count} spindlar"
     x_fungi:
-      one: "1 svamp"
+      one: "%{count} svamp"
       other: "%{count} svampar"
     x_chromista:
       one: "%{count} kromist"
       other: "%{count} kromister"
     x_protozoa:
-      one: "#1 protozoer"
+      one: "%{count} protozo"
       other: "%{count} protozoer"
     x_other_animals:
-      one: "1 annat djur"
+      one: "%{count} annat djur"
       other: "%{count} andra djur"
   all_taxa_: Alla taxa
   all_taxa_in_this_guide: Alla taxa i denna guide
@@ -539,19 +539,19 @@ sv:
   apply_fields: Tillämpa fält
   apply_geoprivacy: Tillämpa geosekretess
   apply_darr: "Tillämpa &darr;"
-  apply_establishment_means_to_descendant_places: "Tillämpa invandringshistoria på omfattade platser"
+  apply_establishment_means_to_descendant_places: "Tillämpa invandringshistoria på omfattade lokaler"
   apply_these_settings_to_all: Tillämpa dessa inställningar på alla observationer nedan.
   appropriate?: Passande?
   arachnids: spindeldjur
   archives: Arkiv
-  are_you_really_sure_want_delete_this_user: Är du verkligen helt säker på att du vill ta bort denna användare och allt deras innehåll?
+  are_you_really_sure_want_delete_this_user: Är du verkligen helt säker på att du vill ta bort denna användare och allt dess innehåll?
   are_you_sure?: Är du säker?
   are_you_sure_no_undo: Är du säker? Detta kan inte ångras.
   are_you_sure_delete_post: Är du säker på att du vill radera detta inlägg?
-  are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill ta bort %{taxonname} (%{taxonid}) och flytta allt tillhörande?"
-  are_you_sure_delete_this_place: Är du säker på att du vill radera denna plats?
+  are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill radera %{taxonname} (%{taxonid}) och flytta allt tillhörande?"
+  are_you_sure_delete_this_place: Är du säker på att du vill radera denna lokal?
   are_you_sure_leave_this_project: Är du säker på att du vill lämna detta projekt?
-  are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa platser. Detta går inte att ångra.
+  are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa lokaler? Det går inte att ångra.
   are_you_sure_remove_photo: "Är du säker på att du vill ta bort denna bild?"
   are_you_sure_remove_relationship: Är du säker på att du vill ta bort denna relation? Du kommer inte längre att följa denna person och åtkomst till dina dolda koordinater återkallas i de fall du hade aktiverat det.
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort detta taxon från listan?"
@@ -560,43 +560,43 @@ sv:
   are_you_sure_unresolve_flag?: |
     Är du säker på att du vill ångra lösningen för den här flaggan? Det
     kommer att ta bort lösningen och dess användare från flaggan.
-  are_you_sure_want_delete_taxon: "Är du säker på att du vill ta bort detta taxon?"
+  are_you_sure_want_delete_taxon: "Är du säker på att du vill radera detta taxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa och bestämningar.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och bestämningar.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa, bestämningar och observationer.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, bestämningar och observationer.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa och förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och förekommer i listor.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa, och bestämningar samt förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, och bestämningar samt förekommer i listor.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa, bestämningar och observationer samt förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, bestämningar och observationer samt förekommer i listor.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa, observationer och förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, observationer och förekommer i listor.
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har underliggande taxa och observationer.
+    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och observationer.
   are_you_sure_want_delete_taxon_identifications: |
-    Är du säker på att du vill ta bort detta taxon? Det har bestämningar.
+    Är du säker på att du vill radera detta taxon? Det har bestämningar.
   are_you_sure_want_delete_taxon_identifications_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har bestämningar och observationer.
+    Är du säker på att du vill radera detta taxon? Det har bestämningar och observationer.
   are_you_sure_want_delete_taxon_listed_taxa: |
-    Är du säker på att du vill ta bort detta taxon? Det förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det förekommer i listor.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-    Är du säker på att du vill ta bort detta taxon? Det har bestämningar och förekommer i listor
+    Är du säker på att du vill radera detta taxon? Det har bestämningar och förekommer i listor
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har bestämningar och förekommer i listor.
+    Är du säker på att du vill radera detta taxon? Det har bestämningar och förekommer i listor.
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har observationer och förekommer i listor.
+    Är du säker på att du vill racdera detta taxon? Det har observationer och förekommer i listor.
   are_you_sure_want_delete_taxon_observations: |
-    Är du säker på att du vill ta bort detta taxon? Det har observationer.
-  are_you_sure_want_delete_taxon_link: Är du säker på att du vill ta bort denna taxonlänk?
+    Är du säker på att du vill radera detta taxon? Det har observationer.
+  are_you_sure_want_delete_taxon_link: Är du säker på att du vill radera denna taxonlänk?
   are_you_sure_want_delete_this_name: Är du säker på att du vill radera detta namn?
-  are_you_sure_want_delete_this_range: Är du säker på att du vill ta bort det här området?
+  are_you_sure_want_delete_this_range: Är du säker på att du vill radera det här området?
   are_you_sure_you_want_to_commit_this_change: Är du säker på att du vill bekräfta den här ändringen? Det går inte att ångra.
   are_you_sure_you_want_to_delete_this: Är du säker på att du vill radera detta?
-  are_you_sure_you_want_to_delete_this_assessment?: Är du säker på att du vill ta bort bedömningen?
+  are_you_sure_you_want_to_delete_this_assessment?: Är du säker på att du vill radera bedömningen?
   are_you_sure_you_want_to_delete_this_photo?: Är du säker på att du vill radera denna bild?
   are_you_sure_you_want_to_delete_this_post: Är du säker på att du vill radera detta inlägg?
   are_you_sure_you_want_to_delete_this_taxon_change: Är du säker på att du vill radera denna taxonändring?
@@ -605,7 +605,7 @@ sv:
   are_you_sure_you_want_to_remove_from_project: Är du säker på att du vill ta bort %{user} från detta projekt?
   are_you_sure_you_want_to_remove_manager: Är du säker på att du vill ta bort %{user} som ledare?
   are_you_sure_you_want_to_remove_spammer: |
-    Är du säker på att litar på denna användare?
+    Är du säker på att du anser denna användare vara hedervärd?
     Eventuella spam-flaggor på användarens innehåll kommer avlägsnas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Är du säker på att du vill ta bort dessa %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Är du säker på att du vill ta bort denna inbjudan?
@@ -614,7 +614,7 @@ sv:
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
   associated_observations: Tillhörande observationer
   associated_taxa: Tillhörande taxa
-  attention: Uppmärksamma
+  attention: Märk väl
   you_sure_delete_list: Är du säker på att du vill radera denna lista?
   you_sure_delete_taxon_from_list?: "Är du säker på att du vill ta bort %{taxon} från listan?"
   asc: Stigande
@@ -625,7 +625,7 @@ sv:
   assessment_was_deleted: Bedömningen raderades.
   assessment_was_successfully_created: Lyckades skapa bedömning.
   assessment_was_successfully_updated: Lyckades uppdatera bedömning.
-  assessment_x: "%{assessment} bedömning"
+  assessment_x: "%{assessment}-bedömning"
   assessments: bedömningar
   associations: Kopplingar
   atlas_for_taxon_html: Atlas för %{taxon}
@@ -661,7 +661,7 @@ sv:
   back_to_observation: Tillbaka till observationen
   back_to_observation_fields: Tillbaka till observationsfält
   back_to_people: Tillbaka till personer
-  back_to_places: Tillbaka till platser
+  back_to_places: Tillbaka till lokaler
   back_to_possessive_user_profile: "Tillbaka till %{possuser}s profil"
   back_to_post: '&laquo; Tillbaka till inlägg'
   back_to_projects: Tillbaka till projekten
@@ -669,7 +669,7 @@ sv:
   back_to_taxon: "Tillbaka till %{defaulttaxon}"
   back_to_taxon_changes: "Tillbaka till taxonändringar"
   back_to_taxon_framework_for_x: "Tillbaka till taxonkontexten för %{taxon_name}"
-  back_to_viewing: "Tillbaka till vyn för <i>%{taxon}</i>"
+  back_to_viewing: "Tillbaka till visning av <i>%{taxon}</i>"
   back_to_x: "Tillbaka till %{noun}"
   back_to_x_assessment: "Tillbaka till %{project}-bedömningar"
   back_to_x_history: "Tillbaka till %{x}s historik"
@@ -687,10 +687,10 @@ sv:
   batch: Batch
   batch_edit: Redigera flera i taget
   batch_edit_taxa_for_x_html: "Redigera flera taxa för %{x}"
-  batch_operations: Batch-kommandon
-  be_the_first_to_fave_this_observation: Bli först med att lägga den här observationen till favoriter!
+  batch_operations: Batch-funktioner
+  be_the_first_to_fave_this_observation: Var först med att göra den här observationen till favorit!
   because_of: eftersom
-  before_importing_photos: innan bilder importeras
+  before_importing_photos: innan bildimport
   bg_color: Bakgrundsfärg
   bio: Biografi
   bio_description: Berätta om dig själv för andra användare på iNaturalist!
@@ -719,37 +719,37 @@ sv:
   brief_caption: Kort bildtext
   brown: brun
   browse: Bläddra
-  browse_all_projects: Bläddra alla projekt
-  browse_all_species: Bläddra alla arter
-  browse_observations: Bläddra observationer
-  browse_people: Bläddra personer
-  browse_projects: Bläddra projekt
-  browse_species_that_occur_near_this_observation: Bläddra arter som förkommer nära den här obvservationen
+  browse_all_projects: Bläddra bland alla projekt
+  browse_all_species: Bläddra bland alla arter
+  browse_observations: Bläddra bland observationer
+  browse_people: Bläddra bland personer
+  browse_projects: Bläddra bland projekt
+  browse_species_that_occur_near_this_observation: Bläddra bland arter som förekommer i närheten av denna observation.
   built_with_site_guides_html: "Byggt med <a href='%{url}'>%{site_name} Guides</a>"
-  bulk_import_of_filename_is_complete: "Multi import av %{filename} är utfört"
+  bulk_import_of_filename_is_complete: "Bulkimport av %{filename} är klar"
   by: av
   by_everyone: Av alla
   by_user: "Av %{user}"
-  by_you: Av du
+  by_you: Av dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendrar visar endast %{x} observationer åt gången
   cancel: Avbryt
   cant_edit_or_delete_hidden_content: Du kan inte redigera eller ta bort innehåll som har dolts av webbplatsens förvaltare
-  cant_flag_an_object_that_doesnt_exist: Det går inte att markera ett objekt som inte existerar
-  cant_merge_a_taxon_with_itself: Det går inte slå ihop en taxon med sig själv.
+  cant_flag_an_object_that_doesnt_exist: Det går inte att flagga ett objekt som inte existerar
+  cant_merge_a_taxon_with_itself: Inte möjligt att slå ihop ett taxon med sig självt.
   captive: I fångenskap
-  captive_cultivated: I fångenskap / odlad
+  captive_cultivated: I fångenskap / Odlad
   captive_observations: Observationer i fångenskap
   card: Kort
   casual: informell
-  casual_: Informell
+  casual_: Grundkvalitet
   categories: Kategorier
-  cc_0_description: "Denna licens gör ditt verk offentligt tillgängligt, så att andra kan kopiera, modifiera, distribuera och utföra ditt arbete, även för kommersiella ändamål, allt utan att be om tillstånd eller nämna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material."
+  cc_0_description: "Denna licens gör ditt verk publikt tillgängligt, så att andra kan kopiera, ändra, sprida och uppföra ditt verk, även för kommersiella ändamål, allt utan att be om tillstånd eller erkänna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material."
   cc_0_name: Ingen upphovsrätt (CC0)
-  cc_attribution_license: Creative Commons Erkännande licens
-  cc_by_description: "Denna licens låter andra distribuera, remixa, justera och bygga vidare på ditt verk, även kommersiellt, så länge de anger dig som den ursprungliga upphovsmannen."
+  cc_attribution_license: Creative Commons Erkännande-licens
+  cc_by_description: "Denna licens låter andra sprida, remixa, anpassa och bygga vidare på ditt verk, även kommersiellt, så länge de erkänner dig som den ursprungliga upphovsmannen."
   cc_by_name: Erkännande
-  cc_by_nc_description: "Denna licens låter andra remixa, ändra och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sin bearbetning på samma villkor."
+  cc_by_nc_description: "Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor."
   cc_by_nc_name: Erkännande-IckeKommersiell
   cc_by_nc_nd_description: "Denna licens är den mest restriktiva av våra sex huvudlicenser. Den tillåter bara andra att ladda ner dina verk och dela dem med andra så länge de erkänner dig som upphovsman. De får inte ändra dem på något sätt eller använda dem kommersiellt."
   cc_by_nc_nd_name: Erkännande-Ickekommersiell-IngaBearbetningar
@@ -757,7 +757,7 @@ sv:
   cc_by_nc_sa_name: Erkännande-IckeKommersiell-DelaLika
   cc_by_nd_description: "Denna licens tillåter vidaredistribution, kommersiell och icke-kommersiell, så länge verket sprids oförändrat och i sin helhet, samt att du erkänns som upphovsman."
   cc_by_nd_name: Erkännande-IngaBearbetningar
-  cc_by_sa_description: "Denna licens låter andra remixa, ändra och bygga vidare på ditt verk, även för kommersiella syften, så länge de erkänner dig som upphovsman och licensierar sina nya skapelser på identiska villkor. Alla nya verk som baseras på ditt verk kommer att ha samma licens och alla bearbetningar kommer därför också att tillåta kommersiell användning."
+  cc_by_sa_description: "Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk, även för kommersiella syften, så länge de erkänner dig som upphovsman och licensierar sina nya skapelser på identiska villkor. Alla nya verk som baseras på ditt verk kommer att ha samma licens och alla bearbetningar kommer därför också att tillåta kommersiell användning."
   cc_by_sa_name: Erkännande-DelaLika
   cc_used_under_a: "Creative Commons, används under en "
   change_admin: Ändra admin
@@ -766,64 +766,64 @@ sv:
   change_descriptions:
     split: Gammalt taxon uppdelat i flera nya taxa
     merge: Flera gamla taxa hopslagna till ett nytt taxon
-    swap: Ersätt taxon med nytt
-    drop: Icke accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
-    stage: Förbered ett inaktivt koncept för release som del av en förändringsgrupp
+    swap: Ersätt ingående taxon med utgående taxon
+    drop: Ej accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
+    stage: Förbered ett inaktivt koncept för att släppas som del av en förändringsgrupp
   change_geoprivacy: 'Ändra geosekretess'
   change_group: Ändra grupp
   change_icon: Ändra ikon
   change_password: Ändra lösenord
   change_types:
     activated_soon: aktiveras snart
-    change_types: Ändra typer
-    split: Dela upp
-    merge: Sammanfoga
-    swap: Byt
-    stage: Steg
-    drop: Släpp
+    change_types: Typer av förändringar
+    split: Uppdelning
+    merge: Hopslagning
+    swap: Byte
+    stage: Förberedelse
+    drop: Inaktivering
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: dela upp från
+    split_from: uppdelning från
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: dela upp till
+    split_into: uppdelning till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sammanfoga till
+    merge_into: slå ihop till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: sammanfogades till
+    merged_into: slogs ihop till
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_by: ersattes av
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: ersätt med
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_with: ersätt med
-    dropped: släpptes
-    staged: arrangerat
+    replaced_with: ersatt av
+    dropped: inaktiverades
+    staged: förberett
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} delades upp i %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} kommer att delas upp i %{output_taxa}"
-    input_taxon_was_dropped_html: "%{input_taxon} togs bort"
-    input_taxon_will_be_dropped_html: "%{input_taxon} kommer att tas bort"
+    input_taxon_was_dropped_html: "%{input_taxon} inaktiverades"
+    input_taxon_will_be_dropped_html: "%{input_taxon} kommer att inaktiveras"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} kommer att aktiveras snart"
     input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} ersattes av %{output_taxon}"
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} kommer att ersättas av %{output_taxon}"
-    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} slogs ihop till %{output_taxon}"
-    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} kommer att slås ihop till %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} slogs ihop med %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} kommer att slås ihop med %{output_taxon}"
   change_your_password: Ändra ditt lösenord
-  changing_the_geoprivacy: 'Ändring av geosekretess förändrar hur andra människor ser platsen för din observation.'
+  changing_the_geoprivacy: 'Ändring av geosekretess förändrar hur andra personer ser din observations position.'
   check_above_for_errors: Kolla efter fel ovan
-  check_back_soon: Kom tillbaka snart!
-  check_here_to_autoload_description: Markera här för att automatiskt ladda beskrivningen från Wikipedia. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
+  check_back_soon: Kolla snart igen!
+  check_here_to_autoload_description: Markera här för att automatiskt ladda Wikipedias beskrivningen. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
   check_here_to_autoload_photos: Markera här för att automatiskt ladda bilder från Flickr. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
-  check_list: Checklista
-  check_list_description: Välj ett taxon på högre nivå som du vill visa i den här listan, som "Aves" för fåglar eller "Amphibia" för groddjur. Väl inställt kommer listan inte att tillåta taxa som inte tillhör grupp. Till exempel, om du skapar en lista över fåglar kommer du inte att kunna lägga till några grodor.
+  check_list: Kolla lista
+  check_list_description: Välj ett taxon på högre nivå som du vill visa i den här listan, som "Aves" för fåglar eller "Amphibia" för groddjur. Väl inställt kommer listan inte att tillåta taxa som inte tillhör gruppen. Till exempel, om du skapar en lista över fåglar kommer du inte att kunna lägga till några grodor.
   check_list_for_individual_taxa_that: 'Checklistor för enskilda taxa som finns här, t.ex. "Fåglar i %{place}".'
   check_list_for_taxon_html: "Checklista för %{taxon}"
   check_lists_must_belong_to_a_place: |
-    Checklistor måste tillhöra en plats. För att skapa en ny checklista, besök
-    en plats standardchecklista och klicka på länken 'Skapa en ny checklista'.
+    Checklistor måste tillhöra en lokal. För att skapa en ny checklista, besök
+    en lokals standardchecklista och klicka på länken 'Skapa en ny checklista'.
   check_list_of_species_occuring_in: Checklista över arter som förekommer i
   check_list_place: "%{place}-checklista"
-  check_list_updated: Checklista uppdaterades!
+  check_list_updated: Checklistan uppdaterades!
   check_lists_for: "Andra checklistor för %{place}"
-  check_out_my_observations_at: Om du vill, du kan kolla mina observationer på
+  check_out_my_observations_at: Om du vill kan du kolla på mina observationer på
   check_out_our_blog: Kolla vår blogg
   check_out_what_the_observation: Kolla hur observationen du försöker bestämma ser ut.
   check_out_your_new_and_improved_list_list: Kolla in din nya och förbättrade Livslista!
@@ -831,7 +831,7 @@ sv:
     Kryssa i denna ruta om du vill tillämpa en <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Erkännande Ickekommersiell-licens</a> för
-    uppladdat innehåll. Detta innebär att vem som helst kan kopiera och återanvända dina foton och/eller
+    uppladdat innehåll. Detta innebär att vem som helst kan kopiera och återanvända dina bilder och/eller
     observationer utan att be om tillstånd så länge de anger dig som upphovsman
     och inte använder verken kommersiellt. Du kan välja en annan licens eller
     ta bort licensen senare, men detta är den bästa licensen för att dela med
@@ -839,14 +839,14 @@ sv:
   checklist: Checklista
   choose_a_field: Välj ett fält
   choose_a_list_above: Välj en lista ovan.
-  choose_a_place: Välj en plats
-  choose_a_taxon: Välj en taxon (valfritt)
+  choose_a_place: Välj en lokal
+  choose_a_taxon: Välj ett taxon (valfritt)
   choose_columns: Välj kolumner
   choose_file: Välj fil
   choose_files: Välj filer
   choose_from_your_lists: Välj från dina listor
-  choose_photos_for_this_taxon: Välj foton för detta taxon
-  choose_photos_to_tag_from_photostream: Välj foton att tagga från din bildström
+  choose_photos_for_this_taxon: Välj bilder för detta taxon
+  choose_photos_to_tag_from_photostream: Välj bilder att tagga ur din bildström
   choose_rule: Välj en regel
   choose_subjects: Välj ämnen
   choose_tags: Välj taggar
@@ -858,20 +858,20 @@ sv:
   clear: rensa
   clear_filters: Rensa filter
   clear_search: Rensa sökning
-  click_the_map: "<strong>Klicka på kartan</strong> för lägg till plats."
+  click_the_map: "<strong>Klicka på kartan</strong> för att lägga till en lokal."
   close: Stäng
   code: Kod
-  colors: Färg
+  colors: Färger
   columns: Kolumner
   combine: Kombinera
   comma_separated_list_of_tracking_codes: |
     Kommaseparerad lista med spårningskoder. Lägg till dessa om du vill lägga till en spårningskod när du sänder
-    personer till det nya observationsformuläret, t.ex. %{root_url}observationer/ny?project_id=%{project_id}&tracking_code=yourcode123.
-    Du kan använda detta för att spåra deltagare från olika håll. Du kan komma åt dessa koder när du laddar ner projektets observationer som CSV.
+    personer till det nya observationsformuläret, t.ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
+    Du kan använda detta för att spåra deltagande från olika håll. Du kan komma åt dessa koder när du laddar ner projektets observationer som CSV.
   comma_separated_please: Kommaseparerad, tack
   comment: kommentar
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_: Kommentar
+  comment_: Kommentera
   comment_deleted: Kommentar raderad
   comments: Kommentarer
   comments_by_me: Kommentarer av mig
@@ -880,24 +880,24 @@ sv:
   comments_on_my_observations: Kommentarer på mina observationer
   commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: Fastställ
+  commit: Bekräfta
   #Adjective describing a taxon change that has been committed
-  committed: Fastställd
-  committed_by_user_on_date_html: Antagen av %{user} den %{date}
+  committed: Bekräftad
+  committed_by_user_on_date_html: Bekräftad av %{user} den %{date}
   #Label for date the taxon change was committed
-  committed_on: Engagerad på %{date}
+  committed_on: Bekräftad den %{date}
   #Status message while a taxon change is being committed
-  committing: Fastställer...
+  committing: Bekräftar...
   common_name: Vardagligt namn
   community: Gemenskap
-  community_curated: Kollektivt underhållen
-  community_guidelines: Gemenskapsriktlinjer
-  community_id_heading: Kollektivt taxon
-  community_id_at_species_or_lower?: Kollektivt taxon på artnivå eller lägre?
-  community_id_at_species_level_or_lower: Kollektivt taxon på artnivå eller lägre
+  community_curated: Gemenskapsförvaltad
+  community_guidelines: Gemenskapens riktlinjer
+  community_id_heading: Gemenskapstaxon
+  community_id_at_species_or_lower?: Gemenskapstaxon på artnivå eller lägre?
+  community_id_at_species_level_or_lower: Gemenskapstaxon på artnivå eller lägre
   community_id_is_precise: Gemenskapstaxon är exakt
-  community_moderation_settings: Inställningar för kollektiv moderering
-  community_supported_id: Kollektivt understött taxon?
+  community_moderation_settings: Inställningar för gemenskapsmoderering
+  community_supported_id: Taxon med stöd från gemenskapen?
   compare: Jämför
   compare_with: Jämför med
   comparing: jämför
@@ -909,14 +909,14 @@ sv:
   complete: Komplett
   complete_set_for_taxon_in_place_html: "Komplett uppsättning %{taxon} i %{place}"
   completed: Slutförd
-  completed_at: Slutfördes
+  completed_at: Slutfördes den
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?: Omfattande?
+  comprehensive?: Fullständig?
   comprehensive_check_list_for_taxon_html: |
-    <span class="comprehensive_notice" data-tip="%{tip}">Omfattande</span>
+    <span class="comprehensive_notice" data-tip="%{tip}">Fullständig</span>
     checklista för %{taxon}
-  comprehensive_list: Omfattande lista
+  comprehensive_list: Fullständig lista
   concept_status: Konceptets status
   configure: Konfigurera
   configure_a_widget_to_show: Konfigurera en widget för att visa %{site_name}-observationer på din webbplats eller blogg. Du kan behöva inkludera den inbyggda CSS:en i <code>&lt;head&gt;</code> i din HTML. Skriv gärna om CSS-koden.
@@ -930,23 +930,23 @@ sv:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppla
-  connect_to_provider: "Anslut till %{provider}"
+  connect_to_provider: "Koppla till %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Anslutna konton
+  connected_accounts: Kopplade konton
   connected_accounts_description: Kopplade konton är dina konton i andra appar eller webbplatser som du har låtit iNaturalist ha tillgång till för att kunna stödja inloggning, bildimport eller annan funktionalitet åt dig.
-  connected_accounts_titlecase: Kopplade konton
-  connecting_flickr: "Ansluter till Flickr..."
-  connect_to_flickr_again_to_authorize_write_permissions: Anslut till Flickr igen för att godkänna skrivrättigheter
-  connecting_to_facebook: "Ansluter till Facebook..."
-  connecting_your_inat_account_to_accounts_other_sites: "Genom att ansluta ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
+  connected_accounts_titlecase: Kopplade Konton
+  connecting_flickr: "Kopplar till Flickr... "
+  connect_to_flickr_again_to_authorize_write_permissions: Koppla till Flickr igen för att godkänna skrivrättigheter
+  connecting_to_facebook: "Kopplar till Facebook..."
+  connecting_your_inat_account_to_accounts_other_sites: "Genom att koppla ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
   cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
-    description: Kort beskrivning av varför detta är på listan.
+    description: Kort beskrivning av varför detta är med på listan.
     authority: |
       Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
-    place: Plats som denna status är begränsad till.
+    place: Lokal som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
     geoprivacy: Standard geosekretess för observationer av detta taxon
     iucn: Motsvarande IUCN-rödlistekod
@@ -960,10 +960,10 @@ sv:
   content_author: Författare av innehåll
   content_hidden: Dolt innehåll
   content_hidden_by_user_on_date_because_reason_html: |
-    Innehåll dolt av %{user} på %{date} på grund av: "%{reason}"
+    Innehåll dolt av %{user} den %{date} på grund av: "%{reason}"
   content_type: Innehållstyp
   user_hid_this_item_because_reason_html: |
-    %{user} gömde detta %{item} på grund av "%{reason}"
+    %{user} dolde detta %{item} på grund av "%{reason}"
   user_unhid_this_item_because_reason_html: |
     %{user} tog fram detta %{item} på grund av "%{reason}"
   continue: Fortsätt
@@ -975,12 +975,12 @@ sv:
     male: Hane
     female: Hona
     plant_phenology: Växtfenologi
-    budding: I knopp
+    budding: Knoppbristning
     flower_budding: Blomknopp
     flowering: Blomning
     fruiting: I frukt
     life_stage: Livsstadium
-    adult: Vuxen
+    adult: Adult
     teneral: Teneral
     subimago: Subimago
     pupa: Puppa
@@ -988,7 +988,7 @@ sv:
     nymph: Nymf
     larva: Larv
     egg: Ägg
-    juvenile: Minderårig
+    juvenile: Juvenil
     alive_or_dead: Levande eller död
     alive: Levande
     dead: Död
@@ -1000,7 +1000,7 @@ sv:
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
-    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga vuxna utseende
+    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
   controls: Kontroller
   convert: Konvertera
@@ -1014,19 +1014,19 @@ sv:
   coords_viewable_for_proj_desc: |
     Visa bara observationer från detta projekt för vilka du kan se de "verkliga"
     koordinaterna, inklusive odiffuserade observationer, diffuserade observationer av
-    personer som litar på dig, diffuserade observationer av personer som anförtror detta projekt med allt, och observationer som är diffuserad p.g.a. hotade taxa av människor som bara litar på detta projekt likadant.
+    personer som litar på dig, diffuserade observationer av personer som anförtror detta projekt med allt och observationer som är diffuserad p.g.a. hotade taxa av människor som bara litar på detta projekt med samma.
   copy: Kopiera
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
   copy_guide_taxon_to: Kopiera guidetaxon till...
   copyright:
-    some_rights_reserved: vissa rättigheter reserverade
-    some_rights_reserved_by: "(c) %{name}, vissa rättigheter reserverade (%{license_short})"
-    all_rights_reserved: "(c) %{name}, alla rättigheter reserverade"
-    no_known_copyright_restrictions: "%{name}, inga kända upphovsrättsliga restriktioner (%{license_name})"
+    some_rights_reserved: vissa rättigheter förbehållna
+    some_rights_reserved_by: "(c) %{name}, vissa rättigheter förbehållna (%{license_short})"
+    all_rights_reserved: "(c) %{name}, alla rättigheter förbehållna"
+    no_known_copyright_restrictions: "%{name}, inga kända upphovsrättsliga begränsningar (%{license_name})"
     no_known_copyright_restrictions_text: "inga kända upphovsrättsliga begränsningar"
-    no_rights_reserved: inga rättigheter reserverade
-    no_rights_reserved_by: "%{name}, inga rättigheter reserverade (%{license_name})"
+    no_rights_reserved: inga rättigheter förbehållna
+    no_rights_reserved_by: "%{name}, inga rättigheter förbehållna (%{license_name})"
     anonymous: anonym
     public_domain: allmängods
     copyright: upphovsrätt
@@ -1043,27 +1043,27 @@ sv:
   copyright_info_and_more: Upphovsrättsinformation m.m.
   copyright_infringement: Upphovsrättsintrång
   copyright_infringement_desc: Bryter mot lagen om upphovsrätt eller skapades av någon annan än observatören och saknar erkännande
-  covered_by_a_taxon_framework_html: "Ingår i ett %{link}"
-  covered_by_a_taxon_framework_link: "taxonsammanhang för %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_html: "Ingår i en %{link}"
+  covered_by_a_taxon_framework_link: "taxonkontext för %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Kunde inte ändra ditt lösenord: %{e}"
-  couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare för %{id}"
-  couldnt_find_that_taxon: Kunde inte hitta något sådan taxon.
+  couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare med %{id}"
+  couldnt_find_that_taxon: Kunde inte hitta detta taxon.
   countries: Länder
   create: Skapa
   create_a_guide: Skapa en guide
   create_a_new_field: Skapa ett nytt fält
-  create_a_new_place: Skapa en ny plats
+  create_a_new_place: Skapa en ny lokal
   create_a_new_taxon: Skapa ett nytt taxon
   create_a_query: Skapa en fråga
   create_an_account: Skapa ett konto
-  create_an_atlas: Skapa en Atlas
+  create_an_atlas: Skapa en atlas
   create_export: Skapa export
   create_new_taxon: Skapa ett nytt taxon
   create_observations: Skapa observationer
-  created: Skapades
+  created: Skapad
   created_by: Skapad av
   created_by_user_on_date: Skapad av %{user} den %{date}
-  created_on: Skapades den
+  created_on: Skapad den
   creating_your_account: "Skapar ditt konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr-bilder taggade
   creative_commons_unless_otherwise_noted: "Creative Commons om inte annat anges."
@@ -1074,11 +1074,11 @@ sv:
   csv_should_not_contain_a_header_row: CSV ska inte innehålla en rubrikrad
   cumulative_ids: "Samlade bestämningar: %{count} av %{total}"
   curate_observations: Hantera observationer
-  curate_taxa: Kurera taxa
+  curate_taxa: Hantera taxa
   curate_user: Hantera användare
-  curating: Kurerar
-  curation: Kurering
-  curator: Kurator
+  curating: Hanterar
+  curation: Hantera
+  curator: Förvaltare
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     Förvaltare av iNaturalists webbplats är betrodda volontärer som har möjlighet att redigera iNaturalists taxonomi och moderera användarinnehåll.
@@ -1139,13 +1139,13 @@ sv:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_resolve_flags_html: |
-    Klara upp<a href="/flags" target="_blank">flaggor</a> på taxa och användarinnehåll.
+    Lösa <a href="/flags" target="_blank">flaggor</a> på taxa och användarinnehåll.
   #Description of a curator's ability to edit wiki pages; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_wiki_html: |
     Skapa och redigera wikisidor, såsom <a href="/pages/help"
-    target="_blank">iNaturalist FAQ-sida</a>.
+    target="_blank">iNaturalists FAQ-sida</a>.
   #Description of a curator's ability to edit places; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
@@ -1196,15 +1196,15 @@ sv:
     Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
     exemplarisk användare av iNaturalist.
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
-  curators: Kuratorer
+  curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
   curator_identification: Förvaltarbestämning
   current_flags: Nuvarande flaggningar
   custom_project_fields: Anpassade projektfält
   custom_project_was_successfully_created: Projektanpassningar tillagda
   custom_project_was_successfully_updated: Projektanpassningar uppdaterade
-  customize_location: Anpassa plats
-  darr_apply_darr: "&darr; Verkställ &darr;"
+  customize_location: Anpassa lokal
+  darr_apply_darr: "&darr; Använd &darr;"
   daily_users: Dagliga användare
   danger_zone: Farozon
   dashboard: Kontrollpanel
@@ -1245,7 +1245,7 @@ sv:
       november: november
       december: december
   date_is_accurate: Datum är korrekt
-  date_joined: Gick med datum
+  date_joined: Datum gick med
   date_observed: Datum observerad
   date_observed_: Datum observerad
   date_observed_on: datum observerad på
@@ -1270,16 +1270,16 @@ sv:
   default: standard
   #Default option
   default_: Standard
-  default_invite_comment: "Snyggt foto! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
-  default_observation_license: Standard observation licens
-  default_photo_license: Standard foto licens
-  default_search_place: Standardsöklokal
+  default_invite_comment: "Snygg bild! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
+  default_observation_license: Standard observationslicens
+  default_photo_license: Standard bildlicens
+  default_search_place: Standard söklokal
   default_search_place_description: |
     Detta kommer att vara din standardlokal för alla sökningar i Utforska och Bestäm.
-  default_sound_license: Standard ljud licens
+  default_sound_license: Standard ljudlicens
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
-  defines_a_taxon_framework_for: Definierar taxonsammanhanget för %{taxon_name}
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definierar ett taxonsammanhang för %{taxon} hämtat från %{source}
+  defines_a_taxon_framework_for: Definierar en taxonkontext för %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definierar en taxonkontext för %{taxon} som kommer från %{source}
   definitions: Definitioner
   delete: Radera
   delete_all: Radera alla
@@ -1287,20 +1287,20 @@ sv:
   #Button to delete the cover (or banner) image for a project
   delete_cover?: radera omslag?
   delete_icon?: Radera ikon?
-  delete_photo: Radera foto
+  delete_photo: Radera bild
   delete_project: Radera detta projekt
   delete_selected: Radera valda
   delete_taxon_and_merge_most_data_html: |
-    Ta bort <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
-    det här verktyget för <strong>att ta bort dubblerade taxa</strong>. Om du vill
+    Radera <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
+    det här verktyget för <strong>att ta bort dubblettaxa</strong>. Om du vill
     ta bort en föråldrad synonym, vänligen gör ett taxonbyte. <strong>VAR
     FÖRSIKTIG!</strong> Att ta bort taxa kan vara mycket destruktivt. Se
-    <a href="%{curator_url}">Förvaltarguiden</a> för mer information.
+    <a href="%{curator_url}">Förvaltarvägledningen</a> för mer information.
   delete_user: Radera användare
   delete_your_account: Radera ditt konto
   deleted_synonyms: Raderade synonymer
   deleted_user: raderade användare
-  deleted_vote: Borttagen röst
+  deleted_vote: Raderad röst
   deleting: Raderar...
   deleting_verb: Raderar
   deny: Neka
@@ -1310,7 +1310,7 @@ sv:
   describe_your_interest_in_nature: Beskriv ditt intresse för naturen!
   description: Beskrivning
   description_from: Beskrivning från
-  description_sections: Beskrivningssektioner
+  description_sections: Beskrivningsdelar
   description_slash_tags: Beskrivning / Taggar
   description_tags_more: "Beskrivning, taggar och mer"
   desription: Beskrivning
@@ -1326,8 +1326,8 @@ sv:
       user:
         suspended: Ditt konto har blivit avstängt
     sessions:
-      signed_in: 'Du är nu inloggad.'
-      signed_out: 'Du är nu utloggad.'
+      signed_in: 'Inloggningen lyckades.'
+      signed_out: 'Utloggningen lyckades.'
     passwords:
       send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
       updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
@@ -1351,7 +1351,7 @@ sv:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
   devise_unlock_instructions_your_account_has_been_locked: |
-    Ditt konto har låsts på grund av ett stort antal misslyckade inloggningsförsök.
+    Ditt konto har låsts på grund av ett för stort antal misslyckade inloggningsförsök.
   devise_unlock_instructions_click_the_link: |
     Klicka på länken nedan för att låsa upp ditt konto
   devise_unlock_instructions_unlock: Lås upp ditt konto
@@ -1370,7 +1370,7 @@ sv:
   disconnect_provider: "Koppla från %{provider}"
   display: Visning
   display_link_to_checklist: Visa länk till projektlistan från projektsidan
-  display_monthly_supporter_badge: Visa månadens bidragsgivarmärke på min profil
+  display_monthly_supporter_badge: Visa månatlig bidragsgivare-märket på profilen
   display_name: Visa Namn
   display_name_description: Det här är det namn som kommer att visas på din profil samt i upphovsrättssammanhang
   distance_traveled_value: "Tillryggalagt avstånd: %{distance}m"
@@ -1379,12 +1379,12 @@ sv:
   do_not_show_this_message_again: Visa inte detta meddelande igen
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Studerar du nematoder? Är du världens främsta expert på havstulpaners
-    taxonomi? Gillar du bara att titta på vackra blommor? Genom att fylla i din
+    taxonomi? Gillar du helt enkelt att titta på vackra blommor? Genom att fylla i din
     profil blir du personligare och trovärdigare när du
     hjälper personer med bestämningar.
   doesnt_have_default_photo: har ingen standardbild ännu.
   doh_something_went_wrong: Typiskt, något gick fel.
-  doh_something_went_wrong_error: "Attans, någonting gick fel: %{error}"
+  doh_something_went_wrong_error: "Typiskt, något gick fel: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONERA
@@ -1414,17 +1414,17 @@ sv:
   draft_: Utkast
   draft_saved: Utkast sparat!
   drafts: Utkast
-  drag_and_drop_some_photos_or_sounds: Dra och släpp några foton eller ljud
+  drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
   drawings: Skisser
   duplicate_verb: Duplicera
   duration_value: "Varaktigthet: %{duration} minuter"
-  each_place_displays_all_species_inat_knows: "Varje platssida visar alla arter %{site_name} känner till från den platsen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den platsen %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
+  each_place_displays_all_species_inat_knows: "Varje lokalsida visar alla arter %{site_name} känner till från den lokalen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den lokalen på %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
   earliest_added: Tidigast tillagda
   edit: Redigera
-  edit_a_batch_of_observations: Redigera ett gäng observationer
-  edit_account_settings_and_profile: "Redigera kontoinställningar och -profil"
+  edit_a_batch_of_observations: Redigera flera observationer i taget
+  edit_account_settings_and_profile: "Redigera kontoinställningar och profil"
   edit_assessment: Redigera bedömning
-  edit_atlas: Redigera Atlas
+  edit_atlas: Redigera atlas
   edit_atlas_for_taxon_html: Redigera atlas för %{taxon}
   edit_body: Redigera innehåll
   edit_comment: Redigera din kommentar
@@ -1433,34 +1433,34 @@ sv:
   edit_field: Redigera fält
   edit_license: Redigera licens
   edit_multiple_dates: Redigera flera datum
-  edit_multiple_descriptions: Redigera flera beskrivningar
-  edit_multiple_locations: Redigera flera platser
+  edit_multiple_descriptions: Redigera flera anteckningar
+  edit_multiple_locations: Redigera flera lokaler
   edit_multiple_species: Redigera flera arter
   edit_notes: Redigera anteckningar
   edit_observations: Redigera observationer
-  edit_photos: Redigera foton
+  edit_photos: Redigera bilder
   edit_photos_for_observation_id: "Redigera bilder för observation %{obs_id}"
-  edit_place: Redigera plats
+  edit_place: Redigera lokal
   edit_project: Redigera projekt
   edit_remove: Redigera/Ta bort
   edit_selected: Redigera valda
   edit_source: Redigera källa
   edit_taxa: Redigera taxa
   edit_taxon: Redigera taxon
-  edit_taxon_framework: Redigera taxonsammanhang
+  edit_taxon_framework: Redigera taxonkontext
   edit_taxon_link: Redigera taxonlänk
-  edit_taxon_range: Redigera taxonintervall
-  edit_the_observation: Redigera observation
+  edit_taxon_range: Redigera taxons utbredningsområde
+  edit_the_observation: Redigera observationen
   edit_your_account_and_profile_html: "Redigera ditt konto och profil"
   edit_your_default_settings: "Ändra dina standardinställningar"
   edit_your_global_project_settings: Redigera dina globala projektinställningar
-  edit_your_identification: Redigera din identifiering
+  edit_your_identification: Redigera din bestämning
   edit_your_settings_for_this_project: Ändra dina inställningar för detta projekt
   edited_by_name_html: "Redigerad av %{name}"
   edited_by_name_some_rights_reserved_html: |
     Redigerad av %{name}, vissa rättigheter förbehållna (%{license})
   editing: Redigerar
-  editing_announcement: Redigerar tillkännagivande
+  editing_announcement: Redigerar meddelande
   editing_custom_project_fields_for: Redigerar anpassade projektfält för
   editing_observation_field: Redigerar observationsfält
   editing_observation_id: "Redigerar observation %{obs_id}"
@@ -1473,7 +1473,7 @@ sv:
   editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
-  editing_taxon_range: Redigerar taxonintervall
+  editing_taxon_range: Redigerar taxons utbredningsområde
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
@@ -1483,15 +1483,15 @@ sv:
   email: E-post
   email_description: Din e-post delas inte med andra användare på iNaturalist
   email_addresses_description: Kommaseparerade e-postadresser, begränsat till 60 var 30:e dag.
-  email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan återkoppling
+  email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
   email_addresses_to_receive_invites: E-postadresser som ska få inbjudningar
-  email_copyright: "Copyright &copy; %{x}, alla rättigheter reserverade"
+  email_copyright: "Upphovsrätt &copy; %{x}, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   email_settings: E-postinställningar
   embed: 'Bädda in'
-  embed_place_widget: Infoga plats-widget
-  embed_this_assessment: Infoga denna bedömning
-  embed_widget_project: Infoga en widget för detta projekt på din webbplats
+  embed_place_widget: Bädda in lokal-widget
+  embed_this_assessment: Bädda in denna bedömning
+  embed_widget_project: Bädda in en widget för detta projekt på din webbplats
   enable_offline_access: Aktivera offline-åtkomst
   enable_offline_access_for_mobile: Aktivera offline-åtkomst för mobil
   encompassing_places: Omslutande platser
@@ -1506,15 +1506,15 @@ sv:
   error_updating_photo: "Fel vid uppdatering av bild: %{photo_errors}"
   establishment:
     endemic: Endemisk
-    establishment: Etablering
+    establishment: Invandringshistoria
     introduced: Införd
     invasive: Invasiv
     managed: Kultiverad
     native: Inhemsk
     naturalised: Naturaliserad
-  establishment_means: Etableringssätt
+  establishment_means: Invandringshistoria
   establishment_means_describes_how: |
-    Etableringssätt beskriver hur ett taxon etablerades i ett område.
+    Invandringshistoria beskriver hur ett taxon etablerades i ett område.
     Se DarwinCore för <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mer information om terminologi</a>.
   event_in_progress: Händelse pågår
   event_stats: Händelsestatistik
@@ -1527,10 +1527,10 @@ sv:
   everywhere: överallt
   exact: Exakt
   exact_date: Exakt datum
-  exact_location: Exakt plats
+  exact_location: Exakt position
   exact_rank: Exakt rang
   except: förutom
-  exclude_places: Uteslut platser
+  exclude_places: Uteslut lokaler
   exclude_projects: Uteslut projekt
   exclude_taxa: Uteslut taxa
   exclude_users: Uteslut användare
