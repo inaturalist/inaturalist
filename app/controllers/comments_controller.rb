@@ -181,6 +181,9 @@ class CommentsController < ApplicationController
       redirect_to( post_path( post, anchor: anchor ) )
     elsif @comment.parent.is_a?( TaxonLink )
       redirect_to( edit_taxon_link_path( @comment.parent, anchor: anchor ) )
+    elsif @comment.parent.is_a?( Observation )
+      anchor = "activity_comment_#{@comment.uuid}"
+      redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     else
       redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     end

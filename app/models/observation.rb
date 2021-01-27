@@ -154,7 +154,7 @@ class Observation < ActiveRecord::Base
     "private_place_guess",
     "private_latitude",
     "private_longitude",
-    "private_positional_accuracy",
+    "public_positional_accuracy",
     "geoprivacy",
     "taxon_geoprivacy",
     "coordinates_obscured",
@@ -204,7 +204,7 @@ class Observation < ActiveRecord::Base
     "private_place_guess",
     "private_latitude",
     "private_longitude",
-    "private_positional_accuracy",
+    "public_positional_accuracy",
     "geoprivacy",
     "taxon_geoprivacy",
     "coordinates_obscured",
@@ -847,8 +847,7 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
-      options[:except] += [:private_latitude, :private_longitude,
-        :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
+      options[:except] += [:private_latitude, :private_longitude, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]

@@ -17,27 +17,6 @@ class ActivityCreatePanel extends React.Component {
 
   componentDidMount( ) {
     this.setUpMentionsAutocomplete( );
-    if ( window.location.hash ) {
-      // I really wish this timeout wasn't necessary but without it Chrome just
-      // seems to scroll back to the top. Note that $.scrollTo doesn't seem to
-      // work in Safari.
-      let targetHash = window.location.hash;
-      if ( $( targetHash ).length === 0 ) {
-        targetHash = _.snakeCase( `activity_${targetHash.replace( "#", "" )}` );
-        targetHash = `#${targetHash}`;
-      }
-      const isFirefox = navigator.userAgent.toLowerCase( ).indexOf( "firefox" ) > -1;
-      if ( isFirefox ) {
-        $.scrollTo( targetHash );
-      } else {
-        setTimeout( ( ) => {
-          const $hashElt = $( targetHash );
-          if ( $hashElt.length > 0 ) {
-            $( document ).scrollTop( $hashElt.offset( ).top );
-          }
-        }, 2000 );
-      }
-    }
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -56,7 +35,7 @@ class ActivityCreatePanel extends React.Component {
 
   setUpMentionsAutocomplete( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    $( ".comment_id_panel textarea", domNode ).textcompleteUsers( );
+    $( "textarea", domNode ).textcompleteUsers( );
   }
 
   postIdentification( ) {

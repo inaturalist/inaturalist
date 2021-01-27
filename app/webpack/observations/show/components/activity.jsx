@@ -20,7 +20,7 @@ class Activity extends React.Component {
       // work in Safari.
       let targetHash = window.location.hash;
       if ( $( targetHash ).length === 0 ) {
-        targetHash = _.snakeCase( `activity_${targetHash.replace( "#", "" )}` );
+        targetHash = _.replace( `activity_${targetHash.replace( "#", "" )}`, "-", "_" );
         targetHash = `#${targetHash}`;
       }
       const isFirefox = navigator.userAgent.toLowerCase( ).indexOf( "firefox" ) > -1;

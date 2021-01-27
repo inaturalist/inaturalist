@@ -79,19 +79,19 @@ sv:
     one: "%{count} bild"
     other: "%{count} bilder"
   x_new_species:
-    one: "1 ny art"
+    one: "%{count} ny art"
     other: "%{count} nya arter"
   x_new_users:
     one: '%{count} ny användare'
     other: '%{count} nya användare'
   x_species:
-    one: '1 art'
+    one: '%{count} art'
     other: '%{count} arter'
   x_species_html:
-    one: "<span class='count'>1</span> art"
+    one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
   x_species_link_html:
-    one: "<a href='%{url}'>1 art</a>"
+    one: "<a href='%{url}'>%{count} art</a>"
     other: "<a href='%{url}'>%{count} arter</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} förslag filtrerades på:"
@@ -100,31 +100,31 @@ sv:
     one: "%{count} taxon"
     other: "%{count} taxa"
   x_taxa_observed_html:
-    one: "<span class='count'>1</span> observerat taxon"
+    one: "<span class='count'>%{count}</span> observerat taxon"
     other: "<span class='count'>%{count}</span> observerade taxa"
   x_research_grade_observations_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet"
+    one: "<span class='antal'>%{count}</span> observation av forskningskvalitet"
     other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet"
   x_research_grade_observations_to_species_html:
-    one: "<span class='antal'>1</span> observation av forskningskvalitet bestämd till art eller lägre"
+    one: "<span class='antal'>%{count}</span> observation av forskningskvalitet bestämd till art eller lägre"
     other: "<span class='antal'>%{count}</span> observationer av forskningskvalitet bestämda till art eller lägre"
   x_sounds:
     one: "%{count} ljud"
     other: "%{count} ljud"
   x_taxa_curated_html:
-    one: "<span class='antal'>1</span> förvaltat taxon"
+    one: "<span class='antal'>%{count}</span> förvaltat taxon"
     other: "<span class='antal'>%{count}</span> förvaltade taxa"
   x_taxa_matching_current_filters:
-    one: "1 taxon matchar nuvarande filter"
+    one: "%{count} taxon matchar nuvarande filter"
     other: "%{count} taxa matchar nuvarande filter"
   x_taxon_changes_added_html:
-    one: "<span class='antal'>1</span> taxonändring tillagd"
+    one: "<span class='antal'>%{count}</span> taxonändring tillagd"
     other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
   _100_day_trends: 100-dagarstrend
   _percent_ID_d: "% bestämda"
   a_community_for_naturalist: En gemenskap för naturforskare
   a_default_taxon_name_will_automatically_created: |
-    Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon, kommer du kunna lägga till andra namn här (trivialnamn, vetenskapliga synonymer osv.)
+    Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon kommer du kunna lägga till andra namn här (vardagliga namn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
   a_member_of_taxon_html: "en medlem i %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -154,7 +154,7 @@ sv:
   about_blocking: Om blockering
   about_charts: Om diagram
   about_community_taxa: Om gemenskapstaxa
-  about_complete_taxa: Om fullständiga taxa
+  about_complete_taxa: Om kompletta taxa
   about_conservation_status: Om bevarandestatus
   about_editing_observation_fields: Om redigering av observationsfält
   #Header for a section explaining Establishment Means. See the
@@ -531,6 +531,9 @@ sv:
   #the iNaturalist Android app or Flickr
   application: Applikation
   applications: Applikationer
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Ansök
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
   apply_fields: Tillämpa fält
@@ -1076,6 +1079,122 @@ sv:
   curating: Kurerar
   curation: Kurering
   curator: Kurator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Förvaltare av iNaturalists webbplats är betrodda volontärer som har möjlighet att redigera iNaturalists taxonomi och moderera användarinnehåll.
+    Webbplatsförvaltarna är grundläggande för iNaturalist eftersom de håller taxonomin uppdaterad och diskussionen på iNaturalist anständig och städad.
+    Nedan följer en beskrivning av vad det innebär att vara förvaltare. Var vänlig läs det och, om du vill bli förvaltare, läs noga igenom 
+    <a href="/pages/curator+guide" target="_blank">Förvaltarvägledningen</a>
+    och fyll sedan i ansökan på denna sida.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Du behöver förklara varför du vill bli förvaltare
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Varför vill du bli förvaltare?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera länkar till etablerade taxonomiska auktoriteter som angivet i Förvaltarvägledningen
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Om du vill moderera beteende på iNaturalist, ge ett exempel eller två på överträdelser av Gemenskapens riktlinjer samt vad du skulle göra i dessa situationer
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hur en förvaltare blir av med sina befogenheter
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat-personal kan ta bort en förvaltares befogenheter om hen upprepade gånger:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Bortser från policyer i förvaltarvägledningen.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Underlåter att själv uppträda på lämpligt sätt.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons observationer, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt båda dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
+  curator_application_inelligible_error: |
+    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60
+    dagar eller mer och har lagt till 100 förbättrande bestämningar till någons
+    observationer, inklusive dina egna.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Förvaltaransökan inskickad
+  #Header
+  curator_application_what_curators_can_do: Vad förvaltare kan göra
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons geosekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Dölja kommentarer och stänga av användare för att de bryter mot <a
+    href="/pages/community+guidelines" target="_blank">Gemenskapens
+    riktlinjer</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Klara upp<a href="/flags" target="_blank">flaggor</a> på taxa och användarinnehåll.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Skapa och redigera wikisidor, såsom <a href="/pages/help"
+    target="_blank">iNaturalist FAQ-sida</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Redigera gemenskapsförvaltade lokaler och ladda upp KML-filer större än 1 MB
+    (men mindre än 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Vad förvaltare inte kan göra
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Påverka Gemenskapstaxon eller Datakvalitet för en observation mer än någon
+    annan användare kan.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Genomföra taxonändringar på <a href="/pages/curator+guide#completetaxa"
+    target="_blank">kompletta taxa</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Radera innehåll skapat av andra användare.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Läsa direktmeddelanden av andra användare.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Förvaltaransökan
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Du bör endast söka för att bli förvaltare om:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Du har lagt till bestämningar och/eller observationer i några månader
+    och har för avsikt att fortsätta.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Du ställer upp på och kan utföra förvaltararbete regelbundet. Om du endast vill lägga till några få taxa, be istället nuvarande förvaltare att addera dem genom att lägga till flaggor till taxa på högre nivå.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Du kan uppföra dig lämpligt på iNaturalist och följa Gemenskapens riktlinjer.
+    Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
+    exemplarisk användare av iNaturalist.
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
@@ -1155,6 +1274,8 @@ sv:
   default_observation_license: Standard observation licens
   default_photo_license: Standard foto licens
   default_search_place: Standardsöklokal
+  default_search_place_description: |
+    Detta kommer att vara din standardlokal för alla sökningar i Utforska och Bestäm.
   default_sound_license: Standard ljud licens
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
   defines_a_taxon_framework_for: Definierar taxonsammanhanget för %{taxon_name}
@@ -1903,8 +2024,8 @@ sv:
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
   leaderboard_most:
-    species: Mest arter i %{time}
-    observations: Mest observationer i %{time}
+    species: Flest arter i %{time}
+    observations: Flest observationer i %{time}
     identifications: Mest identifieringar i %{time}
   leading: Leder
   learn: Lär dig
@@ -2202,6 +2323,20 @@ sv:
   message_from_user_at_time: Från %{user} kl. %{time}
   message_from_user_on_date: Från %{user} den %{date}
   messages: Meddelanden
+  messages_new_correspondent_it_looks_like: |
+    Det verkar inte ha kommunicerat med den här personen förut, så tänk på detta:
+  messages_new_correspondent_specimens: |
+    Var försiktig med förfrågningar om exemplar eller dolda data. Försök att bekräfta
+    identiteten på den person som gör begäran och om de ber om
+    exemplar, be att få se deras tillstånd.
+  messages_new_correspondent_personal: |
+    Lämna inte ut personlig information om dig själv till personer du inte
+    litar på.
+  messages_new_correspondent_actions_html: |
+    Om du misstänker att denna person bryter mot våra <a href="%{tos_url}"
+    target="_blank">användarvillkor</a> eller inte agerar i enlighet med våra <a
+    href="%{guidelines_url}" target="_blank">gemenskapsriktlinjer</a>,
+    flagga detta meddelande nedan.
   misidentifications: Felbestämningar
   misleading_or_illegal_content_html: |
     Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om
@@ -2249,6 +2384,8 @@ sv:
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
   month: Månad
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
@@ -2268,9 +2405,9 @@ sv:
   most_browser_print_pdf: "OBS: De flesta webbläsare har ett alternativ att skriva ut till PDF"
   most_disagree: mest oeniga
   most_comments_and_faves: Flest kommentarer och favoriter
-  most_observations: Mest observationer
+  most_observations: Flest observationer
   most_recent_observation_by_date_observed: Senaste verifierbara observation efter observerationsdatum
-  most_species: Mest arter
+  most_species: Flest arter
   most_observed_species: Mest observerade arter
   most_observed_introduced_species: Mest observerade införda arter
   most_observed_threatened_species: Mest observerade hotade arter
@@ -2367,7 +2504,7 @@ sv:
   new_species_added_in_interval_x_of_y: Nya arter som lades till i %{interval} (Visar %{x} av %{y})
   new_taxon_change: Ny ändring av taxon
   new_taxon_link: Ny taxonlänk
-  new_taxon_name_for: Ny takson namn för
+  new_taxon_name_for: Nytt namn på taxon för
   new_taxon_range: Nytt taxonintervall
   new_taxonomic_change: Ny taxonomisk förändring (utkast)
   new_trip: Ny resa
@@ -7069,11 +7206,11 @@ sv:
           <strong>träffa</strong> andra naturälskare,
           och <strong>lära dig</strong> om naturen.
         connect_with_nature: Anslut med naturen
-        explore_and_share: Utforska och dela dina observationer från naturlig värld.
+        explore_and_share: Utforska och dela dina observationer från naturen.
         observations_to_date: 'Observationer hittills'
         species_observed: 'Arter observerade'
         people_signed_up: 'Människor registrerade'
-        how_it_works: Hur den fungerar
+        how_it_works: Så funkar det
         record_your_observations: Spela in dina observationer
         share_with_fellow_naturalists: Dela med kamrat naturforskare
         discuss_your_findings: Diskutera dina resultat
