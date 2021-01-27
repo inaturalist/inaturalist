@@ -60,6 +60,9 @@ lb:
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> Recherche-Grade Observatioun"
     other: "<span class='count'>%{count}</span> Recherche-Grade Observatiounen"
+  x_sounds:
+    one: "%{count} Sound"
+    other: "%{count} Sounds"
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -423,6 +426,7 @@ lb:
   comments_on_my_observations: Bemierkungen zu mengen Observatiounen
   common_name: Allgemengen Numm
   community: Communautéit
+  community_guidelines: Communautéit's Richtlinnen
   community_id_heading: Communautéits-Taxon
   community_id_is_precise: Den Community Taxon ass prezise
   compare: Vergläichen
@@ -586,6 +590,7 @@ lb:
   draft_: Virbereedung
   draft_saved: Virbereedung gespäichert!
   drafts: Virbereedungen
+  drag_and_drop_some_photos_or_sounds: Drag & drop Fotoen oder Sound
   drawings: Zeechnungen
   duplicate_verb: Eng Kopie maachen
   duration_value: "Dauer: %{duration} Minutten"
@@ -597,7 +602,7 @@ lb:
   edit_multiple_dates: Méi Datumen änneren
   edit_multiple_descriptions: Méi Beschreiwungen änneren
   edit_notes: Notizen änneren
-  edit_observations: Observatiounen änneren
+  edit_observations: Observatiounen editéieren
   edit_photos: Fotoen änneren
   edit_place: Plaz änneren
   edit_project: Projet änneren
@@ -711,7 +716,7 @@ lb:
   has_already_been_flagged_by: gouf scho markéiert vum
   has_photo: Huet eng Foto
   has_photos: Huet Fotoen
-  has_photos_or_sounds: Huet Fotoen oder Téin
+  has_photos_or_sounds: Huet Fotoen oder Sound
   has_sound: Mat Toun
   has_sounds: Huet Téin
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
@@ -928,6 +933,8 @@ lb:
   meet: Treffen
   member_of_the_inaturalist_network_html: |
     Member vum <a href="%{url}">iNaturalist Reseau</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Member vum %{partial_inat_network_tag_html}iNaturalist Netzwierk </a>, enger gemeinsamer Initiativ vun der %{cas_tag_html} and der %{nat_geo_tag_html}.
   #As in members of a project
   members: Memberen
   mentioned_you_in_noun_html: "%{user} huet Iech op %{noun} ernimmt."
@@ -1072,6 +1079,12 @@ lb:
   observation_: Observatioun
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
+  observation_brief_taxon_from_place: "%{taxon} vun %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} vun %{place} vum %{user}"
+  observation_brief_taxon_from_place_on_day: "%{taxon} vun %{place} vum %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} vun %{place} vum %{day} vum %{user}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} vun %{place} vum %{day} um %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
   observations_by_user_on_date: "Observatioune vum %{user} de(n) %{date}"
@@ -1158,7 +1171,8 @@ lb:
   photo_type: Phototyp
   photos_from: Fotoe vu(n)
   photos_of_taxon_html: "Fotoe vu(n)%{taxon}"
-  photos_or_sounds: Fotoen oder Téin
+  photos_or_sounds: Fotoen oder Sound
+  photos_or_sounds?: Fotoen oder Sounds?
   photos_size:
     small: kleng
     medium: mëttel
@@ -1218,6 +1232,7 @@ lb:
       Unknown: Onbekannt
       unknown: Onbekannt
   places: Plazen
+  places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
     africa: Afrika
     albania: Albanien
@@ -1466,6 +1481,14 @@ lb:
   sorry_we_didnt_find_that_photo: "Pardon, mir hunn déi Foto net fonnt."
   sort: Zortéieren
   sort_by: Zortéieren no
+  sounds:
+    add_sounds: Sound bäisetzen
+    before_importing_sounds: virum Import vun Sounds
+    import_sounds: Sounds importeiren
+    no_photos_sounds: Keng Fotoen oder Sounds
+    photos_sounds: Fotoen / Sounds
+    sound: Sound
+    sounds: Sounds
   source: Quell
   source_: 'Quell:'
   source_wikipedia: "Quell: Wikipedia"
@@ -1505,6 +1528,7 @@ lb:
   taxonomy_details_for: Taxonomesch Detailer fir
   tell_the_world_a_little_about_yourself: Zielt eis eppes vun Iech
   tell_us_why: Sot eis firwat...
+  terms_service: Konditioune vum Service
   text: Text
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
@@ -1599,6 +1623,7 @@ lb:
   video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
   w_photos_only: w/ Fotoen
+  w_sounds: w/ Sounds
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesicht
   we_couldnt_find_a_user: Mir konnte kee Benotzer mat där E-Mail-Adress fannen.
@@ -1795,19 +1820,36 @@ lb:
     welcome:
       index:
         connect_with_nature: Mat der Natur verbannen
+        explore_and_share: Entdeckt an deelt Är Observatiounen aus der Natur
         observations_to_date: 'Observatioune bis haut'
+        species_observed: 'Aarten observéiert'
         people_signed_up: 'Leit hu sech ageschriwwen'
         how_it_works: Wéi et geet
         record_your_observations: Enregistréiert Är Observatiounen
         share_with_fellow_naturalists: Mat Naturalistekollegen deelen
         discuss_your_findings: Diskutéiert Är Konklusiounen
-        create_useful_data: Nëtzlech Donnéeën uleeën
+        contribute_to_science: Zur Wëssenschaft bäidroen
+        science_desc_html: |
+          All Observatioun kann zum Erfuersche vun der Biodiversitéit bäidroen, vum rarste Päiperlek bis zur heefegste Gaardenonkraut. Mir deelen Är Erkenntnisser mat wëssenschaftlechen Données-Portaler wéi dem <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> fir de Wëssenschaftler ze hëllefen Är Donnéeën ze fannen an ze benotzen. Alles wat Dir maache musst ass observéieren.
+        nature_at_your_fingertips: D'Natur zum gräifen no
+        keep_track: Den Iwwerbléck behalen
+        create_useful_data: Nëtzlech Donnéeën kreéieren
+        help_scientists: Hëlleft Wëssenschaftler a Recourse Manager ze verstoe wéini a wou Organismen optrieden.
         crowdsource_identifications: Crowndsourcen vu Bestëmmungen
+        connect_with_experts: Vernetzt Iech mat Experten déi d'Organismen identifizéieren déi Dir observéiert.
+        become_a_citizen_scientist: Gitt ee Citize Scientist
+        find_a_project: "Fannt e Projet mat enger Missioun déi Iech interesséiert, oder start Ären eegenen."
         learn_about_nature: Iwwer d'Natur léieren
-        works_on_all_your_devices: Funktionéiert op all Ären Apparater
-        who_uses_site_name: "Wie benotzt %{site_name}?"
-        what_are_you_waiting_for: Wourop waart Dir?
-        join_today: Maacht haut nach mat
+        build_your_knowledge: Verbessert Äert Wëssen andeems Dir mat aneren Naturaliste schwätzt an anerer hëlleft.
+        run_a_bioblitz: Ee Bioblitz organiséieren
+        hold_an_event: Organiséiert een Event wou d'Leit probéieren esou vill Aarte wéi méiglech ze fannen.
+        works_on_all_your_devices: Leeft op all Ären Apparater
+        install_our_mobile_apps: |
+          Installéiert eis mobil Apps fir datt Dir ëmmer observéiere kënnt, och ouni 
+          mobillen Empfang oder Wifi.
+        who_uses_site_name: "Wien benotzt %{site_name}?"
+        what_are_you_waiting_for: Wourop waart Dir nach?
+        join_today: Maacht mat
   date:
     abbr_day_names:
       - Son
