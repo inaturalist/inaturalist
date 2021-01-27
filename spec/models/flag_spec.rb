@@ -100,6 +100,8 @@ describe Flag, "update" do
 end
 
 describe Flag, "destruction" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
   it "should remove the resolver's subscription" do
     t = Taxon.make!
     f = Flag.make!(flaggable: t)
@@ -110,5 +112,18 @@ describe Flag, "destruction" do
     f.reload
     f.destroy
     expect( u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to be_blank
+  end
+
+  it "should remove update actions" do
+    c = Comment.make!
+    f = Flag.make!( flaggable: c )
+    u = make_curator
+    without_delay do
+      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+    end
+    f.reload
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
+    f.destroy
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
   end
 end
