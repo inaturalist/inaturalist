@@ -203,8 +203,15 @@ describe ObservationsExportFlowTask do
       let(:place) { make_place_with_geom }
       let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
       let(:project) {
-        p = Project.make!( project_type: "collection", user: user, prefers_user_trust: true )
+        p = Project.make!(
+          project_type: "collection",
+          user: user,
+          prefers_user_trust: true,
+          created_at: 2.weeks.ago,
+          updated_at: 2.weeks.ago
+        )
         p.project_observation_rules.create( operator: "observed_in_place?", operand: place )
+        p.update_attribute( :observation_requirements_updated_at, 2.weeks.ago )
         p
       }
       def stub_api_requests_for_observation( o, options = {} )
