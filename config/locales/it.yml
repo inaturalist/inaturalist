@@ -514,6 +514,9 @@ it:
   #the iNaturalist Android app or Flickr
   application: Applicazione
   applications: Applicazioni
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Applica
   apply_to_selected: Applica ai selezionati
   apply_captive_cultivated: "Applica in cattività / coltivato"
   apply_fields: Applica campi
@@ -1049,6 +1052,115 @@ it:
   curating: Amministrazione in corso
   curation: Amministrazione
   curator: Curatore
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    I curatori del sito iNaturalist sono volontari di fiducia che hanno la capacità di modificare la tassonomia di iNaturalist e alcuni contenuti utente. I curatori del sito sono parte integrante di iNaturalist, in quanto mantengono la nostra tassonomia aggiornata e le conversazioni su iNaturalist appropriate e civili. Di seguito una descrizione di cosa significa essere un curatore. Per favore leggilo e se desideri diventare un curatore, esamina attentamente la <a href="/pages/curator+guide" target="_blank">Guida</a> e compila il formulario a questa pagina.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Devi spiegare perché vuoi diventare un curatore
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Perché vuoi essere un curatore?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Se desideri modificare la tassonomia di iNaturalist, per favore fornisci un paio di esempi delle modifiche tassonomiche che desideri apportare, e includi il link alle vere autorità tassonomiche elencate nella Guida curatore
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Se vuoi modificare i nomi comuni, per favore fornisci uno o due esempi di modifiche che desideri apportare
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Se vuoi moderare il comportamento su iNaturalist, per favore fornisci un paio di esempi delle violazioni delle Linee Guida della Comunità e cosa faresti in queste situazioni
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Come un curatore perde i suoi poteri
+  curator_application_how_curators_lose_their_powers_desc: |
+    Il personale di iNat può rimuovere i poteri curatoriali se un curatore ripetutamente:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignora le politiche contenute nella Guida curatore.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Non riesce a dimostrare lui stesso un comportamento appropriato.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto 100 identificazioni "di affinamento" alle
+    osservazioni di chiunque, incluso le tue (ne hai aggiunte %{num_idents}). Quando hai soddisfatto entrambi i requisiti, torna qui e sarai in grado di inviare la domanda.
+  curator_application_inelligible_error: |
+    Per poter diventare un curatore del sito devi avere un account da almeno 60 giorni e aver aggiunto 100 identificazioni "di affinamento" alle
+    osservazioni di chiunque, incluso le tue.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Domanda curatore presentata
+  #Header
+  curator_application_what_curators_can_do: Cosa Possono Fare i Curatori
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Modificare la tassonomia di iNaturalist seguendo i criteri indicati nella sezione <a href="/pages/curator+guide#policies" target="_blank">Politiche della Guida Curatore</a>. Questo significa che possono aggiungere, dividere, scambiare, unire, disattivare ed eliminare taxa su iNaturalist. Possono anche modificare lo stato di conservazione dei taxa e la geoprivacy del taxon, nonché modificare e gestire i nomi comuni aggiunti da qualsiasi utente.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Nascondere i commenti e sospendere gli utenti per aver violato le <a
+    href="/pages/community+guidelines" target="_blank">Linee Guida della Comunità
+    </a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Risolvere <a href="/flags" target="_blank">segnalazioni</a> relative ai taxa e al contenuto dell'utente.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Creare e modificare pagine wiki, come la pagina <a href="/pages/help"
+    target="_blank">FAQ di iNaturalist</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Modificare i luoghi curati dalla Comunità e caricare file KML più grandi di 1 MB (ma
+    più piccoli di 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Cosa Non Possono Fare i Curatori
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Influenzare il Taxon della Comunità o la Qualità dei Dati di un'osservazione più di qualsiasi altro
+    utilizzatore.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Validare modifiche del taxon per i <a href="/pages/curator+guide#completetaxa"
+    target="_blank">taxa completi</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Eliminare i contenuti creati da altri utenti.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Leggere i messaggi diretti tra altre persone.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Domanda per Curatore
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Dovresti candidarti per essere un curatore solo se:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Hai aggiunto identificazioni e/o osservazioni per alcuni mesi e hai intenzione di continuare.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Sei disposto e in grado di eseguire il lavoro di curatela su base regolare. Se vuoi aggiungere solo qualche taxa, per favore richiedi ai curatori esistenti di aggiungere questi taxa inserendo segnalazioni ai taxa di livello superiore.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Puoi moderare il comportamento appropriato su iNaturalist e rispettare le linee guida della Comunità. Insieme ai poteri curatoriali si richiede che tu sia un utente esemplare di iNaturalist.
   curators_changed_for_x_html: "Curatori cambiati per %{x}"
   curators: Curatori
   curators_can_remove_observations_from: I curatori possono rimuovere le osservazioni dal progetto e le loro identificazioni sono indicate a fianco delle osservazioni nella pagina del progetto. I curatori possono anche accedere alle coordinate private e oscurate delle osservazioni.
