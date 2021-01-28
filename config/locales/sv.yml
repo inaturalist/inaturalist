@@ -1554,35 +1554,35 @@ sv:
   evidence_of_organism: Belägg för organism
   facebook: Facebook
   facebook_account_information: Din Facebook-kontoinformation
-  facebook_account_not_linked: "%{user} har inte längre ett länkat Facebook-konto, varför %{site_name} inte har behörighet att komma åt denna bild."
-  facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka om sitt Facebook-konto."
-  facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin anslutning till %{site_name_short}.
+  facebook_account_not_linked: "%{user} har inte längre ett kopplat Facebook-konto, varför %{site_name} inte har behörighet att komma åt denna bild."
+  facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka sitt Facebook-konto igen."
+  facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin koppling till %{site_name_short}.
   facebook_options: Facebook-inställningar
-  failed_to_find_your_location: Kunde inte att hitta din plats.
-  failed_to_repair_photo: "Kunde inte reparera bild: %{errors}"
-  failed_to_save_record: "Det gick inte att spara posten. Försök igen senare."
+  failed_to_find_your_location: Kunde inte att hitta din position.
+  failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
+  failed_to_save_record: "Lyckades inte att spara posten. Försök igen senare."
   failed_to_save_record_with_errors: "Lyckades inte spara posten: %{errors}"
   failed_to_unlink_your_account: Lyckades inte koppla ifrån ditt konto
   'false': 'Falskt'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriter
   Family: Familj
-  favorite_taxa: Favorit taxa
+  favorite_taxa: Favorittaxa
   favorites: "Favoriter"
   feature_this_project_: "Uppmärksamma detta projekt"
   featured: Uppmärksammat
   #Title for a button or section describing the "featured" status of a project
-  featuring: Uppmärksammat
+  featuring: Uppmärksamhet
   feedback: Återkoppling
   #Plural noun, as in Atom and RSS feeds
-  feeds: 'Matningar'
+  feeds: 'Flöden'
   failed: Misslyckades
   field_note: |
     <strong>Obs:</strong> Om du vill skapa ett fält, kontrollera först om
     någon annan redan hade gjort det för att undvika dubbletter.
   fields: fält
   fields_: Fält
-  fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av dem som skapade dem samt webbplatsens förvaltare
+  fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av de som skapade dem samt webbplatsens förvaltare
   fields_merged: Fält sammanslagna
   file: Fil
   file_size: Filstorlek
@@ -1591,20 +1591,20 @@ sv:
   fill_out_your_profile: slutför din profil
   filter: Filter
   filter_by_curator_identification: Filtrera på förvaltares bestämning
-  filter_by_place: Filtrera på plats
+  filter_by_place: Filtrera på lokal
   filter_by_taxon: Filtrera på taxon
-  filter_by_place_taxon_and_color: Filtrera på plats, taxon och färg med kontrollerna.
+  filter_by_place_taxon_and_color: Filtrera på lokal, taxon och färg med kontrollerna.
   filter_list_by_this_taxon: Filtrera listan på detta taxon
   filtering: Filtrering
   filters: Filter
   find: Hitta
   find_a_guide: Hitta en guide
-  find_a_place: Hitta en plats
+  find_a_place: Hitta en lokal
   find_guides: Hitta guider
-  find_new_place_to_explore: Hitta en ny plats att utforska!
+  find_new_place_to_explore: Hitta en ny lokal att utforska!
   find_observations: Hitta observationer
-  find_photos: Hitta foton
-  find_places: Hitta platser
+  find_photos: Hitta bilder
+  find_places: Hitta lokaler
   find_some_people_to_follow: "Hitta några personer att följa"
   find_species: Hitta arter
   find_suitable_observations: Hitta lämpliga observationer
@@ -1612,10 +1612,10 @@ sv:
   find_your_current_location: Hitta din aktuella position
   finished: Slutfört
   finished_with_page: Klar med sida
-  first_confirmed_inat_observation: "Första bekräftade %{site_name}-observation"
-  first_connect_your_provider_account_to_your_site: "Anslut först ditt %{provider}-konto till %{site_name}:"
-  first_inat_observation: "Första %{site_name} observation"
-  first_observation: Första observation
+  first_confirmed_inat_observation: "Första bekräftade %{site_name}-observationen"
+  first_connect_your_provider_account_to_your_site: "Koppla först ditt %{provider}-konto till %{site_name}:"
+  first_inat_observation: "Första %{site_name}-observationen"
+  first_observation: Första observationen
   first_observation_by_date_added: Första observationen efter datum tillagd
   first_observer: 1:a observatör
   #Verb form, as in "Flag this item"
@@ -1629,7 +1629,7 @@ sv:
   flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
   flag_for_check_list_title_html: |
     Flagga för checklista: %{title}
-  flag_for_comment_id_html: Flagga för <a href="%{url}">Kommentar %{id}</a>
+  flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
   flag_for_comment_id_deleted: Flagga för kommentar %{id} (raderad)
   flag_for_curation: Flagga för förvaltning
   flag_for_guide_title_html: |
@@ -1653,16 +1653,16 @@ sv:
     Flagga för taxon: %{title}
   flag_for_user_title_html: |
     Flagga för användare: %{title}
-  flag_it!: Flagga den!
+  flag_it!: Flagga det!
   flag_marked_as_resolved_html: '<span class="meta">Flagga markerad som</span> <strong>löst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Jag flaggar detta %{record} eftersom"
   flag_resolution: Lösning
-  flag_saved: Flagga sparades.
+  flag_saved: Flagga sparad
   flag_saved_thanks_html: Flagga sparad. Tack! <a href="%{url}" class="readmore">Visa flagga</a>
   flag_this_observation: Flagga denna observation
-  flag_this_photo: Flagga detta foto
+  flag_this_photo: Flagga denna bild
   flag_this_sound: Flagga detta ljud
   flagged: flaggades
   flagged_: Flaggad
@@ -1679,9 +1679,9 @@ sv:
   flags_for_x_html: Flaggor för %{x}
   flags_on_users_content: "Flaggor på %{user}s innehåll"
   flickr_account_information: Din Flickr-kontoinformation
-  flickr_has_no_creative_commons: Flickr har inga Creative Commons-licensierade bilder från denna plats.
+  flickr_has_no_creative_commons: Flickr har inga Creative Commons-licensierade bilder från denna lokal.
   flickr_identity: Flickr-identitet
-  flickr_needs_to_confirm: "Flickr måste bekräfta att du vill ha ditt konto knutet till %{site_name}."
+  flickr_needs_to_confirm: "Flickr måste bekräfta att du vill ha ditt konto kopplat till %{site_name}."
   flickr_photo: Flickr-bild
   flickr_photos: Flickr-bilder
   flickr_style: Flickr-stil
@@ -1697,14 +1697,14 @@ sv:
   followers: Följare
   following: Följer
   following_x_people:
-    one: 'Följande 1 människa'
-    other: 'Följande %{count} människor'
-  for_a_taxon: för en taxon
+    one: 'Följer 1 person'
+    other: 'Följer %{count} personer'
+  for_a_taxon: för ett taxon
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
   forum: Forum
   forum_categories:
-    bug_reports: Felrapporter
+    bug_reports: Buggrapporter
     feature_requests: Funktionsförslag
     forum_feedback: Forumåterkoppling
     forum_moderation: Forummoderering
@@ -1712,15 +1712,14 @@ sv:
     news_and_updates: Nyheter & uppdateringar
     tutorials: Handledningar
   forum_desc: |
-    Forumet är en plats för diskussioner om iNat, inklusive hjälp & support,
-    funktionsförfrågningar, felrapporter, tillkännagivanden med mera.
+    Forumet är en plats för diskussioner om iNat, inklusive hjälp & support, funktionsförslag, buggrapporter, meddelanden med mera.
   frequency: Frekvens
-  from_a_place: från en plats
+  from_a_place: från en lokal
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
   from_list: Från lista
-  from_photos: Från foton
-  from_place: Från plats
+  from_photos: Från bilder
+  from_place: Från lokal
   from_soundcloud: Från Soundcloud
   full_screen: Helskärm
   fungi:
@@ -1740,13 +1739,13 @@ sv:
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
   get_started: Kom igång
-  getting_started_guide: Komma igång guide
+  getting_started_guide: Komma igång-guide
   give_it_some_detail: Lägg till lite detaljer!
   give_monthly_caps: GE MÅNADSVIS
   give_now_caps: GE NU
   global_names: Globala namn
   globally: Globalt
-  go: Gå
+  go: Kör
   go_back: Gå tillbaka
   going_to_your_observations: Till dina observationer...
   good_choice_for_sharing: Bra val för att dela med forskare
@@ -1755,7 +1754,7 @@ sv:
   got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
   graft: Ympa
   graft_taxon: Ympa %{taxon}
-  grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
+  grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till vårt taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
   grant_role: "%{grant} %{role} roll"
   grid: Rutnät
   grid_layout: Rutnätslayout
@@ -1774,7 +1773,7 @@ sv:
   has_already_been_flagged_by: har redan flaggats av
   has_id_supported_by_two_or_more: Med bestämning stödd av två eller fler
   has_one_or_more_faves: Har en eller flera favoriter
-  has_photo: Har foto
+  has_photo: Har bild
   has_photos: Har bilder
   has_photo_and_sound: Har både bild och ljud
   has_photos_or_sounds: Har bilder eller ljud
@@ -1789,17 +1788,17 @@ sv:
   header_your_identifications: Dina bestämningar
   header_your_projects: Dina projekt
   header_your_profile: Din profil
-  heads_up: Se upp
-  heads_up_this_photo_has_been_flagged: "SE UPP: denna bild har flaggats."
-  heads_up_this_photo_is_already_associated_with: "Se upp: denna bild är redan knuten till <a target='_blank' href='%{url}'>en annan observation</a>"
-  heads_up_you_have_multiple: "Se upp: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
+  heads_up: Obs
+  heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
+  heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>en annan observation</a>"
+  heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
   help: Hjälp
   help_confirm_observations!: Hjälp till att bekräfta observationer!
   help_support_inaturalist: "Hjälp till att stödja iNaturalist"
   help_translate!: Hjälp till med översättning!
   helped_the_observer_make: hjälpte observatören att göra sin slutliga bestämning (d.v.s. de gjordes innan den slutliga bestämningen och de stämmer överens)
   here_are_3_examples: Här är 3 exempel på bra utformade data
-  here_are_our_top_species_suggestions: Här är våra populäraste förslag på arter
+  here_are_our_top_species_suggestions: Här är våra bästa förslag på arter
   hex_color_eg: Hex-färg, t.ex. 65644F
   hi: Hej,
   hi_user: "Hej %{user}"
@@ -1808,78 +1807,65 @@ sv:
   hide_content: Dölj innehåll
   hide_desc: |
     Att dölja innehåll kommer att ta bort det från publik visning, men människor kommer fortfarande att
-    kunna se att något dolts, och sajtens förvaltare samt författaren till
-    innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta
-    endast skriftligt innehåll, t.ex. om du döljer innehållet i en
-    bestämning är den fortfarande synlig medan bestämmarens
-    kommentarer är dolda. Du kan inte ångra detta, och endast webbplatspersonal kan ta fram
-    innehåll när det väl har gömts, så var försiktig och använd endast detta för mycket
-    stötande innehåll.
+    kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta
+    endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan bestämmarens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Dölj "Ingen anteckning"
+  hide_no_annotation: Dölj "Utan anteckning"
   hide_running_total: Dölj löpande total
-  hide_uncountable_species: Dölj oräkneliga arter
+  hide_uncountable_species: Dölj arter som inte kan räknas
   high: Hög
   highest_rank: Högsta rang
   highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
-  history: Historia
+  history: Historik
   home: Hem
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Jag vet inte men jag är säker på att detta är %{taxon}
   icon: Ikon
-  icon_size: Ikon storlek
+  icon_size: Ikonstorlek
   iconic_taxon: Ikoniskt taxon
-  id: Identifierare
+  id: Bestämning
   id_categories:
     tooltips:
       leading: |
-        Taxon härstammar från gemenskapens taxon. Denna bestämning kan leda till det
-        rätta svaret.
+        Taxon härstammar från gemenskapstaxonet. Denna bestämning kan leda till det rätta svaret.
       improving: |
         Första förslaget för detta taxon som gemenskapen håller med om. Detta bidrar till att
-        förbättra gemenskapens taxon.
+        förbättra gemenskapstaxonet.
       maverick: |
-        Taxon är varken under- eller överliggande gemenskapens taxon, d.v.s. gemenskapen
+        Taxon är varken under- eller överliggande gemenskapstaxonet, d.v.s. gemenskapen
         håller inte med om detta taxon.
   id_withdrawn: Bestämning ångrad
   ids_by_taxon: Bestämningar per taxon
-  identify: Identifiera
-  identify_observations: "Identifiera observationer"
+  identify: Artbestämning
+  identify_observations: "Bestäm observationer"
   identify_observations_by_these_users: Bestäm dessa användares observationer
-  identify_title: "Identifiera"
-  identification: identifiering
-  identification_by_user: Identifiering av %{user}
-  identification_deleted: Identifiering raderad.
+  identify_title: "Bestäm"
+  identification: bestämning
+  identification_by_user: Bestämning av %{user}
+  identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
   identification_updated: Bestämning uppdaterad!
-  identification_user_short: Ident. användare
+  identification_user_short: Best. användare
   identification_withdrawn: Bestämning ångrad.
-  identifications: Identifieringar
-  identifications_by: "Identifieringar av %{user}"
+  identifications: Bestämningar
+  identifications_by: "Bestämningar av %{user}"
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
-    Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi till-
-    handahåller verktyg som använder bildigenkänningsmodeller tränade på ge-
-    menskapens bilder för att kunna ge bestämningsförslag, såsom som auto-
-    komplettera- och jämförelsefunktioner. Denna etikett visar när en person lagt
-    till en bestämning med något av dessa verktyg.
-  identifiers: Identifierare
-  identotron: Identomat
+    Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på gemenskapens bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
+  identifiers: Bestämmare
+  identotron: Identotron
   identotron_for: Identotron för
   identotron_help: Hjälp med Identotron
   ids: "Bestämningar"
   ids_made_for_others: Bestämningar gjorda för andra
   if_for_some_reason_a_user_doesnt_agree: |
-    Om du av någon anledning inte håller med om den kollektiva bestämningen, kan du avvisa den,
-    vilket innebär att din bestämning är den som används för länkning till andra observationer, uppdatering av livslistor,
-    etc. Det betyder också att din observation bara kan uppnå forskningskvalitet när gemenskapen håller med
-    dig.
-  if_matches_come_from_a_comprehensive_list: Om matchningar kommer från en omfattande lista visas en grön list här.
-  if_this_is_a_scientific_name: Om detta är ett vetenskapligt namn, är det för närvarande acceptabelt?
+    Om du av någon anledning inte håller med om gemenskapstaxonet, kan du avvisa den, vilket innebär att din bestämning är den som används för länkning till andra observationer, uppdatering av livslistor, etc. Det betyder också att din observation bara kan uppnå forskningskvalitet när gemenskapen håller med dig.
+  if_matches_come_from_a_comprehensive_list: Om matchningar kommer från en fullständig lista visas en grön list här.
+  if_this_is_a_scientific_name: Om detta är ett vetenskapligt namn, är det för närvarande accepterat?
   if_this_link_will_apply_to_descendant: Om denna länk ska gälla för underliggande taxa, kan du använda taggningar enligt mall för att fylla i taxonnamnet i URL:en
   if_you_have_any_trouble_with_the_site_check_out: 'Om du har några frågor, kolla i vår <a href="%{help_url}">hjälpavdelning</a> eller gör ett inlägg i vår <a href="%{feedback_url}">feedback-grupp</a>.'
-  if_your_project_is: Om ditt projekt handlar om en viss plats, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
+  if_your_project_is: Om ditt projekt handlar om en viss lokal, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
   ignore: ignorera
   ignore_and_continue: Ignorera och fortsätt
   ignore_times: Ignorera tider
@@ -1890,23 +1876,23 @@ sv:
   import_all_photos_as_observations: Importera alla bilder som observationer
   import_as_an_observation: Importera som en observation
   import_as_another_observation: Importera som en annan observation?
-  import_date_time_location_taxonomic: "Importera datum, tid, plats, beskrivning och taxonomisk information från denna bild."
+  import_date_time_location_taxonomic: "Importera datum, tid, position, beskrivning och taxonomisk information från denna bild."
   import_from_csv: Importera från CSV
   import_from_other_photo_sites: Importera från andra fotosajter
   import_observations: Importera observationer
   import_observations_from_a_photo: Importera observationer från en bildleverantör eller en fil på din dator.
-  import_photos: Importera foton
-  import_ranges: Importera intervall
+  import_photos: Importera bilder
+  import_ranges: Importera områden
   import_sections: Importera avsnitt
   import_tags_from_csv: Importera taggningar från CSV
   importing: "Importerar..."
   improving: Förbättrar
   in_n: "i %{n}"
   in_place_x: i %{place}
-  inaturalist_network_affiliation: iNaturalist Network anknytning
+  inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
-  include_places: Inkludera platser
+  include_places: Inkludera lokaler
   include_projects: Inkludera projekt
   include_taxa: Inkludera taxa
   include_users: Inkludera användare
@@ -1917,18 +1903,18 @@ sv:
   in_the_past_week: Under senaste veckan
   inactive: Inaktiv
   inactive_taxon: Inaktivt taxon
-  inactive_taxon_concepts_are: Inaktiva taxon begrepp är antingen taxonomiskt föråldrade eller förbereds för en taxonförändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnersajter.
+  inactive_taxon_concepts_are: Inaktiva taxonkoncept är antingen taxonomiskt föråldrade eller förbereds för en taxonändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnerwebbplatser.
   inappropriate_content: Olämpligt innehåll?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna plats."
+  inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna lokal."
   inat_user_profile: "%{site_name}: %{user}'s profil"
-  inaturalist_activity_notifications: "%{site_name} aktivitetsmeddelanden"
+  inaturalist_activity_notifications: "%{site_name} aktivitetsaviseringar"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
-  inaturalist_places: "%{site_name} platser"
+  inaturalist_places: "%{site_name}-lokaler"
   info: Info
-  input_taxon: Mata in taxon
+  input_taxon: Ingångstaxon
   insects: insekter
   insect_life_stage: Insektsstadium
   instagram: Instagram
@@ -1950,39 +1936,39 @@ sv:
   invite_your_friends_description: "Hjälp till att göra %{site_name} till en större och bättre gemenskap genom att bjuda in dina vänner!"
   #Type of project where people can only join after they have been invited
   inviteonly: endast inbjudna
-  invited_x: "Inbjuden %{x}"
+  invited_x: "%{x} inbjudna"
   iphone: iPhone
   is_not_following_anyone: följer inte någon.
   is_now: är nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
-  is_this_place_a_duplicate: Är denna plats en dubblett?
+  is_this_place_a_duplicate: Är denna lokal en dubblett?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv text
   item_flagged_notice_html: |
     Denna observation har flaggats som spam och är inte längre
-    offentligt synlig. Du kan se den eftersom du skapade den, eller är en
+    publikt synlig. Du kan se den eftersom du skapade den, eller är en
     webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen
     <a href="mailto:%{help_email}" class="contact">kontakta oss</a>.
     <a href="%{manage_flags_path}">Hantera flaggor</a>
   join: Gå med
   join_and_add_an_observation_to_project_html: Gå med och lägg till en observation till %{project}
-  join_project: Gå med detta projektet
+  join_project: Gå med i detta projekt
   #Prompt to join a specific project
   join_project?: Gå med i %{project}?
   join_some_projects_and_invite_some_observations_html: "Gå med i några <a href='%{join_url}'>projekt</a> och <a href='%{invite_url}'>bjud in några observationer</a>"
   join_the_largest_group_of_naturalists_in_the_world: Gå med i den största gruppen naturforskare i världen!
-  join_this_project: Gå med detta projektet
+  join_this_project: Gå med i detta projekt
   'joined!': Ansluten!
-  joined_projects: Ansluten till projekt
+  joined_projects: Projekt ansluten till
   joined_with_date: "Gick med: %{date}"
   journal: Dagbok
   journal_archives_for: Dagboksarkiv för
   journal_post: Dagboksinlägg
-  journal_post_deleted: Dagboksinlägg borttaget.
+  journal_post_deleted: Dagboksinlägg raderat.
   journal_posts: Dagboksinlägg
-  jpg_png_or_gif: "JPG, PNG, eller GIF"
+  jpg_png_or_gif: "JPG, PNG eller GIF"
   jump_to_letter: Hoppa till bokstav
   just_a_reminder: En liten påminnelse, eftersom du kanske har gett projektförvaltarna behörighet att se dina observationers dolda koordinaterna i detta projekt.
   just_added!: Lades just till!
@@ -1992,13 +1978,13 @@ sv:
   kml_file_size_error: "KML måste vara mindre än 1 MB"
   label_colon: "%{label}:"
   labels: Etiketter
-  label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera taxonändringar
+  label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera flera taxonändringar
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: Privat plats
+  location_private: Privat lokal
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown: Saknar plats
+  location_unknown: Saknar position
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
@@ -2010,7 +1996,7 @@ sv:
   last_active_with_date: "Senast aktiv: %{date}"
   last_confirmed_observation: Senast bekräftade observation
   last_observation: Senaste observation
-  last_seen: Sågs senast
+  last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
   latitude: Latitud
@@ -2024,9 +2010,9 @@ sv:
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
   leaderboard_most:
-    species: Flest arter i %{time}
-    observations: Flest observationer i %{time}
-    identifications: Mest identifieringar i %{time}
+    species: Flest arter på %{time}
+    observations: Flest observationer på %{time}
+    identifications: Flest bestämningar på %{time}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
