@@ -192,7 +192,7 @@ el:
   add_from_your_observations: Προσθήκη από τις παρατηρήσεις σας
   add_link: Προσθήκη συνδέσμου
   add_higher_level_taxon: Προσθέστε ένα taxon υψηλότερου ιεραρχικού επιπέδου (π.χ. "πτηνά")
-  add_id: Προσθήκη ID
+  add_id: Προσθέστε ταυτοποίηση
   add_new_lexicon: Προσθήκη νέου λεξικού
   add_new_photos_by_their_ids: Προσθήκη νέων φωτογραφιών από τα αναγνωριστικά Flickr τους (πρέπει να είναι με την αδειοδότηση Creative Commons!)
   add_new_place: Προσθήκη ενός νέου τόπου
@@ -1467,7 +1467,7 @@ el:
       maverick: |
         Η ταξινομική βαθμίδα δεν είναι απόγονος ή πρόγονος από την κοινοτική ταξινομική βαθμίδα, δηλαδή η κοινότητα δε συμφωνεί με αυτή την ταξινομική βαθμίδα.
   id_withdrawn: Το αναγνωριστικό αποσύρθηκε
-  ids_by_taxon: IDs ανά Taxon
+  ids_by_taxon: Ταυτοποίηση ανά Taxon
   identify: Αναγνωρίστε
   identify_observations: "Αναγνωρίστε Παρατηρήσεις"
   identify_observations_by_these_users: Αναγνωρίστε Παρατηρήσεις Αυτών των Χρηστών
@@ -1998,8 +1998,8 @@ el:
   ne_lon: NE Γεω. Μη.
   near_threatened: Σχεδόν Απειλούμενο
   nearby_observations_: Κοντινές παρατηρήσεις
-  needs_id: χρειάζεται ID
-  needs_id_: Χρειάζεται ID
+  needs_id: χρειάζεται ταυτοποίηση
+  needs_id_: Χρειάζεται ταυτοποίηση
   needs_id_expandable_html: "<span class='full'>Χρειάζεται </span>ID"
   needs_to_be_identified: Πρέπει να αναγνωριστεί
   network_affiliation_prompt_from_other_site_html: |
@@ -2429,11 +2429,11 @@ el:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: προστέθηκε ένα <strong>ID</strong> σε μια %{observation_link} από %{user_link}
+      with_observation: προστέθηκε μια <strong>ταυτοποίηση</strong> σε μια %{observation_link} από %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
-      without_observation: Προστέθηκε ένα <strong>ID</strong>
+      without_observation: Προστέθηκε μια <strong>ταυτοποίηση</strong>
     post: Δημοσιεύτηκε ένα %{post_link}
     comment:
       with_by: σχολίασε σε @vow_or_con{vow:an|a}%{comment_subject_link} από%{by_link}
@@ -5044,6 +5044,10 @@ el:
         share_with_fellow_naturalists: Μοιραστείτε με τους φίλους φυσιοδίφες
         discuss_your_findings: Συζητήστε τα ευρήματά σας
         contribute_to_science: Συνεισφέρετε στην Επιστήμη
+        science_desc_html: |
+          Κάθε παρατήρηση μπορεί να συμβάλει στην επιστήμη για τη βιοποικιλότητα, από την
+          σπανιότερη πεταλούδα μέχρι τα πιο κοινά ζιζάνια στο κατώφλι του σπιτιού σας. Μοιραζόμαστε τα
+          ευρήματά σας με επιστημονικές βάσεις δεδομένων όπως το <a href='http://gbif.org' target='_blank'>Παγκόσμιο Κέντρο Πληροφοριών Βιοποικιλότητας</a> για να βοηθήσουμε τους επιστήμονες να βρουν και να χρησιμοποιήσουν τα δεδομένα σας. Το μόνο που έχετε να κάνετε είναι να παρατηρείτε τη βιοποικιλότητα.
         nature_at_your_fingertips: Η φύση στις άκρες των δαχτύλων σας
         keep_track: Παρακολουθείστε
         record_your_encounters: |
