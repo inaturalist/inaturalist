@@ -42,6 +42,11 @@ describe ConservationStatus, "creation" do
   it "should have open geoprivacy for a not evaluated status" do
     expect( ConservationStatus.make!( status: "NE", iucn: Taxon::IUCN_NOT_EVALUATED ).geoprivacy ).to eq Observation::OPEN
   end
+  it "should not allow IUCN statuses that don't exist" do
+    cs = ConservationStatus.make( iucn: 999 )
+    expect( cs ).not_to be_valid
+    expect( cs.errors[:iucn] ).not_to be_blank
+  end
 end
 
 describe ConservationStatus, "saving" do

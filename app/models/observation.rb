@@ -1498,7 +1498,9 @@ class Observation < ActiveRecord::Base
     cps = collection_projects( authenticate: viewer )
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
-      if !cp.prefers_user_trust?
+      if cp.observation_requirements_updated_at > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        false
+      elsif !cp.prefers_user_trust?
         false
       elsif pu && pu.prefers_curator_coordinate_access_for &&
           pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
