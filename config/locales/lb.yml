@@ -1,12 +1,12 @@
 lb:
   x_comments:
-    one: '1 Bemierkung'
+    one: '%{count} Bemierkung'
     other: '%{count} Bemierkungen'
   x_comments_html:
     one: '<span class="count">%{count}</span> Kommentar'
     other: '<span class="count">%{count}</span> Kommentarer'
   x_identifications:
-    one: '1 Identifikatioun'
+    one: '%{count} Identifikatioun'
     other: '%{count} Identifikatiounen'
   x_identifications_:
     one: '1 Identifikatioun'
@@ -14,6 +14,9 @@ lb:
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> Journal Posts'
+    other: '<span class="count">%{count}</span> Journal Posts'
   x_observations:
     one: "1 Observatioun"
     other: "%{count} Observatiounen"
@@ -337,6 +340,7 @@ lb:
   back_to_taxon: "Zréck op %{defaulttaxon}"
   back_to_x: "Zréck op %{noun}"
   back_to_x_blog: "Zeréck op dem %{x} säi Blog"
+  back_to_your_dashboard: Zereck ob Ären Dashboard
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
@@ -489,6 +493,7 @@ lb:
   curation: Kuratioun
   current_flags: Aktuell Markéierungen
   daily_users: Alldeeglech Benotzer
+  dashboard: Dashboard
   data_quality: Datequalitéit
   datatype: Datentyp
   date_: Datum
@@ -632,6 +637,7 @@ lb:
     naturalised: Naturaliséiert
   everyone: jiddwereen
   everyone_: Jiddwereen
+  everyone_journal_posts: Journal Posts vu jidderengem
   everywhere: iwwerall
   exact: Genee
   exact_date: Geneeën Datum
@@ -690,6 +696,10 @@ lb:
   fluid: flësseg
   follow: Iwwerwaachen
   followed_projects: Suivéiert Projeten
+  following: Follgend
+  following_x_people:
+    one: 'Follgen %{count} Persoun'
+    other: 'Follgen %{count} Persounen'
   formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
   forum_categories:
@@ -772,6 +782,7 @@ lb:
   invite_people: Leit invitéieren
   invite_people_to_project: "Leit op %{project} invitéieren"
   invite_your_friends: Invitéiert Är Frënn
+  is_not_following_anyone: folgt kengem
   is_now: ass elo
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -781,6 +792,7 @@ lb:
   join_the_largest_group_of_naturalists_in_the_world: Gitt Member vum gréissten Naturaliste-Grupp op der Welt!
   join_this_project: Bei dësem Projet matmaachen
   joined_with_date: "Bäigetrueden: %{date}"
+  journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, oder GIF"
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
@@ -976,6 +988,7 @@ lb:
   more_import_options: Méi Import-Optiounen
   more_info: Méi Informatiounen
   more_info_title: Méi Informatiounen
+  more_journal_posts: Méi Journal Posts
   more_observations: Méi Observatiounen
   more_photos: Méi Fotoen
   more_than_a_week_ago: Viru méi wéi enger Woch
@@ -1030,6 +1043,7 @@ lb:
   no_identifications: Keng Identifikatiounen
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
+  no_journal_posts_yet: Nach keng Journal Posts
   no_matching_projects: Keng passend Projeten
   no_matching_users: Keng passend Benotzer.
   no_members_yet: "Nach keng Memberen"
@@ -1154,6 +1168,7 @@ lb:
   owner: Besëtzer
   password: Passwuert
   people: Leit
+  people_following_user: "Persounen déi dem %{user} folgen"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -1476,7 +1491,7 @@ lb:
   small: kleng
   site_admin_tools: Säiten Administratortoolen
   site_staff: "%{site_name} Personal"
-  site_stats: Site Satistiken
+  site_stats: Satistiken vum Site
   some_observations_failed_to_save: Verschidden Observatioune konnten net gespäichert ginn
   sorry_we_didnt_find_that_photo: "Pardon, mir hunn déi Foto net fonnt."
   sort: Zortéieren
@@ -1506,6 +1521,7 @@ lb:
   status: Status
   stay_and_try_again: Bleiwen an nach emol probéieren
   still_no_luck?: Nach ëmmer kee Gléck?
+  stop_following_user: "Ophalen dem %{user} ze folgen"
   subscribe_to_a_taxon: Op en Taxon abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
   subscriptions: Abonnementer
@@ -1618,6 +1634,8 @@ lb:
   view_stats: Statistike weisen
   view_x: "%{x} weisen"
   view_year_stats_for_site: "Weis %{year} Statistike fir %{site}"
+  view_your_dashboard: Ären Dashboard kucken
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Kuckt Ären Dashboard</a> fir mei Updates"
   view_your_year_stats: "Weist Är %{year} Statistiken"
   view_yours: Är weisen
   video_tutorials: Video Guiden
@@ -1807,6 +1825,8 @@ lb:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wann Dir Är Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Journal Posts vum Projet
         project_addition_preferences:
           joined: Projeten deenen Dir bäigetruede sidd
           none: "Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen"
