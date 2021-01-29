@@ -1303,7 +1303,7 @@ class User < ActiveRecord::Base
 
   def personal_lists
     lists.not_flagged_as_spam.
-      where("type = 'List' OR type IS NULL)")
+      where("type = 'List' OR type IS NULL")
   end
 
   def privileged_with?( privilege )
