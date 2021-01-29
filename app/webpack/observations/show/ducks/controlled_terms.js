@@ -7,6 +7,7 @@ const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_T
 const API_V2_BASE_REQUEST_PARAMS = {
   fields: {
     label: true,
+    multivalued: true,
     values: {
       label: true,
       blocking: true

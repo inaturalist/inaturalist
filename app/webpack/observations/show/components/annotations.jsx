@@ -54,13 +54,16 @@ class Annotations extends React.Component {
       action = ( <div className="loading_spinner" /> );
     } else if ( this.viewerIsObserver || viewerIsAnnotator ) {
       action = (
-        <Glyphicon
-          glyph="remove-circle"
+        <button
+          type="button"
+          className="btn btn-nostyle"
           onClick={() => {
             if ( a.api_status ) { return; }
             deleteAnnotation( a.uuid );
           }}
-        />
+        >
+          <i className="glyphicon glyphicon-remove-circle" />
+        </button>
       );
     }
     let voteAction;
