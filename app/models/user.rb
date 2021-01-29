@@ -119,7 +119,6 @@ class User < ActiveRecord::Base
     taxon_or_place_observation_email_notification
   )
   
-  belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
   # has_one  :picasa_identity, :dependent => :delete
@@ -150,7 +149,6 @@ class User < ActiveRecord::Base
   end
 
   has_many :lists, :dependent => :destroy
-  has_many :life_lists
   has_many :identifications, :dependent => :destroy
   has_many :identifications_for_others,
     -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
@@ -260,8 +258,6 @@ class User < ActiveRecord::Base
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
   after_update :update_photo_properties
-  after_update :update_life_list
-  after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
@@ -601,9 +597,6 @@ class User < ActiveRecord::Base
 
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
-    life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
-    ListedTaxon.where(list_id: reject.life_list_id, taxon_id: life_list_taxon_ids_to_move).
-      update_all(list_id: life_list_id)
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
@@ -625,7 +618,6 @@ class User < ActiveRecord::Base
     User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
-    LifeList.reload_from_observations( user.life_list_id )
     Project.elastic_index!( ids: ProjectUser.where( user_id: user.id ).pluck(:project_id) )
   end
 
@@ -805,11 +797,10 @@ class User < ActiveRecord::Base
     project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks
-    lists.where("type = 'List'").find_each do |l|
+    lists.where("type = 'List' OR type IS NULL").find_each do |l|
       l.listed_taxa.find_each do |lt|
         lt.skip_sync_with_parent = true
         lt.skip_update_cache_columns = true
-        lt.skip_update_user_life_list_taxa_count = true
         lt.destroy
       end
       l.destroy
@@ -1050,17 +1041,6 @@ class User < ActiveRecord::Base
     puts
   end
   
-  def create_default_life_list
-    return true if life_list
-    new_life_list = if (existing = self.lists.joins(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
-      self.life_list = existing
-    else
-      LifeList.create(:user => self)
-    end
-    User.where(id: id).update_all(life_list_id: new_life_list)
-    true
-  end
-  
   def create_deleted_user
     DeletedUser.create(
       :user_id => id,
@@ -1159,13 +1139,6 @@ class User < ActiveRecord::Base
   def set_observations_taxa_if_pref_changed
     if prefers_community_taxa_changed? && !id.blank?
       Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
-    end
-    true
-  end
-
-  def update_life_list
-    if login_changed? && life_list
-      life_list.update_attributes( title: life_list.title.gsub( /#{login_was}/, login ) )
     end
     true
   end
@@ -1330,7 +1303,7 @@ class User < ActiveRecord::Base
 
   def personal_lists
     lists.not_flagged_as_spam.
-      where("(type IN ('LifeList', 'List') OR type IS NULL)")
+      where("type = 'List' OR type IS NULL)")
   end
 
   def privileged_with?( privilege )

@@ -44,15 +44,13 @@ class ListedTaxon < ActiveRecord::Base
   after_save :index_taxon
   after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
-  after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
   after_create :log_create
   before_destroy :set_old_list
   before_destroy :log_destroy
   after_destroy :reassign_primary_listed_taxon
-  after_destroy :update_user_life_list_taxa_count
-
+  
   scope :by_user, lambda {|user| joins(:list).where("lists.user_id = ?", user)}
 
   scope :order_by, lambda {|order_by|
@@ -232,7 +230,6 @@ class ListedTaxon < ActiveRecord::Base
   attr_accessor :skip_sync_with_parent,
                 :skip_species_for_infraspecies,
                 :skip_update_cache_columns,
-                :skip_update_user_life_list_taxa_count,
                 :force_update_cache_columns,
                 :extra,
                 :html,
@@ -361,18 +358,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_old_list
     @old_list = self.list
-  end
-  
-  # Update the counter cache in users.
-  def update_user_life_list_taxa_count
-    return true if skip_update_user_life_list_taxa_count
-    l = self.list || @old_list
-    return true unless l
-    return true unless l.is_a?(LifeList)
-    return true unless l.user
-    return true unless l.user.life_list_id == self.list_id 
-    User.where(id: l.user_id).update_all( life_list_taxa_count: l.listed_taxa.with_leaves( l.listed_taxa.to_sql ).confirmed.count )
-    true
   end
   
   def set_user_id
@@ -574,7 +559,7 @@ class ListedTaxon < ActiveRecord::Base
   # list: for check lists it means the first observation added to iNat (i.e.
   # sorted by ID), but for everything else it means first observation by date
   # observed. Not great, but it means the first observer for places rewards
-  # people for being the first to add to the site, and the life list firsts on
+  # people for being the first to add to the site, and the user list firsts on
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless list
@@ -803,9 +788,6 @@ class ListedTaxon < ActiveRecord::Base
     p = place || list.place
     return false unless p
     scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", p).of(taxon)
-    if list.is_a?(LifeList)
-      scope = scope.by(list.user)
-    end
     scope.exists?
   end
   

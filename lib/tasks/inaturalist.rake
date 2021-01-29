@@ -39,7 +39,7 @@ namespace :inaturalist do
     Comment.where(user_id: spammer_ids).destroy_all
     Guide.where(user_id: spammer_ids).destroy_all
     Identification.where(user_id: spammer_ids).destroy_all
-    List.where(user_id: spammer_ids).where("lists.type != 'LifeList'").destroy_all
+    List.where(user_id: spammer_ids).destroy_all
     Observation.where(user_id: spammer_ids).destroy_all
     Post.where(user_id: spammer_ids).destroy_all
     Project.where(user_id: spammer_ids).destroy_all

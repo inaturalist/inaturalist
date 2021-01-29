@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.0
--- Dumped by pg_dump version 13.0
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -5022,41 +5022,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: versions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.versions (
-    id integer NOT NULL,
-    item_type character varying NOT NULL,
-    item_id bigint NOT NULL,
-    event character varying NOT NULL,
-    whodunnit character varying,
-    created_at timestamp without time zone,
-    object_changes json
-);
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.versions_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
-
-
---
 -- Name: votes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6071,13 +6036,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
-
-
---
 -- Name: votes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7062,14 +7020,6 @@ ALTER TABLE ONLY public.user_privileges
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions
-    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -9423,13 +9373,6 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
-
-
---
 -- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10352,10 +10295,6 @@ INSERT INTO schema_migrations (version) VALUES ('20200706035032');
 
 INSERT INTO schema_migrations (version) VALUES ('20200708223315');
 
-INSERT INTO schema_migrations (version) VALUES ('20200710004607');
-
-INSERT INTO schema_migrations (version) VALUES ('20200710004608');
-
 INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 
 INSERT INTO schema_migrations (version) VALUES ('20200824210059');
@@ -10379,4 +10318,6 @@ INSERT INTO schema_migrations (version) VALUES ('20201204005354');
 INSERT INTO schema_migrations (version) VALUES ('20210125233250');
 
 INSERT INTO schema_migrations (version) VALUES ('20210127005238');
+
+INSERT INTO schema_migrations (version) VALUES ('20210128211322');
 

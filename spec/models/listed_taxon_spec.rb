@@ -22,7 +22,7 @@ describe ListedTaxon do
       @first_observation = Observation.make!(taxon: @taxon, observed_on_string: 1.minute.ago.utc.to_s)
       @user = @first_observation.user
       @last_observation = Observation.make!(taxon: @taxon, user: @user, observed_on_string: Time.now.utc.to_s)
-      @list = @user.life_list
+      @list = List.make!(user: @user)
       @listed_taxon = ListedTaxon.make!(taxon: @taxon, list: @list)
       @listed_taxon.reload
     end

@@ -747,33 +747,6 @@ describe Observation do
       expect(obs.iconic_taxon).to be_blank
     end
 
-    it "should add a new taxon to the user's life list" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).to include o.taxon
-    end
-
-    it "should remove an old taxon from the user's life list if that was the only obs" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      old_taxon = o.taxon
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).not_to include old_taxon
-    end
-
-    it "should not remove an old taxon from the user's life list if that was not the only obs" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      o1 = without_delay { Observation.make!(taxon: o.taxon, user: o.user) }
-      old_taxon = o.taxon
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).to include old_taxon
-    end
-
     it "should queue refresh jobs for associated project lists if the taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       pu = ProjectUser.make!(:user => o.user)
@@ -796,7 +769,7 @@ describe Observation do
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
     end
 
-    it "should only queue one job to refresh life lists if taxon changed" do
+    it "should not queue job to refresh life lists if taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       Delayed::Job.delete_all
       stamp = Time.now
@@ -804,7 +777,7 @@ describe Observation do
         o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(1)
+      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to be_blank
     end
 
     it "should only queue one job to refresh project lists if taxon changed" do
@@ -1429,12 +1402,12 @@ describe Observation do
       t = Taxon.make!
       u = User.make!
       without_delay do
-        l = LifeList.make!(user: u)
+        l = List.make!(user: u)
         l.add_taxon(t)
       end
       o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
       o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
-      lt = o1.user.life_list.listed_taxa.where(taxon_id: t.id).first
+      lt = l.listed_taxa.where(taxon_id: t.id).first
       expect(lt.first_observation).to eq o1
       expect(lt.last_observation).to eq o2
     end

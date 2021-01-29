@@ -8,7 +8,7 @@
   <% for person in @users %>
     <%- 
       observations_count = person.observations_count
-      listed_taxa_count = @listed_taxa_counts[person.id].to_i
+      species_count = @species_counts[person.id].to_i
       post_count = @post_counts[person.id].to_i
     -%>
     <tr>
@@ -33,9 +33,9 @@
       </td>
       <td>
         <%= link_to t(:view_lists), lists_by_login_path(person.login), :class => "readable" %>
-        <% if listed_taxa_count > 0 %>
+        <% if species_count > 0 %>
           <div class="meta">
-            <%=t :x_species_html, count: number_with_delimiter(listed_taxa_count) %>
+            <%=t :x_species_html, count: number_with_delimiter(species_count) %>
           </div>
         <% end %>
       </td>

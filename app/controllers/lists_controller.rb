@@ -30,7 +30,6 @@ class ListsController < ApplicationController
     @prefs = current_preferences
     @show_new_life_list_banner = ( logged_in? && current_user == @selected_user )
     
-    @life_list = @selected_user.life_list
     @lists = @selected_user.personal_lists.
       order("#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}").
       paginate(:page => params[:page],
@@ -59,7 +58,6 @@ class ListsController < ApplicationController
   # viewer's list.
   def compare
     @with = List.find_by_id(params[:with])
-    @with ||= current_user.life_list if logged_in?
     @iconic_taxa = Taxon::ICONIC_TAXA
     
     unless @with
@@ -297,7 +295,7 @@ class ListsController < ApplicationController
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?
     @error = @job && !@job.failed_at.blank?
-    @timeout = @tries > LifeList::MAX_RELOAD_TRIES
+    @timeout = @tries > List::MAX_RELOAD_TRIES
     
     if @start
       @job = yield

@@ -10,8 +10,8 @@
         <i class="fa fa-binoculars"></i>
         <%= t(:observations) %>
       <% end %>
-      <%= link_to user.life_list, :class => 'list-group-item' do %>
-        <span class="badge"><%= user.life_list_taxa_count %></span>
+      <%= link_to by_login_lifelists_path( login: user.login ), :class => 'list-group-item' do %>
+        <span class="badge"><%= user.species_count %></span>
         <span class="glyphicon glyphicon-leaf"></span>
         <%= t(:species) %>
       <% end %>      

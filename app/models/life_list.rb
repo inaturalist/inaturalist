@@ -7,8 +7,6 @@ class LifeList < List
   before_save :set_place_rule
   after_create :add_taxa_from_observations
   validate :place_has_boundary
-  
-  MAX_RELOAD_TRIES = 60
 
   def place_has_boundary
     if place_id && !PlaceGeometry.where(:place_id => place_id).exists?

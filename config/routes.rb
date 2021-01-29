@@ -355,9 +355,6 @@ Rails.application.routes.draw do
   get 'lists/:id.:view_type.:format' => 'lists#show',
     :as => 'list_show_formatted_view',
     :requirements => { :id => id_param_pattern }
-  resources :life_lists, :controller => :lists do
-    resources :flags
-  end
   resources :check_lists do
     resources :flags
   end

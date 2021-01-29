@@ -1182,17 +1182,13 @@ class Observation < ActiveRecord::Base
         created_at: created_at,
         new: id_was.blank?)
 
-    # Don't refresh LifeLists and Lists if only quality grade has changed
+    # Don't refresh Lists if only quality grade has changed
     return true unless taxon_id_changed?
     List.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "List::refresh_with_observation": id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
         :skip_subclasses => true)
-    LifeList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "LifeList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
 
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -1215,10 +1211,8 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  # Because it has to be slightly different, in that the taxon of a destroyed
-  # obs shouldn't be removed by default from life lists (maybe you've seen it
-  # in the past, but you don't have any other obs), but those listed_taxa of
-  # this taxon should have their last_observation reset.
+  #
+  # Those listed_taxa of this taxon should have their last_observation reset.
   #
   def refresh_lists_after_destroy
     return true if skip_refresh_lists
@@ -1226,8 +1220,6 @@ class Observation < ActiveRecord::Base
     List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
   

@@ -5,7 +5,7 @@ describe List do
 
   describe "updating" do
     it "should not be allowed anyone other than the owner" do
-      list = LifeList.make!
+      list = List.make!
       other_user = User.make!
       expect(list).to be_editable_by list.user
       expect(list).not_to be_editable_by other_user
@@ -51,7 +51,7 @@ describe List do
   end
 
   describe "rank rules" do
-    let(:list) { LifeList.make! }
+    let(:list) { List.make! }
     let(:genus) { Taxon.make!(name: 'Foo', rank: 'genus')}
     let(:species) { Taxon.make!(rank: 'species')}
     it "should default to any" do
@@ -73,25 +73,6 @@ describe List do
         list.update_attributes(rank_rule: "species?")
         expect(list.taxa).not_to include genus
       end
-    end
-  end
-
-  describe "is_a_users_default_lifelist?" do
-    it "lists aren't default lifelists" do
-      expect( List.make.is_a_users_default_lifelist? ).to be false
-    end
-
-    it "checklists aren't default lifelists" do
-      expect( CheckList.make!.is_a_users_default_lifelist? ).to be false
-    end
-
-    it "lifelists aren't necessarily default lifelists" do
-      expect( LifeList.make!.is_a_users_default_lifelist? ).to be false
-    end
-
-    it "users lifelists are default lifelists" do
-      u = User.make!
-      expect( u.life_list.is_a_users_default_lifelist? ).to be true
     end
   end
 

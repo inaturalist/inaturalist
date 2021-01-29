@@ -21,6 +21,7 @@ class List < ActiveRecord::Base
   RANK_RULE_SPECIES = "species?"
   RANK_RULE_SPECIES_OR_LOWER = "species_or_lower?"
   RANK_RULE_OPERATORS = [RANK_RULE_SPECIES, RANK_RULE_SPECIES_OR_LOWER]
+  MAX_RELOAD_TRIES = 60
   
   def rank_rule
     if (r = rules.detect{|r| r.operator == 'species?'}) then r.operator
@@ -53,7 +54,7 @@ class List < ActiveRecord::Base
   
   #
   # Adds a taxon to this list and returns the listed_taxon (valid or not). 
-  # Note that subclasses like LifeList may override this.
+  # Note that subclasses like CheckList may override this.
   #
   def add_taxon(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
@@ -233,10 +234,6 @@ class List < ActiveRecord::Base
     key
   end
 
-  def is_a_users_default_lifelist?
-    is_a?( LifeList ) && id == user.life_list_id
-  end
-
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
     FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
@@ -245,14 +242,10 @@ class List < ActiveRecord::Base
   def self.refresh_for_user(user, options = {})
     options = {:add_new_taxa => true}.merge(options)
     
-    # Find lists that needs refreshing (either LifeLists or normal lists with 
-    # these taxa).  Another approach might be to look at all listed_taxa of
-    # these taxa and all rules applying to ancestors of these taxa, but the
-    # ancestry check will be performed by life lists during the validations
-    # anyway, so it seems like duplication.
+    # Find lists that need refreshing
     target_lists = if options[:taxa]
       user.lists.joins(:listed_taxa).
-        where(["listed_taxa.taxon_id in (?) OR type = ?", options[:taxa], LifeList.to_s])
+        where(["listed_taxa.taxon_id in (?)", options[:taxa]])
     else
       user.lists.all
     end
@@ -303,7 +296,7 @@ class List < ActiveRecord::Base
       taxon_ids = [taxon_ids, taxon_was.ancestor_ids, taxon_was.id].flatten.uniq
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
-    # get listed taxa for this taxon and its ancestors that are on the observer's life lists
+    # get listed taxa for this taxon and its ancestors that are on the observer's lists
     listed_taxa = ListedTaxon.
       where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
