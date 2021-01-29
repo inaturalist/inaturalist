@@ -5614,8 +5614,6 @@ ca:
           Permetre als membres confiar les coordenades ocultes a aquest projecte
         trust_help_desc: |-
           Si voleu accedir a les coordenades ocultes d'observacions enfosquides, aquesta opció permet els usuaris units al projecte confiar aquestes coordenades ocultes als administradors del projecte. Els membres del projecte poden donar accés a les coordenades ocultes de totes les seves observacions que apareixen en el projecte, o únicament a aquelles que han estat enfosquides per tractar-se de tàxons vulnerables.
-        trust_help_notification: |-
-          Però això també es notificarà a tots els membres del projecte que hagin confiat en ell cada vegada que canvieu els requisits del projecte, per tal que ells confirmin si volen continuar confiant en vosaltres, ateses les noves condicions.
         trusted_project_means: |
           Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar atributs del projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte significa que els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos, per tant confieu únicament en projectes que tenen gestors responsables i tècnicament competents
         you_can_preview: |
