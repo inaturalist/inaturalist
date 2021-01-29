@@ -2630,6 +2630,9 @@ it:
   observed_on_datetime: Osservata il %{datetime}
   observation_removed_from_the_project: "Osservazione rimossa dal progetto \"%{project}\""
   observation_requirements: Requisiti dell'osservazione
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Requisiti di osservazione aggiornati il
   observation_rules: Regole di osservazione
   observation_rules_description: |
     Puoi scegliere delle regole per determinare quale osservazioni possono essere aggiunte al progetto, come limitare le osservazioni ad in certo luogo o taxon. Se ha più di una regola per tipo, le osservazioni saranno valide se passano anche una sola regola. Per esempio, se hai impostato le regole "deve essere nel taxon Amphibia" e "deve essere nel taxon Reptilia", allora il progetto accetterà osservazioni sia di rettili che di anfibi.
@@ -3380,6 +3383,10 @@ it:
     Nei progetti non è possibile attivare l'aggregazione automatica delle osservazioni, salvo che il progetto sia associato ad un luogo di moderata estensione o che permetta l'inserimento solo di specifici taxa elencati in una lista
   project_assessments: Valutazioni del Progetto
   project_assets: Risorse del Progetto
+  project_coordinate_access_enabled: |
+    Dovresti essere in grado di visualizzare le coordinate nascoste delle osservazioni fidandoti dei membri.
+  project_coordinate_access_disabled_until_datetime: |
+    Non potrai accedere alle coordinate nascoste fino al %{datetime}
   project_cover: Copertina del progetto
   project_created_on: ha creato questo progetto in data %{date}
   project_curator_id: ID del curatore del progetto
@@ -5628,8 +5635,9 @@ it:
           Consenti ai membri di fidarsi di questo progetto rivelando le coordinate nascoste
         trust_help_desc: |-
           Se vuoi accedere alle coordinate nascoste delle osservazioni oscurate, questa opzione consentirà alle persone che hanno aderito a questo progetto di fidarsi degli amministratori del progetto permettendo l'accesso a quelle coordinate nascoste. I membri del progetto potranno concedere l'accesso alle coordinate nascoste di tutte le loro osservazioni che appaiono in questo progetto, o solo delle osservazioni oscurate a causa di taxa minacciati.
-        trust_help_notification: |-
-          Tuttavia, questo invierà una notifica anche a tutti i membri che si sono fidati del progetto ogni volta che modifichi i requisiti del progetto, in modo che possano rivalutare se vogliono continuare a fidarsi di te dati i nuovi requisiti.
+        trust_help_notification2: |-
+          Tuttavia, in questo modo sarà inviata una notifica anche a tutti i membri che si fidano del progetto ogni volta che modifichi i requisiti di osservazione, affinché essi possano valutare nuovamente se vogliono continuare a fidarsi di te, considerando i nuovi requisiti.
+          Il tuo accesso alle coordinate nascoste verrà revocato per una settimana dopo la modifica dei requisiti di osservazione in modo che i membri abbiano il tempo di valutare.
         trusted_project_means: |
           Fidarsi di un progetto significa che i gestori del progetto potranno aggiungere Risorse di Progetto e caratteristiche personalizzate (es. banner HTML, CSS). Poter accedere alle caratteristiche personalizzate significa che i gestori potranno aggiungere codici Javascript malevoli, perciò dai la fiducia solo a quei progetti che hanno gestori sia responsabili che tecnicamente competenti.
         you_can_preview: |
