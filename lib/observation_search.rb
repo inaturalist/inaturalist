@@ -1,6 +1,7 @@
 module ObservationSearch
 
   LIST_FILTER_SIZE_CAP = 5000
+  SEARCH_IN_BATCHES_BATCH_SIZE = 500
 
   def self.included(base)
     base.extend ClassMethods
@@ -35,8 +36,13 @@ module ObservationSearch
 
     def search_in_batches(raw_params, options={}, &block)
       search_params = Observation.get_search_params(raw_params, options)
-      search_params.merge!({ min_id: raw_params[:min_id] || 1, per_page: 500, preload: [ ],
-        order_by: "id", order: "asc" })
+      search_params.merge!(
+        min_id: raw_params[:min_id] || 1,
+        per_page: SEARCH_IN_BATCHES_BATCH_SIZE,
+        preload: [ ],
+        order_by: "id",
+        order: "asc"
+      )
       loop do
         batch = try_and_try_again( PG::ConnectionBad, logger: options[:logger] ) do
           Observation.page_of_results(search_params)
