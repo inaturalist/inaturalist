@@ -5,6 +5,5 @@ class UpdateLifeListsAsLists < ActiveRecord::Migration
 
   def down
     # Cannot undo this
-    fail ActiveRecord::IrreversibleMigration
   end
 end
