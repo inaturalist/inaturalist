@@ -205,7 +205,7 @@ export function showPhotoChooserIfSignedIn( ) {
 export function fetchTerms( options = { histograms: false } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
+    const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
     if ( s.config.chosenPlace ) {
       params.place_id = s.config.chosenPlace.id;
     }
