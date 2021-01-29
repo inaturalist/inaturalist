@@ -4232,7 +4232,7 @@ fr:
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Faire confiance à ce projet avec vos coordonnées masquées?
+  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées?
   trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
@@ -5843,8 +5843,6 @@ fr:
           Permettre aux membres de partager leurs coordonnées cachées
         trust_help_desc: |-
           Si vous voulez avoir accès aux coordonnées cachées des utilisateurs, cette option leur permet de donner l'accès aux admins du projet à ces coordonnées. Les membres du projet vont être capables de donner accès aux coordonnées de leurs observations qui font partie du projet, ou juste de celles avec un taxon menacé du projet.
-        trust_help_notification: |-
-          Cependant, vous allez notifier tous les membres du projet lorsque vous changerez ce paramètre, pour leur permettre d'avoir le choix.
         trusted_project_means: |
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
