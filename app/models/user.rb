@@ -793,7 +793,7 @@ class User < ActiveRecord::Base
   # some associates
   def sane_destroy(options = {})
     start_log_timer "sane_destroy user #{id}"
-    taxon_ids = life_list.taxon_ids
+    taxon_ids = INatAPIService.get("/observations/taxonomy", {user_id: id}).results.map{|a| a["id"]}
     project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks

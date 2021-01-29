@@ -171,24 +171,12 @@ describe "ActsAsSpammable", "ActiveRecord" do
       User.make!(description: "anything")
     end
 
-    it "does not check user life lists that have default values" do
-      u = User.make!
-      expect(Rakismet).to_not receive(:akismet_call)
-      LifeList.make!(user: u, title: nil, description: nil)
-    end
-
     it "does not users with no description" do
       u = User.make!
       expect(Rakismet).to_not receive(:akismet_call)
       User.make!(description: nil)
     end
 
-    it "knows when LifeLists have default values" do
-      expect(LifeList.make!(title: nil, description: nil).
-        default_life_list?).to be true
-      expect( LifeList.make!(title: "Anything", description: nil).
-        default_life_list?).to be false
-    end
   end
 
   describe "not_flagged_as_spam" do

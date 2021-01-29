@@ -5,13 +5,14 @@ describe ListsController do
   describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
+      place = Place.make!
       user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       sign_in user
-      post :create, list: { title: "foo", type: "LifeList"}, taxa: [{ taxon_id: taxon.id}]
+      post :create, list: { title: "foo", type: "CheckList"}, taxa: [{ taxon_id: taxon.id}], place: place.id
       expect(response).to be_redirect
       list = user.lists.last
       expect(list.rules.first.operand_id).to be(taxon.id)
-      expect(list).to be_a(LifeList)
+      expect(list).to be_a(CheckList)
     end
 
     it "does not create lists for users without speech privilege" do
@@ -34,13 +35,6 @@ describe ListsController do
   end
 
   describe "destroy" do
-    it "should not allow you to delete your own life list" do
-      u = User.make!
-      sign_in u
-      delete :destroy, :id => u.life_list_id
-      expect(List.find_by_id(u.life_list_id)).not_to be_blank
-    end
-
     it "should not allow anyone to delete a default project list" do
       p = Project.make!
       u = p.user

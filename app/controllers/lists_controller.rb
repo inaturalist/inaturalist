@@ -28,7 +28,6 @@ class ListsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     @prefs = current_preferences
-    @show_new_life_list_banner = ( logged_in? && current_user == @selected_user )
     
     @lists = @selected_user.personal_lists.
       order("#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}").

@@ -41,18 +41,6 @@ describe User do
       expect(@user.confirmation_token).not_to be_blank
     end
     
-    it 'should create a life list' do
-      @creating_user.call
-      @user.reload
-      expect(@user.life_list).not_to be_blank
-    end
-    
-    it 'should create a life list that is among this users lists' do
-      @creating_user.call
-      @user.reload
-      expect(@user.lists).to include(@user.life_list)
-    end
-    
     it "should enforce unique login regardless of a case" do
       u1 = User.make!(:login => 'foo')
       expect {
@@ -239,15 +227,6 @@ describe User do
       without_delay { u.update_attributes( login: new_login ) }
       p.reload
       expect( p.native_username ).to eq new_login
-    end
-
-    it "should update the life list title if the login changed" do
-      u = User.make!
-      expect( u.life_list.title ).to eq "#{u.login}'s Life List"
-      new_login = "zolophon"
-      without_delay { u.update_attributes( login: new_login ) }
-      u.reload
-      expect( u.life_list.title ).to eq "#{new_login}'s Life List"
     end
 
     it "should not update photos by other users when the name changes" do
@@ -852,14 +831,6 @@ describe User do
       expect(
         User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
       ).to eq Observation.by( keeper ).count
-    end
-
-    it "should merge life lists" do
-      t = Taxon.make!
-      reject.life_list.add_taxon(t)
-      keeper.merge(reject)
-      keeper.reload
-      expect(keeper.life_list.taxon_ids).to include(t.id)
     end
 
     it "should remove self friendships" do

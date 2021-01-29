@@ -1242,19 +1242,6 @@ describe Taxon, "single_taxon_for_name" do
   end
 end
 
-describe Taxon, "update_life_lists" do
-  it "should not queue jobs if they already exist" do
-    t = Taxon.make!
-    l = make_life_list_for_taxon(t)
-    Delayed::Job.delete_all
-    expect {
-      2.times do
-        t.update_life_lists
-      end
-    }.to change(Delayed::Job, :count).by(1)
-  end
-end
-
 describe Taxon, "threatened?" do
   elastic_models( Observation, Taxon )
   it "should work for a place"
