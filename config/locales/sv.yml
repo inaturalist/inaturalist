@@ -2025,7 +2025,7 @@ sv:
   leave: Lämna
   leave_a_comment: Lämna en kommentar
   leave_this_project: Lämna detta projekt
-  leaves: lämnar
+  leaves: löv
   legacy_authentication_notice_html: |
     Det ser ut som om du använder ett lösenord från en äldre version av denna webbplats.
     Kom ihåg att <a href="%{url}">ändra ditt lösenord</a> för den nya versionen.
@@ -2039,7 +2039,7 @@ sv:
     catalan: Katalanska
     cebuano: Cebuano
     chinese_simplified: Kinesiska (förenklad)
-    chinese_traditional: Kinesiska (traditionelt)
+    chinese_traditional: Kinesiska (traditionell)
     creole_french: kreol (Franska)
     creole_portuguese: kreol (Portugisiska)
     czech: Tjeckiska
@@ -2084,7 +2084,7 @@ sv:
   licensed_site_photos: "Licensierade %{site_name}-bilder"
   license: Licens
   licensing: Licensiering
-  licensing_your_content_gives_others_legal: "N'r du licensierar dina bidrag får andra laglig rätt att använda dem om de håller sig till villkoren i licensen. %{site_name} använder dina Creative Commons-licensierade bidrag för att dela med datapartners som "
+  licensing_your_content_gives_others_legal: "När du licensierar dina bidrag får andra laglig rätt att använda dem om de håller sig till villkoren i licensen. %{site_name} använder dina Creative Commons-licensierade bidrag för att dela med datapartners som "
   life: Liv
   life_list: "%{user}s livslista"
   life_list_updated: Livslista uppdaterad!
@@ -2094,10 +2094,10 @@ sv:
   link: Länk
   link_or_unlink_your_facebook_account: Anslut eller koppla från ditt Facebook-konto
   link_or_unlink_your_flickr_account: Anslut eller koppla från ditt Flickr-konto
-  link_or_unlink_your_google_account: Länka eller avlänka ditt Google-konto
+  link_or_unlink_your_google_account: Anslut eller koppla från ditt Google-konto
   link_your_facebook_account: Anslut ditt Facebook-konto
   link_your_flickr_account: Anslut ditt Flickr-konto
-  link_your_google_account: Länka ditt Google-konto
+  link_your_google_account: Anslut ditt Google-konto
   linked_facebook: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Facebook-konto."
   linked_facebook_automaticaly: "Kom också ihåg att om du loggar in på %{site_name} via Facebook, kommer vi automatiskt att länka dina %{site_name}- och Facebook-konton. Verkar rimligt att om du använder Facebook du vill kunna importera Facebook-bilder, eller hur?"
   linked_facebook_description: "Genom att hålla ditt %{site_name}-konto länkat till ditt Facebook-konto kan du lägga till flera bilder till dina observationer. Om du någonsin skulle vilja bryta kopplingen mellan %{site_name} och Facebook, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skulle skapa ett nytt Facebook-konto som du vill länka %{site_name} till."
@@ -2120,7 +2120,7 @@ sv:
   list_views:
     plain: enkel
     taxonomic: taxonomisk
-    photo: foto
+    photo: bild
   list_was_successfully_created: Lyckades skapa lista.
   listed_taxa: Listade taxa
   listed_taxon: Listat taxon
@@ -2132,19 +2132,19 @@ sv:
   lists_by_login:
     title:
       current_user: Dina listor
-      login: Listor av %{login}
+      login: Listor efter %{login}
   load: Läs in
   loading: "Laddar..."
   loading_flickr_photos: "Laddar Flickr-bilder..."
   loading_images: Laddar bilder...
   loading_metadata: Laddar metadata...
   loading_preview_and_code: Laddar förhandsgranskning och kod...
-  loading_suggestions: Läser in förslag...
+  loading_suggestions: Laddar förslag
   loading_tags: "Laddar taggningar..."
   loading_taxa_from_your: "Laddar taxa från dina observationer..."
   loading_wikipedia_description: "Laddar Wikipedia-beskrivning..."
-  locale_description: Lokalisering anger ditt val av språk och datumangivelse.
-  locales_: Lokaler
+  locale_description: Plats anger ditt val av språk och datumangivelse.
+  locales_: Platser
   locales:
     ar: Arabiska
     bg: Bulgariska
@@ -2189,13 +2189,13 @@ sv:
     zh-TW: Kinesiska (traditionell)
   locality_notes: Lokalanteckningar
   localized_species_accounts: Lokaliserade artredogörelser
-  location: Plats
+  location: Position
   location_is_accurate: Noggrann lokalangivelse
   location_is_exact: positionen är exakt
-  location_is_public: Platsen är offentlig
-  location_is_obscured: Platsen är diffuserad
-  location_is_private: Platsen är privat
-  location_specified: Plats angiven
+  location_is_public: Positionen är publik
+  location_is_obscured: Positionen är diffuserad
+  location_is_private: Positionen är privat
+  location_specified: Position angiven
   locked_taxa_will_not_allow_new: Man kan inte lägga till nya barn till låsta taxa. T.ex., om du har låst Amphibia och någon försöker importera <i>Rana catesbeiana</i> från en extern namnkälla, skulle ett nytt taxon skapas men inte kunna klassificeras som ett groddjur. När det händer bör detta nyligen tillagda taxon flaggas för att komma till en förvaltares kännedom. Låsning bör egentligen bara användas för taxa där vi tror att alla barn redan är tillagda. Förvaltare kan åsidosätta detta genom att redigera taxa och ange föräldra-ID direkt, men överväg att slå ihop nya taxa med befintliga istället.
   log_in: Logga in
   log_in_or_sign_up_to_add_comments_html: |
@@ -2206,8 +2206,8 @@ sv:
   log_out_caps: LOGGA UT
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logga ut från %{site_name}?"
-  log_scale_label: Logg
-  login_slash_username: Logga in / användarnamn
+  log_scale_label: Logaritmisk
+  login_slash_username: Inlogg / användarnamn
   logo:
     logo: Logotyp
     white_bg_gif: vit BG GIF
@@ -2216,25 +2216,25 @@ sv:
     none: ingen
   long: Long
   longitude: Longitud
-  longitude_in_decimal: 'Longitud i decimalgrader, t.ex. -122,123'
+  longitude_in_decimal: 'Longitud i decimalgrader, t.ex. -122.123'
   longitude_slash_x_coord_slash_easting: Longitud / x koord / österut
   longitude_value: "Longitud: %{longitude}"
   look_up_name: "Sök namn"
   looks_like_neither_have!: Ingen verkar ha några taxa!
   looks_like_no_species_in_guide: Du verkar inte ha några arter i din guide än.
-  lookup: Slå upp
+  lookup: Sök
   low: Låg
   lowest_rank: Lägsta rang
   make_admin: Gör admin
-  mail_disclaimer: "%{site_name} tillåter inte att deras användare skickar dig fler inbjudningar via os. Vänligen rapportera missbruk av inbjudningar till %{site}."
+  mail_disclaimer: "%{site_name} tillåter inte sina användare att skicka dig fler inbjudningar via oss. Vänligen rapportera missbruk av inbjudningar till %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Huvudinnehåll
   #Stub text for the main content section when editing custom project data
   main_content_description: Huvudinnehållet hamnar här
-  make_a_new_place: Skapa en ny plats
+  make_a_new_place: Skapa en ny lokal
   make_a_taxon_swap_instead?: Gör ett taxonbyte istället?
   make_curator: Ge förvaltarbehörighet
-  make_it_a_life_list?: Gör det till en livslista?
+  make_it_a_life_list?: Göra det till en livslista?
   make_manager: Ge ägarbehörighet
   make_sure_the_default_photo_looks_good: Se till att standardbilden ser bra ut i stor storlek.
   make_this_your_default_license: "Gör detta till din standard %{type}-licens"
@@ -2247,7 +2247,7 @@ sv:
   manage_your_relationships: Hantera dina relationer
   manager: Ägare
   managers: Ägare
-  managers_can_do: Ägare kan göra allt som förvaltarna kan göra samt ändra projektinställningar och göra inlägg i projektdagboken.
+  managers_can_do: Ägare kan göra allt som förvaltare kan göra samt ändra projektinställningar och göra inlägg i projektdagboken.
   managing_projects: Hanterar projekt
   map: Karta
   map_legend: Kartförklaring
@@ -2256,14 +2256,14 @@ sv:
   maps:
     overlays:
       all_observations: Alla observationer
-      every_publicly_visible_observation: Varje offentligt synlig observation skapad i iNaturalist-nätverket
+      every_publicly_visible_observation: Varje publikt synlig observation skapad i iNaturalist-nätverket
       featured_observations: Utvalda observationer
       gbif_network: GBIF-nätverket
       gbif_network_description: Uppgifter från museer och andra leverantörer av förekomster som tillhandahålls av Global Biodiversity Informatics Facility
       observations: Observationer
-      place_boundary: Platsgräns
-      checklist_places: Checklist-platser
-      checklist_places_description: Platser där detta taxon har listats
+      place_boundary: Lokalgräns
+      checklist_places: Checklistelokaler
+      checklist_places_description: Lokaler där detta taxon har listats
       range: Utbredningsområde
   map_tooltip: Visa kartvy
   mark_as_reviewed: Markera som granskad
@@ -2277,9 +2277,9 @@ sv:
   media: Media
   media_type: Mediatyp
   medium: medium
-  meet: Möt
+  meet: Träffa
   member_of_the_inaturalist_network_html: |
-    Medlem av <a href="%{url}">iNaturalist Network</a>
+    Medlem av <a href="%{url}">iNaturalist-nätverket</a>
   member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
     Medlem av %{partial_inat_network_tag_html}iNaturalist-nätverket</a>, ett
     gemensamt initiativ av %{cas_tag_html} och %{nat_geo_tag_html}.
@@ -2290,20 +2290,20 @@ sv:
   mentioned_you_in_noun_by_html: "%{user} nämnde dig i %{noun} av %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} nämnde dig i %{noun} av %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} nämnde dig i %{noun} av dig"
-  mentioned_you_in_a_x_on_noun_html: "%{user} nämnde dig i %{x} på %{noun}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} nämnde dig i en %{x} på %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} nämnde dig i en %{x} på %{noun}"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} nämnde dig i %{x} på %{noun} av %{by}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} nämnde dig i en %{x} på %{noun} av %{by}"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user} nämnde dig i en %{x} på %{noun} av %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} nämnde dig i en %{x} på %{noun} av dig"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} nämnde dig i en %{x} på %{noun} av %{by}"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} nämnde dig i en %{x} på %{noun} av %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} nämnde dig i en %{x} på %{noun} av dig"
   merge: Slå ihop
-  merge_it_with_another_place: Slå ihop det med en annan plats
-  merge_two_places_together: Slå ihop två platser. Alla arterna på checklistorna kommer att slås ihop, tillsammans med eventuella geografiska data.
+  merge_it_with_another_place: Slå ihop den med en annan lokal
+  merge_two_places_together: Slå ihop två lokaler. Alla arterna på checklistorna kommer att slås ihop, tillsammans med eventuella geografiska data.
   merge_observation_field_x_into: 'Slå ihop observationsfält "%{x}" till...'
   merging: Sammanslagning
-  merging_places: Slå samman platser
+  merging_places: Slår ihop lokaler
   message: Meddelande
   message_deleted: Meddelande raderat
   message_from_user_at_time: Från %{user} kl. %{time}
@@ -2312,12 +2312,9 @@ sv:
   messages_new_correspondent_it_looks_like: |
     Det verkar inte ha kommunicerat med den här personen förut, så tänk på detta:
   messages_new_correspondent_specimens: |
-    Var försiktig med förfrågningar om exemplar eller dolda data. Försök att bekräfta
-    identiteten på den person som gör begäran och om de ber om
-    exemplar, be att få se deras tillstånd.
+    Var försiktig med förfrågningar om exemplar eller dolda data. Försök att bekräfta identiteten på den person som gör begäran och om de ber om exemplar, be att få se deras tillstånd.
   messages_new_correspondent_personal: |
-    Lämna inte ut personlig information om dig själv till personer du inte
-    litar på.
+    Lämna inte ut personlig information om dig själv till personer du inte litar på.
   messages_new_correspondent_actions_html: |
     Om du misstänker att denna person bryter mot våra <a href="%{tos_url}"
     target="_blank">användarvillkor</a> eller inte agerar i enlighet med våra <a
@@ -2378,17 +2375,17 @@ sv:
   months: Månader
   more: Mer
   more_fields: Fler fält
-  more_filters: Mer filtrerar
+  more_filters: Fler filter
   more_from_x: Mer från %{x}
   more_import_options: Fler importalternativ
   more_info: Mer info
   more_info_title: Mer info
   more_journal_posts: Fler dagboksinlägg
-  more_observations: Mer observationer
-  more_photos: Fler foton
+  more_observations: Fler observationer
+  more_photos: Fler bilder
   more_than_a_week_ago: Mer än en vecka sedan
   most_agree: flesta eniga
-  most_browser_print_pdf: "OBS: De flesta webbläsare har ett alternativ att skriva ut till PDF"
+  most_browser_print_pdf: "OBS: De flesta webbläsarna har ett alternativ att skriva till PDF"
   most_disagree: mest oeniga
   most_comments_and_faves: Flest kommentarer och favoriter
   most_observations: Flest observationer
@@ -2421,7 +2418,7 @@ sv:
   name: Namn
   name_entered: Angivet namn
   name_or_slug: "Namn eller URL-slug, t.ex. mitt-projekt"
-  name_of_the_place_you: Namn på platsen där du gjorde observationen
+  name_of_the_place_you: Namn på lokalen där du gjorde observationen
   name_providers:
     col: Catalogue of Life
     ubio: uBio
@@ -2441,8 +2438,8 @@ sv:
   near_threatened: Nära hotad
   nearby_observations_: Observationer i närheten
   needs_id: behöver bestämmas
-  needs_id_: Behöver best.
-  needs_id_expandable_html: "<span class='full'>Behöver </span>ID"
+  needs_id_: Behöver bestämmas
+  needs_id_expandable_html: "<span class='full'>Behöver </span>bestämmas"
   needs_to_be_identified: Behöver bestämmas
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2464,7 +2461,7 @@ sv:
   new_assessment: Ny bedömning
   new_check_list: Ny checklista
   new_check_list_for: "Skapa en ny checklista för %{place} &raquo;"
-  new_check_list_record: "Om du vill markera att denna lista är uttömmande, skapa den, lägg till taxa, och redigera den sedan så kommer du ha möjlighet att markera den som uttömmande."
+  new_check_list_record: "Om du vill markera att denna lista är fullständig, skapa den, lägg till taxa, och redigera den sedan så kommer du ha möjlighet att markera den som fullständig här."
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent} av %{user_link}
   new_flag_for: Ny flagga för
   new_guide: Ny guide
@@ -2472,7 +2469,7 @@ sv:
   new_lexicon: Nytt lexikon
   new_list: Ny lista
   new_members: "Nya medlemmar"
-  new_message: Ny meddelande
+  new_message: Nytt meddelande
   new_observation_field: Nytt observationsfält
   new_observations: Nya observationer
   new_observations_in_year: "Nya observationer under %{year}"
@@ -2488,9 +2485,9 @@ sv:
   new_source: Ny källa
   new_species_added_in_interval: Nya arter tillagda i %{interval}
   new_species_added_in_interval_x_of_y: Nya arter som lades till i %{interval} (Visar %{x} av %{y})
-  new_taxon_change: Ny ändring av taxon
+  new_taxon_change: Ny taxonändring
   new_taxon_link: Ny taxonlänk
-  new_taxon_name_for: Nytt namn på taxon för
+  new_taxon_name_for: Nytt taxonnamn för
   new_taxon_range: Nytt taxonintervall
   new_taxonomic_change: Ny taxonomisk förändring (utkast)
   new_trip: Ny resa
@@ -2505,7 +2502,7 @@ sv:
   next: Nästa
   next_observation: Nästa observation
   next_page: Nästa sida
-  next_photo: Nästa foto
+  next_photo: Nästa bild
   next_tab: Nästa flik
   'no': 'Nej'
   no_assessments_have_been_added_to_this_project_yet: Inga bedömningar har lagts till detta projekt ännu.
@@ -2518,7 +2515,7 @@ sv:
   no_description: Ingen beskrivning
   no_flags: Inga flaggor denna gång
   no_flickr_photos_tagged: Inga taggade Flickr-bilder!
-  no_identifications: Inga identifieringar
+  no_identifications: Inga bestämningar
   no_identifications_added:
     current_user: Du har inte lagt till bestämningar till någons observationer.
     user: "%{user} har inte lagt till bestämningar till någons observationer."
@@ -2694,6 +2691,9 @@ sv:
   observed_on_datetime: Observerad den %{datetime}
   observation_removed_from_the_project: "Observation borttagen från projektet \"%{project}\""
   observation_requirements: Krav på observationer
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Observationskrav uppdaterade den
   observation_rules: Observationsregler
   observation_rules_description: |
     Du kan välja regler som avgör vilka observationer som kan läggas till i detta
@@ -3481,6 +3481,10 @@ sv:
     observationer av specifika taxa eller taxa på en lista
   project_assessments: Projektbedömningar
   project_assets: Projekttillgångar
+  project_coordinate_access_enabled: |
+    Du borde kunna se dolda koordinater för observationer av tillitsfulla medlemmar.
+  project_coordinate_access_disabled_until_datetime: |
+    Du kommer inte att kunna komma åt dolda koordinater förrän %{datetime}
   project_cover: Projektets omslagsbild
   project_created_on: skapade detta projekt den %{date}
   project_curator_id: ProjektförvaltarID
@@ -6134,9 +6138,9 @@ sv:
           här projektet att anförtro projektadministratörer med dessa dolda koordinater. Projektmedlemmar kommer att kunna ge tillgång till de dolda koordinaterna
           för alla deras observationer som finns i detta projekt, eller bara de
           observationer som är diffuserade på grund av hotade taxa.
-        trust_help_notification: |-
-          Å andra sidan kommer detta också att meddela alla beroende projektmedlemmar
-          varje gång du ändrar projektkraven, så att de kan omvärdera om de vill fortsätta anförtro dig givet de nya kraven.
+        trust_help_notification2: |-
+          Men detta kommer också att meddela alla tillitsfulla projektmedlemmar varje gång du ändrar projektets observationskrav, så att de kan omvärdera huruvida de vill fortsätta lita på dig med de nya kraven.
+          Din åtkomst till dolda koordinater kommer att dras in i en vecka efter ändring av observationskraven så att medlemmar ska hinna göra detta
         trusted_project_means: |
           Att lita på ett projekt innebär att projektledarna kan lägga till projekt-
           tillgångar och anpassade projektattribut (t.ex. banner HTML, CSS). Åtkomst
