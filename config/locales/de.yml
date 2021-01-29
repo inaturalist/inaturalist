@@ -2613,6 +2613,9 @@ de:
   observed_on_datetime: Beobachtet am %{datetime}
   observation_removed_from_the_project: "Die Beobachtung wurde aus dem Projekt \"%{project}\" entfernt."
   observation_requirements: Beobachtungsvoraussetzungen
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Beobachtungsbedingungen aktualisiert am
   observation_rules: Beobachtungsregeln
   observation_rules_description: |
     Du kannst Regeln wählen, um festzulegen, welche Beobachtungen zu diesem Projekt hinzugefügt werden können, wie z.B. die Beschränkung auf einen bestimmten Ort oder ein bestimmtes Taxon. Wenn du mehr als eine Regel für eine Art von Regel hast, sind Beobachtungen gültig, wenn eine der beiden Regeln zutrifft. Wenn du zum Beispiel die Regeln "muss in Amphibia sein" und "muss in Reptilia sein" hast, dann akzeptiert das Projekt Beobachtungen von Reptilien oder Amphibien.
@@ -3373,6 +3376,10 @@ de:
   project_aggregator_filter_error: |
     Projekte können keine automatische Beobachtungsaggregation ermöglichen, es sei denn, das Projekt ist mit einem Ort moderater Größe verbunden oder es sind nur Beobachtungen von bestimmten Taxa oder Taxa auf einer Liste erlaubt
   project_assessments: Projektbewertungen
+  project_coordinate_access_enabled: |
+    Du solltest die versteckten Koordinaten von Beobachtungen der Benutzer sehen können, die dir vertrauen.
+  project_coordinate_access_disabled_until_datetime: |
+    Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -4398,7 +4405,7 @@ de:
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
-  user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
+  user_disagrees_this_is_taxon: "%{user} stimmt der Bestimmung als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
@@ -5595,10 +5602,10 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
-        trust_help_notification: |-
-          Dies wird jedoch auch alle Projektmitglieder benachrichtigen jedes Mal, wenn
-          du die Projektanforderungen änderst, damit sie neu beurteilen können, ob sie dir
-          weiterhin vertrauen wollen.
+        trust_help_notification2: |-
+          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
+          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
+          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.
