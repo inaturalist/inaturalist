@@ -326,7 +326,8 @@ export function fetchObservation( uuid, options = { } ) {
       };
       const controlledTermFields = {
         id: true,
-        label: true
+        label: true,
+        multivalued: true
       };
       const fields = {
         annotations: {
@@ -382,6 +383,7 @@ export function fetchObservation( uuid, options = { } ) {
         obscured: true,
         observed_on: true,
         ofvs: {
+          datatype: true,
           name: true,
           observation_field: {
             name: true,
@@ -392,7 +394,8 @@ export function fetchObservation( uuid, options = { } ) {
           },
           user: userFields,
           uuid: true,
-          value: true
+          value: true,
+          taxon: taxonFields
         },
         outlinks: {
           source: true,
