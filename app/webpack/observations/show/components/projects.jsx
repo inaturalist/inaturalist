@@ -70,7 +70,13 @@ class Projects extends React.Component {
     _.each( observation.project_observations, po => {
       // trying to avoid duplicate project listing. This can happen for formerly
       // traditional projects that have been turned into collection projects
-      if ( !_.find( projectsOrProjObs, ppo => ( ppo.project_id === po.project_id ) ) ) {
+      const duplicate = _.find( projectsOrProjObs, ppo => (
+        ( ppo.project_id && po.project_id && ppo.project_id === po.project_id )
+        || (
+          ppo.project && po.project && ppo.project.id === po.project.id
+        )
+      ) );
+      if ( !duplicate ) {
         projectsOrProjObs.push( po );
       }
     } );
