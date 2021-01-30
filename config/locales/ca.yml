@@ -2626,6 +2626,9 @@ ca:
   observed_on_datetime: Observat el %{datetime}
   observation_removed_from_the_project: "S'ha eliminat l'observació del projecte %{project}"
   observation_requirements: Requisits de l'observació
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Condicions a complir per les observacions actualitzades el
   observation_rules: Normes d'observació
   observation_rules_description: |
     Podeu crear normes per determinar quines observacions poden afegir-se a aquest projecte, per exemple limitant les observacions a un lloc o tàxon determinats. Si teniu més d'una regla per a un tipus de regla, una observació serà vàlida si compleix qualsevol regla. Per exemple si teniu la regla "ha de ser amfibi" i "ha de ser rèptil", el projecte acceptarà les observacions d'amfibis O rèptils.
@@ -3376,6 +3379,10 @@ ca:
     Els projectes no permeten l'agregació automàtica d'observacions, llevat que estiguin associats a un lloc de mida moderada o només permetin observacions de tàxons específics o d'una llista
   project_assessments: Avaluació del projecte
   project_assets: Arxius del projecte
+  project_coordinate_access_enabled: |
+    Hauria de poder veure les coordenades ocultes de les observacions dels membres de confiança
+  project_coordinate_access_disabled_until_datetime: |
+    No podreu accedir a coordenades ocultes fins a %{datetime}
   project_cover: Coberta del Projecte
   project_created_on: va crear aquest projecte el %{date}
   project_curator_id: ID del supervisor del projecte
@@ -5614,6 +5621,9 @@ ca:
           Permetre als membres confiar les coordenades ocultes a aquest projecte
         trust_help_desc: |-
           Si voleu accedir a les coordenades ocultes d'observacions enfosquides, aquesta opció permet els usuaris units al projecte confiar aquestes coordenades ocultes als administradors del projecte. Els membres del projecte poden donar accés a les coordenades ocultes de totes les seves observacions que apareixen en el projecte, o únicament a aquelles que han estat enfosquides per tractar-se de tàxons vulnerables.
+        trust_help_notification2: |-
+          Tanmateix, això també notificarà a tots els membres de confiança del projecte cada vegada que modifiqueu les condicions de les observacions del projecte, de forma que puguin revaluar si volen seguir confiant en vostè malgrat els nous requisits.
+          El vostre accés a les coordenades amagades es revocarà al llarg de la setmana posterior a la del canvi de les condicions de les observacions perquè els membres tinguin temps per revisar-les
         trusted_project_means: |
           Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar atributs del projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte significa que els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos, per tant confieu únicament en projectes que tenen gestors responsables i tècnicament competents
         you_can_preview: |
