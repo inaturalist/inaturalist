@@ -78,6 +78,7 @@ class TaxonName < ActiveRecord::Base
     :TAHITIAN            =>  'Tahitian',
     :TOKELAUAN           =>  'Tokelauan',
     :TURKISH             =>  'Turkish',
+    :UKRANIAN            =>  'Ukranian',
     :WARAY_WARAY         =>  'Waray-Waray'
   }
   
@@ -140,6 +141,7 @@ class TaxonName < ActiveRecord::Base
     "spanish"               => "es",
     "swedish"               => "sv",
     "turkish"               => "tr",
+    "ukranian"              => "uk",
     "vietnamese"            => "vi"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
