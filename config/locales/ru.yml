@@ -624,6 +624,9 @@ ru:
   #the iNaturalist Android app or Flickr
   application: Приложение
   applications: Приложения
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Заявка
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: "Применить В неволе / культивируемое"
   apply_fields: Применить поля
@@ -1161,6 +1164,110 @@ ru:
   curating: Курирование
   curation: Курирование
   curator: Куратор
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Кураторы сайта iNaturalist-это доверенные волонтеры, которые имеют возможность редактировать таксономию iNaturalist и модерировать пользовательский контент. Кураторы сайтов являются неотъемлемой частью iNaturalist, поскольку они поддерживают нашу таксономию в актуальном состоянии и делают общение на iNaturalist уместным и цивилизованным. Ниже приводится описание того, что значит быть куратором. Пожалуйста, ознакомьтесь с этим, и если вы хотите стать куратором, внимательно прочтите <a href="/pages/curator+guide" target="_blank">Руководство куратора</a>, а затем заполните заявку на этой странице.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Вы должны объяснить, почему вы хотите стать куратором
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Почему вы хотите быть куратором?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Если вы хотите отредактировать таксономию iNaturalist, пожалуйста, приведите один или два примера таксономических изменений, которые вы хотели бы внести, и включите ссылки на соответствующие таксономические полномочия, указанные в Руководстве куратора
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Если вы хотите отредактировать общие имена, пожалуйста, приведите один или два примера изменений, которые вы хотели бы внести
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Если вы хотите модерировать поведение на iNaturalist, пожалуйста, приведите один или два примера нарушения Правил сообщества и предложите, что бы вы сделали в этих ситуациях
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Как куратор теряет свои полномочия
+  curator_application_how_curators_lose_their_powers_desc: |
+    Сотрудники iNat могут лишить куратора полномочий, если куратор неоднократно:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Игнорирует правила Руководства куратора.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Сами не демонстрируют надлежащего поведения.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните оба эти требования, возвращайтесь сюда, и вы сможете подать заявку.
+  curator_application_inelligible_error: |
+    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Заявление на куратора отправлено
+  #Header
+  curator_application_what_curators_can_do: Что кураторы могут делать
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Редактировать таксономию iNaturalist''s, следуя политике, изложенной в <a href="/pages/curator+guide#policies" target="_blank">разделе политики Руководства куратора</a>. Это означает, что они могут добавлять, разделять, менять местами, объединять, деактивировать и удалять таксоны на iNaturalist. Они также могут редактировать природоохранные статусы и геоприватность таксонов, а также редактировать общие имена, добавляемые любым пользователем и управлять ими.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Скрыть комментарии и приостановить аккаунт пользователя за нарушение <a
+    href="/pages/community+guidelines" target="_blank">Правил сообщества</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Разрешать <a href="/flags" target="_blank">флаги</a> таксонов и пользовательского контента.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Создавать и редактировать вики-страницы, такие как<a href="/pages/help"
+    target="_blank">iNaturalist часто задаваемые вопросы</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Редактировать места, курируемые сообществом, и загружать файлы KML размером более 1 МБ (но менее 5 МБ).
+  #Header
+  curator_application_what_curators_cannot_do: Что не могут делать кураторы
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Влиять на таксон сообщества или качество данных наблюдения больше, чем может любой другой пользователь.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Фиксировать изменения таксонов для <a href="/pages/curator+guide#completetaxa"
+    target="_blank">полных таксонов</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Удалять контент, созданный другими пользователями.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Читать личные сообщения других.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Заявка на должность куратора
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Вы можете подать заявку на должность куратора только в том случае, если:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Вы добавляете идентификации и/или наблюдения в течение нескольких месяцев и намерены продолжать делать это.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Вы готовы и способны выполнять кураторскую работу на регулярной основе. Если вы хотите добавить только некоторые таксоны, пожалуйста, просто попросите существующих кураторов добавить эти таксоны, установив флаги к таксонам более высокого уровня.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Вы можете сформировать соответствующее поведение на iNaturalist и соблюдать правила сообщества. Наряду с кураторскими полномочиями мы ожидаем, что вы будете образцовым пользователем iNaturalist.
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
@@ -1240,6 +1347,8 @@ ru:
   default_observation_license: Лицензия наблюдения по умолчанию
   default_photo_license: Лицензия фото по умолчанию
   default_search_place: Место поиска по умолчанию
+  default_search_place_description: |
+    Это будет вашим местом по умолчанию для всех поисков в нашей поисковой системе.
   default_sound_license: Лицензия аудио по умолчанию
   defaults_to_your_name_or_username: Значения по умолчанию для вашего имени или логина
   defines_a_taxon_framework_for: Задаёт основу таксона для %{taxon_name}
@@ -2263,6 +2372,16 @@ ru:
   message_from_user_at_time: От %{user} в %{time}
   message_from_user_on_date: От %{user} %{date}
   messages: Сообщения
+  messages_new_correspondent_it_looks_like: |
+    Похоже, вы никогда раньше не переписывались с этим человеком, поэтому, пожалуйста, имейте в виду следующее:
+  messages_new_correspondent_specimens: |
+    Будьте осторожны с запросами образцов или скрытых данных. Попытайтесь проверить личность человека, делающего запрос, и если он просит образцы, попросите его предоставить его разрешение.
+  messages_new_correspondent_personal: |
+    Не раскрывайте личную информацию о себе людям, которым вы не доверяете.
+  messages_new_correspondent_actions_html: |
+    Если вы подозреваете, что этот человек нарушает наши <a href="%{tos_url}"
+    target="_blank">Условия предоставления услуг</a> или не действует в соответствии с нашими <a
+    href="%{guidelines_url}" target="_blank">Правилами сообщества</a>, пожалуйста, проставьте флажок ниже этого сообщения.
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
@@ -2308,6 +2427,8 @@ ru:
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "H:mm"
   month: Месяц
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесячный спонсор</a> с %{date}
@@ -2620,6 +2741,9 @@ ru:
   observed_on_datetime: Наблюдали %{datetime}
   observation_removed_from_the_project: "Наблюдения удалены из проекта %{project}"
   observation_requirements: Требования к наблюдению
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Требования к наблюдению обновлены
   observation_rules: Правила наблюдения
   observation_rules_description: |
     Вы можете задать правила, по которым наблюдения будут добавляться к данному проекту, например, ограничить наблюдения конкретным местом или таксоном. Если у вас будет действовать более одного правила данного типа, наблюдения будут действительны при выполнении любого из них. Например, если у вас есть правила "должен принадлежать к амфибиям" и "должен принадлежать к пресмыкающимся", проект будет допускать наблюдения пресмыкающихся ИЛИ амфибий.
@@ -3372,6 +3496,10 @@ ru:
     Проекты не могут включать автоматическую агрегацию наблюдений, если только проект не связан с местом ограниченного размера или не разрешает наблюдения только определенных таксонов или таксонов из списка
   project_assessments: Оценки проекта
   project_assets: Активы проекта
+  project_coordinate_access_enabled: |
+    Вы должны иметь возможность просмотра скрытых координат наблюдений доверенных лиц.
+  project_coordinate_access_disabled_until_datetime: |
+    Вы не сможете получить доступ к скрытым координатам до %{datetime}
   project_cover: Начальная страница проекта
   project_created_on: создал этот проект %{date}
   project_curator_id: Идентификация куратора проекта
@@ -5698,8 +5826,9 @@ ru:
           Разрешить пользователям доверять этому проекту скрытые координаты
         trust_help_desc: |-
           Если вы хотите получить доступ к скрытым координатам скрытых наблюдений, эта опция позволит людям, присоединившимся к этому проекту, разрешить администраторам проекта доступ к этим скрытым координатам. Участники проекта смогут предоставить доступ к скрытым координатам любого из своих наблюдений в этом проекте или только к наблюдениям, которые скрыты из-за таксонов, находящихся под угрозой исчезновения.
-        trust_help_notification: |-
-          В то же время, каждый раз, когда вы изменяете требования проекта, это приведёт к уведомлению всех доверяющих участников проекта с тем, чтобы они могли решить, хотят ли они продолжать доверять вам с учетом новых требований.
+        trust_help_notification2: |-
+          Однако это также приведёт к уведомлению всех доверенных участников проекта каждый раз, когда вы меняете требования к наблюдениям проекта, чтобы они могли переоценить, хотят ли они продолжать доверять вам с учетом новых требований.
+          Ваш доступ к скрытым координатам будет аннулирован в течение одной недели после изменения требований к наблюдению с тем, чтобы у участников было время сделать это
         trusted_project_means: |
           Доверять проекту означает, что менеджеры проекта могут добавить в проект активы и пользовательские атрибуты проекта (например, баннер HTML, CSS). Доступ к пользовательским атрибутам проекта означает, что менеджеры проектов теоретически могут добавить вредоносный JavaScript, поэтому доверяйте только тем проектам, у которых как ответственные, так и технически грамотные менеджеры.
         you_can_preview: |

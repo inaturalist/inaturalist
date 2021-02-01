@@ -519,6 +519,9 @@ fr:
   #the iNaturalist Android app or Flickr
   application: Application
   applications: Applications
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Postuler
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique captif/cultivé"
   apply_fields: Appliquer les champs
@@ -1060,6 +1063,123 @@ fr:
   curating: Organisation en cours
   curation: Organisation
   curator: Responsable de l’organisation
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Les responsables du site iNaturalist sont des bénévoles de confiance qui peuvent modifier la taxinomie d'iNaturalist et modérer le contenu des utilisateurs. Les responsables du site sont essentiels pour iNaturalist, car ils tiennent notre taxinomie à jour et veillent à ce que les échanges sur iNaturalist restent appropriés et courtois. Ci-dessous, vous trouverez la description du rôle des responsables. Prenez-en connaissance et, si vous souhaitez devenir responsable, lisez attentivement le
+    <a href="/pages/curator+guide" target="_blank">Guide des responsables de l’organisation</a>, puis remplissez
+    la demande sur cette page.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Vous devez expliquer pourquoi vous voulez devenir responsable.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si vous souhaitez modifier la taxinomie d'iNaturalist, veuillez donner un exemple ou deux
+    de modifications taxinomiques que vous voulez apporter et inclure des liens vers les autorités
+    appropriées en matière de taxinomie, qui figurent dans le Guide des responsables de l’organisation.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Si vous souhaitez modifier les noms vernaculaires, veuillez fournir un exemple ou deux des
+    changements que vous voulez apporter.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Si vous voulez faire de la modération sur iNaturalist, veuillez fournir un exemple
+    ou deux de non-respect des directives de la communauté et indiquer ce que vous feriez dans ces
+    situations.
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Comment les responsables peuvent perdre leurs pouvoirs
+  curator_application_how_curators_lose_their_powers_desc: |
+    Les membres de l'équipe iNat peuvent retirer ses pouvoirs à un responsable dans les cas suivants :
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    le responsable enfreint à plusieurs reprises les règles du Guide des responsables de l’organisation ;
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    le responsable n'a pas lui-même, à plusieurs reprises, un comportement approprié.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
+    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres. (Vous en avez ajouté %{num_idents}.) Lorsque vous satisferez à ces deux exigences, revenez ici et vous pourrez envoyer la demande.
+  curator_application_inelligible_error: |
+    Pour pouvoir demander à faire partie des responsables du site, vous devez avoir un compte depuis au moins 60
+    jours et avoir ajouté 100 identifications d'amélioration à des observations, qu'elles soient ou non les vôtres.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Demande envoyée
+  #Header
+  curator_application_what_curators_can_do: Ce que les responsables peuvent faire
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Modifier la taxinomie d''iNaturalist en suivant les règles définies dans la <a href="/pages/curator+guide#policies" target="_blank">section correspondante du Guide des responsables de l''organisation</a>. Autrement dit, ils peuvent ajouter, scinder, permuter, fusionner, désactiver et supprimer des taxons sur iNaturalist. Ils peuvent également modifier la situation quant à la conservation et la géoconfidentialité des taxons, ainsi que modifier et gérer les noms vernaculaires, quel que soit l''utilisateur qui les a ajoutés.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Masquer les commentaires et suspendre les utilisateurs qui ont enfreint les <a
+    href="/pages/community+guidelines" target="_blank">directives de la communauté
+    </a>
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Traiter les <a href="/flags" target="_blank">signalements</a> relatifs aux taxons et au contenu des utilisateurs
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Créer et modifier des pages wiki, comme la <a href="/pages/help"
+    target="_blank">page de FAQ d'iNaturalist</a>
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Modifier des lieux organisés par la communauté et télécharger des fichiers KML de plus de 1 Mo (mais
+    de moins de 5 Mo)
+  #Header
+  curator_application_what_curators_cannot_do: Ce que les responsables ne peuvent pas faire
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Avoir plus d'influence que les autres utilisateurs sur le taxon de la communauté ou la qualité des données d'une observation
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Valider les modifications de taxon pour les <a href="/pages/curator+guide#completetaxa"
+    target="_blank">taxons complets</a>
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Supprimer le contenu créé par d'autres utilisateurs
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Lire les messages directs d'autres personnes
+  #Title of a page where people apply to become a curator
+  curator_application_title: Pour devenir responsable
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Ne demandez à faire partie des responsables que si vous remplissez les conditions suivantes :
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Vous ajoutez des identifications et/ou des observations depuis au moins quelques mois
+    et vous avez l'intention de continuer.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Vous voulez et pouvez effectuer régulièrement le travail des responsables. Si votre intérêt se limite à l'ajout de quelques taxons, veuillez simplement demander que les responsables existants s'en chargent en ajoutant des signalements aux taxons de niveau supérieur.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Vous êtes en mesure d'adopter un comportement approprié sur iNaturalist et de vous conformer aux
+    directives de la communauté. On attend des personnes qui reçoivent les pouvoirs des responsables qu'elles soient des utilisateurs exemplaires d'iNaturalist.
   curators_changed_for_x_html: "Responsables de l’organisation modifiés à %{x}"
   curators: Responsables de l’organisation
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
@@ -1139,6 +1259,8 @@ fr:
   default_observation_license: Licence par défaut des observations
   default_photo_license: Licence des photos par défaut
   default_search_place: Lieu de recherche par défaut
+  default_search_place_description: |
+    Votre lieu par défaut pour toutes les recherches sous Explorer et Identifier
   default_sound_license: Licence des sons par défaut
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
   defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
@@ -2228,6 +2350,8 @@ fr:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
   month: Mois
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
@@ -2544,6 +2668,9 @@ fr:
   observed_on_datetime: Observé le %{datetime}
   observation_removed_from_the_project: "Observation supprimée du projet « %{project} »"
   observation_requirements: Critères d’observation
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Critères d'observation actualisés le
   observation_rules: Règles d’observation
   observation_rules_description: |
     Vous pouvez choisir les règles pour déterminer quelles observations peuvent
@@ -3316,6 +3443,11 @@ fr:
     Les projets ne peuvent pas activer l'agrégation automatique d'observations, à moins que le projet ne soit associé à un lieu de taille modérée, ou s'il ne permet les observations que de certains taxons particuliers, ou selon une liste définie de taxons
   project_assessments: Évaluations du projet
   project_assets: Biens du projet
+  project_coordinate_access_enabled: |
+    Vous devriez être en mesure de voir les coordonnées masquées des observations en faisant confiance aux
+    membres.
+  project_coordinate_access_disabled_until_datetime: |
+    Vous ne pourrez pas avoir accès aux coordonnées masquées avant le %{datetime}
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
   project_curator_id: ID du responsable de l’organisation du projet
@@ -4232,7 +4364,7 @@ fr:
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Faire confiance à ce projet avec vos coordonnées masquées?
+  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées?
   trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
@@ -5843,8 +5975,11 @@ fr:
           Permettre aux membres de partager leurs coordonnées cachées
         trust_help_desc: |-
           Si vous voulez avoir accès aux coordonnées cachées des utilisateurs, cette option leur permet de donner l'accès aux admins du projet à ces coordonnées. Les membres du projet vont être capables de donner accès aux coordonnées de leurs observations qui font partie du projet, ou juste de celles avec un taxon menacé du projet.
-        trust_help_notification: |-
-          Cependant, vous allez notifier tous les membres du projet lorsque vous changerez ce paramètre, pour leur permettre d'avoir le choix.
+        trust_help_notification2: |-
+          Cependant, tous les membres qui font confiance au projet sont également avisés chaque fois que
+          vous modifiez les critères d'observation du projet pour qu'ils puissent reconsidérer leur décision de vous faire confiance compte tenu des nouveaux critères.
+          Votre accès aux coordonnées masquées est révoqué pendant une semaine après
+          la modification des critères d'observation pour que les membres aient le temps de prendre cette décision.
         trusted_project_means: |
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
