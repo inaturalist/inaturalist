@@ -1189,6 +1189,127 @@ cs:
   curating: Spravování
   curation: Spravování
   curator: Kurátor
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist kurátoři stránek jsou důvěryhodní dobrovolníci, kteří mají možnost
+    upravit taxonomii iNaturalistu a umírnit uživatelský obsah. Kurátoři webu jsou
+    nedílnou součástí iNaturalist, protože naše taxonomie jsou aktuální a
+    diskuse o iNaturalist vhodné a občanské. Níže je uveden popis
+    toho, co znamená kurátor. Přečtěte si jej a pokud chcete být kurátorem
+    pečlivě si přečtěte průvodce
+    <a href="/pages/curator+guide" target="_blank">kurátorem</a> a pak vyplňte
+    žádost na této stránce.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Musíte vysvětlit, proč se chcete stát kurátorem
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Proč chcete být kurátorem?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Pokud chcete upravit taxonomii iNaturalist, uveďte prosím příklad nebo dva
+    taxonomických změn, které chcete provést, a zahrnout odkazy na řádné
+    taxonomické orgány uvedené v průvodci kurátorem.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Pokud chcete upravit běžné názvy, uveďte prosím příklad jedné nebo dvou 
+    změn, které chcete provést
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Pokud chcete umírnit chování na iNaturalist, uveďte příklad jednoho 
+    nebo dvou porušení obecných zásad Společenství a to, co byste v těchto situacích udělali
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Jak ztrácí kurátor své pravomoci
+  curator_application_how_curators_lose_their_powers_desc: |
+    personál iNat může odebrat kurátorské pravomoce, pokud kurátor opakovaně:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Nepřihlíží k zásadám uvedeným v příručce kurátora.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Není schopen prokázat vlastní vhodné chování.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Abyste se mohli ucházet o kurátora stránek, musíte mít účet po dobu 60 dní nebo déle a musíte přidat 100 vylepšení identifikace do pozorování kohokoli, včetně svých vlastních (přidali jste %{num_idents}). Pokud splníte oba tyto požadavky, vraťte se sem a budete moci odeslat žádost.
+  curator_application_inelligible_error: |
+    Aby jste mohli být kurátorem, musíte mít účet po dobu 60
+    dní nebo více a přidali 100 vylepšení identifikací ke všem
+    pozorováním, včetně vašeho vlastního.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Žádost kurátora byla odeslána
+  #Header
+  curator_application_what_curators_can_do: Co mohou kurátoři dělat
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Upravte taxonomii iNaturalist podle zásad uvedených v <a href="/pages/curator+guide#policies" target="_blank">Policies section of the Curator Guide</a>. To znamená, že mohou přidat, rozdělit, vyměnit, sloučit, deaktivovat a odstranit taxony na iNaturalist. Mohou také upravovat stavy ochrany osobních údajů a geosoukromí taxonů a také upravovat a spravovat běžné názvy přidané každým uživatelem.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Skrýt komentáře a pozastavit uživatele za porušení <a
+    href="/pages/community+guidelines" target="_blank">Zásad komunity</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Vyřešit <a href="/flags" target="_blank">vlajky</a> na taxony a uživatelský obsah.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Vytvořit a upravovat wiki stránky, jako je <a href="/pages/help"
+    target="_blank">iNaturalist FAQ stránka</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Upravujte místa vybraná komunitou a nahrávejte soubory KML větší než 1 MB (ale menší než 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Co kurátoři nemohou udělat
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Mít vliv na taxon, Společenství, nebo kvalitu dat pozorování více, než kterýkoli jiný
+    uživatel.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Odeslání změny taxonu pro <a href="/pages/curator+guide#completetaxa"
+    target="_blank">kompletní taxony</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Smazat obsah vytvořený jinými uživateli.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Přečíst si přímé zprávy od ostatních lidí.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Žádost kurátora
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Měli byste požádat o kurátora pouze když:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Přidáváte identifikaci a/nebo pozorování již několik měsíců
+    a hodláte pokračovat.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Jste ochotni a schopní provádět kurátorskou práci pravidelně. Pokud
+    chcete přidat pouze několik taxonů, prosím, jen požádejte, aby stávající kurátoři přidali
+    tyto taxony přidáním příznaků do taxonů na vyšší úrovni.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Můžete modelovat vhodné chování na iNaturalist a dodržovat pokyny Společenství. Spolu se sílou kurátorství přichází očekávání, že budete příkladným uživatelem iNaturalist.
   curators_changed_for_x_html: "Kurátoři změněni na %{x}"
   curators: Kurátoři
   curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
@@ -1268,6 +1389,8 @@ cs:
   default_observation_license: Výchozí licence pozorování
   default_photo_license: Výchozí fotografická licence
   default_search_place: Výchozí místo hledání
+  default_search_place_description: |
+    Toto bude výchozí místo pro všechna vyhledávání v Průzkumu.
   default_sound_license: Výchozí licence pro zvuk
   defaults_to_your_name_or_username: Odpovídá vašemu jménu nebo uživatelskému jménu
   defines_a_taxon_framework_for: Definuje rámec taxonu pro %{taxon_name}
@@ -1531,6 +1654,7 @@ cs:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externí aplikace
+  external_applications_description: Externí aplikace jsou softwarové aplikace třetích stran, které jste autorizovali k vašemu účtu iNaturalist vaším jménem. Obecně mohou udělat vše s vaším účtem a ujistěte se, že budete mít důvěru k vývojářům aplikací před udělením oprávnění.
   external_taxon_including_children: Externí taxon (včetně mláďat)
   extinct: vyhynulý
   extinct_in_the_wild: vyhynulý v přírodě
@@ -2295,6 +2419,21 @@ cs:
   message_from_user_at_time: Od %{user} v %{time}
   message_from_user_on_date: Od %{user} v %{date}
   messages: Zprávy
+  messages_new_correspondent_it_looks_like: |
+    Vypadá to, že s touto osobou jste zatím nekonverzovali, tak prosím
+    mějte na paměti tyto věci:
+  messages_new_correspondent_specimens: |
+    Dávejte pozor na požadavky na vzorky nebo skryté údaje. Pokuste se ověřit
+    totožnost osoby, která po vás něco žádá, a pokud žádá sběr
+    vzorků, požádejte o její povolení.
+  messages_new_correspondent_personal: |
+    Nezpřístupněte své osobní informace lidem, kterým
+    nedůvěřujete.
+  messages_new_correspondent_actions_html: |
+    Pokud máte podezření, že tato osoba porušuje naše <a href="%{tos_url}"
+    target="_blank">Smluvní podmínky</a> nebo nejedná v souladu s našimi <a
+    href="%{guidelines_url}" target="_blank">Pravidly komunity</a>, prosíme,
+    označte tuto zprávu níže.
   misidentifications: Zprávy
   misleading_or_illegal_content_html: |
     Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atd. Podrobnosti k naší definici toho, co je „vhodné“ najdete na
@@ -2341,6 +2480,8 @@ cs:
     date_long: "MMMM D, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "H:mm"
   month: Měsíc
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
@@ -5247,6 +5388,8 @@ cs:
           </p>
         you_have_opted_out: Zvolili jste možnost nepoužívat komunitní identifikace
         opt_in_for_this_observation: Vybrat pro toto pozorování
+        your_id_does_not_match: |
+          Vaše identifikace (<span class="bold">%{taxon_name}</span>) neodpovídá identifikaci komunitou
       copy_tip: "Přidat nové pozorování zkopírováním datumu, místa, fotografií a polí z tohoto pozorování."
       captive_help_html: |
         Byl organismus <strong>pěstovaný</strong> nebo 
@@ -6025,6 +6168,13 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        compare_desc: |
+          Jak se tento rok porovnával s vašimi předchozími roky? Se třemi roky
+          nebo více můžeme začít srovnávat ukazatele roční aktivity.
+          zelený pruh zobrazuje tento rok, bílá vertikální lišta zobrazuje minulý rok, a
+          šedé oblasti pozadí ukazují nejnižší a nejvyšší roky a
+          jako průměr za všechny roky. Statistiky nezahrnují roky, kdy byl počet
+          nulový.
         compare_site_desc: |
           Jaký byl tento rok v porovnání s roky předchozími? Zelený sloupec ukazuje tento
           rok, bílý svislý sloupec zobrazuje minulý rok, a šedé oblasti na pozadí
@@ -6048,6 +6198,10 @@ cs:
           připojili k %{site_name} k iNaturalist.
         growth_in_year_obs: "Růst v%{year}(obs)"
         growth_title: Růst
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Nízké: %{low_value} (%{low_desc}), příliš malé k zobrazení"
         new_species_desc: |
           Druhy, které byly letos poprvé pozorovány na %{site_name}. Zobrazeno %{x}z<a href="%{url}">%{y} druyh</a>.
         new_species_desc_html: |
@@ -6080,6 +6234,12 @@ cs:
         observation_streaks: Série pozorování
         observation_streaks_color_desc: |
           Barva představuje počet dní v logaritmické stupnici:
+        observation_streaks_desc2: |
+          Pozorovací série je období nejméně pěti dnů, kdy se někdo
+          dostal ven a zaznamenával nové ověřitelné pozorování každý
+          den. Zde ukazujeme nejdelší etapy, které začaly v letošním roce, nebo
+          probíhaly, když byly tyto statistiky generovány (pro jednotlivé uživatele
+          , také včetně fází, které letos skončily).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Pravidelně
         species_per_year: Druhy / rok
@@ -7381,6 +7541,7 @@ cs:
     previous_label: "&#8592; Předch"
     next_label: "Další &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Již nadále nebudete sledovat nebo důvěřovat uživateli %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Od Z do A
