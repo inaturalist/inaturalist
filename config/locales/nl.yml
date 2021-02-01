@@ -536,6 +536,9 @@ nl:
   #the iNaturalist Android app or Flickr
   application: Toepassing
   applications: Toepassingen
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Indienen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
   apply_fields: Velden toepassen
@@ -1077,6 +1080,125 @@ nl:
   curating: Aan het opvolgen
   curation: Beoordeling
   curator: Curator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist site curators zijn vertrouwde vrijwilligers die de mogelijkheid hebben
+    om de taxonomie en de gematigde gebruikersinhoud van iNaturalist te bewerken. Site curatoren zijn
+    integraal van iNaturalist, omdat ze onze taxonomie up-to-date houden en het
+    discours over iNaturalist geschikt en civiel. Hieronder staat een beschrijving
+    van wat een curator betekent. Lees het en, als u
+    een curator wilt zijn, goed door de
+    <a href="/pages/curator+guide" target="_blank">Curator Guide</a> lezen en vul
+    de applicatie op deze pagina in.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Je moet uitleggen waarom je curator wilt worden
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Waarom wil je een curator zijn?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Als jij de taxonomie van iNaturalist wilt bewerken geef dan een of twee voorbeelden
+    van taxonomische wijzigingen die jij wilt aanbrengen en voeg links toe naar de juiste
+    taxonomische autoriteiten zoals vermeld in de Curator Guide
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Als jij lokale namen wilt bewerken geef dan één of twee voorbeelden van
+    wijzigingen die je wilt aanbrengen
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Als jij gedrag wil modereren op iNaturalist geef dan één of twee voorbeelden van
+    de schending van de Gemeenschapsrichtlijnen en wat je zou doen in deze
+    situaties
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hoe een Curator zijn rechten verliest
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat personeel kan curatoriale rechten verwijderen als een curator herhaaldelijk:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Het beleid van de Curator-gids negeert.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Toont zelf het juiste gedrag niet
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen (je hebt %{num_idents}toegevoegd). Als jij aan beide eisen voldoet kun je een aanvraag indienen.
+  curator_application_inelligible_error: |
+    Om je aan te kunnen melden als sitecurator moet je tenminste 60 dagen een account hebben en minimaal 100 verbeterende determinaties hebben toegevoegd, inclusief je eigen.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Aanvraag voor curator ingediend
+  #Header
+  curator_application_what_curators_can_do: Wat Curatoren kunnen doen
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Bewerk de taxonomie van iNaturalist volgens het beleid in het <a href="/pages/curator+guide#policies" target="_blank">beleidsgedeelte van de Curator Guide</a>. Dit betekent dat ze taxa kunnen toevoegen, splitsen, omwisselen, samenvoegen, deactiveren en verwijderen op iNaturalist. Ze kunnen ook behoud statussen en de taxon geoprivacy bewerken, evenals lokale namen bewerken en beheren die zijn toegevoegd door een willekeurige gebruiker.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Verberg reacties en stop gebruikers voor schending van de <a
+    href="/pages/community+guidelines" target="_blank">Gemeenschapsrichtlijnen</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Los <a href="/flags" target="_blank">markeringen</a> op van taxa en gebruikersinhoud.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Maak en bewerk wikipagina's zoals de <a href="/pages/help"
+    target="_blank">iNaturalist FAQ pagina</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Bewerk Community Gecorrigeerde Plaatsen en upload KML-bestanden groter dan 1 MB (maar
+    kleiner dan 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Wat Curatoren niet kunnen doen
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Beïnvloed de Community Taxon of Data Kwaliteit van een waarneming meer dan elke
+    andere gebruiker kan.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Bevestig taxonwijzigingen voor <a href="/pages/curator+guide#completetaxa"
+    target="_blank">complete taxa</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Verwijderen van door andere gebruikers gemaakte inhoud.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Lees privéberichten van andere mensen.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Curator formulier
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Je moet je alleen aanmelden om curator te worden als:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Jij hebt al determinaties en/of waarnemingen toegevoegd de afgelopen paar maanden en bent van plan om daar mee door te gaan.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Je bent bereid en in staat om regelmatig curatiewerk uit te voeren. Als je
+    alleen een paar taxa wilt toevoegen vraag dat dan gewoon aan door markeringen toe te voegen aan hogere taxa zodat bestaande curatoren deze taxa toe kunnen voegen .
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Je toont het juiste gedrag op iNaturalist en je houd je aan de Gemeenschapsrichtlijnen. Als je de curatoriale rechten hebt wordt verwacht dat je een voorbeeldige gebruiker van iNaturalist zult zijn.
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
@@ -1156,6 +1278,8 @@ nl:
   default_observation_license: Standaard waarnemingslicentie
   default_photo_license: Standaard fotolicentie
   default_search_place: Standaard zoekmachine
+  default_search_place_description: |
+    Dit zal je standaard plaats zijn voor alle zoekopdrachten in Verkenner.
   default_sound_license: Standaard opname licentie
   defaults_to_your_name_or_username: Standaardinstelling is je naam of gebruikersnaam
   defines_a_taxon_framework_for: Definieert een taxonkader voor %{taxon_name}
@@ -2178,6 +2302,17 @@ nl:
   message_from_user_at_time: Van %{user} om %{time}
   message_from_user_on_date: Van %{user} op %{date}
   messages: Berichten
+  messages_new_correspondent_it_looks_like: |
+    Het lijkt erop dat je nog nooit met deze persoon hebt gecorrespondeerd, dus houd alsjeblieft deze dingen in gedachten:
+  messages_new_correspondent_specimens: |
+    Wees voorzichtig met verzoeken om specimens of verborgen gegevens. Probeer de identiteit te verifiëren van de persoon die het verzoek doet en als ze om specimens vragen, vraag dan om hun vergunning te zien.
+  messages_new_correspondent_personal: |
+    Geef geen persoonlijke informatie over jezelf aan mensen die je niet vertrouwt.
+  messages_new_correspondent_actions_html: |
+    Als jij vermoedt dat deze persoon onze <a href="%{tos_url}"
+    target="_blank">Servicevoorwaarden</a> schendt of niet handelt in overeenstemming met onze <a
+    href="%{guidelines_url}" target="_blank">Gemeenschapsrichtlijnen</a>,
+    markeer dan dit bericht hieronder.
   misidentifications: Onjuiste determinaties
   misleading_or_illegal_content_html: |
     Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
@@ -2545,6 +2680,9 @@ nl:
   observed_on_datetime: Waargenomen op %{datetime}
   observation_removed_from_the_project: "Waarneming verwijderd uit het project %{project}"
   observation_requirements: waarnemingsvereisten
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Waarnemingseisen bijgewerkt op
   observation_rules: Waarnemingsregels
   observation_rules_description: |
     Je kunt regels kiezen om te bepalen welke waarnemingen kunnen worden toegevoegd
@@ -3324,6 +3462,11 @@ nl:
     waarnemingen van specifieke taxa of taxa op een lijst
   project_assessments: Projectbeoordelingen
   project_assets: Projectbestanden
+  project_coordinate_access_enabled: |
+    Je moet verborgen coördinaten voor waarnemingen kunnen bekijken door
+    leden te vertrouwen.
+  project_coordinate_access_disabled_until_datetime: |
+    Jij hebt geen toegang tot verborgen coördinaten voor %{datetime}
   project_cover: Coverfoto project
   project_created_on: heeft dit project gemaakt op %{date}
   project_curator_id: Project curator determinatie
@@ -5589,6 +5732,8 @@ nl:
           Als u toegang wilt tot de verborgen coördinaten van vervaagde waarnemingen stelt
           deze optie mensen die zich bij dit project hebben aangesloten in staat om
           de projectbeheerders toegang te verlenen tot de verborgen coördinaten. Projectleden kunnen toegang verlenen tot de verborgen coördinaten van elk van hun waarnemingen in dit project of alleen de waarnemingen die verborgen zijn vanwege bedreigde taxa.
+        trust_help_notification2: |-
+          Dit zal echter ook alle vertrouwde projectleden elke keer dat jij de projectwaarnemingeisen wijzigt op de hoogte brengen dus kunnen ze opnieuw beslissen of ze jou willen blijven vertrouwen, gezien de nieuwe vereisten. Jouw toegang tot verborgen coördinaten zal een week na het wijzigen van de waarnemingsvereisten worden ingetrokken zodat de leden tijd hebben om dit te doen
         trusted_project_means: |
           Een project vertrouwen betekent dat de projectbeheerders projectbestanden en eigen projectattributen (bijv. banner-HTML, CSS) kunnen toevoegen. Toegang tot aangepaste projectattributen betekent dat de projectbeheerders in principe kwaadwillige Javascript zouden kunnen toevoegen, dus vertrouw alleen projecten met beheerders die zowel verantwoordelijk als technisch bekwaam zijn.
         you_can_preview: |
