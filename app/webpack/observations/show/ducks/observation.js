@@ -401,6 +401,7 @@ export function fetchObservation( uuid, options = { } ) {
         },
         obscured: true,
         observed_on: true,
+        observed_time_zone: true,
         ofvs: {
           datatype: true,
           name: true,
