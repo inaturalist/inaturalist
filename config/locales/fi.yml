@@ -161,6 +161,7 @@ fi:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Tietoja perustamisen keinoista
+  about_license_options: Tietoa lisenssivaihtoehdoista
   about_licenses: Tietoja lisensseistä
   about_muting: Tietoja hiljentämisestä
   #Header for a section describing taxon names
@@ -189,6 +190,7 @@ fi:
     <p>
     Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
     </p>
+  about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_x: "Tietoja %{x}"
   acc: 'Tarkkuus (m)'
   account: Käyttäjätunnus
@@ -506,7 +508,13 @@ fi:
   #Label for an option to show/include content by any user
   any_user: Mikä tahansa
   anyone: Kuka tahansa
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Sovellus
   applications: Sovellukset
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Hyväksy
   apply_to_selected: Käytä valittuihin
   apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
   apply_fields: Hyväksy kentät
@@ -888,6 +896,9 @@ fi:
   confirm_your_info: Vahvista tietosi
   confirming_ids: Tunnistusten vahvistus
   confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Yhdistä
   connect_to_provider: "Yhdistä palveluun %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Yhdistetyt tilit
@@ -1022,6 +1033,128 @@ fi:
   curating: Kuratointi
   curation: Kuratointi
   curator: Kuraattori
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist-sivuston kuraattorit ovat luotettuja vapaaehtoisia, jotka ylläpitävät iNaturalistin taksonomiaa ja moderoivat käyttäjäsisältöä. Sivuston kuraattorit ovat tärkeä osa iNaturalistia, koska he pitävät taksonomian ajan tasalla ja iNaturalistin keskustelun asianmukaisena ja kohteliaania. Alla on kuvaus siitä, mitä kuraattorina olo tarkoittaa. Tutustu siihen ja, jos haluat kuraattoriksi, lue huolellisesti läpi
+    <a href="/pages/curator+guide" target="_blank">kuraattorin opas</a> ja täytä sitten hakemus tällä sivulla.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Kerro, miksi haluat kuraattoriksi
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Miksi haluat olla kuraattori?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Jos haluat muokata iNaturalistin taksonomiaa, anna esimerkki tai kaksi
+    taksonomisesta muutoksesta, jotka haluaisit tehdä, ja liitä linkit asianmukaisiin
+    taksonomisiin viitteisiin, jotka on lueteltu kuraattorioppaassa
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Jos haluat muokata kansankielisiä nimiä, anna esimerkki tai kaksi
+    muutoksista, jotka haluaisit tehdä
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Jos haluat moderoida keskustelua iNaturalistissa, osoita esimerkki
+    tai kaksi yhteisön sääntöjen rikkomisesta, ja kerro mitä tekisit kyseisissä
+    tilanteissa
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Miten kuraattori menettää valtaansa
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat-henkilöstö voi poistaa kuraattorivaltuudet, jos kuraattori toistuvasti:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Jättää huomioimatta kuraattori-oppaassa kerrotut toimintatavat.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Ei itse käyttäydy asianmukaisesti
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
+    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
+  curator_application_inelligible_error: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuraattorihakemus lähetetty
+  #Header
+  curator_application_what_curators_can_do: Mitä kuraattorit voivat tehdä
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Muokata iNaturalistin taksonomiaa kuraattorioppaan <a href="/pages/curator+guide#policies" target="_blank">Politiikat -osiossa</a>esitettyjen käytäntöjen mukaisesti. Tämä tarkoittaa, että he voivat lisätä, jakaa, vaihtaa, yhdistää, deaktivoida ja poistaa taksoneja iNaturalistissa. He voivat myös muokata suojelustatuksia ja taksonin geoprivacy, sekä muokata ja hallita kenen tahansa käyttäjän lisäämiä kansankielisiä nimiä.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Piilottaa kommentteja ja jäädyttää käyttäjätilin <a
+    href="/pages/community+guidelines" target="_blank">yhteisön
+    suuntaviivojen</a> rikkomisesta.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Ratkaista taksoneita ja käyttäjäsisältöjä koskevat <a href="/flags" target="_blank">liput</a>.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Luoda ja muokata wikisivuja, kuten <a href="/pages/help"
+    target="_blank">iNaturalist FAQ sivu</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Muokata yhteisökuratoituja paikkoja ja ladata KML-tiedostoja, jotka ovat suurempia kuin 1 Mt (mutta
+    pienempiä kuin 5 Mt).
+  #Header
+  curator_application_what_curators_cannot_do: Mitä kuraattorit eivät voi tehdä
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Vaikuttaa yhteisötaksonin tai havainnon tietojen laatuun enemmän kuin kuka tahansa muu käyttäjä.
+    .
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Tehdä muutoksia <a href="/pages/curator+guide#completetaxa"
+    target="_blank">täydellisille taksoneille</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Poistaa muiden käyttäjien tekemää sisältöä.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Lukea muiden käyttäjien yksityisviestejä.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kuraattorihakemus
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Sinun pitäisi hakea kuraattoriksi vain jos:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Olet lisännyt tunnistuksia ja/tai havaintoja muutaman kuukauden
+    ja aiot jatkaa.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Olet halukas ja kykenevä kuratoimaan säännöllisesti. Jos
+    haluat vain lisätä muutaman taksonin, pyydä nykyisiä kuraattoreita lisäämään
+    taksonit liputtamalla korkeamman tason taksonit.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Osaat toimia asianmukaisesti ja noudatat yhteisösääntöjä. Yhdessä kuraattorivaltuuksien kanssa tulee oletus siitä, että
+    olet esimerkillinen iNaturalist-käyttäjä.
   curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
@@ -1101,6 +1234,8 @@ fi:
   default_observation_license: Oletuslisenssi havainnoille
   default_photo_license: Oletuslisenssi kuville
   default_search_place: Haun oletussijainti
+  default_search_place_description: |
+    Tämä on oletussijaintisi kaikille hauille kohdassa "Tutki".
   default_sound_license: Oletuslisenssi äänille
   defaults_to_your_name_or_username: Oletuksena nimesi tai käyttäjätunnuksesi
   defines_a_taxon_framework_for: Määrittää taksonikehyksen taksonille %{taxon_name}
@@ -1527,6 +1662,7 @@ fi:
   fungi:
     one: sieni
     other: sientä
+  gbif: GBIF
   gbif_occurrences: GBIF:n esiintymistiedot
   generate_taxonomic_tags_for_flickr: Luo taksonomisia merkintöjä Flickr-valokuviisi.
   generate_widget: Luo pienoisohjelma
@@ -2084,6 +2220,19 @@ fi:
   message_from_user_at_time: Käyttäjältä %{user} %{time}
   message_from_user_on_date: Käyttäjältä %{user} %{date}
   messages: Viestit
+  messages_new_correspondent_it_looks_like: |
+    Näyttää siltä, että et ole aiemmin viestitellyt tämän henkilön kanssa, joten ole hyvä
+    pitää nämä asiat mielessä:
+  messages_new_correspondent_specimens: |
+    Ole varovainen, jos henkilö pyytää näytteitä tai salattuja tietoja. Yritä varmistaa pyynnön esittäneen henkilön
+    henkilöllisyys, ja jos hän pyytää näytteitä, pyydä nähdä hänen lupansa.
+  messages_new_correspondent_personal: |
+    Älä luovuta henkilökohtaisia tietoja itsestäsi ihmisille, joihin et luota.
+  messages_new_correspondent_actions_html: |
+    Jos epäilet, että tämä henkilö rikkoo <a href="%{tos_url}"
+    target="_blank">käyttöehtoja</a> tai ei toimi <a
+    href="%{guidelines_url}" target="_blank">yhteisön ohjeiden</a>mukaisesti, liputa viesti.
+    .
   misidentifications: Virhetunnistukset
   misleading_or_illegal_content_html: |
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa
@@ -2131,6 +2280,8 @@ fi:
     date_long: "D.MM.YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D.MM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
   month: Kuukausi
   monthly_supporter_since_date_html: |
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
@@ -2364,6 +2515,9 @@ fi:
   observation_: havainto
   observation_added: Havainto lisätty
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
+  observation_belongs_to_project_requiring_field: |
+    Havainto kuuluu projektiin, joka vaatii tätä kenttää. Havainto
+    on poistettava kyseisestä projektista ennen kuin tämä kentän arvo voidaan poistaa.
   observation_brief_something_on_day: "Jotain päivänä %{day}"
   observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
   observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
@@ -2417,6 +2571,9 @@ fi:
   observed_on_datetime: Havaittu %{datetime}
   observation_removed_from_the_project: "Havainnot poistettu projektista \"%{project}\""
   observation_requirements: Havaintojen vaatimukset
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Havaintokriteerit päivitetty
   observation_rules: Havainnointisäännöt
   observation_rules_description: |
     Voit määritellä sääntöjä, joiden perusteella havaintoja lisätään tähän projektiin, esimerkiksi havainnot vain tietyltä paikalta tai taksonista. Jos valitset useamman säännön yhdestä sääntötyypistä, havainnot lisätään projektiin jos yksikin näistä säännöistä pätee. Esimerkiksi jos valitse säännöiksi "pitää olla sammakkoeläin" ja "pitää olla matelija", sisältyvät projektiin sekä sammakkoeläimet että matelijat.
@@ -3101,6 +3258,10 @@ fi:
     other: Projektin ylläpitäjät
   project_assessments: Projektin arvostelut
   project_assets: Projektitiedostot
+  project_coordinate_access_enabled: |
+    Sinun pitäisi pystyä näkemään luotettujen jäsenten piilotettujen havaintojen koordinaatit.
+  project_coordinate_access_disabled_until_datetime: |
+    Koordinaatit piilotettu %{datetime} saakka
   project_cover: Projektin kansikuva
   project_created_on: loi tämän projektin %{date}
   project_curator_id: Projektin kuraattorin käyttäjätunnus
@@ -4829,6 +4990,12 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
+        trust_help_notification2: |-
+          Tästä ilmoitetaan kaikille luotetuille projektin jäsenille joka kerta kun
+          muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,
+          haluavatko he luottaa sinuun myös uusilla kriteereillä.
+          Piilotettujen koordinaattien käyttöoikeus peruutetaan viikon ajaksi
+          havaintokriteerien muuttamisen jälkeen, jotta jäsenillä on aikaa reagoida
         trusted_project_means: |
           Projektin merkitseminen luotetuksi tarkoittaa että projektin ylläpitäjät voivat mukauttaa projektin ominaisuuksia, esim. HTML:aa tai CSS:aa. Pääsy näihin mukautettuihin ominaisuuksiin tarkoittaa että projektin ylläpitjät voivat mahdollisesti lisätä haitallista Javascript-koodia, joten merkitse luotetuiksi vain sellaisia projekteja, joilla on vastuuntuntoisia ja teknisesti osaavia ylläpitäjiä.
         you_can_preview: |
