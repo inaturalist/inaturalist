@@ -516,6 +516,9 @@ es:
   #the iNaturalist Android app or Flickr
   application: Aplicación
   applications: Aplicaciones
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Aplicar
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplicar campos
@@ -1054,6 +1057,116 @@ es:
   curating: Curando
   curation: Curación
   curator: Curador
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Los conservadores de iNaturalist son voluntarios de confianza que tienen la capacidad de
+    editar la taxonomía de iNaturalist y moderar el contenido generado por los usuarios. Los conservadores son parte integrante de iNaturalist, ya que mantienen nuestra taxonomía actualizada y la conversación en iNaturalist en términos apropiados. A continuación se muestra una descripción de lo que significa ser un conservador. Por favor, léelo y, si quieres ser conservador, lee detenidamente la <a href="/pages/curator+guide" target="_blank">Guía del conservador</a> y cumplimenta el formulario de esta página.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Debes explicar por qué quieres convertirte en conservador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: '¿Por qué quieres ser conservador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
+    de cambios taxonómicos que te gustaría realizar, e incluye enlaces a las autoridades taxonómicas pertinentes tal como establece la Guía del conservador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Si quieres moderar el comportamiento en iNaturalist, por favor proporciona un ejemplo
+    o dos de infracciones de la Guía de la comunidad y lo que harías en esas situaciones
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Cómo pierde sus poderes un conservador
+  curator_application_how_curators_lose_their_powers_desc: |
+    El personal de iNat puede quitarle sus poderes conservatorios a un conservador si 
+     repetidamente:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignora las políticas de la Guía del conservador.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    No muestra un comportamiento correcto él mismo.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Para solicitar ser conservador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a diversas observaciones, incluyendo las tuyas propias (has añadido %{num_idents}). Cuando cumplas con estos requisitos, regresa aquí y podrás enviar tu solicitud.
+  curator_application_inelligible_error: |
+    Para solicitar ser un conservador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a diversas observaciones, incluyendo las tuyas propias.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Solicitud para ser conservador enviada
+  #Header
+  curator_application_what_curators_can_do: Qué pueden hacer los conservadores
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del conservador</a>. Esto significa que pueden añadir, dividir, intercambiar, fusionar, desactivar y eliminar taxones de iNaturalist. También pueden editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Ocultar comentarios y suspender usuarios por violar las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Resolver <a href="/flags" target="_blank">denuncias</a> en taxones y contenido de los usuarios.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Crear y editar páginas wiki, como la de las <a href="/pages/help"
+    target="_blank">Preguntas frecuentes de iNaturalist</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Editar lugares supervisados por la comunidad y subir archivos KML mayores de 1 MB (pero
+    menores de 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Qué no pueden hacer los conservadores
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Influir sobre el taxón comunitario o la calidad de los datos de una observación más que cualquier otro usuario.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Efectuar cambios en <a href="/pages/curator+guide#completetaxa"
+    target="_blank">taxones completos</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Eliminar contenido elaborado por otros usuarios.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Leer los mensajes de otras personas.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Solicitud para ser conservador
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Sólo deberías solicitar ser conservador si:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Llevas contribuyendo con identificaciones y/o observaciones unos meses y tienes la intención de continuar.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Estás dispuesto y eres capaz de realizar tareas de supervisión regularmente. Si solo deseas añadir algunos taxones, por favor, solicita que los conservadores existentes añadan
+    estos taxones marcando con banderas los taxones de nivel superior.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Puedes dar ejemplo de comportamiento correcto en iNaturalist y cumplir las Directrices
+    de la comunidad. Los poderes conservatorios conllevan la responsabilidad de ser un usuario ejemplar de iNaturalist.
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
@@ -1133,6 +1246,8 @@ es:
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
   default_photo_license: 'Licencia para sus fotos:'
   default_search_place: Lugar de búsqueda por defecto
+  default_search_place_description: |
+    Este será su lugar predeterminado para todas las búsquedas en "Explora".
   default_sound_license: Licencia predeterminada de sonido
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
   defines_a_taxon_framework_for: Define un marco de taxon para %{taxon_name}
@@ -2156,6 +2271,18 @@ es:
   message_from_user_at_time: De %{user} a las %{time}
   message_from_user_on_date: De %{user} el %{date}
   messages: Mensajes
+  messages_new_correspondent_it_looks_like: |
+    Parece que nunca te has comunicado con esta persona, así que por favor ten estas cosas en cuenta:
+  messages_new_correspondent_specimens: |
+    Tenga cuidado con las peticiones acerca de especímenes o datos ocultos. Trate de verificar la identidad de la persona que hace la solicitud y si está pidiendo especímenes, pida ver su permiso.
+  messages_new_correspondent_personal: |
+    No reveles tu información personal a personas en las que
+    no confías.
+  messages_new_correspondent_actions_html: |
+    Si sospechas que esta persona está violando nuestros <a href="%{tos_url}"
+    target="_blank">términos de servicio</a> o no actúa de acuerdo con nuestras <a
+    href="%{guidelines_url}" target="_blank">directrices de la comunidad</a>, por favor
+    denuncia este mensaje.
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
     Contenido ilegal o engañoso, insultos raciales o étnicos, etc.
@@ -2203,6 +2330,8 @@ es:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
@@ -2462,6 +2591,8 @@ es:
   observation_added: Observation added
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
+  observation_belongs_to_project_requiring_field: |
+    La observación pertenece a un proyecto que requiere este campo. La observación deberá ser eliminada de este proyecto antes de poder borrar el valor de este campo.
   observation_brief_something_on_day: "Algo el %{day}"
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
@@ -2515,6 +2646,9 @@ es:
   observed_on_datetime: Observado el %{datetime}
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_requirements: Requisitos de observación
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Requisitos de las observaciones actualizados el
   observation_rules: Reglas de observación
   observation_rules_description: |
     Puedes seleccionar reglas para determinar qué observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar o taxón. Si tienes más de una regla para un tipo de regla, las observaciones serán válidas si cumple cualquiera de las reglas. Por ejemplo, si tienes las reglas "debe ser Anfibio" y "debe ser Reptil", entonces el proyecto aceptará observaciones de reptiles o anfibios.
@@ -3274,6 +3408,10 @@ es:
     Los proyectos no permiten la agregación automática de observaciones, excepto que se hayan asociado a un territorio de dimensiones moderadas o que únicamente permitan observaciones de taxones específicos o de una lista
   project_assessments: Evaluación del proyecto
   project_assets: Activos del proyecto
+  project_coordinate_access_enabled: |
+    Deberías ser capaz de ver coordenadas ocultas de las observaciones de miembros de confianza.
+  project_coordinate_access_disabled_until_datetime: |
+    No podrás acceder a las coordenadas ocultas hasta el %{datetime}
   project_cover: Portada del proyecto
   project_created_on: creó este proyecto el %{date}
   project_curator_id: Identificación del curador del proyecto
@@ -5558,6 +5696,9 @@ es:
         trust_help_desc: |-
           Si deseas acceder a las coordenadas ocultas de observaciones oscurecidas, esta opción permitirá a las personas que se han unido a este proyecto dar acceso a los administradores del proyecto a las coordenadas ocultas de sus observaciones. Los miembros del proyecto podrán conceder acceso a las coordenadas ocultas de cualquiera
           de sus observaciones que aparezcan en este proyecto, o solo a las de las observaciones que están oscurecidas por corresponder a taxones amenazados.
+        trust_help_notification2: |-
+          Sin embargo, esto también notificará a todos los miembros que confías en el proyecto cada vez que cambies los requisitos de observación del proyecto, para que puedan reevaluar si quieren seguir confiando en ti, atendiendo a los nuevos requisitos.
+          Tu acceso a las coordenadas ocultas se revocará durante una semana tras cambiar los requisitos de las observaciones, para que los miembros tengan tiempo de revisarlo.
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
