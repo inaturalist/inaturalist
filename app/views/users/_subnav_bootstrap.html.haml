@@ -1,5 +1,5 @@
 %ul.nav.nav-tabs.user-subnav
-  - if is_me?( current_user )
+  - if is_me?( user )
     %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="dashboard" )}
       = link_to home_path do
         %span.glyphicon.glyphicon-home
@@ -12,7 +12,7 @@
     = link_to observations_path( user_id: user.login, verifiable: "any", place_id: "any" ) do
       %i.fa.fa-binoculars
       =t :observations
-  - if is_me?( current_user )
+  - if is_me?( user )
     %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
       = link_to observations_by_login_path(user.login) do
         %i.fa.fa-pencil
