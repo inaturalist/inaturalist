@@ -1398,16 +1398,16 @@ describe Observation do
       expect(p.observations_count).to eq(0)
     end
 
-    it "should update a life listed taxon stats" do
+    it "should update a listed taxon stats" do
       t = Taxon.make!
       u = User.make!
       without_delay do
         l = List.make!(user: u)
-        l.add_taxon(t)
+        lt = ListedTaxon.make!(list: l)
       end
       o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
       o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
-      lt = l.listed_taxa.where(taxon_id: t.id).first
+      lt.reload
       expect(lt.first_observation).to eq o1
       expect(lt.last_observation).to eq o2
     end
