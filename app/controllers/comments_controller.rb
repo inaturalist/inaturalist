@@ -172,7 +172,7 @@ class CommentsController < ApplicationController
   
   private
   def redirect_to_parent
-    anchor = "activity_comment_#{@comment.id}"
+    anchor = "activity_comment_#{@comment.uuid}"
     if @comment.parent.is_a?( Trip )
       trip = @comment.parent
       redirect_to( trip_path( trip, anchor: anchor ) )
