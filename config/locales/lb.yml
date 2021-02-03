@@ -157,6 +157,9 @@ lb:
   add_one_now: Elo eng derbäisetzen
   add_photos: Fotoen derbäisetzen
   add_place: Plaz derbäisetzen
+  add_alive_or_dead_alive_annotation: 'D''Annotatioun "Lieweg oder Dout: Lieweg" bäisetzen'
+  add_alive_or_dead_cannot_be_determined_annotation: 'D''Annotatioun "Lieweg oder Dout: kann net bestemmt gin" bäisetzen'
+  add_alive_or_dead_dead_annotation: 'D''Annotatioun "Lieweg oder Dout: Dout" bäisetzen'
   add_plant_phenology_flowering_annotation: 'Setz d''Informatioun "Planzephänologie: Blitt" derbäi'
   add_plant_phenology_fruiting_annotation: 'Setz d''Informatioun "Planzephänologie: Dréit Friichten" derbäi'
   add_life_stage_adult_annotation: 'Setz d''Informatioun "Liewesstadium: Ausgewuess" derbäi'
@@ -465,6 +468,7 @@ lb:
     adult: Erwuessen
     pupa: Popp
     egg: Ee
+    alive_or_dead: Lieweg oder Dout
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -667,6 +671,7 @@ lb:
   find_a_place: Eng Plaz fannen
   find_photos: Fotoe fannen
   find_places: Plaze fannen
+  find_species: Aarten fannen
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
   finished_with_page: Fäerdeg mat der Säit
@@ -816,6 +821,7 @@ lb:
   learn_more: Méi wëssen
   learn_more_raquo: "Méi wëssen &raquo;"
   leave: Fortgoen
+  leave_a_comment: Kannerloost ee Kommentar
   leave_this_project: Dëse Projet verloossen
   lexicon: Lexikon
   lexicons:
@@ -1156,6 +1162,7 @@ lb:
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit kommen
   only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
+  only_species: nëmmen Aarten
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
   only_you: Nëmmen Dir
   open: opmaachen
@@ -1175,6 +1182,7 @@ lb:
   overview: Iwwersiicht
   owner: Besëtzer
   password: Passwuert
+  password_confirmation: 'Passwuert bestätegen'
   people: Leit
   people_following_user: "Persounen déi dem %{user} folgen"
   people_added:
@@ -1202,6 +1210,8 @@ lb:
     large: grouss
   photos_updated: Fotoen aktualiséiert.
   pi_consent_desc_title: Iwwer Perséinlech Informatiounen
+  pi_consent_label: |
+    Ech stemmen zou datt iNaturalist limitéiert perséinlech Donnéeën iwwert mech ka späicheren a veraarbechte fir mäin Kont kennen ze managen.
   pink: rosa
   place: Plaz
   place_deleted: Plaz geläscht.
@@ -1399,6 +1409,11 @@ lb:
     complex: Komplex
     #Singular
     species: Aarten
+    x_species:
+      one: Aarten
+      other: Aarten
+    #Singular
+    subspecies: Ënneraart
     leaves: Blieder
   ranges: Beräicher
   read_more: Liest méi
@@ -1519,7 +1534,13 @@ lb:
   source_eg:
     in_text: 'z.B. Greene, 2000'
   sources: Quellen
+  #Plural
+  species: Aarten
   species_by_category: Aarten no Kategorie
+  species_guess: Aarten-Vermutung
+  species_name_cap: Aartenumm
+  species_names: Aartenumm
+  species_search: Aarte-Sich
   species_unknown: Aart onbekannt
   start: Ufank
   start_a_new_project: En neie Projet ufänken
@@ -1533,6 +1554,7 @@ lb:
   subscribe_to_a_taxon: Op en Taxon abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
   subscriptions: Abonnementer
+  suggest_an_identification: Eng Bestëmmung virschloen
   suggestions: Virschléi
   summary: Resumé
   supporting: Ënnerstëtzen
@@ -1572,10 +1594,14 @@ lb:
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreiwung"
+  to_suggest_an_identification: zu Bestëmmung virschloen
   today: Haut
   too_many_results: Ze vill Resultater
   top_identifier: Top Bestëmmer
   top_observer: Top Observateuren
+  top_species: Top Aarten
+  tos_privacy_guidelines_label: |
+    Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
   total_observations: Total Observatiounen
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
@@ -1617,8 +1643,11 @@ lb:
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Benotzer gespaart
+  user_commented: "%{user} huet kommenteiert"
+  user_commented_on: "%{user} huet kommenteiert ob Är %{title} %{time}"
   user_invited_you_to_join_html: "%{user} huet Iech invitéiert fir matzemaachen"
   user_muted: Benotzer stommgeschalt
+  user_suggested_an_id: "%{user} huet eng ID virgeschloen"
   username: Benotzernumm
   username_or_email: Benotzernumm oder E-Mail-Adress
   users: Benotzer
@@ -1703,6 +1732,8 @@ lb:
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "Jo, fir egal wat fir eng vu mengen Observatiounen"
   yes_i_want_to_join: Jo, Ech wëll matmaachen
+  yes_license_my_childs_observations: Jo, lizenzéiert mengen Kand seng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler des Donnéeë benotze kënnen (recommandéiert).
+  yes_license_my_observations_so_scientists_can_use: Jo, lizenzéiert meng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler meng Donnéeë benotze kënnen (recommandéiert).
   yes_reject_it: Jo, refuséiert et
   yesterday: Gëschter
   you: Dir
@@ -1749,6 +1780,7 @@ lb:
         book: Buch
     lifelists:
       observed_rank: Observeiert %{rank}
+      all_species: All Aarten
     messages:
       from: Vum
       to: Fir
@@ -1819,17 +1851,22 @@ lb:
         TTID_desc: Zäit bis een eng Bestëmmung vun engem aneren kritt
       year:
         growth_by_country_title: Wuesstem no Land
+        species_per_year: Aarten / Joer
     taxa:
       show:
         about_conservation_status_desc: |
           Den Erhalungszoustand resuméiert de Risiko vum Ausstierwe vun engem Grupp vun Organismen
         frequency:
           verifiable: Iwwerpréifbar
+          "Alive or Dead=Alive": Lieweg
+          "Alive or Dead=Dead": Dout
           "Life Stage=egg": Ee
           "Life Stage=larva": Larve
           "Life Stage=adult": Erwuessen
           unannotated: Keng Notiz
     users:
+      delete:
+        type_confirmation_code: Antippen %{confirmation_code}
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wann Dir Är Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.

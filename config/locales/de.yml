@@ -4299,6 +4299,7 @@ de:
   unknown_rank: '(Unbekannter Rang)'
   unfollow: Nicht mehr folgen
   unlink_your_google_account: Dein Google-Konto trennen
+  unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Ton an
   updates_notification_email_subject: "%{prefix} Neue Aktualisierungen %{date}"
   updates_suspension_email_subject: "%{prefix} Deine Abonnements wurden ausgesetzt"
@@ -4307,6 +4308,7 @@ de:
   unpublish: Veröffentlichung rückgängig machen
   #Undo the action of resolving a flag
   unresolve: ungelöst
+  unreview_all: Alle als 'nicht betrachtet' markieren
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
@@ -4955,9 +4957,12 @@ de:
           Raster einzelner Bilder, keine Beschreibungen
         book: |
           Vollständiger Guide mit allen Bildern und Beschreibungen, die sich über mehrere Seiten erstrecken.
+      pdf_generation_notice: |
+        Bitte haben einen Moment Geduld, die Generierung großer PDFs kann eine oder zwei Minuten dauern.
       tags_help_html: |
         Tags sind wie Kategorien für die Arten in deinem Guide, außer dass mehrere Arten den gleichen Tag haben können. Gib Tags als kommagetrennte Liste ein, z.B. <code>klein, pelzig</code>. Um benannte Kategorien zu benutzen, verwende Tags wie <code>category_name=category_value</code>, z.B. <code>Farbe=gelbe</code>.
       sorts:
+        default: Reihenfolge der Guides
         alphaname: Alphabetisch nach wissenschaftlichem Namen
         alphadisplay: Alphabetisch nach Anzeigename
     guide_taxa:
@@ -5090,6 +5095,7 @@ de:
           verschiedenen vorgeschlagenen IDs sehen können.
           </p>
         you_have_opted_out: Du hast Dich aus den Community-Bestimmungen zurückgezogen
+        opt_in_for_this_observation: Community-ID für diese Beobachtung zulassen
         your_id_does_not_match: |
           Deine ID (<span class="bold">%{taxon_name}</span>) stimmt nicht mit der Community-ID überein
       copy_tip: "Füge eine neue Beobachtung hinzu, indem du Datum, Ort, Bilder und Beobachtungsfelder dieser Beobachtung kopierst."
@@ -5704,6 +5710,7 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
+        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für Bioblitz-artige Veranstaltungen)
         traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         trusting_members_will_be_notified: |
           Du hast die Projektanforderungen geändert oder das Nutzervertrauen aktiviert. Dieses
@@ -6279,6 +6286,8 @@ de:
           Identität mit deiner bestehenden Spende verifizieren.
     welcome:
       index:
+        welcome_message_html: |
+          bei %{image}, hier kannst du deine Naturbeobachtungen <strong>erfassen</strong>, andere Naturbeobachter <strong>treffen</strong> und mehr über die Welt der Natur <strong>lernen</strong>.
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
         observations_to_date: 'Beobachtungen bis dato'

@@ -9,13 +9,13 @@ sv:
     one: '%{count} favorit'
     other: '%{count} favoriter'
   x_flags_resolved_html:
-    one: "<span class='antal'>1</span> flagga löst"
+    one: "<span class='antal'>%{count}</span> flagga löst"
     other: "<span class='antal'>%{count}</span> flaggor lösta"
   x_identifications:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
   x_identifications_html:
-    one: '<span class="count">1</span> bestämning'
+    one: '<span class="count">%{count}</span> bestämning'
     other: '<span class="count">%{count}</span> bestämningar'
   x_identifications_:
     one: '%{count} bestämning'
@@ -36,13 +36,13 @@ sv:
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} första i livslistan"
   x_journal_posts_html:
-    one: '<span class="antal">1</span> dagboksinlägg'
+    one: '<span class="antal">%{count}</span> dagboksinlägg'
     other: '<span class="antal">%{count}</span> dagboksinlägg'
   x_matching_taxa:
     one: '%{count} matchande taxon'
     other: '%{count} matchande taxa'
   x_matching_taxa_html:
-    one: '<span class="count">1</span> matchande taxon'
+    one: '<span class="count">%{count}</span> matchande taxon'
     other: '<span class="count">%{count}</span> matchande taxa'
   x_misidentifications_of_this_species:
     one: "%{count} felbestämning av denna art"
@@ -63,7 +63,7 @@ sv:
     one: "<a href='%{url}'>%{count} observation</a>"
     other: "<a href='%{url}'>%{count} observationer</a>"
   x_observations_reviewed_html:
-    one: "<span class='antal'>1</span> observation granskad"
+    one: "<span class='antal'>%{count}</span> observation granskad"
     other: "<span class='antal'>%{count}</span> observationer granskade"
   x_observers_html:
     one: '<span class="count">%{count}</span> observatör'
@@ -5846,41 +5846,29 @@ sv:
           Förklara kortfattat ditt projekt. Ungefär de första 200 tecknen kommer att synas till höger om banderollen på projektets startskärm så ta det bästa först!
         project_summary_placeholder: Upptäck och håll reda på Golden Gate-parkens fåglar...
         select_native_to_include: |
-          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk"
-          för din(a) projektplats(er). Välj "Införd" för att endast inkludera taxa som har
-          markerats som "Införd" för din(a) projektplats(er).
+          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk" för din(a) projektlokal(er). Välj "Införd" för att endast inkludera taxa som har
+          markerats som "Införd" för din(a) projektlokal(er).
         select_quality_grade: |
-          Välj minst en kvalitetsnivå. Ytterligare förklaring av varje kvalitetsnivå finns på
-          på vår <a href="%{url}">FAQ-sida</a>.
-        show_projects_as_flags: Visar projekt som flaggor på kartan
+          Välj minst en kvalitetsnivå. Ytterligare förklaring av varje kvalitetsnivå finns på på vår <a href="%{url}">FAQ-sida</a>.
+        show_projects_as_flags: Visa projekt som flaggor på kartan
         specify_project_filters: |
           Ange filter som avgör vilka observationer som ska ingå i ditt projekt.
-          Du kan välja flera arter (eller taxa), platser, datum eller andra kriterier för
-          observationer som ska inkluderas automatiskt.
+          Du kan välja flera arter (eller taxa), lokaler, datum eller andra kriterier för observationer som ska inkluderas automatiskt.
         start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
         traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
         trusting_members_will_be_notified: |
-          Du har ändrat projektkraven eller aktiverat användarförtroende. Detta
-          kommer att meddelas alla de projektmedlemmar som redan har anförtrott
-          projektet med dolda koordinater så att de har en chans att avgöra om de
-          fortfarande vill lita på projektet med tanke på de nya kraven.
+          Du har ändrat projektkraven eller aktiverat användarförtroende. Detta kommer att meddelas alla de projektmedlemmar som redan har anförtrott
+          projektet med dolda koordinater så att de har en chans att avgöra om de fortfarande vill lita på projektet med tanke på de nya kraven.
         umbrella_project_features: "Funktionalitet för paraplyprojekt"
         unique_url_for_outreach: Unik publik URL
         use_this_for_a_time_limited_event: |
-          Använd detta för en tidsbegränsad händelse, bioblitz eller säsongsprojekt. Välj
-          ett enskilt datum, ett intervall av datum, eller de månader på året observationerna
-          måste göras i (oavsett år). Om du använder sektionen Datumintervall, se till att
-          du har rätt tider och tidszoner valda, eller ta bort tid/tidszon-texten så att observationer
-          gjorda när som helst hela dagen inkluderas. Du kan lämna startdatum eller slutdatum
-          tomt om du vill begränsa projektet med endast ett datum.
+          Använd detta för en tidsbegränsad händelse, bioblitz eller säsongsprojekt. Välj ett enskilt datum, ett intervall av datum eller de månader på året observationerna måste göras på (oavsett år). Om du använder sektionen Datumintervall, se till att du har rätt tider och tidszoner valda, eller ta bort tid/tidszon-texten så att observationer gjorda när som helst hela dagen inkluderas. Du kan lämna startdatum eller slutdatum tomt om du vill begränsa projektet med endast ett datum.
         users_can_follow_your_project: Användare kan följa ditt projekt och få uppdateringar via dagboksinlägg
         use_this_link_to_create_html: |
           Använd <a href="%{url}">denna länk</a> för att istället skapa ett traditionellt projekt.
         visual_comparison_of_data_among: Visuella jämförelser av data mellan projekt under paraplyet
         we_have_redesigned_projects: |
-          Projekt är utformade för att automatiskt inkludera alla observationer som matchar de
-          platser, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper:
-          Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
+          Projekt är utformade för att automatiskt inkludera alla observationer som matchar de lokaler, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper: Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
         welcome_to_projects: Välkommen till projekt!
         you_can_learn_more_html: |
           Du kan lära dig mer om att hantera projekt
@@ -5888,27 +5876,21 @@ sv:
           eller läsa om bakgrunden för projekt på
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vår blogg</a>.
         you_have_not_defined_any_observation_requirements: |
-          Du har inte definierat några observationskrav. Se till att välja ett eller flera taxa
-          (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller
+          Du har inte definierat några observationskrav. Se till att välja ett eller flera taxa (t.ex. fåglar, barrträd), lokaler (t.ex. Brasilien, Yellowstone), användare och/eller
           datum för att definiera de observationer du vill inkludera i ditt projekt.
         errors:
           name_is_required: Projektnamn är obligatoriskt
-          name_less_than_100_characters: Projektets namn måste vara mindre än 100 tecken
+          name_less_than_100_characters: Projektnamn måste vara mindre än 100 tecken
           name_already_taken: Projektnamnet är redan taget
           cannot_have_more_than_x_project_rules: Kan inte ha fler än %{x} projektregler
           summary_is_required: Projektsammanfattning är obligatorisk
       project_location_privacy_notice_html: |
         <p>
-        Tänk på att projektförvaltare kommer att kunna se alla privata eller
-        diffuserade platser för dina observationer i detta projekt om du inte
-        drar tillbaka tillståndet, och de kommer att kunna lägga till vilken som
-        av dina observationer i projektet såvida du inte <a href="/users/edit">
-        ändrar dina inställningar</a>. Du kan också bevilja eller återkalla
-        åtkomst till projektobservationer från fall till fall.
+        Tänk på att projektförvaltare kommer att kunna se alla privata eller diffuserade platser för dina observationer i detta projekt om du inte drar tillbaka tillståndet, och de kommer att kunna lägga till vilken som av dina observationer i projektet såvida du inte <a href="/users/edit">
+        ändrar dina inställningar</a>. Du kan också bevilja eller återkalla åtkomst till projektobservationer från fall till fall.
         </p>
         <p>
-        Om du är bekymrad över platssekretess, gå inte med i projekt
-        om du inte litar på projektets förvaltare.
+        Om du är bekymrad över positionssekretess, gå inte med i projekt om du inte litar på projektets förvaltare.
         </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, men bara om jag lägger till observationen till projektet själv.
@@ -5917,55 +5899,34 @@ sv:
       curator_coordinate_access_label: |
         Vill du göra dina privata/diffuserade observationskoordinater synliga för projektets förvaltare?
       curator_coordinate_access_note: |
-        Du kan också välja att dela dolda koordinater för observationer
-        i detta projekt från fall till fall. Detta är bara standardinställningarna
-        för nya observationer som läggs till i projektet.
+        Du kan också välja att dela dolda koordinater för observationer i detta projekt från fall till fall. Detta är bara standardinställningarna för nya observationer som läggs till i projektet.
       project_terms_desc_html: |
-        Tillåt förvaltarna av detta projekt att använda dina observationer i
-        enlighet med <a href="%{url}">projektvillkoren</a>.
+        Tillåt förvaltarna av detta projekt att använda dina observationer i enlighet med <a href="%{url}">projektvillkoren</a>.
       show:
         are_you_sure_you_want_to_convert: |
           Är du säker på att du vill konvertera detta projekt till ett Samlingsprojekt?
         bioblitz_results_desc_html: |
           <p>
-          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från
-          <em>alla</em> observationer inom en plats och tidsperiod, inte bara
-          observationer som människor avsiktligt har lagt till projektet. Detta,
-          för att ta bort hindret med att lägga till observationer till ett projekt
-          bara för att köra statistiken i realtid. Observera att observationer inte
-          kommer att vara tillgängliga för export eller visning i olika projektvyer
-          såsom medlemsbidrag på webbplatsen eller sökning på projekt-
-          observationer i mobilapparna såvida inte projektgruppen och
-          deltagarna aktivt lägger till relevanta observationer som de skulle
-          göra i ett vanligt projekt.
+          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> observationer inom en lokal och tidsperiod, inte bara
+          observationer som människor avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till observationer till ett projekt bara för att köra statistiken i realtid. Observera att observationer inte
+          kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektobservationer i mobilapparna såvida inte projektgruppen och
+          deltagarna aktivt lägger till relevanta observationer som de skulle göra i ett vanligt projekt.
           </p>
           <p>
-          Observera att även om denna typ av projekt visar statistik för
-          observationer som inte medvetet har lagts till i projektet, tillåter
-          det inte förvaltarna att se privata eller diffuserade koordinater för
-          dessa observationer eller förutsätta att observatörer har godkänt
-          projektets villkor. Om du är en projektförvaltare och behöver tillgång
-          till privata koordinater behöver du få dina deltagare att godkänna
-          projektets villkor, eller om du vill ha observationer medräknade i den
-          förvaltade projektchecklistan, se då till att dina deltagare går med i
-          projektet och lägger till sina observationer som de skulle i ett vanligt
-          projekt.
+          Observera att även om denna typ av projekt visar statistik för observationer som inte medvetet har lagts till i projektet, tillåter det inte förvaltarna att se privata eller diffuserade koordinater för dessa observationer eller förutsätta att observatörer har godkänt
+          projektets villkor. Om du är en projektförvaltare och behöver tillgång till privata koordinater behöver du få dina deltagare att godkänna projektets villkor, eller om du vill ha observationer medräknade i den förvaltade projektchecklistan, se då till att dina deltagare går med i projektet och lägger till sina observationer som de skulle i ett vanligt projekt.
           </p>
         click_here_to_convert_this_project: |
           Klicka här för att konvertera detta projekt till ett Samlingsprojekt.
         no_journal_blurb_html: |
           <p>
-          Din projektdagbok är ett verktyg för att kommunicera med projekt-
-          medlemmarna. Med den kan du göra meddelanden, sätta prioriteringar, eller
-          prata om ditt projekts resultat.
+          Din projektdagbok är ett verktyg för att kommunicera med projektmedlemmarna. Med den kan du göra tillkännagivanden, sätta prioriteringar, eller prata om ditt projekts resultat.
           </p>
           <p>
           <a href="%{url}" class="readmore">Skapa ett inlägg</a> för att komma igång
           </p>
         curated_checklist_desc: |
-          Detta är den förvaltade checklistan och antalet taxa från observationer som uttryckligen
-          lagts till i detta projekt, inte alla observationer som registrerats på samma plats och tid
-          som denna händelse.
+          Detta är den förvaltade checklistan och antalet taxa från observationer som uttryckligen lagts till i detta projekt, inte alla observationer som registrerats på samma lokal och tid som denna händelse.
         make_sure_you_have_read_about_the_differences: |
           Se till att du har läst om skillnaderna i
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
@@ -5976,8 +5937,7 @@ sv:
           flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum
           för att börja visa observationer.
       updates_desc: |
-        Få uppdateringar om detta projekt på din anslagstavla och i e-post om
-        dagens uppdateringar.
+        Få uppdateringar om detta projekt på din anslagstavla och i e-post om dagens uppdateringar.
     search:
       index:
         no_taxa_options_html: |
@@ -5986,8 +5946,7 @@ sv:
           <li>
           <strong>Lägg till en flagga på ett taxon av högre nivå</strong>
           <p>
-          T.ex. släktet som innehåller en art. Förhoppningsvis lägger en 
-          schysst förvaltare till detta taxon om det är möjligt.
+          T.ex. släktet som innehåller en art. Förhoppningsvis lägger en schysst förvaltare till detta taxon om det är möjligt.
           </p>
           </li>
           <li>
@@ -6009,92 +5968,69 @@ sv:
       blocked:
         youve_been_blocked: Du har blivit blockerad
         youve_been_blocked_desc: |
-          Ägaren av denna resurs har blockerat dig, vilket förhindrar dig från att
-          kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
+          Ägaren av denna resurs har blockerat dig, vilket förhindrar dig från att kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
         youve_blocked: Du har blockerat denna person
         youve_blocked_desc: |
-          Du har blockerat ägaren av denna resurs, vilket förhindrar dig från att
-          kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
+          Du har blockerat ägaren av denna resurs, vilket förhindrar dig från att kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
       spam:
         message_for_owner_and_curators_html: |
-          Denna post har flaggats som spam och är inte längre publikt
-          synlig. Du kan se den eftersom du skapade den, eller för att du
-          är en webbplatsförvaltare. Om du tror att detta är ett misstag,
-          var vänlig och <a href="mailto:%{email}">kontakta oss</a>.
+          Denna post har flaggats som spam och är inte längre publikt synlig. Du kan se den eftersom du skapade den, eller för att du är en webbplatsförvaltare. Om du tror att detta är ett misstag, var vänlig och <a href="mailto:%{email}">kontakta oss</a>.
         this_has_been_flagged_as_spam: Detta har flaggats som spam
       not_found:
         sorry_that_doesnt_exist: Tyvärr, det finns inte!
         even_our_dedicated_search_mole_couldnt: Inte ens vår hängivna sökmullvad kunde hitta någonting!
     stats:
       index:
-        active_desc: Skapade en bestämning, obs, kommentar eller inlägg under de senaste 30 dagarna
-        active_users_desc: Skapade en bestämning, obs, kommentar eller inlägg under de senaste 30 dagarna
-        android_desc_html: Skapad via <a href="%{url}">iNaturalist Android app</a>
+        active_desc: Skapade en bestämning, observation, kommentar eller ett inlägg under de senaste 30 dagarna
+        active_users_desc: Skapade en bestämning, observation, kommentar eller ett inlägg under de senaste 30 dagarna
+        android_desc_html: Skapad via <a href="%{url}">iNaturalist Android-appen</a>
         avg_ttcid: Medel TTGB
         avg_ttid: Medel TTB
         identifiers_desc: Lade till en bestämning till någon annans obs denna dag
-        iphone_desc_html: Skapad via <a href="%{url}">iNaturalist iPhone app</a>
+        iphone_desc_html: Skapad via <a href="%{url}">iNaturalist iPhone-appen</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
         new_users_desc: Gick med denna dag
         obs_1_day: "Obs (1 dag)"
         obs_1_day_desc: "Observationer som skapats på en dag"
-        obs_cid_d_desc: Skapad under de 7 föreg d. och har en gemenskapsbest.
+        obs_cid_d_desc: Skapad under de 7 föregående dagarna och har en gemenskapsbestämning
         #Short for "observations community-identified to genus"
-        obs_cid_d_to_genus: Obs gem.best. till släkte
-        obs_cid_d_to_genus_desc: Skapad under de 7 föreg. d. och har gemenskapsbest. på eller under släktesnivå
-        obs_desc: Skapad under 7 föreg. dagar
-        obs_id_d_desc: Skapad under 7 föreg. d. och är best. (kan vara av observatören)
+        obs_cid_d_to_genus: Obs gemenskapsbestämd till släkte
+        obs_cid_d_to_genus_desc: Skapad under de 7 föregående dagarna och har gemenskapsbestämning på eller under släktesnivå
+        obs_desc: Skapad under de 7 föregående dagarna
+        obs_id_d_desc: Skapad under de 7 föregående dagarna och är bestämd (kan vara av observatören)
         observations_1_week_moving_window: Observationer (1 löpande vecka)
         observers_desc: Lade till en observation denna dag
         other_desc_html: Skapad via andra program <a href="%{url}">byggda av utvecklare</a>
-        recent_desc: Gick med under 7 föreg. d.
+        recent_desc: Gick med under de 7 föregående dagarna
         recent_w_0_obs: Senaste m. 0 obs
-        recent_w_0_obs_desc: Gick med under 7 föreg. d. och lagt till 0 obs
+        recent_w_0_obs_desc: Gick med under 7 föregående dagarna och lagt till 0 obsar
         recent_w_7_obs: Senaste m. >= 7 obs
         recent_w_7_obs_desc: Gick med under 7 föreg. d. och lagt till >= 7 obs
-        time_to_id_desc: Tid till best. (timmar, 1 löpande vecka)
+        time_to_id_desc: Tid till bestämning (timmar, 1 löpande vecka)
         TTCID: TTGB
         TTCID_desc: Tid till bestämning från någon annan som matchar gemenskapstaxon.
         TTID: TTB
         TTID_desc: Tid till bestämning från någon annan
         TTID_note: |
-          Denna statistik är gjord för observationer skapade en vecka tidigare, vilket
-          innebär att den kommer att missa bestämningar som lagts till observationerna
-          efter mer än en vecka, och därmed få statistiken att se sämre ut än om
-          man beräknade den igen i nuet, men den bör fortfarande ge en anständig
-          bild av hur snabbt gemenskapen bestämmer under 1 vecka. Observera
+          Denna statistik är gjord för observationer skapade en vecka tidigare, vilket innebär att den kommer att missa bestämningar som lagts till observationerna
+          efter mer än en vecka, och därmed få statistiken att se sämre ut än om man beräknade den igen i nuet, men den bör fortfarande ge en anständig bild av hur snabbt gemenskapen bestämmer under 1 vecka. Observera
           att denna statistik endast gäller för observationer med bilder.
         website_desc_html: |
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
-          eller <a href="%{url}">iNaturalist Network</a> webbplatser
+          eller <a href="%{url}">iNaturalist Network</a>-webbplatser
       year:
         compare_desc: |
-          Hur var detta år jämfört med dina tidigare år? Med tre års användning eller mer kan vi börja jämföra årliga aktivitetsmått.
+          Hur var detta år jämfört med dina tidigare år? Med tre år av användning eller mer kan vi börja jämföra årliga aktivitetsmått. Den gröna stapeln visar i år, den vita lodräta stapeln visar förra året, och de grå bakgrundsområdena visar de lägsta och högsta åren, såväl som medel för alla år. Statistik inkluderar inte år där antalet var noll.
         compare_site_desc: |
-          Hur står sig detta år jämfört med tidigare år? Den gröna stapeln visar
-          detta år, den vita lodräta stapeln visar förra året och de grå områdena
-          i bakgrunden visar min och max för tidigare år, samt genomsnittet för
-          alla år.
+          Hur står sig detta år jämfört med tidigare år? Den gröna stapeln visar detta år, den vita lodräta stapeln visar förra året och de grå områdena i bakgrunden visar min och max för tidigare år, samt medel för alla år.
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
         donate_desc_html: |
-          Tack för att du bidrar med din tid, uppmärksamhet, expertis och
-          dina donationer! iNaturalist är ett icke-kommersiellt initiativ som
-          drivs gemensamt av California Academy of Sciences och National
+          Tack för att du bidrar med din tid, uppmärksamhet, expertis och dina donationer! iNaturalist är ett icke-kommersiellt initiativ som drivs gemensamt av California Academy of Sciences och National
           Geographic Society. Det supportas av ett
-          <a href="%{team_url}">litet team</a> som
-          gör all design och mjukvaruutveckling
-          för webben, mobiler, och
-          <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom
-          support till gemenskapen, samarbeten och integrationer som håller
-          saker igång (och som växer snabbt!). Initiativet förlitar sig på många
-          bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en
-          liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare
-          vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan
-          donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
-          Tack till alla för er medverkan till att göra %{year} till iNaturalists
-          främsta år hittills!
+          <a href="%{team_url}">litet team</a> som gör all design och mjukvaruutveckling för webben, mobiler, och <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom support till gemenskapen, samarbeten och integrationer som håller saker igång (och som växer snabbt!). Initiativet förlitar sig på många bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
+          Tack till alla för er medverkan till att göra %{year} till iNaturalists främsta år hittills!
         donors: Givare
         donors_guide_label_our_goal_is_1000: Vårt mål är 1000 återkommande givare per månad
         inaturalist_network: iNaturalist-nätverket
@@ -6102,29 +6038,12 @@ sv:
           Kolla in Året som gått för medlemmarna i iNaturalist-nätverket.
         include_usa: Inkludera USA
         growth_by_country_desc_html: |
-          Var sker tillväxten? Denna karta och detta diagram försöker dela upp
-          detta efter land, vilket visar sig vara komplicerat eftersom tillväxten per
-          land kan vara mycket obalanserad. Här har vi valt att utelämna USA
-          och använda en loggskala som standard för att tydliggöra skillnader
-          mellan andra länder. Om ett land är färgat svart betyder det att det
-          inte bidrog på ett avgörande sätt till en procentsats, eller hade inte
-          någon tillväxt detta år, eller det inte hade fler observationer i år än förra
-          året (håll pekaren på ett land för lite fler detaljer). <strong>"% av
-          total tillväxt"</strong> avser hur mycket av hela världens tillväxt som
-          kom från ett visst land, t.ex. om det fanns 20 observationer 2018 och 10
-          2017, blir det 10 observationers tillväxt, och om 5 av dessa
-          observationer kom från Benin, så bidrog Benin med 50 % av den totala
-          tillväxten. <strong>"% tillväxt"</strong> betyder antalet observationer
-          i år i det landet som procent av observationerna förra året i
-          samma land, så om det fanns 10 observationer i Laos förra året, men
-          20 i år, innebär det 100 % tillväxt, och om det var 0 förra året
-          men 1 i år, är % tillväxt oändlig.
-        growth_by_country_title: Tillväxt efter land
+          Var sker tillväxten? Denna karta och detta diagram försöker dela upp detta efter land, vilket visar sig vara komplicerat eftersom tillväxten per land kan vara mycket obalanserad. Här har vi valt att utelämna USA
+          och använda en loggskala som standard för att tydliggöra skillnader mellan andra länder. Om ett land är färgat svart betyder det att det inte bidrog på ett avgörande sätt till en procentsats, eller inte hade
+          någon tillväxt detta år, eller det inte hade fler observationer i år än förra året (håll pekaren på ett land för lite fler detaljer). <strong>"% av total tillväxt"</strong> avser hur mycket av hela världens tillväxt som kom från ett visst land, t.ex. om det fanns 20 observationer 2018 och 10 2017, blir det 10 observationers tillväxt, och om 5 av dessa observationer kom från Benin, så bidrog Benin med 50 % av den totala tillväxten. <strong>"% tillväxt"</strong> betyder antalet observationer i år i det landet som procent av observationerna förra året i samma land, så om det fanns 10 observationer i Laos förra året, men 20 i år, innebär det 100 % tillväxt, och om det var 0 förra året men 1 i år, är % tillväxt oändlig.
+        growth_by_country_title: Tillväxt per land
         growth_desc: |
-          "Observationer"- och "Taxa"-diagrammen kan innehålla data som är
-          synliga på %{site_name} men kommer från personer som inte är anslutna till
-          %{site_name}, medan "Användare"-diagrammet endast visar datum då
-          användare som redan är anslutna till %{site_name} gick med i iNaturalist.
+          "Observationer"- och "Taxa"-diagrammen kan innehålla data som är synliga på %{site_name} men kommer från personer som inte är anslutna till %{site_name}, medan "Användare"-diagrammet endast visar datum då användare som redan är anslutna till %{site_name} gick med i iNaturalist.
         growth_in_year_obs: "Tillväxt i %{year} (obs)"
         growth_title: Tillväxt
         #Label when a mark on a chart has a value that is too small to
@@ -6137,13 +6056,8 @@ sv:
         new_species_desc_html: |
           Arter som lades till för första gången i år.
           Klicka på en månad för att se några av de nya arter som lagts till den månaden.
-          Du kan också se det sammanlagda totala antalet, eller flytta reglaget
-          bakåt i tiden för att se andra nya observerade arter. Detta diagram visar
-          arter från verifierbara observationer från månaden de laddades upp
-          till %{site_name} (inte den månad de observerades). Det innehåller inte
-          taxa på högre eller lägre nivå, så en observation som bestämts till
-          Mammalia räknas inte, och en observation av <i>Canis lupus arctos</i>
-          räknas bara som <i>Canis lupus</i>.
+          Du kan också se det sammanlagda totala antalet, eller flytta reglaget bakåt i tiden för att se andra nyobserverade arter. Detta diagram visar arter från verifierbara observationer från månaden de laddades upp till %{site_name} (inte den månad de observerades). Det innehåller inte taxa på högre eller lägre nivå, så en observation som bestämts till
+          Mammalia räknas inte, och en observation av <i>Canis lupus arctos</i> räknas bara som <i>Canis lupus</i>.
         new_species_per_year: Nya arter / År
         new_species_per_year_by_date_added: Efter datum tillagda
         new_species_per_year_by_date_observed: Efter observationsdatum
@@ -6153,31 +6067,21 @@ sv:
         percent_growth_in_year: "% tillväxt i %{year}"
         percent_of_total_growth: "% av total tillväxt"
         publications_desc_html: |
-          Klicka på blomdiagrammen för mer information om vad siffrorna
-          och färgerna betyder. Påverkansdata och -diagram tack vare
-          <a href="https://www.altmetric.com">Altmetric</a>. Information
-          om dataanvändning tack vare våra vänner på
-          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          Klicka på blomdiagrammen för mer information om vad siffrorna och färgerna betyder. Påverkansdata och -diagram tack vare <a href="https://www.altmetric.com">Altmetric</a>. Information om dataanvändning tack vare våra vänner på <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
           <br/>
           <a href="%{url}">Se alla %{numStudies} studier</a>
         publications_desc_short_html: |
-          Klicka på blomdiagrammen för mer information om vad siffrorna
-          och färgerna betyder. Påverkansdata och -diagram tack vare
-          <a href="https://www.altmetric.com">Altmetric</a>. Information
-          om dataanvändning tack vare våra vänner på
-          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          Klicka på blomdiagrammen för mer information om vad siffrorna och färgerna betyder. Påverkansdata och -diagram tack vare <a href="https://www.altmetric.com">Altmetric</a>. Information om dataanvändning tack vare våra vänner på <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observationer / År
         observations_per_year_by_date_added: Efter tilläggsdatum
-        observations_per_year_by_date_observed: Efter datum observerad
+        observations_per_year_by_date_observed: Efter observationsdatum
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Observationsräcka
         observation_streaks_color_desc: |
           Färgen motsvarar antalet dagar på en logaritmisk skala:
         observation_streaks_desc2: |
-          En observationsräcka är en period om minst fem dagar då någon gick ut
-          och gjorde nya, verifierbara observationer varje dag. Här visas de längsta
-          räckorna som påbörjades i år eller redan pågick när denna statistik
-          skapades (för individuella användare inkluderar vi även räckor som avslutades i år).
+          En observationsräcka är en period om minst fem dagar då någon gick ut och gjorde nya, verifierbara observationer varje dag. Här visas de längsta
+          räckorna som påbörjades i år eller redan pågick när denna statistik skapades (för individuella användare inkluderar vi även räckor som avslutades i år).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Återkommande
         species_per_year: Arter / År
@@ -6187,154 +6091,73 @@ sv:
         store_prompt: |
           Vill du visa din stolthet över iNat vart du än är? Kolla in iNat-butiken!
         sunburst_desc_html: |
-          Observerade taxa ordnade i ett hierarkiskt soldiagram. Hierarkins
-          bas är i centrum, där den börjar med "Liv" för att sluta med arter i
-          ytterkanterna. Storleken på varje båge är proportionell mot antalet
-          observationer av detta taxon, och färgerna motsvarar ungefär de
+          Observerade taxa ordnade i ett hierarkiskt soldiagram. Hierarkins bas är i centrum, där den börjar med "Liv" för att sluta med arter i ytterkanterna. Storleken på varje båge är proportionell mot antalet observationer av detta taxon, och färgerna motsvarar ungefär de
           vanliga "klassiska" taxonfärgerna (grönt för växter,
-          orange för insekter, blått för de flesta andra djur etc.), så om du
-          ser en hel del grönt, betyder det att du observerat en hel del växter.
-          <strong>Klicka på en båge för att placera detta taxon i mitten</strong>
-          och dess barn runt det, eller <strong>klicka på mitten för att gå upp i
-          hierarkin igen</strong>.
+          orange för insekter, blått för de flesta andra djur etc.), så om du ser en hel del grönt, betyder det att du observerat en hel del växter.
+          <strong>Klicka på en båge för att placera detta taxon i mitten</strong> och dess barn runt det, eller <strong>klicka på mitten för att gå upp i hierarkin igen</strong>.
         translators_title: Översättare
         translators_desc: |
-          Visste du att iNaturalist har översatts till %{x_languages},
-          nästan uteslutande av %{x_people}, av vilka några inte ens använder iNat? Här
-          är alla fantastiska översättare som har lagt till översättningar i år,
-          tillsammans med antalet ord de har översatt för
+          Visste du att iNaturalist har översatts till %{x_languages}, nästan uteslutande av %{x_people}, av vilka några inte ens använder iNat? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för
           %{website_link_tag}webbplatsen%{link_tag_end}, vår
           %{iphone_link_tag}iPhone%{link_tag_end} och
           %{android_link_tag}Android%{link_tag_end} appar och
           %{seek_link_tag}Seek%{link_tag_end}. Du kan se
           alla personer som har bidragit med översättningar,
-          inklusive personer från tidigare år och folk från Translatewiki, på vår
-          %{view_all_web_link_tag}webbs%{link_tag_end} och vår
-          %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+          inklusive personer från tidigare år och folk från Translatewiki, på vår %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
         translators_desc_for_site: |
-          Visste du att %{site_name} har översatts nästan uteslutande av
-          %{x_people}? Här är alla fantastiska översättare som
-          har lagt till översättningar i år, tillsammans med antalet ord
-          de har översatt för
-          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist
-          %{iphone_link_tag}iPhone%{link_tag_end} och
-          %{android_link_tag}Android%{link_tag_end} appar och
-          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
-          alla personer som har bidragit med översättningar på alla språk,
-          inklusive personer från tidigare år och folk från Translatewiki, i vår
-          %{view_all_web_link_tag}webbs%{link_tag_end} och vår
-          %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+          Visste du att %{site_name} har översatts nästan uteslutande av %{x_people}? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} och %{android_link_tag}Android%{link_tag_end} appar och %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alla personer som har bidragit med översättningar på alla språk, inklusive personer från tidigare år och folk från Translatewiki, i vår 
+          %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
-          Om man lägger till en bevarandestatus för ett taxon på högre nivå
-          påverkar det observationer av alla arter under detta taxon. Lägg inte till
-          status för taxa som innehåller arter som inte har någon status då
-          det på felaktiga grunder diffuserar koordinater för observationer av
-          dessa arter.
+          Om man lägger till en bevarandestatus för ett taxon på högre nivå påverkar det observationer av alla arter under detta taxon. Lägg inte till status för taxa som innehåller arter som inte har någon status då det på felaktiga grunder diffuserar koordinater för observationer av dessa arter.
         complete_desc_html: |
-          Ett "fullständigt" taxon innehåller <em>alla</em> kända underliggande taxa
-          av en angiven rank som uppfyller iNaturalists förvaltningspolicy för taxa,
-          vare sig de har observerats eller inte. För närvarande kan endast webbplats-
-          administratörer ange att taxa är kompletta.
+          Ett "fullständigt" taxon innehåller <em>alla</em> kända underliggande taxa av en angiven rang som uppfyller iNaturalists förvaltningspolicy för taxa, vare sig de har observerats eller inte. För närvarande kan endast webbplatsadministratörer ange att taxa är fullständiga.
         complete_rank_desc_html: |
-          Den rang till vilket ett taxon är komplett, t.ex. om en familj innehåller
-          alla sina släkten men inte alla sina arter, skulle detta vara satt till "släkte ".
-          Art är standard.
+          Den rang till vilket ett taxon är fullständigt, t.ex. om en familj innehåller alla sina släkten men inte alla sina arter, skulle detta vara satt till "släkte". Art är standard.
         wikipedia_summary_desc_html: |
-          Kort sammanfattning av detta taxon baserat på dess <a target="_blank"
-          href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den
-          manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
+          Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
         about_names_desc: |
           <p>
-          De flesta organismgrupper har "vanliga namn" i talspråk.
-          Dessa namn är vanligtvis förståeliga, lätta att uttala,
-          och stabila över tid, men många organismer har flera olika
-          namn på olika platser, även på samma språk, som kan göra
-          det svårt att kommunicera om dessa organismer utan förvirring.
-          Forskare försöker råda bot på detta genom att använda ett enda
-          "vetenskapligt namn" för varje av organismgrupp som omfattas av
-          reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>,
-          men dessa namn tenderar att baseras på latin, ett språk ingen
-          talar, så de är inte lika lätt att komma ihåg som vanliga namn för
-          många personer. Vetenskapliga namn kan också återspegla en
-          organisms taxonomiska placering, så att de kan förändras när
-          forskare lägger fram nya hypoteser om evolutionära förhållanden
-          mellan olika organismer, vilket minskar deras användbarhet för
-          kommunikation, även bland människor som kan vetenskapliga namn.
+          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn är vanligtvis förståeliga, lätta att uttala, och stabila över tid, men många organismer har flera olika namn på olika platser, även på samma språk, som kan göra det svårt att kommunicera om dessa organismer utan förvirring.
+          Vetenskapsmän försöker råda bot på detta genom att använda ett enda "vetenskapligt namn" för varje organismkategori som omfattas av reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>, men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de är inte lika lätta att komma ihåg som vardagliga namn för många personer. Vetenskapliga namn kan också återspegla en organisms taxonomiska placering, så att de kan förändras när forskare lägger fram nya hypoteser om evolutionära förhållanden
+          mellan olika organismer, vilket minskar deras användbarhet för kommunikation, även bland människor som kan vetenskapliga namn.
           </p>
           <p>
-          Det gamla talesättet summerar det: "Vanliga namn ändras från mellan
-          olika platser, medan vetenskapliga namn ändras mellan olika tider.
+          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats till plats, medan vetenskapliga namn ändras då och då.
           </p>
           <p>
-          Vi försöker åtgärda dessa brister genom att visa både vanliga
-          och vetenskapliga namn när det är möjligt, och välja vanliga namn
-          baserat på betraktarens språkliga och geografiska preferenser.
+          Vi försöker åtgärda dessa brister genom att visa både vardagliga och vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat på läsarens språkliga och geografiska preferenser.
           </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
         about_establishment_desc: |
-          "Invandringshistoria" beskriver hur en art kom dit den för närvarande
-          är. Införd innebär att det kom in pga mänsklig aktivitet, medan
-          inhemsk betyder att den kom in utan mänsklig hjälp. Endemiska
-          arter förekommer endast på en specifik plats och ingen annanstans.
+          "Invandringshistoria" beskriver hur en art kom dit den för närvarande är. Införd innebär att den kom in pga mänsklig aktivitet, medan inhemsk betyder att den kom in utan mänsklig hjälp. Endemiska arter förekommer endast på en specifik plats och ingen annanstans.
         about_taxon_curators_desc: |
-          Dessa personer hanterar den del av det taxonomiska trädet som
-          inkluderar detta taxon. Om du vill göra ändringar, vänligen flagga
-          detta taxon eller kontakta någon av dessa personer.
+          Dessa personer hanterar den del av det taxonomiska trädet som inkluderar detta taxon. Om du vill göra ändringar, vänligen flagga detta taxon eller kontakta någon av dessa personer.
         charts_help_seasonality: |
-          Detta diagram visar antalet observationer av detta taxon grupperade
-          efter månad. Tänk på att detta är observationsantal, så de påverkas
-          både av när organismen kan observeras och när människor bry sig
-          om att observera dem. En fågel kan alltså tyckas vara mycket aktiv
-          i maj, men det kan också bero på att fler människor skådar i maj men
-          tenderar att ignorera den arten under följande månader. På samma
-          sätt, om du ser fler trollsländor i juni än i januari, beror det förmodligen
-          på att det finns fler personer som observerar på norra halvklotet än på
-          det södra och inte för att trollsländor är mer aktiva i juni, så kolla
-          kartan när du begrundar dessa diagram. Det är alltid en bra idé att vara
-          skeptisk till dessa diagram när det finns få observationer och/eller
-          stora skillnader mellan antalet "Verifierbara" observationer och sådana
-          av "Forskningskvalitet".
+          Detta diagram visar antalet observationer av detta taxon grupperat efter månad. Tänk på att detta är observationsantal, så de påverkas både av när organismen kan observeras och när människor bry sig
+          om att observera dem. En fågel kan alltså tyckas vara mycket aktiv i maj, men det kan också bero på att fler människor skådar i maj men tenderar att ignorera den arten under följande månader. På samma sätt, om du ser fler trollsländor i juni än i januari, beror det förmodligen på att det finns fler personer som observerar på norra halvklotet än på
+          det södra och inte för att trollsländor är mer aktiva i juni, så kolla kartan när du begrundar dessa diagram. Det är alltid en bra idé att vara skeptisk till dessa diagram när det finns få observationer och/eller
+          stora skillnader mellan antalet "Verifierbara" observationer och sådana av "Forskningskvalitet".
         charts_help_history: |
-          Detta diagram visar antalet observationer av detta taxon per månad
-          under de senaste tio åren. Återigen är det beroende av antal personer
-          som observerar, men du kommer att se märkliga observationstoppar,
-          och om det verkar platt eller minskande trots ett ökande antal observatörer,
-          skulle det kunna bero på en abundansförändring.
+          Detta diagram visar antalet observationer av detta taxon per månad under de senaste tio åren. Återigen är det beroende av antal personer som observerar, men du kommer att se märkliga observationstoppar,
+          och om det verkar platt eller minskande trots ett ökande antal observatörer, skulle det kunna bero på en abundansförändring.
         charts_help_other: |
           Vi visar också säsongsbetonade diagram för observationsanteckningar.
-          Anteckningar är ett sätt att lägga till metadata till observationer genom
-          ett kontrollerat ordförråd för termer, t.ex. om en observation visar
-          en växt som blommar eller är i frukt.
+          Anteckningar är ett sätt att lägga till metadata till observationer genom ett kontrollerat ordförråd för termer, t.ex. om en observation visar en växt som blommar eller är i frukt.
         charts_help_relative_observations: |
-          Att visa frekvens som en relativ andel av alla observationer hjälper till
-          att jämna ut effekten av webbplatsens tillväxt överlag. Till exempel,
-          om webbplatsen växer och vi får fler observationer med varje nytt
-          år, får vi fler observationer av varje enskilt taxon, men det säger inget
-          om huruvida det finns mer av detta taxon att observera, bara att det finns
-          fler människor som observerar det. Att visa den relativa andelen
-          betyder att om det finns 100 observationer totalt, och 20 observationer
-          av detta taxon, är andelen 0,2 (20 / 100). Om det observeras 2000
-          observationer nästa år, varav 400 observationer av detta taxon, är
-          andelen fortfarande 0,2 (400 / 2000). Detta orsakar vissa avvikelser
-          när det finns mycket få observatörer i ett område, eller för taxa
-          som mycket sällan observeras, men det gäller även för totalt antal.
+          Att visa frekvens som en relativ andel av alla observationer hjälper till att jämna ut effekten av webbplatsens tillväxt överlag. Till exempel, om webbplatsen växer och vi får fler observationer med varje nytt år, får vi fler observationer av varje enskilt taxon, men det säger inget om huruvida det finns mer av detta taxon att observera, bara att det finns fler människor som observerar det. Att visa den relativa andelen betyder att om det finns 100 observationer totalt, och 20 observationer av detta taxon, är andelen 0,2 (20 / 100). Om det observeras 2000 observationer nästa år, varav 400 observationer av detta taxon, är
+          andelen fortfarande 0,2 (400 / 2000). Detta orsakar vissa avvikelser när det finns mycket få observatörer i ett område, eller för taxa som mycket sällan observeras, men det gäller även för totalt antal.
         complete_taxon_desc: |
-          "Kompletta" taxa har alla underliggande, befintliga taxa av en
-          specifik rang inkluderade i webbplatsens databas. När ett taxon är
-          komplett ner till art, till exempel, kan vi säga hur många av dess arter
-          som har observerats och hur många som fortfarande behöver observeras.
-          Antalet arter för "kompletta" taxa som är kompletta ner till art omfattar
-          inte "oräkneliga" arter såsom utdöda arter eller ickeaccepterade art-
-          koncept, och de omfattar endast arter, inte lägre taxa som underarter
+          "Fullständiga" taxa har alla underliggande, befintliga taxa av en specifik rang inkluderade i webbplatsens databas. När ett taxon är komplett ner till art, till exempel, kan vi säga hur många av dess arter som har observerats och hur många som fortfarande behöver observeras. Antalet arter för "fullständiga" taxa som är kompletta ner till art omfattar inte "oräkneliga" arter såsom utdöda arter eller inaktiva artkoncept, och de omfattar endast arter, inte lägre taxa som underarter
           eller varieteter.
-        discoveries_desc: "Senast upptäckta arter i denna taxon"
+        discoveries_desc: "Senast nybestämda arter i detta taxon"
         frequency:
           research: Forskningskvalitet
           verifiable: Verifierbar
@@ -6351,52 +6174,34 @@ sv:
           "Life Stage=subimago": Subimago
           "Life Stage=nymph": Nymf
           "Life Stage=pupa": Puppa
-          "Life Stage=adult": Vuxen
+          "Life Stage=adult": Adult
           unannotated: Ingen anteckning
         max_photos_desc: |
-          Ett taxon kan bara ha %{max} bilder. Du måste ta bort befintliga
-          bilder för att lägga till fler.
+          Ett taxon kan bara ha %{max} bilder. Du måste ta bort befintliga bilder för att lägga till fler.
         no_trending_desc: Ingenting under detta taxon observerat senaste månaden
         photo_chooser_modal_desc: |
-          Dra bilder hit från vänster, eller dra bilder hit för att ordna om.
+          Dra bilder hit från vänster, eller dra bilder här för att ordna om.
         photo_chooser_modal_explanation: |
-          Observera att taxonsidan kommer att visa bilder av detta
-          taxon och dess barn. Utvalda bilder för detta taxon
-          kommer dock att visas först. Den första bilden kommer
-          att vara standardbilden för hela webbplatsen.
+          Observera att taxonsidan kommer att visa bilder av detta taxon och dess barn. Utvalda bilder för detta taxon kommer dock att visas först. Den första bilden kommer att vara den standardbild som används på webbplatsen.
         rare_desc: Minst observerade hotade taxa
         rare_in_place_desc_html: Minst observerade hotade taxa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Webbplatsens förvaltare har tillfälligt inaktiverat visning av <a href="%{url}">detta
-          innehåll från Wikipedia</a>. Du kan hjälpa till genom att redigera sidan på
-          Wikipedia och göra den lämplig för detta taxon, eller genom att flagga detta
-          taxon för att uppmärksamma webbplatsen förvaltare på det.
+          Webbplatsens förvaltare har tillfälligt inaktiverat visning av <a href="%{url}">detta innehåll från Wikipedia</a>. Du kan hjälpa till genom att redigera sidan på Wikipedia och göra den lämplig för detta taxon, eller genom att flagga detta taxon för att uppmärksamma webbplatsen förvaltare på det.
         trending_desc: Mest observerade taxa senaste månaden
         trending_in_place_desc_html: Mest observerade taxa senaste månaden i <a href="%{url}">%{place}</a>
-        wanted_desc: Arter i denna taxon som inte observerats än
+        wanted_desc: Arter i detta taxon som ännu inte har observerats
     taxon_changes:
       move_children_desc: |
-        Barn till valt taxon som är släkten eller högre kommer att ingå i utdata;
-        arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
+        Barn till valt taxon som är släkten eller högre kommer att flyttas till utdata; arter, underarter, varieteter etc. kommer att bytas ut mot motsvarande
         med det nya släkt- eller artnamnet.
       form:
         move_children_desc_html: |
-          Om du markerar denna ruta kommer barn till valt taxon att flyttas
-          till utdatataxon för Byten och Hopslagningar när denna ändring är
-          antagen. Om denna ändring är till ett släkte eller lägre, kommer det
-          att skapa Taxonbyten för alla underliggande som omfattas av namn-
-          byten. Till exempel, om du byter från familjen Canidae till Dogidae,
-          ändras föräldern till släktet <i>Canis</i> från Canidae till Dogidae.
-          Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer
-          det att skapa och anta Taxonbyten för att ändra <i>Canis lupus</i> till
-          <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till
-          <i>Dogis lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del
-          besvär, så använd det med försiktighet.
+          Om du markerar denna ruta kommer barn till valt taxon att flyttas till utdatataxon för Byten och Hopslagningar när denna ändring är bekräftad. Om denna ändring är till ett släkte eller lägre, kommer det
+          att skapa Taxonbyten för alla underliggande som antyds byta namn. Till exempel, om du byter från familjen Canidae till Dogidae, ändras föräldern till släktet <i>Canis</i> från Canidae till Dogidae. Om du byter från släktet <i>Canis</i> till släktet <i>Dogis</i>, kommer det att skapa och bekräfta Taxonbyten för att ändra <i>Canis lupus</i> till <i>Dogis lupus</i> och <i>Canis lupus</i> ssp. <i>lupus</i> till <i>Dogis lupus</i> ssp. <i>lupus</i>. Detta kan orsaka en hel del besvär, så använd det med försiktighet.
     taxon_links:
       form:
         name_with_rank_desc: |
-          Namn på taxon med rang. För ranger under art, infogas
-          rangen efter binomial-delen.
+          Namnet på taxon med rangen. För ranger under art, infogas rangen efter binomial-delen.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -6406,60 +6211,40 @@ sv:
           <li><p>För taxa på högre nivå, försök att använda namn som beskriver alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
           <li>
           <p>
-          Lägg inte till information som inte är en del av namnet, t.ex. information
-          inom parentes om hur du tycker att namnet ska användas
+          Lägg inte till information som inte är en del av namnet, t.ex. information inom parentes om hur du tycker att namnet ska användas
           </p>
           </li>
           <li>
           <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta
-          språkliga namn som "French, Français" eftersom det bara kommer att göra
-          det svårt eller omöjligt för oss att visa lokaliserade namn för personer
-          som använder webbplatsen på andra språk.
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta språkliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
           </p>
           </li>
           <li>
           <p>
-          Trivialnamn som är kopplade till översatta språk kommer att visas
-          som standardtrivialnamn på det språket (bortsett från
-          effekten av platsinställningar, namnordning etc.).
+          Vardagliga namn som är kopplade till översatta språk kommer att visas som vardagligt standardnamn på det språket (bortsett från effekten av platsinställningar, namnsortering etc.).
           <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
           </p>
           </li>
           </ul>
         places_help_html: |
-          Lägg till ett namn till en plats för att ge det prioritet för sajter och
-          användare från den platsen. Om det finns flera namn per plats kan
-          du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för
-          VARJE plats som namnet används på, bara till platser där det finns
-          en konflikt med andra platser.
+          Lägg till ett namn till en lokal för att ge det prioritet för webbplatser och användare från den lokalen. Om det finns flera namn per lokal kan du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för VARJE lokal som namnet används på, bara till lokaler där det finns en konflikt med andra lokaler.
       taxon:
         about_html: |
-          Taxa kan ha många trivialnamn. Vi stöder ett standardtrivalnamn
-          globalt, som kan ändras här genom att dra ett namn längst upp på
-          listan. Du kan också ange standardnamn på olika platser genom att
-          redigera namnet och lägga till en plats, men gör bara detta när olika
-          platser har motstridiga namn.
+          Taxa kan ha många vardagliga namn. Vi stöder ett vardagligt standardnamn globalt, som kan ändras här genom att dra ett namn längst upp i listan. Du kan också ange standardnamn för olika lokaler genom att
+          redigera namnet och lägga till en lokal, men gör bara detta när olika lokaler har motstridiga namn.
     users:
       dashboard:
         taxon_change_desc: |
           Taxonändringar representerar ändringar i %{site_name}s taxonomi.
           Oftas kommer %{site_name} automatiskt att hålla
-          ditt innehåll uppdaterat när dessa ändringar inträffar (såvida du inte har
-          valt bort det), men vi vill ändå tala om för dig när och hur dina data
-          förändras.
+          ditt innehåll uppdaterat när dessa ändringar inträffar (såvida du inte har valt bort det), men vi vill ändå tala om för dig när och hur dina data förändras.
         your_content_will_be_updated: Ditt innehåll relaterat till dessa taxa kommer att uppdateras automatiskt.
         you_may_want_to_update: Du har en del innehåll relaterat till dessa taxa som du kanske vill uppdatera.
         cannot_update_your_content: "%{site_name} kan inte uppdatera ditt innehåll automatiskt för denna förändring."
         new_project_admin_html: |
-          Undrar du varför du nu är administratör för detta projekt? Den tidigare ägaren
-          gjorde antingen dig till ny administratör, eller raderade sitt konto och
-          %{site_name} tilldelade då dig rollen eftersom du är projektledare eller
-          webbplatsförvaltare. Om du inte vill vara projektadministratör, vänligen
-          kontakta <a href="mailto:%{help_email}">%{help_email}</a>
+          Undrar du varför du nu är administratör för detta projekt? Den tidigare ägaren gjorde antingen dig till ny administratör, eller raderade sitt konto och %{site_name} tilldelade då dig rollen eftersom du är projektledare eller webbplatsförvaltare. Om du inte vill vara projektadministratör, vänligen kontakta <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
-          Bara en påminnelse, projektförvaltare kan se privata och diffuserade
-          koordinater för observationer som du lägger till i detta projekt.
+          Bara en påminnelse, projektförvaltare kan se privata och diffuserade koordinater för observationer som du lägger till i detta projekt.
       delete:
         by_deleting_your_account_you_will_remove: |
           Genom att radera ditt konto kommer du att ta bort
@@ -6476,31 +6261,19 @@ sv:
             hjälpt dig med bestämningar
         x_identifications_html:
           one: |
-            <strong class="count">din %{count} bestämning</strong>
-            av en annan persons observation, vilket potentiellt kommer att påverka
-            datakvaliteten för den observationen
+            <strong class="count">din %{count} bestämning</strong> av en annan persons observation, vilket potentiellt kommer att påverka datakvaliteten för den observationen
           other: |
-            <strong class="count">%{count} av dina egna bestämningar</strong>
-            av observationer av <strong class="count">%{helpees_count} andra
-            personer</strong>, vilket potentiellt kommer att påverka datakvaliteten för
-            de observationerna
+            <strong class="count">%{count} av dina egna bestämningar</strong> av observationer av <strong class="count">%{helpees_count} andra personer</strong>, vilket potentiellt kommer att påverka datakvaliteten för de observationerna
         x_comments_html:
           one: <strong class="count">%{count} kommentar</strong> du har lagt till
           other: <strong class="count">%{count} kommentarer</strong> du har lagt till
         furthermore_cannot_undo_html: |
-          Dessutom, <strong>den här åtgärden kan inte ångras.</strong> Om du
-          ändrar dig senare kan du inte få tillbaka något av det innehållet.
+          Dessutom, <strong>den här åtgärden kan inte ångras.</strong> Om du ändrar dig senare kan du inte få tillbaka något av det innehållet.
         settings_and_mute_html: |
-          Om denna webbplats genererar för många notiser, överväg att
-          <a href="/users/edit">ändra dina inställningar</a> för att välja bort vissa
-          notiser eller sluta ta emot e-post från oss. Om du har
-          problem med en specifik person på webbplatsen, överväg att
-          <a href="/users/edit">tysta dem</a> istället för att ta bort ditt
-          konto.
+          Om denna webbplats genererar för många notiser, överväg att <a href="/users/edit">ändra dina inställningar</a> för att välja bort vissa aviseringar eller sluta få e-post från oss. Om du har problem med en specifik person på webbplatsen, överväg att
+          <a href="/users/edit">tysta dem</a> istället för att ta bort ditt konto.
         still_want_to_delete_html: |
-          Om du fortfarande är säker på att du vill radera ditt konto, ange
-          <code>%{confirmation_code}</code> i formuläret nedan och klicka på
-          knappen för att radera ditt konto och alla dina data.
+          Om du fortfarande är säker på att du vill radera ditt konto, ange <code>%{confirmation_code}</code> i formuläret nedan och klicka på knappen för att radera ditt konto och alla dina data.
         type_confirmation_code: Ange %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: |
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
@@ -6508,85 +6281,48 @@ sv:
         about_third_party_tracking: Om tredjepartsspårning
         blocking_desc_html: |
           <p>
-          Att blockera någon hindrar dem från att skicka meddelanden till dig,
-          kommentera dina observationer, bestämma dina observationer, och
-          på annat sätt interagera med dig på %{site_name}. Det tar också bort
-          deras observationer från dina sökresultat och dina observationer från
-          deras sökresultat. Det gör dig dock inte osynlig för dem. De kan
-          fortfarande hitta dina observationer och se din profil, de kan helt enkelt
+          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina observationer, bestämma dina observationer, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras observationer från dina sökresultat och dina observationer från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina observationer och se din profil, de kan helt enkelt
           bara inte interagera med dig.
           </p>
           <p>
-          Blockering är till för situationer där du helt enkelt inte kan komma
-          överens med någon och de lämnar dig inte i fred. trots att du ansträngt
-          dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att
-          gömma sig från personer, förhindra bestämningar från personer vars
-          åsikter du inte litar på eller välja bort gemenskapens bestämningar
-          (det finns en annan inställning för det). Blockeringen verkar alltså åt
-          båda hållen: om du blockerar någon kan de inte interagera med dig,
-          men du kan inte heller interagera med dem. Om du missbrukar detta
-          för att hindra någon från att bestämma dina observationer hindrar du
-          också dig själv från att identifiera deras observationer.
+          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra bestämningar från personer vars åsikter du inte litar på eller välja bort gemenskapsbestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
+          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att bestämma dina observationer hindrar du också dig själv från att bestämma deras observationer.
           </p>
           <p>
-          Du kan bara blockera tre personer. Vi tycker att det är ett rimligt
-          antal som tillmötesgår de personer som behöver blockera någon
-          medan det förhindrar missbruk av blockering. Om du känner att du
-          behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
+          Du kan bara blockera tre personer. Vi tycker att det är ett rimligt antal som tillmötesgår de personer som behöver blockera någon medan det förhindrar missbruk av blockering. Om du känner att du behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
           </p>
           <p>
           Om någon trakasserar eller förföljer dig på %{site_name},
-          <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om
-          det visar sig vara ett brott mot våra Användarvillkor eller något
-          annat beteende som vi anser är olämpligt på vår webbplats,
+          <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats,
           kommer vi att titta närmare på det.
           </p>
         common_names_desc: |
-          Visa trivialnamn. Inaktivera om du bara vill se vetenskapliga namn.
-          Observera att du kan kontrollera vilka trivialnamn du ser genom att
-          ändra inställningar för lokalisering och plats.
+          Visa vardagliga namn. Inaktivera om du bara vill se vetenskapliga namn.
+          Observera att du kan kontrollera vilka vardagliga namn du ser genom att ändra inställningar för lokalisering och plats.
         display_monthly_supporter_status_on_my_profile: |
-          Visa Månatlig bidragsgivar-status på min profil
+          Visa Månatlig bidragsgivarstatus på min profil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
-           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en
-          samling lokaliserade webbplatser som är helt anslutna till den
-          globala iNaturalist-gemenskapen. Nätverksplatserna stöds av lokala
-          institutioner som har undertecknat ett avtal med iNaturalist att
-          främja lokal användning och gynna lokal biologisk mångfald. De har
-          tillgång till exakta koordinater från sina länder som automatiskt
+           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-gemenskapen. Nätverksplatserna stöds av lokala
+          institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater från sina länder som automatiskt
           diffuseras vid publik visning för att skydda hotade arter.
           </p>
           <p>
-          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i
-          iNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks
-          webbplats, kommer den lokala institution som driver webbplatsen
-          också att ha tillgång till din e-postadress (endast för att kommunicera
-          med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna
-          för observationer som publikt är diffuserade eller privata.
+          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen
+          också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för observationer som publikt är diffuserade eller privata.
           </p>
           <p>
-          Obs: Teständra inte din tillhörighet om du har mer än 1000
-          observationer.
+          Obs: Teständra inte din tillhörighet om du har mer än 1000 observationer.
           </p>
         licensing_desc_html: |
-          Licensiering av ditt innehåll ger vem som helst laglig rätt att använda
-          det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren.
-          Dessutom inkluderar %{site_name} ditt Creative Commons-licensierade
-          innehåll i regelbundet uppdaterade arkiv som produceras för utvalda
-          partnerorganisationer som är intresserade av våra data. Till exempel
-          inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY),
-          och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
-          för <a href="http://www.gbif.org/">Global Biodiversity Information
-          Facility</a> (GBIF), en internationell, mellanstatlig organisation som
-          sammanställer och tillgängliggör information om biologisk mångfald
+          Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar %{site_name} ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel
+          inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
+          för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
         license_description_attribution_html: |
-          Licensbeskrivningar och bilder &copy; %{year} Creative Commons, används
-          under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative
-          Commons Erkännande-licens</a> (så meta!)
+          Licensbeskrivningar och bilder &copy; %{year} Creative Commons, används under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Erkännande-licens</a> (så meta!)
         #Header for the section of the profile settings where you can choose to
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
@@ -6595,22 +6331,16 @@ sv:
           iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
           När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
-          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist
-          för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
+          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
         muting_desc_html: |
           <p>
-          Att tysta någon hindrar dig från att få meddelanden om saker
-          de gör, inklusive kommentera dina observationer, skicka meddelanden
-          till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne
-          utan att hindra dem från att göra något.
+          Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina observationer, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
           </p>
           <p>
-          Du kan tysta så många som du vill, men kom ihåg att du kommer att
-          missa potentiellt viktiga meddelanden, t.ex. bestämningar som
-          ändrar gemenskapstaxon för dina observationer.
+          Du kan tysta så många som du vill, men kom ihåg att du kommer att missa potentiellt viktiga meddelanden, t.ex. bestämningar som ändrar gemenskapstaxon för dina observationer.
           </p>
         name_place_help_html: |
-          Prioritera vanliga namn som används på denna plats.
+          Prioritera vardagliga namn som används på denna lokal.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kommentarer
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6632,38 +6362,27 @@ sv:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Observationer av personer jag följer
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Observationer av taxa eller från platser som jag prenumererar på
+        notification_preferences_taxon_or_place_observations: Observationer av taxa eller från lokaler som jag prenumererar på
         place_preference_changed_notice_html: |
-          Platsinställningarna ändrades. Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
+          Lokalinställningarna ändrades. Om du ångrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         project_addition_preferences:
           any: Alla
           joined: Projekt du har gått med i
           none: "Ingen, bara du kan lägga till dina observationer till projekt"
         prefers_community_taxa_desc: |
-          %{site_name} spårar vad du tror att dina observationer är och vad gemenskapen tycker att de är. Om du inte tycker att gemenskapens åsikt ska upphäva din egen, kan du välja bort det här. Folk kommer fortfarande att kunna lägga till bestämningar, men din observation kommer fortsatt vara knuten till din bestämnings
-          taxon. Detta innebär att dina observationer inte kommer att kvalificera för forskningskvalitet såvida inte din bestämning överensstämmer med
-          gemenskapens åsikt.
+          %{site_name} spårar vad du tror att dina observationer är och vad gemenskapen tycker att de är. Om du inte tycker att gemenskapens åsikt ska upphäva din egen, kan du välja bort det här. Folk kommer fortfarande att kunna lägga till bestämningar, men din observation kommer fortsatt vara knuten till ditt bestämningstaxon. Detta innebär att dina observationer inte kommer att kvalificera för forskningskvalitet såvida inte din bestämning överensstämmer med gemenskapens åsikt.
         prefers_coordinate_interpolation_protection_desc: |
-          När du sätter geosekretessen för en observation till "diffuserad" eller
-          "privat" kommer samma geosekretess att sättas för alla dina andra
-          observationer på samma dag, just för att göra det svårare för andra
-          personer att gissa de exakta koordinaterna baserat på observationer
-          gjorda vid ungefär samma tid.
+          När du sätter geosekretessen för en observation till "diffuserad" eller "privat" kommer samma geosekretess att sättas för alla dina andra
+          observationer på samma dag, just för att göra det svårare för andra personer att gissa de exakta koordinaterna baserat på observationer gjorda vid ungefär samma tid.
         prefers_no_tracking_label: Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster
         prefers_no_tracking_label_desc_we_use: |
-          Vi använder en mängd tredjepartstjänster för att övervaka stabilitet samt
-          diagnostisera buggar och problem med vår programvara. Dessa tredjeparter
+          Vi använder en mängd tredjepartstjänster för att övervaka stabilitet samt diagnostisera buggar och problem med vår programvara. Dessa tredjeparter
           inkluderar
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Information som vi kan dela med dessa tredje parter inkluderar
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP-adresser (som kan användas för att härleda plats till upplösning på
-          stadsnivå, och för att spåra dig mellan olika webbplatser och tjänster;
-          observera att vi har aktiverat
-          <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a>
-          i Google Analytics; Firebase Crashlytics
-          <a href="https://firebase.google.com/support/privacy">
+          IP-adresser (som kan användas för att härleda plats till upplösning på stadsnivå, och för att spåra dig mellan olika webbplatser och tjänster; observera att vi har aktiverat <a href="https://support.google.com/analytics/answer/2763052">IP-anonymisering</a> i Google Analytics; Firebase Crashlytics <a href="https://firebase.google.com/support/privacy">
           kan lagra IP-adresser</a> tillfälligt)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Webbläsardetaljer, såsom märke, modell och version
@@ -6672,48 +6391,24 @@ sv:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, såsom märke och modell på en mobiltelefon
         prefers_no_tracking_label_desc_value_html: |
-          <strong>Dessa tredjepartstjänster är enormt värdefulla för
-          oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och
-          användbarhet med vår relativt lite personal. På mobila enheter finns
-          det nästan inget annat sätt för oss att få inblick i problem som uppstår,
-          eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är
-          vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i
-          de data som dessa tjänster tillhandahåller. <strong>Genom att dela
-          denna information hjälper du oss att hjälpa dig och hela iNaturalist-
-          gemenskapen.</strong>
+          <strong>Dessa tredjepartstjänster är enormt värdefulla för oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och användbarhet med vår relativt lite personal. På mobila enheter finns
+          det nästan inget annat sätt för oss att få inblick i problem som uppstår, eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i de data som dessa tjänster tillhandahåller. <strong>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-gemenskapen.</strong>
         prefers_no_tracking_label_desc_limits: |
-          Observera att detta alternativ endast gäller analys- och kraschdata som
-          vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhanda-
-          hålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av
-          Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket
-          innebär att varje gång du tittar på en observation på iNaturalist, ansluter
-          du till tjänster som tillhandahålls av dessa företag och visar din IP-adress
-          för dem, som ett minimum (i iPhone-appen använder vi Apples kartor).
-          iNaturalist skulle förmodligen inte existera utan de tjänster som dessa
-          företag tillhandahåller, och även om vi kan begränsa mängden och de
-          typer av data som du delar med dem när du använder iNat, kan vi inte
-          stoppa flödet av data helt.
+          Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på en observation på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, till ett minimum (i iPhone-appen använder vi Apples kartor).
+          iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.
         project_settings_desc: |
-          Kom ihåg, detta ger inte projekt behörighet att komma åt dina dolda
-          koordinater eller skicka uppdateringar till dig. Du måste gå med i
-          projekt för att ge dem dessa behörigheter, eller annars göra det från
-          fall till fall.
+          Kom ihåg, detta ger inte projekt behörighet att komma åt dina dolda koordinater eller skicka uppdateringar till dig. Du måste gå med i projekt för att ge dem dessa behörigheter, eller annars göra det från fall till fall.
         same_day_geoprivacy_protection: Samma-dags-skydd för geosekretess
         search_place_help_html: |
-          Standardplats för observeringssökningar.
+          Standardlokal för observationssökningar.
         scientific_name_first_desc: |
-          Visa vetenskapliga namn före vanliga namn.
+          Visa vetenskapliga namn före vardagliga namn.
         taxon_change_desc: |
-          När taxa slås samman eller byter namn på %{site_name}, kommer dina
-          observationer, listade taxa, bestämningar etc. automatiskt att uppdateras
-          till dessa nya taxa om ändringen är entydig. Om du väljer bort det eller
-          om ändringen är tvetydig (t.ex. vid en uppdelning), kommer du att få en
-          uppdatering om ändringen med en länk till ett verktyg du kan använda
+          När taxa slås samman eller byter namn på %{site_name}, kommer dina observationer, listade taxa, bestämningar etc. automatiskt att uppdateras till dessa nya taxa om ändringen är entydig. Om du väljer bort det eller om ändringen är tvetydig (t.ex. vid en uppdelning), kommer du att få en uppdatering om ändringen med en länk till ett verktyg du kan använda
           för att manuellt uppdatera ditt innehåll om du vill.
         thanks_for_supporting_us!: Tack för att du stödjer oss!
         this_only_applies_to_traditional_projects: |
-          Det här gäller endast traditionella projekt. Du kan inte utesluta observationer
-          från samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
+          Det här gäller endast traditionella projekt. Du kan inte utesluta observationer från samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
           Du kan läsa mer
           <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">här</a>.
         youve_used_all_of_your_blocks: Du har använt alla dina blockeringar. Ta bort en blockering för att lägga till en annan.
@@ -6722,38 +6417,25 @@ sv:
         definitions_html: <dl> <dt>Antagligen spam</dt> <dd> Användare som förmodligen är spammare vilket innebär att de inte har några observationer eller bestämningar, men har en profilbeskrivning. </dd> <dt>Autospam</dt> <dd> Spammare som automatiskt markerades som en spammare av systemet. </dd> <dt>Manuellt spam</dt> <dd> Spammare som manuellt markerades som en spammare av en webbplatsförvaltare. </dd> <dt>Falsklarm</dt> <dd> Användare som flaggades som spammare men flaggorna lyftes av webbplatsens förvaltare eftersom den faktiskt inte var spammare. </dd> </dl>
         recent_users_desc_html: |
           <p>
-          Vi vill välkomna nya användare, men vi vill också bekämpa
-          spammare. Förhoppningsvis kommer detta verktyg hjälpa till med båda. Vi
-          flaggar automatiskt många användare som spammare med <a
-          href="https://akismet.com/">Akismet</a>, men Akismet är inte perfekt,
-          så om du kan lägga några minuter på att markera nya konton som
-          spammare eller inte spammare, skulle hjälpa oss långt.
+          Vi vill välkomna nya användare, men vi vill också bekämpa spammare. Förhoppningsvis kommer detta verktyg hjälpa till med båda. Vi flaggar automatiskt många användare som spammare med <a
+          href="https://akismet.com/">Akismet</a>, men Akismet är inte perfekt, så om du kan lägga några minuter på att markera nya konton som spammare eller inte spammare, skulle det hjälpa oss långt.
           </p>
       show:
-        take_a_chance_to_review_html: 'Passa på att öäsa igenom <a href="%{link}">våra riktlinjer</a>.'
+        take_a_chance_to_review_html: 'Passa på att läsa igenom <a href="%{link}">våra riktlinjer</a>.'
         this_user_was_banned: Denna användare har stängts av
         favorites_list_prompt_html: |
-          Vill du visa upp några av dina favorittaxa? %{link_start_tag}Skapa en
-          lista%{link_end_tag} med rubriken "Favoriter" och de senaste tilläggen
-          kommer att visas här.
+          Vill du visa upp några av dina favorittaxa? %{link_start_tag}Skapa en lista%{link_end_tag} med rubriken "Favoriter" och de senaste tilläggen kommer att visas här.
     user_parents:
       confirm:
         thanks_donor_html: |
           <p>
-          Tack för att du är en iNaturalist-givare! Vi kunde använda din
-          befintliga donation för att bekräfta din identitet och behöver inte
-          ytterligare åtgärder från dig. <strong>Ditt barns konto har
-          aktiverats.</strong>
+          Tack för att du är en iNaturalist-givare! Vi kunde använda din befintliga donation för att bekräfta din identitet och behöver inte ytterligare åtgärder från dig. <strong>Ditt barns konto har aktiverats.</strong>
           </p>
           <p>
-          Logga in på kontot från ditt barns Seek-app genom att trycka på
-          "iNaturalist" knappen i menyn och sedan "Logga in med
-          iNaturalist" längst ner på skärmen.
+          Logga in på kontot från ditt barns Seek-app genom att trycka på "iNaturalist" knappen i menyn och sedan "Logga in med iNaturalist" längst ner på skärmen.
           </p>
           <p>
-          Ditt barn kommer då att kunna lägga upp observationer på sitt
-          iNaturalist-konto med hjälp av Seek-appen så att de kan ses på
-          iNaturalist.org.
+          Ditt barn kommer då att kunna lägga upp observationer på sitt iNaturalist-konto med hjälp av Seek-appen så att de kan ses på iNaturalist.org.
           </p>
         thanks_for_creating_a_minor_account: TACK FÖR ATT DU SKAPAR ETT KONTO FÖR MINDERÅRIGA!
         we_will_send_you_an_email: |
@@ -6768,71 +6450,50 @@ sv:
         parent_information_private: Information om förälder (privat)
         step1_title: SKAPA ETT KONTO FÖR DITT BARN
         step1_desc: |
-          För att kunna följa integritetslagstiftning, behöver vi en förälders
-          eller vårdnadshavares medgivande för att skapa ett konto för en
-          person under 13 år. Om du vill att ditt barn ska kunna använda
-          iNaturalist, behöver du förse oss med lite person- och kontakt-
-          uppgifter.
+          För att kunna följa integritetslagstiftning, behöver vi en förälders eller vårdnadshavares medgivande för att skapa ett konto för en person under 13 år. Om du vill att ditt barn ska kunna använda iNaturalist, behöver du förse oss med lite person- och kontaktuppgifter.
         step2_title: BEKRÄFTA DIN IDENTITET MED ETT KREDITKORT
         step2_desc: |
-          För att bekräfta att du är vuxen behöver du göra en nominell
-          donation på minst 1 USD till iNaturalist med ett kreditkort. Detta är
-          den minst inkräktande formen av identitetskontroll där vi ändå
-          följer integritetslagstiftning. Var noga med att använda samma
-          e-postadress som du angav som "vårdnadshavares e-post" i
-          föregående steg.
+          För att bekräfta att du är vuxen behöver du göra en nominell donation på minst 1 USD till iNaturalist med ett kreditkort. Detta är den minst inkräktande formen av identitetskontroll där vi ändå följer integritetslagstiftning. Var noga med att använda samma e-postadress som du angav som "vårdnadshavares e-post" i föregående steg.
         step3_title: VÄNTA PÅ BEKRÄFTELSEMEJL
         step3_desc: |
-          När vi väl matchat e-postadressen som används i donationen med
-          e-postadressen du angav som "vårdnadshavares e-post" kommer vi att
-          aktivera barnets konto och skicka vårdnadshavaren ett e-postmeddelande
-          med inloggningsinstruktioner. Detta kan ta upp till 24 timmar.
+          När vi väl matchat e-postadressen som används i donationen med e-postadressen du angav som "vårdnadshavares e-post" kommer vi att aktivera barnets konto och skicka vårdnadshavaren ett e-postmeddelande med inloggningsinstruktioner. Detta kan ta upp till 24 timmar.
         step3_donor_title: DITT BARNS KONTO HAR AKTIVERATS
         step3_donor_desc: |
-          Eftersom du är en iNaturalist-bidragsgivare kunde vi verifiera din
-          identitet med din befintliga donation.
+          Eftersom du är en iNaturalist-bidragsgivare kunde vi verifiera din identitet med din befintliga donation.
     welcome:
       index:
         welcome_message_html: |
-          till %{image}, där du kan <strong>spara</strong> det du ser i naturen,
-          <strong>träffa</strong> andra naturälskare,
-          och <strong>lära dig</strong> om naturen.
-        connect_with_nature: Anslut med naturen
+          till %{image}, där du kan <strong>spara</strong> det du ser i naturen, <strong>träffa</strong> andra naturälskare, och <strong>lära dig</strong> om naturen.
+        connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina observationer från naturen.
         observations_to_date: 'Observationer hittills'
-        species_observed: 'Arter observerade'
-        people_signed_up: 'Människor registrerade'
+        species_observed: 'Observerade arter'
+        people_signed_up: 'Registrerade personer'
         how_it_works: Så funkar det
-        record_your_observations: Spela in dina observationer
-        share_with_fellow_naturalists: Dela med kamrat naturforskare
+        record_your_observations: Spara dina observationer
+        share_with_fellow_naturalists: Dela med andra naturforskare
         discuss_your_findings: Diskutera dina resultat
-        contribute_to_science: Bidra till vetenskap
+        contribute_to_science: Bidra till vetenskapen
         science_desc_html: |
-          Varje observation kan bidra till forskning om biologisk mångfald,
-          allt från den ovanligaste fjärilen till det vanligaste trädgårdsogräset.
-          Vi delar dina resultat med vetenskapliga databaser som
-          <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>
-          för att hjälpa forskare att hitta och använda dina data. Allt du
+          Varje observation kan bidra till forskning om biologisk mångfald, allt från den ovanligaste fjärilen till det vanligaste trädgårdsogräset. Vi delar dina resultat med vetenskapliga databaser som <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> för att hjälpa forskare att hitta och använda dina data. Allt du
           behöver göra är observera.
-        nature_at_your_fingertips: Naturen till dina fingertoppar
-        keep_track: Håll koll
+        nature_at_your_fingertips: Naturen nära till hands
+        keep_track: Håll reda på
         record_your_encounters: |
-          Spara dina möten med andra organismer och upprätthåll livslistor,
-          allt i molnet.
-        create_useful_data: Skapa användbar data
-        help_scientists: Hjälp forskare och förvaltare att förstå när och var organismer förekommer.
-        crowdsource_identifications: Crowdsource identifieringar
-        connect_with_experts: Träffa experter som kan bestämma de organismer du observerar.
+          Spara dina möten med andra organismer och upprätthåll livslistor, allt i molnet.
+        create_useful_data: Skapa användbara data
+        help_scientists: Hjälp forskare och resursförvaltare att förstå när och var organismer förekommer.
+        crowdsource_identifications: Crowdsource-bestämningar
+        connect_with_experts: Få kontakt med experter som kan bestämma de organismer du observerar.
         become_a_citizen_scientist: Bli en medborgarforskare
         find_a_project: "Hitta ett projekt med en inriktning som intresserar dig, eller starta ett eget."
-        learn_about_nature: Lära om naturen
+        learn_about_nature: Lär dig om naturen
         build_your_knowledge: Utöka din kunskap genom att prata med andra naturforskare och hjälpa andra.
-        run_a_bioblitz: Kör Bioblitz
+        run_a_bioblitz: Kör en Bioblitz
         hold_an_event: Fixa en händelse där folk försöker hitta så många arter som möjligt.
         works_on_all_your_devices: Fungerar på alla dina enheter
         install_our_mobile_apps: |
-          Installera våra mobilappar så att du alltid kan observera, även utan
-          mobilmottagning eller wifi.
+          Installera våra mobilappar så att du alltid kan observera, även utan mobilmottagning eller wifi.
         who_uses_site_name: "Vem använder %{site_name}?"
         what_are_you_waiting_for: Vad väntar du på?
         join_today: Gå med idag
@@ -6923,25 +6584,25 @@ sv:
         other: nästan %{count} år
       half_a_minute: en halv minut
       less_than_x_minutes:
-        one: mindre än en minut
+        one: mindre än %{count} minut
         other: mindre än %{count} minuter
       less_than_x_seconds:
         one: mindre än %{count} sekund
         other: mindre än %{count} sekunder
       over_x_years:
-        one: över 1 år
+        one: över %{count} år
         other: över %{count} år
       x_days:
-        one: "1 dag"
+        one: "%{count} dag"
         other: '%{count} dagar'
       x_minutes:
-        one: "1 minut"
+        one: "%{count} minut"
         other: '%{count} minuter'
       x_months:
-        one: "1 månad"
+        one: "%{count} månad"
         other: '%{count} månader'
       x_seconds:
-        one: "1 sekund"
+        one: "%{count} sekund"
         other: '%{count} sekunder'
     countdown_x_days:
       one: dag
@@ -6985,10 +6646,9 @@ sv:
       only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
       record_invalid: 'Validering misslyckades: %{errors}'
       requires_privilege_speech: |
-        måste ha tre verifierbara observationer eller tre bestämningar
-        för att andra ska kunna göra det
+        måste ha tre verifierbara observationer eller tre bestämningar för andra för att kunna göra det
       requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
-      taken: har redan tagits
+      taken: är redan taget
       too_long:
         one: är för långt (maximalt %{count} tecken)
         other: är för långt (maximalt %{count} tecken)
@@ -7076,7 +6736,7 @@ sv:
           tb: TB
   support:
     array:
-      last_word_connector: ', och'
+      last_word_connector: ' och'
       two_words_connector: 'och'
       words_connector: ','
   time:
@@ -7123,9 +6783,9 @@ sv:
         odd: måste vara udda
         only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
+        requires_privilege_speech: måste ha tre verifierbara observationer eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
-        taken: har redan tagits
+        taken: är redan taget
         too_long:
           one: är för långt (maximalt %{count} tecken)
           other: är för långt (maximalt %{count} tecken)
@@ -7161,8 +6821,8 @@ sv:
       conservation_status:
         status: Status
         description: Beskrivning
-        authority: Myndighet
-        place_id: Plats
+        authority: Auktoritet
+        place_id: Lokal
         url: URL
         geoprivacy: Geosekretess
         iucn: IUCN-motsvarighet
@@ -7184,7 +6844,7 @@ sv:
         geo_y: Nordlig
         observed_on: observerat datum
       observation_field_value:
-        value: 'Värde'
+        value: 'värde'
       observations_export_flow_task:
         #Date/time the task was created, i.e. the date it was added to the processing queue
         created_at: Köad
@@ -7211,7 +6871,7 @@ sv:
         zoom_level: Zoomnivå
         preferred_membership_model: Föredragen medlemsmodell
         preferred_submission_model: Föredragen inlämningsmodell
-        prefers_place_boundary_visible: Visa platsgräns på kartan
+        prefers_place_boundary_visible: Visa lokalgräns på kartan
         tracking_codes: Spårningskoder
         source_url: Källans URL
         start_time: Starttid
@@ -7220,12 +6880,12 @@ sv:
         user_id: Rapportör
       place:
         code: Kod
-        display_name: Visa namn
+        display_name: Publikt namn
         latitude: Latitud
         longitude: Longitud
         name: Namn
         parent_id: förälder
-        place_type: Platstyp
+        place_type: Lokaltyp
         prefers_check_lists: Tillåta checklistor?
         woeid: WOEID (Where On Earth IDentifier)
       site:
@@ -7239,7 +6899,7 @@ sv:
       taxon:
         name: Namn
         rank: Rang
-        parent_id: Föräldra-ID
+        parent_id: FöräldraID
         locked: Låst
         auto_photos: Automatiska bilder
         auto_description: Automatisk beskrivning
@@ -7257,8 +6917,8 @@ sv:
         name: Namn
         locale: Språk
         time_zone: Tidszon
-        search_place_id: Sökplats
-        place_id: Plats
+        search_place_id: Sök lokal
+        place_id: Lokal
         preferred_observation_fields_by: Tillåt observationsfält från
     errors:
       format: '%{attribute} %{message}'
@@ -7268,7 +6928,7 @@ sv:
         confirmation: stämde inte överens med lösenordet
         empty: kan inte vara tom
         equal_to: måste vara samma som %{count}
-        even: måste vara jämnt
+        even: måste vara jämn
         exclusion: är reserverad
         greater_than: måste vara större än %{count}
         greater_than_or_equal_to: måste vara större än eller lika med %{count}
@@ -7282,9 +6942,9 @@ sv:
         odd: måste vara udda
         only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: "måste ha tre verifierbara observationer eller tre bestämningar\nför att andra ska kunna göra det"
+        requires_privilege_speech: måste ha tre verifierbara observationer eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara observationer för att göra det
-        taken: har redan tagits
+        taken: är redan taget
         too_long:
           one: är för långt (maximalt %{count} tecken)
           other: är för långt (maximalt %{count} tecken)
@@ -7292,7 +6952,7 @@ sv:
           one: är för kort (minimum %{count} tecken)
           other: är för kort (minimum %{count} tecken)
         wrong_length:
-          one: har fel längd (bör vara 1 tecken)
+          one: har fel längd (bör vara %{count} tecken)
           other: har fel längd (bör vara %{count} tecken)
       template:
         body: 'Det uppstod problem med följande fält:'
@@ -7304,7 +6964,7 @@ sv:
           attributes:
             redirect_uri:
               fragment_present: "kan inte innehålla ett fragment."
-              has_query_parameter: "kan inte innehålla en förfrågansparameter."
+              has_query_parameter: "kan inte innehålla en frågeparameter."
               invalid_uri: "måste vara en giltig URI."
               relative_uri: "måste vara en absolut URI."
         flag:
@@ -7336,14 +6996,12 @@ sv:
             value:
               dna_only_atcg: "för DNA kan endast innehålla tecknen A, T, C eller G"
               date_format: |
-                måste vara av formen YYYY-MM-DD för ett datumfält ("%{observation_field_name}"
-                i din observation av "%{observation_species_guess}")
+                måste vara av formen YYYY-MM-DD för ett datumfält ("%{observation_field_name}" i din observation av "%{observation_species_guess}")
               time_format: |
-                måste vara av formen hh:mm för ett tidsfält ("%{observation_field_name}"
-                i din observation av "%{observation_species_guess}")
+                måste vara av formen hh:mm för ett tidsfält ("%{observation_field_name}" i din observation av "%{observation_species_guess}")
             observation_id:
-              user_does_not_accept_fields_from_others: användare accepterar inte fält från andra
-              user_only_accepts_fields_from_site_curators: användaren accepterar bara fält från webbplatsen förvaltare
+              user_does_not_accept_fields_from_others: användaren accepterar inte fält från andra
+              user_only_accepts_fields_from_site_curators: användaren accepterar bara fält från webbplatsens förvaltare
         observations_export_flow_task:
           attributes:
             base:
@@ -7354,8 +7012,8 @@ sv:
         place:
           attributes:
             place_geometry:
-              is_too_large_to_edit: är för stor att redigeras
-              is_too_large_to_import: är för stor för att importera
+              is_too_large_to_edit: är för stor för att redigeras
+              is_too_large_to_import: är för stor för att importeras
               contains_too_many_observations: innehåller för många observationer för import
         post:
           attributes:
@@ -7363,10 +7021,7 @@ sv:
               prefers_no_comments: tillåter inte nya kommentarer
             user:
               must_be_on_site_long_enough: |
-                måste ha registrerat sig för mer än 24 timmar sedan för att publicera.
-                Vi får en hel del spam, och detta är ett rätt lamt sätt att hantera
-                det. Du kan fortfarande spara ett utkast, och om du fortfarande
-                använder webbplatsen om en dag, kommer du att kunna publicera.
+                måste ha registrerat sig för mer än 24 timmar sedan för att publicera. Vi får en hel del spam, och detta är ett rätt lamt sätt att hantera det på. Du kan fortfarande spara ett utkast, och om du fortfarande använder webbplatsen om en dag, kommer du att kunna publicera.
         project_observation:
           attributes:
             base:
@@ -7410,8 +7065,7 @@ sv:
                 kan endast ändras av en förvaltare av detta taxon
             name:
               bad_format: |
-                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och
-                ×; observera att preliminära taxa och sortnamn inte är tillåtna
+                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
         taxon_name:
           attributes:
             lexicon:
@@ -7427,19 +7081,17 @@ sv:
               must_match_the_taxon_if_valid: |
                 måste matcha detta taxons namn om det är ett giltigt vetenskapligt namn
               bad_format: |
-                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och
-                ×; observera att preliminära taxa och sortnamn inte är tillåtna
+                kan endast innehålla vanliga latinska tecken, bindestreck, mellanslag och ×; observera att preliminära taxa och sortnamn inte är tillåtna
         taxon_photo:
           attributes:
             taxon:
               too_many_photos: |
-                kan inte ha fler än %{max} foton
+                kan inte ha fler än %{max} bilder
         user:
           attributes:
             login:
               must_begin_with_a_letter: |
-                måste börja med en bokstav, inte innehålla några mellanslag,
-                och endast använda bokstäver, siffror, bindestreck och understreck
+                måste börja med en bokstav, inte innehålla några mellanslag, och endast använda bokstäver, siffror, bindestreck och understreck
             email:
               must_look_like_an_email_address: måste se ut som en e-postadress
               domain_is_not_supported: domänen stöds inte
@@ -7448,27 +7100,16 @@ sv:
             base:
               user_already_blocked: Du har redan blockerat den användaren
               user_cannot_be_staff: |
-                Du kan inte blockera personal. iNat-personal måste kunna
-                kommunicera med alla på iNat, ha tillgång till all data på
-                iNat, och är de slutgiltiga medlarna av tvister, så blockering
-                kommer inte att hindra dem från att kommunicera med dig. Om du har ett
-                problem med en anställd kan du rapportera det till en av
-                iNats biträdande chefer, eller, om du har problem med en av de
-                biträdande cheferna, kan du kontakta vetenskapschefen på
-                Institute for Biodiversity and Sustainability Science vid
-                California Academy of Sciences.
+                Du kan inte blockera personal. iNat-personal måste kunna kommunicera med alla på iNat, ha tillgång till all data på iNat, och är de slutgiltiga medlarna av tvister, så blockering kommer inte att hindra dem från att kommunicera med dig. Om du har ett problem med en anställd kan du rapportera det till en av iNats biträdande chefer, eller, om du har problem med en av de biträdande cheferna, kan du kontakta forskningschefen på Institute for Biodiversity and Sustainability Science vid California Academy of Sciences.
         user_parent:
           attributes:
             email:
               belongs_to_an_existing_user: |
-                tillhör en befintlig användare; om du har ett konto, vänligen logga in
-                innan du fortsätter, eller använd en annan e-postadress
+                tillhör en befintlig användare; om du har ett konto, vänligen logga in innan du fortsätter, eller använd en annan e-postadress
   doorkeeper:
     scopes:
       write: |
-        Skapa, uppdatera och ta bort dina observationer, bestämningar och annat
-        innehåll å dina vägnar, samt få tillgång till dina dolda koordinater och all
-        annan information som du kan komma åt på webbplatsen.
+        Skapa, uppdatera och ta bort dina observationer, bestämningar och annat innehåll å dina vägnar samt få tillgång till dina dolda koordinater och all annan information som du kan komma åt på webbplatsen.
       login: |
         Få tillgång till information som är relevant för att logga in på en tredjepartstjänst, som e-postadress,
         användarnamn, namn och användarikon som associeras med ditt konto här.
@@ -7477,7 +7118,7 @@ sv:
     errors:
       messages:
         #Common error messages
-        invalid_request: 'Begäran saknar en obligatorisk parameter, innehåller ett parametervärde som inte stöds, eller är på annat sätt felformulerad.'
+        invalid_request: 'Begäran saknar en obligatorisk parameter, innehåller ett parametervärde som inte stöds eller är på annat sätt felformulerad.'
         invalid_redirect_uri: 'Den omdirigerings-uri som ingår är inte giltig.'
         unauthorized_client: 'Klienten har inte behörighet att utföra denna begäran med denna metod.'
         access_denied: 'Resursägaren eller auktoriseringsservern nekade begäran.'
@@ -7499,7 +7140,7 @@ sv:
       applications:
         create:
           #Application as in a software application
-          notice: 'Applikationen har skapats.'
+          notice: 'Applikationen skapades.'
         destroy:
           #Application as in a software application
           notice: 'Applikationen raderad.'
@@ -7509,7 +7150,7 @@ sv:
       authorized_applications:
         destroy:
           #Application as in a software application
-          notice: 'Applikationen har återkallats.'
+          notice: 'Applikationen återkallad.'
   i18n:
     inflections:
       "@vow_or_con":
