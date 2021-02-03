@@ -809,8 +809,6 @@ de:
   check_out_our_blog: Teste unseren Blog
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_out_your_new_and_improved_list_list: Schau dir deine neue und verbesserte Life-Liste an!
-  check_this_box_if_html: |
-    Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a> stellen möchtest. Das bedeutet, dass jeder Deine Fotos und/oder Beobachtungen kopieren und wiederverwenden kann, ohne um Erlaubnis zu bitten, solange eine Namensnennung erfolgt und die Werke nicht kommerziell genutzt werden. Du kannst eine andere Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz für die Weitergabe an Forscher.
   checklist: Checkliste
   choose_a_field: Ein Feld auswählen
   choose_a_list_above: Wähle eine der obigen Listen.
@@ -1769,7 +1767,7 @@ de:
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber zumindest kann ich bestätigen, dass es sich um %{taxon} handelt
+  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber ich kann bestätigen, dass es sich um %{taxon} handelt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -1888,7 +1886,7 @@ de:
   iphone: iPhone
   is_not_following_anyone: folgt niemandem.
   is_now: ist jetzt
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung als '%{taxon}' widersprochen werden?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
@@ -2441,7 +2439,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja, der Nachweis lässt eine Bestimmung als %{taxon} nicht zu"
+  no_but_it_is_a_member_of_taxon: "Ja, aber der Nachweis lässt die Bestimmung %{taxon} zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -3339,7 +3337,7 @@ de:
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Beiträge
-  potential_disagreement: Soll der Bestimmung widersprochen werden?
+  potential_disagreement: Besteht Einwand gegen die aktuelle Bestimmung?
   powered_by: Betrieben von
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
@@ -4409,7 +4407,7 @@ de:
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
-  user_disagrees_this_is_taxon: "%{user} stimmt der Bestimmung als %{taxon} nicht zu"
+  user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
