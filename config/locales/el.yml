@@ -800,10 +800,6 @@ el:
   check_out_our_blog: Κοιτάξτε το ιστολόγιό μας
   check_out_what_the_observation: Δες πως φαίνεται η παρατήρηση που προσπαθείς να ταυτοποιήσεις.
   check_out_your_new_and_improved_list_list: Ρίξτε μια ματιά στη νέα και βελτιωμένη Λίστα Ζωής!
-  check_this_box_if_html: |
-    Πατήστε σε αυτό το κουτί αν θέλετε να βάλετε ένα<a
-    href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>Creative Commons Attribution-NonCommercial license</a>για να ανεβάσετε περιεχόμενο.Αυτό σημαίνει ότι οποιοσδήποτε μπορεί να αντιγράφει και να χρησιμοποιεί τις φωτογραφίες σας και/ή τις παρατηρήσεις χωρίς να χρειάζεται άδεια με την προϋπόθεση να σας αναφέρουν και να μην τις χρησιμοποιούν για εμπορικούς λόγους. Μπορείτε να επιλέξετε μια διαφορετική άδεια ή να αφαιρέσετε αυτή την άδεια αργότερα, αλλά αυτή είναι η καλύτερη άδεια για να μοιράζεστε με τους ερευνητές.
   checklist: Λίστα ελέγχου
   choose_a_field: Επιλέξτε ένα πεδίο
   choose_a_list_above: Επιλέξτε μια λίστα παραπάνω.
@@ -1128,7 +1124,7 @@ el:
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-    Να εκτελούν αλλαγλες σε ταξινομικές μονάδες για <a href="/pages/curator+guide#completetaxa"
+    Να εκτελούν αλλαγές σε ταξινομικές μονάδες για <a href="/pages/curator+guide#completetaxa"
     target="_blank">πλήρης ταξινομικές μονάδες</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
@@ -5001,7 +4997,7 @@ el:
       filter_by: Φιλτράρισμα κατά
       filtered_by: Φιλτραρισμένο κατά
       apply_filters_to_export: Εφαρμογή φίλτρων για εξαγωγή
-      restrict_to_leaf_taxa: Περιορισμός σε ταξινομικές μονάδες (taxa) με φύλλα
+      restrict_to_leaf_taxa: Περιορισμός σε ταξινομικές μονάδες (taxa) "φύλλα"
       restrict_to_taxon: Περιορισμός σε %{taxon}
       restrict_to_taxa_observed_in_place: Περιορισμός στα taxa που παρατηρήθηκαν στην περιοχή %{place}
       exporting_all_x_taxa:
