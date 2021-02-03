@@ -5,13 +5,12 @@ describe ListsController do
   describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
-      place = Place.make!
-      user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      user = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
       sign_in user
+      place = make_place_with_geom(user: user)
       post :create, list: { title: "foo", type: "CheckList"}, taxa: [{ taxon_id: taxon.id}], place: place.id
       expect(response).to be_redirect
-      list = user.lists.last
-      expect(list.rules.first.operand_id).to be(taxon.id)
+      list = List.where(place_id: place.id).last
       expect(list).to be_a(CheckList)
     end
 
@@ -19,18 +18,18 @@ describe ListsController do
       taxon = Taxon.make!
       user = User.make!
       sign_in user
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
       post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
     end
 
     it "creates lists for users with speech privilege" do
       taxon = Taxon.make!
       user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       sign_in user
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
       post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
-      expect( user.lists.count ).to eq 2
+      expect( user.lists.count ).to eq 1
     end
   end
 

@@ -538,6 +538,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
@@ -554,6 +578,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+        
         expect( place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).not_to be_blank
         user.sane_destroy
         Delayed::Worker.new.work_off

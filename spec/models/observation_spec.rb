@@ -777,7 +777,7 @@ describe Observation do
         o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to be_blank
+      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(0)
     end
 
     it "should only queue one job to refresh project lists if taxon changed" do
@@ -1401,10 +1401,9 @@ describe Observation do
     it "should update a listed taxon stats" do
       t = Taxon.make!
       u = User.make!
-      without_delay do
-        l = List.make!(user: u)
-        lt = ListedTaxon.make!(list: l)
-      end
+      l = List.make!(user: u)
+      lt = ListedTaxon.make!(list: l, taxon: t)
+      expect(lt.first_observation).to be_blank
       o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
       o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
       lt.reload
