@@ -124,6 +124,11 @@
     .box.announcement .btn:not(:first-child) {
       margin-left: 15px;
     }
+    .list-icon {
+      position: relative;
+      left: -35px;
+      top: 40px;
+    }
   </style>
 <% end -%>
 
@@ -140,11 +145,10 @@
   <div id="lists" class="clear">
     <div class="column span-12 <%= cycle('', 'last') %>">
         <div id="life-list" class="clear list dynamic_life_list">
-          <div class="last column span-8">
-            <div id="pageheader" class="byloginheader column span-24">
-              <%= image_tag(@selected_user.icon.url(:medium), class: 'parenticon usericon', style: "width: 86.5px; vertical-align:middle") %>
-              <%= link_to t(:view_dynamic_lifelist).upcase, by_login_lifelists_path( login: @selected_user.login ), class: 'lifelist-button'%>
-            </div>
+          <div>
+            <%= image_tag(@selected_user.icon.url(:medium), class: 'parenticon usericon', style: "padding:5px;width: 108px; vertical-align:middle") %>
+            <img src="<%= image_path('lists-life-list.svg') %>" class="list-icon"></img>
+            <%= link_to t(:view_dynamic_lifelist).upcase, by_login_lifelists_path( login: @selected_user.login ), class: 'lifelist-button'%>
           </div>
         </div>
       </div>
