@@ -792,20 +792,6 @@ class Project < ActiveRecord::Base
     end
   end
   
-  def self.refresh_project_list(project, options = {})
-    unless project.is_a?(Project)
-      project = Project.where(id: project).includes(:project_list).first
-    end
-    
-    if project.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
-        "project #{project} because it doesn't exist."
-      return
-    end
-    
-    project.project_list.refresh(options)
-  end
-  
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
     observed_taxa_count = if project.is_new_project?

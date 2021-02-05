@@ -563,6 +563,7 @@ class ListedTaxon < ActiveRecord::Base
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless list
+    return unless list.is_a?( CheckList )
     Logstasher.write_hash(
       "@timestamp": Time.now,
       subtype: "ListedTaxon#cache_columns",

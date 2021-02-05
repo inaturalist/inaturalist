@@ -249,21 +249,25 @@
                 <% if params[:iconic_taxon] %>
                   <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
                 <% end %>
-                <label><%=t :observed %></label>
-                <br>
-                <%= label :observed, :t do %>
-                  <%= radio_button_tag :observed, :t, @observed == 't' %>
-                  <%= t(:yes).downcase %>
-                <% end -%>
-                <%= label :observed, :f do %>
-                  <%= radio_button_tag :observed, :f, @observed == 'f' %>
-                  <%= t(:no).downcase %>
-                <% end -%>
-                <%= label :observed, :any do %>
-                  <%= radio_button_tag :observed, :any, @observed.blank? %>
-                  <%= t(:any) %>
-                <% end -%>
               </div>
+              <% if @list.is_a?( CheckList ) %>
+                <div class="field">
+                  <label><%=t :observed %></label>
+                  <br>
+                  <%= label :observed, :t do %>
+                    <%= radio_button_tag :observed, :t, @observed == 't' %>
+                    <%= t(:yes).downcase %>
+                  <% end -%>
+                  <%= label :observed, :f do %>
+                    <%= radio_button_tag :observed, :f, @observed == 'f' %>
+                    <%= t(:no).downcase %>
+                  <% end -%>
+                  <%= label :observed, :any do %>
+                    <%= radio_button_tag :observed, :any, @observed.blank? %>
+                    <%= t(:any) %>
+                  <% end -%>
+                </div>
+              <% end -%>
               <div class="field">
                 <label><%=t :rank %></label>
                 <br>

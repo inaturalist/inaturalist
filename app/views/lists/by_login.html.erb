@@ -18,11 +18,8 @@
       color: white;
       border-color: #74ac00;
       border-radius: 100px;
-      padding: 3px 12px 3px 12px;
-      line-height: 1.42857143;
+      padding: 11px 15px 9px 15px;
       display: inline-block;
-      margin-bottom: 0;
-      margin-left: 50px;
       text-align: center;
       white-space: nowrap;
       vertical-align: middle;
@@ -31,7 +28,9 @@
       user-select: none;
       background-image: none;
       border: 1px solid transparent;
-      font-size: 140%;
+      font-size: 18pt;
+      letter-spacing: 0.7pt;
+      font-family: 'Whitney Semibold'
     }
 
     .lifelist-button:hover {
@@ -126,8 +125,14 @@
     }
     .list-icon {
       position: relative;
-      left: -35px;
-      top: 40px;
+      left: -40px;
+      top: 42px;
+    }
+    .life-list-user-icon {
+      border-radius: 50%;
+      padding: 10px 0px 10px 0px;
+      width: 94px;
+      vertical-align: middle;
     }
   </style>
 <% end -%>
@@ -146,7 +151,7 @@
     <div class="column span-12 <%= cycle('', 'last') %>">
         <div id="life-list" class="clear list dynamic_life_list">
           <div>
-            <%= image_tag(@selected_user.icon.url(:medium), class: 'parenticon usericon', style: "padding:5px;width: 108px; vertical-align:middle") %>
+            <%= image_tag(@selected_user.icon.url(:medium), class: 'life-list-user-icon') %>
             <img src="<%= image_path('lists-life-list.svg') %>" class="list-icon"></img>
             <%= link_to t(:view_dynamic_lifelist).upcase, by_login_lifelists_path( login: @selected_user.login ), class: 'lifelist-button'%>
           </div>

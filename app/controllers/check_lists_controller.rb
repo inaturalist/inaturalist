@@ -7,6 +7,7 @@ class CheckListsController < ApplicationController
   before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
   before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_filter :set_iconic_taxa, :only => [:show]
+  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
 
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
@@ -102,6 +103,40 @@ class CheckListsController < ApplicationController
     end
   end
   
+  def add_from_observations_now
+    delayed_task(@list.reload_from_observations_cache_key) do
+      if job = @list.delay(priority: USER_PRIORITY,
+        unique_hash: { "#{ @list.class.name }::add_observed_taxa": @list.id }
+      ).add_observed_taxa(:force_update_cache_columns => true)
+        Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
+        job
+      end
+    end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded from observations",
+      :error => "Something went wrong reloading from observations",
+      :timeout => "Reload timed out, please try again later"
+    )
+  end
+  
+  def refresh_now
+    delayed_task(@list.refresh_cache_key) do
+      if job = @list.delay(priority: USER_PRIORITY,
+        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
+        ).refresh
+        Rails.cache.write(@list.refresh_cache_key, job.id)
+        job
+      end
+    end
+    
+    respond_to_delayed_task(
+      :done => "List rules re-applied",
+      :error => "Something went wrong re-applying list rules",
+      :timeout => "Re-applying list rules timed out, please try again later"
+    )
+  end
+
   private
 
   def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)

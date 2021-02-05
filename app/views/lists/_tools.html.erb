@@ -76,14 +76,14 @@
                 <li>
                   <%- msg = t(:this_will_add_listed_taxa) -%>
                   <%= link_to_function t(:reload_from_observations), 
-                    "confirmStartDelayed('#{msg}', '#{list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
+                    "confirmStartDelayed('#{msg}', '#{check_list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
                     :id => "add_from_observations_nowlink" %>
                 </li>
               <% end %>
               <li>
                 <%- msg = t(:this_will_refresh_listed_taxa).gsub(/\s+/m, " ") -%>
                 <%= link_to_function t(:refresh),
-                  "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
+                  "confirmStartDelayed('#{escape_javascript(msg)}', '#{check_list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
                   :id => "refresh_nowlink" %>
               </li>
             </ul>

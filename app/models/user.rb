@@ -836,7 +836,6 @@ class User < ActiveRecord::Base
       :quality_metrics,
       :sounds
     ]).find_each(batch_size: 100) do |o|
-      o.skip_refresh_lists = true
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.bulk_delete = true
@@ -918,11 +917,6 @@ class User < ActiveRecord::Base
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
       CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
-    end
-
-    # refresh project lists
-    project_ids.in_groups_of(100) do |group|
-      ProjectList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
     end
 
     end_log_timer

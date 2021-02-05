@@ -9,10 +9,9 @@ class ListsController < ApplicationController
   blocks_spam :except => load_except, :instance => :list
   check_spam only: [:create, :update], instance: :list
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :reload_from_observations]
+    :remove_taxon]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :load_user_by_login, :only => :by_login
-  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
   before_filter :set_iconic_taxa, :only => [:show]
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
@@ -202,70 +201,6 @@ class ListsController < ApplicationController
         end
       end
     end
-  end
-  
-  def reload_from_observations
-    delayed_task(@list.reload_from_observations_cache_key) do
-      @list.reload_from_observations
-    end
-    
-    respond_to_delayed_task(
-      done: t(:list_reloaded_from_observations),
-      error: t(:doh_something_went_wrong),
-      timeout: t(:reload_timed_out)
-    )
-  end
-  
-  def refresh
-    delayed_task(@list.refresh_cache_key) do
-      queue = @list.is_a?(CheckList) ? "slow" : nil
-      if job = @list.delay(priority: USER_PRIORITY, queue: queue,
-        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
-      ).refresh(skip_update_cache_columns: true)
-        Rails.cache.write(@list.refresh_cache_key, job.id)
-        job
-      end
-    end
-    
-    respond_to_delayed_task(
-      done: t(:list_rules_reapplied),
-      error: t(:doh_something_went_wrong),
-      timeout: t(:request_timed_out)
-    )
-  end
-  
-  def add_from_observations_now
-    delayed_task(@list.reload_from_observations_cache_key) do
-      if job = @list.delay(priority: USER_PRIORITY,
-        unique_hash: { "#{ @list.class.name }::add_observed_taxa": @list.id }
-      ).add_observed_taxa(:force_update_cache_columns => true)
-        Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
-        job
-      end
-    end
-    
-    respond_to_delayed_task(
-      :done => "List reloaded from observations",
-      :error => "Something went wrong reloading from observations",
-      :timeout => "Reload timed out, please try again later"
-    )
-  end
-  
-  def refresh_now
-    delayed_task(@list.refresh_cache_key) do
-      if job = @list.delay(priority: USER_PRIORITY,
-        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
-        ).refresh
-        Rails.cache.write(@list.refresh_cache_key, job.id)
-        job
-      end
-    end
-    
-    respond_to_delayed_task(
-      :done => "List rules re-applied",
-      :error => "Something went wrong re-applying list rules",
-      :timeout => "Re-applying list rules timed out, please try again later"
-    )
   end
   
   def guide
