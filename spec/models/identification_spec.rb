@@ -559,7 +559,7 @@ describe Identification, "deletion" do
     expect(o.quality_grade).to eq Observation::NEEDS_ID
   end
   
-  it "should queue a job to update project lists if owners ident" do
+  it "should not queue a job to update project lists if owners ident" do
     o = make_research_grade_observation
     Delayed::Job.delete_all
     stamp = Time.now
@@ -571,7 +571,7 @@ describe Identification, "deletion" do
 
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
-    expect(job).not_to be_blank
+    expect(job).to be_blank
     # puts job.handler.inspect
   end
   
