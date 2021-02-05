@@ -149,6 +149,7 @@ bg:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Относно начина на заселване
+  about_license_options: Относно различните лицензи
   about_licenses: За лицензите
   about_muting: Относно заглушаването
   #Header for a section describing taxon names
@@ -441,7 +442,13 @@ bg:
   any: без значение
   any_: Без значение
   anyone: Всеки
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Приложение
   applications: Приложения
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Кандидатстване
   apply_to_selected: Приложи към избраното
   apply_geoprivacy: Приложи геоповерителност
   apply_darr: "Приложи &darr;"
@@ -694,9 +701,14 @@ bg:
   confirm_your_info: Потвърдете данните си
   confirming_ids: Потвърждаващи разпознавания
   confirming_ids_description: Ако изключите това, повече няма да получавате известия за разпознавания потвърждаващи Вашето.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Свържи
   connect_to_provider: "Свържи с %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Свързани акаунти
+  connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
+  connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
   connecting_to_facebook: "Свързване с Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Свързването на акаунта Ви на %{site_name} с акаунтите на други сайтове ще ви позволи да влизате в %{site_name} използвайки данните си за тези сайтове."
@@ -806,6 +818,29 @@ bg:
   curating: Куриране
   curation: Куриране
   curator: Куратор
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Трябва да обясните, защо искате да станете куратор
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Защо искате да станете куратор?
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Заявката за кураторство беше изпратена
+  #Header
+  curator_application_what_curators_can_do: Какво могат да правят кураторите
+  #Header
+  curator_application_what_curators_cannot_do: Какво не могат да правят кураторите
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Да изтриват съдържание създадено от други потребители.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Да четат личните съобщения на други хора.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Кандидатстване за кураторство
   curators: Куратори
   curators_can_remove_observations_from: Кураторите могат да премахват наблюдения от проекта и техните разпознавания се показват до наблюденията в определени изгледи специфични за проектите. Кураторите могат също да виждат истинските координати на поверителни или замаскирани наблюдения добавени в проекта.
   danger_zone: Опасна зона
@@ -928,6 +963,10 @@ bg:
   disable_comments: Изключи коментарите
   disable_comments_desc: Забрани на хората да добавят нови коментари
   disagree_: Несъгласен
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Разедини
+  disconnect_caps: РАЗЕДИНИ
   disconnect_provider: "Откачи %{provider}"
   display: Изглед
   display_link_to_checklist: Показвай препратка към проектния списък на страницата на проекта
@@ -1050,6 +1089,7 @@ bg:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Външни приложения
+  external_applications_description: Външните приложения са приложения от трети страни, които сте оторизирали да използват Вашия акаунт на iNaturalist от Ваше име. Това им позволява да правят с Вашия акаунт всичко, което и Вие можете да правите; така че се уверете, че имате доверие на разработчиците на приложенията преди да им разрешите това.
   extinct: изчезнал
   extinct_in_the_wild: изчезнал в природата
   extra_properties: Допълнителни свойства
@@ -1058,6 +1098,7 @@ bg:
   facebook_account_information: Информация за вашия акаунт на Facebook
   facebook_account_not_linked: "%{user} вече не е със свързан Фейсбук акаунт, затова %{site_name} няма достъп до тази снимка."
   failed_to_repair_photo: "Неуспешно възстановяване на снимка: %{errors}"
+  failed_to_unlink_your_account: Неуспешно разединяване на Вашия акаунт
   'false': 'Невярно'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Харесвания
@@ -1188,6 +1229,7 @@ bg:
   fungi:
     one: гъба
     other: гъби
+  gbif: GBIF
   generate_taxonomic_tags_for_flickr: Генерирай таксономични етикети за снимките си от Flickr
   generate_widget: Генериране на приставка
   generate_your_stats: Генерирай своята статистика
@@ -1629,6 +1671,16 @@ bg:
   message: Съобщение
   message_from_user_on_date: От %{user} на %{date}
   messages: Съобщения
+  messages_new_correspondent_it_looks_like: |
+    Изглежда досега не сте разговаряли с този човек, така че имайте предвид следното:
+  messages_new_correspondent_specimens: |
+    Внимавайте, когато някой Ви поиска екземпляри или скрити данни. Опитайте се да проверите самоличността му. Поискайте да видите съответното разрешително, когато става въпрос за екземпляри.
+  messages_new_correspondent_personal: |
+    Не предоставяйте свои лични данни на хора, на които не можете да се доверите.
+  messages_new_correspondent_actions_html: |
+    Ако смятате, че този човек нарушава нашите <a href="%{tos_url}"
+    target="_blank">Условия за ползване</a> или не спазва нашите <a
+    href="%{guidelines_url}" target="_blank">Правила на общността</a> – моля, маркирайте това съобщение по-долу.
   misleading_or_illegal_content_html: |
     Подвеждащо или нелегално съдържание, расистки или етнически нападки и т.н. За по-подробна дефиниция на „неуместно“, погледнете <a href="/help#inappropriate">ЧЗВ</a>.
   #Label shown when a date has not been entered
@@ -1672,6 +1724,8 @@ bg:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
   month: Месец
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
@@ -1858,6 +1912,8 @@ bg:
   observation_: наблюдение
   observation_added: Наблюдението е добавено.
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
+  observation_belongs_to_project_requiring_field: |
+    Наблюдението е включено в проект, който изисква това поле. Наблюдението трябва да се премахне от проекта, за да може това поле да бъде изтрито.
   observation_brief_something_on_day_at_time_by_user: "Нещо на %{day} в %{time} от %{user}"
   observation_brief_something_on_day_by_user: "Нещо на %{day} от %{user}"
   observation_brief_something_by_user: "Нещо от %{user}"
@@ -1888,6 +1944,7 @@ bg:
   observation_date: Дата
   observation_date?: Дата?
   observation_field: Поле за наблюдения
+  observation_field_details: Подробно за това поле за наблюдения
   observation_field_type_text: Текст
   observation_field_type_numeric: Числов
   observation_field_type_date: Дата
@@ -1905,6 +1962,9 @@ bg:
   observed_on_datetime: Наблюдавано на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_requirements: Изисквания към наблюденията
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Изискванията към наблюдения бяха обновени на
   observation_rules: Правила за наблюдения
   observation_rules_description: |
     Можете да зададете правила, определящи кои наблюдения могат да бъдат добавяни към проекта, например ограничавайки наблюденията до определено място или таксон. Ако има повече от едно правило от даден вид, наблюденията ще са приемливи, ако отговарят на което и да е от правилата. Например, ако имате правила „Трябва да е от Земноводни“ и „Трябва да е от Влечуги“, то проектът ще приема наблюдения както на земноводни, така и на влечуги.
@@ -1932,6 +1992,7 @@ bg:
   observations_per_month: Наблюдения месечно
   observations_saved: Наблюденията са запазени!
   observations_specifying_this_field: Наблюдения указващи това поле
+  observations_specifying_this_field_with_value: Наблюдения задали на полето стойност „%{value}“
   observations_text_search_warning: |
     Текстовите търсения могат да върнат странни резултати когато са комбинирани с други филтри. Ако искате да намерите наблюдения на конкретен вид, използвайте филтъра за таксони.
   observations_this_year_vs_last_year: Наблюдения от тази година в сравнение с миналата
@@ -1940,6 +2001,8 @@ bg:
   observations_w_field: наблюдения с поле
   observations_was_successfully_updated: Наблюденията бяха обновени.
   observations_widget: Widget за наблюдения
+  observations_with_this_field: Наблюдения с това поле
+  observations_with_this_field_and_value: Наблюдения с това поле и тази стойност
   observations_without_media: Наблюдения без медия
   observationcounts_refreshed: Броят наблюдения подновен
   observed: Наблюдавано
@@ -2512,6 +2575,10 @@ bg:
   project_admins:
     one: Администратор на проекта
     other: Администратори на проекта
+  project_coordinate_access_enabled: |
+    Ще виждате скритите координати на наблюдения от членове, които са ги доверили
+  project_coordinate_access_disabled_until_datetime: |
+    Няма да имате достъп до скритите координати до %{datetime}
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
   project_curator_tools: Инструменти за куратори на проекта
@@ -2557,6 +2624,9 @@ bg:
   rank: Ранг
   rank_position: Ранг
   rank_restrictions: Рангови ограничения
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: Царство
     subkingdom: Подцарство
@@ -2717,6 +2787,8 @@ bg:
   scale_colon: "Скала:"
   schemes: Схеми
   schemes_including: Схеми включващи
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Научно име
   search: Търси
   search_all_fields: търси по всички полета
   search_by_name_or_email: Търси по име или имейл
@@ -2913,6 +2985,8 @@ bg:
   suggest_an_identification: Предложи разпознаване
   suggest_or_require_that: Предложи или изисквай участниците да попълват тези полета за наблюдения които добавят към твоя проект.
   suggestions: Предложения
+  suitable_for_the_global_biodiversity_information_facility: Подходящо за Глобалната информационна мрежа за биоразнообразие (GBIF)
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Подходящо за Уикипедия и сродните ѝ проекти
   summary: Резюме
   support_inaturalist: Подкрепете iNaturalist
   suspend_user: Запорирай потребителя
@@ -3071,6 +3145,8 @@ bg:
     Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
   this_will_re_apply_all_list_rules: |
     Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Това ще прекрати способността на iNaturalist да достъпва този акаунт от Ваше име, докато не възобновите достъпа му. Може да се наложи да промените настройките си на външния сайт, за да предотвратите напълно достъпа.
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   this_will_sign_you_out_current_session: Това ще ви отпише от текущата Ви сесия на това приложение.
@@ -3393,6 +3469,7 @@ bg:
   you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
+  you_must_choose_an_observation_field: Трябва да изберете поле за наблюдения
   you_must_fill_out_the_required_fields: Трябва да попълните задължителните полета
   you_must_select_at_least_one_taxon: Трябва да изберете поне един таксон
   you_must_specify_and_confirm_a_new_password: Трябва да укажете и потвърдите нова парола.
@@ -3526,6 +3603,7 @@ bg:
           В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
         date_range_help: "Максимална и минимална дата на наблюдаване във вида ГГГГ-ММ-ДД, напр. 2015-01-17"
       field_descriptions:
+        scientific_name: "Научно име на наблюдавания таксон според този сайт"
         time_zone: Часова зона на наблюдението
         taxon_geoprivacy: "Приложена е най-консервативната геоповерителност заради природозащитния статут на таксона от текущото разпознаване."
         coordinates_obscured: "Дали координатите са замаскирани (заради геоповерителност или застрашен таксон) или не"
@@ -3574,6 +3652,9 @@ bg:
         requirements_have_changed: |-
           Следният проект е променил изискванията си към наблюденията наскоро:
         subject: Променени изисквания към наблюдения за проекта %{project}
+        wondering_what_this_means_html: |
+          Чудите се какво означава „геоповерителност“?
+          <a href="%{url}">Научете повече в нашата документация</a>.
         you_can_change_html: |-
           Можете да промените настройките си или да напуснете проекта на <a href="%{url}">страницата на проекта</a>.
       photos_missing:
@@ -3674,8 +3755,8 @@ bg:
           Позволявай на членовете да доверяват скритите си координати на проекта
         trust_help_desc: |-
           Ако искате достъп до скритите координати на замаскирани наблюдения, тази опция ще позволи на хората присъединили се хъм проекта, да предоставят достъп до тези скрити координати на администраторите на проекта. Членовете на проекта ще могат да предоставят достъп до скритите координати на всяко от техните наблюдения влизащи в проекта или само до тези наблюдения, които са замаскирани заради застрашен таксон.
-        trust_help_notification: |-
-          Същевременно обаче, това ще известява всички доверили се членове на проекта всеки път щом променяте изискванията на проекта, така че да могат да решат дали да продължат доверието си при тези нови изисквания.
+        trust_help_notification2: |-
+          Това обаче ще известява всички доверили се членове на проекта, всеки път щом промените изискванията към наблюдения на проекта. Така членовете ще могат да преразгледат решението си за доверие спрямо новите изисквания. Достъпът Ви до скрити координати ще бъде отменен за една седмица след промяната на изискванията, за да имат време членовете да вземат това решение.
       join:
         invite_only_description: |
           Членството в този проект е само по покана. Ако искате да се присъедините, свържете се с някой от кураторите по-долу и поискайте покана.
@@ -4635,6 +4716,7 @@ bg:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  wikimedia: Уикимедия
   wild: Див
   will_paginate:
     previous_label: "&#8592; Пред."

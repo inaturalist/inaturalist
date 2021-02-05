@@ -2665,6 +2665,9 @@ da:
   observed_on_datetime: Observeret %{datetime}
   observation_removed_from_the_project: "Observation fjernet fra projektet %{project}"
   observation_requirements: Krav til observationer
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Observationskrav opdateret d.
   observation_rules: Observationsregler
   observation_rules_description: |
     Du kan oprette regler, der afgør hvilke observationer, der kan tilføjes til dette projekt. Det kan være regler, som begrænser observationer til et bestemt geografisk sted eller eller til én bestemt takson. Hvis du har regler der overlapper hinanden, vil observationer blive accepteret hvis én af reglerne er i regelsættet opfyldes. For eksempel, hvis du har reglerne "skal være i
@@ -3440,6 +3443,10 @@ da:
     observationer af specifikke taksa eller taksa på en liste
   project_assessments: Projekt vurderinger
   project_assets: Projekt aktiver
+  project_coordinate_access_enabled: |
+    Du bør kunne se skjulte koordinater for observationer ved at gøre medlemmer betroede.
+  project_coordinate_access_disabled_until_datetime: |
+    Du vil ikke kunne tilgå skjulte koordinater før %{datetime}
   project_cover: Projekt bannerbillede
   project_created_on: oprettede dette projekt den %{date}
   project_curator_id: Projektkurator ID
@@ -5898,10 +5905,11 @@ da:
           vil denne indstilling tillade personer, som har tilmeldt sig dette projekt, mulighed for at betro projektadministratorer adgang til disse skjulte koordinater. Projektmedlemmer vil kunne tildele adgang til de skjulte koordinater for enhver
           af deres observationer, som vises i dette projekt, eller kun de
           observationer, som er slørede grundet truede taxa.
-        trust_help_notification: |-
-          Dette vil dog også advisere alle betroende projektmedlemmer, hver gang
-          du ændrer projektforudsætningerne, så de kan revurdere, hvorvidt de
-          ønsker fortsat at stole på dig baseret på de nye forudsætninger.
+        trust_help_notification2: |-
+          Dette vil dog også give alle betroende projektmedlemmer besked, hver gang
+          du ændrer projektetobservationskravene, så de kan revurdere, hvorvidt din status fortsat skal være betroet i betragtning af de nye krav.
+          Din adgang til skjulte koordinater inddrages i én uge efter
+          ændring af observationskravene, så medlemmer har tid til at gøre dette
         trusted_project_means: |
           At stole på et projekt betyder, at projektledere kan tilføje projekt
           aktiver og brugerdefinerede projektattributter (f.eks. banner HTML, CSS). Adgang til brugerdefinerede projektattributter betyder, at projektledere

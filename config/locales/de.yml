@@ -1241,6 +1241,8 @@ de:
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
   default_search_place: Standard-Ort für Suche
+  default_search_place_description: |
+    Dies wird dein Standardort für alle Suchvorgänge im Entdecken-Modus
   default_sound_license: Standard-Tonlizenz
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
   defines_a_taxon_framework_for: Definiert ein Taxon-Framework für %{taxon_name}
@@ -1767,7 +1769,7 @@ de:
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Ich weiß nicht, aber bin mir sicher, dass dies %{taxon} ist
+  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber zumindest kann ich bestätigen, dass es sich um %{taxon} handelt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -1886,7 +1888,7 @@ de:
   iphone: iPhone
   is_not_following_anyone: folgt niemandem.
   is_now: ist jetzt
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Sind die Daten ausreichend, um zu bestätigen, dass es sich um %{taxon} handelt?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung als '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
@@ -2439,7 +2441,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Nein, es ist aber ein Mitglied von %{taxon}"
+  no_but_it_is_a_member_of_taxon: "Ja, der Nachweis lässt eine Bestimmung als %{taxon} nicht zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -2613,6 +2615,9 @@ de:
   observed_on_datetime: Beobachtet am %{datetime}
   observation_removed_from_the_project: "Die Beobachtung wurde aus dem Projekt \"%{project}\" entfernt."
   observation_requirements: Beobachtungsvoraussetzungen
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Beobachtungsbedingungen aktualisiert am
   observation_rules: Beobachtungsregeln
   observation_rules_description: |
     Du kannst Regeln wählen, um festzulegen, welche Beobachtungen zu diesem Projekt hinzugefügt werden können, wie z.B. die Beschränkung auf einen bestimmten Ort oder ein bestimmtes Taxon. Wenn du mehr als eine Regel für eine Art von Regel hast, sind Beobachtungen gültig, wenn eine der beiden Regeln zutrifft. Wenn du zum Beispiel die Regeln "muss in Amphibia sein" und "muss in Reptilia sein" hast, dann akzeptiert das Projekt Beobachtungen von Reptilien oder Amphibien.
@@ -2639,7 +2644,7 @@ de:
     Beobachtungen "in der Nähe" eines Ortes befinden sich innerhalb eines Rechtecks, das um die Grenze des Gebiets gezeichnet wird, was zu ungenauen Ergebnissen für Orte führen kann, wenn Orte einem Rechteck entsprechen. Dies ist auf eine Einschränkung unserer Datenbank zurückzuführen, an deren Lösung wir arbeiten.
   observations_needing_curation: Beobachtungen, die einer Kuration bedürfen
   observations_observed_this_month: Diesen Monat <em>beobachtete</em> Beobachtungen (nicht hinzugefügte). Finde noch mehr!
-  observations_of_relatives: Beobachtungen von Verwandten
+  observations_of_relatives: Beobachtungen von verwandten Taxa
   observations_of_taxon: "Beobachtungen von %{taxon_name}"
   observations_per_month: Beobachtungen/Monat
   observations_removed_from_the_project: "Aus dem Projekt \"%{project}\" entfernte Beobachtungen"
@@ -3334,7 +3339,7 @@ de:
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Beiträge
-  potential_disagreement: Möglicher Widerspruch
+  potential_disagreement: Soll der Bestimmung widersprochen werden?
   powered_by: Betrieben von
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
@@ -3373,6 +3378,10 @@ de:
   project_aggregator_filter_error: |
     Projekte können keine automatische Beobachtungsaggregation ermöglichen, es sei denn, das Projekt ist mit einem Ort moderater Größe verbunden oder es sind nur Beobachtungen von bestimmten Taxa oder Taxa auf einer Liste erlaubt
   project_assessments: Projektbewertungen
+  project_coordinate_access_enabled: |
+    Du solltest die versteckten Koordinaten von Beobachtungen der Benutzer sehen können, die dir vertrauen.
+  project_coordinate_access_disabled_until_datetime: |
+    Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -4290,6 +4299,7 @@ de:
   unknown_rank: '(Unbekannter Rang)'
   unfollow: Nicht mehr folgen
   unlink_your_google_account: Dein Google-Konto trennen
+  unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Ton an
   updates_notification_email_subject: "%{prefix} Neue Aktualisierungen %{date}"
   updates_suspension_email_subject: "%{prefix} Deine Abonnements wurden ausgesetzt"
@@ -4298,6 +4308,7 @@ de:
   unpublish: Veröffentlichung rückgängig machen
   #Undo the action of resolving a flag
   unresolve: ungelöst
+  unreview_all: Alle als 'nicht betrachtet' markieren
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
@@ -4398,7 +4409,7 @@ de:
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
-  user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
+  user_disagrees_this_is_taxon: "%{user} stimmt der Bestimmung als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
@@ -4946,9 +4957,12 @@ de:
           Raster einzelner Bilder, keine Beschreibungen
         book: |
           Vollständiger Guide mit allen Bildern und Beschreibungen, die sich über mehrere Seiten erstrecken.
+      pdf_generation_notice: |
+        Bitte haben einen Moment Geduld, die Generierung großer PDFs kann eine oder zwei Minuten dauern.
       tags_help_html: |
         Tags sind wie Kategorien für die Arten in deinem Guide, außer dass mehrere Arten den gleichen Tag haben können. Gib Tags als kommagetrennte Liste ein, z.B. <code>klein, pelzig</code>. Um benannte Kategorien zu benutzen, verwende Tags wie <code>category_name=category_value</code>, z.B. <code>Farbe=gelbe</code>.
       sorts:
+        default: Reihenfolge der Guides
         alphaname: Alphabetisch nach wissenschaftlichem Namen
         alphadisplay: Alphabetisch nach Anzeigename
     guide_taxa:
@@ -5081,6 +5095,7 @@ de:
           verschiedenen vorgeschlagenen IDs sehen können.
           </p>
         you_have_opted_out: Du hast Dich aus den Community-Bestimmungen zurückgezogen
+        opt_in_for_this_observation: Community-ID für diese Beobachtung zulassen
         your_id_does_not_match: |
           Deine ID (<span class="bold">%{taxon_name}</span>) stimmt nicht mit der Community-ID überein
       copy_tip: "Füge eine neue Beobachtung hinzu, indem du Datum, Ort, Bilder und Beobachtungsfelder dieser Beobachtung kopierst."
@@ -5595,10 +5610,10 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
-        trust_help_notification: |-
-          Dies wird jedoch auch alle Projektmitglieder benachrichtigen jedes Mal, wenn
-          du die Projektanforderungen änderst, damit sie neu beurteilen können, ob sie dir
-          weiterhin vertrauen wollen.
+        trust_help_notification2: |-
+          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
+          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
+          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.
@@ -5695,6 +5710,7 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
+        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für Bioblitz-artige Veranstaltungen)
         traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         trusting_members_will_be_notified: |
           Du hast die Projektanforderungen geändert oder das Nutzervertrauen aktiviert. Dieses
@@ -6270,6 +6286,8 @@ de:
           Identität mit deiner bestehenden Spende verifizieren.
     welcome:
       index:
+        welcome_message_html: |
+          bei %{image}, hier kannst du deine Naturbeobachtungen <strong>erfassen</strong>, andere Naturbeobachter <strong>treffen</strong> und mehr über die Welt der Natur <strong>lernen</strong>.
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
         observations_to_date: 'Beobachtungen bis dato'
