@@ -1436,12 +1436,19 @@ class Observation < ActiveRecord::Base
     cps = collection_projects( authenticate: viewer )
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
-      if cp.observation_requirements_updated_at > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+      if cp.observation_requirements_updated_at.blank?
+        # If we don't know when it was updated, assume no access
+        false
+      elsif cp.observation_requirements_updated_at > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        # If we're still in the wait period, no access
         false
       elsif !cp.prefers_user_trust?
+        # If the project isn't configured to support trust, no access
         false
       elsif pu && pu.prefers_curator_coordinate_access_for &&
           pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
+        # Assuming everything else check's out, we need to look at the project
+        # member's preferences
         if GEOPRIVACIES.include?( geoprivacy ) &&
             pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
           false

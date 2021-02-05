@@ -580,11 +580,15 @@ module DarwinCore
           else
             0
           end
-          avg_observation_time = avg_batch_time / 500
+          avg_observation_time = avg_batch_time / ObservationSearch::SEARCH_IN_BATCHES_BATCH_SIZE
           msg = "Observation batch #{batch_times.size}"
           msg += " for #{options[:label]}" if options[:label]
-          msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
-          logger.debug msg
+          msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s, obs in batch: #{batch.size})"
+          if batch_times.size % 100 == 0
+            logger.info msg
+          else
+            logger.debug msg
+          end
           try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
             Observation.preload_associations(batch, preloads)
           end
