@@ -213,12 +213,12 @@ describe Observation do
       expect(@observation.identifications.first.taxon).to eq @observation.taxon
     end
   
-    it "should queue a DJ job to refresh lists" do
+    it "should not queue a DJ job to refresh lists" do
       Delayed::Job.delete_all
       stamp = Time.now
       Observation.make!(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to be_blank
     end
   
     it "should properly parse relative datetimes like '2 days ago'" do
@@ -747,7 +747,7 @@ describe Observation do
       expect(obs.iconic_taxon).to be_blank
     end
 
-    it "should queue refresh jobs for associated project lists if the taxon changed" do
+    it "should not queue refresh jobs for associated project lists if the taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       pu = ProjectUser.make!(:user => o.user)
       po = ProjectObservation.make!(:observation => o, :project => pu.project)
@@ -756,7 +756,7 @@ describe Observation do
       o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
-      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).to be_blank
     end
   
     it "should queue refresh job for check lists if the coordinates changed" do
@@ -780,7 +780,7 @@ describe Observation do
       expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(0)
     end
 
-    it "should only queue one job to refresh project lists if taxon changed" do
+    it "should not queue job to refresh project lists if taxon changed" do
       po = make_project_observation(:taxon => Taxon.make!)
       o = po.observation
       Delayed::Job.delete_all
@@ -789,7 +789,7 @@ describe Observation do
         o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(1)
+      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(0)
     end
 
     it "should only queue one check list refresh job" do
@@ -817,7 +817,7 @@ describe Observation do
       # puts job.handler.inspect
     end
   
-    it "should queue refresh job for project lists if the taxon changed" do
+    it "should not queue refresh job for project lists if the taxon changed" do
       po = make_project_observation
       o = po.observation
       Delayed::Job.delete_all
@@ -826,7 +826,7 @@ describe Observation do
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /ProjectList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
-      expect(job).not_to be_blank
+      expect(job).to be_blank
       # puts job.handler.inspect
     end
   
@@ -1398,7 +1398,7 @@ describe Observation do
       expect(p.observations_count).to eq(0)
     end
 
-    it "should update a listed taxon stats" do
+    it "should not update a listed taxon stats" do
       t = Taxon.make!
       u = User.make!
       l = List.make!(user: u)
@@ -1407,8 +1407,8 @@ describe Observation do
       o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
       o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
       lt.reload
-      expect(lt.first_observation).to eq o1
-      expect(lt.last_observation).to eq o2
+      expect(lt.first_observation).to  be_blank
+      expect(lt.last_observation).to  be_blank
     end
   end
 
@@ -1428,12 +1428,12 @@ describe Observation do
       expect(user.observations_count).to eq old_count - 1
     end
   
-    it "should queue a DJ job to refresh lists" do
+    it "should not queue a DJ job to refresh lists" do
       Delayed::Job.delete_all
       stamp = Time.now
       Observation.make!(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to be_blank
     end
 
     it "should delete associated updates" do

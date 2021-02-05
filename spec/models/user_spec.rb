@@ -630,13 +630,13 @@ describe User do
     describe "for owner of a project" do
       let(:project) { without_delay { Project.make!( user: user ) } }
 
-      it "should queue jobs to refresh project lists" do
+      it "should not queue jobs to refresh project lists" do
         expect( project.project_list ).not_to be_blank
         Delayed::Job.delete_all
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
-        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).not_to be_blank
+        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).to be_blank
       end
 
       it "should destroy projects with no observations" do

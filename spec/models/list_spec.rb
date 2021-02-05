@@ -39,17 +39,6 @@ describe List do
   
   end
 
-  describe "refresh_with_observation" do
-    it "should update stats" do
-      listed_taxon = ListedTaxon.make!
-      expect(listed_taxon.last_observation_id).to be_blank
-      o = Observation.make!(:user => listed_taxon.list.user, :taxon => listed_taxon.taxon)
-      List.refresh_with_observation(o, :skip_subclasses => true)
-      listed_taxon.reload
-      expect(listed_taxon.last_observation_id).to eq o.id
-    end
-  end
-
   describe "rank rules" do
     let(:list) { List.make! }
     let(:genus) { Taxon.make!(name: 'Foo', rank: 'genus')}
@@ -57,21 +46,21 @@ describe List do
     it "should default to any" do
       expect(list.rank_rule).to eq 'any'
     end
-    it "should refresh the list when changed" do
+    it "should not refresh the list when changed" do
       list.add_taxon(genus, manually_added: true)
       list.add_taxon(species, manually_added: true)
       without_delay do
         expect {
           list.update_attributes(rank_rule: "species?")
-        }.to change(list.listed_taxa, :count).by(-1)
+        }.to change(list.listed_taxa, :count).by(0)
       end
     end
-    it "should remove genera when changed to species-only" do
+    it "should not remove genera when changed to species-only" do
       list.add_taxon(genus, manually_added: true)
       list.add_taxon(species, manually_added: true)
       without_delay do
         list.update_attributes(rank_rule: "species?")
-        expect(list.taxa).not_to include genus
+        expect(list.taxa).to include genus
       end
     end
   end

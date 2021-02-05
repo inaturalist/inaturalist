@@ -5,11 +5,11 @@ describe ProjectObservation, "creation" do
   before(:each) do
     setup_project_and_user
   end
-  it "should queue a DJ job for the list" do
+  it "should not queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
@@ -261,11 +261,11 @@ describe ProjectObservation, "destruction" do
     disable_has_subscribers
   }
 
-  it "should queue a DJ job for the list" do
+  it "should not queue a DJ job for the list" do
     stamp = Time.now
     @project_observation.destroy
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
