@@ -27,16 +27,16 @@ describe ListedTaxon do
       @listed_taxon.reload
     end
     
-    it "should set last observation" do
-      expect(@listed_taxon.last_observation_id).to eq(@last_observation.id)
+    it "should not set last observation" do
+      expect(@listed_taxon.last_observation_id).to be_blank
     end
     
-    it "should set first observation" do
-      expect(@listed_taxon.first_observation_id).to eq(@first_observation.id)
+    it "should not set first observation" do
+      expect(@listed_taxon.first_observation_id).to be_blank
     end
     
-    it "should set observations_count" do
-      expect(@listed_taxon.observations_count).to eq(2)
+    it "should not set observations_count" do
+      expect(@listed_taxon.observations_count).to be_blank
     end
 
   end
@@ -181,18 +181,6 @@ describe ListedTaxon do
   end
   
   describe "updating" do
-    it "should set cache columns BEFORE validation" do
-      lt = ListedTaxon.make!
-      good_obs = Observation.make!(:user => lt.list.user, :taxon => lt.taxon)
-      bad_obs = Observation.make!(:user => lt.list.user)
-      lt.update_attributes(:first_observation => good_obs)
-      expect(lt).to be_valid
-      ListedTaxon.where(id: lt.id).update_all(first_observation_id: bad_obs.id)
-      lt.reload
-      expect(lt).to be_valid
-      expect(lt.first_observation_id).to be == good_obs.id
-    end
-    
     it "should fail if occurrence_status set to absent and there is a confirming observation" do
       l = CheckList.make!
       t = Taxon.make!
