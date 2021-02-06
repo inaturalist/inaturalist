@@ -36,7 +36,7 @@ describe ListedTaxon do
     end
     
     it "should not set observations_count" do
-      expect(@listed_taxon.observations_count).to be_blank
+      expect(@listed_taxon.observations_count).to eq 0
     end
 
   end
