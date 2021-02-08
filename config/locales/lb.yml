@@ -468,7 +468,14 @@ lb:
     adult: Erwuessen
     pupa: Popp
     egg: Ee
+    juvenile: Juvenil
     alive_or_dead: Lieweg oder Dout
+    alive: Lieweg
+    dead: Dout
+    cannot_be_determined: Ka net bestëmmt ginn
+  controlled_term_definitions:
+    alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
+    dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
