@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 }
 
 function mapDispatchToProps( dispatch ) {
-  const setPlace = ( place ) => {
+  const setPlace = place => {
     dispatch( setConfigAndUrl( { chosenPlace: place } ) );
     // reload terms to filter by chosen place
     dispatch( fetchTerms( ) );

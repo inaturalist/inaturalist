@@ -1076,6 +1076,20 @@ body > [role="dialog"] .PhotoChooserModal {
 }
 #place-chooser-container {
   margin-top: 20px;
+  .PlaceChooserPopoverTrigger {
+    &.chosen {
+      padding: 5px 10px;
+      background-color: $inat-green;
+      i.fa {
+        color: white;
+      }
+      color: white;
+      border-radius: 20px;
+    }
+    .clear-button {
+      margin-left: 5px;
+    }
+  }
 }
 .ObservationsGridItem {
   .photo {
@@ -1107,4 +1121,3 @@ body > [role="dialog"] .PhotoChooserModal {
     display: none
   }
 }
-
