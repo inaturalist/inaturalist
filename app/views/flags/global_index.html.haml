@@ -14,7 +14,7 @@
         if ( $( this ).val( ) === "all" ) {
           $( "form .content-deleted" ).hide( );
         } else {
-          $( "form .content-deleted" ).show( );
+          $( "form .content-deleted" ).show( ).removeClass( "hidden" );
         }
         $( "form select[name='deleted']" ).val( "any" );
       } );

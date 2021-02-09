@@ -55,7 +55,7 @@ class FlagsController < ApplicationController
       "no"
     end
     @deleted = if params[:deleted].blank?
-      "no"
+      "any"
     elsif params[:deleted] == "any"
       "any"
     elsif params[:deleted].yesish?
