@@ -365,8 +365,9 @@ class Identification < ActiveRecord::Base
 
   def create_observation_review
     return true if skip_observation || bulk_delete
-    ObservationReview.where(observation_id: observation_id,
-      user_id: user_id).first_or_create.touch
+    ObservationReview.where(observation_id: observation_id, user_id: user_id).
+      first_or_create.
+      update_attributes( reviewed: true, updated_at: Time.now )
     true
   end
 
