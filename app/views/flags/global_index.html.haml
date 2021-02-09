@@ -10,6 +10,14 @@
       } );
       $( "form #resolver_name" ).userAutocomplete( { idEl: $( "#resolver_user_id" ) } );
       $( "form #taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_id" ) } );
+      $( "form select[name='flaggable_type']" ).change( function( ) {
+        if ( $( this ).val( ) === "all" ) {
+          $( "form .content-deleted" ).hide( );
+        } else {
+          $( "form .content-deleted" ).show( );
+        }
+        $( "form select[name='deleted']" ).val( "any" );
+      } );
     });
 - content_for :extracss do
   :css
@@ -65,6 +73,13 @@
                   =t :taxon
                   %input{ type: "text", name: "taxon_name", id: "taxon_name", placeholder: t(:start_typing_taxon_name, default: "" ), class: "form-control" }
                   %input{ type: "hidden", name: "taxon_id", id: "taxon_id", value: @taxon.try(:id) }
+              %div{ class: "content-deleted form-group #{%w(yes no).include?( @deleted ) ? "" : "hidden"}"}
+                %label=t :content_deleted
+                :ruby
+                  deleted_options = options_for_select( %w(any yes no).map {|t|
+                    [I18n.t( t, default: t ), t]
+                  }, @deleted )
+                = select_tag :deleted, deleted_options, class: "select form-control"
             .col-xs-3
               %label=t :reason
               .form-group
@@ -90,7 +105,7 @@
             .col-xs-12
               = submit_tag t(:filter), class: "btn btn-primary"
               = link_to t(:reset_filters_short), url_for, class: "btn btn-link"
-              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page] )
+              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page, :deleted] )
   .row
     .col-xs-12
       %table.table
