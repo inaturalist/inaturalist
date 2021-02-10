@@ -145,7 +145,7 @@ class TaxonAutocomplete extends React.Component {
     this.autocomplete = this.autocomplete.bind( this );
     this.updateWithSelection = this.updateWithSelection.bind( this );
     // eslint-disable-next-line react/no-unused-state
-    this.state = { notNearby: false };
+    this.state = { viewNotNearby: false, nearbyAvailable: true };
   }
 
   componentDidMount( ) {
@@ -182,23 +182,24 @@ class TaxonAutocomplete extends React.Component {
         this._renderItemData( ul, item );
       } );
       const query = that.inputElement( ).val( );
-      if ( !query || query.length === 0 ) {
-        const { notNearby } = getState( );
+      const manualQuery = !query || query.length === 0;
+      const { nearbyAvailable, viewNotNearby } = getState( );
+      if ( manualQuery && nearbyAvailable ) {
         const nearbyToggle = $( "<button />" ).attr( "type", "button" )
           .append(
-            notNearby
+            viewNotNearby
               ? I18n.t( "only_view_nearby_suggestions" )
               : I18n.t( "view_suggestions_not_seen_nearby" )
           )
           .click( e => {
             e.preventDefault( );
-            const { notNearby: innerNotNearby } = getState( );
+            const { viewNotNearby: innerViewNotNearby } = getState( );
             $( e.target ).text(
-              innerNotNearby
+              innerViewNotNearby
                 ? I18n.t( "view_suggestions_not_seen_nearby" )
                 : I18n.t( "only_view_nearby_suggestions" )
             );
-            setState( { notNearby: !innerNotNearby } );
+            setState( { viewNotNearby: !innerViewNotNearby } );
             that.inputElement( ).autocomplete( "search" );
             return false;
           } );
@@ -272,9 +273,18 @@ class TaxonAutocomplete extends React.Component {
 
   returnVisionResults( response, callback ) {
     let { results } = response;
-    const { notNearby } = this.state;
-    if ( !notNearby ) {
-      results = _.filter( response.results, r => r.frequency_score && r.frequency_score > 0 );
+    const { viewNotNearby } = this.state;
+    const nearbyResults = _.filter( response.results,
+      r => r.frequency_score && r.frequency_score > 0 );
+    if ( nearbyResults.length > 0 ) {
+      // eslint-disable-next-line react/no-unused-state
+      this.setState( { nearbyAvailable: true } );
+      if ( !viewNotNearby ) {
+        results = nearbyResults;
+      }
+    } else {
+      // eslint-disable-next-line react/no-unused-state
+      this.setState( { nearbyAvailable: false } );
     }
     const visionTaxa = _.map( results.slice( 0, 8 ), r => {
       const taxon = new iNatModels.Taxon( r.taxon );
