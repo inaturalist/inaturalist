@@ -144,15 +144,24 @@ class TaxonAutocomplete extends React.Component {
     this.thumbnailElement = this.thumbnailElement.bind( this );
     this.autocomplete = this.autocomplete.bind( this );
     this.updateWithSelection = this.updateWithSelection.bind( this );
-    // eslint-disable-next-line react/no-unused-state
-    this.state = { viewNotNearby: false, nearbyAvailable: true };
+    const { config } = props;
+    const { currentUser } = config;
+    this.state = {
+      viewNotNearby: currentUser && currentUser.prefers_not_nearby_suggestions,
+      // eslint-disable-next-line react/no-unused-state
+      nearbyAvailable: true
+    };
   }
 
   componentDidMount( ) {
     const {
       afterUnselect,
-      initialSelection
+      initialSelection,
+      config
     } = this.props;
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const viewerIsAdmin = loggedInUser && loggedInUser.roles
+      && loggedInUser.roles.indexOf( "admin" ) >= 0;
     const that = this;
     const getState = ( ) => that.state;
     const setState = updates => that.setState( updates );
@@ -164,7 +173,8 @@ class TaxonAutocomplete extends React.Component {
         return;
       }
       const isVisionResults = items[0] && items[0].isVisionResult;
-      let speciesCategoryShown = false;
+      let commonAncestorCategoryShown = false;
+      let suggestionsCategoryShown = false;
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
@@ -172,19 +182,25 @@ class TaxonAutocomplete extends React.Component {
               rank: item.rank,
               gender: item.rank
             } );
-            ul.append( `<li class='category non-option'>${label}:</li>` );
-          } else if ( !speciesCategoryShown ) {
-            const label = I18n.t( "here_are_our_top_species_suggestions" );
-            ul.append( `<li class='category non-option'>${label}:</li>` );
-            speciesCategoryShown = true;
+            ul.append( `<li class='category header-category non-option'>${label}</li>` );
+            commonAncestorCategoryShown = true;
+          } else if ( !suggestionsCategoryShown ) {
+            let label = I18n.t( "here_are_our_top_species_suggestions" );
+            if ( viewerIsAdmin ) {
+              label = commonAncestorCategoryShown
+                ? I18n.t( "here_are_our_top_suggestions" )
+                : I18n.t( "not_confident_top_suggestions" );
+            }
+            ul.append( `<li class='category header-category non-option'>${label}</li>` );
+            suggestionsCategoryShown = true;
           }
         }
         this._renderItemData( ul, item );
       } );
       const query = that.inputElement( ).val( );
-      const manualQuery = !query || query.length === 0;
+      const manualQuery = query && query.length >= 0;
       const { nearbyAvailable, viewNotNearby } = getState( );
-      if ( manualQuery && nearbyAvailable ) {
+      if ( viewerIsAdmin && !manualQuery && nearbyAvailable ) {
         const nearbyToggle = $( "<button />" ).attr( "type", "button" )
           .append(
             viewNotNearby
@@ -200,6 +216,8 @@ class TaxonAutocomplete extends React.Component {
                 : I18n.t( "only_view_nearby_suggestions" )
             );
             setState( { viewNotNearby: !innerViewNotNearby } );
+            // eslint-disable-next-line no-undef
+            updateSession( { prefers_not_nearby_suggestions: !innerViewNotNearby } );
             that.inputElement( ).autocomplete( "search" );
             return false;
           } );
@@ -274,17 +292,23 @@ class TaxonAutocomplete extends React.Component {
   returnVisionResults( response, callback ) {
     let { results } = response;
     const { viewNotNearby } = this.state;
-    const nearbyResults = _.filter( response.results,
-      r => r.frequency_score && r.frequency_score > 0 );
-    if ( nearbyResults.length > 0 ) {
-      // eslint-disable-next-line react/no-unused-state
-      this.setState( { nearbyAvailable: true } );
-      if ( !viewNotNearby ) {
-        results = nearbyResults;
+    const { config } = this.props;
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const viewerIsAdmin = loggedInUser && loggedInUser.roles
+      && loggedInUser.roles.indexOf( "admin" ) >= 0;
+    if ( viewerIsAdmin ) {
+      const nearbyResults = _.filter( response.results,
+        r => r.frequency_score && r.frequency_score > 0 );
+      if ( nearbyResults.length > 0 ) {
+        // eslint-disable-next-line react/no-unused-state
+        this.setState( { nearbyAvailable: true } );
+        if ( !viewNotNearby ) {
+          results = nearbyResults;
+        }
+      } else {
+        // eslint-disable-next-line react/no-unused-state
+        this.setState( { nearbyAvailable: false } );
       }
-    } else {
-      // eslint-disable-next-line react/no-unused-state
-      this.setState( { nearbyAvailable: false } );
     }
     const visionTaxa = _.map( results.slice( 0, 8 ), r => {
       const taxon = new iNatModels.Taxon( r.taxon );

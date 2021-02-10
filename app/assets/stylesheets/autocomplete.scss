@@ -35,10 +35,12 @@ $label-start: 7px;
     background: white;
     cursor: default;
     list-style: none;
-    padding-left: 10px;
+    padding: 5px 10px;
     color: #666;
-    line-height: 32px;
     background: #eee;
+  }
+  .header-category:after {
+    content: ":"
   }
   .nearby-toggle {
     list-style: none;
