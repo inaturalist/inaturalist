@@ -27,11 +27,11 @@ class ListsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     @prefs = current_preferences
-    
+    prefs_per_page = @prefs["per_page"] - 1
     @lists = @selected_user.personal_lists.
       order("#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}").
-      paginate(:page => params[:page],
-        :per_page => @prefs["per_page"])
+      paginate(:page => params["page"],
+        :per_page =>prefs_per_page)
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.

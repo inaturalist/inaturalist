@@ -105,40 +105,21 @@
           <%=t :no_lists_yet %>
         </div>
       </div>
+    <% else %>
+      <%= render partial: "list_element", locals: { list: @lists.first } %>
     <% end %>
-    <% for list in @lists %>
-      <div class="col-md-6">
-        <div id="list-<%= list.id %>" class="list clear">
-          <% cache List.icon_preview_cache_key(list) do %>
-              <a href="<%= list_path(list) %>" class="float left <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
-                <% if @iconic_taxa_for[list.id].blank? %>
-                 <%=t :no_taxa_listed %>
-                <% else %>
-                  <div class="grid">
-                    <% for taxon in @iconic_taxa_for[list.id] %>
-                      <div class="cell photo">
-                       <%= taxon_image(taxon, :width => 32) %>
-                     </div>
-                    <% end %>
-                    <% (0..(8 - @iconic_taxa_for[list.id].count)).each do |cell| %>
-                      <div class="cell"></div>
-                    <% end %>
-                  </div>
-                <% end %>
-              </a>
-          <% end %>
-            <h3 class="title"><%= link_to list.title, list_path(list) %></h3>
-              <div class="">
-                <%= truncate(strip_tags(list.description =~ /^Every species seen by / ? list.description.gsub('Every species seen by', t(:every_species_seen_by)) : list.description), :length => 75) %>
-                <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
-              </div>
-              <div class="">
-                <%=  t(:x_taxa, count: list.listed_taxa.count ) %>
-            </div>
-          </div>
+  </div>
+  <% @rem_lists = @lists[1..-1] %>
+  <% if @rem_lists.count > 0 %>
+    <% ( 0..( @rem_lists.count/2.to_f ).ceil - 1 ).each do |i| %>
+      <% @rows_lists = @rem_lists[( i*2 )..( i*2+1 )] %>
+      <div class="row">  
+        <% for @list in @rows_lists %>
+          <%= render partial: "list_element", locals: { list: @list } %>
+        <% end %>
       </div>
     <% end %>
-  </div> 
+  <% end %>
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for do |f| %>
       <%= f.label :per_page, t(:per_page) %>
@@ -159,8 +140,5 @@
     <% end %>
   <% end -%>
   
-  <%= will_paginate @lists, :renderer => INatLinkRenderer %>
-</div>
-</div>
-</div>
+  <%= will_paginate @lists %>
 </div>
