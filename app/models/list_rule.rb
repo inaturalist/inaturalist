@@ -17,6 +17,7 @@ class ListRule < ActiveRecord::Base
   # Tests whether a taxon passes this rule or not.
   #
   def validates?(subject)
+    return true unless list.is_a?(CheckList)
     return false if subject.blank?
     return subject.send(operator, operand) if subject.respond_to?(operator)
     return subject.taxon.send(operator, operand) if subject.respond_to?(:taxon)

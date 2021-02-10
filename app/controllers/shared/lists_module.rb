@@ -92,10 +92,6 @@ module Shared::ListsModule
 
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
-
-        if @list.show_obs_photos
-          load_listed_taxon_photos
-        end
         
         if logged_in?
           @current_user_lists = current_user.lists.limit(100)
@@ -626,10 +622,6 @@ private
 
   def require_listed_taxa_editor
     @list.listed_taxa_editable_by?(current_user)
-  end
-  
-  def load_listed_taxon_photos
-    # override
   end
   
   def set_taxon_names_by_taxon_id(listed_taxa, iconic_taxa, taxa)

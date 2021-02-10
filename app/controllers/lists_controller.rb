@@ -172,7 +172,6 @@ class ListsController < ApplicationController
       pair.compact.empty? ? nil : [iconic_taxon, pair]
     end.compact
     
-    load_listed_taxon_photos
   end
   
   def remove_taxon    
@@ -283,16 +282,4 @@ class ListsController < ApplicationController
     end
   end
   
-  def load_listed_taxon_photos
-    @photos_by_listed_taxon_id = {}
-    obs_ids = @listed_taxa.map(&:last_observation_id).compact
-    obs_photos = ObservationPhoto.where(observation_id: obs_ids).
-      select("DISTINCT ON (observation_id) *").
-      includes({ :photo => :user })
-    obs_photos_by_obs_id = obs_photos.index_by(&:observation_id)
-    @listed_taxa.each do |lt|
-      next unless (op = obs_photos_by_obs_id[lt.last_observation_id])
-      @photos_by_listed_taxon_id[lt.id] = op.photo
-    end
-  end
 end

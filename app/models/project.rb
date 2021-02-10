@@ -799,7 +799,9 @@ class Project < ActiveRecord::Base
       return unless response
       response.total_results
     else
-      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+      response = INatAPIService.observations_species_counts( project_id: project.id, per_page: 0 )
+      return unless response
+      response.total_results
     end
     project.update_attributes(observed_taxa_count: observed_taxa_count)
   end

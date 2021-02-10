@@ -1458,7 +1458,6 @@ EOT
       "last_synced_at": null,
       "place_id": null,
       "project_id": 1,
-      "show_obs_photos": true,
       "source_id": null,
       "taxon_id": null,
       "title": "White Whales et al.'s Check List",
