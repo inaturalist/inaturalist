@@ -13,29 +13,20 @@
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
   <style type="text/css" media="screen">
-    .lifelist-button {
-      background-color: #74ac00;
-      color: white;
-      border-color: #74ac00;
-      border-radius: 100px;
-      padding: 8px 14px 6px 14px;
-      display: inline-block;
-      text-align: center;
-      white-space: nowrap;
-      vertical-align: middle;
-      touch-action: manipulation;
-      cursor: pointer;
-      user-select: none;
-      background-image: none;
-      border: 1px solid transparent;
-      font-size: 14pt;
-      letter-spacing: 0.6pt;
-      font-family: 'Whitney Semibold'
+    .header {
+      margin-bottom: 1em;
     }
-
-    .lifelist-button:hover {
-      background-color: #93C14B;
-      color: white;
+    .grid {
+      width: 110px;
+      display: flex;                       
+      flex-wrap: wrap;                     
+      justify-content: space-around;
+      margin: 0.5em;
+    }
+    .cell {
+      flex: 0 0 32%;
+      height: 32px;
+      margin-bottom: 3.19px;
     }
 
     #no_lists_message {
@@ -48,158 +39,106 @@
       background-color: #D6E6B4;
     }
     
-    #lists .list {
+    .list {
       padding: 0.5em;
       margin-bottom: 1em;
     }
-    
-    .list .attr.description {
-      margin-bottom: 0.5em;
-    }
-    
-    .list .attr.title {
-      font-size: 140%;
-    }
-    
-    .remainder .label {
-      color: #666;
-    }
-    
-    .photos img {
+
+    .photo img {
       width: 32px;
     }
     
-    .barchart {
-      width: 310px;
-      float: none;
-    }
-    
-    .list .photos.empty {
+    .list .empty {
       display: block;
       background-color: #eee;
       color: #aaa;
       text-align: center;
-      padding: 50px 0px;
-    }
-
-    .box.announcement {
-      font-size: 1.2em;
-      text-align: center;
-      background: white;
-      box-shadow: 0px 1px 3px #666;
-      border-radius: 10px;
-      padding: 0px;
-      max-width: 700px;
-      margin: 0px auto;
-      margin-bottom: 20px;
-    }
-    .box.announcement .logo-bird {
-      float: left;
-      padding-left: 15px;
-      position: absolute;
-    }
-    .box.announcement .logo-bird img {
-      height: 100px;
-      width: 100px;
-    }
-    .box.announcement .contents {
-      padding: 20px;
-      letter-spacing: 0.2px;
-      margin-left: 50px;
-    }
-    .box.announcement .message {
-      font-size: 1.1em;
-    }
-    .box.announcement .buttons {
-      margin-top: 15px;
-    }
-    .box.announcement .btn {
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1.1px;
-      font-size: 13px;
-      padding: 6px 15px;
-    }
-    .box.announcement .btn:not(:first-child) {
-      margin-left: 15px;
+      padding: 42.782px 15px;
+      margin-left: 0.5em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-right: 18px;
     }
     .list-icon {
       position: relative;
-      left: -40px;
-      top: 42px;
+      left: -38px;
+      top: 28px;
     }
     .life-list-user-icon {
       border-radius: 50%;
-      padding: 10px 0px 10px 10px;
-      width: 94px;
+      padding: 16px 0px 16px 16px;
+      width: 103.57px;
       vertical-align: middle;
+    }
+    .btn-inat, .btn-success:active, .btn-success:visited {
+      background-color: #74ac00 !important;
+      border-color: #74ac00 !important;
+      font-size: 14pt !important;
+      letter-spacing: 0.6pt !important;
+      font-family: 'Whitney Semibold' !important;
     }
   </style>
 <% end -%>
 
-<%- tools = capture do -%>
-  <% if logged_in? && current_user == @selected_user %>
-    <div id="tools" class="buttonrow">
-      <%= link_to t(:new_list), new_list_path, :id => 'newlistbutton', :class => 'default button'%>
-    </div>
-  <% end %>
-<% end %>
-<%= render :partial => "shared/by_login_header", :locals => { :after => tools, title: observation_by_login_title } %>
 
-<div class="column span-24">
-  <div id="lists" class="clear">
-    <div class="column span-12 <%= cycle('', 'last') %>">
-        <div id="life-list" class="clear list dynamic_life_list">
-          <div>
-            <%= image_tag(@selected_user.icon.url(:medium), class: 'life-list-user-icon') %>
-            <img src="<%= image_path('lists-life-list.svg') %>" class="list-icon"></img>
-            <%= link_to t(:view_dynamic_lifelist).upcase, by_login_lifelists_path( login: @selected_user.login ), class: 'lifelist-button'%>
-          </div>
-        </div>
+<div class="container">
+  <div class="row header">
+    <% tools = capture do %>
+      <% if logged_in? && current_user == @selected_user %>
+        <%= link_to t(:new_list), new_list_path(@parent_slug), :id => "newlistbutton", :class => "btn btn-primary" %>
+      <% end %>
+    <% end %>
+    <%= render :partial => "shared/by_login_header_bootstrap", :locals => { :after => tools, :model_name => "Lists" } %>
+  </div>
+  
+  <div class="row">  
+    <div class="col-md-6">  
+      <div id="life-list" class="list dynamic_life_list clear">
+        <%= image_tag(@selected_user.icon.url(:medium), class: 'life-list-user-icon') %>
+        <img src="<%= image_path('lists-life-list.svg') %>" class="list-icon"></img>
+        <%= link_to t(:view_dynamic_lifelist).upcase, by_login_lifelists_path( login: @selected_user.login ), class: 'btn btn-default btn-inat btn-focus'%>
       </div>
+    </div>
     <% if @lists.empty? %>
-      <div class="column span-12 <%= cycle('', 'last') %>">
-        <div id="life-list" class="clear list">
-          <div class="last column span-8">
-            <div id="no_lists_message" class="description">
-              <%=t :no_lists_yet %>
-            </div>
-          </div>
+      <div class="col-md-6">
+        <div id="no_lists_message" class="description">
+          <%=t :no_lists_yet %>
         </div>
       </div>
     <% end %>
     <% for list in @lists %>
-      <div class="column span-12 <%= cycle('', 'last') %>">
-        <div id="list-<%= list.id %>" class="clear list">
+      <div class="col-md-6">
+        <div id="list-<%= list.id %>" class="list clear">
           <% cache List.icon_preview_cache_key(list) do %>
-            <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
-              <% if @iconic_taxa_for[list.id].blank? %>
-                <%=t :no_taxa_listed %>
-              <% else %>
-                <% for taxon in @iconic_taxa_for[list.id] %>
-                  <%= taxon_image(taxon, :width => 32) %>
+              <a href="<%= list_path(list) %>" class="float left <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
+                <% if @iconic_taxa_for[list.id].blank? %>
+                 <%=t :no_taxa_listed %>
+                <% else %>
+                  <div class="grid">
+                    <% for taxon in @iconic_taxa_for[list.id] %>
+                      <div class="cell photo">
+                       <%= taxon_image(taxon, :width => 32) %>
+                     </div>
+                    <% end %>
+                    <% (0..(8 - @iconic_taxa_for[list.id].count)).each do |cell| %>
+                      <div class="cell"></div>
+                    <% end %>
+                  </div>
                 <% end %>
-              <% end %>
-            </a>
+              </a>
           <% end %>
-          <div class="last column span-8">
-            <div class="readable title attr"><%= link_to list.title, list_path(list) %></div>
-
-            <div class="attr readable description">
-              <%= truncate(strip_tags(list.description =~ /^Every species seen by / ? list.description.gsub('Every species seen by', t(:every_species_seen_by)) : list.description), :length => 75) %>
-              <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
+            <h3 class="title"><%= link_to list.title, list_path(list) %></h3>
+              <div class="">
+                <%= truncate(strip_tags(list.description =~ /^Every species seen by / ? list.description.gsub('Every species seen by', t(:every_species_seen_by)) : list.description), :length => 75) %>
+                <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
+              </div>
+              <div class="">
+                <%=  t(:x_taxa, count: list.listed_taxa.count ) %>
             </div>
-            <div class="barchart">
-              <%=  t(:x_taxa, count: list.listed_taxa.count ) %>
-              <div class="clear"></div>
-            </div>
-            
           </div>
-        </div>
       </div>
     <% end %>
-  </div>
-  
+  </div> 
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for do |f| %>
       <%= f.label :per_page, t(:per_page) %>
@@ -221,4 +160,7 @@
   <% end -%>
   
   <%= will_paginate @lists, :renderer => INatLinkRenderer %>
+</div>
+</div>
+</div>
 </div>

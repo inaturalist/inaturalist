@@ -48,7 +48,9 @@ class ListsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        render layout: "bootstrap"
+      end
     end
   end
   
