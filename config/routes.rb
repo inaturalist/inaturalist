@@ -369,9 +369,9 @@ Rails.application.routes.draw do
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'check_lists/:id/refresh_now' => 'check_lists#refresh_now', :as => :check_list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'check_lists/:id/add_from_observations_now' => 'check_lists#add_from_observations_now', :as => :check_list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   resources :comments, constraints: { id: id_param_pattern } do
     resources :flags
   end
