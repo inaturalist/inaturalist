@@ -1,3 +1,5 @@
+@import "./colors";
+
 $img-width: 40px;
 $img-margin: 3px;
 $label-start: 7px;
@@ -37,6 +39,17 @@ $label-start: 7px;
     color: #666;
     line-height: 32px;
     background: #eee;
+  }
+  .nearby-toggle {
+    list-style: none;
+    border-top: 1px solid $border-grey;
+    button {
+      padding: 5px 10px;
+      border: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 .ac-message[data-type='message'] {

@@ -24,23 +24,6 @@ const TAXON_FIELDS = {
 };
 
 class TaxonAutocomplete extends React.Component {
-  static returnVisionResults( response, callback ) {
-    const visionTaxa = _.map( response.results.slice( 0, 8 ), r => {
-      const taxon = new iNatModels.Taxon( r.taxon );
-      taxon.isVisionResult = true;
-      taxon.visionScore = r.vision_score;
-      taxon.frequencyScore = r.frequency_score;
-      return taxon;
-    } );
-    if ( response.common_ancestor ) {
-      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
-      taxon.isVisionResult = true;
-      taxon.isCommonAncestor = true;
-      visionTaxa.unshift( taxon );
-    }
-    callback( visionTaxa );
-  }
-
   static differentMatchedTerm( result, fieldValue ) {
     if ( !result.matched_term ) { return false; }
     if (
@@ -161,6 +144,8 @@ class TaxonAutocomplete extends React.Component {
     this.thumbnailElement = this.thumbnailElement.bind( this );
     this.autocomplete = this.autocomplete.bind( this );
     this.updateWithSelection = this.updateWithSelection.bind( this );
+    // eslint-disable-next-line react/no-unused-state
+    this.state = { notNearby: false };
   }
 
   componentDidMount( ) {
@@ -168,11 +153,14 @@ class TaxonAutocomplete extends React.Component {
       afterUnselect,
       initialSelection
     } = this.props;
+    const that = this;
+    const getState = ( ) => that.state;
+    const setState = updates => that.setState( updates );
     const renderMenuWithCategories = function ( ul, items ) {
       ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
       ul.addClass( "ac-menu" );
       if ( items.length === 1 && items[0].label === "loadingSuggestions" ) {
-        ul.append( `<li class="category">${I18n.t( "loading_suggestions" )}</li>` );
+        ul.append( `<li class="category non-option">${I18n.t( "loading_suggestions" )}</li>` );
         return;
       }
       const isVisionResults = items[0] && items[0].isVisionResult;
@@ -184,15 +172,40 @@ class TaxonAutocomplete extends React.Component {
               rank: item.rank,
               gender: item.rank
             } );
-            ul.append( `<li class='category'>${label}:</li>` );
+            ul.append( `<li class='category non-option'>${label}:</li>` );
           } else if ( !speciesCategoryShown ) {
             const label = I18n.t( "here_are_our_top_species_suggestions" );
-            ul.append( `<li class='category'>${label}:</li>` );
+            ul.append( `<li class='category non-option'>${label}:</li>` );
             speciesCategoryShown = true;
           }
         }
         this._renderItemData( ul, item );
       } );
+      const query = that.inputElement( ).val( );
+      if ( !query || query.length === 0 ) {
+        const { notNearby } = getState( );
+        const nearbyToggle = $( "<button />" ).attr( "type", "button" )
+          .append(
+            notNearby
+              ? I18n.t( "only_view_nearby_suggestions" )
+              : I18n.t( "view_suggestions_not_seen_nearby" )
+          )
+          .click( e => {
+            e.preventDefault( );
+            const { notNearby: innerNotNearby } = getState( );
+            $( e.target ).text(
+              innerNotNearby
+                ? I18n.t( "view_suggestions_not_seen_nearby" )
+                : I18n.t( "only_view_nearby_suggestions" )
+            );
+            setState( { notNearby: !innerNotNearby } );
+            that.inputElement( ).autocomplete( "search" );
+            return false;
+          } );
+        ul.append(
+          $( "<li />" ).addClass( "non-option nearby-toggle" ).append( nearbyToggle )
+        );
+      }
     };
     const opts = Object.assign( { }, this.props, {
       extraClass: "taxon",
@@ -255,6 +268,28 @@ class TaxonAutocomplete extends React.Component {
     // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
     this._mounted = false;
     this.inputElement( ).autocomplete( "destroy" );
+  }
+
+  returnVisionResults( response, callback ) {
+    let { results } = response;
+    const { notNearby } = this.state;
+    if ( !notNearby ) {
+      results = _.filter( response.results, r => r.frequency_score && r.frequency_score > 0 );
+    }
+    const visionTaxa = _.map( results.slice( 0, 8 ), r => {
+      const taxon = new iNatModels.Taxon( r.taxon );
+      taxon.isVisionResult = true;
+      taxon.visionScore = r.vision_score;
+      taxon.frequencyScore = r.frequency_score;
+      return taxon;
+    } );
+    if ( response.common_ancestor ) {
+      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
+      taxon.isVisionResult = true;
+      taxon.isCommonAncestor = true;
+      visionTaxa.unshift( taxon );
+    }
+    callback( visionTaxa );
   }
 
   inputElement( ) {
@@ -337,16 +372,17 @@ class TaxonAutocomplete extends React.Component {
   visionAutocompleteSource( callback ) {
     const { config, visionParams } = this.props;
     if ( this.cachedVisionResponse ) {
-      TaxonAutocomplete.returnVisionResults( this.cachedVisionResponse, callback );
+      this.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
       const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
       if ( visionParams.image ) {
-        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) ).then( r => {
-          this.cachedVisionResponse = r;
-          TaxonAutocomplete.returnVisionResults( r, callback );
-        } ).catch( e => {
-          console.log( ["Error fetching vision response for photo", e] );
-        } );
+        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
+          .then( r => {
+            this.cachedVisionResponse = r;
+            this.returnVisionResults( r, callback );
+          } ).catch( e => {
+            console.log( ["Error fetching vision response for photo", e] );
+          } );
         callback( ["loadingSuggestions"] );
       } else if ( visionParams.observationID || visionParams.observationUUID ) {
         let { observationID, observationUUID } = visionParams;
@@ -358,7 +394,7 @@ class TaxonAutocomplete extends React.Component {
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
           this.fetchingVision = false;
-          TaxonAutocomplete.returnVisionResults( r, callback );
+          this.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for observation", e] );
         } );
