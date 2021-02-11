@@ -176,8 +176,12 @@ class Post < ActiveRecord::Base
     !published_at.blank? && errors[:published_at].blank?
   end
 
-  def editable_by?(u)
-    return false unless u
+  def editable_by?( u )
+    return false unless u.is_a?( User )
+    return true if user_id == u.id
+    return true if parent.is_a?( Project ) && parent.curated_by?( u )
+    return true if parent.is_a?( Site ) && parent.editable_by?( u )
+    return true if parent.is_a?( User ) && parent == u
     user_id == u.id
   end
 

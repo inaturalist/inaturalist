@@ -9,11 +9,11 @@ class FlagsController < ApplicationController
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
+    "Message", "Photo", "List", "Project", "Guide", "GuideSection",
     "User", "CheckList", "Sound" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id",
+    "guide_id", "guide_section_id", "user_id", "check_list_id",
     "sound_id" ]
   PARTIALS = %w(dialog)
 
@@ -54,6 +54,15 @@ class FlagsController < ApplicationController
     elsif params[:resolved].noish?
       "no"
     end
+    @deleted = if params[:deleted].blank?
+      "any"
+    elsif params[:deleted] == "any"
+      "any"
+    elsif params[:deleted].yesish?
+      "yes"
+    elsif params[:deleted].noish?
+      "no"
+    end
     @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
     @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
     @user ||= User.where( login: params[:user_name] ).first
@@ -80,6 +89,19 @@ class FlagsController < ApplicationController
       @flags = @flags.where( "resolved" )
     elsif @resolved == "no"
       @flags = @flags.where( "NOT resolved" )
+    end
+    if @flaggable_type
+      if @deleted == "yes"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NULL" )
+      elsif @deleted == "no"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NOT NULL" )
+      end
     end
     if @flagger_type == "auto"
       @flags = @flags.where( "flags.user_id = 0 OR flags.user_id IS NULL" )

@@ -9,34 +9,34 @@ module TaxonDescribers
 
     def describe( taxon )
       title = nil
+      page_title = title
+      content = nil
       if Rails.env.production?
         # Redirects from the iNat taxon ID in Wikidata to Wikipedia in a
         # particular locale. We're using it to grab the Wikipedia page title.
         # Note that this will only work with the production database, since
         # those are the taxon IDs Wikidata has ingested, so unfortunately this
         # can't really be tested
-        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale.to_s.split( "-" ).first}" )
-          title = r.header[:location].to_s.split( "/" ).last
-          @page_urls[taxon.id] = r.header[:location]
+        lang = @locale.to_s.split( "-" ).first
+        if wikipedia_url = wikidata_wikipedia_url_for_taxon( taxon )
+          title = wikipedia_url.to_s.split( "/" ).last
+          # If we got a title from Wikidata, try to retrieve content for that
+          unless title.blank?
+            title = CGI.unescape( title )
+            page_title, content = content_for_title( title )
+            @page_urls[taxon.id] = wikipedia_url unless content.blank?
+          end
         end
       end
-      title = CGI.unescape( title ) unless title.blank?
-      title = taxon.wikipedia_title if title.blank?
-      title = taxon.name if title.blank?
-      decoded = ""
-      page_title = title
-      begin
-        response = wikipedia.parse(:page => title, :redirects => true)
-        return if response.nil?
-        parsed = response.at('text').try(:inner_text).to_s if response.at('text')
-        return if parsed.blank?
-        decoded = clean_html(parsed) if parsed
-        return if decoded.blank?
-        page_title = response.at( "parse" )[:title] if response.at( "parse" )
-      rescue Timeout::Error => e
-        Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
+      # If we didn't get any content from a Wikidata-specified Wikipedia title,
+      # fall back to using the taxon data
+      if content.blank?
+        title = taxon.wikipedia_title if title.blank?
+        title = taxon.name if title.blank?
+        page_title, content = content_for_title( title )
       end
-      decoded + "<p class='inat-wikipedia-attribution'>#{I18n.t(:wikipedia_attribution_cc_by_sa_3_html, url: page_url( taxon ), title: page_title )}</p>"
+      return if content.blank?
+      content + "<p class='inat-wikipedia-attribution'>#{I18n.t(:wikipedia_attribution_cc_by_sa_3_html, url: page_url( taxon ), title: page_title )}</p>"
     end
 
     def clean_html(html, options = {})
@@ -62,9 +62,9 @@ module TaxonDescribers
         @page_urls[taxon.id]
       end
       url ||= if Rails.env.production?
-        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{@locale.to_s.split( "-" ).first}" )
-          title = r.header[:location].to_s.split( "/" ).last
-          @page_urls[taxon.id] = r.header[:location]
+        if wikipedia_url = wikidata_wikipedia_url_for_taxon( taxon )
+          title = wikipedia_url.to_s.split( "/" ).last
+          @page_urls[taxon.id] = wikipedia_url
         end
       end
       if url.blank?
@@ -73,6 +73,33 @@ module TaxonDescribers
         url = wikipedia.url_for_title(wname)
       end
       url
+    end
+
+    private
+
+    def content_for_title( title )
+      page_title = title
+      begin
+        response = wikipedia.parse( page: title, redirects: true )
+        return [title, nil] if response.nil?
+        parsed = response.at( "text" ).try(:inner_text).to_s if response.at( "text" )
+        return [title, nil] if parsed.blank?
+        content = clean_html( parsed ) if parsed
+        return [title, nil] if content.blank?
+        page_title = response.at( "parse" )[:title] if response.at( "parse" )
+      rescue Timeout::Error => e
+        Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
+      end
+      [page_title, content]
+    end
+
+    def wikidata_wikipedia_url_for_taxon( taxon )
+      lang = @locale.to_s.split( "-" ).first
+      return nil unless r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
+      return nil if r.header[:location].blank?
+      uri = URI.parse( r.header[:location].to_s ) rescue nil
+      return nil unless uri && uri.host.split( "." )[0] == lang
+      r.header[:location]
     end
   end
 

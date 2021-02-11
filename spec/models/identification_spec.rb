@@ -349,8 +349,18 @@ describe Identification, "creation" do
       r = ObservationReview.make!(observation: o, user: o.user, updated_at: 1.day.ago)
       Identification.make!(observation: o, user: o.user)
       o.reload
-      expect(o.observation_reviews.first).to eq r
-      expect(o.observation_reviews.first.updated_at).to be > r.updated_at
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first.updated_at ).to be > r.updated_at
+    end
+
+    it "marks existing unreviewed reviews as reviewed" do
+      o = Observation.make!
+      r = ObservationReview.make!( observation: o, user: o.user )
+      r.update_attributes( reviewed: false )
+      Identification.make!( observation: o, user: o.user )
+      o.reload
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first ).to be_reviewed
     end
 
     it "should set curator_identification_id on project observations to last current identification" do
@@ -559,7 +569,7 @@ describe Identification, "deletion" do
     expect(o.quality_grade).to eq Observation::NEEDS_ID
   end
   
-  it "should queue a job to update project lists if owners ident" do
+  it "should not queue a job to update project lists if owners ident" do
     o = make_research_grade_observation
     Delayed::Job.delete_all
     stamp = Time.now
@@ -571,7 +581,7 @@ describe Identification, "deletion" do
 
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
-    expect(job).not_to be_blank
+    expect(job).to be_blank
     # puts job.handler.inspect
   end
   

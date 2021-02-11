@@ -87,9 +87,6 @@ class ProjectObservation < ActiveRecord::Base
     project.project_users.where(user_id: observation.user_id).first
   end
 
-  after_create  :refresh_project_list
-  after_destroy :refresh_project_list
-
   after_create  :update_observations_counter_cache_later
   after_destroy :update_observations_counter_cache_later
 
@@ -104,38 +101,9 @@ class ProjectObservation < ActiveRecord::Base
 
   after_create :revisit_curator_identifications_later
 
-  after_save :update_project_list_if_curator_ident_changed
-
   attr_accessor :skip_touch_observation
 
   include Shared::TouchesObservationModule
-
-  def update_project_list_if_curator_ident_changed
-    return true unless curator_identification_id_changed?
-    old_curator_identification_id = curator_identification_id_was
-    old_curator_identification = Identification.where(:id => old_curator_identification_id).first
-    taxon_id = curator_identification ? curator_identification.taxon_id : nil
-    if old_curator_identification 
-      taxon_id_was = old_curator_identification.taxon_id
-    else
-      taxon_id_was = nil
-    end
-    # Don't refresh if nothing changed
-    return true if taxon_id == taxon_id_was
-    #if nil set taxon_id_was to observation.taxon_id so listings with this taxon_id will get refreshed
-    taxon_id_was = Observation.find_by_id(observation_id).taxon_id if taxon_id_was.nil?
-    # Update the projectobservation's current curator_id taxon and/or a previous one that was
-    # just removed/changed
-    ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "ProjectList::refresh_with_project_observation": id }).
-      refresh_with_project_observation(id,
-        :observation_id => observation_id,
-        :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was,
-        :project_id => project_id
-     )
-    true
-  end
 
   def reindex_observation
     Observation.elastic_index!( ids: [observation_id] ) if observation
@@ -223,15 +191,6 @@ class ProjectObservation < ActiveRecord::Base
     return true unless missing
     errors.add(:base, "Missing required observation field: #{missing.observation_field.name}" )
     false
-  end
-
-  def refresh_project_list
-    return true if observation.blank? || observation.taxon_id.blank? ||
-      observation.bulk_import || observation.bulk_delete
-    Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      run_at: 1.hour.from_now, unique_hash: { "Project::refresh_project_list": project_id }).
-      refresh_project_list(project_id, :taxa => [observation.taxon_id])
-    true
   end
   
   def update_observations_counter_cache_later

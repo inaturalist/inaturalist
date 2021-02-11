@@ -101,7 +101,7 @@ class CheckListsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   private
 
   def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)

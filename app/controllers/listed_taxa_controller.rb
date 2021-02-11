@@ -11,10 +11,6 @@ class ListedTaxaController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        if !@list.is_a?(CheckList) && @list.show_obs_photos
-          @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
-          @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
-        end
         @photo ||= @listed_taxon.taxon.taxon_photos.order(:id).first.try(:photo)
         if @list.is_a?(CheckList)
           @related_listed_taxa = @listed_taxon.related_listed_taxa

@@ -44,7 +44,7 @@
     = label_tag "Add species to set"
     = f.text_field :taxon_id, :value => "enter a taxon_id"
     = f.hidden_field :list_id
-    = hidden_field_tag 'success_msg', t( :life_list_updated )
+    = hidden_field_tag 'success_msg', t( :check_list_updated )
     = f.submit t( :add ), :id => "listed_taxon_submit", :class => 'default inline button inlineblock'
     = image_tag( 'spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none' )  
 

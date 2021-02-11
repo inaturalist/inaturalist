@@ -171,10 +171,6 @@ List.blueprint do
   title { Faker::Lorem.sentence }
 end
 
-LifeList.blueprint do
-  user { User.make! }
-end
-
 ListRule.blueprint do
   list { List.make! }
 end

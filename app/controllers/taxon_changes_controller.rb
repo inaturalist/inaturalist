@@ -371,7 +371,7 @@ class TaxonChangesController < ApplicationController
 
   def load_user_content_info
     @reflections = []
-    skip_reflections = %w(identifications update_subscriptions lists life_lists)
+    skip_reflections = %w(identifications update_subscriptions lists)
     has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
       next if skip_reflections.include?(k.to_s)

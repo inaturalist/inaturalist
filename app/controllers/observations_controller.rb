@@ -60,7 +60,6 @@ class ObservationsController < ApplicationController
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
-  after_filter :refresh_lists_for_batch, :only => [:create, :update]
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
@@ -2228,17 +2227,6 @@ class ObservationsController < ApplicationController
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
   end
 
-  # Refresh lists affected by taxon changes in a batch of new/edited
-  # observations.  Note that if you don't set @skip_refresh_lists on the records
-  # in @observations before this is called, this won't do anything
-  def refresh_lists_for_batch
-    return true if @observations.blank?
-    taxa = @observations.to_a.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
-    return true if taxa.blank?
-    List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
-    true
-  end
-  
   # Tries to create a new observation from the specified Facebook photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_facebook_photo
