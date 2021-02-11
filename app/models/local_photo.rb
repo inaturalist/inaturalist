@@ -38,6 +38,7 @@ class LocalPhoto < Photo
       s3_protocol: CONFIG.s3_protocol || "https",
       s3_host_alias: Proc.new{ |a| a.instance.s3_host_alias },
       s3_region: Proc.new{ |a| a.instance.s3_region },
+      s3_permissions: Proc.new{ |a| a.instance.s3_permissions },
       bucket: Proc.new{ |a| a.instance.s3_bucket },
       #
       #  NOTE: the path used to be "photos/:id/:style.:extension" as of
@@ -107,6 +108,11 @@ class LocalPhoto < Photo
     public ? CONFIG.s3_public_bucket : CONFIG.s3_bucket
   end
 
+  def self.s3_permissions( public = false )
+    return "public-read" unless CONFIG.s3_public_bucket && CONFIG.s3_public_acl
+    public ? CONFIG.s3_public_acl : "public-read"
+  end
+
   def s3_host_alias
     LocalPhoto.s3_host_alias( self.s3_account )
   end
@@ -119,11 +125,15 @@ class LocalPhoto < Photo
     LocalPhoto.s3_bucket( self.s3_account )
   end
 
-  def set_s3_account
-    self.s3_account = self.is_public ? "public" : nil
+  def s3_permissions
+    LocalPhoto.s3_permissions( self.s3_account )
   end
 
-  def is_public
+  def set_s3_account
+    self.s3_account = self.is_public? ? "public" : nil
+  end
+
+  def is_public?
     self.large_url ? !! self.large_url.match( LocalPhoto.s3_bucket( true ) ) :
       could_be_public
   end
@@ -138,13 +148,14 @@ class LocalPhoto < Photo
   end
 
   def change_photo_bucket_if_needed
+    # must have a URL
     return unless large_url
+    # the code must be configured to use a public bucket
     return unless CONFIG.s3_public_bucket
-    if could_be_public && !is_public
-      LocalPhoto.move_photos( self )
-    elsif !could_be_public && is_public
-      LocalPhoto.move_photos( self )
-    end
+    # the LocalPhoto must be in a bucket other than what its license dictates
+    return unless ( could_be_public && !is_public? ) ||
+      (!could_be_public && is_public? )
+    LocalPhoto.move_to_appropriate_bucket( self )
   end
 
   # I think this may be impossible using delayed_paperclip
@@ -456,84 +467,112 @@ class LocalPhoto < Photo
     end
   end
 
+  def s3_client
+    s3_credentials = LocalPhoto.new.file.s3_credentials
+    ::Aws::S3::Client.new(
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: LocalPhoto.s3_region
+    )
+  end
+
   private
 
-  def self.move_photos( p )
+  def self.move_to_appropriate_bucket( photo )
     return unless CONFIG.s3_public_bucket
-    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
-    is_public = p.is_public
-    p.s3_account = is_public ? "public" : nil
-    s3_credentials = LocalPhoto.new.file.s3_credentials
-    source_client = ::Aws::S3::Client.new(
-      access_key_id: s3_credentials[:access_key_id],
-      secret_access_key: s3_credentials[:secret_access_key],
-      region: LocalPhoto.s3_region( is_public )
-    )
-    target_client = ::Aws::S3::Client.new(
-      access_key_id: s3_credentials[:access_key_id],
-      secret_access_key: s3_credentials[:secret_access_key],
-      region: LocalPhoto.s3_region( !is_public )
-    )
-    source_bucket = LocalPhoto.s3_bucket( is_public )
-    target_bucket = LocalPhoto.s3_bucket( !is_public )
+    return unless p = LocalPhoto.find_by_id( p ) unless photo.is_a?( LocalPhoto )
+    return unless ( photo.could_be_public && !photo.is_public? ) ||
+      (!photo.could_be_public && photo.is_public? )
+
+    photo_started_as_public = photo.is_public?
+    s3_client = photo.s3_client
+    source_bucket = LocalPhoto.s3_bucket( photo_started_as_public )
+    target_bucket = LocalPhoto.s3_bucket( !photo_started_as_public )
+    target_acl = LocalPhoto.s3_permissions( !photo_started_as_public )
 
     # fetch list of files at the source
+    images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
+    return if images.blank?
+
+    # copy them over to the new target and confirm they arrived at the target
+    moved_successfully = LocalPhoto.move_images_between_buckets(
+      s3_client, photo, images, source_bucket, target_bucket, target_acl )
+
+    if moved_successfully
+      # Update the photo URLs in the DB. Do this before deleting the originals
+      # in case there's some failure and we're not left with photo URLs pointing
+      # to files that were deleted
+
+      # override the photo s3_account so its URLs will point to the new bucket
+      photo.s3_account = photo_started_as_public ? nil : "public"
+      photo.set_urls
+      photo.reload
+
+      # TODO: disabling deleting source images for now
+      # LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+    else
+      # move failed, so remove any files that did get copied to the target before the failure
+      LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
+    end
+  end
+
+  def self.aws_images_from_bucket( client, bucket, photo )
     begin
-      s3_objects = source_client.list_objects( bucket: source_bucket, prefix: "photos/#{ p.id }/" )
+      s3_objects = client.list_objects( bucket: bucket, prefix: "photos/#{ photo.id }/" )
       images = s3_objects.contents
       if !( s3_objects && s3_objects.data &&
         s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput ) && images.any? )
-        return
+        return []
       end
     rescue
       # failed to fetch list of photo files, so just return
-      return
+      return false
     end
+    images
+  end
 
-    # copy them over to the target
+  def self.move_images_between_buckets( s3_client, photo, source_images, source_bucket, target_bucket, target_acl )
     begin
-      images.each do |image|
+      source_images.each do |image|
         puts "Copying #{ image.key }..."
         key = image.key
-        target_client.copy_object(
+        s3_client.copy_object(
           bucket: target_bucket,
           copy_source: "#{ source_bucket }/#{ key }",
           key: image.key,
-          acl: "public-read"
+          acl: target_acl
         )
       end
     rescue
-      # failed to copy all photo files to the new bucket,
-      # so clean up anything that did get copied over and return
-      puts "Deleting/cleaning up target"
-      target_client.delete_objects(
-        bucket: target_bucket,
-        delete: {
-          objects: images.map{ |image| { key: image.key } }
-        }
-      )
-      return
+      # failed to copy all photo files to the new bucket
+      return false
     end
 
-    # remove them from the source
+    # verify all source images made it to the target, and they they are seemingly identical
+    target_images = LocalPhoto.aws_images_from_bucket( s3_client, target_bucket, photo )
+    return false if target_images.blank?
+    source_images.each do |source_image|
+      target_image = target_images.find{ |target| target.key == source_image.key }
+      return false unless target_image
+      return false unless target_image.etag == source_image.etag
+      return false unless target_image.size == source_image.size
+    end
+    true
+  end
+
+  def self.delete_images_from_bucket( s3_client, delete_from_bucket, images )
     begin
-      puts "Deleting/cleaning up source"
-      source_client.delete_objects(
-        bucket: source_bucket,
+      s3_client.delete_objects(
+        bucket: delete_from_bucket,
         delete: {
           objects: images.map{ |image| { key: image.key } }
         }
       )
     rescue
-      # failed to delete source photos. Should retry this a few times
-      puts "Failed to delete from source"
-      return
+      # failed to delete photos
+      return false
     end
-
-    # update photo URLs in the DB
-    p.s3_account = is_public ? nil : "public"
-    p.set_urls
-    p.reload
+    true
   end
 
 end
