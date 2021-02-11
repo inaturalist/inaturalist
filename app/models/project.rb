@@ -26,6 +26,7 @@ class Project < ActiveRecord::Base
   before_save :strip_title
   before_save :reset_last_aggregated_at
   before_save :remove_times_from_non_bioblitzes
+  before_save :set_observation_requirements_updated_at
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   after_save :notify_trusting_members_about_changes_if_rules_changed
@@ -360,6 +361,21 @@ class Project < ActiveRecord::Base
     return if bioblitz? || is_new_project?
     self.start_time = nil
     self.end_time = nil
+  end
+
+  def set_observation_requirements_updated_at
+    if new_record?
+      self.observation_requirements_updated_at = Time.now
+      return true
+    end
+    old_params = Project.find(id).collection_search_parameters
+    new_params = collection_search_parameters
+    if old_params == new_params && !prefers_user_trust_changed?
+      # puts "no change"
+    else
+      # puts "params changed"
+      self.observation_requirements_updated_at = Time.now
+    end
   end
 
   def tracking_code_allowed?(code)

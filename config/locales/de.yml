@@ -522,6 +522,9 @@ de:
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
   applications: Apps
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Beantragen
   apply_to_selected: Für Ausgewählte übernehmen
   apply_captive_cultivated: "In Haltung/kultiviert anwenden"
   apply_fields: Felder übernehmen
@@ -1049,6 +1052,116 @@ de:
   curating: Kuratierung
   curation: Kuration
   curator: Kurator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist-Kuratoren sind vertrauenswürdige Freiwillige, die die Berechtigung haben,
+    die Taxonomie von iNaturalist zu bearbeiten sowie Benutzerinhalte zu moderieren. Die Kuratoren sind
+    integraler Bestandteil von iNaturalist, da sie unsere Taxonomie aktuell und die
+    Kommunikation auf iNaturalist angemessen und zivil halten. Unten folgt eine Beschreibung darüber, was es bedeutet, Kurator zu sein. Bitte lies es durch und wenn du ein Kurator sein möchtest, lies auch sorgfältig den <a href="/pages/curator+guide" target="_blank">Kurator-Leitfaden</a>. Fülle dann
+    den Antrag auf dieser Seite aus.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Du musst begründen, warum du Kurator werden willst
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Warum möchtest du Kurator sein?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Wenn du die Taxonomie von iNaturalist bearbeiten möchtest, gib bitte ein oder zwei Beispiele von Taxonomie-Änderungen, die du vornehmen möchtest, einschließlich Links zu den jeweiligen
+    taxonomischen Instanze, wie sie auch im Kurator-Leitfaden aufgeführt sind.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Wenn du umgangsprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
+    Änderungen an, die du vornehmen möchtest
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Wenn du das Verhalten bei iNaturalist moderieren möchtest, bitte gib ein oder zwei Beispiele an von Verletzungen der Community-Richtlinien und was du in diesen Situationen tun würdest
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Wie ein Kurator seine Befugnisse verliert
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat-Mitarbeiter können Kuratorbefugnisse entfernen, wenn ein Kurator wiederholt:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    die Richtlinien im Kurator-Guide missachtet.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    selber kein angemessenes Verhalten zeigt.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Um sich als Kurator zu bewerben, musst du mindestens 60 Tage lang ein iNat-Konto besitzen und 100 verbesserte Identifikationen zu Beobachtungen hinzugefügt haben, einschließlich deiner eigenen (du hast %{num_idents} hinzugefügt). Wenn du beide Anforderungen erfüllt hast, kehren hierher zurück und du kannst die Bewerbung einreichen.
+  curator_application_inelligible_error: |
+    Um sich als Kurator zu bewerben, musst du mindestens 60 Tage lang ein Konto haben und 100 verbesserte Identifikationen zu den Beobachtungen hinzugefügt haben, einschließlich deiner eigenen.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kurator-Beantragung eingereicht
+  #Header
+  curator_application_what_curators_can_do: Was Kuratoren tun können
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Die Taxonomie von iNaturalist gemäß den Richtlinien im Abschnitt <a href="/pages/curator+guide#policies" target="_blank">Richtlinien des Kuratorleitfadens</a> bearbeiten. Das bedeutet, dass sie auf iNaturalist Taxa hinzufügen, teilen, austauschen, zusammenführen, deaktivieren und löschen können. Sie können auch Gefährdungsstatus und Geo-Privatsphäre bearbeiten sowie die von jedem Benutzer hinzugefügten gebräuchlichen Namen bearbeiten und verwalten.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Kommentare ausblenden und Benutzer wegen Verletzung der <a
+    href="/pages/community+guidelines" target="_blank">Community-Richtlinien</a> ausschließen.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    <a href="/flags" target="_blank">Meldungen</a> zu Taxa und Benutzerinhalten als 'erledigt' markieren.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Wiki-Seiten wie die <a href="/pages/help"
+    target="_blank">iNaturalist-FAQ-Seite</a> erstellen und bearbeiten.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Von der Community erstellte Gebiete bearbeiten und KML-Dateien hochladen, die größer als 1 MB sind (aber kleiner als 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Was Kuratoren nicht tun können
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Auf das Community-Taxon oder die Datenqualität einer Beobachtung mehr Einfluss zu nehmen als jeder anderer Benutzer.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Taxonänderungen für <a href="/pages/curator+guide#completetaxa"
+    target="_blank">komplette Taxa</a> vornehmen.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Inhalte anderer Benutzer löschen.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Direktnachrichten von anderen Benutzern lesen.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kurator-Antrag
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Du solltest dich nur als Kurator bewerben, wenn:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    du bereits seit einigen Monaten Identifikationen und/oder Beobachtungen hinzugefügt hast und es beabsichtigst, das auch weiterhin zu tun.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Du bereit und in der Lage bist, regelmäßig Kuratierungsarbeiten durchzuführen. Wenn du nur ein paar Taxa hinzufügen möchtest, dann fordere einfach an, dass bestehende Kuratoren diese Taxa hinzufügen, indem du ein Taxon du Kuratierung meldest.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Desweiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
@@ -1128,6 +1241,8 @@ de:
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
   default_search_place: Standard-Ort für Suche
+  default_search_place_description: |
+    Dies wird dein Standardort für alle Suchvorgänge im Entdecken-Modus
   default_sound_license: Standard-Tonlizenz
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
   defines_a_taxon_framework_for: Definiert ein Taxon-Framework für %{taxon_name}
@@ -1654,7 +1769,7 @@ de:
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Ich weiß nicht, aber bin mir sicher, dass dies %{taxon} ist
+  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber zumindest kann ich bestätigen, dass es sich um %{taxon} handelt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -1773,7 +1888,7 @@ de:
   iphone: iPhone
   is_not_following_anyone: folgt niemandem.
   is_now: ist jetzt
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Sind die Daten ausreichend, um zu bestätigen, dass es sich um %{taxon} handelt?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung als '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
@@ -2134,6 +2249,21 @@ de:
   message_from_user_at_time: Von %{user} um %{time}
   message_from_user_on_date: Von %{user} am %{date}
   messages: Nachrichten
+  messages_new_correspondent_it_looks_like: |
+    Es sieht so aus, als hättest du mit dieser Person bisher nicht korrespondiert, also bitte
+    behalte diese Dinge im Hinterkopf:
+  messages_new_correspondent_specimens: |
+    Sei vorsichtig bei Anfragen nach Belegexemplaren oder geschützten Daten. Versuche, die
+    Identität der Person, die die Anfrage stellt, zu verifizieren und wenn um 
+    Exemplare gebeten wird, frage nach einer entsprechenden Erlaubnis.
+  messages_new_correspondent_personal: |
+    Gib keine persönlichen Informationen über dich an Personen weiter, denen du nicht
+    vertraust.
+  messages_new_correspondent_actions_html: |
+    Wenn du den Verdacht hast, dass diese Person unsere <a href="%{tos_url}"
+    target="_blank">Nutzungsbedingungen</a> verletzt oder nicht gemäß unseren <a
+    href="%{guidelines_url}" target="_blank">Richtlinien agiert</a>, melde bitte
+    diese Nachricht weiter unten.
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
     Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 
@@ -2311,7 +2441,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Nein, es ist aber ein Mitglied von %{taxon}"
+  no_but_it_is_a_member_of_taxon: "Ja, der Nachweis lässt eine Bestimmung als %{taxon} nicht zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -2485,6 +2615,9 @@ de:
   observed_on_datetime: Beobachtet am %{datetime}
   observation_removed_from_the_project: "Die Beobachtung wurde aus dem Projekt \"%{project}\" entfernt."
   observation_requirements: Beobachtungsvoraussetzungen
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Beobachtungsbedingungen aktualisiert am
   observation_rules: Beobachtungsregeln
   observation_rules_description: |
     Du kannst Regeln wählen, um festzulegen, welche Beobachtungen zu diesem Projekt hinzugefügt werden können, wie z.B. die Beschränkung auf einen bestimmten Ort oder ein bestimmtes Taxon. Wenn du mehr als eine Regel für eine Art von Regel hast, sind Beobachtungen gültig, wenn eine der beiden Regeln zutrifft. Wenn du zum Beispiel die Regeln "muss in Amphibia sein" und "muss in Reptilia sein" hast, dann akzeptiert das Projekt Beobachtungen von Reptilien oder Amphibien.
@@ -2511,7 +2644,7 @@ de:
     Beobachtungen "in der Nähe" eines Ortes befinden sich innerhalb eines Rechtecks, das um die Grenze des Gebiets gezeichnet wird, was zu ungenauen Ergebnissen für Orte führen kann, wenn Orte einem Rechteck entsprechen. Dies ist auf eine Einschränkung unserer Datenbank zurückzuführen, an deren Lösung wir arbeiten.
   observations_needing_curation: Beobachtungen, die einer Kuration bedürfen
   observations_observed_this_month: Diesen Monat <em>beobachtete</em> Beobachtungen (nicht hinzugefügte). Finde noch mehr!
-  observations_of_relatives: Beobachtungen von Verwandten
+  observations_of_relatives: Beobachtungen von verwandten Taxa
   observations_of_taxon: "Beobachtungen von %{taxon_name}"
   observations_per_month: Beobachtungen/Monat
   observations_removed_from_the_project: "Aus dem Projekt \"%{project}\" entfernte Beobachtungen"
@@ -3206,7 +3339,7 @@ de:
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Beiträge
-  potential_disagreement: Möglicher Widerspruch
+  potential_disagreement: Soll der Bestimmung widersprochen werden?
   powered_by: Betrieben von
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
@@ -3245,6 +3378,10 @@ de:
   project_aggregator_filter_error: |
     Projekte können keine automatische Beobachtungsaggregation ermöglichen, es sei denn, das Projekt ist mit einem Ort moderater Größe verbunden oder es sind nur Beobachtungen von bestimmten Taxa oder Taxa auf einer Liste erlaubt
   project_assessments: Projektbewertungen
+  project_coordinate_access_enabled: |
+    Du solltest die versteckten Koordinaten von Beobachtungen der Benutzer sehen können, die dir vertrauen.
+  project_coordinate_access_disabled_until_datetime: |
+    Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -4162,13 +4299,16 @@ de:
   unknown_rank: '(Unbekannter Rang)'
   unfollow: Nicht mehr folgen
   unlink_your_google_account: Dein Google-Konto trennen
+  unlink_your_flickr_account: "Entferne dein Flickr-Konto"
   unmute: Ton an
   updates_notification_email_subject: "%{prefix} Neue Aktualisierungen %{date}"
+  updates_suspension_email_subject: "%{prefix} Deine Abonnements wurden ausgesetzt"
   updating: Aktualisiere…
   unprocessable: Unverarbeitbar
   unpublish: Veröffentlichung rückgängig machen
   #Undo the action of resolving a flag
   unresolve: ungelöst
+  unreview_all: Alle als 'nicht betrachtet' markieren
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
@@ -4269,7 +4409,7 @@ de:
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
-  user_disagrees_this_is_taxon: "%{user} ist nicht der Meinung, dass es sich um %{taxon} handelt"
+  user_disagrees_this_is_taxon: "%{user} stimmt der Bestimmung als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
@@ -4817,9 +4957,12 @@ de:
           Raster einzelner Bilder, keine Beschreibungen
         book: |
           Vollständiger Guide mit allen Bildern und Beschreibungen, die sich über mehrere Seiten erstrecken.
+      pdf_generation_notice: |
+        Bitte haben einen Moment Geduld, die Generierung großer PDFs kann eine oder zwei Minuten dauern.
       tags_help_html: |
         Tags sind wie Kategorien für die Arten in deinem Guide, außer dass mehrere Arten den gleichen Tag haben können. Gib Tags als kommagetrennte Liste ein, z.B. <code>klein, pelzig</code>. Um benannte Kategorien zu benutzen, verwende Tags wie <code>category_name=category_value</code>, z.B. <code>Farbe=gelbe</code>.
       sorts:
+        default: Reihenfolge der Guides
         alphaname: Alphabetisch nach wissenschaftlichem Namen
         alphadisplay: Alphabetisch nach Anzeigename
     guide_taxa:
@@ -4952,6 +5095,7 @@ de:
           verschiedenen vorgeschlagenen IDs sehen können.
           </p>
         you_have_opted_out: Du hast Dich aus den Community-Bestimmungen zurückgezogen
+        opt_in_for_this_observation: Community-ID für diese Beobachtung zulassen
         your_id_does_not_match: |
           Deine ID (<span class="bold">%{taxon_name}</span>) stimmt nicht mit der Community-ID überein
       copy_tip: "Füge eine neue Beobachtung hinzu, indem du Datum, Ort, Bilder und Beobachtungsfelder dieser Beobachtung kopierst."
@@ -5466,10 +5610,10 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
-        trust_help_notification: |-
-          Dies wird jedoch auch alle Projektmitglieder benachrichtigen jedes Mal, wenn
-          du die Projektanforderungen änderst, damit sie neu beurteilen können, ob sie dir
-          weiterhin vertrauen wollen.
+        trust_help_notification2: |-
+          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
+          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
+          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.
@@ -5566,6 +5710,7 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
+        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für Bioblitz-artige Veranstaltungen)
         traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         trusting_members_will_be_notified: |
           Du hast die Projektanforderungen geändert oder das Nutzervertrauen aktiviert. Dieses
@@ -6141,6 +6286,8 @@ de:
           Identität mit deiner bestehenden Spende verifizieren.
     welcome:
       index:
+        welcome_message_html: |
+          bei %{image}, hier kannst du deine Naturbeobachtungen <strong>erfassen</strong>, andere Naturbeobachter <strong>treffen</strong> und mehr über die Welt der Natur <strong>lernen</strong>.
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
         observations_to_date: 'Beobachtungen bis dato'

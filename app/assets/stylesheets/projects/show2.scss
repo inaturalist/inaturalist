@@ -255,6 +255,12 @@ a {
             padding: 2px 8px 2px 10px;
             min-width: 72px;
             text-align: center;
+            line-height: 0;
+            &:hover,
+            &:active,
+            &:focus {
+              color: white;
+            }
           }
           .count {
             cursor: pointer;
@@ -273,7 +279,7 @@ a {
           position: absolute;
           top: 0;
           right: 0;
-          button {
+          > button {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.3);
             border-radius: 30px;

@@ -12,7 +12,6 @@ import Requirements from "./requirements";
 import OverviewRecentObservations from "./overview_recent_observations";
 import OverviewStats from "./overview_stats";
 import OverviewMap from "./overview_map";
-import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
 const OverviewTab = props => {
   const { config, project, updateCurrentUser } = props;
@@ -51,16 +50,6 @@ const OverviewTab = props => {
           <PhotoModalContainer />
         </div>
       ) }
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <FlagAnItemContainer
-              item={project}
-              manageFlagsPath={`/projects/${project.id}/flags`}
-            />
-          </Col>
-        </Row>
-      </Grid>
     </div>
   );
 };

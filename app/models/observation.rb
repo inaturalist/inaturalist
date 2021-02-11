@@ -154,7 +154,7 @@ class Observation < ActiveRecord::Base
     "private_place_guess",
     "private_latitude",
     "private_longitude",
-    "private_positional_accuracy",
+    "public_positional_accuracy",
     "geoprivacy",
     "taxon_geoprivacy",
     "coordinates_obscured",
@@ -204,7 +204,7 @@ class Observation < ActiveRecord::Base
     "private_place_guess",
     "private_latitude",
     "private_longitude",
-    "private_positional_accuracy",
+    "public_positional_accuracy",
     "geoprivacy",
     "taxon_geoprivacy",
     "coordinates_obscured",
@@ -847,8 +847,7 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
-      options[:except] += [:private_latitude, :private_longitude,
-        :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
+      options[:except] += [:private_latitude, :private_longitude, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]
@@ -1499,10 +1498,19 @@ class Observation < ActiveRecord::Base
     cps = collection_projects( authenticate: viewer )
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
-      if !cp.prefers_user_trust?
+      if cp.observation_requirements_updated_at.blank?
+        # If we don't know when it was updated, assume no access
+        false
+      elsif cp.observation_requirements_updated_at > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        # If we're still in the wait period, no access
+        false
+      elsif !cp.prefers_user_trust?
+        # If the project isn't configured to support trust, no access
         false
       elsif pu && pu.prefers_curator_coordinate_access_for &&
           pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
+        # Assuming everything else check's out, we need to look at the project
+        # member's preferences
         if GEOPRIVACIES.include?( geoprivacy ) &&
             pu.prefers_curator_coordinate_access_for != ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
           false
@@ -3009,15 +3017,16 @@ class Observation < ActiveRecord::Base
     scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
       filter_scope : self.all
     if filter_ids = options.delete(:ids)
-      if filter_ids.length > 200
+      if filter_ids.length > 100
         # call again for each batch, then return
-        filter_ids.each_slice(200) do |slice|
+        filter_ids.each_slice(100) do |slice|
           update_observations_places(options.merge(ids: slice))
         end
         return
       end
       scope = scope.where(id: filter_ids)
     end
+    options[:batch_size] = 100
     scope.select(:id).find_in_batches(options) do |batch|
       ids = batch.map(&:id)
       Observation.transaction do

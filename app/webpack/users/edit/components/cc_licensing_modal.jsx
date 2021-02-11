@@ -8,7 +8,7 @@ const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
   const iNatLicenses = iNaturalist.Licenses;
 
   const showLicenseDescription = license => {
-    const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
+    const localizedName = license === "cc0" ? "cc_0" : license.replace( /-/g, "_" );
 
     return (
       <div className="text-muted license-description">

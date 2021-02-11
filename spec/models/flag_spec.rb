@@ -2,6 +2,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Flag, "creation" do
+  elastic_models( Observation )
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+
   it "should not allow flags that are too long" do
     f = Flag.make(
       :flag => <<-EOT
@@ -34,6 +38,17 @@ describe Flag, "creation" do
     o = Observation.make!( description: "some bad stuff" )
     f = Flag.make!( flaggable: o )
     expect( f.flaggable_content ).to eq o.description
+  end
+
+  it "should make flagged observations casual" do
+    o = Observation.make!( observed_on_string: "2021-01-01", latitude: 1, longitude: 1 )
+    expect( o.quality_grade ).to eq Observation::CASUAL
+    make_observation_photo( observation: o )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    Flag.make!( flaggable: o.photos.first )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
   end
 
   [Post, Comment, Identification].each do |model|
@@ -85,6 +100,8 @@ describe Flag, "update" do
 end
 
 describe Flag, "destruction" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
   it "should remove the resolver's subscription" do
     t = Taxon.make!
     f = Flag.make!(flaggable: t)
@@ -95,5 +112,18 @@ describe Flag, "destruction" do
     f.reload
     f.destroy
     expect( u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to be_blank
+  end
+
+  it "should remove update actions" do
+    c = Comment.make!
+    f = Flag.make!( flaggable: c )
+    u = make_curator
+    without_delay do
+      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+    end
+    f.reload
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
+    f.destroy
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
   end
 end

@@ -236,6 +236,7 @@ class Photo < ActiveRecord::Base
     end
     observations.each do |o|
       o.update_mappable
+      Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
   end

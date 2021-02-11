@@ -349,8 +349,18 @@ describe Identification, "creation" do
       r = ObservationReview.make!(observation: o, user: o.user, updated_at: 1.day.ago)
       Identification.make!(observation: o, user: o.user)
       o.reload
-      expect(o.observation_reviews.first).to eq r
-      expect(o.observation_reviews.first.updated_at).to be > r.updated_at
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first.updated_at ).to be > r.updated_at
+    end
+
+    it "marks existing unreviewed reviews as reviewed" do
+      o = Observation.make!
+      r = ObservationReview.make!( observation: o, user: o.user )
+      r.update_attributes( reviewed: false )
+      Identification.make!( observation: o, user: o.user )
+      o.reload
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first ).to be_reviewed
     end
 
     it "should set curator_identification_id on project observations to last current identification" do

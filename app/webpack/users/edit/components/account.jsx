@@ -16,7 +16,8 @@ const Account = ( {
   setModalState,
   sites
 } ) => {
-  const currentNetworkAffiliation = sites.filter( site => site.id === profile.site_id )[0];
+  const siteId = profile.site_id || 1;
+  const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
 
   // these locales are not available for all regions (like "en-US")
   // so taking the list of keys from the english version
@@ -33,7 +34,7 @@ const Account = ( {
     return localeListKeys.includes( twoLetterLanguageCode ) ? twoLetterLanguageCode : "en";
   };
 
-  const localeList = Object.keys( I18n.t( "locales", { locale: setLocale( ) } ) );
+  const localeList = Object.keys( I18n.t( "locales", { locale: "en" } ) );
 
   const createTimeZoneList = ( ) => (
     TIMEZONES.map( zone => <option value={zone.value} key={zone.value}>{zone.label}</option> )
@@ -47,11 +48,11 @@ const Account = ( {
 
   const showNetworkLogo = ( id, logo ) => <img className="network-logo" alt={`inat-affiliation-logo-${id}`} src={logo} />;
 
-  const showCurrentNetwork = id => (
+  const showCurrentNetwork = ( ) => (
     <div className="current-network">
-      {showNetworkLogo( id, currentNetworkAffiliation.icon_url )}
+      {showNetworkLogo( siteId, currentNetworkAffiliation.icon_url )}
       <div className="text-muted current-network-name">
-        {sites.filter( site => site.id === id )[0].name}
+        {currentNetworkAffiliation.name}
       </div>
       <div className="caret" />
     </div>
@@ -67,7 +68,7 @@ const Account = ( {
       >
         {showNetworkLogo( id, site.icon_url )}
         <div className="text-muted">{name}</div>
-        {profile.site_id === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+        {siteId === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
       </MenuItem>
     );
   } );
@@ -121,7 +122,7 @@ const Account = ( {
             <DropdownButton
               id="user_site_id"
               onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
-              title={showCurrentNetwork( profile.site_id )}
+              title={showCurrentNetwork( )}
               noCaret
             >
               {createINatAffiliationList( )}

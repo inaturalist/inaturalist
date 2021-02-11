@@ -2,7 +2,7 @@ class ProjectObservation < ActiveRecord::Base
   blockable_by lambda {|po| po.observation.try(:user_id) }
 
   belongs_to :project
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :curator_identification, :class_name => "Identification"
   belongs_to :user
   validates_presence_of :project, :observation
@@ -459,7 +459,7 @@ class ProjectObservation < ActiveRecord::Base
     project = options[:project] || project_observations.first.project
     columns = Observation::CSV_COLUMNS
     unless project.curated_by?(options[:user])
-      columns -= %w(private_latitude private_longitude private_positional_accuracy)
+      columns -= %w(private_latitude private_longitude private_place_guess)
     end
     headers = columns.map{|c| Observation.human_attribute_name(c)}
 

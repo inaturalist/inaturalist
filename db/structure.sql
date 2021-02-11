@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.4
--- Dumped by pg_dump version 12.4
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2819,7 +2819,6 @@ CREATE TABLE public.observations (
     positional_accuracy integer,
     private_latitude numeric(15,10),
     private_longitude numeric(15,10),
-    private_positional_accuracy integer,
     geoprivacy character varying(255),
     quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
@@ -3454,7 +3453,8 @@ CREATE TABLE public.projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    last_aggregated_at timestamp without time zone
+    last_aggregated_at timestamp without time zone,
+    observation_requirements_updated_at timestamp without time zone
 );
 
 
@@ -4805,7 +4805,8 @@ CREATE TABLE public.user_blocks (
     user_id integer,
     blocked_user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    override_user_id integer
 );
 
 
@@ -9233,6 +9234,13 @@ CREATE INDEX index_user_blocks_on_blocked_user_id ON public.user_blocks USING bt
 
 
 --
+-- Name: index_user_blocks_on_override_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING btree (override_user_id);
+
+
+--
 -- Name: index_user_blocks_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10365,4 +10373,10 @@ INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 INSERT INTO schema_migrations (version) VALUES ('20201023174221');
 
 INSERT INTO schema_migrations (version) VALUES ('20201118012108');
+
+INSERT INTO schema_migrations (version) VALUES ('20201204005354');
+
+INSERT INTO schema_migrations (version) VALUES ('20210125233250');
+
+INSERT INTO schema_migrations (version) VALUES ('20210127005238');
 

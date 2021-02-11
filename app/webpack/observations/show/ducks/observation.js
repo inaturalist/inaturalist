@@ -326,7 +326,20 @@ export function fetchObservation( uuid, options = { } ) {
       };
       const controlledTermFields = {
         id: true,
-        label: true
+        label: true,
+        multivalued: true
+      };
+      const projectFields = {
+        admins: {
+          user_id: true
+        },
+        icon: true,
+        project_observation_fields: {
+          observation_field: {
+            id: true
+          }
+        },
+        title: true
       };
       const fields = {
         annotations: {
@@ -379,9 +392,18 @@ export function fetchObservation( uuid, options = { } ) {
         license_code: true,
         location: true,
         longitude: true,
+        non_traditional_projects: {
+          current_user_is_member: true,
+          project_user: {
+            user: userFields
+          },
+          project: projectFields
+        },
         obscured: true,
         observed_on: true,
+        observed_time_zone: true,
         ofvs: {
+          datatype: true,
           name: true,
           observation_field: {
             name: true,
@@ -392,7 +414,8 @@ export function fetchObservation( uuid, options = { } ) {
           },
           user: userFields,
           uuid: true,
-          value: true
+          value: true,
+          taxon: taxonFields
         },
         outlinks: {
           source: true,
@@ -414,16 +437,12 @@ export function fetchObservation( uuid, options = { } ) {
         private_place_guess: true,
         private_place_ids: true,
         project_observations: {
+          current_user_is_member: true,
           preferences: {
             allows_curator_coordinate_access: true
           },
-          project: {
-            admins: {
-              user_id: true
-            },
-            icon: true,
-            title: true
-          }
+          project: projectFields,
+          uuid: true
         },
         public_positional_accuracy: true,
         quality_grade: true,
@@ -1106,11 +1125,9 @@ export function addToProjectSubmit( project ) {
     } );
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
 
-    const payload = { id: project.id, observation_id: state.observation.id };
     const actionTime = getActionTime( );
-    inatjs.projects.add( payload ).then( ( ) => {
-      dispatch( afterAPICall( { actionTime } ) );
-    } ).catch( e => {
+    const { testingApiV2 } = state.config;
+    const errorHandler = e => {
       dispatch( handleAPIError( e, `Failed to add to project ${project.title}`, {
         onConfirm: ( ) => {
           const currentProjObs = getState( ).observation.project_observations;
@@ -1120,7 +1137,23 @@ export function addToProjectSubmit( project ) {
           } ) );
         }
       } ) );
-    } );
+    };
+    if ( testingApiV2 ) {
+      const payload = {
+        project_observation: {
+          project_id: project.id,
+          observation_id: state.observation.uuid
+        }
+      };
+      inatjs.project_observations.create( payload ).then( ( ) => {
+        dispatch( afterAPICall( { actionTime } ) );
+      } ).catch( errorHandler );
+    } else {
+      const payload = { id: project.id, observation_id: state.observation.id };
+      inatjs.projects.add( payload ).then( ( ) => {
+        dispatch( afterAPICall( { actionTime } ) );
+      } ).catch( errorHandler );
+    }
   };
 }
 
@@ -1151,13 +1184,22 @@ export function removeFromProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const poToDelete = _.find( state.observation.project_observations,
+      po => po.project.id === project.id );
     const newProjectObs = state.observation.project_observations.filter( po => (
       po.project.id !== project.id
     ) );
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
-
-    const payload = { id: project.id, observation_id: state.observation.id };
-    dispatch( callAPI( inatjs.projects.remove, payload ) );
+    const { testingApiV2 } = state.config;
+    if ( testingApiV2 ) {
+      dispatch( callAPI(
+        inatjs.project_observations.delete,
+        { id: poToDelete.uuid || poToDelete.id }
+      ) );
+    } else {
+      const payload = { id: project.id, observation_id: state.observation.id };
+      dispatch( callAPI( inatjs.projects.remove, payload ) );
+    }
   };
 }
 

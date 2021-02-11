@@ -58,7 +58,7 @@
             .timeline-footer
               = link_to t( "view_#{resource_type.downcase}".to_sym, default: "View" ), resource, class: "btn btn-sm btn-primary"
               - if updates.count > 1
-                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", autocomplete: "off", "data-target" => ".expand#{target_id}", "data-toggle" => "collapse", type: "button" }
+                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", "data-target" => ".expand#{target_id}", "data-toggle" => "collapse", type: "button" }
                   %span.expand_inactive
                     %i.glyphicon.glyphicon-collapse-down
                     = succeed "..." do

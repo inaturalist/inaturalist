@@ -130,9 +130,11 @@ export default function reducer(
         const place = _
           .sortBy( action.updates.places, p => p.bbox_area )
           .find( p => p.admin_level !== null && p.admin_level < 3 );
-        newState.query.place_id = place.id;
-        newState.query.place = place;
-        newState.query.defaultPlace = place;
+        if ( place ) {
+          newState.query.place_id = place.id;
+          newState.query.place = place;
+          newState.query.defaultPlace = place;
+        }
       }
       break;
     }

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
+  resources :curator_applications, only: [:new, :create]
   resources :annotations
 
   get "/search" => "search#index", as: "search"

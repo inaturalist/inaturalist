@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
+  before_filter :site_admin_required, only: [:add_role, :remove_role]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
   before_filter :return_here, only: [
     :curation,
@@ -95,11 +96,11 @@ class UsersController < ApplicationController
       return redirect_back_or_default @user
     end
     
-    if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
-    
+
     @user.roles << @role
     if @role.name === Role::CURATOR
       @user.update_attributes( curator_sponsor: current_user )
@@ -113,12 +114,12 @@ class UsersController < ApplicationController
       flash[:error] = t(:that_role_doesnt_exist)
       return redirect_back_or_default @user
     end
-    
-    unless current_user.has_role?(@role.name)
+
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
-    
+
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
       if @role.name === Role::CURATOR
@@ -519,11 +520,18 @@ class UsersController < ApplicationController
     if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
       cache_key = "dashboard-discourse-data-#{@site.id}"
       begin
+        if @site.discourse_category.blank?
+          url = "#{@discourse_url}/latest.json?order=created"
+          @discourse_topics_url = @discourse_url
+        else
+          url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
+          @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
+        end
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute( method: "get",
-              url: "#{@discourse_url}/latest.json?order=created", open_timeout: 1, timeout: 5 ).body
+              url: url, open_timeout: 1, timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",

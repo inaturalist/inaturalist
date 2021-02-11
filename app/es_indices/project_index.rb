@@ -84,6 +84,7 @@ class Project < ActiveRecord::Base
         indexes :field, type: "keyword"
         indexes :value, type: "text"
       end
+      indexes :observation_requirements_updated_at, type: "date", index: false
       indexes :search_parameter_fields do
         indexes :d1, type: "date", format: "dateOptionalTime"
         indexes :d2, type: "date", format: "dateOptionalTime"
@@ -221,7 +222,8 @@ class Project < ActiveRecord::Base
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json),
       umbrella_project_ids: within_umbrella_ids,
-      prefers_user_trust: prefers_user_trust
+      prefers_user_trust: prefers_user_trust,
+      observation_requirements_updated_at: observation_requirements_updated_at
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags

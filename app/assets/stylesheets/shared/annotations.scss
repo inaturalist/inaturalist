@@ -65,12 +65,16 @@ body > [role="dialog"] .Annotations {
 .QualityMetrics,
 body > [role="dialog"] .Annotations,
 body > [role="dialog"] .QualityMetrics {
-  .glyphicon, .fa-thumbs-up, .fa-thumbs-down, .fa-thumbs-o-up, .fa-thumbs-o-down {
+  .glyphicon,
+  .fa-thumbs-up,
+  .fa-thumbs-down,
+  .fa-thumbs-o-up,
+  .fa-thumbs-o-down {
     color: #BBBBBB;
   }
   .glyphicon {
     top: 3px;
-    margin-left: 3px;
+    margin: 0 3px;
   }
   .check, .count {
     display: inline-block;

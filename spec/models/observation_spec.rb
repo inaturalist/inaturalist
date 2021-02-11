@@ -2094,7 +2094,6 @@ describe Observation do
     end
 
     describe "curator_coordinate_access_for" do
-      elastic_models( Observation )
       let(:place) { make_place_with_geom }
       let(:project) do
         proj = Project.make(:collection)
@@ -2140,6 +2139,32 @@ describe Observation do
         expect( o ).to be_coordinates_obscured
         expect( o.coordinates_viewable_by?( curator ) ).to be false
       end
+      it "should not allow curator access if the project observation requirements changed during the wait period" do
+        expect( project.observation_requirements_updated_at ).to be > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        pu = ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be false
+      end
+      it "should allow curator access if the project observation requirements changed beofre the wait period" do
+        allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+          and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+        expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        pu = ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be true
+      end
       describe "taxon" do
         let(:pu) do
           ProjectUser.make!(
@@ -2149,6 +2174,9 @@ describe Observation do
           )
         end
         before do
+          allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+            and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+          expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
           expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
         end
         it "should allow curator access to coordinates of a threatened taxon" do
@@ -2174,6 +2202,9 @@ describe Observation do
           )
         end
         before do
+          allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+            and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+          expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
           expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
         end
         it "should not allow curator access if disabled" do

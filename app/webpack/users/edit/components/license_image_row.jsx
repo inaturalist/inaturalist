@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const LicenseImageRow = ( { license, isModal } ) => {
   const iNatLicenses = iNaturalist.Licenses;
-  const localizedName = license === "cc0" ? "cc_0" : license.replaceAll( "-", "_" );
+  const localizedName = license === "cc0" ? "cc_0" : license.replace( /-/g, "_" );
 
   const gbifTag = ( ) => (
     <div className="license-tag" title={I18n.t( "suitable_for_the_global_biodiversity_information_facility" )}>

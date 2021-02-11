@@ -16,6 +16,7 @@ import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
 import InsufficientRequirementsContainer from "../containers/insufficient_requirements_container";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
@@ -100,12 +101,13 @@ const App = ( {
 
   const headerButton = (
     <div className="header-members-button">
-      <div
-        className="action clicky"
+      <button
+        type="button"
+        className="btn btn-nostyle action clicky"
         onClick={membershipAction}
       >
         { membershipLabel }
-      </div>
+      </button>
       <UsersPopover
         users={project.members_loaded
           ? _.compact( _.map( project.members.results, "user" ) ) : null}
@@ -113,13 +115,13 @@ const App = ( {
         placement="bottom"
         containerPadding={20}
         returnContentsWhenEmpty
-        contentAfterUsers={
+        contentAfterUsers={(
           <div className="view-all-members">
             <a href={`/projects/${project.slug}/members`} className="linky">
               { I18n.t( "view_all_members" ) }
             </a>
           </div>
-        }
+        )}
         contents={(
           <div className="count">
             <i className="fa fa-user" />
@@ -202,9 +204,13 @@ const App = ( {
                 { I18n.t( "views.projects.show.this_is_a_preview" ) }
                 { ( userIsManager || viewerIsAdmin ) && (
                   <div>
-                    <a onClick={convertProject} className="linky">
+                    <button
+                      type="button"
+                      onClick={convertProject}
+                      className="btn btn-nostyle linky"
+                    >
                       { I18n.t( "views.projects.show.click_here_to_convert_this_project" ) }
-                    </a>
+                    </button>
                   </div>
                 ) }
               </div>
@@ -286,9 +292,20 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      { !showingCountdown && !project.hasInsufficientRequirements( ) && ( <StatsHeaderContainer /> ) }
+      { !showingCountdown && !project.hasInsufficientRequirements( )
+        && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
+        <Grid>
+          <Row>
+            <Col xs={12}>
+              <FlagAnItemContainer
+                item={project}
+                manageFlagsPath={`/projects/${project.id}/flags`}
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
       <FlaggingModalContainer />
       <ConfirmModalContainer />

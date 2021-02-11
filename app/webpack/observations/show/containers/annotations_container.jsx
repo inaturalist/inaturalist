@@ -1,7 +1,11 @@
 import { connect } from "react-redux";
 import Annotations from "../components/annotations";
-import { addAnnotation, deleteAnnotation, voteAnnotation,
-  unvoteAnnotation } from "../ducks/observation";
+import {
+  addAnnotation,
+  deleteAnnotation,
+  voteAnnotation,
+  unvoteAnnotation
+} from "../ducks/observation";
 import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
@@ -17,9 +21,9 @@ function mapDispatchToProps( dispatch ) {
     addAnnotation: ( controlledAttribute, controlledValue ) => {
       dispatch( addAnnotation( controlledAttribute, controlledValue ) );
     },
-    deleteAnnotation: ( id ) => { dispatch( deleteAnnotation( id ) ); },
+    deleteAnnotation: id => { dispatch( deleteAnnotation( id ) ); },
     voteAnnotation: ( id, vote ) => { dispatch( voteAnnotation( id, vote ) ); },
-    unvoteAnnotation: ( id ) => { dispatch( unvoteAnnotation( id ) ); },
+    unvoteAnnotation: id => { dispatch( unvoteAnnotation( id ) ); },
     updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }

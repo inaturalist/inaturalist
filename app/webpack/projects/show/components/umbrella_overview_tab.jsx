@@ -6,7 +6,6 @@ import UmbrellaMapContainer from "../containers/umbrella_map_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 import UmbrellaNews from "./umbrella_news";
-import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
 const UmbrellaOverviewTab = props => {
   const { project } = props;
@@ -26,16 +25,6 @@ const UmbrellaOverviewTab = props => {
       <RecentObservationsContainer />
       <PhotoModalContainer />
       <UmbrellaNews {...props} />
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            <FlagAnItemContainer
-              item={project}
-              manageFlagsPath={`/projects/${project.id}/flags`}
-            />
-          </Col>
-        </Row>
-      </Grid>
     </div>
   );
 };

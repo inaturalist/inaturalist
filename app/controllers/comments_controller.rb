@@ -172,7 +172,7 @@ class CommentsController < ApplicationController
   
   private
   def redirect_to_parent
-    anchor = "activity_comment_#{@comment.id}"
+    anchor = "activity_comment_#{@comment.uuid}"
     if @comment.parent.is_a?( Trip )
       trip = @comment.parent
       redirect_to( trip_path( trip, anchor: anchor ) )
@@ -181,6 +181,9 @@ class CommentsController < ApplicationController
       redirect_to( post_path( post, anchor: anchor ) )
     elsif @comment.parent.is_a?( TaxonLink )
       redirect_to( edit_taxon_link_path( @comment.parent, anchor: anchor ) )
+    elsif @comment.parent.is_a?( Observation )
+      anchor = "activity_comment_#{@comment.uuid}"
+      redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     else
       redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     end
