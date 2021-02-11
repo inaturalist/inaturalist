@@ -481,6 +481,7 @@ class ProjectsController < ApplicationController
         @project_users = @selected_user.project_users.joins(:project, :user).
           paginate(:page => params[:page]).order("lower(projects.title)")
         @projects = @project_users.map{|pu| pu.project}
+        render layout: "bootstrap"
       end
       format.json do
         @project_users = @selected_user.project_users.joins(:project).
