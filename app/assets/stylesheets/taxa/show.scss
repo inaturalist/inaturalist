@@ -1078,9 +1078,17 @@ body > [role="dialog"] .PhotoChooserModal {
   margin-top: 20px;
   .PlaceChooserPopoverTrigger {
     &.chosen {
-      padding: 5px 10px;
+      line-height: 20px;
+      padding: 5px 10px 3px;
       background-color: $inat-green;
-      i.fa {
+      position: relative;
+      .pre-icon {
+        position: absolute;
+        left: -15px;
+        display: inline-block;
+        top: 8px;
+      }
+      i.fa-times {
         color: white;
       }
       color: white;
@@ -1088,6 +1096,9 @@ body > [role="dialog"] .PhotoChooserModal {
     }
     .clear-button {
       margin-left: 5px;
+      position: relative;
+      top: -1px;
+
     }
   }
 }
