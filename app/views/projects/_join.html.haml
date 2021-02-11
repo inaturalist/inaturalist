@@ -54,6 +54,9 @@
             label_after: true,
             label: t(:yes_but_only_for_threatened),
             description: t(:about_trusting_projects_options_taxon_desc)
+          .box.warning.ui
+            %strong=t :please_be_careful!
+            %p.unstacked=t :project_coordinate_access_warning
     - else
       %label=t 'views.projects.curator_coordinate_access_label'
       - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|

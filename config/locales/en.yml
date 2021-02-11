@@ -3573,6 +3573,8 @@ en:
   please_add_this_to_x_html: "Please add this to %{x}"
   please_allow_a_few_weeks_for_external_sites:
     Please allow a few weeks for external sites to sync changes from this observation
+  # Title to a section warning a user to exercise caution
+  please_be_careful!: Please Be Careful!
   please_complete_the_following_to_add_project: |
     Please complete the following to add this observation to the project:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
@@ -3639,6 +3641,10 @@ en:
     members.
   project_coordinate_access_disabled_until_datetime: |
     You will not be able to access hidden coordinates until %{datetime}
+  project_coordinate_access_warning: |
+    Coordinate access is important for scientists, but can also be abused by
+    poachers. Make sure you trust all the project curators before trusting this
+    project.
   project_cover: Project cover
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
