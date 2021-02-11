@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
+import { updateSession } from "../../../shared/util";
 
 let searchInProgress;
 
@@ -216,7 +217,6 @@ class TaxonAutocomplete extends React.Component {
                 : I18n.t( "only_view_nearby_suggestions" )
             );
             setState( { viewNotNearby: !innerViewNotNearby } );
-            // eslint-disable-next-line no-undef
             updateSession( { prefers_not_nearby_suggestions: !innerViewNotNearby } );
             that.inputElement( ).autocomplete( "search" );
             return false;
