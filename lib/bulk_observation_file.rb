@@ -148,11 +148,6 @@ class BulkObservationFile
         ProjectUser.update_observations_counter_cache_from_project_and_user(project.id, user.id)
         ProjectUser.update_taxa_counter_cache_from_project_and_user(project.id, user.id)
         Project.update_observed_taxa_count(project.id)
-
-        # Do a mass refresh of the project taxa.
-        Project.refresh_project_list(project.id,
-          taxa: observations.collect(&:taxon_id).uniq,
-          add_new_taxa: true)
       end
     end
     Observation.elastic_index!(ids: observations.map(&:id))
@@ -198,7 +193,6 @@ class BulkObservationFile
 
     # Skip some expensive post-save tasks
     obs.skip_refresh_check_lists = true
-    obs.skip_refresh_lists       = true
     obs.skip_indexing            = true
     obs.bulk_import              = true
 

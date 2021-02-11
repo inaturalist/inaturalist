@@ -92,10 +92,6 @@ module Shared::ListsModule
 
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
-
-        if @list.show_obs_photos
-          load_listed_taxon_photos
-        end
         
         if logged_in?
           @current_user_lists = current_user.lists.limit(100)
@@ -225,11 +221,6 @@ module Shared::ListsModule
 
     @list.user = current_user
     
-    # add rules for all selected taxa
-    if params[:taxa] && @list.is_a?(LifeList)
-      update_rules(@list, params)
-    end
-    
     # TODO: add a rule for a place, if one was specified
     
     respond_to do |format|
@@ -245,12 +236,8 @@ module Shared::ListsModule
   # PUT /lists/1
   # PUT /lists/1.xml
   def update
-    # add rules for all selected taxa
-    if params[:taxa] && @list.is_a?(LifeList)
-      update_rules(@list, params)
-    end
     
-    list_attributes = params[:list] || params[:life_list] || params[:check_list]
+    list_attributes = params[:list] || params[:check_list]
     
     if @list.update_attributes(list_attributes)
       flash[:notice] = t(:list_saved)
@@ -261,15 +248,6 @@ module Shared::ListsModule
   end
   
   def destroy
-    if @list.id == current_user.life_list_id
-      respond_to do |format|
-        format.html do
-          flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
-          redirect_to @list
-        end
-      end
-      return
-    end
 
     if @list.is_a?(ProjectList)
       respond_to do |format|
@@ -504,10 +482,6 @@ private
         unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
       end
     end
-    if params[:observed].blank? && list.is_a?(LifeList) && list.id == list.user.life_list_id
-      @observed = 't'
-      unpaginated_listed_taxa = unpaginated_listed_taxa.confirmed
-    end
 
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
@@ -521,9 +495,6 @@ private
     elsif list.is_a?(CheckList)
       @rank = "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
-    elsif list.is_a?(LifeList) && list.id == list.user.life_list_id
-      @rank = "leaves"
-      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
     else
       @rank = "all"
     end
@@ -651,10 +622,6 @@ private
 
   def require_listed_taxa_editor
     @list.listed_taxa_editable_by?(current_user)
-  end
-  
-  def load_listed_taxon_photos
-    # override
   end
   
   def set_taxon_names_by_taxon_id(listed_taxa, iconic_taxa, taxa)

@@ -9,7 +9,7 @@ class ListsController < ApplicationController
   blocks_spam :except => load_except, :instance => :list
   check_spam only: [:create, :update], instance: :list
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :reload_from_observations]
+    :remove_taxon]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :load_user_by_login, :only => :by_login
   before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
@@ -28,13 +28,11 @@ class ListsController < ApplicationController
   def by_login
     block_if_spammer(@selected_user) && return
     @prefs = current_preferences
-    @show_new_life_list_banner = ( logged_in? && current_user == @selected_user )
-    
-    @life_list = @selected_user.life_list
+    prefs_per_page = @prefs["per_page"] - 1
     @lists = @selected_user.personal_lists.
       order("#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}").
-      paginate(:page => params[:page],
-        :per_page => @prefs["per_page"])
+      paginate(:page => params["page"],
+        :per_page =>prefs_per_page)
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.
@@ -51,7 +49,9 @@ class ListsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        render layout: "bootstrap"
+      end
     end
   end
   
@@ -59,7 +59,6 @@ class ListsController < ApplicationController
   # viewer's list.
   def compare
     @with = List.find_by_id(params[:with])
-    @with ||= current_user.life_list if logged_in?
     @iconic_taxa = Taxon::ICONIC_TAXA
     
     unless @with
@@ -174,7 +173,6 @@ class ListsController < ApplicationController
       pair.compact.empty? ? nil : [iconic_taxon, pair]
     end.compact
     
-    load_listed_taxon_photos
   end
   
   def remove_taxon    
@@ -205,36 +203,6 @@ class ListsController < ApplicationController
         end
       end
     end
-  end
-  
-  def reload_from_observations
-    delayed_task(@list.reload_from_observations_cache_key) do
-      @list.reload_from_observations
-    end
-    
-    respond_to_delayed_task(
-      done: t(:list_reloaded_from_observations),
-      error: t(:doh_something_went_wrong),
-      timeout: t(:reload_timed_out)
-    )
-  end
-  
-  def refresh
-    delayed_task(@list.refresh_cache_key) do
-      queue = @list.is_a?(CheckList) ? "slow" : nil
-      if job = @list.delay(priority: USER_PRIORITY, queue: queue,
-        unique_hash: { "#{ @list.class.name }::refresh": @list.id }
-      ).refresh(skip_update_cache_columns: true)
-        Rails.cache.write(@list.refresh_cache_key, job.id)
-        job
-      end
-    end
-    
-    respond_to_delayed_task(
-      done: t(:list_rules_reapplied),
-      error: t(:doh_something_went_wrong),
-      timeout: t(:request_timed_out)
-    )
   end
   
   def add_from_observations_now
@@ -297,7 +265,7 @@ class ListsController < ApplicationController
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?
     @error = @job && !@job.failed_at.blank?
-    @timeout = @tries > LifeList::MAX_RELOAD_TRIES
+    @timeout = @tries > List::MAX_RELOAD_TRIES
     
     if @start
       @job = yield
@@ -349,16 +317,4 @@ class ListsController < ApplicationController
     end
   end
   
-  def load_listed_taxon_photos
-    @photos_by_listed_taxon_id = {}
-    obs_ids = @listed_taxa.map(&:last_observation_id).compact
-    obs_photos = ObservationPhoto.where(observation_id: obs_ids).
-      select("DISTINCT ON (observation_id) *").
-      includes({ :photo => :user })
-    obs_photos_by_obs_id = obs_photos.index_by(&:observation_id)
-    @listed_taxa.each do |lt|
-      next unless (op = obs_photos_by_obs_id[lt.last_observation_id])
-      @photos_by_listed_taxon_id[lt.id] = op.photo
-    end
-  end
 end

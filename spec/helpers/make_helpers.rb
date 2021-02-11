@@ -35,15 +35,6 @@ module MakeHelpers
   def make_user_with_privilege( privilege, options = {} )
     UserPrivilege.make!( privilege: privilege, user: User.make!( options ) ).user
   end
-  
-  def make_life_list_for_taxon(taxon, options = {})
-    list = LifeList.make!(options)
-    list.rules << ListRule.new(
-      :operand => taxon, 
-      :operator => 'in_taxon?'
-    )
-    list
-  end
 
   def make_observations_export_flow_task( options = {} )
     ft = ObservationsExportFlowTask.make( options )

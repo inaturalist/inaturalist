@@ -556,7 +556,6 @@ class Taxon < ActiveRecord::Base
     return true if skip_after_move
     denormalize_ancestry
     return true if id_changed?
-    update_life_lists
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id }).
@@ -1265,18 +1264,6 @@ class Taxon < ActiveRecord::Base
     return false if rank_level.blank?
     rank_level < SPECIES_LEVEL
   end
-
-  def update_life_lists(options = {})
-    ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
-    if ListRule.exists?([
-        "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
-        Taxon.to_s, ids])
-      LifeList.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
-        update_life_lists_for_taxon(self)
-    end
-    true
-  end
   
   def update_obs_iconic_taxa
     Observation.where(taxon_id: id).update_all(iconic_taxon_id: iconic_taxon_id)
@@ -1475,8 +1462,6 @@ class Taxon < ActiveRecord::Base
         taxon_name.destroy
       end
     end
-    
-    LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
     
     %w(flags).each do |association|
       send(association, :reload => true).each do |associate|
@@ -1701,7 +1686,6 @@ class Taxon < ActiveRecord::Base
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
-          t.update_life_lists(:skip_ancestors => true)
           t.set_iconic_taxon
           t.update_obs_iconic_taxa
         end

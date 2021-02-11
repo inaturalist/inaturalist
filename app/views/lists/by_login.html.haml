@@ -1,0 +1,58 @@
+:ruby
+  observation_by_login_title = if is_me?( @selected_user )
+    t( "lists_by_login.title.current_user",
+      default: t( :second_person_possessive_singular, noun: t( :lists ).downcase ) )
+  else
+    t( "lists_by_login.title.login", login: @login,
+      default: t( :third_person_possessive_singular, noun: t( :lists ).titleize, object_phrase: @login ) )
+  end
+- content_for( :title ) do
+  = @title ||= observation_by_login_title
+- content_for( :extracss ) do
+  = stylesheet_link_tag "lists"    
+
+.container.by-login
+  .row.header
+    - tools = capture do
+      - if logged_in? && current_user == @selected_user
+        = link_to t( :new_list ), new_list_path( @parent_slug ), id: "newlistbutton", class: "btn btn-primary"
+    = render partial: "shared/by_login_header_bootstrap", locals: { after: tools, model_name: "Lists" }
+  
+  .row
+    .col-md-6
+      #life-list.dynamic_life_list.clear
+        = image_tag( @selected_user.icon.url( :medium ), class: "life-list-user-icon" )
+        = image_tag( "lists-life-list.svg", class: "list-icon" )
+        = link_to t( :view_dynamic_lifelist ).upcase, by_login_lifelists_path( login: @selected_user.login ), class: "btn btn-default btn-inat btn-focus"
+    - if @lists.empty?
+      .col-md-6
+        #no_lists_message.description
+          =t( :no_lists_yet )
+    - else
+      = render partial: "list_element", locals: { list: @lists.first }
+  - @rem_lists = @lists[1..-1]
+  - if @rem_lists && @rem_lists.count > 0
+    - ( 0..( @rem_lists.count/2.to_f ).ceil - 1 ).each do |i|
+      - @rows_lists = @rem_lists[( i*2 )..( i*2+1 )]
+      .row
+        - for @list in @rows_lists
+          = render partial: "list_element", locals: { list: @list }
+  - if logged_in?
+    = form_for :preferences, url: url_for do |f|
+      = f.label :per_page, t( :per_page )
+      = f.select :per_page, ApplicationController::PER_PAGES, { selected: @prefs["per_page"] }, 
+        onchange: "$( this ).parents( 'form:first' ).submit( )"
+      %span.meta
+        &middot;
+      = f.label :list_by_login_sort, t( :order )
+      = f.select :lists_by_login_sort, 
+        [[t( :date_created ), "id"], [t( :title ), "title"]],
+        { selected: @prefs["lists_by_login_sort"] },
+        onchange: "$( this ).parents( 'form:first' ).submit( )"
+      = f.radio_button :lists_by_login_order, "asc", onchange: "$( this ).parents( 'form:first' ).submit( )",
+        checked: @prefs["lists_by_login_order"] == "asc"
+      = f.label :lists_by_login_order_asc, t(:asc)
+      = f.radio_button :lists_by_login_order, "desc", onchange: "$( this ).parents( 'form:first' ).submit( )",
+        checked: @prefs["lists_by_login_order"] == "desc"
+      = f.label :lists_by_login_order_desc, t( :desc )
+  = will_paginate @lists

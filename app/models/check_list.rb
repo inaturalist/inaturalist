@@ -7,6 +7,7 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at
+  after_create :refresh
   before_save :update_taxon_list_rule
   # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
@@ -90,6 +91,14 @@ class CheckList < List
     Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
   end
   
+  def refresh_cache_key
+    "refresh_list_#{id}"
+  end
+
+  def reload_from_observations_cache_key
+    "rfo_list_#{id}"
+  end
+
   def add_taxon(taxon, options = {})
     options[:place_id] = place_id
     super(taxon, options)
@@ -193,32 +202,6 @@ class CheckList < List
       end
     end
     true
-  end
-  
-  def reload_and_refresh_now
-    if job = CheckList.delay(priority: USER_PRIORITY,
-      unique_hash: { "CheckList::reload_and_refresh_now": self.id }
-    ).reload_and_refresh_now(self)
-      Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
-      job
-    end
-  end
-  
-  def reload_and_refresh_now_cache_key
-    "reload_and_refresh_now_#{id}"
-  end
-  
-  def refresh_now_without_reload
-    if job = CheckList.delay(priority: USER_PRIORITY,
-      unique_hash: { "CheckList::refresh_now_without_reload": self.id }
-    ).refresh_now_without_reload(self)
-      Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
-      job
-    end
-  end
-  
-  def refresh_now_without_reload_cache_key
-    "refresh_now_without_reload_#{id}"
   end
   
   def refresh_now(options = {})
@@ -386,6 +369,32 @@ class CheckList < List
         list.add_taxon( taxon.species, force_update_cache_columns: true )
       end
     end
+  end
+
+  def self.refresh(options = {})
+    start = Time.now
+    log_key = "#{name}.refresh #{start}"
+    Rails.logger.info "[INFO #{Time.now}] Starting #{log_key}, options: #{options.inspect}"
+    lists = options.delete(:lists)
+    lists ||= [options] if options.is_a?(self)
+    lists ||= [find_by_id(options)] unless options.is_a?(Hash)
+    if options[:taxa]
+      lists ||= self.joins(:listed_taxa).
+        where("lists.type = ? AND listed_taxa.taxon_id IN (?)", self.name, options[:taxa])
+    end
+
+    if lists.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
+        "because there are no matching lists."
+    else
+      lists.each do |list|
+        Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
+        list.delay(priority: INTEGRITY_PRIORITY, queue: list.is_a?(CheckList) ? "slow" : "default",
+          unique_hash: { "#{ list.class.name }::refresh": { list_id: list.id, options: options } }
+        ).refresh(options)
+      end
+    end
+    Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"
   end
 
   def find_listed_taxa_and_ancestry_as_hashes

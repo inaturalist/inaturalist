@@ -54,7 +54,7 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
+  attr_accessor :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native,
     :skip_identification_indexing, :will_be_saved_with_photos
@@ -397,8 +397,7 @@ class Observation < ActiveRecord::Base
 
   before_update :set_quality_grade
 
-  after_save :refresh_lists,
-             :refresh_check_lists,
+  after_save :refresh_check_lists,
              :update_default_license,
              :update_all_licenses,
              :update_taxon_counter_caches,
@@ -411,7 +410,7 @@ class Observation < ActiveRecord::Base
              :reassess_annotations
   after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
+  after_destroy :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
     :update_user_counter_caches_after_destroy, :delete_observations_places
 
@@ -1154,51 +1153,6 @@ class Observation < ActiveRecord::Base
     assign_nested_attributes_for_collection_association(:observation_field_values, attr_array)
   end
   
-  #
-  # Update the user's lists with changes to this observation's taxon
-  #
-  # If the observation is the last_observation in any of the user's lists,
-  # then the last_observation should be reset to another observation.
-  #
-  def refresh_lists
-    return true if skip_refresh_lists
-    return true unless taxon_id_changed? || quality_grade_changed?
-    
-    # Update the observation's current taxon and/or a previous one that was
-    # just removed/changed
-    target_taxa = [
-      taxon, 
-      Taxon.find_by_id(@old_observation_taxon_id)
-    ].compact.uniq
-    # Don't refresh all the lists if nothing changed
-    return true if target_taxa.empty?
-    
-    # Refreh the ProjectLists
-    ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "ProjectList::refresh_with_observation": id }).
-      refresh_with_observation(id, taxon_id: taxon_id,
-        taxon_id_was: taxon_id_was,
-        user_id: user_id,
-        created_at: created_at,
-        new: id_was.blank?)
-
-    # Don't refresh LifeLists and Lists if only quality grade has changed
-    return true unless taxon_id_changed?
-    List.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "List::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-        :skip_subclasses => true)
-    LifeList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "LifeList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-
-    # Reset the instance var so it doesn't linger around
-    @old_observation_taxon_id = nil
-    true
-  end
-  
   def refresh_check_lists
     return true if skip_refresh_check_lists
     refresh_needed = (georeferenced? || was_georeferenced?) && 
@@ -1212,22 +1166,6 @@ class Observation < ActiveRecord::Base
         :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
         :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
         :new => id_was.blank?)
-    true
-  end
-  
-  # Because it has to be slightly different, in that the taxon of a destroyed
-  # obs shouldn't be removed by default from life lists (maybe you've seen it
-  # in the past, but you don't have any other obs), but those listed_taxa of
-  # this taxon should have their last_observation reset.
-  #
-  def refresh_lists_after_destroy
-    return true if skip_refresh_lists
-    return true unless taxon
-    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :skip_subclasses => true)
-    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
   
@@ -2368,7 +2306,6 @@ class Observation < ActiveRecord::Base
         quality_grade: new_quality_grade,
         identifications_count: identifications_count)
       refresh_check_lists
-      refresh_lists
     end
   end
   

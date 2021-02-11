@@ -650,7 +650,6 @@ class Identification < ActiveRecord::Base
         ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
         obs.set_community_taxon( force: true )
         obs.skip_indexing = true
-        obs.skip_refresh_lists = true
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
         obs.save

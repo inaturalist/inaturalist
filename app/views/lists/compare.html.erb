@@ -141,7 +141,7 @@
               ) do |f| %>
                 <%= f.hidden_field :list_id %>
                 <%= f.hidden_field :taxon_id %>
-                <%= f.submit( list.id == current_user.life_list_id ? t(:add_to_your_life_list) : t(:add),
+                <%= f.submit( t(:add),
                   :id => "listed_taxon_submit_#{lt.taxon_id}", 
                   :class => 'button',
                   "data-loading-click" => t(:adding)) %>
