@@ -27,7 +27,7 @@
   </ul>
   
   <div id="all">
-    <%= render :partial => 'listing', :collection => @comments %>
-    <%= will_paginate @paging_comments %>
+    <%= render :partial => 'listing', :collection => @latest_comments %>
+    <%= will_paginate @comments %>
   </div>
 </div>
