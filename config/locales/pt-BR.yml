@@ -163,6 +163,7 @@ pt:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Sobre Formas de Estabelecimento
+  about_license_options: Sobre as opções de licença
   about_licenses: Sobre as licenças
   about_muting: Sobre o Silenciar
   #Header for a section describing taxon names
@@ -511,7 +512,13 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicativo
   applications: Aplicativos
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Aplicar
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
   apply_fields: Aplicar campos
@@ -897,9 +904,14 @@ pt:
   confirm_your_info: Confirme sua informação
   confirming_ids: Confirmações de identificações
   confirming_ids_description: Se você desativar isso, você não será mais notificado sobre IDs que concordam com as suas.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Conectar
   connect_to_provider: "Conectar com %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Contas conectadas
+  connected_accounts_description: Contas conectadas são suas contas de outros aplicativos ou sites aos quais você permitiu o acesso do iNaturalist em seu nome para oferecer suporte a login, importação de fotos ou outra funcionalidade.
+  connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectando ao Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conecte-se ao Flickr novamente para autorizar permissões de gravação
   connecting_to_facebook: "Conectando ao Facebook..."
@@ -1042,6 +1054,44 @@ pt:
   curating: Em avaliação
   curation: Administração
   curator: Coordenador
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Os curadores de sites iNaturalist são voluntários confiáveis que têm a capacidade de
+    editar a taxonomia do iNaturalist e moderar o conteúdo do usuário. Curadores de sites são
+    integral para iNaturalist, pois eles mantêm nossa taxonomia atualizada e o
+    discurso sobre iNaturalist apropriado e civil. Abaixo está uma descrição
+    do que significa ser um curador. Por favor, leia e, se você quiser
+    ser um curador, leia atentamente o
+    <a href="/pages/curator+guide" target="_blank"> Guia do curador </a> e preencha
+    o aplicativo nesta página.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Você deve explicar porque quer se tornar um curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Por que você quer ser um curador?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Se você deseja editar a taxonomia do iNaturalist, por favor, forneça um ou dois exemplos
+    das mudanças taxonômicas que você gostaria de fazer e inclua links para as
+    autoridades taxonômicas conforme listado no Guia do Curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Se você deseja editar nomes comuns, forneça um ou dois exemplos de mudanças que você gostaria de fazer
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Se você deseja moderar o comportamento no iNaturalist, por favor forneça um exemplo
+    ou duas de violações de diretrizes da comunidade e o que faria nessas
+    situações
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Como um curador perde seus poderes
+  curator_application_how_curators_lose_their_powers_desc: |
+    A equipe iNat pode remover poderes curatoriais se um curador repetidamente:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Desconsidere as políticas no Guia de Curadores.
   curators_changed_for_x_html: "Administradores mudaram para %{x}"
   curators: Coordenadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
