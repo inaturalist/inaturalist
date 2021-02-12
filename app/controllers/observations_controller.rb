@@ -2115,9 +2115,7 @@ class ObservationsController < ApplicationController
           if photo_id.is_a?(Integer) || photo_id.is_a?(String)
             LocalPhoto.find_by_id(photo_id)
           elsif !photo_id.blank?
-            lp = LocalPhoto.new( user: current_user )
-            lp.file = photo_id
-            lp
+            LocalPhoto.new( file: photo_id, user: current_user) unless photo_id.blank?
           end
         else
           api_response ||= begin

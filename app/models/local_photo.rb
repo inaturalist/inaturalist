@@ -32,6 +32,26 @@ class LocalPhoto < Photo
   }
 
   if CONFIG.usingS3
+
+    # the s3 config is dynamic, based on the photo. We now recognizing
+    # two buckets - our main S3 bucket which remains public, as well
+    # as a second bucket for openly-licensed photos. The contents of both
+    # are public, but we may refer to the second bucket either as the public
+    # bucket, since it contains openly-licensed photos, or the ODP
+    # (AWS Open Dataset Program) bucket.
+
+    # All the S3 config parameters are as follows:
+    #   s3_bucket: the unique name of the S3 bucket at AWS
+    #   s3_host (optional): the full hostname for the bucket, e.g. s3_bucket.s3.amazonaws.com
+    #   s3_protocol: should always be `https` unless you absolutely need to use http for some reason
+    #   s3_region: S3 region that bucket lives in
+    # and these which do the same as above, but for a secondary bucket for openly-licensed photos
+    #   s3_public_bucket
+    #   s3_public_host (optional)
+    #   s3_public_region: For now we assume the region is the same, and that is recommended practice
+    #   s3_public_acl: You can set this to `bucket-owner-full-control` to transfer ownership
+    #     when moving photos to this bucket
+
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -89,8 +109,12 @@ class LocalPhoto < Photo
     "MINOLTA DIGITAL CAMERA"
   ]
 
+  def self.odp_s3_bucket_enabled?
+    !!( CONFIG.s3_public_host || CONFIG.s3_public_bucket )
+  end
+
   def self.s3_host_alias( public = false )
-    unless ( CONFIG.s3_public_host || CONFIG.s3_public_bucket )
+    unless LocalPhoto.odp_s3_bucket_enabled?
       return ( CONFIG.s3_host || CONFIG.s3_bucket )
     end
     public ?
@@ -130,11 +154,11 @@ class LocalPhoto < Photo
   end
 
   def set_s3_account
-    self.s3_account = self.is_public? ? "public" : nil
+    self.s3_account = self.is_in_public_s3_bucket? ? "public" : nil
   end
 
-  def is_public?
-    self.large_url ? !! self.large_url.match( LocalPhoto.s3_bucket( true ) ) :
+  def is_in_public_s3_bucket?
+    self.original_url ? !! self.original_url.match( LocalPhoto.s3_bucket( true ) ) :
       could_be_public
   end
 
@@ -147,14 +171,19 @@ class LocalPhoto < Photo
     p.change_photo_bucket_if_needed
   end
 
-  def change_photo_bucket_if_needed
+  def photo_bucket_should_be_changed?
     # must have a URL
-    return unless large_url
+    return false unless original_url
     # the code must be configured to use a public bucket
-    return unless CONFIG.s3_public_bucket
+    return false unless LocalPhoto.odp_s3_bucket_enabled?
     # the LocalPhoto must be in a bucket other than what its license dictates
-    return unless ( could_be_public && !is_public? ) ||
-      (!could_be_public && is_public? )
+    return false unless ( could_be_public && !is_in_public_s3_bucket? ) ||
+      (!could_be_public && is_in_public_s3_bucket? )
+    true
+  end
+
+  def change_photo_bucket_if_needed
+    return unless photo_bucket_should_be_changed?
     LocalPhoto.move_to_appropriate_bucket( self )
   end
 
@@ -478,17 +507,17 @@ class LocalPhoto < Photo
 
   private
 
-  def self.move_to_appropriate_bucket( photo )
-    return unless CONFIG.s3_public_bucket
-    return unless p = LocalPhoto.find_by_id( p ) unless photo.is_a?( LocalPhoto )
-    return unless ( photo.could_be_public && !photo.is_public? ) ||
-      (!photo.could_be_public && photo.is_public? )
+  def self.move_to_appropriate_bucket( p )
+    return unless LocalPhoto.odp_s3_bucket_enabled?
+    return unless photo = LocalPhoto.find_by_id( p )
+    return unless photo.is_a?( LocalPhoto )
+    return unless photo.photo_bucket_should_be_changed?
 
-    photo_started_as_public = photo.is_public?
+    photo_started_in_public_s3_bucket = photo.is_in_public_s3_bucket?
     s3_client = photo.s3_client
-    source_bucket = LocalPhoto.s3_bucket( photo_started_as_public )
-    target_bucket = LocalPhoto.s3_bucket( !photo_started_as_public )
-    target_acl = LocalPhoto.s3_permissions( !photo_started_as_public )
+    source_bucket = LocalPhoto.s3_bucket( photo_started_in_public_s3_bucket )
+    target_bucket = LocalPhoto.s3_bucket( !photo_started_in_public_s3_bucket )
+    target_acl = LocalPhoto.s3_permissions( !photo_started_in_public_s3_bucket )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
@@ -504,7 +533,7 @@ class LocalPhoto < Photo
       # to files that were deleted
 
       # override the photo s3_account so its URLs will point to the new bucket
-      photo.s3_account = photo_started_as_public ? nil : "public"
+      photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
       photo.set_urls
       photo.reload
 
