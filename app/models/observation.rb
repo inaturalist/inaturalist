@@ -1410,7 +1410,7 @@ class Observation < ActiveRecord::Base
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?(viewer)
+  def coordinates_viewable_by?( viewer )
     return true unless coordinates_obscured?
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)

@@ -1228,6 +1228,13 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
+    if @selected_user != current_user
+      filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
+      diff = @observations.total_entries - filtered_obs.size
+      @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
+        pager.replace( filtered_obs )
+      end
+    end
     respond_to do |format|
       format.html do
         prepare_map(search_params)

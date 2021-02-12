@@ -36,6 +36,13 @@ class CalendarsController < ApplicationController
         { taxon: { taxon_names: :place_taxon_names } },
         { photos: :flags }
       )
+      if @selected_user != current_user
+        filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
+        diff = @observations.total_entries - filtered_obs.size
+        @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
+          pager.replace( filtered_obs )
+        end
+      end
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}

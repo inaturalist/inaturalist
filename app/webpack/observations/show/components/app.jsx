@@ -76,13 +76,31 @@ const App = ( {
   }
   const viewerIsObserver = config && config.currentUser
     && config.currentUser.id === observation.user.id;
+  let viewerTimeZone = moment.tz.guess();
+  if ( config && config.currentUser && config.currentUser.time_zone ) {
+    viewerTimeZone = config.currentUser.time_zone;
+  }
   const photosColClass = (
     ( !observation.photos || observation.photos.length === 0 )
     && ( !observation.sounds || observation.sounds.length === 0 )
   ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
+  const observedAt = moment( observation.time_observed_at || observation.observed_on );
+  const createdAt = moment( observation.created_at );
   let formattedDateObserved;
-  if ( observation.time_observed_at ) {
+  let isoDateObserved = observedAt.format( );
+  let formattedDateAdded = formattedDateTimeInTimeZone(
+    moment.tz(
+      observation.created_at,
+      observation.created_time_zone
+    ),
+    viewerTimeZone
+  );
+  let isoDateAdded = createdAt.format( );
+  if ( observation.observed_on && observation.obscured && !observation.private_geojson ) {
+    formattedDateObserved = observedAt.format( "MMMM YYYY" );
+    isoDateObserved = observedAt.format( "YYYY-MM" );
+  } else if ( observation.time_observed_at ) {
     formattedDateObserved = formattedDateTimeInTimeZone(
       observation.time_observed_at, observation.observed_time_zone
     );
@@ -90,6 +108,10 @@ const App = ( {
     formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
     formattedDateObserved = I18n.t( "missing_date" );
+  }
+  if ( observation.obscured && !observation.private_geojson ) {
+    formattedDateAdded = createdAt.format( "MMMM YYYY" );
+    isoDateAdded = createdAt.format( "YYYY-MM" );
   }
   const description = observation.description ? (
     <Row>
@@ -107,10 +129,6 @@ const App = ( {
   const qualityGrade = observation.quality_grade === "research"
     ? "research_grade"
     : observation.quality_grade;
-  let viewerTimeZone = moment.tz.guess();
-  if ( config && config.currentUser && config.currentUser.time_zone ) {
-    viewerTimeZone = config.currentUser.time_zone;
-  }
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
@@ -195,22 +213,14 @@ const App = ( {
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
-                        <span className="date" title={observation.time_observed_at || observation.observed_on}>
+                        <span className="date" title={isoDateObserved}>
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
-                        <span className="date" title={observation.created_at}>
-                          {
-                            formattedDateTimeInTimeZone(
-                              moment.tz(
-                                observation.created_at,
-                                observation.created_time_zone
-                              ),
-                              viewerTimeZone
-                            )
-                          }
+                        <span className="date" title={isoDateAdded}>
+                          { formattedDateAdded }
                         </span>
                       </Col>
                     </Row>
@@ -284,31 +294,29 @@ const App = ( {
           <AssessmentContainer />
         </div>
       </LazyLoad>
-      <LazyLoad height={325} offset={500}>
-        <div className="more_from">
-          <Grid>
-            <Row>
-              <Col xs={12}>
-                <MoreFromUserContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </div>
-      </LazyLoad>
-      <LazyLoad height={190} offset={500}>
-        <div className="other_observations">
-          <Grid>
-            <Row>
-              <Col xs={6}>
-                <NearbyContainer />
-              </Col>
-              <Col xs={6}>
-                <SimilarContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </div>
-      </LazyLoad>
+      { ( !observation.obscured || observation.private_geojson ) && (
+        <LazyLoad height={515} offset={500}>
+          <div className="more_from">
+            <Grid>
+              <Row>
+                <Col xs={12}>
+                  <MoreFromUserContainer />
+                </Col>
+              </Row>
+            </Grid>
+            <Grid>
+              <Row>
+                <Col xs={6}>
+                  <NearbyContainer />
+                </Col>
+                <Col xs={6}>
+                  <SimilarContainer />
+                </Col>
+              </Row>
+            </Grid>
+          </div>
+        </LazyLoad>
+      ) }
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <DisagreementAlertContainer />
