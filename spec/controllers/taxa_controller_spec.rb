@@ -276,6 +276,38 @@ describe TaxaController do
         cs.reload
         expect( cs.user_id ).to be_blank
       end
+      it "should assign the current user ID as the updater_id for existing statuses" do
+        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
+        expect( cs.user_id ).to be_blank
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            "0" => {
+              "id" => cs.id,
+              "status" => cs.status,
+              "authority" => "new authority"
+            }
+          }
+        }
+        expect( response ).to be_redirect
+        cs.reload
+        expect( cs.updater ).to eq user
+      end
+      it "should not assign the current user ID as the updater_id for existing statuses if nothing changed" do
+        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
+        expect( cs.user_id ).to be_blank
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            "0" => {
+              "id" => cs.id,
+              "status" => cs.status,
+              "authority" => cs.authority
+            }
+          }
+        }
+        expect( response ).to be_redirect
+        cs.reload
+        expect( cs.updater ).not_to eq user
+      end
     end
   end
 

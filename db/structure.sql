@@ -738,7 +738,8 @@ CREATE TABLE public.conservation_statuses (
     geoprivacy character varying(255) DEFAULT 'obscured'::character varying,
     iucn integer DEFAULT 20,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    updater_id integer
 );
 
 
@@ -7351,6 +7352,13 @@ CREATE INDEX index_conservation_statuses_on_taxon_id ON public.conservation_stat
 
 
 --
+-- Name: index_conservation_statuses_on_updater_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_conservation_statuses_on_updater_id ON public.conservation_statuses USING btree (updater_id);
+
+
+--
 -- Name: index_conservation_statuses_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10381,3 +10389,6 @@ INSERT INTO schema_migrations (version) VALUES ('20210125233250');
 INSERT INTO schema_migrations (version) VALUES ('20210127005238');
 
 INSERT INTO schema_migrations (version) VALUES ('20210128211322');
+
+INSERT INTO schema_migrations (version) VALUES ('20210213020914');
+
