@@ -11,6 +11,7 @@ import {
 } from "redux";
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
+import sectionReducer, { setSelectedSectionFromHash } from "./ducks/app_sections";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
@@ -28,7 +29,8 @@ const rootReducer = combineReducers( {
   apps: authenticatedAppsReducer,
   relationships: relationshipsReducer,
   thirdPartyTracking: thirdPartyTrackingModalReducer,
-  creativeCommonsLicensing: creativeCommonsLicensingModalReducer
+  creativeCommonsLicensing: creativeCommonsLicensingModalReducer,
+  section: sectionReducer
 } );
 
 const store = createStore(
@@ -41,6 +43,11 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
   )
 );
+
+window.onpopstate = e => {
+  const { hash } = e.target.location;
+  store.dispatch( setSelectedSectionFromHash( hash ) );
+};
 
 store.dispatch( fetchUserSettings( null ) );
 store.dispatch( fetchNetworkSites( ) );
