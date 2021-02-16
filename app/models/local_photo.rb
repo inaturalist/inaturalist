@@ -154,10 +154,10 @@ class LocalPhoto < Photo
   end
 
   def set_s3_account
-    self.s3_account = self.is_in_public_s3_bucket? ? "public" : nil
+    self.s3_account = self.in_public_s3_bucket? ? "public" : nil
   end
 
-  def is_in_public_s3_bucket?
+  def in_public_s3_bucket?
     self.original_url ? !! self.original_url.match( LocalPhoto.s3_bucket( true ) ) :
       could_be_public
   end
@@ -177,8 +177,8 @@ class LocalPhoto < Photo
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
     # the LocalPhoto must be in a bucket other than what its license dictates
-    return false unless ( could_be_public && !is_in_public_s3_bucket? ) ||
-      (!could_be_public && is_in_public_s3_bucket? )
+    return false unless ( could_be_public && !in_public_s3_bucket? ) ||
+      (!could_be_public && in_public_s3_bucket? )
     # TODO: temporarily restricting to admins
     return false unless user && user.is_admin?
     true
@@ -515,7 +515,7 @@ class LocalPhoto < Photo
     return unless photo.is_a?( LocalPhoto )
     return unless photo.photo_bucket_should_be_changed?
 
-    photo_started_in_public_s3_bucket = photo.is_in_public_s3_bucket?
+    photo_started_in_public_s3_bucket = photo.in_public_s3_bucket?
     s3_client = photo.s3_client
     source_bucket = LocalPhoto.s3_bucket( photo_started_in_public_s3_bucket )
     target_bucket = LocalPhoto.s3_bucket( !photo_started_in_public_s3_bucket )

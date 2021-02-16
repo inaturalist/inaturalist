@@ -6,7 +6,7 @@ module CloudfrontInvalidator
     attr_to_check = "#{attachment_name}_updated_at"
     # the attachment has been modified, and was an attachment before
     return if try(:skip_cloudfront_invalidation)
-    if respond_to?( :is_in_public_s3_bucket? ) && is_in_public_s3_bucket?
+    if respond_to?( :in_public_s3_bucket? ) && in_public_s3_bucket?
       # the public bucket does not use cloudfront
       return
     end
