@@ -1405,7 +1405,9 @@ class User < ActiveRecord::Base
       u ||= User.find_by_login( user )
       user = u
     end
-    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url ).each do |photo|
+    # TODO: temporarily restricting to admins
+    return unless user.is_admin?
+    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
           queue: "photos",
@@ -1413,6 +1415,8 @@ class User < ActiveRecord::Base
         ).change_photo_bucket_if_needed( photo.id )
       end
     end
+    # return nil so this isn't returning all results of the above query
+    nil
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero
