@@ -605,8 +605,8 @@ cs:
   all_your_observations_will_default_to_this_time_zone: Všechna Vaše pozorování budou míto toto časové pásmo, pokud neurčíte jiné.
   #Option to allow any taxa on a list
   allow_any: dovolit jakýkoliv
-  allow_curator_access: Povolit přístup správci
-  allow_project_curators_to_view_your_private_coordinates: Povolit správcům projektu náhled vašich soukromých souřadnic
+  allow_curator_access: Povolit přístup kurátorovi
+  allow_project_curators_to_view_your_private_coordinates: Povolit kurátorům projektu náhled vašich soukromých souřadnic
   allowed_establish_means_values: Povolené hodnoty způsobu vzniku
   allowed_html: Povolit HTML
   allowed_occurrence_status_values: Povolené hodnoty výskytu
@@ -724,7 +724,7 @@ cs:
   are_you_sure_you_want_to_delete_this_post: Jste si jistí, že chcete smazat tento příspěvek?
   are_you_sure_you_want_to_delete_this_taxon_change: Jste si jistí, že chcete smazat tuto změnu taxonu?
   are_you_sure_you_want_to_remove_all_tags: Jste si jistí, že chcete odstranit všechny tagy?
-  are_you_sure_you_want_to_remove_curator: Jste si jistí, že chcete odstranit %{user} jako správce?
+  are_you_sure_you_want_to_remove_curator: Jste si jistí, že chcete odstranit %{user} jako kurátora?
   are_you_sure_you_want_to_remove_from_project: Jste si jistí, že chcete odstranit %{user} z tohoto projektu?
   are_you_sure_you_want_to_remove_manager: Jste si jistí, že chcete odstranit %{user} jako vedoucího?
   are_you_sure_you_want_to_remove_spammer: |
@@ -1221,7 +1221,7 @@ cs:
   curator_application_how_curators_lose_their_powers: |
     Jak ztrácí kurátor své pravomoci
   curator_application_how_curators_lose_their_powers_desc: |
-    personál iNat může odebrat kurátorské pravomoce, pokud kurátor opakovaně:
+    Personál iNat může odebrat kurátorské pravomoci, pokud kurátor opakovaně:
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -3514,7 +3514,8 @@ cs:
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_add_this_observation_to: Přidejte prosím toto pozorování k
   please_add_this_to_x_html: "Přidejte toto prosím k %{x}"
-  please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami
+  please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Title to a section warning a user to exercise caution
+  please_be_careful!: Prosím, opatrně!
   please_complete_the_following_to_add_project: |
     Pokud chcete přidat toto pozorování k projektu, vyplňte prosím následující:
   please_confirm_your_inat_username: "Potvrďte prosím své uživatelské jméno pro %{site_name}"
@@ -3574,6 +3575,10 @@ cs:
     Projekty neumožňují automatické seskupování pozorování, pokud není projekt spojen s místem menší rozlohy nebo pokud neumožňuje pozorování pouze určitých taxonů nebo taxonů na seznamu
   project_assessments: Hodnocení projektu
   project_assets: Položky projektu
+  project_coordinate_access_warning: |
+    Přístup k souřadnicím je důležitý pro vědce, ale také může být zneužit
+    pytláky. Ujistěte se, že věříte všem kurátorům projektu, než budete důvěřovat tomuto
+    projektu.
   project_cover: Obal projektu
   project_created_on: vytvořil/a tento projekt dne %{date}
   project_curator_id: ID kurátora projektu

@@ -49,16 +49,6 @@ uk:
     few: "%{count} мови"
     many: "%{count} мов"
     other: "%{count} мови"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} вперше у списку життя"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> допис у журналі'
     few: '<span class="count">%{count}</span> дописи в журналі'
@@ -119,6 +109,11 @@ uk:
     few: "%{count} інших"
     many: "%{count} інших"
     other: "%{count} інших"
+  x_people:
+    one: "%{count} особа"
+    few: "%{count} особи"
+    many: "%{count} особ"
+    other: "%{count} особи"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} людей </strong> допомогли %{user} з <strong>%{y} визначенням</strong>"
   x_photos:
     one: "%{count} фото"
@@ -180,6 +175,11 @@ uk:
     few: "%{count} звуки"
     many: "%{count} звуків"
     other: "%{count} звуки"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span>курований таксон"
+    few: "<span class='count'>%{count}</span>курованих таксони"
+    many: "<span class='count'>%{count}</span>курованих таксонів"
+    other: "<span class='count'>%{count}</span> курованих таксони"
   x_taxa_matching_current_filters:
     one: "%{count} таксон, що відповідає поточним фільтрам"
     few: "%{count} таксони, що відповідають поточним фільтрам"
@@ -411,7 +411,6 @@ uk:
   add_to_favorites: Додати в уподобані
   add_to_list: Додати до списку
   add_to_project: Додати до проєкту
-  add_to_your_life_list: Додати до вашого списку життя!
   add_to_your_list: Додати до вашого списку
   add_your_email_to_get: |
     Для отримання відгуку про ваше спостереження від спільноти, додайте свою електронну пошту.
@@ -475,7 +474,7 @@ uk:
     tribe: Всі триби додані до бази даних
     subtribe: Всі підтриби додані до бази даних
     genus: Всі роди додані до бази даних
-    genushybrid: Всі родові гібриди додані до бази даних
+    genushybrid: Всі міжродові гібриди додані до бази даних
     subgenus: Всі підроди додані до бази даних
     section: Всі секції додані до бази даних
     subsection: Всі підсекції додані до бази даних
@@ -632,9 +631,9 @@ uk:
   #curator
   apply_curator: Застосувати
   apply_to_selected: Застосувати до вибраних
-  apply_captive_cultivated: "Застосувати в неволі/культивується"
+  apply_captive_cultivated: "Застосувати в неволі/культивований"
   apply_fields: Застосувати поля
-  apply_geoprivacy: Застосувати конфіденційність геоданих
+  apply_geoprivacy: Застосувати налаштування приватності місцеперебування
   apply_darr: "Застосувати &darr;"
   apply_establishment_means_to_descendant_places: "Застосувати шляхи виникнення до підпорядкованих місць"
   apply_these_settings_to_all: Застосувати ці налаштування до всіх нижченаведених спостережень.
@@ -700,7 +699,7 @@ uk:
   are_you_sure_you_want_to_remove_all_tags: Ви дійсно хочете видалити усі теги?
   are_you_sure_you_want_to_remove_curator: Ви дійсно хочете видалити %{user} зі списку кураторів?
   are_you_sure_you_want_to_remove_from_project: Ви дійсно хочете видалити %{user} з цього проєкту?
-  are_you_sure_you_want_to_remove_manager: Ви дійсно хочете видалити %{user} зі списку менеджерів?
+  are_you_sure_you_want_to_remove_manager: Ви дійсно хочете видалити %{user} зі списку керівників?
   are_you_sure_you_want_to_remove_spammer: |
     Ви справді вважаєте цього користувача почесним?
     Усі прапорці, що сигналізують про спам у їхніх матеріалах, буде видалено.
@@ -834,7 +833,7 @@ uk:
   cant_flag_an_object_that_doesnt_exist: Не можна позначити об'єкт, якого не існує
   cant_merge_a_taxon_with_itself: Неможливо об'єднати таксон із самим собою.
   captive: В неволі
-  captive_cultivated: в неволі/культивується
+  captive_cultivated: в неволі/культивований
   captive_observations: Спостереження видів, що живуть в неволі
   card: Картка
   casual: пересічне
@@ -865,7 +864,7 @@ uk:
     swap: Замінити початковий таксон на нове значення
     drop: Концепція таксону абсолютно недійсна, підтримується з міркувань історичної тяглості або сумісністі
     stage: Підготуйте неактивну концепцію для релізу у складі групи змін
-  change_geoprivacy: 'Змінити налаштування приватності місцезнаходження'
+  change_geoprivacy: 'Змінити налаштування приватності місцеперебування'
   change_group: Група змін
   change_icon: Змінити значок
   change_password: Змінити пароль
@@ -903,7 +902,7 @@ uk:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} було об'єднано в %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} буде об'єднано в %{output_taxon}"
   change_your_password: Змінити пароль
-  changing_the_geoprivacy: 'Зміна налаштувань приватності місцезнаходження позначається на тому, як інші люди бачать місце вашого спостереження.'
+  changing_the_geoprivacy: 'Зміна налаштувань приватності місцеперебування позначається на тому, як інші люди бачать місце вашого спостереження.'
   check_above_for_errors: Перевірити вищезазначене на наявність помилок
   check_back_soon: Побачимося незабаром!
   check_here_to_autoload_description: Позначте тут, щоб автоматично завантажити опис з Вікіпедії. Ви можете зняти відмітки в разі, якщо наукова назва таксона також є загальним словом або має місце помилка, наприклад, "Parus".
@@ -932,8 +931,8 @@ uk:
   choose_a_place: Оберіть місце
   choose_a_taxon: Оберіть таксон (за бажанням)
   choose_columns: Оберіть стовпці
-  choose_file: Обрати файл
-  choose_files: Обрати файли
+  choose_file: Оберіть файл
+  choose_files: Оберіть файли
   choose_from_your_lists: Обрати з вашого списку
   choose_photos_for_this_taxon: Обрати фото для цього таксону
   choose_photos_to_tag_from_photostream: Виберіть фото з вашого фотостріму, яким слід призначити тег
@@ -1037,10 +1036,10 @@ uk:
       Організація, яка надала цей статус. Будь ласка, використовуйте автодоповнення для вибору наявної організаці перед тим, як додавати нову. Ви можете пропустити цей крок, якщо *ви* бажаєте бути представлені як джерело відомостей.
     place: Місце, на яке поширюється цей статус.
     url: Веб-адреса сторінки, де описано цей статус.
-    geoprivacy: Налаштування приватності місцезнаходження за промовчанням для спостережень цього таксону
+    geoprivacy: Налаштування приватності місцеперебування за промовчанням для спостережень цього таксону
     iucn: Еквівалент коду з Червоного Списку МСОП
   conservation_status_geoprivacy_desc: |
-    Налаштування приватності місцезнаходження за промовчанням застосовано до всіх спостережень цього таксону в цьому місці
+    Налаштування приватності місцеперебування за промовчанням застосовано до всіх спостережень цього таксону в цьому місці
   contact_support: Звернутися до служби підтримки
   contain_all_descendants?: Чи включає цей таксономічний список усі таксони, що є дочірніми щодо цього таксону, і трапляються тут?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1467,7 +1466,7 @@ uk:
   doh_something_went_wrong_error: "Щось пішло не так: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: ПОЖЕРТВУВАТИ
+  donate: ВНЕСОК
   done: Надіслати
   dont_have_an_account_sign_up_html: Не маєте облікового запису? <strong>Зареєструйтесь.</strong>
   dont_send_me_email: "Не надсилайте мені жодних листів!"
@@ -1498,7 +1497,7 @@ uk:
   drawings: Рисунки
   duplicate_verb: Дублювати
   duration_value: "Тривалість, хвилин: %{duration}"
-  each_place_displays_all_species_inat_knows: "На сторінці кожного місця відображаються всі види, з цього місця за даними %{site_name}, а також інформація про їхню чисельність, природоохоронний статус і людей с сайту %{site_name}, яків вперше помітили вид з цього місця. Ви можете застосувати фільтри за таксономічною групою, кольором, природоохоронним статусом, або скористатися простим пошуком."
+  each_place_displays_all_species_inat_knows: "На сторінці кожного місця відображаються всі види з цього місця за даними %{site_name}, а також інформація про їхню чисельність, природоохоронний статус і людей з %{site_name}, які вперше помітили вид у цьому місці. Ви можете застосувати фільтри за таксономічною групою, кольором, природоохоронним статусом, або скористатися простим пошуком."
   earliest_added: Додані найдавніше
   edit: Редагувати
   edit_a_batch_of_observations: Редагувати групу спостережень
@@ -2179,7 +2178,6 @@ uk:
   licensing: Ліцензування
   licensing_your_content_gives_others_legal: "Ліцензування вашого контенту надає іншим право на його використання, якщо вони дотримуються умови ліцензії. %{site_name} використовує ваш контент під ліцензіями Creative Commons для обміну з партнерами, такими як "
   life: Життя
-  life_list: "Список життя %{user}"
   linear_scale_label: Лінійна
   link: Посилання
   link_or_unlink_your_facebook_account: Пов'язати або відв'язти свій обліковий запис Facebook
@@ -2325,7 +2323,7 @@ uk:
   make_a_new_place: Створити нове місце
   make_a_taxon_swap_instead?: Зробити замість цього заміну таксона?
   make_curator: Створити куратора
-  make_manager: Створити менеджера
+  make_manager: Зробити керівником
   make_sure_the_default_photo_looks_good: Переконайтеся, що фото за промовчанням виглядає добре в великому розмірі.
   make_this_your_default_license: "Зробіть %{type} вашою стандартною ліцензією"
   make_this_the_primary_listing: "Зробити це основним списком"
@@ -2335,9 +2333,9 @@ uk:
   manage_your_projects: Керувати вашими проєктами
   manage_your_project_invitations: Керувати вашими запрошеннями у проєкти
   manage_your_relationships: Керувати вашими взаєминами
-  manager: Менеджер
-  managers: Менеджери
-  managers_can_do: Менеджери можуть робити все, що можуть робити куратори, а також редагувати налаштування проєкту і дописувати у журналі проєкту.
+  manager: Керівник
+  managers: Керівники
+  managers_can_do: Керівники можуть робити все, що можуть робити куратори, а також редагувати налаштування проєкту і дописувати у журналі проєкту.
   managing_projects: Керування проєктами
   map: Карта
   map_legend: Умовні позначення
@@ -2779,6 +2777,7 @@ uk:
   observed_by: Спостереження зроблено
   observed_on: Дата
   observer: Спостерігач
+  observers: Спостерігачі
   observer_short: Спостерігач
   occurence_status_describes_how: 'Cтатус трапляння описує, наскільки таксон є поширеним або рідкісним в даній області. Більше інформації про термінологію можна знайти у <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">стандарті DarwinCore</a>.'
   occurrence_status: Статус трапляння
@@ -2807,9 +2806,324 @@ uk:
   off_caps: "ВИМК"
   official_blog: Офіційний блог
   offline_access_enabled: Доступ в автономному режимі увімкнено
+  onboarding:
+    observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
+    observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
+    observe_panel_body_p1_global: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали...
+    observe_panel_body_p2: Вийдіть назовні і спостерігайте за живими істотами. Оберіть якийсь організм з дикої природи та зробіть чіткі, повнокадрові фото. Якщо у вас вже є фото якоїсь дикої істоти, <a href="%{new_observation_path}">додайте його зараз</a>. Для запису спостережень ви також можете використовувати мобільний додаток %{site_name}.
+    observe_panel_body_p3: Як тільки ви поділитеся своїми спостереженнями, на цій сторінці відображатимуться оновлення від спільноти у вигляді коментарів та визначень. Хто знає, що ви виявите!
+    follow_panel_title_local: Піідписатися на натуралістів, що знаходяться поблизу
+    follow_panel_title_global: Підписатися на активних натуралістів
+    follow_panel_body: Якщо ви відвідаєте ці профілі і натиснете кнопку "підписатися", ви будете отримувати оновлення про їх спостереження
+    following_panel_title: Відстежуйте людей, таксони і місця
+    following_panel_body: |
+      На %{site_name} ви можете підписатися на людей щоб відстежувати 
+      спостереження, які вони публікують. Також ви можете підписатися на певні
+      види задля відстеження нових спостережень цих видів. Те ж саме можна робити і з місцями.
+    comments_panel_title: Цікаво, що обговорюються на %{site_name}?
+    comments_panel_body: "<p>%{site_name} створений, аби люди могли ділитися та обговорювати спостереження за живими істотами. (Примітка: Ви автоматично підписуєтесь на будь-які обговорення, до яких ви залишаєте коментарі або визначення. Налаштувати ці оновлення можна у розділі «Підписки» праворуч.)</p>"
+    updates_by_you_panel_body: Пам'ятайте, що у вкладці "Усі оновлення" ви отримуватимете оновлення не лише щодо ваших матеріалів, але й матеріалів від людей, за якими ви слідкуєте, або таксонів і місць, на які ви підписалися за допомогою інструменту "Підписки", який знаходиться справа.
+    youve_got_updates_panel_title: У вас є оновлення!
+  one_of_your_lists: "одним з ваших списків..."
+  only_a_project_manager_can_add: Статус куратора проєкту може надати тільки керівник проєкту
+  only_administrators_may_access_that_page: Доступ до цієї сторінки можуть отримати лише адміністратори
+  only_an_admin_can_remove_project_users: Тільки адміністратор може видаляти користувачів проєкту
+  only_curators_can_add_edit_scientific_names: Тільки куратори можуть додавати/редагувати наукові назви.
+  only_curators_can_access_that_page: Доступ до цієї сторінки мають лише адміністратори
+  only_files_with_10000_rows_at_a_time: Будь-ласка, лише файли не більш ніж з 10 000 рядків
+  only_letters_numbers: "Тільки літери та цифри, без пробілів, має починатися з літери"
+  only_one_coordinate_system_per_file: |
+    У одному файлі можна використовувати лише одну систему координат. В іншому випадку перетворення або відображення будуть некоректними.
+  only_project_curators_can_do_that: Це зробити можуть лише куратори проєкту.
+  only_receive_updates_about_this_taxon: Отримувати оновлення тільки про цей таксон
+  only_show_active_taxa: Показати лише активні таксони
+  only_show_events_that_last_less_than_2_weeks: Показати лише події, що тривають менше 2 тижнів
+  only_show_for_species_subspecies_varieties_etc: Показати лише для видів, підвидів, різновидів, тощо.
+  only_show_taxa_fom_this_list: "Показати таксони лише з цього списку"
+  only_showing_taxa_from: відображені таксони лише з цього списку
+  only_species: лише види
+  only_species_and_subspecies: лише види і підвиди/різновиди
+  only_staff_can_edit_large_places: Лише співробітники сайту можуть редагувати дуже великі місця
+  only_staff_can_edit_standard_places: Лише співробітники сайту можуть редагувати місця у стандартній ієрархії
+  only_the_owner_of_this_list_can_do_that: Це зробити може лише власник цього списку. Не будьте злими.
+  only_the_project_admin_can_delete_this_project: Цей проєкт може видалити лише адміністратор проєкту.
+  only_you: Лише ви
+  open: відкриті
+  open_: Відкриті
+  open_description: "Координати може бачити будь-хто, у разі якщо таксон не знаходиться під загрозою."
+  open_street_map: OpenStreetMap
+  optional: необов'язковий
+  optional_columns_note_for_any: "Необов'язкові стовпці (примітка: щоб використати будь-який з цих стовпців у спостереженні, всі вони мають бути присутніми)"
+  or: або
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: АБО
+  or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
+  or_if_you_dont_want_email: "Або, якщо ви не бажаєте нічого отримувати на електронну пошту..."
+  orange: помаранчевий
+  order: Сортувати
+  order_by: Сортувати за
+  organism_is_wild: Організм є диким
+  organisms: Організми
+  original: Початковий
+  originally_flagged_by: Спочатку позначений
+  originally_imported_from_url_html: "Спочатку імпортований з <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "Первинний URL сторінки для цього фото."
+  original_rights_holder: Первинний правовласник
+  original_url_for_this_map: Оригінальний URL для цієї мапи
+  organism_appears_captive_cultivated: Організм схожий на утримуваний в неволі/культивований
+  other: Інше
+  other_animals: інші тварини
+  other_lexicons: Інші лексикони
+  other_listings_of_this_taxon_for_this_place: Інші переліки цього таксону у цьому місці
+  other_names: Інші назви
+  other_species_commonly_misidentified_as_this_species: Інші види, які часто помилково визначають як цей вид
+  other_species_commonly_misidentified_as_this_species_in_place_html: 'Інші види, які часто помилково визначають як цей вид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_complex: Інші таксони, які часто помилково визначають як цей комплекс
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'Інші таксони, які часто помилково визначають як цей комплекс у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genus: Інші таксони, які часто помилково визначають як цей рід
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 'Інші таксони, які часто помилково визначають як цей рід у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genushybrid: Інші таксони, які часто помилково визначають як цей міжродовий гібрид
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: 'Інші таксони, які часто помилково визначають як цей міжродовий гібрид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_hybrid: Інші таксони, які часто помилково визначають як цей гібрид
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Інші таксони, які часто помилково визначають як цей гібрид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_rank: Інші таксони, які часто помилково визначають як цей %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'Інші таксони, які часто помилково визначають як цей %{rank} у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_section: Інші таксони, які часто помилково визначають як цю секцію
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: 'Інші таксони, які часто помилково визначають як цю секцію у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_species: Інші таксони, які часто помилково визначають як цей вид
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 'Інші таксони, які часто помилково визначають як цей вид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subgenus: Інші таксони, які часто помилково визначають як цей підрід
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Інші таксони, які часто помилково визначають як цей підрід у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subsection: Інші таксони, які часто помилково визначають як цю підсекцію
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 'Інші таксони, які часто помилково визначають як цю підсекцію у такому місці: <a href="%{url}">%{place}</a>'
+  our_blog: Наш блог
+  output_taxon: Вихідний таксон
+  overview: Огляд
+  owner: Власник
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Батьківський таксон
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Назва батьківського таксону
+  parental_consent:
+    must_specify_email: Потрібно вказати електронну пошту
+    invalid_email: Неправильний формат ел. пошти
+  password: Пароль
+  password_confirmation: 'Підтвердження паролю'
+  paste: Вставити
+  paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
+  paste_in_a_comma_separated_list: Вставте у розділений комами список країн
+  people: Люди
+  people_following_user: "Люди, підписані на користувача %{user}"
+  people_user_follows: "Люди, на яких підписаний %{user}"
+  people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: додав(ла) <a href="%{observation_url}">спостереження</a>
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: додав(ла) <strong>виззначення</strong> до %{observation_link} %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: додав(ла) <strong>визначення</strong>
+    post: зробив(ла) %{post_link}
+    comment:
+      with_by: прокоментував(ла) %{comment_subject_link} %{by_link}
+      without_by: прокоментував(ла) %{comment_subject_link}
+  per_day: За день
+  per_month: За місяць
+  per_week: За тиждень
+  person: Особа
+  personal_message: Особисте повідомлення
+  personal_message_description: Нікому не подобається отримувати електронні листи, створені машиною! Чому б не дати вашим друзям знати, чому ви їх запрошуєте?
+  per_page: "На сторінку"
+  photo: Фото
+  photo_attribution: "Фото %{attribution}"
+  photo_browser: Переглядач фото
+  photo_by_id_attribution: "Фото %{id}, %{attribution}"
+  photo_credits: Авторство фото
+  photo_deleted: Фото видалено
+  photo_destroyed_because_it_was_deleted_from: "Фото пошкоджене, оскільки воно було видалене з зовнішнього сайту або %{site_name} більше не має дозволу на його перегляд"
+  photo_hosting_accounts: Облікові записи фотохостингів
+  photo_licensing: Ліцензування фото
+  photo_type: Тип фото
+  photo_urls_repaired: Посилання на фото відновлено
+  photos_chosen_for_this_taxon: Фото обрані для цього таксону
+  photos_from: Фото з
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Фото заблоковані
+  photos_locked_desc: Тільки співробітники можуть змінювати фото за промовчанням для цього таксону
+  photos_of_taxon_html: "Фото %{taxon}"
+  photos_or_sounds: Фото або звуки
+  photos_or_sounds?: Фото або звуки?
+  photos_size:
+    small: маленьке
+    medium: середнє
+    large: велике
+    original: оригінальне
+  photos_updated: Фото оновлені.
+  pi_consent_desc_title: Про особисту інформацію
+  pi_consent_desc_html: |
+    Ми зберігаємо особисту інформацію, таку як імена користувачів та адреси електронної пошти для того, щоб керувати обліковими записами на цьому сайті. Щоб дотримати вимоги законодавства щодо конфіденційності, ми потребуємо, щоб ви засвідчили свою згоду на використання особистої інформації, виставивши цей прапорець. Щоб дізнатися більше про те, яку інформацію ми збираємо та як ми її використовуємо, будь ласка, ознайомтеся з нашою
+    <a href='%{privacy_url}' target='_blank'>Політикою конфіденційності</a>і нашими <a href='%{terms_url}' target='_blank'>Умовами надання послуг</a>.
+  pi_consent_label: |
+    Я погоджуюся із тим, що iNaturalist матиме можливість зберігати та обробляти обмежену особисту інформацію про мене для управління моїм обліковим записом
+  pi_consent_child_label: |
+    Я погоджуюся із тим, що iNaturalist матиме можливість зберігати та обробляти обмежену особисту інформацію про мою дитину для управління обліковим записом моєї дитини
+  pin_verb: Закріпити
+  pink: рожевий
+  pinned_locations_desc: |
+    Закріпити це поєднання координат, точності, налаштувань приватності місцеперебування та заміток щодо місцеперебування для подальшого використання.
+  place: Місце
+  placeholder: Замісник
+  place_autocomplete_placeholder: Kharkiv, Ukraine тощо
+  place_deleted: Місце видалено.
+  place_geo:
+    geo_planet_place_types:
+      Aggregate: Зібрати
+      aggregate: зібрати
+      Airport: Аеропорт
+      airport: аеропорт
+      Building: Будівля
+      building: будівля
+      Canton: Кантон
+      canton: кантон
+      City Building: Міська будівля
+      city building: міська будівля
+      Colloquial: Розмовне
+      colloquial: розмовне
+      Commune: Комуна
+      commune: комуна
+      Constituency: Округ
+      constituency: округ
+      Continent: Континент
+      continent: континент
+      Country: Країна
+      country: країна
+      County: Графство
+      county: графство
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Округ
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: округ
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Підрозділ департамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: підрозділ департамента
+      District: Район
+      district: район
+      Division: Адміністративно-територіальна одиниця
+      division: адміністративно-територіальна одиниця
+      Drainage: Область водозбору
+      drainage: область водозбору
+      Estate: Володіння
+      estate: володіння
+      Governorate: Губернаторство
+      governorate: губернаторство
+      Historical_County: Історичний регіон
+      historical_county: історичний регіон
+      Historical_State: Історичне державне утворення
+      historical_state: історичне державне утворення
+      Historical_Town: Історичне місто
+      historical_town: історичне місто
+      Intersection: Перетин
+      intersection: перетин
+      Island: Острів
+      island: острів
+      Land_Feature: Елемент ландшафту
+      land_feature: елемент ландшафту
+      Local_Administrative_Area: Місцева адміністративна одиниця
+      local_administrative_area: місцева адміністративна одиниця
+      Local_Authority: Місцева громада
+      local_authority: місцева громада
+      Miscellaneous: Різне
+      miscellaneous: різне
+      Municipality: Муніципалітет
+      municipality: муніципалітет
+      Nationality: Громадянство
+      nationality: громадянство
+      Nearby_Building: Прилегла будівля
+      nearby_building: прилегла будівля
+      Nearby_Intersection: Перехрестя поблизу
+      nearby_intersection: перехрестя поблизу
+      Open_Space: Відкритий простір
+      open_space: відкритий простір
+      Parish: Парафія
+      parish: парафія
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Поблаціон
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: поблаціон
+      Prefecture: Префектура
+      prefecture: префектура
+      Prefecture_City: Місто-центр префектури
+      prefecture_city: місто-центр префектури
+      Point_of_Interest: Цікавинка
+      point_of_interest: цікавинка
+      Postal_Code: Поштовий індекс
+      postal_code: поштовий індекс
+      Province: Провінція
+      province: провінція
+      Regency: Регентство
+      regency: регентство
+      Region: Регіон
+      region: регіон
+      Republic: Республіка
+      republic: республіка
+      Shire: Шир
+      shire: шир
+      Sports_Team: Спортивна команда
+      sports_team: спортивна команда
+      State: Штат
+      state: штат
+      Street: Вулиця
+      street: вулиця
+      Street_Segment: Ділянка вулиці
+      street_segment: ділянка вулиці
+      Subdivision: Підрозділ
+      subdivision: підрозділ
+      Suburb: Передмістя
+      suburb: передмістя
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Сомон
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: сомон
+      Supername: Supername
+      supername: supername
+      Territory: Місцевість
+      territory: місцевість
+      Time_Zone: Часовий пояс
+      time_zone: часовий пояс
+      Town: Місто
+      town: місто
+      Undefined: Не визначено
+      undefined: не визначено
+      Unknown: Невідоме
+      unknown: невідоме
+      Village_block: Частина села
+      village_block: частина села
+      Zone: Зона
+      zone: зона
+  project_admins:
+    one: Адміністратор проєкту
+    few: Адміністратори проєкту
+    many: Адміністраторів проєкту
+    other: Адміністратори проєкту
   project_coordinate_access_disabled_until_datetime: |
     Ви не зможете отримати доступ до прихованих координат до %{datetime}
+  ranks:
+    genushybrid: Міжродовий гібрид
   save_guide_taxon: Зберігати посібник з таксону
+  sounds:
+    sound_has_been_flagged: Цей звук був відмічений прапорцем
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Підписатися %{tag_end} на коментарі щодо цієї заміни таксона"
   taxon_geoprivacy: Конфіденційність геоданих для таксона
   taxon_swap: заміна таксона
@@ -2835,6 +3149,20 @@ uk:
         taxon_id: Унікальний ідентифікатор спостереженого таксону
         user_id: Унікальний ідентифікатор спостерігача
       show:
+        community_taxon_desc_html: |
+          <p class="ui">
+          Таксон спільноти (чи визначення спільноти) – це той таксон, який за думкою спільноти
+          %{site_name} зображений на фото у спостереженні. Якщо вам цікаво, як ми обираємо таксон спільноти, дивіться примітки до алгоритму, наведені нижче, але загалом ми намагаємося <strong>обирати визначення, з яким згодні понад 2/3
+          ідентифікаторів</strong>. Іноді це означає, що ми обираємо таксон вищого рангу, який містить декілька розбіжних таксонів (напр. ви думаєте, що це королівська змія, а я думаю, що
+          це гримучник, тому iNat обире підряд Serpentes, куди входять усі змії). Алгоритм також трохи надає перевагу розбіжностям, тому що ми виявили, що незгідні часто виявляються
+          правими.
+          </p>
+          <p class="ui">Спостереження дослідницького рівня має (поміж іншого) супроводжуватися таксоном спільноти. Якщо спостереження має лише одне визначення, воно не матиме таксону спільноти. Усі спостереження з одним визначенням або більше матимуть також таксон спостереження. Таксон спостереження – це таксон, який ми вказуємо, коли ділимося спостереженнями з партнерськими організаціями, прив'язуємо різні спостереження до одного й того ж таксону на сайті, оновлюємо ваш список живого, тощо. У більшості випадків таксон спостереження врешті-решт буде збігатися з таксоном спільноти, але іноді вони будуть відрізнятися, особливо поки спільнота не дійде згоди щодо визначення. Наприклад, якщо ви думаєте, що це змія (підряд Serpentes), а я думаю, що це королівська змія (рід <i>Lampropeltis</i>), таксоном спостереження (підтвердженим тільки моїм визначенням) буде "королівська змія", але таксоном спільноти (підтвердженим щонайменш двома визначеннями) будуть "змії". Якщо, з якоїсь причини, ви не погоджуєтеся з таксоном спільноти, ви можете заперечити його у власних спостереженнях, але це означає, що ваш таксон ніколи не отримає таксону спільноти, а тільки ваше власне визначення.
+          Це також означає, що ваше спостереження зможе отримати дослідницький рівень тільки якщо спільнота з <em>вами</em> погоджується. Якщо вам докорінно не подобається ідея таксону спільноти, ви можете повністю від нього відмовитися, <a href="/users/edit" target="_blank">змінивши налаштування</a>
+          </p>
+          <p class="ui">
+          <strong> Алгоритм</strong> для усіх визначених таксонів і таксонів вищого рангу, до яких вони належать (напр. рід <i>Homo</i> містить <i>Homo sapiens</i>), оцінює кожен таксон як відношення між числом "згод" – сукупних визначень, які співпадають з даним таксоном поміж усіх сукупних визначень, "незгод" – визначень, що повністю відрізняються (наприклад, визначення, що зовсім не містять назви оцінюваного таксону), та "часткових незгод" – кількості консервативніших визначень, себто визначень до таксону вищого рангу, які не співпадають з більш детальним визначенням. Для визначених таксонів, що мають оцінку вище за 2/3 та щонайменш 2 визначення, алгоритм обирає таксон найнижчого рангу.
+          </p>
         quality_assessment_help_html: |
           <p>
           Оцінка якості даних — це підбиття підсумку точності спостереження. Усі спостереження починають з оцінки <strong>"пересічне"</strong> та переходять у статус
@@ -2893,6 +3221,10 @@ uk:
           Будь ласка, розв'яжіть ці питання <b>впродовж наступних 30 днів</b>. Через 30
           днів ми почнемо видаляти пошкоджені фото з iNaturalist. Усі ваші спостереження залишаться. Вони будуть переоцінені після видалення фото, і цілком можливе, що деякі спостереження дослідницького рівня стануть пересічними, якщо вони більше не матимуть жодного фото.
     projects:
+      edit:
+        rules:
+          has_a_sound: мати звук
+          has_media: мати медіа (фото або звук)
       new:
         include_annotated_observations: |
           Включити тільки спостереження, супроводжені певним атрибутом (наприклад, стадія життєвого циклу), або конкретним атрибутом і значенням (наприклад, стадія життєвого циклу = доросла особина).

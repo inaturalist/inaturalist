@@ -11,7 +11,7 @@ describe DeviseMailer, "confirmation_instructions" do
   it "should use the user's locale" do
     u = User.make!(:locale => "es-MX")
     mail = DeviseMailer.confirmation_instructions(u, u.confirmation_token)
-    expect( mail.body ).to include "activada"
+    expect( mail.body ).to include I18n.t( :your_account_has_been_activated, locale: "es-MX" )
   end
 end
 
@@ -27,7 +27,9 @@ describe DeviseMailer, "reset_password_instructions" do
     u = User.make!(:locale => "es-MX")
     mail = DeviseMailer.reset_password_instructions(u, u.confirmation_token)
     expect( mail.subject.downcase ).to_not include "reset"
-    expect( mail.subject.downcase ).to include "reinicio"
+    expect( mail.subject ).to include I18n.t(
+      "devise.mailer.reset_password_instructions.subject", locale: "es-MX"
+    )
   end
 
   it "should appear to come from the user's site" do
