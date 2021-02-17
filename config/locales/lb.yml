@@ -468,7 +468,14 @@ lb:
     adult: Erwuessen
     pupa: Popp
     egg: Ee
+    juvenile: Juvenil
     alive_or_dead: Lieweg oder Dout
+    alive: Lieweg
+    dead: Dout
+    cannot_be_determined: Ka net bestëmmt ginn
+  controlled_term_definitions:
+    alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
+    dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -1363,6 +1370,7 @@ lb:
     zimbabwe: Simbabwe
   places_of_interest: Interessant Plazen
   plants: Planzen
+  please_be_careful!: Sidd w.e.g. virsiichteg!
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt
   popular: Beléift
   position: Positioun
@@ -1383,6 +1391,9 @@ lb:
   profile: Profil
   profile_picture: Profilbild
   project: Projet
+  project_coordinate_access_warning: |
+    Den Zougang zu de Koordinéiert ass wichteg fir Wëssenschaftler, awer kann och mëssbraucht ginn duerch
+    Braconnieren. Gitt sécher datt Dir all d'Projet Curateuren traut ier Dir dësem Projet vertraut.
   project_group_label: Grupp
   project_members: "%{project} Memberen"
   project_settings: Astellunge vum Projet
@@ -1552,7 +1563,9 @@ lb:
   still_no_luck?: Nach ëmmer kee Gléck?
   stop_following_user: "Ophalen dem %{user} ze folgen"
   subscribe_to_a_taxon: Op en Taxon abonnéieren
+  subscribe_to_a_place: Op eng Platz abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
+  subscribe_to_this: 'Ob dest abonéiren:'
   subscriptions: Abonnementer
   suggest_an_identification: Eng Bestëmmung virschloen
   suggestions: Virschléi
@@ -1618,6 +1631,7 @@ lb:
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
   unmute: Stomm schalten ausmaachen
   updating: Aktualiséierung...
+  unsubscribe: Desabonéiren
   unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_observations: Observatiounen aktualiséieren
@@ -1640,6 +1654,7 @@ lb:
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_x: "%{user} huet e(n) %{x} derbäigesat"
+  user_added_an_identification_html: "%{user} huet eng Bestemmung bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Benotzer gespaart
@@ -1659,6 +1674,7 @@ lb:
   view_all_members: All Membere weisen
   view_all_observations: All Observatioune weisen
   view_details: Detailer weisen
+  view_dynamic_lifelist: Dynamesch LiewensLëscht weisen
   view_invitation: Invitatioun weisen
   view_license: Lizenz weisen
   view_lists: Lëschte weisen
@@ -1666,6 +1682,7 @@ lb:
   view_observation: Observatioun weisen
   view_observations: Observatioune weisen
   view_original: "Original weisen"
+  view_post: Post weisen
   view_projects_from_place: "Projeten vu(n) %{place} weisen"
   view_sample: Beispill weisen
   view_stats: Statistike weisen

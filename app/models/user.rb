@@ -1366,6 +1366,29 @@ class User < ActiveRecord::Base
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
   end
 
+  # this method will look at all this users photos and create separate delayed jobs
+  # for each photo that should be moved to the other bucket
+  def self.enqueue_photo_bucket_moving_jobs( user )
+    return unless LocalPhoto.odp_s3_bucket_enabled?
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    # TODO: temporarily restricting to admins
+    return unless user.is_admin?
+    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
+      if photo.photo_bucket_should_be_changed?
+        LocalPhoto.delay(
+          queue: "photos",
+          unique_hash: { "LocalPhoto::change_photo_bucket_if_needed": photo.id }
+        ).change_photo_bucket_if_needed( photo.id )
+      end
+    end
+    # return nil so this isn't returning all results of the above query
+    nil
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers

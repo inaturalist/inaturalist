@@ -495,6 +495,9 @@ nb:
   #the iNaturalist Android app or Flickr
   application: Applikasjon
   applications: Applikasjoner
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Send søknad
   apply_to_selected: Bruk på utvalgte
   apply_captive_cultivated: "Bruk i fangenskap / dyrket"
   apply_fields: Bruk felt
@@ -1029,6 +1032,10 @@ nb:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  #Header
+  curator_application_what_curators_can_do: Hva kuratorer kan gjøre
+  #Header
+  curator_application_what_curators_cannot_do: Hva kuratorer ikke kan gjøre
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
@@ -1240,6 +1247,7 @@ nb:
   duplicate_verb: Dupliser
   duration_value: "Varighet: %{duration} minutter"
   each_place_displays_all_species_inat_knows: "Hver stedsside viser alle arter %{site_name} kjenner tiø for det stedet, inkludert informasjon om deres antall, bevaringsstatus, og hvem som var den første som observerte den arten på det stedet på %{site_name}. Du kan filtrere arten på taksonomisk gruppe, farge, bevaringsstatus, eller bare et helt vanlig søk."
+  earliest_added: Tidligste lagt til
   edit: Rediger
   edit_a_batch_of_observations: Rediger en batch med observasjoner
   edit_account_settings_and_profile: "Rediger kontoinnstillinger &amp; profil"
@@ -1301,6 +1309,7 @@ nb:
   either_that_user_doesnt_exist_or: "Enten så finnes ikke den brukeren eller så følger du vedkommende allerede."
   eligible_for_research_grade: Kvalifisert for forskningskvalitet
   email: E-post
+  email_description: E-posten din er ikke delt med andre brukere på iNaturalist
   email_addresses_description: Komma-separert liste med e-postadresser, begrenset til 60 per 30 dager.
   email_address_for_comments_and_other_feedback: E-postadresse for kommentarer og andre tilbakemeldinger
   email_addresses_to_receive_invites: E-postadresser som skal få invitasjoner
@@ -3137,7 +3146,7 @@ nb:
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
   please_add_this_to_x_html: "Vennligst legg dette til %{x}"
-  please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen
+  please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Vennligst fullfør følgende for å legge til denne observasjonen til prosjektet:
   please_confirm_your_inat_username: "Vennligst bekreft ditt brukernavn på %{site_name}"

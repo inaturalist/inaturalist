@@ -49,16 +49,6 @@ uk:
     few: "%{count} мови"
     many: "%{count} мов"
     other: "%{count} мови"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} вперше у списку життя"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} вперше у списку життя"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> допис у журналі'
     few: '<span class="count">%{count}</span> дописи в журналі'
@@ -110,15 +100,20 @@ uk:
     many: "<span class='count'>%{count}</span> спостережень переглянуто"
     other: "<span class='count'>%{count}</span> спостереження переглянуто"
   x_observers_html:
-    one: '<span class="count">%{count}</span> Спостережник'
-    few: '<span class="count">%{count}</span> Спостережники'
-    many: '<span class="count">%{count}</span> Спостережників'
-    other: '<span class="count">%{count}</span> Спостережники'
+    one: '<span class="count">%{count}</span> Спостерігач'
+    few: '<span class="count">%{count}</span> Спостерігачі'
+    many: '<span class="count">%{count}</span> Спостерігачів'
+    other: '<span class="count">%{count}</span> Спостерігачі'
   x_others:
     one: "%{count} інший"
     few: "%{count} інших"
     many: "%{count} інших"
     other: "%{count} інших"
+  x_people:
+    one: "%{count} особа"
+    few: "%{count} особи"
+    many: "%{count} особ"
+    other: "%{count} особи"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} людей </strong> допомогли %{user} з <strong>%{y} визначенням</strong>"
   x_photos:
     one: "%{count} фото"
@@ -180,6 +175,11 @@ uk:
     few: "%{count} звуки"
     many: "%{count} звуків"
     other: "%{count} звуки"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span>курований таксон"
+    few: "<span class='count'>%{count}</span>курованих таксони"
+    many: "<span class='count'>%{count}</span>курованих таксонів"
+    other: "<span class='count'>%{count}</span> курованих таксони"
   x_taxa_matching_current_filters:
     one: "%{count} таксон, що відповідає поточним фільтрам"
     few: "%{count} таксони, що відповідають поточним фільтрам"
@@ -266,7 +266,7 @@ uk:
   about_trusting_projects_options_any_desc: |-
     Сюди включено спостереження, координати яких ви позначили як "розмиті" чи "конфіденційні" у налаштуваннях геоприватності, наприклад, спостереження з вашого подвір'я або інших місць, точне місцезнаходження яких ви воліли б не розголошувати.
   about_trusting_projects_options_taxon: |-
-    Тільки ті ваші спостереження в цьому проекті, координати яких розмиті через імовірну загрозу для вразливих таксонів
+    Тільки ті ваші спостереження в цьому проєкті, координати яких розмиті через імовірну загрозу для вразливих таксонів
   about_trusting_projects_options_taxon_desc: |-
     Багато проектів потребують доступу до координат, які були розмиті для спостережень загрожуваних таксонів.
   about_trusting_projects_overview: |-
@@ -411,7 +411,6 @@ uk:
   add_to_favorites: Додати в уподобані
   add_to_list: Додати до списку
   add_to_project: Додати до проєкту
-  add_to_your_life_list: Додати до вашого списку життя!
   add_to_your_list: Додати до вашого списку
   add_your_email_to_get: |
     Для отримання відгуку про ваше спостереження від спільноти, додайте свою електронну пошту.
@@ -442,8 +441,8 @@ uk:
   admin_s: Адмін(и)
   admin_only: Тільки для адміністраторів
   admin_tools: Засоби адміністрування
-  agree_: Погодитись
-  agree?: Погодитись?
+  agree_: Погоджуюсь
+  agree?: Погоджуєтесь?
   agree_with_current_taxon: Погодитись з поточним таксоном
   agreeing: Погодження
   aka: також відомий як
@@ -475,7 +474,7 @@ uk:
     tribe: Всі триби додані до бази даних
     subtribe: Всі підтриби додані до бази даних
     genus: Всі роди додані до бази даних
-    genushybrid: Всі родові гібриди додані до бази даних
+    genushybrid: Всі міжродові гібриди додані до бази даних
     subgenus: Всі підроди додані до бази даних
     section: Всі секції додані до бази даних
     subsection: Всі підсекції додані до бази даних
@@ -632,9 +631,9 @@ uk:
   #curator
   apply_curator: Застосувати
   apply_to_selected: Застосувати до вибраних
-  apply_captive_cultivated: "Застосувати в неволі/культивується"
+  apply_captive_cultivated: "Застосувати в неволі/культивований"
   apply_fields: Застосувати поля
-  apply_geoprivacy: Застосувати конфіденційність геоданих
+  apply_geoprivacy: Застосувати налаштування приватності місцеперебування
   apply_darr: "Застосувати &darr;"
   apply_establishment_means_to_descendant_places: "Застосувати шляхи виникнення до підпорядкованих місць"
   apply_these_settings_to_all: Застосувати ці налаштування до всіх нижченаведених спостережень.
@@ -700,7 +699,7 @@ uk:
   are_you_sure_you_want_to_remove_all_tags: Ви дійсно хочете видалити усі теги?
   are_you_sure_you_want_to_remove_curator: Ви дійсно хочете видалити %{user} зі списку кураторів?
   are_you_sure_you_want_to_remove_from_project: Ви дійсно хочете видалити %{user} з цього проєкту?
-  are_you_sure_you_want_to_remove_manager: Ви дійсно хочете видалити %{user} зі списку менеджерів?
+  are_you_sure_you_want_to_remove_manager: Ви дійсно хочете видалити %{user} зі списку керівників?
   are_you_sure_you_want_to_remove_spammer: |
     Ви справді вважаєте цього користувача почесним?
     Усі прапорці, що сигналізують про спам у їхніх матеріалах, буде видалено.
@@ -834,7 +833,7 @@ uk:
   cant_flag_an_object_that_doesnt_exist: Не можна позначити об'єкт, якого не існує
   cant_merge_a_taxon_with_itself: Неможливо об'єднати таксон із самим собою.
   captive: В неволі
-  captive_cultivated: в неволі/культивується
+  captive_cultivated: в неволі/культивований
   captive_observations: Спостереження видів, що живуть в неволі
   card: Картка
   casual: пересічне
@@ -865,7 +864,7 @@ uk:
     swap: Замінити початковий таксон на нове значення
     drop: Концепція таксону абсолютно недійсна, підтримується з міркувань історичної тяглості або сумісністі
     stage: Підготуйте неактивну концепцію для релізу у складі групи змін
-  change_geoprivacy: 'Змінити налаштування приватності місцезнаходження'
+  change_geoprivacy: 'Змінити налаштування приватності місцеперебування'
   change_group: Група змін
   change_icon: Змінити значок
   change_password: Змінити пароль
@@ -903,7 +902,7 @@ uk:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} було об'єднано в %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} буде об'єднано в %{output_taxon}"
   change_your_password: Змінити пароль
-  changing_the_geoprivacy: 'Зміна налаштувань приватності місцезнаходження позначається на тому, як інші люди бачать місце вашого спостереження.'
+  changing_the_geoprivacy: 'Зміна налаштувань приватності місцеперебування позначається на тому, як інші люди бачать місце вашого спостереження.'
   check_above_for_errors: Перевірити вищезазначене на наявність помилок
   check_back_soon: Побачимося незабаром!
   check_here_to_autoload_description: Позначте тут, щоб автоматично завантажити опис з Вікіпедії. Ви можете зняти відмітки в разі, якщо наукова назва таксона також є загальним словом або має місце помилка, наприклад, "Parus".
@@ -932,8 +931,8 @@ uk:
   choose_a_place: Оберіть місце
   choose_a_taxon: Оберіть таксон (за бажанням)
   choose_columns: Оберіть стовпці
-  choose_file: Обрати файл
-  choose_files: Обрати файли
+  choose_file: Оберіть файл
+  choose_files: Оберіть файли
   choose_from_your_lists: Обрати з вашого списку
   choose_photos_for_this_taxon: Обрати фото для цього таксону
   choose_photos_to_tag_from_photostream: Виберіть фото з вашого фотостріму, яким слід призначити тег
@@ -1037,10 +1036,10 @@ uk:
       Організація, яка надала цей статус. Будь ласка, використовуйте автодоповнення для вибору наявної організаці перед тим, як додавати нову. Ви можете пропустити цей крок, якщо *ви* бажаєте бути представлені як джерело відомостей.
     place: Місце, на яке поширюється цей статус.
     url: Веб-адреса сторінки, де описано цей статус.
-    geoprivacy: Налаштування приватності місцезнаходження за промовчанням для спостережень цього таксону
+    geoprivacy: Налаштування приватності місцеперебування за промовчанням для спостережень цього таксону
     iucn: Еквівалент коду з Червоного Списку МСОП
   conservation_status_geoprivacy_desc: |
-    Налаштування приватності місцезнаходження за промовчанням застосовано до всіх спостережень цього таксону в цьому місці
+    Налаштування приватності місцеперебування за промовчанням застосовано до всіх спостережень цього таксону в цьому місці
   contact_support: Звернутися до служби підтримки
   contain_all_descendants?: Чи включає цей таксономічний список усі таксони, що є дочірніми щодо цього таксону, і трапляються тут?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1352,7 +1351,7 @@ uk:
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
   date_to_date: "%{d1} - %{d2}"
-  date_updated: Дату оновлено
+  date_updated: Дата оновлення
   day: День
   decrease_brightness: Зменшити яскравість
   #Default option
@@ -1467,8 +1466,8 @@ uk:
   doh_something_went_wrong_error: "Щось пішло не так: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: ПОЖЕРТВУВАТИ
-  done: Виконано
+  donate: ВНЕСОК
+  done: Надіслати
   dont_have_an_account_sign_up_html: Не маєте облікового запису? <strong>Зареєструйтесь.</strong>
   dont_send_me_email: "Не надсилайте мені жодних листів!"
   dont_use_double_quotes: Не використовуйте подвійні лапки
@@ -1498,11 +1497,11 @@ uk:
   drawings: Рисунки
   duplicate_verb: Дублювати
   duration_value: "Тривалість, хвилин: %{duration}"
-  each_place_displays_all_species_inat_knows: "На сторінці кожного місця відображаються всі види, з цього місця за даними %{site_name}, а також інформація про їхню чисельність, природоохоронний статус і людей с сайту %{site_name}, яків вперше помітили вид з цього місця. Ви можете застосувати фільтри за таксономічною групою, кольором, природоохоронним статусом, або скористатися простим пошуком."
+  each_place_displays_all_species_inat_knows: "На сторінці кожного місця відображаються всі види з цього місця за даними %{site_name}, а також інформація про їхню чисельність, природоохоронний статус і людей з %{site_name}, які вперше помітили вид у цьому місці. Ви можете застосувати фільтри за таксономічною групою, кольором, природоохоронним статусом, або скористатися простим пошуком."
   earliest_added: Додані найдавніше
   edit: Редагувати
   edit_a_batch_of_observations: Редагувати групу спостережень
-  edit_account_settings_and_profile: "Редагувати налаштування облікового запису &amp; профіль"
+  edit_account_settings_and_profile: "Налаштування облікового запису &amp; профіль"
   edit_assessment: Редагувати оцінку
   edit_atlas: Редагувати атлас
   edit_atlas_for_taxon_html: Редагувати Атлас для %{taxon}
@@ -1560,7 +1559,7 @@ uk:
   editors: Редактори
   either: Або
   either_that_user_doesnt_exist_or: "Таких користувачів не існує, або ви вже слідкуєте за ними."
-  eligible_for_research_grade: Придатний на дослідницький рівень
+  eligible_for_research_grade: Придатне для дослідницького рівня
   email: Ел. пошта
   email_description: Ваша електронна пошта не доступна іншим користувачам iNaturalist
   email_addresses_description: Розділені комами адреси ел. пошти, ліміт 60 на кожні 30 днів.
@@ -1643,7 +1642,7 @@ uk:
   failed_to_save_record: "Не вдалося зберегти запис. Спробуй пізніше."
   failed_to_save_record_with_errors: "Не вдалося зберегти запис: %{errors}"
   failed_to_unlink_your_account: Не вдалося відв’язати обліковий запис
-  'false': 'Невірно'
+  'false': 'Ні'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Уподобані
   Family: Родина
@@ -2036,7 +2035,7 @@ uk:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Чи достатньо доказів, що підтверджують що це %{taxon}?
   is_this_offensive_html: 'Чи цей контент є <a href="/help#inappropriate">недоречним</a>, спамом чи образливим?'
   is_this_place_a_duplicate: Це місце є копією вже існуючого?
-  it_can_now_be_used_for_research: Тепер воно може бути використано для досліджень та з'явиться на інших веб-сайтах
+  it_can_now_be_used_for_research: Тепер воно може бути використано для досліджень та з'явитися на інших веб-сайтах
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: текст курсивом
   item_flagged_notice_html: |
@@ -2055,7 +2054,7 @@ uk:
   join_this_project: Долучитися до цього проєкту
   'joined!': Долучилися!
   joined_projects: Проєкти, до яких ви долучилися
-  joined_with_date: "Долучилися: %{date}"
+  joined_with_date: "Долучення: %{date}"
   journal: Журнал
   journal_archives_for: Архів журналу для
   journal_post: Допис у журналі
@@ -2177,7 +2176,227 @@ uk:
   licensed_site_photos: "Ліцензовані фото з %{site_name}"
   license: Ліцензія
   licensing: Ліцензування
+  licensing_your_content_gives_others_legal: "Ліцензування вашого контенту надає іншим право на його використання, якщо вони дотримуються умови ліцензії. %{site_name} використовує ваш контент під ліцензіями Creative Commons для обміну з партнерами, такими як "
+  life: Життя
+  linear_scale_label: Лінійна
+  link: Посилання
+  link_or_unlink_your_facebook_account: Пов'язати або відв'язти свій обліковий запис Facebook
+  link_or_unlink_your_flickr_account: Пов'язати або відв'язти свій обліковий запис Flickr
+  link_or_unlink_your_google_account: Пов'язати або відв'язти свій обліковий запис Google
+  link_your_facebook_account: Приєднайте свій обліковий запис Facebook
+  link_your_flickr_account: Прив'язати обліковий запис Flickr
+  link_your_google_account: Прив'язати обліковий запис Google
+  linked_facebook: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Facebook."
+  linked_facebook_automaticaly: "Також, майте на увазі, що при вході до %{site_name} через Facebook, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Facebook. Гадаємо, що якщо ви користуєтесь Facebook, то захочете мати можливість імпортувати фото з Facebook, чи не так?"
+  linked_facebook_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Facebook, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Facebook краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Facebook, до якого захочете прив'язати %{site_name}."
+  linked_facebook_howto: "Для ппідключення Facebook до %{site_name}, натисніть на посилання праворуч і увійдіть у Facebook.com."
+  linked_facebook_password: "Ми ніколи не будемо запитувати ваш пароль Facebook (але Facebook може, перевірте URL, на який вас перенадсилає кнопка і переконайтеся, що це Facebook.com). Ми також не зможемо змінювати ваші дані на Facebook, якщо ви цього не хочете."
+  linked_flickr: "Ваш обліковий запис %{site_name} прив'язаний до вашого облікового запису Flickr."
+  linked_flickr_automatically: "Також, майте на увазі, що при вході до %{site_name} через Flickr, ми автоматично зв'яжемо ваші облікові записи %{site_name} та Flickr. Гадаємо, що якщо ви користуєтесь Flickr, то захочете мати можливість імпортувати фото з Flickr, чи не так?"
+  linked_flickr_description: "Зберігання вашого облікового запису %{site_name} пов'язаним з вашим обліковим записом Flickr, дозволяє додавати серії фото до ваших спостережень. Звичайно, якщо ви вирішете, що %{site_name} та Flickr краще роз'єднати, ми не перешкоджатимемо, просто ви не зможете більше додавати фото. Іноді це може бути на краще, наприклад, якщо ви створите новий обліковий запис у Flickr, до якого захочете прив'язати %{site_name}."
+  linked_flickr_password_html: "<strong>Ми ніколи не будемо запитувати у вас пароль Flickr</strong> (але Flickr може, перевірте URL, на який вас перенадсилає кнопка і переконайтеся, що це Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: пов'язаний текст
+  linkedin: LinkedIn
+  list: Список
+  list_deleted: Список видалено.
+  list_reloaded_from_observations: Список перезавантажено із спостережень
+  list_rules_reapplied: Правила списку було повторно застосовано
+  list_saved: Список збережено.
+  list_tooltip: Показати представлення списком
+  list_updated: Список оновлено!
+  list_views:
+    plain: звичайний
+    taxonomic: таксономічний
+    photo: фото
+  list_was_successfully_created: Список було успішно створено.
+  listed_taxa: Таксони зі списку
+  listed_taxon: Таксон зі списку
+  listed_taxon_updated: Таксон зі списку оновдено
+  listing_lists: Списки зі списків
+  listing_project_assets: Ресурси проєктів зі списків
+  listing_taxa: Таксони зі списку
+  lists: Списки
+  lists_by_login:
+    title:
+      current_user: Ваші списки
+      login: Списки %{login}
+  load: Завантажити
+  loading: "Завантаження..."
+  loading_flickr_photos: "Завантаження фото з Flickr..."
+  loading_images: Завантаження зображень...
+  loading_metadata: Завантаження метаданих...
+  loading_preview_and_code: Завантаження попереднього перегляду та коду...
+  loading_suggestions: Завантаження пропозицій...
+  loading_tags: "Завантаження тегів..."
+  loading_taxa_from_your: "Завантаження таксонів з ваших спостережень..."
+  loading_wikipedia_description: "Завантаження опису з Вікіпедії..."
+  locale_description: Налаштування локалізації визначають параметри мови й відображення дати.
+  locales_: Локалізації
+  locales:
+    ar: Арабська
+    bg: Болгарська
+    br: Бретонська
+    ca: Каталонська
+    cs: Чеська
+    da: Данська
+    de: Німецька
+    el: Грецька
+    en: Англійська
+    eo: Есперанто
+    es: Іспанська
+    es-AR: Іспанська (Аргентина)
+    es-MX: Іспанська (Мексика)
+    et: Естонська
+    eu: Баскська
+    fi: Фінська
+    fr: Французька
+    fr-CA: Французька (Канада)
+    gl: Галісійська
+    he: Іврит
+    id: Індонезійська
+    it: Італійська
+    ja: Японська
+    ko: Корейська
+    lb: Люксембурзька
+    lt: Литовська
+    lv: Латвійська
+    mk: Македонська
+    nb: Норвезька (Букмол)
+    nl: Голландська
+    oc: Окситанська
+    pl: Польська
+    pt: Португальська
+    pt-BR: Португальська (Бразилія)
+    ru: Російська
+    sk: Словацька
+    sq: Албанська
+    sv: Шведська
+    tr: Турецька
+    uk: Українська
+    zh-CN: Китайська (спрощена)
+    zh-TW: Китайська (традиційна)
+  locality_notes: Примітки до локалізації
+  localized_species_accounts: Локалізовані дані за видами
+  location: Місцезнаходження
+  location_is_accurate: Місцезнаходження є детальним
+  location_is_exact: місцезнаходження є точним
+  location_is_public: Місцезнаходження відкрите
+  location_is_obscured: Місцезнаходження є розмитим
+  location_is_private: Місцезнаходження є конфіденційним
+  location_specified: Місцезнаходження вказано
+  locked_taxa_will_not_allow_new: Заблоковані таксони не дозволять додавати до них нові дочірні таксони. Отже, якщо ви заблокували Amphibia і хтось намагався імпортувати <i>Rana catesbeiana</i> із зовнішнього джерела назв, новий таксон буде створено, але не будевіднесено до земноводних. В такій ситуації, новододані таксони мають бути позначені прапорцем для привернення уваги куратора. Це має бути використане тільки для таксонів, щодо яких ми впевнені, що у нас вже додано всі дочірні таксони. Куратор може перевизначити це, змінивши шляхом редагування таксону та введення батьківських ідентифікаторів вручну, але натомість розгляньте можливість злиття нових таксонів у вже наявні.
+  log_in: Увійти
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Увійдіть</a> або <a href="/signup">зареєструйтеся</a> , щоб додати коментарі.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Увійдіть</a> або <a href="/signup">зареєструйтеся</a> , щоб додати визначення.
+  log_out: Вийти
+  log_out_caps: ВИЙТИ
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "Вийти з %{site_name}?"
+  log_scale_label: Журнал подій
+  login_slash_username: Логін / ім'я користувача
+  logo:
+    logo: Логотип
+    white_bg_gif: GIF на білому тлі
+    transparent_png: прозорий PNG
+    white_text_transparent_png: прозорий PNG з білим текстом
+    none: жодного
+  long: Довгота
+  longitude: Довгота
+  longitude_in_decimal: 'Довгота в десяткових градусах, наприклад, -122.123'
+  longitude_slash_x_coord_slash_easting: Довгота / координата X / градусів на схід від Ґрінвічу
+  longitude_value: "Довгота: %{longitude}"
+  look_up_name: "Шукати ім'я"
+  looks_like_neither_have!: Схоже, тут немає жодного таксону!
+  looks_like_no_species_in_guide: Схоже, у вашому посібнику ще немає жодного виду.
+  lookup: Шукати
+  low: Низький
+  lowest_rank: Найнижчий ранг
+  make_admin: Зробити адміністратором
+  mail_disclaimer: "Користувачам %{site_name} не буде дозволено надсилати вам додаткові запрошення через нас. Будь ласка, повідомте про запрошення від %{site}."
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Основний вміст
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Основний вміст зосереджено тут
+  make_a_new_place: Створити нове місце
   make_a_taxon_swap_instead?: Зробити замість цього заміну таксона?
+  make_curator: Створити куратора
+  make_manager: Зробити керівником
+  make_sure_the_default_photo_looks_good: Переконайтеся, що фото за промовчанням виглядає добре в великому розмірі.
+  make_this_your_default_license: "Зробіть %{type} вашою стандартною ліцензією"
+  make_this_the_primary_listing: "Зробити це основним списком"
+  mammals: ссавці
+  manage_all_your_subscriptions: Керувати усіма вашими підписками
+  manage_names: Керувати назвами
+  manage_your_projects: Керувати вашими проєктами
+  manage_your_project_invitations: Керувати вашими запрошеннями у проєкти
+  manage_your_relationships: Керувати вашими взаєминами
+  manager: Керівник
+  managers: Керівники
+  managers_can_do: Керівники можуть робити все, що можуть робити куратори, а також редагувати налаштування проєкту і дописувати у журналі проєкту.
+  managing_projects: Керування проєктами
+  map: Карта
+  map_legend: Умовні позначення
+  map_marker_size: розмір маркера карти
+  map_of_observations: Карта спостережень
+  maps:
+    overlays:
+      all_observations: Всі спостереження
+      every_publicly_visible_observation: Всі публічно видимі спостереження створені в мережі iNaturalist
+      featured_observations: Рекомендовані спостереження
+      gbif_network: Мережа GBIF
+      gbif_network_description: Записи наукових колекцій та інших постачальників даних, які розповсюджуються через Global Biodiversity Informatics Facility (GBIF)
+      observations: Спостереження
+      place_boundary: Межі місця
+      checklist_places: Місця з таксономічними списками
+      checklist_places_description: Місця, де цей таксон було зазначено у списку
+      range: Охоплення
+  map_tooltip: Показати на карті
+  mark_as_reviewed: Помітити як переглянуті
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Позначення спостереження як переглянуте означає, що ви не побачите його знову
+    за промовчанням у розділі Визначення. Іншим людям воно залишиться видимим у Визначеннях.
+  mark_all_as_reviewed: Позначити всі як переглянуті
+  mark_all_as_unreviewed: Позначити всі як ще не переглянуті
+  matching_species_will_shown_up_here: Тут відображатимуться види, що задовольняють умовам. Карта показуватиме просторове охоплення, якщо %{place} має один з цих видів.
+  maverick: Незалежна думка
+  media: Медіа-файли
+  media_type: Тип медіа-файлу
+  medium: середній
+  meet: Познайомитися
+  member_of_the_inaturalist_network_html: |
+    Учасник мережі <a href="%{url}">iNaturalist</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Член %{partial_inat_network_tag_html}Мережі iNaturalist</a>, спільної ініціативи %{cas_tag_html} та %{nat_geo_tag_html}.
+  #As in members of a project
+  members: Учасники
+  membership_model: Модель участі
+  mentioned_you_in_noun_html: "%{user} згадав вас у %{noun}"
+  mentioned_you_in_noun_by_html: "%{user} згадав вас у %{noun} %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} згадав вас у %{noun} %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} згадав вас у вашому %{noun}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} згадав вас у %{x} на %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} згадав вас у %{x} на %{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} згадав вас у %{x} на %{noun} %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} згадав вас у %{x} на %{noun} %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} згадав вас у %{x} на вашому %{noun}"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} згадав вас у %{x} на %{noun} %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} згадав вас у %{x} на %{noun} %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} згадав вас у %{x} на вашому %{noun}"
+  merge: Об'єднати
+  merge_it_with_another_place: Об'єднати це місце з іншим
+  merge_two_places_together: Об'єднати два місця в одне. Усі види у таксономічних списках, так само як і інші географічні дані, буде злито докупи.
+  merge_observation_field_x_into: 'Об''єднати поле спостереження "%{x}" у...'
+  merging: Об'єднано
+  merging_places: Об'єднання місць
+  message: Повідомлення
+  message_deleted: Повідомлення видалено
+  message_from_user_at_time: Від %{user} о %{time}
+  message_from_user_on_date: Від %{user} %{date}
+  messages: Повідомлення
   messages_new_correspondent_it_looks_like: |
     Схоже, ви ніколи раніше не листувалися з цією особою, тому, будь ласка, майте на увазі наступне:
   messages_new_correspondent_specimens: |
@@ -2189,22 +2408,731 @@ uk:
     target="_blank">Умови надання послуг</a> або діє не за <a
     href="%{guidelines_url}" target="_blank">Правилами спільноти</a>, будь ласка,
     позначте це повідомлення нижче.
+  misidentifications: Хибні визначення
+  misleading_or_illegal_content_html: |
+    Оманливий або протизаконний вміст, приниження за расою чи етнічною приналежністю тощо. Докладніше про наше визначення поняття "прийнятне" дивіться <a href="/help#inappropriate">ЧаПи</a>.
+  #Label shown when a date has not been entered
+  missing_date: Відсутня дата
+  mobile: Мобільний
+  mollusks: молюски
   momentjs:
+    shortRelativeTime:
+      future: "у %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1 с"
+      #Short text representing 1 minute in the past
+      m: "1 хв"
+      #Short text representing %d minutes in the past
+      mm: "%d хв"
+      #Short text representing 1 hour in the past
+      h: "1 год"
+      #Short text representing %d hours in the past
+      hh: "%d год"
+      #Short text representing 1 day in the past
+      d: "1 д"
+      #Short text representing %d days in the past
+      dd: "%d дн."
+      #Short text representing 1 month in the past
+      M: "1 міс."
+      #Short text representing %d months in the past
+      MM: "%d міс."
+      #Short text representing 1 year in the past
+      'y': "1 р."
+      #Short text representing %d years in the past
+      yy: "%d рр."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    time_hours: "H:mm"
+    datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM HH:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
+  month: Місяць
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Щомісячний спонсор</a> від %{date}
+  months: Місяці
+  more: Більше
+  more_fields: Більше полів
+  more_filters: Більше фільтрів
+  more_from_x: Більше від %{x}
+  more_import_options: Більше варіантів імпорту
+  more_info: Докладніше
+  more_info_title: Докладніше
+  more_journal_posts: Більше дописів у журналі
+  more_observations: Більше спостережень
+  more_photos: Більше фото
+  more_than_a_week_ago: Понад тиждень тому
+  most_agree: більшість згодні
+  most_browser_print_pdf: "Примітка: більшість браузерів мають можливість друкувати в PDF"
+  most_disagree: більшість не згодні
+  most_comments_and_faves: Більшість коментарів і вподобань
+  most_observations: Найбільше спостережень
+  most_recent_observation_by_date_observed: Останні перевірювані спостереження за датою спостереження
+  most_species: Найбільше видів
+  most_observed_species: Види, що їх найчастіше спостерігали
+  most_observed_introduced_species: Чужорідні види, що їх найчастіше спостерігали
+  most_observed_threatened_species: Загрожувані види, що їх найчастіше спостерігали
+  multiple: декілька
+  multiple_select_option: '-- декілька--'
+  multiple_taxa_for_taxon_change: "Декілька таксонів (ввід для заміни/злиття, вивід для розділення)"
+  multiple_taxon_ids_separated_by_commas: 'Кілька визначень таксонів, розділені комами, наприклад 123,654'
+  must_be_observed_after: |
+    має бути спостережено після %{operand}
+  must_be_observed_before: |
+    має бути спостережено до %{operand}
+  must_be_observed_in: має бути спостережено в
+  must_be_less_than_x_MB: "має бути менше за %{x} МБ"
+  must_have_observation_field: "спостереження мусить мати заповнене поле %{operand}"
+  must_have_x: "мусить мати %{x}"
   mute_user: Ігноровані користувачі
   mute_removed: Ігнорування скасоване
   muted_users: Ігноровані користувачі
+  n_ago: "%{n} тому"
+  n_people_agrees: "%{amount} людей погоджуються"
+  n_people_disagrees: "%{amount} людей не погоджуються"
+  n_person_agrees: "%{amount} осіб погоджуються"
+  n_person_disagrees: "%{amount} осіб не погоджуються"
+  name: Назва
+  name_entered: Назву введено
+  name_or_slug: "Почніть вводити назву або URL-адресу, наприклад, мій-проєкт"
+  name_of_the_place_you: Назва місця, де ви робили спостереження
+  name_providers:
+    col: Catalogue of Life
+    ubio: uBio
+  new_members: "Нові учасники"
+  new_message: Нове повідомлення
+  new_observation_field: Нове поле спостереження
+  new_observations: Нові спостереження
+  new_observations_in_year: "Нові спостереження у %{year}"
+  new_observations_ellispsis: "Нові спостереження..."
+  new_observations_from_place_html: "Нові спостереження з %{place}"
+  new_observations_may_take_up_to: Може минути до %{widget_expiration} хвилин, поки нові спостереження відобразяться у віджеті.
+  new_observations_of_x_html: "Нові спостереження %{x}"
+  new_password: Новий пароль
+  new_post: Новий допис
+  new_project: Новий проєкт
+  new_project_asset: Новий доробок проєкту
+  new_project_asset_for: Новий доробок проєкту для
+  new_source: Нове джерело
+  new_species_added_in_interval: Додано новий вид у %{interval}
+  new_species_added_in_interval_x_of_y: Додано новий вид у %{interval} (Показано %{x} з %{y})
+  new_taxon_change: Нова таксономічна зміна
+  new_taxon_link: Нове посилання на таксон
+  new_taxon_name_for: Нова назва таксону для
+  new_taxon_range: Нова область поширення таксону
+  new_taxonomic_change: Нова таксономічна зміна (чернетка)
+  new_trip: Нова поїздка
+  new_updates_in_the_last_24_hours_from: "Нові оновлення за останні 24 години від %{site_name}"
+  new_users: Нові користувачі
+  new_users_in_year: "Нові користувачі у %{year}"
+  new_users_w_7_obs: Нові користувачі з 7 спостер.
+  newly_added: Нещодавно додано
+  newly_added_species: Нещодавно додані види
+  newly_observed_species: Види, що їх нещодавно спостерігали
+  newly_observed_species_in_year: "Нещодавно додані види у %{year}"
+  next: Далі
+  next_observation: Наступне спостереження
+  next_page: Наступна сторінка
+  next_photo: Наступне фото
+  next_tab: Наступна вкладка
+  'no': 'Ні'
+  no_assessments_have_been_added_to_this_project_yet: До цього проєкту ще не було додано жодних оцінок.
+  no_but_it_is_a_member_of_taxon: "Ні, але це член %{taxon}"
+  no_comments_yet: Ще немає коментарів.
+  no_countries_added_yet: Жодна країна ще не додана
+  no_creative_commons_flickr_photos_tagged_x: 'Немає фото з Flickr під ліцензією Creative Commons з тегом "%{x}'
+  no_curators_set: Кураторів не призначено
+  no_curators_yet: Куратори поки що відсутні!
+  no_description: Опис відсутній
+  no_flags: Цього разу прапорців немає
+  no_flickr_photos_tagged: Жодне фото з Flickr не позначено тегом!
+  no_identifications: Жодного визначення
+  no_identifications_added:
+    current_user: Ви не запропонували визначень до чиїхось спостережень.
+    user: "%{user} не запропонував визначень до чиїхось спостережень."
+  no_ids_have_been_suggested_yet: Ще не запропоновано жодного визначення
+  no_interaction_data_available: Немає доступних даних про взаємодії
+  no_its_as_good_as_it_can_be: Ні, це добре, наскільки можливо
+  no_favorites_added:
+    current_user: Ви ще не додали нічого до уподобаних.
+    user: "%{user} не додав нічого до вподобаних."
+  no_journal_posts_yet: Ужурналі ще жодного допису
+  no_license_all_rights_reserved: Немає ліцензії. Всі права застережено
+  no_managers_set: Менеджерів не визначено
+  no_matching_article_from_x: "Немає відповідної статті з %{x}"
+  no_matching_invitations: Немає відповідних запрошень
+  no_matching_observations: Немає відповідних спостережень.
+  no_matching_places: Немає відповідних місць
+  no_matching_projects: Немає відповідних проєктів
+  no_matching_species: Немає відповідних видів.
+  no_matching_taxa: Немає відповідних таксонів
+  no_matching_users: Немає відповідних користувачів.
+  no_members_yet: "Поки немає учасників."
+  no_messages_yet: Поки немає повідомлень
+  no_misidentifications_yet: Поки що немає хибних визначень
+  no_more_mail_from_site: "Не хочете отримувати електронні листи від %{site_name}? Відредагуйте налаштування електронної пошти у"
+  no_more_taxa_to_load: Більше немає таксонів для завантаження!
+  no_more_results_found: Більше нічого не знайдено
+  no_new_messages: Немає нових повідомлень
+  no_observations: Жодного спостереження
+  no_observations_from_this_place_yet: Поки немає спостережень з цього місця.
+  no_observations_matching_those_ids: Жодного спостереження, що відповідали б цим визначенням.
+  no_observations_submitted: "Жодних спостережень не надіслано!"
+  no_observations_yet: Поки що спостережень немає.
+  no_one_has_added_any: Ніхто не додав жодних нотаток для цього місця
+  no_one_has_been_invited_yet: Наразі нікого ще не запрошено
+  no_one_posted_anything_yet: Ніхто ще нічого не опублікував!
+  no_photo: Немає фото
+  no_photos: Немає фото
+  no_photos_of_that_size: Немає фото такого розміру.
+  no_places_available: Немає доступних місць
+  no_post_yet: Ще немає дописів!
+  no_project_selected: Жодного проєкту не обрано
+  no_project_to_admin_current_user: "Ви не адмініструєте жодних проєктів"
+  no_project_to_admin_login: "%{login} не адмініструє жодних проєктів"
+  no_projects_yet: Поки немає проєктів
+  no_range_data_available: Немає відомостей про область поширення.
+  no_recent_activity: Жодних активностей останнім часом
+  no_relevant_annotations: Немає відповідних приміток
+  no_reply_yet: Поки що немає відповідей
+  no_results_found: Результатів не знайдено
+  no_results_for: 'Немає результатів для '
+  no_results_matching: Немає результатів, що відповідають
+  no_sections_available: Немає доступних розділів.
+  no_sections_have_been_added_to_this_assessments_yet: Поки що жоден розділ не був доданий до цієї оцінки.
+  no_species_have_been_listed: Для цього місця ще наводиться жодного виду!
+  no_species_observed: Жодного виду не спостерігали
+  no_species_on_this_list: Видів у цьому списку поки що немає!
+  no_species_on_this_list_for_owner_html: |
+    Ви можете почати додавати види до цього списку напряму, або якщо це список живого, він буде автоматично поповнюватися видами, коли ви <a href="%{url}" class="nobr">додаватимете спостереження</a>.
+  no_subject_parens: "(Без теми)"
+  no_suggestions_available: Немає запропонованих варіантів
+  no_summary_from_wikipedia: Немає опису з Вікіпедії
+  no_summary_has_been_set: Опис не встановлено.
+  no_taxa: Немає таксонів
+  no_taxa_listed: Немає таксонів у списку
+  no_taxa_selected: Жодного таксону не вибрано!
+  no_taxa_with_unknown_relationships: Немає таксонів з невідомими зв'язками
+  no_taxonomic_changes_match_those_criteria: Немає таксономічних змін, що відповідали б цим умовам
+  no_users_found_with_those_filters: За вказаними фільтрами користувачів не знайдено
+  no_wikipedia_page_for_taxon: Немає сторінки на Вікіпедії для цього таксону.
+  no_x_this_y: "Немає %{x} за цей %{y}"
+  noble_curators: "Почесні куратори %{site}"
+  non_human?: Не людина?
+  none: Нічого
+  none_found: Нічого не знайдено
+  normal: нормальний
+  not_completed: Не завершено
+  not_evaluated: неоцінений
+  not_findig_what_you_want: Не знаходиться те, що шукали?
+  not_finding_place_you_want?: Не знаходиться місце, яке шукали?
+  not_found: Не знайдено
+  not_linked_facebook: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Facebook."
+  not_linked_flickr: "Ваш обліковий запис %{site_name} не прив'язаний до вашого облікового запису Flickr."
+  not_on_this_list: Не в цьому списку.
+  not_recorded: Не записано
+  not_resolved: Не розв'язано
+  not_seeing_what_looking_for: Не бачите те, що шукали?
+  note: Примітка
+  notes: Примітки
+  note_you_can_modify_the_height_attribute: "Примітка: Ви можете змінити атрибут \"висота\", щоб припасувати вміст до вільного місця на вашій веб-сторінці."
+  notifications: Сповіщення
+  notify_me_of_mentions: Повідомляти мене про згадування (напр. @username)
+  notify_me_of_mentions_description: "Якщо вимкнути це, ви не отримуватимете жодних сповіщень, коли хтось згадуватиме вас на %{site_name}."
+  notify_me_about_redundant_identifications: Повідомляти мені про визначення на підтвердження
+  notify_me_about_redundant_identifications_desc: |
+    Отримувати сповіщення про визначення, які співпадають з вашими власними. Якщо ви
+    не оберете цей пункт ви отримуватимете сповіщення лише про визначення, які відрізняються від ваших власних.
+  number_of_observations: Кількість спостережень
+  number_of_observers_value: "Кількість спостерігачів: %{number}"
+  number_of_observers: "Кількість спостерігачів"
+  number_selected: "# обрано"
+  obs: Спостереження
+  obs_cid_d: Визначення спільноти
+  obs_id_d: Визначення
+  obscured: Розмите
+  obscured_or_private: розмите або приватне
+  obscured_description: |
+    Загальновидимі координати відображені у вигляді випадкової точки в межах діапазону в 0,2 градуса широти/довготи, що містить справжні координати.
+  observation: Спостереження
+  observation_: спостереження
+  observation_added: Спостереження додано.
+  observation_added_to_the_project: "Спостереження додано до проєкту \"%{project}\""
+  observation_aggregation: Узагальнення спостережень
+  observation_belongs_to_project_requiring_field: |
+    Спостереження належить до проєкту, що вимагає цього поля. Спостереження має бути видалено з проєкту перед тим, як значення у цьому полі може бути видалене.
+  observation_brief_something_on_day: "Дещо за %{day}"
+  observation_brief_something_on_day_at_time: "Дещо за %{day} о %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Дещо за %{day} о %{time} від %{user}"
+  observation_brief_something_on_day_by_user: "Дещо за %{day} від %{user}"
+  observation_brief_something_by_user: "Щось від %{user}"
+  observation_brief_something_from_place: "Дещо з %{place}"
+  observation_brief_something_from_place_by_user: "Дещо з %{place} від %{user}"
+  observation_brief_something_from_place_on_day: "Дещо з %{place} за %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Дещо з %{place} за %{day} від %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Дещо з %{place} за %{day} о %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Дещо з %{place} за %{day} о %{time} від %{user}"
+  observation_brief_taxon_on_day: "%{taxon} за %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} о %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} за %{day} о %{time} від %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} за %{day} від %{user}"
+  observation_brief_taxon_by_user: "%{taxon} від %{user}"
+  observation_brief_taxon_from_place: "%{taxon} з %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} з %{place} від %{user}"
+  observation_brief_taxon_from_place_on_day: "%{taxon} з %{place} за %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} з %{place} за %{day} від %{user}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} з%{place} за %{day} о %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} з %{place} за %{day} о %{time} від %{user}"
+  observations_by_category: "Спостережень за категоріями"
+  observations_by_app: Спостережень за типом застосунку
+  observations_by_rank: Спостережень за рангом
+  observations_by_user_on_date: "Спостереження %{user} за %{date}"
+  observations_by_you: "Ваші спостереження"
+  observations_by_you_on_date: "Ваші спостереження за %{date}"
+  observation_calendar_for: "Календар спостережень %{user} у %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Спостереження можуть мати не більше %{limit} фото
+  observation_curation: Курування спостережень
+  observation_date: Дата
+  observation_date?: Дата?
+  observation_field: Поле спостереження
+  observation_field_details: Подробиці поля спостереження
+  observation_field_type_text: Текстове
+  observation_field_type_numeric: Числове
+  observation_field_type_date: Дата
+  observation_field_type_time: Час
+  observation_field_type_datetime: Дата й час
+  observation_field_type_taxon: Таксон
+  observation_field_type_dna: ДНК
+  observation_fields: Поля спостереження
+  observation_fields_are_additional: Поля спостереження — це додаткові поля даних, які можна додавати до спостережень.
+  observation_fields_by_preferences_description: |
+    Поля спостереження чимось подібні до тегів, за винятком того, що кожен може додати їх до вашого спостереження за промовчанням. Змініть це, якщо ви бажаєте залишити цю можливість за собою або довірити її лише кураторам сайту.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    напр. 2019-10-29 13:12:21
+  observed_on_datetime: Спостережено %{datetime}
+  observation_removed_from_the_project: "Спостереження видалено з проєкту \"%{project}\""
+  observation_requirements: Вимоги до спостережень
   #Label for a field showing the date when the observation requirements for a
   #project were last updated
-  observation_requirements_updated_at: Вимоги до спостереження оновлено
+  observation_requirements_updated_at: Вимоги до спостережень оновлено
+  observation_rules: Правила для спостережень
+  observation_rules_description: |
+    Ви можете обрати правила, що визначатимуть, які спостереження можуть бути додані до цього проєкту, наприклад, лише обмежені певним місцем або таксоном. Якщо ви встановите
+    більше одного правила для одного типу правил, спостереження будуть дійсні, якщо відповідатимуть бодай одному з правил. Наприклад, якщо у вас встановлено правила "повинні належати до Земноводних" і "повинні належати до Плазунів", то проєкт прийатиме спостережень як плазунів, так і земноводних.
+  observation_was_deleted: Спостереження видалено
+  observation_without_media: Спостереження без медіа
+  observations: Спостережень
+  observations_: спостереження
+  observations_added_by_x_html: "Спостережень додано %{x}"
+  observations_annotated_with_annotation: "Спостереження анотовані %{annotation}"
+  observations_by: Спостереження
+  observations_by_user: "Спостереження %{user}"
+  observations_deleted: Спостереження видалені.
+  observations_fields_are: |
+    Поля спостереження — це додаткові елементи даних, пов'язані зі спостереженням, такі як кількість особин, що спостерігали, харатеристика оселища, або все, що забажаєте! Проєкти також можуть додавати поля, які вони б хотіли, щоб ви заповнили.
+  observations_from: Спостереження з %{date}
+  observations_from_people_taxa_and_places_youre_following: "Спостереження таксонів від людей, з місць, за якими ви слідкуєте"
+  observations_from_this_place: Спостереження з цього місця
+  observations_from_this_project: Спостереження з цього проєкту
+  observations_in_this_project_must: Спостереження в цьому проекті мають відповідати наступним критеріям
+  observations_map: Спостереження / Мапа
+  observation_must_dotdotdot: Спостереження має...
+  observations_near_a_place_are: |
+    Спостереження "поряд" з якимось місцем знаходяться у прямокутнику, створеному навколо 
+    меж місця; це може спричинити неточності для
+    місць, формою не схожих на прямокутники. Це пов'язано з обмеженими можливостями
+    нашої бази даних, над якою ми працюємо для вирішення проблеми.
+  observations_needing_curation: Спостереження, що потребують курації
+  observations_observed_this_month: Спостережень <em>зроблених</em> цього місяця, у цьому місяці не додано. Вийдіть з дому та спостерігайте!
+  observations_of_relatives: Спостереження споріднених видів
+  observations_of_taxon: "Спостереження %{taxon_name}"
+  observations_per_month: Спостереження / Місяць
+  observations_removed_from_the_project: "Спостереження видалені з проєкту \"%{project}\""
+  observations_saved: Спостереження збережено(і)!
+  observations_specifying_this_field: Спостереження, у яких заповнене це поле
+  observations_specifying_this_field_with_value: Спостереження, у яких це поле містить "%{value}"
+  observations_text_search_warning: |
+    Текстовий пошук у поєднанні з іншими фільтрами іноді може давати несподівані результати. Знайти спостереження певного виду простіше, якщо скористатися фільтром за таксоном.
+  observations_this_year_vs_last_year: Спостереження цього року у порівнянні з минулим
+  observations_total: Загалом спостережень
+  observations_w: Спостереження з
+  observations_w_field: Cпостереження з полем
+  observations_was_successfully_updated: Спостереження було успішно оновлено.
+  observations_widget: Віджет спостережень
+  observations_with_this_field: Cпостереження з цим полем
+  observations_with_this_field_and_value: Cпостереження з цим полем та значенням
+  observations_without_media: Cпостереження без медіа
+  observationcounts_refreshed: Статистику спостережень оновлено
+  observed: Дата
+  observed_by: Спостереження зроблено
+  observed_on: Дата
+  observer: Спостерігач
+  observers: Спостерігачі
+  observer_short: Спостерігач
+  occurence_status_describes_how: 'Cтатус трапляння описує, наскільки таксон є поширеним або рідкісним в даній області. Більше інформації про термінологію можна знайти у <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">стандарті DarwinCore</a>.'
+  occurrence_status: Статус трапляння
+  occurrence_status_descriptions:
+    absent: Не трапляється на території
+    common: Трапляється часто
+    doubtful: Ймовірно трапляється, але існують сумніви щодо доказів
+    irregular: Присутність непередбачувана, у т.ч. залітні види; можуть бути в деякі роки поширені та відсутні у інші
+    present: Трапляється на території
+    uncommon: Трапляється регулярно, але в малій кількості; вимагає ретельного обстеження відповідних оселищ.
+  occurrence_status_establishment_means: Статус трапляння, шляхи виникнення
+  occurrence_status_levels:
+    present: присутній
+    common: звичайний
+    uncommon: рідкісний
+    irregular: нерегулярний
+    doubtful: сумнівний
+    absent: відсутній
+  of_observations: спостереження
+  of_species: види
+  of_observers: спостерігачі
+  of_identifiers: Ідентифікатори
+  of_places: Місця
+  of_this_taxon: Цього таксону
+  offensive_inappropriate: Образливий / Недоречний
+  off_caps: "ВИМК"
+  official_blog: Офіційний блог
+  offline_access_enabled: Доступ в автономному режимі увімкнено
+  onboarding:
+    observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
+    observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
+    observe_panel_body_p1_global: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали...
+    observe_panel_body_p2: Вийдіть назовні і спостерігайте за живими істотами. Оберіть якийсь організм з дикої природи та зробіть чіткі, повнокадрові фото. Якщо у вас вже є фото якоїсь дикої істоти, <a href="%{new_observation_path}">додайте його зараз</a>. Для запису спостережень ви також можете використовувати мобільний додаток %{site_name}.
+    observe_panel_body_p3: Як тільки ви поділитеся своїми спостереженнями, на цій сторінці відображатимуться оновлення від спільноти у вигляді коментарів та визначень. Хто знає, що ви виявите!
+    follow_panel_title_local: Піідписатися на натуралістів, що знаходяться поблизу
+    follow_panel_title_global: Підписатися на активних натуралістів
+    follow_panel_body: Якщо ви відвідаєте ці профілі і натиснете кнопку "підписатися", ви будете отримувати оновлення про їх спостереження
+    following_panel_title: Відстежуйте людей, таксони і місця
+    following_panel_body: |
+      На %{site_name} ви можете підписатися на людей щоб відстежувати 
+      спостереження, які вони публікують. Також ви можете підписатися на певні
+      види задля відстеження нових спостережень цих видів. Те ж саме можна робити і з місцями.
+    comments_panel_title: Цікаво, що обговорюються на %{site_name}?
+    comments_panel_body: "<p>%{site_name} створений, аби люди могли ділитися та обговорювати спостереження за живими істотами. (Примітка: Ви автоматично підписуєтесь на будь-які обговорення, до яких ви залишаєте коментарі або визначення. Налаштувати ці оновлення можна у розділі «Підписки» праворуч.)</p>"
+    updates_by_you_panel_body: Пам'ятайте, що у вкладці "Усі оновлення" ви отримуватимете оновлення не лише щодо ваших матеріалів, але й матеріалів від людей, за якими ви слідкуєте, або таксонів і місць, на які ви підписалися за допомогою інструменту "Підписки", який знаходиться справа.
+    youve_got_updates_panel_title: У вас є оновлення!
+  one_of_your_lists: "одним з ваших списків..."
+  only_a_project_manager_can_add: Статус куратора проєкту може надати тільки керівник проєкту
+  only_administrators_may_access_that_page: Доступ до цієї сторінки можуть отримати лише адміністратори
+  only_an_admin_can_remove_project_users: Тільки адміністратор може видаляти користувачів проєкту
+  only_curators_can_add_edit_scientific_names: Тільки куратори можуть додавати/редагувати наукові назви.
+  only_curators_can_access_that_page: Доступ до цієї сторінки мають лише адміністратори
+  only_files_with_10000_rows_at_a_time: Будь-ласка, лише файли не більш ніж з 10 000 рядків
+  only_letters_numbers: "Тільки літери та цифри, без пробілів, має починатися з літери"
+  only_one_coordinate_system_per_file: |
+    У одному файлі можна використовувати лише одну систему координат. В іншому випадку перетворення або відображення будуть некоректними.
+  only_project_curators_can_do_that: Це зробити можуть лише куратори проєкту.
+  only_receive_updates_about_this_taxon: Отримувати оновлення тільки про цей таксон
+  only_show_active_taxa: Показати лише активні таксони
+  only_show_events_that_last_less_than_2_weeks: Показати лише події, що тривають менше 2 тижнів
+  only_show_for_species_subspecies_varieties_etc: Показати лише для видів, підвидів, різновидів, тощо.
+  only_show_taxa_fom_this_list: "Показати таксони лише з цього списку"
+  only_showing_taxa_from: відображені таксони лише з цього списку
+  only_species: лише види
+  only_species_and_subspecies: лише види і підвиди/різновиди
+  only_staff_can_edit_large_places: Лише співробітники сайту можуть редагувати дуже великі місця
+  only_staff_can_edit_standard_places: Лише співробітники сайту можуть редагувати місця у стандартній ієрархії
+  only_the_owner_of_this_list_can_do_that: Це зробити може лише власник цього списку. Не будьте злими.
+  only_the_project_admin_can_delete_this_project: Цей проєкт може видалити лише адміністратор проєкту.
+  only_you: Лише ви
+  open: відкриті
+  open_: Відкриті
+  open_description: "Координати може бачити будь-хто, у разі якщо таксон не знаходиться під загрозою."
+  open_street_map: OpenStreetMap
+  optional: необов'язковий
+  optional_columns_note_for_any: "Необов'язкові стовпці (примітка: щоб використати будь-який з цих стовпців у спостереженні, всі вони мають бути присутніми)"
+  or: або
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: АБО
+  or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
+  or_if_you_dont_want_email: "Або, якщо ви не бажаєте нічого отримувати на електронну пошту..."
+  orange: помаранчевий
+  order: Сортувати
+  order_by: Сортувати за
+  organism_is_wild: Організм є диким
+  organisms: Організми
+  original: Початковий
+  originally_flagged_by: Спочатку позначений
+  originally_imported_from_url_html: "Спочатку імпортований з <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "Первинний URL сторінки для цього фото."
+  original_rights_holder: Первинний правовласник
+  original_url_for_this_map: Оригінальний URL для цієї мапи
+  organism_appears_captive_cultivated: Організм схожий на утримуваний в неволі/культивований
+  other: Інше
+  other_animals: інші тварини
+  other_lexicons: Інші лексикони
+  other_listings_of_this_taxon_for_this_place: Інші переліки цього таксону у цьому місці
+  other_names: Інші назви
+  other_species_commonly_misidentified_as_this_species: Інші види, які часто помилково визначають як цей вид
+  other_species_commonly_misidentified_as_this_species_in_place_html: 'Інші види, які часто помилково визначають як цей вид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_complex: Інші таксони, які часто помилково визначають як цей комплекс
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'Інші таксони, які часто помилково визначають як цей комплекс у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genus: Інші таксони, які часто помилково визначають як цей рід
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 'Інші таксони, які часто помилково визначають як цей рід у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genushybrid: Інші таксони, які часто помилково визначають як цей міжродовий гібрид
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: 'Інші таксони, які часто помилково визначають як цей міжродовий гібрид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_hybrid: Інші таксони, які часто помилково визначають як цей гібрид
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Інші таксони, які часто помилково визначають як цей гібрид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_rank: Інші таксони, які часто помилково визначають як цей %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'Інші таксони, які часто помилково визначають як цей %{rank} у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_section: Інші таксони, які часто помилково визначають як цю секцію
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: 'Інші таксони, які часто помилково визначають як цю секцію у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_species: Інші таксони, які часто помилково визначають як цей вид
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 'Інші таксони, які часто помилково визначають як цей вид у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subgenus: Інші таксони, які часто помилково визначають як цей підрід
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Інші таксони, які часто помилково визначають як цей підрід у такому місці: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subsection: Інші таксони, які часто помилково визначають як цю підсекцію
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 'Інші таксони, які часто помилково визначають як цю підсекцію у такому місці: <a href="%{url}">%{place}</a>'
+  our_blog: Наш блог
+  output_taxon: Вихідний таксон
+  overview: Огляд
+  owner: Власник
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Батьківський таксон
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Назва батьківського таксону
+  parental_consent:
+    must_specify_email: Потрібно вказати електронну пошту
+    invalid_email: Неправильний формат ел. пошти
+  password: Пароль
+  password_confirmation: 'Підтвердження паролю'
+  paste: Вставити
+  paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
+  paste_in_a_comma_separated_list: Вставте у розділений комами список країн
+  people: Люди
+  people_following_user: "Люди, підписані на користувача %{user}"
+  people_user_follows: "Люди, на яких підписаний %{user}"
+  people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: додав(ла) <a href="%{observation_url}">спостереження</a>
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: додав(ла) <strong>виззначення</strong> до %{observation_link} %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: додав(ла) <strong>визначення</strong>
+    post: зробив(ла) %{post_link}
+    comment:
+      with_by: прокоментував(ла) %{comment_subject_link} %{by_link}
+      without_by: прокоментував(ла) %{comment_subject_link}
+  per_day: За день
+  per_month: За місяць
+  per_week: За тиждень
+  person: Особа
+  personal_message: Особисте повідомлення
+  personal_message_description: Нікому не подобається отримувати електронні листи, створені машиною! Чому б не дати вашим друзям знати, чому ви їх запрошуєте?
+  per_page: "На сторінку"
+  photo: Фото
+  photo_attribution: "Фото %{attribution}"
+  photo_browser: Переглядач фото
+  photo_by_id_attribution: "Фото %{id}, %{attribution}"
+  photo_credits: Авторство фото
+  photo_deleted: Фото видалено
+  photo_destroyed_because_it_was_deleted_from: "Фото пошкоджене, оскільки воно було видалене з зовнішнього сайту або %{site_name} більше не має дозволу на його перегляд"
+  photo_hosting_accounts: Облікові записи фотохостингів
+  photo_licensing: Ліцензування фото
+  photo_type: Тип фото
+  photo_urls_repaired: Посилання на фото відновлено
+  photos_chosen_for_this_taxon: Фото обрані для цього таксону
+  photos_from: Фото з
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Фото заблоковані
+  photos_locked_desc: Тільки співробітники можуть змінювати фото за промовчанням для цього таксону
+  photos_of_taxon_html: "Фото %{taxon}"
+  photos_or_sounds: Фото або звуки
+  photos_or_sounds?: Фото або звуки?
+  photos_size:
+    small: маленьке
+    medium: середнє
+    large: велике
+    original: оригінальне
+  photos_updated: Фото оновлені.
+  pi_consent_desc_title: Про особисту інформацію
+  pi_consent_desc_html: |
+    Ми зберігаємо особисту інформацію, таку як імена користувачів та адреси електронної пошти для того, щоб керувати обліковими записами на цьому сайті. Щоб дотримати вимоги законодавства щодо конфіденційності, ми потребуємо, щоб ви засвідчили свою згоду на використання особистої інформації, виставивши цей прапорець. Щоб дізнатися більше про те, яку інформацію ми збираємо та як ми її використовуємо, будь ласка, ознайомтеся з нашою
+    <a href='%{privacy_url}' target='_blank'>Політикою конфіденційності</a>і нашими <a href='%{terms_url}' target='_blank'>Умовами надання послуг</a>.
+  pi_consent_label: |
+    Я погоджуюся із тим, що iNaturalist матиме можливість зберігати та обробляти обмежену особисту інформацію про мене для управління моїм обліковим записом
+  pi_consent_child_label: |
+    Я погоджуюся із тим, що iNaturalist матиме можливість зберігати та обробляти обмежену особисту інформацію про мою дитину для управління обліковим записом моєї дитини
+  pin_verb: Закріпити
+  pink: рожевий
+  pinned_locations_desc: |
+    Закріпити це поєднання координат, точності, налаштувань приватності місцеперебування та заміток щодо місцеперебування для подальшого використання.
+  place: Місце
+  placeholder: Замісник
+  place_autocomplete_placeholder: Kharkiv, Ukraine тощо
+  place_deleted: Місце видалено.
+  place_geo:
+    geo_planet_place_types:
+      Aggregate: Зібрати
+      aggregate: зібрати
+      Airport: Аеропорт
+      airport: аеропорт
+      Building: Будівля
+      building: будівля
+      Canton: Кантон
+      canton: кантон
+      City Building: Міська будівля
+      city building: міська будівля
+      Colloquial: Розмовне
+      colloquial: розмовне
+      Commune: Комуна
+      commune: комуна
+      Constituency: Округ
+      constituency: округ
+      Continent: Континент
+      continent: континент
+      Country: Країна
+      country: країна
+      County: Графство
+      county: графство
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Округ
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: округ
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Підрозділ департамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: підрозділ департамента
+      District: Район
+      district: район
+      Division: Адміністративно-територіальна одиниця
+      division: адміністративно-територіальна одиниця
+      Drainage: Область водозбору
+      drainage: область водозбору
+      Estate: Володіння
+      estate: володіння
+      Governorate: Губернаторство
+      governorate: губернаторство
+      Historical_County: Історичний регіон
+      historical_county: історичний регіон
+      Historical_State: Історичне державне утворення
+      historical_state: історичне державне утворення
+      Historical_Town: Історичне місто
+      historical_town: історичне місто
+      Intersection: Перетин
+      intersection: перетин
+      Island: Острів
+      island: острів
+      Land_Feature: Елемент ландшафту
+      land_feature: елемент ландшафту
+      Local_Administrative_Area: Місцева адміністративна одиниця
+      local_administrative_area: місцева адміністративна одиниця
+      Local_Authority: Місцева громада
+      local_authority: місцева громада
+      Miscellaneous: Різне
+      miscellaneous: різне
+      Municipality: Муніципалітет
+      municipality: муніципалітет
+      Nationality: Громадянство
+      nationality: громадянство
+      Nearby_Building: Прилегла будівля
+      nearby_building: прилегла будівля
+      Nearby_Intersection: Перехрестя поблизу
+      nearby_intersection: перехрестя поблизу
+      Open_Space: Відкритий простір
+      open_space: відкритий простір
+      Parish: Парафія
+      parish: парафія
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Поблаціон
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: поблаціон
+      Prefecture: Префектура
+      prefecture: префектура
+      Prefecture_City: Місто-центр префектури
+      prefecture_city: місто-центр префектури
+      Point_of_Interest: Цікавинка
+      point_of_interest: цікавинка
+      Postal_Code: Поштовий індекс
+      postal_code: поштовий індекс
+      Province: Провінція
+      province: провінція
+      Regency: Регентство
+      regency: регентство
+      Region: Регіон
+      region: регіон
+      Republic: Республіка
+      republic: республіка
+      Shire: Шир
+      shire: шир
+      Sports_Team: Спортивна команда
+      sports_team: спортивна команда
+      State: Штат
+      state: штат
+      Street: Вулиця
+      street: вулиця
+      Street_Segment: Ділянка вулиці
+      street_segment: ділянка вулиці
+      Subdivision: Підрозділ
+      subdivision: підрозділ
+      Suburb: Передмістя
+      suburb: передмістя
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Сомон
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: сомон
+      Supername: Supername
+      supername: supername
+      Territory: Місцевість
+      territory: місцевість
+      Time_Zone: Часовий пояс
+      time_zone: часовий пояс
+      Town: Місто
+      town: місто
+      Undefined: Не визначено
+      undefined: не визначено
+      Unknown: Невідоме
+      unknown: невідоме
+      Village_block: Частина села
+      village_block: частина села
+      Zone: Зона
+      zone: зона
+  project_admins:
+    one: Адміністратор проєкту
+    few: Адміністратори проєкту
+    many: Адміністраторів проєкту
+    other: Адміністратори проєкту
   project_coordinate_access_disabled_until_datetime: |
     Ви не зможете отримати доступ до прихованих координат до %{datetime}
+  ranks:
+    genushybrid: Міжродовий гібрид
   save_guide_taxon: Зберігати посібник з таксону
+  sounds:
+    sound_has_been_flagged: Цей звук був відмічений прапорцем
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Підписатися %{tag_end} на коментарі щодо цієї заміни таксона"
   taxon_geoprivacy: Конфіденційність геоданих для таксона
   taxon_swap: заміна таксона
+  top_identifier: Кращий ідентифікатор
+  top_identifiers: Кращі ідентифікатори
+  top_identifiers_of_taxon: Кращі ідентифікатори таксону %{taxon}
+  unique_identifier_of_this_taxon: Унікальний ідентифікатор таксону у базі даних джерела.
   unmute: Скасувати ігнорування
+  url_identifier_of_a_project_derived_from: "URL / ідентифікатор проєкту, отриманий із зовнішнього ресурсу"
   user_muted: Користувача ігноровано
   view_more_observations_from_this_place: Показати більше спостережень з цього місця
   views:
@@ -2215,16 +3143,95 @@ uk:
           редакторів цього посібника, буде скопійовано все, але якщо ні, то скопійовано буде лише ліцензований контент.
     lifelists:
       observed_rank: '%{rank} спостережуваного'
+    observations:
+      field_descriptions:
+        id: "Унікальний ідентифікатор спостереження"
+        taxon_id: Унікальний ідентифікатор спостереженого таксону
+        user_id: Унікальний ідентифікатор спостерігача
+      show:
+        community_taxon_desc_html: |
+          <p class="ui">
+          Таксон спільноти (чи визначення спільноти) – це той таксон, який за думкою спільноти
+          %{site_name} зображений на фото у спостереженні. Якщо вам цікаво, як ми обираємо таксон спільноти, дивіться примітки до алгоритму, наведені нижче, але загалом ми намагаємося <strong>обирати визначення, з яким згодні понад 2/3
+          ідентифікаторів</strong>. Іноді це означає, що ми обираємо таксон вищого рангу, який містить декілька розбіжних таксонів (напр. ви думаєте, що це королівська змія, а я думаю, що
+          це гримучник, тому iNat обире підряд Serpentes, куди входять усі змії). Алгоритм також трохи надає перевагу розбіжностям, тому що ми виявили, що незгідні часто виявляються
+          правими.
+          </p>
+          <p class="ui">Спостереження дослідницького рівня має (поміж іншого) супроводжуватися таксоном спільноти. Якщо спостереження має лише одне визначення, воно не матиме таксону спільноти. Усі спостереження з одним визначенням або більше матимуть також таксон спостереження. Таксон спостереження – це таксон, який ми вказуємо, коли ділимося спостереженнями з партнерськими організаціями, прив'язуємо різні спостереження до одного й того ж таксону на сайті, оновлюємо ваш список живого, тощо. У більшості випадків таксон спостереження врешті-решт буде збігатися з таксоном спільноти, але іноді вони будуть відрізнятися, особливо поки спільнота не дійде згоди щодо визначення. Наприклад, якщо ви думаєте, що це змія (підряд Serpentes), а я думаю, що це королівська змія (рід <i>Lampropeltis</i>), таксоном спостереження (підтвердженим тільки моїм визначенням) буде "королівська змія", але таксоном спільноти (підтвердженим щонайменш двома визначеннями) будуть "змії". Якщо, з якоїсь причини, ви не погоджуєтеся з таксоном спільноти, ви можете заперечити його у власних спостереженнях, але це означає, що ваш таксон ніколи не отримає таксону спільноти, а тільки ваше власне визначення.
+          Це також означає, що ваше спостереження зможе отримати дослідницький рівень тільки якщо спільнота з <em>вами</em> погоджується. Якщо вам докорінно не подобається ідея таксону спільноти, ви можете повністю від нього відмовитися, <a href="/users/edit" target="_blank">змінивши налаштування</a>
+          </p>
+          <p class="ui">
+          <strong> Алгоритм</strong> для усіх визначених таксонів і таксонів вищого рангу, до яких вони належать (напр. рід <i>Homo</i> містить <i>Homo sapiens</i>), оцінює кожен таксон як відношення між числом "згод" – сукупних визначень, які співпадають з даним таксоном поміж усіх сукупних визначень, "незгод" – визначень, що повністю відрізняються (наприклад, визначення, що зовсім не містять назви оцінюваного таксону), та "часткових незгод" – кількості консервативніших визначень, себто визначень до таксону вищого рангу, які не співпадають з більш детальним визначенням. Для визначених таксонів, що мають оцінку вище за 2/3 та щонайменш 2 визначення, алгоритм обирає таксон найнижчого рангу.
+          </p>
+        quality_assessment_help_html: |
+          <p>
+          Оцінка якості даних — це підбиття підсумку точності спостереження. Усі спостереження починають з оцінки <strong>"пересічне"</strong> та переходять у статус
+          <strong>"потребує визначення"</strong>, якщо
+          </p>
+
+          <ul>
+          <li>спостереження <strong>має дату</strong></li>
+          <li>спостереження <strong>має геоприв'язку</strong> (тобто координати шир/дов)</li>
+          <li>спостереження <strong>має фото або звукозаписи</strong></li>
+          <li>спостереження <strong>не є людиною</strong></li>
+          </ul>
+          <p>
+          Спостереження набувають статусу <strong>"дослідницький рівень"</strong>, якщо
+          </p>
+          <ul>
+          <li>
+          спільнота %{site_name} <strong> погоджується з визначенням на рівні виду чи нижче </strong>, тобто коли більше 2/3 ідентифікаторів погоджуються щодо таксону (якщо спільнота проголосувала, що визначення таксону спільноти надалі не можна покращити, це стосуватиметься рівня підродини чи нижчого)
+          </li>
+          </ul>
+          <p>
+          Статус спостереження повернеться до <strong>"пересічного"</strong> якщо воно не відповідає вищезгаданим умовам, або спільнота погоджуєтся, що
+          </p>
+          <ul>
+          <li>
+          <strong>локація виглядає неточною</strong> (наприклад, мавпи посеред океану, гіпопотами
+           серед офісних будинків тощо)
+          </li>
+          <li>
+          <strong>організм не є диким/натуралізованим</strong> (наприклад, культивується чи розводиться у неволі людьми чи розумними прибульцями)
+          </li>
+          <li>
+          спостереження <strong>не містить доказу існування організму </strong>, наприклад, фото краєвидів, водойм, скель, тощо.
+          </li>
+          <li>
+          спостереження <strong> не містить доказів нещодавньої (~100 років) присутності організму </strong> (наприклад, викопні рештки; проте допускаються сліди, послід, мертве листя)
+          </li>
+          <li>
+          спостереження більше не потребує визначення <em>і</em> визначення спільноти не сягає далі родини
+          </li>
+          <li>
+          спостерігач заборонив для спостереження визначення спільнотою; і таксон, визначений спільнотою, не є батьківським або дочірнім для таксону, пов'язаного з визначенням спостерігача
+          </li>
+          </ul>
+          <p>
+          А якщо хочете ще докладніших пояснень, ось ще приклад ситуацій, у яких система матиме перевагу над вашим рішенням:
+          </p>
+          <ul>
+          <li>
+          Система не позначить спостережений вид як дикий/натуралізований, якщо існує як мінімум 10 інших спостережень на рівні роду або нижче у найменшому місці (еквівалентному району, області, країні), яке містить це спостереження, при цьому 80% або більше цих спостережень були позначені не як дикі/натуралізовані.
+          </li>
+          </ul>
     emailer:
       photos_missing:
         please_address: |
           Будь ласка, розв'яжіть ці питання <b>впродовж наступних 30 днів</b>. Через 30
           днів ми почнемо видаляти пошкоджені фото з iNaturalist. Усі ваші спостереження залишаться. Вони будуть переоцінені після видалення фото, і цілком можливе, що деякі спостереження дослідницького рівня стануть пересічними, якщо вони більше не матимуть жодного фото.
     projects:
+      edit:
+        rules:
+          has_a_sound: мати звук
+          has_media: мати медіа (фото або звук)
       new:
         include_annotated_observations: |
           Включити тільки спостереження, супроводжені певним атрибутом (наприклад, стадія життєвого циклу), або конкретним атрибутом і значенням (наприклад, стадія життєвого циклу = доросла особина).
           Обмежено одним фільтром за приміткою на проєкт.
+    stats:
+      index:
+        identifiers_desc: Додали визначення до чужих спостережень цього дня
     taxa:
       show:
         frequency:
@@ -2270,6 +3277,11 @@ uk:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    attributes:
+      taxon:
+        source_identifier: Ідентифікатор джерела
+      taxon_name:
+        source_identifier: Ідентифікатор джерела
     errors:
       models:
         guide:

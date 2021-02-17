@@ -9,43 +9,39 @@ class CommentsController < ApplicationController
   check_spam only: [:create, :update], instance: :comment
   
   def index
-    find_options = {
-      :select => "MAX(comments.id) AS id, parent_id",
-      :page => params[:page],
-      :order => "id DESC",
-      :group => "parent_id"
-    }
-    @paging_comments = Comment.all
+    @comments = Comment.includes(:user).order( "comments.id DESC" ).page( params[:page] )
     if logged_in? && (!params[:mine].blank? || !params[:for_me].blank? || !params[:q].blank?)
       filtering = true
       if !params[:mine].blank?
-        @paging_comments = @paging_comments.by(current_user)
+        @comments = @comments.by(current_user)
       elsif !params[:for_me].blank?
-        @paging_comments = @paging_comments.for_observer(current_user)
+        @comments = @comments.for_observer(current_user)
       end
-      @paging_comments = @paging_comments.dbsearch(params[:q]) unless params[:q].blank?
+      @comments = @comments.dbsearch(params[:q]) unless params[:q].blank?
     end
     if !filtering && @site && @site.site_only_users
-      @paging_comments = @paging_comments.joins(:user).where("users.site_id = ?", @site)
+      @comments = @comments.joins(:user).where("users.site_id = ?", @site)
     end
-    @paging_comments = @paging_comments.select(find_options[:select]).
-      group(find_options[:group]).paginate(page: find_options[:page]).
-      order(find_options[:order])
-    @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
-    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id))
-    @extra_ids = Identification.where(observation_id: @comments.map(&:parent_id)).includes(:observation)
-    @extra_comments_and_ids = [@extra_comments,@extra_ids].flatten
-    @comments_by_parent_id = @extra_comments_and_ids.sort_by(&:created_at).group_by do |c|
+    parent_ids = @comments.map(&:parent_id)
+    @extra_comments = Comment.where( parent_id: parent_ids ).
+      where( "comments.id NOT IN (?)", @comments.map(&:id) ).includes(:user)
+    @extra_ids = Identification.where( observation_id: parent_ids ).includes(:observation)
+    comments_and_ids = [@comments, @extra_comments, @extra_ids].flatten.uniq
+    @comments_by_parent_id = comments_and_ids.sort_by(&:created_at).group_by do |c|
       if c.respond_to? :observation_id
         [c.observation.class.to_s, c.observation_id].join( "_" )
       else
         [c.parent.class.to_s, c.parent_id].join( "_" )
       end
     end
+    @latest_comments = @comments_by_parent_id.map {|g,items|
+      items.select {|i| i.is_a?( Comment ) }.compact.sort_by(&:created_at).last
+    }.compact.sort_by(&:created_at).reverse
     respond_to do |format|
       format.html do
         if params[:partial]
-          render :partial => 'listing_for_dashboard', :collection => @comments, :layout => false
+          render partial: "listing_for_dashboard",
+            collection: @latest_comments, layout: false
         end
       end
     end

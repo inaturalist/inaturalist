@@ -817,7 +817,8 @@ da:
   check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/'
+    <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Kreditering-Ikkekommerciel 4.0 International licens</a>
     til uploadet indhold. Det betyder, at alle kan kopiere eller genanvende din fotos og/eller observationer uden at spørge om lov, så længe at du krediteres og indholdet ikke bruges kommercielt. Du kan altid vælge en anden licens eller fjerne licensen senere, men dette er den bedste licens til deling med forskere.
   checklist: Tjekliste
@@ -2162,6 +2163,7 @@ da:
     sq: Albansk
     sv: Svensk
     tr: Tyrkisk
+    uk: Ukrainsk
     zh-CN: Kinesisk (simplificeret)
     zh-TW: Kinesisk (traditionel)
   locality_notes: Lokalitetsnotater
@@ -3383,7 +3385,8 @@ da:
   please_add_a_citation_for_this_change: Tilføj venligst en henvisning til denne ændring.
   please_add_this_observation_to: Tilføj venligst denne observation til
   please_add_this_to_x_html: "Tilføj venligst dette til %{x}"
-  please_allow_a_few_weeks_for_external_sites: Hav tålmodighed et par uger, for at eksterne websteder kan synkronisere ændringer fra denne observation
+  please_allow_a_few_weeks_for_external_sites: Hav tålmodighed et par uger, for at eksterne websteder kan synkronisere ændringer fra denne observation #Title to a section warning a user to exercise caution
+  please_be_careful!: Pas venligst på!
   please_complete_the_following_to_add_project: |
     Udfyld venligst følgende for at tilføje denne observation til projektet:
   please_confirm_your_inat_username: "Bekræft venligst dit %{site_name} brugernavn"
@@ -3447,6 +3450,9 @@ da:
     Du bør kunne se skjulte koordinater for observationer ved at gøre medlemmer betroede.
   project_coordinate_access_disabled_until_datetime: |
     Du vil ikke kunne tilgå skjulte koordinater før %{datetime}
+  project_coordinate_access_warning: |
+    Koordinatadgang er vigtigt for forskere, men kan også misbruges af
+    krybskytter. Vær sikker på, at du stoler på alle projektkuratorer, før du giver dette projekt status af betroet.
   project_cover: Projekt bannerbillede
   project_created_on: oprettede dette projekt den %{date}
   project_curator_id: Projektkurator ID
@@ -4576,6 +4582,7 @@ da:
   view_check_list_page: Vis side med tjekliste(r)
   view_contributions: Vis bidrag
   view_details: Vis detaljer
+  view_dynamic_lifelist: Se dynamisk livliste
   view_field_options: Vis felt muligheder
   view_flag: Vis markering
   view_flags: Vis markeringer

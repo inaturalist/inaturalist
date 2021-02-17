@@ -1862,6 +1862,7 @@ pt:
     pt-BR: Português (Brasil)
     ru: Russo
     sq: Albanês
+    uk: Ucraniano
     zh-CN: Chinês (simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -1960,6 +1961,20 @@ pt:
   merging_places: A combinar lugares
   message: Mensagem
   messages: Mensagens
+  messages_new_correspondent_it_looks_like: |
+    Parece que você nunca se correspondeu com esta pessoa antes, por isso
+    tenha isto em mente:
+  messages_new_correspondent_specimens: |
+    Tenha cuidado com pedidos de espécimes ou dados ocultos. 
+    Tente verificar a identidade da pessoa que fez a solicitação e, 
+    se ela pedir espécimes, peça para ver a sua licença.
+  messages_new_correspondent_personal: |
+    Não divulgue informações pessoais sobre si mesmo a pessoas em quem você não confia.
+  messages_new_correspondent_actions_html: |
+    Se suspeitar que essa pessoa está a violar os nossos <a href="%{tos_url}"
+    target="_blank">Termos de Serviço</a> ou não está a agir de acordo com as nossas <a
+    href="%{guidelines_url}" target="_blank">Diretrizes da Comunidade</a>, por favor
+    sinalize esta mensagem abaixo.
   misidentifications: Identificações incorretas
   misleading_or_illegal_content_html: |
     Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos "conteúdo apropriado" ver <a href="/help#inappropriate">FAQ</a>.
@@ -1980,6 +1995,8 @@ pt:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
   month: Mês
   months: Meses
   more: Mais
@@ -2222,6 +2239,9 @@ pt:
     Campos de observação são como marcações, com excepção de que qualquer pessoa pode adicioná-los às suas observações, por defeito. Mude isto se prefere que apenas você tenha esta permissão, ou somente os coordenadores do site.
   observation_removed_from_the_project: "Observação removida do projeto \"%{project}\""
   observation_requirements: Requisitos de observação
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Requisitos de observação atualizados em
   observation_rules: Regras de Observação
   observation_rules_description: |
     Você pode escolher regras para determinar quais observações podem ser adicionadas neste projeto, por exemplo limitando as observações para lugares específicos. Se você tem mais de uma regra para um tipo específico de regra, observações vão ser validadas se passarem por elas. Por exemplo, se você determinar nas regras "deve ser Anfíbio" e "deve ser Réptil", então o projeto aceitará observações de répteis OU anfíbios.
@@ -2633,7 +2653,7 @@ pt:
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta alteração.
   please_add_this_observation_to: Por favor adicione esta observação a
   please_add_this_to_x_html: "Por favor adicione isto a %{x}"
-  please_allow_a_few_weeks_for_external_sites: Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação
+  please_allow_a_few_weeks_for_external_sites: Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Por favor, preencha com a(s) seguinte(s) informação(ões) para adicionar a observação ao projeto:
   please_confirm_your_inat_username: "Por favor, confirme o seu nome de utilizador do  %{site_name}"
@@ -2684,6 +2704,10 @@ pt:
   project_aggregator_filter_error: |
     Os projetos não associam automaticamente as observações, a não ser que o projeto esteja associado a um local de dimensões moderadas ou se ele permite apenas observações de táxons específicos ou de ume lista de táxons
   project_assessments: Avaliações de projetos
+  project_coordinate_access_enabled: |
+    Você deve ser capaz de visualizar coordenadas ocultas para observações de membros que as confiaram.
+  project_coordinate_access_disabled_until_datetime: |
+    Você não poderá aceder a coordenadas ocultas até %{datetime}
   project_cover: Capa do Projeto
   project_created_on: criou este projecto em %{date}
   project_curator_id: Identificação do curador do projeto
@@ -3416,6 +3440,12 @@ pt:
           poderão conceder acesso às coordenadas ocultas de qualquer
           das suas observações que aparecem neste projeto, ou apenas às
           observações que são obscurecidas devido à ameaça de táxons.
+        trust_help_notification2: |-
+          No entanto, isto também irá notificar todos os membros confiantes do projeto todas 
+          as vezes que mudar os requisitos de observação do projeto, para que eles possam reavaliar
+          se querem continuar a confiar no projeto dadas as novas exigências.
+          O seu acesso a coordenadas ocultas será revogado durante uma semana após
+          alterar os requisitos de observação, para que os membros tenham tempo para fazer isso
       invite:
         description_html: |
           <h3>Sobre convites</h3>

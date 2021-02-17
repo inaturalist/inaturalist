@@ -806,8 +806,8 @@ ca:
   check_out_what_the_observation: Feu un cop d'ull a les observacions que esteu intentant identificar.
   check_out_your_new_and_improved_list_list: Reviseu la vostra nova i millorada Llista de Vida!
   check_this_box_if_html: |
-    Seleccioneu aquest botó si voleu aplicar 
-    <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves fotos o observacions sense demanar-te permís indicant la vostra autoria i sembre que no l'utilitzeu per explotar-ho comercialment. Podeu escollir una llicència diferent o retirar la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.
+    Seleccioneu aquest botó si voleu aplicar una
+    <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves fotos o observacions sense demanar-te permís, indicant només la vostra autoria i sempre que no l'utilitzi per explotar-la comercialment. Podeu escollir una llicència diferent o retirar la llicència més tard, però aquesta és la millor llicència per compartir amb investigadors.
   checklist: Llista de comprovació
   choose_a_field: Escolliu un camp
   choose_a_list_above: Selecciona una llista de dalt
@@ -2130,6 +2130,7 @@ ca:
     sq: Albanès
     sv: Suec
     tr: Turc
+    uk: Ucraïnès
     zh-CN: Xinès (simplificat)
     zh-TW: Xinès (tradicional)
   locality_notes: Notes locals
@@ -2679,7 +2680,7 @@ ca:
   observer: Observador
   observers: Observadors
   observer_short: Obs.
-  occurence_status_describes_how: 'L''estat d''ocurrència indica el grau de presència o raresa d''un tàxon en una àrea determinada. Aneu a DarwinCore per <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus"> més informació sobre terminologia </a>.'
+  occurence_status_describes_how: 'L''estat d''ocurrència indica el grau de presència o raresa d''un tàxon en una àrea determinada. Aneu a DarwinCore <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus"> per tenir més informació sobre terminologia </a>.'
   occurrence_status: Estat d'ocurrència
   occurrence_status_descriptions:
     absent: No es troba a l'àrea
@@ -3321,7 +3322,8 @@ ca:
   please_add_a_citation_for_this_change: Heu d'afegir una referència per a aquest canvi.
   please_add_this_observation_to: Afegiu aquesta observació a
   please_add_this_to_x_html: "Afegiu això a %{x}"
-  please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació
+  please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Title to a section warning a user to exercise caution
+  please_be_careful!: Si us plau, aneu amb compte!
   please_complete_the_following_to_add_project: |
     Si us plau completeu el següent per afegir aquesta observació al projecte:
   please_confirm_your_inat_username: "Confirmeu el nom d'usuari a %{site_name}"
@@ -3383,6 +3385,8 @@ ca:
     Hauria de poder veure les coordenades ocultes de les observacions dels membres de confiança
   project_coordinate_access_disabled_until_datetime: |
     No podreu accedir a coordenades ocultes fins a %{datetime}
+  project_coordinate_access_warning: |
+    L'accés a les coordenades és important pels científics, però també pot ser mal emprat pels furtius. Assegureu-vos de confiar en els administradors del projecte abans de confiar en el projecte.
   project_cover: Coberta del Projecte
   project_created_on: va crear aquest projecte el %{date}
   project_curator_id: ID del supervisor del projecte
@@ -4482,6 +4486,7 @@ ca:
   view_check_list_page: Veure la pàgina de la llista de comprovació
   view_contributions: Veure contribucions
   view_details: Mostra els detalls
+  view_dynamic_lifelist: Veure llistes de vida dinàmiques
   view_field_options: Veure el camp Opcions
   view_flag: Veure etiqueta
   view_flags: Veure les etiquetes

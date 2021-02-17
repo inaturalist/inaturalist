@@ -112,6 +112,9 @@ es-AR:
     Se creará automáticamente un nombre de taxón predeterminado a partir del atributo de nombre científico para este taxón. Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres comunes, nombres científicos obsoletos, etc.).
   a_flag_for_x: "una marca para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "Alfabéticamente"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -143,6 +146,7 @@ es-AR:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
+  about_license_options: Acerca de las opciones de licencia
   about_licenses: Acerca de las licencias
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
@@ -231,6 +235,7 @@ es-AR:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Agregar activo
   add_batch: Agregar lote
+  add_blocked_users: Agregar usuarios bloqueados
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Añadir texto en negrita
   add_comma_separated_tags: "Agregar etiquetas separadas por comas"
@@ -247,6 +252,7 @@ es-AR:
   add_id: Agregar ID
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Añadir texto en cursiva
+  add_muted_users: Agregar usuarios silenciados
   add_new_lexicon: Agregar léxico nuevo
   add_new_photos_by_their_ids: Agregar nuevas fotos por sus identificadores en Flickr (¡Deben ser de Creative Commons!)
   add_new_place: Agregar un lugar nuevo
@@ -491,6 +497,13 @@ es-AR:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquiera
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicación
+  applications: Aplicaciones
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Solicitar
   apply_to_selected: Aplica a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplicar campos
@@ -604,6 +617,9 @@ es-AR:
   automatic_short: Autom.
   automatically_add_observations_to_this_project: Añadir automáticamente observaciones a este proyecto
   automatically_update_my_content_for_taxon_changes: Actualizar mi contenido automáticamente cuando exista un cambio en el taxón
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Prom.
   back: Volver
   back_to_all_species: Volver a todas las especies
   back_to_browsing_people: Volver a la búsqueda de personas
@@ -635,6 +651,7 @@ es-AR:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   back_to_your_projects: Regresa a tus proyectos
+  badges: Insignias
   based_on_the_evidence_can_id_be_improved: |
     Basándose en las evidencias, ¿la ID de la comunidad puede ser confirmada o mejorada?
   batch: Grupo
@@ -645,6 +662,8 @@ es-AR:
   because_of: debido a
   before_importing_photos: antes de importar fotos
   bg_color: Color de fondo
+  bio: Biografía
+  bio_description: '¡Cuéntale a otros usuarios de iNaturalist sobre ti mismo!'
   bioblitz: Maratón naturalista
   birds: aves
   birthday: Cumpleaños
@@ -832,6 +851,7 @@ es-AR:
   committed_on: Guardado el %{date}
   #Status message while a taxon change is being committed
   committing: Guardando...
+  common_name: Nombre común
   community: Comunidad
   community_curated: Supervisado por la comunidad
   community_guidelines: Directrices de la comunidad
@@ -868,9 +888,16 @@ es-AR:
   confirm_new_password: Confirmar nueva contraseña
   confirm_now: Confirmar ahora
   confirm_your_info: Confirma tu información
+  confirming_ids: Confirmando la identificación
+  confirming_ids_description: Si lo desactivas, ya no se te notificará sobre identificaciones que coincidan con la tuya.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Conectar
   connect_to_provider: "Conectar a %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas vinculadas
+  connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para permitir iniciar sesión, importar de fotos u otra funciones.
+  connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectándose a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
@@ -894,6 +921,7 @@ es-AR:
   contain_all_descendants?: '¿Esta lista de verificación contiene todos los descendientes de este taxón que se producen aquí?'
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenido
+  content_and_display: Contenido y visualización
   content_author: Autor de contenido
   content_hidden: Contenido oculto
   content_hidden_by_user_on_date_because_reason_html: |
@@ -926,6 +954,16 @@ es-AR:
     larva: Larva
     egg: Huevo
     juvenile: Juvenil
+    alive_or_dead: Vivo o muerto
+    alive: Vivo
+    dead: Muerto
+    cannot_be_determined: No se puede determinar
+  controlled_term_definitions:
+    alive: El organismo está vivo y no muestra signos de muerte inminente
+    dead: El organismo está muerto o muestra signos de muerte inminente
+    flower_budding: Los cogollos de flores son visibles pero no están abiertos
+    flowering: Flores visibles, abiertas y todavía adheridas a la planta
+    fruiting: Frutas visibles y todavía unidas a la planta
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -2941,7 +2979,7 @@ es-AR:
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
   please_add_this_to_x_html: "Añade esto a %{x}"
-  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Completa lo siguiente para añadir este observación al proyecto:
   please_confirm_your_inat_username: "Por favor confirma tu nombre de usuario con %{site_name}"
@@ -3981,6 +4019,7 @@ es-AR:
   view_check_list_page: Ve página de lista de verificación
   view_contributions: Ve contribuciones
   view_details: Ve detalles
+  view_dynamic_lifelist: Observa una lista de vida dinámica
   view_field_options: Ver las opciones del campo
   view_flag: Ve advertencias
   view_flags: Ve advertencias

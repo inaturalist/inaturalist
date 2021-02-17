@@ -1,5 +1,5 @@
 <% content_for(:title)  do %>
-  <%= @title = is_me?( current_user ) ? t(:edit_observations) : t( :observations_by_user, user: h(@login) ) %>
+  <%= @title = is_me?( @selected_user ) ? t(:edit_observations) : t( :observations_by_user, user: h(@login) ) %>
 <% end %>
 
 <% content_for(:extracss) do %>

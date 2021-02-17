@@ -810,7 +810,9 @@ de:
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_out_your_new_and_improved_list_list: Schau dir deine neue und verbesserte Life-Liste an!
   check_this_box_if_html: |
-    Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a> stellen möchtest. Das bedeutet, dass jeder Deine Fotos und/oder Beobachtungen kopieren und wiederverwenden kann, ohne um Erlaubnis zu bitten, solange eine Namensnennung erfolgt und die Werke nicht kommerziell genutzt werden. Du kannst eine andere Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz für die Weitergabe an Forscher.
+    Wähle dies aus, wenn Du Deine Fotos unter die <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a> stellen möchtest. Das bedeutet, dass jeder Deine Fotos und/oder Beobachtungen kopieren und wiederverwenden kann, ohne um Erlaubnis zu bitten, solange eine Namensnennung erfolgt und die Werke nicht kommerziell genutzt werden. Du kannst eine andere Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz für die Weitergabe an Forscher.
   checklist: Checkliste
   choose_a_field: Ein Feld auswählen
   choose_a_list_above: Wähle eine der obigen Listen.
@@ -1762,14 +1764,14 @@ de:
   #have no annotation
   hide_no_annotation: '"Keine Annotation" ausblenden'
   hide_running_total: Gesamtzahl ausblenden
-  hide_uncountable_species: Unzählbare Arten verstecken
+  hide_uncountable_species: Nicht-zählbare Arten verstecken
   high: Obergrenze
   highest_rank: Höchster Rang
   highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} in %{site}"
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber zumindest kann ich bestätigen, dass es sich um %{taxon} handelt
+  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber ich kann bestätigen, dass es sich um %{taxon} handelt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -1888,7 +1890,7 @@ de:
   iphone: iPhone
   is_not_following_anyone: folgt niemandem.
   is_now: ist jetzt
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung als '%{taxon}' widersprochen werden?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und auf anderen Websites genutzt werden
@@ -2129,6 +2131,7 @@ de:
     sq: Albanisch
     sv: Schwedisch
     tr: Türkisch
+    uk: Ukrainisch
     zh-CN: Chinesisch (vereinfacht)
     zh-TW: Chinesisch (traditionell)
   locality_notes: Gebietsangaben
@@ -2441,7 +2444,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja, der Nachweis lässt eine Bestimmung als %{taxon} nicht zu"
+  no_but_it_is_a_member_of_taxon: "Ja, aber der Nachweis lässt die Bestimmung %{taxon} zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -3319,7 +3322,7 @@ de:
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
   please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
   please_add_this_to_x_html: "Bitte dies zu %{x} hinzufügen"
-  please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben
+  please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
   please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
@@ -3339,7 +3342,7 @@ de:
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Beiträge
-  potential_disagreement: Soll der Bestimmung widersprochen werden?
+  potential_disagreement: Besteht Einwand gegen die aktuelle Bestimmung?
   powered_by: Betrieben von
   powered_by_inaturalist_open_source_software_html: 'Betrieben mit <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist Open Source Software</a>'
   present: vorhanden
@@ -3772,7 +3775,7 @@ de:
   show_taxa_from_everywhere: "Taxa von überall anzeigen"
   show_taxa_from_place: "Taxa von %{place} anzeigen"
   show_total_counts: Gesamtzahlen anzeigen
-  show_uncountable_species: Unzählbare Spezies anzeigen
+  show_uncountable_species: Nicht-zählbare Spezies anzeigen
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Anzeige der ersten %{x}
@@ -4409,7 +4412,7 @@ de:
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
   user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
-  user_disagrees_this_is_taxon: "%{user} stimmt der Bestimmung als %{taxon} nicht zu"
+  user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
@@ -4468,6 +4471,7 @@ de:
   view_check_list_page: Checkliste für das Gebiet anzeigen
   view_contributions: Beiträge anzeigen
   view_details: Details anzeigen
+  view_dynamic_lifelist: Dynamische Life-Liste anzeigen
   view_field_options: Feldoptionen anzeigen
   view_flag: Meldung anzeigen
   view_flags: Meldungen anzeigen
@@ -5975,7 +5979,7 @@ de:
         charts_help_relative_observations: |
           Die Anzeige der Häufigkeit in <b>Relation zu allen Beobachtungen</b> hilft, die Auswirkungen der Benutzerzunahme der Webseite abzuschwächen. Zum Beispiel erhalten wir durch das Wachstum der Seite in jedem weiteren Jahr immer mehr Beobachtungen von einem bestimmten Taxon, was nicht unbedingt eine Individuenzunahme des Taxons bedeutet, sondern nur dass es mehr Leute gibt, die es beobachtet haben. Den relativen Anteil anzuzeigen bedeutet, dass, wenn es insgesamt 100 Beobachtungen gibt, und davon 20 Beobachtungen dieses Taxons, dass das Verhältnis dann 0,2 (20/100) beträgt. Wenn Benutzer 2000 Beobachtungen im nächsten Jahr melden und 400 Beobachtungen von diesem Taxon, dann beträgt der Anteil immer noch 0,2 (400/2000). Dies verursacht einige Abbildungsfehler, falls es in einem Gebiet nur sehr wenige Beobachter gibt, oder für Taxa die sehr selten beobachtet werden, aber das gilt ebenso für die Gesamtzahlen.
         complete_taxon_desc: |
-          Bei "vollständigen" Taxa sind alle bestehenden, untergeordneten Taxa unter einem bestimmten Rang in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, können wir sagen, wie viele dieser Arten beobachtet wurden und wie viele noch beobachtet werden müssen. Die Anzahl Arten für "vollständige" Taxa bis zur Art beinhaltet keine "unzählbaren", wie ausgestorbene oder veraltete Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
+          Bei "vollständigen" Taxa sind alle untergeordneten Taxa eines bestimmten Rangs in der Datenbank vorhanden. Ist ein Taxon beispielsweise bis zur Ebene der Art vollständig, kann angezeigt werden, wie viele dieser Arten bereits beobachtet wurden und wie viele noch beobachtet werden müssen. Die Zahl der Arten für "vollständige" Taxa beinhaltet keine "nicht-zählbaren", wie ausgestorbene oder inaktive Arten; außerdem werden keine Taxa unterhalb der Art, wie Unterarten oder Varietäten, berücksichtigt.
         discoveries_desc: "Kürzlich neu identifizierte Arten in diesem Taxon"
         frequency:
           research: Forschungsqualität

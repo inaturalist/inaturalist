@@ -19,25 +19,15 @@ class App extends Component {
   constructor( ) {
     super( );
 
-    this.state = {
-      container: 0
-    };
-
-    this.setContainerIndex = this.setContainerIndex.bind( this );
-    this.handleUnload = this.handleUnload.bind( this );
     this.handleInputChange = this.handleInputChange.bind( this );
   }
 
-  componentDidMount() {
+  componentDidMount( ) {
     window.addEventListener( "beforeunload", this.handleUnload );
   }
 
-  componentWillUnmount() {
+  componentWillUnmount( ) {
     window.removeEventListener( "beforeunload", this.handleUnload );
-  }
-
-  setContainerIndex( i ) {
-    this.setState( { container: i } );
   }
 
   handleUnload( e ) {
@@ -55,11 +45,13 @@ class App extends Component {
   }
 
   handleInputChange( e ) {
-    this.setState( { container: Number( e.target.value ) } );
+    const { setContainerIndex } = this.props;
+    const i = Number( e.target.value );
+    setContainerIndex( i );
   }
 
   render( ) {
-    const { container } = this.state;
+    const { setContainerIndex, section } = this.props;
 
     const userSettings = [
       <ProfileContainer />,
@@ -80,18 +72,18 @@ class App extends Component {
             <SaveButtonContainer />
           </div>
           <div className="col-xs-12 visible-xs settings-item">
-            <DropdownMenuMobile menuIndex={container} handleInputChange={this.handleInputChange} />
+            <DropdownMenuMobile menuIndex={section} handleInputChange={this.handleInputChange} />
           </div>
         </div>
         <div className="row">
           <div className="col-sm-2 menu hidden-xs">
-            <Menu setContainerIndex={this.setContainerIndex} currentContainer={container} />
+            <Menu setContainerIndex={setContainerIndex} currentContainer={section} />
           </div>
           <div className="col-sm-1 hidden-xs">
             <div className="vl" />
           </div>
           <div className="col-sm-9">
-            {userSettings[container]}
+            {userSettings[section]}
           </div>
         </div>
         <RevokeAccessModalContainer />
@@ -104,7 +96,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  profile: PropTypes.object
+  profile: PropTypes.object,
+  section: PropTypes.number,
+  setContainerIndex: PropTypes.func
 };
 
 export default App;
