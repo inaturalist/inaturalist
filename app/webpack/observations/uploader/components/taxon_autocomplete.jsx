@@ -150,7 +150,7 @@ class TaxonAutocomplete extends React.Component {
     this.state = {
       viewNotNearby: currentUser && currentUser.prefers_not_nearby_suggestions,
       // eslint-disable-next-line react/no-unused-state
-      nearbyAvailable: true
+      numNearby: 0
     };
   }
 
@@ -200,20 +200,20 @@ class TaxonAutocomplete extends React.Component {
       } );
       const query = that.inputElement( ).val( );
       const manualQuery = query && query.length >= 0;
-      const { nearbyAvailable, viewNotNearby } = getState( );
-      if ( viewerIsAdmin && !manualQuery && nearbyAvailable ) {
+      const { numNearby, numSuggested, viewNotNearby } = getState( );
+      if ( viewerIsAdmin && !manualQuery && numNearby > 0 && numNearby !== numSuggested ) {
         const nearbyToggle = $( "<button />" ).attr( "type", "button" )
           .append(
             viewNotNearby
               ? I18n.t( "only_view_nearby_suggestions" )
-              : I18n.t( "view_suggestions_not_seen_nearby" )
+              : I18n.t( "include_suggestions_not_seen_nearby" )
           )
           .click( e => {
             e.preventDefault( );
             const { viewNotNearby: innerViewNotNearby } = getState( );
             $( e.target ).text(
               innerViewNotNearby
-                ? I18n.t( "view_suggestions_not_seen_nearby" )
+                ? I18n.t( "include_suggestions_not_seen_nearby" )
                 : I18n.t( "only_view_nearby_suggestions" )
             );
             setState( { viewNotNearby: !innerViewNotNearby } );
@@ -299,15 +299,14 @@ class TaxonAutocomplete extends React.Component {
     if ( viewerIsAdmin ) {
       const nearbyResults = _.filter( response.results,
         r => r.frequency_score && r.frequency_score > 0 );
-      if ( nearbyResults.length > 0 ) {
+      this.setState( {
         // eslint-disable-next-line react/no-unused-state
-        this.setState( { nearbyAvailable: true } );
-        if ( !viewNotNearby ) {
-          results = nearbyResults;
-        }
-      } else {
+        numSuggested: response.results.length,
         // eslint-disable-next-line react/no-unused-state
-        this.setState( { nearbyAvailable: false } );
+        numNearby: nearbyResults.length
+      } );
+      if ( nearbyResults.length > 0 && !viewNotNearby ) {
+        results = nearbyResults;
       }
     }
     const visionTaxa = _.map( results.slice( 0, 8 ), r => {
