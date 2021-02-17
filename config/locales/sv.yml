@@ -1793,6 +1793,7 @@ sv:
   help_translate!: Hjälp till med översättning!
   helped_the_observer_make: hjälpte observatören att göra sin slutliga bestämning (d.v.s. de gjordes innan den slutliga bestämningen och de stämmer överens)
   here_are_3_examples: Här är 3 exempel på bra utformade data
+  here_are_our_top_suggestions: Här är våra bästa förslag
   here_are_our_top_species_suggestions: Här är våra bästa förslag på arter
   hex_color_eg: Hex-färg, t.ex. 65644F
   hi: Hej,
@@ -1889,6 +1890,7 @@ sv:
   inbox: Inkorg
   include_places: Inkludera lokaler
   include_projects: Inkludera projekt
+  include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
   include_taxa: Inkludera taxa
   include_users: Inkludera användare
   including: inklusive
@@ -2590,6 +2592,7 @@ sv:
   none_found: Hittade ingen
   normal: normal
   not_completed: Inte slutfört
+  not_confident_top_suggestions: Vi är inte tillräckligt säkra för att komma med en rekommendation, men här är våra bästa förslag
   not_covered_by_any_taxon_frameworks: Omfattas inte av någon taxonkontext
   not_evaluated: inte utvärderad
   not_findig_what_you_want: Hittar du inte det du vill?
@@ -2820,6 +2823,7 @@ sv:
   only_staff_can_edit_standard_places: Endast webbplatsens personal kan redigera lokaler i standardhierarkin
   only_the_owner_of_this_list_can_do_that: Endast ägaren av denna lista kan göra det. Var inte ond.
   only_the_project_admin_can_delete_this_project: Endast projektadministratören kan ta bort detta projekt.
+  only_view_nearby_suggestions: Visa endast förslag i närheten
   only_you: Bara du
   open: öppen
   open_: Öppen
@@ -3390,6 +3394,7 @@ sv:
   please_add_this_observation_to: Lägg till denna observation till
   please_add_this_to_x_html: "Lägg till detta till %{x}"
   please_allow_a_few_weeks_for_external_sites: Vänta några veckor innan externa webbplatser har synkroniserat ändringar från denna observation #Title to a section warning a user to exercise caution
+  please_be_careful!: Var försiktig!
   please_complete_the_following_to_add_project: |
     Fyll i följande för att lägga till denna observation till projektet:
   please_confirm_your_inat_username: "Bekräfta ditt %{site_name} användarnamn"
@@ -3451,6 +3456,8 @@ sv:
     Du borde kunna se dolda koordinater för observationer av tillitsfulla medlemmar.
   project_coordinate_access_disabled_until_datetime: |
     Du kommer inte att kunna komma åt dolda koordinater förrän %{datetime}
+  project_coordinate_access_warning: |
+    Tillgång till koordinater är viktigt för forskare, men kan också missbrukas av tjuvjägare. Se till att du litar på alla projektförvaltarna innan du litar på detta projekt.
   project_cover: Projektets omslagsbild
   project_created_on: skapade detta projekt den %{date}
   project_curator_id: ProjektförvaltarID
@@ -4562,6 +4569,7 @@ sv:
   view_check_list_page: Visa checklistesidan
   view_contributions: Visa bidrag
   view_details: Visa detaljer
+  view_dynamic_lifelist: Visa dynamisk livlista
   view_field_options: Visa fältalternativ
   view_flag: Visa flagga
   view_flags: Visa flaggor
