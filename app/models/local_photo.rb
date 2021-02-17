@@ -517,9 +517,16 @@ class LocalPhoto < Photo
 
     photo_started_in_public_s3_bucket = photo.in_public_s3_bucket?
     s3_client = photo.s3_client
+    source_domain = LocalPhoto.s3_host_alias( photo_started_in_public_s3_bucket )
+    target_domain = LocalPhoto.s3_host_alias( !photo_started_in_public_s3_bucket )
     source_bucket = LocalPhoto.s3_bucket( photo_started_in_public_s3_bucket )
     target_bucket = LocalPhoto.s3_bucket( !photo_started_in_public_s3_bucket )
     target_acl = LocalPhoto.s3_permissions( !photo_started_in_public_s3_bucket )
+
+    # an additional check to make sure the photo URLs contain the expected domain.
+    # Later there will be a string substitution replacing the source domain with
+    # the target domain
+    return unless photo.original_url.include?( source_domain )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
@@ -536,7 +543,18 @@ class LocalPhoto < Photo
 
       # override the photo s3_account so its URLs will point to the new bucket
       photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
-      photo.set_urls
+
+      # do a string substition to replace the source domain with the target domain.
+      # This is necessary for now because we switched how we determine image extensions
+      # in 2016 (see NOTE near the top of this file) and we cannot accurately recreate all
+      # actual file extensions using Paperclip or the `set_urls` method. Only the *_url
+      # attributes contain the accurate file names. So this is doing the minimal update
+      # to URLs which his just swap out domains
+      styles = %w(original large medium small thumb square)
+      url_updates = Hash[styles.map do |s|
+        ["#{s}_url", photo.send( "#{s}_url").sub( source_domain, target_domain )]
+      end]
+      photo.update_columns( url_updates )
       photo.reload
 
       # TODO: disabling deleting source images for now
