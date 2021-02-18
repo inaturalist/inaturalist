@@ -16,6 +16,7 @@ const Account = ( {
   setModalState,
   sites
 } ) => {
+  if ( !sites ) { return null; }
   const siteId = profile.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
 
