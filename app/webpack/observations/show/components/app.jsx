@@ -142,15 +142,14 @@ const App = ( {
                 <ConservationStatusBadge observation={observation} />
                 <EstablishmentMeansBadge observation={observation} />
                 <OverlayTrigger
-                  placement="top"
+                  placement="bottom"
                   trigger={["hover", "click"]}
+                  delayHide={1000}
                   overlay={(
                     <Tooltip id="quality-grade-tooltip">
                       <p
                         // eslint-disable-next-line react/no-danger
-                        dangerouslySetInnerHTML={{
-                          __html: I18n.t( `${qualityGrade}_tooltip_html` )
-                        }}
+                        dangerouslySetInnerHTML={{ __html: I18n.t( "casual_tooltip_html" ) }}
                       />
                     </Tooltip>
                   )}
