@@ -113,6 +113,14 @@ const App = ( {
   if ( config && config.currentUser && config.currentUser.time_zone ) {
     viewerTimeZone = config.currentUser.time_zone;
   }
+  let qualityGradeTooltipHtml;
+  if ( qualityGrade === "casual" ) {
+    qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html" );
+  } else if ( qualityGrade === "needs_id" ) {
+    qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html" );
+  } else {
+    qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
+  }
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
@@ -149,7 +157,7 @@ const App = ( {
                     <Tooltip id="quality-grade-tooltip">
                       <p
                         // eslint-disable-next-line react/no-danger
-                        dangerouslySetInnerHTML={{ __html: I18n.t( `${qualityGrade}_tooltip_html` ) }}
+                        dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
                       />
                     </Tooltip>
                   )}
