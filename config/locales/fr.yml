@@ -5791,7 +5791,7 @@ fr:
           Nous avons inclus les liens vers les photos concernées ci-dessous.
       user_parent_confirmation:
         subject: Le compte iNaturalist de votre enfant a été activé
-        content_html: |
+        content_html: |2
           <p>
             Merci d'avoir créé un compte iNaturalist pour votre enfant! Le
             compte a été activé. Voici les détails que vous avez saisis et que 
@@ -5978,11 +5978,6 @@ fr:
           Permettre aux membres de partager leurs coordonnées cachées
         trust_help_desc: |-
           Si vous voulez avoir accès aux coordonnées cachées des utilisateurs, cette option leur permet de donner l'accès aux admins du projet à ces coordonnées. Les membres du projet vont être capables de donner accès aux coordonnées de leurs observations qui font partie du projet, ou juste de celles avec un taxon menacé du projet.
-        trust_help_notification2: |-
-          Cependant, tous les membres qui font confiance au projet sont également avisés chaque fois que
-          vous modifiez les critères d'observation du projet pour qu'ils puissent reconsidérer leur décision de vous faire confiance compte tenu des nouveaux critères.
-          Votre accès aux coordonnées masquées est révoqué pendant une semaine après
-          la modification des critères d'observation pour que les membres aient le temps de prendre cette décision.
         trusted_project_means: |
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès
@@ -6700,7 +6695,7 @@ fr:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
-        inaturalist_network_affiliation_desc_html: |
+        inaturalist_network_affiliation_desc_html: |2
           <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web au niveau local liés à la communauté mondiale d'iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation du site et la protection de la biodiversité à l'échelle locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées à la vue du public afin de protéger les espèces menacées. </p> 
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse mail (seulement pour communiquer avec vous à propos des activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
@@ -6790,7 +6785,7 @@ fr:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Les informations que nous pourrions partager avec ces tiers incluent
-        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |2
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites web et services ; notez que vous avons activé
            l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
           <a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
@@ -6846,7 +6841,7 @@ fr:
           apparaîtront à cet endroit.
     user_parents:
       confirm:
-        thanks_donor_html: |
+        thanks_donor_html: |2
           <p>
             Merci d'être un donateur iNaturalist ! Nous avons pu utiliser votre don
             existant pour confirmer votre identité, et n'avons besoin d'aucune 
