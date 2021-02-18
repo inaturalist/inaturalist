@@ -1908,6 +1908,7 @@ cs:
   help_translate!: Pomozte s překladem!
   helped_the_observer_make: pomohl pozorovateli provést konečné ID (byly provedeny před konečným ID, kterému odpovídají)
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
+  here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
   hex_color_eg: Barva hex, např. 65644F
   hi: Ahoj,
@@ -2006,6 +2007,7 @@ cs:
   inbox: doručená pošta
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
+  include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
   include_taxa: Zahrnout taxony
   include_users: Zahrnout uživatele
   including: včetně
@@ -2711,6 +2713,7 @@ cs:
   none_found: Nenalezeno
   normal: normální
   not_completed: Nedokončený
+  not_confident_top_suggestions: Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy
   not_covered_by_any_taxon_frameworks: Není pokryto žádným taxonem
   not_evaluated: nehodnoceno
   not_findig_what_you_want: Nenašli jste, co jste chtěli?
@@ -2934,6 +2937,7 @@ cs:
   only_staff_can_edit_standard_places: Pouze zaměstnanci webu mohou upravit místa ve standardní hierarchii
   only_the_owner_of_this_list_can_do_that: Tento krok může provést pouze majitel tohoto seznamu. Nebuďte zlí.
   only_the_project_admin_can_delete_this_project: Tento projekt může smazat pouze správce projektu.
+  only_view_nearby_suggestions: Zobrazit pouze návrhy v blízkosti
   only_you: Jen vy
   open: otevřený
   open_: Otevřený
@@ -5875,7 +5879,7 @@ cs:
         make_owner: Učinit vlastníkem
         no_curators: |
           Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou osobu, nejdřív se musí přidat k tomuto projektu a vy ji musíte jmenovat kurátorem.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             Seskupením pozorování se do vašeho projektu automaticky přidají vhodná pozorování podle pravidel vašeho projektu. Protože mnoho pozorování nelze z projektu najednou odebrat, může to být nebezpečné, proto se prosím ujistěte, že jste vybrali pravidla pro místo a taxon, která chcete, jinak by se mohlo stát, že budete muset manuálně odebrat mnoho nevhodných pozorování. 
           </p>
@@ -6066,7 +6070,7 @@ cs:
       show:
         are_you_sure_you_want_to_convert: |
           Opravdu chcete tento projekt převést na Sbírky projektů?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
            Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
            Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
@@ -6297,7 +6301,7 @@ cs:
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
-        about_names_desc: |
+        about_names_desc: |2
           <p>
             Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
           </p>
@@ -6372,7 +6376,7 @@ cs:
           Název taxonu s kategorií. Pro infraspecifické kategorie je kategorie vložena za binominální nomenklaturou.
     taxon_names:
       form:
-        new_name_guidelines_html: |
+        new_name_guidelines_html: |2
           <ul>
             <li><p>Zkuste přidat názvy, které se používají jinde. Nevymýšlejte prosím nové názvy.</p></li>
             <li><p>Nepřidávejte zdvojené názvy, např. nepojmenovávejte několik jestřábů „jestřáb“</p></li>
@@ -6511,7 +6515,7 @@ cs:
           Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
           políčko pro zobrazení tohoto stavu na vašem profilu. Poznámka: budete muset použít
           přesnou, stejnou e-mailovou adresu na Donorboxu jako na iNaturalist, abyste mohli potvrdit, že jste se stali Měsíční podporovatel.
-        muting_desc_html: |
+        muting_desc_html: |2
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 
           </p>
@@ -6571,7 +6575,7 @@ cs:
           Podrobnosti o selhání, stejně jako přesně, který řádek kódu způsobil selhání
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Podrobnosti o zařízení, například značka a model mobilního telefonu
-        prefers_no_tracking_label_desc_value_html: |
+        prefers_no_tracking_label_desc_value_html: |2
           <strong>Tyto služby třetích stran poskytují nesmírnou hodnotu pro
           nás </strong> při udržování stability a použitelnosti programu iNaturalist
           s našimi relativně malými zaměstnanci. Na mobilních zařízeních téměř neexistuje
