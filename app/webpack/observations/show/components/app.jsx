@@ -6,7 +6,9 @@ import {
   Row,
   Col,
   SplitButton,
-  MenuItem
+  MenuItem,
+  OverlayTrigger,
+  Tooltip
 } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import moment from "moment-timezone";
@@ -139,9 +141,25 @@ const App = ( {
                 />
                 <ConservationStatusBadge observation={observation} />
                 <EstablishmentMeansBadge observation={observation} />
-                <span className={`quality_grade ${observation.quality_grade} `}>
-                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
-                </span>
+                <OverlayTrigger
+                  placement="top"
+                  trigger={["hover", "click"]}
+                  overlay={(
+                    <Tooltip id="quality-grade-tooltip">
+                      <p
+                        // eslint-disable-next-line react/no-danger
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( `${qualityGrade}_tooltip_html` )
+                        }}
+                      />
+                    </Tooltip>
+                  )}
+                  container={$( "#wrapper.bootstrap" ).get( 0 )}
+                >
+                  <span className={`quality_grade ${observation.quality_grade} `}>
+                    { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
+                  </span>
+                </OverlayTrigger>
               </div>
             </Col>
             { viewerIsObserver ? (

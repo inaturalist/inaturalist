@@ -819,6 +819,10 @@ en:
   card: Card
   casual: casual
   casual_: Casual
+  casual_tooltip_html: |
+    "Casual" observations are missing media, location, or a date, or do not meet the
+    requirements of the "Research" or "Needs ID" quality grades for other reasons.
+    <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>
   categories: Categories
   cc_0_description: "This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."
   cc_0_name: No Copyright (CC0)
@@ -2577,6 +2581,10 @@ en:
   nearby_observations_: Nearby observations
   needs_id: needs ID
   needs_id_: Needs ID
+  needs_id_tooltip_html: |
+    "Needs ID" observations have media, location, and a date, but still require community
+    consensus on a precise identification.
+    <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
   # @vow_or_con can be used here for the first letter of %{place}
@@ -3881,6 +3889,10 @@ en:
   required_columns_in_order: Required columns in order
   research: research
   research_: Research
+  research_tooltip_html: |
+    "Research Grade" observations have media, location, a date, and a community consensus
+    on a precise identification (usually at species-level).
+    <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>
   research_grade: Research Grade
   research_grade_short_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
