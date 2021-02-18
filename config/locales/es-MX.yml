@@ -4704,7 +4704,7 @@ es-MX:
         make_owner: Hacer propietario
         no_curators: |
           No hay curadores del proyecto. Si desea asignar a una nueva persona como administrador, primero debe unirse a este proyecto y entonces lo podrá hacer curador.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             El adjuntador de observaciones automaticamente añadira todas tus 
             observaciones a tu proyecto de acuerdo al polígono y las reglas 
@@ -4764,7 +4764,7 @@ es-MX:
         you_can_preview: |
           Puedes ver la vista previa de cómo se verá tu Proyecto de Colección haciendo <a href="%{url}">click aquí</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Acerca de las invitaciones</h3>
           <p class="ui">
            \ Invitar ala comunidad a los proyectos es un poco diferente que 
@@ -4873,7 +4873,7 @@ es-MX:
           name_already_taken: El nombre del proyecto ya ha sido tomado
           cannot_have_more_than_x_project_rules: No puede tener más de %{x} reglas de proyecto
           summary_is_required: Se requiere texto de resumen del proyecto
-      project_location_privacy_notice_html: |
+      project_location_privacy_notice_html: |2
         <p>
           Ten en cuenta que los curadores del proyecto podrán ver cualquier 
           coordenada oscurecida o privada de tus observaciones a menos que 
@@ -4905,7 +4905,7 @@ es-MX:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
             De manera diferente a los projectos normales, los proyectos Maratón naturalista muestran estadísticas de los eventos por <em>todas</em> las observaciones aunadas al lugar y el período de tiempo, no solo las observaciones que la comunidad intencionalmente ha añadido. Esto es para quitar el obstáculo de añadir observaciones solo para obtener las estadísticas en tiempo real. Con esto, las observaciones no estarán disponibles para exportar o mostrar en otras vistas del proyecto, como las contribuciones de los miembros o las búsquedas de las observaciones del proyecto desde las aplicaciones moviles, hasta que los participantes del proyecto añadan observaciones relevantes como en un proyecto normal.
           </p>
