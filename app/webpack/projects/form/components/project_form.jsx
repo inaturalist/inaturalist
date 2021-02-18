@@ -36,8 +36,6 @@ class ProjectForm extends React.Component {
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
-    const viewerIsAdmin = config.currentUser && config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const coordinatesAccessible = project.prefers_user_trust
       && project.observation_requirements_updated_at
       && moment( project.observation_requirements_updated_at ) < moment( ).subtract( 1, "week" );
