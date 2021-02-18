@@ -1659,7 +1659,7 @@ class TaxaController < ApplicationController
     if params[:taxon][:conservation_statuses_attributes]
       params[:taxon][:conservation_statuses_attributes].each do |position, status|
         if existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
-          cs_attrs = params[:taxon][:conservation_statuses_attributes][position]
+          cs_attrs = params[:taxon][:conservation_statuses_attributes][position].clone
           cs_attrs.delete(:_destroy)
           existing.assign_attributes( cs_attrs )
           if existing.changed?

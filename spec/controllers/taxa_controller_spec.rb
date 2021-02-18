@@ -242,6 +242,20 @@ describe TaxaController do
         taxon.reload
         expect( taxon.conservation_statuses.size ).to eq 1
       end
+      it "should allow deletion" do
+        cs = ConservationStatus.make!( taxon: taxon )
+        put :update, id: taxon.id, taxon: {
+          conservation_statuses_attributes: {
+            cs.id => {
+              id: cs.id,
+              _destroy: 1
+            }
+          }
+        }
+        expect( response ).to be_redirect
+        taxon.reload
+        expect( taxon.conservation_statuses.size ).to eq 0
+      end
       it "should assign the current user ID as the user_id for new statuses" do
         put :update, id: taxon.id, taxon: {
           conservation_statuses_attributes: {
