@@ -75,9 +75,6 @@ tr:
     one: "%{count} kişi"
     other: "%{count} kişi"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} insan</strong> %{user} kullanıcısına <strong> %{y} tanımlamalarında</strong> yardım etti"
-  x_photos:
-    one: "%{count} fotoğraf"
-    other: "%{count} fotoğraf"
   x_new_species:
     one: "%{count} Yeni Tür"
     other: "%{count} Yeni Tür"
@@ -127,6 +124,9 @@ tr:
     Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (yaygın adlar, eski bilimsel adlar vb.).
   a_flag_for_x: "%{x} için bir işaret"
   a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A - Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -158,6 +158,7 @@ tr:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Kuruluş Varlığı Hakkında
+  about_license_options: Lisans Seçenekleri Hakkında
   about_licenses: Lisanslar Hakkında
   about_muting: Susturma Hakkında
   #Header for a section describing taxon names
@@ -814,6 +815,7 @@ tr:
   committed_on: '%{date} tarihinde yapıldı'
   #Status message while a taxon change is being committed
   committing: Yapılıyor...
+  common_name: Genel İsim
   community: Topluluk
   community_curated: Topluluk Düzenlendi
   community_guidelines: Topluluk Rehberleri
@@ -848,6 +850,7 @@ tr:
   confirm_new_password: Yeni Şifreyi Onayla
   confirm_now: Şimdi onayla
   confirm_your_info: Bilgini onayla
+  confirming_ids_description: Eğer bunu kapatırsan, tanımlamalarında seninle aynı fikirde olanlar ile ilgili bildirimler almayacaksın.
   connect_to_provider: "%{provider}'a bağlandı"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Hesaplara bağlandı
@@ -984,6 +987,41 @@ tr:
   curating: Yönetme
   curation: Yönetme
   curator: Sorumlu
+  #Header
+  curator_application_what_curators_can_do: Küratörler Ne Yapabilir
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Wiki sayfaları oluşturabilir veya düzenleyebilir, örneğin <a href="/pages/help"
+    target="_blank">iNaturalist SSS sayfası</a>
+  #Header
+  curator_application_what_curators_cannot_do: Küratörler Neleri Yapamaz
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Diğer kullanıcıların oluşturduğu içerikleri silmek.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Diğer kişiler arasındaki mesajları okumak.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Küratörlük Başvurusu
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Küratörlüğe sadece şu şartlarda başvurmalısın:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    En az bir kaç aydır tanımlama ve/veya gözlem ekliyorsan ve eklemeye devam edeceksen.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Düzenli aralıklarla küratörlük yapmaya uygun ve gönüllüysen. Eğer sadece bir kaç sınıflandırma ekleyeceksen, bir üst sınıflandırmaya işaret bırakarak varolan küratörlerden bir alt sınıfı girmesini isteyebilirsin.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    iNaturalist ve Topluluk Kılavuzunun beklentilerini karşılayan, uygun davranışlar sergilemelisin. Küratör güçleri, beraberinde örnek iNaturalist kullanıcısı olmayı gerektirir.
   curators_changed_for_x_html: "%{x} için sorumlular değiştirildi"
   curators: Sorumlular
   curators_can_remove_observations_from: Sorumlular gözlemleri projeden çıkarabilir ve kimlikleri projeye özgü görüşlere ilişkin gözlemlerle birlikte gösterilir. Sorumlular ayrıca bu projedeki özel ve gizlenmiş katkıların gerçek koordinatlarını görebilirler.
@@ -995,6 +1033,7 @@ tr:
   customize_location: Konumu Özelleştir
   darr_apply_darr: "&darr; Uygula &darr;"
   daily_users: Günlük Kullanıcılar
+  danger_zone: Tehlikeli Alan
   dashboard: Kontrol Paneli
   data_deficient: Eksik Veri
   data_quality: Veri Niteliği
@@ -1003,6 +1042,7 @@ tr:
   datatype: Veri Türü
   date_: Tarih
   date_added: Eklenme Tarihi
+  date_authorized: Yetkilendirilme Tarihi
   date_created: Oluşturma Tarihi
   date_format:
     date_long:
@@ -1060,6 +1100,9 @@ tr:
   default_invite_comment: "Harika fotoğraf! %{site_name} adresine göndermelisiniz: {{INVITE_LINK}}"
   default_observation_license: Varsayılan gözlemleme lisansı
   default_photo_license: Varsayılan fotoğraf lisansı
+  default_search_place: Varsayılan Arama Bölgesi
+  default_search_place_description: |
+    Bu, senin tüm Keşfetme ve Tanımlama aramalarında varsayılan bölgen olacak.
   default_sound_license: Varsayılan ses lisansı
   defaults_to_your_name_or_username: Adınıza ya da kullanıcı adınıza varsayılanlar
   defines_a_taxon_framework_for: '%{taxon_name} için bir Sınıf Yapısı tanımlar'
@@ -1130,6 +1173,11 @@ tr:
     Bunu istemediyseniz, lütfen bu e-postayı dikkate almayın.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Yukarıdaki bağlantıya erişip yeni bir tane oluşturana kadar şifreniz değişmeyecektir.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Hesabınız fazla sayıda başarısız giriş nedeniyle kilitlenmiştir.
+  devise_unlock_instructions_click_the_link: |
+    Hesabınızı aktifleştirmek için aşağıdaki bağlantıya tıklayın
+  devise_unlock_instructions_unlock: Hesabının Kilidini Aç
   discoveries: Keşifler
   did_not_send_invitations_because: Aşağıdakilere davetiye gönderilmedi çünkü...
   did_you_mean: 'Bunu mu demek istediniz'
@@ -1138,8 +1186,16 @@ tr:
   disable_comments: Yorumları devre dışı bırak
   disable_comments_desc: İnsanların yeni yorum eklemesini önleme
   disagree_: Katılmıyorum
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Bağlantıyı Kes
+  disconnect_caps: BAĞLANTIYI KES
   disconnect_provider: "%{provider} bağlantısını kes"
+  display: Görünüm
   display_link_to_checklist: Proje sayfasından proje listesine bağlantıyı göster
+  display_monthly_supporter_badge: Profilimde Aylık Destekçi Rozetini göster
+  display_name: Görünen İsim
+  display_name_description: Bu isim, profilinde ve telif haklarında gösterilecek
   distance_traveled_value: "Gidilen uzaklık: %{distance}m"
   distance_traveled: "Gidilen uzaklık (m)"
   documentation_for_developers_html: <a href="/pages/developers">geliştiriciler</a> için dokümantasyon
@@ -1182,6 +1238,7 @@ tr:
   duplicate_verb: Çoğalt
   duration_value: "Süre: %{duration} dakika"
   each_place_displays_all_species_inat_knows: "Her, yer sayfası %{site_name} sitesinin bildiği bütün türleri gösterir; sayıyı, korunma durumları ve %{site_name} sitesinde bu türleri ilk o bölgeden en çok kimin gözlemlediğini de içerir. Türleri sınıflandırma grubu, renk, koruma durumu ya da yalın eski aramalara göre filtreleyebilirsiniz."
+  earliest_added: Eskiden yeniye
   edit: Düzenle
   edit_a_batch_of_observations: Toplu Gözlem Düzenle
   edit_account_settings_and_profile: "Hesap ayarlarını &amp; profilini düzenle"
@@ -1243,10 +1300,12 @@ tr:
   either_that_user_doesnt_exist_or: "Bu kullanıcı ya mevcut değil ya da siz zaten onları takip ediyorsunuz."
   eligible_for_research_grade: Araştırma Sınıfı için Uygun
   email: E-Posta
+  email_description: Eposta adresiniz iNaturalist kullanıcılarıyla paylaşılmamaktadır
   email_addresses_description: Virgülle ayrılmış e-posta adresleri, her 30 günde bir sınır 60'tır.
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
   email_addresses_to_receive_invites: Davet almak için e-posta adresleri
   email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
+  email_notifications: Eposta Bildirimleri
   email_settings: E-posta ayarları
   embed: 'Yerleştir'
   embed_place_widget: Yer widgetini yerleştir
@@ -1303,6 +1362,9 @@ tr:
   export_observations: Gözlemleri Dışa Aktar
   export_with_private_coordinates: Gizli Koordinatlarla Dışa Aktar
   exporting: "Dışa aktarılıyor..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Harici Uygulamalar
   external_taxon_including_children: Dış sınıf (alt sınıfları içerir)
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
@@ -1726,6 +1788,7 @@ tr:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Yakınlaştırma düzeyini kilitleme
+  language_slash_locale: Dil/Bölge
   language_slash_type: Dil / Tür
   #Large photo size
   large: büyük
@@ -1757,7 +1820,7 @@ tr:
   learn_what_these_licenses_mean: Bu lisansların ne anlama geldiğini öğren
   least_concern: En Küçük Endişe
   leave: Ayrıl
-  leave_a_comment: Bir yorum yap
+  leave_a_comment: Yorum yaz
   leave_this_project: Projeden Ayrıl
   leaves: yapraklar
   legacy_authentication_notice_html: |
@@ -1933,6 +1996,7 @@ tr:
     Yorum eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
   log_in_or_sign_up_to_add_identifications_html: |
     Tanımlama eklemek için <a href="/login">giriş yap</a> ya da <a href="/signup">üye ol</a>.
+  log_out: Çıkış yap
   log_scale_label: Günlük
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
@@ -2035,6 +2099,8 @@ tr:
   message_from_user_at_time: '%{user} kullanıcısından %{time} zamanında'
   message_from_user_on_date: '%{user} kullanıcısından %{date} tarihinde'
   messages: Mesajlar
+  messages_new_correspondent_specimens: |
+    Türler ve gizli bilgilerle ilgili isteklere karşı dikkatli olun. İstek yapan kişinin kimliğini doğrulamaya çalışın ve türler hakkında sorular soruyorlarsa, yetki izinlerini göstermelerini isteyin.
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
@@ -3378,8 +3444,10 @@ tr:
   save_observation: Gözlemi kaydet
   save_photos: Fotoğrafları kaydet
   save_place: Yeri kaydet
+  save_settings_caps: AYARLARI KAYDET
   save_trip: Geziyi kaydet
   saved: Kaydedildi
+  saved_at_time: 'Kaydedilme zamanı: %{time}'
   saving: "Kaydediliyor..."
   saving_num_of_count_observations:
     one: Gözlem kaydediliyor...
@@ -4040,6 +4108,7 @@ tr:
   upload_a_csv_file: CSV dosyası yükle
   upload_a_csv_file_with_observation: |
     Gözlem verileriyle bir CSV dosyası yükleyin. Verilerin bir tabloda ya da veri tabanında varsa, bu olasılıkla bunu yapmanın yoludur.
+  upload_new_photo: Yeni fotoğraf yükle
   upload_photo: Fotoğraf Yükle
   upload_range: Aralığı Yükle
   uploaded_by: Yükleyen
@@ -4666,6 +4735,13 @@ tr:
           Bu sınıfı başka bir rehbere kopyalayabilirsiniz. Bu rehberin
           editörlerinden biriyseniz, her şeyi kopyalayabilirsiniz ancak değilseniz, 
           yalnızca lisanslı içeriği kopyalayabilirsiniz.
+    lifelists:
+      list_view: Liste Görünümü
+      tree_view: Ağaç Görünümü
+      observed_species: Gözlemlenen Türler
+      all_species: Tüm Türler
+      dropdowns:
+        show: Göster
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5710,10 +5786,18 @@ tr:
           <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         publications_desc_short_html: |
           <a href="https://www.altmetric.com">Altmetric</a>'in izniyle etki verileri ve çizelgeler. <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi'ndeki</a> arkadaşlarımızın veri kullanımı nezaket bilgileri.
+        observations_per_year: Gözlemler / Yıl
+        observations_per_year_by_date_added: Eklenme tarihine göre
+        observations_per_year_by_date_observed: Gözlem tarihine göre
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Gözlem Serileri
         observation_streaks_color_desc: |
           Renk, bir logaritmik ölçekte günlerin sayısını gösterir:
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Düzenli Bağışçı
+        species_per_year: Türler / Yıl
+        species_per_year_by_date_added: Ekleme tarihine göre
+        species_per_year_by_date_observed: Gözlem tarihine göre
         stats_generated_datetime: İstatistikler %{datetime} tarihinde oluşturuldu
         store_prompt: |
           Gittiğin her yerde iNat'tan duyduğun gururu göstermek ister misin? iNat Mağazası'na Göz At!
@@ -6587,6 +6671,9 @@ tr:
       listed_taxon:
         occurrence_status_level: Oluşum Durumu Seviyesi
         establishment_means: Kuruluş Varlığı
+      message:
+        subject: Konu
+        body: Mesaj metni
       observation:
         description: Notlar
         geo_x: Doğuya Doğru
@@ -7025,11 +7112,16 @@ tr:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Uyarı
+  wikimedia: Wikimedia
   wild: Yabani
   will_paginate:
     previous_label: "Önceki &#8592;"
     next_label: "Sonraki &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "%{user} kullanıcısını artık takip etmeyecek ve güvenmeyeceksin"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z - A
   zoom_in: Yakınlaştır
   zoom_out: Uzaklaştır
   zoom_photo: Fotoğrafı Yakınlaştır
