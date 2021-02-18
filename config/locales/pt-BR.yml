@@ -5148,7 +5148,7 @@ pt:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
         ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
-        community_taxon_desc_html: |
+        community_taxon_desc_html: |2
           <p class="ui">
           O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
           </p>
@@ -5338,7 +5338,7 @@ pt:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
-        content_html: |
+        content_html: |2
           <p>
           Obrigado por criar uma conta iNaturalist para o seu filho! o
              conta foi ativada. Aqui estão os detalhes que você digitou
@@ -5448,7 +5448,7 @@ pt:
         make_owner: Tornar proprietário
         no_curators: |
           Ainda não existem administrador neste projeto. Se você decidir tornar um membro administrador, ele deverá primeiro inscrever-se no projeto e, somente depois poderá ser promovido.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             A agregador de observações irá automaticamente adicionar observações que se adequem as suas normas ao seu projeto. Já que não existe uma forma de remover, de uma só vez, um número elevado de observações de um projeto, utilizar este recurso pode ser potencialmente perigoso, então por favor verifique com cuidado e, seja preciso, ao escolher quais táxons e/ou lugares lhe interessam ao criar as normas do seu projeto, ou você poderá acabar com centenas de observações inadequadas que somente poderão ser removidas manualmente. 
           </p>
@@ -5469,7 +5469,7 @@ pt:
           <li>Arquivos que terminam em .logo.jpg, .logo.png, etc. serão utilizados como o logotipo do projeto na página ao invés do ícone do projeto</li>
           <li>Arquivos KML e KMZ serão adicionados ao mapa na página do projeto</li>
           </ol>
-        project_list_desc_html: |
+        project_list_desc_html: |2
           <p class="description">
             Você pode criar uma lista personalizada de um táxon e conectá-la ao seu 
             projeto. Isto pode ser útil para restringir observações adicionadas ao seu 
@@ -5499,7 +5499,7 @@ pt:
           Você pode ver a visualização de como seu projeto se parecerá com um projeto de coleção
           Por quê? <a href="%{url}">selecione aqui</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente do que convidar 
@@ -5632,7 +5632,7 @@ pt:
       show:
         are_you_sure_you_want_to_convert: |
           Tem certeza de que deseja converter este projeto em um projeto de coleção?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
             Diferente de projetos regulares, as bioblitz divulgam o status do evento abaixo de
             <em>todas</em> observações naquele local e período, não somente 
@@ -5848,7 +5848,7 @@ pt:
           Classificação em que este táxon está completo, p. ex. se esta família contiver
           todos os seus gêneros, mas nem todas as suas espécies, isso seria indicado para "gênero". A resposta padrão é gentil.
       show:
-        about_names_desc: |
+        about_names_desc: |2
           <p>
             A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são comumente, popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo, mas muitos outros organismos possuem mais de um nome popular em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. \  
             Os cientistas solucionaram este problema criando o uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,
