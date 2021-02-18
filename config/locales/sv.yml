@@ -5764,9 +5764,6 @@ sv:
         trust_help_desc: |-
           Om du vill ha tillgång till dolda koordinater för diffuserade observationer, kommer det här alternativet att tillåta personer som har gått med i det här projektet att anförtro projektadministratörer med dessa dolda koordinater. Projektmedlemmar kommer att kunna ge tillgång till de dolda koordinaterna
           för alla deras observationer som finns i detta projekt, eller bara de observationer som är diffuserade på grund av hotade taxa.
-        trust_help_notification2: |-
-          Men detta kommer också att meddela alla tillitsfulla projektmedlemmar varje gång du ändrar projektets observationskrav, så att de kan omvärdera huruvida de vill fortsätta lita på dig med de nya kraven.
-          Din åtkomst till dolda koordinater kommer att dras in i en vecka efter ändring av observationskraven så att medlemmar ska hinna göra detta
         trusted_project_means: |
           Att lita på ett projekt innebär att projektledarna kan lägga till projekttillgångar och anpassade projektattribut (t.ex. banner HTML, CSS). Åtkomst
           till anpassade projektattribut innebär att projektledarna skulle kunna lägga till skadliga Javascript, så lita bara på projekt som har ledare som är både ansvarsfulla och tekniskt kompetenta.
@@ -6307,7 +6304,7 @@ sv:
           Visa Månatlig bidragsgivarstatus på min profil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
-        inaturalist_network_affiliation_desc_html: |
+        inaturalist_network_affiliation_desc_html: |2
           <p>
            <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-gemenskapen. Nätverksplatserna stöds av lokala
           institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater från sina länder som automatiskt
