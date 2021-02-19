@@ -931,7 +931,7 @@ it:
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo taxon che vivono qui?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenuto
-  content_and_display: Contenuto & Visualizzazione
+  content_and_display: Contenuto & Vista
   content_author: Autore del Contenuto
   content_hidden: Contenuto nascosto
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1754,6 +1754,7 @@ it:
   help_translate!: Aiuta a tradurre!
   helped_the_observer_make: ha aiutato l'osservatore a decidere la sua ID finale (e.g. sono state fatte prima dell'ID finale e corrispondono)
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
+  here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti per la specie
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
@@ -5641,6 +5642,9 @@ it:
           Consenti ai membri di fidarsi di questo progetto rivelando le coordinate nascoste
         trust_help_desc: |-
           Se vuoi accedere alle coordinate nascoste delle osservazioni oscurate, questa opzione consentirà alle persone che hanno aderito a questo progetto di fidarsi degli amministratori del progetto permettendo l'accesso a quelle coordinate nascoste. I membri del progetto potranno concedere l'accesso alle coordinate nascoste di tutte le loro osservazioni che appaiono in questo progetto, o solo delle osservazioni oscurate a causa di taxa minacciati.
+        trust_help_notification2: |-
+          Tuttavia, in questo modo sarà inviata una notifica anche a tutti i membri che si fidano del progetto ogni volta che modifichi i requisiti di osservazione, affinché essi possano valutare nuovamente se vogliono continuare a fidarsi di te, considerando i nuovi requisiti.
+          Il tuo accesso alle coordinate nascoste verrà revocato per una settimana dopo la modifica dei requisiti di osservazione in modo che i membri abbiano il tempo di valutare.
         trusted_project_means: |
           Fidarsi di un progetto significa che i gestori del progetto potranno aggiungere Risorse di Progetto e caratteristiche personalizzate (es. banner HTML, CSS). Poter accedere alle caratteristiche personalizzate significa che i gestori potranno aggiungere codici Javascript malevoli, perciò dai la fiducia solo a quei progetti che hanno gestori sia responsabili che tecnicamente competenti.
         you_can_preview: |
