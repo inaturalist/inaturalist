@@ -83,9 +83,15 @@ const Project = class Project {
 
   requirementsChangedFrom( otherProject ) {
     const trustChanged = this.prefers_user_trust !== otherProject.prefers_user_trust;
+    // Rules are weird and can have other stuff packed into them like taxon and
+    // place objects, so I'm using _.pick here to make sure we're only comparing
+    // properties that might actually change. Realistically, the only things
+    // that matter are length of the rules array (adding rules) and the value of
+    // the _destroy attribute (removing rules)
+    const changeableProperties = ["id", "operand_id", "operand_type", "operator", "_destroy"];
     const rulesChanged = !_.isEqual(
-      this.project_observation_rules,
-      otherProject.project_observation_rules
+      _.map( this.project_observation_rules, rule => _.pick( rule, changeableProperties ) ),
+      _.map( otherProject.project_observation_rules, rule => _.pick( rule, changeableProperties ) )
     );
     const prefsChanged = !_.isEqual( this.rule_preferences, otherProject.rule_preferences );
     return trustChanged || rulesChanged || prefsChanged;
