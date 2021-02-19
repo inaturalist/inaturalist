@@ -1751,6 +1751,7 @@ de:
   help_translate!: Hilf beim Übersetzen!
   helped_the_observer_make: hat dem Beobachter geholfen, seine endgültige ID zu erstellen (d.h. sie wurde vor der endgültigen ID gemacht und sie stimmt mit ihr überein)
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
+  here_are_our_top_suggestions: Hier sind unsere besten Vorschläge
   here_are_our_top_species_suggestions: Hier sind unsere besten Vorschläge
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
@@ -1844,6 +1845,7 @@ de:
   inbox: Posteingang
   include_places: Gebiete einbeziehen
   include_projects: Projekte einbeziehen
+  include_suggestions_not_seen_nearby: Vorschläge einbeziehen, die nicht aus der Nähe stammen
   include_taxa: Taxa einbeziehen
   include_users: Benutzer einbeziehen
   including: beinhaltet
@@ -2528,6 +2530,7 @@ de:
   none_found: nichts gefunden
   normal: normal
   not_completed: Nicht komplett
+  not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
   not_evaluated: nicht beurteilt
   not_findig_what_you_want: Nicht gefunden, was du suchst?
@@ -2751,6 +2754,7 @@ de:
   only_staff_can_edit_standard_places: Nur das Personal der Website kann Orte in der Standardhierarchie bearbeiten
   only_the_owner_of_this_list_can_do_that: Nur der Besitzer dieser Liste kann das. Sei nicht böse.
   only_the_project_admin_can_delete_this_project: Nur der Projektadministrator kann dieses Projekt löschen.
+  only_view_nearby_suggestions: Vorschläge auf die nähere Umgebung beschränken
   only_you: Nur dir
   open: offen
   open_: öffentlich
@@ -5237,7 +5241,7 @@ de:
         allow_curator_coordinate_access_desc_html: |
           Den Projekt-Kuratoren erlauben, die versteckten Koordinaten für diese Beobachtung einzusehen.
         ancestor_disagreements_desc: "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")"
-        community_taxon_desc_html: |
+        community_taxon_desc_html: |2
           <p class="ui">
            Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
           Der Algorithmus begünstigt zudem abweichende Meinungen, weil wir festgestellt haben, dass diese oft korrekt sind.
@@ -5614,10 +5618,6 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
-        trust_help_notification2: |-
-          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
-          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
-          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.
@@ -6155,7 +6155,7 @@ de:
           <p>
           Hinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.
           </p>
-        licensing_desc_html: |
+        licensing_desc_html: |2
           Die Lizenzierung deines Inhalts verleiht das Recht, dass ihn andere ohne deine Zustimmung nutzen, solange die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. 
 
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 

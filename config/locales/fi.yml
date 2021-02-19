@@ -4990,19 +4990,13 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
-        trust_help_notification2: |-
-          Tästä ilmoitetaan kaikille luotetuille projektin jäsenille joka kerta kun
-          muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,
-          haluavatko he luottaa sinuun myös uusilla kriteereillä.
-          Piilotettujen koordinaattien käyttöoikeus peruutetaan viikon ajaksi
-          havaintokriteerien muuttamisen jälkeen, jotta jäsenillä on aikaa reagoida
         trusted_project_means: |
           Projektin merkitseminen luotetuksi tarkoittaa että projektin ylläpitäjät voivat mukauttaa projektin ominaisuuksia, esim. HTML:aa tai CSS:aa. Pääsy näihin mukautettuihin ominaisuuksiin tarkoittaa että projektin ylläpitjät voivat mahdollisesti lisätä haitallista Javascript-koodia, joten merkitse luotetuiksi vain sellaisia projekteja, joilla on vastuuntuntoisia ja teknisesti osaavia ylläpitäjiä.
         you_can_preview: |
           Voit esikatsella miltä projektisi näyttäisi koontiprojektina
           <a href="%{url}">klikkaamalla tästä</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Tietoja kutsuista</h3>
           <p class="ui">
             Ihmisten kutsuminen projektiisi on hieman eri kuin kutsuminen

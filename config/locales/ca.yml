@@ -4898,7 +4898,7 @@ ca:
           L'<a href="http://eol.org/" target="_blank">Enciclopèdia de la Vida (EOL)</a> és un repositori d'informació sobre la vida a la Terra. A EOL pots crear <a href="http://eol.org/info/252" target="_blank">col·leccions</a> d'espècies. Si voleu importar les espècies d'una col·lecció EOL enganxeu aquí l'URL de la col·lecció.
         guide_place_desc: |
           Associant la guia a un lloc permeteu a les persones trobar-la quan cerquen llocs, i mostra els límits del lloc al mapa de %{site_name} que els tenen si s'ha establert (per exemple a la vista "targeta", les pàgines del tàxon, etc.)
-        import_tags_from_csv_help_html: |
+        import_tags_from_csv_help_html: |2
           <p>
             Pugeu un fitxer CSV que contingui les etiquetes per als tàxons
             d'aquesta guia. L'arxiu CSV ha de tenir un aspecte semblant a
@@ -5626,9 +5626,6 @@ ca:
           Permetre als membres confiar les coordenades ocultes a aquest projecte
         trust_help_desc: |-
           Si voleu accedir a les coordenades ocultes d'observacions enfosquides, aquesta opció permet els usuaris units al projecte confiar aquestes coordenades ocultes als administradors del projecte. Els membres del projecte poden donar accés a les coordenades ocultes de totes les seves observacions que apareixen en el projecte, o únicament a aquelles que han estat enfosquides per tractar-se de tàxons vulnerables.
-        trust_help_notification2: |-
-          Tanmateix, això també notificarà a tots els membres de confiança del projecte cada vegada que modifiqueu les condicions de les observacions del projecte, de forma que puguin revaluar si volen seguir confiant en vostè malgrat els nous requisits.
-          El vostre accés a les coordenades amagades es revocarà al llarg de la setmana posterior a la del canvi de les condicions de les observacions perquè els membres tinguin temps per revisar-les
         trusted_project_means: |
           Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar atributs del projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte significa que els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos, per tant confieu únicament en projectes que tenen gestors responsables i tècnicament competents
         you_can_preview: |

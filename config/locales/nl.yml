@@ -5424,7 +5424,7 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help_html: |
+        quality_assessment_help_html: |2
           <p>
            De gegevenskwaliteit is een overzicht over de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
            </p>
@@ -5726,8 +5726,6 @@ nl:
           Als u toegang wilt tot de verborgen coördinaten van vervaagde waarnemingen stelt
           deze optie mensen die zich bij dit project hebben aangesloten in staat om
           de projectbeheerders toegang te verlenen tot de verborgen coördinaten. Projectleden kunnen toegang verlenen tot de verborgen coördinaten van elk van hun waarnemingen in dit project of alleen de waarnemingen die verborgen zijn vanwege bedreigde taxa.
-        trust_help_notification2: |-
-          Dit zal echter ook alle vertrouwde projectleden elke keer dat jij de projectwaarnemingeisen wijzigt op de hoogte brengen dus kunnen ze opnieuw beslissen of ze jou willen blijven vertrouwen, gezien de nieuwe vereisten. Jouw toegang tot verborgen coördinaten zal een week na het wijzigen van de waarnemingsvereisten worden ingetrokken zodat de leden tijd hebben om dit te doen
         trusted_project_means: |
           Een project vertrouwen betekent dat de projectbeheerders projectbestanden en eigen projectattributen (bijv. banner-HTML, CSS) kunnen toevoegen. Toegang tot aangepaste projectattributen betekent dat de projectbeheerders in principe kwaadwillige Javascript zouden kunnen toevoegen, dus vertrouw alleen projecten met beheerders die zowel verantwoordelijk als technisch bekwaam zijn.
         you_can_preview: |
@@ -6207,7 +6205,7 @@ nl:
           ingevoegd na de binomiaal.
     taxon_names:
       form:
-        new_name_guidelines_html: |
+        new_name_guidelines_html: |2
           <ul>
             <li><p>Probeer namen toe te voegen die elders in gebruik zijn. Maak geen nieuwe namen.</p> 
             </li>

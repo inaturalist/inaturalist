@@ -5696,9 +5696,6 @@ es:
         trust_help_desc: |-
           Si deseas acceder a las coordenadas ocultas de observaciones oscurecidas, esta opción permitirá a las personas que se han unido a este proyecto dar acceso a los administradores del proyecto a las coordenadas ocultas de sus observaciones. Los miembros del proyecto podrán conceder acceso a las coordenadas ocultas de cualquiera
           de sus observaciones que aparezcan en este proyecto, o solo a las de las observaciones que están oscurecidas por corresponder a taxones amenazados.
-        trust_help_notification2: |-
-          Sin embargo, esto también notificará a todos los miembros que confías en el proyecto cada vez que cambies los requisitos de observación del proyecto, para que puedan reevaluar si quieren seguir confiando en ti, atendiendo a los nuevos requisitos.
-          Tu acceso a las coordenadas ocultas se revocará durante una semana tras cambiar los requisitos de las observaciones, para que los miembros tengan tiempo de revisarlo.
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
@@ -5842,7 +5839,7 @@ es:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
            A diferencia de los proyectos, los inventarios rápidos (maratones naturalistas) exhiben estadísticas con las observaciones de <em>todos</em> dentro de un lugar y período de tiempo, y no sólo con las observaciones que las personas agregan intencionalmente para el proyecto. Esto es con el fin de quitar el obstáculo de unirse a un proyecto para contribuir a las estadísticas de estos eventos.
           </p>
