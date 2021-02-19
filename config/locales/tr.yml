@@ -987,16 +987,48 @@ tr:
   curating: Yönetme
   curation: Yönetme
   curator: Sorumlu
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist site küratörleri; iNaturalist'deki sınıflandırmaları yapan, kullanıcı içeriklerini düzenleyen ve denetleyen güvenilir gönüllülerdir. Site küratörleri, bir yandan sınıflandırmaları güncel tutarken diğer yandan iNaturalist'in uygun ve medeni şekilde işlemesinde etkin rol oynadıklarından dolayı iNaturalist'in vazgeçilmez parçasıdır. Aşağıda küratör olmanın ne demek olduğunu anlatan bir açıklama bulunuyor. Lütfen incele, eğer küratör olmak istersen <a href="/pages/curator+guide" target="_blank">Küratör Kılavuzu</a>nu baştan sona dikkatle gözden geçir ve sayfadaki başvuru formunu doldur.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Eğer iNaturalist sınıflandırmasında düzenleme yapmak istersen; lütfen yapmak istediğin sınıflandırma değişikliklerini, Küratör Kılavuzunda listelendiği şekilde uygun sınıflandırma otoriteli bağlantılarını da içeren bir kaç örnekle birlikte sun
   #Header
   curator_application_what_curators_can_do: Küratörler Ne Yapabilir
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: '<a href="/pages/curator+guide#policies" target="_blank">Küratör Kılavuzu Politikaları bölümü</a>ndeki politikalara istinaden iNaturalist''teki sınıflandırmaları düzenlemek. Bunun anlamı; iNaturalist''te sınıf ekleyebilir, ayırabilir, yer değiştirebilir, birleştirebilir, pasifleştirebilir ve silebilir demek. Ayrıca, hem koruma durumlarını ve sınıfların coğrafi gizliliklerini düzenleyebilirken, hem de herhangi bir kullanıcı tarafından eklenen genel isimleri düzenleyebilir veya yönetebilir.'
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Sınıf ve kullanıcı içeriğindeki <a href="/flags" target="_blank">işaretleri</a> çözümlemek.
   #Description of a curator's ability to edit wiki pages; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_wiki_html: |
     Wiki sayfaları oluşturabilir veya düzenleyebilir, örneğin <a href="/pages/help"
     target="_blank">iNaturalist SSS sayfası</a>
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Topluluk seçimli Bölgeleri düzenleyebilir ve 1 MB'tan büyük (ancak 5 MB'tan küçük) KML dosyaları yükleyebilir.
   #Header
   curator_application_what_curators_cannot_do: Küratörler Neleri Yapamaz
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Gözlemin Topluluk Sınıflandırmasını ve Veri Kalitesini herhangi bir kullanıcıdan çok daha fazla etkiler.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    <a href="/pages/curator+guide#completetaxa"
+    target="_blank">Eksiksiz sınıf</a>ların sınıflandırma değişikliklerini işleyebilir.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1541,6 +1573,7 @@ tr:
   fungi:
     one: mantar
     other: mantarlar
+  gbif: GBIF
   gbif_occurrences: GBIF Oluşumları
   generate_taxonomic_tags_for_flickr: Flickr fotoğraflarınız için sınıflandırma etiketleri oluşturun.
   generate_widget: Widget Oluştur
@@ -2135,13 +2168,13 @@ tr:
       #Short text representing %d years in the past
       yy: "%dyıl"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM YYY · LT z"
+    datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYY · LT Z"
+    datetime_with_offset: "D MMM YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -6050,33 +6083,16 @@ tr:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
         blocking_desc_html: |
           <p>
-          Birini engellemek onların sizle mesajlaşmalarını, gözlemleriniz hakkında yorum 
-          yapmalarını, gözlemlerinizi tanımlamalarını ve %{site_name} adresinde sizinle 
-          iletişim kurmalarını önler. Ayrıca, onların gözlemlerini arama sonuçlarınızdan kaldırır 
-          ve gözlemlerinizi onların arama sonuçlarından kaldırır. Ancak, bu durum seni onlara 
-          görünmez yapmaz. Hala gözlemlerini bulabilir ve profilini görebilirler, sadece seninle 
-          etkileşime giremezler.
+          Birilerini engellemek onların seninle mesajlaşmalarını, gözlemlerin hakkında yorum yapmalarını, gözlemlerini tanımlamalarını ve %{site_name} adresinden seninle iletişim kurmalarını önler. Ayrıca, onların gözlemlerini senin arama sonuçlarından, senin gözlemlerini de onların arama sonuçlarından kaldırır. Ancak, bu durum seni onlara görünmez yapmaz. Hala gözlemlerini bulabilir ve profilini görebilirler, sadece seninle etkileşime giremezler.
           </p>
           <p>
-          Uyuşmazlıkların uygar bir şekilde çözülmesi için elinden geleni yapmanıza rağmen, engelleme,
-          birisiyle anlaşamayacağınız ve sizi yalnız bırakmayacakları durumlar içindir. İnsanlardan 
-          gizlenmenin, görüşlerine güvenmediğiniz kişilerin tanımlamalarını engellemenin ya da 
-          topluluk kimliğinden vazgeçmenin bir yolu değildir (bunun için başka bir ayar vardır). 
-          Bu nedenle, engelleme her iki yönde de işe yarar: birini engellerseniz, sizinle etkileşime 
-          giremezler, ancak onlarla da etkileşim kuramazsınız. Birinin gözlemlerinizi tanımlamasını 
-          önlemek için kötüye kullanırsanız, onların gözlemlerini tanımlamanızı da önlersiniz.
+          Engelleme; uyuşmazlıkların medeni bir şekilde çözülmesi için elinden geleni yapmana rağmen, anlaşamadığın ve seni rahat bırakmayacakları durumlar içindir. İnsanlardan gizlenmenin, görüşlerine güvenmediğin kişilerin tanımlamalarını engellemenin veya topluluk kimliğinden vazgeçmenin bir yolu değildir (bunun için başka bir ayar var). Engelleme çift yönlü çalışır: engellediğin kişiler seninle etkileşime giremezken, sen de onlarla etkileşime giremezsin. Birilerinin senin gözlemlerini tanımlamasına engel olmak için kötüye kullanırsan, aynı zamanda kendini de onların gözlemlerini tanımlamaya kapatmış olursun.
           </p>
           <p>
-          Yalnızca üç kişiyi engelleyebilirsiniz. Bunun, engellemenin kötüye kullanımını engellerken, 
-          engellemeye ihtiyacı olan kişileri barındıran makul bir sayı olduğunu düşünüyoruz. Daha fazla
-          kişiyi engellemeniz gerektiğini hissediyorsanız, lütfen <a href="mailto:%{help_email}">bizimle 
-          iletişime geçin</a>.
+          Toplamda yalnızca üç kişiyi engelleyebilirsin. Bunun, hem kötüye kullanmanın önüne geçeceğini hem de engelleme ihtiyacı olan kişiler için yetecek bir sayı olduğunu düşünüyoruz. Eğer daha fazla kişiyi engellemen gerektiğini hissediyorsan, lütfen <a href="mailto:%{help_email}">bizimle iletişime geç</a>.
           </p>
           <p>
-          Birisi sizi taciz ediyor veya %{site_name} üzerinden izliyorsa, 
-          <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu, Hizmet Şartlarımızın 
-          ihlal edildiğini veya sitemiz için uygunsuz olduğunu düşündüğümüz 
-          diğer davranışları temsil ediyorsa, inceleriz.
+          Birisi seni taciz ediyor veya %{site_name} üzerinden izliyorsa, <a href="mailto:%{help_email}">lütfen bize bildir</a>. Bu davranış, Hizmet Şartlarımızın ihlal edildiğini veya sitemiz için uygunsuz olduğunu düşündüğümüz diğer davranışları temsil ediyorsa, incelemeye alırız.
           </p>
         common_names_desc: |
           Yaygın isimleri göster. Yalnızca bilimsel adları görüntülemek istiyorsanız devre dışı bırakın. 
@@ -6130,13 +6146,10 @@ tr:
           iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
         muting_desc_html: |
           <p>
-          Birini susturmak, gözlemleriniz hakkında yorum yapmak, size mesaj atmak, 
-          sizden bahsetmek vb. dahil olmak üzere yaptıkları şeyler hakkında bildirim almanızı önler.
-          Susturma, herhangi bir şey yapmasını engellemeden birini görmezden gelmenize yardımcı olur.
+          Birini sessize almak; gözlemlerine yorum yapması, sana mesaj atması, senden bahsetmesi gibi benzer durumlar hakkında bildirim almanı önler. Sessize almak, kişinin herhangi bir şey yapmasını engellemeden onu görmezden gelmene yardımcı olur.
           </p>
           <p>
-          İstediğiniz kadar kişiyi susturabilirsiniz, ancak Topluluk Tanımlamasını gözlemlerinizde 
-          değiştiren tanımlamalar gibi, potansiyel olarak önemli bildirimlerden mahrum kalacağınızı unutmayın.
+          İstediğin kadar kişiyi sessize alabilirsin, ancak gözlemlerinde Topluluk Tanımlamasını değiştiren tanımlamalar gibi, potansiyel olarak önemli bildirimlerden de mahrum kalacağını unutmamalısın.
           </p>
         name_place_help_html: |
           Bu yerde kullanılan yaygın adlara öncelik ver.
