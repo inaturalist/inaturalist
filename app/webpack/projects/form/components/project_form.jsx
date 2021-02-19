@@ -86,15 +86,17 @@ class ProjectForm extends React.Component {
               </div>
               { project.prefers_user_trust && project.observation_requirements_updated_at && (
                 <div className={coordinatesAccessible ? "alert alert-success" : "alert alert-info"}>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: I18n.t( "bold_label_colon_value_html", {
-                        label: I18n.t( "observation_requirements_updated_at" ),
-                        value: moment( project.observation_requirements_updated_at )
-                          .format( I18n.t( "momentjs.datetime_with_zone" ) )
-                      } )
-                    }}
-                  />
+                  { moment( project.observation_requirements_updated_at ) > moment( project.crteated_at ) && (
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "bold_label_colon_value_html", {
+                          label: I18n.t( "observation_requirements_updated_at" ),
+                          value: moment( project.observation_requirements_updated_at )
+                            .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                        } )
+                      }}
+                    />
+                  ) }
                   { coordinatesAccessible
                     ? (
                       <p>

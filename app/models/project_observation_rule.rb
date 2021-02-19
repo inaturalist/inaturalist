@@ -75,7 +75,11 @@ class ProjectObservationRule < Rule
   end
 
   def notify_trusting_members
-    ruler.notify_trusting_members_about_changes_later
+    if ruler.prefers_user_trust?
+      ruler.set_observation_requirements_updated_at( force: true )
+      ruler.save
+      ruler.notify_trusting_members_about_changes_later
+    end
     true
   end
 

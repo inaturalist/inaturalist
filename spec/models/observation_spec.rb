@@ -2070,7 +2070,12 @@ describe Observation do
       let(:project) do
         proj = Project.make(:collection)
         proj.update_attributes( prefers_user_trust: true )
+        pu = ProjectUser.make!(
+          project: proj,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
         proj.project_observation_rules << ProjectObservationRule.new( operator: "observed_in_place?", operand: place )
+        proj.reload
         proj
       end
       let(:curator) do
