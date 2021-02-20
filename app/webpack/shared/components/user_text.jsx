@@ -101,6 +101,7 @@ class UserText extends React.Component {
       truncate,
       config,
       moreToggle,
+      stripTags,
       stripWhitespace,
       className,
       markdown
@@ -129,6 +130,9 @@ class UserText extends React.Component {
       html = text.trim( ).replace( /\n/gm, "<br />" );
     }
     html = safeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    if ( stripTags ) {
+      html = sanitizeHtml( html, { allowedTags: [], allowedAttributes: {} } );
+    }
     let truncatedHtml;
     if ( truncate && truncate > 0 && !more ) {
       truncatedHtml = htmlTruncate( html, truncate );
@@ -148,23 +152,26 @@ class UserText extends React.Component {
         </button>
       );
     }
-    const sanitizedHtml = sanitizeHtml(
-      truncatedHtml || html,
-      {
-        allowedTags: ALLOWED_TAGS,
-        allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
-        exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
-      }
-    );
-    // Note: markdown-it has a linkifier option too, but it does not allow you
-    // to specify attributes link nofollow, so we're using linkifyjs, but we are
-    // ignoring URLs in the existing tags that might have them like a and code
-    const linkifiedHtml = linkifyHtml( sanitizedHtml, {
-      className: null,
-      attributes: { rel: "nofollow" },
-      ignoreTags: ["a", "code", "pre"]
-    } );
-    let htmlToDisplay = linkifiedHtml;
+    let htmlToDisplay = truncatedHtml || html;
+    if ( !stripTags ) {
+      const sanitizedHtml = sanitizeHtml(
+        truncatedHtml || html,
+        {
+          allowedTags: ALLOWED_TAGS,
+          allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
+          exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+        }
+      );
+      // Note: markdown-it has a linkifier option too, but it does not allow you
+      // to specify attributes link nofollow, so we're using linkifyjs, but we are
+      // ignoring URLs in the existing tags that might have them like a and code
+      const linkifiedHtml = linkifyHtml( sanitizedHtml, {
+        className: null,
+        attributes: { rel: "nofollow" },
+        ignoreTags: ["a", "code", "pre"]
+      } );
+      htmlToDisplay = linkifiedHtml;
+    }
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
     }
@@ -187,6 +194,7 @@ UserText.propTypes = {
   config: PropTypes.object,
   className: PropTypes.string,
   moreToggle: PropTypes.bool,
+  stripTags: PropTypes.bool,
   stripWhitespace: PropTypes.bool,
   markdown: PropTypes.bool
 };
