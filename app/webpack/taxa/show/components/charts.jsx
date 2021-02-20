@@ -74,18 +74,38 @@ class Charts extends React.Component {
     const compactNotations = Object.keys( I18n.t( "compact_number_formatting", { locale: "en" } ) );
     if ( number > 999 ) {
       let abbreviatedNumber;
+      let roundUp = false;
 
-      if ( number < 1e6 ) {
-        abbreviatedNumber = number / 1e3;
-      } else if ( number < 1e9 ) {
-        abbreviatedNumber = number / 1e6;
-      } else if ( number < 1e12 ) {
-        abbreviatedNumber = number / 1e9;
+      const lang = I18n.locale.split( "-" )[0];
+
+      // there are probably a number of languages that will need special treatment
+      // in how many digits to display, but starting with Chinese/Japanese here
+      // since the symbols won't make sense without this pattern
+      if ( lang === "zh" || lang === "ja" ) {
+        if ( number < 1e9 ) {
+          abbreviatedNumber = number / 1e4;
+        } else if ( number < 1e13 ) {
+          abbreviatedNumber = number / 1e9;
+        } else {
+          abbreviatedNumber = number / 1e13;
+        }
+        roundUp = Number( abbreviatedNumber.toFixed( 0 ) ) === 10000 && abbreviatedNumber < 1e13;
       } else {
-        abbreviatedNumber = number / 1e12;
+        if ( number < 1e6 ) {
+          abbreviatedNumber = number / 1e3;
+        } else if ( number < 1e9 ) {
+          abbreviatedNumber = number / 1e6;
+        } else if ( number < 1e12 ) {
+          abbreviatedNumber = number / 1e9;
+        } else {
+          abbreviatedNumber = number / 1e12;
+        }
+        roundUp = Number( abbreviatedNumber.toFixed( 0 ) ) === 1000 && abbreviatedNumber < 1e12;
       }
+
       const { length } = number.toString( );
-      const roundUp = Number( abbreviatedNumber.toFixed( 0 ) ) === 1000 && abbreviatedNumber < 1e12;
+
+      // rounding from 1000K to 1M, 1000M to 1B, and so on
       const index = roundUp ? length - 3 : length - 4;
       const shortNotationIndex = Math.min( index, compactNotations.length - 1 );
 
