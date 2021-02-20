@@ -81,7 +81,7 @@
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservers ) }}"
             .stat-title.ng-cloak
-              {{ shared.pluralWithoutCount( "x_observers_html", totalIdentifiers ) }}
+              {{ shared.pluralWithoutCount( "x_observers_html", totalObservers ) }}
               %i.fa.fa-arrow-right{ "ng-hide": "viewing('observers')" }
   #results
     .container.container-fixed.ng-cloak{ "ng-show": "viewing('observations')" }
