@@ -71,8 +71,27 @@ class Charts extends React.Component {
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
-    if ( number > 9999 ) {
-      return number.toExponential( precision );
+    const compactNotations = Object.keys( I18n.t( "compact_number_formatting", { locale: "en" } ) );
+    if ( number > 999 ) {
+      let abbreviatedNumber;
+
+      if ( number < 1e6 ) {
+        abbreviatedNumber = number / 1e3;
+      } else if ( number < 1e9 ) {
+        abbreviatedNumber = number / 1e6;
+      } else if ( number < 1e12 ) {
+        abbreviatedNumber = number / 1e9;
+      } else {
+        abbreviatedNumber = number / 1e12;
+      }
+      const { length } = number.toString( );
+      const shortNotationIndex = Math.min( length - 4, compactNotations.length - 1 );
+
+      return I18n.t(
+        `compact_number_formatting.${compactNotations[shortNotationIndex]}`, {
+          count: I18n.toNumber( abbreviatedNumber, { precision } )
+        }
+      );
     }
     return I18n.toNumber( number, { precision } );
   }

@@ -974,6 +974,58 @@ en:
   community_id_is_precise: Community Taxon is precise
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported Taxon?
+  compact_number_formatting:
+    x_thousand:
+      one: "%{count}K"
+      other: "%{count}K"
+    # Short notation representing a four-digit number, i.e. 1,000
+    x_ten_thousand:
+      one: "%{count}K"
+      other: "%{count}K"
+    # Short notation representing a five-digit number, i.e. 10,000
+    x_hundred_thousand:
+      one: "%{count}K"
+      other: "%{count}K"
+    # Short notation representing a six-digit number, i.e. 100,000
+    x_million:
+      one: "%{count}M"
+      other: "%{count}M"
+    # Short notation representing a seven-digit number, i.e. 1,000,000
+    x_ten_million:
+      one: "%{count}M"
+      other: "%{count}M"
+    # Short notation representing an eight-digit number, i.e. 10,000,000
+    x_hundred_million:
+      one: "%{count}M"
+      other: "%{count}M"
+    # Short notation representing a nine-digit number, i.e. 10,000,000
+    x_billion:
+      one: "%{count}B"
+      other: "%{count}B"
+    # Short notation representing a ten-digit number, i.e. 100,000,000
+    x_ten_billion:
+      one: "%{count}B"
+      other: "%{count}B"
+    # Short notation representing an eleven-digit number, i.e. 1,000,000,000
+    x_hundred_billion:
+      one: "%{count}B"
+      other: "%{count}B"
+    # Short notation representing a twelve-digit number, i.e. 10,000,000,000
+    x_trillion:
+      one: "%{count}T"
+      other: "%{count}T"
+    # Short notation representing a thirteen-digit number, i.e. 100,000,000,000
+    x_ten_trillion:
+      one: "%{count}T"
+      other: "%{count}T"
+    # Short notation representing a fourteen-digit number, i.e. 1,000,000,000,000
+    x_hundred_trillion:
+      one: "%{count}T"
+      other: "%{count}T"
+    # Short notation representing a fifteen-digit number, i.e. 10,000,000,000,000
+  # number formatting repurposed from unicode CLDR
+  # https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/en/numbers.json
+  # http://cldr.unicode.org/translation/numbers-currency/number-patterns
   compare: Compare
   compare_with: Compare with
   comparing: comparing
