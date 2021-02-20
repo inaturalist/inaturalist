@@ -1637,7 +1637,6 @@ en:
   everywhere: everywhere
   exact: Exact
   exact_date: Exact Date
-  exact_location: Exact_location
   exact_rank: Exact Rank
   except: except
   exclude_places: Exclude Places
@@ -2903,6 +2902,11 @@ en:
   observed_on: Observed on
   observer: Observer
   observers: Observers
+  observer_prefers_no_project_addition: |
+    Observer does not allow other people to add their observations to projects.
+  observer_prefers_addition_to_projects_joined: |
+    Observer only allows other people to add their observations to projects they
+    have joined.
   observer_short: Observer
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
