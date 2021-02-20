@@ -173,6 +173,14 @@ class TaxonAutocomplete extends React.Component {
         ul.append( `<li class="category non-option">${I18n.t( "loading_suggestions" )}</li>` );
         return;
       }
+      if ( items.length === 1 && items[0].label === "noResults" ) {
+        ul.append(
+          $( "<li />" ).addClass( "category non-option" ).text(
+            I18n.t( "not_confident" )
+          )
+        );
+        return;
+      }
       const isVisionResults = items[0] && items[0].isVisionResult;
       let commonAncestorCategoryShown = false;
       let suggestionsCategoryShown = false;
@@ -322,7 +330,11 @@ class TaxonAutocomplete extends React.Component {
       taxon.isCommonAncestor = true;
       visionTaxa.unshift( taxon );
     }
-    callback( visionTaxa );
+    if ( viewerIsAdmin && visionTaxa.length === 0 ) {
+      callback( ["noResults"] );
+    } else {
+      callback( visionTaxa );
+    }
   }
 
   inputElement( ) {
