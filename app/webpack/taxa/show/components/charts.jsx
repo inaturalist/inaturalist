@@ -85,11 +85,13 @@ class Charts extends React.Component {
         abbreviatedNumber = number / 1e12;
       }
       const { length } = number.toString( );
-      const shortNotationIndex = Math.min( length - 4, compactNotations.length - 1 );
+      const roundUp = Number( abbreviatedNumber.toFixed( 0 ) ) === 1000 && abbreviatedNumber < 1e12;
+      const index = roundUp ? length - 3 : length - 4;
+      const shortNotationIndex = Math.min( index, compactNotations.length - 1 );
 
       return I18n.t(
         `compact_number_formatting.${compactNotations[shortNotationIndex]}`, {
-          count: I18n.toNumber( abbreviatedNumber, { precision } )
+          count: roundUp ? 1 : abbreviatedNumber.toFixed( 0 )
         }
       );
     }
