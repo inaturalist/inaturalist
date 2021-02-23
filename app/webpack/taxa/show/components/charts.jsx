@@ -71,8 +71,8 @@ class Charts extends React.Component {
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
-    const compactNotations = Object.keys( I18n.t( "compact_number_formatting", { locale: "en" } ) );
     if ( number > 999 ) {
+      const compactNotations = Object.keys( I18n.t( "compact_number_formatting", { locale: "en" } ) );
       let shortNumber;
       let roundUp = false;
 
@@ -147,6 +147,8 @@ class Charts extends React.Component {
         return n;
       };
 
+      // determine whether number needs to round up for proper formatting
+      // (i.e. from 1000K to 1M, 1000M to 1B)
       const round = ( digits, length ) => shortNumber.toFixed( 0 ) === digits
         && shortNumber < length;
 
@@ -166,12 +168,11 @@ class Charts extends React.Component {
 
       const { length } = number.toString( );
 
-      // round from 1000K to 1M, 1000M to 1B, and so on
       const index = roundUp ? length - 3 : length - 4;
-      const shortNotationIndex = Math.min( index, compactNotations.length - 1 );
+      const notationIndex = Math.min( index, compactNotations.length - 1 );
 
       return I18n.t(
-        `compact_number_formatting.${compactNotations[shortNotationIndex]}`, {
+        `compact_number_formatting.${compactNotations[notationIndex]}`, {
           count: roundUp ? 1 : I18n.toNumber( shortNumber, { precision: 0 } )
         }
       );
