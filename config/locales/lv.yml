@@ -267,7 +267,7 @@ lv:
   add_conservation_status: Norādīt aizsardzības statusu
   add_countries: Pievienot valstis
   add_custom_project_fields: Pievienot projektam pielāgojamus laukus
-  add_edit_flags: Ziņot vai labot ziņojumus
+  add_edit_flags: Pievienot vai labot karodziņu statusu
   add_editor: Pievienot redaktoru
   add_description: "Pievienot %{description_name}"
   add_from_your_observations: Pievienot no saviem novērojumiem
@@ -370,7 +370,7 @@ lv:
   aka: jeb
   all: Viss
   all_comments: Visi komentāri
-  all_flags_must_be_resolved: Visi ziņojumi ir jāatrisina
+  all_flags_must_be_resolved: Visiem ziņojumiem ar karodziņiem jāatrod risinājums
   all_life: Visa dzīve
   all_names: Visi nosaukumi
   all_observations: Visi novērojumi
@@ -551,7 +551,7 @@ lv:
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Vai tiešām vēlies pārlādēt lapu? Iespējams, ka veiktās izmaiņas netiks saglabātas.
   are_you_sure_unresolve_flag?: |
-    Vai tiešām vēlies atsaukt šo ziņojumu? Veicot šo darbību, tiks izdzēsts problēmas apraksts un informācija par lietotāju, kas atrisināja ziņojumā aprakstīto problēmu.
+    Vai tiešām vēlies noņemt karodziņu? Veicot šo darbību, izdzēsīsies problēmas apraksts un informācija par lietotāju, kas atrisināja ziņojumā aprakstīto problēmu.
   are_you_sure_want_delete_taxon: "Vai tiešām vēlies dzēst šo taksonu?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Vai tiešām vēlies dzēst šo taksonu kopā ar tajā iekļautajiem augstāku pakāpju taksoniem?
@@ -596,8 +596,8 @@ lv:
   are_you_sure_you_want_to_remove_from_project: Vai tiešām vēlies izraidīt lietotāju %{user} no projekta?
   are_you_sure_you_want_to_remove_manager: Vai tiešām vēlies atņemt lietotājam %{user} vadītāja lomu?
   are_you_sure_you_want_to_remove_spammer: |
-    Vai uzskati, ka šis lietotājs ir uzticams?
-    Visas problēmas ziņojumos par surogātpastu lietotāja publicētajā saturā tiks atrisinātas.
+    Vai šis lietotājs šķiet uzticams?
+    Visas problēmas ziņojumos ar karodziņiem par surogātpastu lietotāja publicētajā saturā tiks atrisinātas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Vai tiešām vēlies dzēst %{x} taksonus?"
   are_you_sure_you_want_to_remove_this_invitation: Vai tiešām vēlies dzēst šo ielūgumu?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
@@ -641,7 +641,7 @@ lv:
   back_to_calendar: "Atpakaļ uz %{user} kalendāru"
   back_to_editing_observation: Atpakaļ pie novērojuma labošanas
   back_to_friends: Atpakaļ uz draugu sadaļu
-  back_to_flags_html: "&laquo; Atpakaļ pie ziņojumiem"
+  back_to_flags_html: "&laquo; Atpakaļ pie karodziņiem"
   back_to_lists: "Atpakaļ uz %{name} sarakstiem"
   back_to_observation: Atpakaļ pie novērojuma
   back_to_observation_fields: Atpakaļ pie novērojuma laukiem
@@ -712,7 +712,7 @@ lv:
   calendars_only_show_x_observations_at_time: Kalendāri vienlaicīgi uzrāda tikai %{x} novērojumus
   cancel: Atcelt
   cant_edit_or_delete_hidden_content: Tev nav atļaujas labot vai dzēst saturu, ko noslēpuši lapas pārziņi
-  cant_flag_an_object_that_doesnt_exist: Nav iespējams ziņot par neeksistējošu objektu
+  cant_flag_an_object_that_doesnt_exist: Neeksistējošam objektam nav iespējams pievienot karodziņu
   cant_merge_a_taxon_with_itself: Nav iespējams apvienot taksonu ar to pašu taksonu.
   captive: Nebrīvē
   captive_cultivated: Nebrīvē / kultivēts
