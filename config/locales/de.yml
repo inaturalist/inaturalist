@@ -1352,7 +1352,7 @@ de:
   #short as possible
   donate: SPENDEN
   done: Fertig
-  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <strong>hier Registrieren</strong>
+  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
   dont_use_double_quotes: Doppelten Anführungszeichen sonst nirgends benutzen
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1433,7 +1433,6 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
-  either: Oder
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1483,7 +1482,6 @@ de:
   everywhere: überall
   exact: Genau
   exact_date: Genaues Datum
-  exact_location: Genauer_Standort
   exact_rank: Genauer Rang
   except: außer
   exclude_places: Gebiete ausschließen
@@ -2532,6 +2530,7 @@ de:
   none_found: nichts gefunden
   normal: normal
   not_completed: Nicht komplett
+  not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
   not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
   not_evaluated: nicht beurteilt
@@ -2675,6 +2674,11 @@ de:
   observed_on: Gesehen am
   observer: Beobachter
   observers: Beobachter
+  observer_prefers_no_project_addition: |
+    Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
+  observer_prefers_addition_to_projects_joined: |
+    Beobachter erlaubt nur anderen Personen ihre Beobachtungen zu Projekten, denen sie
+    beigetreten sind, hinzuzufügen.
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
