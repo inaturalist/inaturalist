@@ -42,7 +42,7 @@ const OverviewRecentObservations = ( {
               <i className="fa fa-arrow-circle-right" />
             </button>
             <a
-              href={`/observations?project_id=${project.id}&place_id=any&verifiable=any`}
+              href={`/observations?project_id=${project.slug}&place_id=any&verifiable=any`}
               className="btn btn-primary btn-inat btn-green pull-right"
             >
               { I18n.t( "view_all" ) }
