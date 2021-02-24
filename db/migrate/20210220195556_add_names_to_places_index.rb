@@ -1,28 +1,5 @@
 class AddNamesToPlacesIndex < ActiveRecord::Migration
   def up
-    # options = {
-    #   index: Place.index_name,
-    #   # type: Place.document_type,
-    #   body: { }
-    # }
-    # options[:body][Place.document_type] = {
-    #   properties: {
-    #     names: {
-    #       type: "nested",
-    #       properties: {
-    #         exact: { type: "keyword" },
-    #         exact_ci: { type: "text", analyzer: "keyword_analyzer" },
-    #         locale: { type: "keyword" },
-    #         name: { type: "text", analyzer: "ascii_snowball_analyzer" },
-    #         name_autocomplete: { type: "text", analyzer: "autocomplete_analyzer", search_analyzer: "standard_analyzer" },
-    #         name_autocomplete_ja: { type: "text", analyzer: "autocomplete_analyzer_ja" },
-    #         name_ja: { type: "text", analyzer: "kuromoji" }
-    #       }
-    #     }
-    #   }
-    # }
-    # Place.__elasticsearch__.client.indices.put_mapping( options )
-
     Place.__elasticsearch__.client.indices.put_mapping(
       index: Place.index_name,
       body: {
@@ -45,6 +22,6 @@ class AddNamesToPlacesIndex < ActiveRecord::Migration
   end
 
   def down
-    # irreversible
+    say "This migration is irreversible"
   end
 end
