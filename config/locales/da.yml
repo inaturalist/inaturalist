@@ -731,6 +731,7 @@ da:
   card: Kort
   casual: uformel
   casual_: Almindelig
+  casual_tooltip_html: 'Observationstypen "Uformel" mangler medier, placering eller dato, eller opfylder af andre årsager ikke kriterierne for kvalitetsklasserne "Forskning" eller "Behøver ID". <a href="https://www.inaturalist.org/pages/help#quality"> Få mere at vide om kvalitetsklasser</a>'
   categories: kategorier
   cc_0_description: "Denne licens frigiver dit arbejde til det offentlige domæne, så andre kan kopiere, ændre, distribuere og bruge dit arbejde, også til kommercielle formål, uden at anmode om tilladelse eller uden at du bliver krediteret. Dette er den mest åbne af licenser, der tilbydes. Anbefales til maksimal spredning og brug af licenserede materialer."
   cc_0_name: Ingen ophavsret (CCO)
@@ -1459,7 +1460,6 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
-  either: Enten
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
@@ -1509,7 +1509,6 @@ da:
   everywhere: overalt
   exact: Præcis
   exact_date: Eksakt dato
-  exact_location: Eksakt_sted
   exact_rank: Eksakt række
   except: bort set fra
   exclude_places: Ekskludér steder
@@ -2421,6 +2420,7 @@ da:
   needs_id: behøver ID
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
+  needs_id_tooltip_html: 'Observationstypen "Behøver ID" har medier, placering og dato, men mangler fortsat fællesskabskonsensus ift. en præcis identifikation. <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   needs_to_be_identified: Behøver en identifikation
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -3689,6 +3689,7 @@ da:
   research_: Forskning
   research_grade: forskningskvalitet
   research_grade_short_html: "F<span class='full'>orsknings</span>k<span class='full'>valitet</span>"
+  research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
   research_grade_qualification: Kvalifikation til Forskningskvalitet
   reset_filters_short: Nulstil
@@ -5916,6 +5917,9 @@ da:
           vil denne indstilling tillade personer, som har tilmeldt sig dette projekt, mulighed for at betro projektadministratorer adgang til disse skjulte koordinater. Projektmedlemmer vil kunne tildele adgang til de skjulte koordinater for enhver
           af deres observationer, som vises i dette projekt, eller kun de
           observationer, som er slørede grundet truede taxa.
+        trust_help_notification2: |-
+          Dette vil dog også advisere alle betroende projektmedlemmer, hver gang
+          du ændrer projektetobservationskravene, så de kan revurdere, hvorvidt din status fortsat skal være betroet i betragtning af de nye krav. For at give medlemmerne tid til at gøre dette, inddrages din adgang til skjulte koordinater i én uge fra observationskravenes ændringsdato.
         trusted_project_means: |
           At stole på et projekt betyder, at projektledere kan tilføje projekt
           aktiver og brugerdefinerede projektattributter (f.eks. banner HTML, CSS). Adgang til brugerdefinerede projektattributter betyder, at projektledere

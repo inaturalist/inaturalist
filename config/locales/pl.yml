@@ -208,6 +208,9 @@ pl:
     Gdy zapiszesz ten takson, będziesz mógł dodawać tutaj inne nazwy (nazwy zwyczajowe, przestarzałe nazwy naukowe, itp.).
   a_flag_for_x: "zgłoszenie dla %{x}"
   a_member_of_taxon_html: "należy do %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A do Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -1268,7 +1271,6 @@ pl:
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
   editors: Edytorzy
-  either: Obojętnie
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
@@ -1310,7 +1312,6 @@ pl:
   everywhere: wszędzie
   exact: Dokładna
   exact_date: Dokładna data
-  exact_location: Dokładna lokalizacja
   exact_rank: Dokładna kategoria
   except: poza
   exclude_projects: Wyklucz projekty

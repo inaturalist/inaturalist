@@ -304,7 +304,7 @@ de:
   add_life_stage_teneral_annotation: 'Vermerk "Lebensstadium: Frisch geschlüpft" hinzufügen'
   add_life_stage_subimago_annotation: 'Vermerk "Lebensstadium: Subimago" hinzufügen'
   add_life_stage_pupa_annotation: 'Vermerk "Lebensstadium: Puppe" hinzufügen'
-  add_life_stage_nymph_annotation: 'Vermerk "Lebensstadium: Nymphe" hinzufügen'
+  add_life_stage_nymph_annotation: 'Annotation "Entwicklungsstadium: Nymphe" hinzufügen'
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
   add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
@@ -727,6 +727,7 @@ de:
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
+  casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   categories: Kategorien
   cc_0_description: "Diese Lizenz gibt dein Werk frei, so dass andere dein Werk kopieren, modifizieren, verbreiten und \"ausführen\" können, auch für kommerzielle Zwecke, alles dies ohne dich um Erlaubnis oder Anerkennung zu bitten. Dies ist die entgegenkommendste der angebotenen Lizenzen. Empfohlen für die maximale Verbreitung und Nutzung von lizenziertem Material."
   cc_0_name: Kein Copyright (CC0)
@@ -1351,7 +1352,7 @@ de:
   #short as possible
   donate: SPENDEN
   done: Fertig
-  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <strong>hier Registrieren</strong>
+  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
   dont_use_double_quotes: Doppelten Anführungszeichen sonst nirgends benutzen
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1432,7 +1433,6 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
-  either: Oder
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1482,7 +1482,6 @@ de:
   everywhere: überall
   exact: Genau
   exact_date: Genaues Datum
-  exact_location: Genauer_Standort
   exact_rank: Genauer Rang
   except: außer
   exclude_places: Gebiete ausschließen
@@ -1772,7 +1771,7 @@ de:
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber ich kann bestätigen, dass es sich um %{taxon} handelt
+  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -2383,6 +2382,7 @@ de:
   needs_id: benötigt ID
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
+  needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum, erfordern aber noch ein gemeinschaftliche Zustimmung zu einer genaue Bestimmung. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   needs_to_be_identified: Muss bestimmt werden
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2446,7 +2446,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja, aber der Nachweis lässt die Bestimmung %{taxon} zu"
+  no_but_it_is_a_member_of_taxon: "Ja; aber der Nachweis lässt als Bestimmung '%{taxon}' zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -2530,6 +2530,7 @@ de:
   none_found: nichts gefunden
   normal: normal
   not_completed: Nicht komplett
+  not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
   not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
   not_evaluated: nicht beurteilt
@@ -2673,6 +2674,11 @@ de:
   observed_on: Gesehen am
   observer: Beobachter
   observers: Beobachter
+  observer_prefers_no_project_addition: |
+    Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
+  observer_prefers_addition_to_projects_joined: |
+    Beobachter erlaubt nur anderen Personen ihre Beobachtungen zu Projekten, denen sie
+    beigetreten sind, hinzuzufügen.
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
@@ -3621,6 +3627,7 @@ de:
   research_: Forschung
   research_grade: Forschungsqualität
   research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
+  research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
   reset_filters_short: Zurücksetzen

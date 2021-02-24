@@ -726,6 +726,7 @@ it:
   card: Carta
   casual: casuale
   casual_: Casuale
+  casual_tooltip_html: 'Le osservazioni di livello "Casuale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -1435,7 +1436,6 @@ it:
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
   editors: Editori
-  either: Qualsiasi
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
@@ -1485,7 +1485,6 @@ it:
   everywhere: ovunque
   exact: Esatto
   exact_date: Data esatta
-  exact_location: Località_esatta
   exact_rank: Rank esatto
   except: eccetto
   exclude_places: Escludi Luoghi
@@ -1847,6 +1846,7 @@ it:
   inbox: Posta in arrivo
   include_places: Includi Luoghi
   include_projects: Includi Progetti
+  include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
   include_taxa: Includi Taxa
   include_users: Includi Utenti
   including: incluso
@@ -2388,6 +2388,7 @@ it:
   needs_id: serve ID
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
+  needs_id_tooltip_html: 'Le osservazioni di livello "Serve ID" hanno contenuto multimediale, una posizione e una data, ma richiedono ancora un consenso della comunità su una precisa identificazione. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2539,6 +2540,7 @@ it:
   none_found: Non trovato
   normal: normale
   not_completed: Non Completato
+  not_confident_top_suggestions: Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.
   not_covered_by_any_taxon_frameworks: Non coperto da nessun quadro del taxon
   not_evaluated: Non Valutata
   not_findig_what_you_want: Non trovi quello che vuoi?
@@ -2765,6 +2767,7 @@ it:
   only_staff_can_edit_standard_places: Solo lo staff del sito può editare i luoghi nella gerarchia standard
   only_the_owner_of_this_list_can_do_that: Solo il proprietario di questa lista può fare questo. Sii gentile.
   only_the_project_admin_can_delete_this_project: Solo l'amministratore del progetto può cancellare questo progetto.
+  only_view_nearby_suggestions: Visualizza solo i suggerimenti nelle vicinanze
   only_you: Solo tu
   open: pubblica
   open_: Aperta
@@ -3624,6 +3627,7 @@ it:
   research_: Ricerca
   research_grade: Livello ricerca
   research_grade_short_html: "L<span class='full'>ivello</span>R<span class='full'>icerca </span>"
+  research_grade_tooltip_html: 'Le osservazioni di "Livello Ricerca" hanno contenuto multimediale, una posizione, una data, e un consenso della comunità su una precisa identificazione (di solito a livello di specie). <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   research_grade_observations_have: 'le osservazioni ad un "Livello ricerca" hanno foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere la valutazione della qualità dei dati'
   research_grade_qualification: Qualifica di Livello ricerca
   reset_filters_short: Azzera

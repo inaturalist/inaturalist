@@ -865,6 +865,7 @@ cs:
   card: Karta
   casual: neformální
   casual_: neformální
+  casual_tooltip_html: '„Neformální“ pozorování nemají média, místo nebo datum, nebo z jiných důvodů nesplňují požadavky úrovně kvality "Výzkumný" nebo "Potřebuje ID" . <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   categories: Kategorie
   cc_0_description: "Tato licence umožní uvolnění vašeho díla do veřejného prostoru a ostatní budou moci vaše dílo kopírovat, upravovat, šířit a předkládat, a to i pro komerční účely, bez nutnosti žádat vás o povolení a uvedení zdroje. Toto je nejširší poskytovaná licence. Doporučuje se pro maximální šíření a využívání příslušných materiálů."
   cc_0_name: Bez autorských práv (CC0)
@@ -1586,7 +1587,6 @@ cs:
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
   editors: Editoři
-  either: Buď
   either_that_user_doesnt_exist_or: "Tento uživatel buď neexistuje, nebo už ho sledujete."
   eligible_for_research_grade: Vhodný pro výzkumnou klasifikaci
   email: E-mail
@@ -1635,7 +1635,6 @@ cs:
   everywhere: všude
   exact: Přesný
   exact_date: Přesné datum
-  exact_location: Přesné_místo
   exact_rank: Přesné pořadí
   except: mimo
   exclude_places: Vyloučit místa
@@ -2301,7 +2300,7 @@ cs:
     zh-TW: Čínština (tradiční)
   locality_notes: Poznámky k lokalitě
   localized_species_accounts: Účty lokalizovaných druhů
-  location: Umístění
+  location: Místo
   location_is_accurate: Umístění je přesné
   location_is_exact: umístění je přesné
   location_is_public: Místo je veřejné
@@ -2553,9 +2552,10 @@ cs:
   ne_lon: z. š. SV
   near_threatened: téměř ohrožený
   nearby_observations_: Pozorování poblíž
-  needs_id: nutné ID
-  needs_id_: Nutné ID
-  needs_id_expandable_html: "<span class='full'>Nutné </span>ID"
+  needs_id: potřebuje ID
+  needs_id_: Potřebuje identifikaci
+  needs_id_expandable_html: "<span class='full'>Potřebuje</span> identifikaci"
+  needs_id_tooltip_html: 'Pozorování úrovně "Potřebuje ID" mají média, umístění a datum, ale stále vyžadují konsensus komunity o přesné identifikaci. <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   needs_to_be_identified: Musí být identifikován
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -3831,6 +3831,7 @@ cs:
   research_: Výzkum
   research_grade: Výzkumný stupeň
   research_grade_short_html: "V<span class='full'>ýzkumný </span>S<span class='full'>tupeň</span>"
+  research_grade_tooltip_html: 'Pozorování „výzkumného stupně“ mají média, umístění, datum a konsensus komunity o přesné identifikaci (obvykle na úrovni druhu). <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   research_grade_observations_have: 'Pozorování „výzkumného stupně“ mají datum, fotku, souřadnice a identifikaci odsouhlasenou komunitou. Klikněte pro podrobnosti o hodnocení kvality údajů.'
   research_grade_qualification: Vymezení výzkumného stupně
   reset_filters_short: Resetovat
