@@ -93,6 +93,7 @@ lb:
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
+  accept_community_identifications: Bestëmmungen vun der Community akzeptéieren
   accuracy: Prezisioun
   accuracy_meters: Genauegkeet (Meter)
   accuracy_of_the_coordinates: |
@@ -279,6 +280,7 @@ lb:
   #the iNaturalist Android app or Flickr
   application: Applikatioun
   applications: Applikatiounen
+  apply_captive_cultivated: "Gefaangen / Kultivéiert uwenden"
   appropriate?: Gëeegent?
   arachnids: Spannendéieren
   archives: Archiven
@@ -742,6 +744,7 @@ lb:
   has_sound: Mat Toun
   has_sounds: Huet Téin
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
+  header_your_identifications: Är Bestëmmungen
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
@@ -762,7 +765,8 @@ lb:
   identification_deleted: Identifikatioun geläscht.
   identification_saved: "Identifikatioun gespäichert!"
   identification_withdrawn: Identifikatioun zréckgezunn.
-  identifications: Identifikatiounen
+  identifications: Bestemmungen
+  identifications_by: "Idendifikatioun vum %{user}"
   identifiers: Bestëmmer
   ids_made_for_others: IDs fir een aneren gemaach
   ignore: ignoréieren
@@ -825,6 +829,7 @@ lb:
   leaderboard: Féierungstabel
   leaderboard_most:
     observations: Meescht Observatioune banne(n) %{time}
+    identifications: Meescht Bestëmmungen banne(n) %{time}
   leading: Richtungsweisend
   learn: Léieren
   learn_more: Méi wëssen
@@ -979,6 +984,7 @@ lb:
     frot no hirer Autorisatioun.
   messages_new_correspondent_personal: |
     Gitt keng perséinlech Informatioun iwwer Iech selwer weider u Leit deenen Dir net vertraut.
+  misidentifications: Falschbestëmmungen
   mobile: Mobil
   momentjs:
     shortRelativeTime:
@@ -1063,7 +1069,7 @@ lb:
   no_comments_yet: Nach keng Bemierkungen.
   no_countries_added_yet: Nach keng Länner derbäigesat
   no_description: Keng Beschreiwung
-  no_identifications: Keng Identifikatiounen
+  no_identifications: Keng Bestëmmungen
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
   no_journal_posts_yet: Nach keng Journal Posts
@@ -1184,6 +1190,7 @@ lb:
   #sign in fields OR sign in with Facebook
   or_all_caps: ODER
   organisms: Organismen
+  organism_appears_captive_cultivated: Organismus schéngt Gefaangen / Kultivéiert ze sinn
   other: Anerer
   other_animals: aner Déieren
   other_lexicons: Aner Lexikonen
@@ -1477,6 +1484,8 @@ lb:
   reviewed: Nogekuckt
   rg_observations: RG Observatiounen
   role: Roll
+  rules_types:
+    must_be_captive: muss Gefaangen / Kultivéiert sinn
   said: gesot
   satellite: Satellit
   save: Späicheren
@@ -1702,6 +1711,7 @@ lb:
   w_sounds: w/ Sounds
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesicht
+  was_it_captive_cultivated?: "War et Gefaangen / Kultivéiert?"
   we_couldnt_find_a_user: Mir konnte kee Benotzer mat där E-Mail-Adress fannen.
   we_had_trouble_saving_comment: "Mir hu Problemer fir déi Bemierkung ze späicheren:"
   weather: Wieder
@@ -1841,6 +1851,7 @@ lb:
       umbrella: Prabelli
       edit:
         rules:
+          captive: muss Gefaangen / Kultivéiert sinn
           has_a_photo: eng Foto hunn
           identified: mussen bestëmmt sinn
       new:
@@ -1891,6 +1902,8 @@ lb:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wann Dir Är Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Bestëmmungen
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Journal Posts vum Projet
         project_addition_preferences:
