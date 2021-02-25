@@ -2713,6 +2713,7 @@ cs:
   none_found: Nenalezeno
   normal: normální
   not_completed: Nedokončený
+  not_confident: Nejsme si dostatečně jistí, abychom provedli doporučení.
   not_confident_top_suggestions: Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy
   not_covered_by_any_taxon_frameworks: Není pokryto žádným taxonem
   not_evaluated: nehodnoceno
@@ -2856,6 +2857,8 @@ cs:
   observed_on: Pozorováno dne
   observer: Pozorovatel
   observers: Pozorovatelé
+  observer_prefers_no_project_addition: |
+    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do projektů.
   observer_short: Pozorovatel
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
