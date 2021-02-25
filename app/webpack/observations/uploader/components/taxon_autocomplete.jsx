@@ -146,7 +146,7 @@ class TaxonAutocomplete extends React.Component {
     this.autocomplete = this.autocomplete.bind( this );
     this.updateWithSelection = this.updateWithSelection.bind( this );
     const { config } = props;
-    const { currentUser } = config;
+    const { currentUser } = ( config || {} );
     this.state = {
       viewNotNearby: currentUser && currentUser.prefers_not_nearby_suggestions,
       // eslint-disable-next-line react/no-unused-state
