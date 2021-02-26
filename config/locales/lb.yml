@@ -8,15 +8,30 @@ lb:
   x_identifications:
     one: '%{count} Identifikatioun'
     other: '%{count} Identifikatiounen'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> Bestëmmung'
+    other: '<span class="count">%{count}</span> Bestëmmungen'
   x_identifications_:
     one: '1 Identifikatioun'
     other: '%{count} Identifikatiounen'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Bestëmmunger'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Bestëmmunger'
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> Journal Posts'
     other: '<span class="count">%{count}</span> Journal Posts'
+  x_matching_taxa:
+    one: '%{count} passenden Taxon'
+    other: '%{count} passend Taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> passenden Taxon'
+    other: '<span class="count">%{count}</span> passend Taxa'
   x_observations:
     one: "1 Observatioun"
     other: "%{count} Observatiounen"
@@ -78,6 +93,7 @@ lb:
   about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
   about_conservation_status: Iwert den Erhalungszoustand
+  about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
   about_licenses: Iwwer Lizenzen
   about_muting: Iwwer stomm schalten
   #Header for a section describing taxon names
@@ -336,7 +352,7 @@ lb:
   back_to_friends: Zréck bei d'Frënn
   back_to_lists: "Zréck op %{name}-Lëschten"
   back_to_observation: Zréck bei d'Observatioun
-  back_to_observation_fields: Zréck op d'Felder vun der Observatioun
+  back_to_observation_fields: Zréck zu den Observatiounsfelder
   back_to_people: Zréck bei d'Leit
   back_to_places: Zréck op d'Plazen
   back_to_possessive_user_profile: "Zréck op de Profil vum %{possuser}"
