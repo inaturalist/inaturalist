@@ -195,6 +195,116 @@ const shortFormattedNumber = d => {
   return d;
 };
 
+const compactDecimalFormattedNumber = number => {
+  // this is different from shortFormattedNumber, which uses the international metric system
+  // it's basically a less sophisticated version of the compact notation Intl.NumberFormat uses
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+  const compactNotations = Object.keys( I18n.t( "compact_number_formatting", { locale: "en" } ) );
+  let shortNumber;
+  let roundUp = false;
+
+  const lang = I18n.locale.split( "-" )[0];
+
+  const formatEastAsianLangs = ( ) => {
+    // special treatment for Chinese/Japanese/Korean
+    // where large numbers are grouped by four (instead of three)
+    // and start showing add'l digits from ten thousand (instead of one thousand)
+    // https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/zh/numbers.json
+    let n;
+    if ( number < 1e9 ) {
+      n = number / 1e4;
+    } else if ( number < 1e13 ) {
+      n = number / 1e9;
+    } else {
+      n = number / 1e13;
+    }
+    return n;
+  };
+
+  const formatBasque = ( ) => {
+    // large numbers are grouped by six digits
+    // https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/eu/numbers.json
+    let n;
+    if ( number < 1e6 ) {
+      n = number;
+    } else if ( number < 1e12 ) {
+      n = number / 1e6;
+    } else {
+      n = number / 1e12;
+    }
+    return n;
+  };
+
+  const formatGalician = ( ) => {
+    // thousands and billions don't have a symbol
+    // millions and trillions represented with same pattern as English ( 0 M, 00 M, 000 M)
+    // https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/gl/numbers.json
+    let n;
+    if ( number < 1e6 ) {
+      n = number;
+    } else if ( number < 1e9 ) {
+      n = number / 1e6;
+    } else if ( number < 1e12 ) {
+      n = number;
+    } else {
+      n = number / 1e12;
+    }
+    return n;
+  };
+
+  const format = ( ) => {
+    // standard formatting for English and other Germanic/Romance languages
+    // https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/en/numbers.json
+    let n;
+    if ( number < 1e6 ) {
+      if ( lang === "de" ) {
+        // German denotes 100,000 as 100.000 and starts compact notation from 1M onwards
+        // https://github.com/unicode-cldr/cldr-numbers-modern/blob/master/main/de/numbers.json
+        n = number;
+      } else {
+        n = number / 1e3;
+      }
+    } else if ( number < 1e9 ) {
+      n = number / 1e6;
+    } else if ( number < 1e12 ) {
+      n = number / 1e9;
+    } else {
+      n = number / 1e12;
+    }
+    return n;
+  };
+
+  // determine whether number needs to round up for proper formatting
+  // (i.e. from 1000K to 1M, 1000M to 1B)
+  const round = ( digits, length ) => shortNumber.toFixed( 0 ) === digits
+    && shortNumber < length;
+
+  if ( lang === "zh" || lang === "ja" || lang === "ko" ) {
+    shortNumber = formatEastAsianLangs( );
+    roundUp = round( 1e4, 1e13 );
+  } else if ( lang === "eu" ) {
+    shortNumber = formatBasque( );
+    roundUp = round( 1e6, 1e12 );
+  } else if ( lang === "gl" ) {
+    shortNumber = formatGalician( );
+    roundUp = shortNumber.toFixed( 0 ) === 1e3 && shortNumber === 1e9;
+  } else {
+    shortNumber = format( );
+    roundUp = round( 1e3, 1e12 );
+  }
+
+  const { length } = number.toString( );
+
+  const index = roundUp ? length - 3 : length - 4;
+  const notationIndex = Math.min( index, compactNotations.length - 1 );
+
+  return I18n.t(
+    `compact_number_formatting.${compactNotations[notationIndex]}`, {
+      count: roundUp ? 1 : I18n.toNumber( shortNumber, { precision: 0 } )
+    }
+  );
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -250,5 +360,6 @@ export {
   COLORS,
   inatreact,
   stripTags,
-  shortFormattedNumber
+  shortFormattedNumber,
+  compactDecimalFormattedNumber
 };
