@@ -1033,9 +1033,15 @@ nb:
   curation: Kuratering
   curator: Kurator
   #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hvordan en kurator mister sin makt
+  #Header
   curator_application_what_curators_can_do: Hva kuratorer kan gjøre
   #Header
   curator_application_what_curators_cannot_do: Hva kuratorer ikke kan gjøre
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Du bør kun søke om å være en kurator dersom:
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
@@ -1187,6 +1193,8 @@ nb:
     Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
+  devise_unlock_instructions_click_the_link: |
+    Klikk på linken nedenfor for å låse opp din konto
   devise_unlock_instructions_unlock: Lås opp kontoen din
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
@@ -1386,6 +1394,7 @@ nb:
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
   failed_to_save_record_with_errors: "Kunne ikke lagre posten: %{errors}"
+  failed_to_unlink_your_account: Kunne ikke frakoble kontoen din
   'false': 'Usann'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
@@ -1996,6 +2005,7 @@ nb:
     sq: Albansk
     sv: Svensk
     tr: Tyrkisk
+    uk: Ukrainsk
     zh-CN: Kinesisk (forenklet)
     zh-TW: Kinesisk (tradisjonell)
   locality_notes: Lokalitetsnotater
@@ -2415,6 +2425,16 @@ nb:
   observation_added: Observasjon lagt til.
   observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
   observation_aggregation: Observasjonsaggregering
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observasjon av %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observasjon &copy; %{user}
   observation_brief_something_on_day: "Noe på %{day}"
   observation_brief_something_on_day_at_time: "Noe på %{day}, %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noe på %{day}, %{time} av %{user}"
