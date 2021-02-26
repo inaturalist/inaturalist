@@ -6,7 +6,6 @@
   = f.text_field :authority, :description_after => true, 
     :description => t('conservation_status_descriptions.authority'),
     :placeholder => t(:type_authority),
-    disabled: f.object.persisted?,
     datalist: @conservation_status_authorities
   = f.text_field :place_id, :description_after => true, 
     :description => t('conservation_status_descriptions.place'),
