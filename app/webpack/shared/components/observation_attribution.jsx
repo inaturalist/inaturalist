@@ -4,15 +4,20 @@ import PropTypes from "prop-types";
 const ObservationAttribution = ( { observation } ) => {
   const { user } = observation;
   const userName = user ? ( user.name || user.login ) : I18n.t( "unknown" );
-  const intro = observation.license_code === "cc0"
-    ? I18n.t( "by_user", { user: userName } )
-    : `\u00A9 ${userName}`;
+  const copyrightAttribution = (
+    <span
+      dangerouslySetInnerHTML={{
+        __html: I18n.t( "observation_attribution_copyright_html", {
+          user: userName,
+          vow_or_con: userName[0]
+        } )
+      }}
+    />
+  );
   if ( !observation.license_code ) {
     return (
       <span>
-        { I18n.t( "observation" ) }
-        { " " }
-        { intro }
+        { copyrightAttribution }
         { " " }
         &middot;
         { " " }
@@ -25,9 +30,13 @@ const ObservationAttribution = ( { observation } ) => {
     : I18n.t( "some_rights_reserved" );
   return (
     <span className="ObservationAttribution">
-      { I18n.t( "observation" ) }
-      { " " }
-      { intro }
+      { observation.license_code === "cc0"
+        ? I18n.t( "observation_attribution", {
+          user: userName,
+          vow_or_con: userName[0]
+        } )
+        : copyrightAttribution
+      }
       { " " }
       &middot;
       { " " }

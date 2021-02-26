@@ -2778,6 +2778,16 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
+  # Attributes an observation to a user. %{user} can be a username or a full
+  # name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation by %{user}
+  # Attributes an observation to a user and specifies that copyright is retained
+  # (though a license may be applied). %{user} can be a username or a full name.
+  # @vow_or_con will work here and use the first letter of the name used. &copy;
+  # @is the HTML entity for the copyright symbol. If that doesn't make sense,
+  # @this could also be translated like "Observation by %{user} (copyright)" or
+  # @something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     The observation belongs to a project that requires this field. The
     observation must be removed from that project before this field value can be
