@@ -2578,6 +2578,9 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Osservazione di %{user}
   observation_belongs_to_project_requiring_field: |
     L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
     deve essere rimossa da quel progetto prima che questo valore di campo possa essere
