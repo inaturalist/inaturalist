@@ -2565,6 +2565,16 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Beobachtung von %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Beobachtung &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Die Beobachtung gehört zu einem Projekt, das dieses Feld erfordert. Die
     Beobachtung muss aus dem Projekt entfernt werden, bevor dieser Feldwert
@@ -3412,7 +3422,7 @@ de:
     title: "Checkliste von %{owner_name}"
     description: Die Artenliste für %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    Kuratoren von<a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
+    Kuratoren von <a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
   project_members: "Mitglieder von %{project}"
   project_members_only: Nur Projektmitglieder
   project_membership_model_description: Ist dein Projekt offen für alle oder nur für Personen, die du einlädst?
