@@ -2505,6 +2505,8 @@ uk:
   name_providers:
     col: Catalogue of Life
     ubio: uBio
+  new_lexicon: Новий лексикон
+  new_list: Новий список
   new_members: "Нові учасники"
   new_message: Нове повідомлення
   new_observation_field: Нове поле спостереження
@@ -2665,6 +2667,16 @@ uk:
   observation_added: Спостереження додано.
   observation_added_to_the_project: "Спостереження додано до проєкту \"%{project}\""
   observation_aggregation: Узагальнення спостережень
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Спостереження %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Спостереження&copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Спостереження належить до проєкту, що вимагає цього поля. Спостереження має бути видалено з проєкту перед тим, як значення у цьому полі може бути видалене.
   observation_brief_something_on_day: "Дещо за %{day}"
@@ -2729,9 +2741,9 @@ uk:
     більше одного правила для одного типу правил, спостереження будуть дійсні, якщо відповідатимуть бодай одному з правил. Наприклад, якщо у вас встановлено правила "повинні належати до Земноводних" і "повинні належати до Плазунів", то проєкт прийатиме спостережень як плазунів, так і земноводних.
   observation_was_deleted: Спостереження видалено
   observation_without_media: Спостереження без медіа
-  observations: Спостережень
+  observations: Спостереження
   observations_: спостереження
-  observations_added_by_x_html: "Спостережень додано %{x}"
+  observations_added_by_x_html: "Спостереження, додані %{x}"
   observations_annotated_with_annotation: "Спостереження анотовані %{annotation}"
   observations_by: Спостереження
   observations_by_user: "Спостереження %{user}"
@@ -2776,6 +2788,8 @@ uk:
   observed_on: Дата
   observer: Спостерігач
   observers: Спостерігачі
+  observer_prefers_no_project_addition: |
+    Спостерігач не дозволяє іншим людям додавати їхні спостереження до проєктів
   observer_short: Спостерігач
   occurence_status_describes_how: 'Cтатус трапляння описує, наскільки таксон є поширеним або рідкісним в даній області. Більше інформації про термінологію можна знайти у <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">стандарті DarwinCore</a>.'
   occurrence_status: Статус трапляння
@@ -2804,6 +2818,7 @@ uk:
   off_caps: "ВИМК"
   official_blog: Офіційний блог
   offline_access_enabled: Доступ в автономному режимі увімкнено
+  old_observation_form: Стара форма для спостережень (не рекомендована)
   onboarding:
     observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
     observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
@@ -2820,8 +2835,18 @@ uk:
       види задля відстеження нових спостережень цих видів. Те ж саме можна робити і з місцями.
     comments_panel_title: Цікаво, що обговорюються на %{site_name}?
     comments_panel_body: "<p>%{site_name} створений, аби люди могли ділитися та обговорювати спостереження за живими істотами. (Примітка: Ви автоматично підписуєтесь на будь-які обговорення, до яких ви залишаєте коментарі або визначення. Налаштувати ці оновлення можна у розділі «Підписки» праворуч.)</p>"
+    updates_by_you_panel_title: Ця вкладка дозволяє швидко відфільтрувати оновлення лише для ваших матеріалів.
     updates_by_you_panel_body: Пам'ятайте, що у вкладці "Усі оновлення" ви отримуватимете оновлення не лише щодо ваших матеріалів, але й матеріалів від людей, за якими ви слідкуєте, або таксонів і місць, на які ви підписалися за допомогою інструменту "Підписки", який знаходиться справа.
     youve_got_updates_panel_title: У вас є оновлення!
+    youve_got_updates_panel_body_p1: Залишайтеся в курсі оновлень, відстежуючи...
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Ваші матеріали:</strong> Активність щодо ваших спостережень, наприклад коментарі, визначення або уподобання від спільноти %{site_name}. Ви також отримуватимете оновлення, коли хтось додасть ваше спостереження до проєкту або проанотує його у додаткових полях.</li>
+      <li><strong>Люди:</strong> Нові спостереження або записи у журналі від людей, на яких ви підписані.</li>
+      <li><strong>Організми, проєкти і місця:</strong> Нові спостереження певних організмів, або з певних місць, на які ви підписані. Ви також можете долучитися до проєктів, щоб отримувати сповіщення про нові записи у журналах проєктів.</li>
+      <li><strong>Обговорення, до яких ви залучені:</strong> Коли ви залишаєте коментар, або додаєте визначення до чиїхось матеріалів, ви автоматично підписуєтесь на будь-яку нову активність стосовно цього контенту. Щоб припинити отримувати оновлення, скористайтеся інструментом "Керувати підписками".</li>
+      </ul>
+  one_by_one: "Один по одному"
   one_of_your_lists: "одним з ваших списків..."
   only_a_project_manager_can_add: Статус куратора проєкту може надати тільки керівник проєкту
   only_administrators_may_access_that_page: Доступ до цієї сторінки можуть отримати лише адміністратори
@@ -3110,13 +3135,127 @@ uk:
       village_block: частина села
       Zone: Зона
       zone: зона
+  place_guess: припущення місця
+  place_imported: Місце імпортовано!
+  place_must_have_a_boundary_defined: Місце повинне мати визначені межі.
+  place_name: Назва місця
+  place_notes: Примітки до місця
+  place_too_big_for_check_list: |
+    Це місце завелике для таксономічних списків. Обчислення статистики таксономічних списків є ресурсозатратною процедурою, тож ми не дозволяємо це для дуже великих територій, за винятком випадків, коли такі території були додані адміністраторами сайту. Втім, ви можете як і раніше використовувати це місце для визначення меж проєкту та при формуванні запитів спостережень.
+  place_updated: Місце оновлено!
+  placement: Розміщення
+  places: Місця
+  places_added_by_members_of_the_community: Місця, додані учасниками спільноти
+  places_maintained_by_site_admins: Місця, що підтримуються адміністраторами сайту
+  places_name:
+    afghanistan: Афганістан
+    africa: Африка
+    akrotiri_and_dhekelia: Акротирі і Декелія
+    aland: Аланд
+    albania: Албанія
+    algeria: Алжир
+    american_samoa: Американське Самоа
+    andorra: Андорра
+    angola: Ангола
+    anguilla: Ангілья
+    antarctica: Антарктида
+    antigua_and_barbuda: Антигуа і Барбуда
+    argentina: Аргентина
+    armenia: Вірменія
+    aruba: Аруба
+    asia: Азія
+    australia: Австралія
+    austria: Австрія
+    azerbaijan: Азербайджан
+    bahamas: Багами
+    bahrain: Бахрейн
+    bangladesh: Бангладеш
+    barbados: Барбадос
+    belarus: Білорусь
+    belgium: Бельгія
+    belize: Беліз
+    benin: Бенін
+    bermuda: Бермуди
+    bhutan: Бутан
+    bolivia: Болівія
+  places_warning_new_places_are_slow_html: |
+    Нові місця є одним з найбільших джерел уповільнення роботи iNat, тож, <strong>будь ласка, розгляньте варіант обійтися без створення нового місця</strong>. В той час як ми загалом не проти створення невеликих місць, що містять лише кілька тисяч спостережень, якщо ви створите нове місце з великою кількістю спостережень, то ви заповільните iNat для всіх його користувачів. Ось деякі альтернативні підходи:
+  please_hold_on_while_the_file: Будь-ласка, зачекайте поки створюється файл. Якщо у вас багато спостережень, це може зайняти декілька хвилин.
+  preview_observations_with_these_observation_requirements: Передоглянути спостереження з цими вимогами до спостережень
+  profile_visibility_desc: |
+    З метою захисту %{site_name} від спаму профілі користувачів
+    стають публічно видимі тільки після того, як користувач зробить кілька спостережень дослідницького рівня.
   project_admins:
     one: Адміністратор проєкту
     few: Адміністратори проєкту
     many: Адміністраторів проєкту
     other: Адміністратори проєкту
+  project_aggregator_filter_error: |
+    Проєкти можуть здійснювати автоматичну агрегацію спостережень тільки якщо вони асоційовані
+    з місцями середнього розміру, або залучають спостереження лише певних таксонів, або таксонів в списку.
+  project_coordinate_access_enabled: |
+    Ви повинні мати можливість переглядати приховані координати спостережень від 
+    осіб, які вам довіряють.
   project_coordinate_access_disabled_until_datetime: |
     Ви не зможете отримати доступ до прихованих координат до %{datetime}
+  project_coordinate_access_warning: |
+    Доступ до координат дуже важливий для науковців, але також ним можуть зловживати і
+    браконьєри. Переконайтеся, що ви довіряєте всім кураторам проєкту до того, як довіритеся цьому
+    проєкту.
+  project_cover: Обкладинка проєкту
+  project_created_on: створив(ла) цей проєкт %{date}
+  project_curator_id: Визначення куратора проєкту
+  project_curator_tools: Інструменти куратора проєкту
+  project_curators: Куратори проєкту
+  project_group_label: Група
+  project_group_description: Група, до якої належить проєкт
+  project_home: Домашня сторінка проєкту
+  project_icon: Іконка проєкту
+  project_journal: Журнал проєкту
+  project_id_or_url_slug: ID проєкту або URL-адреса, напр. "333" або "мій-проєкт"
+  project_invitations: 'Запрошення до проєкту'
+  project_list: Список проєкту
+  project_list_defaults:
+    title: "Список видів користувача %{owner_name}"
+    description: Список видів для користувача %{owner_name}
+  project_curators_added_some_of_your_observations_html: |
+    <a href="%{url}">%{project}</a> куратори додали декілька ваших спостережень
+  project_members: "Учасники проєкту %{project}"
+  project_members_only: Тільки від учасників проєкту
+  project_membership_model_description: Ваш проєкт є відкритим для всіх або тільки для людей, яких ви запросите?
+  project_observations: Спостереження проєкту
+  project_post: Допис проєкту
+  project_requirements: Вимоги до проєкту
+  project_rules: Правила проєкту
+  project_settings: Налаштування проєкту
+  project_start_time_datetime: "Початковий час: %{datetime}"
+  project_that_does_not_contain_these_observations: Проєкт, який не містить таких спостережень
+  project_type_description: |
+    Оцінки – це тип проєктів, призначених для спільної роботи щодо оцінювання набору видів, здебільшого задля оцінювання їх природоохоронного статусу.
+  project_user_cannot_be_found: Користувача проєкту не знайдено
+  project_user_was_invalid: "Недійсний користувач проєкту: %{project_user}"
+  project_was_successfully_created: Проєкт успішно створено.
+  project_was_successfully_updated: Проєкт успішно оновлено.
+  project_x_was_delete: "%{project} було видалено (видалення з веб-сайту відбудеться через декілька хвилин)"
+  projects: Проєкти
+  projects_description: |
+    Проекти дозволяють об'єднати ваші спостереження зі спостереженнями інших користувачів %{site_name}. Чи то нова ініціатива з громадської науки, чи просто обліки птахів на вашому подвір'ї, проєкти - те, що вам потрібно.
+  projects_from_everywhere: Проєкти звідусіль
+  projects_from_place: "Проєкти з місця: %{place}"
+  projects_in_x: "Проєкти у %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Проєкти, що адмініструє %{user}
+  projects_you_admin: Проєкти, що адмініструєте ви
+  proposed_taxa_that_contradict_the_community_id: Запропоновані таксони, які суперечать ID спільноти
+  proposed_taxa_that_support_the_community_id: Запропоновані таксони, які співпадають з ID спільноти
+  protozoans: протисти
+  provider_authorizations: Авторизація провайдера
+  public_domain: Публічний домен
+  publish: Опублікувати
+  purple: фіолетовий
+  quality_grade: Рівень якості
+  quality_grade_: Рівень якості
+  quality_grade_colon: "Рівень якості"
   ranks:
     genushybrid: Міжродовий гібрид
   save_guide_taxon: Зберігати посібник з таксону
