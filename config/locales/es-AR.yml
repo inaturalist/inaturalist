@@ -713,6 +713,7 @@ es-AR:
   card: Tarjeta
   casual: casual
   casual_: Casual
+  casual_tooltip_html: 'A las observaciones "casuales" les faltan los medios, la ubicación o una fecha, o no cumplen los requisitos de las categorías de calidad de "Buscar" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las categorías de calidad</a>'
   categories: Categorías
   cc_0_description: "Esta licencia libera tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
@@ -964,10 +965,20 @@ es-AR:
     flower_budding: Los cogollos de flores son visibles pero no están abiertos
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Frutas visibles y todavía unidas a la planta
+    no_evidence_of_flowering: Los medios no proporcionan pruebas de estructuras reproductivas
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
+    cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Solo con las coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Se muestran solo las observaciones de este proyecto, para lo cual puedes ver las coordinadas "reales", incluidas las observaciones despejadas, las observaciones ocultas por personas en las que confiás, las observaciones ocultas por personas que confían en este proyecto a toda costa y observaciones ocultas por amenazas de taxas de parte de personas que solo confían en este programa de la misma manera.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
@@ -1032,6 +1043,27 @@ es-AR:
   curating: Curando
   curation: Curación
   curator: Curador
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Los curadores de sitio de iNaturalist son voluntarios confiables que poseen la capacidad para editar la taxonomía de iNaturalist y moderar el contenido del usuario. Los curadores de sitio son esenciales para iNaturalist, ya que son quienes mantienen actualizada nuestra taxonomía y se aseguran de que el punto de vista de iNaturalist sea adecuado y cortéz. A continuación, encontrarás una descripción acerca de qué significa ser un curador. Leélo, y en caso de que quieras convertirte en un curador, leé detenidamente la
+    <a href="/pages/curator+guide" target="_blank">Guía para el curador Guide</a> y completá la solicitud en esta página.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Te pedimos que expliques por qué querés convertirte en un curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si querés editar la taxonomía de iNaturalist, envíanos uno o dos ejemplos de cambios taxonómicos que te gustaría realizar e incluye enlaces a las autoridades taxonómicas adecuadas que se enumeran en la Guía para el curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Si querés editar nombres comunes, envíanos uno o dos ejemplos de cambios que te gustaría realizar
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Si querés moderar el comportamiento en iNaturalist, envíanos uno o dos ejemplos de las infracciones a las Pautas comunitarias y contanos qué harías en esas situaciones
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    De qué manera un curador pierde sus poderes
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
@@ -2282,6 +2314,9 @@ es-AR:
   observation_added: Observation added
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observación hecha por %{user}
   observation_brief_something_on_day: "Algo el %{day}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
