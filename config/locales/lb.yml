@@ -294,6 +294,29 @@ lb:
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
+  any_: All
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: All
+  #Label for an option to show content with any annotation value
+  any_annotation_value: All
+  #Label for an option to show content from any date
+  any_date: All
+  #Label for an option to show content with any establishment means
+  any_establishment: All
+  #Label for an option to show content with any license
+  any_license: All
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: All
+  #Label for an option to show content from any project
+  any_project: All
+  #Label for an option to show content with any quality grade
+  any_quality_grade: All
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: All
+  #Label for an option to show/include content by any user
+  any_user: All
+  anyone: Jiddwereen
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikatioun
@@ -693,6 +716,7 @@ lb:
   fields: Felder
   fields_: Felder
   file: Fichier
+  fill_out_project_observation_fields: d'Projekt-Observatiounsfelder ausfëllen
   fill_out_your_profile: completéiert Äre Profil
   filter_by_curator_identification: Filtren no Kurator Bestëmmungen
   filter_by_place: No der Plaz filteren
@@ -1156,12 +1180,15 @@ lb:
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
+  observations_by_rank: Observatiounen no Rang
   observations_by_user_on_date: "Observatioune vum %{user} de(n) %{date}"
   observations_by_you: "Observatioune vun Iech"
   observations_by_you_on_date: "Observatioune vun Iech de(n) %{date}"
   observation_date: Datum
   observation_date?: Datum?
   observation_field_type_text: Text
+  observation_fields: Observatiounsfelder
+  observation_fields_are_additional: D'Observatiounsfelder sinn zousätzlech Datenfelder déi bei Observatioune kenne bäigesat ginn.
   observation_rules: Observatiouns Regelen
   observation_was_deleted: Observatioun gouf geläscht.
   observation_without_media: Observatioun ouni Medien
@@ -1766,6 +1793,7 @@ lb:
   which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är Observatiounen derbäisetzen?
   white: wäiss
   why_you_can_see_the_coordinates: Firwat Dir d'Koordinate gesi kënnt
+  who_can_add_observation_fields_to_my_obs: Wien kann Observatiounsfelder bei Är Observatioune bäisetzen.
   who_can_see_the_coordinates: Wie kann d'Koordinate gesinn
   who_can_see_the_coordinates_observer: D'Persoun déi d'Observatioun gemaach huet
   who_helped_user_the_most: "Wien huet dem %{user} am Meeschte gehollef"
@@ -1806,6 +1834,7 @@ lb:
   you_arent_a_member_of_that_project: Dir sidd net Member vun deem Projet.
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
+  you_cant_delete_observation_fields_that_people_are_using: "Dir kennt keng Observatiounsfelder läschen déi vun aneren Notzer genotzt ginn."
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
   you_have_left_x_project: "Dir hutt %{project} verlooss"
   you_joined_this_project: Dir maacht bei dësem Projet mat!
@@ -1879,6 +1908,8 @@ lb:
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
       import:
         date_column_format: JJJJ-MM-DD HH:MM
+      show:
+        observer_does_not_allow_observation_fields: De Beobachter erlaabt keng zousätzlech Observatiounsfelder.
     emailer:
       photos_missing:
         subject: Verschidde Fotoe musse gefléckt ginn
@@ -2197,6 +2228,7 @@ lb:
         locale: Lokal
         time_zone: Zäitzon
         place_id: Plaz
+        preferred_observation_fields_by: Observatiounsfelder erlaben vum
     errors:
       messages:
         blank: däerf net eidel sinn
