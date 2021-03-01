@@ -835,6 +835,7 @@ ru:
   card: Карта
   casual: обыкновенное
   casual_: Обыкновенное
+  casual_tooltip_html: '"Обыкновенные" наблюдения - это те, где отсутствуют медиа, местоположение или дата или те, что не соответствуют уровню качества "Исследовательской" или "Требуется идентификация (ID)" по другим причинам. <a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
   categories: Категории
   cc_0_description: "Эта лицензия делает вашу работу общественным достоянием, поэтому другие могут копировать, изменять, распространять и видоизменять вашу работу, даже в коммерческих целях, без вашего разрешения или выражения вам благодарности. Это наиболее приемлемый вариант предлагаемых лицензий. Рекомендуется для максимального распространения и использования лицензированных материалов."
   cc_0_name: Нет авторских прав (СС0)
@@ -1865,6 +1866,7 @@ ru:
   help_translate!: Помогите с переводом!
   helped_the_observer_make: помогли наблюдателю сделать окончательную идентификацию (т.е. были сделаны до окончательной идентификации и соответствовали ей)
   here_are_3_examples: Вот 3 примера правильно сформированных данных
+  here_are_our_top_suggestions: Вот наши лучшие предложения
   here_are_our_top_species_suggestions: Вот наши лучшие предложения видов
   hex_color_eg: Цвет в 16-ти разрядном представлении, например 6564FF
   hi: Привет,
@@ -1957,6 +1959,7 @@ ru:
   inbox: Входящие
   include_places: Включить места
   include_projects: Включить проекты
+  include_suggestions_not_seen_nearby: Включать предложения, не встречающиеся поблизости
   include_taxa: Включить таксоны
   include_users: Включить пользователей
   including: включая
@@ -2499,6 +2502,7 @@ ru:
   needs_id: требуется идентификация
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
+  needs_id_tooltip_html: 'Наблюдения "Требуется идентификация (ID)" содержат медиа, местоположение и дату, но всё же требуется консенсус сообщества по поводу точной идентификации.<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
   needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2649,6 +2653,8 @@ ru:
   none_found: Ничего не найдено
   normal: обычный
   not_completed: Незавершенный
+  not_confident: Мы не полностью уверены, что можем дать рекомендацию.
+  not_confident_top_suggestions: Мы не полностью уверены, что можем дать рекомендацию, но вот наши лучшие предложения
   not_covered_by_any_taxon_frameworks: Не охвачен никакой основой таксонов
   not_evaluated: не оцененный
   not_findig_what_you_want: Не нашли то, что искали?
@@ -2685,6 +2691,16 @@ ru:
   observation_added: Наблюдение добавлено
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Наблюдение %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Наблюдение и © %{user}
   observation_belongs_to_project_requiring_field: |
     Наблюдение относится к проекту, который требует наличия этого поля. Наблюдение должно быть удалено из этого проекта, прежде чем это значение поля можно будет удалить.
   observation_brief_something_on_day: "Некоторые за %{day}"
@@ -2792,6 +2808,10 @@ ru:
   observed_on: Дата
   observer: Наблюдатель
   observers: Наблюдатели
+  observer_prefers_no_project_addition: |
+    Наблюдатель не позволяет другим людям добавлять свои наблюдения в проекты.
+  observer_prefers_addition_to_projects_joined: |
+    Наблюдатель позволяет другим людям добавлять свои наблюдения только в те проекты, к которым они присоединились.
   observer_short: Наблюдатель
   occurence_status_describes_how: 'Статус присутствия указывает, насколько часто или редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для получения большей информации о терминологии</a>.'
   occurrence_status: Статус присутствия
@@ -2873,6 +2893,7 @@ ru:
   only_staff_can_edit_standard_places: Только сотрудники сайта могут редактировать места в стандартной иерархии
   only_the_owner_of_this_list_can_do_that: Только собственник этого списка может это сделать. Не будьте злыми.
   only_the_project_admin_can_delete_this_project: Только администратор проекта может удалить этот проект
+  only_view_nearby_suggestions: Только предложения, встречающиеся поблизости
   only_you: Только вы
   open: открытая
   open_: Открытое
@@ -3436,6 +3457,7 @@ ru:
   please_add_this_observation_to: Пожалуйста, добавьте это наблюдение к
   please_add_this_to_x_html: "Пожалуйста, добавьте это к %{x}"
   please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Title to a section warning a user to exercise caution
+  please_be_careful!: Будьте осторожны!
   please_complete_the_following_to_add_project: |
     Чтобы добавить это наблюдение в проект, выполните следующие действия:
   please_confirm_your_inat_username: "Пожалуйста, подтвердите имя пользователя на %{site_name}"
@@ -3499,6 +3521,8 @@ ru:
     Вы должны иметь возможность просмотра скрытых координат наблюдений доверенных лиц.
   project_coordinate_access_disabled_until_datetime: |
     Вы не сможете получить доступ к скрытым координатам до %{datetime}
+  project_coordinate_access_warning: |
+    Доступ к координатам важен для ученых, но браконьеры могут злоупотреблять им. Прежде чем доверять этому проекту, убедитесь, что вы доверяете всем кураторам проекта.
   project_cover: Начальная страница проекта
   project_created_on: создал этот проект %{date}
   project_curator_id: Идентификация куратора проекта
@@ -3746,6 +3770,7 @@ ru:
   research_: Исследовательский
   research_grade: Исследовательский уровень
   research_grade_short_html: "И<span class='full'>сследовательский </span>С<span class='full'>татус</span>"
+  research_grade_tooltip_html: 'Наблюдения "Исследовательского уровня" содержат медиа, местоположение и дату, и имеется консенсус сообщества по поводу точной идентификации (обычно на уровне вида).<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
   research_grade_observations_have: 'Наблюдения "Исследовательского уровня" содержат дату, фото, координаты и поддерживаемую сообществом идентификацию. Нажмите, чтобы увидеть оценку качества данных.'
   research_grade_qualification: Качество исследовательского уровня
   reset_filters_short: Сбросить
@@ -4656,6 +4681,7 @@ ru:
   view_check_list_page: Просмотреть страницу контрольного списка
   view_contributions: Посмотреть вклад
   view_details: Посмотреть подробности
+  view_dynamic_lifelist: Посмотреть динамический список жизни
   view_field_options: Просмотр параметров поля
   view_flag: Просмотр флага
   view_flags: Посмотреть флаги
@@ -5825,6 +5851,9 @@ ru:
           Разрешить пользователям доверять этому проекту скрытые координаты
         trust_help_desc: |-
           Если вы хотите получить доступ к скрытым координатам скрытых наблюдений, эта опция позволит людям, присоединившимся к этому проекту, разрешить администраторам проекта доступ к этим скрытым координатам. Участники проекта смогут предоставить доступ к скрытым координатам любого из своих наблюдений в этом проекте или только к наблюдениям, которые скрыты из-за таксонов, находящихся под угрозой исчезновения.
+        trust_help_notification2: |-
+          Однако это также приведёт к уведомлению всех доверенных участников проекта каждый раз, когда вы меняете требования к наблюдениям проекта, чтобы они могли переоценить, хотят ли они продолжать доверять вам с учетом новых требований.
+          Ваш доступ к скрытым координатам будет аннулирован в течение одной недели после изменения требований к наблюдению с тем, чтобы у участников было время сделать это
         trusted_project_means: |
           Доверять проекту означает, что менеджеры проекта могут добавить в проект активы и пользовательские атрибуты проекта (например, баннер HTML, CSS). Доступ к пользовательским атрибутам проекта означает, что менеджеры проектов теоретически могут добавить вредоносный JavaScript, поэтому доверяйте только тем проектам, у которых как ответственные, так и технически грамотные менеджеры.
         you_can_preview: |
