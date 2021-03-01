@@ -1,4 +1,79 @@
 th:
+  x_comments:
+    other: '%{count} ข้อคิดเห็น'
+  x_identifications:
+    other: '%{count} การจำแนก'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> การจำแนก'
+  x_identifications_:
+    other: '%{count} การจำแนก'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ผู้จำแนก'
+  x_languages:
+    other: "%{count} ภาษา"
+  x_others:
+    other: "%{count} อื่น ๆ"
+  x_photos:
+    other: "%{count} รูปภาพ"
+  x_new_species:
+    other: "%{count} ชนิดใหม่"
+  x_new_users:
+    other: '%{count} ผู้ใช้งานใหม่'
+  x_species:
+    other: '%{count} ชนิด'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> ชนิด"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} ชนิด</a>"
+  x_sounds:
+    other: "%{count} เสียง"
+  a_default_taxon_name_will_automatically_created: |
+    ชื่อตามลำดับอนุกรมวิธานจะถูกสร้างขึ้นมาโดยอัตโนมัติจากชื่อวิทยาศาสตร์ของสิ่งมีชีวิตในลำดับอนุกรมวิธานดังกล่าว
+    เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
+  about: เกี่ยวกับเรา
+  about_charts: เกี่ยวกับแผนภูมิ
+  about_trusting_projects_options_any: สิ่งที่สังเกตทั้งหมดในโปรเจคนี้
+  about_trusting_projects_options_any_desc: |-
+    ทั้งนี้รวมถึงสิ่งที่สังเกต (observations) เมื่อผู้ใช้ตั้งค่าการปกปิดระบบพิกัด (geoprivacy) เป็นแบบ "คลุมเครือ" (obscured) หรือ "ส่วนตัว" (private) เช่น สิ่งที่สังเกตในสวนหลังบ้านหรือตำแหน่งที่ไม่ต้องการให้ผู้อื่นรู้
+  about_trusting_projects_options_taxon: |-
+    สิ่งที่สังเกต (observations) ของคุณในโครงการนี้เท่านั้นที่มีพิกัดแบบคลุมเครือ เพราะเป็นชนิดพันธุ์ที่ถูกคุกคาม
+  about_x: "เกี่ยวกับ%{x}"
+  account: บัญชีผู้ใช้
+  account_creation: การสร้างบัญชี
+  account_settings: การตั้งค่าบัญชี
+  accept: ยอมรับ
+  accuracy: ความแม่นยำ
+  accuracy_meters: ความแม่นยำ (เมตร)
+  add_an_observation: เพิ่มการสังเกต
+  add_an_observation?: เพิ่มการสังเกตไหม ?
+  add_an_observation_of: "เพิ่มการสังเกตของ%{taxon}"
+  add_an_observation_to_project_html: เพิ่มการสังเกตไปที่ %{project}
+  add_annotations_for_x: เพิ่มคำอธิบายสำหรับ "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: เพิ่มคำอธิบายสำหรับ "เพศ"
+    plant_phenology: เพิ่มคำอธิบายสำหรับ "ชีพลักษณ์"
+    life_stage: เพิ่มคำอธิบายสำหรับ "ช่วงอายุ"
+  add_another_flag: ติดธงเพิ่ม
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: เพิ่มข้อความที่เป็นตัวเอียง
+  add_new_place: เพิ่มสถานที่ใหม่
+  add_new_rule: เพิ่มกติกาใหม่
+  add_new_source: "เพิ่มแหล่งใหม่"
+  add_observations: เพิ่มการสังเกต
+  add_photos: เพิ่มภาพถ่าย
+  add_place: เพิ่มสถานที่
+  add_alive_or_dead_alive_annotation: 'เพิ่มมีชีวิตหรือเสียชีวิต ในคำอธิบาย'
+  these_observations_have_not_been_uploaded_yet: |
+    การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  upload: อัปโหลด
+  upload_a_csv_file: อัปโหลดไฟล์ CSV
+  upload_a_csv_file_with_observation: |
+    อัปโหลดไฟล์ CSV พร้อมข้อมูลการสังเกต ถ้าผู้ใช้มีข้อมูลใน spreadsheet หรือฐานข้อมูล
+  upload_new_photo: อัพโหลดรูปภาพใหม่
+  upload_photo: อัปโหลดรูปภาพ
+  uploaded_by: อัปโหลดโดย
   date:
     abbr_month_names:
       - 
