@@ -5635,6 +5635,10 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
+        trust_help_notification2: |-
+          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
+          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
+          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.
