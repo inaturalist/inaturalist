@@ -1032,6 +1032,8 @@ nb:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Hvorfor vil du være en kurator?
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hvordan en kurator mister sin makt
@@ -1039,6 +1041,11 @@ nb:
   curator_application_what_curators_can_do: Hva kuratorer kan gjøre
   #Header
   curator_application_what_curators_cannot_do: Hva kuratorer ikke kan gjøre
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Les direktemeldinger av andre personer.
   #Header followed by a list
   curator_application_you_should_apply_if: |
     Du bør kun søke om å være en kurator dersom:
