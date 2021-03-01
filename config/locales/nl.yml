@@ -1782,6 +1782,7 @@ nl:
   help_translate!: Help met vertalen!
   helped_the_observer_make: heeft de waarnemer geholpen zijn of haar uiteindelijke ID te maken (ze werden dus gedaan vóór het laatste ID, en ze komen overeen)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
+  here_are_our_top_suggestions: Dit zijn onze topvoorstellen
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
   hex_color_eg: Hexadecimale kleur, bijvoorbeeld 65644F
   hi: Hallo,
@@ -1877,6 +1878,7 @@ nl:
   inbox: Postvak IN
   include_places: Includeer plaatsen
   include_projects: Includeer projecten
+  include_suggestions_not_seen_nearby: Alle soorten
   include_taxa: Includeer taxa
   include_users: Includeer gebruikers
   including: inclusief
@@ -2422,6 +2424,7 @@ nl:
   needs_id: ID nodig
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
+  needs_id_tooltip_html: '"ID nodig"-waarnemingen hebben media, locatie en een datum maar er is nog steeds een gemeenschapsconsensus nodig voor een nauwkeurige determinatie. <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   needs_to_be_identified: Moet worden gedetermineerd
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2576,6 +2579,8 @@ nl:
   none_found: Niet gevonden
   normal: normaal
   not_completed: Niet voltooid
+  not_confident: We hebben er onvoldoende vertrouwen in dat we een goede aanbeveling zullen doen.
+  not_confident_top_suggestions: 'We zijn niet zeker genoeg om een aanbeveling te doen maar dit zijn onze belangrijkste voorstellen:'
   not_covered_by_any_taxon_frameworks: Niet gedekt door enig taxonkader
   not_evaluated: Niet beoordeeld
   not_findig_what_you_want: Niet gevonden wat je zoekt?
@@ -2612,6 +2617,16 @@ nl:
   observation_added: Waarneming toegevoegd.
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Waarnemingen van %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Waarneming &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     De waarneming hoort bij een project dat dit veld vereist. De waarneming
     moet uit dat project worden verwijderd voordat deze waarde
@@ -2734,6 +2749,10 @@ nl:
   observed_on: Waargenomen op
   observer: Waarnemer
   observers: Waarnemers
+  observer_prefers_no_project_addition: |
+    Waarnemer staat niet toe dat andere mensen zijn waarnemingen toevoegen aan projecten.
+  observer_prefers_addition_to_projects_joined: |
+    Waarnemer staat alleen toe dat andere mensen zijn waarnemingen toevoegen aan projecten waar hij aan deelneemt.
   observer_short: Waarnemer
   occurence_status_describes_how: 'Een voorkomststatus beschrijft hoe algemeen of zeldzaam een taxon is in een bepaald gebied. Zie DarwinCore voor <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">meer informatie over terminologie</a>.'
   occurrence_status: Statuscodes voorkomen
@@ -2817,6 +2836,7 @@ nl:
   only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in de standaardhiërarchie bewerken
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat doen. Niet gemeen doen.
   only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
+  only_view_nearby_suggestions: Bekijk alleen soorten uit de omgeving
   only_you: Alleen jij
   open: open
   open_: Open
@@ -3458,6 +3478,9 @@ nl:
     leden te vertrouwen.
   project_coordinate_access_disabled_until_datetime: |
     Jij hebt geen toegang tot verborgen coördinaten voor %{datetime}
+  project_coordinate_access_warning: |
+    Coördinaattoegang is belangrijk voor wetenschappers maar kan ook worden misbruikt door
+    stropers. Wees er zeker van dat je alle projectcuratoren vertrouwt voordat je het project vertrouwt.
   project_cover: Coverfoto project
   project_created_on: heeft dit project gemaakt op %{date}
   project_curator_id: Project curator determinatie
@@ -3691,6 +3714,7 @@ nl:
   research_: Onderzoek
   research_grade: Onderzoekskwaliteit
   research_grade_short_html: "O<span class='full'>nderzoeks</span>k<span class='full'>waliteit</span>"
+  research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
   reset_filters_short: Reset
