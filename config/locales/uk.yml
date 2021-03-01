@@ -49,6 +49,16 @@ uk:
     few: "%{count} мови"
     many: "%{count} мов"
     other: "%{count} мови"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} вперше у списку живого"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} вперше у списку життя"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "%{count} вперше у списку життя"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} вперше у списку життя"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> допис у журналі'
     few: '<span class="count">%{count}</span> дописи в журналі'
@@ -411,6 +421,7 @@ uk:
   add_to_favorites: Додати в уподобані
   add_to_list: Додати до списку
   add_to_project: Додати до проєкту
+  add_to_your_life_list: Додати до вашого списку живого!
   add_to_your_list: Додати до вашого списку
   add_your_email_to_get: |
     Для отримання відгуку про ваше спостереження від спільноти, додайте свою електронну пошту.
@@ -601,6 +612,8 @@ uk:
   announcement_was_successfully_created: Оголошення успішно створено.
   announcement_was_successfully_updated: Оголошення успішно оновлено.
   announcements: Оголошення
+  any: будь-які
+  any_: Будь-які
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Будь-який
   #Label for an option to show content with any annotation value
@@ -838,6 +851,7 @@ uk:
   card: Картка
   casual: пересічне
   casual_: Пересічне
+  casual_tooltip_html: 'Звичайні спостереження – це ті, яким бракує медіафайлів, місцезнаходження або дати, або ті, що не відповідають вимогам статусів "Дослідницький рівень" або "Потребує визначення" з інших причин.<a href="https://www.inaturalist.org/pages/help#quality">Детальніше про рівні якості</a>'
   categories: Категорії
   cc_0_description: "Ця ліцензія робить вашу роботу загальним надбанням, відтак інші можуть копіювати, змінювати, поширюйте і розвивати вашу роботу, навіть для комерційних цілей, не питатаючи вашого дозволу та не посилаючись на вас. Це найліберальніша серед запропонованих ліцензій. Рекомендується для максимального поширення і використання ліцензованих матеріалів."
   cc_0_name: Без авторського права (CC0)
@@ -1880,6 +1894,7 @@ uk:
   help_translate!: Допоможіть у перекладі!
   helped_the_observer_make: допомогли спостерігачеві зробити остаточне визначення (тобто вони були надані до остаточного визначення і співпадають з ним)
   here_are_3_examples: Ось 3 приклади якісно сформованих даних
+  here_are_our_top_suggestions: Ось наші кращі пропозиції
   here_are_our_top_species_suggestions: Ось наші кращі пропозиції щодо видів
   hex_color_eg: Hex-колір, наприклад 65644F
   hi: Вітаємо,
@@ -1984,6 +1999,7 @@ uk:
   inbox: Вхідні
   include_places: Включити місця
   include_projects: Включити проєкти
+  include_suggestions_not_seen_nearby: Переглянути пропозиції, які не траплялися поблизу
   include_taxa: Включити таксони
   include_users: Включити користувачів
   including: у тому числі
@@ -2176,6 +2192,10 @@ uk:
   licensing: Ліцензування
   licensing_your_content_gives_others_legal: "Ліцензування вашого контенту надає іншим право на його використання, якщо вони дотримуються умови ліцензії. %{site_name} використовує ваш контент під ліцензіями Creative Commons для обміну з партнерами, такими як "
   life: Життя
+  life_list: "Список живого %{user}"
+  life_list_updated: Список живого оновлено!
+  life_list_updated_we_also_saved_a: Список живого оновлено! Ми також зберегли порожнє спостереження цього таксону.
+  life_lists_automatically_fill: Списки живого автоматично доповнюються новими таксонами, коли ви їх спостерігаєте. Списки можна обмежити до таксонів вищого рівня та їхніх дочірніх таксонів, наприклад список птахів родини Воронові (Corvidae).
   linear_scale_label: Лінійна
   link: Посилання
   link_or_unlink_your_facebook_account: Пов'язати або відв'язти свій обліковий запис Facebook
@@ -2321,6 +2341,7 @@ uk:
   make_a_new_place: Створити нове місце
   make_a_taxon_swap_instead?: Зробити замість цього заміну таксона?
   make_curator: Створити куратора
+  make_it_a_life_list?: Зробити список живого?
   make_manager: Зробити керівником
   make_sure_the_default_photo_looks_good: Переконайтеся, що фото за промовчанням виглядає добре в великому розмірі.
   make_this_your_default_license: "Зробіть %{type} вашою стандартною ліцензією"
@@ -2790,6 +2811,8 @@ uk:
   observers: Спостерігачі
   observer_prefers_no_project_addition: |
     Спостерігач не дозволяє іншим людям додавати їхні спостереження до проєктів
+  observer_prefers_addition_to_projects_joined: |
+    Спостерігач дозволяє іншим людям додавати їхні спостереження тільки до тих проєктів, до яких вони долучилися.
   observer_short: Спостерігач
   occurence_status_describes_how: 'Cтатус трапляння описує, наскільки таксон є поширеним або рідкісним в даній області. Більше інформації про термінологію можна знайти у <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">стандарті DarwinCore</a>.'
   occurrence_status: Статус трапляння
@@ -2819,6 +2842,8 @@ uk:
   official_blog: Офіційний блог
   offline_access_enabled: Доступ в автономному режимі увімкнено
   old_observation_form: Стара форма для спостережень (не рекомендована)
+  ok: "Прийняти"
+  on_caps: "УВІМК"
   onboarding:
     observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
     observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
@@ -3178,13 +3203,315 @@ uk:
     bermuda: Бермуди
     bhutan: Бутан
     bolivia: Болівія
+    bonaire_saint_eustatius_and_saba: Бонайре, Сінт-Естатіус і Саба
+    bosnia_and_herzegovina: Боснія та Герцеговина
+    botswana: Ботсвана
+    bouvet_island: Острів Буве
+    brazil: Бразилія
+    british_indian_ocean_territory: Британська територія в Індійському океані
+    british_virgin_islands: Британські Віргінські острови
+    brunei: Бруней
+    bulgaria: Болгарія
+    burkina_faso: Буркіна-Фасо
+    burundi: Бурунді
+    cambodia: Камбоджа
+    cameroon: Камерун
+    canada: Канада
+    cape_verde: Кабо-Верде
+    cayman_islands: Кайманові острови
+    central_african_republic: Центральноафриканська Республіка
+    central_america: Центральна Америка
+    chad: Чад
+    chile: Чилі
+    china: Китай
+    christmas_island: Острів Різдва
+    clipperton_island: Кліппертон
+    cocos_islands: Кокосові Острови
+    colombia: Колумбія
+    commonwealth_of_the_northern_mariana_islands: Співдружність Північних Маріанських островів
+    comoros: Коморські острови
+    cook_islands: Острови Кука
+    costa_rica: Коста-Рика
+    cote_d_ivoire: Кот-д'Івуар
+    croatia: Хорватія
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кіпр
+    czech_republic: Чеська Республіка
+    democratic_republic_of_the_congo: Демократична Республіка Конго
+    denmark: Данія
+    djibouti: Джибуті
+    dominica: Домініка
+    dominican_republic: Домініканська Республіка
+    east_timor: Східний Тимор
+    ecuador: Еквадор
+    egypt: Єгипет
+    el_salvador: Сальвадор
+    equatorial_guinea: Екваторіальна Гвінея
+    eritrea: Еритрея
+    estonia: Естонія
+    ethiopia: Ефіопія
+    europe: Європа
+    falkland_islands: Фолклендські острови
+    faroe_islands: Фарерські острови
+    fiji: Фіджі
+    finland: Фінляндія
+    france: Франція
+    french_guiana: Французька Гвіана
+    french_polynesia: Французька Полінезія
+    french_southern_territories: Французькі південні території
+    gabon: Габон
+    gambia: Гамбія
+    georgia: Грузія
+    germany: Німеччина
+    ghana: Гана
+    gibraltar: Гібралтар
+    greece: Греція
+    greenland: Гренландія
+    grenada: Гренада
+    guadeloupe: Гваделупа
+    guam: Гуам
+    guatemala: Гватемала
+    guernsey: Гернсі
+    guinea: Гвінея
+    guinea_bissau: Гвінея-Бісау
+    guyana: Гвіана
+    haiti: Гаїті
+    heard_island_and_mcdonald_islands: Херд і Макдональд, острови
+    honduras: Гондурас
+    hong_kong: Гонконг
+    hungary: Угорщина
+    iceland: Ісландія
+    india: Індія
+    indonesia: Індонезія
+    iran: Іран
+    iraq: Ірак
+    ireland: Ірландія
+    isle_of_man: Мен, острів
+    israel: Ізраїль
+    italy: Італія
+    jamaica: Ямайка
+    japan: Японія
+    jersey: Джерсі
+    jordan: Йорданія
+    kazakhstan: Казахстан
+    kenya: Кенія
+    kiribati: Кірібаті
+    korea: Республіка Корея
+    kosovo: Косово
+    kuwait: Кувейт
+    kyrgyzstan: Киргизстан
+    laos: Лаос
+    latvia: Латвія
+    lebanon: Ліван
+    lesotho: Лесото
+    liberia: Ліберія
+    libya: Лівія
+    liechtenstein: Ліхтенштейн
+    lithuania: Литва
+    luxembourg: Люксембург
+    macao: Макао
+    macedonia: Македонія
+    madagascar: Мадагаскар
+    malawi: Малаві
+    malaysia: Малайзія
+    maldives: Мальдіви
+    mali: Малі
+    malta: Мальта
+    marshall_islands: Маршаллові острови
+    martinique: Мартиніка
+    mauritania: Мавританія
+    mauritius: Маврикій
+    mayotte: Майотта
+    mexico: Мексика
+    micronesia: Мікронезія
+    moldova: Молдова
+    monaco: Монако
+    mongolia: Монголія
+    montenegro: Чорногорія
+    montserrat: Монтсеррат
+    morocco: Марокко
+    mozambique: Мозамбік
+    myanmar: М'янма
+    namibia: Намібія
+    nauru: Науру
+    nepal: Непал
+    netherlands: Нідерланди
+    new_caledonia: Нова Каледонія
+    new_guinea: Нова Гвінея
+    new_zealand: Нова Зеландія
+    nicaragua: Нікарагуа
+    niger: Нігер
+    nigeria: Нігерія
+    niue: Ніуе
+    norfolk_island: Острів Норфолк
+    north_africa: Північна Африка
+    north_america: Північна Америка
+    north_korea: Північна Корея
+    northern_cyprus: Північний Кіпр
+    norway: Норвегія
+    oman: Оман
+    pakistan: Пакистан
+    palau: Палау
+    palestine: Палестина
+    panama: Панама
+    papua_new_guinea: Папуа Нова Гвінея
+    paraguay: Парагвай
+    peru: Перу
+    philippines: Філіппіни
+    pitcairn_islands: Острови Піткерн
+    poland: Польща
+    portugal: Португалія
+    puerto_rico: Пуерто-Рико
+    qatar: Катар
+    republic_of_congo: Республіка Конго
+    reunion: Реюньйон
+    romania: Румунія
+    russia: Росія
+    rwanda: Руанда
+    saint_barthelemy: Сен-Бартелемі
+    saint_helena: Острів Святої Єлени
+    saint_kitts_and_nevis: Сент-Кіттс і Невіс
+    saint_lucia: Сент-Люсія
+    saint_martin: Сен-Мартен
+    saint_pierre_and_miquelon: Сен-П'єр і Мікелон
+    saint_vincent_and_the_grenadines: Сент-Вінсент та Гренадіни
+    samoa: Самоа
+    san_marino: Сан-Марино
+    sao_tome_and_principe: Сан-Томе і Прінсіпі
+    saudi_arabia: Саудівська Аравія
+    senegal: Сенегал
+    serbia: Сербія
+    seychelles: Сейшельські острови
+    sierra_leone: Сьєрра-Леоне
+    singapore: Сінгапур
+    sint_maarten: Сінт-Маартен
+    slovakia: Словаччина
+    slovenia: Словенія
+    solomon_islands: Соломонові острови
+    somalia: Сомалі
+    south_africa: Південна Африка
+    south_america: Південна Америка
+    south_georgia_and_the_south_sandwich_islands: Південна Джорджія та Південні Сандвічеві острови
+    south_korea: Південна Корея
+    south_sudan: Південний Судан
+    spain: Іспанія
+    sri_lanka: Шрі-Ланка
+    sudan: Судан
+    suriname: Сурінам
+    svalbard_and_jan_mayen: Шпіцберген і Ян-Маєн
+    swaziland: Свазіленд
+    sweden: Швеція
+    switzerland: Швейцарія
+    syria: Сирія
+    taiwan: Тайвань
+    tajikistan: Таджикістан
+    tanzania: Танзанія
+    thailand: Таїланд
+    togo: Того
+    tokelau: Токелау
+    tonga: Тонга
+    trinidad_and_tobago: Тринідад і Тобаго
+    tunisia: Туніс
+    turkey: Туреччина
+    turkmenistan: Туркменістан
+    turks_and_caicos_islands: Острови Теркс і Кайкос
+    tuvalu: Тувалу
+    uganda: Уганда
+    ukraine: Україна
+    united_arab_emirates: ОАЕ
+    united_kingdom: Сполучене Королівство
+    united_states: США
+    united_states_minor_outlying_islands: Зовнішні малі острови США
+    united_states_virgin_islands: Віргінські острови США
+    uruguay: Уругвай
+    uzbekistan: Узбекістан
+    vanuatu: Вануату
+    vatican_city: Ватикан
+    venezuela: Венесуела
+    vietnam: В’єтнам
+    virgin_islands: Віргінські острови
+    wallis_and_futuna: Уолліс і Футуна
+    west_africa: Західна Африка
+    western_sahara: Західна Сахара
+    yemen: Ємен
+    zambia: Замбія
+    zimbabwe: Зімбабве
+  places_of_interest: Визначні місця
+  places_merged_successfully: Місця успішно об'єднані!
+  places_warning_export_complex_boundary_html: |
+    Якщо ви намагаєтеся експортувати спостереження у межах складних контурів, розгляньте натомість варіанти <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">завантаження їх із GBIF</a>, де ви можете намалювати довільні межі, або спробуйте експортувати їх з iNat за допомогою наявних місць або обмежувальної рамки, а потім знову відфільтрувати дані як тільки вони будуть завантажені.
+  places_warning_look_for_existing_html: |
+    Пошукайте серед <a href="/search?source[]=places">наявних місць</a> , щоб переконатися, що
+    ви не створюєте дублікат. У нас вже є місця для всіх континентів і країн, а також двох адміністративних рівнів нижче рівня країни.
+  places_warning_projects_can_have_multiple_places: |
+    Якщо ви намагаєтеся створити місце для визначення меж проєкту, майте на увазі, що проєкти можуть складатися з кількох місць. Наприклад, якщо ви хочете зробити проєкт для
+    Нової Зеландії та Австралії, ви можете просто додати до умов два місця замість того, щоб створювати нове.
   places_warning_new_places_are_slow_html: |
     Нові місця є одним з найбільших джерел уповільнення роботи iNat, тож, <strong>будь ласка, розгляньте варіант обійтися без створення нового місця</strong>. В той час як ми загалом не проти створення невеликих місць, що містять лише кілька тисяч спостережень, якщо ви створите нове місце з великою кількістю спостережень, то ви заповільните iNat для всіх його користувачів. Ось деякі альтернативні підходи:
+  places_warning_editing_places_is_slow: |
+    Редагування меж місць є однією з головних причин повільної роботи iNat.
+    Якщо ви можете цього уникнути, не створюйте, не змінюйте та не видаляйте меж місця, якщо це не
+    є конче необхідно.
+  places_warning_the_future: |
+    Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
+  plants: рослини
+  please_add_a_citation_for_this_change: Будь ласка, додайте цитату до цієї зміни.
+  please_add_this_observation_to: Будь ласка, додайте це спостереження до
+  please_add_this_to_x_html: "Будь ласка, додайте це до %{x}"
+  please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Title to a section warning a user to exercise caution
+  please_be_careful!: Будь ласка, будьте уважні!
+  please_complete_the_following_to_add_project: |
+    Будь ласка, завершіть наступні дії, щоб додати це спостереження в проект:
+  please_confirm_your_inat_username: "Будь ласка, підтвердіть ваше ім'я користувача %{site_name}"
+  please_explain_why_you_want_to_hide_this: Будь ласка, поясніть чому ви хочете це приховати
+  please_explain_why_you_want_to_unhide_this: Будь ласка, поясніть чому ви хочете зробити це видимим
+  please_fix_your_csv_and_try_again: Будь ласка, виправте ваш CSV-файл і спробуйте знову.
   please_hold_on_while_the_file: Будь-ласка, зачекайте поки створюється файл. Якщо у вас багато спостережень, це може зайняти декілька хвилин.
+  please_hold_on_while_the_file_is_generated: Будь-ласка, зачекайте поки створюється файл. Для великих списків це може зайняти декілька хвилин.
+  popular: Популярні
+  position: Положення
+  possessive_user: "%{user}"
+  #Post is a noun
+  post_from_journal_by_parent_html: Допис з <a href="%{url}">журналу %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: Допис з <a href="%{url}">вашого журналу</a>
+  post_published: Допис опубліковано!
+  posted_by: Опубліковано
+  posted_on: Опубліковано у
+  posts: Дописи
+  potential_disagreement: Потенційна незгода
+  powered_by: Працює на
+  powered_by_inaturalist_open_source_software_html: 'Працює на <a href="https://github.com/inaturalist/inaturalist" target="_new" >відкритому програмному забезпеченні iNaturalist</a>'
+  present: присутній
+  press: Преса
+  preview: Передогляд
   preview_observations_with_these_observation_requirements: Передоглянути спостереження з цими вимогами до спостережень
+  preview_of_synced_observation: "<strong>Передоглянути</strong> синхронізоване спостереження.  <a href=\"%{url}\">Скасувати?</a>"
+  preview_personal_message: "Я хочу вас запросити приєднатися до мене на %{site}, веб-сайті де ви можете записувати ваші спостереження за рослинами і тваринами, відслідковувати свій список живого і дізнаватися про світ природи!"
+  preview_your_message: Попередньо переглянути повідомлення
+  previewing: "Передогляд..."
+  previous: Попереднє
+  prev: Попер.
+  previous_observation: Попереднє спостереження
+  previous_page: Попередня сторінка
+  previous_photo: Попереднє фото
+  previous_tab: Попередня вкладка
+  print_verb: Друк
+  privacy: Приватність
+  private: приватні
+  private_: Приватні
+  private_description: "Координати, що повністю приховані з публічних мап. Справжні координати будуть видимі лише вам та кураторам проєктів, до яких ви додаєте спостереження. Однак, спостереження із прихованими координатами все ще використовуватимуться для перевірки локальних списків."
+  probably_spam: Ймовірно, спам
+  proceed: Продовжити
+  processing: Обробка
+  processing3p: "Обробка..."
+  profile: Профіль
+  profile_picture: Зображення профілю
   profile_visibility_desc: |
     З метою захисту %{site_name} від спаму профілі користувачів
     стають публічно видимі тільки після того, як користувач зробить кілька спостережень дослідницького рівня.
+  project: Проєкт
   project_admins:
     one: Адміністратор проєкту
     few: Адміністратори проєкту
@@ -3193,6 +3520,8 @@ uk:
   project_aggregator_filter_error: |
     Проєкти можуть здійснювати автоматичну агрегацію спостережень тільки якщо вони асоційовані
     з місцями середнього розміру, або залучають спостереження лише певних таксонів, або таксонів в списку.
+  project_assessments: Оцінки проєкту
+  project_assets: Матеріали проєкту
   project_coordinate_access_enabled: |
     Ви повинні мати можливість переглядати приховані координати спостережень від 
     осіб, які вам довіряють.
@@ -3256,8 +3585,139 @@ uk:
   quality_grade: Рівень якості
   quality_grade_: Рівень якості
   quality_grade_colon: "Рівень якості"
+  queued: У черзі
+  query: Запит
+  radius: Радіус (м)
+  radius_value: "Радіус (м): %{radius}"
+  range: Проміжок
+  rank: Ранг
+  rank_position: Ранг
+  rank_restrictions: Обмеження рангу
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
+    stateofmatter: Форма матерії
+    kingdom: Царство
+    x_kingdoms:
+      one: Царство
+      few: Царства
+      many: Царств
+      other: Царства
+    subkingdom: Підцарство
+    phylum: Тип/відділ
+    x_phyla:
+      one: Тип/відділ
+      few: Типи/відділи
+      many: Типів/відділів
+      other: Типи/відділи
+    subphylum: Підтип/підвідділ
+    superclass: Надклас
+    class: Клас
+    x_classes:
+      one: Клас
+      few: Класи
+      many: Класів
+      other: Класи
+    subclass: Підклас
+    infraclass: Інфраклас
+    superorder: Надряд/надпорядок
+    order: Ряд/порядок
+    x_orders:
+      one: Ряд/порядок
+      few: Ряди/порядки
+      many: Рядів/порядків
+      other: Ряди/порядки
+    suborder: Підряд/підпорядок
+    infraorder: Інфраряд/інфрапорядок
+    subterclass: Субтерклас
+    parvorder: Парворяд
+    zoosection: Секція
+    zoosubsection: Підсекція
+    superfamily: Надродина
+    epifamily: Епіродина
+    family: Родина
+    x_families:
+      one: Родина
+      few: Родини
+      many: Родин
+      other: Родини
+    subfamily: Підродина
+    supertribe: Надтриба
+    tribe: Триба
+    subtribe: Підтриба
+    genus: Рід
+    x_genera:
+      one: Рід
+      few: Роди
+      many: Родів
+      other: Роди
     genushybrid: Міжродовий гібрид
+    subgenus: Підрід
+    section: Секція
+    subsection: Підсекція
+    complex: Комплекс
+    #Singular
+    species: Вид
+    x_species:
+      one: Вид
+      few: Види
+      many: Видів
+      other: Види
+    hybrid: Гібрид
+    #Singular
+    subspecies: Підвид
+    variety: Різновид
+    form: Форма
+    infrahybrid: Інфрагібрид
+    leaves: Листя
+  ranges: Територія
+  ray_finned_fishes: променепері риби
+  re_apply_list_rules: Повторно застосувати правила списку
+  re_order_photos: "Змінити порядок фото &raquo;"
+  read_more: Детальніше
+  read_our_getting_started_guide: читати Посібник для початківця
+  read_the_full_wikipedia: Читати повний опис з Вікіпедії
+  real_time_discussions: Обговорення у реальному часі
+  reason: Причина
+  reason_you_are_flagging_this_item: Причина позначення цього прапорцем.
+  recaptcha_verification_failed: помилка перевірки reCAPTCHA
+  receive_email_notifications: Отримувати сповіщення на ел. пошту
+  receive_email_notifications_description: "Якщо Ви оберете вимкнути, більше не будете отримувати жодних листів від %{site_name} щодо сповіщень."
+  receive_email_notifications_when_people_leave_you: Отримувати на ел. пошту сповіщення про
+  receive_project_journal_notifications?: Отримувати сповіщення від журналу проєкту?
+  receive_updates_from_this_project: Отримувати оновлення від цього проєкту
+  recent: Нещодавні
+  recent_evidence_of_organism: Нещодавні свідчення існування організму
+  recent_exports: Останні експорти
+  recent_new_users: Нещодавні нові користувачі
+  recent_observations: Нещодавні спостереження
+  recent_observations_: Нещодавні спостереження
+  recent_post: Нещодавний допис
+  recent_atom_observations_by: "Нещодавні спостереження від користувача %{login} (Atom)"
+  recent_observations_by: "Нещодавні спостереження користувача %{login}"
+  recently_active: Нещодавно активні
+  recently_added: Нещодавно додані
+  recently_created: Нещодавно створені
+  recently_finished: Нещодавно завершені
+  recently_observed: Нещодавно спостережені
+  recently_resolved: Нещодавно вирішені
+  red: червоний
+  redo_search_in_map: Повторити пошук на мапі
+  redo_search_in_map_area: Повторити пошук в області на мапі
+  refresh: Оновити
+  refreshing: оновлення
+  regenerate_stats: Оновити статистику
+  register_for_this_event_at_x_html: "Зареєструватися на цю подію %{x}"
+  reject?: Відхилити?
+  relative_observations: Споріднені спостереження
+  relationship: "Відношення"
+  relationship_x: "Відношення: %{relationship}"
+  relationships:
+    match: співпадіння
+    one_to_one: один-до-одного
+    alternate_position: альтернативна позиція
+    many_to_many: багато-до-багатьох
   save_guide_taxon: Зберігати посібник з таксону
   sounds:
     sound_has_been_flagged: Цей звук був відмічений прапорцем
@@ -3271,6 +3731,7 @@ uk:
   unmute: Скасувати ігнорування
   url_identifier_of_a_project_derived_from: "URL / ідентифікатор проєкту, отриманий із зовнішнього ресурсу"
   user_muted: Користувача ігноровано
+  view_full_size_photo: Переглянути повнорозмірне фото
   view_more_observations_from_this_place: Показати більше спостережень з цього місця
   views:
     guide_taxa:
