@@ -2581,6 +2581,13 @@ it:
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Osservazione di %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Osservazione &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
     deve essere rimossa da quel progetto prima che questo valore di campo possa essere
