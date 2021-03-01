@@ -38,6 +38,12 @@ es-MX:
   x_observations_:
     one: "1 observación"
     other: "%{count} observaciones"
+  x_observations_html:
+    one: "<span class='count'>1</span> observación"
+    other: "<span class='count'>%{count}</span> observaciones"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 observación</a>"
+    other: "<a href='%{url}'>%{count} observaciones</a>"
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
