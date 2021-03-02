@@ -2576,6 +2576,7 @@ da:
   none_found: Ingen fundet
   normal: normal
   not_completed: Ikke afsluttet
+  not_confident: Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.
   not_covered_by_any_taxon_frameworks: Ikke dækket af nogen taksonramme
   not_evaluated: Ikke evalueret
@@ -2615,6 +2616,16 @@ da:
   observation_added: Observation tilføjet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation fra %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Observationen hører til et projekt, hvor dette felt kræves. Observationen skal fjernes fra det pågældende projekt, før denne feltværdi kan slettes.
   observation_brief_something_on_day: "Noget den %{day}"
@@ -2731,6 +2742,10 @@ da:
   observed_on: Observeret den
   observer: Observatør
   observers: Observatører
+  observer_prefers_no_project_addition: |
+    Observatør tillader ikke andre at føje deres observationer til projekter.
+  observer_prefers_addition_to_projects_joined: |
+    Observatør tillader kun andre at føje deres observationer til projekter, de har tilmeldt sig.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomst status beskriver, hvor almindelig eller sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> flere oplysninger om terminologi </a>.'
   occurrence_status: Forekomst status

@@ -188,16 +188,15 @@ nl:
 
     <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
-  about_trusting_projects: Over het vertrouwen in projecten
+  about_trusting_projects: Over het vertrouwen van projecten
   about_trusting_projects_options_any: Al je waarnemingen in dit project
   about_trusting_projects_options_any_desc: |-
-    Dit omvat waarnemingen waar je de geoprivacy hebt ingesteld op "vervaagd"
-    of "privé," bijvoorbeeld waarnemingen in je achtertuin of plekken waar je geen anderen wilt hebben.
+    Dit omvat waarnemingen waar je de geoprivacy hebt ingesteld op "vervaagd" of "privé," bijvoorbeeld waarnemingen in je achtertuin of plekken waarvan je niet wilt dat anderen ervan weten.
   about_trusting_projects_options_taxon: |-
     Alleen je waarnemingen in dit project die vervaagde coördinaten hebben
     vanwege bedreigde taxa
   about_trusting_projects_options_taxon_desc: |-
-    Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd worden omdat de
+    Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd zijn, omdat de
     waarneming een bedreigd taxon weergeeft.
   about_trusting_projects_overview: |-
     Het verlenen van toegang tot je verborgen coördinaten staat beheerders van dit
@@ -210,9 +209,7 @@ nl:
   about_trusting_projects_project_managers_are: |-
     De projectbeheerders die toegang zullen hebben tot je verborgen coördinaten zijn:
   about_trusting_projects_warning: |-
-    Projectmanagers kunnen de projectparameters wijzigen zodat ze alle parameters bevatten
-    van jouw waarnemingen en ze kunnen op elk gewenst moment projectmanagers toevoegen of verwijderen. Jij ontvangt meldingen van deze wijzigingen maar je vertrouwt dit project vertrouwen jouw privé-locatiegegevens toe dus wees zo
-    voorzichtig.
+    Projectmanagers kunnen de projectparameters wijzigen zodat ze al jouw waarnemingen bevatten, en ze kunnen op elk moment projectmanagers toevoegen of verwijderen. Je ontvangt bericht van deze wijzigingen, maar in principe vertrouw je dit project je privé-locatiegegevens toe, dus wees voorzichtig.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
@@ -238,7 +235,7 @@ nl:
   add_a_batch_of_observations: Verzameling waarnemingen toevoegen
   add_a_batch_of_taxa: Verzameling taxa toevoegen
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list: Voeg een opsommingslijst toe
+  add_a_bulleted_list: Voeg een ongenummerde lijst toe
   add_a_comment: Reactie toevoegen
   add_a_field: Veld toevoegen
   add_a_flag: Melding toevoegen
@@ -286,7 +283,7 @@ nl:
   add_higher_level_taxon: Taxon van hogere orde toevoegen (bv. "vogels")
   add_id: ID toevoegen
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text: Voeg cursieve tekst toe
+  add_italic_text: Cursieve tekst toevoegen
   add_muted_users: Gedempte gebruikers toevoegen
   add_new_lexicon: Nieuw lexicon toevoegen
   add_new_photos_by_their_ids: Nieuwe foto's op basis van hun Flickr-ID's toevoegen (moet Creative Commons zijn!)
@@ -538,7 +535,7 @@ nl:
   applications: Toepassingen
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: Indienen
+  apply_curator: Aanvragen
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
   apply_fields: Velden toepassen
@@ -747,6 +744,7 @@ nl:
   card: Kaart
   casual: onvolledig
   casual_: Onvolledig
+  casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality">Lees meer over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
   cc_0_description: "Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal."
   cc_0_name: Geen auteursrecht (CC0)
@@ -887,7 +885,7 @@ nl:
   committed_on: Vastgelegd op %{date}
   #Status message while a taxon change is being committed
   committing: Vastleggen...
-  common_name: Lokale naam
+  common_name: Algemene naam
   community: Gemeenschap
   community_curated: Gecureerd door de gemeenschap
   community_guidelines: Gemeenschapsrichtlijnen
@@ -924,15 +922,15 @@ nl:
   confirm_new_password: Bevestig nieuw wachtwoord
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig je informatie
-  confirming_ids: ID's bevestigen
-  confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's waarmee je akkoord gaat.
+  confirming_ids: Bevestigende ID's
+  confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppelen
   connect_to_provider: "Verbinden met %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Gekoppelde accounts
-  connected_accounts_description: Gekoppelde accounts zijn accounts van jou van andere apps of websites waar jij iNaturalist toegang tot hebt gegeven om inloggen te ondersteunen, voor de import van foto's of een andere toepassing.
+  connected_accounts_description: "Gekoppelde accounts zijn je accounts voor andere apps of websites waar je iNaturalist toegang toe hebt gegeven om \ninloggen, import van foto's, of andere functionaliteit te ondersteunen."
   connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
   connect_to_flickr_again_to_authorize_write_permissions: Verbind opnieuw met Flickr om schrijfrechten te geven
@@ -955,7 +953,7 @@ nl:
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon die hier voorkomen?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Inhoud
-  content_and_display: Inhoud & Toon
+  content_and_display: Inhoud & Uiterlijk
   content_author: Auteur inhoud
   content_hidden: Inhoud is verborgen
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1014,8 +1012,8 @@ nl:
     Toon alleen waarnemingen van dit project waarvoor je de "echte"
     coördinaten kunt zien, inclusief niet vervaagde waarnemingen, vervaagde waarnemingen door
     mensen die jou vertrouwen, vervaagde waarnemingen door mensen die dit project
-    met alles vertrouwen en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
-    alleen met hetzelfde vertrouwen stellen.
+    met alles vertrouwen, en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
+    alleen met hetzelfde vertrouwen.
   copy: Kopiëren
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
@@ -1082,7 +1080,7 @@ nl:
   curator: Curator
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-    iNaturalist site curatoren zijn betrouwbare vrijwilligers die de mogelijkheid hebben om de taxonomie te bewerken en de gebruikersinhoud van iNaturalist te modereren. Site curatoren zijn onderdeel van iNaturalist omdat ze onze taxonomie actueel houden en de discussies op iNaturalist passend en beleefd. Hieronder staat wat de functie van een curator inhoudt. Lees het en als jij een curator wilt zijn, lees dan zorgvuldig de <a href="/pages/curator+guide" target="_blank">Curator Guide</a> en vul het aanmeldingsformulier op deze pagina in.
+    iNaturalist sitecuratoren zijn vertrouwde vrijwilligers die de mogelijkheid hebben om iNaturalist's taxonomie te bewerken en de gebruikersinhoud te modereren. Sitecuratoren zijn essentieel voor iNaturalist, omdat ze onze taxonomie up-to-date houden en de omgang op iNaturalist passend en beleefd. Hieronder staat wat het inhoudt om een curator te zijn. Lees het alsjevlieft, en als jij een curator wilt zijn, lees dan de <a href="/pages/curator+guide" target="_blank">Curator Guide</a> zorgvuldig door en vul dan het aanmeldingsformulier op deze pagina in.
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Je moet uitleggen waarom je curator wilt worden
@@ -1090,12 +1088,12 @@ nl:
   curator_application_fields_explanation_html: Waarom wil je een curator zijn?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Als jij de taxonomie van iNaturalist wilt bewerken geef dan een of twee voorbeelden
-    van taxonomische wijzigingen die jij wilt aanbrengen en voeg links toe naar de juiste
+    Als je de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
+    van taxonomische wijzigingen die je zou willen aanbrengen, en voeg links toe naar de juiste
     taxonomische autoriteiten zoals vermeld in de Curator Guide
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-    Als jij lokale namen wilt bewerken geef dan één of twee voorbeelden van
+    Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
     wijzigingen die je wilt aanbrengen
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
@@ -1116,7 +1114,7 @@ nl:
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
-    Toont zelf het juiste gedrag niet
+    Zelf niet het juiste gedrag vertoont.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible: |
@@ -1784,6 +1782,7 @@ nl:
   help_translate!: Help met vertalen!
   helped_the_observer_make: heeft de waarnemer geholpen zijn of haar uiteindelijke ID te maken (ze werden dus gedaan vóór het laatste ID, en ze komen overeen)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
+  here_are_our_top_suggestions: Dit zijn onze topvoorstellen
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
   hex_color_eg: Hexadecimale kleur, bijvoorbeeld 65644F
   hi: Hallo,
@@ -1879,6 +1878,7 @@ nl:
   inbox: Postvak IN
   include_places: Includeer plaatsen
   include_projects: Includeer projecten
+  include_suggestions_not_seen_nearby: Alle soorten
   include_taxa: Includeer taxa
   include_users: Includeer gebruikers
   including: inclusief
@@ -2424,6 +2424,7 @@ nl:
   needs_id: ID nodig
   needs_id_: ID nodig
   needs_id_expandable_html: "ID <span class='full'>nodig</span>"
+  needs_id_tooltip_html: '"ID nodig"-waarnemingen hebben media, locatie en een datum maar er is nog steeds een gemeenschapsconsensus nodig voor een nauwkeurige determinatie. <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   needs_to_be_identified: Moet worden gedetermineerd
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2578,6 +2579,8 @@ nl:
   none_found: Niet gevonden
   normal: normaal
   not_completed: Niet voltooid
+  not_confident: We hebben er onvoldoende vertrouwen in dat we een goede aanbeveling zullen doen.
+  not_confident_top_suggestions: 'We zijn niet zeker genoeg om een aanbeveling te doen maar dit zijn onze belangrijkste voorstellen:'
   not_covered_by_any_taxon_frameworks: Niet gedekt door enig taxonkader
   not_evaluated: Niet beoordeeld
   not_findig_what_you_want: Niet gevonden wat je zoekt?
@@ -2614,6 +2617,16 @@ nl:
   observation_added: Waarneming toegevoegd.
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Waarnemingen van %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Waarneming &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     De waarneming hoort bij een project dat dit veld vereist. De waarneming
     moet uit dat project worden verwijderd voordat deze waarde
@@ -2736,6 +2749,10 @@ nl:
   observed_on: Waargenomen op
   observer: Waarnemer
   observers: Waarnemers
+  observer_prefers_no_project_addition: |
+    Waarnemer staat niet toe dat andere mensen zijn waarnemingen toevoegen aan projecten.
+  observer_prefers_addition_to_projects_joined: |
+    Waarnemer staat alleen toe dat andere mensen zijn waarnemingen toevoegen aan projecten waar hij aan deelneemt.
   observer_short: Waarnemer
   occurence_status_describes_how: 'Een voorkomststatus beschrijft hoe algemeen of zeldzaam een taxon is in een bepaald gebied. Zie DarwinCore voor <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">meer informatie over terminologie</a>.'
   occurrence_status: Statuscodes voorkomen
@@ -2819,6 +2836,7 @@ nl:
   only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in de standaardhiërarchie bewerken
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat doen. Niet gemeen doen.
   only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
+  only_view_nearby_suggestions: Bekijk alleen soorten uit de omgeving
   only_you: Alleen jij
   open: open
   open_: Open
@@ -3394,6 +3412,7 @@ nl:
   please_add_this_observation_to: Voeg deze waarneming toe aan
   please_add_this_to_x_html: "Voeg dit alsjeblieft toe aan %{x}"
   please_allow_a_few_weeks_for_external_sites: Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren #Title to a section warning a user to exercise caution
+  please_be_careful!: Wees voorzichtig!
   please_complete_the_following_to_add_project: |
     Vul het volgende in om deze waarneming aan het project toe te voegen:
   please_confirm_your_inat_username: "Bevestig je %{site_name}-gebruikersnaam"
@@ -3459,6 +3478,9 @@ nl:
     leden te vertrouwen.
   project_coordinate_access_disabled_until_datetime: |
     Jij hebt geen toegang tot verborgen coördinaten voor %{datetime}
+  project_coordinate_access_warning: |
+    Coördinaattoegang is belangrijk voor wetenschappers maar kan ook worden misbruikt door
+    stropers. Wees er zeker van dat je alle projectcuratoren vertrouwt voordat je het project vertrouwt.
   project_cover: Coverfoto project
   project_created_on: heeft dit project gemaakt op %{date}
   project_curator_id: Project curator determinatie
@@ -3692,6 +3714,7 @@ nl:
   research_: Onderzoek
   research_grade: Onderzoekskwaliteit
   research_grade_short_html: "O<span class='full'>nderzoeks</span>k<span class='full'>waliteit</span>"
+  research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
   reset_filters_short: Reset
@@ -4578,6 +4601,7 @@ nl:
   view_check_list_page: Checklist-pagina weergeven
   view_contributions: Bijdragen weergeven
   view_details: Details weergeven
+  view_dynamic_lifelist: Bekijk dynamische levenslijst
   view_field_options: Bekijk veldopties
   view_flag: Melding bekijken
   view_flags: Meldingen bekijken
@@ -4606,7 +4630,7 @@ nl:
   view_observation_flags: Meldingen over waarneming bekijken
   view_observations_by_everyone: Alle waarnemingen weergeven
   view_observations_by_these_users: Bekijk waarnemingen van deze gebruikers
-  view_observations_of_this_taxon_by: Geef de waarnemingen weer van dit taxon door
+  view_observations_of_this_taxon_by: Toon waarnemingen van dit taxon door
   view_on: Bekijk op
   view_on_flickr: Bekijk op Flickr
   view_original: "Origineel weergeven"
@@ -4772,7 +4796,7 @@ nl:
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
   you: Jou
-  you_: Jij
+  you_: Jou
   you_appear_offline_try_again: |
     Het lijkt erop dat je offline bent. Probeer het opnieuw wanneer je verbonden bent met het internet.
   youre_a_site_curator_which_means: |
@@ -5724,6 +5748,8 @@ nl:
           Als u toegang wilt tot de verborgen coördinaten van vervaagde waarnemingen stelt
           deze optie mensen die zich bij dit project hebben aangesloten in staat om
           de projectbeheerders toegang te verlenen tot de verborgen coördinaten. Projectleden kunnen toegang verlenen tot de verborgen coördinaten van elk van hun waarnemingen in dit project of alleen de waarnemingen die verborgen zijn vanwege bedreigde taxa.
+        trust_help_notification2: |-
+          Dit zal echter ook elke keer dat je de projectvereisten wijzigt alle projectleden die het project vertrouwen op de hoogte brengen, zodat ze kunnen heroverwegen of ze je willen blijven vertrouwen, gegeven de nieuwe vereisten. Je toegang tot verborgen coördinaten zal een week na het wijzigen van de waarnemingsvereisten worden ingetrokken, zodat leden de tijd hebben om dit te doen.
         trusted_project_means: |
           Een project vertrouwen betekent dat de projectbeheerders projectbestanden en eigen projectattributen (bijv. banner-HTML, CSS) kunnen toevoegen. Toegang tot aangepaste projectattributen betekent dat de projectbeheerders in principe kwaadwillige Javascript zouden kunnen toevoegen, dus vertrouw alleen projecten met beheerders die zowel verantwoordelijk als technisch bekwaam zijn.
         you_can_preview: |

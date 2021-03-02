@@ -727,8 +727,9 @@ fr:
   captive_cultivated: En captivité / cultivé
   captive_observations: Observation captive
   card: Carte
-  casual: occasionnel
-  casual_: Occasionnel
+  casual: informel
+  casual_: Informel
+  casual_tooltip_html: 'Les observations « informelles » ne sont pas documentées, sont sans lieu ou sans date, ou ne satisfont pas aux exigences des catégories « recherche » ou « besoin ID » pour d''autres raisons. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   categories: Catégories
   cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous mentionner. C’est la licence la plus pratique parmi celles qui nous sont offertes. Recommandée pour une diffusion maximale et l’utilisation de données sous licence."
   cc_0_name: Pas de droit d’auteur (CC0)
@@ -1047,9 +1048,8 @@ fr:
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   created: Date de création
-  created_by: Créé@{f:e|} par
+  created_by: Créé par
   created_by_user_on_date: Créé par %{user} le %{date}
-  created_on: Créé@{f:e|} le
   creating_your_account: "Création de votre compte…"
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
@@ -1356,7 +1356,7 @@ fr:
   disconnect_provider: "Déconnecter %{provider}"
   display: Affichage
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
-  display_monthly_supporter_badge: Afficher le badge de Soutient Mensuel sur le profil
+  display_monthly_supporter_badge: Afficher le badge Soutien mensuel sur le profil
   display_name: Nom affiché
   display_name_description: Ceci est le nom qui sera affiché sur votre profil et sur les mentions au droit d'auteur
   distance_traveled_value: "Distance parcourue : %{distance} m"
@@ -1778,6 +1778,7 @@ fr:
   help_translate!: Aidez-nous à traduire !
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
+  here_are_our_top_suggestions: Voici nos meilleures suggestions.
   here_are_our_top_species_suggestions: Voici les suggestions concernant nos espèces favorites
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
@@ -1879,6 +1880,7 @@ fr:
   inbox: Boîte de réception
   include_places: Ajouter des lieux
   include_projects: Ajouter des projets
+  include_suggestions_not_seen_nearby: Inclure les suggestions de taxons qui n'ont pas été observés à proximité
   include_taxa: Ajouter des taxons
   include_users: Ajouter des utilisateurs
   including: y compris
@@ -2332,7 +2334,7 @@ fr:
       #Short text representing %d days in the past
       dd: "%d j"
       #Short text representing 1 month in the past
-      M: "1min"
+      M: "1 mois"
       #Short text representing %d months in the past
       MM: "%d mois"
       #Short text representing 1 year in the past
@@ -2424,6 +2426,7 @@ fr:
   needs_id: besoin ID
   needs_id_: Nécessite une ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
+  needs_id_tooltip_html: 'Les observations « besoin ID » sont documentées et ont un lieu et une date, mais n''ont pas encore d''identification précise faisant l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   needs_to_be_identified: Doit être identifié
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2576,6 +2579,8 @@ fr:
   none_found: Aucun trouvé
   normal: normal
   not_completed: Incomplet
+  not_confident: Notre certitude n'est pas suffisante pour faire une recommandation.
+  not_confident_top_suggestions: Notre niveau de certitude n'est pas suffisant pour faire une recommandation, mais voici nos meilleures suggestions.
   not_covered_by_any_taxon_frameworks: Couvert par aucun cadre de taxon
   not_evaluated: non évalué
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
@@ -2612,6 +2617,16 @@ fr:
   observation_added: Observation ajoutée.
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation par %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'observation appartient à un projet dans lequel ce champ est obligatoire. Elle
     doit être retirée de ce projet pour que la valeur de ce champ puisse être
@@ -2728,6 +2743,10 @@ fr:
   observed_on: Observé le
   observer: Observateur
   observers: Observateurs
+  observer_prefers_no_project_addition: |
+    La personne qui a publié cette observation ne permet pas à d'autres personnes d'ajouter ses observations à des projets.
+  observer_prefers_addition_to_projects_joined: |
+    La personne qui a publié cette observation n'autorise d'autres personnes à ajouter ses observations qu'aux projets auxquels elle participe.
   observer_short: Obs.
   occurence_status_describes_how: 'L’état de la présence décrit le degré de rareté d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus d’information sur la terminologie</a>.'
   occurrence_status: État de la présence
@@ -2812,6 +2831,7 @@ fr:
   only_staff_can_edit_standard_places: Seule l’équipe du site peut modifier des endroits dans la hiérarchie standard
   only_the_owner_of_this_list_can_do_that: Seul le propriétaire de cette liste peut exécuter cette action. Soyez gentil.
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet peut supprimer ce projet.
+  only_view_nearby_suggestions: Voir uniquement les suggestions à proximité
   only_you: Seulement vous
   open: Ouvert
   open_: Ouverte
@@ -3387,6 +3407,7 @@ fr:
   please_add_this_observation_to: Veuillez ajouter cette observation à
   please_add_this_to_x_html: "Veuillez l’ajouter à %{x}"
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Title to a section warning a user to exercise caution
+  please_be_careful!: S'il vous plaît, soyez prudents !
   please_complete_the_following_to_add_project: |
     Veuillez compléter ce qui suit pour ajouter cette observation au projet :
   please_confirm_your_inat_username: "Veuillez confirmer votre nom d’utilisateur sur %{site_name}"
@@ -3449,6 +3470,9 @@ fr:
     membres.
   project_coordinate_access_disabled_until_datetime: |
     Vous ne pourrez pas avoir accès aux coordonnées masquées avant le %{datetime}
+  project_coordinate_access_warning: |
+    L'accès aux coordonnées est important pour les scientifiques, mais des braconniers peuvent en faire un mauvais usage aussi. Assurez-vous de faire confiance à tous les responsables du projet avant de faire confiance à ce projet
+    .
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
   project_curator_id: ID du responsable de l’organisation du projet
@@ -3681,6 +3705,7 @@ fr:
   research_: Recherche
   research_grade: Niveau de recherche
   research_grade_short_html: "C<span class='full'>alibre </span> R<span class='full'>echerche</span>"
+  research_grade_tooltip_html: 'Les observations « niveau de recherche » sont documentées et ont un lieu, une date ainsi qu''une identification précise (en général au rang de l''espèce) qui fait l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   research_grade_observations_have: 'Les observations de « calibre recherche » ont une date, une photo, des coordonnées et une identification reconnue par la communauté. Cliquer dessus pour voir l’évaluation de la garantie des données.'
   research_grade_qualification: Qualification de niveau recherche
   reset_filters_short: Réinitialiser
@@ -4108,7 +4133,7 @@ fr:
     other: "%{taxon} est un domaine de la vie avec %{count} observations"
   taxon_is_threatened_coordinates_hidden: Le taxon est menacé, les coordonnées sont masquées par défaut
   taxon_is_threatened_coordinates_hidden_desc: |
-    Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
+    Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est rare ou menacé, donc l’emplacement de cette observation a été masqué.
   taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été masquées par défaut
   taxon_is_threatened_coordinates_obscured_desc: |
     Un des taxons suggérés dans les identifications, ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
@@ -4567,6 +4592,7 @@ fr:
   view_check_list_page: Afficher la page de la liste de contrôle
   view_contributions: Afficher les contributions
   view_details: Afficher les détails
+  view_dynamic_lifelist: Voir la liste dynamique des êtres vivants
   view_field_options: Afficher les options du champ
   view_flag: Afficher le signalement
   view_flags: Afficher les signalements
@@ -5976,6 +6002,11 @@ fr:
           Permettre aux membres de partager leurs coordonnées cachées
         trust_help_desc: |-
           Si vous voulez avoir accès aux coordonnées cachées des utilisateurs, cette option leur permet de donner l'accès aux admins du projet à ces coordonnées. Les membres du projet vont être capables de donner accès aux coordonnées de leurs observations qui font partie du projet, ou juste de celles avec un taxon menacé du projet.
+        trust_help_notification2: |-
+          Cependant, tous les membres qui font confiance au projet sont également avisés chaque fois que
+          vous modifiez les critères d'observation du projet pour qu'ils puissent reconsidérer leur décision de vous faire confiance compte tenu des nouveaux critères.
+          Votre accès aux coordonnées masquées est révoqué pendant une semaine après
+          la modification des critères d'observation pour que les membres aient le temps de prendre cette décision.
         trusted_project_means: |
           Le fait de faire confiance à un projet signifie que les gestionnaires du projet peuvent ajouter des biens
           et des attributs personnalisés au projet (par ex. une bannière HTML, des éléments en format CSS). En ayant accès

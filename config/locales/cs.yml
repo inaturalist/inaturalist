@@ -2713,6 +2713,7 @@ cs:
   none_found: Nenalezeno
   normal: normální
   not_completed: Nedokončený
+  not_confident: Nejsme si dostatečně jistí, abychom provedli doporučení.
   not_confident_top_suggestions: Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy
   not_covered_by_any_taxon_frameworks: Není pokryto žádným taxonem
   not_evaluated: nehodnoceno
@@ -2750,6 +2751,16 @@ cs:
   observation_added: Pozorování přidáno.
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Pozorování uživatele %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Pozorování &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Toto pozorování patří k projektu, který vyžaduje toto pole.
     Pozorování musí být z tohoto projektu odebráno, než může být tato hodnota pole
@@ -2856,6 +2867,10 @@ cs:
   observed_on: Pozorováno dne
   observer: Pozorovatel
   observers: Pozorovatelé
+  observer_prefers_no_project_addition: |
+    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do projektů.
+  observer_prefers_addition_to_projects_joined: |
+    Pozorovatel umožňuje ostatním lidem přidávat svá pozorování pouze do projektů, ke kterým se připojil.
   observer_short: Pozorovatel
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
@@ -3579,6 +3594,11 @@ cs:
     Projekty neumožňují automatické seskupování pozorování, pokud není projekt spojen s místem menší rozlohy nebo pokud neumožňuje pozorování pouze určitých taxonů nebo taxonů na seznamu
   project_assessments: Hodnocení projektu
   project_assets: Položky projektu
+  project_coordinate_access_enabled: |
+    Měli byste být schopni zobrazit skryté souřadnice pozorování pomocí důvěryhodných
+    členů.
+  project_coordinate_access_disabled_until_datetime: |
+    Nebudete mít přístup ke skrytým souřadnicím do %{datetime}
   project_coordinate_access_warning: |
     Přístup k souřadnicím je důležitý pro vědce, ale také může být zneužit
     pytláky. Ujistěte se, že věříte všem kurátorům projektu, než budete důvěřovat tomuto
@@ -4751,6 +4771,7 @@ cs:
   view_check_list_page: Zobrazit stránku seznamu
   view_contributions: Zobrazit příspěvky
   view_details: Zobrazit podrobnosti
+  view_dynamic_lifelist: Zobrazit dynamický seznam života
   view_field_options: Zobrazit možnosti pole
   view_flag: Zobrazit štítky
   view_flags: Zobrazit štítky

@@ -1977,7 +1977,7 @@ de:
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
-  let_us_walk_you_through: Wir führen dich durch die wichtigsten Funktionen dieser Website.
+  let_us_walk_you_through: Wir führen dich durch die wichtigsten Funktionen dieser Website (in englischer Sprache!).
   lexicon: Lexikon
   lexicons:
     scientific_names: Wissenschaftlicher Name
@@ -2565,6 +2565,16 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Beobachtung von %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Beobachtung &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Die Beobachtung gehört zu einem Projekt, das dieses Feld erfordert. Die
     Beobachtung muss aus dem Projekt entfernt werden, bevor dieser Feldwert
@@ -3412,7 +3422,7 @@ de:
     title: "Checkliste von %{owner_name}"
     description: Die Artenliste für %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    Kuratoren von<a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
+    Kuratoren von <a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
   project_members: "Mitglieder von %{project}"
   project_members_only: Nur Projektmitglieder
   project_membership_model_description: Ist dein Projekt offen für alle oder nur für Personen, die du einlädst?
@@ -5625,6 +5635,10 @@ de:
           Wenn du Zugriff auf die versteckten Koordinaten verdeckter Beobachtungen haben möchtest,
           erlaubt es diese Option Benutzern, die diesem Projekt beigetreten sind,
           den Projektadministratoren mit Zugriff auf diese versteckten Koordinaten vertrauen. Projekt-Mitglieder können Zugriff auf die versteckten Koordinaten aller ihrer Beobachtungen, die in diesem Projekt erscheinen, gewähren, oder nur für die Beobachtungen, die aufgrund bedrohter Taxa verschleiert werden.
+        trust_help_notification2: |-
+          Es werden jedoch auch alle Projektmitglieder immer dann benachrichtigt, wenn die Beobachtungsbedingungen des Projekts geändert werden, damit sie
+          neu bewerten können, ob sie dir angesichts der neuen Bedingungen weiterhin vertrauen wollen.
+          Nach Änderung der Beobachtungsbedingungen wird dein Zugriff auf versteckte Koordinaten für die Dauer einer Woche entzogen, so dass Mitglieder Zeit für ihre Entscheidung haben
         you_can_preview: |
           Du kannst eine Vorschau des Projekts als Sammel-Projekt
           ansehen, indem du <a href="%{url}">hier klickst</a>.

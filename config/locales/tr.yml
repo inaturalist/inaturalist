@@ -640,6 +640,9 @@ tr:
   automatic_short: Kendiliğinden
   automatically_add_observations_to_this_project: Gözlemleri bu projeye kendiliğinden ekle
   automatically_update_my_content_for_taxon_changes: Sınıf değişikliklerinde içeriğimi kendiliğinden güncelle
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Ort
   back: Geri
   back_to_all_species: Tüm Türlere Dön
   back_to_browsing_people: Kişi Aramaya Dön
@@ -1349,7 +1352,7 @@ tr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: BAĞIŞ YAP
-  done: Tamamlandı
+  done: Gönder
   dont_have_an_account_sign_up_html: Bir hesabınız yok mu? <strong>Kayıt olun.</strong>
   dont_send_me_email: "Bana herhangi bir e-posta gönderme!"
   dont_use_double_quotes: Başka hiçbir yerde çift tırnak kullanmayın
@@ -1737,7 +1740,7 @@ tr:
   has_sound: Ses Var
   has_sounds: Sesler Var
   hasnt_contributed_any_observations: bu projeyle ilgili hiç gözlem yapılmadı.
-  header_your_observations: Gözlemleriniz
+  header_your_observations: Gözlemlerin
   header_your_calendar: Takviminiz
   header_your_favorites: Favorileriniz
   header_your_lists: Listeleriniz
@@ -1936,7 +1939,7 @@ tr:
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown: Eksik Konum
+  location_unknown: Konum Belirtilmemiş
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Yakınlaştırma düzeyini kilitleme
@@ -2147,7 +2150,7 @@ tr:
   location_is_public: Konum halka açık
   location_is_obscured: Konum gizlenmiş
   location_is_private: Konum gizli
-  location_specified: Belirtilmiş konum
+  location_specified: Konum belirtilmiş
   locked_taxa_will_not_allow_new: Kilitli sınıflar, yeni alt sınıfların kendisine eklenmesine izin vermez. Eğer Amphibia'yı kilitlediyseniz ve birisi <i>Rana catesbeiana'yı</i> dış bir sağlayıcıdan içe aktarmaya çalıştıysa, yeni sınıf oluşturulacak ancak bir yüzergezer olarak sınıflandırılamayacak. Bu olduğunda, yeni eklenen sınıfların, sorumlunun dikkat etmesi için işaretlenmesi gerekir. Bu, yalnızca alt sınıf olduğunu düşündüğümüz sınıflar için kullanılmalıdır. Sorumlu bunu sınıfları düzenleyerek ve doğrudan üst kimlik ekleyerek geçersiz kılabilir ancak bunun yerine yeni sınıfları var olanlarla birleştirmeyi düşünün.
   log_in: Oturum Aç
   log_in_or_sign_up_to_add_comments_html: |
@@ -2539,6 +2542,7 @@ tr:
   none_found: Hiçbir şey bulunamadı
   normal: sıradan
   not_completed: Tamamlanmadı
+  not_confident: Öneride bulunacak kadar kendimize güvenmiyoruz.
   not_confident_top_suggestions: Tavsiye yapacak kadar kendimize güvenmiyoruz ancak şunlar bizim en iyi önerilerimiz
   not_covered_by_any_taxon_frameworks: Hiçbir sınıf yapısı kapsamına girmez
   not_evaluated: değerlendirilmedi
@@ -2576,6 +2580,16 @@ tr:
   observation_added: Gözlem eklendi.
   observation_added_to_the_project: "\"%{project}\" projesine gözlem eklendi"
   observation_aggregation: Gözlem yığınlama
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: '%{user} kullanıcısının gözlemleri'
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: '%{user} kullanıcısının gözlemlerinin &copy;'
   observation_belongs_to_project_requiring_field: |
     Gözlem, bu alana ihtiyacı olan bir projenin parçası. Bu yüzden, bu alan değeri silinmeden önce gözlemin öncelikle o projeden çıkarılması gerekiyor.
   observation_brief_something_on_day: "%{day} gününden bir şeyler"
@@ -2683,6 +2697,10 @@ tr:
   observed_on: Gözlem Tarihi
   observer: Gözlemci
   observers: Gözlemciler
+  observer_prefers_no_project_addition: |
+    Gözlemci, diğer kişilerin gözlemlerini projeye eklemesine izin vermiyor.
+  observer_prefers_addition_to_projects_joined: |
+    Gözlemci, sadece projeye katılan diğer kişilerin gözlemlerini eklemesine izin veriyor.
   observer_short: Gözlemci
   occurence_status_describes_how: 'Ortaya çıkma durumu, bir sınıfın belirli bir alanda ne kadar yaygın ya da nadir olduğunu tanımlar. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">Daha çok bilgi ve kavram</a> için DarwinCore''a bakın.'
   occurrence_status: Ortaya çıkma durumu
@@ -2719,7 +2737,7 @@ tr:
     observe_panel_title: Haydi Bazı Gözlemler Göndererek Başlayalım
     observe_panel_body_p1_local: Düşüceye mi gereksiniminiz var? İşte yakınlarda bazı organizmalar gözlemleniyor...
     observe_panel_body_p1_global: Düşüceye mi gereksiniminiz var? İşte bazı organizmalar gözlemleniyor...
-    observe_panel_body_p2: Dışarı çık ve bir organizma gözlemle. Vahşi bir şey seçin ve açık, tam kare bir fotoğrafını çekin. Zaten vahşi bir şeyin bir fotoğrafını varsa, <a href="%{new_observation_path}">şimdi ekle</a>. Gözlemleri kaydetmek için %{site_name} mobil uygulamalarını da kullanabilirsin.
+    observe_panel_body_p2: Dışarı çık ve bir organizma gözlemle. Yabani bir organizma seçtikten sonra, net ve tamamını kapsayan fotoğrafını çek. Yabani bir şeyin fotoğrafını daha önceden çektiysen <a href="%{new_observation_path}">şimdi ekle</a>. Gözlemleri kaydetmek için %{site_name} mobil uygulamasını da kullanabilirsin.
     observe_panel_body_p3: Gözlemlerinizi bir kez paylaştığınızda, bu sayfa size topluluktan gelen yorumları ve tanımlamaları gösterir. Ne keşfedeceğinizi kim bilir!
     follow_panel_title_local: Yakındaki Doğa Bilimcilerden Bazılarını Takip Edin
     follow_panel_title_global: Bazı Aktif Doğa Bilimcileri Takip Et
@@ -2781,7 +2799,7 @@ tr:
   orange: turuncu
   order: Sıralama
   order_by: Sıralama ölçütü
-  organism_is_wild: Organizma vahşi
+  organism_is_wild: Yabani Organizma
   organisms: Organizmalar
   original: Asıl
   originally_flagged_by: Şu kişi aslen işaretledi
@@ -4544,7 +4562,7 @@ tr:
   view_your_dashboard: Kontrol panelinizi görüntüleyin
   view_your_dashboard_for_more_updates_html: "Daha fazla güncelleme için <a href='%{url}'>kontrol panelinizi görüntüleyin</a>"
   view_your_inbox: Gelen kutunuzu görüntüleyin
-  view_your_observations: Gözlemlerinizi görüntüleyin
+  view_your_observations: Gözlemlerini görüntüle
   view_your_year_stats: "%{year} İstatistiklerinizi Görüntüleyin"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x}'den görüntüle"
@@ -4799,7 +4817,7 @@ tr:
   your_identification: Tanımlaman
   your_membership: Üyeliğiniz
   your_name_was_saved: İsminiz kaydedildi.
-  your_observations: Gözlemleriniz
+  your_observations: Gözlemlerin
   your_observations_couldnt_be_added_to_that_project: "Gözlemleriniz projeye eklenemedi: %{errors}"
   your_photos_have_been_tagged: Fotoğraflarınız etiketlendi!
   your_projects: Projeleriniz
@@ -5044,6 +5062,7 @@ tr:
         date_added_newest: Ekleme Tarihi, Yeniden Eskiye
         date_added_oldest: Ekleme Tarihi, Eskiden Yeniye
         show: Göster
+        children: Çocuklar
         simplified_tree: Basitleştirilmiş Ağaç
         full_taxonomy: Tüm Sınıflandırmalar
     listed_taxa:

@@ -2540,6 +2540,7 @@ it:
   none_found: Non trovato
   normal: normale
   not_completed: Non Completato
+  not_confident: Non siamo abbastanza sicuri per fare una raccomandazione.
   not_confident_top_suggestions: Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.
   not_covered_by_any_taxon_frameworks: Non coperto da nessun quadro del taxon
   not_evaluated: Non Valutata
@@ -2577,6 +2578,16 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Osservazione di %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Osservazione &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
     deve essere rimossa da quel progetto prima che questo valore di campo possa essere
@@ -2686,6 +2697,10 @@ it:
   observed_on: Osservata il
   observer: Utente
   observers: Osservatori
+  observer_prefers_no_project_addition: |
+    L'osservatore non consente ad altre persone di aggiungere le sue osservazioni ai progetti.
+  observer_prefers_addition_to_projects_joined: |
+    L'osservatore consente ad altre persone di aggiungere le sue osservazioni solo ai progetti a cui si è unito.
   observer_short: Utente
   occurence_status_describes_how: 'Lo stato di distribuzione descrive se il taxon è raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per più informazioni sulla terminologia</a>.'
   occurrence_status: Stato della distribuzione
@@ -3390,7 +3405,7 @@ it:
   project_assessments: Valutazioni del Progetto
   project_assets: Risorse del Progetto
   project_coordinate_access_enabled: |
-    Dovresti essere in grado di visualizzare le coordinate nascoste delle osservazioni fidandoti dei membri.
+    Dovresti essere in grado di visualizzare le coordinate nascoste delle osservazioni dei membri che si fidano.
   project_coordinate_access_disabled_until_datetime: |
     Non potrai accedere alle coordinate nascoste fino al %{datetime}
   project_coordinate_access_warning: |

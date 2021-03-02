@@ -958,6 +958,7 @@ bg:
   devise_unlock_instructions_click_the_link: |
     Щракнете препратката по-долу, за да отключите акаунта си
   devise_unlock_instructions_unlock: Отключете акаунта си
+  discoveries: Открития
   did_you_photos_flickr?: Качихте ли някакви снимки на Flickr?
   disable: Изключване
   disable_comments: Изключи коментарите
@@ -1191,7 +1192,7 @@ bg:
   flagger: Маркирал
   flags: Маркери
   flags_explanation: "Потребителите на %{site_name} могат да маркират неща когато сметнат нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите."
-  flags_for_x_html: Маркер за %{x}
+  flags_for_x_html: Маркери за %{x}
   flags_on_users_content: "Маркери на съдържанието на %{user}"
   flickr_account_information: Информация за Вашия акаунт на Flickr
   flickr_has_no_creative_commons: Flickr няма снимки с лиценз Криейтив комънс от това място.
@@ -1291,7 +1292,7 @@ bg:
     Скриването на съдържание ще го премахне от публичния изглед, но хората ще могат да виждат, че нещо е скрито, а кураторите на сайта и авторът на съдържанието ще могат да виждат скритото съдържание. Това се отнася за написано съдържание, например ако скриете съдържанието на разпознаване – самото разпознаване ще е видимо, но бележките към него ще са скрити. Не можете да отмените това действие, само персоналът на сайта може да отмени скриването, така че бъдете внимателни и използвайте функцията само за наистина нежелателно съдържание.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Скривай „Без анотация“
+  hide_no_annotation: Скрий „Без анотация“
   hide_running_total: Скрий нарастващия сбор
   high: Висок
   highest_rank: Най-висок ранг
@@ -1886,6 +1887,7 @@ bg:
   none: Нищо
   none_found: Няма намерени
   normal: нормален
+  not_confident: Не сме достатъчно уверени за да препоръчаме нещо.
   not_evaluated: неоценен
   not_finding_place_you_want?: Не намирате нужното място?
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
@@ -1913,6 +1915,16 @@ bg:
   observation_: наблюдение
   observation_added: Наблюдението е добавено.
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Наблюдение на %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Наблюдение &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Наблюдението е включено в проект, който изисква това поле. Наблюдението трябва да се премахне от проекта, за да може това поле да бъде изтрито.
   observation_brief_something_on_day_at_time_by_user: "Нещо на %{day} в %{time} от %{user}"
@@ -2011,6 +2023,10 @@ bg:
   observed_on: Наблюдавано на
   observer: Наблюдател
   observers: Наблюдатели
+  observer_prefers_no_project_addition: |
+    Наблюдателят не позволява други хора да добавят наблюденията му към проекти.
+  observer_prefers_addition_to_projects_joined: |
+    Наблюдателят позволява наблюденията му да се добавят от други хора единствено към проекти, в които членува.
   observer_short: Налюдател
   occurrence_status_establishment_means: срещаемост, начин на заселване
   of_observations: наблюдения
@@ -2086,6 +2102,24 @@ bg:
   other_lexicons: Други езици
   other_species_commonly_misidentified_as_this_species: Други видове често обърквани с този вид
   other_species_commonly_misidentified_as_this_species_in_place_html: Други видове често обърквани с този вид във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Други таксони често обърквани с този комплекс
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Други таксони често обърквани с този във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Други таксони често обърквани с този род
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Други таксони често обърквани с този род във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Други таксони често обърквани с този родов хибрид
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Други таксони често обърквани с този родов хибрид във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Други таксони често обърквани с този хибрид
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Други таксони често обърквани с този хибрид във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Други таксони често обърквани с този таксон (%{rank})
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Други таксони често обърквани с този таксон (%{rank}) във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section: Други таксони често обърквани с тази секция
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Други таксони често обърквани с тази секция във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Други таксони често обърквани с този вид
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Други таксони често обърквани с този вид във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Други таксони често обърквани с този подрод
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Други таксони често обърквани с този подрод във <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection: Други таксони често обърквани с тази подсекция
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Други таксони често обърквани с тази подсекция във <a href="%{url}">%{place}</a>
   our_blog: Нашият блог
   overview: Общ преглед
   owner: Собственик
@@ -2750,6 +2784,7 @@ bg:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Отмени %{site_name}?"
+  rg_observations: Наблюдения ИК
   role: Роля
   rotate_left: Завърти наляво
   rotate_right: Завърти надясно
@@ -3174,7 +3209,7 @@ bg:
   total_species_observed: Общо наблюдавани видове
   total_unique_observers: Общо различни наблюдатели
   'true': 'Вярно'
-  trending: В тенденция
+  trending: Тенденции
   trends: Тенденции
   #Noun
   trust: Доверие
@@ -3302,6 +3337,7 @@ bg:
   view_check_list_page: Виж видовия списък
   view_contributions: Виж приносите
   view_field_options: Виж възможните полета
+  view_flags: Виж маркерите
   view_flags_for_x_html: "Виж маркерите за %{x}"
   view_full_observation: Виж цялото наблюдение
   view_full_size_photo: Виж снимката в пълен размер
@@ -3351,6 +3387,8 @@ bg:
   vulnerable: Уязвим
   w_photos_only: със снимка
   w_sounds: със звук
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  wanted: Издирвани
   was_it_captive_cultivated?: "Беше ли в плен/култивиран?"
   we_also_support: |
     Поддържаме също и <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google Photos</a> и <a href="http://facebook.com">Facebook</a> като хранилища за снимки.
@@ -3756,6 +3794,8 @@ bg:
           Позволявай на членовете да доверяват скритите си координати на проекта
         trust_help_desc: |-
           Ако искате достъп до скритите координати на замаскирани наблюдения, тази опция ще позволи на хората присъединили се хъм проекта, да предоставят достъп до тези скрити координати на администраторите на проекта. Членовете на проекта ще могат да предоставят достъп до скритите координати на всяко от техните наблюдения влизащи в проекта или само до тези наблюдения, които са замаскирани заради застрашен таксон.
+        trust_help_notification2: |-
+          Това обаче ще известява всички доверили се членове на проекта, всеки път щом промените изискванията към наблюдения на проекта. Така членовете ще могат да преразгледат решението си за доверие спрямо новите изисквания. Достъпът Ви до скрити координати ще бъде отменен за една седмица след промяната на изискванията, за да имат време членовете да вземат това решение.
       join:
         invite_only_description: |
           Членството в този проект е само по покана. Ако искате да се присъедините, свържете се с някой от кураторите по-долу и поискайте покана.
@@ -3979,6 +4019,7 @@ bg:
           Показването на относителния дял на наблюденията - като брой наблюдения на таксона отнесени към общия брой наблюдения, позволява да се премахне ефекта от растежа на наблюдателите на сайта. Например, когато сайтът се разраства и получаваме повече наблюдения всяка година, обикновено получаваме повече наблюдения и за всеки един таксон - но това не означава, че популациите на този таксон непременно нарастват, а просто означава, че има повече хора които го наблюдават. Например ако има общо 100 наблюдения, 20 от които на този таксон - относителният дял на този таксон е 0,2 (20 / 100). Ако следващата година хората направят общо 2000 наблюдения, 400 от които са на този таксон - относителният дял на таксона ще е отново 0,2 (400 / 2000). Това може да причини отклонения, когато има много малко наблюдатели в даден район или когато таксонът е наблюдаван рядко, но това важи и за абсолютните стойности.
         complete_taxon_desc: |
           „Изчерпателните“ таксони имат всичките свои съвременни подтаксони от определен ранг добавени в базата данни на уебсайта. Когато даден таксон е изчерпателен до видове например, можем да кажем колко от видовете му са наблюдавани и за колко все още няма наблюдения. Броят видове за таксони изчерпателни до вид не включва „неизброими“ видове – като изчезнали видове или невалидни видове – и включва само видовете, без подвидови таксони като подвидове или вариетети.
+        discoveries_desc: "Най-новите първооткривателства от този таксон"
         frequency:
           research: Изследователско качество
           verifiable: Потвърдимо
