@@ -122,7 +122,7 @@ sv:
     other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
   _100_day_trends: 100-dagarstrend
   _percent_ID_d: "% bestämda"
-  a_community_for_naturalist: En gemenskap för naturforskare
+  a_community_for_naturalist: En community för naturforskare
   a_default_taxon_name_will_automatically_created: |
     Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon kommer du kunna lägga till andra namn här (vardagliga namn, vetenskapliga synonymer osv.)
   a_flag_for_x: "en flagga för %{x}"
@@ -153,7 +153,7 @@ sv:
   about: Om
   about_blocking: Om blockering
   about_charts: Om diagram
-  about_community_taxa: Om gemenskapstaxa
+  about_community_taxa: Om community-taxa
   about_complete_taxa: Om kompletta taxa
   about_conservation_status: Om bevarandestatus
   about_editing_observation_fields: Om redigering av observationsfält
@@ -166,7 +166,7 @@ sv:
   about_muting: Om tystning
   #Header for a section describing taxon names
   about_names: Om namn
-  about_places: Om lokaler
+  about_places: Om fyndplatser
   about_the_cc_licenses: Om Creative Commons-licenser
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
@@ -194,20 +194,20 @@ sv:
   about_trusting_projects: Om att lita på projekt
   about_trusting_projects_options_any: Alla dina observationer i detta projekt
   about_trusting_projects_options_any_desc: |-
-    Detta inkluderar observationer där du har satt geosekretessen till "diffuserad" eller "privat", t.ex. observationer från din bakgård eller platser som du inte vill att andra människor ska känna till.
+    Detta inkluderar observationer där du har satt koordinatsekretess till "diffuserad" eller "privat", t.ex. observationer från din bakgård eller platser som du inte vill att andra människor ska känna till.
   about_trusting_projects_options_taxon: |-
     Endast de av dina observationer i detta projekt vars koordinater är dolda på grund av hotade taxa
   about_trusting_projects_options_taxon_desc: |-
     Många projekt behöver bara tillgång till koordinater som är diffuserade eftersom observationen är av ett hotat taxon.
   about_trusting_projects_overview: |-
-    Genom att ge tillgång till dina dolda koordinater kan detta projekts ledare se den verkliga, odiffuserade lokalen för dina observationer i detta projekt. Detta
+    Genom att ge tillgång till dina dolda koordinater kan detta projekts ledare se den verkliga, odiffuserade fyndplatsen för dina observationer i detta projekt. Detta
     är oerhört viktigt i situationer där forskare eller resursförvaltare behöver tillgång till exakta koordinater för analys och beslutsfattande.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
     De projektledare som kommer att ha tillgång till dina dolda koordinater är:
   about_trusting_projects_warning: |-
-    Märk väl att projektledare kan ändra projektparametrarna så att vilken som helst av dina observationer inkluderas, och de kan lägga till och ta bort projektledare när som helst. Du kommer att få meddelanden om dessa ändringar, men i praktiken anförtror du detta projekt med dina privata lokalangivelser, så var försiktig.
+    Märk väl att projektledare kan ändra projektparametrarna så att vilken som helst av dina observationer inkluderas, och de kan lägga till och ta bort projektledare när som helst. Du kommer att få meddelanden om dessa ändringar, men i praktiken anförtror du detta projekt med dina privata koordinatuppgifter, så var försiktig.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan välja att dela dolda koordinater för
@@ -217,7 +217,7 @@ sv:
   account_creation: Att skapa konto
   account_settings: Kontoinställningar
   accept: acceptera
-  accept_community_identifications: Acceptera gemenskapsbestämningar
+  accept_community_identifications: Acceptera community-bestämningar
   accuracy: Noggrannhet
   accuracy_meters: Noggrannhet (meter)
   accuracy_of_the_coordinates: |
@@ -285,11 +285,11 @@ sv:
   add_muted_users: Lägg till tystade användare
   add_new_lexicon: Lägg till nytt lexikon
   add_new_photos_by_their_ids: Lägg till nya bilder via deras Flickr-Id (måste vara Creative Commons!)
-  add_new_place: Lägg till en ny lokal
+  add_new_place: Lägg till en ny fyndplats
   add_new_rule: Lägg till en ny regel
   add_new_source: "Lägg till en ny källa..."
   add_new_taxon_name: Lägg till ett nytt taxonnamn
-  add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna lokal, t.ex. var och när det påträffas.
+  add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna fyndplats, t.ex. var och när det påträffas.
   add_obs_from_a_link: "Lägg till obs från lista: %{link}"
   add_obs_from_a_list: Lägg till obs från en lista
   add_observations: Lägg till observationer
@@ -301,7 +301,7 @@ sv:
   #"one" refers to a photo
   add_one_now: Lägg till en nu
   add_photos: Lägg till bilder
-  add_place: Lägg till lokal
+  add_place: Lägg till fyndplats
   add_alive_or_dead_alive_annotation: 'Lägg till anteckningen "Levande eller Död: Levande"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till anteckningen "Levande eller Död: Kan inte avgöras"'
   add_alive_or_dead_dead_annotation: 'Lägg till anteckningen "Levande eller Död: Död"'
@@ -344,7 +344,7 @@ sv:
   add_to_your_life_list: Lägg till i din livslista!
   add_to_your_list: Lägg till i din lista
   add_your_email_to_get: |
-    Lägg till din e-postadress för att få respons på din observation från gemenskapen. Om du helst inte vill dela den, kolla igen snart!
+    Lägg till din e-postadress för att få respons på din observation från communityn. Om du helst inte vill dela den, kolla igen snart!
   add_your_own_observations_at: "Lägg till dina egna observationer på %{site_name}"
   added: Tillagd
   added!: Tillagd!
@@ -383,7 +383,7 @@ sv:
   all_names: Alla namn
   all_observations: Alla observationer
   all_photos: Alla bilder
-  all_places: "Alla lokaler"
+  all_places: "Alla fyndplatser"
   all_projects: Alla projekt
   all_rank_added_to_the_database:
     phylum: All fyla har lagts till i databasen
@@ -537,9 +537,9 @@ sv:
   apply_to_selected: Tillämpa på valda
   apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
   apply_fields: Tillämpa fält
-  apply_geoprivacy: Tillämpa geosekretess
+  apply_geoprivacy: Tillämpa koordinatsekretess
   apply_darr: "Tillämpa &darr;"
-  apply_establishment_means_to_descendant_places: "Tillämpa invandringshistoria på omfattade lokaler"
+  apply_establishment_means_to_descendant_places: "Tillämpa invandringshistoria på omfattade fyndplatser"
   apply_these_settings_to_all: Tillämpa dessa inställningar på alla observationer nedan.
   appropriate?: Passande?
   arachnids: spindeldjur
@@ -549,9 +549,9 @@ sv:
   are_you_sure_no_undo: Är du säker? Detta kan inte ångras.
   are_you_sure_delete_post: Är du säker på att du vill radera detta inlägg?
   are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill radera %{taxonname} (%{taxonid}) och flytta allt tillhörande?"
-  are_you_sure_delete_this_place: Är du säker på att du vill radera denna lokal?
+  are_you_sure_delete_this_place: Är du säker på att du vill radera denna fyndplats?
   are_you_sure_leave_this_project: Är du säker på att du vill lämna detta projekt?
-  are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa lokaler? Det går inte att ångra.
+  are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa fyndplatser? Det går inte att ångra.
   are_you_sure_remove_photo: "Är du säker på att du vill ta bort denna bild?"
   are_you_sure_remove_relationship: Är du säker på att du vill ta bort denna relation? Du kommer inte längre att följa denna person och åtkomst till dina dolda koordinater återkallas i de fall du hade aktiverat det.
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort detta taxon från listan?"
@@ -661,7 +661,7 @@ sv:
   back_to_observation: Tillbaka till observationen
   back_to_observation_fields: Tillbaka till observationsfält
   back_to_people: Tillbaka till personer
-  back_to_places: Tillbaka till lokaler
+  back_to_places: Tillbaka till fyndplatser
   back_to_possessive_user_profile: "Tillbaka till %{possuser}s profil"
   back_to_post: '&laquo; Tillbaka till inlägg'
   back_to_projects: Tillbaka till projekten
@@ -683,7 +683,7 @@ sv:
   back_to_your_projects: Tillbaka till dina projekt
   badges: Märken
   based_on_the_evidence_can_id_be_improved: |
-    Baserat på ovan, kan gemenskapsbestämningen ytterligare bekräftas eller förbättras?
+    Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
   batch: Batch
   batch_edit: Redigera flera i taget
   batch_edit_taxa_for_x_html: "Redigera flera taxa för %{x}"
@@ -743,7 +743,7 @@ sv:
   card: Kort
   casual: informell
   casual_: Grundklass
-  casual_tooltip_html: 'Observationer av grundklass saknar media, lokal eller datum, eller uppfyller inte kraven för "Forsknings-" eller "Behöver bestämning-"klass av andra skäl. <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
+  casual_tooltip_html: 'Observationer av grundklass saknar media, fyndplats eller datum, eller uppfyller inte kraven för "Forsknings-" eller "Behöver bestämning-"klass av andra skäl. <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
   categories: Kategorier
   cc_0_description: "Denna licens gör ditt verk publikt tillgängligt, så att andra kan kopiera, ändra, sprida och uppföra ditt verk, även för kommersiella ändamål, allt utan att be om tillstånd eller erkänna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material."
   cc_0_name: Ingen upphovsrätt (CC0)
@@ -770,7 +770,7 @@ sv:
     swap: Ersätt ingående taxon med utgående taxon
     drop: Ej accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
     stage: Förbered ett inaktivt koncept för att släppas som del av en förändringsgrupp
-  change_geoprivacy: 'Ändra geosekretess'
+  change_geoprivacy: 'Ändra koordinatsekretess'
   change_group: Ändra grupp
   change_icon: Ändra ikon
   change_password: Ändra lösenord
@@ -808,7 +808,7 @@ sv:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} slogs ihop med %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} kommer att slås ihop med %{output_taxon}"
   change_your_password: Ändra ditt lösenord
-  changing_the_geoprivacy: 'Ändring av geosekretess förändrar hur andra personer ser din observations position.'
+  changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser din observations position.'
   check_above_for_errors: Kolla efter fel ovan
   check_back_soon: Kolla snart igen!
   check_here_to_autoload_description: Markera här för att automatiskt ladda Wikipedias beskrivningen. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
@@ -818,7 +818,7 @@ sv:
   check_list_for_individual_taxa_that: 'Checklistor för enskilda taxa som finns här, t.ex. "Fåglar i %{place}".'
   check_list_for_taxon_html: "Checklista för %{taxon}"
   check_lists_must_belong_to_a_place: |
-    Checklistor måste tillhöra en lokal. För att skapa en ny checklista, besök
+    Checklistor måste tillhöra en fyndplats. För att skapa en ny checklista, besök
     en lokals standardchecklista och klicka på länken 'Skapa en ny checklista'.
   check_list_of_species_occuring_in: Checklista över arter som förekommer i
   check_list_place: "%{place}-checklista"
@@ -835,7 +835,7 @@ sv:
   checklist: Checklista
   choose_a_field: Välj ett fält
   choose_a_list_above: Välj en lista ovan.
-  choose_a_place: Välj en lokal
+  choose_a_place: Välj en fyndplats
   choose_a_taxon: Välj ett taxon (valfritt)
   choose_columns: Välj kolumner
   choose_file: Välj fil
@@ -854,7 +854,7 @@ sv:
   clear: rensa
   clear_filters: Rensa filter
   clear_search: Rensa sökning
-  click_the_map: "<strong>Klicka på kartan</strong> för att lägga till en lokal."
+  click_the_map: "<strong>Klicka på kartan</strong> för att lägga till en fyndplats."
   close: Stäng
   code: Kod
   colors: Färger
@@ -885,15 +885,15 @@ sv:
   #Status message while a taxon change is being committed
   committing: Bekräftar...
   common_name: Vardagligt namn
-  community: Gemenskap
-  community_curated: Gemenskapsförvaltad
-  community_guidelines: Gemenskapens riktlinjer
-  community_id_heading: Gemenskapstaxon
-  community_id_at_species_or_lower?: Gemenskapstaxon på artnivå eller lägre?
-  community_id_at_species_level_or_lower: Gemenskapstaxon på artnivå eller lägre
-  community_id_is_precise: Gemenskapstaxon är exakt
-  community_moderation_settings: Inställningar för gemenskapsmoderering
-  community_supported_id: Taxon med stöd från gemenskapen?
+  community: Community
+  community_curated: Community-förvaltad
+  community_guidelines: Communityns riktlinjer
+  community_id_heading: Community-taxon
+  community_id_at_species_or_lower?: Community-taxon på artnivå eller lägre?
+  community_id_at_species_level_or_lower: Community-taxon på artnivå eller lägre
+  community_id_is_precise: Community-taxon är exakt
+  community_moderation_settings: Inställningar för community-moderering
+  community_supported_id: Taxon med stöd från communityn?
   compare: Jämför
   compare_with: Jämför med
   comparing: jämför
@@ -942,12 +942,12 @@ sv:
     description: Kort beskrivning av varför detta är med på listan.
     authority: |
       Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
-    place: Lokal som denna status är begränsad till.
+    place: Fyndplats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
-    geoprivacy: Standard geosekretess för observationer av detta taxon
+    geoprivacy: Standard koordinatsekretess för observationer av detta taxon
     iucn: Motsvarande IUCN-rödlistekod
   conservation_status_geoprivacy_desc: |
-    Standard geosekretess tillämpas på alla observationer av detta taxon på denna plats
+    Standard koordinatsekretess tillämpas på alla observationer av detta taxon på denna plats
   contact_support: Kontakta support
   contain_all_descendants?: För detta taxon, innehåller checklistan alla här påträffade underliggande taxa?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1048,7 +1048,7 @@ sv:
   create: Skapa
   create_a_guide: Skapa en guide
   create_a_new_field: Skapa ett nytt fält
-  create_a_new_place: Skapa en ny lokal
+  create_a_new_place: Skapa en ny fyndplats
   create_a_new_taxon: Skapa ett nytt taxon
   create_a_query: Skapa en fråga
   create_an_account: Skapa ett konto
@@ -1095,7 +1095,7 @@ sv:
     Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-    Om du vill moderera beteende på iNaturalist, ge ett exempel eller två på överträdelser av Gemenskapens riktlinjer samt vad du skulle göra i dessa situationer
+    Om du vill moderera beteende på iNaturalist, ge ett exempel eller två på överträdelser av Communityns riktlinjer samt vad du skulle göra i dessa situationer
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hur en förvaltare blir av med sina befogenheter
@@ -1126,10 +1126,10 @@ sv:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons geosekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons koordinatsekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.'
   curator_application_what_curators_can_do_hide_comments_html: |
     Dölja kommentarer och stänga av användare för att de bryter mot <a
-    href="/pages/community+guidelines" target="_blank">Gemenskapens
+    href="/pages/community+guidelines" target="_blank">Communityns
     riktlinjer</a>.
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
@@ -1146,7 +1146,7 @@ sv:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Redigera gemenskapsförvaltade lokaler och ladda upp KML-filer större än 1 MB
+    Redigera community-förvaltade fyndplatser och ladda upp KML-filer större än 1 MB
     (men mindre än 5 MB).
   #Header
   curator_application_what_curators_cannot_do: Vad förvaltare inte kan göra
@@ -1155,7 +1155,7 @@ sv:
   #curators can do, so you might imagine it is preceded with "Curators
   #cannot..."
   curator_application_what_curators_cannot_do_change_observations_html: |
-    Påverka Gemenskapstaxon eller Datakvalitet för en observation mer än någon
+    Påverka Community-taxon eller Datakvalitet för en observation mer än någon
     annan användare kan.
   #Description of the fact that a curator cannot commit taxon changes for
   #complete taxa; part of a list of things curators can do, so you might
@@ -1188,7 +1188,7 @@ sv:
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
-    Du kan uppföra dig lämpligt på iNaturalist och följa Gemenskapens riktlinjer.
+    Du kan uppföra dig lämpligt på iNaturalist och följa Communityns riktlinjer.
     Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
     exemplarisk användare av iNaturalist.
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
@@ -1199,7 +1199,7 @@ sv:
   custom_project_fields: Anpassade projektfält
   custom_project_was_successfully_created: Projektanpassningar tillagda
   custom_project_was_successfully_updated: Projektanpassningar uppdaterade
-  customize_location: Anpassa lokal
+  customize_location: Anpassa fyndplats
   darr_apply_darr: "&darr; Använd &darr;"
   daily_users: Dagliga användare
   danger_zone: Farozon
@@ -1269,9 +1269,9 @@ sv:
   default_invite_comment: "Snygg bild! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standard observationslicens
   default_photo_license: Standard bildlicens
-  default_search_place: Standard söklokal
+  default_search_place: Standard sökplats
   default_search_place_description: |
-    Detta kommer att vara din standardlokal för alla sökningar i Utforska och Bestäm.
+    Detta kommer att vara din standardlokal för alla sökningar i Utforska och Artbestäm.
   default_sound_license: Standard ljudlicens
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
   defines_a_taxon_framework_for: Definierar en taxonkontext för %{taxon_name}
@@ -1414,7 +1414,7 @@ sv:
   drawings: Skisser
   duplicate_verb: Duplicera
   duration_value: "Varaktigthet: %{duration} minuter"
-  each_place_displays_all_species_inat_knows: "Varje lokalsida visar alla arter %{site_name} känner till från den lokalen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den lokalen på %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
+  each_place_displays_all_species_inat_knows: "Varje fyndplatssida visar alla arter %{site_name} känner till från den fyndplatsen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den fyndplatsen på %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
   earliest_added: Tidigast tillagda
   edit: Redigera
   edit_a_batch_of_observations: Redigera flera observationer i taget
@@ -1430,13 +1430,13 @@ sv:
   edit_license: Redigera licens
   edit_multiple_dates: Redigera flera datum
   edit_multiple_descriptions: Redigera flera anteckningar
-  edit_multiple_locations: Redigera flera lokaler
+  edit_multiple_locations: Redigera flera fyndplatser
   edit_multiple_species: Redigera flera arter
   edit_notes: Redigera anteckningar
   edit_observations: Redigera observationer
   edit_photos: Redigera bilder
   edit_photos_for_observation_id: "Redigera bilder för observation %{obs_id}"
-  edit_place: Redigera lokal
+  edit_place: Redigera fyndplats
   edit_project: Redigera projekt
   edit_remove: Redigera/Ta bort
   edit_selected: Redigera valda
@@ -1484,7 +1484,7 @@ sv:
   email_notifications: E-postaviseringar
   email_settings: E-postinställningar
   embed: 'Bädda in'
-  embed_place_widget: Bädda in lokal-widget
+  embed_place_widget: Bädda in fyndplats-widget
   embed_this_assessment: Bädda in denna bedömning
   embed_widget_project: Bädda in en widget för detta projekt på din webbplats
   enable_offline_access: Aktivera offline-åtkomst
@@ -1524,7 +1524,7 @@ sv:
   exact_date: Exakt datum
   exact_rank: Exakt rang
   except: förutom
-  exclude_places: Uteslut lokaler
+  exclude_places: Uteslut fyndplatser
   exclude_projects: Uteslut projekt
   exclude_taxa: Uteslut taxa
   exclude_users: Uteslut användare
@@ -1585,20 +1585,20 @@ sv:
   fill_out_your_profile: slutför din profil
   filter: Filter
   filter_by_curator_identification: Filtrera på förvaltares bestämning
-  filter_by_place: Filtrera på lokal
+  filter_by_place: Filtrera på fyndplats
   filter_by_taxon: Filtrera på taxon
-  filter_by_place_taxon_and_color: Filtrera på lokal, taxon och färg med kontrollerna.
+  filter_by_place_taxon_and_color: Filtrera på fyndplats, taxon och färg med kontrollerna.
   filter_list_by_this_taxon: Filtrera listan på detta taxon
   filtering: Filtrering
   filters: Filter
   find: Hitta
   find_a_guide: Hitta en guide
-  find_a_place: Hitta en lokal
+  find_a_place: Hitta en fyndplats
   find_guides: Hitta guider
-  find_new_place_to_explore: Hitta en ny lokal att utforska!
+  find_new_place_to_explore: Hitta en ny fyndplats att utforska!
   find_observations: Hitta observationer
   find_photos: Hitta bilder
-  find_places: Hitta lokaler
+  find_places: Hitta fyndplatser
   find_some_people_to_follow: "Hitta några personer att följa"
   find_species: Hitta arter
   find_suitable_observations: Hitta lämpliga observationer
@@ -1673,7 +1673,7 @@ sv:
   flags_for_x_html: Flaggor för %{x}
   flags_on_users_content: "Flaggor på %{user}s innehåll"
   flickr_account_information: Din Flickr-kontoinformation
-  flickr_has_no_creative_commons: Flickr har inga Creative Commons-licensierade bilder från denna lokal.
+  flickr_has_no_creative_commons: Flickr har inga Creative Commons-licensierade bilder från denna fyndplats.
   flickr_identity: Flickr-identitet
   flickr_needs_to_confirm: "Flickr måste bekräfta att du vill ha ditt konto kopplat till %{site_name}."
   flickr_photo: Flickr-bild
@@ -1708,12 +1708,12 @@ sv:
   forum_desc: |
     Forumet är en plats för diskussioner om iNat, inklusive hjälp & support, funktionsförslag, buggrapporter, meddelanden med mera.
   frequency: Frekvens
-  from_a_place: från en lokal
+  from_a_place: från en fyndplats
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
   from_list: Från lista
   from_photos: Från bilder
-  from_place: Från lokal
+  from_place: Från fyndplats
   from_soundcloud: Från Soundcloud
   full_screen: Helskärm
   fungi:
@@ -1726,10 +1726,10 @@ sv:
   generate_your_stats: Generera din statistik
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
-  geoprivacy: Geosekretess
-  geoprivacy_is_obscured: Geosekretess är diffuserad
+  geoprivacy: Koordinatsekretess
+  geoprivacy_is_obscured: Koordinatsekretess är diffuserad
   geoprivacy_is_obscured_desc: Observatören har valt att diffusera koordinaterna.
-  geoprivacy_is_private: Geosekretess är privat
+  geoprivacy_is_private: Koordinatsekretess är privat
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
   get_started: Kom igång
@@ -1801,9 +1801,7 @@ sv:
   hide: Dölj
   hide_content: Dölj innehåll
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men människor kommer fortfarande att
-    kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta
-    endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan bestämmarens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+    Att dölja innehåll kommer att ta bort det från publik visning, men människor kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
@@ -1823,12 +1821,12 @@ sv:
   id_categories:
     tooltips:
       leading: |
-        Taxon härstammar från gemenskapstaxonet. Denna bestämning kan leda till det rätta svaret.
+        Taxon härstammar från community-taxonet. Denna bestämning kan leda till det rätta svaret.
       improving: |
-        Första förslaget för detta taxon som gemenskapen håller med om. Detta bidrar till att
-        förbättra gemenskapstaxonet.
+        Första förslaget för detta taxon som communityn håller med om. Detta bidrar till att
+        förbättra community-taxonet.
       maverick: |
-        Taxon är varken under- eller överliggande gemenskapstaxonet, d.v.s. gemenskapen
+        Taxon är varken under- eller överliggande community-taxonet, d.v.s. communityn
         håller inte med om detta taxon.
   id_withdrawn: Bestämning ångrad
   ids_by_taxon: Bestämningar per taxon
@@ -1847,20 +1845,20 @@ sv:
   identifications_by: "Bestämningar av %{user}"
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
-    Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på gemenskapens bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
-  identifiers: Bestämmare
+    Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
+  identifiers: Determinatörer
   identotron: Identotron
   identotron_for: Identotron för
   identotron_help: Hjälp med Identotron
   ids: "Bestämningar"
   ids_made_for_others: Bestämningar gjorda för andra
   if_for_some_reason_a_user_doesnt_agree: |
-    Om du av någon anledning inte håller med om gemenskapstaxonet, kan du avvisa den, vilket innebär att din bestämning är den som används för länkning till andra observationer, uppdatering av livslistor, etc. Det betyder också att din observation bara kan uppnå forskningsklass när gemenskapen håller med dig.
+    Om du av någon anledning inte håller med om community-taxonet, kan du avvisa den, vilket innebär att din artbestämning är den som används för länkning till andra observationer, uppdatering av livslistor, etc. Det betyder också att din observation bara kan uppnå forskningsklass när communityn håller med dig.
   if_matches_come_from_a_comprehensive_list: Om matchningar kommer från en fullständig lista visas en grön list här.
   if_this_is_a_scientific_name: Om detta är ett vetenskapligt namn, är det för närvarande accepterat?
   if_this_link_will_apply_to_descendant: Om denna länk ska gälla för underliggande taxa, kan du använda taggningar enligt mall för att fylla i taxonnamnet i URL:en
   if_you_have_any_trouble_with_the_site_check_out: 'Om du har några frågor, kolla i vår <a href="%{help_url}">hjälpavdelning</a> eller gör ett inlägg i vår <a href="%{feedback_url}">feedback-grupp</a>.'
-  if_your_project_is: Om ditt projekt handlar om en viss lokal, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
+  if_your_project_is: Om ditt projekt handlar om en viss fyndplats, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
   ignore: ignorera
   ignore_and_continue: Ignorera och fortsätt
   ignore_times: Ignorera tider
@@ -1887,7 +1885,7 @@ sv:
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
-  include_places: Inkludera lokaler
+  include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
   include_taxa: Inkludera taxa
@@ -1902,13 +1900,13 @@ sv:
   inactive_taxon_concepts_are: Inaktiva taxonkoncept är antingen taxonomiskt föråldrade eller förbereds för en taxonändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnerwebbplatser.
   inappropriate_content: Olämpligt innehåll?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna lokal."
+  inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna fyndplats."
   inat_user_profile: "%{site_name}: %{user}'s profil"
   inaturalist_activity_notifications: "%{site_name} aktivitetsaviseringar"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
-  inaturalist_places: "%{site_name}-lokaler"
+  inaturalist_places: "%{site_name}-fyndplatser"
   info: Info
   input_taxon: Ingångstaxon
   insects: insekter
@@ -1929,7 +1927,7 @@ sv:
   invite_people_to_project: "Bjud in personer till %{project}"
   invite_someone_to: "Bjud in någon till %{name}!"
   invite_your_friends: Bjud in dina vänner
-  invite_your_friends_description: "Hjälp till att göra %{site_name} till en större och bättre gemenskap genom att bjuda in dina vänner!"
+  invite_your_friends_description: "Hjälp till att göra %{site_name} till en större och bättre community genom att bjuda in dina vänner!"
   #Type of project where people can only join after they have been invited
   inviteonly: endast inbjudna
   invited_x: "%{x} inbjudna"
@@ -1938,7 +1936,7 @@ sv:
   is_now: är nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
-  is_this_place_a_duplicate: Är denna lokal en dubblett?
+  is_this_place_a_duplicate: Är denna fyndplats en dubblett?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv text
@@ -1976,7 +1974,7 @@ sv:
   labels: Etiketter
   label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera flera taxonändringar
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: Privat lokal
+  location_private: Privat fyndplats
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
@@ -2006,7 +2004,7 @@ sv:
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
   leaderboard_most:
-    species: Flest arter på %{time}
+    species: Flest arter i %{time}
     observations: Flest observationer på %{time}
     identifications: Flest bestämningar på %{time}
   leading: Leder
@@ -2184,10 +2182,10 @@ sv:
     uk: Ukrainska
     zh-CN: Kinesiska (förenklad)
     zh-TW: Kinesiska (traditionell)
-  locality_notes: Lokalanteckningar
+  locality_notes: Fyndplatsanteckningar
   localized_species_accounts: Lokaliserade artredogörelser
   location: Position
-  location_is_accurate: Noggrann lokalangivelse
+  location_is_accurate: Noggrann fyndplatsangivelse
   location_is_exact: positionen är exakt
   location_is_public: Positionen är publik
   location_is_obscured: Positionen är diffuserad
@@ -2228,7 +2226,7 @@ sv:
   main_content: Huvudinnehåll
   #Stub text for the main content section when editing custom project data
   main_content_description: Huvudinnehållet hamnar här
-  make_a_new_place: Skapa en ny lokal
+  make_a_new_place: Skapa en ny fyndplats
   make_a_taxon_swap_instead?: Gör ett taxonbyte istället?
   make_curator: Ge förvaltarbehörighet
   make_it_a_life_list?: Göra det till en livslista?
@@ -2258,9 +2256,9 @@ sv:
       gbif_network: GBIF-nätverket
       gbif_network_description: Uppgifter från museer och andra leverantörer av förekomster som tillhandahålls av Global Biodiversity Informatics Facility
       observations: Observationer
-      place_boundary: Lokalgräns
-      checklist_places: Checklistelokaler
-      checklist_places_description: Lokaler där detta taxon har listats
+      place_boundary: Gräns för fyndplats
+      checklist_places: Checklistefyndplatser
+      checklist_places_description: Fyndplatser där detta taxon har listats
       range: Utbredningsområde
   map_tooltip: Visa kartvy
   mark_as_reviewed: Markera som granskad
@@ -2296,11 +2294,11 @@ sv:
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} nämnde dig i en %{x} på %{noun} av %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} nämnde dig i en %{x} på %{noun} av dig"
   merge: Slå ihop
-  merge_it_with_another_place: Slå ihop den med en annan lokal
-  merge_two_places_together: Slå ihop två lokaler. Alla arterna på checklistorna kommer att slås ihop, tillsammans med eventuella geografiska data.
+  merge_it_with_another_place: Slå ihop den med en annan fyndplats
+  merge_two_places_together: Slå ihop två fyndplatser. Alla arterna på checklistorna kommer att slås ihop, tillsammans med eventuella geografiska data.
   merge_observation_field_x_into: 'Slå ihop observationsfält "%{x}" till...'
   merging: Sammanslagning
-  merging_places: Slår ihop lokaler
+  merging_places: Slår ihop fyndplatser
   message: Meddelande
   message_deleted: Meddelande raderat
   message_from_user_at_time: Från %{user} kl. %{time}
@@ -2315,7 +2313,7 @@ sv:
   messages_new_correspondent_actions_html: |
     Om du misstänker att denna person bryter mot våra <a href="%{tos_url}"
     target="_blank">användarvillkor</a> eller inte agerar i enlighet med våra <a
-    href="%{guidelines_url}" target="_blank">gemenskapsriktlinjer</a>,
+    href="%{guidelines_url}" target="_blank">community-riktlinjer</a>,
     flagga detta meddelande nedan.
   misidentifications: Felbestämningar
   misleading_or_illegal_content_html: |
@@ -2415,7 +2413,7 @@ sv:
   name: Namn
   name_entered: Angivet namn
   name_or_slug: "Namn eller URL-slug, t.ex. mitt-projekt"
-  name_of_the_place_you: Namn på lokalen där du gjorde observationen
+  name_of_the_place_you: Namn på fyndplatsen där du gjorde observationen
   name_providers:
     col: Catalogue of Life
     ubio: uBio
@@ -2437,7 +2435,7 @@ sv:
   needs_id: behöver bestämmas
   needs_id_: Behöver bestämmas
   needs_id_expandable_html: "<span class='full'>Behöver </span>bestämmas"
-  needs_id_tooltip_html: '"Behöver bestämning"-observationer har media, lokal och datum, men kräver fortfarande att gemenskapen är överens om en exakt bestämning. <a href="https://www.inaturalist.org/pages/help#quality">Läs mer om kvalitetsklasser</a>'
+  needs_id_tooltip_html: '"Behöver bestämning"-observationer har media, fyndplats och datum, men kräver fortfarande att communityn är överens om en exakt artbestämning. <a href="https://www.inaturalist.org/pages/help#quality">Läs mer om kvalitetsklasser</a>'
   needs_to_be_identified: Behöver bestämmas
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2529,7 +2527,7 @@ sv:
   no_matching_article_from_x: "Ingen matchande artikel från %{x}"
   no_matching_invitations: Inga matchande inbjudningar
   no_matching_observations: Inga matchande observationer.
-  no_matching_places: Inga matchande lokaler
+  no_matching_places: Inga matchande fyndplatser
   no_matching_projects: Inga matchande projekt
   no_matching_species: Inga matchande arter.
   no_matching_taxa: Inga matchande taxa
@@ -2542,17 +2540,17 @@ sv:
   no_more_results_found: Inga fler resultat hittades
   no_new_messages: Inga nya meddelanden
   no_observations: Inga observationer
-  no_observations_from_this_place_yet: Inga observationer från denna lokal än.
+  no_observations_from_this_place_yet: Inga observationer från denna fyndplats än.
   no_observations_matching_those_ids: Inga observationer som matchar de bestämningarna.
   no_observations_submitted: "Inga observationer inskickade!"
   no_observations_yet: Inga observationer än
-  no_one_has_added_any: Ingen har lagt till några anteckningar för denna lokal
+  no_one_has_added_any: Ingen har lagt till några anteckningar för denna fyndplats
   no_one_has_been_invited_yet: Ingen har blivit inbjuden än
   no_one_posted_anything_yet: Ingen har skrivit något ännu!
   no_photo: Ingen bild
   no_photos: Inga bilder
   no_photos_of_that_size: Ingen bild av den storleken.
-  no_places_available: Inga tillgängliga lokaler
+  no_places_available: Inga tillgängliga fyndplatser
   no_post_yet: Inga inlägg ännu!
   no_project_selected: Inget projekt valt
   no_project_to_admin_current_user: "Du administrerar inte några projekt"
@@ -2567,7 +2565,7 @@ sv:
   no_results_matching: Inga matchande resultat
   no_sections_available: Inga tillgängliga sektioner.
   no_sections_have_been_added_to_this_assessments_yet: Inga sektioner har lagts till denna bedömning än.
-  no_species_have_been_listed: Inga arter har listats för denna lokal ännu!
+  no_species_have_been_listed: Inga arter har listats för denna fyndplats ännu!
   no_species_observed: Inga observerade arter
   no_species_on_this_list: Inga arter på denna lista ännu!
   no_species_on_this_list_for_owner_html: |
@@ -2597,7 +2595,7 @@ sv:
   not_covered_by_any_taxon_frameworks: Omfattas inte av någon taxonkontext
   not_evaluated: inte utvärderad
   not_findig_what_you_want: Hittar du inte det du vill?
-  not_finding_place_you_want?: Hittar du inte den lokal du vill?
+  not_finding_place_you_want?: Hittar du inte den fyndplats du vill?
   not_found: Hittades inte
   not_linked_facebook: "Ditt %{site_name}-konto är inte kopplat till ditt Facebook-konto"
   not_linked_flickr: "Ditt %{site_name}-konto är inte kopplat till ditt Flickr-konto"
@@ -2701,9 +2699,7 @@ sv:
   observation_requirements_updated_at: Observationskrav uppdaterade den
   observation_rules: Observationsregler
   observation_rules_description: |
-    Du kan välja regler som avgör vilka observationer som kan läggas till i detta projekt, som begränsningar till en viss lokal eller taxon. Om du har fler än en regel för en regeltyp, kommer observationer att vara giltiga om
-    endera regeln uppfylls. Till exempel, om du har reglerna "måste tillhöra Amphibia" och "måste tillhöra Reptilia", kommer projektet att acceptera
-    observationer av BÅDE reptiler OCH groddjur.
+    Du kan välja regler som avgör vilka observationer som kan läggas till i detta projekt, som begränsningar till en viss fyndplats eller taxon. Om du har fler än en regel för en regeltyp, kommer observationer att vara giltiga om endera regeln uppfylls. Till exempel, om du har reglerna "måste tillhöra Amphibia" och "måste tillhöra Reptilia", kommer projektet att acceptera observationer av BÅDE reptiler OCH groddjur.
   observation_was_deleted: Observationen raderades.
   observation_without_media: Observation utan media
   observations: Observationer
@@ -2717,15 +2713,14 @@ sv:
     Observationsfält är extra information kopplad till en
     observation, såsom antal observerade individer, habitatbeskrivning eller egentligen vad som helst! Projekt kan också ange vilka fält som bör fyllas i.
   observations_from: Observationer från %{date}
-  observations_from_people_taxa_and_places_youre_following: "Observationer från personer, lokaler och arter som du följer"
-  observations_from_this_place: Observationer från denna lokal
+  observations_from_people_taxa_and_places_youre_following: "Observationer från personer, fyndplatser och arter som du följer"
+  observations_from_this_place: Observationer från denna fyndplats
   observations_from_this_project: Observationer från detta projekt
   observations_in_this_project_must: Observationer i detta projekt måste uppfylla följande kriterier
   observations_map: Observationer / Karta
   observation_must_dotdotdot: Observationen måste...
   observations_near_a_place_are: |
-    Observationer "nära" en lokal ligger inom en rektangel ritad runt lokalens gränser, vilket kan resultera i en del missvisande resultat för lokaler som inte liknar rektanglar. Detta beror på en begränsning i
-    vår databas som vi arbetar på att lösa.
+    Observationer "nära" en fyndplats ligger inom en rektangel ritad runt fyndplatsens gränser, vilket kan resultera i en del missvisande resultat för fyndplatser som inte liknar rektanglar. Detta beror på en begränsning i vår databas som vi arbetar på att lösa.
   observations_needing_curation: Observationer som behöver hanteras
   observations_observed_this_month: Observationer <em>observerade</em> denna månad, inte tillagda denna månad. Ge dig ut!
   observations_of_relatives: Observationer av närbesläktade
@@ -2778,8 +2773,8 @@ sv:
   of_observations: observationer
   of_species: arter
   of_observers: observatörer
-  of_identifiers: bestämmare
-  of_places: lokaler
+  of_identifiers: determinatörer
+  of_places: fyndplatser
   of_this_taxon: Av detta taxon
   offensive_inappropriate: Stötande / Olämpligt
   off_caps: "AV"
@@ -2794,24 +2789,24 @@ sv:
     observe_panel_body_p1_local: Behöver du inspiration? Här är några organismer som brukar ses i närheten...
     observe_panel_body_p1_global: Behöver du inspiration? Här är några organismer som brukar ses...
     observe_panel_body_p2: Gå ut i naturen och observera organismer. Välj någon av de vilda och ta sedan en bra, fokuserad bild. Om du redan har en bild på något i det vilda, <a href="%{new_observation_path}">lägg till det nu</a>. Du kan också använda %{site_name}-mobilappar för att göra observationer.
-    observe_panel_body_p3: När du väl har delat dina observationer kommer denna sida att visa dig uppdateringar från gemenskapen i form av kommentarer och bestämningar. Vem vet vad komma att upptäcka!
+    observe_panel_body_p3: När du väl har delat dina observationer kommer denna sida att visa dig uppdateringar från communityn i form av kommentarer och bestämningar. Vem vet vad du kommer att upptäcka!
     follow_panel_title_local: Följ några naturforskare i närheten
     follow_panel_title_global: Följ några aktiva naturforskare
     follow_panel_body: Om du besöker dessa profiler och klickar på följ-knappen, kommer du att bli meddelad när de lägger upp observationer
-    following_panel_title: Håll reda på personer, taxa och lokaler
+    following_panel_title: Håll reda på personer, taxa och fyndplatser
     following_panel_body: |
-      På %{site_name} kan du följa personer för att hålla koll på de observationer de har publicerat. Du kan också prenumerera på vissa arter för att hålla koll på nya observationer av dessa arter, eller på samma sätt med lokaler.
+      På %{site_name} kan du följa personer för att hålla koll på de observationer de har publicerat. Du kan också prenumerera på vissa arter för att hålla koll på nya observationer av dessa arter, eller på samma sätt med fyndplatser.
     comments_panel_title: Nyfiken på vilken typ av diskussioner som pågår på %{site_name}?
     comments_panel_body: "På <p>%{site_name} handlar allt om att dela och diskutera observationer av levande varelser. Här nedan diskuteras det just nu. (Observera: Du prenumererar automatiskt på eventuella diskussioner där du bidrar med kommentarer eller bestämningar. Hantera sådana meddelanden i avsnittet \"Prenumerationer\" till höger.)</p>"
     updates_by_you_panel_title: Denna flik är ett snabbt sätt att filtrera fram uppdateringar som endast rör ditt innehåll.
-    updates_by_you_panel_body: Kom ihåg, i fliken "Alla uppdateringar" får du inte bara uppdateringar som rör ditt innehåll utan även innehåll från personer du följer samt taxa eller lokaler som du prenumererar på med hjälp av prenumerationsverktyget till höger.
+    updates_by_you_panel_body: Kom ihåg, i fliken "Alla uppdateringar" får du inte bara uppdateringar som rör ditt innehåll utan även innehåll från personer du följer samt taxa eller fyndplatser som du prenumererar på med hjälp av prenumerationsverktyget till höger.
     youve_got_updates_panel_title: Du har fått uppdateringar!
     youve_got_updates_panel_body_p1: Häng med genom uppdateringar om följande...
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Ditt innehåll:</strong> Aktivitet rörande dina observationer såsom kommentarer, bestämningar eller favoriter från %{site_name}-gemenskapen. Du kommer också att få uppdateringar när någon lägger till din observation till ett projekt, eller lägger till ytterligare anteckningsfält.</li>
+      <li><strong>Ditt innehåll:</strong> Aktivitet rörande dina observationer såsom kommentarer, artbestämningar eller favoriter från %{site_name}-communityn. Du kommer också att få uppdateringar när någon lägger till din observation till ett projekt, eller lägger till ytterligare anteckningsfält.</li>
       <li><strong>Personer:</strong> Nya observationer eller dagboksinlägg från de personer du följer.</li>
-      <li><strong>Organismer, projekt & lokaler:</strong> Nya observationer av särskilda organismer eller lokaler som du prenumererar på. Du kan också gå med i projekt så att du blir meddelad när de publicerar dagboksinlägg.</li>
+      <li><strong>Organismer, projekt & fyndplatser:</strong> Nya observationer av särskilda organismer eller fyndplatser som du prenumererar på. Du kan också gå med i projekt så att du blir meddelad när de publicerar dagboksinlägg.</li>
       <li><strong>Diskussioner du bidrar till:</strong> Genom att kommentera eller lägga till bestämningar till någon annans innehåll prenumererar du automatiskt på all ny aktivitet för detta innehåll. Använd verktyget "Hantera dina prenumerationer" för att sluta få meddelanden.</li>
       </ul>
   one_by_one: "En-efter-en"
@@ -2834,8 +2829,8 @@ sv:
   only_showing_taxa_from: visar bara taxa från denna lista
   only_species: bara arter
   only_species_and_subspecies: endast arter och underarter/varieteter
-  only_staff_can_edit_large_places: Endast webbplatsens personal kan redigera riktigt stora lokaler
-  only_staff_can_edit_standard_places: Endast webbplatsens personal kan redigera lokaler i standardhierarkin
+  only_staff_can_edit_large_places: Endast webbplatsens personal kan redigera riktigt stora fyndplatser
+  only_staff_can_edit_standard_places: Endast webbplatsens personal kan redigera fyndplatser i standardhierarkin
   only_the_owner_of_this_list_can_do_that: Endast ägaren av denna lista kan göra det. Var inte ond.
   only_the_project_admin_can_delete_this_project: Endast projektadministratören kan ta bort detta projekt.
   only_view_nearby_suggestions: Visa endast förslag i närheten
@@ -2867,7 +2862,7 @@ sv:
   other: Annat
   other_animals: andra djur
   other_lexicons: Andra lexikon
-  other_listings_of_this_taxon_for_this_place: Andra listningar av detta taxon för denna lokal
+  other_listings_of_this_taxon_for_this_place: Andra listningar av detta taxon för denna fyndplats
   other_names: Andra namn
   other_species_commonly_misidentified_as_this_species: Andra arter som ofta felbestäms till denna art
   other_species_commonly_misidentified_as_this_species_in_place_html: Andra arter som ofta felbestäms till denna art i <a href="%{url}">%{place}</a>
@@ -2973,11 +2968,11 @@ sv:
   pin_verb: Fäst
   pink: rosa
   pinned_locations_desc: |
-    Fäst denna kombination av koordinater, noggrannhet, geosekretess och lokalanteckningar för senare användning.
-  place: Lokal
+    Fäst denna kombination av koordinater, noggrannhet, koordinatsekretess och fyndplatsanteckningar för senare användning.
+  place: Fyndplats
   placeholder: Platshållare
   place_autocomplete_placeholder: Zion National Park, Miami etc.
-  place_deleted: Lokal raderad.
+  place_deleted: Fyndplats raderad.
   place_geo:
     geo_planet_place_types:
       Aggregate: Aggregation
@@ -3108,19 +3103,18 @@ sv:
       village_block: samhällskvarter
       Zone: Zon
       zone: zon
-  place_guess: lokalgissning
-  place_imported: Importerad lokal!
-  place_must_have_a_boundary_defined: Lokalen måste ha en definierad gräns.
-  place_name: Lokalnamn
-  place_notes: Lokalanteckningar
+  place_guess: gissning på fyndplats
+  place_imported: Importerad fyndplats!
+  place_must_have_a_boundary_defined: Fyndplatsen måste ha en definierad gräns.
+  place_name: Fyndplatsnamn
+  place_notes: Fyndplatsanteckningar
   place_too_big_for_check_list: |
-    Denna lokal är alldeles för stor för en checklista. Att beräkna checklistestatistik är ganska krävande, så vi tillåter det inte för mycket stora lokaler, såvida de inte har lagts till av webbplatsens administratörer. Å andra
-    sidan kan du fortfarande använda denna lokal för projektgränser och observationsfrågor.
-  place_updated: Lokal uppdaterad!
+    Denna fyndplats är alldeles för stor för en checklista. Att beräkna checklistestatistik är ganska krävande, så vi tillåter det inte för mycket stora fyndplatser, såvida de inte har lagts till av webbplatsens administratörer. Å andra sidan kan du fortfarande använda denna fyndplats för projektgränser och observationsfrågor.
+  place_updated: Fyndplats uppdaterad!
   placement: Placering
-  places: Lokaler
-  places_added_by_members_of_the_community: Lokaler tillagda av medlemmar i gemenskapen
-  places_maintained_by_site_admins: Lokaler som sköts av sajtens administratörer
+  places: Fyndplatser
+  places_added_by_members_of_the_community: Fyndplatser tillagda av medlemmar i communityn
+  places_maintained_by_site_admins: Fyndplatser som sköts av sajtens administratörer
   places_name:
     afghanistan: Afghanistan
     africa: Afrika
@@ -3387,23 +3381,23 @@ sv:
     zambia: Zambia
     zimbabwe: Zimbabwe
   places_of_interest: Sevärdheter
-  places_merged_successfully: Lyckades slå ihop lokaler!
+  places_merged_successfully: Lyckades slå ihop fyndplatser!
   places_warning_export_complex_boundary_html: |
     Om du försöker exportera observationer från en komplex gräns, överväg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">att ladda ner dem från GBIF istället</a>,
-    där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån befintliga lokaler eller en polygon och sedan filtrera datat när du väl har
+    där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån befintliga fyndplatser eller en polygon och sedan filtrera datat när du väl har
     hämtat det.
   places_warning_look_for_existing_html: |
-    Leta efter <a href="/search?source[]=places">befintliga lokaler</a> för att se till att du inte skapar en dubblett. Vi har redan lokaler för alla kontinenter och länder, samt två administrativa nivåer under land.
+    Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, samt två administrativa nivåer under land.
   places_warning_projects_can_have_multiple_places: |
-    Om du försöker göra en lokal för en projektgräns, kan projekt bestå av flera lokaler. Till exempel, om du vill göra ett projekt för Nya Zeeland och Australien, kan du helt enkelt lägga till krav för två lokaler istället för att göra en ny.
+    Om du försöker göra en fyndplats för en projektgräns, kan projekt bestå av flera fyndplatser. Till exempel, om du vill göra ett projekt för Nya Zeeland och Australien, kan du helt enkelt lägga till krav för två fyndplatser istället för att göra en ny.
   places_warning_new_places_are_slow_html: |
-    Nya lokaler är en av de största källorna till att det går trögt på iNat, så <strong>överväg att inte skapa en ny lokal</strong>. Medan små lokaler som bara innehåller några tusen observationer oftast är ok, kommer du att göra iNat långsamt för alla andra om du skapar en ny lokal som innehåller många observationer. Här är några alternativa tillvägagångssätt:
+    Nya fyndplatser är en av de största källorna till att det går trögt på iNat, så <strong>överväg att inte skapa en ny fyndplats</strong>. Medan små fyndplatser som bara innehåller några tusen observationer oftast är ok, kommer du att göra iNat långsamt för alla andra om du skapar en ny fyndplats som innehåller många observationer. Här är några alternativa tillvägagångssätt:
   places_warning_editing_places_is_slow: |
-    Redigering av lokalgränser är en av de största källorna till att iNat går trögt.
-    Om du kan undvika det, lägg inte till, ändra eller ta bort lokalgränser om du inte verkligen måste.
+    Redigering av fyndplatsgränser är en av de största källorna till att iNat går trögt.
+    Om du kan undvika det, lägg inte till, ändra eller ta bort fyndplatsgränser om du inte verkligen måste.
   places_warning_the_future: |
-    Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till lokaler i framtiden givet iNats nuvarande tillväxttakt.
+    Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
   please_add_a_citation_for_this_change: Lägg till en referens för denna ändring.
   please_add_this_observation_to: Lägg till denna observation till
@@ -3464,7 +3458,7 @@ sv:
     one: Projektadministratör
     other: Projektadministratörer
   project_aggregator_filter_error: |
-    Projekt kan inte aktivera automatisk observationsaggregering såvida inte projektet är associerat med en lokal av måttlig storlek eller bara tillåter observationer av specifika taxa eller taxa på en lista
+    Projekt kan inte aktivera automatisk observationsaggregering såvida inte projektet är associerat med en fyndplats av måttlig storlek eller bara tillåter observationer av specifika taxa eller taxa på en lista
   project_assessments: Projektbedömningar
   project_assets: Projekttillgångar
   project_coordinate_access_enabled: |
@@ -3519,8 +3513,8 @@ sv:
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekt %{user} administrerar
   projects_you_admin: Projekt som du administrerar
-  proposed_taxa_that_contradict_the_community_id: Föreslagna taxa som motsäger gemenskapsbestämningen
-  proposed_taxa_that_support_the_community_id: Föreslagna taxa som stödjer den gemenskapsbestämningen
+  proposed_taxa_that_contradict_the_community_id: Föreslagna taxa som motsäger community-bestämningen
+  proposed_taxa_that_support_the_community_id: Föreslagna taxa som stödjer community-bestämningen
   protozoans: protozoer
   provider_authorizations: Leverantörens auktoriseringar
   public_domain: Allmängods
@@ -3677,7 +3671,7 @@ sv:
     one: Ta bort 1 observation?
     other: Ta bort %{count} observationer?
   remove_photo: Ta bort bild
-  remove_place: Ta bort lokal
+  remove_place: Ta bort fyndplats
   remove_range: Ta bort område
   remove_relationship: Ta bort relation
   remove_relationship_caps: TA BORT RELATION
@@ -3706,8 +3700,8 @@ sv:
   research_: Forskning
   research_grade: Forskningsklass
   research_grade_short_html: "F<span class='full'>orsknings</span>K<span class='full'>valitet</span>"
-  research_grade_tooltip_html: 'Observationer av forskningsklass har media, lokal, datum och en exakt bestämning som gemenskapen är överens om (vanligtvis på artnivån). <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
-  research_grade_observations_have: 'Observationer av "Forskningsklass" har ett datum, bild, koordinater och en gemenskapsbestämning. Klicka för att se kvalitetsbedömning av data.'
+  research_grade_tooltip_html: 'Observationer av forskningsklass har media, fyndplats, datum och en exakt bestämning som communityn är överens om (vanligtvis på artnivån). <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
+  research_grade_observations_have: 'Observationer av "Forskningsklass" har ett datum, bild, koordinater och en community-bestämning. Klicka för att se kvalitetsbedömning av data.'
   research_grade_qualification: Bedömningsgrund för forskningsklass
   reset_filters_short: Återställ
   reset_brightness: Återställ ljusstyrka
@@ -3743,7 +3737,7 @@ sv:
     must_be_georeferenced: måste vara koordinatsatt
     must_be_identified: måste bestämmas
     must_be_on_list: måste vara med på listan
-    must_be_observed_in_place: måste vara observerad på Lokal
+    must_be_observed_in_place: måste vara observerad på Fyndplats
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
   running_total: Ackumulerat
@@ -3763,7 +3757,7 @@ sv:
   save_identification: Spara bestämning
   save_observation: Spara observation
   save_photos: Spara bilder
-  save_place: Spara lokal
+  save_place: Spara fyndplats
   save_settings_caps: SPARA INSTÄLLNINGAR
   save_trip: Spara utflykt
   saved: Sparade
@@ -3844,7 +3838,7 @@ sv:
   settings: Inställningar
   share: Dela
   share_colon: "Dela:"
-  short_code_for_this_place: Ange en lokal om denna länk endast gäller för taxa från en viss lokal. Lämna det tomt om den gäller taxa i hela världen.
+  short_code_for_this_place: Ange en fyndplats om denna länk endast gäller för taxa från en viss fyndplats. Lämna det tomt om den gäller taxa i hela världen.
   short_or_abbreviated_title_for_display: Kort eller förkortad rubrik för visning i små utrymmen. Max 10 tecken.
   show: Visa
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
@@ -3891,7 +3885,7 @@ sv:
   site_admin_tools: Verktyg för webbplatsadministration
   #People who administrate a particular iNaturalist Network partner
   site_admins: Webbplatsens administratörer
-  site_name_place: "%{site_name}-lokal"
+  site_name_place: "%{site_name}-fyndplats"
   site_observations_export_from_date: "%{site_name}-observationsexport från %{date}"
   site_site_admin: "%{site_name}s webbplatsadministratör"
   site_staff: "%{site_name}s personal"
@@ -4012,7 +4006,7 @@ sv:
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
   still_no_luck?: Funkar fortfarande inte?
-  still_needs_id?: Kan gemenskapen bekräfta/förbättra bestämningen?
+  still_needs_id?: Kan communityn bekräfta/förbättra artbestämningen?
   still_working_on_classifying_taxon: Arbetar fortfarande med att klassificera detta taxon. Kom tillbaka senare
   stop_editing: Sluta redigera
   stop_following_user: "Sluta följa %{user}"
@@ -4033,7 +4027,7 @@ sv:
     other: Skicka in %{count} observationer
   submitted: Skickades in
   subscribe_to_a_taxon: Prenumerera på ett taxon
-  subscribe_to_a_place: Prenumerera på en lokal
+  subscribe_to_a_place: Prenumerera på en fyndplats
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna flagga"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på detta inlägg"
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna taxonförberedelse"
@@ -4041,18 +4035,18 @@ sv:
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna taxonhopslagning"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna taxonuppdelning"
   subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna taxoninaktivering"
-  subscribe_to_observations_from_this_place_html: <a>Prenumerera</a> på observationer från denna lokal
+  subscribe_to_observations_from_this_place_html: <a>Prenumerera</a> på observationer från denna fyndplats
   subscribe_to_observations_in_a_taxon: Prenumerera på alla observationer av en art eller grupp av organismer (t.ex. 'skorpioner').
-  subscribe_to_observations_in_a_place: Prenumerera på alla observationer som publiceras inom denna lokal. Du kan också lägga till ett valfritt taxonfilter (t.ex. 'skorpioner från Texas').
+  subscribe_to_observations_in_a_place: Prenumerera på alla observationer som publiceras inom denna fyndplats. Du kan också lägga till ett valfritt taxonfilter (t.ex. 'skorpioner från Texas').
   subscribe_to_places_to: |
-    Prenumerera på lokaler för att få uppdateringar om nya observationer gjorda där. Uppdateringar från personer du följer och saker du har kommenterat på
+    Prenumerera på fyndplatser för att få uppdateringar om nya observationer gjorda där. Uppdateringar från personer du följer och saker du har kommenterat på
     hanteras också genom prenumerationer, så om du vill se vad du prenumererar på och avsluta vissa prenumerationer, kan du klicka på "Hantera alla dina prenumerationer" nedan. Du ska också kunna avsluta prenumerationer direkt på deras respektive webbsidor.
   subscribe_to_this: Prenumerera på detta
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prenumerera</a>
     på %{x} från denna %{y}.
   subscriptions: Prenumerationer
-  subscriptions_arent_available_for: Det går inte att prenumerera på lokaler utan gränser.
+  subscriptions_arent_available_for: Det går inte att prenumerera på fyndplatser utan gränser.
   successfully_changed_your_password: Lyckades ändra ditt lösenord.
   suggest_an_identification: Föreslå en bestämning
   suggest_or_require_that: Föreslå eller kräv att medverkare fyller i dessa fält för de observationer de lägger till i ditt projekt.
@@ -4088,7 +4082,7 @@ sv:
   taxa_to_include: Taxa som ska inkluderas
   taxon: Taxon
   taxon_autocomplete_placeholder: Fåglar, monark etc.
-  taxon_geoprivacy: Taxons geosekretess
+  taxon_geoprivacy: Taxons koordinatsekretess
   taxon_is_a_rank: "%{taxon} är en %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} är en %{rank} i %{iconic_taxon} med 1 observation"
@@ -4137,10 +4131,10 @@ sv:
     other: "%{taxon} är ett rike med %{count} observationer"
   taxon_is_threatened_coordinates_hidden: Hotat taxon, koordinater gömda som standard
   taxon_is_threatened_coordinates_hidden_desc: |
-    Ett av de taxa som föreslås bland bestämningarna, eller ett av de taxa som omfattar något av dessa taxa, är sällsynt och/eller hotat, så lokalen för denna observation har därför dolts.
+    Ett av de taxa som föreslås bland bestämningarna, eller ett av de taxa som omfattar något av dessa taxa, är sällsynt och/eller hotat, så fyndplatsen för denna observation har därför dolts.
   taxon_is_threatened_coordinates_obscured: Hotat taxon, koordinater diffuserade som standard
   taxon_is_threatened_coordinates_obscured_desc: |
-    Ett av de taxa som föreslås bland bestämningarna, eller ett av de taxa som omfattar något av dessa taxa, är sällsynt och/eller hotat, så lokalen för denna observation har därför diffuserats.
+    Ett av de taxa som föreslås bland bestämningarna, eller ett av de taxa som omfattar något av dessa taxa, är sällsynt och/eller hotat, så fyndplatsen för denna observation har därför diffuserats.
   taxonomy: Taxonomi
   taxon_assessments_are: |
     Taxonbedömningar är dokument som bedömer artens nuvarande status, vanligen bevarandestatus.
@@ -4236,14 +4230,13 @@ sv:
     Administratören är den person som skapade projektet. De kan göra allt som ledare och förvaltare kan göra, samt radera projektet.
   the_below_items_are_needed_to_achieve: |
     Nedanstående punkter behövs för att nå <span className="bold">Forskningsklass:</span>
-  the_community_id_requires_at_least_two_identifications: Gemenskapsbestämning kräver minst två bestämningar.
+  the_community_id_requires_at_least_two_identifications: Community-bestämning kräver minst två bestämningar.
   the_community_must_feel_that: |
-    Gemenskapen måste tycka att gemenskapstaxonet är det bästa det kan bli baserat på underlaget
+    Communityn måste tycka att community-taxonet är det bästa det kan bli baserat på underlaget
   the_following_observations_could: "Följande observationer kunde inte läggas till i %{link}"
   the_following_photos_have_been_tagged: "Följande bilder har taggats:"
   the_identotron_is_a_tool_to: |
-    Identomaten är ett verktyg för att hjälpa dig att bestämma observationer baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den platsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under
-    utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en lokal, kommer Identomaten att visa ett meddelande.
+    Identomaten är ett verktyg för att hjälpa dig att bestämma observationer baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den fyndplatsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en fyndplats, kommer Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
   the_observation_was_already_added_to_that_project: Observationen hade redan lagts till i det projektet.
   the_people_of_inat: "Personerna på %{site_name}"
@@ -4258,7 +4251,7 @@ sv:
   the_user_x_has_been_unsuspended: "Användaren %{user} är inte längre avstängd"
   the_world: Världen
   the_world_is_full_of_interesting_places: |
-    Världen är full av intressanta platser, var och en fylld med märkliga och underbara livsformer. Vissa finns på andra sidan jorden, medan andra finns hemma runt hörnet! %{site_name}-lokaler låter dig bläddra bland liv från hela planeten. Börja utforska!
+    Världen är full av intressanta platser, var och en fylld med märkliga och underbara livsformer. Vissa finns på andra sidan jorden, medan andra finns hemma runt hörnet! %{site_name}-fyndplatser låter dig bläddra bland liv från hela planeten. Börja utforska!
   then_keybord_sequence: sedan
   there_are_x_synonyms_html:
     one: "Det finns <span class='count'>1</span> synonym</span>"
@@ -4272,9 +4265,9 @@ sv:
   there_was_a_problem_saving_your_identification: "Det gick inte att spara din bestämning: %{error}"
   there_were_problems_adding_taxa: "Det gick inte att lägga till dessa taxa: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Det gick inte att lägga till denna observation till detta projekt: "
-  there_were_problems_importing_that_place: "Det gick inte att importera den lokalen: %{place_error}"
+  there_were_problems_importing_that_place: "Det gick inte att importera den fyndplatsen: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
-    Det gick inte att importera den lokalens geometri: %{error}
+    Det gick inte att importera den fyndplatsens geometri: %{error}
   there_were_some_problems_saving_this_observation: Det gick inte att spara denna observation korrekt
   there_were_some_problems_saving_those_colors: "Det gick inte att spara dessa färger korrekt: %{error}"
   there_were_some_problems_with_fields: "Det uppstod problem med följande fält:"
@@ -4319,7 +4312,7 @@ sv:
   this_observation_is_research_grade: Denna observation är av forskningsklass!
   this_observation_was_created_using: "Denna observation skapades med:"
   this_photo_is_already_associated: Denna bild är redan kopplad till en av dina observationer.
-  this_place_has_no_check_list: "Denna lokal har ingen checklista."
+  this_place_has_no_check_list: "Denna fyndplats har ingen checklista."
   this_taxon_change_has_been_commited: |
     <strong>Denna taxonändring är på gång!</strong>
     Redigera inte några taxa.  Redigering av andra fält är ok.
@@ -4369,7 +4362,7 @@ sv:
   top_species: Topparter
   tos_privacy_guidelines_label: |
     Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
-    <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Gemenskapsriktlinjerna</a>.
+    <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Communityns riktlinjer</a>.
   total: Totalt
   totals: Summa
   total_members: Totalt antal medlemmar
@@ -4394,7 +4387,7 @@ sv:
   type: Typ
   type_authority: Typauktoritet...
   type_one_name_per_line: Skriv ett namn per rad
-  type_place_name: Ange lokalens namn
+  type_place_name: Ange fyndplatsens namn
   type_source_name: Ange namn på källan
   type_source_title: "Ange källans titel"
   type_species_name: "Ange artnamn"
@@ -4533,7 +4526,7 @@ sv:
   user_faved_this_observation: "%{user} favoritmarkerade denna observation"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
-  user_has_opted_out_of_community_id: Användaren har valt bort gemenskapstaxon
+  user_has_opted_out_of_community_id: Användaren har valt bort Community-taxon
   user_hasnt_joined_any_projects: "%{user} har inte gått med i några projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjälpte <strong>%{x} personer</strong> med <strong>%{y} bestämningar</strong>"
   user_invite_observation_to_project: '%{user} vill bjuda in din observation "%{observation}" till projektet %{project}.'
@@ -4603,7 +4596,7 @@ sv:
   view_moderation_history_for_this_comment: Visa modereringshistorik för denna kommentar
   view_more: Visa mer
   view_more_about_x: "Visa mer om %{x}"
-  view_more_observations_from_this_place: Visa fler observationer från denna lokal
+  view_more_observations_from_this_place: Visa fler observationer från denna fyndplats
   view_more_observations_near_x_place: "Visa fler observationer nära %{place} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Visa fler observationer från %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visa fler observationer av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
@@ -4620,8 +4613,8 @@ sv:
   view_original: "Visa original"
   view_original_by: "Visa original av %{by} på %{photo}"
   view_original_ccD_photo: "Visa ursprunglig CC-bild av %{owner}"
-  view_photos_ranges_observations_more: "Se bilder, arters utbredningsområden, %{site_name}-observationer och mycket mer! Vi har samlat information från många olika källor och slagit ihop dem till en kort sammanfattning av varje art på varje lokal."
-  view_place: Visa lokal
+  view_photos_ranges_observations_more: "Se bilder, arters utbredningsområden, %{site_name}-observationer och mycket mer! Vi har samlat information från många olika källor och slagit ihop dem till en kort sammanfattning av varje art på varje fyndplats."
+  view_place: Visa fyndplats
   view_post: Visa inlägg
   view_projects_from_place: "Visa projekt från %{place}"
   view_sample: Visa exempel
@@ -4772,7 +4765,7 @@ sv:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Ja, men bara för mina observationer av hotade taxa, inte när jag har satt geosekretessen
+    Ja, men bara för mina observationer av hotade taxa, inte när jag har satt koordinatsekretessen
   yes_find_them!: "Ja, hitta dem!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -4806,7 +4799,7 @@ sv:
     Du anger nu att detta projekt ska samla alla observationer som matchar
     följande regler: %{rules} Vill du fortsätta?
   you_are_submitting_obs_with_no_date_or_no_location: |
-    Du skickar in observationer utan datum eller lokal. Observationer utan denna information är ofta omöjliga att bestämma och kommer normalt inte att vara synliga i observationssökningar.
+    Du skickar in observationer utan datum eller fyndplats. Observationer utan denna information är ofta omöjliga att bestämma och kommer normalt inte att vara synliga i observationssökningar.
   you_are_subscribed_to_comments_on_this_flag: Du prenumererar på kommentarer på den här flaggan.
   you_are_subscribed_to_comments_on_this_post: Du prenumererar på kommentarer på detta inlägg.
   you_are_subscribed_to_comments_on_this_taxon_stage: Du prenumererar på kommentarer på denna taxonförberedelse.
@@ -4814,7 +4807,7 @@ sv:
   you_are_subscribed_to_comments_on_this_taxon_merge: Du prenumererar på kommentarer på denna taxonhopslagning
   you_are_subscribed_to_comments_on_this_taxon_split: Du prenumererar på kommentarer på denna taxonuppdelning
   you_are_subscribed_to_comments_on_this_taxon_drop: Du prenumererar på kommentarer på denna taxoninaktivering
-  you_are_subscribed_to_observations_from_this_place: Du prenumererar på kommentarer från denna lokal.
+  you_are_subscribed_to_observations_from_this_place: Du prenumererar på kommentarer från denna fyndplats.
   you_arent_a_member_of_that_project: Du är inte medlem i det projektet.
   you_arent_following_that_person: "Du följer inte den personen."
   you_can_accept_invitations: Du kan acceptera inbjudan här
@@ -4824,15 +4817,15 @@ sv:
   you_can_only_destroy_taxa_you_created2: |
     Du kan bara ta bort taxa du skapat som inte är associerade med taxonändringar, bestämningar eller annat innehåll
   you_can_only_block_three_users: Du kan bara blockera tre användare
-  you_can_show_the_boundary_of: Du kan visa lokalens gräns på din projektsida om lokalen har en gräns.
+  you_can_show_the_boundary_of: Du kan visa fyndplatsens gräns på din projektsida om fyndplatsen har en gräns.
   you_can_sign_free_at: "Du kan registrera dig för ett gratis %{site_name}-konto på"
   you_cant_compare_a_list_with_nothing: Du kan inte jämföra en lista med ingenting!
   you_cant_delete_a_project_list: "Du kan inte ta bort en projektlista"
   you_cant_delete_observation_fields_that_people_are_using: "Du kan inte ta bort observationsfält som personer använder"
-  you_cant_do_that_for_the_default_check_list_place: Du kan inte göra det med en lokals standardchecklista!
+  you_cant_do_that_for_the_default_check_list_place: Du kan inte göra det med en fyndplats standardchecklista!
   you_cant_flag_that: Du kan inte flagga det
   you_cant_leave_a_project_you_created: Du kan inte lämna ett projekt som du har skapat.
-  you_cant_merge_standard_places: Du kan inte slå ihop standardlokaler
+  you_cant_merge_standard_places: Du kan inte slå ihop standardfyndplatser
   you_cant_rotate_photos_hostde_outside: "Du kan inte rotera bilder lagrade utanför %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Du kan inte ta bort taxa som ingår i taxonändringar eller som innehåller taxa som ingår i taxonändringar
   you_curate_a_project_that_contains_this_observation: Du förvaltar ett projekt där denna observation ingår
@@ -4855,7 +4848,7 @@ sv:
   you_must_choose_an_observation_field: Du måste välja ett observationsfält
   you_must_fill_out_the_required_fields: Du måste fylla i obligatoriska fält
   you_must_have_a_header_row: Du måste ha en rubrikrad
-  you_must_select_a_place_to_merge_with: Du måste ange en lokal att slå ihop med.
+  you_must_select_a_place_to_merge_with: Du måste ange en fyndplats att slå ihop med.
   you_must_select_at_least_one_taxon: Du måste välja minst ett taxon
   you_must_select_dates_to_compare: Du måste välja datum att jämföra
   you_must_specify_and_confirm_a_new_password: Du måste ange och bekräfta ett nytt lösenord.
@@ -4899,12 +4892,12 @@ sv:
   your_projects: Dina projekt
   your_google_account: ditt Google-konto
   your_google_account_info: Din Google-kontoinformation
-  your_pinned_locations: Dina fästa lokaler
+  your_pinned_locations: Dina fästa fyndplatser
   your_profile_was_successfully_updated: Lyckades uppdatera din profil!
   your_recent_projects: Dina senaste projekt
   your_relationships: Dina relationer
   your_site_needs_your_to_authorize_more_permissions_from_provider: "För att %{site_name} ska kunna fortsätta måste du auktorisera ökad behörighet till %{provider}:"
-  your_subscriptions_to_this_place: Dina prenumerationer för denna lokal
+  your_subscriptions_to_this_place: Dina prenumerationer för denna fyndplats
   your_tags: Dina taggningar
   yours: Din
   youre_not_following_anyone: |-
@@ -4940,23 +4933,23 @@ sv:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Planerar du att använda %{site_name} i klassrummet?
           community_guidelines_html: |
-            <a href="%{url}">Läs gärna gemenskapens riktlinjer</a> för tips om att låta iNaturalist förbli en vänlig och välkomnande plats att vara på.
+            <a href="%{url}">Läs gärna communityns riktlinjer</a> för tips om att låta iNaturalist förbli en vänlig och välkomnande plats att vara på.
           please_read_the_teachers_guide_html: |
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
       donate_desc_html: |
         <p class="lead">
-        <strong>iNaturalist är en av världens största gemenskaper som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+        <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
         </p>
         <p class="lead">
-        Om du tror på kraften hos denna globala gemenskap av naturälskare att dela kunskap och generera oersättlig biologisk mångfalds-data,
+        Om du tror på kraften hos denna globala community av naturälskare att dela kunskap och generera oersättlig biologisk mångfalds-data,
         överväg en engångs- eller återkommande gåva online, eller se <a
         href="https://www.inaturalist.org/pages/giving">andra sätt att
         ge</a>.
         </p>
         <p class="lead">
-        Din donation hjälper till att stödja iNaturalist när gemenskapen växer, från framsteg inom bildigenkänning och implementering av nya funktioner till att stödja våra servrar och personal.
+        Din donation hjälper till att stödja iNaturalist när communityn växer, från framsteg inom bildigenkänning och implementering av nya funktioner till att stödja våra servrar och personal.
         </p>
         <p class="text-muted">
         iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
@@ -4967,15 +4960,13 @@ sv:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         desc_html: |
           <p class="lead">
-          <strong>iNaturalist är en av världens största gemenskaper som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
+          <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
           </p>
           <p class="lead">
-          Vi vill behålla iNaturalist gratis för användning, men den är inte gratis att driva. Om du älskar iNaturalist, vänligen överväg att bli en månatlig bidragsgivare. Återkommande gåvor hjälper se till att iNaturalist
-          kan fortsätta skala upp sin infrastruktur och personal genom att bidra till förutsägbara intäkter. Du kan också välja att visa din månatliga givarstatus i din användarprofil.
+          Vi vill behålla iNaturalist gratis för användning, men den är inte gratis att driva. Om du älskar iNaturalist, vänligen överväg att bli en månatlig bidragsgivare. Återkommande gåvor hjälper se till att iNaturalist kan fortsätta skala upp sin infrastruktur och personal genom att bidra till förutsägbara intäkter. Du kan också välja att visa din månatliga givarstatus i din användarprofil.
           </p>
           <p class="lead">
-          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när gemenskapen växer, från framsteg i bildigenkänning och implementera nya funktioner till att stödja våra servrar och personal. Om du föredrar
-          att ge en engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
+          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn växer, från framsteg i bildigenkänning och implementera nya funktioner till att stödja våra servrar och personal. Om du föredrar att ge en engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
           </p>
           <p class="text-muted">
           iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
@@ -5016,7 +5007,7 @@ sv:
           <a href="http://eol.org/info/252" target="_blank">samlingar</a>
           med arter. Om du vill importera arter från en EOL-samling, klistra då in URL:en till den samlingen här.
         guide_place_desc: |
-          Genom att knyta din guide till en lokal kan folk hitta den när de söker efter lokaler, och den kommer att visa lokalgränsen på %{site_name}-kartor där de visas om en gräns har satts (t.ex. "kort"-vy, taxonsidor etc.)
+          Genom att knyta din guide till en fyndplats kan folk hitta den när de söker efter fyndplatser, och den kommer att visa fyndplatsgränsen på %{site_name}-kartor där de visas om en gräns har satts (t.ex. "kort"-vy, taxonsidor etc.)
         import_tags_from_csv_help_html: |
           <p>
           Ladda upp en CSV-fil med taggningar för taxa in denna guide. Din CSV-fil bör se ut så här:
@@ -5055,7 +5046,7 @@ sv:
         paste_note_html: |
           Klistra in upp till 500 artnamn, ett per rad. %{site_name} kommer att försöka matcha vardagliga namn mot artkoncept, men för att undvika tvetydighet är det bättre att använda vetenskapliga namn. Om du vill ange båda, skilj det vetenskapliga namnet från det vardagliga namnet med ett komma, så här <code>Homo sapiens,människa</code>.
         places_note: |
-          Obs: inte alla lokaler har checklistor med taxa. Om du har problem att hitta en lokal med taxa, försök välja större områden med administrativa gränser, såsom nationer, stater, provinser eller län.
+          Obs: inte alla fyndplatser har checklistor med taxa. Om du har problem att hitta en fyndplats med taxa, försök välja större områden med administrativa gränser, såsom nationer, stater, provinser eller län.
         replace_existing_eol_desc: Ta bort befintligt innehåll innan du importerar från EOL
         place_choose_taxon_note: |
           Välj ett taxon att filtrera på om du vill begränsa din sökning, t.ex. "växter"
@@ -5132,7 +5123,7 @@ sv:
       no_unobserved_species_in_place: Ingen art utan observation i %{place}.
       no_unobserved_species_within_this_taxon: Ingen art utan observation under detta taxon.
       no_unobserved_species_within_this_taxon_in_place: Ingen art utan observation under detta taxon i %{place}.
-      reset_place_filter: Återställ lokalfilter
+      reset_place_filter: Återställ fyndplatsfilter
       all_observations_in_this_taxon: Alla observationer på detta taxon
       observations_of_exactly_this_taxon: Observationer av just detta taxon
       focus_tree_on_this_taxon: Fokusera trädet på detta taxon
@@ -5154,7 +5145,7 @@ sv:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Är du säker? Det kommer att ändra invandringshistoria för ALLA listade taxa som tillhör lokaler inom denna lokal. Du kan göra en hel del arbete ogjort.
+          Är du säker? Det kommer att ändra invandringshistoria för ALLA listade taxa som tillhör fyndplatser inom denna fyndplats. Du kan göra en hel del arbete ogjort.
         description_html: |
           Detta kommer att ändra invandringshistoria för <em>alla</em> listningar av detta taxon på alla platser som ingår i
           <a href="%{place_url}">%{place_name}</a>
@@ -5164,8 +5155,8 @@ sv:
         lifelist_titles_cannot_be_changed: Rubriker för livlistor kan inte ändras
       new:
         place_desc: |
-          Fyll automatiskt i denna lista med taxa observerade på denna lokal.
-          Observera att du bara kan välja lokaler som har gränser.
+          Fyll automatiskt i denna lista med taxa observerade på denna fyndplats.
+          Observera att du bara kan välja fyndplatser som har gränser.
       show:
         project_list_desc: |
           Taxa som är manuellt tillagd av projektförvaltare samt taxa med observationer av forskningsklass som lagts till projektet, listas i projektlistor.
@@ -5208,16 +5199,16 @@ sv:
         score: Poäng
         explanation: |
           <p>
-          Om en användare av någon anledning inte godkänner gemenskapstaxonet, kan den avvisa det, vilket innebär att användarens bestämning används för länkning till andra observationer, uppdatering av livslistor etc. Det betyder också att hens observation endast kan uppnå forskningsklass när gemenskapen håller med hen.
+          Om en användare av någon anledning inte godkänner community-taxonet, kan den avvisa det, vilket innebär att användarens bestämning används för länkning till andra observationer, uppdatering av livslistor etc. Det betyder också att hens observation endast kan uppnå forskningsklass när communityn håller med hen.
           </p>
           <p>
-          Gemenskapsbestämningen visas dock fortfarande, så att alla kan se de olika bestämningar som har föreslagits.
+          Community-bestämningen visas dock fortfarande, så att alla kan se de olika bestämningar som har föreslagits.
           </p>
-        you_have_opted_out: Du har valt bort gemenskapsbestämningar
-        opt_in_for_this_observation: Välj gemenskapen för denna observation
+        you_have_opted_out: Du har valt bort community-bestämningar
+        opt_in_for_this_observation: Välj communityn för denna observation
         your_id_does_not_match: |
-          Din bestämning (<span class="bold">%{taxon_name}</span>) stämmer inte överens med gemenskapsbestämningen
-      copy_tip: "Lägg till en ny observation genom att kopiera observationens datum, lokal, bilder och observationsfält."
+          Din bestämning (<span class="bold">%{taxon_name}</span>) stämmer inte överens med community-bestämningen
+      copy_tip: "Lägg till en ny observation genom att kopiera observationens datum, fyndplats, bilder och observationsfält."
       captive_help_html: |
         Var organismen <strong>odlad</strong> eller
         <strong>i fångenskap</strong>? Till exempel, fanns den i en <strong>trädgård, djurpark, akvarium</strong> eller någon annan situation där den var med bara för att <strong>människor såg till att den var där</strong>? Alla observationer av levande ting är välkomna, men vi vill gärna veta när de är inte vilda / naturaliserade.
@@ -5284,7 +5275,7 @@ sv:
         query_placeholder: "Välj parametrar nedan eller klistra in i en observations-URL"
         taxon_extras_help_html: "Obs: dessa kolumner kommer att göra genereringen av din export långsammare"
         geo_help_html: |
-          Stad-, län-, stat-, landsfält baserat på koordinater. Motsvarande administrativa nivåer kommer att användas för observationer där dessa lokaltyper inte fungerar.
+          Stad-, län-, stat-, landsfält baserat på koordinater. Motsvarande administrativa nivåer kommer att användas för observationer där dessa fyndplatstyper inte fungerar.
           Privata (private_*) fält kommer endast att inkluderas med användarfiltret när du är användaren, eller när du använder projektfiltret och du är projektförvaltare.
         be_patient: |
           Hav tålamod, detta kan ta några minuter. Om det tar
@@ -5345,15 +5336,15 @@ sv:
         observed_on: Normaliserat observationsdatum
         time_observed_at: Normaliserat datum & tid för observationen
         time_zone: Observationens tidszon
-        place_guess: Lokalbeskrivning såsom angiven av observatören
+        place_guess: Fyndplatsbeskrivning såsom angiven av observatören
         latitude: Publikt synlig latitud
         longitude: Publikt synlig longitud
         positional_accuracy: "Koordinatprecision (ja, ja, noggrannhet != precision, dåligt val av namn)"
         private_latitude: "Privat latitud, anges om observationen är privat eller diffuserad"
         private_longitude: "Privat longitud, anges om observationen är privat eller diffuserad"
         geoprivacy: "Huruvida observatören har valt att diffusera eller dölja koordinaterna"
-        taxon_geoprivacy: "Mest konservativ geosekretess använd p.g.a. bevarandestatus för taxa i aktuell bestämning."
-        coordinates_obscured: "Huruvida koordinaterna har diffuserats eller inte, antingen på grund av geosekretess eller hotat taxon"
+        taxon_geoprivacy: "Mest konservativ koordinatsekretess använd p.g.a. bevarandestatus för taxa i aktuell bestämning."
+        coordinates_obscured: "Huruvida koordinaterna har diffuserats eller inte, antingen på grund av koordinatsekretess eller hotat taxon"
         out_of_range: Huruvida observationen ligger utanför taxonets kända utbredningsområde eller inte
         user_id: Unik identifierare för observatören
         user_login: Observatörens användarnamn
@@ -5365,8 +5356,8 @@ sv:
         image_url: URL för standardbilden
         sound_url: URL för standardljudet. Observera att detta bara fungerar för direktuppladdningar, inte ljud från tredjepartstjänster
         tag_list: Kommaseparerad lista med taggningar
-        place_admin1_name: Namn på den administrativa lokalen en rang under landsnivå
-        place_admin2_name: Namn på den administrativa lokalen två ranger under landsnivå
+        place_admin1_name: Namn på den administrativa fyndplatsen en rang under landsnivå
+        place_admin2_name: Namn på den administrativa fyndplatsen två ranger under landsnivå
         positioning_method: Hur koordinaterna bestämdes
         positioning_device: Enhet som användes för att bestämma koordinater
       identify:
@@ -5378,13 +5369,12 @@ sv:
           Försök tillämpa filter för att minska antalet resultat, eller markera observationer som granskade och använd knappen "Visa fler" istället för sidnumrering
       import:
         coordinate_systems_help: |
-          %{site_name} accepterar koordinater från flera olika koordinatsystem. När du tillhandahåller koordinater i ett annat system än latitud / longitud behöver vi alltså veta vilket koordinatsystem du använder för att kunna tolka dem korrekt. Försäkra dig om att du har valt rätt koordinatsystem för dina data, annars kan lokalen
-          hamna långt ifrån där den borde. Om dina koordinater kommer från en GPS-enhet kollar du i dess inställningar efter namnet på koordinatsystemet den använder. Observera att vi inte lagrar anpassade
-          koordinater, bara deras lat/long-konverteringar.
+          %{site_name} accepterar koordinater från flera olika koordinatsystem. När du tillhandahåller koordinater i ett annat system än latitud / longitud behöver vi alltså veta vilket koordinatsystem du använder för att kunna tolka dem korrekt. Försäkra dig om att du har valt rätt koordinatsystem för dina data, annars kan fyndplatsen
+          hamna långt ifrån där den borde. Om dina koordinater kommer från en GPS-enhet kollar du i dess inställningar efter namnet på koordinatsystemet den använder. Observera att vi inte lagrar anpassade koordinater, bara deras lat/long-konverteringar.
         date_column_format: ÅÅÅÅ-MM-DD TT:MM
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
-          Kolumnen för geosekretess måste vara på engelska och antingen vara tom eller ha något av värdena "obscured" eller "private"
+          Kolumnen för koordinatsekretess måste vara på engelska och antingen vara tom eller ha något av värdena "obscured" eller "private"
         google_photos_notice_html: |
           I februari 2019 ändrade Google sitt API, och gjorde det omöjligt för oss att komma åt GPS-koordinater, licensinformation och nästan all information som vi skulle kunna använda för att lägga till en bestämning
           (som taggningar). De tog också bort textsökning och sidnumrering. Utöver det måste numera alla anslutna konton ha ytterligare behörighet, och innan en tredjepart kan begära att få ett sådant tillstånd från användare, måste tredjeparten verifieras. Vi väntar på verifiering, men innan det är klart, kan du inte importera bilder från Google. Om vi blir godkända,
@@ -5404,21 +5394,17 @@ sv:
         ancestor_disagreements_desc: "Antal bestämda taxa som stämmer med ett taxons förfäder, men inte håller med om specifikt taxon (dvs \"Jag tror att det är i det släktet men jag håller inte med om arten\")"
         community_taxon_desc_html: |
           <p class="ui">
-          Ett gemenskapstaxon (eller den kollektiva bestämningen) representerar det taxon %{site_name}-gemenskapen tror skildras i en observation. Om du är intresserad av hur vi väljer gemenskapstaxon kan du läsa kommentarerna om algoritmen nedan, men
-          i princip försöker vi <strong>välja ett taxon som mer än 2/3 av bestämmarna är överens om</strong>. Ibland betyder det att vi väljer ett taxon på högre nivå som innehåller ett antal motsägande taxa (t.ex. du tror att det är en kungssnok och jag tror
-          på en skallerorm, så iNat väljer underordning Serpentes som omfattar alla ormar). Algoritmen lutar aningen åt avvikande åsikter då vi har upptäckt att dessa ofta är de korrekta.
+          Ett community-taxon (eller den kollektiva bestämningen) representerar det taxon %{site_name}-communityn tror skildras i en observation. Om du är intresserad av hur vi väljer community-taxon kan du läsa kommentarerna om algoritmen nedan, men
+          i princip försöker vi <strong>välja ett taxon som mer än 2/3 av determinatörerna är överens om</strong>. Ibland betyder det att vi väljer ett taxon på högre nivå som innehåller ett antal motsägande taxa (t.ex. du tror att det är en kungssnok och jag tror på en skallerorm, så iNat väljer underordning Serpentes som omfattar alla ormar). Algoritmen lutar aningen åt avvikande åsikter då vi har upptäckt att dessa ofta är de korrekta.
           </p>
           <p class="ui">
-          En observation av forskningsklass måste (bland annat) ha ett gemenskapstaxon. Om en observation endast har en bestämning kommer den heller inte att ha något gemenskapstaxon. Alla observationer med minst en bestämning kommer också att ha
-          ett observationstaxon. Ett observationstaxon är det taxon vi använder när vi delar observationer med datapartners, länkar observationer av samma taxon på sajten, uppdaterar din livslista etc. I de flesta
-          fall kommer observationstaxonet till slut att bli satt till samma som gemenskapstaxonet, men ibland skiljer de sig, särskilt innan gemenskapen har enats om en bestämning. T.ex., om du tror att det är en orm
-          (underordning Serpentes) och jag tror att det är en kungssnok (släkte <i>Lampropeltis</i>) kommer observationstaxonet bli kungssnok (stödd endast av min bestämning) medan gemenskapstaxonet blir Serpentes (stödd av åtminstone två bestämningar).
-          Om du av någon anledning inte håller med om gemenskapstaxonet, kan du förkasta det baserat på dina egna iakttagelser, vilket betyder att observationstaxonet aldrig kommer att bli gemenskapstaxonet (utan snarare din egen bestämning). Det betyder också att din observation endast kan uppnå forskningsklass när gemenskapen håller med <em>dig</em>. Om du inte gillar idén med gemenskapstaxa kan du välja bort dem helt och hållet genom att
+          En observation av forskningsklass måste (bland annat) ha ett community-taxon. Om en observation endast har en artbestämning kommer den heller inte att ha något community-taxon. Alla observationer med minst en artbestämning kommer också att ha ett observationstaxon. Ett observationstaxon är det taxon vi använder när vi delar observationer med datapartners, länkar observationer av samma taxon på sajten, uppdaterar din livslista etc. I de flesta fall kommer observationstaxonet till slut att bli satt till samma som community-taxonet, men ibland skiljer de sig, särskilt innan communityn har enats om en bestämning. T.ex., om du tror att det är en orm
+          (underordning Serpentes) och jag tror att det är en kungssnok (släkte <i>Lampropeltis</i>) kommer observationstaxonet bli kungssnok (stödd endast av min bestämning) medan community-taxonet blir Serpentes (stödd av åtminstone två bestämningar).
+          Om du av någon anledning inte håller med om community-taxonet, kan du förkasta det baserat på dina egna iakttagelser, vilket betyder att observationstaxonet aldrig kommer att bli community-taxonet (utan snarare din egen bestämning). Det betyder också att din observation endast kan uppnå forskningsklass när communityn håller med <em>dig</em>. Om du inte gillar idén med community-taxa kan du välja bort dem helt och hållet genom att
           <a href="/users/edit" target="_blank">ändra dina inställningar</a>.
           </p>
           <p class="ui">
-          <strong>Algoritmen:</strong> för alla bestämda taxa och de taxa som omfattar dem (t.ex. släktet<i>Homo</i> omfattar <i>Homo sapiens</i>), ger poäng till var och en som förhållandet mellan de som 'håller med' - sammanräknade bestämningar till detta taxon och totala antalet bestämningar, 'håller inte med' - antalet bestämningar som helt skiljer
-          sig (dvs bestämningar till taxa som inte omfattar det taxon som poängbedöms), och 'håller bara med om förälder' - antalet mer försiktiga bestämningar som inte håller med om den mer exakta bestämningen. För bestämda taxa som har en poäng över 2/3 och minst 2 bestämningar, välj taxon med lägst rang.
+          <strong>Algoritmen:</strong> för alla bestämda taxa och de taxa som omfattar dem (t.ex. släktet<i>Homo</i> omfattar <i>Homo sapiens</i>), ger poäng till var och en som förhållandet mellan de som 'håller med' - sammanräknade bestämningar till detta taxon och totala antalet bestämningar, 'håller inte med' - antalet bestämningar som helt skiljer sig (dvs bestämningar till taxa som inte omfattar det taxon som poängbedöms), och 'håller bara med om förälder' - antalet mer försiktiga bestämningar som inte håller med om den mer exakta bestämningen. För artbestämda taxa som har en poäng över 2/3 och minst 2 bestämningar, välj taxon med lägst rang.
           </p>
         cumulative_count_desc: 'Antal bestämning av ett enskilt taxon och alla underliggande'
         curator_coordinate_access_disabled_desc_html: |
@@ -5440,22 +5426,22 @@ sv:
           <li>observationen <strong>är daterad</strong></li>
           <li>observationen <strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
           <li>the observation <strong>har bild eller ljud</strong></li>
-          <li>observationen <strong>inte är av en människa</strong></li>
+          <li>observationen <strong>inte är när någon sett en människa</strong></li>
           </ul>
           <p>
           Observationer uppnår <strong>"forskningsklass"</strong> när
           </p>
           <ul>
           <li>
-          %{site_name}-<strong>gemenskapen är enig om bestämning till art eller lägre</strong>, dvs när mer än 2/3 av bestämmarna håller med om ett taxon (om gemenskapen har röstat att gemenskapstaxonet inte längre kan förbättras, ändras detta till underfamilj eller lägre)
+          %{site_name}-<strong>communityn är enig om bestämning till art eller lägre</strong>, dvs när mer än 2/3 av determinatörerna håller med om ett taxon (om communityn har röstat att community-taxonet inte längre kan förbättras, ändras detta till underfamilj eller lägre)
           </li>
           </ul>
           <p>
-          Observationer återgår till <strong>"grundklass"</strong> om ovanstående krav inte uppfylls eller om gemenskapen enas
+          Observationer återgår till <strong>"grundklass"</strong> om ovanstående krav inte uppfylls eller om communityn enas
           </p>
           <ul>
           <li>
-          <strong>lokalen verkar inte riktigt riktig</strong> (t.ex. apor mitt i havet, flodhästar på kontoret, etc.)
+          <strong>fyndplatsen verkar inte riktigt riktig</strong> (t.ex. apor mitt i havet, flodhästar på kontoret, etc.)
           </li>
           <li>
           <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människor eller intelligenta rymdvarelser)
@@ -5468,10 +5454,10 @@ sv:
           observationen <strong>inte ger nutida (~100 år) belägg för organismen</strong> (t.ex. fossil, medan spår, avföring eller döda löv är ok)
           </li>
           <li>
-          observationen behöver inte längre bestämmas <em>och</em> har en gemenskapsbestämning över familjenivå
+          observationen behöver inte längre bestämmas <em>och</em> har en community-bestämning över familjenivå
           </li>
           <li>
-          observatören har valt bort gemenskapsbestämning och det av gemenskapen bestämda taxonet varken är en förälder eller ett barn till det taxon som är knutet till observatörens bestämning
+          observatören har valt bort community-bestämning och det av communityn bestämda taxonet varken är en förälder eller ett barn till det taxon som är knutet till observatörens bestämning
           </li>
           </ul>
           <p>
@@ -5479,8 +5465,7 @@ sv:
           </p>
           <ul>
           <li>
-          Systemet kommer att rösta på att observationen är inte vild/naturaliserad om det finns minst 10 andra observationer på släktesnivå eller lägre i den minsta lokal motsvarande ett län, stat eller land och omfattar
-          denna observation samt att 80 % eller fler av dessa observationer har markerats som inte vilda/naturaliserade.
+          Systemet kommer att rösta på att observationen är inte vild/naturaliserad om det finns minst 10 andra observationer på släktesnivå eller lägre i den minsta fyndplats motsvarande ett län, stat eller land och omfattar denna observation samt att 80 % eller fler av dessa observationer har markerats som inte vilda/naturaliserade.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
@@ -5530,7 +5515,7 @@ sv:
           Observationskraven för följande projekt har nyligen ändrats:
         subject: Projektets observationskrav har ändrats för %{project}
         wondering_what_this_means_html: |
-          Undrar du vad "geosekretess" är?
+          Undrar du vad "koordinatsekretess" är?
           <a href="%{url}">Läs mer i vår dokumentation</a>.
         you_can_change_html: |-
           Du kan ändra dina inställningar eller lämna projektet på
@@ -5550,8 +5535,7 @@ sv:
           Då identifierbara personuppgifter visas när man gör inlägg till iNaturalist, får ingen under 13 år använda iNaturalist utan förälders medgivande.
           </p>
           <p>
-          <strong>Seek by iNaturalist</strong> kan användas utan att skapa ett konto, och inga identifierbara personuppgifter kommer att delas, men ditt barn kommer inte att kunna bidra med observationer till
-          iNaturalist. iNaturalist är ett socialt nätverk för medborgarforskning där deltagare delar observationer och bestämningar av levande saker i naturen med varandra och generera data om biologisk mångfald för
+          <strong>Seek by iNaturalist</strong> kan användas utan att skapa ett konto, och inga identifierbara personuppgifter kommer att delas, men ditt barn kommer inte att kunna bidra med observationer till iNaturalist. iNaturalist är ett socialt nätverk för medborgarforskning där deltagare delar observationer och bestämningar av levande saker i naturen med varandra och generera data om biologisk mångfald för
           vetenskapen.
           </p>
           <p>
@@ -5661,7 +5645,7 @@ sv:
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
       kml_field_desc: |
-        KML för lokalgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
+        KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
@@ -5671,7 +5655,7 @@ sv:
       new:
         check_list_note: "Obs: checklistor kommer automatiskt att vara avstängt för mycket stora platser."
         coordinates_desc: Du måste ange koordinater om du inte ritar en gräns eller laddar upp KML.
-        map_instruction: Använd polygonverktyget för att rita lokalens gränser.
+        map_instruction: Använd polygonverktyget för att rita fyndplatsens gränser.
     posts:
       formatting_none_help: "Ingen HTML infogad, använder bara de taggningar du anger."
       formatting_simple_help: "Länka automatiskt webbadresser och infoga radbrytningar."
@@ -5710,7 +5694,7 @@ sv:
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
-          <a href="%{places_url}" target="_blank">våra befintliga lokaler</a> och se till att du får namnet på lokalen rätt. Om du verkligen inte kan hitta den lokal du letar efter, överväg att <a href="%{new_place_url}" target="_blank">skapa en ny lokal</a>, men försäkra dig om att du inte skapar en dubblett av en befintlig lokal.
+          <a href="%{places_url}" target="_blank">våra befintliga fyndplatser</a> och se till att du får namnet på fyndplatsen rätt. Om du verkligen inte kan hitta den fyndplats du letar efter, överväg att <a href="%{new_place_url}" target="_blank">skapa en ny fyndplats</a>, men försäkra dig om att du inte skapar en dubblett av en befintlig fyndplats.
         bioblitz_desc_html: |
           <p>
           En bioblitz är en händelse där deltagarna försöker observera så många arter som möjligt inom en viss tidsperiod. Det är ett roligt sätt att öppna människors ögon för biologisk mångfald samtidigt som man samlar in värdefulla data.
@@ -5741,7 +5725,7 @@ sv:
           </p>
           <ol>
           <li class="readable description">
-          Ditt projekt har minst en 'måste observeras på plats'-regel för en liten-till-medelstor lokal (ung.
+          Ditt projekt har minst en 'måste observeras på plats'-regel för en liten-till-medelstor fyndplats (ung.
           storleken på Texas eller Ukraina)
           </li>
           <li class="readable description">
@@ -5845,7 +5829,7 @@ sv:
         note_you_can_delete_the_time: |
           (Obs: du kan ta bort tidszonen och exakta tider om du vill inkludera hela dagar.)
         note_about_unselected_filters: |
-          Obs: Om du inte väljer taxa, lokaler eller användare, kommer alla att inkluderas som standard.
+          Obs: Om du inte väljer taxa, fyndplatser eller användare, kommer alla att inkluderas som standard.
         only_display_member_observations: |
           Visa endast observationer från projektmedlemmar (personer som gått med i projektet)
         optionally_filter_media: Filtrera valfritt ut observationer med bilder, ljud, eller både och.
@@ -5866,14 +5850,14 @@ sv:
           Förklara kortfattat ditt projekt. Ungefär de första 200 tecknen kommer att synas till höger om banderollen på projektets startskärm så ta det bästa först!
         project_summary_placeholder: Upptäck och håll reda på Golden Gate-parkens fåglar...
         select_native_to_include: |
-          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk" för din(a) projektlokal(er). Välj "Införd" för att endast inkludera taxa som har
-          markerats som "Införd" för din(a) projektlokal(er).
+          Välj "Inhemsk" för att endast inkludera taxa som har markerats som "Inhemsk" för din(a) projektfyndplats(er). Välj "Införd" för att endast inkludera taxa som har
+          markerats som "Införd" för din(a) projektfyndplats(er).
         select_quality_grade: |
           Välj minst en kvalitetsnivå. Ytterligare förklaring av varje kvalitetsnivå finns på på vår <a href="%{url}">FAQ-sida</a>.
         show_projects_as_flags: Visa projekt som flaggor på kartan
         specify_project_filters: |
           Ange filter som avgör vilka observationer som ska ingå i ditt projekt.
-          Du kan välja flera arter (eller taxa), lokaler, datum eller andra kriterier för observationer som ska inkluderas automatiskt.
+          Du kan välja flera arter (eller taxa), fyndplatser, datum eller andra kriterier för observationer som ska inkluderas automatiskt.
         start_and_end_times_for_bioblitzes: Start- och slutdatum/-tider (för evenemang av bioblitz-typ)
         traditional_projects_cannot_be_copied: Traditionellt projekt kan inte kopieras
         trusting_members_will_be_notified: |
@@ -5888,7 +5872,7 @@ sv:
           Använd <a href="%{url}">denna länk</a> för att istället skapa ett traditionellt projekt.
         visual_comparison_of_data_among: Visuella jämförelser av data mellan projekt under paraplyet
         we_have_redesigned_projects: |
-          Projekt är utformade för att automatiskt inkludera alla observationer som matchar de lokaler, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper: Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
+          Projekt är utformade för att automatiskt inkludera alla observationer som matchar de fyndplatser, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper: Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
         welcome_to_projects: Välkommen till projekt!
         you_can_learn_more_html: |
           Du kan lära dig mer om att hantera projekt
@@ -5896,7 +5880,7 @@ sv:
           eller läsa om bakgrunden för projekt på
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vår blogg</a>.
         you_have_not_defined_any_observation_requirements: |
-          Du har inte definierat några observationskrav. Se till att välja ett eller flera taxa (t.ex. fåglar, barrträd), lokaler (t.ex. Brasilien, Yellowstone), användare och/eller
+          Du har inte definierat några observationskrav. Se till att välja ett eller flera taxa (t.ex. fåglar, barrträd), fyndplatser (t.ex. Brasilien, Yellowstone), användare och/eller
           datum för att definiera de observationer du vill inkludera i ditt projekt.
         errors:
           name_is_required: Projektnamn är obligatoriskt
@@ -5927,14 +5911,11 @@ sv:
           Är du säker på att du vill konvertera detta projekt till ett Samlingsprojekt?
         bioblitz_results_desc_html: |
           <p>
-          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> observationer inom en lokal och tidsperiod, inte bara
-          observationer som människor avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till observationer till ett projekt bara för att köra statistiken i realtid. Observera att observationer inte
-          kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektobservationer i mobilapparna såvida inte projektgruppen och
+          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> observationer inom en fyndplats och tidsperiod, inte bara observationer som människor avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till observationer till ett projekt bara för att köra statistiken i realtid. Observera att observationer inte kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektobservationer i mobilapparna såvida inte projektgruppen och
           deltagarna aktivt lägger till relevanta observationer som de skulle göra i ett vanligt projekt.
           </p>
           <p>
-          Observera att även om denna typ av projekt visar statistik för observationer som inte medvetet har lagts till i projektet, tillåter det inte förvaltarna att se privata eller diffuserade koordinater för dessa observationer eller förutsätta att observatörer har godkänt
-          projektets villkor. Om du är en projektförvaltare och behöver tillgång till privata koordinater behöver du få dina deltagare att godkänna projektets villkor, eller om du vill ha observationer medräknade i den förvaltade projektchecklistan, se då till att dina deltagare går med i projektet och lägger till sina observationer som de skulle i ett vanligt projekt.
+          Observera att även om denna typ av projekt visar statistik för observationer som inte medvetet har lagts till i projektet, tillåter det inte förvaltarna att se privata eller diffuserade koordinater för dessa observationer eller förutsätta att observatörer har godkänt projektets villkor. Om du är en projektförvaltare och behöver tillgång till privata koordinater behöver du få dina deltagare att godkänna projektets villkor, eller om du vill ha observationer medräknade i den förvaltade projektchecklistan, se då till att dina deltagare går med i projektet och lägger till sina observationer som de skulle i ett vanligt projekt.
           </p>
         click_here_to_convert_this_project: |
           Klicka här för att konvertera detta projekt till ett Samlingsprojekt.
@@ -5946,7 +5927,7 @@ sv:
           <a href="%{url}" class="readmore">Skapa ett inlägg</a> för att komma igång
           </p>
         curated_checklist_desc: |
-          Detta är den förvaltade checklistan och antalet taxa från observationer som uttryckligen lagts till i detta projekt, inte alla observationer som registrerats på samma lokal och tid som denna händelse.
+          Detta är den förvaltade checklistan och antalet taxa från observationer som uttryckligen lagts till i detta projekt, inte alla observationer som registrerats på samma fyndplats och tid som denna händelse.
         make_sure_you_have_read_about_the_differences: |
           Se till att du har läst om skillnaderna i
           vårt <a href="%{url}" target="_blank">blogginlägg om Samlingsprojekt</a>.
@@ -6013,10 +5994,10 @@ sv:
         new_users_desc: Gick med denna dag
         obs_1_day: "Obs (1 dag)"
         obs_1_day_desc: "Observationer som skapats på en dag"
-        obs_cid_d_desc: Skapad under de 7 föregående dagarna och har en gemenskapsbestämning
+        obs_cid_d_desc: Skapad under de 7 föregående dagarna och har en community-bestämning
         #Short for "observations community-identified to genus"
-        obs_cid_d_to_genus: Obs gemenskapsbestämd till släkte
-        obs_cid_d_to_genus_desc: Skapad under de 7 föregående dagarna och har gemenskapsbestämning på eller under släktesnivå
+        obs_cid_d_to_genus: Obs community-bestämd till släkte
+        obs_cid_d_to_genus_desc: Skapad under de 7 föregående dagarna och har community-bestämning på eller under släktesnivå
         obs_desc: Skapad under de 7 föregående dagarna
         obs_id_d_desc: Skapad under de 7 föregående dagarna och är bestämd (kan vara av observatören)
         observations_1_week_moving_window: Observationer (1 löpande vecka)
@@ -6029,12 +6010,12 @@ sv:
         recent_w_7_obs_desc: Gick med under 7 föreg. d. och lagt till >= 7 obs
         time_to_id_desc: Tid till bestämning (timmar, 1 löpande vecka)
         TTCID: TTGB
-        TTCID_desc: Tid till bestämning från någon annan som matchar gemenskapstaxon.
+        TTCID_desc: Tid till bestämning från någon annan som matchar communityns taxon.
         TTID: TTB
         TTID_desc: Tid till bestämning från någon annan
         TTID_note: |
           Denna statistik är gjord för observationer skapade en vecka tidigare, vilket innebär att den kommer att missa bestämningar som lagts till observationerna
-          efter mer än en vecka, och därmed få statistiken att se sämre ut än om man beräknade den igen i nuet, men den bör fortfarande ge en anständig bild av hur snabbt gemenskapen bestämmer under 1 vecka. Observera
+          efter mer än en vecka, och därmed få statistiken att se sämre ut än om man beräknade den igen i nuet, men den bör fortfarande ge en anständig bild av hur snabbt communityn bestämmer under 1 vecka. Observera
           att denna statistik endast gäller för observationer med bilder.
         website_desc_html: |
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
@@ -6047,9 +6028,8 @@ sv:
         compared_to_previous_years: Jämför med tidigare år
         donate_title: "Ett särskilt tack till alla våra supportrar"
         donate_desc_html: |
-          Tack för att du bidrar med din tid, uppmärksamhet, expertis och dina donationer! iNaturalist är ett icke-kommersiellt initiativ som drivs gemensamt av California Academy of Sciences och National
-          Geographic Society. Det supportas av ett
-          <a href="%{team_url}">litet team</a> som gör all design och mjukvaruutveckling för webben, mobiler, och <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom support till gemenskapen, samarbeten och integrationer som håller saker igång (och som växer snabbt!). Initiativet förlitar sig på många bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
+          Tack för att du bidrar med din tid, uppmärksamhet, expertis och dina donationer! iNaturalist är ett icke-kommersiellt initiativ som drivs gemensamt av California Academy of Sciences och National Geographic Society. Det supportas av ett
+          <a href="%{team_url}">litet team</a> som gör all design och mjukvaruutveckling för webben, mobiler, och <a href="%{seek_url}">Seek av iNaturalist</a>, och hanterar dessutom support till communityn, samarbeten och integrationer som håller saker igång (och som växer snabbt!). Initiativet förlitar sig på många bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av bidragsgivarna. Vi är särskilt tacksamma till Månatliga givare vars regelbundna gåvor hjälper oss att planera för framtiden. Du kan donera i flertalet valutor för att stödja iNaturalists kärnverksamhet.
           Tack till alla för er medverkan till att göra %{year} till iNaturalists främsta år hittills!
         donors: Givare
         donors_guide_label_our_goal_is_1000: Vårt mål är 1000 återkommande givare per månad
@@ -6236,7 +6216,7 @@ sv:
           </li>
           <li>
           <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta språkliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
           </p>
           </li>
           <li>
@@ -6247,11 +6227,10 @@ sv:
           </li>
           </ul>
         places_help_html: |
-          Lägg till ett namn till en lokal för att ge det prioritet för webbplatser och användare från den lokalen. Om det finns flera namn per lokal kan du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för VARJE lokal som namnet används på, bara till lokaler där det finns en konflikt med andra lokaler.
+          Lägg till ett namn till en fyndplats för att ge det prioritet för webbplatser och användare från den fyndplatsen. Om det finns flera namn per fyndplats kan du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för VARJE fyndplats som namnet används på, bara till fyndplatser där det finns en konflikt med andra fyndplatser.
       taxon:
         about_html: |
-          Taxa kan ha många vardagliga namn. Vi stöder ett vardagligt standardnamn globalt, som kan ändras här genom att dra ett namn längst upp i listan. Du kan också ange standardnamn för olika lokaler genom att
-          redigera namnet och lägga till en lokal, men gör bara detta när olika lokaler har motstridiga namn.
+          Taxa kan ha många vardagliga namn. Vi stöder ett vardagligt standardnamn globalt, som kan ändras här genom att dra ett namn längst upp i listan. Du kan också ange standardnamn för olika fyndplatser genom att redigera namnet och lägga till en fyndplats, men gör bara detta när olika fyndplatser har motstridiga namn.
     users:
       dashboard:
         taxon_change_desc: |
@@ -6301,12 +6280,11 @@ sv:
         about_third_party_tracking: Om tredjepartsspårning
         blocking_desc_html: |
           <p>
-          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina observationer, bestämma dina observationer, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras observationer från dina sökresultat och dina observationer från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina observationer och se din profil, de kan helt enkelt
-          bara inte interagera med dig.
+          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina observationer, artbestämma dina observationer, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras observationer från dina sökresultat och dina observationer från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina observationer och se din profil, de kan helt enkelt bara inte interagera med dig.
           </p>
           <p>
-          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra bestämningar från personer vars åsikter du inte litar på eller välja bort gemenskapsbestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
-          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att bestämma dina observationer hindrar du också dig själv från att bestämma deras observationer.
+          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra artbestämningar från personer vars åsikter du inte litar på eller välja bort community-bestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
+          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att artbestämma dina observationer hindrar du också dig själv från att bestämma deras observationer.
           </p>
           <p>
           Du kan bara blockera tre personer. Vi tycker att det är ett rimligt antal som tillmötesgår de personer som behöver blockera någon medan det förhindrar missbruk av blockering. Om du känner att du behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
@@ -6325,13 +6303,10 @@ sv:
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         inaturalist_network_affiliation_desc_html: |2
           <p>
-           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-gemenskapen. Nätverksplatserna stöds av lokala
-          institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater från sina länder som automatiskt
-          diffuseras vid publik visning för att skydda hotade arter.
+           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-communityn. Nätverksplatserna stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater, från sina länder, som automatiskt diffuseras vid publik visning för att skydda hotade arter.
           </p>
           <p>
-          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen
-          också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för observationer som publikt är diffuserade eller privata.
+          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för observationer som publikt är diffuserade eller privata.
           </p>
           <p>
           Obs: Teständra inte din tillhörighet om du har mer än 1000 observationer.
@@ -6357,10 +6332,10 @@ sv:
           Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina observationer, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
           </p>
           <p>
-          Du kan tysta så många som du vill, men kom ihåg att du kommer att missa potentiellt viktiga meddelanden, t.ex. bestämningar som ändrar gemenskapstaxon för dina observationer.
+          Du kan tysta så många som du vill, men kom ihåg att du kommer att missa potentiellt viktiga meddelanden, t.ex. bestämningar som ändrar community-taxon för dina observationer.
           </p>
         name_place_help_html: |
-          Prioritera vardagliga namn som används på denna lokal.
+          Prioritera vardagliga namn som används på denna fyndplats.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kommentarer
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6382,17 +6357,17 @@ sv:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Observationer av personer jag följer
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Observationer av taxa eller från lokaler som jag prenumererar på
+        notification_preferences_taxon_or_place_observations: Observationer av taxa eller från fyndplatser som jag prenumererar på
         place_preference_changed_notice_html: |
-          Lokalinställningarna ändrades. Om du ångrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
+          Platsinställningarna ändrades. Om du ångrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         project_addition_preferences:
           any: Alla
           joined: Projekt du har gått med i
           none: "Ingen, bara du kan lägga till dina observationer till projekt"
         prefers_community_taxa_desc: |
-          %{site_name} spårar vad du tror att dina observationer är och vad gemenskapen tycker att de är. Om du inte tycker att gemenskapens åsikt ska upphäva din egen, kan du välja bort det här. Folk kommer fortfarande att kunna lägga till bestämningar, men din observation kommer fortsatt vara knuten till ditt bestämningstaxon. Detta innebär att dina observationer inte kommer att kvalificera för forskningsklass såvida inte din bestämning överensstämmer med gemenskapens åsikt.
+          %{site_name} spårar vad du tror att dina observationer är och vad communityn tycker att de är. Om du inte tycker att communityns åsikt ska upphäva din egen, kan du välja bort det här. Folk kommer fortfarande att kunna lägga till artbestämningar, men din observation kommer fortsatt vara knuten till ditt bestämningstaxon. Detta innebär att dina observationer inte kommer att kvalificera för forskningsklass såvida inte din bestämning överensstämmer med communityns åsikt.
         prefers_coordinate_interpolation_protection_desc: |
-          När du sätter geosekretessen för en observation till "diffuserad" eller "privat" kommer samma geosekretess att sättas för alla dina andra
+          När du sätter koordinatsekretess för en observation till "diffuserad" eller "privat" kommer samma koordinatsekretess att sättas för alla dina andra
           observationer på samma dag, just för att göra det svårare för andra personer att gissa de exakta koordinaterna baserat på observationer gjorda vid ungefär samma tid.
         prefers_no_tracking_label: Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster
         prefers_no_tracking_label_desc_we_use: |
@@ -6411,16 +6386,15 @@ sv:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, såsom märke och modell på en mobiltelefon
         prefers_no_tracking_label_desc_value_html: |
-          <strong>Dessa tredjepartstjänster är enormt värdefulla för oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och användbarhet med vår relativt lite personal. På mobila enheter finns
-          det nästan inget annat sätt för oss att få inblick i problem som uppstår, eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i de data som dessa tjänster tillhandahåller. <strong>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-gemenskapen.</strong>
+          <strong>Dessa tredjepartstjänster är enormt värdefulla för oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och användbarhet med vår relativt lite personal. På mobila enheter finns det nästan inget annat sätt för oss att få inblick i problem som uppstår, eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i de data som dessa tjänster tillhandahåller. <strong>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-communityn.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på en observation på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, till ett minimum (i iPhone-appen använder vi Apples kartor).
           iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.
         project_settings_desc: |
           Kom ihåg, detta ger inte projekt behörighet att komma åt dina dolda koordinater eller skicka uppdateringar till dig. Du måste gå med i projekt för att ge dem dessa behörigheter, eller annars göra det från fall till fall.
-        same_day_geoprivacy_protection: Samma-dags-skydd för geosekretess
+        same_day_geoprivacy_protection: Samma-dags-skydd för koordinatsekretess
         search_place_help_html: |
-          Standardlokal för observationssökningar.
+          Standardfyndplats för observationssökningar.
         scientific_name_first_desc: |
           Visa vetenskapliga namn före vardagliga namn.
         taxon_change_desc: |
@@ -6489,7 +6463,7 @@ sv:
         observations_to_date: 'Observationer hittills'
         species_observed: 'Observerade arter'
         people_signed_up: 'Registrerade personer'
-        how_it_works: Så funkar det
+        how_it_works: Hur det fungerar
         record_your_observations: Spara dina observationer
         share_with_fellow_naturalists: Dela med andra naturforskare
         discuss_your_findings: Diskutera dina resultat
@@ -6842,9 +6816,9 @@ sv:
         status: Status
         description: Beskrivning
         authority: Auktoritet
-        place_id: Lokal
+        place_id: Fyndplats
         url: URL
-        geoprivacy: Geosekretess
+        geoprivacy: Koordinatsekretess
         iucn: IUCN-motsvarighet
       flag:
         reason: Anledning
@@ -6891,7 +6865,7 @@ sv:
         zoom_level: Zoomnivå
         preferred_membership_model: Föredragen medlemsmodell
         preferred_submission_model: Föredragen inlämningsmodell
-        prefers_place_boundary_visible: Visa lokalgräns på kartan
+        prefers_place_boundary_visible: Visa fyndplatsgräns på kartan
         tracking_codes: Spårningskoder
         source_url: Källans URL
         start_time: Starttid
@@ -6905,7 +6879,7 @@ sv:
         longitude: Longitud
         name: Namn
         parent_id: förälder
-        place_type: Lokaltyp
+        place_type: Fyndplatstyp
         prefers_check_lists: Tillåta checklistor?
         woeid: WOEID (Where On Earth IDentifier)
       site:
@@ -6937,8 +6911,8 @@ sv:
         name: Namn
         locale: Språk
         time_zone: Tidszon
-        search_place_id: Sök lokal
-        place_id: Lokal
+        search_place_id: Sök fyndplats
+        place_id: Fyndplats
         preferred_observation_fields_by: Tillåt observationsfält från
     errors:
       format: '%{attribute} %{message}'
