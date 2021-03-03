@@ -195,7 +195,6 @@ const shortFormattedNumber = d => {
   return d;
 };
 
-
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
