@@ -71,18 +71,19 @@
         %span= t :species
     %li
       %a{:href => "#observationstab"}
-        %span= t(:observations).capitalize
+        %span= t(:observations)
     - unless @projects.blank?
       %li
         %a{:href => "#projectstab"}
-          %span= t(:projects).capitalize
+          %span= t(:projects)
     - if @show_leaderboard
       %li
         %a{:href => "#peopletab"}
-          %span= t(:people).capitalize
+          %span= t(:people)
     %li
       %a{:href => "#abouttab"}
-        %span= t :about_x, :x => t(@place.name, :default => @place.name)
+        - place_name = t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
+        %span= t :about_place, place: place_name, vow_or_con: place_name[0]
   #guidetab.stacked
     - if @place.check_list
       - extra = capture do

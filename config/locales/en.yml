@@ -221,6 +221,9 @@ en:
   about_muting: About Muting
   # Header for a section describing taxon names
   about_names: About Names
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
+  about_place: "About %{place}"
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
   about_these_licenses: About these licenses
@@ -284,7 +287,6 @@ en:
   # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     You can choose to share hidden coordinates for
-  about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
   account_creation: Account Creation
