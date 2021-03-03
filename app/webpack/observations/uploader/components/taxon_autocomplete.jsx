@@ -160,9 +160,6 @@ class TaxonAutocomplete extends React.Component {
       initialSelection,
       config
     } = this.props;
-    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
-    const viewerIsAdmin = loggedInUser && loggedInUser.roles
-      && loggedInUser.roles.indexOf( "admin" ) >= 0;
     const that = this;
     const getState = ( ) => that.state;
     const setState = updates => that.setState( updates );
@@ -195,11 +192,9 @@ class TaxonAutocomplete extends React.Component {
             commonAncestorCategoryShown = true;
           } else if ( !suggestionsCategoryShown ) {
             let label = I18n.t( "here_are_our_top_species_suggestions" );
-            if ( viewerIsAdmin ) {
-              label = commonAncestorCategoryShown
-                ? I18n.t( "here_are_our_top_suggestions" )
-                : I18n.t( "not_confident_top_suggestions" );
-            }
+            label = commonAncestorCategoryShown
+              ? I18n.t( "here_are_our_top_suggestions" )
+              : I18n.t( "not_confident_top_suggestions" );
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
             suggestionsCategoryShown = true;
           }
@@ -209,7 +204,7 @@ class TaxonAutocomplete extends React.Component {
       const query = that.inputElement( ).val( );
       const manualQuery = query && query.length >= 0;
       const { numNearby, numSuggested, viewNotNearby } = getState( );
-      if ( viewerIsAdmin && !manualQuery && numNearby > 0 && numNearby !== numSuggested ) {
+      if ( !manualQuery && numNearby > 0 && numNearby !== numSuggested ) {
         const nearbyToggle = $( "<button />" ).attr( "type", "button" )
           .append(
             viewNotNearby
@@ -304,18 +299,16 @@ class TaxonAutocomplete extends React.Component {
     const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
     const viewerIsAdmin = loggedInUser && loggedInUser.roles
       && loggedInUser.roles.indexOf( "admin" ) >= 0;
-    if ( viewerIsAdmin ) {
-      const nearbyResults = _.filter( response.results,
-        r => r.frequency_score && r.frequency_score > 0 );
-      this.setState( {
-        // eslint-disable-next-line react/no-unused-state
-        numSuggested: response.results.length,
-        // eslint-disable-next-line react/no-unused-state
-        numNearby: nearbyResults.length
-      } );
-      if ( nearbyResults.length > 0 && !viewNotNearby ) {
-        results = nearbyResults;
-      }
+    const nearbyResults = _.filter( response.results,
+      r => r.frequency_score && r.frequency_score > 0 );
+    this.setState( {
+      // eslint-disable-next-line react/no-unused-state
+      numSuggested: response.results.length,
+      // eslint-disable-next-line react/no-unused-state
+      numNearby: nearbyResults.length
+    } );
+    if ( nearbyResults.length > 0 && !viewNotNearby ) {
+      results = nearbyResults;
     }
     const visionTaxa = _.map( results.slice( 0, 8 ), r => {
       const taxon = new iNatModels.Taxon( r.taxon );
@@ -330,7 +323,7 @@ class TaxonAutocomplete extends React.Component {
       taxon.isCommonAncestor = true;
       visionTaxa.unshift( taxon );
     }
-    if ( viewerIsAdmin && visionTaxa.length === 0 ) {
+    if ( visionTaxa.length === 0 ) {
       callback( ["noResults"] );
     } else {
       callback( visionTaxa );
