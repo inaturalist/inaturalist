@@ -48,6 +48,7 @@ import "@formatjs/intl-numberformat/locale-data/sv";
 import "@formatjs/intl-numberformat/locale-data/tr";
 import "@formatjs/intl-numberformat/locale-data/uk";
 import "@formatjs/intl-numberformat/locale-data/zh";
+import "@formatjs/intl-numberformat/locale-data/zh-Hant";
 
 class Charts extends React.Component {
   constructor( ) {
