@@ -166,6 +166,9 @@ nb:
   about_muting: Om ignorering
   #Header for a section describing taxon names
   about_names: Om navn
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Om %{place}"
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons-lisenser
   about_these_licenses: Om disse lisenser
@@ -1817,6 +1820,8 @@ nb:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
+  language_slash_locale: Språk/lokalisering
+  language_slash_locale_description: Dette angir dine innstillinger for språk og datoformatering på tvers av iNaturalist basert på din lokalisering. Endringer vil tre i kraft når siden oppdateres.
   language_slash_type: Språk / type
   #Large photo size
   large: stor
@@ -2494,6 +2499,9 @@ nb:
   observed_on_datetime: Observert på %{datetime}
   observation_removed_from_the_project: "Observasjon fjernet fra prosjektet \"%{project}\""
   observation_requirements: Observasjonskrav
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Observasjonskrav oppdatert på
   observation_rules: Observasjonsregler
   observation_rules_description: |
     Du kan velge regler som styrer hvilke observasjoner kan bli lagt til dette prosjektet, som å begrense observasjoner til et bestemt sted eller takson. Hvis du har flere regler for en type regel, blir observasjoner gyldige hvis de er i samsvar med en av de. Hvis du for eksempel har reglene "må vær i Amphibia" og "må være i Reptilia", blir både observasjoner av amfibier og observasjoner av reptiler akseptert.
@@ -2543,6 +2551,8 @@ nb:
   observed_on: Observert på
   observer: Observatør
   observers: Observatører
+  observer_prefers_no_project_addition: |
+    Observatør tillater ikke at sine observasjoner legges til i prosjekter av andre.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomststatus beskriver hvor vanlig eller sjeldent et takson er i et gitt område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mer informasjon om terminologien</a>.'
   occurrence_status: Forekomststatus
@@ -3175,6 +3185,7 @@ nb:
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
   please_add_this_to_x_html: "Vennligst legg dette til %{x}"
   please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen #Title to a section warning a user to exercise caution
+  please_be_careful!: Vennligst vær forsiktig!
   please_complete_the_following_to_add_project: |
     Vennligst fullfør følgende for å legge til denne observasjonen til prosjektet:
   please_confirm_your_inat_username: "Vennligst bekreft ditt brukernavn på %{site_name}"
@@ -4110,6 +4121,8 @@ nb:
   trending: Populær
   trends: Trender
   trip_target_list_info: 'Alle arter som dekkes av denne mållisten som ikke ble observert i området og varigheten til denne turen vil bli oppfattet som fravær. <a href="/pages/trips">Les mer</a>.'
+  #Noun
+  trust: Tillit
   trusted: Pålitelig
   trusted_project?: Pålitelig prosjekt?
   trust_this_person_with_your_private_coordinates: Stol på denne personen med dine skjulte koordinater
@@ -6666,6 +6679,10 @@ nb:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke inneholde kommaer eller skråstreker
+              should_match_english_translation: |
+                bør være på engelsk, men samsvarer nå med %{suggested_locale}-oversettelsen av "%{suggested}".
+                Bruk "%{suggested}" hvis det er det du mente, og det vil bli oversatt når du ser på nettstedet på
+                det språket.
               should_be_in_english: bør være på engelsk
             name:
               already_exists: finnes allerede for dette taksonet i dette leksikonet
