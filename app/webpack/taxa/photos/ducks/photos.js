@@ -45,7 +45,11 @@ export function setUrl( newParams, options = {} ) {
   }
   const title = `${I18n.t( "photos" )}: ${$.param( newState )}`;
   const newUrlState = _.pickBy( newState, ( v, k ) => !( k === "place_id" && v === "any" ) );
-  updateSession( { preferred_taxon_photos_query: $.param( newUrlState ) } );
+  // The preferred query that we store with the session or the user should not
+  // include the place_id b/c that gets stored in another preference that also
+  // gets used on the taxon detail page
+  const preferredQuery = _.pickBy( newUrlState, ( v, k ) => k !== "place_id" );
+  updateSession( { preferred_taxon_photos_query: $.param( preferredQuery ) } );
   const newUrl = [
     window.location.origin,
     window.location.pathname,
