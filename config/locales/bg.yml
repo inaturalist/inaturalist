@@ -154,6 +154,9 @@ bg:
   about_muting: Относно заглушаването
   #Header for a section describing taxon names
   about_names: Относно имената
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Относно %{place}"
   about_places: Относно местата
   about_the_cc_licenses: За лицензите Creative Commons
   about_these_licenses: Относно тези лицензи
@@ -1857,6 +1860,7 @@ bg:
   new_and_noteworthy: Ново и интересно
   new_check_list: Нов видов списък
   new_check_list_for: "Създай нов видов списък за %{place} &raquo;"
+  new_comment_on_a_parent_by_user_link: Нов коментар за %{parent} от %{user_link}
   new_flag_for: Нов маркер за
   new_guide: Ново ръководство
   new_journal_post: Нова публикация в дневника
@@ -4772,6 +4776,12 @@ bg:
       "@vow_or_con":
         vow: гласна
         con: съгласна
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: мъжки
         f: женски
