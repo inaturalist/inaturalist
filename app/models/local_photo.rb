@@ -179,8 +179,6 @@ class LocalPhoto < Photo
     # the LocalPhoto must be in a bucket other than what its license dictates
     return false unless ( could_be_public && !in_public_s3_bucket? ) ||
       (!could_be_public && in_public_s3_bucket? )
-    # TODO: temporarily restricting to admins
-    return false unless user && user.is_admin?
     true
   end
 
