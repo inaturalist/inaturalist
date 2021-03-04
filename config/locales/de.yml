@@ -167,6 +167,9 @@ de:
   about_muting: Über Stummstellen
   #Header for a section describing taxon names
   about_names: Über Namen
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Über %{place}"
   about_places: Über Gebiete
   about_the_cc_licenses: Über Creative-Commons-Lizenzen
   about_these_licenses: Über diese Lizenzen
@@ -201,7 +204,6 @@ de:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kannst auswählen, die verdeckten Koordinaten zu teilen mit
-  about_x: "Über %{x}"
   acc: 'Genauigkeit(m)'
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung

@@ -246,6 +246,9 @@ cs:
   about_muting: O ztlumení
   #Header for a section describing taxon names
   about_names: O názvech
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "O místě %{place}"
   about_places: O Místech
   about_the_cc_licenses: O licencích Creative Commons
   about_these_licenses: O těchto licencích
@@ -306,7 +309,6 @@ cs:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Můžete si vybrat sdílení skrytých souřadnic pro
-  about_x: "O %{x}"
   acc: 'Přesnost (m)'
   account: Účet
   account_creation: Vytvoření účtů

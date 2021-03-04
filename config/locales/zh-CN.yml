@@ -127,6 +127,9 @@ zh-CN:
   about_muting: 关于禁言
   #Header for a section describing taxon names
   about_names: 关于名称
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "关于%{place}"
   about_places: 关于地点
   about_the_cc_licenses: 关于知识共享许可协议
   about_these_licenses: 关于这些许可协议
@@ -144,7 +147,6 @@ zh-CN:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以因以下原因选择共享隐藏坐标
-  about_x: "关于 %{x}"
   acc: '精度（米）'
   account: 账户
   account_creation: 创建账户

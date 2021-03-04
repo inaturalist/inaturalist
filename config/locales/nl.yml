@@ -166,6 +166,9 @@ nl:
   about_muting: Over verstommen
   #Header for a section describing taxon names
   about_names: Over namen
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Over %{place}"
   about_places: Over plaatsen
   about_the_cc_licenses: Over Creative Commons-licenties
   about_these_licenses: Over deze licenties
@@ -213,7 +216,6 @@ nl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
-  about_x: "Over %{x}"
   acc: 'Prec. (m)'
   account: Account
   account_creation: Account aangemaakt

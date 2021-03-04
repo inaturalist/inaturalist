@@ -167,6 +167,9 @@ fr:
   about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "À propos @vow_or_con{vow:d'|de }%{place}"
   about_places: À propos des lieux
   about_the_cc_licenses: À propos des licences Creative Commons
   about_these_licenses: À propos de ces licences
@@ -194,7 +197,6 @@ fr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Vous pouvez choisir de partager vos coordonnées masquées pour :
-  about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -541,7 +543,7 @@ fr:
   are_you_sure_leave_this_project: Êtes-vous sûr de vouloir quitter ce projet ?
   are_you_sure_merge_these_places: Êtes-vous certain de vouloir fusionner ces lieux ? Cela ne peut pas être annulé.
   are_you_sure_remove_photo: "Êtes-vous sûr de vouloir supprimer cette photo ?"
-  are_you_sure_remove_relationship: Êtes-vous sûr de vouloir supprimer ce lien ? Ceci empêchera cette personne de vous suivre et supprimera l’accès à vos coordonnées masquées si vous en aviez autorisé l’accès.
+  are_you_sure_remove_relationship: Voulez-vous vraiment supprimer cette relation? Vous ne suivrez plus cette personne et elle n'aura plus accès à vos coordonnées masquées si vous lui aviez donné cet accès.
   are_you_sure_remove_taxon_from_list: "Êtes-vous sûr de vouloir enlever ce taxon de la liste ?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Êtes-vous sûr ? Cela rechargera la page et vous risquez de perdre certaines de vos modifications.
@@ -1751,7 +1753,7 @@ fr:
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
-  has_id_supported_by_two_or_more: A un ID établi par au moins deux personnes
+  has_id_supported_by_two_or_more: Identification établie par au moins deux personnes
   has_one_or_more_faves: A un ou plusieurs favoris
   has_photo: A une photo
   has_photos: A des photos
@@ -1818,7 +1820,7 @@ fr:
       improving: |
         Première suggestion de ce taxon auquel la communauté adhère. Ceci aide à améliorer le taxon de la communauté.
       maverick: |
-        Le taxon n’est pas un descendant ou un ancêtre du taxon de la communauté, c'est à dire que la communauté n’est
+        Le taxon n’est pas un descendant ni un parent du taxon de la communauté, c'est à dire que la communauté n’est
         pas d’accord avec ce taxon.
   id_withdrawn: ID supprimé
   ids_by_taxon: IDs par taxon
@@ -4231,7 +4233,7 @@ fr:
   the_admin_is_the_person_who: |
     L’administrateur est la personne qui a créé le projet. Il peut faire tout ce que les gestionnaires et les responsables de l’organisation peuvent faire, ainsi que supprimer le projet.
   the_below_items_are_needed_to_achieve: |
-    Les éléments ci-dessous doivent atteindre le <span className="bold">Niveau recherche :</span>
+    Les éléments ci-dessous sont nécessaires pour atteindre le <span className="bold">niveau de recherche :</span>
   the_community_id_requires_at_least_two_identifications: L’ID de la communauté nécessite au moins deux identifications.
   the_community_must_feel_that: |
     La communauté doit sentir que le taxon de communauté est le meilleur possible, d’après les preuves
@@ -4389,9 +4391,9 @@ fr:
   trust: Faire confiance
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
-  trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées?
-  trust_with_private_coordinates: De confiance, avec coordonnées masquées
+  trust_this_person_with_your_private_coordinates: Donner à cette personne l'accès à vos coordonnées masquées
+  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées ?
+  trust_with_private_coordinates: Faire confiance et donner l'accès aux coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
   two_thirds: deux tiers
@@ -4562,7 +4564,7 @@ fr:
   user_thinks_yours_is: "%{user} %{noun} que votre observation %{observation} est"
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
-    L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives aux observations associées.
+    L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives à ses observations associées.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_description: Ce sera le nom d'utilisateur que vous utiliserez pour vous identifier et que les autres verrons pour vous tagger sur iNaturalist
@@ -4712,7 +4714,7 @@ fr:
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
   who_can_see_the_coordinates_projects: Responsables des projets suivants
-  who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance, avec leur coordonnées masquées
+  who_can_see_the_coordinates_trusted: Personnes à qui l’observateur a donné l'accès à ses coordonnées masquées
   who_helped_user_the_most: "Qui a le plus aidé %{user}"
   who_user_helped_the_most: "Qui %{user} a le plus aidé"
   why_the_coordinates_are_obscured: Pourquoi les coordonnées sont masquées
@@ -5495,55 +5497,51 @@ fr:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permettre aux responsables de projet de voir les coordonnées masquées de cette observation.
-        ancestor_disagreements_desc: "Nombre de taxons identifiés faisant partie des ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense que c'est dans le genre mais je ne suis pas d'accord qu'il s'agisse de cette espèce »)"
+        ancestor_disagreements_desc: "Nombre de taxons identifiés faisant partie des parents d’un taxon, mais qui sont en désaccord avec ce taxon (par exemple, « Je pense qu'il s'agit d'une autre espèce du même genre. »)"
         community_taxon_desc_html: |
           <p class="ui">
           Le taxon de la communauté (ou l’identification de la communauté) représente
           le taxon que la communauté d’%{site_name} estime être représenté dans une
-          observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le
+          observation. Si vous souhaitez connaître la façon dont nous choisissons le
           taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En
           général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3
-          les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire
+          des personnes ayant fait une identification sont d’accord</strong>. Quelquefois, cela veut dire
           qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de
-          taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que
-          c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui
+          taxons qui s’opposent (par ex. si vous pensez que c’est une couleuvre tachetée et si je pense que
+          c’est un serpent à sonnettes, iNat choisit le sous-ordre des Serpents qui
           contient tous les serpents). L’algorithme favorise aussi légèrement les
-          taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent
+          taxons en conflit, parce que nous avons remarqué que les personnes en désaccord ont souvent
           raison.
           </p>
           <p class="ui">
-          Une observation de niveau recherche doit avoir (entre autres critères) un
+          Une observation de niveau de recherche doit avoir (entre autres critères) un
           taxon de communauté. Si une observation a
           seulement une identification, elle n’aura pas de taxon de communauté. Toutes
-          les observations avec au moins une identification  auront aussi un
-          taxon d’observation. Le taxon d’observation est le taxon que nous utilisons en
-          partageant les observations avec des partenaires de données, en liant des observations du
-          même taxon sur le site, en mettant à jour votre liste de vie, etc. Dans la plupart
+          les observations avec au moins une identification auront aussi un
+          taxon d’observation. Le taxon d’observation est le taxon que nous utilisons pour partager les observations avec des partenaires de données, en liant des observations du
+          même taxon sur le site, en mettant à jour votre liste d'êtres vivants, etc. Dans la plupart
           des cas, le taxon d’observation sera finalement positionné au taxon de
-          la communauté, mais parfois ils différeront, surtout avant que la communauté
-          se soit mis d’accord sur une identification. Par exemple, si vous pensez
+          la communauté, mais parfois ils différeront, surtout tant que la communauté
+          ne s'est pas mise d’accord sur une identification. Par exemple, si vous pensez
           que c’est un serpent (sous-ordre Serpentes) et que je pense que c’est un serpent-roi (genre
-          <i>Lampropeltis</i>), le taxon d’observation sera serpent-roi (soutenu
-          uniquement par mon identification), mais le taxon de communauté sera mis à
-          serpentes (soutenu par au moins deux identifications). Si, pour
+          <i>Lampropeltis</i>), le taxon d’observation sera serpent-roi (uniquement sur la base de mon identification), mais le taxon de communauté sera Serpentes (sur la base d'au moins deux identifications). Si, pour
           certaines raisons, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez
-          la rejeter pour vos propres observations, ce qui veut dire que le taxon d’observation
-          ne sera jamais fixé au taxon de communauté (plutôt à votre propre ID).
-          Cela veut aussi dire que votre observation ne pourra atteindre le niveau recherche que quand la communauté
+          le rejeter pour vos propres observations, ce qui veut dire que le taxon d’observation
+          ne sera jamais fixé au taxon de communauté (il restera votre propre ID).
+          Cela veut aussi dire que votre observation ne pourra atteindre la qualité recherche que quand la communauté
           sera d’accord avec <em>vous</em>. Si vous n’appréciez pas l’idée globale de
           taxons de communauté, vous pouvez les désactiver entièrement en
           <a href="/users/edit" target="_blank">modifiant vos paramètres</a>.
           </p>
           <p class="ui">
           <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent
-          (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon
-          le rapport entre les 'accords' — le nombre d’identifications cumulées pour
-          ce taxon sur la somme des identifications cumulées, les 'désaccords' — le nombre
+          (par ex. le genre <i>Homo</i> contient <i>Homo sapiens</i>), chaque taxon obtient un score calculé comme étant le rapport entre les 'accords' — le nombre d’identifications cumulées pour
+          ce taxon et la somme des identifications cumulées, des 'désaccords' — le nombre
           d’identifications complètement différentes (c.-à-d. identifications
-          des taxons qui ne contiennent pas le taxon évalué), et les 'désaccords d’ancêtre' —
-          le nombre d’identifications plus conservatrices qui sont en désaccord avec le taxon plus fin. Pour les
-          taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2
-          identifications, choisissez le taxon du rang le plus bas.
+          des taxons qui ne contiennent pas le taxon évalué), et des 'désaccords au rang parent' —
+          le nombre d’identifications à un rang supérieur qui sont en désaccord avec le taxon plus fin. Pour les
+          taxons identifiés qui ont un score supérieur à 2/3 et au moins 2
+          identifications, on choisit le taxon du rang le plus bas.
           </p>
         cumulative_count_desc: 'Nombre d’identifications pour un taxon distinct et tous ses descendants'
         curator_coordinate_access_disabled_desc_html: |
@@ -5553,15 +5551,14 @@ fr:
           vous devez supprimer l’observation du projet.
         data_quality_assessment_desc_html: |
           L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :
-        disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon"
+        disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
           Certaines de ces photos ont été signalées comme étant inappropriée ou
           une violation du droit d’auteur. Pour obtenir les détails, consultez %{links}
         join_project_desc_html: |
-          Rejoindre le projet donnera aux responsables du projet la
-          capacité de voir les coordonnées cachées de cette ou de toute
-          autre observation dans le projet et implique que vous acceptez les
+          Rejoindre le projet permettra aux responsables du projet de voir les coordonnées masquées de cette observation ou de toute
+          autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
         quality_assessment_help_html: |
           <p>
@@ -5628,7 +5625,7 @@ fr:
           contient cette observation, et 80% ou plus de ces observations
           qui ont été marquées comme non sauvages/naturalisées.
           </li></ul>
-        score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords sur les ancêtres)"
+        score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
           visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
@@ -5675,8 +5672,8 @@ fr:
       collection_project_changed_for_trusting_member:
         #Followed by link to a page showing project managers
         admins_may_have_access_to_more_observations_html: |-
-          Puisque vous avez mis ce projet en "projet de confiance" en peremttant l'accès aux coordonnées de<a
-          href="%{obs_url}">certaines de vos observations</a>, les administrateurs ont désormais accès à plus de coordonnées cachées que lorsque vous avez mis ce projet "projet de confiance". Vous devriez voir la liste des administrateurs du projet et les différents règles du projet pour être sûr que vous êtes toujours en accord.
+          Puisque vous donné à ce projet l'accès aux coordonnées masquées de <a
+          href="%{obs_url}">certaines de vos observations</a>, les administrateurs ont désormais accès à plus de coordonnées masquées que lorsque vous avez choisi de faire confiance au projet. Vous devriez consulter la liste des administrateurs et les critères du projet pour vous assurer que vous ne souhaitez pas revenir sur votre décision.
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           Un ou des paramètres du projet qui suit à été récemment changé :
@@ -6113,7 +6110,7 @@ fr:
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         trusting_members_will_be_notified: |
-          Vous avez changé un ou des paramètres du projet. Ceci va notifier tous les membres du projet qui l'ont mis en projet de confiance, pour qu'ils puissent choisir si ils vont continuer de dévoiler leurs coordonnées cachées après ce changement.
+          Vous avez changé les critères du projet. Ceci va notifier tous les membres qui ont donné au projet l'accès aux coordonnées masquées de leurs observations pour qu'ils puissent décider s'ils veulent continuer à faire confiance au projet après ce changement.
         umbrella_project_features: "Fonctionnalités du projet cadre:"
         unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |

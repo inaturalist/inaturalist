@@ -23,6 +23,12 @@ lb:
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} Éischten ob der Liewenslëscht"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} Éischt ob der Liewenslëscht"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> Journal Posts'
     other: '<span class="count">%{count}</span> Journal Posts'
@@ -32,6 +38,12 @@ lb:
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> passenden Taxon'
     other: '<span class="count">%{count}</span> passend Taxa'
+  x_misidentifications_of_this_species:
+    one: "%{count} Falschbestëmmung vun dëser Aart"
+    other: "%{count} Falschbestëmmungen vun dëser Aart"
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} Falschbestëmmung vun Aarten an dese(m/r) %{rank}"
+    other: "%{count} Falschbestëmmungen vun Aarten an desem %{rank}"
   x_observations:
     one: "1 Observatioun"
     other: "%{count} Observatiounen"
@@ -44,6 +56,12 @@ lb:
   x_observations_link_html:
     one: "<a href='%{url}'>1 Observatioun</a>"
     other: "<a href='%{url}'>%{count} Observatiounen</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> Bestëmmung iwwerpréift"
+    other: "<span class='count'>%{count}</span> Bestëmmungen iwwerpréift"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Beobachter'
+    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "1 anerer"
     other: "%{count} anerer"
@@ -63,6 +81,9 @@ lb:
   x_species:
     one: '1 Aart'
     other: '%{count} Aarten'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> Aart"
+    other: "<span class='count'>%{count}</span> Aarten"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} Aart</a>"
     other: "<a href='%{url}'>%{count} Aarten</a>"
@@ -98,6 +119,9 @@ lb:
   about_muting: Iwwer stomm schalten
   #Header for a section describing taxon names
   about_names: Iwwer Nimm
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Iwwer %{place}"
   about_places: Iwwer Plazen
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
   about_these_licenses: Iwwer dës Lizenzen
@@ -105,7 +129,6 @@ lb:
   about_this_map: Iwwer dës Kaart
   about_this_project: Iwwer dëse Projet
   about_trusting_projects_options_any: All Är Observatiounen an dësem Projet
-  about_x: "Iwwer %{x}"
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren

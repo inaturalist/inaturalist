@@ -166,6 +166,9 @@ da:
   about_muting: Om slukning
   #Header for a section describing taxon names
   about_names: Om navne
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Om %{place}"
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons licenser
   about_these_licenses: Om disse licenser
@@ -199,7 +202,6 @@ da:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan vælge at dele skjulte koordinater for
-  about_x: "Om %{x}"
   acc: 'Nøj. (m)'
   account: Konto
   account_creation: Kontooprettelse
