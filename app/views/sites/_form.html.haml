@@ -1,8 +1,5 @@
 - content_for :extracss do
-  :css
-    .edit_site textarea {height: 300px;}
-    .edit_site legend {padding-bottom: 10px;}
-    .edit_site .row {margin-bottom: 20px;}
+  = stylesheet_link_tag :sites
 :ruby
   pref_descriptions = {
     google_webmaster_dns_verification: "Enter this value as a TXT record in your DNS settings (see <a href='https://support.google.com/a/topic/1409901'>Google's instructions</a>) and then contact iNaturalist staff when you have done so to enable Google sign in and related Google integrations on your site. If you do not have a custom domain (e.g. if your URL looks like <code>*.inaturalist.org</code>) then you don't have to worry about this.".html_safe,

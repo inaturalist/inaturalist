@@ -128,17 +128,17 @@ var iNaturalist = window.iNaturalist = new function(){
       // Logging should never really throw an exception
       console.log( "[DEBUG] Failed to log: ", e );
     }
+  }
 
-    this.logError = function( error ) {
-      this.log( {
-        error_type: error.name,
-        error_message: error.message,
-        backtrace: error.stack
-      }, {
-        method: "POST",
-        dataType: "json"
-      } );
-    }
+  this.logError = function( error ) {
+    this.log( {
+      error_type: error.name,
+      error_message: error.message,
+      backtrace: error.stack
+    }, {
+      method: "POST",
+      dataType: "json"
+    } );
   }
 
 }; // end of the iNaturalist singleton

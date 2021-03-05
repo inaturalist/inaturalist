@@ -25,8 +25,8 @@ const Account = ( {
   const localeListKeys = Object.keys( I18n.t( "locales", { locale: "en" } ) );
 
   const setLocale = ( ) => {
-    const { locale } = profile;
-
+    let { locale } = profile;
+    locale = locale || I18n.locale;
     if ( localeListKeys.includes( locale ) ) {
       return locale;
     }
@@ -118,27 +118,32 @@ const Account = ( {
       </div>
       <div className="col-md-1" />
       <div className="col-md-5 col-sm-10">
-        <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-          <div className="stacked" id="AffiliationList">
-            <DropdownButton
-              id="user_site_id"
-              onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
-              title={showCurrentNetwork( )}
-              noCaret
-            >
-              {createINatAffiliationList( )}
-            </DropdownButton>
-          </div>
-          <p
-            className="text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
-                url: "https://www.inaturalist.org/sites/network"
-              } )
-            }}
-          />
-        </SettingsItem>
+        { currentNetworkAffiliation
+          ? (
+            <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
+              <div className="stacked" id="AffiliationList">
+                <DropdownButton
+                  id="user_site_id"
+                  onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
+                  title={showCurrentNetwork( )}
+                  noCaret
+                >
+                  {createINatAffiliationList( )}
+                </DropdownButton>
+              </div>
+              <p
+                className="text-muted"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
+                    url: "https://www.inaturalist.org/sites/network"
+                  } )
+                }}
+              />
+            </SettingsItem>
+          )
+          : <div className="nocontent"><div className="loading_spinner" /></div>
+        }
       </div>
     </div>
   );
