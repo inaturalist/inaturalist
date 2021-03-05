@@ -1,8 +1,7 @@
 <% if @list.is_default? && @list.title.include?('Check List') %>
-    <% @list_title=truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
-                                                             :default => @list.title.split(' Check List').first)), :length => 85) %>
+    <% @list_title = display_list_title( @list ) %>
 <% else %>
-    <% @list_title=truncate(@list.title, :length => 85) %>
+    <% @list_title = truncate( @list.title, length: 85 ) %>
 <% end %>
 
 <%- content_for(:title) do -%>
@@ -63,9 +62,7 @@
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to t( :back_to_x, noun: t( "places_name.#{@list.place.name.gsub(' ','_').downcase}", default: @list.place.name ) ),
-        place_path(@list.place),
-        class: "back crumb" %>
+      <%= link_to t( :back_to_x, noun: @list.place.translated_name ), place_path(@list.place), class: "back crumb" %>
     </span>
   </div>
     
@@ -375,7 +372,7 @@
     
     <div id="other_check_lists_wrapper">
       <h3>
-        <%= link_to_toggle t(:check_lists_for, :place=>t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)), '#other_check_lists',
+        <%= link_to_toggle t(:check_lists_for, place: @place.translated_name ), '#other_check_lists',
           :id => 'otherlistslink', :class => 'closed' %>
       </h3>
       <div id="other_check_lists" style="display:none">
@@ -388,7 +385,7 @@
           <% end %>
         </ul>
 
-        <%= link_to t(:new_check_list_for, :place => t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to t(:new_check_list_for, place: @place.translated_name ).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

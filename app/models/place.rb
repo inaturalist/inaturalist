@@ -347,6 +347,19 @@ class Place < ActiveRecord::Base
       name
     end
   end
+
+  # Wrapper around a common translation that prevents a potentially serious
+  # side-effect of the name not converting to an underscored version properly.
+  # If that fails and we try to return I18n.t( "places_name." ), we'll actually
+  # return a rather large hash instead of a string
+  def translated_name( locale = I18n.locale, options = {} )
+    default = options.delete(:default) || name
+    name_key = name.parameterize.underscore
+    name_key = name.strip.gsub( /\s+/, "_" ) if name_key.blank?
+    t_name = I18n.t( "places_name.#{name_key}", locale: locale, default: nil )
+    return default if t_name.blank? || !t_name.is_a?( String )
+    t_name
+  end
   
   # Calculate and cache the bbox area for place area size queries
   def calculate_bbox_area
@@ -1028,7 +1041,7 @@ class Place < ActiveRecord::Base
 
   def localized_name
     if admin_level === COUNTRY_LEVEL
-      I18n.t( "places_name.#{name}", default: display_name )
+      translated_name
     else
       display_name
     end

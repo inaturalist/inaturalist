@@ -67,7 +67,7 @@ class Place < ActiveRecord::Base
     # Compile translated names to match the similar structure in the taxa index
     names = []
     I18N_SUPPORTED_LOCALES.each do |locale|
-      locale_name = I18n.t( "places_name.#{name.parameterize.underscore}", locale: locale, default: nil )
+      locale_name = translated_name( locale )
       if locale_name && locale_name != name
         name_json = {
           exact: locale_name,
