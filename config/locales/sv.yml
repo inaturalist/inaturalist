@@ -336,7 +336,7 @@ sv:
   add_taxon_batch_to: "Lägg till flera taxa till %{list}"
   add_taxon_range: Lägg till område för taxon
   add_taxonomic_tags_to: "Lägg taxonomiska taggningar till valda Flickr-bilder &raquo;"
-  add_to_a_scheme: Lägg till i ett schema
+  add_to_a_scheme: Lägg till i en checklista
   add_to_a_project: Lägg till i ett projekt
   add_to_calendar: Lägg till i kalender
   add_to_checklist: Lägg till i checklista
@@ -2451,7 +2451,7 @@ sv:
     <strong>iNaturalist Suomi</strong>, en del av det internationella iNaturalist-nätverket, fokuserar på biologisk mångfald och människor i Finland. Vill du
     ändra din kontoanknytning från <strong>%{inat_site_name}</strong> till <strong>iNaturalist Suomi</strong> och dela data med lokala institutioner?
   network_affiliation_prompt_from_other_site_html: |
-    Vill du ändra din tillhörighet från <strong>%{other_site_name}</strong> till
+    Vill du ändra din anknytning från <strong>%{other_site_name}</strong> till
     <strong>%{site_name}</strong>?
   new: Ny
   new_and_noteworthy: Nytt & anmärkningsvärt
@@ -3770,8 +3770,8 @@ sv:
     other: Sparar %{num} av %{count} observationer...
   saving_verb: Sparar
   scale_colon: "Skala:"
-  schemes: Sammanställning
-  schemes_including: Sammanställningar som inkluderar
+  schemes: Checklistor
+  schemes_including: Checklistor som inkluderar
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Vetenskapligt namn
   search: Sök
@@ -4178,8 +4178,8 @@ sv:
   taxon_range_updated_notice: Lyckades uppdatera utbredningsområde för taxon. Det kan ta ett par minuter innan ändringar syns på kartorna.
   taxon_ranks: Taxonranger
   taxon_removed_from_list: Taxon borttaget från listan.
-  taxon_scheme: Taxonsystem
-  taxon_schemes: "Taxonsystem"
+  taxon_scheme: Checklista för taxa
+  taxon_schemes: "Checklistor för taxa"
   taxon_search: Taxonsök
   taxon_search_results_for: Resultat av taxonsök för
   taxon_split: taxonuppdelning
@@ -6308,10 +6308,10 @@ sv:
            <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-communityn. Nätverksplatserna stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater, från sina länder, som automatiskt diffuseras vid publik visning för att skydda hotade arter.
           </p>
           <p>
-          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att ansluta dig till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för observationer som publikt är diffuserade eller privata.
+          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att knyta an till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för observationer som publikt är diffuserade eller privata.
           </p>
           <p>
-          Obs: Teständra inte din tillhörighet om du har mer än 1000 observationer.
+          Obs: Teständra inte din anknytning om du har mer än 1000 observationer.
           </p>
         licensing_desc_html: |
           Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar %{site_name} ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel
