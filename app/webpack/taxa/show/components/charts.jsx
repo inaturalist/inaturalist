@@ -114,12 +114,20 @@ class Charts extends React.Component {
       return number.toExponential( 2 );
     }
     if ( number > 999 ) {
-      // this falls back to English for Occitan on all browsers
-      // all other iNat locales appear to be supported
-      return new Intl.NumberFormat( I18n.locale, {
-        maximumSignificantDigits: 3,
-        notation: "compact"
-      } ).format( number );
+      try {
+        // this falls back to English for Occitan on all browsers
+        // all other iNat locales appear to be supported
+        return new Intl.NumberFormat( I18n.locale, {
+          maximumSignificantDigits: 3,
+          notation: "compact"
+        } ).format( number );
+      } catch ( e ) {
+        if ( e.message.match( /Intl/ ) ) {
+          console.log( "This browser does not support modern number formatting. Please consider upgrading." );
+        } else {
+          throw e;
+        }
+      }
     }
     return I18n.toNumber( number, { precision } );
   }

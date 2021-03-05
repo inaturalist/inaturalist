@@ -100,7 +100,8 @@ var iNaturalist = window.iNaturalist = new function(){
     }) ]
   end].to_json %>;
 
-  this.log = function( params ) {
+  this.log = function( params, options ) {
+    var options = options || {};
     try {
       // Restrict logging to the default site for now
       if ( typeof( SITE ) !== "object" || SITE.name !== "iNaturalist" ) {
@@ -113,8 +114,12 @@ var iNaturalist = window.iNaturalist = new function(){
       if ( typeof( CONTROLLER_ACTION ) === "string" ) {
         params.controller_action = CONTROLLER_ACTION;
       }
-      url += "?" + $.param( params );
-      var ajaxOpts = { url: url };
+      if ( options.method === "POST" ) {
+        options.data = JSON.stringify( params );
+      } else {
+        url += "?" + $.param( params );
+      }
+      var ajaxOpts = Object.assign( options, { url: url } );
       if ( jwt && jwt.length > 0 ) {
         ajaxOpts.headers = { "Authorization": jwt };
       }
@@ -122,6 +127,17 @@ var iNaturalist = window.iNaturalist = new function(){
     } catch ( e ) {
       // Logging should never really throw an exception
       console.log( "[DEBUG] Failed to log: ", e );
+    }
+
+    this.logError = function( error ) {
+      this.log( {
+        error_type: error.name,
+        error_message: error.message,
+        backtrace: error.stack
+      }, {
+        method: "POST",
+        dataType: "json"
+      } );
     }
   }
 
