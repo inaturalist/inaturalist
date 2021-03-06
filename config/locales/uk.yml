@@ -280,7 +280,7 @@ uk:
   about_trusting_projects_options_taxon_desc: |-
     Багато проектів потребують доступу до координат, які були розмиті для спостережень загрожуваних таксонів.
   about_trusting_projects_overview: |-
-    Надання доступу до ваших прихованих координат дасть змогу керівникові цього проєкту бачити істинне, нерозмите місцезнаходження ваших спостережень у цьому проєкті. Це особливо важливо у ситуаціях, коли науковці чи управлінці потребують доступу до точних координат для досліджень або ухвалення рішень.
+    Надання доступу до ваших прихованих координат дасть змогу керівникові цього проєкту бачити істинне, нерозмите розташування ваших спостережень у цьому проєкті. Це особливо важливо у ситуаціях, коли науковці чи управлінці потребують доступу до точних координат для досліджень або ухвалення рішень.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -850,7 +850,7 @@ uk:
   card: Картка
   casual: пересічне
   casual_: Пересічне
-  casual_tooltip_html: 'Звичайні спостереження – це ті, яким бракує медіафайлів, місцезнаходження або дати, або ті, що не відповідають вимогам статусів "Дослідницький рівень" або "Потребує визначення" з інших причин.<a href="https://www.inaturalist.org/pages/help#quality">Детальніше про рівні якості</a>'
+  casual_tooltip_html: 'Звичайні спостереження – це ті, яким бракує медіафайлів, розташування або дати, або ті, що не відповідають вимогам статусів "Дослідницький рівень" або "Потребує визначення" з інших причин.<a href="https://www.inaturalist.org/pages/help#quality">Детальніше про рівні якості</a>'
   categories: Категорії
   cc_0_description: "Ця ліцензія робить вашу роботу загальним надбанням, відтак інші можуть копіювати, змінювати, поширюйте і розвивати вашу роботу, навіть для комерційних цілей, не питатаючи вашого дозволу та не посилаючись на вас. Це найліберальніша серед запропонованих ліцензій. Рекомендується для максимального поширення і використання ліцензованих матеріалів."
   cc_0_name: Без авторського права (CC0)
@@ -915,7 +915,7 @@ uk:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} було об'єднано в %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} буде об'єднано в %{output_taxon}"
   change_your_password: Змінити пароль
-  changing_the_geoprivacy: 'Зміна налаштувань приватності місцеперебування позначається на тому, як інші люди бачать місце вашого спостереження.'
+  changing_the_geoprivacy: 'Зміна налаштувань приватності розташування позначається на тому, як інші люди бачать місце вашого спостереження.'
   check_above_for_errors: Перевірити вищезазначене на наявність помилок
   check_back_soon: Побачимося незабаром!
   check_here_to_autoload_description: Позначте тут, щоб автоматично завантажити опис з Вікіпедії. Ви можете зняти відмітки в разі, якщо наукова назва таксона також є загальним словом або має місце помилка, наприклад, "Parus".
@@ -960,7 +960,7 @@ uk:
   clear: очистити
   clear_filters: Очистити фільтри
   clear_search: Очистити пошук
-  click_the_map: "<strong>Клікніть по карті</strong> , щоб додати місце."
+  click_the_map: "<strong>Клікніть по карті</strong> , щоб додати розташування."
   close: Закрити
   code: Код
   colors: Кольори
@@ -1526,7 +1526,7 @@ uk:
   edit_license: Редагувати ліцензію
   edit_multiple_dates: Редагувати декілька дат
   edit_multiple_descriptions: Редагувати декілька нотаток
-  edit_multiple_locations: Редагувати декілька локацій
+  edit_multiple_locations: Редагувати декілька розташувань
   edit_multiple_species: Редагувати декілька видів
   edit_notes: Редагувати нотатки
   edit_observations: Редагувати спостереження
@@ -1648,7 +1648,7 @@ uk:
   facebook_access_token_expired: "Термін дії токена доступу закінчився. Користувачу %{user} потрібно повторно підключити свій обліковий запис Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook вимагає, аби власники цього фото повторно підтвердили своє підключення до %{site_name_short}.
   facebook_options: Налаштування Facebook
-  failed_to_find_your_location: Не вдалося визначити ваше місцезнаходження.
+  failed_to_find_your_location: Не вдалося визначити ваше розташування.
   failed_to_repair_photo: "Не вдалося відновити фото: %{errors}"
   failed_to_save_record: "Не вдалося зберегти запис. Спробуй пізніше."
   failed_to_save_record_with_errors: "Не вдалося зберегти запис: %{errors}"
@@ -1980,7 +1980,7 @@ uk:
   import_all_photos_as_observations: Імпортувати всі фото як спостереження
   import_as_an_observation: Імпортувати як спостереження
   import_as_another_observation: Імпортувати як ще одне спостереження?
-  import_date_time_location_taxonomic: "Імпортувати дату, час, локацію, опис і таксономічну інформацію з цього фото."
+  import_date_time_location_taxonomic: "Імпортувати дату, час, розташування, опис і таксономічну інформацію з цього фото."
   import_from_csv: Імпортувати з CSV
   import_from_other_photo_sites: Імпорт з інших фото-сайтів
   import_observations: Імпорт спостережень
@@ -2085,11 +2085,11 @@ uk:
   labels: Позначки
   label_to_group_a_batch_of_taxon_changes: Позначка задля групування пакету змін таксонів
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: Локація приватна
+  location_private: Розташування конфіденційне
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown: Локація відсутня
+  location_unknown: Розташування відсутнє
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Закріпити рівень масштабування
@@ -2295,13 +2295,11 @@ uk:
     zh-TW: Китайська (традиційна)
   locality_notes: Примітки до локалізації
   localized_species_accounts: Локалізовані дані за видами
-  location: Місцезнаходження
-  location_is_accurate: Місцезнаходження є детальним
-  location_is_exact: місцезнаходження є точним
-  location_is_public: Місцезнаходження відкрите
-  location_is_obscured: Місцезнаходження є розмитим
-  location_is_private: Місцезнаходження є конфіденційним
-  location_specified: Місцезнаходження вказано
+  location_is_accurate: Розташування є детальним
+  location_is_exact: розташування є точним
+  location_is_public: Розташування відкрите
+  location_is_obscured: Розташування є розмитим
+  location_is_private: Розташування є конфіденційним
   locked_taxa_will_not_allow_new: Заблоковані таксони не дозволять додавати до них нові дочірні таксони. Отже, якщо ви заблокували Amphibia і хтось намагався імпортувати <i>Rana catesbeiana</i> із зовнішнього джерела назв, новий таксон буде створено, але не будевіднесено до земноводних. В такій ситуації, новододані таксони мають бути позначені прапорцем для привернення уваги куратора. Це має бути використане тільки для таксонів, щодо яких ми впевнені, що у нас вже додано всі дочірні таксони. Куратор може перевизначити це, змінивши шляхом редагування таксону та введення батьківських ідентифікаторів вручну, але натомість розгляньте можливість злиття нових таксонів у вже наявні.
   log_in: Увійти
   log_in_or_sign_up_to_add_comments_html: |
