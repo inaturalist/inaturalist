@@ -332,7 +332,7 @@ uk:
   add_an_observation?: Додати спостереження?
   add_an_observation_of: "Додати спостереження %{taxon}"
   add_an_observation_to_project_html: Додати спостереження до %{project}
-  add_annotations_for_x: Додати Примітки для "%{x}"
+  add_annotations_for_x: Додати примітки для "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Додати примітки для "Стать"
     plant_phenology: Додати примітки для "Фенології рослин"
@@ -606,8 +606,8 @@ uk:
   and_other_taxa: "&amp; Інші таксони"
   android: Android
   animals: Тварини
-  annotation: Анотація
-  annotations: Анотації
+  annotation: Примітка
+  annotations: Примітки
   announcement_was_successfully_created: Оголошення успішно створено.
   announcement_was_successfully_updated: Оголошення успішно оновлено.
   announcements: Оголошення
@@ -1912,7 +1912,7 @@ uk:
     недоречних матеріалів.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Сховати дані, для яких "Немає анотації"
+  hide_no_annotation: Сховати дані, для яких "Немає приміток"
   hide_running_total: Приховати поточний доробок
   hide_uncountable_species: Приховати незлічувані види
   high: Вищий
@@ -2523,6 +2523,7 @@ uk:
   name_providers:
     col: Catalogue of Life
     ubio: uBio
+  needs_id_: Потребує визначення
   new_lexicon: Новий лексикон
   new_list: Новий список
   new_members: "Нові учасники"
@@ -2762,7 +2763,7 @@ uk:
   observations: Спостереження
   observations_: спостереження
   observations_added_by_x_html: "Спостереження, додані %{x}"
-  observations_annotated_with_annotation: "Спостереження анотовані %{annotation}"
+  observations_annotated_with_annotation: "Спостереження мають примітки %{annotation}"
   observations_by: Спостереження
   observations_by_user: "Спостереження %{user}"
   observations_deleted: Спостереження видалені.
@@ -2845,7 +2846,7 @@ uk:
     observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
     observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
     observe_panel_body_p1_global: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали...
-    observe_panel_body_p2: Вийдіть назовні і спостерігайте за живими істотами. Оберіть якийсь організм з дикої природи та зробіть чіткі, повнокадрові фото. Якщо у вас вже є фото якоїсь дикої істоти, <a href="%{new_observation_path}">додайте його зараз</a>. Для запису спостережень ви також можете використовувати мобільний додаток %{site_name}.
+    observe_panel_body_p2: Підіть кудись та спостерігайте за живими істотами. Оберіть якийсь організм з дикої природи та зробіть чіткі, повнокадрові фото. Якщо у вас вже є фото якоїсь дикої істоти, <a href="%{new_observation_path}">додайте його зараз</a>. Для запису спостережень ви також можете використовувати мобільний додаток %{site_name}.
     observe_panel_body_p3: Як тільки ви поділитеся своїми спостереженнями, на цій сторінці відображатимуться оновлення від спільноти у вигляді коментарів та визначень. Хто знає, що ви виявите!
     follow_panel_title_local: Піідписатися на натуралістів, що знаходяться поблизу
     follow_panel_title_global: Підписатися на активних натуралістів
@@ -3716,24 +3717,44 @@ uk:
     alternate_position: альтернативна позиція
     many_to_many: багато-до-багатьох
   remove: Видалити
+  reset_search_filters: Скинути пошукові фільтри
+  reviewed: Переглянуто
   save_guide_taxon: Зберегти посібник з таксону
   select_all: Обрати все
+  select_options: Оберіть варіант
+  show_more: Показати більше
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Показати дані, для яких "Немає приміток"
+  show_off_your_recent_observations: Похизуйтеся вашими останніми спостереженнями на власному блозі або веб-сайті!
   sign_out: Вийти
+  site_stats: Статистика
   sounds:
     sound_has_been_flagged: Цей звук був відмічений прапорцем
+  start: Початок
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: КРАМНИЦЯ
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Підписатися %{tag_end} на коментарі щодо цієї заміни таксона"
   taxa_info: Інформація про таксони
   taxon_geoprivacy: Конфіденційність геоданих для таксона
   taxon_swap: заміна таксона
+  terms_service: Умови використання
+  the_world: Весь світ
   top_identifier: Кращий ідентифікатор
   top_identifiers: Кращі ідентифікатори
   top_identifiers_of_taxon: Кращі ідентифікатори таксону %{taxon}
   unique_identifier_of_this_taxon: Унікальний ідентифікатор таксону у базі даних джерела.
   unmute: Скасувати ігнорування
+  update_search: Оновити пошук
   url_identifier_of_a_project_derived_from: "URL / ідентифікатор проєкту, отриманий із зовнішнього ресурсу"
   user_muted: Користувача ігноровано
   view_full_size_photo: Переглянути повнорозмірне фото
   view_more_observations_from_this_place: Показати більше спостережень з цього місця
+  view_your_inbox: Усі повідомлення
+  with_annotation: З примітками
+  without_annotation: Без приміток
+  your_recent_projects: Нещодавні проєкти
   views:
     guide_taxa:
       show:
@@ -3841,6 +3862,11 @@ uk:
           "Life Stage=nymph": Німфа
           "Life Stage=pupa": Лялечка
           "Life Stage=adult": Доросла особина
+          unannotated: Без приміток
+    users:
+      edit:
+        project_addition_preferences:
+          any: Будь-які
   date:
     abbr_month_names:
       - 
@@ -3891,3 +3917,4 @@ uk:
           attributes:
             base:
               guide_has_too_many_taxa: "посібник може містити лише 500 таксонів"
+  wild: В дикій природі
