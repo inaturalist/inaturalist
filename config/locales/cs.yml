@@ -246,6 +246,9 @@ cs:
   about_muting: O ztlumení
   #Header for a section describing taxon names
   about_names: O názvech
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "O místě %{place}"
   about_places: O Místech
   about_the_cc_licenses: O licencích Creative Commons
   about_these_licenses: O těchto licencích
@@ -306,7 +309,6 @@ cs:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Můžete si vybrat sdílení skrytých souřadnic pro
-  about_x: "O %{x}"
   acc: 'Přesnost (m)'
   account: Účet
   account_creation: Vytvoření účtů
@@ -865,6 +867,7 @@ cs:
   card: Karta
   casual: neformální
   casual_: neformální
+  casual_tooltip_html: '„Neformální“ pozorování nemají média, místo nebo datum, nebo z jiných důvodů nesplňují požadavky úrovně kvality "Výzkumný" nebo "Potřebuje ID" . <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   categories: Kategorie
   cc_0_description: "Tato licence umožní uvolnění vašeho díla do veřejného prostoru a ostatní budou moci vaše dílo kopírovat, upravovat, šířit a předkládat, a to i pro komerční účely, bez nutnosti žádat vás o povolení a uvedení zdroje. Toto je nejširší poskytovaná licence. Doporučuje se pro maximální šíření a využívání příslušných materiálů."
   cc_0_name: Bez autorských práv (CC0)
@@ -1586,7 +1589,6 @@ cs:
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
   editors: Editoři
-  either: Buď
   either_that_user_doesnt_exist_or: "Tento uživatel buď neexistuje, nebo už ho sledujete."
   eligible_for_research_grade: Vhodný pro výzkumnou klasifikaci
   email: E-mail
@@ -1635,7 +1637,6 @@ cs:
   everywhere: všude
   exact: Přesný
   exact_date: Přesné datum
-  exact_location: Přesné_místo
   exact_rank: Přesné pořadí
   except: mimo
   exclude_places: Vyloučit místa
@@ -1908,6 +1909,7 @@ cs:
   help_translate!: Pomozte s překladem!
   helped_the_observer_make: pomohl pozorovateli provést konečné ID (byly provedeny před konečným ID, kterému odpovídají)
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
+  here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
   hex_color_eg: Barva hex, např. 65644F
   hi: Ahoj,
@@ -2006,6 +2008,7 @@ cs:
   inbox: doručená pošta
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
+  include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
   include_taxa: Zahrnout taxony
   include_users: Zahrnout uživatele
   including: včetně
@@ -2299,7 +2302,7 @@ cs:
     zh-TW: Čínština (tradiční)
   locality_notes: Poznámky k lokalitě
   localized_species_accounts: Účty lokalizovaných druhů
-  location: Umístění
+  location: Místo
   location_is_accurate: Umístění je přesné
   location_is_exact: umístění je přesné
   location_is_public: Místo je veřejné
@@ -2551,9 +2554,10 @@ cs:
   ne_lon: z. š. SV
   near_threatened: téměř ohrožený
   nearby_observations_: Pozorování poblíž
-  needs_id: nutné ID
-  needs_id_: Nutné ID
-  needs_id_expandable_html: "<span class='full'>Nutné </span>ID"
+  needs_id: potřebuje ID
+  needs_id_: Potřebuje identifikaci
+  needs_id_expandable_html: "<span class='full'>Potřebuje</span> identifikaci"
+  needs_id_tooltip_html: 'Pozorování úrovně "Potřebuje ID" mají média, umístění a datum, ale stále vyžadují konsensus komunity o přesné identifikaci. <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   needs_to_be_identified: Musí být identifikován
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2711,6 +2715,8 @@ cs:
   none_found: Nenalezeno
   normal: normální
   not_completed: Nedokončený
+  not_confident: Nejsme si dostatečně jistí, abychom provedli doporučení.
+  not_confident_top_suggestions: Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy
   not_covered_by_any_taxon_frameworks: Není pokryto žádným taxonem
   not_evaluated: nehodnoceno
   not_findig_what_you_want: Nenašli jste, co jste chtěli?
@@ -2747,6 +2753,16 @@ cs:
   observation_added: Pozorování přidáno.
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Pozorování uživatele %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Pozorování &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Toto pozorování patří k projektu, který vyžaduje toto pole.
     Pozorování musí být z tohoto projektu odebráno, než může být tato hodnota pole
@@ -2853,6 +2869,10 @@ cs:
   observed_on: Pozorováno dne
   observer: Pozorovatel
   observers: Pozorovatelé
+  observer_prefers_no_project_addition: |
+    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do projektů.
+  observer_prefers_addition_to_projects_joined: |
+    Pozorovatel umožňuje ostatním lidem přidávat svá pozorování pouze do projektů, ke kterým se připojil.
   observer_short: Pozorovatel
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
@@ -2934,6 +2954,7 @@ cs:
   only_staff_can_edit_standard_places: Pouze zaměstnanci webu mohou upravit místa ve standardní hierarchii
   only_the_owner_of_this_list_can_do_that: Tento krok může provést pouze majitel tohoto seznamu. Nebuďte zlí.
   only_the_project_admin_can_delete_this_project: Tento projekt může smazat pouze správce projektu.
+  only_view_nearby_suggestions: Zobrazit pouze návrhy v blízkosti
   only_you: Jen vy
   open: otevřený
   open_: Otevřený
@@ -3575,6 +3596,11 @@ cs:
     Projekty neumožňují automatické seskupování pozorování, pokud není projekt spojen s místem menší rozlohy nebo pokud neumožňuje pozorování pouze určitých taxonů nebo taxonů na seznamu
   project_assessments: Hodnocení projektu
   project_assets: Položky projektu
+  project_coordinate_access_enabled: |
+    Měli byste být schopni zobrazit skryté souřadnice pozorování pomocí důvěryhodných
+    členů.
+  project_coordinate_access_disabled_until_datetime: |
+    Nebudete mít přístup ke skrytým souřadnicím do %{datetime}
   project_coordinate_access_warning: |
     Přístup k souřadnicím je důležitý pro vědce, ale také může být zneužit
     pytláky. Ujistěte se, že věříte všem kurátorům projektu, než budete důvěřovat tomuto
@@ -3827,6 +3853,7 @@ cs:
   research_: Výzkum
   research_grade: Výzkumný stupeň
   research_grade_short_html: "V<span class='full'>ýzkumný </span>S<span class='full'>tupeň</span>"
+  research_grade_tooltip_html: 'Pozorování „výzkumného stupně“ mají média, umístění, datum a konsensus komunity o přesné identifikaci (obvykle na úrovni druhu). <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   research_grade_observations_have: 'Pozorování „výzkumného stupně“ mají datum, fotku, souřadnice a identifikaci odsouhlasenou komunitou. Klikněte pro podrobnosti o hodnocení kvality údajů.'
   research_grade_qualification: Vymezení výzkumného stupně
   reset_filters_short: Resetovat
@@ -4746,6 +4773,7 @@ cs:
   view_check_list_page: Zobrazit stránku seznamu
   view_contributions: Zobrazit příspěvky
   view_details: Zobrazit podrobnosti
+  view_dynamic_lifelist: Zobrazit dynamický seznam života
   view_field_options: Zobrazit možnosti pole
   view_flag: Zobrazit štítky
   view_flags: Zobrazit štítky
@@ -5875,7 +5903,7 @@ cs:
         make_owner: Učinit vlastníkem
         no_curators: |
           Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou osobu, nejdřív se musí přidat k tomuto projektu a vy ji musíte jmenovat kurátorem.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             Seskupením pozorování se do vašeho projektu automaticky přidají vhodná pozorování podle pravidel vašeho projektu. Protože mnoho pozorování nelze z projektu najednou odebrat, může to být nebezpečné, proto se prosím ujistěte, že jste vybrali pravidla pro místo a taxon, která chcete, jinak by se mohlo stát, že budete muset manuálně odebrat mnoho nevhodných pozorování. 
           </p>
@@ -6066,7 +6094,7 @@ cs:
       show:
         are_you_sure_you_want_to_convert: |
           Opravdu chcete tento projekt převést na Sbírky projektů?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
            Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
            Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
@@ -6297,7 +6325,7 @@ cs:
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
-        about_names_desc: |
+        about_names_desc: |2
           <p>
             Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
           </p>
@@ -6372,7 +6400,7 @@ cs:
           Název taxonu s kategorií. Pro infraspecifické kategorie je kategorie vložena za binominální nomenklaturou.
     taxon_names:
       form:
-        new_name_guidelines_html: |
+        new_name_guidelines_html: |2
           <ul>
             <li><p>Zkuste přidat názvy, které se používají jinde. Nevymýšlejte prosím nové názvy.</p></li>
             <li><p>Nepřidávejte zdvojené názvy, např. nepojmenovávejte několik jestřábů „jestřáb“</p></li>
@@ -6511,7 +6539,7 @@ cs:
           Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
           políčko pro zobrazení tohoto stavu na vašem profilu. Poznámka: budete muset použít
           přesnou, stejnou e-mailovou adresu na Donorboxu jako na iNaturalist, abyste mohli potvrdit, že jste se stali Měsíční podporovatel.
-        muting_desc_html: |
+        muting_desc_html: |2
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 
           </p>

@@ -246,7 +246,6 @@ he:
   about_this_project: אודות פרויקט זה
   about_trips_html: |
     <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
-  about_x: "אודות %{x}"
   acc: 'דיוק (מטרים)'
   account: חשבון
   account_creation: צור חשבון
@@ -1249,7 +1248,6 @@ he:
   editing_this: עריכת %{elem}
   editing_x_in_y: "עריכת %{x}ב%{y}"
   editors: עורכים
-  either: שניהם
   either_that_user_doesnt_exist_or: "או שהמשתמש אינו קיים, או שאתם כבר עוקבים אחריו."
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
@@ -1291,7 +1289,6 @@ he:
   everywhere: בכל מקום
   exact: מדוייק
   exact_date: תאריך מדויק
-  exact_location: מיקום_מדויק
   exact_rank: דרוג מדויק
   except: למעט
   exclude_users: הוצא משתמשים
@@ -2781,6 +2778,7 @@ he:
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
   please_add_this_observation_to: נא להוסיף תצפית זו ל
   please_add_this_to_x_html: "נא להוסיף ל%{x}"
+  please_be_careful!: אנא היו זהירים!
   please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה
   please_explain_why_you_want_to_unhide_this: נא להסביר את סיבת הבקשה לאי-הסתרה
   please_fix_your_csv_and_try_again: נא לתקן את ה CSV ולנסות פעם נוספת
@@ -2826,6 +2824,8 @@ he:
     two: מנהלי פרוייקט
     many: מנהלי פרוייקט
     other: מנהלי פרוייקט
+  project_coordinate_access_warning: |
+    גישה למיקם הקואורדינטות חשובה למדענים, אולם יכולה להיות מנוצלת לרעה על ידי ציד לא חוקי. אנא וודאו כי אתם בוטחים בכל אוצרי הפרוייקט בטרם אתם בוטחים בו.
   project_created_on: פרוייקט זה נוצר ב%{date}
   project_curator_tools: כלי אצירה לפרוייקט
   project_curators: אוצרי הפרוייקט
@@ -3527,6 +3527,7 @@ he:
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
   view_assessment: צפייה הערכה
   view_details: הצגת פרטים
+  view_dynamic_lifelist: לצפייה ברשימת-חיים דינאמית
   view_field_options: הצגת אפשרויות שדה
   view_flag: צפייה בדגל
   view_flags: צפייה בדגלים

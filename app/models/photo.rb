@@ -146,7 +146,12 @@ class Photo < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Photo.where(user_id: user_id).update_all(license: license)
+    Photo.where( user_id: user_id ).update_all( license: license )
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": user_id }
+    ).enqueue_photo_bucket_moving_jobs( user_id )
+    user.index_observations_later
     true
   end
 

@@ -183,7 +183,6 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por partilhar as coordenadas ocultas para
-  about_x: "Sobre %{x}"
   acc: 'Precisão (m)'
   account: Conta
   account_creation: Criação de Conta
@@ -703,6 +702,7 @@ pt:
   card: Cartão
   casual: casual
   casual_: Casual
+  casual_tooltip_html: 'Observações "Casual" têm falta de media, localização ou data, ou não atendem aos requisitos das notas de qualidade de "Pesquisa" ou "Precisa de ID" por outras razões. <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre as notas de qualidade</a>'
   categories: categorias
   cc_0_description: "Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados."
   cc_0_name: Sem direitos de autor (CC0)
@@ -1310,7 +1310,6 @@ pt:
   editing_this: A editar %{elem}
   editing_x_in_y: "A editar %{x} em %{y}"
   editors: Editores
-  either: Qualquer
   either_that_user_doesnt_exist_or: "Este utilizador não existe ou já está a seguir ele."
   eligible_for_research_grade: Elegível para Grau de Pesquisa
   email: Email
@@ -1359,7 +1358,6 @@ pt:
   everywhere: todos os locais
   exact: Exacto
   exact_date: Data exata
-  exact_location: Localização_exata
   exact_rank: Classificação exata
   existing_flags: Sinalizadores existentes
   exit_full_screen: "Sair do modo de ecrã inteiro"
@@ -1551,6 +1549,7 @@ pt:
   help_support_inaturalist: "Apoie o iNaturalist"
   helped_the_observer_make: ajudaram o observador a fazer a sua identificação final (ou seja, foram feitas antes da identificação final e coincidiram)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
+  here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa selecção de espécies
   hex_color_eg: 'Cor hexadecimal, exemplo: 65644F'
   hi: Olá,
@@ -1626,6 +1625,7 @@ pt:
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
   inbox: caixa de entrada
+  include_suggestions_not_seen_nearby: Incluir sugestões não vistas nas proximidades
   including: a incluir
   in_progress: em curso
   in_the_past: no passado
@@ -2058,6 +2058,7 @@ pt:
   needs_id: Precisa de identificação
   needs_id_: Precisa de identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
+  needs_id_tooltip_html: 'As observações "Precisa de ID" possuem media, localização e data, mas ainda exigem consenso da comunidade sobre uma identificação exata. <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre as notas de qualidade</a>'
   needs_to_be_identified: Precisa ser identificado
   network_affiliation_prompt_from_other_site_html: |
     Gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
@@ -2186,6 +2187,8 @@ pt:
   none: Nenhum
   none_found: Não encontrado
   not_completed: Incompleto
+  not_confident: Não temos confiança suficiente para fazer uma recomendação.
+  not_confident_top_suggestions: Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões
   not_evaluated: Não avaliado
   not_findig_what_you_want: Não encontra o que deseja?
   not_finding_place_you_want?: Não encontra o lugar que deseja?
@@ -2217,6 +2220,16 @@ pt:
   observation_added: Observação adicionada.
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observação por %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observação &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     A observação pertence a um projeto que requer este campo. A observação
     deve ser removida desse projeto antes que este valor de campo possa ser
@@ -2289,6 +2302,10 @@ pt:
   observed_on: Observado em
   observer: Observador
   observers: Observadores
+  observer_prefers_no_project_addition: |
+    Observador não permite que outras pessoas adicionem as suas observações a projetos.
+  observer_prefers_addition_to_projects_joined: |
+    Observador só permite que outras pessoas adicionem as suas observações aos projetos a que aderiu.
   observer_short: Observador
   occurence_status_describes_how: 'O estado de ocorrência descreve o quão comum ou raro é um taxón numa determinada área. Ver DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mais informação sobre terminologia</a>.'
   occurrence_status: Estado da ocorrência
@@ -2358,6 +2375,7 @@ pt:
   only_species_and_subspecies: apenas espécies e subespécies/variedades
   only_the_owner_of_this_list_can_do_that: Apenas o proprietário desta lista pode fazer isso. Não seja maléfico.
   only_the_project_admin_can_delete_this_project: Só o administrador do projeto pode eleminar este projeto.
+  only_view_nearby_suggestions: Ver apenas sugestões nas proximidades
   only_you: Só você
   open: abrir
   open_: Abrir
@@ -2873,6 +2891,7 @@ pt:
   research_: Pesquisar
   research_grade: Grau de Pesquisa
   research_grade_short_html: "G<span class='full'>rau de </span>P<span class='full'>esquisa</span>"
+  research_grade_tooltip_html: 'As observações "Nível de Pesquisa" têm media, localização, uma data e consenso da comunidade sobre uma identificação precisa (geralmente ao nível de espécie). <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre as notas de qualidade</a>'
   research_grade_observations_have: 'Observações classificadas como "Grau de Pesquisa" têm data, foto, coordenadas e uma identificação suportada pela comunidade. Clique para ver a avaliação da qualidade dos dados.'
   research_grade_qualification: Qualificação do Grau de Pesquisa
   reset_search_filters: Reconfigurar os filtros de pesquisa
@@ -3186,7 +3205,7 @@ pt:
   there_were_some_problems_with_fields: "Ocorreram problemas com os seguintes campos:"
   there_were_some_problems_with_these_files: "Ocorreram problemas com os seguintes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Passa-se algo de errado - não conseguimos determinar a relação entre quaisquer táxon internos e externos
-  these_are_items_people_on: |
+  these_are_items_people_on: |2
     Estes são itens que as pessoas no site sinalizaram para curadoria. Comentários com spam
      devem ser excluídos e os utilizadores que adicionarem spam devem ser suspensos (vá
     à sua página de perfil e clique em 'Suspender usuário', no canto inferior direito, para
@@ -3315,6 +3334,7 @@ pt:
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
   verifiable_observations_by_observation_date: Observações verificáveis por data de observação
+  view_dynamic_lifelist: Ver lista de vida dinâmica
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
   view_flags_for_x_html: "Ver sinalizadores para %{x}"
@@ -3447,7 +3467,7 @@ pt:
           O seu acesso a coordenadas ocultas será revogado durante uma semana após
           alterar os requisitos de observação, para que os membros tenham tempo para fazer isso
       invite:
-        description_html: |
+        description_html: |2
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente de convidar observações individuais. Ao convidar pessoas

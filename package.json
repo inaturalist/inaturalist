@@ -4,6 +4,8 @@
   "description": "iNaturalist npm package for managing node dependencies.",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@formatjs/intl-locale": "^2.4.19",
+    "@formatjs/intl-numberformat": "^6.2.2",
     "@types/googlemaps": "^3.30.16",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.4.18",

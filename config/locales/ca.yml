@@ -194,7 +194,6 @@ ca:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Heu escollits compartir les vostres coordenades ocultes per a
-  about_x: "Quant a %{x}"
   acc: 'Exactitud (m)'
   account: Compte
   account_creation: Creació de compta
@@ -722,6 +721,7 @@ ca:
   card: Targeta
   casual: ocasional
   casual_: Ocasional
+  casual_tooltip_html: 'Les observacions "Casuals" no tenen imatges, sons, localització o data, o no compleixen els requisits per poder considerar-se de grau de "Recerca" o "Necessita Identificació" per altres raons. <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
   categories: categories
   cc_0_description: "Aquesta llicència allibera la seva obra a domini públic, de manera que els altres poden copiar, modificar, distribuir i dur a terme el seu treball, fins i tot amb finalitat comercial, sense demanar permís, o donar-li crèdit. Aquesta és la llicència més lliure de les que s'ofereixen. Recomanat per a una màxima difusió i ús de la llicència de materials."
   cc_0_name: Sense drets d'autor (CC0)
@@ -1429,7 +1429,6 @@ ca:
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
-  either: Qualsevol
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
@@ -1478,7 +1477,6 @@ ca:
   everywhere: a tot arreu
   exact: Exacte
   exact_date: Data exacta
-  exact_location: Ubicació exacta
   exact_rank: Rang exacte
   except: excepte
   exclude_places: Excloure Llocs
@@ -1748,6 +1746,7 @@ ca:
   help_translate!: Ajuda'ns a traduir!
   helped_the_observer_make: heu ajudat l'observador a fer la identificació final (és a dir, es van fer abans de la identificació final i coincideixen)
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
+  here_are_our_top_suggestions: Aquí estan els nostres principals suggeriments
   here_are_our_top_species_suggestions: Aquí estan les principals espècies suggerides
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
@@ -1840,6 +1839,7 @@ ca:
   inbox: bústia
   include_places: Incloure Llocs
   include_projects: Incloure Projectes
+  include_suggestions_not_seen_nearby: Incloure suggeriments no vistos aprop
   include_taxa: Incloure Tàxons
   include_users: Incloure Usuaris
   including: inclou
@@ -2383,6 +2383,7 @@ ca:
   needs_id: necessita ID
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
+  needs_id_tooltip_html: 'Les observacions qualificades com a "Necessita Identificació" tenen imatges o sons, localització i data però encara necessiten una identificació precisa consensuada per la comunitat. <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
   needs_to_be_identified: Ha de ser identificat
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2535,6 +2536,8 @@ ca:
   none_found: No s'ha trobat cap
   normal: normal
   not_completed: No Finalitzat
+  not_confident: No tenim prou seguretat per fer una recomanació.
+  not_confident_top_suggestions: No estem prou segurs per fer una recomanació, però aquí teniu els nostres primers suggeriments
   not_covered_by_any_taxon_frameworks: No està cobert per cap marc taxonòmic
   not_evaluated: no avaluat
   not_findig_what_you_want: No trobeu el que cercàveu?
@@ -2571,6 +2574,16 @@ ca:
   observation_added: Observació afegida
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observacions de %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observacions de &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'observació pertany a un projecte que necessita aquest camp. L'observació haurà d'esser eliminada del projecte si el valor d'aquest camp es pot esborrar.
   observation_brief_something_on_day: "Quelcom el %{day}"
@@ -2679,7 +2692,12 @@ ca:
   observed_on: Observat el
   observer: Observador
   observers: Observadors
+  observer_prefers_no_project_addition: |
+    L'observador no permet altres persones a afegir les seves observacions a projectes.
+  observer_prefers_addition_to_projects_joined: |
+    L'observador només permet altres persones a afegir les seves observacions a projectes als quals s'ha unit.
   observer_short: Obs.
+  occurence_status_describes_how: 'L''estat d''ocurrència indica el grau de presència o raresa d''un tàxon en una àrea determinada. Aneu a DarwinCore <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus"> per tenir més informació sobre terminologia </a>.'
   occurrence_status: Estat d'ocurrència
   occurrence_status_descriptions:
     absent: No es troba a l'àrea
@@ -2760,6 +2778,7 @@ ca:
   only_staff_can_edit_standard_places: Només el personal de l'organització poen editar llocs de la jerarquia estàndard
   only_the_owner_of_this_list_can_do_that: Només el propietari d'aquesta llista pot fer això. No sigueu dolent.
   only_the_project_admin_can_delete_this_project: Només l'administrador del projecte pot eliminar aquest projecte.
+  only_view_nearby_suggestions: Veure només suggeriments propers
   only_you: Només tu
   open: Transparent
   open_: Obre
@@ -3322,6 +3341,7 @@ ca:
   please_add_this_observation_to: Afegiu aquesta observació a
   please_add_this_to_x_html: "Afegiu això a %{x}"
   please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Title to a section warning a user to exercise caution
+  please_be_careful!: Si us plau, aneu amb compte!
   please_complete_the_following_to_add_project: |
     Si us plau completeu el següent per afegir aquesta observació al projecte:
   please_confirm_your_inat_username: "Confirmeu el nom d'usuari a %{site_name}"
@@ -3383,6 +3403,8 @@ ca:
     Hauria de poder veure les coordenades ocultes de les observacions dels membres de confiança
   project_coordinate_access_disabled_until_datetime: |
     No podreu accedir a coordenades ocultes fins a %{datetime}
+  project_coordinate_access_warning: |
+    L'accés a les coordenades és important pels científics, però també pot ser mal emprat pels furtius. Assegureu-vos de confiar en els administradors del projecte abans de confiar en el projecte.
   project_cover: Coberta del Projecte
   project_created_on: va crear aquest projecte el %{date}
   project_curator_id: ID del supervisor del projecte
@@ -3614,6 +3636,7 @@ ca:
   research_: Recerca
   research_grade: Grau de recerca
   research_grade_short_html: "G<span class='full'>rau de </span>R<span class='full'>ecerca</span>"
+  research_grade_tooltip_html: 'Les observacions qualificades com a "Grau de Recerca" tenen imatges o sons, localització i data, i la seva identificació precisa ha estat consensuada per la comunitat (normalment a nivell específic). <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
   research_grade_observations_have: 'Les observacions amb "Grau de recerca" disposen de data, foto, coordenades i una ID recolzada per la comunitat. Feu clic aquí per veure l''avaluació de la qualitat de les dades.'
   research_grade_qualification: Qualificació de Grau de Recerca
   reset_filters_short: Restablir
@@ -4482,6 +4505,7 @@ ca:
   view_check_list_page: Veure la pàgina de la llista de comprovació
   view_contributions: Veure contribucions
   view_details: Mostra els detalls
+  view_dynamic_lifelist: Veure llistes de vida dinàmiques
   view_field_options: Veure el camp Opcions
   view_flag: Veure etiqueta
   view_flags: Veure les etiquetes

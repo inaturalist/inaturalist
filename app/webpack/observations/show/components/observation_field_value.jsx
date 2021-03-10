@@ -124,7 +124,7 @@ class ObservationFieldValue extends React.Component {
       );
     }
     let addedBy;
-    if ( ofv.user && ofv.user.id !== observation.user.id ) {
+    if ( ofv.user ) {
       addedBy = (
         <div className="added-by">
           <div className="view">

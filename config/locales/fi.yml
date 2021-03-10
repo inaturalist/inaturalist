@@ -190,8 +190,8 @@ fi:
     <p>
     Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
     </p>
+  about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
-  about_x: "Tietoja %{x}"
   acc: 'Tarkkuus (m)'
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
@@ -723,6 +723,7 @@ fi:
   card: Kortti
   casual: epämuodollinen
   casual_: Epämuodollinen
+  casual_tooltip_html: '"Epämuodollisista havainnoista" puuttuu media, sijainti tai päivämäärä, tai ne eivät täytä "Tutkimustaso"- tai "Tarvitsee tunnistuksen"-laatuluokkia muista syistä. <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   categories: Luokat
   cc_0_description: "Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä."
   cc_0_name: Ei tekijänoikeutta (CC0)
@@ -1421,7 +1422,6 @@ fi:
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
-  either: Joko
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
@@ -1470,7 +1470,6 @@ fi:
   everywhere: kaikkialla
   exact: Tarkka
   exact_date: Tarkka päiväys
-  exact_location: Tarkka_sijainti
   exact_rank: Tarkka arvo
   except: paitsi
   exclude_places: Rajaa pois paikat
@@ -1732,6 +1731,7 @@ fi:
   help_translate!: Auta kääntämisessä!
   helped_the_observer_make: auttoi havainnoijaa tekemään lopullisen tunnistuksensa (eli ne tehtiin ennen lopullista tunnistusta, ja ne täsmäävät sen kanssa)
   here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
+  here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
   here_are_our_top_species_suggestions: Tässä ovat parhaat lajiehdotuksemme
   hex_color_eg: Hex-väri, esim. 65644F
   hi: Hei,
@@ -1815,6 +1815,7 @@ fi:
   inbox: Saapuneet
   include_places: Sisällytä paikat
   include_projects: Sisällytä projektit
+  include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
   include_taxa: Sisällytä taksonit
   include_users: Sisällytä käyttäjät
   including: mukaan lukien
@@ -2351,6 +2352,7 @@ fi:
   needs_id: tarvitsee tunnistuksen
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
+  needs_id_tooltip_html: '"Tarvitsee tunnistuksen"-havainnoissa on media, sijainti ja päivämäärä, mutta ne vaativat vielä yhteisötunnistuksen. <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   needs_to_be_identified: On tunnistettava
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
@@ -2481,6 +2483,7 @@ fi:
   none_found: Ei löytynyt
   normal: normaali
   not_completed: Ei valmis
+  not_confident: Emme ole tarpeeksi varmoja tekemään suositusta.
   not_covered_by_any_taxon_frameworks: Ei kuulu mihinkään taksonikehyksiin
   not_evaluated: arvioimatta jätetty
   not_findig_what_you_want: Et löydä mitä haluat?
@@ -2615,6 +2618,11 @@ fi:
   observed_on: Havaittu
   observer: Havainnoi
   observers: Havainnoijaa
+  observer_prefers_no_project_addition: |
+    Havainnoija ei salli muiden ihmisten lisätä havaintojaan projekteihin.
+  observer_prefers_addition_to_projects_joined: |
+    Havainnoija sallii muiden ihmisten lisätä havaintojaan vain projekteihin, joihin hän
+    on liittynyt.
   observer_short: Havainnoija
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
@@ -2691,6 +2699,7 @@ fi:
   only_staff_can_edit_large_places: Vain sivuston ylläpitäjät voivat muokata hyvin suuria paikkoja
   only_the_owner_of_this_list_can_do_that: Vain tämän luettelon omistaja voi tehdä sen. Älä ole paha.
   only_the_project_admin_can_delete_this_project: Vain projektin ylläpitäjä voi poistaa tämän projektin.
+  only_view_nearby_suggestions: Näytä vain lähistöllä olevat ehdotukset
   only_you: Vain sinä
   open: avoin
   open_: Avoin
@@ -3209,6 +3218,7 @@ fi:
   please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
   please_add_this_to_x_html: "Lisää tämä projektiin %{x}"
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Title to a section warning a user to exercise caution
+  please_be_careful!: Ole varovainen!
   please_complete_the_following_to_add_project: |
     Täydennä seuraavat tiedot lisätäksesi tämän havainnon projektiin:
   please_confirm_your_inat_username: "Ole hyvä ja vahvista %{site_name} käyttäjänimesi"
@@ -3262,6 +3272,10 @@ fi:
     Sinun pitäisi pystyä näkemään luotettujen jäsenten piilotettujen havaintojen koordinaatit.
   project_coordinate_access_disabled_until_datetime: |
     Koordinaatit piilotettu %{datetime} saakka
+  project_coordinate_access_warning: |
+    Koordinaattien saatavuus on tärkeää tutkijoille, mutta salametsästäjät voivat myös väärinkäyttää
+    niitä. Varmista, että luotat kaikkiin projektin kuraattoreihin ennen kuin luotat tähän
+    projektiin.
   project_cover: Projektin kansikuva
   project_created_on: loi tämän projektin %{date}
   project_curator_id: Projektin kuraattorin käyttäjätunnus
@@ -3297,7 +3311,7 @@ fi:
     Projektien avulla voit yhdistää havaintosi muiden ihmisten kesken %{site_name}issa.
     Projekteilla voit esimerkiksi käynnistää kansalaistiedehankkeen tai pitää kirjaa naapuruston linnuista.
   projects_from_everywhere: Projektit kaikkialta
-  projects_from_place: "Projektit paikasta %{place}"
+  projects_from_place: "Hakuehtoihin täsmäävät projektit paikasta %{place}"
   projects_in_x: "Projektit paikassa %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projektit joita %{user} hallinnoi
@@ -3475,6 +3489,7 @@ fi:
   research_: Tutkimus
   research_grade: Tutkimustaso
   research_grade_short_html: "T<span class='full'>utkimus</span><span class='full'>taso</span>"
+  research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
   reset_filters_short: Palauta
@@ -4171,6 +4186,7 @@ fi:
   view_check_list_page: Katso lajiluettelosivu
   view_contributions: Näytä muokkaukset
   view_details: Näytä tiedot
+  view_dynamic_lifelist: Näytä dynaaminen elämänpinnalista
   view_field_options: Näytä kenttäasetukset
   view_flag: Näytä lippu
   view_flags: Näytä liput
@@ -4908,7 +4924,7 @@ fi:
       formatting_simple_help: "Linkitä URL-osoitteet ja aseta rivinvaihdot automaattisesti."
     projects:
       project_type: Projektin tyyppi
-      collection: Kokoelma
+      collection: Koonti
       umbrella: Sateenvarjo
       tracks_multiple_projects: seuraa useita projekteja
       projects_included: Sisältyvät projektit
@@ -4991,18 +5007,18 @@ fi:
           any: kuka tahansa
           curators: projektin kuraattorit
         trust_help_notification2: |-
-          Tästä ilmoitetaan kaikille luotetuille projektin jäsenille joka kerta kun
+          Tästä ilmoitetaan kaikille projektin jäsenille, jotka ovat luottaneet projektiin joka kerta kun
           muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,
           haluavatko he luottaa sinuun myös uusilla kriteereillä.
           Piilotettujen koordinaattien käyttöoikeus peruutetaan viikon ajaksi
-          havaintokriteerien muuttamisen jälkeen, jotta jäsenillä on aikaa reagoida
+          havaintokriteerien muuttamisen jälkeen, jotta jäsenillä on aikaa reagoida tähän.
         trusted_project_means: |
           Projektin merkitseminen luotetuksi tarkoittaa että projektin ylläpitäjät voivat mukauttaa projektin ominaisuuksia, esim. HTML:aa tai CSS:aa. Pääsy näihin mukautettuihin ominaisuuksiin tarkoittaa että projektin ylläpitjät voivat mahdollisesti lisätä haitallista Javascript-koodia, joten merkitse luotetuiksi vain sellaisia projekteja, joilla on vastuuntuntoisia ja teknisesti osaavia ylläpitäjiä.
         you_can_preview: |
           Voit esikatsella miltä projektisi näyttäisi koontiprojektina
           <a href="%{url}">klikkaamalla tästä</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Tietoja kutsuista</h3>
           <p class="ui">
             Ihmisten kutsuminen projektiisi on hieman eri kuin kutsuminen
@@ -5128,7 +5144,7 @@ fi:
           Huomaa että vaikka tällainen projekti näyttää tilastoja havainnoista, joita ei ole tarkoituksellisesti lisätty projektiin, se ei salli kuraattorien nähdä yksityisiä tai karkeistettuja koordinaatteja, eikä oleta että havainnoijat olisivat hyväksyneet projektin ehdot. Jos olet projektin kuraattori ja tarvitse pääsyn yksityisiin koordinaatteihin, tai jos haluat että havainnot lasketaan mukaan projektin kuratoituun pinnalistaan, varmista että osallistujat liittyvät projektiin ja lisäävät havaintonsa siihen kuten tavalliseen projektiin.
           </p>
         click_here_to_convert_this_project: |
-          Klikkaa tästä muuntaaksesi tämän projektin kokoelmaprojektiksi.
+          Klikkaa tästä muuntaaksesi tämän projektin koontiprojektiksi.
         no_journal_blurb_html: |
           <p>
           Projektin päiväkirja on työkalu kommunikointiin projektin jäsenten kanssa. Voit käyttää sitä tiedottamiseen, prioriteettien asettamiseen tai projektin tuloksista keskustelemiseen.
@@ -6055,7 +6071,7 @@ fi:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                kokoelma- ja sateenvarjoprojekteihin ei voi lisätä havaintoja suoraan
+                koonti- ja sateenvarjoprojekteihin ei voi lisätä havaintoja suoraan
             user_id:
               must_be_curator: täytyy olla tämän projektin kuraattori
             observation_id:

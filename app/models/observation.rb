@@ -2053,15 +2053,7 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        translated_place = I18n.t(
-          p.name,
-          locale: locale,
-          default: I18n.t(
-            "places_name.#{p.name.underscore}",
-            locale: locale,
-            default: p.name
-          )
-        )
+        translated_place = p.translated_name( user.locale )
         p.code.blank? ? translated_place : p.code
       end
     end

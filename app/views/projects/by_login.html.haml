@@ -1,0 +1,41 @@
+- content_for( :title ) do
+  = raw is_me?( @selected_user ) ? t( :your_projects ) : t( :users_projects, user: h( @login ) )
+.container
+  - before = capture do
+    .row
+      .col-xs-12
+        .pull-right= link_to t( :all_projects ), projects_path, class: "btn btn-default"
+  = render partial: "shared/by_login_header_bootstrap", locals: { before: before, model_name: "Projects" }
+  .col-xs-12.col-md-8
+    - if @projects.blank?
+      .row
+        = is_me? ? t( :you_havent_joined_any_project ) : t( :user_hasnt_joined_any_projects, user: @login )
+    - else
+      - @project_users.in_groups_of( 2 ) do |project_user_pair|
+        .row
+          - project_user_pair.each do |project_user|
+            - if project_user && project_user.project
+              .col-xs-12.col-sm-6
+                = render partial: "project_by_login", locals: {project: project_user.project,  project_user: project_user }
+    = will_paginate @project_users, param_name: "main_page"
+  .col-xs-12.col-md-4
+    .row
+    .col-xs-12.col-md-12
+      - if is_me?
+        .project_invitations_button
+          = link_to t( :manage_your_project_invitations ), project_invitations_path, class: "btn btn-default"
+    .row
+      .col-xs-12.col-md-12
+        .panel.panel-info.project_panel
+          .panel-heading
+            = is_me? ? t( :projects_you_admin ) : t( :projects_user_admins, user: @login )
+          .panel-body
+            - if @started.blank?
+              %p.meta.noresults
+                = is_me? ? t( :no_project_to_admin_current_user ) : t( :no_project_to_admin_login, login: @login.to_s )
+            - else
+              - @started.each_with_index do |project, i|
+                .row
+                  = render partial: "project_by_login", locals: {project: project }
+            = will_paginate @started, param_name: "started_page"
+            = link_to( t( :start_a_project ), new_project_path, class: "default button" ) if is_me?

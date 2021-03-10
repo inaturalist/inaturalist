@@ -127,6 +127,9 @@ zh-CN:
   about_muting: 关于禁言
   #Header for a section describing taxon names
   about_names: 关于名称
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "关于%{place}"
   about_places: 关于地点
   about_the_cc_licenses: 关于知识共享许可协议
   about_these_licenses: 关于这些许可协议
@@ -144,7 +147,6 @@ zh-CN:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以因以下原因选择共享隐藏坐标
-  about_x: "关于 %{x}"
   acc: '精度（米）'
   account: 账户
   account_creation: 创建账户
@@ -588,7 +590,7 @@ zh-CN:
   back_to_your_projects: 回到您的项目
   badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
-    根据此证据，社区ID能否得到确认或改善？
+    基于现有证据, 社区身份证还能被确认或改进吗？
   batch: 批
   batch_edit: 批量编辑
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
@@ -963,6 +965,16 @@ zh-CN:
     您需要解释为什么要成为管理员
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 为什么你想成为管理员？
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    如果你想要编辑iNaturalist上的分类，请提供一两个你想要做修改的例子，并附上符合馆长规则中条件的分类权威的链接。
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    如果你想要编辑常用名，请为你想更改的内容提供一两个例子
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    如果您想要在iNaturalist上规范他人的行为， 请提供一两个违反社区准则的例子以及您在这些
+    种情况下会做些什么。
   #Header
   curator_application_how_curators_lose_their_powers: |
     什么会导致管理员失去管理权力
@@ -983,6 +995,16 @@ zh-CN:
   curator_application_what_curators_can_do: 管理员可以做什么
   #Header
   curator_application_what_curators_cannot_do: 管理员不能做什么
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    删除其他用户制作的内容。
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    直接读取其他人发送的消息。
   #Title of a page where people apply to become a curator
   curator_application_title: 申请管理员
   curators_changed_for_x_html: "为%{x}工作的馆长已更改"
@@ -1249,7 +1271,6 @@ zh-CN:
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
-  either: 任一
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
@@ -1299,7 +1320,6 @@ zh-CN:
   everywhere: 任意地方
   exact: 准确
   exact_date: 具体日期
-  exact_location: 精确位置
   exact_rank: 精密排名
   except: 除外
   exclude_places: 排除地点
@@ -1562,6 +1582,7 @@ zh-CN:
   help_translate!: 协助翻译
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
+  here_are_our_top_suggestions: 这是我们的最佳建议
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
@@ -2250,7 +2271,7 @@ zh-CN:
     user: "%{user}还没有对别人的观察添加过身份验证。"
   no_ids_have_been_suggested_yet: 没有建议ID
   no_interaction_data_available: 没有可用的交互数据
-  no_its_as_good_as_it_can_be: 不，它可以
+  no_its_as_good_as_it_can_be: 不，它已经足够好了
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
     user: "%{user}还没有添加过收藏。"
@@ -2461,6 +2482,7 @@ zh-CN:
   observer: 观察者
   observers: 观察者
   observer_short: 观察者
+  occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_descriptions:
     absent: 在区域内未发生
@@ -4335,6 +4357,11 @@ zh-CN:
   year_on_site: "%{site} %{year}一年"
   yellow: 黄色
   'yes': "是"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    是，但仅限于我观察中受威胁的分类群，而不是我自己隐藏的地理位置
   yes_find_them!: "是的，找到他们！"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates

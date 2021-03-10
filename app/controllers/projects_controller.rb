@@ -477,10 +477,12 @@ class ProjectsController < ApplicationController
   def by_login
     respond_to do |format|
       format.html do
-        @started = @selected_user.projects.order("id desc").limit(100)
-        @project_users = @selected_user.project_users.joins(:project, :user).
-          paginate(:page => params[:page]).order("lower(projects.title)")
-        @projects = @project_users.map{|pu| pu.project}
+        @started = @selected_user.projects.order( "id desc" ).
+          paginate( page: params[:started_page], per_page: 7 ).order( "lower( projects.title )" )
+        @project_users = @selected_user.project_users.joins( :project, :user ).
+          paginate( page: params[:main_page], per_page: 20 ).order( "lower( projects.title )" )
+        @projects = @project_users.map{ |pu| pu.project }
+        render layout: "bootstrap"
       end
       format.json do
         @project_users = @selected_user.project_users.joins(:project).

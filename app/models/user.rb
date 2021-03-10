@@ -184,9 +184,11 @@ class User < ActiveRecord::Base
   has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxa, foreign_key: "creator_id", inverse_of: :creator
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :taxon_framework_relationships
+  has_many :taxon_names, foreign_key: "creator_id", inverse_of: :creator
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
@@ -1364,6 +1366,27 @@ class User < ActiveRecord::Base
     return [] if taxon_counts.blank?
     previous_observed_taxon_ids = taxon_counts.distinct_taxa.buckets.map{ |b| b["key"] }
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
+  end
+
+  # this method will look at all this users photos and create separate delayed jobs
+  # for each photo that should be moved to the other bucket
+  def self.enqueue_photo_bucket_moving_jobs( user )
+    return unless LocalPhoto.odp_s3_bucket_enabled?
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
+      if photo.photo_bucket_should_be_changed?
+        LocalPhoto.delay(
+          queue: "photos",
+          unique_hash: { "LocalPhoto::change_photo_bucket_if_needed": photo.id }
+        ).change_photo_bucket_if_needed( photo.id )
+      end
+    end
+    # return nil so this isn't returning all results of the above query
+    nil
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

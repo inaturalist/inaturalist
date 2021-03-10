@@ -167,6 +167,9 @@ it:
   about_muting: Riguardo il silenziamento
   #Header for a section describing taxon names
   about_names: A proposito dei nomi
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Informazioni su %{place}"
   about_places: A proposito dei luoghi
   about_the_cc_licenses: A proposito delle licenze Creative Commons
   about_these_licenses: A proposito di queste licenze
@@ -194,7 +197,6 @@ it:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puoi scegliere di condividere le coordinate nascoste per
-  about_x: "A proposito di %{x}"
   acc: 'Acc (m)'
   account: Account
   account_creation: Creazione Utenza
@@ -726,6 +728,7 @@ it:
   card: Carta
   casual: casuale
   casual_: Casuale
+  casual_tooltip_html: 'Le osservazioni di livello "Casuale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -931,7 +934,7 @@ it:
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo taxon che vivono qui?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Contenuto
-  content_and_display: Contenuto & Visualizzazione
+  content_and_display: Contenuto & Vista
   content_author: Autore del Contenuto
   content_hidden: Contenuto nascosto
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1435,7 +1438,6 @@ it:
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
   editors: Editori
-  either: Qualsiasi
   either_that_user_doesnt_exist_or: "Sia che l'utente non esista o tu li stia già seguendo."
   eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
@@ -1485,7 +1487,6 @@ it:
   everywhere: ovunque
   exact: Esatto
   exact_date: Data esatta
-  exact_location: Località_esatta
   exact_rank: Rank esatto
   except: eccetto
   exclude_places: Escludi Luoghi
@@ -1754,6 +1755,7 @@ it:
   help_translate!: Aiuta a tradurre!
   helped_the_observer_make: ha aiutato l'osservatore a decidere la sua ID finale (e.g. sono state fatte prima dell'ID finale e corrispondono)
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
+  here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti per la specie
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
@@ -1846,6 +1848,7 @@ it:
   inbox: Posta in arrivo
   include_places: Includi Luoghi
   include_projects: Includi Progetti
+  include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
   include_taxa: Includi Taxa
   include_users: Includi Utenti
   including: incluso
@@ -2387,6 +2390,7 @@ it:
   needs_id: serve ID
   needs_id_: Serve ID
   needs_id_expandable_html: "<span class='full'>Serve </span>ID"
+  needs_id_tooltip_html: 'Le osservazioni di livello "Serve ID" hanno contenuto multimediale, una posizione e una data, ma richiedono ancora un consenso della comunità su una precisa identificazione. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   needs_to_be_identified: Ha bisogno essere identificato
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2538,6 +2542,8 @@ it:
   none_found: Non trovato
   normal: normale
   not_completed: Non Completato
+  not_confident: Non siamo abbastanza sicuri per fare una raccomandazione.
+  not_confident_top_suggestions: Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.
   not_covered_by_any_taxon_frameworks: Non coperto da nessun quadro del taxon
   not_evaluated: Non Valutata
   not_findig_what_you_want: Non trovi quello che vuoi?
@@ -2574,6 +2580,16 @@ it:
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Osservazione di %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Osservazione &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'osservazione appartiene a un progetto che richiede questo campo. L'osservazione
     deve essere rimossa da quel progetto prima che questo valore di campo possa essere
@@ -2683,6 +2699,10 @@ it:
   observed_on: Osservata il
   observer: Utente
   observers: Osservatori
+  observer_prefers_no_project_addition: |
+    L'osservatore non consente ad altre persone di aggiungere le sue osservazioni ai progetti.
+  observer_prefers_addition_to_projects_joined: |
+    L'osservatore consente ad altre persone di aggiungere le sue osservazioni solo ai progetti a cui si è unito.
   observer_short: Utente
   occurence_status_describes_how: 'Lo stato di distribuzione descrive se il taxon è raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per più informazioni sulla terminologia</a>.'
   occurrence_status: Stato della distribuzione
@@ -2764,6 +2784,7 @@ it:
   only_staff_can_edit_standard_places: Solo lo staff del sito può editare i luoghi nella gerarchia standard
   only_the_owner_of_this_list_can_do_that: Solo il proprietario di questa lista può fare questo. Sii gentile.
   only_the_project_admin_can_delete_this_project: Solo l'amministratore del progetto può cancellare questo progetto.
+  only_view_nearby_suggestions: Visualizza solo i suggerimenti nelle vicinanze
   only_you: Solo tu
   open: pubblica
   open_: Aperta
@@ -3327,6 +3348,7 @@ it:
   please_add_this_observation_to: Per piacere aggiungi questa osservazione a
   please_add_this_to_x_html: "Per piacere aggiungi questo a %{x}"
   please_allow_a_few_weeks_for_external_sites: Per favore attendi alcune settimane affinché i siti esterni sincronizzino la modifiche per questa osservazione #Title to a section warning a user to exercise caution
+  please_be_careful!: Per favore, presta attenzione!
   please_complete_the_following_to_add_project: |
     Per favore completa i campi seguenti per aggiungere l'osservazione al progetto:
   please_confirm_your_inat_username: "Per favore, conferma il tuo nome utente %{site_name}"
@@ -3385,9 +3407,12 @@ it:
   project_assessments: Valutazioni del Progetto
   project_assets: Risorse del Progetto
   project_coordinate_access_enabled: |
-    Dovresti essere in grado di visualizzare le coordinate nascoste delle osservazioni fidandoti dei membri.
+    Dovresti essere in grado di visualizzare le coordinate nascoste delle osservazioni dei membri che si fidano.
   project_coordinate_access_disabled_until_datetime: |
     Non potrai accedere alle coordinate nascoste fino al %{datetime}
+  project_coordinate_access_warning: |
+    L'accesso alle coordinate è importante per gli scienziati, ma può anche essere utilizzato da bracconieri. Assicurati di fidarti di tutti i curatori del progetto prima di fidarti di questo progetto.
+    .
   project_cover: Copertina del progetto
   project_created_on: ha creato questo progetto in data %{date}
   project_curator_id: ID del curatore del progetto
@@ -3619,6 +3644,7 @@ it:
   research_: Ricerca
   research_grade: Livello ricerca
   research_grade_short_html: "L<span class='full'>ivello</span>R<span class='full'>icerca </span>"
+  research_grade_tooltip_html: 'Le osservazioni di "Livello Ricerca" hanno contenuto multimediale, una posizione, una data, e un consenso della comunità su una precisa identificazione (di solito a livello di specie). <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   research_grade_observations_have: 'le osservazioni ad un "Livello ricerca" hanno foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere la valutazione della qualità dei dati'
   research_grade_qualification: Qualifica di Livello ricerca
   reset_filters_short: Azzera
@@ -4488,6 +4514,7 @@ it:
   view_check_list_page: Visualizza la pagina della checklist
   view_contributions: Visualizza i contributi
   view_details: Visualizza i dettagli
+  view_dynamic_lifelist: Visualizza la lista degli esseri viventi dinamica
   view_field_options: Visualizzare le opzioni del campo
   view_flag: Visualizza contrassegno
   view_flags: Visualizza le etichette
@@ -5410,7 +5437,7 @@ it:
           La tua esportazione è fallita. Visita la <a href="%{url}">pagina delle esportazioni</a> per l'elenco delle tue esportazioni.
       parental_consent:
         subject: Tuo figlio vorrebbe usare iNaturalist
-        content_html: |
+        content_html: |2
           <p>
             Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Poiché questi dati contengono Informazioni Identificative Personali, non può essere usata da persone con età inferiore ai 13 anni senza il consenso dei genitori.
           </p>

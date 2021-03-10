@@ -167,6 +167,9 @@ de:
   about_muting: Über Stummstellen
   #Header for a section describing taxon names
   about_names: Über Namen
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Über %{place}"
   about_places: Über Gebiete
   about_the_cc_licenses: Über Creative-Commons-Lizenzen
   about_these_licenses: Über diese Lizenzen
@@ -201,7 +204,6 @@ de:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kannst auswählen, die verdeckten Koordinaten zu teilen mit
-  about_x: "Über %{x}"
   acc: 'Genauigkeit(m)'
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung
@@ -304,7 +306,7 @@ de:
   add_life_stage_teneral_annotation: 'Vermerk "Lebensstadium: Frisch geschlüpft" hinzufügen'
   add_life_stage_subimago_annotation: 'Vermerk "Lebensstadium: Subimago" hinzufügen'
   add_life_stage_pupa_annotation: 'Vermerk "Lebensstadium: Puppe" hinzufügen'
-  add_life_stage_nymph_annotation: 'Vermerk "Lebensstadium: Nymphe" hinzufügen'
+  add_life_stage_nymph_annotation: 'Annotation "Entwicklungsstadium: Nymphe" hinzufügen'
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
   add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
@@ -727,6 +729,7 @@ de:
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
+  casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   categories: Kategorien
   cc_0_description: "Diese Lizenz gibt dein Werk frei, so dass andere dein Werk kopieren, modifizieren, verbreiten und \"ausführen\" können, auch für kommerzielle Zwecke, alles dies ohne dich um Erlaubnis oder Anerkennung zu bitten. Dies ist die entgegenkommendste der angebotenen Lizenzen. Empfohlen für die maximale Verbreitung und Nutzung von lizenziertem Material."
   cc_0_name: Kein Copyright (CC0)
@@ -1351,7 +1354,7 @@ de:
   #short as possible
   donate: SPENDEN
   done: Fertig
-  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <strong>hier Registrieren</strong>
+  dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
   dont_use_double_quotes: Doppelten Anführungszeichen sonst nirgends benutzen
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1432,7 +1435,6 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
-  either: Oder
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1456,7 +1458,7 @@ de:
   endemic: endemisch
   endemic_to_x: "Endemisch in %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol: Zeilenende
+  eol: EOL
   eol_collection_url: "EOL-Sammlungs-URL"
   error_updating_photo: "Fehler beim updaten der Fotos: %{photo_errors}"
   establishment:
@@ -1482,7 +1484,6 @@ de:
   everywhere: überall
   exact: Genau
   exact_date: Genaues Datum
-  exact_location: Genauer_Standort
   exact_rank: Genauer Rang
   except: außer
   exclude_places: Gebiete ausschließen
@@ -1751,6 +1752,7 @@ de:
   help_translate!: Hilf beim Übersetzen!
   helped_the_observer_make: hat dem Beobachter geholfen, seine endgültige ID zu erstellen (d.h. sie wurde vor der endgültigen ID gemacht und sie stimmt mit ihr überein)
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
+  here_are_our_top_suggestions: Hier sind unsere besten Vorschläge
   here_are_our_top_species_suggestions: Hier sind unsere besten Vorschläge
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
@@ -1771,7 +1773,7 @@ de:
   history: Historie
   home: Dashboard
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Nein, aber ich kann bestätigen, dass es sich um %{taxon} handelt
+  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -1844,6 +1846,7 @@ de:
   inbox: Posteingang
   include_places: Gebiete einbeziehen
   include_projects: Projekte einbeziehen
+  include_suggestions_not_seen_nearby: Vorschläge einbeziehen, die nicht aus der Nähe stammen
   include_taxa: Taxa einbeziehen
   include_users: Benutzer einbeziehen
   including: beinhaltet
@@ -1976,7 +1979,7 @@ de:
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
-  let_us_walk_you_through: Wir führen dich durch die wichtigsten Funktionen dieser Website.
+  let_us_walk_you_through: Wir führen dich durch die wichtigsten Funktionen dieser Website (in englischer Sprache!).
   lexicon: Lexikon
   lexicons:
     scientific_names: Wissenschaftlicher Name
@@ -2381,6 +2384,7 @@ de:
   needs_id: benötigt ID
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
+  needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum, erfordern aber noch ein gemeinschaftliche Zustimmung zu einer genaue Bestimmung. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   needs_to_be_identified: Muss bestimmt werden
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2444,7 +2448,7 @@ de:
   next_tab: Nächster Tab
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja, aber der Nachweis lässt die Bestimmung %{taxon} zu"
+  no_but_it_is_a_member_of_taxon: "Ja; aber der Nachweis lässt als Bestimmung '%{taxon}' zu"
   no_comments_yet: Noch keine Kommentare.
   no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
@@ -2528,6 +2532,8 @@ de:
   none_found: nichts gefunden
   normal: normal
   not_completed: Nicht komplett
+  not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
+  not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
   not_evaluated: nicht beurteilt
   not_findig_what_you_want: Nicht gefunden, was du suchst?
@@ -2561,6 +2567,16 @@ de:
   observation_: Beobachtung
   observation_added: Beobachtung hinzugefügt.
   observation_added_to_the_project: "Beobachtung zum Projekt \"%{project}\" hinzugefügt"
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Beobachtung von %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Beobachtung &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Die Beobachtung gehört zu einem Projekt, das dieses Feld erfordert. Die
     Beobachtung muss aus dem Projekt entfernt werden, bevor dieser Feldwert
@@ -2670,6 +2686,11 @@ de:
   observed_on: Gesehen am
   observer: Beobachter
   observers: Beobachter
+  observer_prefers_no_project_addition: |
+    Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
+  observer_prefers_addition_to_projects_joined: |
+    Beobachter erlaubt nur anderen Personen ihre Beobachtungen zu Projekten, denen sie
+    beigetreten sind, hinzuzufügen.
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
@@ -2751,6 +2772,7 @@ de:
   only_staff_can_edit_standard_places: Nur das Personal der Website kann Orte in der Standardhierarchie bearbeiten
   only_the_owner_of_this_list_can_do_that: Nur der Besitzer dieser Liste kann das. Sei nicht böse.
   only_the_project_admin_can_delete_this_project: Nur der Projektadministrator kann dieses Projekt löschen.
+  only_view_nearby_suggestions: Vorschläge auf die nähere Umgebung beschränken
   only_you: Nur dir
   open: offen
   open_: öffentlich
@@ -3402,7 +3424,7 @@ de:
     title: "Checkliste von %{owner_name}"
     description: Die Artenliste für %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    Kuratoren von<a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
+    Kuratoren von <a href="%{url}">%{project}</a> haben einige deiner Beobachtungen hinzugefügt
   project_members: "Mitglieder von %{project}"
   project_members_only: Nur Projektmitglieder
   project_membership_model_description: Ist dein Projekt offen für alle oder nur für Personen, die du einlädst?
@@ -3617,6 +3639,7 @@ de:
   research_: Forschung
   research_grade: Forschungsqualität
   research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
+  research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
   reset_filters_short: Zurücksetzen
@@ -5237,7 +5260,7 @@ de:
         allow_curator_coordinate_access_desc_html: |
           Den Projekt-Kuratoren erlauben, die versteckten Koordinaten für diese Beobachtung einzusehen.
         ancestor_disagreements_desc: "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")"
-        community_taxon_desc_html: |
+        community_taxon_desc_html: |2
           <p class="ui">
            Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
           Der Algorithmus begünstigt zudem abweichende Meinungen, weil wir festgestellt haben, dass diese oft korrekt sind.
@@ -6155,7 +6178,7 @@ de:
           <p>
           Hinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.
           </p>
-        licensing_desc_html: |
+        licensing_desc_html: |2
           Die Lizenzierung deines Inhalts verleiht das Recht, dass ihn andere ohne deine Zustimmung nutzen, solange die Lizenzbedingungen eingehalten werden. Darüber hinaus integriert %{site_name} deine Creative Commons-lizenzierten Inhalte in regelmäßig aktualisierte Archive, die für ausgewählte Partnerorganisationen erstellt wurden, die an unseren Daten interessiert sind. 
 
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 

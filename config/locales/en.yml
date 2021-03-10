@@ -221,6 +221,9 @@ en:
   about_muting: About Muting
   # Header for a section describing taxon names
   about_names: About Names
+  # Title for a section providing a text description of a place, @vow_or_con
+  # should work here
+  about_place: "About %{place}"
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
   about_these_licenses: About these licenses
@@ -284,7 +287,6 @@ en:
   # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     You can choose to share hidden coordinates for
-  about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
   account_creation: Account Creation
@@ -819,6 +821,7 @@ en:
   card: Card
   casual: casual
   casual_: Casual
+  casual_tooltip_html: '"Casual" observations are missing media, location, or a date, or do not meet the requirements of the "Research" or "Needs ID" quality grades for other reasons. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   categories: Categories
   cc_0_description: "This license releases your work into the public domain, so others can copy, modify, distribute and perform your work, even for commercial purposes, all without asking permission or giving you credit. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."
   cc_0_name: No Copyright (CC0)
@@ -1587,7 +1590,6 @@ en:
   editing_this: Editing %{elem}
   editing_x_in_y: "Editing %{x} in %{y}"
   editors: Editors
-  either: Either
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   eligible_for_research_grade: Eligible for Research Grade
   email: Email
@@ -1637,7 +1639,6 @@ en:
   everywhere: everywhere
   exact: Exact
   exact_date: Exact Date
-  exact_location: Exact_location
   exact_rank: Exact Rank
   except: except
   exclude_places: Exclude Places
@@ -1911,6 +1912,7 @@ en:
   help_translate!: Help Translate!
   helped_the_observer_make: helped the observer make their final ID (i.e. they were made before the final ID and they match it)
   here_are_3_examples: Here are 3 examples of well-formed data
+  here_are_our_top_suggestions: Here are our top suggestions
   here_are_our_top_species_suggestions: Here are our top species suggestions
   hex_color_eg: Hex color, e.g. 65644F
   hi: Hi,
@@ -2020,6 +2022,7 @@ en:
   inbox: Inbox
   include_places: Include Places
   include_projects: Include Projects
+  include_suggestions_not_seen_nearby: Include suggestions not seen nearby
   include_taxa: Include Taxa
   include_users: Include Users
   including: including
@@ -2576,6 +2579,7 @@ en:
   needs_id: needs ID
   needs_id_: Needs ID
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
+  needs_id_tooltip_html: '"Needs ID" observations have media, location, and a date, but still require community consensus on a precise identification. <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   needs_to_be_identified: Needs to be identified
   # @vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2735,6 +2739,8 @@ en:
   none_found: None found
   normal: normal
   not_completed: Not Completed
+  not_confident: We're not confident enough to make a recommendation.
+  not_confident_top_suggestions: We're not confident enough to make a recommendation, but here are our top suggestions
   not_covered_by_any_taxon_frameworks: Not covered by any taxon frameworks
   not_evaluated: not evaluated
   not_findig_what_you_want: Not finding what you want?
@@ -2774,6 +2780,16 @@ en:
   observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
+  # Attributes an observation to a user. %{user} can be a username or a full
+  # name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation by %{user}
+  # Attributes an observation to a user and specifies that copyright is retained
+  # (though a license may be applied). %{user} can be a username or a full name.
+  # @vow_or_con will work here and use the first letter of the name used. &copy;
+  # @is the HTML entity for the copyright symbol. If that doesn't make sense,
+  # @this could also be translated like "Observation by %{user} (copyright)" or
+  # @something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     The observation belongs to a project that requires this field. The
     observation must be removed from that project before this field value can be
@@ -2898,6 +2914,11 @@ en:
   observed_on: Observed on
   observer: Observer
   observers: Observers
+  observer_prefers_no_project_addition: |
+    Observer does not allow other people to add their observations to projects.
+  observer_prefers_addition_to_projects_joined: |
+    Observer only allows other people to add their observations to projects they
+    have joined.
   observer_short: Observer
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
@@ -2982,6 +3003,7 @@ en:
   only_staff_can_edit_standard_places: Only site staff can edit places in the standard hierarchy
   only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
+  only_view_nearby_suggestions: Only view nearby suggestions
   only_you: Only you
   open: open
   open_: Open
@@ -3879,6 +3901,7 @@ en:
   research_: Research
   research_grade: Research Grade
   research_grade_short_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
+  research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
   reset_filters_short: Reset
@@ -6361,7 +6384,7 @@ en:
           you change the project observation requirements, so they can reassess
           whether they want to continue trusting you given the new requirements.
           Your access to hidden coordinates will be revoked for one week after
-          changing the observation requirements so members have time to do this
+          changing the observation requirements so members have time to do this.
         trusted_project_means: |
           Trusting a project means that the project managers can add Project
           Assets and custom project attributes (e.g. banner HTML, CSS). Access
