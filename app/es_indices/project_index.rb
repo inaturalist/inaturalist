@@ -148,12 +148,32 @@ class Project < ActiveRecord::Base
       project_observation_rules.select { |r| r.operand_type == "Project" }.map( &:operand ),
       [{ project_observation_rules: :operand }, :place]
     )
-    total_obs_by_members = Observation.elastic_search(
-      filters: [
-        { term: { project_ids: id } },
-        { terms: { "user.id": project_user_ids } }
-      ]
-    ).total_entries rescue 0
+    # This will effect search rankings, so first we try to get a count of obs by
+    # people who have joined the project. Otherwise you could get a high-ranking
+    # project just by using an expansive set of obs requirements.
+    obs_count = begin
+      r = INatAPIService.observations(
+        project_id: id,
+        user_id: project_user_ids.join( "," ),
+        only_id: true,
+        per_page: 0
+      )
+      # However, querying a lot of user_ids might fail or timeout, so we fall
+      # back to just the count of obs, no user filter
+      unless r
+        r = INatAPIService.observations(
+          project_id: id,
+          only_id: true,
+          per_page: 0
+        )
+      end
+      # If for some reason that failed, set it to zero
+      r ? r.total_results : 0
+    rescue
+      # And if we get an exception for any reason, don't break indexing, just
+      # set the count to zero
+      0
+    end
     json = {
       id: id,
       title: title,
@@ -216,8 +236,9 @@ class Project < ActiveRecord::Base
       created_at: created_at,
       updated_at: updated_at,
       last_post_at: posts.published.last.try(:published_at),
-      observations_count: total_obs_by_members,
-      universal_search_rank: total_obs_by_members + ( site_featured_projects.size > 0 ? 1000 : 0 ),
+      observations_count: obs_count,
+      # Giving a bit of a search boost to featured projects
+      universal_search_rank: obs_count + ( site_featured_projects.size > 0 ? 1000 : 0 ),
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json),

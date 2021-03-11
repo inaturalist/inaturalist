@@ -1031,6 +1031,7 @@ class Observation < ActiveRecord::Base
       # Usually this would happen b/c of an invalid time zone being specified
       self.time_zone = time_zone_was || old_time_zone.name
     end
+    puts "Setting Chronic time_class to #{Time.zone}" if debug
     Chronic.time_class = Time.zone
     
     begin
@@ -1060,6 +1061,7 @@ class Observation < ActiveRecord::Base
       t = Chronic.parse( date_string, context: :past) if t > Time.now
       
       self.observed_on = t.to_date if t
+      puts "Set observed_on to #{observed_on}" if debug
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
@@ -1070,6 +1072,7 @@ class Observation < ActiveRecord::Base
         else
           self.time_observed_at = nil
         end
+        puts "Set time_observed_at to #{time_observed_at}" if debug
       end
     rescue RuntimeError, ArgumentError
       # ignore these, just don't set the date
