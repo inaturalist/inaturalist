@@ -95,7 +95,8 @@ describe Observation do
         # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
         ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"],
         ["2020/09/02 8:28 PM UTC", month: 9, day: 2, hour: 20, offset: "+00:00"],
-        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"]
+        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"],
+        ["2021-03-02T13:00:10.000-06:00", month: 3, day: 2, hour: 13, offset: "-06:00"]
       ].each do |date_string, opts|
         o = Observation.make!(:observed_on_string => date_string)
         expect(o.observed_on.day).to eq opts[:day]
