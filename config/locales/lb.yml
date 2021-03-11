@@ -115,6 +115,7 @@ lb:
   about_charts: Iwwer Diagrammer
   about_conservation_status: Iwert den Erhalungszoustand
   about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
+  about_license_options: Iwwert Lizenz-Optiounen
   about_licenses: Iwwer Lizenzen
   about_muting: Iwwer stomm schalten
   #Header for a section describing taxon names
@@ -265,6 +266,7 @@ lb:
     animals: Déieren
     arachnids: Spannendéieren
     birds: Vigel
+    fungi: Champignonen
     insects: Insekten
     mammals: Mamendéieren
     mollusks: Mollusken
@@ -390,6 +392,8 @@ lb:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
   attribution: Attributioun
+  authority_list:
+    cites: CITES
   authorize: Autoriséieren
   automatic_short: Automatesch
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
@@ -415,6 +419,7 @@ lb:
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
   back_to_your_projects: Zréck op Är Projeten
+  batch: Batch
   because_of: well
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
@@ -428,6 +433,7 @@ lb:
   blog_widget: Blog Widget
   blue: blo
   blue_butterfly_etc: "blo, Päiperlek, asw."
+  body: Kierper
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: fetten Text
   breadcrumbs: Broutgrimmelen
@@ -487,6 +493,7 @@ lb:
   clear_search: Sich zrécksetzen
   click_the_map: "<strong>Klickt op d'Kaart</strong> fir eng Plaz dobäizesetzen."
   close: Zoumaachen
+  code: Code
   colors: Faarwen
   columns: Kolonnen
   combine: Combinéieren
@@ -745,6 +752,7 @@ lb:
   filter_by_place: No der Plaz filteren
   filtering: Filteren
   filters: Filteren
+  find: Fannen
   find_a_place: Eng Plaz fannen
   find_photos: Fotoe fannen
   find_places: Plaze fannen
@@ -816,6 +824,7 @@ lb:
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
+  hi: Salut,
   hi_user: "Salut %{user}"
   hide_content: Inhalt verstoppen
   #Option to hide data series that show "No Annotation" data, i.e. records that
@@ -824,6 +833,7 @@ lb:
   high: Héich
   highest_rank: Héichste Rang
   history: Historique
+  home: Home
   id: ID
   ids_by_taxon: IDs no Taxon
   identify: Identifizéieren
@@ -837,6 +847,7 @@ lb:
   identifications: Bestemmungen
   identifications_by: "Idendifikatioun vum %{user}"
   identifiers: Bestëmmer
+  ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
   ignore: ignoréieren
   ignore_and_continue: Ignoréieren a virufueren
@@ -896,6 +907,7 @@ lb:
   last_observation: Lescht Observatioun
   last_seen: Fir d'lescht gesinn
   last_year: Lescht Joer
+  lat: Lat
   leaderboard: Féierungstabel
   leaderboard_most:
     observations: Meescht Observatioune banne(n) %{time}
@@ -947,6 +959,7 @@ lb:
   less: Manner
   license: Lizenz
   life: Liewen
+  link: Link
   link_your_google_account: Verbannt Äre Google Benotzerkont
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
   #Text inserted into a textarea when the link button is clicked but no text was selected
@@ -1006,10 +1019,12 @@ lb:
   log_in: Aloggen
   log_out: Ausloggen
   log_out_caps: AUSLOGGEN
+  log_scale_label: Log
   login_slash_username: Aloggen / Benotzernumm
   logo:
     transparent_png: transparente PNG
     none: keen
+  long: Lon
   lookup: Noschloen
   low: Niddreg
   lowest_rank: Ënneschte
@@ -1190,6 +1205,7 @@ lb:
   notifications: Notifikatioun
   number_of_observations: Zuel vun Observatiounen
   number_selected: "# erausgesicht"
+  obs: Obs
   obscured: Verschleiert
   observation: Observatioun
   observation_: Observatioun
@@ -1210,6 +1226,7 @@ lb:
   observation_date: Datum
   observation_date?: Datum?
   observation_field_type_text: Text
+  observation_field_type_dna: DNA
   observation_fields: Observatiounsfelder
   observation_fields_are_additional: D'Observatiounsfelder sinn zousätzlech Datenfelder déi bei Observatioune kenne bäigesat ginn.
   observation_rules: Observatiouns Regelen
@@ -1357,6 +1374,8 @@ lb:
       town: Stad
       Unknown: Onbekannt
       unknown: Onbekannt
+      Zone: Zon
+      zone: Zon
   places: Plazen
   places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
@@ -1392,6 +1411,7 @@ lb:
     egypt: Egypten
     estonia: Estland
     europe: Europa
+    fiji: Fidschi
     france: Frankräich
     gabon: Gabun
     gambia: Gambia
@@ -1399,17 +1419,20 @@ lb:
     germany: Däitschland
     greece: Griicheland
     greenland: Grönland
+    guam: Guam
     hong_kong: Hong-Kong
     hungary: Ungarn
     iceland: Island
     india: Indien
     indonesia: Indonesien
+    iran: Iran
     iraq: Irak
     ireland: Irland
     italy: Italien
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    laos: Laos
     latvia: Lettland
     lebanon: Libanon
     lithuania: Litauen
@@ -1417,6 +1440,7 @@ lb:
     macedonia: Mazedonien
     madagascar: Madagaskar
     maldives: Maldiven
+    mali: Mali
     mauritania: Mauretanien
     mexico: Mexiko
     micronesia: Mikronesien
@@ -1424,10 +1448,13 @@ lb:
     netherlands: Holland
     new_caledonia: Nei-Kaledonien
     new_zealand: Neiséiland
+    niue: Niue
     north_africa: Nordafrika
     north_america: Nordamerika
     norway: Norwegen
+    oman: Oman
     palestine: Palestina
+    peru: Peru
     philippines: Philippinnen
     poland: Polen
     republic_of_congo: Republik Kongo
@@ -1447,6 +1474,7 @@ lb:
     switzerland: Schwäiz
     syria: Syrien
     tanzania: Tansania
+    togo: Togo
     trinidad_and_tobago: Trinidad an Tobago
     tunisia: Tunesien
     turkey: Tierkei
@@ -2106,6 +2134,9 @@ lb:
     countdown_x_hours:
       one: Stonn
       other: Stonnen
+    countdown_x_minutes:
+      one: Min
+      other: Min
     countdown_x_seconds:
       one: Sek
       other: Sek
@@ -2226,6 +2257,7 @@ lb:
         status: Situatioun
         description: Beschreiwung
         place_id: Plaz
+        url: URL
       flag:
         reason: Grond
       message:
@@ -2242,6 +2274,7 @@ lb:
         name: Numm
       source:
         in_text: Am Text
+        url: URL
       taxon:
         name: Numm
       user:
@@ -2280,6 +2313,120 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
+  i18n:
+    inflections:
+      "@gender":
+        m: männlech
+        f: weiblech
+        "n": neuter
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
   wikimedia: Wikimedia
   wild: Wëll
   will_paginate:

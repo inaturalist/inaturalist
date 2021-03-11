@@ -88,6 +88,9 @@ zh-TW:
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_flag_for_x: "%{x} 已被標記"
   a_member_of_taxon_html: "%{taxon} 之一員"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A 到 Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -119,10 +122,14 @@ zh-TW:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 有關定居方式
+  about_license_options: 關於授權選項
   about_licenses: 關於授權
   about_muting: 關於禁言
   #Header for a section describing taxon names
   about_names: 關於名稱
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "關於%{place}"
   about_places: 關於地點
   about_the_cc_licenses: 關於創用CC授權
   about_these_licenses: 關於這些許可協議
@@ -131,6 +138,8 @@ zh-TW:
   about_this_project: 關於此專案
   about_trips_html: |
     <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
+  about_trusting_projects: 關於信任專案
+  about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -4916,6 +4925,8 @@ zh-TW:
         submission_models:
           any: 任一
           curators: 專案策展人
+        trust_help_desc: |-
+          如果您想存取遮蔽觀察記錄的隱藏座標，這個選項將會允許加入此專案的人信任專案的管理者來存取這些隱藏的座標。專案中的成員將可以把他們在此專案中任何隱藏觀察紀錄之座標，或僅授權被遮蔽的受脅物種之觀察紀錄座標授權給管理者。
         trusted_project_means: |
           託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的 Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
         you_can_preview: |
