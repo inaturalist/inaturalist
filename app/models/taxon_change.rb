@@ -262,7 +262,7 @@ class TaxonChange < ActiveRecord::Base
       Rails.logger.info "[INFO #{Time.now}] #{self}: updating counts for #{taxon}"
       Taxon.where(id: taxon.id).update_all(
         observations_count: Observation.of(taxon).count,
-        listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
+        listed_taxa_count: ListedTaxon.where(taxon_id: taxon).count)
       taxon.elastic_index!
     end
     Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"

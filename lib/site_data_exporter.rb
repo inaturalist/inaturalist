@@ -169,7 +169,6 @@ class SiteDataExporter
         creator_id,
         updater_id,
         observations_count,
-        listed_taxa_count,
         rank_level,
         unique_name,
         wikipedia_title,

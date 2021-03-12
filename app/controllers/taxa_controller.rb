@@ -304,7 +304,7 @@ class TaxaController < ApplicationController
 
   def edit
     @observations_exist = @taxon.observations_count > 0
-    @listed_taxa_exist = @taxon.listed_taxa_count > 0
+    @listed_taxa_exist = ListedTaxon.where( taxon_id: @taxon.id ).any?
     @identifications_exist = Identification.elastic_search(
       filters: [{ term: { "taxon.id" => @taxon.id } } ],
       size: 0
