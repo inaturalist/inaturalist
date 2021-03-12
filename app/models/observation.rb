@@ -1894,7 +1894,7 @@ class Observation < ActiveRecord::Base
         public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
-    Observation.elastic_index!( ids: observations.map(&:id) )
+    Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
   end
 
   def self.find_observations_of(taxon)
@@ -2352,7 +2352,7 @@ class Observation < ActiveRecord::Base
           Identification.update_categories_for_observation( o )
         end
       end
-      Observation.elastic_index!(ids: changed_ids)
+      Observation.elastic_index!(ids: changed_ids, wait_for_index_refresh: true)
       batch_start_id = observations.last.id
     end
   end
@@ -3262,7 +3262,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.index_observations_for_user(user_id)
-    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!( scope: Observation.by( user_id ), wait_for_index_refresh: true )
   end
 
 end

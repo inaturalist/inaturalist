@@ -230,19 +230,13 @@ class TaxonChange < ActiveRecord::Base
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
+        batch_users_to_notify = []
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}" if options[:debug]
         batch.each do |record|
           record_has_user = record.respond_to?(:user) && record.user
           if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-            action_attrs = {
-              resource: self,
-              notifier: self,
-              notification: "committed"
-            }
-            if action = UpdateAction.first_with_attributes(action_attrs)
-              action.append_subscribers( [record.user.id] )
-              notified_user_ids << record.user.id
-            end
+            batch_users_to_notify << record.user.id
+            notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
             auto_updatable_records << record
@@ -251,6 +245,16 @@ class TaxonChange < ActiveRecord::Base
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
           update_records_of_class( reflection.klass, records: auto_updatable_records )
+        end
+        if !batch_users_to_notify.empty?
+          action_attrs = {
+            resource: self,
+            notifier: self,
+            notification: "committed"
+          }
+          if action = UpdateAction.first_with_attributes(action_attrs)
+            action.append_subscribers( batch_users_to_notify.uniq )
+          end
         end
       end
     end

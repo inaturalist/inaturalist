@@ -197,7 +197,7 @@ class Place < ActiveRecord::Base
   MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
 
   MAX_PLACE_OBSERVATION_COUNT = 200000
-  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 50000
+  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 20000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -1072,11 +1072,11 @@ class Place < ActiveRecord::Base
     ids = Observation.joins(:observations_places).
       where("observations_places.place_id = ?", place_id).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids, sleep: 2)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
     # observations not touched above that are in this place
     ids = Observation.in_place(place_id).where("last_indexed_at < ?", start_time).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids, sleep: 2)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
   end
 
 end

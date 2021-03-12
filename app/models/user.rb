@@ -594,7 +594,7 @@ class User < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: Observation.by(self))
+    Observation.elastic_index!(scope: Observation.by(self), wait_for_index_refresh: true)
   end
 
   def merge(reject)
@@ -608,19 +608,29 @@ class User < ActiveRecord::Base
   def self.merge_cleanup( user_id )
     return unless user = User.find_by_id( user_id )
     start = Time.now
-    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!(
+      scope: Observation.by( user_id ),
+      wait_for_index_refresh: true
+    )
     Observation.elastic_index!(
       scope: Observation.joins( :identifications ).
         where( "identifications.user_id = ?", user_id ).
-        where( "observations.last_indexed_at < ?", start )
+        where( "observations.last_indexed_at < ?", start ),
+      wait_for_index_refresh: true
     )
-    Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
+    Identification.elastic_index!(
+      scope: Identification.where( user_id: user_id ),
+      wait_for_index_refresh: true
+    )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
     User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
-    Project.elastic_index!( ids: ProjectUser.where( user_id: user.id ).pluck(:project_id) )
+    Project.elastic_index!(
+      ids: ProjectUser.where( user_id: user.id ).pluck(:project_id),
+      wait_for_index_refresh: true
+    )
   end
 
   def set_locale
@@ -880,7 +890,10 @@ class User < ActiveRecord::Base
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
-      Identification.elastic_index!(scope: Identification.where(observation_id: obs_ids))
+      Identification.elastic_index!(
+        scope: Identification.where(observation_id: obs_ids),
+        wait_for_index_refresh: true
+      )
     end
 
     comments.find_each(batch_size: 100) do |c|
@@ -911,7 +924,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids )
+    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
 
     # delete the user
     destroy
@@ -1086,7 +1099,7 @@ class User < ActiveRecord::Base
         }
       ).results.results
       break if obs.blank?
-      Observation.elastic_index!( ids: obs.map(&:id) )
+      Observation.elastic_index!( ids: obs.map(&:id), wait_for_index_refresh: true )
     end
   end
 

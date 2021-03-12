@@ -150,7 +150,7 @@ class BulkObservationFile
         Project.update_observed_taxa_count(project.id)
       end
     end
-    Observation.elastic_index!(ids: observations.map(&:id))
+    Observation.elastic_index!(ids: observations.map(&:id), wait_for_index_refresh: true)
   end
 
   def new_observation(row)

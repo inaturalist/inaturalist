@@ -756,7 +756,6 @@ describe Observation do
       stamp = Time.now
       o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).to be_blank
     end
   
@@ -766,7 +765,6 @@ describe Observation do
       stamp = Time.now
       o.update_attributes(:latitude => o.latitude + 1)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
     end
 
@@ -801,7 +799,6 @@ describe Observation do
         o.update_attributes(:latitude => o.latitude + 1)
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size).to eq(1)
     end
   

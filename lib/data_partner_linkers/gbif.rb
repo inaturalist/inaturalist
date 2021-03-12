@@ -127,7 +127,7 @@ module DataPartnerLinkers
       obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
       obs_ids_to_index = obs_ids_to_index.compact.uniq
       obs_ids_to_index.in_groups_of( 500 ) do |group|
-        Observation.elastic_index!( ids: group.compact ) unless @opts[:debug]
+        Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
         num_indexed += group_size
         puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / obs_ids_to_index.size.to_f * 100 ).round( 2 )})"
       end
