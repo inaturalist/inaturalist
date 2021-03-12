@@ -168,7 +168,7 @@ class Project < ActiveRecord::Base
         )
       end
       # If for some reason that failed, set it to zero
-      r ? r.total_results : 0
+      r ? r.total_results.to_i : 0
     rescue
       # And if we get an exception for any reason, don't break indexing, just
       # set the count to zero
