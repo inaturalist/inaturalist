@@ -162,7 +162,7 @@ lv:
   a_default_taxon_name_will_automatically_created: |
     Noklusējuma taksona nosaukums izveidosies automātiski, vadoties pēc šī taksona zinātniskā nosaukuma.
     Kad saglabāsi jauno taksonu, varēsi pevienot arī citus nosaukumus (tautā pieņemtos, novecojušus zinātniskos nosaukums u.c.).
-  a_flag_for_x: "%{x} ziņojums"
+  a_flag_for_x: "%{x} karodziņš"
   a_member_of_taxon_html: "%{taxon} biedrs"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -567,21 +567,21 @@ lv:
     Vai tiešām vēlies noņemt karodziņu? Veicot šo darbību, izdzēsīsies problēmas apraksts un informācija par lietotāju, kas atrisināja ziņojumā aprakstīto problēmu.
   are_you_sure_want_delete_taxon: "Vai tiešām vēlies dzēst šo taksonu?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar tajā iekļautajiem augstāku pakāpju taksoniem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar tajā iekļautajiem zemāku pakāpju taksoniem?
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-    Vai tiešām vēlies dzēst šo taksonu, kurā ir iekļautas identifikācijas un augstāku pakāpju taksoni?
+    Vai tiešām vēlies dzēst šo taksonu, kurā ir iekļautas identifikācijas un zemāku pakāpju taksoni?
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, identifikācijām un novērojumiem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem, identifikācijām un novērojumiem?
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju un sarakstā iekļautajiem taksoniem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem un sarakstā iekļautajiem taksoniem?
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un identifikācijām?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un identifikācijām?
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem, identifikācijām un novērojumiem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem, identifikācijām un novērojumiem?
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un novērojumiem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem, sarakstā iekļautajiem taksoniem un novērojumiem?
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-    Vai tiešām vēlies dzēst šo taksonu kopā ar augstāku pakāpju taksoniem un novērojumiem?
+    Vai tiešām vēlies dzēst šo taksonu kopā ar zemāku pakāpju taksoniem un novērojumiem?
   are_you_sure_want_delete_taxon_identifications: |
     Vai tiešām vēlies dzēst šo taksonu kopā ar tā identifikācijām?
   are_you_sure_want_delete_taxon_identifications_observations: |
@@ -690,7 +690,7 @@ lv:
   based_on_the_evidence_can_id_be_improved: |
     Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
   batch: Vairākus reizē
-  batch_edit: Labot vairākus reizē
+  batch_edit: Rediģēt vairākus reizē
   batch_edit_taxa_for_x_html: "Labot vairākus %{x} taksonus reizē"
   batch_operations: Vairākas darbības reizē
   be_the_first_to_fave_this_observation: Esi pirmais, kas pievienos šo novērojumu izlasei!
@@ -739,7 +739,7 @@ lv:
   calendar: Kalendārs
   calendars_only_show_x_observations_at_time: Kalendāri vienlaicīgi uzrāda tikai %{x} novērojumus
   cancel: Atcelt
-  cant_edit_or_delete_hidden_content: Tev nav atļaujas labot vai dzēst saturu, ko noslēpuši lapas pārziņi
+  cant_edit_or_delete_hidden_content: Tev nav atļaujas rediģēt vai dzēst saturu, ko noslēpuši lapas pārziņi
   cant_flag_an_object_that_doesnt_exist: Neeksistējošam objektam nav iespējams pievienot karodziņu
   cant_merge_a_taxon_with_itself: Nav iespējams apvienot taksonu ar to pašu taksonu.
   captive: Nebrīvē
@@ -921,7 +921,7 @@ lv:
   conservation_status_geoprivacy_desc: |
     Visiem šī taksona novērojumiem šajā vietā pielietoti noklusējuma ģeoprivātuma iestatījumi
   contact_support: Sazināties ar atbalsta dienestu
-  contain_all_descendants?: Vai kontrollapā redzami visi taksoni, kam ir augstāka pakāpe par šo taksonu?
+  contain_all_descendants?: Vai kontrollapā redzami visi taksoni, kam ir zemāka pakāpe par šo taksonu?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Saturs
   content_author: Satura autors
@@ -1183,7 +1183,7 @@ lv:
   edit_multiple_locations: Rediģēt vairākas atrašanās vietas reizē
   edit_multiple_species: Rediģēt vairākas sugas reizē
   edit_notes: Rediģēt piezīmes
-  edit_observations: Labot novērojumus
+  edit_observations: Rediģēt novērojumus
   edit_photos: Apstrādāt fotogrāfijas
   edit_photos_for_observation_id: "Apstrādāt novērojuma %{obs_id} fotogrāfijas"
   edit_place: Rediģēt vietu
@@ -1200,7 +1200,7 @@ lv:
   edit_your_account_and_profile_html: "Rediģēt kontu un profilu"
   edit_your_default_settings: "Mainīt noklusējuma iestatījumus"
   edit_your_global_project_settings: Mainīt globālos projektu iestatījumus
-  edit_your_identification: Labot identifikāciju
+  edit_your_identification: Rediģēt identifikāciju
   edit_your_settings_for_this_project: Mainīt šī projekta iestatījumus
   edited_by_name_html: "Rediģējis lietotājs: %{name}"
   edited_by_name_some_rights_reserved_html: |
