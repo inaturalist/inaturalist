@@ -300,6 +300,10 @@ module ObservationSearch
         p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
       end
 
+      unless p[:without_taxon_id].blank?
+        p[:without_observations_taxon] = Taxon.find_by_id( p[:without_taxon_id].to_i )
+      end
+
       if p[:has]
         p[:has] = p[:has].split(',') if p[:has].is_a?(String)
         p[:id_please] = true if p[:has].include?('id_please')

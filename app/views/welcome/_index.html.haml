@@ -103,7 +103,7 @@
                   = t(:meet)
                   %i.icon-arrow-right
   #info.homesection
-    - if @site && @site != Site.default
+    - if @site && @site == Site.default
       .row
         #ji_left.col-xs-6
           .pull-right

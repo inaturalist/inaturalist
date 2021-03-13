@@ -654,6 +654,13 @@ class Observation < ActiveRecord::Base
       search_filters << { terms: {
         "taxon.ancestor_ids" => p[:observations_taxon_ids] } }
     end
+    if p[:without_observations_taxon]
+      inverse_filters << {
+        term: {
+          "taxon.ancestor_ids" => ElasticModel.id_or_object( p[:without_observations_taxon] )
+        }
+      }
+    end
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
     elsif p[:license] == "none"
