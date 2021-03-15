@@ -329,7 +329,7 @@ lv:
   add_tags_to_selected_taxa: Pievienot kategorijas izvēlētajiem taksoniem
   add_taxa: Pievienot taksonus
   add_taxon_batch_to: "Pievienot taksonu grupu sarakstam: %{list}"
-  add_taxon_range: Pievienot taksonu klasifikāciju
+  add_taxon_range: Pievienot taksonu apgabalu
   add_taxonomic_tags_to: "Pievienot taksonomijas tagus izvēlētajām Flickr fotogrāfijām &raquo;"
   add_to_a_scheme: Pievienot plānam
   add_to_a_project: Pievienot projektam
@@ -598,7 +598,7 @@ lv:
     Vai tiešām vēlies dzēst šo taksonu kopā ar tā novērojumiem?
   are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksona aprakstu?
   are_you_sure_want_delete_this_name: Vai tiešām vēlies dzēst šo nosaukumu?
-  are_you_sure_want_delete_this_range: Vai tiešām vēlies dzēst šo klasifikāciju?
+  are_you_sure_want_delete_this_range: Vai tiešām vēlies dzēst šo izplatības apgabalu?
   are_you_sure_you_want_to_commit_this_change: Vai tiešām vēlies veikt šīs izmaiņas? Šī darbība ir neatgriezeniska.
   are_you_sure_you_want_to_delete_this: Vai tiešām vēlies dzēst šo?
   are_you_sure_you_want_to_delete_this_assessment?: Vai tiešām vēlies dzēst novērtējumu?
@@ -1160,7 +1160,7 @@ lv:
     Nospied uz zemāk redzamās saites, lai atbloķētu kontu.
   devise_unlock_instructions_unlock: Atbloķēt kontu
   discoveries: Atklājumi
-  did_not_send_invitations_because: Uzaicinājumi netika nosūtīti, jo...
+  did_not_send_invitations_because: Ielūgumi netika nosūtīti, jo...
   did_you_mean: 'Vai domāji šo?'
   did_you_photos_flickr?: Vai publicēji fotogrāfijas Flickr vietnē?
   disable: Atspējot
@@ -1195,7 +1195,7 @@ lv:
   edit_taxon: Rediģēt taksonu
   edit_taxon_framework: Rediģēt taksona iedalījumu
   edit_taxon_link: Rediģēt taksona saiti
-  edit_taxon_range: Rediģēt taksonu klasifikāciju
+  edit_taxon_range: Rediģēt taksonu izplatības apgabalus
   edit_the_observation: Labot novērojumu
   edit_your_account_and_profile_html: "Rediģēt kontu un profilu"
   edit_your_default_settings: "Mainīt noklusējuma iestatījumus"
@@ -1220,7 +1220,7 @@ lv:
   editing_taxon: Rediģē %{taxon}
   editing_taxon_link: Rediģē taksona saiti
   editing_taxon_name_for_taxon_html: Rediģē nosaukumu "%{name}" taksonam %{taxon}
-  editing_taxon_range: Rediģē taksonu klasifikāciju
+  editing_taxon_range: Rediģē taksonu izplatības apgabalu...
   editing_this: Rediģē %{elem}
   editing_x_in_y: "Rediģē %{x} iekš %{y}"
   editors: Redaktori
@@ -1358,6 +1358,7 @@ lv:
   source_list:
     catalogue_of_life_2012_annual_checklist: 'Dzīvības katalogs: 2012. gada ikgadējā kontrollapa'
     catalogue_of_life_2013_annual_checklist: 'Dzīvības katalogs: 2013. gada ikgadējā kontrollapa'
+  taxon_range_created_notice: Taksona izplatības apgabals veiksmīgi saglabāts. Paies pāris minūtes līdz tas būs redzams kartēs.
   date:
     abbr_month_names:
       - 
