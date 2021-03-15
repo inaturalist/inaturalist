@@ -94,9 +94,10 @@ describe ObservationsExportFlowTask do
     end
 
     it "should allow JSON output" do
+      o = Observation.make!
       ft = ObservationsExportFlowTask.make
       ft.options = {:format => "json"}
-      ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
       ft.save!
       ft.run
       output = ft.outputs.first
