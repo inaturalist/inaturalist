@@ -4,7 +4,16 @@ class ProjectObservationsController < ApplicationController
   before_filter :load_record, only: [:update, :destroy]
   
   def create
-    @project_observation = ProjectObservation.new( project_observation_params_for_create )
+    begin
+      @project_observation = ProjectObservation.new( project_observation_params_for_create )
+    rescue ActionController::ParameterMissing => e
+      respond_to do |format|
+        format.json do
+          render status: :unprocessable_entity, json: { errors: [e.message] }
+        end
+      end
+      return
+    end
     set_curator_coordinate_access
     existing = ProjectObservation.
       where(
@@ -36,7 +45,12 @@ class ProjectObservationsController < ApplicationController
   def update
     respond_to do |format|
       format.json do
-        @project_observation.assign_attributes( project_observation_params_for_update )
+        begin
+          @project_observation.assign_attributes( project_observation_params_for_update )
+        rescue ActionController::ParameterMissing => e
+          render status: :unprocessable_entity, json: { errors: [e.message] }
+          return
+        end
         set_curator_coordinate_access
         if @project_observation.save
           @project_observation.observation.wait_for_index_refresh = true
