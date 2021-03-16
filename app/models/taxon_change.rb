@@ -29,7 +29,11 @@ class TaxonChange < ActiveRecord::Base
     notification: "mention",
     if: lambda {|u| u.prefers_receive_mentions? }
 
-  TAXON_JOINS = [
+  TAXON_CHANGE_TAXA_JOINS = [
+    "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id"
+  ]
+
+  TAXON_JOINS = TAXON_CHANGE_TAXA_JOINS + [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
     "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id",
     "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id"
@@ -59,9 +63,15 @@ class TaxonChange < ActiveRecord::Base
       "#{taxon.ancestry}/#{taxon.id}/%", "#{taxon.ancestry}/#{taxon.id}/%"
     )
   }
+
   scope :taxon, lambda{|taxon|
     joins(TAXON_JOINS).
     where("t1.id = ? OR t2.id = ?", taxon, taxon)
+  }
+
+  scope :with_taxon, lambda{|taxon|
+    joins(TAXON_CHANGE_TAXA_JOINS).
+    where("taxon_changes.taxon_id = ? OR tct.taxon_id = ?", taxon, taxon)
   }
   
   scope :input_taxon, lambda{|taxon|
