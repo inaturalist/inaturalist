@@ -127,8 +127,9 @@ const App = ( {
         <FlashMessage
           key="testing_apiv2"
           title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
           type="warning"
+          html
         />
       ) }
       <FlashMessagesContainer
@@ -343,7 +344,7 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
-      { config && config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
+      { config && config.currentUser && config.currentUser.roles.indexOf( "curator" ) >= 0 && (
         <TestGroupToggle
           group="apiv2"
           joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
