@@ -477,7 +477,7 @@ class ProjectsController < ApplicationController
   def by_login
     respond_to do |format|
       format.html do
-        @started = @selected_user.projects.order( "id desc" ).
+        @started = @selected_user.projects.
           paginate( page: params[:started_page], per_page: 7 ).order( "lower( projects.title )" )
         @project_users = @selected_user.project_users.joins( :project, :user ).
           paginate( page: params[:main_page], per_page: 20 ).order( "lower( projects.title )" )

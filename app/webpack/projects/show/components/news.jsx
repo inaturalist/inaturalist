@@ -19,7 +19,7 @@ const News = ( { project } ) => {
       </h2>
       { noNews ? (
         <div className="empty-text">
-          { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
+          { I18n.t( "no_journal_posts_yet" ) }
         </div>
       ) : (
         <div>
@@ -34,6 +34,7 @@ const News = ( { project } ) => {
                       text={post.body}
                       truncate={120}
                       moreToggle={false}
+                      stripTags
                       stripWhitespace
                     />
                   </div>

@@ -131,7 +131,7 @@
                     %i.fa.fa-map-marker
               .media-body
                 %h4.media-heading
-                  = highlight link_to( t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record ), matched_terms || @q
+                  = highlight link_to( record.translated_name( I18n.locale, default: record.display_name ), record ), matched_terms || @q
                   %span.text-muted= "|"
                   = link_to t(:view_observations), observations_path( place_id: record.id ), class: "view-obs-link"
                 - if record.place_type_name.blank?

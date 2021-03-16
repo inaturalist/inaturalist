@@ -92,7 +92,19 @@ class Projects extends React.Component {
     }
     let addProjectInput;
     if ( loggedIn ) {
-      addProjectInput = (
+      let projectAdditionNotice;
+      if ( config.currentUser.id !== observation.user.id && observation.user.preferences ) {
+        if ( observation.user.preferences.prefers_project_addition_by === "none" ) {
+          addProjectInput = (
+            <p className="text-muted">{ I18n.t( "observer_prefers_no_project_addition" ) }</p>
+          );
+        } else if ( observation.user.preferences.prefers_project_addition_by === "joined" ) {
+          projectAdditionNotice = (
+            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_projects_joined" ) }</p>
+          );
+        }
+      }
+      addProjectInput = addProjectInput || (
         <form onSubmit={Projects.chooseFirstProject}>
           <div className="form-group">
             <input
@@ -101,6 +113,7 @@ class Projects extends React.Component {
               placeholder={I18n.t( "add_to_a_project" )}
             />
           </div>
+          { projectAdditionNotice }
         </form>
       );
     }

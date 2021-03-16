@@ -167,6 +167,9 @@ fr:
   about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "À propos @vow_or_con{vow:d'|de }%{place}"
   about_places: À propos des lieux
   about_the_cc_licenses: À propos des licences Creative Commons
   about_these_licenses: À propos de ces licences
@@ -194,7 +197,6 @@ fr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Vous pouvez choisir de partager vos coordonnées masquées pour :
-  about_x: "À propos de %{x}"
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -541,7 +543,7 @@ fr:
   are_you_sure_leave_this_project: Êtes-vous sûr de vouloir quitter ce projet ?
   are_you_sure_merge_these_places: Êtes-vous certain de vouloir fusionner ces lieux ? Cela ne peut pas être annulé.
   are_you_sure_remove_photo: "Êtes-vous sûr de vouloir supprimer cette photo ?"
-  are_you_sure_remove_relationship: Êtes-vous sûr de vouloir supprimer ce lien ? Ceci empêchera cette personne de vous suivre et supprimera l’accès à vos coordonnées masquées si vous en aviez autorisé l’accès.
+  are_you_sure_remove_relationship: Voulez-vous vraiment supprimer cette relation? Vous ne suivrez plus cette personne et elle n'aura plus accès à vos coordonnées masquées si vous lui aviez donné cet accès.
   are_you_sure_remove_taxon_from_list: "Êtes-vous sûr de vouloir enlever ce taxon de la liste ?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Êtes-vous sûr ? Cela rechargera la page et vous risquez de perdre certaines de vos modifications.
@@ -627,7 +629,7 @@ fr:
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
     natureserve: NatureServe
-    cites: CITATIONS
+    cites: CITES
   authorize: Autoriser
   authorize_permissions_from_provider: "Autoriser les permissions de %{provider}"
   automatic_short: Auto
@@ -727,8 +729,9 @@ fr:
   captive_cultivated: En captivité / cultivé
   captive_observations: Observation captive
   card: Carte
-  casual: occasionnel
-  casual_: Occasionnel
+  casual: informel
+  casual_: Informel
+  casual_tooltip_html: 'Les observations « informelles » ne sont pas documentées, sont sans lieu ou sans date, ou ne satisfont pas aux exigences des catégories « recherche » ou « besoin ID » pour d''autres raisons. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   categories: Catégories
   cc_0_description: "Cette licence place votre travail dans le domaine public, de telle sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder, même pour des raisons commerciales, le tout sans demander de permission ou vous mentionner. C’est la licence la plus pratique parmi celles qui nous sont offertes. Recommandée pour une diffusion maximale et l’utilisation de données sous licence."
   cc_0_name: Pas de droit d’auteur (CC0)
@@ -1047,9 +1050,9 @@ fr:
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   created: Date de création
-  created_by: Créé@{f:e|} par
+  created_by: Créé par
   created_by_user_on_date: Créé par %{user} le %{date}
-  created_on: Créé@{f:e|} le
+  created_on: Créé le
   creating_your_account: "Création de votre compte…"
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
@@ -1356,7 +1359,7 @@ fr:
   disconnect_provider: "Déconnecter %{provider}"
   display: Affichage
   display_link_to_checklist: Afficher le lien vers la liste des projets depuis la page du projet
-  display_monthly_supporter_badge: Afficher le badge de Soutient Mensuel sur le profil
+  display_monthly_supporter_badge: Afficher le badge Soutien mensuel sur le profil
   display_name: Nom affiché
   display_name_description: Ceci est le nom qui sera affiché sur votre profil et sur les mentions au droit d'auteur
   distance_traveled_value: "Distance parcourue : %{distance} m"
@@ -1460,7 +1463,6 @@ fr:
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
-  either: Soit
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
@@ -1510,7 +1512,6 @@ fr:
   everywhere: partout
   exact: Exacte
   exact_date: Date exacte
-  exact_location: Emplacement exact
   exact_rank: Rang exact
   except: exception
   exclude_places: Exclure des lieux
@@ -1753,7 +1754,7 @@ fr:
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
-  has_id_supported_by_two_or_more: A un ID établi par au moins deux personnes
+  has_id_supported_by_two_or_more: Identification établie par au moins deux personnes
   has_one_or_more_faves: A un ou plusieurs favoris
   has_photo: A une photo
   has_photos: A des photos
@@ -1780,6 +1781,7 @@ fr:
   help_translate!: Aidez-nous à traduire !
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
+  here_are_our_top_suggestions: Voici nos meilleures suggestions.
   here_are_our_top_species_suggestions: Voici les suggestions concernant nos espèces favorites
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
@@ -1819,7 +1821,7 @@ fr:
       improving: |
         Première suggestion de ce taxon auquel la communauté adhère. Ceci aide à améliorer le taxon de la communauté.
       maverick: |
-        Le taxon n’est pas un descendant ou un ancêtre du taxon de la communauté, c'est à dire que la communauté n’est
+        Le taxon n’est pas un descendant ni un parent du taxon de la communauté, c'est à dire que la communauté n’est
         pas d’accord avec ce taxon.
   id_withdrawn: ID supprimé
   ids_by_taxon: IDs par taxon
@@ -1881,6 +1883,7 @@ fr:
   inbox: Boîte de réception
   include_places: Ajouter des lieux
   include_projects: Ajouter des projets
+  include_suggestions_not_seen_nearby: Inclure les suggestions de taxons qui n'ont pas été observés à proximité
   include_taxa: Ajouter des taxons
   include_users: Ajouter des utilisateurs
   including: y compris
@@ -2334,7 +2337,7 @@ fr:
       #Short text representing %d days in the past
       dd: "%d j"
       #Short text representing 1 month in the past
-      M: "1min"
+      M: "1 mois"
       #Short text representing %d months in the past
       MM: "%d mois"
       #Short text representing 1 year in the past
@@ -2426,6 +2429,7 @@ fr:
   needs_id: besoin ID
   needs_id_: Nécessite une ID
   needs_id_expandable_html: "<span class='full'>Besoin </span>ID"
+  needs_id_tooltip_html: 'Les observations « besoin ID » sont documentées et ont un lieu et une date, mais n''ont pas encore d''identification précise faisant l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   needs_to_be_identified: Doit être identifié
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2578,6 +2582,8 @@ fr:
   none_found: Aucun trouvé
   normal: normal
   not_completed: Incomplet
+  not_confident: Notre certitude n'est pas suffisante pour faire une recommandation.
+  not_confident_top_suggestions: Notre niveau de certitude n'est pas suffisant pour faire une recommandation, mais voici nos meilleures suggestions.
   not_covered_by_any_taxon_frameworks: Couvert par aucun cadre de taxon
   not_evaluated: non évalué
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
@@ -2614,6 +2620,16 @@ fr:
   observation_added: Observation ajoutée.
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation par %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     L'observation appartient à un projet dans lequel ce champ est obligatoire. Elle
     doit être retirée de ce projet pour que la valeur de ce champ puisse être
@@ -2730,6 +2746,10 @@ fr:
   observed_on: Observé le
   observer: Observateur
   observers: Observateurs
+  observer_prefers_no_project_addition: |
+    La personne qui a publié cette observation ne permet pas à d'autres personnes d'ajouter ses observations à des projets.
+  observer_prefers_addition_to_projects_joined: |
+    La personne qui a publié cette observation n'autorise d'autres personnes à ajouter ses observations qu'aux projets auxquels elle participe.
   observer_short: Obs.
   occurence_status_describes_how: 'L’état de la présence décrit le degré de rareté d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus d’information sur la terminologie</a>.'
   occurrence_status: État de la présence
@@ -2814,6 +2834,7 @@ fr:
   only_staff_can_edit_standard_places: Seule l’équipe du site peut modifier des endroits dans la hiérarchie standard
   only_the_owner_of_this_list_can_do_that: Seul le propriétaire de cette liste peut exécuter cette action. Soyez gentil.
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet peut supprimer ce projet.
+  only_view_nearby_suggestions: Voir uniquement les suggestions à proximité
   only_you: Seulement vous
   open: Ouvert
   open_: Ouverte
@@ -3389,6 +3410,7 @@ fr:
   please_add_this_observation_to: Veuillez ajouter cette observation à
   please_add_this_to_x_html: "Veuillez l’ajouter à %{x}"
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Title to a section warning a user to exercise caution
+  please_be_careful!: S'il vous plaît, soyez prudents !
   please_complete_the_following_to_add_project: |
     Veuillez compléter ce qui suit pour ajouter cette observation au projet :
   please_confirm_your_inat_username: "Veuillez confirmer votre nom d’utilisateur sur %{site_name}"
@@ -3451,6 +3473,9 @@ fr:
     membres.
   project_coordinate_access_disabled_until_datetime: |
     Vous ne pourrez pas avoir accès aux coordonnées masquées avant le %{datetime}
+  project_coordinate_access_warning: |
+    L'accès aux coordonnées est important pour les scientifiques, mais des braconniers peuvent en faire un mauvais usage aussi. Assurez-vous de faire confiance à tous les responsables du projet avant de faire confiance à ce projet
+    .
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
   project_curator_id: ID du responsable de l’organisation du projet
@@ -3683,6 +3708,7 @@ fr:
   research_: Recherche
   research_grade: Niveau de recherche
   research_grade_short_html: "C<span class='full'>alibre </span> R<span class='full'>echerche</span>"
+  research_grade_tooltip_html: 'Les observations « niveau de recherche » sont documentées et ont un lieu, une date ainsi qu''une identification précise (en général au rang de l''espèce) qui fait l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   research_grade_observations_have: 'Les observations de « calibre recherche » ont une date, une photo, des coordonnées et une identification reconnue par la communauté. Cliquer dessus pour voir l’évaluation de la garantie des données.'
   research_grade_qualification: Qualification de niveau recherche
   reset_filters_short: Réinitialiser
@@ -4110,7 +4136,7 @@ fr:
     other: "%{taxon} est un domaine de la vie avec %{count} observations"
   taxon_is_threatened_coordinates_hidden: Le taxon est menacé, les coordonnées sont masquées par défaut
   taxon_is_threatened_coordinates_hidden_desc: |
-    Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
+    Un des taxons suggéré dans les identifications, ou un des taxons qui contiennent un de ces taxons, est rare ou menacé, donc l’emplacement de cette observation a été masqué.
   taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont été masquées par défaut
   taxon_is_threatened_coordinates_obscured_desc: |
     Un des taxons suggérés dans les identifications, ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé, donc l’emplacement de cette observation a été dissimulé.
@@ -4208,7 +4234,7 @@ fr:
   the_admin_is_the_person_who: |
     L’administrateur est la personne qui a créé le projet. Il peut faire tout ce que les gestionnaires et les responsables de l’organisation peuvent faire, ainsi que supprimer le projet.
   the_below_items_are_needed_to_achieve: |
-    Les éléments ci-dessous doivent atteindre le <span className="bold">Niveau recherche :</span>
+    Les éléments ci-dessous sont nécessaires pour atteindre le <span className="bold">niveau de recherche :</span>
   the_community_id_requires_at_least_two_identifications: L’ID de la communauté nécessite au moins deux identifications.
   the_community_must_feel_that: |
     La communauté doit sentir que le taxon de communauté est le meilleur possible, d’après les preuves
@@ -4366,9 +4392,9 @@ fr:
   trust: Faire confiance
   trusted: Fiable
   trusted_project?: Projet digne de confiance ?
-  trust_this_person_with_your_private_coordinates: Faire confiance à cette personne avec vos coordonnées masquées
-  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées?
-  trust_with_private_coordinates: De confiance, avec coordonnées masquées
+  trust_this_person_with_your_private_coordinates: Donner à cette personne l'accès à vos coordonnées masquées
+  trust_this_project_with_your_private_coordinates?: Donner à ce projet l'accès à vos coordonnées masquées ?
+  trust_with_private_coordinates: Faire confiance et donner l'accès aux coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire sur cette page.
   twitter: Twitter
   two_thirds: deux tiers
@@ -4539,7 +4565,7 @@ fr:
   user_thinks_yours_is: "%{user} %{noun} que votre observation %{observation} est"
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
-    L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives aux observations associées.
+    L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives à ses observations associées.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_description: Ce sera le nom d'utilisateur que vous utiliserez pour vous identifier et que les autres verrons pour vous tagger sur iNaturalist
@@ -4569,6 +4595,7 @@ fr:
   view_check_list_page: Afficher la page de la liste de contrôle
   view_contributions: Afficher les contributions
   view_details: Afficher les détails
+  view_dynamic_lifelist: Voir la liste dynamique des êtres vivants
   view_field_options: Afficher les options du champ
   view_flag: Afficher le signalement
   view_flags: Afficher les signalements
@@ -4688,7 +4715,7 @@ fr:
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
   who_can_see_the_coordinates_projects: Responsables des projets suivants
-  who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance, avec leur coordonnées masquées
+  who_can_see_the_coordinates_trusted: Personnes à qui l’observateur a donné l'accès à ses coordonnées masquées
   who_helped_user_the_most: "Qui a le plus aidé %{user}"
   who_user_helped_the_most: "Qui %{user} a le plus aidé"
   why_the_coordinates_are_obscured: Pourquoi les coordonnées sont masquées
@@ -5471,55 +5498,51 @@ fr:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permettre aux responsables de projet de voir les coordonnées masquées de cette observation.
-        ancestor_disagreements_desc: "Nombre de taxons identifiés faisant partie des ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense que c'est dans le genre mais je ne suis pas d'accord qu'il s'agisse de cette espèce »)"
+        ancestor_disagreements_desc: "Nombre de taxons identifiés faisant partie des parents d’un taxon, mais qui sont en désaccord avec ce taxon (par exemple, « Je pense qu'il s'agit d'une autre espèce du même genre. »)"
         community_taxon_desc_html: |
           <p class="ui">
           Le taxon de la communauté (ou l’identification de la communauté) représente
           le taxon que la communauté d’%{site_name} estime être représenté dans une
-          observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le
+          observation. Si vous souhaitez connaître la façon dont nous choisissons le
           taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En
           général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3
-          les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire
+          des personnes ayant fait une identification sont d’accord</strong>. Quelquefois, cela veut dire
           qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de
-          taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que
-          c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui
+          taxons qui s’opposent (par ex. si vous pensez que c’est une couleuvre tachetée et si je pense que
+          c’est un serpent à sonnettes, iNat choisit le sous-ordre des Serpents qui
           contient tous les serpents). L’algorithme favorise aussi légèrement les
-          taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent
+          taxons en conflit, parce que nous avons remarqué que les personnes en désaccord ont souvent
           raison.
           </p>
           <p class="ui">
-          Une observation de niveau recherche doit avoir (entre autres critères) un
+          Une observation de niveau de recherche doit avoir (entre autres critères) un
           taxon de communauté. Si une observation a
           seulement une identification, elle n’aura pas de taxon de communauté. Toutes
-          les observations avec au moins une identification  auront aussi un
-          taxon d’observation. Le taxon d’observation est le taxon que nous utilisons en
-          partageant les observations avec des partenaires de données, en liant des observations du
-          même taxon sur le site, en mettant à jour votre liste de vie, etc. Dans la plupart
+          les observations avec au moins une identification auront aussi un
+          taxon d’observation. Le taxon d’observation est le taxon que nous utilisons pour partager les observations avec des partenaires de données, en liant des observations du
+          même taxon sur le site, en mettant à jour votre liste d'êtres vivants, etc. Dans la plupart
           des cas, le taxon d’observation sera finalement positionné au taxon de
-          la communauté, mais parfois ils différeront, surtout avant que la communauté
-          se soit mis d’accord sur une identification. Par exemple, si vous pensez
+          la communauté, mais parfois ils différeront, surtout tant que la communauté
+          ne s'est pas mise d’accord sur une identification. Par exemple, si vous pensez
           que c’est un serpent (sous-ordre Serpentes) et que je pense que c’est un serpent-roi (genre
-          <i>Lampropeltis</i>), le taxon d’observation sera serpent-roi (soutenu
-          uniquement par mon identification), mais le taxon de communauté sera mis à
-          serpentes (soutenu par au moins deux identifications). Si, pour
+          <i>Lampropeltis</i>), le taxon d’observation sera serpent-roi (uniquement sur la base de mon identification), mais le taxon de communauté sera Serpentes (sur la base d'au moins deux identifications). Si, pour
           certaines raisons, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez
-          la rejeter pour vos propres observations, ce qui veut dire que le taxon d’observation
-          ne sera jamais fixé au taxon de communauté (plutôt à votre propre ID).
-          Cela veut aussi dire que votre observation ne pourra atteindre le niveau recherche que quand la communauté
+          le rejeter pour vos propres observations, ce qui veut dire que le taxon d’observation
+          ne sera jamais fixé au taxon de communauté (il restera votre propre ID).
+          Cela veut aussi dire que votre observation ne pourra atteindre la qualité recherche que quand la communauté
           sera d’accord avec <em>vous</em>. Si vous n’appréciez pas l’idée globale de
           taxons de communauté, vous pouvez les désactiver entièrement en
           <a href="/users/edit" target="_blank">modifiant vos paramètres</a>.
           </p>
           <p class="ui">
           <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent
-          (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon
-          le rapport entre les 'accords' — le nombre d’identifications cumulées pour
-          ce taxon sur la somme des identifications cumulées, les 'désaccords' — le nombre
+          (par ex. le genre <i>Homo</i> contient <i>Homo sapiens</i>), chaque taxon obtient un score calculé comme étant le rapport entre les 'accords' — le nombre d’identifications cumulées pour
+          ce taxon et la somme des identifications cumulées, des 'désaccords' — le nombre
           d’identifications complètement différentes (c.-à-d. identifications
-          des taxons qui ne contiennent pas le taxon évalué), et les 'désaccords d’ancêtre' —
-          le nombre d’identifications plus conservatrices qui sont en désaccord avec le taxon plus fin. Pour les
-          taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2
-          identifications, choisissez le taxon du rang le plus bas.
+          des taxons qui ne contiennent pas le taxon évalué), et des 'désaccords au rang parent' —
+          le nombre d’identifications à un rang supérieur qui sont en désaccord avec le taxon plus fin. Pour les
+          taxons identifiés qui ont un score supérieur à 2/3 et au moins 2
+          identifications, on choisit le taxon du rang le plus bas.
           </p>
         cumulative_count_desc: 'Nombre d’identifications pour un taxon distinct et tous ses descendants'
         curator_coordinate_access_disabled_desc_html: |
@@ -5529,15 +5552,14 @@ fr:
           vous devez supprimer l’observation du projet.
         data_quality_assessment_desc_html: |
           L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :
-        disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon"
+        disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
           Certaines de ces photos ont été signalées comme étant inappropriée ou
           une violation du droit d’auteur. Pour obtenir les détails, consultez %{links}
         join_project_desc_html: |
-          Rejoindre le projet donnera aux responsables du projet la
-          capacité de voir les coordonnées cachées de cette ou de toute
-          autre observation dans le projet et implique que vous acceptez les
+          Rejoindre le projet permettra aux responsables du projet de voir les coordonnées masquées de cette observation ou de toute
+          autre observation incluse dans le projet et implique que vous acceptez les
           <a href="%{url}" target="_blank">conditions</a> du projet.
         quality_assessment_help_html: |
           <p>
@@ -5604,7 +5626,7 @@ fr:
           contient cette observation, et 80% ou plus de ces observations
           qui ont été marquées comme non sauvages/naturalisées.
           </li></ul>
-        score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords sur les ancêtres)"
+        score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
           Cette observation a été marquée comme pourriel et n’est plus
           visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
@@ -5651,8 +5673,8 @@ fr:
       collection_project_changed_for_trusting_member:
         #Followed by link to a page showing project managers
         admins_may_have_access_to_more_observations_html: |-
-          Puisque vous avez mis ce projet en "projet de confiance" en peremttant l'accès aux coordonnées de<a
-          href="%{obs_url}">certaines de vos observations</a>, les administrateurs ont désormais accès à plus de coordonnées cachées que lorsque vous avez mis ce projet "projet de confiance". Vous devriez voir la liste des administrateurs du projet et les différents règles du projet pour être sûr que vous êtes toujours en accord.
+          Puisque vous donné à ce projet l'accès aux coordonnées masquées de <a
+          href="%{obs_url}">certaines de vos observations</a>, les administrateurs ont désormais accès à plus de coordonnées masquées que lorsque vous avez choisi de faire confiance au projet. Vous devriez consulter la liste des administrateurs et les critères du projet pour vous assurer que vous ne souhaitez pas revenir sur votre décision.
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           Un ou des paramètres du projet qui suit à été récemment changé :
@@ -5791,7 +5813,7 @@ fr:
           Nous avons inclus les liens vers les photos concernées ci-dessous.
       user_parent_confirmation:
         subject: Le compte iNaturalist de votre enfant a été activé
-        content_html: |
+        content_html: |2
           <p>
             Merci d'avoir créé un compte iNaturalist pour votre enfant! Le
             compte a été activé. Voici les détails que vous avez saisis et que 
@@ -6089,7 +6111,7 @@ fr:
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements de type bioblitz)
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         trusting_members_will_be_notified: |
-          Vous avez changé un ou des paramètres du projet. Ceci va notifier tous les membres du projet qui l'ont mis en projet de confiance, pour qu'ils puissent choisir si ils vont continuer de dévoiler leurs coordonnées cachées après ce changement.
+          Vous avez changé les critères du projet. Ceci va notifier tous les membres qui ont donné au projet l'accès aux coordonnées masquées de leurs observations pour qu'ils puissent décider s'ils veulent continuer à faire confiance au projet après ce changement.
         umbrella_project_features: "Fonctionnalités du projet cadre:"
         unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |
@@ -6700,7 +6722,7 @@ fr:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
-        inaturalist_network_affiliation_desc_html: |
+        inaturalist_network_affiliation_desc_html: |2
           <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web au niveau local liés à la communauté mondiale d'iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation du site et la protection de la biodiversité à l'échelle locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées à la vue du public afin de protéger les espèces menacées. </p> 
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse mail (seulement pour communiquer avec vous à propos des activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
@@ -6790,7 +6812,7 @@ fr:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Les informations que nous pourrions partager avec ces tiers incluent
-        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |2
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites web et services ; notez que vous avons activé
            l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
           <a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
@@ -6846,7 +6868,7 @@ fr:
           apparaîtront à cet endroit.
     user_parents:
       confirm:
-        thanks_donor_html: |
+        thanks_donor_html: |2
           <p>
             Merci d'être un donateur iNaturalist ! Nous avons pu utiliser votre don
             existant pour confirmer votre identité, et n'avons besoin d'aucune 

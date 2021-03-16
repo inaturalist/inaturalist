@@ -7,7 +7,7 @@ class ListedTaxon < ActiveRecord::Base
   has_subscribers
   
   belongs_to :list
-  belongs_to :taxon, :counter_cache => true
+  belongs_to :taxon
   belongs_to :first_observation,
              :class_name => 'Observation', 
              :foreign_key => 'first_observation_id'
@@ -553,7 +553,7 @@ class ListedTaxon < ActiveRecord::Base
       )
     end
   end
-  
+
   # Retrieve the first and last observations and the month counts. Note that
   # at present first_observation has a different meaning depending on the
   # list: for check lists it means the first observation added to iNat (i.e.

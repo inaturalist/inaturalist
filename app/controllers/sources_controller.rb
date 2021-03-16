@@ -58,6 +58,7 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new(params[:source])
+    @source.user = current_user
     respond_to do |format|
       format.html do
         if @source.save

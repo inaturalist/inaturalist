@@ -732,6 +732,19 @@ describe User do
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
     end
+
+    it "should not delete taxa the user created" do
+      t = Taxon.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not delete taxon names the user created" do
+      tn = TaxonName.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( TaxonName.find_by_id( tn.id ) ).not_to be_blank
+    end
   end
 
   describe "suspension" do

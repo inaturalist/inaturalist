@@ -893,7 +893,7 @@ class Observation < ActiveRecord::Base
   #
   # Set all the time fields based on the contents of observed_on_string
   #
-  def munge_observed_on_with_chronic
+  def munge_observed_on_with_chronic( debug = false )
     if observed_on_string.blank?
       self.observed_on = nil
       self.time_observed_at = nil
@@ -934,18 +934,25 @@ class Observation < ActiveRecord::Base
       PST
     )
     
-    if ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
+    if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
+      date_string = observed_on_string
+      parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
+    elsif ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
         parsed_time_zone = ActiveSupport::TimeZone::CODES.values.compact.detect{|c| c.name == tz_abbrev} )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       # If the parsed time zone is one of the ambiguous ones where we can't
       # really know which one they're referring too, don't actually use the zone
       # code we parsed out of the string
-      parsed_time_zone = nil if problem_tz_abbrevs.include?( tz_abbrev )
+      if problem_tz_abbrevs.include?( tz_abbrev )
+        parsed_time_zone = nil
+      end
+      puts "matched tz_abbrev_pattern: #{tz_abbrev}, parsed_time_zone: #{parsed_time_zone}" if debug
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
+      puts "matched tz_offset_pattern: #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
       date_string = date_string.sub(tz_offset_pattern, '')
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
         (n = offset.to_f / 100) && 
@@ -953,26 +960,30 @@ class Observation < ActiveRecord::Base
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
+      puts "matched tz_js_offset_pattern: #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     elsif ( offset = date_string[tz_colon_offset_pattern, 2] ) &&
         ( t = Time.parse(offset ) ) &&
         ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
         ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
+      puts "matched tz_colon_offset_pattern: #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     elsif ( offset = date_string[tz_moment_offset_pattern, 1] ) &&
         ( parsed_time_zone = ActiveSupport::TimeZone[offset.to_i] )
       date_string = date_string.sub( tz_moment_offset_pattern, "" )
-
+      puts "matched tz_moment_offset_pattern: #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     # Dumb hack for Adelaide's half hour time zone offset
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && %w(+0930 +1030).include?( offset )
       parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
       date_string = date_string.sub( tz_js_offset_pattern, "" )
       date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
       date_string = date_string.sub(/\(.+\)/, "" )
+      puts "matched tz_js_offset_pattern (Adelaide): #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     elsif (offset = date_string[tz_colon_offset_pattern, 2]) && %w(+09:30 +10:30).include?( offset )
       parsed_time_zone = ActiveSupport::TimeZone["Australia/Adelaide"]
       date_string = date_string.sub( tz_colon_offset_pattern, "" )
       date_string = date_string.sub( /^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, "" )
       date_string = date_string.sub(/\(.+\)/, "" )
+      puts "matched tz_colon_offset_pattern (Adelaide): #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     end
     
     if parsed_time_zone && observed_on_string_changed?
@@ -983,12 +994,14 @@ class Observation < ActiveRecord::Base
           user_time_zone != parsed_time_zone &&
           user_time_zone.utc_offset == parsed_time_zone.utc_offset
         )
+          puts "assigning user.time_zone: #{user.time_zone}" if debug
           self.time_zone = user.time_zone
         end
       rescue ArgumentError => e
         raise e unless e.message =~ /offset/ || e.message =~ /invalid argument to TimeZone/
         # This means the user didn't have a time zone or had a time zone that
         # shouldn't exist, so just ignore it
+        puts "Invalid time zone, ignoring"
       end
     end
     
@@ -1018,11 +1031,13 @@ class Observation < ActiveRecord::Base
       # Usually this would happen b/c of an invalid time zone being specified
       self.time_zone = time_zone_was || old_time_zone.name
     end
+    puts "Setting Chronic time_class to #{Time.zone}" if debug
     Chronic.time_class = Time.zone
     
     begin
       # Start parsing...
       t = begin
+        puts "Parsing #{date_string}" if debug
         Chronic.parse( date_string, context: :past )
       rescue ArgumentError
         nil
@@ -1046,6 +1061,7 @@ class Observation < ActiveRecord::Base
       t = Chronic.parse( date_string, context: :past) if t > Time.now
       
       self.observed_on = t.to_date if t
+      puts "Set observed_on to #{observed_on}" if debug
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
@@ -1056,6 +1072,7 @@ class Observation < ActiveRecord::Base
         else
           self.time_observed_at = nil
         end
+        puts "Set time_observed_at to #{time_observed_at}" if debug
       end
     rescue RuntimeError, ArgumentError
       # ignore these, just don't set the date
@@ -1877,7 +1894,7 @@ class Observation < ActiveRecord::Base
         public_positional_accuracy: o.calculate_public_positional_accuracy
       )
     end
-    Observation.elastic_index!( ids: observations.map(&:id) )
+    Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
   end
 
   def self.find_observations_of(taxon)
@@ -2053,15 +2070,7 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        translated_place = I18n.t(
-          p.name,
-          locale: locale,
-          default: I18n.t(
-            "places_name.#{p.name.underscore}",
-            locale: locale,
-            default: p.name
-          )
-        )
+        translated_place = p.translated_name( user.locale )
         p.code.blank? ? translated_place : p.code
       end
     end
@@ -2343,7 +2352,7 @@ class Observation < ActiveRecord::Base
           Identification.update_categories_for_observation( o )
         end
       end
-      Observation.elastic_index!(ids: changed_ids)
+      Observation.elastic_index!(ids: changed_ids, wait_for_index_refresh: true)
       batch_start_id = observations.last.id
     end
   end
@@ -3253,7 +3262,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.index_observations_for_user(user_id)
-    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!( scope: Observation.by( user_id ), wait_for_index_refresh: true )
   end
 
 end

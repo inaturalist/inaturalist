@@ -8,15 +8,42 @@ lb:
   x_identifications:
     one: '%{count} Identifikatioun'
     other: '%{count} Identifikatiounen'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> Bestëmmung'
+    other: '<span class="count">%{count}</span> Bestëmmungen'
   x_identifications_:
     one: '1 Identifikatioun'
     other: '%{count} Identifikatiounen'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Bestëmmunger'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Bestëmmunger'
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} Éischten ob der Liewenslëscht"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} Éischt ob der Liewenslëscht"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> Journal Posts'
     other: '<span class="count">%{count}</span> Journal Posts'
+  x_matching_taxa:
+    one: '%{count} passenden Taxon'
+    other: '%{count} passend Taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> passenden Taxon'
+    other: '<span class="count">%{count}</span> passend Taxa'
+  x_misidentifications_of_this_species:
+    one: "%{count} Falschbestëmmung vun dëser Aart"
+    other: "%{count} Falschbestëmmungen vun dëser Aart"
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} Falschbestëmmung vun Aarten an dese(m/r) %{rank}"
+    other: "%{count} Falschbestëmmungen vun Aarten an desem %{rank}"
   x_observations:
     one: "1 Observatioun"
     other: "%{count} Observatiounen"
@@ -29,6 +56,12 @@ lb:
   x_observations_link_html:
     one: "<a href='%{url}'>1 Observatioun</a>"
     other: "<a href='%{url}'>%{count} Observatiounen</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> Bestëmmung iwwerpréift"
+    other: "<span class='count'>%{count}</span> Bestëmmungen iwwerpréift"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Beobachter'
+    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "1 anerer"
     other: "%{count} anerer"
@@ -48,6 +81,9 @@ lb:
   x_species:
     one: '1 Aart'
     other: '%{count} Aarten'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> Aart"
+    other: "<span class='count'>%{count}</span> Aarten"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} Aart</a>"
     other: "<a href='%{url}'>%{count} Aarten</a>"
@@ -78,10 +114,15 @@ lb:
   about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
   about_conservation_status: Iwert den Erhalungszoustand
+  about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
+  about_license_options: Iwwert Lizenz-Optiounen
   about_licenses: Iwwer Lizenzen
   about_muting: Iwwer stomm schalten
   #Header for a section describing taxon names
   about_names: Iwwer Nimm
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Iwwer %{place}"
   about_places: Iwwer Plazen
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
   about_these_licenses: Iwwer dës Lizenzen
@@ -89,10 +130,10 @@ lb:
   about_this_map: Iwwer dës Kaart
   about_this_project: Iwwer dëse Projet
   about_trusting_projects_options_any: All Är Observatiounen an dësem Projet
-  about_x: "Iwwer %{x}"
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
+  accept_community_identifications: Bestëmmungen vun der Community akzeptéieren
   accuracy: Prezisioun
   accuracy_meters: Genauegkeet (Meter)
   accuracy_of_the_coordinates: |
@@ -225,6 +266,7 @@ lb:
     animals: Déieren
     arachnids: Spannendéieren
     birds: Vigel
+    fungi: Champignonen
     insects: Insekten
     mammals: Mamendéieren
     mollusks: Mollusken
@@ -259,6 +301,8 @@ lb:
       other: "%{count} aner Déieren"
   all_taxa_: All Taxa
   all_updates: All Aktualisatiounen
+  #Option to allow any taxa on a list
+  allow_any: all erlaben
   allowed_html: Erlaabten HTML
   allowed_values: Erlaabt Wäerter
   almost_there_: Dir sidd bal do...
@@ -275,10 +319,34 @@ lb:
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
+  any_: All
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: All
+  #Label for an option to show content with any annotation value
+  any_annotation_value: All
+  #Label for an option to show content from any date
+  any_date: All
+  #Label for an option to show content with any establishment means
+  any_establishment: All
+  #Label for an option to show content with any license
+  any_license: All
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: All
+  #Label for an option to show content from any project
+  any_project: All
+  #Label for an option to show content with any quality grade
+  any_quality_grade: All
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: All
+  #Label for an option to show/include content by any user
+  any_user: All
+  anyone: Jiddwereen
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikatioun
   applications: Applikatiounen
+  apply_captive_cultivated: "Gefaangen / Kultivéiert uwenden"
   appropriate?: Gëeegent?
   arachnids: Spannendéieren
   archives: Archiven
@@ -324,6 +392,8 @@ lb:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
   attribution: Attributioun
+  authority_list:
+    cites: CITES
   authorize: Autoriséieren
   automatic_short: Automatesch
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
@@ -334,7 +404,7 @@ lb:
   back_to_friends: Zréck bei d'Frënn
   back_to_lists: "Zréck op %{name}-Lëschten"
   back_to_observation: Zréck bei d'Observatioun
-  back_to_observation_fields: Zréck op d'Felder vun der Observatioun
+  back_to_observation_fields: Zréck zu den Observatiounsfelder
   back_to_people: Zréck bei d'Leit
   back_to_places: Zréck op d'Plazen
   back_to_possessive_user_profile: "Zréck op de Profil vum %{possuser}"
@@ -342,12 +412,14 @@ lb:
   back_to_suggestions: Zréck bei d'Proposen
   back_to_taxon: "Zréck op %{defaulttaxon}"
   back_to_x: "Zréck op %{noun}"
+  back_to_x_history: "Zeréck zum %{x} Historique"
   back_to_x_blog: "Zeréck op dem %{x} säi Blog"
   back_to_your_dashboard: Zereck ob Ären Dashboard
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
   back_to_your_projects: Zréck op Är Projeten
+  batch: Batch
   because_of: well
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
@@ -361,6 +433,7 @@ lb:
   blog_widget: Blog Widget
   blue: blo
   blue_butterfly_etc: "blo, Päiperlek, asw."
+  body: Kierper
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: fetten Text
   breadcrumbs: Broutgrimmelen
@@ -374,8 +447,9 @@ lb:
   by_you: Vun Iech
   calendar: Kalenner
   cancel: Ofbriechen
-  captive: A Gefaangenschaft
+  captive: Gefaangen
   captive_cultivated: Gefaangen / Kultivéiert
+  captive_observations: Gefaangen Observatiounen
   card: Kaart
   casual_: Geleeëntlech
   categories: Kategorien
@@ -419,6 +493,7 @@ lb:
   clear_search: Sich zrécksetzen
   click_the_map: "<strong>Klickt op d'Kaart</strong> fir eng Plaz dobäizesetzen."
   close: Zoumaachen
+  code: Code
   colors: Faarwen
   columns: Kolonnen
   combine: Combinéieren
@@ -652,6 +727,7 @@ lb:
   everywhere: iwwerall
   exact: Genee
   exact_date: Geneeën Datum
+  exact_rank: Genaue Rang
   explore: Entdecken
   export: Exportéieren
   export_observations: Observatiounen exportéieren
@@ -670,11 +746,13 @@ lb:
   fields: Felder
   fields_: Felder
   file: Fichier
+  fill_out_project_observation_fields: d'Projekt-Observatiounsfelder ausfëllen
   fill_out_your_profile: completéiert Äre Profil
   filter_by_curator_identification: Filtren no Kurator Bestëmmungen
   filter_by_place: No der Plaz filteren
   filtering: Filteren
   filters: Filteren
+  find: Fannen
   find_a_place: Eng Plaz fannen
   find_photos: Fotoe fannen
   find_places: Plaze fannen
@@ -740,17 +818,22 @@ lb:
   has_photos: Huet Fotoen
   has_photos_or_sounds: Huet Fotoen oder Sound
   has_sound: Mat Toun
-  has_sounds: Huet Téin
+  has_sounds: Huet Sound
   hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
+  header_your_identifications: Är Bestëmmungen
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
+  here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
+  hi: Salut,
   hi_user: "Salut %{user}"
   hide_content: Inhalt verstoppen
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Keng Annotatiounen" verstoppen'
   high: Héich
-  history: Geschicht
+  highest_rank: Héichste Rang
+  history: Historique
+  home: Home
   id: ID
   ids_by_taxon: IDs no Taxon
   identify: Identifizéieren
@@ -761,8 +844,10 @@ lb:
   identification_deleted: Identifikatioun geläscht.
   identification_saved: "Identifikatioun gespäichert!"
   identification_withdrawn: Identifikatioun zréckgezunn.
-  identifications: Identifikatiounen
+  identifications: Bestemmungen
+  identifications_by: "Idendifikatioun vum %{user}"
   identifiers: Bestëmmer
+  ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
   ignore: ignoréieren
   ignore_and_continue: Ignoréieren a virufueren
@@ -773,6 +858,7 @@ lb:
   import_photos: Fotoen importéieren
   improving: Verbesseren
   in_n: "a(n) %{n}"
+  include_suggestions_not_seen_nearby: Suggestiounen abegräifen déi net an der Géigend gesi gi sinn
   including: inklusiv
   in_progress: am Gaang
   in_the_past: an der Vergaangenheet
@@ -789,6 +875,7 @@ lb:
   insert_a_quote: Zitat afügen
   interactions: Interaktiounen
   internal_server_error: Interne Feeler um Server
+  internal_taxon_rank: Interne Taxon Rang
   invitation: Invitatioun
   invite: invitéieren
   invite_people: Leit invitéieren
@@ -820,9 +907,11 @@ lb:
   last_observation: Lescht Observatioun
   last_seen: Fir d'lescht gesinn
   last_year: Lescht Joer
+  lat: Lat
   leaderboard: Féierungstabel
   leaderboard_most:
     observations: Meescht Observatioune banne(n) %{time}
+    identifications: Meescht Bestëmmungen banne(n) %{time}
   leading: Richtungsweisend
   learn: Léieren
   learn_more: Méi wëssen
@@ -870,6 +959,7 @@ lb:
   less: Manner
   license: Lizenz
   life: Liewen
+  link: Link
   link_your_google_account: Verbannt Äre Google Benotzerkont
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
   #Text inserted into a textarea when the link button is clicked but no text was selected
@@ -929,12 +1019,15 @@ lb:
   log_in: Aloggen
   log_out: Ausloggen
   log_out_caps: AUSLOGGEN
+  log_scale_label: Log
   login_slash_username: Aloggen / Benotzernumm
   logo:
     transparent_png: transparente PNG
     none: keen
+  long: Lon
   lookup: Noschloen
   low: Niddreg
+  lowest_rank: Ënneschte
   make_admin: Administrateur maachen
   make_this_your_default_license: "Maacht heirauser Är Standard-%{type}-Lizenz"
   mammals: Mamendéieren
@@ -977,6 +1070,7 @@ lb:
     frot no hirer Autorisatioun.
   messages_new_correspondent_personal: |
     Gitt keng perséinlech Informatioun iwwer Iech selwer weider u Leit deenen Dir net vertraut.
+  misidentifications: Falschbestëmmungen
   mobile: Mobil
   momentjs:
     shortRelativeTime:
@@ -1015,6 +1109,7 @@ lb:
   more_than_a_week_ago: Viru méi wéi enger Woch
   most_browser_print_pdf: "Notiz: déi meescht Browser hunn eng Optioun fir PDF'en ze drécken"
   most_observations: Meescht Observatiounen
+  most_recent_observation_by_date_observed: Déi rezentst iwwerpréifbar Observatiounen no Observatiounsdatum
   most_species: Meescht Aarten
   most_observed_species: Meescht observeiert Aarten
   most_observed_threatened_species: Bedroten Aarten déi am dacksten observéiert goufen
@@ -1061,7 +1156,7 @@ lb:
   no_comments_yet: Nach keng Bemierkungen.
   no_countries_added_yet: Nach keng Länner derbäigesat
   no_description: Keng Beschreiwung
-  no_identifications: Keng Identifikatiounen
+  no_identifications: Keng Bestëmmungen
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
   no_journal_posts_yet: Nach keng Journal Posts
@@ -1096,6 +1191,7 @@ lb:
   none: Keen
   none_found: Kee fonnt
   not_completed: Net Komplett
+  not_confident_top_suggestions: Mir sinn net zouversiichtlech genuch fir eng Recommandatioun ze maachen, awer hei sinn eis top Suggestiounen
   not_evaluated: net bewäert
   not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
@@ -1109,6 +1205,7 @@ lb:
   notifications: Notifikatioun
   number_of_observations: Zuel vun Observatiounen
   number_selected: "# erausgesicht"
+  obs: Obs
   obscured: Verschleiert
   observation: Observatioun
   observation_: Observatioun
@@ -1122,12 +1219,16 @@ lb:
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
+  observations_by_rank: Observatiounen no Rang
   observations_by_user_on_date: "Observatioune vum %{user} de(n) %{date}"
   observations_by_you: "Observatioune vun Iech"
   observations_by_you_on_date: "Observatioune vun Iech de(n) %{date}"
   observation_date: Datum
   observation_date?: Datum?
   observation_field_type_text: Text
+  observation_field_type_dna: DNA
+  observation_fields: Observatiounsfelder
+  observation_fields_are_additional: D'Observatiounsfelder sinn zousätzlech Datenfelder déi bei Observatioune kenne bäigesat ginn.
   observation_rules: Observatiouns Regelen
   observation_was_deleted: Observatioun gouf geläscht.
   observation_without_media: Observatioun ouni Medien
@@ -1171,6 +1272,7 @@ lb:
   only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
   only_species: nëmmen Aarten
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
+  only_view_nearby_suggestions: Nëmme Suggestiounen aus der Géigend kucken
   only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
@@ -1180,6 +1282,7 @@ lb:
   #sign in fields OR sign in with Facebook
   or_all_caps: ODER
   organisms: Organismen
+  organism_appears_captive_cultivated: Organismus schéngt Gefaangen / Kultivéiert ze sinn
   other: Anerer
   other_animals: aner Déieren
   other_lexicons: Aner Lexikonen
@@ -1271,6 +1374,8 @@ lb:
       town: Stad
       Unknown: Onbekannt
       unknown: Onbekannt
+      Zone: Zon
+      zone: Zon
   places: Plazen
   places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
@@ -1306,6 +1411,7 @@ lb:
     egypt: Egypten
     estonia: Estland
     europe: Europa
+    fiji: Fidschi
     france: Frankräich
     gabon: Gabun
     gambia: Gambia
@@ -1313,17 +1419,20 @@ lb:
     germany: Däitschland
     greece: Griicheland
     greenland: Grönland
+    guam: Guam
     hong_kong: Hong-Kong
     hungary: Ungarn
     iceland: Island
     india: Indien
     indonesia: Indonesien
+    iran: Iran
     iraq: Irak
     ireland: Irland
     italy: Italien
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    laos: Laos
     latvia: Lettland
     lebanon: Libanon
     lithuania: Litauen
@@ -1331,6 +1440,7 @@ lb:
     macedonia: Mazedonien
     madagascar: Madagaskar
     maldives: Maldiven
+    mali: Mali
     mauritania: Mauretanien
     mexico: Mexiko
     micronesia: Mikronesien
@@ -1338,10 +1448,13 @@ lb:
     netherlands: Holland
     new_caledonia: Nei-Kaledonien
     new_zealand: Neiséiland
+    niue: Niue
     north_africa: Nordafrika
     north_america: Nordamerika
     norway: Norwegen
+    oman: Oman
     palestine: Palestina
+    peru: Peru
     philippines: Philippinnen
     poland: Polen
     republic_of_congo: Republik Kongo
@@ -1361,6 +1474,7 @@ lb:
     switzerland: Schwäiz
     syria: Syrien
     tanzania: Tansania
+    togo: Togo
     trinidad_and_tobago: Trinidad an Tobago
     tunisia: Tunesien
     turkey: Tierkei
@@ -1407,7 +1521,9 @@ lb:
   query: Ufro
   random: Zoufall
   range: Beräich
+  rank: Rang
   rank_position: Klassement
+  rank_restrictions: Rang Aschränkungen
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -1473,6 +1589,8 @@ lb:
   reviewed: Nogekuckt
   rg_observations: RG Observatiounen
   role: Roll
+  rules_types:
+    must_be_captive: muss Gefaangen / Kultivéiert sinn
   said: gesot
   satellite: Satellit
   save: Späicheren
@@ -1519,6 +1637,7 @@ lb:
   sign_in_with_provider: "Alogge mat %{provider}"
   sign_out: Ofmellen
   sign_up: Mellt Iech un
+  similar_species: Änlech Aarten
   #Journal post formatting option
   simple: Einfach
   sizes: Gréissten
@@ -1591,6 +1710,7 @@ lb:
   text: Text
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
+  that_observation_doesnt_have_any_photos: "Des Observatioun huet keng Fotoen"
   that_project_doesnt_exist: "Dee Projet gëtt et net."
   the_world: D'Welt
   then_keybord_sequence: da(nn)
@@ -1611,6 +1731,8 @@ lb:
   today: Haut
   too_many_results: Ze vill Resultater
   top_identifier: Top Bestëmmer
+  top_identifiers: Top Bestëmmer
+  top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
   top_observer: Top Observateuren
   top_species: Top Aarten
   tos_privacy_guidelines_label: |
@@ -1635,7 +1757,7 @@ lb:
   unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_observations: Observatiounen aktualiséieren
-  update_search: Sichen aktualiséieren
+  update_search: Sich aktualiséieren
   update_with_eol_content: Mat EOL-Inhalt aktualiséieren
   updated: Aktualiséiert
   updated_by: Aktualiséiert vum
@@ -1670,6 +1792,7 @@ lb:
   users_projects: "Projete vum %{user}"
   value: Wäert
   values: Wäerter
+  verifiable_observations_by_observation_date: Iwwerpréifbar Observatiounen no Observatiounsdatum
   view: Weisen
   view_all_members: All Membere weisen
   view_all_observations: All Observatioune weisen
@@ -1698,6 +1821,7 @@ lb:
   w_sounds: w/ Sounds
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesicht
+  was_it_captive_cultivated?: "War et Gefaangen / Kultivéiert?"
   we_couldnt_find_a_user: Mir konnte kee Benotzer mat där E-Mail-Adress fannen.
   we_had_trouble_saving_comment: "Mir hu Problemer fir déi Bemierkung ze späicheren:"
   weather: Wieder
@@ -1720,6 +1844,7 @@ lb:
   which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är Observatiounen derbäisetzen?
   white: wäiss
   why_you_can_see_the_coordinates: Firwat Dir d'Koordinate gesi kënnt
+  who_can_add_observation_fields_to_my_obs: Wien kann Observatiounsfelder bei Är Observatioune bäisetzen.
   who_can_see_the_coordinates: Wie kann d'Koordinate gesinn
   who_can_see_the_coordinates_observer: D'Persoun déi d'Observatioun gemaach huet
   who_helped_user_the_most: "Wien huet dem %{user} am Meeschte gehollef"
@@ -1760,6 +1885,7 @@ lb:
   you_arent_a_member_of_that_project: Dir sidd net Member vun deem Projet.
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
+  you_cant_delete_observation_fields_that_people_are_using: "Dir kennt keng Observatiounsfelder läschen déi vun aneren Notzer genotzt ginn."
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
   you_have_left_x_project: "Dir hutt %{project} verlooss"
   you_joined_this_project: Dir maacht bei dësem Projet mat!
@@ -1785,6 +1911,8 @@ lb:
   your_recent_projects: Är rezent Projeten
   your_relationships: Är Relatiounen
   yours: Ären
+  verifiable: Iwwerpréifbar
+  verifiable_observations: Iwwerpréifbar Observatiounen
   views:
     devise:
       mailer:
@@ -1801,6 +1929,9 @@ lb:
     messages:
       from: Vum
       to: Fir
+      index:
+        speech_privilege_notice: |
+          Dir kennt nei Messagë sende wann dir dräi iwwerpréifbar Observatiounen oder dräi Bestëmmunge fir anerer geneet hutt. Bis dohinner kenn dir Messagë vun aneren un Iech liesen a beäntwerten.
       show:
         privacy_notice_html: |
           Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
@@ -1828,6 +1959,8 @@ lb:
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
       import:
         date_column_format: JJJJ-MM-DD HH:MM
+      show:
+        observer_does_not_allow_observation_fields: De Beobachter erlaabt keng zousätzlech Observatiounsfelder.
     emailer:
       photos_missing:
         subject: Verschidde Fotoe musse gefléckt ginn
@@ -1837,8 +1970,12 @@ lb:
       umbrella: Prabelli
       edit:
         rules:
+          captive: muss Gefaangen / Kultivéiert sinn
           has_a_photo: eng Foto hunn
           identified: mussen bestëmmt sinn
+          verifiable: iwwerpréifbar
+        submission_models:
+          any: Jiddwereen
       new:
         delete_project: Projet läschen
         display_project_name: Numm vum Projet weisen
@@ -1888,8 +2025,11 @@ lb:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Wann Dir Är Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Bestëmmungen
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Journal Posts vum Projet
         project_addition_preferences:
+          any: All
           joined: Projeten deenen Dir bäigetruede sidd
           none: "Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen"
         scientific_name_first_desc: |
@@ -1994,6 +2134,9 @@ lb:
     countdown_x_hours:
       one: Stonn
       other: Stonnen
+    countdown_x_minutes:
+      one: Min
+      other: Min
     countdown_x_seconds:
       one: Sek
       other: Sek
@@ -2016,6 +2159,9 @@ lb:
       not_an_integer: muss eng ganz Zuel sinn
       odd: muss ongerued sinn
       record_invalid: 'Validatioun feelgeschlo: %{errors}'
+      requires_privilege_speech: |
+        musst dräi iwwerpréifbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+      requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       taken: gouf scho geholl
   helpers:
     submit:
@@ -2099,6 +2245,8 @@ lb:
         not_a_number: ass keng Zuel
         not_an_integer: muss eng ganz Zuel sinn
         odd: muss ongerued sinn
+        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+        requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
   activerecord:
     attributes:
       assessment:
@@ -2109,6 +2257,7 @@ lb:
         status: Situatioun
         description: Beschreiwung
         place_id: Plaz
+        url: URL
       flag:
         reason: Grond
       message:
@@ -2125,6 +2274,7 @@ lb:
         name: Numm
       source:
         in_text: Am Text
+        url: URL
       taxon:
         name: Numm
       user:
@@ -2134,6 +2284,7 @@ lb:
         locale: Lokal
         time_zone: Zäitzon
         place_id: Plaz
+        preferred_observation_fields_by: Observatiounsfelder erlaben vum
     errors:
       messages:
         blank: däerf net eidel sinn
@@ -2145,6 +2296,8 @@ lb:
         invalid: ass net valabel
         not_a_number: ass keng Zuel
         odd: muss ongerued sinn
+        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+        requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       models:
         place:
           attributes:
@@ -2160,6 +2313,120 @@ lb:
           attributes:
             email:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
+  i18n:
+    inflections:
+      "@gender":
+        m: männlech
+        f: weiblech
+        "n": neuter
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
   wikimedia: Wikimedia
   wild: Wëll
   will_paginate:

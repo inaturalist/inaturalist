@@ -1875,7 +1875,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def atlased?
-    atlas && atlas.is_active? && atlas.presence_places.exists?
+    return @atlased unless @atlased.nil?
+    @atlased = atlas && atlas.is_active? && atlas.presence_places.exists?
   end
 
   def cached_atlas_presence_places

@@ -197,7 +197,7 @@ class Place < ActiveRecord::Base
   MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
 
   MAX_PLACE_OBSERVATION_COUNT = 200000
-  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 50000
+  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 20000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -346,6 +346,19 @@ class Place < ActiveRecord::Base
     else
       name
     end
+  end
+
+  # Wrapper around a common translation that prevents a potentially serious
+  # side-effect of the name not converting to an underscored version properly.
+  # If that fails and we try to return I18n.t( "places_name." ), we'll actually
+  # return a rather large hash instead of a string
+  def translated_name( locale = I18n.locale, options = {} )
+    default = options.delete(:default) || name
+    name_key = name.parameterize.underscore
+    name_key = name.strip.gsub( /\s+/, "_" ) if name_key.blank?
+    t_name = I18n.t( "places_name.#{name_key}", locale: locale, default: nil )
+    return default if t_name.blank? || !t_name.is_a?( String )
+    t_name
   end
   
   # Calculate and cache the bbox area for place area size queries
@@ -1028,7 +1041,7 @@ class Place < ActiveRecord::Base
 
   def localized_name
     if admin_level === COUNTRY_LEVEL
-      I18n.t( "places_name.#{name}", default: display_name )
+      translated_name
     else
       display_name
     end
@@ -1059,11 +1072,11 @@ class Place < ActiveRecord::Base
     ids = Observation.joins(:observations_places).
       where("observations_places.place_id = ?", place_id).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids, sleep: 2)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
     # observations not touched above that are in this place
     ids = Observation.in_place(place_id).where("last_indexed_at < ?", start_time).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids, sleep: 2)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
   end
 
 end

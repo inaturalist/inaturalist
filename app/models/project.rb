@@ -363,18 +363,28 @@ class Project < ActiveRecord::Base
     self.end_time = nil
   end
 
-  def set_observation_requirements_updated_at
+  def set_observation_requirements_updated_at( options = {} )
     if new_record?
-      self.observation_requirements_updated_at = Time.now
+      # puts "set_observation_requirements_updated_at: new project, backdating"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
-    if old_params == new_params && !prefers_user_trust_changed?
-      # puts "no change"
-    else
-      # puts "params changed"
+    pu_scope = project_users.joins(:stored_preferences).where(
+      "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
+      [
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+      ]
+    )
+    if old_params == new_params && !prefers_user_trust_changed? && !options[:force]
+      # puts "set_observation_requirements_updated_at: no change"
+    elsif pu_scope.exists?
+      # puts "set_observation_requirements_updated_at: trusting users exist, setting stamp to now"
       self.observation_requirements_updated_at = Time.now
+    else
+      # puts "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
     end
   end
 

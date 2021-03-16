@@ -166,6 +166,9 @@ nb:
   about_muting: Om ignorering
   #Header for a section describing taxon names
   about_names: Om navn
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Om %{place}"
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons-lisenser
   about_these_licenses: Om disse lisenser
@@ -178,7 +181,6 @@ nb:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan velge å dele skjulte koordinater for
-  about_x: "Om %{x}"
   acc: 'Nøy. (m)'
   account: Konto
   account_creation: Kontoopprettelse
@@ -1032,10 +1034,23 @@ nb:
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Hvorfor vil du være en kurator?
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hvordan en kurator mister sin makt
   #Header
   curator_application_what_curators_can_do: Hva kuratorer kan gjøre
   #Header
   curator_application_what_curators_cannot_do: Hva kuratorer ikke kan gjøre
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Les direktemeldinger av andre personer.
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Du bør kun søke om å være en kurator dersom:
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
@@ -1187,6 +1202,8 @@ nb:
     Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
+  devise_unlock_instructions_click_the_link: |
+    Klikk på linken nedenfor for å låse opp din konto
   devise_unlock_instructions_unlock: Lås opp kontoen din
   discoveries: Oppdagelser
   did_not_send_invitations_because: Sendte ikke invitasjoner til følgende personer fordi...
@@ -1305,7 +1322,6 @@ nb:
   editing_this: Redigerer %{elem}
   editing_x_in_y: "Redigerer %{x} i %{y}"
   editors: Redaktører
-  either: Enten
   either_that_user_doesnt_exist_or: "Enten så finnes ikke den brukeren eller så følger du vedkommende allerede."
   eligible_for_research_grade: Kvalifisert for forskningskvalitet
   email: E-post
@@ -1354,7 +1370,6 @@ nb:
   everywhere: overalt
   exact: Nøyaktig
   exact_date: Nøyaktig dato
-  exact_location: Nøyaktig_lokalitet
   exact_rank: Nøyaktig rang
   except: unntatt
   exclude_places: Ekskluder steder
@@ -1388,6 +1403,7 @@ nb:
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
   failed_to_save_record: "Kunne ikke lagre registreringen. Vennligst prøv igjen senere."
   failed_to_save_record_with_errors: "Kunne ikke lagre posten: %{errors}"
+  failed_to_unlink_your_account: Kunne ikke frakoble kontoen din
   'false': 'Usann'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
@@ -1623,6 +1639,7 @@ nb:
   help_translate!: Hjelp med å oversette!
   helped_the_observer_make: har hjulpet observatøren med å gjøre ID-en endelig (dvs. de ble gjort før den endelige ID-en og de stemmer overens)
   here_are_3_examples: Her er 3 eksempler av bra utformede data
+  here_are_our_top_suggestions: Her er våre beste forslag
   here_are_our_top_species_suggestions: Her er våre beste artsforslag
   hex_color_eg: Hex-farge, f.eks. 65644F
   hi: Hei,
@@ -1713,6 +1730,7 @@ nb:
   inbox: Innboks
   include_places: Inkluder steder
   include_projects: Inkluder prosjekter
+  include_suggestions_not_seen_nearby: Vis forslag som ikke er sett i nærheten
   include_taxa: Inkluder taksa
   include_users: Inkluder brukere
   including: inklusiv
@@ -1802,6 +1820,8 @@ nb:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Lås zoomnivå
+  language_slash_locale: Språk/lokalisering
+  language_slash_locale_description: Dette angir dine innstillinger for språk og datoformatering på tvers av iNaturalist basert på din lokalisering. Endringer vil tre i kraft når siden oppdateres.
   language_slash_type: Språk / type
   #Large photo size
   large: stor
@@ -1996,6 +2016,7 @@ nb:
     sq: Albansk
     sv: Svensk
     tr: Tyrkisk
+    uk: Ukrainsk
     zh-CN: Kinesisk (forenklet)
     zh-TW: Kinesisk (tradisjonell)
   locality_notes: Lokalitetsnotater
@@ -2379,6 +2400,7 @@ nb:
   none_found: Ingen funnet
   normal: normal
   not_completed: Ikke fullført
+  not_confident_top_suggestions: Vi er ikke sikker nok til å komme med en anbefaling, men her er våre beste forslag
   not_covered_by_any_taxon_frameworks: Ikke dekt av noen taksonrammeverk
   not_evaluated: ikke vurdert
   not_findig_what_you_want: Finner du ikke hva du ønsker?
@@ -2414,6 +2436,16 @@ nb:
   observation_added: Observasjon lagt til.
   observation_added_to_the_project: "Observasjon lagt til i prosjektet \"%{project}\""
   observation_aggregation: Observasjonsaggregering
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observasjon av %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observasjon &copy; %{user}
   observation_brief_something_on_day: "Noe på %{day}"
   observation_brief_something_on_day_at_time: "Noe på %{day}, %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noe på %{day}, %{time} av %{user}"
@@ -2467,6 +2499,9 @@ nb:
   observed_on_datetime: Observert på %{datetime}
   observation_removed_from_the_project: "Observasjon fjernet fra prosjektet \"%{project}\""
   observation_requirements: Observasjonskrav
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Observasjonskrav oppdatert på
   observation_rules: Observasjonsregler
   observation_rules_description: |
     Du kan velge regler som styrer hvilke observasjoner kan bli lagt til dette prosjektet, som å begrense observasjoner til et bestemt sted eller takson. Hvis du har flere regler for en type regel, blir observasjoner gyldige hvis de er i samsvar med en av de. Hvis du for eksempel har reglene "må vær i Amphibia" og "må være i Reptilia", blir både observasjoner av amfibier og observasjoner av reptiler akseptert.
@@ -2516,6 +2551,8 @@ nb:
   observed_on: Observert på
   observer: Observatør
   observers: Observatører
+  observer_prefers_no_project_addition: |
+    Observatør tillater ikke at sine observasjoner legges til i prosjekter av andre.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomststatus beskriver hvor vanlig eller sjeldent et takson er i et gitt område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mer informasjon om terminologien</a>.'
   occurrence_status: Forekomststatus
@@ -2592,6 +2629,7 @@ nb:
   only_staff_can_edit_standard_places: Kun sideansatte kan redigere steder i standardhierarkiet
   only_the_owner_of_this_list_can_do_that: Kun eieren til lista kan gjøre det. Ikke vær slem.
   only_the_project_admin_can_delete_this_project: Kun prosjektets admin kan slette dette prosjektet.
+  only_view_nearby_suggestions: Vis bare forslag i nærheten
   only_you: Kun du
   open: åpen
   open_: Åpen
@@ -3147,6 +3185,7 @@ nb:
   please_add_this_observation_to: Vennligst legg til denne observasjonen til
   please_add_this_to_x_html: "Vennligst legg dette til %{x}"
   please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen #Title to a section warning a user to exercise caution
+  please_be_careful!: Vennligst vær forsiktig!
   please_complete_the_following_to_add_project: |
     Vennligst fullfør følgende for å legge til denne observasjonen til prosjektet:
   please_confirm_your_inat_username: "Vennligst bekreft ditt brukernavn på %{site_name}"
@@ -4082,6 +4121,8 @@ nb:
   trending: Populær
   trends: Trender
   trip_target_list_info: 'Alle arter som dekkes av denne mållisten som ikke ble observert i området og varigheten til denne turen vil bli oppfattet som fravær. <a href="/pages/trips">Les mer</a>.'
+  #Noun
+  trust: Tillit
   trusted: Pålitelig
   trusted_project?: Pålitelig prosjekt?
   trust_this_person_with_your_private_coordinates: Stol på denne personen med dine skjulte koordinater
@@ -5161,7 +5202,7 @@ nb:
           Din eksport av observasjoner mislyktes. Gå til <a href="%{url}">observasjonseksport-siden</a> for en liste av dine eksporter.
       parental_consent:
         subject: Ditt barn vil gjerne bruke iNaturalist
-        content_html: |
+        content_html: |2
           <p>
           Ditt barn bruker den edukative appen <strong>Seek av iNaturalist</strong> og vil gjerne dele data med iNaturalist platformen for forskingsdugnad. Siden registrering på iNaturalist avslører personsopplysninger kan iNaturalist ikke brukes av personer under 13 år uten tillatelse fra en foreldre eller foresatt.
           </p>
@@ -6638,6 +6679,10 @@ nb:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke inneholde kommaer eller skråstreker
+              should_match_english_translation: |
+                bør være på engelsk, men samsvarer nå med %{suggested_locale}-oversettelsen av "%{suggested}".
+                Bruk "%{suggested}" hvis det er det du mente, og det vil bli oversatt når du ser på nettstedet på
+                det språket.
               should_be_in_english: bør være på engelsk
             name:
               already_exists: finnes allerede for dette taksonet i dette leksikonet

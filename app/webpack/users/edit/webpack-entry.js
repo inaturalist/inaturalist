@@ -44,6 +44,10 @@ const store = createStore(
   )
 );
 
+if ( window.location.hash ) {
+  store.dispatch( setSelectedSectionFromHash( window.location.hash ) );
+}
+
 window.onpopstate = e => {
   const { hash } = e.target.location;
   store.dispatch( setSelectedSectionFromHash( hash ) );

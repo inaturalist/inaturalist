@@ -23,8 +23,8 @@ const App = ( { taxon, config } ) => {
         <Row className="preheader">
           <Col xs={8}>
             <TaxonCrumbsContainer />
-            <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
-              <i className="glyphicon glyphicon-link"></i>
+            <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
+              <i className="icon-link" />
             </a>
           </Col>
           <Col xs={4}>
@@ -34,9 +34,9 @@ const App = ( { taxon, config } ) => {
                 bootstrapClear
                 placeholder={I18n.t( "search_species_" )}
                 searchExternal={false}
-                afterSelect={ function ( result ) {
+                afterSelect={result => {
                   window.location = urlForTaxon( result.item );
-                } }
+                }}
                 position={{ my: "right top", at: "right bottom", collision: "none" }}
               />
             </div>
@@ -51,7 +51,7 @@ const App = ( { taxon, config } ) => {
                 }
               />
               <div id="place-chooser-container">
-                <PlaceChooserContainer container={ $( "#app" ).get( 0 ) } />
+                <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
               </div>
             </div>
           </Col>

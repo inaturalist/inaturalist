@@ -38,6 +38,12 @@ es-MX:
   x_observations_:
     one: "1 observación"
     other: "%{count} observaciones"
+  x_observations_html:
+    one: "<span class='count'>1</span> observación"
+    other: "<span class='count'>%{count}</span> observaciones"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 observación</a>"
+    other: "<a href='%{url}'>%{count} observaciones</a>"
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
@@ -113,7 +119,6 @@ es-MX:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
-  about_x: "Acerca de %{x}"
   acc: 'Precisión (metros)'
   account: Cuenta
   account_creation: Creación de cuentas
@@ -1157,7 +1162,6 @@ es-MX:
   editing_this: Editando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
-  either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya te encuentras siguiendolo."
   eligible_for_research_grade: Elegible para grado de investigación
   email: Correo
@@ -1206,7 +1210,6 @@ es-MX:
   everywhere: todas partes
   exact: Exacto
   exact_date: Fecha exacta
-  exact_location: Ubicación exacta
   exact_rank: Rango exacto
   except: excepto
   exclude_places: Excluye lugares
@@ -2353,6 +2356,7 @@ es-MX:
   only_staff_can_edit_large_places: Solo el personal de la página puede editar espacios muy grandes
   only_the_owner_of_this_list_can_do_that: Solo el propietario de esa lista puede hacer eso.  No seas malvado.
   only_the_project_admin_can_delete_this_project: Solo el administrador del proyecto puede eliminar este proyecto.
+  only_view_nearby_suggestions: Solo mostrar las sugerencias que hayan sido vistas en la cercanía
   only_you: Solo tú
   open: Abierta
   open_: Abierto
@@ -4703,7 +4707,7 @@ es-MX:
         make_owner: Hacer propietario
         no_curators: |
           No hay curadores del proyecto. Si desea asignar a una nueva persona como administrador, primero debe unirse a este proyecto y entonces lo podrá hacer curador.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             El adjuntador de observaciones automaticamente añadira todas tus 
             observaciones a tu proyecto de acuerdo al polígono y las reglas 
@@ -4763,7 +4767,7 @@ es-MX:
         you_can_preview: |
           Puedes ver la vista previa de cómo se verá tu Proyecto de Colección haciendo <a href="%{url}">click aquí</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Acerca de las invitaciones</h3>
           <p class="ui">
            \ Invitar ala comunidad a los proyectos es un poco diferente que 
@@ -4872,7 +4876,7 @@ es-MX:
           name_already_taken: El nombre del proyecto ya ha sido tomado
           cannot_have_more_than_x_project_rules: No puede tener más de %{x} reglas de proyecto
           summary_is_required: Se requiere texto de resumen del proyecto
-      project_location_privacy_notice_html: |
+      project_location_privacy_notice_html: |2
         <p>
           Ten en cuenta que los curadores del proyecto podrán ver cualquier 
           coordenada oscurecida o privada de tus observaciones a menos que 
@@ -4904,7 +4908,7 @@ es-MX:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
             De manera diferente a los projectos normales, los proyectos Maratón naturalista muestran estadísticas de los eventos por <em>todas</em> las observaciones aunadas al lugar y el período de tiempo, no solo las observaciones que la comunidad intencionalmente ha añadido. Esto es para quitar el obstáculo de añadir observaciones solo para obtener las estadísticas en tiempo real. Con esto, las observaciones no estarán disponibles para exportar o mostrar en otras vistas del proyecto, como las contribuciones de los miembros o las búsquedas de las observaciones del proyecto desde las aplicaciones moviles, hasta que los participantes del proyecto añadan observaciones relevantes como en un proyecto normal.
           </p>

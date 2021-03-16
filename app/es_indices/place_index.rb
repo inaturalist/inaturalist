@@ -39,6 +39,17 @@ class Place < ActiveRecord::Base
         indexes :suspended, type: "boolean"
       end
       indexes :without_check_list, type: "boolean"
+      indexes :names, type: :nested do
+        indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :locale, type: "keyword"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :name_autocomplete, type: "text",
+          analyzer: "autocomplete_analyzer",
+          search_analyzer: "standard_analyzer"
+        indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+      end
     end
   end
 
@@ -52,6 +63,25 @@ class Place < ActiveRecord::Base
       end
     else
       nil
+    end
+    # Compile translated names to match the similar structure in the taxa index
+    names = []
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      locale_name = translated_name( locale )
+      if locale_name && locale_name != name
+        name_json = {
+          exact: locale_name,
+          exact_ci: locale_name,
+          locale: locale,
+          name: locale_name,
+          name_autocomplete: locale_name
+        }
+        if locale.to_s == "ja"
+          name_json[:name_autocomplete_ja] = locale_name
+          name_json[:name_ja] = locale_name
+        end
+        names << name_json
+      end
     end
     {
       id: id,
@@ -73,7 +103,8 @@ class Place < ActiveRecord::Base
       point_geojson: ElasticModel.point_geojson(latitude, longitude),
       without_check_list: check_list_id.blank? ? true : nil,
       observations_count: universal_search_rank,
-      universal_search_rank: universal_search_rank
+      universal_search_rank: universal_search_rank,
+      names: names
     }
   end
 

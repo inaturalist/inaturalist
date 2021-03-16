@@ -3,7 +3,7 @@ class Observation < ActiveRecord::Base
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 30
-  DEFAULT_ES_BATCH_SLEEP = 8
+  DEFAULT_ES_BATCH_SLEEP = 2
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -324,7 +324,12 @@ class Observation < ActiveRecord::Base
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
         faves_count: faves_count,
-        cached_votes_total: cached_votes_total,
+        # cached_votes_total is a count of *all* votes on the obs, which
+        # includes things voting whether the obs still needs an ID, so using
+        # that actually throws off the sorting when what we really want to do is
+        # sort by faves. We're not losing anything performance-wise by loading
+        # the votes since we're doing that in the `votes` attribute anyway
+        cached_votes_total: votes_for.select{|v| v.vote_scope.blank?}.size,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
         identifications_most_agree:
@@ -648,6 +653,13 @@ class Observation < ActiveRecord::Base
     elsif p[:observations_taxon_ids]
       search_filters << { terms: {
         "taxon.ancestor_ids" => p[:observations_taxon_ids] } }
+    end
+    if p[:without_observations_taxon]
+      inverse_filters << {
+        term: {
+          "taxon.ancestor_ids" => ElasticModel.id_or_object( p[:without_observations_taxon] )
+        }
+      }
     end
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }

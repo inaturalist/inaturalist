@@ -773,6 +773,18 @@ inat-taxon { white-space: nowrap; }
 
 #result-table th.media {width: 5%;}
 #result-table td { padding: 10px; }
+#result-table {
+  .meta {
+    .icon-chatbubble {
+      position: relative;
+      top: -1.2px;
+    }
+    .icon-identification {
+      position: relative;
+      top: -1px;
+    }
+  }
+}
 .sortable-table th {
   padding: 10px;
   position: relative;

@@ -41,7 +41,7 @@
   <ul>
     <% for place in @places %>
       <li>
-        <%= link_to t("places_name.#{place.display_name.gsub(' ','_').downcase}", :default => place.display_name), place %>
+        <%= link_to place.translated_name( I18n.locale, default: place.display_name ), place %>
         <span class="small description">
           <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if(place.place_type_name) %>
         </span>

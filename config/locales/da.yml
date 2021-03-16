@@ -166,6 +166,9 @@ da:
   about_muting: Om slukning
   #Header for a section describing taxon names
   about_names: Om navne
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Om %{place}"
   about_places: Om steder
   about_the_cc_licenses: Om Creative Commons licenser
   about_these_licenses: Om disse licenser
@@ -199,7 +202,6 @@ da:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan vælge at dele skjulte koordinater for
-  about_x: "Om %{x}"
   acc: 'Nøj. (m)'
   account: Konto
   account_creation: Kontooprettelse
@@ -731,6 +733,7 @@ da:
   card: Kort
   casual: uformel
   casual_: Almindelig
+  casual_tooltip_html: 'Observationstypen "Uformel" mangler medier, placering eller dato, eller opfylder af andre årsager ikke kriterierne for kvalitetsklasserne "Forskning" eller "Behøver ID". <a href="https://www.inaturalist.org/pages/help#quality"> Få mere at vide om kvalitetsklasser</a>'
   categories: kategorier
   cc_0_description: "Denne licens frigiver dit arbejde til det offentlige domæne, så andre kan kopiere, ændre, distribuere og bruge dit arbejde, også til kommercielle formål, uden at anmode om tilladelse eller uden at du bliver krediteret. Dette er den mest åbne af licenser, der tilbydes. Anbefales til maksimal spredning og brug af licenserede materialer."
   cc_0_name: Ingen ophavsret (CCO)
@@ -1459,7 +1462,6 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
-  either: Enten
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
@@ -1509,7 +1511,6 @@ da:
   everywhere: overalt
   exact: Præcis
   exact_date: Eksakt dato
-  exact_location: Eksakt_sted
   exact_rank: Eksakt række
   except: bort set fra
   exclude_places: Ekskludér steder
@@ -1781,6 +1782,7 @@ da:
   help_translate!: Hjælp med at oversætte!
   helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs. de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
+  here_are_our_top_suggestions: Her er vores bedste forslag
   here_are_our_top_species_suggestions: Her er vores topforslag til art
   hex_color_eg: Hex farve, f.eks. 65644F
   hi: Hej,
@@ -1874,6 +1876,7 @@ da:
   inbox: Indbakke
   include_places: Inkludér steder
   include_projects: Inkludér projekter
+  include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
   include_taxa: Inkludér taksa
   include_users: Inkludér brugere
   including: inklusiv
@@ -2419,6 +2422,7 @@ da:
   needs_id: behøver ID
   needs_id_: Behøver ID
   needs_id_expandable_html: "<span class='full'>Behøver </span>ID"
+  needs_id_tooltip_html: 'Observationstypen "Behøver ID" har medier, placering og dato, men mangler fortsat fællesskabskonsensus ift. en præcis identifikation. <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   needs_to_be_identified: Behøver en identifikation
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2574,6 +2578,8 @@ da:
   none_found: Ingen fundet
   normal: normal
   not_completed: Ikke afsluttet
+  not_confident: Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.
+  not_confident_top_suggestions: Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.
   not_covered_by_any_taxon_frameworks: Ikke dækket af nogen taksonramme
   not_evaluated: Ikke evalueret
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
@@ -2612,6 +2618,16 @@ da:
   observation_added: Observation tilføjet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observation fra %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observation &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Observationen hører til et projekt, hvor dette felt kræves. Observationen skal fjernes fra det pågældende projekt, før denne feltværdi kan slettes.
   observation_brief_something_on_day: "Noget den %{day}"
@@ -2728,6 +2744,10 @@ da:
   observed_on: Observeret den
   observer: Observatør
   observers: Observatører
+  observer_prefers_no_project_addition: |
+    Observatør tillader ikke andre at føje deres observationer til projekter.
+  observer_prefers_addition_to_projects_joined: |
+    Observatør tillader kun andre at føje deres observationer til projekter, de har tilmeldt sig.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomst status beskriver, hvor almindelig eller sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> flere oplysninger om terminologi </a>.'
   occurrence_status: Forekomst status
@@ -2810,6 +2830,7 @@ da:
   only_staff_can_edit_standard_places: Kun hjemmesidepersonale kan redigere steder i standardhierarkiet
   only_the_owner_of_this_list_can_do_that: Kun ejeren af denne liste kan gøre det. Vær ikke ond.
   only_the_project_admin_can_delete_this_project: Kun projektadministratoren kan slette dette projekt.
+  only_view_nearby_suggestions: Vis kun forslag set i nærheden
   only_you: Kun dig
   open: åben
   open_: Åben
@@ -3685,6 +3706,7 @@ da:
   research_: Forskning
   research_grade: forskningskvalitet
   research_grade_short_html: "F<span class='full'>orsknings</span>k<span class='full'>valitet</span>"
+  research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
   research_grade_qualification: Kvalifikation til Forskningskvalitet
   reset_filters_short: Nulstil
@@ -5913,10 +5935,8 @@ da:
           af deres observationer, som vises i dette projekt, eller kun de
           observationer, som er slørede grundet truede taxa.
         trust_help_notification2: |-
-          Dette vil dog også give alle betroende projektmedlemmer besked, hver gang
-          du ændrer projektetobservationskravene, så de kan revurdere, hvorvidt din status fortsat skal være betroet i betragtning af de nye krav.
-          Din adgang til skjulte koordinater inddrages i én uge efter
-          ændring af observationskravene, så medlemmer har tid til at gøre dette
+          Dette vil dog også advisere alle betroende projektmedlemmer, hver gang
+          du ændrer projektetobservationskravene, så de kan revurdere, hvorvidt din status fortsat skal være betroet i betragtning af de nye krav. For at give medlemmerne tid til at gøre dette, inddrages din adgang til skjulte koordinater i én uge fra observationskravenes ændringsdato.
         trusted_project_means: |
           At stole på et projekt betyder, at projektledere kan tilføje projekt
           aktiver og brugerdefinerede projektattributter (f.eks. banner HTML, CSS). Adgang til brugerdefinerede projektattributter betyder, at projektledere

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= t :merging %> <%= t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name) %>
+  <%= t :merging %> <%= @place.translated_name %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
@@ -61,7 +61,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo; #{t(:back_to)} #{t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)}".html_safe, @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; #{t(:back_to_x, noun: @place.translated_name )}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2><%= t(:merging_places) %></h2>
   <p class="description">
@@ -80,7 +80,7 @@
     </tr>
     <tr>
       <th>&nbsp;</th>
-      <th><%= link_to t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name), @place %></th>
+      <th><%= link_to @place.translated_name, @place %></th>
       <th><%= t(:what_to_keep) %></th>
       <th>
         <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="<%= t(:type_place_name) %>" data-json="<%=json_escape @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
@@ -105,7 +105,7 @@
             <%- place_type_name = @place.send(attr_name) || t(:unknown) -%>
             <%= t("place_geo.geo_planet_place_types.#{place_type_name.gsub(' ','_')}", :default => @place.send(attr_name)) %>
           <% else %>
-              <%= t("places_name.#{@place.send(attr_name).gsub(' ','_').downcase}", :default => @place.send(attr_name)) %>
+              <%= @place.translated_name %>
           <% end -%>
         </td>
         <td>

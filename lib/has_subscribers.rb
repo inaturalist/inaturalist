@@ -24,8 +24,15 @@ module HasSubscribers
       
       after_destroy do |record|
         UpdateAction.transaction do
-          UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-          Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          # some classes, like ListedTaxa, tons of records but barely any UpdateActions or
+          # Subscriptions. Check to make sure there are some subscriptions for this record before
+          # initiating a delete query. We've seen longer-running deletes lead to table lock issues
+          if UpdateAction.where(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id]).any?
+            UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          end
+          if Subscription.where(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id]).any?
+            Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          end
         end
         true
       end

@@ -95,7 +95,8 @@ describe Observation do
         # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
         ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"],
         ["2020/09/02 8:28 PM UTC", month: 9, day: 2, hour: 20, offset: "+00:00"],
-        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"]
+        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"],
+        ["2021-03-02T13:00:10.000-06:00", month: 3, day: 2, hour: 13, offset: "-06:00"]
       ].each do |date_string, opts|
         o = Observation.make!(:observed_on_string => date_string)
         expect(o.observed_on.day).to eq opts[:day]
@@ -755,7 +756,6 @@ describe Observation do
       stamp = Time.now
       o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).to be_blank
     end
   
@@ -765,7 +765,6 @@ describe Observation do
       stamp = Time.now
       o.update_attributes(:latitude => o.latitude + 1)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
     end
 
@@ -800,7 +799,6 @@ describe Observation do
         o.update_attributes(:latitude => o.latitude + 1)
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size).to eq(1)
     end
   
@@ -2070,7 +2068,12 @@ describe Observation do
       let(:project) do
         proj = Project.make(:collection)
         proj.update_attributes( prefers_user_trust: true )
+        pu = ProjectUser.make!(
+          project: proj,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
         proj.project_observation_rules << ProjectObservationRule.new( operator: "observed_in_place?", operand: place )
+        proj.reload
         proj
       end
       let(:curator) do

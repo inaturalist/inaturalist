@@ -184,9 +184,11 @@ class User < ActiveRecord::Base
   has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxa, foreign_key: "creator_id", inverse_of: :creator
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :taxon_framework_relationships
+  has_many :taxon_names, foreign_key: "creator_id", inverse_of: :creator
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
@@ -592,7 +594,7 @@ class User < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: Observation.by(self))
+    Observation.elastic_index!(scope: Observation.by(self), wait_for_index_refresh: true)
   end
 
   def merge(reject)
@@ -606,19 +608,29 @@ class User < ActiveRecord::Base
   def self.merge_cleanup( user_id )
     return unless user = User.find_by_id( user_id )
     start = Time.now
-    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!(
+      scope: Observation.by( user_id ),
+      wait_for_index_refresh: true
+    )
     Observation.elastic_index!(
       scope: Observation.joins( :identifications ).
         where( "identifications.user_id = ?", user_id ).
-        where( "observations.last_indexed_at < ?", start )
+        where( "observations.last_indexed_at < ?", start ),
+      wait_for_index_refresh: true
     )
-    Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
+    Identification.elastic_index!(
+      scope: Identification.where( user_id: user_id ),
+      wait_for_index_refresh: true
+    )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
     User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
-    Project.elastic_index!( ids: ProjectUser.where( user_id: user.id ).pluck(:project_id) )
+    Project.elastic_index!(
+      ids: ProjectUser.where( user_id: user.id ).pluck(:project_id),
+      wait_for_index_refresh: true
+    )
   end
 
   def set_locale
@@ -878,7 +890,10 @@ class User < ActiveRecord::Base
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
-      Identification.elastic_index!(scope: Identification.where(observation_id: obs_ids))
+      Identification.elastic_index!(
+        scope: Identification.where(observation_id: obs_ids),
+        wait_for_index_refresh: true
+      )
     end
 
     comments.find_each(batch_size: 100) do |c|
@@ -909,7 +924,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids )
+    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
 
     # delete the user
     destroy
@@ -1084,7 +1099,7 @@ class User < ActiveRecord::Base
         }
       ).results.results
       break if obs.blank?
-      Observation.elastic_index!( ids: obs.map(&:id) )
+      Observation.elastic_index!( ids: obs.map(&:id), wait_for_index_refresh: true )
     end
   end
 
@@ -1375,8 +1390,6 @@ class User < ActiveRecord::Base
       u ||= User.find_by_login( user )
       user = u
     end
-    # TODO: temporarily restricting to admins
-    return unless user.is_admin?
     LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
