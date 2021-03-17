@@ -1706,7 +1706,9 @@ el:
   get_started: Ξεκινήστε
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
   give_it_some_detail: Δώστε κάποιες λεπτομέρειες!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: ΔΩΣΤΕ ΜΗΝΙΑΙΑ
+  #Prompt to donate money once
   give_now_caps: ΔΩΣΤΕ ΤΩΡΑ
   global_names: Καθολικά ονόματα
   globally: Παγκοσμίως
@@ -1755,12 +1757,10 @@ el:
   heads_up: Προσοχή!
   heads_up_this_photo_has_been_flagged: "ΠΡΟΣΟΧΗ: αυτή η φωτογραφία έχει αναφερθεί."
   heads_up_this_photo_is_already_associated_with: "Προσοχή: αυτή η φωτογραφία ήδη συνδέεται με <a target='_blank' href='%{url}'> από μία άλλη παρατήρηση</a>"
-  heads_up_you_have_multiple: "Προσοχή: Έχετε πολλαπλές ταξινομικές μηχανικές ετικέτες για πανομοιότυπες κατατάξεις. Είναι κωδικοποιημένα με βάση τα χρώματα ανάλογα με την κατάταξή τους."
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
   help_support_inaturalist: "Βοήθησε στην υποστήριξη του iNaturalist!"
   help_translate!: Βοηθήστε στη Μετάφραση!
-  helped_the_observer_make: βοήθησε τον παρατηρητή να κάνει την τελική του ταυτοποίηση (δηλαδή, πραγματοποιήθηκε πριν κάνει την τελική του ταυτοποίηση και αντιστοιχήθηκε)
   here_are_3_examples: Ορίστε 3 παραδείγματα από καλοσχηματισμένα δεδομένα
   here_are_our_top_species_suggestions: Εδώ είναι η προτεινόμενη λίστα των κορυφαίων μας ειδών
   hex_color_eg: Χρώμα Hex, π.χ. 65644F
@@ -1774,6 +1774,7 @@ el:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Απόκρυψη "Χωρίς Σημείωση"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Κρύψτε το Τρεχούμενο Σύνολο 
   hide_uncountable_species: Απόκρυψη μη μετρήσιμων ειδών
   high: υψηλό
@@ -1831,6 +1832,7 @@ el:
   ignore_times: Αγνόησε τους χρόνους
   image_must_be_exactly: η εικόνα πρέπει να έχει πλάτος ακριβώς 950px και ύψος το πολύ 400px
   image_size_control: Έλεγχος μεγέθους εικόνας
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Τέθηκε σε κίνδυνο
   import: Εισαγωγή
   import_all_photos_as_observations: Εισαγωγή όλω των φωτογραφιών ως παρατηρήσεις
@@ -3788,6 +3790,7 @@ el:
   show_off_your_recent_observations: Ανέβασε τις πρόσφατες παρατηρήσεις σου στο δικό στο blog ή ιστοσελιδα!
   show_only: Εμφάνιση μόνο
   show_relative_proportions_of_all_observations: Εμφάνιση σχετικών αναλογιών όλων των παρατηρήσεων
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Εμφάνιση Τρέχοντος Συνόλου
   show_scientific_name_first: Εμφάνιση επιστημονικών ονομάτων πρώτα
   show_taxa_from_both: (εμφάνιση ταξινομικών βαθμίδων και από τις δύο λίστες)
