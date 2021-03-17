@@ -1447,7 +1447,9 @@ zh-TW:
   get_started: 入門
   getting_started_guide: 入門指南
   give_it_some_detail: 為它提供一些詳細內容！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
+  #Prompt to donate money once
   give_now_caps: 現在捐款
   global_names: 全域名稱
   globally: 全球
@@ -1497,12 +1499,10 @@ zh-TW:
   heads_up: 注意
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
-  heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
   help: 幫助
   help_confirm_observations!: 幫助確認觀察！
   help_support_inaturalist: "協助支持 iNaturalist"
   help_translate!: 協助翻譯
-  helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們的最佳物種建議
   hex_color_eg: 16 進位色彩碼，例如：65644F
@@ -1513,6 +1513,7 @@ zh-TW:
   hide_content: 隱藏內容
   hide_desc: |
     隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
@@ -1570,6 +1571,7 @@ zh-TW:
   ignore_times: 忽略次數
   image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
   image_size_control: 圖片大小控制
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: 危及
   import: 匯入
   import_all_photos_as_observations: 匯入所有照片成為觀察
@@ -3405,6 +3407,7 @@ zh-TW:
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
   show_relative_proportions_of_all_observations: 顯示所有觀察的相對比例
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 顯示運行總計
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: '（從兩項清單顯示物種分類群）'
