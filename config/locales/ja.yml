@@ -1384,7 +1384,9 @@ ja:
   get_started: 始めよう
   getting_started_guide: 初めてのユーザーガイド
   give_it_some_detail: 詳しく書きましょう！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 毎月の寄付
+  #Prompt to donate money once
   give_now_caps: 今すぐ寄付
   global_names: グローバル名
   globally: 世界中
@@ -1436,7 +1438,6 @@ ja:
   help_confirm_observations!: 観測を記録しましょう！
   help_support_inaturalist: "iNaturalistを支援する"
   help_translate!: 翻訳を手伝ってください!
-  helped_the_observer_make: 観察者が最終的な同定(つまり、最後の同定より前に作成されたものであり、それと一致する)を作成するのに役立った
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
   here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
   hex_color_eg: 16進色、例：65644F
@@ -1447,6 +1448,7 @@ ja:
   hide_content: コンテンツを非表示
   hide_desc: |
     コンテンツを非表示にすると、そのコンテンツはパブリックビューから削除されますが、ユーザーは何かが非表示になっていることを確認でき、サイト管理者およびコンテンツの作成者は非表示のコンテンツを確認できます。一般に、これは記述されたコンテンツにのみ適用されます。たとえば、同定のコンテンツを非表示にした場合、同定は表示されたままですが、同定者による注釈は非表示になります。元に戻すことはできず、一度非表示にしたコンテンツを再表示できるのはサイトのスタッフだけです。そのため操作には注意し、非常に好ましくないコンテンツにのみ使用してください。
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 現在の総計を非表示
   hide_uncountable_species: 数えられない種を非表示
   high: 高
@@ -3193,6 +3195,7 @@ ja:
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 現在の総計を表示
   show_scientific_name_first: 学名を最初に表示する
   show_taxa_from_both: (両方のリストから分類群を表示する)
