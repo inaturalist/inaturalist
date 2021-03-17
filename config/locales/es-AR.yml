@@ -1574,12 +1574,10 @@ es-AR:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
-  heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas por color abajo según el rango."
   help: Ayuda
   help_confirm_observations!: '¡Ayúdanos a confirmar observaciones!'
   help_support_inaturalist: "Apoya iNaturalist"
   help_translate!: '¡Ayudá con la traducción!'
-  helped_the_observer_make: ayudó al observador a hacer su identificación final (es decir, se hicieron antes de la identificación final y concuerdan)
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_our_top_species_suggestions: Éstas son nuestras sugerencias principales de especies
   hex_color_eg: Color en hexadecimal, ej. 65644F
@@ -1591,6 +1589,7 @@ es-AR:
   hide_desc: |
     Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los administradores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una  identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para
     contenido censurable.
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: Alta
@@ -1645,6 +1644,7 @@ es-AR:
   ignore_and_continue: Ignora y continúa
   ignore_times: Ignora los tiempos
   image_must_be_exactly: del proyecto debe ser exactamente de 950px ancho y a lo más de 400px de altura
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En peligro
   import: Importa
   import_all_photos_as_observations: Importa todas las fotos como observaciones
@@ -3398,6 +3398,7 @@ es-AR:
   show_off_your_recent_observations: '¡Presume tus observaciones en tu propio blog o sitio web!'
   show_only: Mostrar solamente
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar Total Acumulado
   show_scientific_name_first: Mostrar primero los nombres científicos
   show_taxa_from_both: (muestra taxones de ambas listas)
