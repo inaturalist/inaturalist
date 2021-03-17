@@ -594,7 +594,7 @@ class User < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: Observation.by(self), wait_for_index_refresh: true)
+    Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
   def merge(reject)

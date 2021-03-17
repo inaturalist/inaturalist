@@ -295,7 +295,6 @@ class Observation < ActiveRecord::Base
         for_identification: options[:for_identification]) : nil
     }
 
-
     current_ids = identifications.select(&:current?)
     if options[:no_details]
       json.merge!({
