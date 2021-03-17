@@ -1151,11 +1151,9 @@ ar:
   heads_up: انتباه
   heads_up_this_photo_has_been_flagged: "انتباه: تم التعليم على هذه الصورة"
   heads_up_this_photo_is_already_associated_with: "تنبيه: هذه الصورة مقترنة بالفعل <a target='_blank' href='%{url}'>بملاحظة أخرى</a>"
-  heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_support_inaturalist: "مساعدة دعم إيناتوراليست"
-  helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   hex_color_eg: لون Hex، على سبيل المثال 65644F
@@ -1171,6 +1169,7 @@ ar:
     المعرف تكون مخفية، لا يمكنك التراجع عن ذلك، ولا يمكن إلا لموظفي الموقع إظهار
     المحتوى بمجرد إخفائه؛ لذا كن حذرا واستخدم هذا فقط 
     للمحتوى غير المرغوب فيه للغاية.
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
@@ -1233,6 +1232,7 @@ ar:
   ignore_and_continue: تجاهل ومتابعة
   ignore_times: مرات التجاهل
   image_must_be_exactly: يجب أن تكون الصورة بعرض 950 بكسل وعلى الأكثر بطول 400 بكسل بالضبط
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: معرض للخطر
   import: استيراد
   import_all_photos_as_observations: استيراد جميع الصور كملاحظات
@@ -2910,6 +2910,7 @@ ar:
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
   show_relative_proportions_of_all_observations: إظهار النسب المرتبطة لجميع الملاحظات
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: إظهار تشغيل الاجمالي
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
