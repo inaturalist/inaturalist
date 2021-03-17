@@ -1617,7 +1617,9 @@ pt:
   get_started: Começar
   getting_started_guide: Guia de Início
   give_it_some_detail: Inclua alguns detalhes!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DOAR MENSALMENTE
+  #Prompt to donate money once
   give_now_caps: DOAR AGORA
   global_names: Nomes globais
   globally: Globalmente
@@ -1667,12 +1669,10 @@ pt:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "Atenção: esta foto foi marcada."
   heads_up_this_photo_is_already_associated_with: "Atenção: esta foto já esta associada com <a target='_blank' href='%{url}'>outra observação</a>"
-  heads_up_you_have_multiple: "Atenção: Existem várias marcações taxonômicas para categorias idênticas."
   help: Ajuda
   help_confirm_observations!: Ajude confirmar observações!
   help_support_inaturalist: "Ajude a apoiar o iNaturalist"
   help_translate!: Ajude a Traduzir!
-  helped_the_observer_make: ajudou o observador a realizar a identificação final (realizado antes da identificação final e correspondem)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_species_suggestions: Aqui pode ver a nossa seleção de espécies
   hex_color_eg: 'Cor hexadecimal, ex: 65644F'
@@ -1693,6 +1693,7 @@ pt:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sem Anotação"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alta
@@ -1750,6 +1751,7 @@ pt:
   ignore_times: Ignora os tempos
   image_must_be_exactly: imagem deve ser exatamente 950px de largura e no máximo 400px de altura.
   image_size_control: Controle de tamanho da imagem
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Em perigo
   import: Importar
   import_all_photos_as_observations: Importar todas as fotos como observações
@@ -3657,6 +3659,7 @@ pt:
   show_off_your_recent_observations: Publicar suas observações mais recentes em seu blog ou site!
   show_only: 'Mostrar somente:'
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar total acumulado
   show_scientific_name_first: Mostrar nomes científicos primeiro
   show_taxa_from_both: (exibir táxons de ambas as listas)
