@@ -1469,7 +1469,9 @@ gl:
   get_started: Comeza
   getting_started_guide: Cómo comezar
   give_it_some_detail: Introduce algún detalle!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DOA MENSUALMENTE
+  #Prompt to donate money once
   give_now_caps: DOA AGORA
   global_names: Nomes Globais
   globally: globalmente
@@ -1519,12 +1521,10 @@ gl:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto foi marcada"
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto xa está asociada con <a target='_blank' href='%{url}'>outra observación</a>"
-  heads_up_you_have_multiple: "Avisos. Xeraches varias etiquetas taxonómicas para rangos idénticos. Están codificadas por cor máis adiante segundo o rango."
   help: Axuda
   help_confirm_observations!: Axúdenos a confirmar observacións!
   help_support_inaturalist: "Axuda a Soster iNaturalist"
   help_translate!: '¡Axuda a Traducir!'
-  helped_the_observer_make: axudaches ao observador a facer a túa identificación final (é dicir, fixéronse antes da identificación final e concordan)
   here_are_3_examples: Aquí hai 3 exemplos de datos ben formados
   here_are_our_top_species_suggestions: Aquí tes as nosas mellores suxestións de especies
   hex_color_eg: Cor en hexadecimal, ex. 65644F
@@ -1535,6 +1535,7 @@ gl:
   hide_content: Ocultar Contido
   hide_desc: |
     Ocultar contido vai sacalo da vista pública, pero a xente aínda vai poder ver que algo foi agochado, e os conservadores do sitio e o autor do contido aínda poderán ver o contido oculto. Xeralmente, isto só se aplica ó contido escrito, p.e. se ocultares o contido dunha identificación, a identificación aínda será visible pero as anotacións do identificador estarán agochadas. Non podes desfacer isto, e só os traballadores do sitio poden desvelar o contido unha vez foi oculto, asi que ten tino e usa isto só para contidos moi ofensivos.
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar Total Acumulado
   hide_uncountable_species: Ocultar Especies Incontables
   high: Alto
@@ -1590,6 +1591,7 @@ gl:
   ignore_times: Ignorar os tempos
   image_must_be_exactly: a imaxe debe ser exactamente 950px de ancho e como moito 400px de alto
   image_size_control: Control do tamaño da imaxe
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En perigo
   import: Importar
   import_all_photos_as_observations: Importar todas as fotos como observacións
@@ -3408,6 +3410,7 @@ gl:
   show_off_your_recent_observations: Publica as túas observacións no teu propio blog ou páxina web!
   show_only: Mostrar soamente
   show_relative_proportions_of_all_observations: Mostrar proporcións relativas de tódalas observacións
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar Total Acumulado
   show_scientific_name_first: Mostrar nomes científicos primeiro
   show_taxa_from_both: (mostrar taxóns de ambas listas de novo)
