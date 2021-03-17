@@ -1581,7 +1581,9 @@ nb:
   get_started: Kom i gang
   getting_started_guide: Kom i gang-guide
   give_it_some_detail: Gi det litt detaljer!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: GI MÅNEDLIG
+  #Prompt to donate money once
   give_now_caps: GI NÅ
   global_names: Globale navn
   globally: Globalt
@@ -1631,12 +1633,10 @@ nb:
   heads_up: Obs
   heads_up_this_photo_has_been_flagged: "OBS: dette bildet har blitt markert."
   heads_up_this_photo_is_already_associated_with: "Obs: dette bildet allerede knyttet til <a target='_blank' href='%{url}'>en annen observasjon</a>"
-  heads_up_you_have_multiple: "Obs: Du har flere taksonomiske maskinmarkeringer for identiske ranger. De er fargekodert per rang nedenfor."
   help: Hjelp
   help_confirm_observations!: Hjelp å bekrefte observasjoner!
   help_support_inaturalist: "Hjelp med å støtte iNaturalist"
   help_translate!: Hjelp med å oversette!
-  helped_the_observer_make: har hjulpet observatøren med å gjøre ID-en endelig (dvs. de ble gjort før den endelige ID-en og de stemmer overens)
   here_are_3_examples: Her er 3 eksempler av bra utformede data
   here_are_our_top_suggestions: Her er våre beste forslag
   here_are_our_top_species_suggestions: Her er våre beste artsforslag
@@ -1651,6 +1651,7 @@ nb:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen merknad"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skjul løpende total
   hide_uncountable_species: Skjul arter som ikke kan telles
   high: Høy
@@ -1706,6 +1707,7 @@ nb:
   ignore_times: Ignorer klokkeslett
   image_must_be_exactly: bildet må være nøyaktig 950 piksler bred og maksimalt 400 piksler høy
   image_size_control: Bildestørrelse-styring
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: I fare
   import: Importer
   import_all_photos_as_observations: Importer alle bilder som observasjoner
@@ -3622,6 +3624,7 @@ nb:
   show_off_your_recent_observations: Vis frem dine nylige observasjoner på din egen blogg eller nettside!
   show_only: Vis kun
   show_relative_proportions_of_all_observations: Vis relative andel av alle observasjoner
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Vis løpende total
   show_scientific_name_first: Vis vitenskapelige navn først
   show_taxa_from_both: (vis taksa fra begge lister)
