@@ -2156,6 +2156,7 @@ class ObservationsController < ApplicationController
     @iconic_taxa = search_params[:iconic_taxa_instances]
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
+    @without_observations_taxon = search_params[:without_observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
@@ -2210,6 +2211,7 @@ class ObservationsController < ApplicationController
       !@q.nil? ||
       !@observations_taxon_id.blank? ||
       !@observations_taxon_name.blank? ||
+      !@without_observations_taxon.blank? ||
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
