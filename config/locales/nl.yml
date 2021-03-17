@@ -1726,7 +1726,9 @@ nl:
   get_started: Aan de slag
   getting_started_guide: Aan de slag-gids
   give_it_some_detail: Geef het wat detail!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: GEEF MAANDELIJKS
+  #Prompt to donate money once
   give_now_caps: GEEF NU
   global_names: Globale Namen
   globally: Wereldwijd
@@ -1776,12 +1778,10 @@ nl:
   heads_up: Opgelet
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
-  heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
   help_support_inaturalist: "Help en ondersteun iNaturalist!"
   help_translate!: Help met vertalen!
-  helped_the_observer_make: heeft de waarnemer geholpen zijn of haar uiteindelijke ID te maken (ze werden dus gedaan vóór het laatste ID, en ze komen overeen)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
   here_are_our_top_suggestions: Dit zijn onze topvoorstellen
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
@@ -1798,6 +1798,7 @@ nl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
   high: Hoog
@@ -1856,6 +1857,7 @@ nl:
   ignore_times: Tijden negeren
   image_must_be_exactly: afbeelding moet exact 950px breed en maximaal 400px hoog zijn
   image_size_control: Grootte afbeelding bepalen
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: In gevaar brengen
   import: Importeren
   import_all_photos_as_observations: Importeer alle foto's als waarnemingen
@@ -3869,6 +3871,7 @@ nl:
   show_off_your_recent_observations: Schep op over je recente waarnemingen op je eigen blog of website!
   show_only: Toon alleen
   show_relative_proportions_of_all_observations: Relatieve verhoudingen van alle waarnemingen tonen
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Lopend totaal weergeven
   show_scientific_name_first: Wetenschappelijke namen als eerste weergeven
   show_taxa_from_both: (toon taxa van beide lijsten)
