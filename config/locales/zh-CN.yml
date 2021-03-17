@@ -1525,7 +1525,9 @@ zh-CN:
   get_started: 入门
   getting_started_guide: 入门指导
   give_it_some_detail: 给它提供一些详情！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
+  #Prompt to donate money once
   give_now_caps: 立即捐款
   global_names: 全域名称
   globally: 全域
@@ -1574,12 +1576,10 @@ zh-CN:
   heads_up: 小心
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
-  heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
   help: 帮助
   help_confirm_observations!: 帮助确认观察！
   help_support_inaturalist: "帮助支持 iNaturalist"
   help_translate!: 协助翻译
-  helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_suggestions: 这是我们的最佳建议
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
@@ -1592,6 +1592,7 @@ zh-CN:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高
@@ -1645,6 +1646,7 @@ zh-CN:
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
   image_size_control: 图片大小控制
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: 危及
   import: 导入
   import_all_photos_as_observations: 将所有照片导入为观察
@@ -3532,6 +3534,7 @@ zh-CN:
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
   show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
   show_scientific_name_first: 首先显示学名
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
