@@ -1276,17 +1276,16 @@ et:
   heads_up: Pane tähele
   heads_up_this_photo_has_been_flagged: "PANE TÄHELE: see foto on varustatud märkusega."
   heads_up_this_photo_is_already_associated_with: "Pane tähele: see foto on juba seotud <a target='_blank' href='%{url}'>teise vaatlusega</a>"
-  heads_up_you_have_multiple: "Pane tähele: Sul vastab mitu taksonoomilist masin-märksõna identsetele kategooriatele. Allpool on nad tasemete kaupa värviga eristatud."
   help: Abi
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_support_inaturalist: "Toeta iNaturalisti"
   help_translate!: Aita tõlkida!
-  helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
   here_are_our_top_species_suggestions: Meie parimad liigipakumised
   hex_color_eg: Hex-värf, nt 65644F
   hi: Tere,
   hi_user: "Tere %{user}"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Peida hetke koguarv
   hide_uncountable_species: Peida loendamatud liigid
   high: Kõrge
@@ -1341,6 +1340,7 @@ et:
   ignore_and_continue: Eira ja jätka
   ignore_times: Eira kellaaegu
   image_must_be_exactly: pilt peab olema täpselt 950 pikslit lai ja maksimaalselt 400 pikslit kõrge
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohustatud
   import: Impordi
   import_all_photos_as_observations: Impordi kõik fotod vaatlustena
@@ -2852,6 +2852,7 @@ et:
   show_off_your_recent_observations: Näita hiljutisi vaatluseid oma blogis või kodulehel!
   show_only: Näita ainult
   show_relative_proportions_of_all_observations: Näita kõigi vaatluste suhtelisi proportsioone
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Näita hetke koguarvu
   show_scientific_name_first: Näita esmalt teaduslikku nimetust
   show_taxa_from_both: (näita taksoneid mõlemast nimekirjast)
