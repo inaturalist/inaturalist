@@ -1676,7 +1676,9 @@ fi:
   get_started: Aloita
   getting_started_guide: Aloitusopas
   give_it_some_detail: Lisää joitakin yksityiskohtia!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
+  #Prompt to donate money once
   give_now_caps: LAHJOITA NYT
   global_names: Maailmanlaajuiset nimet
   globally: Maailmanlaajuisesti
@@ -1728,7 +1730,6 @@ fi:
   help_confirm_observations!: Auta vahvistamaan havaintoja!
   help_support_inaturalist: "Auta tukemaan iNaturalistia"
   help_translate!: Auta kääntämisessä!
-  helped_the_observer_make: auttoi havainnoijaa tekemään lopullisen tunnistuksensa (eli ne tehtiin ennen lopullista tunnistusta, ja ne täsmäävät sen kanssa)
   here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
   here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
   here_are_our_top_species_suggestions: Tässä ovat parhaat lajiehdotuksemme
@@ -1743,6 +1744,7 @@ fi:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -1793,6 +1795,7 @@ fi:
   ignore_times: Jätä kellonaika huomioimatta
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
   image_size_control: Kuvan koon hallinta
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Vaarantunut
   import: Tuo
   import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
@@ -3631,6 +3634,7 @@ fi:
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
   show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteellinen määrä
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Näytä kumulatiivinen yhteismäärä
   show_scientific_name_first: Näytä tieteelliset nimet ensin
   show_taxa_from_everywhere: "Näytä taksonit kaikkialta"
