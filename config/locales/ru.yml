@@ -1810,7 +1810,9 @@ ru:
   get_started: Начать
   getting_started_guide: Руководство по началу работы
   give_it_some_detail: Предоставьте некоторые подробности!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: ВНОСИТЬ ЕЖЕМЕСЯЧНО
+  #Prompt to donate money once
   give_now_caps: ВНЕСТИ СЕЙЧАС
   global_names: Глобальные имена
   globally: Глобально
@@ -1860,12 +1862,10 @@ ru:
   heads_up: Внимание
   heads_up_this_photo_has_been_flagged: "ПРЕДУПРЕЖДЕНИЕ: это фото было помечено флагом."
   heads_up_this_photo_is_already_associated_with: "Внимание: это фото уже связано с <a target='_blank' href='%{url}'>другим наблюдением</a>"
-  heads_up_you_have_multiple: "Внимание: у вас множество машинных таксономических тегов для идентичных классов. Ниже они кодируются цветом в зависимости от класса."
   help: Справка
   help_confirm_observations!: Помогите подтвердить наблюдения!
   help_support_inaturalist: "Помогите поддержать iNaturalist"
   help_translate!: Помогите с переводом!
-  helped_the_observer_make: помогли наблюдателю сделать окончательную идентификацию (т.е. были сделаны до окончательной идентификации и соответствовали ей)
   here_are_3_examples: Вот 3 примера правильно сформированных данных
   here_are_our_top_suggestions: Вот наши лучшие предложения
   here_are_our_top_species_suggestions: Вот наши лучшие предложения видов
@@ -1880,6 +1880,7 @@ ru:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не показывать данные, где "Нет значения"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
   high: Высший
@@ -1937,6 +1938,7 @@ ru:
   ignore_times: Пропустите время
   image_must_be_exactly: изображение должно быть ровно 950 пикселей в ширину и не более 400 пикселей в высоту
   image_size_control: Управление размером изображения
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Под угрозой
   import: Импорт
   import_all_photos_as_observations: Импортировать все фото в качестве наблюдений
@@ -3926,6 +3928,7 @@ ru:
   show_off_your_recent_observations: Покажите ваши последние наблюдения в своем блоге или на своем сайте!
   show_only: Показывать только
   show_relative_proportions_of_all_observations: Показать относительные доли всех наблюдений
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Показать текущий итог
   show_scientific_name_first: Показывать научные названия вначале
   show_taxa_from_both: (показать таксоны из обоих списков)
