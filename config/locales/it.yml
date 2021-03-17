@@ -1697,7 +1697,9 @@ it:
   get_started: Inizia
   getting_started_guide: Guida Introduttiva
   give_it_some_detail: Aggiungi un po' di dettagli
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DONA MENSILMENTE
+  #Prompt to donate money once
   give_now_caps: DONA ORA
   global_names: Nomi globali
   globally: A livello globale
@@ -1747,12 +1749,10 @@ it:
   heads_up: Avviso
   heads_up_this_photo_has_been_flagged: "AVVISO: questa foto è stata contrassegnata."
   heads_up_this_photo_is_already_associated_with: "Avviso: questa foto è già associata con un'<a target='_blank' href='%{url}'>altra osservazione</a>"
-  heads_up_you_have_multiple: "Avviso : hai delle etichette tassonomiche multiple automatiche per dei ranghi identici. Sono codificate per colore qui sotto per rango."
   help: Aiuto
   help_confirm_observations!: Aiuta a confermare le osservazioni!
   help_support_inaturalist: "Aiuta a sostenere iNaturalist"
   help_translate!: Aiuta a tradurre!
-  helped_the_observer_make: ha aiutato l'osservatore a decidere la sua ID finale (e.g. sono state fatte prima dell'ID finale e corrispondono)
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
   here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti per la specie
@@ -1767,6 +1767,7 @@ it:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
   high: Superiore
@@ -1824,6 +1825,7 @@ it:
   ignore_times: Ignora il numero di volte
   image_must_be_exactly: l'immagine deve essere esattamente larga 950px e alta al massimo 400px
   image_size_control: Controllo dimensione immagine
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: In via d'estinzione.
   import: Importa
   import_all_photos_as_observations: Importa tutte le foto come osservazioni
@@ -3796,6 +3798,7 @@ it:
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog o sul tuo sito!
   show_only: Mostra solo
   show_relative_proportions_of_all_observations: Mostra le proporzioni relative di tutte le osservazioni
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostra il totale attuale
   show_scientific_name_first: Mostra prima i nomi scientifici
   show_taxa_from_both: (mostra i taxa di entrambe le liste)
