@@ -1699,7 +1699,9 @@ tr:
   get_started: Başla
   getting_started_guide: Başlangıç Rehberi
   give_it_some_detail: Biraz ayrıntı ver!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: AYLIK ÖDE
+  #Prompt to donate money once
   give_now_caps: ŞİMDİ ÖDE
   global_names: Küresel Adlar
   globally: Küresel
@@ -1749,12 +1751,10 @@ tr:
   heads_up: Uyarı
   heads_up_this_photo_has_been_flagged: "UYARI: bu fotoğraf işaretlendi."
   heads_up_this_photo_is_already_associated_with: "Uyarı: bu fotoğraf zaten <a target='_blank' href='%{url}'>başka bir gözlemle</a> ilişkilendirilmiş"
-  heads_up_you_have_multiple: "Uyarı: Aynı düzeyler için birden çok sınıflandırmasal makine etiketine sahipsiniz. Düzeyler için aşağıda renkler kodlanmıştır."
   help: Yardım
   help_confirm_observations!: Gözlemleri doğrulamaya yardımcı olun!
   help_support_inaturalist: "iNaturalist Yardım ve Destek"
   help_translate!: Çeviriye Yardımcı Olun!
-  helped_the_observer_make: gözlemcinin son tanımlamasını yapmasına yardımcı oldu (yani, son tanımlamadan önce yapıldı ve eşleşti)
   here_are_3_examples: İşte iyi biçimlendirilmiş verilere 3 örnek
   here_are_our_top_suggestions: En iyi önerilerimiz şunlar
   here_are_our_top_species_suggestions: İşte en iyi tür önerilerimiz
@@ -1769,6 +1769,7 @@ tr:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Açıklama Notu Olmayan"ları Gizle'
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Toplam Bulunanı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
   high: Yüksek
@@ -1826,6 +1827,7 @@ tr:
   ignore_times: Zamanları yok say
   image_must_be_exactly: görüntü tam olarak 950 piksel genişliğinde ve en çok 400 piksel uzunluğunda olmalıdır
   image_size_control: Görüntü boyutu kontrolü
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Tehlikede
   import: İçe aktar
   import_all_photos_as_observations: Tüm fotoğrafları gözlem olarak içe aktar
@@ -3791,6 +3793,7 @@ tr:
   show_off_your_recent_observations: Son gözlemlerinizi kendi blogunuzda veya web sitenizde gösterin!
   show_only: Sadece göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin karşılaştırmalı oranlarını göster
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Toplam Bulunanı Göster
   show_scientific_name_first: İlk önce bilimsel isimleri göster
   show_taxa_from_both: (her iki listeden sınıfları göster)
