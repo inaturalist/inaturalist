@@ -1851,7 +1851,9 @@ cs:
   get_started: Začněte
   getting_started_guide: Příručka pro nováčky
   give_it_some_detail: Přidejte nějaký detail!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DÁT MĚSÍČNĚ
+  #Prompt to donate money once
   give_now_caps: DÁT NYNÍ
   global_names: Globální názvy
   globally: globálně
@@ -1901,12 +1903,10 @@ cs:
   heads_up: Pozor
   heads_up_this_photo_has_been_flagged: "POZOR: tato fotka byla označena."
   heads_up_this_photo_is_already_associated_with: "Pozor: tato fotka už je spojena s <a target='_blank' href='%{url}'>jiným pozorováním</a>"
-  heads_up_you_have_multiple: "Pozor: Máte několikanásobná automatické taxonomická označení pro stejné kategorie. Níže jsou jednotlivé kategorie barevně označeny."
   help: Nápověda
   help_confirm_observations!: Pomozte potvrdit pozorování!
   help_support_inaturalist: "Nápověda iNaturalist"
   help_translate!: Pomozte s překladem!
-  helped_the_observer_make: pomohl pozorovateli provést konečné ID (byly provedeny před konečným ID, kterému odpovídají)
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
   here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
@@ -1927,6 +1927,7 @@ cs:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
@@ -1984,6 +1985,7 @@ cs:
   ignore_times: Ignorovat časy
   image_must_be_exactly: obrázek musí být přesně 950px široký a maximálně 400px vysoký
   image_size_control: Ovládání velikosti obrázku
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohrožen
   import: Importovat
   import_all_photos_as_observations: Importovat všechny fotky jako pozorování
@@ -4007,6 +4009,7 @@ cs:
   show_off_your_recent_observations: Ukažte svá poslední pozorování na svém blogu nebo webové stránce!
   show_only: Zobrazit jen
   show_relative_proportions_of_all_observations: Zobrazte příbuzné části všech pozorování
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobrazit Running Total
   show_scientific_name_first: Zobrazit nejdřív vědecké názvy
   show_taxa_from_both: (zobrazit taxony z obou seznamů)
