@@ -113,6 +113,9 @@ es-MX:
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
   about_names: Acerca de los nombres
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Acerca de %{place}"
   about_places: Acerca de Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_these_licenses: Acerca de estas licencias
@@ -2131,6 +2134,7 @@ es-MX:
   none: Ninguno
   none_found: No se encontró ninguno
   not_completed: Sin completar
+  not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de referencia de taxón
   not_evaluated: No se ha evaluado
   not_findig_what_you_want: '¿No encuentras lo que buscas?'
@@ -2163,6 +2167,16 @@ es-MX:
   observation_added: Observación añadida.
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregación de observación
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observaciones de %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observaciones de %{user}
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
