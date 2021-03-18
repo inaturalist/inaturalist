@@ -97,7 +97,7 @@ module ActsAsElasticModel
           # the resulting IDs instead of scopes for DelayedJobs.
           # For example, delayed calls this like are very efficient:
           #   Observation.elastic_index!(scope: User.find(1).observations, delay: true)
-          result_ids = scope.select(:id).order(:id).map(&:id)
+          result_ids = scope.order(:id).pluck(:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
           queue = result_ids.size > 100 ? "slow" : nil
