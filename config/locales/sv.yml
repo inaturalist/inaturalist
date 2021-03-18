@@ -1687,6 +1687,7 @@ sv:
   #Adjective, as in a fluid layout of images
   fluid: responsiv
   follow: Följ
+  follow_receive_updates_about_new_observations: Följ (få uppdateringar om nya observationer)
   follow_user: "Följ %{user}"
   followed_projects: Följda projekt
   followers: Följare
@@ -1788,6 +1789,7 @@ sv:
   heads_up: Obs
   heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
   heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>en annan observation</a>"
+  heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
   help: Hjälp
   help_confirm_observations!: Hjälp till att bekräfta observationer!
   help_support_inaturalist: "Hjälp till att stödja iNaturalist"
@@ -3428,7 +3430,7 @@ sv:
   posts: Inlägg
   potential_disagreement: Möjlig oenighet
   powered_by: Drivs av
-  powered_by_inaturalist_open_source_software_html: 'Drivs av <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist programvara med öppen källkod</a>'
+  powered_by_inaturalist_open_source_software_html: 'Drivs av <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist-programvara med öppen källkod</a>'
   present: påträffad
   press: Press
   preview: Förhandsgranska
@@ -3556,7 +3558,7 @@ sv:
       one: Klass
       other: Klasser
     subclass: Underklass
-    infraclass: infraklass
+    infraclass: Infraklass
     superorder: Överordning
     order: Ordning
     x_orders:
