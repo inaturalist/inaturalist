@@ -794,7 +794,7 @@ class ObservationsController < ApplicationController
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.last
+          next unless photo = observation.observation_photos.last.try(:photo)
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
