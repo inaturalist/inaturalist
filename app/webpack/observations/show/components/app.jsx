@@ -305,12 +305,12 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad height={748} verticalOffset={500}>
+      <LazyLoad debounce={false} height={748} verticalOffset={500}>
         <div className="data_quality_assessment">
           <AssessmentContainer />
         </div>
       </LazyLoad>
-      <LazyLoad height={325} offset={500}>
+      <LazyLoad debounce={false} height={325} offset={500}>
         <div className="more_from">
           <Grid>
             <Row>
@@ -321,7 +321,7 @@ const App = ( {
           </Grid>
         </div>
       </LazyLoad>
-      <LazyLoad height={190} offset={500}>
+      <LazyLoad debounce={false} height={190} offset={500}>
         <div className="other_observations">
           <Grid>
             <Row>
