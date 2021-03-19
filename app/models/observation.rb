@@ -990,7 +990,7 @@ class Observation < ActiveRecord::Base
       self.time_zone = parsed_time_zone.name
       begin
         if (
-          ( user_time_zone = ActiveSupport::TimeZone[user.time_zone] ) &&
+          ( user_time_zone = ActiveSupport::TimeZone[user.try(:time_zone)] ) &&
           user_time_zone != parsed_time_zone &&
           user_time_zone.utc_offset == parsed_time_zone.utc_offset
         )
