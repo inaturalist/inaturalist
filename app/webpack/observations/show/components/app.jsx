@@ -344,14 +344,18 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
-      { config && config.currentUser && config.currentUser.roles.indexOf( "curator" ) >= 0 && (
-        <TestGroupToggle
-          group="apiv2"
-          joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-          joinedStatus="Joined API V2 test"
-          user={config.currentUser}
-        />
-      ) }
+      {
+        config && config.currentUser
+        && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
+        && (
+          <TestGroupToggle
+            group="apiv2"
+            joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+            joinedStatus="Joined API V2 test"
+            user={config.currentUser}
+          />
+        )
+      }
     </div>
   );
 };
