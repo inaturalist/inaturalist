@@ -167,6 +167,9 @@ ca:
   about_muting: Quant a Silenciar
   #Header for a section describing taxon names
   about_names: Quant a els noms
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Sobre %{place}"
   about_places: Sobre els Llocs
   about_the_cc_licenses: Sobre les llicències de Creative Commons
   about_these_licenses: Sobre aquestes llicències
@@ -1639,6 +1642,7 @@ ca:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguiu
+  follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
   follow_user: "Segueix a %{user}"
   followed_projects: Projectes seguits
   followers: seguidors
@@ -1740,6 +1744,7 @@ ca:
   heads_up: Avís
   heads_up_this_photo_has_been_flagged: "ATENCIÓ: s’ha marcat aquesta foto."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓ: aquesta foto ja està associada amb <a target='_blank' href='%{url}'>una altra observació</a>"
+  heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
   help_support_inaturalist: "Ajudeu a iNaturalist"
