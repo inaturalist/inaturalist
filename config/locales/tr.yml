@@ -166,12 +166,15 @@ tr:
   about_muting: Susturma Hakkında
   #Header for a section describing taxon names
   about_names: Adlar Hakkında
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} Hakkında"
   about_places: Yerler Hakkında
   about_the_cc_licenses: Creative Commons Lisansları Hakkında
   about_these_licenses: Bu lisanslar hakkında
   about_this_bioblitz: Bu bioblitz hakkında
-  about_this_map: Bu harita hakkında
-  about_this_project: Bu proje hakkında
+  about_this_map: Bu Harita Hakkında
+  about_this_project: Bu Proje Hakkında
   about_trips_html: |
     <h4>
     Geziler, gözlemlerinize bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
@@ -5062,6 +5065,7 @@ tr:
         least_observed: En Az Gözlemlenenler
         date_added_newest: Ekleme Tarihi, Yeniden Eskiye
         date_added_oldest: Ekleme Tarihi, Eskiden Yeniye
+        ancestry: Soy
         show: Göster
         children: Çocuklar
         simplified_tree: Basitleştirilmiş Ağaç
