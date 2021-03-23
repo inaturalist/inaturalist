@@ -1635,7 +1635,7 @@ zh-CN:
   ids: "ID"
   ids_made_for_others: 由其他人做出的ID
   if_for_some_reason_a_user_doesnt_agree: |
-    如果出于某种原因，你不同意社区分类单元，你可以拒绝它，这意味着你的ID会被用于链接到其他观察，更新生命列表等。这也意味着只有当社区同意你的看法时，你的观察才能被作为研究成绩 。
+    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
@@ -3387,8 +3387,8 @@ zh-CN:
   research_: 研究
   research_grade: 研究级别
   research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
-  research_grade_observations_have: '“研究成绩”观察具有日期，照片，坐标和由社区支持的ID。点击查看数据质量评估。'
-  research_grade_qualification: 研究成果资格
+  research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社区支持的鉴定结果。点击查看数据质量评估标准。'
+  research_grade_qualification: 研究级资质
   reset_filters_short: 重设
   reset_brightness: 重新设定亮度
   reset_search_filters: 重置搜索过滤器
@@ -3864,7 +3864,7 @@ zh-CN:
   the_admin_is_the_person_who: |
     管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
-    以下项需要达到特定<span className="bold">研究等级：</span>
+    下列项目需要达到<span className="bold">研究等级：</span>
   the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
