@@ -1522,6 +1522,7 @@ ja:
   inbox: 受信箱
   include_places: 場所を含む
   include_projects: プロジェクトを含む
+  include_suggestions_not_seen_nearby: 近くで見られない候補を含める
   include_taxa: 分類群を含む
   include_users: ユーザーを含む
   including: 次を含む：
@@ -2304,6 +2305,7 @@ ja:
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
   only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはいけません。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
+  only_view_nearby_suggestions: 近くで見られた候補のみ表示
   only_you: 自分のみ
   open: 公開
   open_: オープン
@@ -2950,6 +2952,8 @@ ja:
     superfamily: 上科
     epifamily: 上科
     family: 科
+    x_families:
+      other: 科
     subfamily: 亜科
     supertribe: 上族/上連
     tribe: 族/連
@@ -3769,6 +3773,7 @@ ja:
   view_your_observations: あなたの観察記録を表示
   view_yours: 自分のを表示
   view_all_of_your_observations_from_x: "%{x}から自分のすべての観察記録を表示"
+  visually_similar: 視覚的に似ている
   vulnerable: 危急種/絶滅危惧II類
   w00t_no_ungrafted_taxa: やった！未合体の分類群がありません！
   w_photos_only: 写真あり
