@@ -580,7 +580,7 @@ class User < ActiveRecord::Base
   def update_observation_sites_later
     delay(
       priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "User::update_observation_sites": id }
+      unique_hash: { "User::update_observation_sites": id },
       queue: "throttled"
     ).update_observation_sites if site_id_changed?
   end
@@ -593,7 +593,7 @@ class User < ActiveRecord::Base
   def index_observations_later
     delay(
       priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "User::index_observations_later": id }
+      unique_hash: { "User::index_observations_later": id },
       queue: "throttled"
     ).index_observations
   end
