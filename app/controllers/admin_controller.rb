@@ -147,16 +147,20 @@ class AdminController < ApplicationController
 
   def stop_query
     if params[:pid] && params[:pid].match( /^\d+$/ )
-      kill_postgresql_pid( params[:pid].to_i )
+      kill_postgresql_pid( params[:pid].to_i, params[:state] )
     end
     redirect_to :queries_admin
   end
 
   private
 
-  def kill_postgresql_pid( pid )
+  def kill_postgresql_pid( pid, state = nil )
     return unless pid && pid.is_a?( Integer )
-    ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    if state == "idle in transaction"
+      ActiveRecord::Base.connection.execute( "SELECT pg_terminate_backend(#{ pid })" )
+    else
+      ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    end
   end
 
   def load_user_content_info
