@@ -68,7 +68,10 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem "omniauth-twitter"
 gem "omniauth-apple"
-gem "paperclip", "~> 6.1.0"
+# Paperclip depends on mimemagic, which is no longer in rubygems.org due to
+# licensing problems, so we are using this fork instead. See
+# https://github.com/thoughtbot/paperclip/issues/2678
+gem "paperclip", "~> 6.1.1", git: "https://github.com/sd/paperclip.git", branch: "remove-mimemagic"
 gem "optimist"
 gem "patron"
 gem "pg"

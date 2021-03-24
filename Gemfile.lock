@@ -110,6 +110,17 @@ GIT
     omniauth-soundcloud (1.0.2)
       omniauth-oauth2
 
+GIT
+  remote: https://github.com/sd/paperclip.git
+  revision: 1d160793e3a511712245604efbe85f95989b81fd
+  branch: remove-mimemagic
+  specs:
+    paperclip (6.1.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      terrapin (~> 0.6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -448,12 +459,6 @@ GEM
     optimist (3.0.0)
     orm_adapter (0.5.0)
     os (1.0.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.12.1)
     patron (0.13.1)
     pg (0.21.0)
@@ -721,7 +726,7 @@ DEPENDENCIES
   omniauth-soundcloud!
   omniauth-twitter
   optimist
-  paperclip (~> 6.1.0)
+  paperclip (~> 6.1.1)!
   patron
   pg
   preferences!
