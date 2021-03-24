@@ -9,7 +9,7 @@ import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_conta
 import UmbrellaNews from "./umbrella_news";
 
 const UmbrellaOverviewTab = props => {
-  const { project } = props;
+  const { project, fetchPosts } = props;
   if ( !project.umbrella_stats_loaded ) {
     return ( <div className="loading_spinner huge" /> );
   }
@@ -29,7 +29,16 @@ const UmbrellaOverviewTab = props => {
         <RecentObservationsContainer />
       </LazyLoad>
       <PhotoModalContainer />
-      <LazyLoad debounce={false} height={90} offset={500}>
+      <LazyLoad
+        debounce={false}
+        height={90}
+        offset={100}
+        onContentVisible={( ) => {
+          if ( !project.posts_loaded ) {
+            fetchPosts( );
+          }
+        }}
+      >
         <UmbrellaNews {...props} />
       </LazyLoad>
     </div>
@@ -40,7 +49,8 @@ const UmbrellaOverviewTab = props => {
 UmbrellaOverviewTab.propTypes = {
   setConfig: PropTypes.func,
   project: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  fetchPosts: PropTypes.func
 };
 
 export default UmbrellaOverviewTab;

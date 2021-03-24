@@ -328,7 +328,7 @@ export function fetchOverviewData( ) {
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
-    dispatch( fetchPosts( ) );
+    // dispatch( fetchPosts( ) );
     dispatch( fetchMembers( ) );
   };
 }

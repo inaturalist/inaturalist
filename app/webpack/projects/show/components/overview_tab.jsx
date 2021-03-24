@@ -19,7 +19,8 @@ const OverviewTab = props => {
     config,
     project,
     updateCurrentUser,
-    fetchQualityGradeCounts
+    fetchQualityGradeCounts,
+    fetchPosts
   } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
@@ -41,20 +42,29 @@ const OverviewTab = props => {
       <Grid className="info-grid">
         <Row>
           <Col xs={4}>
-            <LazyLoad debounce={false} height={432} offset={500}>
+            <LazyLoad debounce={false} height={432} offset={100}>
               <Requirements {...props} includeArrowLink />
             </LazyLoad>
           </Col>
           <LazyLoad
             debounce={false}
             height={432}
-            offset={500}
+            offset={100}
             onContentVisible={fetchQualityGradeCounts}
           >
             <OverviewStats {...props} />
           </LazyLoad>
           <Col xs={4}>
-            <LazyLoad debounce={false} height={465} offset={500}>
+            <LazyLoad
+              debounce={false}
+              height={465}
+              offset={100}
+              onContentVisible={( ) => {
+                if ( !project.posts_loaded ) {
+                  fetchPosts( );
+                }
+              }}
+            >
               <News {...props} />
             </LazyLoad>
           </Col>
@@ -79,7 +89,9 @@ OverviewTab.propTypes = {
   project: PropTypes.object,
   config: PropTypes.object,
   setSelectedTab: PropTypes.func,
-  updateCurrentUser: PropTypes.func
+  updateCurrentUser: PropTypes.func,
+  fetchQualityGradeCounts: PropTypes.func,
+  fetchPosts: PropTypes.func
 };
 
 export default OverviewTab;
