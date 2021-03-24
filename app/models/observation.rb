@@ -936,7 +936,9 @@ class Observation < ActiveRecord::Base
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
       date_string = observed_on_string
-      parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
+      if observed_on_string =~ /z/i
+        parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
+      end
     elsif ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
         parsed_time_zone = ActiveSupport::TimeZone::CODES.values.compact.detect{|c| c.name == tz_abbrev} )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')

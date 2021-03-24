@@ -186,6 +186,17 @@ shared_examples_for "an ObservationsController" do
         o = Observation.last
         expect( o.time_zone ).to eq tz.tzinfo.name
       end
+      it "should accept TZInfo time zone names when observed_on_string is an ISO 8601 formtted datetime" do
+        zone_name = "Asia/Baghdad"
+        tz = ActiveSupport::TimeZone[zone_name]
+        post :create, format: :json, observation: {
+          observed_on_string: "2021-03-24T14:40:25",
+          time_zone: zone_name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.tzinfo.name
+        expect( o.time_observed_at_in_zone.hour ).to eq 14
+      end
       it "should override the user's time zone" do
         tz = ActiveSupport::TimeZone["Baghdad"]
         expect( user.time_zone ).not_to be_blank
