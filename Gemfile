@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 ruby "~> 2.6.0"
 
@@ -11,12 +11,10 @@ gem "activerecord-session_store"
 gem "acts-as-taggable-on", "~> 5.0"
 gem "acts_as_votable", "~> 0.12.0"
 gem "ancestry"
-gem "angular-rails-templates", git: "https://github.com/gaslight/angular-rails4-templates", ref: "v0.1.5"
 gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"
 gem "biodiversity"
-gem "bugguide", git: "https://github.com/kueda/bugguide.git"
 gem "capistrano", "~> 3.3"
 gem "capistrano-rvm", "~> 0.1"
 gem "capistrano-rails", "~> 1.1"

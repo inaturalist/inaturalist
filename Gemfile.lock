@@ -26,16 +26,6 @@ GIT
       i18n (>= 0.6.6)
 
 GIT
-  remote: https://github.com/gaslight/angular-rails4-templates
-  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
-  ref: v0.1.5
-  specs:
-    angular-rails-templates (0.1.5)
-      railties (>= 3.1)
-      sprockets (~> 2)
-      tilt
-
-GIT
   remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
@@ -86,15 +76,6 @@ GIT
       rgeo-activerecord (~> 2.0)
 
 GIT
-  remote: https://github.com/kueda/bugguide.git
-  revision: 9e091a7248418fc61aaae79ad5c9a672eb18b200
-  specs:
-    bugguide (0.1.3)
-      activesupport (~> 4.2)
-      commander (~> 4.3)
-      nokogiri (~> 1.6)
-
-GIT
   remote: https://github.com/kueda/preferences.git
   revision: e96644efae320870938d611cfbe6cb77a81b926f
   specs:
@@ -130,7 +111,7 @@ GIT
       omniauth-oauth2
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.11.3)
       actionpack (= 4.2.11.3)
@@ -266,8 +247,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commander (4.4.7)
-      highline (~> 2.0.0)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -367,7 +346,6 @@ GEM
       tilt
     hashdiff (0.3.8)
     hashie (4.1.0)
-    highline (2.0.0)
     hike (1.2.3)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
@@ -674,7 +652,6 @@ DEPENDENCIES
   acts-as-taggable-on (~> 5.0)
   acts_as_votable (~> 0.12.0)
   ancestry
-  angular-rails-templates!
   apipie-rails
   aws-sdk-cloudfront
   aws-sdk-s3
@@ -682,7 +659,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biodiversity
-  bugguide!
   byebug
   capistrano (~> 3.3)
   capistrano-passenger (~> 0.0)
