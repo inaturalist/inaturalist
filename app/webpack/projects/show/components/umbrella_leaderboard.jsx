@@ -3,7 +3,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import colors from "../umbrella_project_colors";
 
-const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
+const UmbrellaLeaderboard = ( {
+  project,
+  setConfig,
+  config,
+  fetchFullLeaderboard
+} ) => {
   const projectStats = project.umbrella_stats_loaded ? project.umbrella_stats.results : [];
   if ( _.isEmpty( projectStats ) ) { return ( <span /> ); }
   const limit = config.umbrellaLeaderboardLimit || 8;
@@ -27,22 +32,30 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
         { `${I18n.t( "sort_by" )}:` }
         <span
           className={ `sort-option ${sort === "observations" && "active"}` }
-          onClick={ () => setConfig(
+          onClick={ ( ) => setConfig(
             { umbrellaLeaderboardSort: "observations", umbrellaLeaderboardLimit: 8 } ) }
         >
           { I18n.t( "observations" ) }
         </span> |
         <span
           className={ `sort-option ${sort === "species" && "active"}` }
-          onClick={ () => setConfig(
-            { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 } ) }
+          onClick={ ( ) => {
+            if ( !project.full_umbrella_stats_loaded ) {
+              fetchFullLeaderboard( );
+            }
+            setConfig( { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 } )
+          }}
         >
           { I18n.t( "species" ) }
         </span> |
         <span
           className={ `sort-option ${sort === "observers" && "active"}` }
-          onClick={ () => setConfig(
-            { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 } ) }
+          onClick={ ( ) => {
+            if ( !project.full_umbrella_stats_loaded ) {
+              fetchFullLeaderboard( );
+            }
+            setConfig( { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 } ) }
+          }
         >
           { I18n.t( "observers" ) }
         </span>
@@ -93,7 +106,12 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
         { showMore && (
           <div
             className="show-more"
-            onClick={ ( ) => setConfig( { umbrellaLeaderboardLimit: sortedProjectStats.length } ) }
+            onClick={ ( ) => {
+              if ( !project.full_umbrella_stats_loaded ) {
+                fetchFullLeaderboard( );
+              }
+              setConfig( { umbrellaLeaderboardLimit: sortedProjectStats.length } )
+            }}
           >
             { I18n.t( "view_more" ) }
             <i className="fa fa-arrow-circle-o-down" />
@@ -107,7 +125,8 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
 UmbrellaLeaderboard.propTypes = {
   setConfig: PropTypes.func,
   project: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  fetchFullLeaderboard: PropTypes.func
 };
 
 export default UmbrellaLeaderboard;
