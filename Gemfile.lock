@@ -26,6 +26,16 @@ GIT
       i18n (>= 0.6.6)
 
 GIT
+  remote: https://github.com/gaslight/angular-rails4-templates
+  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
+  ref: v0.1.5
+  specs:
+    angular-rails-templates (0.1.5)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
+
+GIT
   remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
@@ -359,15 +369,8 @@ GEM
     hashie (4.1.0)
     hike (1.2.3)
     htmlentities (4.3.4)
-    httmultiparty (0.3.16)
-      httparty (>= 0.7.3)
-      mimemagic
-      multipart-post
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httparty (0.16.3)
-      mime-types (~> 3.0)
-      multi_xml (>= 0.5.2)
     httpi (2.4.4)
       rack
       socksify
@@ -404,7 +407,6 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
     minitest (5.14.0)
@@ -590,9 +592,6 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
     socksify (1.7.1)
-    soundcloud (0.3.4)
-      hashie
-      httmultiparty (~> 0.3.0)
     sprockets (2.12.5)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -657,6 +656,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 5.0)
   acts_as_votable (~> 0.12.0)
   ancestry
+  angular-rails-templates!
   apipie-rails
   aws-sdk-cloudfront
   aws-sdk-s3
@@ -752,7 +752,6 @@ DEPENDENCIES
   sass-rails (= 5.0.7)
   savon
   simplecov
-  soundcloud
   sprockets (~> 2.12.5)
   terrapin
   thin (~> 1.7)
