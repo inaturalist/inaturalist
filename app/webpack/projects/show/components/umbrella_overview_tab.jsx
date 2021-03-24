@@ -22,10 +22,10 @@ const UmbrellaOverviewTab = props => {
           </Col>
         </Row>
       </Grid>
-      <LazyLoad debounce={false} height={570} offset={500}>
+      <LazyLoad debounce={false} height={570} offset={100}>
         <UmbrellaMapContainer />
       </LazyLoad>
-      <LazyLoad debounce={false} height={120} offset={500}>
+      <LazyLoad debounce={false} height={120} offset={100}>
         <RecentObservationsContainer />
       </LazyLoad>
       <PhotoModalContainer />

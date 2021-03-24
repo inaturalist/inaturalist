@@ -72,10 +72,10 @@ const OverviewTab = props => {
       </Grid>
       { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
         <div>
-          <LazyLoad debounce={false} height={570} offset={500}>
+          <LazyLoad debounce={false} height={570} offset={100}>
             <OverviewMap project={project} config={config} updateCurrentUser={updateCurrentUser} />
           </LazyLoad>
-          <LazyLoad debounce={false} height={120} offset={500}>
+          <LazyLoad debounce={false} height={120} offset={100}>
             <RecentObservationsContainer />
           </LazyLoad>
           <PhotoModalContainer />
