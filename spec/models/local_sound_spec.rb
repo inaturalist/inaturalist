@@ -6,7 +6,7 @@ describe LocalSound, "creation" do
       user: User.make!,
       file: File.open( File.join( Rails.root, "spec/fixtures/files/pika.amr" ) )
     )
-    expect( ls.file.content_type ).to eq "audio/mp4"
+    expect( ["audio/mp4", "audio/x-m4a"] ).to include ls.file.content_type
   end
 
   it "should not convert an MP3 to an MP4" do
