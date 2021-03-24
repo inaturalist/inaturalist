@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import UmbrellaLeaderboardContainer from "../containers/umbrella_leaderboard_container";
 import UmbrellaMapContainer from "../containers/umbrella_map_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
@@ -21,10 +22,16 @@ const UmbrellaOverviewTab = props => {
           </Col>
         </Row>
       </Grid>
-      <UmbrellaMapContainer />
-      <RecentObservationsContainer />
+      <LazyLoad debounce={false} height={570} offset={500}>
+        <UmbrellaMapContainer />
+      </LazyLoad>
+      <LazyLoad debounce={false} height={120} offset={500}>
+        <RecentObservationsContainer />
+      </LazyLoad>
       <PhotoModalContainer />
-      <UmbrellaNews {...props} />
+      <LazyLoad debounce={false} height={90} offset={500}>
+        <UmbrellaNews {...props} />
+      </LazyLoad>
     </div>
   );
 };

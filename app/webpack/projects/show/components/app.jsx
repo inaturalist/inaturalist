@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import tinycolor from "tinycolor2";
 import UserText from "../../../shared/components/user_text";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
@@ -23,7 +24,7 @@ import FlashMessagesContainer from "../../../shared/containers/flash_messages_co
 import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 
 const App = ( {
-  config, project, leave, setSelectedTab, convertProject
+  config, project, leave, setSelectedTab, convertProject, fetchQualityGradeCounts
 } ) => {
   let view;
   let tab = config.selectedTab;
@@ -49,7 +50,16 @@ const App = ( {
       view = ( <SpeciesTabContainer /> );
       break;
     case "stats":
-      view = ( <StatsTabContainer /> );
+      view = (
+        <LazyLoad
+          debounce={false}
+          height={406}
+          offset={500}
+          onContentVisible={fetchQualityGradeCounts}
+        >
+          <StatsTabContainer />
+        </LazyLoad>
+      );
       break;
     case "before_event":
       view = ( <BeforeEventTabContainer /> );
@@ -318,7 +328,8 @@ App.propTypes = {
   project: PropTypes.object,
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
-  convertProject: PropTypes.func
+  convertProject: PropTypes.func,
+  fetchQualityGradeCounts: PropTypes.func
 };
 
 export default App;

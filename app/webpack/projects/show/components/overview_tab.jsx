@@ -2,6 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import TopObserversPanelContainer from "../containers/top_observers_panel_container";
 import TopSpeciesObserversPanelContainer from "../containers/top_species_observers_panel_container";
@@ -14,7 +15,12 @@ import OverviewStats from "./overview_stats";
 import OverviewMap from "./overview_map";
 
 const OverviewTab = props => {
-  const { config, project, updateCurrentUser } = props;
+  const {
+    config,
+    project,
+    updateCurrentUser,
+    fetchQualityGradeCounts
+  } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
     <div className="OverviewTab">
@@ -35,18 +41,33 @@ const OverviewTab = props => {
       <Grid className="info-grid">
         <Row>
           <Col xs={4}>
-            <Requirements {...props} includeArrowLink />
+            <LazyLoad debounce={false} height={432} offset={500}>
+              <Requirements {...props} includeArrowLink />
+            </LazyLoad>
           </Col>
-          <OverviewStats {...props} />
+          <LazyLoad
+            debounce={false}
+            height={432}
+            offset={500}
+            onContentVisible={fetchQualityGradeCounts}
+          >
+            <OverviewStats {...props} />
+          </LazyLoad>
           <Col xs={4}>
-            <News {...props} />
+            <LazyLoad debounce={false} height={465} offset={500}>
+              <News {...props} />
+            </LazyLoad>
           </Col>
         </Row>
       </Grid>
       { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
         <div>
-          <OverviewMap project={project} config={config} updateCurrentUser={updateCurrentUser} />
-          <RecentObservationsContainer />
+          <LazyLoad debounce={false} height={570} offset={500}>
+            <OverviewMap project={project} config={config} updateCurrentUser={updateCurrentUser} />
+          </LazyLoad>
+          <LazyLoad debounce={false} height={120} offset={500}>
+            <RecentObservationsContainer />
+          </LazyLoad>
           <PhotoModalContainer />
         </div>
       ) }
