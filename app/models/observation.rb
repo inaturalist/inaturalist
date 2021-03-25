@@ -936,7 +936,7 @@ class Observation < ActiveRecord::Base
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
       date_string = observed_on_string
-      if observed_on_string =~ /z/i
+      if observed_on_string =~ /[+-]\d{2}:?\d{2}/
         parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
       end
     elsif ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] ||
