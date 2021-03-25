@@ -44,15 +44,22 @@ es-MX:
   x_observations_link_html:
     one: "<a href='%{url}'>1 observación</a>"
     other: "<a href='%{url}'>%{count} observaciones</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> observación revisada"
+    other: "<span class='count'>%{count}</span> observaciones revisadas"
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
     other: "%{count} fotos"
   x_new_users:
     one: '%{count} Nuevo usuario'
     other: '%{count} Nuevos usuarios'
+  x_species_html:
+    one: "<span class='count'>1</span> especie"
+    other: "<span class='count'>%{count}</span> especies"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> observación con grado de investigación</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación</span>"
@@ -78,6 +85,9 @@ es-MX:
     Se creará un nombre predeterminado para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos obsoletos, etc.)
   a_flag_for_x: "una alerta para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "De la A a la Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -109,6 +119,7 @@ es-MX:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Acerca de los medios de establecimiento
+  about_license_options: Acerca de opciones de licencia
   about_licenses: Acerca de las licencias
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
@@ -122,6 +133,27 @@ es-MX:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
+  about_trips_html: |
+    <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos solamente de presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Has clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
+  about_trusting_projects: Sobre la confianza de proyectos
+  about_trusting_projects_options_any: Todas tus observaciones en este proyecto
+  about_trusting_projects_options_any_desc: |-
+    Esto incluye observaciones en las que tienes ajustada la geoprivacidad como "oscurecida" o "privada"; por ejemplo, de tu patio o jardín, o bien de lugares cuya ubicación prefieres no compartir con la demás gente.
+  about_trusting_projects_options_taxon: |-
+    Solo tus observaciones en este proyecto que tengan coordenadas oscurecidas debido a que corresponden a taxones en riesgo
+  about_trusting_projects_options_taxon_desc: |-
+    Muchos proyectos solo necesitan acceso a coordenadas oscurecidas porque la observación corresponde a un taxón en riesgo.
+  about_trusting_projects_overview: |-
+    Al conceder acceso a tus coordenadas ocultas, los administradores de este proyecto podrán ver la ubicación real, no oscurecida, de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que un científico o administrador de recursos necesite tener acceso a las coordenadas exactas para el análisis o la toma de decisiones.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Los administradores del proyecto que tendrán acceso a tus coordenadas ocultas son:
+  about_trusting_projects_warning: |-
+    Es importante mencionar que los administradores podrán modificar los parámetros del proyecto con el fin de incluir cualquiera de tus observaciones; además, pueden añadir o eliminar administradores del proyecto en todo momento. Recibirás notificaciones sobre estos cambios; pero, básicamente, le estás confiando a este proyecto tus datos de ubicación privada, por lo que te recomendamos tener cuidado.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Puedes elegir compartir tus coordenadas ocultas para
   acc: 'Precisión (metros)'
   account: Cuenta
   account_creation: Creación de cuentas
@@ -142,6 +174,8 @@ es-MX:
   add: Añade
   add_a_batch_of_observations: Añade un grupo de observaciones
   add_a_batch_of_taxa: Añade un grupo de taxa
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Agregar una lista con viñetas
   add_a_comment: Añade un comentario
   add_a_field: Añade un campo
   add_a_flag: Añade una alerta
@@ -173,6 +207,7 @@ es-MX:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Añade recurso
   add_batch: Añade un grupo
+  add_blocked_users: Agregar usuarios bloqueados
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Añadir texto en negritas
   add_comma_separated_tags: "Añade etiquetas separadas por comas"
@@ -187,6 +222,9 @@ es-MX:
   add_link: Añade enlace
   add_higher_level_taxon: Añade un grupo de nivel superior (por ejemplo, "aves")
   add_id: Añade ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Añadir texto en cursivas
+  add_muted_users: Agregar usuarios silenciados
   add_new_lexicon: Añade nuevo lexicón
   add_new_photos_by_their_ids: Añade nuevas fotos de tus identificaciones de Filckr (deben ser Creative Commons)
   add_new_place: Añade un nuevo lugar
@@ -206,10 +244,14 @@ es-MX:
   add_one_now: Añadir una ahora
   add_photos: Añade fotos
   add_place: Añade lugar
+  add_alive_or_dead_alive_annotation: 'Añade anotación "Vivo o muerto: vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Añade anotación "Vivo o Muerto: No se puede determinar"'
+  add_alive_or_dead_dead_annotation: 'Añade anotación "Vivo o muerto: muerto"'
   add_plant_phenology_budding_annotation: 'Añade anotación "fenología de la planta: en botón"'
+  add_plant_phenology_flower_budding_annotation: 'Agrega anotación: «Fenología de la planta: yemas florales»'
   add_plant_phenology_flowering_annotation: 'Agrega anotación "Fenología de la planta: floreciendo"'
   add_plant_phenology_fruiting_annotation: 'Añade anotación "fenología de la planta: fructificando"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Agregar anotación "Fenología de la planta: sin evidencias de floración"'
   add_life_stage_adult_annotation: 'Añade anotación "etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Añade anotación "etapa de vida: imago tierno"'
   add_life_stage_subimago_annotation: 'Añade anotación "etapa de vida: sub-imago"'
@@ -254,11 +296,19 @@ es-MX:
   added_as_a_part_of_a_taxon_merge_html: |
     Añadido como parte de un cambio de taxón
     <a target="%{target}" class="%{class}" href="%{url}"></a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Añadido como parte de un cambio de taxón
+    <a target="%{target}" class="%{class}" href="%{url}"></a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Añadido como parte de un cambio de taxón
+    <a target="%{target}" class="%{class}" href="%{url}"></a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
+  added_on_datetime: "Añadido el %{datetime}"
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
+  adjust_brightness: Ajusta el brillo
   admin: Administrador
   admin_s: Administrador(es)
   admin_only: Solamente administrador
@@ -379,6 +429,7 @@ es-MX:
   alphabetical_order: Orden alfabético
   already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   amphibians: Anfibios
+  ancestor_taxon: Taxón ancestro
   and: "y"
   and_other_taxa: "&amp; otros taxa"
   android: Androide
@@ -412,6 +463,13 @@ es-MX:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquiera
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicación
+  applications: Aplicaciones
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Aplicar
   apply_to_selected: Apicar a las seleccionadas
   apply_captive_cultivated: "Aplica en cautiverio / cultivada"
   apply_fields: Aplica campos
@@ -447,6 +505,28 @@ es-MX:
     ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes, identificaciones y observaciones.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
     ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes y taxones listados.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes, taxones listados e identificaciones.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes, taxones listados, identificaciones y observaciones.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes, taxones listados y observaciones.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones descendientes y observaciones.
+  are_you_sure_want_delete_taxon_identifications: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene identificaciones.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene identificaciones y observaciones.
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones listados.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones listados e identificaciones
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones listados, identificaciones y observaciones.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene taxones listados y observaciones.
+  are_you_sure_want_delete_taxon_observations: |
+    ¿Estás seguro/a de querer eliminar este taxón? Tiene observaciones.
   are_you_sure_want_delete_taxon_link: '¿Estás seguro que quieres borrar el enlace de esta especie o grupo?'
   are_you_sure_want_delete_this_name: '¿Estás seguro que quieres borrar este nombre?'
   are_you_sure_want_delete_this_range: '¿Estás seguro que quieres borrar esta distribución?'
@@ -465,6 +545,8 @@ es-MX:
     Cualquier alerta de spams en su contenido será resuelta.
   are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estas seguro que quieres eliminar estos %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: '¿Está seguro que deseas cancelar la invitación?'
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
   associated_observations: Observaciones asociadas
   associated_taxa: Taxa asociados
@@ -482,6 +564,11 @@ es-MX:
   assessment_x: "Evaluación de %{assessment}"
   assessments: Evaluaciones
   associations: Asociaciones
+  atlas_for_taxon_html: Atlas para %{taxon}
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
   attached_taxon: Taxón adjunto
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -489,6 +576,8 @@ es-MX:
   attribution: Atribución
   authority_list:
     iucn_red_list: Lista roja UICN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autoriza
   authorize_permissions_from_provider: "Autoriza permisos de %{provider}"
   automatic_short: Autom.
@@ -554,6 +643,8 @@ es-MX:
   body: Cuerpo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: Negritas
   bounding_box: Contenedor
   breadcrumbs: Ruta
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -579,6 +670,7 @@ es-MX:
   calendar: Calendario
   calendars_only_show_x_observations_at_time: Los calendarios sólo muestran %{x} observaciones al mismo tiempo
   cancel: Cancelar
+  cant_edit_or_delete_hidden_content: No puedes editar o eliminar contenido que haya sido ocultado por los administradores del sitio.
   cant_flag_an_object_that_doesnt_exist: No puedes ponerle advertencia a un contenido que ya no existe
   cant_merge_a_taxon_with_itself: No puedes combinar esa especie o grupo consigo misma.
   captive: En cautiverio
@@ -587,6 +679,7 @@ es-MX:
   card: Tarjeta
   casual: Casual
   casual_: Casual
+  casual_tooltip_html: 'Las observaciones "casuales" no tienen foto, o audio, ubicación o fecha, o no cumplen los requisitos de las calificaciones de calidad de "Investigación" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   categories: Categorías
   cc_0_description: "Esta licencia libera tu trabajo al dominio público, de tal manera que otros puedan copiar, modificar, distribuir y construir en base a tu trabajo, incluyendo propósitos comerciales, todo sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta ofrecida. Se recomienda para dar la máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
@@ -671,6 +764,11 @@ es-MX:
   check_out_our_blog: Echa un vistazo a nuestro blog
   check_out_what_the_observation: Revisa como lucen las observaciones que estas tratando de identificar.
   check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu nueva y mejorada lista de vida!'
+  check_this_box_if_html: |
+    Selecciona esta caja si quieres aplicar una
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+    a tus fotos. Esto significa que cualquiera puede utilizar y reusar tus fotos u observaciones sin solicitar permiso mientras te den el credito y no lo usen para trabajos comerciales. Puedes escoger una licencia diferente o eliminarla
+    después, pero ésta es la mejor licencia para compartir datos con los investigadores.
   checklist: Lista de especies potenciales
   choose_a_field: Selecciona un campo
   choose_a_list_above: Escoge una lista de las anteriores.
@@ -769,6 +867,7 @@ es-MX:
   connect_to_provider: "Conecta a  %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Cuentas conectadas
+  connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para apoyar el inicio de sesión, importar fotos u otras funciones.
   connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectando a Flickr"
   connect_to_flickr_again_to_authorize_write_permissions: Conectar con Flickr de nuevo para autorizar el permiso de escritura
@@ -804,6 +903,7 @@ es-MX:
   user_unhid_this_item_because_reason_html: |
     %{user} reveló este %{item} porque «%{reason}»
   continue: Continuar
+  continue_to_site: Continua a %{site_name}
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controlled_term_labels:
@@ -820,10 +920,12 @@ es-MX:
     teneral: Imago tierno
     subimago: Subimago
     pupa: Pupa
+    no_evidence_of_flowering: Sin evidencia de floración
     nymph: Ninfa
     larva: Larva
     egg: Huevo
     juvenile: Juvenil
+    alive_or_dead: Vivo o muerto
     alive: Vivo
     dead: Muerto
     cannot_be_determined: No se puede determinar
@@ -831,6 +933,11 @@ es-MX:
     alive: El organismo está vivo y no muestra signos de muerte inminente
     dead: El organismo está muerto o muestra signos de muerte inminente
     flower_budding: Las yemas florales son visibles pero no están abiertas
+    flowering: Flores visibles, abiertas y todavía adheridas a la planta
+    fruiting: Frutas visibles y todavía unidas a la planta
+    no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
+    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
   controls: Controles
   convert: Convierte
   coordinate_systems: Sistemas de coordenadas
@@ -1553,7 +1660,6 @@ es-MX:
   invited_x: "Invitado %{x}"
   iphone: iPhone
   is_not_following_anyone: No está siguiendo a nadie
-  is_now: ahora es
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: '¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?'
   is_this_offensive_html: '¿Es esto <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
@@ -4044,7 +4150,6 @@ es-MX:
   youre_a_site_curator_which_means: |
     Eres un curador del sitio, lo que significa que eres voluntario para ayudar a curar los datos y monitorear el contenido del mismo. Por favor no te sientas obligado con todo lo que esto implica, pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o simplemente ya no quieres ser un curador, contáctanos a
   you_are_over_your_invites_quota: '… has superado el límite mensual de 60 invitaciones'
-  you_are_now: Estás
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
     No estas editando ninguna de las guías. <a href="/guides/new">Agrega una</a>
