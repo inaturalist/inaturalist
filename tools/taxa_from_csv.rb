@@ -19,7 +19,10 @@ but this would also work
   Homo sapiens
   Vulpes vulpes
 
-This script can also be used to import common names without creating taxa.
+This script can also be used to import common names without creating taxa. Note
+that it will not import common names that are duplicated within the file or
+duplicated within the lexicon, e.g. if there's already a taxon named "puppy" in
+English, any rows for that name in that lexicon will be ignored.
 
 Usage:
 
@@ -77,7 +80,7 @@ if !opts.source_id.blank?
 end
 
 @errors = []
-@names_created = @names_existing = @name_errors = 0
+@names_created = @names_existing = @name_errors = @names_skipped = 0
 @ptn_created = @ptn_existing = @ptn_errors = 0
 @listed_taxa_created = 0
 @encountered_names = {}
@@ -93,9 +96,16 @@ def save_common_names(taxon, common_names)
     end
     next if name.blank?
     name = name.split(/[,;]/).first.strip
+    # Disallow duplicates within the same file
     next if @encountered_names[name]
     @encountered_names[name] = true
     lexicon = OPTS.lexicon || lexicon
+    # Disallow duplicates within a lexicon
+    if TaxonName.where( lexicon: lexicon, name: name ).exists?
+      puts "\tName already exists in this lexicon"
+      @names_skipped += 1
+      next
+    end
     if tn = taxon.taxon_names.where( name: name, lexicon: lexicon ).first
       @names_existing += 1
     else
@@ -243,5 +253,14 @@ unless @errors.blank?
 end
 
 puts
-puts "Finished in #{Time.now - start} s, #{num_created} taxa created, #{not_created.size} taxa not created, #{num_existing} taxa existing, #{@names_created} names created, #{@names_existing} names existing, #{@ptn_created} names added to place, #{@ptn_existing} already added to place, #{@listed_taxa_created} listed taxa created"
+puts "Finished in #{Time.now - start} s"
+puts "#{num_created} taxa created"
+puts "#{not_created.size} taxa not created"
+puts "#{num_existing} taxa existing"
+puts "#{@names_created} names created"
+puts "#{@names_existing} names existing"
+puts "#{@names_skipped} names skipped b/c they already exist for other taxa"
+puts "#{@ptn_created} names added to place"
+puts "#{@ptn_existing} already added to place"
+puts "#{@listed_taxa_created} listed taxa created"
 puts

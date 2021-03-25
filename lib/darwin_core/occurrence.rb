@@ -185,7 +185,7 @@ module DarwinCore
         return unless dwc_taxon
         taxon_id = dwc_taxon.id
         idents = identifications.select(&:current?).sort_by(&:id)
-        idents.detect{|i| i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
+        idents.detect{|i| i.taxon_id == dwc_taxon.id && i.category == Identification::IMPROVING }
       end
 
       def establishmentMeans
@@ -256,15 +256,15 @@ module DarwinCore
       end
 
       def identificationID
-        owners_identification.try(:id)
+        first_improving_identification.try(:id)
       end
 
       def dateIdentified
-        owners_identification.updated_at.iso8601 if owners_identification
+        first_improving_identification.created_at.iso8601 if first_improving_identification
       end
 
       def identificationRemarks
-        dwc_filter_text(owners_identification.body) if owners_identification
+        dwc_filter_text(first_improving_identification.body) if first_improving_identification
       end
 
       def taxonID

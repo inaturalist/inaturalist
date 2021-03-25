@@ -14,10 +14,8 @@ class Site < ActiveRecord::Base
   preference :site_name_short, :string
 
   # Email addresses
-  preference :email_admin, :string
   preference :email_noreply, :string, default: CONFIG.noreply_email
   preference :email_help, :string, default: CONFIG.help_email
-  preference :email_info, :string, default: CONFIG.help_email
 
   preference :contact_first_name, :string
   preference :contact_last_name, :string

@@ -7,27 +7,28 @@ import {
   Popover
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../shared/util";
+import { urlForTaxon } from "../util";
 
 class TaxonCrumbs extends React.Component {
-
-  hideChildren( ) {
-    $( "body" ).click( );
-  }
-
   clickedTaxonLink( e, taxon ) {
     if ( !this.props.showNewTaxon ) {
       return true;
     }
     if ( e.metaKey || e.ctrlKey ) return true;
     e.preventDefault( );
-    this.hideChildren( );
+    $( "body" ).click( );
     this.props.showNewTaxon( taxon );
     return false;
   }
 
   render( ) {
-    const { taxon, ancestors, showAncestors, hideAncestors, config } = this.props;
+    const {
+      taxon,
+      ancestors,
+      showAncestors,
+      hideAncestors,
+      config
+    } = this.props;
     const children = _.sortBy( taxon.children || [], t => t.name );
     const ancestorTaxa = _.filter( ancestors, t => t.name !== "Life" && t.id !== taxon.id );
     let expandControl;
@@ -41,8 +42,8 @@ class TaxonCrumbs extends React.Component {
           <SplitTaxon
             taxon={fva}
             url={urlForTaxon( fva )}
-            onClick={ e => this.clickedTaxonLink( e, fva ) }
-            user={ config.currentUser }
+            onClick={e => this.clickedTaxonLink( e, fva )}
+            user={config.currentUser}
           />
         </li>
       );
@@ -53,8 +54,8 @@ class TaxonCrumbs extends React.Component {
             <SplitTaxon
               taxon={lva}
               url={urlForTaxon( lva )}
-              onClick={ e => this.clickedTaxonLink( e, lva ) }
-              user={ config.currentUser }
+              onClick={e => this.clickedTaxonLink( e, lva )}
+              user={config.currentUser}
             />
           </li>
         );
@@ -63,29 +64,37 @@ class TaxonCrumbs extends React.Component {
     if ( ancestorTaxa.length > 0 ) {
       if ( this.props.ancestorsShown ) {
         contractControl = (
-          <a
-            className="contract-control"
-            href="#"
-            onClick={ e => {
+          <button
+            type="button"
+            className="btn btn-nostyle btn-link contract-control"
+            aria-label={I18n.t( "close" )}
+            onClick={e => {
               e.preventDefault( );
               hideAncestors( );
               return false;
-            } }
+            }}
           >
-            <i className="glyphicon glyphicon-circle-arrow-left" />
-          </a>
+            <i
+              className="glyphicon glyphicon-circle-arrow-left"
+              aria-hidden="true"
+            />
+          </button>
         );
       } else {
         expandControl = (
           <li className="expand-control">
-            <a
-              href="#"
-              onClick={ e => {
+            <button
+              type="button"
+              className="btn btn-nostyle btn-link"
+              aria-label={I18n.t( "open" )}
+              onClick={e => {
                 e.preventDefault( );
                 showAncestors( );
                 return false;
-              } }
-            >...</a>
+              }}
+            >
+              <span aria-hidden="true">...</span>
+            </button>
           </li>
         );
       }
@@ -98,7 +107,7 @@ class TaxonCrumbs extends React.Component {
             trigger="click"
             placement="bottom"
             rootClose
-            overlay={
+            overlay={(
               <Popover
                 id={`taxon-crumbs-children-${targetTaxon.id}`}
                 className="taxon-crumbs-children"
@@ -108,13 +117,13 @@ class TaxonCrumbs extends React.Component {
                     <SplitTaxon
                       taxon={t}
                       url={urlForTaxon( t )}
-                      onClick={ e => this.clickedTaxonLink( e, t ) }
-                      user={ config.currentUser }
+                      onClick={e => this.clickedTaxonLink( e, t )}
+                      user={config.currentUser}
                     />
                   </div>
                 ) ) }
               </Popover>
-            }
+            )}
           >
             <Button bsSize="xs" bsStyle="link">
               <i className="fa fa-caret-down" />
@@ -124,7 +133,7 @@ class TaxonCrumbs extends React.Component {
       }
       return (
         <span>
-          <SplitTaxon taxon={targetTaxon} user={ config.currentUser } />
+          <SplitTaxon taxon={targetTaxon} user={config.currentUser} />
           { descendants }
         </span>
       );
@@ -132,7 +141,7 @@ class TaxonCrumbs extends React.Component {
     return (
       <ul className={`TaxonCrumbs inline ${this.props.ancestorsShown ? "expanded" : "contracted"}`}>
         <li>
-          <SplitTaxon taxon={{ name: I18n.t( "life" ), is_active: true }} user={ config.currentUser } />
+          <SplitTaxon taxon={{ name: I18n.t( "life" ), is_active: true }} user={config.currentUser} />
         </li>
         { firstVisibleAncestor }
         { expandControl }
@@ -141,8 +150,8 @@ class TaxonCrumbs extends React.Component {
             <SplitTaxon
               taxon={t}
               url={urlForTaxon( t )}
-              onClick={ e => this.clickedTaxonLink( e, t ) }
-              user={ config.currentUser }
+              onClick={e => this.clickedTaxonLink( e, t )}
+              user={config.currentUser}
 
             />
           </li>
@@ -153,8 +162,8 @@ class TaxonCrumbs extends React.Component {
             <SplitTaxon
               taxon={taxon}
               url={urlForTaxon( taxon )}
-              onClick={ e => this.clickedTaxonLink( e, taxon ) }
-              user={ config.currentUser }
+              onClick={e => this.clickedTaxonLink( e, taxon )}
+              user={config.currentUser}
             />
           </li>
         ) : null }

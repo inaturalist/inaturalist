@@ -6,7 +6,9 @@ import {
   Row,
   Col,
   SplitButton,
-  MenuItem
+  MenuItem,
+  OverlayTrigger,
+  Tooltip
 } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import moment from "moment-timezone";
@@ -129,14 +131,27 @@ const App = ( {
   const qualityGrade = observation.quality_grade === "research"
     ? "research_grade"
     : observation.quality_grade;
+  let viewerTimeZone = moment.tz.guess();
+  if ( config && config.currentUser && config.currentUser.time_zone ) {
+    viewerTimeZone = config.currentUser.time_zone;
+  }
+  let qualityGradeTooltipHtml;
+  if ( qualityGrade === "casual" ) {
+    qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html" );
+  } else if ( qualityGrade === "needs_id" ) {
+    qualityGradeTooltipHtml = I18n.t( "needs_id_tooltip_html" );
+  } else {
+    qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
+  }
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
         <FlashMessage
           key="testing_apiv2"
           title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
           type="warning"
+          html
         />
       ) }
       <FlashMessagesContainer
@@ -157,9 +172,24 @@ const App = ( {
                 />
                 <ConservationStatusBadge observation={observation} />
                 <EstablishmentMeansBadge observation={observation} />
-                <span className={`quality_grade ${observation.quality_grade} `}>
-                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
-                </span>
+                <OverlayTrigger
+                  placement="bottom"
+                  trigger={["hover", "click"]}
+                  delayHide={1000}
+                  overlay={(
+                    <Tooltip id="quality-grade-tooltip">
+                      <p
+                        // eslint-disable-next-line react/no-danger
+                        dangerouslySetInnerHTML={{ __html: qualityGradeTooltipHtml }}
+                      />
+                    </Tooltip>
+                  )}
+                  container={$( "#wrapper.bootstrap" ).get( 0 )}
+                >
+                  <span className={`quality_grade ${observation.quality_grade} `}>
+                    { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
+                  </span>
+                </OverlayTrigger>
               </div>
             </Col>
             { viewerIsObserver ? (
@@ -289,9 +319,34 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad height={748} verticalOffset={500}>
+      <LazyLoad debounce={false} height={748} verticalOffset={500}>
         <div className="data_quality_assessment">
           <AssessmentContainer />
+        </div>
+      </LazyLoad>
+      <LazyLoad debounce={false} height={325} offset={500}>
+        <div className="more_from">
+          <Grid>
+            <Row>
+              <Col xs={12}>
+                <MoreFromUserContainer />
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      </LazyLoad>
+      <LazyLoad debounce={false} height={190} offset={500}>
+        <div className="other_observations">
+          <Grid>
+            <Row>
+              <Col xs={6}>
+                <NearbyContainer />
+              </Col>
+              <Col xs={6}>
+                <SimilarContainer />
+              </Col>
+            </Row>
+          </Grid>
         </div>
       </LazyLoad>
       { ( !observation.obscured || observation.private_geojson ) && (
@@ -326,14 +381,18 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
-      { config && config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
-        <TestGroupToggle
-          group="apiv2"
-          joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-          joinedStatus="Joined API V2 test"
-          user={config.currentUser}
-        />
-      ) }
+      {
+        config && config.currentUser
+        && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
+        && (
+          <TestGroupToggle
+            group="apiv2"
+            joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+            joinedStatus="Joined API V2 test"
+            user={config.currentUser}
+          />
+        )
+      }
     </div>
   );
 };

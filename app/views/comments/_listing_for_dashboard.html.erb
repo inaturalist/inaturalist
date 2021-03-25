@@ -62,8 +62,7 @@
           <div class="commenttype">
             <%= link_to parent.class.to_s.underscore.humanize, parent %> 
             <% if parent.user -%>
-              <%= t(:by).downcase %> <%= link_to parent.user.login, parent.user %>
-              <%= t( :by_user, user: link_to( parent.user.login, parent.user ) ).html_safe
+              <%= t( :by_user, user: link_to( parent.user.login, parent.user ) ).html_safe %>
             <% end -%>
           </div>
         <%- end -%>

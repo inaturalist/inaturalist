@@ -8,7 +8,7 @@ var genericAutocomplete = { };
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
   _create: function ( ) {
     this._super( );
-    this.widget( ).menu( "option", "items", "> :not(.category)" );
+    this.widget( ).menu( "option", "items", "> :not(.non-option)" );
   }
 } );
 

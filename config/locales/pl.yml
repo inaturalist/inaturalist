@@ -208,6 +208,9 @@ pl:
     Gdy zapiszesz ten takson, będziesz mógł dodawać tutaj inne nazwy (nazwy zwyczajowe, przestarzałe nazwy naukowe, itp.).
   a_flag_for_x: "zgłoszenie dla %{x}"
   a_member_of_taxon_html: "należy do %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A do Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -251,7 +254,6 @@ pl:
   about_this_project: O tym projekcie
   about_trips_html: |
     <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
-  about_x: "O %{x}"
   acc: 'Dokładność (m)'
   account: Konto
   account_creation: Tworzenie konta
@@ -1268,7 +1270,6 @@ pl:
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
   editors: Edytorzy
-  either: Obojętnie
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
@@ -1310,7 +1311,6 @@ pl:
   everywhere: wszędzie
   exact: Dokładna
   exact_date: Dokładna data
-  exact_location: Dokładna lokalizacja
   exact_rank: Dokładna kategoria
   except: poza
   exclude_projects: Wyklucz projekty
@@ -1456,7 +1456,6 @@ pl:
   flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
-  follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
   follow_user: "Obserwuj %{user}"
   followed_projects: Obserwowane Projekty
   followers: Obserwujący
@@ -1599,6 +1598,7 @@ pl:
   ignore_and_continue: Ignoruj i kontynuuj
   ignore_times: Ignoruj czasy
   image_must_be_exactly: obraz musi mieć dokładnie 950px szerokości i najwyżej 400px wysokości
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Zagrożony
   import: Importuj
   import_all_photos_as_observations: Importuj wszystkie zdjęcia jako obserwacje
@@ -1654,7 +1654,6 @@ pl:
   invited_x: "Zaproszony %{x}"
   iphone: iPhone
   is_not_following_anyone: nikogo nie obserwuje.
-  is_now: jest teraz
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Czy podane dane są wystarczające do potwierdzenia, że jest to %{taxon}?
   is_this_offensive_html: 'Czy to jest <a href="/help#inappropriate">nieodpowiednie</a>, obraźliwe lub jest spamem?'
   is_this_place_a_duplicate: Czy ta lokalizacja jest zduplikowana?
@@ -3506,7 +3505,6 @@ pl:
   you_appear_offline_try_again: |
     Wygląda na to, że jesteś offline. Spróbuj ponownie, gdy będziesz połączony z Internetem.
   you_are_over_your_invites_quota: ...przekroczyłeś miesięczny limit 60 zaproszeń
-  you_are_now: Jesteś teraz
   you_are_not_editing_any_guides_add_one_html: |
     Nie edytujesz żadnych przewodników. <a href="/guides/new">Dodaj jakiś</a>
   you_are_already_a_member_of_this_project: "Jesteś już członkiem tego projektu!"

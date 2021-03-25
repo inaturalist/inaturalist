@@ -1,0 +1,9 @@
+- project ||= @project
+- project_user ||= nil
+- last ||= false
+.project_element
+  = link_to project_path( project ), class: "float left" do
+    = image_tag( project.icon.url( :span2 ), alt: "#{h( project.title )} icon", width: 70, height: 70 )
+  %h4= link_to truncate( strip_tags( project.title ), length: 20 ) , project
+  - unless project.description.blank?
+    = h truncate( strip_tags( project.description ), length: 60 )

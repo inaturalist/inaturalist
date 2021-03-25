@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const LicenseImageRow = ( { license, isModal } ) => {
+  if ( !license ) { return null; }
   const iNatLicenses = iNaturalist.Licenses;
   const localizedName = license === "cc0" ? "cc_0" : license.replace( /-/g, "_" );
 

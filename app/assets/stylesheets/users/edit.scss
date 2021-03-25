@@ -1,6 +1,7 @@
 @import "colors";
-@import "../users/_user_image";
-@import "../users/toggle_switch";
+@import "../shared/loading_spinner";
+@import "./_user_image";
+@import "./toggle_switch";
 
 $user-image-size: 65px;
 

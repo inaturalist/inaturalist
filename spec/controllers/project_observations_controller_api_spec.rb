@@ -144,16 +144,25 @@ shared_examples_for "a ProjectObservationsController" do
       po = o.project_observations.first
       expect( po ).not_to be_prefers_curator_coordinate_access
     end
+
+    it "should return 422 when project_observation parameter not specified" do
+      post :create, format: :json
+      expect( response.status ).to eq 422
+    end
   end
 
   describe "update" do
     elastic_models( Observation )
+    let(:po) { ProjectObservation.make!( project: project ) }
     it "should not allow setting preferences if updater is not the observer" do
-      po = ProjectObservation.make!( project: project )
       expect( po ).not_to be_prefers_curator_coordinate_access
       put :update, format: :json, id: po.id, project_observation: { prefers_curator_coordinate_access: true }
       po.reload
       expect( po ).not_to be_prefers_curator_coordinate_access
+    end
+    it "should return 422 when project_observation parameter not specified" do
+      post :update, format: :json, id: po.id
+      expect( response.status ).to eq 422
     end
   end
 
@@ -185,13 +194,6 @@ describe ProjectObservationsController, "oauth authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
-  end
-  it_behaves_like "a ProjectObservationsController"
-end
-
-describe ProjectObservationsController, "devise authentication" do
-  before do
-    http_login user
   end
   it_behaves_like "a ProjectObservationsController"
 end

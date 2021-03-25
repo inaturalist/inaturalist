@@ -276,6 +276,7 @@ class ObservationsController < ApplicationController
           @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
+          Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
           render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
         else
           I18n.t( "something" )
@@ -793,7 +794,7 @@ class ObservationsController < ApplicationController
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.last
+          next unless photo = observation.observation_photos.last.try(:photo)
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
@@ -1738,7 +1739,7 @@ class ObservationsController < ApplicationController
 
   def moimport
     if @api_key = params[:api_key]&.strip
-      @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
       @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
       begin
@@ -2119,8 +2120,8 @@ class ObservationsController < ApplicationController
         photo = if photo_class == LocalPhoto
           if photo_id.is_a?(Integer) || photo_id.is_a?(String)
             LocalPhoto.find_by_id(photo_id)
-          else
-            LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
+          elsif !photo_id.blank?
+            LocalPhoto.new( file: photo_id, user: current_user) unless photo_id.blank?
           end
         else
           api_response ||= begin
@@ -2162,6 +2163,7 @@ class ObservationsController < ApplicationController
     @iconic_taxa = search_params[:iconic_taxa_instances]
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
+    @without_observations_taxon = search_params[:without_observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
@@ -2216,6 +2218,7 @@ class ObservationsController < ApplicationController
       !@q.nil? ||
       !@observations_taxon_id.blank? ||
       !@observations_taxon_name.blank? ||
+      !@without_observations_taxon.blank? ||
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||

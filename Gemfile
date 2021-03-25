@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 ruby "~> 2.6.0"
 
@@ -16,7 +16,6 @@ gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"
 gem "biodiversity"
-gem "bugguide", git: "https://github.com/kueda/bugguide.git"
 gem "capistrano", "~> 3.3"
 gem "capistrano-rvm", "~> 0.1"
 gem "capistrano-rails", "~> 1.1"

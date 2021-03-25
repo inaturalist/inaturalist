@@ -304,7 +304,7 @@ class TaxaController < ApplicationController
 
   def edit
     @observations_exist = @taxon.observations_count > 0
-    @listed_taxa_exist = @taxon.listed_taxa_count > 0
+    @listed_taxa_exist = ListedTaxon.where( taxon_id: @taxon.id ).any?
     @identifications_exist = Identification.elastic_search(
       filters: [{ term: { "taxon.id" => @taxon.id } } ],
       size: 0
@@ -1658,7 +1658,14 @@ class TaxaController < ApplicationController
     # Assign the current user to any new conservation statuses
     if params[:taxon][:conservation_statuses_attributes]
       params[:taxon][:conservation_statuses_attributes].each do |position, status|
-        unless existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
+        if existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
+          cs_attrs = params[:taxon][:conservation_statuses_attributes][position].clone
+          cs_attrs.delete(:_destroy)
+          existing.assign_attributes( cs_attrs )
+          if existing.changed?
+            params[:taxon][:conservation_statuses_attributes][position][:updater_id] = current_user.id
+          end
+        else
           params[:taxon][:conservation_statuses_attributes][position][:user_id] = current_user.id
         end
       end

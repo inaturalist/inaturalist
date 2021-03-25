@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( admin_level: Place::COUNTRY_LEVEL ).first
       if potential_place
-        place_name = t( "places_name.#{potential_place.name.to_s.parameterize.underscore}", default: potential_place.name )
+        place_name = potential_place.translated_name
         session[:potential_place] = {
           id: potential_place.id,
           name: place_name == "United States" ? "the United States" : place_name
@@ -156,10 +156,7 @@ class ApplicationController < ActionController::Base
         session[:potential_site] = {
           id: potential_site.id,
           name: potential_site.name,
-          place_name: t(
-            "places_name.#{potential_place.name.to_s.parameterize.underscore}",
-            default: potential_place.name
-          )
+          place_name: potential_place.translated_name
         }
       else
         session.delete(:potential_site)

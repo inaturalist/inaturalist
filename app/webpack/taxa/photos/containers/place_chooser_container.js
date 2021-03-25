@@ -14,9 +14,9 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   const setPlace = place => {
     dispatch( setConfigAndUrl( { chosenPlace: place } ) );
+    updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     // reload terms to filter by chosen place
     dispatch( fetchTerms( ) );
-    updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     dispatch( reloadPhotos( ) );
   };
   return {

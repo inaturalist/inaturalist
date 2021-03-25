@@ -158,10 +158,56 @@ shared_examples_for "an ObservationsController" do
       }.not_to raise_error
     end
 
-    it "should handle invalid time zones" do
-      expect {
-        post :create, :format => :json, :observation => {:species_guess => "foo", :observed_on_string => "2014-07-01 14:23", :time_zone => "Eastern Time (US &amp; Canada)"}
-      }.not_to raise_error
+    describe "time_zone" do
+      it "should not raise an error when unrecognized" do
+        expect {
+          post :create, format: :json, observation: {
+            species_guess: "foo",
+            observed_on_string: "2014-07-01 14:23",
+            time_zone: "Eastern Time (US &amp; Canada)"
+          }
+        }.not_to raise_error
+      end
+      it "should accept Rails time zone names" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 00:00",
+          time_zone: tz.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+      end
+      it "should accept TZInfo time zone names" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 00:00",
+          time_zone: tz.tzinfo.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.tzinfo.name
+      end
+      it "should accept TZInfo time zone names when observed_on_string is an ISO 8601 formtted datetime" do
+        zone_name = "Asia/Baghdad"
+        tz = ActiveSupport::TimeZone[zone_name]
+        post :create, format: :json, observation: {
+          observed_on_string: "2021-03-24T14:40:25",
+          time_zone: zone_name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.tzinfo.name
+        expect( o.time_observed_at_in_zone.hour ).to eq 14
+      end
+      it "should override the user's time zone" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        expect( user.time_zone ).not_to be_blank
+        expect( user.time_zone ).not_to eq tz.name
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 23:00",
+          time_zone: tz.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+      end
     end
 
     describe "project_id" do

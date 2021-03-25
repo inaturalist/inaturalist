@@ -472,12 +472,6 @@ module ApplicationHelper
     block_given? ? concat(content.html_safe) : content.html_safe
   end
   
-  def color_pluralize(num, singular)
-    html = content_tag(:span, num, :class => "count")
-    html += num == 1 ? " #{singular}" : " #{singular.pluralize}"
-    html
-  end
-  
   def one_line_observation(o, options = {})
     skip = (options.delete(:skip) || []).map(&:to_sym)
     txt = ""

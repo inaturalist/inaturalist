@@ -715,7 +715,7 @@ class Taxon < ActiveRecord::Base
 
   def self.set_conservation_status(id)
     return unless t = Taxon.find_by_id(id)
-    s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
+    s = t.conservation_statuses.where("place_id IS NULL").pluck(:iucn).max
     Taxon.where(id: t).update_all(conservation_status: s)
   end
   
@@ -1875,7 +1875,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def atlased?
-    atlas && atlas.is_active? && atlas.presence_places.exists?
+    return @atlased unless @atlased.nil?
+    @atlased = atlas && atlas.is_active? && atlas.presence_places.exists?
   end
 
   def cached_atlas_presence_places

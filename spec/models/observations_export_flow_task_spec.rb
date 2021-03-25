@@ -25,25 +25,26 @@ describe ObservationsExportFlowTask do
     end
   end
   describe "run" do
-    before do
-      # not sure why the before(:each) in spec_helper may not have run yet here
-      make_default_site
-      @o = Observation.make!
-      @ft = ObservationsExportFlowTask.make
-      @ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
-      @ft.save!
-      @ft.run
-    end
-    it "should generate a zipped csv archive by default" do
-      output = @ft.outputs.first
-      expect(output).not_to be_blank
-      expect(output.file.path).to be =~ /csv.zip$/
-    end
-
-    it "should filter by user_id" do
-      csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include @o.id.to_s
+    describe "user_id filter" do
+      before do
+        # not sure why the before(:each) in spec_helper may not have run yet here
+        make_default_site
+        @o = Observation.make!
+        @ft = ObservationsExportFlowTask.make
+        @ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+        @ft.save!
+        @ft.run
+      end
+      it "should generate a zipped csv archive by default" do
+        output = @ft.outputs.first
+        expect(output).not_to be_blank
+        expect(output.file.path).to be =~ /csv.zip$/
+      end
+      it "should work" do
+        csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
+        expect(csv.size).to eq 2
+        expect(csv[1]).to include @o.id.to_s
+      end
     end
 
     it "should filter by year" do
@@ -76,10 +77,27 @@ describe ObservationsExportFlowTask do
       expect(csv[2]).to include o2.id.to_s
     end
 
+    it "should filter by without_taxon_id" do
+      u = User.make!
+      o_of_taxon = Observation.make!( user: u, taxon: Taxon.make! )
+      o_of_other_taxon = Observation.make!( user: u, taxon: Taxon.make! )
+      expect( u.observations.count ).to eq 2
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&without_taxon_id=#{o_of_taxon.taxon.id}" } )
+      ft.save!
+      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      taxon_id_col_idx = csv[0].index( "taxon_id" )
+      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_taxon.taxon.id } ).to be_blank
+      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id } ).not_to be_blank
+    end
+
     it "should allow JSON output" do
+      o = Observation.make!
       ft = ObservationsExportFlowTask.make
       ft.options = {:format => "json"}
-      ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
       ft.save!
       ft.run
       output = ft.outputs.first

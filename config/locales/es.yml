@@ -166,6 +166,9 @@ es:
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
   about_names: Acerca de los nombres
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Acerca de %{place}"
   about_places: Acerca de los Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_these_licenses: Acerca de estas licencias
@@ -196,7 +199,6 @@ es:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puedes elegir compartir coordenadas ocultas para
-  about_x: "Acerca de %{x}"
   acc: 'Prec.(m)'
   account: Cuenta
   account_creation: Creación de cuentas
@@ -1441,7 +1443,6 @@ es:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
-  either: Cualquiera
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya lo estás siguiendo."
   eligible_for_research_grade: Elegible para grado de Investigación
   email: Correo
@@ -1490,7 +1491,6 @@ es:
   everywhere: todas partes
   exact: Exacto
   exact_date: Fecha exacta
-  exact_location: Ubicación exacta
   exact_rank: Rango exacto
   except: excepto
   exclude_places: Excluye Lugares
@@ -1654,7 +1654,6 @@ es:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguir
-  follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre observaciones nuevas)
   follow_user: "Sigue a %{user}"
   followed_projects: Proyectos seguidos
   followers: Seguidores
@@ -1704,7 +1703,9 @@ es:
   get_started: Comienza
   getting_started_guide: Guía de inicio
   give_it_some_detail: '¡Pónle algún detalle!'
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DONAR MENSUALMENTE
+  #Prompt to donate money once
   give_now_caps: DONAR AHORA
   global_names: Nombres globales
   globally: Globalmente
@@ -1754,13 +1755,12 @@ es:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
-  heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas por color abajo según el rango."
   help: Ayuda
   help_confirm_observations!: '¡Ayúdanos a confirmar observaciones!'
   help_support_inaturalist: "Apoya iNaturalist"
   help_translate!: '¡Ayúdanos a traducir!'
-  helped_the_observer_make: ayudó al observador a hacer su identificación final (es decir, se hicieron antes de la identificación final y concuerdan)
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
+  here_are_our_top_suggestions: Estas son nuestras sugerencias principales
   here_are_our_top_species_suggestions: Éstas son nuestras sugerencias principales de especies
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: 'Hola:'
@@ -1774,6 +1774,7 @@ es:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: Alta
@@ -1832,6 +1833,7 @@ es:
   ignore_times: Ignora los tiempos
   image_must_be_exactly: del proyecto debe ser exactamente de 950px ancho y a lo más de 400px de altura
   image_size_control: Control del tamaño de imagen
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En peligro
   import: Importa
   import_all_photos_as_observations: Importa todas las fotos como observaciones
@@ -1855,6 +1857,7 @@ es:
   inbox: Buzón de entrada
   include_places: Incluye Lugares
   include_projects: Incluye Proyectos
+  include_suggestions_not_seen_nearby: Incluir sugerencias que no han sido vistas cerca de aquí
   include_taxa: Incluye Taxones
   include_users: Incluye Usuarios
   including: incluyendo
@@ -1900,7 +1903,6 @@ es:
   invited_x: "Invitado %{x}"
   iphone: iPhone
   is_not_following_anyone: No está siguiendo a nadie
-  is_now: ahora es
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: '¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?'
   is_this_offensive_html: '¿Esto es <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
@@ -2591,6 +2593,16 @@ es:
   observation_added: Observation added
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observación de %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observación &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     La observación pertenece a un proyecto que requiere este campo. La observación deberá ser eliminada de este proyecto antes de poder borrar el valor de este campo.
   observation_brief_something_on_day: "Algo el %{day}"
@@ -2701,6 +2713,9 @@ es:
   observed_on: Observado el
   observer: Observador
   observers: Observadores
+  observer_prefers_addition_to_projects_joined: |
+    El observador sólo permite a otras personas añadir sus observaciones a proyectos a los que
+    se han unido.
   observer_short: Observ.
   occurence_status_describes_how: 'El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href="http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">más información sobre terminología </a>.'
   occurrence_status: Estado de ocurrencia
@@ -3350,7 +3365,8 @@ es:
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
   please_add_this_to_x_html: "Añade esto a %{x}"
-  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Title to a section warning a user to exercise caution
+  please_be_careful!: '¡Ten cuidado!'
   please_complete_the_following_to_add_project: |
     Completa lo siguiente para añadir este observación al proyecto:
   please_confirm_your_inat_username: "Por favor confirma tu nombre de usuario con %{site_name}"
@@ -3412,6 +3428,8 @@ es:
     Deberías ser capaz de ver coordenadas ocultas de las observaciones de miembros de confianza.
   project_coordinate_access_disabled_until_datetime: |
     No podrás acceder a las coordenadas ocultas hasta el %{datetime}
+  project_coordinate_access_warning: |
+    El acceso a las coordenadas es importante para los científicos, pero también puede ser mal usado por los furtivos. Asegúrate de confiar en todos los supervisores del proyecto antes de prestar tu confianza a este proyecto.
   project_cover: Portada del proyecto
   project_created_on: creó este proyecto el %{date}
   project_curator_id: Identificación del curador del proyecto
@@ -3795,6 +3813,7 @@ es:
   show_off_your_recent_observations: '¡Presume de tus observaciones en tu propio blog o sitio web!'
   show_only: Mostrar solamente
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar Total Acumulado
   show_scientific_name_first: Mostrar primero los nombres científicos
   show_taxa_from_both: (muestra taxones de ambas listas)
@@ -4514,6 +4533,7 @@ es:
   view_check_list_page: Ve página de lista de verificación
   view_contributions: Ve contribuciones
   view_details: Ve detalles
+  view_dynamic_lifelist: Ver lista de vida dinámica
   view_field_options: Ver las opciones del campo
   view_flag: Ve advertencias
   view_flags: Ve advertencias
@@ -4716,7 +4736,6 @@ es:
   youre_a_site_curator_which_means: |
     Eres un curador del sitio, lo que significa que eres voluntario para ayudar a curar los datos y monitorear el contenido del mismo. Por favor no te sientas obligado con todo lo que esto implica, pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o simplemente ya no quieres ser un curador, contáctanos en %{email}
   you_are_over_your_invites_quota: '… has superado el límite mensual de 60 invitaciones'
-  you_are_now: Estas
   you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>tú</strong> eres ahora el administrador de %{project}
@@ -5842,7 +5861,7 @@ es:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
            A diferencia de los proyectos, los inventarios rápidos (maratones naturalistas) exhiben estadísticas con las observaciones de <em>todos</em> dentro de un lugar y período de tiempo, y no sólo con las observaciones que las personas agregan intencionalmente para el proyecto. Esto es con el fin de quitar el obstáculo de unirse a un proyecto para contribuir a las estadísticas de estos eventos.
           </p>

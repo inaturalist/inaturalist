@@ -2,6 +2,7 @@
 class ConservationStatus < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
+  has_updater
   belongs_to :place
   belongs_to :source
 

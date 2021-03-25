@@ -3,11 +3,11 @@ var inaturalist = inaturalist || { };
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.sort.map{ |t|
   [ t.id, {
     name: t.name,
-    label: Taxon::ICONIC_TAXON_NAMES[t.name].parameterize.underscore,
+    label: Taxon::ICONIC_TAXON_NAMES[t.name].to_s.parameterize.underscore,
     icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png"),
     id: t.id
   } ]
-}].to_json %>;
+}].to_json.html_safe %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
 inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
 

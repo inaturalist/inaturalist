@@ -1,6 +1,6 @@
 #encoding: utf-8
 class PhotosController < ApplicationController
-  before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_filter :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
   before_filter :authenticate_user!, :only =>
     [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all, :create]
@@ -167,12 +167,6 @@ class PhotosController < ApplicationController
   end
 
   private
-  
-  def load_photo
-    unless @photo = Photo.find_by_id(params[:id].to_i)
-      render_404
-    end
-  end
   
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)

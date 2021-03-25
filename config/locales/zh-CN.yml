@@ -127,6 +127,9 @@ zh-CN:
   about_muting: 关于禁言
   #Header for a section describing taxon names
   about_names: 关于名称
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "关于%{place}"
   about_places: 关于地点
   about_the_cc_licenses: 关于知识共享许可协议
   about_these_licenses: 关于这些许可协议
@@ -144,7 +147,6 @@ zh-CN:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以因以下原因选择共享隐藏坐标
-  about_x: "关于 %{x}"
   acc: '精度（米）'
   account: 账户
   account_creation: 创建账户
@@ -506,7 +508,7 @@ zh-CN:
   are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
   are_you_sure_you_want_to_delete_this_taxon_change: 您确定要删除此分类单元更改么？
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
-  are_you_sure_you_want_to_remove_curator: 您确定要移除作为馆长的 %{user} 么？
+  are_you_sure_you_want_to_remove_curator: 您确定要移除 %{user} 的管理员身份吗？
   are_you_sure_you_want_to_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
   are_you_sure_you_want_to_remove_manager: 您确定要移除作为经理的 %{user} 么？
   are_you_sure_you_want_to_remove_spammer: |
@@ -588,7 +590,7 @@ zh-CN:
   back_to_your_projects: 回到您的项目
   badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
-    根据此证据，社区ID能否得到确认或改善？
+    基于现有证据, 社区身份证还能被确认或改进吗？
   batch: 批
   batch_edit: 批量编辑
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
@@ -957,12 +959,22 @@ zh-CN:
   curate_user: 策展用户
   curating: 助理
   curation: 管理
-  curator: 馆长
+  curator: 管理员
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     您需要解释为什么要成为管理员
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 为什么你想成为管理员？
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    如果你想要编辑iNaturalist上的分类，请提供一两个你想要做修改的例子，并附上符合馆长规则中条件的分类权威的链接。
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    如果你想要编辑常用名，请为你想更改的内容提供一两个例子
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    如果您想要在iNaturalist上规范他人的行为， 请提供一两个违反社区准则的例子以及您在这些
+    种情况下会做些什么。
   #Header
   curator_application_how_curators_lose_their_powers: |
     什么会导致管理员失去管理权力
@@ -983,6 +995,16 @@ zh-CN:
   curator_application_what_curators_can_do: 管理员可以做什么
   #Header
   curator_application_what_curators_cannot_do: 管理员不能做什么
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    删除其他用户制作的内容。
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    直接读取其他人发送的消息。
   #Title of a page where people apply to become a curator
   curator_application_title: 申请管理员
   curators_changed_for_x_html: "为%{x}工作的馆长已更改"
@@ -1249,7 +1271,6 @@ zh-CN:
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
-  either: 任一
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
@@ -1299,7 +1320,6 @@ zh-CN:
   everywhere: 任意地方
   exact: 准确
   exact_date: 具体日期
-  exact_location: 精确位置
   exact_rank: 精密排名
   except: 除外
   exclude_places: 排除地点
@@ -1458,7 +1478,6 @@ zh-CN:
   #Adjective, as in a fluid layout of images
   fluid: 液体
   follow: 关注
-  follow_receive_updates_about_new_observations: 关注（接收有关新观察的更新）
   follow_user: "关注%{user}"
   followed_projects: 关注的项目
   followers: 关注者
@@ -1506,7 +1525,9 @@ zh-CN:
   get_started: 入门
   getting_started_guide: 入门指导
   give_it_some_detail: 给它提供一些详情！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
+  #Prompt to donate money once
   give_now_caps: 立即捐款
   global_names: 全域名称
   globally: 全域
@@ -1555,13 +1576,12 @@ zh-CN:
   heads_up: 小心
   heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
   heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
-  heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
   help: 帮助
   help_confirm_observations!: 帮助确认观察！
   help_support_inaturalist: "帮助支持 iNaturalist"
   help_translate!: 协助翻译
-  helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
+  here_are_our_top_suggestions: 这是我们的最佳建议
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
@@ -1572,6 +1592,7 @@ zh-CN:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高
@@ -1614,7 +1635,7 @@ zh-CN:
   ids: "ID"
   ids_made_for_others: 由其他人做出的ID
   if_for_some_reason_a_user_doesnt_agree: |
-    如果出于某种原因，你不同意社区分类单元，你可以拒绝它，这意味着你的ID会被用于链接到其他观察，更新生命列表等。这也意味着只有当社区同意你的看法时，你的观察才能被作为研究成绩 。
+    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
@@ -1625,6 +1646,7 @@ zh-CN:
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
   image_size_control: 图片大小控制
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: 危及
   import: 导入
   import_all_photos_as_observations: 将所有照片导入为观察
@@ -1690,7 +1712,6 @@ zh-CN:
   invited_x: "已邀请 %{x}"
   iphone: iPhone
   is_not_following_anyone: 未关注任何人。
-  is_now: 现已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
   is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
@@ -2250,7 +2271,7 @@ zh-CN:
     user: "%{user}还没有对别人的观察添加过身份验证。"
   no_ids_have_been_suggested_yet: 没有建议ID
   no_interaction_data_available: 没有可用的交互数据
-  no_its_as_good_as_it_can_be: 不，它可以
+  no_its_as_good_as_it_can_be: 不，它已经足够好了
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
     user: "%{user}还没有添加过收藏。"
@@ -2461,6 +2482,7 @@ zh-CN:
   observer: 观察者
   observers: 观察者
   observer_short: 观察者
+  occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_descriptions:
     absent: 在区域内未发生
@@ -3087,7 +3109,7 @@ zh-CN:
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
   please_add_this_observation_to: 请将这一观察添加至
   please_add_this_to_x_html: "请将此添加至 %{x}"
-  please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改
+  please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改 #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     请完成以下操作来添加此观察至项目：
   please_confirm_your_inat_username: "请确认您在%{site_name}的用户名"
@@ -3364,8 +3386,8 @@ zh-CN:
   research_: 研究
   research_grade: 研究级别
   research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
-  research_grade_observations_have: '“研究成绩”观察具有日期，照片，坐标和由社区支持的ID。点击查看数据质量评估。'
-  research_grade_qualification: 研究成果资格
+  research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社区支持的鉴定结果。点击查看数据质量评估标准。'
+  research_grade_qualification: 研究级资质
   reset_filters_short: 重设
   reset_brightness: 重新设定亮度
   reset_search_filters: 重置搜索过滤器
@@ -3511,6 +3533,7 @@ zh-CN:
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
   show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
   show_scientific_name_first: 首先显示学名
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
@@ -3840,7 +3863,7 @@ zh-CN:
   the_admin_is_the_person_who: |
     管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
-    以下项需要达到特定<span className="bold">研究等级：</span>
+    下列项目需要达到<span className="bold">研究等级：</span>
   the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
@@ -4335,6 +4358,11 @@ zh-CN:
   year_on_site: "%{site} %{year}一年"
   yellow: 黄色
   'yes': "是"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    是，但仅限于我观察中受威胁的分类群，而不是我自己隐藏的地理位置
   yes_find_them!: "是的，找到他们！"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -4352,7 +4380,6 @@ zh-CN:
   youre_a_site_curator_which_means: |
     您是站点馆长，这意味着您自愿帮助我们管理数据和监控内容。请不要觉得您有必要去处理所有这些问题，只要您有时间检查其中的一些问题，我们已经非常感谢您的帮助。如果您对管理的内容有任何疑问或不想成为馆长，请通过%{email}与我们联系
   you_are_over_your_invites_quota: '…您已达到每月60个邀请限额'
-  you_are_now: 您现在
   you_are_now_following_x: "您正在关注%{friend_user}。"
   you_are_now_the_admin_for_project_html: |
     <strong>您</strong> 现在是 %{project} 的总管理员了

@@ -57,13 +57,13 @@
             - site_link = link_to( admin_site.name, admin_site.url, class: "site")
             = raw t(:site_site_admin, site_name: site_link)
             - if admin_site.place
-              = " (#{t("places_name.#{admin_site.place.name.parameterize.underscore}", default: admin_site.place.name)})"
+              = " (#{admin_site.place.translated_name})"
             - info_link = wiki_page_url( "network" )
           - else
             = t(:curator)
           = link_to info_link do
             %span.glyphicon.glyphicon.glyphicon-question-sign
-    %p#significant-dates
+    %p#user-subheader
       %span.date
         %i.fa.fa-calendar-plus-o
         =t :joined_with_date, date: l( @user.created_at.to_date, format: :short_with_year )
@@ -74,6 +74,11 @@
           =t :last_active_with_date, date: l( last_active_date, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
+      - if @user.site
+        %span.site-affiliation
+          = link_to network_sites_path do
+            %i.fa.fa-globe
+            = @user.site.name
       - if @donor_since
         - monthly_supporters_url_for_page = monthly_supporters_url( utm_campaign: "monthly-supporter-profile", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: @user.login )
         %span.monthly-supporter

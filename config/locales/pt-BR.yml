@@ -196,7 +196,6 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por compartilhar as coordenadas ocultas para
-  about_x: "Sobre %{x}"
   acc: 'Precisão exata - Acurácia (m)'
   account: Conta
   account_creation: Criação de conta
@@ -1360,7 +1359,6 @@ pt:
   editing_this: Modificando %{elem}
   editing_x_in_y: "Modificando %{x} em %{y}"
   editors: Editores
-  either: Qualquer
   either_that_user_doesnt_exist_or: "Ou este usuário não existe ou você já está seguindo ele."
   eligible_for_research_grade: Elegível para Nível de Pesquisa
   email: E-mail
@@ -1410,7 +1408,6 @@ pt:
   everywhere: todos lugares
   exact: Exato
   exact_date: Data exata
-  exact_location: Localização exata
   exact_rank: Classificação exata
   except: exceto
   exclude_places: Excluir Locais
@@ -1572,7 +1569,6 @@ pt:
   #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
-  follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
   follow_user: "Seguir %{user}"
   followed_projects: Projetos seguidos
   followers: Seguidores
@@ -1621,7 +1617,9 @@ pt:
   get_started: Começar
   getting_started_guide: Guia de Início
   give_it_some_detail: Inclua alguns detalhes!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DOAR MENSALMENTE
+  #Prompt to donate money once
   give_now_caps: DOAR AGORA
   global_names: Nomes globais
   globally: Globalmente
@@ -1671,12 +1669,10 @@ pt:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "Atenção: esta foto foi marcada."
   heads_up_this_photo_is_already_associated_with: "Atenção: esta foto já esta associada com <a target='_blank' href='%{url}'>outra observação</a>"
-  heads_up_you_have_multiple: "Atenção: Existem várias marcações taxonômicas para categorias idênticas."
   help: Ajuda
   help_confirm_observations!: Ajude confirmar observações!
   help_support_inaturalist: "Ajude a apoiar o iNaturalist"
   help_translate!: Ajude a Traduzir!
-  helped_the_observer_make: ajudou o observador a realizar a identificação final (realizado antes da identificação final e correspondem)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_species_suggestions: Aqui pode ver a nossa seleção de espécies
   hex_color_eg: 'Cor hexadecimal, ex: 65644F'
@@ -1697,6 +1693,7 @@ pt:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sem Anotação"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alta
@@ -1754,6 +1751,7 @@ pt:
   ignore_times: Ignora os tempos
   image_must_be_exactly: imagem deve ser exatamente 950px de largura e no máximo 400px de altura.
   image_size_control: Controle de tamanho da imagem
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Em perigo
   import: Importar
   import_all_photos_as_observations: Importar todas as fotos como observações
@@ -1822,7 +1820,6 @@ pt:
   invited_x: "Convidado %{x}"
   iphone: iPhone
   is_not_following_anyone: não está seguindo ninguém.
-  is_now: é agora
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A evidência fornecida é suficiente para confirmar que é %{taxon}?
   is_this_offensive_html: 'Esta observação é <a href="/help#inappropriate">inapropriada</a>, spam, ou ofensiva?'
   is_this_place_a_duplicate: Este local está duplicado?
@@ -3231,7 +3228,7 @@ pt:
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta mudança.
   please_add_this_observation_to: Por favor adicione esta observação a
   please_add_this_to_x_html: "Por favor adicione isto a %{x}"
-  please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Por favor complete o seguinte para adicionar esta observação ao projeto:
   please_confirm_your_inat_username: "Por favor confirme seu nome de usuário em %{site_name}"
@@ -3661,6 +3658,7 @@ pt:
   show_off_your_recent_observations: Publicar suas observações mais recentes em seu blog ou site!
   show_only: 'Mostrar somente:'
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar total acumulado
   show_scientific_name_first: Mostrar nomes científicos primeiro
   show_taxa_from_both: (exibir táxons de ambas as listas)
@@ -4554,7 +4552,6 @@ pt:
   youre_a_site_curator_which_means: |
     Você é um coordenador do site, o que significa que você se voluntariou para ajudar a coordenar nossos dados e monitorar o conteúdo. Por favor não se sinta obrigado a lidar com todas essas questões, mas se você tem tempo de verificar alguns deles, nós apreciamos toda ajuda que você puder dar. Se você tiver qualquer dúvida sobre a coordenação de conteúdo ou não deseja ser mais um coordenador, por favor entre em contato conosco através de %{email}
   you_are_over_your_invites_quota: ...você já está acima da sua cota mensal de 60 convites.
-  you_are_now: Você está agora
   you_are_now_following_x: "Agora você está seguindo %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>você</strong> agora é o admin em %{project}
@@ -5148,7 +5145,7 @@ pt:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
         ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
-        community_taxon_desc_html: |
+        community_taxon_desc_html: |2
           <p class="ui">
           O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
           </p>
@@ -5338,7 +5335,7 @@ pt:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
-        content_html: |
+        content_html: |2
           <p>
           Obrigado por criar uma conta iNaturalist para o seu filho! o
              conta foi ativada. Aqui estão os detalhes que você digitou
@@ -5448,7 +5445,7 @@ pt:
         make_owner: Tornar proprietário
         no_curators: |
           Ainda não existem administrador neste projeto. Se você decidir tornar um membro administrador, ele deverá primeiro inscrever-se no projeto e, somente depois poderá ser promovido.
-        observation_aggregation_desc_html: |
+        observation_aggregation_desc_html: |2
           <p class="description">
             A agregador de observações irá automaticamente adicionar observações que se adequem as suas normas ao seu projeto. Já que não existe uma forma de remover, de uma só vez, um número elevado de observações de um projeto, utilizar este recurso pode ser potencialmente perigoso, então por favor verifique com cuidado e, seja preciso, ao escolher quais táxons e/ou lugares lhe interessam ao criar as normas do seu projeto, ou você poderá acabar com centenas de observações inadequadas que somente poderão ser removidas manualmente. 
           </p>
@@ -5469,7 +5466,7 @@ pt:
           <li>Arquivos que terminam em .logo.jpg, .logo.png, etc. serão utilizados como o logotipo do projeto na página ao invés do ícone do projeto</li>
           <li>Arquivos KML e KMZ serão adicionados ao mapa na página do projeto</li>
           </ol>
-        project_list_desc_html: |
+        project_list_desc_html: |2
           <p class="description">
             Você pode criar uma lista personalizada de um táxon e conectá-la ao seu 
             projeto. Isto pode ser útil para restringir observações adicionadas ao seu 
@@ -5499,7 +5496,7 @@ pt:
           Você pode ver a visualização de como seu projeto se parecerá com um projeto de coleção
           Por quê? <a href="%{url}">selecione aqui</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente do que convidar 
@@ -5632,7 +5629,7 @@ pt:
       show:
         are_you_sure_you_want_to_convert: |
           Tem certeza de que deseja converter este projeto em um projeto de coleção?
-        bioblitz_results_desc_html: |
+        bioblitz_results_desc_html: |2
           <p>
             Diferente de projetos regulares, as bioblitz divulgam o status do evento abaixo de
             <em>todas</em> observações naquele local e período, não somente 
@@ -5848,7 +5845,7 @@ pt:
           Classificação em que este táxon está completo, p. ex. se esta família contiver
           todos os seus gêneros, mas nem todas as suas espécies, isso seria indicado para "gênero". A resposta padrão é gentil.
       show:
-        about_names_desc: |
+        about_names_desc: |2
           <p>
             A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são comumente, popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo, mas muitos outros organismos possuem mais de um nome popular em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. \  
             Os cientistas solucionaram este problema criando o uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,

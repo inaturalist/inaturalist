@@ -278,7 +278,6 @@ lt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Jūs galite pasirinkti viešinti informaciją apie koordinates
-  about_x: "Apie %{x}"
   acc: 'Tiksl. (m)'
   account: Paskyra
   account_creation: Paskyros sukūrimas
@@ -1361,7 +1360,6 @@ lt:
   editing_this: Redaguojama %{elem}
   editing_x_in_y: "Redaguojama %{x} %{y}"
   editors: Redaktoriai
-  either: Arba
   either_that_user_doesnt_exist_or: "Arba šis vartotojas neegzistuoja arba jūs jau jį sekate."
   eligible_for_research_grade: Tinkamas identifikavimui
   email: El. paštas
@@ -1404,7 +1402,6 @@ lt:
   everywhere: visur
   exact: Tikslus
   exact_date: Tiksli data
-  exact_location: Tiksli_vieta
   exact_rank: Tikslus rangas
   except: išskyrus
   exclude_places: Neįtraukti vietų
@@ -1553,7 +1550,6 @@ lt:
   flickr_tagger: Flickr Žymeklis
   flickr_tags: Flickr Žymės
   follow: Sekti
-  follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
   follow_user: "Sekti %{user}"
   followed_projects: Sekami projektai
   followers: Sekėjai
@@ -1604,7 +1600,9 @@ lt:
   get_started: Pradėti
   getting_started_guide: Darbo Pradžios Vadovas
   give_it_some_detail: Pridėkite informacijos!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: AUKOTI KARTĄ PER MĖNESĮ
+  #Prompt to donate money once
   give_now_caps: AUKOTI DABAR
   global_names: Pasauliniai pavadinimai
   globally: visame pasaulyje
@@ -1771,7 +1769,6 @@ lt:
   invited_x: "Pakviestas %{x}"
   iphone: iPhone
   is_not_following_anyone: nieko neseka.
-  is_now: dabar yra
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ar yra pateikta pakankamai įrodymų, kad čia yra %{taxon}?
   is_this_offensive_html: 'Ar tai <a href="/help#inappropriate"> yra nepriimtina</a>, šlamštas arba įžeidžiantis turinys?'
   is_this_place_a_duplicate: Ar ši vieta yra dublikatas?
@@ -2944,7 +2941,7 @@ lt:
   places_merged_successfully: Vietos sujungtos sėkmingai!
   plants: augalai
   please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
-  please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus
+  please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus #Title to a section warning a user to exercise caution
   please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
@@ -4060,7 +4057,6 @@ lt:
   yesterday: Vakar
   you: jūs
   you_: Jūs
-  you_are_now: Jūs dabar esate
   you_are_now_following_x: "Jūs dabar sekate %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>jūs</strong> dabar esate %{project} administratorius

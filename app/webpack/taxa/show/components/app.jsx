@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
@@ -93,7 +94,9 @@ const App = ( { taxon, showNewTaxon, config } ) => (
                 <Leaders taxon={taxon} />
                 <Row>
                   <Col xs={12}>
-                    <ChartsContainer />
+                    <ErrorBoundary>
+                      <ChartsContainer />
+                    </ErrorBoundary>
                   </Col>
                 </Row>
               </Col>

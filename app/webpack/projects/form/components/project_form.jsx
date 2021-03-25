@@ -36,8 +36,6 @@ class ProjectForm extends React.Component {
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
-    const viewerIsAdmin = config.currentUser && config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const coordinatesAccessible = project.prefers_user_trust
       && project.observation_requirements_updated_at
       && moment( project.observation_requirements_updated_at ) < moment( ).subtract( 1, "week" );
@@ -62,33 +60,33 @@ class ProjectForm extends React.Component {
               </div>
             </Col>
           </Row>
-          { viewerIsAdmin && (
-            <Row>
-              <Col xs={12}>
-                <h2>{ I18n.t( "members" ) }</h2>
-                <label className="section-label">
-                  { I18n.t( "trust" ) }
+          <Row>
+            <Col xs={12}>
+              <h2>{ I18n.t( "members" ) }</h2>
+              <label className="section-label">
+                { I18n.t( "trust" ) }
+              </label>
+              <p className="help-text">
+                { I18n.t( "views.projects.edit.trust_help_desc" ) }
+              </p>
+              <p className="help-text">
+                { I18n.t( "views.projects.edit.trust_help_notification2" ) }
+              </p>
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={project.prefers_user_trust}
+                    onChange={e => updateProject( {
+                      prefers_user_trust: e.target.checked || null
+                    } )}
+                  />
+                  { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
                 </label>
-                <p className="help-text">
-                  { I18n.t( "views.projects.edit.trust_help_desc" ) }
-                </p>
-                <p className="help-text">
-                  { I18n.t( "views.projects.edit.trust_help_notification2" ) }
-                </p>
-                <div className="checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      defaultChecked={project.prefers_user_trust}
-                      onChange={e => updateProject( {
-                        prefers_user_trust: e.target.checked || null
-                      } )}
-                    />
-                    { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
-                  </label>
-                </div>
-                { project.prefers_user_trust && project.observation_requirements_updated_at && (
-                  <div className={coordinatesAccessible ? "alert alert-success" : "alert alert-info"}>
+              </div>
+              { project.prefers_user_trust && project.observation_requirements_updated_at && (
+                <div className={coordinatesAccessible ? "alert alert-success" : "alert alert-info"}>
+                  { moment( project.observation_requirements_updated_at ) > moment( project.crteated_at ) && (
                     <p
                       dangerouslySetInnerHTML={{
                         __html: I18n.t( "bold_label_colon_value_html", {
@@ -98,31 +96,31 @@ class ProjectForm extends React.Component {
                         } )
                       }}
                     />
-                    { coordinatesAccessible
-                      ? (
-                        <p>
-                          <i className="fa fa-check-circle" />
-                          { " " }
-                          { I18n.t( "project_coordinate_access_enabled" ) }
-                        </p>
-                      )
-                      : (
-                        <p>
-                          <i className="fa fa-info-circle" />
-                          { " " }
-                          { I18n.t( "project_coordinate_access_disabled_until_datetime", {
-                            datetime: moment( project.observation_requirements_updated_at )
-                              .add( 1, "week" )
-                              .format( I18n.t( "momentjs.datetime_with_zone" ) )
-                          } ) }
-                        </p>
-                      )
-                    }
-                  </div>
-                ) }
-              </Col>
-            </Row>
-          ) }
+                  ) }
+                  { coordinatesAccessible
+                    ? (
+                      <p>
+                        <i className="fa fa-check-circle" />
+                        { " " }
+                        { I18n.t( "project_coordinate_access_enabled" ) }
+                      </p>
+                    )
+                    : (
+                      <p>
+                        <i className="fa fa-info-circle" />
+                        { " " }
+                        { I18n.t( "project_coordinate_access_disabled_until_datetime", {
+                          datetime: moment( project.observation_requirements_updated_at )
+                            .add( 1, "week" )
+                            .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                        } ) }
+                      </p>
+                    )
+                  }
+                </div>
+              ) }
+            </Col>
+          </Row>
           <Row className="admins-row">
             <Col xs={12}>
               <label className="section-label">

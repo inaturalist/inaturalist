@@ -1,7 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
-
 import { updateBlockedAndMutedUsers } from "./relationships";
+import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -24,28 +24,40 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
 }
 
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
-  return dispatch => inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
-    // this is kind of unnecessary, but removing these since they're read-only keys
-    // and don't need to be included in UI or users.update
-    const keysToIgnore = [
-      "spam", "suspended", "created_at", "login_autocomplete", "login_exact",
-      "name_autocomplete", "observations_count", "identifications_count", "journal_posts_count",
-      "activity_count", "species_count", "universal_search_rank", "prefers_automatic_taxon_changes"
-    ];
+  return ( dispatch, getState ) => {
+    inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
+      // this is kind of unnecessary, but removing these since they're read-only keys
+      // and don't need to be included in UI or users.update
+      const keysToIgnore = [
+        "spam", "suspended", "created_at", "login_autocomplete", "login_exact",
+        "name_autocomplete", "observations_count", "identifications_count", "journal_posts_count",
+        "activity_count", "species_count", "universal_search_rank", "prefers_automatic_taxon_changes"
+      ];
 
-    const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
-      if ( !keysToIgnore.includes( key ) ) {
-        object[key] = results[0][key];
+      const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
+        if ( !keysToIgnore.includes( key ) ) {
+          object[key] = results[0][key];
+        }
+        return object;
+      }, {} );
+
+      dispatch( setUserData( userSettings, savedStatus ) );
+
+      if ( relationshipsPage ) {
+        dispatch( updateBlockedAndMutedUsers( ) );
       }
-      return object;
-    }, {} );
 
-    dispatch( setUserData( userSettings, savedStatus ) );
-
-    if ( relationshipsPage ) {
-      dispatch( updateBlockedAndMutedUsers( ) );
-    }
-  } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
+      const { sites } = getState( );
+      // If the user is affiliated with a site we don't know about, try fetching
+      // the sites again
+      if ( sites && sites.sites && userSettings.site_id ) {
+        const siteIds = sites.sites.map( s => s.id );
+        if ( siteIds.indexOf( userSettings.site_id ) < 0 ) {
+          dispatch( fetchNetworkSites( ) );
+        }
+      }
+    } ).catch( e => console.log( `Failed to fetch via users.me: ${e}` ) );
+  };
 }
 
 export async function handleSaveError( e ) {

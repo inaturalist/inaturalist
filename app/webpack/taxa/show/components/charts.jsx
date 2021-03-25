@@ -7,6 +7,48 @@ import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
+import "@formatjs/intl-locale/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
+import "@formatjs/intl-numberformat/locale-data/en";
+import "@formatjs/intl-numberformat/locale-data/ar";
+import "@formatjs/intl-numberformat/locale-data/bg";
+import "@formatjs/intl-numberformat/locale-data/br";
+import "@formatjs/intl-numberformat/locale-data/ca";
+import "@formatjs/intl-numberformat/locale-data/cs";
+import "@formatjs/intl-numberformat/locale-data/da";
+import "@formatjs/intl-numberformat/locale-data/de";
+import "@formatjs/intl-numberformat/locale-data/el";
+import "@formatjs/intl-numberformat/locale-data/eo";
+import "@formatjs/intl-numberformat/locale-data/es";
+import "@formatjs/intl-numberformat/locale-data/es-AR";
+import "@formatjs/intl-numberformat/locale-data/es-MX";
+import "@formatjs/intl-numberformat/locale-data/et";
+import "@formatjs/intl-numberformat/locale-data/eu";
+import "@formatjs/intl-numberformat/locale-data/fi";
+import "@formatjs/intl-numberformat/locale-data/fr";
+import "@formatjs/intl-numberformat/locale-data/fr-CA";
+import "@formatjs/intl-numberformat/locale-data/gl";
+import "@formatjs/intl-numberformat/locale-data/he";
+import "@formatjs/intl-numberformat/locale-data/id";
+import "@formatjs/intl-numberformat/locale-data/it";
+import "@formatjs/intl-numberformat/locale-data/ja";
+import "@formatjs/intl-numberformat/locale-data/ko";
+import "@formatjs/intl-numberformat/locale-data/lb";
+import "@formatjs/intl-numberformat/locale-data/lt";
+import "@formatjs/intl-numberformat/locale-data/lv";
+import "@formatjs/intl-numberformat/locale-data/mk";
+import "@formatjs/intl-numberformat/locale-data/nb";
+import "@formatjs/intl-numberformat/locale-data/nl";
+import "@formatjs/intl-numberformat/locale-data/pl";
+import "@formatjs/intl-numberformat/locale-data/pt";
+import "@formatjs/intl-numberformat/locale-data/ru";
+import "@formatjs/intl-numberformat/locale-data/sk";
+import "@formatjs/intl-numberformat/locale-data/sq";
+import "@formatjs/intl-numberformat/locale-data/sv";
+import "@formatjs/intl-numberformat/locale-data/tr";
+import "@formatjs/intl-numberformat/locale-data/uk";
+import "@formatjs/intl-numberformat/locale-data/zh";
+import "@formatjs/intl-numberformat/locale-data/zh-Hant";
 
 class Charts extends React.Component {
   constructor( ) {
@@ -71,8 +113,21 @@ class Charts extends React.Component {
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
-    if ( number > 9999 ) {
-      return number.toExponential( precision );
+    if ( number > 999 ) {
+      try {
+        // this falls back to English for Occitan on all browsers
+        // all other iNat locales appear to be supported
+        return new Intl.NumberFormat( I18n.locale, {
+          maximumSignificantDigits: 3,
+          notation: "compact"
+        } ).format( number );
+      } catch ( e ) {
+        if ( e.message.match( /Intl/ ) ) {
+          console.log( "This browser does not support modern number formatting. Please consider upgrading." );
+        } else {
+          throw e;
+        }
+      }
     }
     return I18n.toNumber( number, { precision } );
   }

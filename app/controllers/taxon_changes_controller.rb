@@ -37,7 +37,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.types(@types) unless @types.blank?
     scope = scope.change_group(@change_group) if @change_group
     scope = scope.iconic_taxon(@iconic_taxon) if @iconic_taxon
-    scope = scope.taxon(@taxon) if @taxon
+    scope = scope.with_taxon(@taxon) if @taxon
     scope = scope.ancestor_taxon( @ancestor_taxon ) if @ancestor_taxon
     scope = scope.source(@source) if @source
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
@@ -49,21 +49,22 @@ class TaxonChangesController < ApplicationController
       includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
       includes(:source).
       order("taxon_changes.id DESC")
-    @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
-    @swaps = TaxonSwap.committed.joins([ {:taxon => :taxon_schemes}, {:taxa => :taxon_schemes} ]).
-      where([ "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", @taxa, @taxa ])
-    @swaps_by_taxon_id = {}
-    @swaps.each do |swap|
-      @swaps_by_taxon_id[swap.taxon_id] ||= []
-      @swaps_by_taxon_id[swap.taxon_id] << swap
-      swap.taxa.each do |taxon|
-        @swaps_by_taxon_id[taxon.id] ||= []
-        @swaps_by_taxon_id[taxon.id] << swap
-      end
-    end
 
     respond_to do |format|
-      format.html
+      format.html do
+        @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
+        @swaps = TaxonSwap.committed.joins([ {:taxon => :taxon_schemes}, {:taxa => :taxon_schemes} ]).
+          where([ "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", @taxa, @taxa ])
+        @swaps_by_taxon_id = {}
+        @swaps.each do |swap|
+          @swaps_by_taxon_id[swap.taxon_id] ||= []
+          @swaps_by_taxon_id[swap.taxon_id] << swap
+          swap.taxa.each do |taxon|
+            @swaps_by_taxon_id[taxon.id] ||= []
+            @swaps_by_taxon_id[taxon.id] << swap
+          end
+        end
+      end
       format.json do
         taxon_options = { only: [:id, :name, :rank] }
         render json: @taxon_changes.map{|tc|

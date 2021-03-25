@@ -14,6 +14,7 @@ const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 const UPDATE_WITH_OBSERVATION = "observations-identify/suggestions/UPDATE_WITH_OBSERVATION";
 
 const TAXON_FIELDS = {
+  ancestor_ids: true,
   id: true,
   name: true,
   rank: true,

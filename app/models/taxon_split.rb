@@ -17,9 +17,15 @@ class TaxonSplit < TaxonChange
   end
 
   def automatable?
-    return true if output_taxa.detect{ |t| !t.atlased? }.nil?
-    return true if output_ancestor
-    false
+    return @automatable unless @automatable.blank?
+    if output_taxa.detect{ |t| !t.atlased? }.nil?
+      @automatable = true
+    elsif output_ancestor
+      @automatable = true
+    else
+      @automatable = false
+    end
+    @automatable
   end
 
   def is_branching?

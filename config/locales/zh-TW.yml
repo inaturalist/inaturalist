@@ -88,6 +88,9 @@ zh-TW:
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_flag_for_x: "%{x} 已被標記"
   a_member_of_taxon_html: "%{taxon} 之一員"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A 到 Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -119,10 +122,14 @@ zh-TW:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 有關定居方式
+  about_license_options: 關於授權選項
   about_licenses: 關於授權
   about_muting: 關於禁言
   #Header for a section describing taxon names
   about_names: 關於名稱
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "關於%{place}"
   about_places: 關於地點
   about_the_cc_licenses: 關於創用CC授權
   about_these_licenses: 關於這些許可協議
@@ -131,7 +138,8 @@ zh-TW:
   about_this_project: 關於此專案
   about_trips_html: |
     <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
-  about_x: "關於 %{x}"
+  about_trusting_projects: 關於信任專案
+  about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -1190,7 +1198,6 @@ zh-TW:
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
   editors: 編輯者
-  either: 任一
   either_that_user_doesnt_exist_or: "不存在該用戶，或著是您已有在關注。"
   eligible_for_research_grade: 符合研究等級
   email: 電子郵件
@@ -1237,7 +1244,6 @@ zh-TW:
   everywhere: 任何地方
   exact: 準確
   exact_date: 精確日期
-  exact_location: 精確位置
   exact_rank: 精確級別
   except: 除外
   exclude_places: 排除的地點
@@ -1395,7 +1401,6 @@ zh-TW:
   #Adjective, as in a fluid layout of images
   fluid: 流動
   follow: 追蹤
-  follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
   follow_user: "關注 %{user}"
   followed_projects: 追蹤中的專案
   followers: 關注者
@@ -1442,7 +1447,9 @@ zh-TW:
   get_started: 入門
   getting_started_guide: 入門指南
   give_it_some_detail: 為它提供一些詳細內容！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
+  #Prompt to donate money once
   give_now_caps: 現在捐款
   global_names: 全域名稱
   globally: 全球
@@ -1492,12 +1499,10 @@ zh-TW:
   heads_up: 注意
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
-  heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
   help: 幫助
   help_confirm_observations!: 幫助確認觀察！
   help_support_inaturalist: "協助支持 iNaturalist"
   help_translate!: 協助翻譯
-  helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們的最佳物種建議
   hex_color_eg: 16 進位色彩碼，例如：65644F
@@ -1508,6 +1513,7 @@ zh-TW:
   hide_content: 隱藏內容
   hide_desc: |
     隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
@@ -1565,6 +1571,7 @@ zh-TW:
   ignore_times: 忽略次數
   image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
   image_size_control: 圖片大小控制
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: 危及
   import: 匯入
   import_all_photos_as_observations: 匯入所有照片成為觀察
@@ -1630,7 +1637,6 @@ zh-TW:
   invited_x: "已邀請%{x}"
   iphone: iPhone
   is_not_following_anyone: 沒關注任何人。
-  is_now: 現已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 證據是否提供足夠的內容來確定這是%{taxon}？
   is_this_offensive_html: '這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯的內容嗎？'
   is_this_place_a_duplicate: 此地點有重複嗎？
@@ -2366,6 +2372,7 @@ zh-TW:
   observer: 觀察者
   observers: 觀察者
   observer_short: 觀察者
+  occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
   occurrence_status_descriptions:
     absent: 沒有發生在區域
@@ -2990,7 +2997,7 @@ zh-TW:
   please_add_a_citation_for_this_change: 請為此次更改添加引用。
   please_add_this_observation_to: 請添加此觀察至
   please_add_this_to_x_html: "請添加此至%{x}"
-  please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改
+  please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改 #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     請完成以下內容來添加觀察至專案裡：
   please_confirm_your_inat_username: "請確認您的 %{site_name} 用戶名稱"
@@ -3399,6 +3406,7 @@ zh-TW:
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
   show_relative_proportions_of_all_observations: 顯示所有觀察的相對比例
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 顯示運行總計
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: '（從兩項清單顯示物種分類群）'
@@ -4216,7 +4224,6 @@ zh-TW:
   youre_a_site_curator_which_means: |
     您是個網站策展人，代表著您自願來協助策展我們的資料及監控內容。請不要為處理問題感到擔心，若您願意花費時間來查看一些項目，我們都會對所能得到的幫助有所感激。如果您有策展內容方面問題、或是不知該如何當名策展人，請透過電子郵件地址 %{email} 聯絡我們。
   you_are_over_your_invites_quota: ...您已超出使用您每月共 60 次邀請的額度
-  you_are_now: 您現在
   you_are_now_following_x: "您正在關注 %{friend_user}。"
   you_are_now_the_admin_for_project_html: |
     <strong>您</strong>現在是 %{project} 的總管理者了
@@ -4918,6 +4925,8 @@ zh-TW:
         submission_models:
           any: 任一
           curators: 專案策展人
+        trust_help_desc: |-
+          如果您想存取遮蔽觀察記錄的隱藏座標，這個選項將會允許加入此專案的人信任專案的管理者來存取這些隱藏的座標。專案中的成員將可以把他們在此專案中任何隱藏觀察紀錄之座標，或僅授權被遮蔽的受脅物種之觀察紀錄座標授權給管理者。
         trusted_project_means: |
           託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的 Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
         you_can_preview: |
@@ -5328,7 +5337,7 @@ zh-TW:
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
         about_third_party_tracking: 關於第三方的追蹤
-        blocking_desc_html: |
+        blocking_desc_html: |2
           <p>
             封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
             或是在 %{site_name} 上與您互動。這也會讓您與對方在進行搜尋時，
