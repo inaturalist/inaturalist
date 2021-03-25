@@ -13,10 +13,7 @@ class SoundcloudSound < Sound
 
   def self.client_for_user(user)
     return nil unless user && user.soundcloud_identity && user.soundcloud_identity.token
-    # Soundcloud gem depended on some stuff that got removed so we can't really
-    # support it anymore (couldn't anyway due to inability to make new oauth
-    # connections). See https://github.com/thoughtbot/paperclip/issues/2678
-    # Soundcloud.new(:access_token => user.soundcloud_identity.token)
+    Soundcloud.new(:access_token => user.soundcloud_identity.token)
     nil
   end
 

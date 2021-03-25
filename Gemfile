@@ -69,10 +69,7 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem "omniauth-twitter"
 gem "omniauth-apple"
-# Paperclip depends on mimemagic, which is no longer in rubygems.org due to
-# licensing problems, so we are using this fork instead. See
-# https://github.com/thoughtbot/paperclip/issues/2678
-gem "paperclip", "~> 6.1.1", git: "https://github.com/sd/paperclip.git", branch: "remove-mimemagic"
+gem "paperclip", "~> 6.1.0"
 gem "optimist"
 gem "patron"
 gem "pg"
@@ -89,6 +86,7 @@ gem "rest-client", require: "rest_client"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git"
 gem "savon"   #allow to consume soap services with WSDL
 gem "sass-rails", "5.0.7"
+gem "soundcloud"
 gem "sprockets", "~> 2.12.5"
 gem "uglifier"
 gem "utf8-cleaner"
