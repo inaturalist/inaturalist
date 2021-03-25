@@ -1010,7 +1010,6 @@ sk:
   #Adjective, as in a fluid layout of images
   fluid: premenlivé
   follow: Sledovať
-  follow_receive_updates_about_new_observations: Sledujte (dostanete informácie o nových pozorovaniach)
   follow_user: "Sledovať %{user}"
   followed_projects: Sledované projekty
   followers: Sledovatelia
@@ -1145,6 +1144,7 @@ sk:
   ignore_and_continue: Ignorovať a pokračovať
   ignore_times: Ignorovať časy
   image_must_be_exactly: obrázok musí byť presne 950px široký a maximálne 400px vysoký
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohrozený
   import_all_photos_as_observations: Importovať všetky fotky ako pozorovania
   import_as_an_observation: Importovať ako pozorovanie
@@ -1199,7 +1199,6 @@ sk:
   inviteonly: iba pre pozvaných
   invited_x: "Pozvaný/á %{x}"
   is_not_following_anyone: nikoho nesleduje.
-  is_now: je teraz
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Sú predložené dôkazy dostatočné na potvrdenie, že toto je %{taxon}?
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, alebo urážlivé?'
   is_this_place_a_duplicate: Je toto miesto duplikát?
@@ -2629,6 +2628,7 @@ sk:
   show_off_your_recent_observations: Ukážte svoje posledné pozorovania na svojom blogu alebo webovej stránke!
   show_only: Zobraziť len
   show_relative_proportions_of_all_observations: Zobraziť príbuzné časti všetkých pozorovaní
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobraziť doteraz celkom
   show_scientific_name_first: Zobraziť najprv vedecké mená
   show_taxa_from_both: (zobraziť taxóny z obidvoch zoznamov)
@@ -3038,7 +3038,6 @@ sk:
   'yes': "Áno"
   yes_i_want_to_join: Áno, chcem sa pridať
   you: vás
-  you_are_now: Teraz ste
   you_are_already_a_member_of_this_project: "Už ste členom tohto projektu!"
   you_are_setting_this_project_to_aggregate: |
     Nastavujete tento projekt tak, aby zoskupil všetky pozorovania, ktoré spĺňajú následujúce pravidlá: %{rules} Chcete pokračovať?

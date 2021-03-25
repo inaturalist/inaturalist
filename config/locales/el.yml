@@ -1657,7 +1657,6 @@ el:
   #Adjective, as in a fluid layout of images
   fluid: Ρευστό
   follow: Ακολουθήστε
-  follow_receive_updates_about_new_observations: Ακολουθήστε (λαμβάνετε ενημερώσεις σχετικά με νέες παρατηρήσεις)
   follow_user: "Ακολουθήστε τον %{user}"
   followed_projects: Ακολουθούμενα πρότζεκτ
   followers: Ακόλουθοι
@@ -1707,7 +1706,9 @@ el:
   get_started: Ξεκινήστε
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
   give_it_some_detail: Δώστε κάποιες λεπτομέρειες!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: ΔΩΣΤΕ ΜΗΝΙΑΙΑ
+  #Prompt to donate money once
   give_now_caps: ΔΩΣΤΕ ΤΩΡΑ
   global_names: Καθολικά ονόματα
   globally: Παγκοσμίως
@@ -1756,12 +1757,10 @@ el:
   heads_up: Προσοχή!
   heads_up_this_photo_has_been_flagged: "ΠΡΟΣΟΧΗ: αυτή η φωτογραφία έχει αναφερθεί."
   heads_up_this_photo_is_already_associated_with: "Προσοχή: αυτή η φωτογραφία ήδη συνδέεται με <a target='_blank' href='%{url}'> από μία άλλη παρατήρηση</a>"
-  heads_up_you_have_multiple: "Προσοχή: Έχετε πολλαπλές ταξινομικές μηχανικές ετικέτες για πανομοιότυπες κατατάξεις. Είναι κωδικοποιημένα με βάση τα χρώματα ανάλογα με την κατάταξή τους."
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
   help_support_inaturalist: "Βοήθησε στην υποστήριξη του iNaturalist!"
   help_translate!: Βοηθήστε στη Μετάφραση!
-  helped_the_observer_make: βοήθησε τον παρατηρητή να κάνει την τελική του ταυτοποίηση (δηλαδή, πραγματοποιήθηκε πριν κάνει την τελική του ταυτοποίηση και αντιστοιχήθηκε)
   here_are_3_examples: Ορίστε 3 παραδείγματα από καλοσχηματισμένα δεδομένα
   here_are_our_top_species_suggestions: Εδώ είναι η προτεινόμενη λίστα των κορυφαίων μας ειδών
   hex_color_eg: Χρώμα Hex, π.χ. 65644F
@@ -1775,6 +1774,7 @@ el:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Απόκρυψη "Χωρίς Σημείωση"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Κρύψτε το Τρεχούμενο Σύνολο 
   hide_uncountable_species: Απόκρυψη μη μετρήσιμων ειδών
   high: υψηλό
@@ -1832,6 +1832,7 @@ el:
   ignore_times: Αγνόησε τους χρόνους
   image_must_be_exactly: η εικόνα πρέπει να έχει πλάτος ακριβώς 950px και ύψος το πολύ 400px
   image_size_control: Έλεγχος μεγέθους εικόνας
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Τέθηκε σε κίνδυνο
   import: Εισαγωγή
   import_all_photos_as_observations: Εισαγωγή όλω των φωτογραφιών ως παρατηρήσεις
@@ -1900,7 +1901,6 @@ el:
   invited_x: "Προσκεκλημένος %{x}"
   iphone: iPhone
   is_not_following_anyone: δεν ακολουθεί κάποιον.
-  is_now: τώρα είναι
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Τα παρεχόμενα στοιχεία είναι επαρκή για να επιβεβαιωθεί πως αυτό είναι %{taxon};
   is_this_offensive_html: 'Είναι αυτό <a href="/help#inappropriate">ακατάλληλο</a>, σπαμ, ή προσβλητικό;'
   is_this_place_a_duplicate: Αυτός ο τόπος είναι διπλότυπος;
@@ -3789,6 +3789,7 @@ el:
   show_off_your_recent_observations: Ανέβασε τις πρόσφατες παρατηρήσεις σου στο δικό στο blog ή ιστοσελιδα!
   show_only: Εμφάνιση μόνο
   show_relative_proportions_of_all_observations: Εμφάνιση σχετικών αναλογιών όλων των παρατηρήσεων
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Εμφάνιση Τρέχοντος Συνόλου
   show_scientific_name_first: Εμφάνιση επιστημονικών ονομάτων πρώτα
   show_taxa_from_both: (εμφάνιση ταξινομικών βαθμίδων και από τις δύο λίστες)
@@ -4701,7 +4702,6 @@ el:
   youre_a_site_curator_which_means: |
     Είστε ένας επιμελητής της σελίδας, το οποίο σημαίνει ότι εθελοντικά επιμελείστε τα δεδομένα μας και χειρίζεστε το περιεχόμενο.Δεν υποχρεούστε να ασχολείστε με όλα αυτά τα ζητήματα, αλλά αν έχετε το χρόνο να ελέγξετε κάποια από αυτά, θα εκτιμούσαμε πολύ τη βοήθειά σας.Αν έχετε κάποια ερώτηση σχετικά με την επιμέλεια περιεχομένου ή δεν επιθυμείτε πλέον να είστε επιμελητής, παρακαλούμε επικοινωνήστε μαζί μας στο %{email}
   you_are_over_your_invites_quota: ...έχετε ξεπεράσει το μηνιαίο σας πλαφόν των 60 προσκλήσεων
-  you_are_now: Είστε τώρα
   you_are_now_following_x: "Τώρα ακολουθείτε %{friend_user}"
   you_are_now_the_admin_for_project_html: |
     <strong> Εσείς </strong> είστε τώρα ο διαχειριστής του πρότζεκτ %{project}

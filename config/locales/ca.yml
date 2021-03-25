@@ -167,6 +167,9 @@ ca:
   about_muting: Quant a Silenciar
   #Header for a section describing taxon names
   about_names: Quant a els noms
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Sobre %{place}"
   about_places: Sobre els Llocs
   about_the_cc_licenses: Sobre les llicències de Creative Commons
   about_these_licenses: Sobre aquestes llicències
@@ -1639,7 +1642,7 @@ ca:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguiu
-  follow_receive_updates_about_new_observations: Seguiu (rebre actualitzacions de les noves observacions)
+  follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
   follow_user: "Segueix a %{user}"
   followed_projects: Projectes seguits
   followers: seguidors
@@ -1689,7 +1692,9 @@ ca:
   get_started: Comenceu
   getting_started_guide: Guia d'inici
   give_it_some_detail: Introdueix alguna dada!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DONAR MENSUALMENT
+  #Prompt to donate money once
   give_now_caps: DONAR ARA
   global_names: Nom Global
   globally: Globalment
@@ -1739,12 +1744,11 @@ ca:
   heads_up: Avís
   heads_up_this_photo_has_been_flagged: "ATENCIÓ: s’ha marcat aquesta foto."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓ: aquesta foto ja està associada amb <a target='_blank' href='%{url}'>una altra observació</a>"
-  heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Més endavant, estan codificades per colors segons el rang."
+  heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
   help_support_inaturalist: "Ajudeu a iNaturalist"
   help_translate!: Ajuda'ns a traduir!
-  helped_the_observer_make: heu ajudat l'observador a fer la identificació final (és a dir, es van fer abans de la identificació final i coincideixen)
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_suggestions: Aquí estan els nostres principals suggeriments
   here_are_our_top_species_suggestions: Aquí estan les principals espècies suggerides
@@ -1759,6 +1763,7 @@ ca:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Amaga "Sense anotacions"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
   high: Alta
@@ -1816,6 +1821,7 @@ ca:
   ignore_times: Ignoreu les vegades
   image_must_be_exactly: la imatge ha de ser d'una amplada exacta de 950px i un màxim de 400px d'alçada
   image_size_control: Control de la mida de la imatge
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En perill
   import: Importa
   import_all_photos_as_observations: Importa totes les fotos com a observacions
@@ -1885,7 +1891,6 @@ ca:
   invited_x: "Convidat %{x}"
   iphone: iPhone
   is_not_following_anyone: no segueix ningú
-  is_now: és ara
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient per confirmar que és %{taxon}?
   is_this_offensive_html: 'És <a href="/help#inappropriate">inadequat</a>, brossa, o ofensiu?'
   is_this_place_a_duplicate: Aquest lloc està duplicat?
@@ -3789,6 +3794,7 @@ ca:
   show_off_your_recent_observations: Publiqueu les observacions en el vostre propi blog o pàgina web!
   show_only: Mostra només
   show_relative_proportions_of_all_observations: Mostra les proporcions relatives de totes les observacions
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar l'acumulat total
   show_scientific_name_first: Mostra noms científics primer
   show_taxa_from_both: (mostra tàxons d'ambdues llistes)
@@ -4705,7 +4711,6 @@ ca:
   youre_a_site_curator_which_means: |
     Sou un supervisor del lloc, el que significa que us heu ofert voluntari per ajudar a gestionar les dades i gestionar el contingut de la pàgina. No us sentiu obligat per tot el que això implica, però si teniu temps de revisar alguns continguts, t'ho agraïm. Si teniu algun dubte, comentari o simplement ja no voleu ser supervisor, poseu-vos en contacte amb nosaltres a %{email}
   you_are_over_your_invites_quota: ...ja heu enviat el màxim de 60 invitacions per aquest mes.
-  you_are_now: Ara sou
   you_are_now_following_x: "Ara seguiu a %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>Ara</strong> sou administrador de %{project}
