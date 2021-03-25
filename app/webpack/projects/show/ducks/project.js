@@ -334,7 +334,6 @@ export function fetchOverviewData( ) {
     dispatch( fetchRecentObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
-    dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchMembers( ) );
   };

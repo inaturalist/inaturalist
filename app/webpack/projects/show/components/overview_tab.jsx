@@ -20,24 +20,35 @@ const OverviewTab = props => {
     project,
     updateCurrentUser,
     fetchQualityGradeCounts,
-    fetchPosts
+    fetchPosts,
+    fetchSpeciesObservers
   } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
     <div className="OverviewTab">
       <OverviewRecentObservations {...props} />
       <Grid className="leaders-grid">
-        <Row>
-          <Col xs={4} className="no-padding">
-            <TopObserversPanelContainer />
-          </Col>
-          <Col xs={4} className="no-padding">
-            <TopSpeciesObserversPanelContainer />
-          </Col>
-          <Col xs={4} className="no-padding">
-            <TopSpeciesPanelContainer />
-          </Col>
-        </Row>
+        {/* this component is high enough on the screen that lazy loading might
+        load right away, so mostly using this to ensure this fetch is only called
+        in collection projects, not umbrella projects */}
+        <LazyLoad
+          debounce={false}
+          height={229}
+          verticalOffset={100}
+          onContentVisible={fetchSpeciesObservers}
+        >
+          <Row>
+            <Col xs={4} className="no-padding">
+              <TopObserversPanelContainer />
+            </Col>
+            <Col xs={4} className="no-padding">
+              <TopSpeciesObserversPanelContainer />
+            </Col>
+            <Col xs={4} className="no-padding">
+              <TopSpeciesPanelContainer />
+            </Col>
+          </Row>
+        </LazyLoad>
       </Grid>
       <Grid className="info-grid">
         <Row>
@@ -91,7 +102,8 @@ OverviewTab.propTypes = {
   setSelectedTab: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   fetchQualityGradeCounts: PropTypes.func,
-  fetchPosts: PropTypes.func
+  fetchPosts: PropTypes.func,
+  fetchSpeciesObservers: PropTypes.func
 };
 
 export default OverviewTab;
