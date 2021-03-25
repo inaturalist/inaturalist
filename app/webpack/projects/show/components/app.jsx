@@ -55,7 +55,11 @@ const App = ( {
           debounce={false}
           height={406}
           offset={500}
-          onContentVisible={fetchSpeciesObservers}
+          onContentVisible={( ) => {
+            if ( !project.species_observers_loaded ) {
+              fetchSpeciesObservers( );
+            }
+          }}
         >
           <ObserversTabContainer />
         </LazyLoad>

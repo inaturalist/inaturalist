@@ -32,7 +32,11 @@ const OverviewTab = props => {
           debounce={false}
           height={229}
           verticalOffset={100}
-          onContentVisible={fetchSpeciesObservers}
+          onContentVisible={( ) => {
+            if ( !project.species_observers_loaded ) {
+              fetchSpeciesObservers( );
+            }
+          }}
         >
           <Row>
             <Col xs={4} className="no-padding">
