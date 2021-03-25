@@ -40,9 +40,7 @@ const UmbrellaLeaderboard = ( {
         <span
           className={ `sort-option ${sort === "species" && "active"}` }
           onClick={ ( ) => {
-            if ( !project.full_umbrella_stats_loaded ) {
-              fetchFullLeaderboard( );
-            }
+            fetchFullLeaderboard( );
             setConfig( { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 } )
           }}
         >
@@ -51,9 +49,7 @@ const UmbrellaLeaderboard = ( {
         <span
           className={ `sort-option ${sort === "observers" && "active"}` }
           onClick={ ( ) => {
-            if ( !project.full_umbrella_stats_loaded ) {
-              fetchFullLeaderboard( );
-            }
+            fetchFullLeaderboard( );
             setConfig( { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 } ) }
           }
         >
@@ -107,9 +103,7 @@ const UmbrellaLeaderboard = ( {
           <div
             className="show-more"
             onClick={ ( ) => {
-              if ( !project.full_umbrella_stats_loaded ) {
-                fetchFullLeaderboard( );
-              }
+              fetchFullLeaderboard( );
               setConfig( { umbrellaLeaderboardLimit: sortedProjectStats.length } )
             }}
           >

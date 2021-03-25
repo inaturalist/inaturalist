@@ -261,7 +261,7 @@ export function fetchIconicTaxaCounts( ) {
 export function fetchUmbrellaStats( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || !project.full_umbrella_stats_loaded ) { return null; }
     const params = {
       ...project.search_params,
       per_page: 8
