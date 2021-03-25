@@ -882,7 +882,6 @@ lb:
   invite_people_to_project: "Leit op %{project} invitéieren"
   invite_your_friends: Invitéiert Är Frënn
   is_not_following_anyone: folgt kengem
-  is_now: ass elo
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiven Text
@@ -1126,6 +1125,9 @@ lb:
   native_to_place: "Einheimesch an %{place}"
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, ass Deel vum internationalen iNaturalist Netzwierk, a fokusséiert sech ob d'Notzer zu %{place}. Wëllt Dir Äer Konto-Zougehéieregkeet änneren vun <strong>%{inat_site_name}</strong> ob <strong>%{site_name}</strong> an Är Donnéeën esou mat de Lokalen Institutiounen deelen?
   new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung
@@ -1880,7 +1882,6 @@ lb:
   yesterday: Gëschter
   you: Dir
   you_: Dir
-  you_are_now: Dir sidd elo
   you_are_already_a_member_of_this_project: "Dir sidd scho Member vun dësem Projet!"
   you_arent_a_member_of_that_project: Dir sidd net Member vun deem Projet.
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
