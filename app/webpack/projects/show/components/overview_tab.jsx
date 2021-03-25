@@ -28,9 +28,6 @@ const OverviewTab = props => {
     <div className="OverviewTab">
       <OverviewRecentObservations {...props} />
       <Grid className="leaders-grid">
-        {/* this component is high enough on the screen that lazy loading might
-        load right away, so mostly using this to ensure this fetch is only called
-        in collection projects, not umbrella projects */}
         <LazyLoad
           debounce={false}
           height={229}

@@ -24,7 +24,13 @@ import FlashMessagesContainer from "../../../shared/containers/flash_messages_co
 import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 
 const App = ( {
-  config, project, leave, setSelectedTab, convertProject, fetchQualityGradeCounts
+  config,
+  project,
+  leave,
+  setSelectedTab,
+  convertProject,
+  fetchQualityGradeCounts,
+  fetchSpeciesObservers
 } ) => {
   let view;
   let tab = config.selectedTab;
@@ -44,7 +50,16 @@ const App = ( {
       view = ( <IdentifiersTabContainer /> );
       break;
     case "observers":
-      view = ( <ObserversTabContainer /> );
+      view = (
+        <LazyLoad
+          debounce={false}
+          height={406}
+          offset={500}
+          onContentVisible={fetchSpeciesObservers}
+        >
+          <ObserversTabContainer />
+        </LazyLoad>
+      );
       break;
     case "species":
       view = ( <SpeciesTabContainer /> );
@@ -329,7 +344,8 @@ App.propTypes = {
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
   convertProject: PropTypes.func,
-  fetchQualityGradeCounts: PropTypes.func
+  fetchQualityGradeCounts: PropTypes.func,
+  fetchSpeciesObservers: PropTypes.func
 };
 
 export default App;

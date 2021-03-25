@@ -4,7 +4,8 @@ import {
   setSelectedTab,
   leave,
   convertProject,
-  fetchQualityGradeCounts
+  fetchQualityGradeCounts,
+  fetchSpeciesObservers
 } from "../ducks/project";
 
 function mapStateToProps( state ) {
@@ -19,7 +20,8 @@ function mapDispatchToProps( dispatch ) {
     convertProject: ( ) => dispatch( convertProject( ) ),
     setSelectedTab: tab => dispatch( setSelectedTab( tab ) ),
     leave: ( ) => dispatch( leave( ) ),
-    fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) )
+    fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) ),
+    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) )
   };
 }
 
