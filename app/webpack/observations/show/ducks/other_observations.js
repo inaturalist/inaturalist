@@ -40,11 +40,19 @@ const OTHER_OBSERVATION_FIELDS = {
   uuid: true
 };
 
+const TESTING_INTEPROLATION_MITIGATION = typeof ( CURRENT_USER ) === "object"
+  && CURRENT_USER.testGroups
+  && CURRENT_USER.testGroups.includes( "interpolation" );
+
 export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, action ) {
   if ( action.data && action.data.params && action.data.params.fields ) {
     delete action.data.params.fields;
   }
-  const otherObsFilter = o => ( !o.obscured || o.private_geojson );
+  const otherObsFilter = o => (
+    !TESTING_INTEPROLATION_MITIGATION
+    || !o.obscured
+    || o.private_geojson
+  );
   switch ( action.type ) {
     case SET_EARLIER_USER_OBSERVATIONS:
       return Object.assign( { }, state, {

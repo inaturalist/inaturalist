@@ -116,6 +116,14 @@ if (
   }
 }
 
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "interpolation" ) )
+) {
+  store.dispatch( setConfig( {
+    testingInterpolationMitigation: true
+  } ) );
+}
+
 store.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,

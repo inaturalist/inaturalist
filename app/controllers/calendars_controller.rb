@@ -36,7 +36,7 @@ class CalendarsController < ApplicationController
         { taxon: { taxon_names: :place_taxon_names } },
         { photos: :flags }
       )
-      if @selected_user != current_user
+      if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
         filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
         diff = @observations.total_entries - filtered_obs.size
         @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|

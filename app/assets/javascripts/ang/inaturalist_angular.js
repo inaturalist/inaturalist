@@ -163,7 +163,12 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         if( !scope.date ) {
           return shared.t( "missing_date" );
         }
-        if ( scope.obscured ) {
+        if (
+          typeof ( CURRENT_USER ) === "object"
+          && CURRENT_USER.testGroups
+          && CURRENT_USER.testGroups.indexOf( "interpolation" ) >= 0
+          && scope.obscured
+        ) {
            return moment(scope.date).format(
              scope.short
                ? I18n.t( "momentjs.month_year_short" )
@@ -184,7 +189,12 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
       }
       scope.timeString = function() {
         if ( scope.obscured ) return;
-        if( !scope.time ) return;
+        if(
+          typeof ( CURRENT_USER ) === "object"
+          && CURRENT_USER.testGroups
+          && CURRENT_USER.testGroups.indexOf( "interpolation" ) >= 0
+          && !scope.time
+        ) return;
         scope.timezone = scope.timezone || "UTC";
         return moment(scope.time).tz(scope.timezone).format("LT z");
       }

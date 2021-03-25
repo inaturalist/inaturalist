@@ -69,6 +69,7 @@ moment.locale( "en", {
 const App = ( {
   observation, config, controlledTerms, deleteObservation, setLicensingModalState
 } ) => {
+  const { testingInterpolationMitigation } = config;
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -99,7 +100,12 @@ const App = ( {
     viewerTimeZone
   );
   let isoDateAdded = createdAt.format( );
-  if ( observation.observed_on && observation.obscured && !observation.private_geojson ) {
+  if (
+    testingInterpolationMitigation
+    && observation.observed_on
+    && observation.obscured
+    && !observation.private_geojson
+  ) {
     formattedDateObserved = observedAt.format( "MMMM YYYY" );
     isoDateObserved = observedAt.format( "YYYY-MM" );
   } else if ( observation.time_observed_at ) {
@@ -111,7 +117,11 @@ const App = ( {
   } else {
     formattedDateObserved = I18n.t( "missing_date" );
   }
-  if ( observation.obscured && !observation.private_geojson ) {
+  if (
+    testingInterpolationMitigation
+    && observation.obscured
+    && !observation.private_geojson
+  ) {
     formattedDateAdded = createdAt.format( "MMMM YYYY" );
     isoDateAdded = createdAt.format( "YYYY-MM" );
   }
@@ -131,10 +141,6 @@ const App = ( {
   const qualityGrade = observation.quality_grade === "research"
     ? "research_grade"
     : observation.quality_grade;
-  let viewerTimeZone = moment.tz.guess();
-  if ( config && config.currentUser && config.currentUser.time_zone ) {
-    viewerTimeZone = config.currentUser.time_zone;
-  }
   let qualityGradeTooltipHtml;
   if ( qualityGrade === "casual" ) {
     qualityGradeTooltipHtml = I18n.t( "casual_tooltip_html" );
@@ -324,33 +330,8 @@ const App = ( {
           <AssessmentContainer />
         </div>
       </LazyLoad>
-      <LazyLoad debounce={false} height={325} offset={500}>
-        <div className="more_from">
-          <Grid>
-            <Row>
-              <Col xs={12}>
-                <MoreFromUserContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </div>
-      </LazyLoad>
-      <LazyLoad debounce={false} height={190} offset={500}>
-        <div className="other_observations">
-          <Grid>
-            <Row>
-              <Col xs={6}>
-                <NearbyContainer />
-              </Col>
-              <Col xs={6}>
-                <SimilarContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </div>
-      </LazyLoad>
-      { ( !observation.obscured || observation.private_geojson ) && (
-        <LazyLoad height={515} offset={500}>
+      { ( !testingInterpolationMitigation || !observation.obscured || observation.private_geojson ) && (
+        <LazyLoad debounce={false} height={515} offset={500}>
           <div className="more_from">
             <Grid>
               <Row>
@@ -385,12 +366,20 @@ const App = ( {
         config && config.currentUser
         && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
         && (
-          <TestGroupToggle
-            group="apiv2"
-            joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-            joinedStatus="Joined API V2 test"
-            user={config.currentUser}
-          />
+          <div>
+            <TestGroupToggle
+              group="apiv2"
+              joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+              joinedStatus="Joined API V2 test"
+              user={config.currentUser}
+            />
+            <TestGroupToggle
+              group="interpolation"
+              joinPrompt="Help test some attempts to mitigate coordinate interpolation?"
+              joinedStatus="Joined interpolation mitigation test"
+              user={config.currentUser}
+            />
+          </div>
         )
       }
     </div>

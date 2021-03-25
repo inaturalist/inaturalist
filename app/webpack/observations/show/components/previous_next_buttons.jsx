@@ -8,8 +8,10 @@ const PreviousNextButtons = ( {
   config,
   observation
 } ) => {
+  const { testingInterpolationMitigation } = config;
   if (
-    observation
+    testingInterpolationMitigation
+    && observation
     && observation.obscured
     && !observation.private_geojson
   ) {
