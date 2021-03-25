@@ -208,7 +208,7 @@ export function fetchObservers( ) {
 export function fetchSpeciesObservers( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.species_observers_loaded ) { return null; }
     const params = Object.assign( { }, project.search_params, { order_by: "species_count" } );
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
@@ -235,7 +235,7 @@ export function fetchIdentifiers( ) {
 export function fetchPosts( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.posts_loaded ) { return null; }
     return inatjs.projects.posts( { id: project.id, per_page: 3 } ).then( response => {
       dispatch( setAttributes( {
         posts_loaded: true,

@@ -29,7 +29,6 @@ const App = ( {
   leave,
   setSelectedTab,
   convertProject,
-  fetchQualityGradeCounts,
   fetchSpeciesObservers
 } ) => {
   let view;
@@ -54,12 +53,8 @@ const App = ( {
         <LazyLoad
           debounce={false}
           height={406}
-          offset={500}
-          onContentVisible={( ) => {
-            if ( !project.species_observers_loaded ) {
-              fetchSpeciesObservers( );
-            }
-          }}
+          offset={100}
+          onContentVisible={fetchSpeciesObservers}
         >
           <ObserversTabContainer />
         </LazyLoad>
@@ -69,16 +64,7 @@ const App = ( {
       view = ( <SpeciesTabContainer /> );
       break;
     case "stats":
-      view = (
-        <LazyLoad
-          debounce={false}
-          height={406}
-          offset={500}
-          onContentVisible={fetchQualityGradeCounts}
-        >
-          <StatsTabContainer />
-        </LazyLoad>
-      );
+      view = ( <StatsTabContainer /> );
       break;
     case "before_event":
       view = ( <BeforeEventTabContainer /> );
@@ -348,7 +334,6 @@ App.propTypes = {
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
   convertProject: PropTypes.func,
-  fetchQualityGradeCounts: PropTypes.func,
   fetchSpeciesObservers: PropTypes.func
 };
 

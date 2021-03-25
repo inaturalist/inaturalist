@@ -33,11 +33,7 @@ const UmbrellaOverviewTab = props => {
         debounce={false}
         height={90}
         offset={100}
-        onContentVisible={( ) => {
-          if ( !project.posts_loaded ) {
-            fetchPosts( );
-          }
-        }}
+        onContentVisible={fetchPosts}
       >
         <UmbrellaNews {...props} />
       </LazyLoad>

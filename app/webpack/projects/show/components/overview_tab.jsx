@@ -32,11 +32,7 @@ const OverviewTab = props => {
           debounce={false}
           height={229}
           verticalOffset={100}
-          onContentVisible={( ) => {
-            if ( !project.species_observers_loaded ) {
-              fetchSpeciesObservers( );
-            }
-          }}
+          onContentVisible={fetchSpeciesObservers}
         >
           <Row>
             <Col xs={4} className="no-padding">
@@ -52,35 +48,25 @@ const OverviewTab = props => {
         </LazyLoad>
       </Grid>
       <Grid className="info-grid">
-        <Row>
-          <Col xs={4}>
-            <LazyLoad debounce={false} height={432} offset={100}>
+        <LazyLoad
+          debounce={false}
+          height={405}
+          offset={100}
+          onContentVisible={( ) => {
+            fetchQualityGradeCounts( );
+            fetchPosts( );
+          }}
+        >
+          <Row>
+            <Col xs={4}>
               <Requirements {...props} includeArrowLink />
-            </LazyLoad>
-          </Col>
-          <LazyLoad
-            debounce={false}
-            height={432}
-            offset={100}
-            onContentVisible={fetchQualityGradeCounts}
-          >
+            </Col>
             <OverviewStats {...props} />
-          </LazyLoad>
-          <Col xs={4}>
-            <LazyLoad
-              debounce={false}
-              height={465}
-              offset={100}
-              onContentVisible={( ) => {
-                if ( !project.posts_loaded ) {
-                  fetchPosts( );
-                }
-              }}
-            >
+            <Col xs={4}>
               <News {...props} />
-            </LazyLoad>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </LazyLoad>
       </Grid>
       { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
         <div>
