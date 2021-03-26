@@ -93,13 +93,13 @@ export function fetchPopularObservations( ) {
   };
 }
 
-export function fetchRecentObservations( ) {
+export function fetchRecentObservations( perPage = 50 ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.all_recent_observations_loaded ) { return null; }
     const params = Object.assign( { }, project.search_params, {
       return_bounds: "true",
-      per_page: 50
+      per_page: perPage
     } );
     dispatch( setConfig( {
       observationFilters: {
@@ -111,6 +111,7 @@ export function fetchRecentObservations( ) {
       dispatch( setAttributes( {
         recent_observations_loaded: true,
         recent_observations: response,
+        all_recent_observations_loaded: perPage !== 0,
         filtered_observations_loaded: true,
         filtered_observations: response,
         filtered_observations_page: 1
@@ -179,14 +180,22 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   };
 }
 
-export function fetchSpecies( ) {
+export function fetchSpecies( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
-    return inatjs.observations.speciesCounts( project.search_params ).then( response => {
+    if ( !project || project.full_species_loaded ) { return null; }
+    const params = {
+      ...project.search_params,
+      per_page: 0
+    };
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
+    return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
-        species: response
+        species: response,
+        full_species_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -219,14 +228,22 @@ export function fetchSpeciesObservers( ) {
   };
 }
 
-export function fetchIdentifiers( ) {
+export function fetchIdentifiers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
-    return inatjs.observations.identifiers( project.search_params ).then( response => {
+    if ( !project || project.all_identifiers_loaded ) { return null; }
+    const params = {
+      ...project.search_params,
+      per_page: 0
+    };
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
+    return inatjs.observations.identifiers( params ).then( response => {
       dispatch( setAttributes( {
         identifiers_loaded: true,
-        identifiers: response
+        identifiers: response,
+        all_identifiers_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -331,7 +348,7 @@ export function fetchOverviewData( ) {
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
-    dispatch( fetchRecentObservations( ) );
+    dispatch( fetchRecentObservations( 0 ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
     dispatch( fetchIdentifiers( ) );

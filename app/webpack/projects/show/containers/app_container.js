@@ -4,7 +4,10 @@ import {
   setSelectedTab,
   leave,
   convertProject,
-  fetchSpeciesObservers
+  fetchSpeciesObservers,
+  fetchSpecies,
+  fetchRecentObservations,
+  fetchIdentifiers
 } from "../ducks/project";
 
 function mapStateToProps( state ) {
@@ -19,7 +22,10 @@ function mapDispatchToProps( dispatch ) {
     convertProject: ( ) => dispatch( convertProject( ) ),
     setSelectedTab: tab => dispatch( setSelectedTab( tab ) ),
     leave: ( ) => dispatch( leave( ) ),
-    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) )
+    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) ),
+    fetchSpecies: ( ) => { dispatch( fetchSpecies( true ) ); },
+    fetchRecentObservations: ( ) => { dispatch( fetchRecentObservations( true ) ); },
+    fetchIdentifiers: ( ) => { dispatch( fetchIdentifiers( true ) ); }
   };
 }
 

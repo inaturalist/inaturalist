@@ -29,7 +29,10 @@ const App = ( {
   leave,
   setSelectedTab,
   convertProject,
-  fetchSpeciesObservers
+  fetchSpeciesObservers,
+  fetchSpecies,
+  fetchRecentObservations,
+  fetchIdentifiers
 } ) => {
   let view;
   let tab = config.selectedTab;
@@ -43,10 +46,28 @@ const App = ( {
   }
   switch ( tab ) {
     case "observations":
-      view = ( <ObservationsTabContainer /> );
+      view = (
+        <LazyLoad
+          debounce={false}
+          height={406}
+          offset={100}
+          onContentVisible={fetchRecentObservations}
+        >
+          <ObservationsTabContainer />
+        </LazyLoad>
+      );
       break;
     case "identifiers":
-      view = ( <IdentifiersTabContainer /> );
+      view = (
+        <LazyLoad
+          debounce={false}
+          height={406}
+          offset={100}
+          onContentVisible={fetchIdentifiers}
+        >
+          <IdentifiersTabContainer />
+        </LazyLoad>
+      );
       break;
     case "observers":
       view = (
@@ -61,7 +82,16 @@ const App = ( {
       );
       break;
     case "species":
-      view = ( <SpeciesTabContainer /> );
+      view = (
+        <LazyLoad
+          debounce={false}
+          height={406}
+          offset={100}
+          onContentVisible={fetchSpecies}
+        >
+          <SpeciesTabContainer />
+        </LazyLoad>
+      );
       break;
     case "stats":
       view = ( <StatsTabContainer /> );
@@ -334,7 +364,10 @@ App.propTypes = {
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
   convertProject: PropTypes.func,
-  fetchSpeciesObservers: PropTypes.func
+  fetchSpeciesObservers: PropTypes.func,
+  fetchSpecies: PropTypes.func,
+  fetchRecentObservations: PropTypes.func,
+  fetchIdentifiers: PropTypes.func
 };
 
 export default App;

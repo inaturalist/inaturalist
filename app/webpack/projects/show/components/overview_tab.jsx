@@ -21,18 +21,30 @@ const OverviewTab = props => {
     updateCurrentUser,
     fetchQualityGradeCounts,
     fetchPosts,
-    fetchSpeciesObservers
+    fetchSpeciesObservers,
+    fetchSpecies,
+    fetchRecentObservations
   } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
     <div className="OverviewTab">
-      <OverviewRecentObservations {...props} />
+      <LazyLoad
+        debounce={false}
+        height={229}
+        verticalOffset={100}
+        onContentVisible={fetchRecentObservations}
+      >
+        <OverviewRecentObservations {...props} />
+      </LazyLoad>
       <Grid className="leaders-grid">
         <LazyLoad
           debounce={false}
           height={229}
           verticalOffset={100}
-          onContentVisible={fetchSpeciesObservers}
+          onContentVisible={( ) => {
+            fetchSpeciesObservers( );
+            fetchSpecies( );
+          }}
         >
           <Row>
             <Col xs={4} className="no-padding">
@@ -90,7 +102,9 @@ OverviewTab.propTypes = {
   updateCurrentUser: PropTypes.func,
   fetchQualityGradeCounts: PropTypes.func,
   fetchPosts: PropTypes.func,
-  fetchSpeciesObservers: PropTypes.func
+  fetchSpeciesObservers: PropTypes.func,
+  fetchSpecies: PropTypes.func,
+  fetchRecentObservations: PropTypes.func
 };
 
 export default OverviewTab;

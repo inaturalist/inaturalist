@@ -4,7 +4,9 @@ import {
   fetchQualityGradeCounts,
   setSelectedTab,
   fetchPosts,
-  fetchSpeciesObservers
+  fetchSpeciesObservers,
+  fetchSpecies,
+  fetchRecentObservations
 } from "../ducks/project";
 import { updateCurrentUser } from "../../../shared/ducks/config";
 
@@ -21,7 +23,9 @@ function mapDispatchToProps( dispatch ) {
     updateCurrentUser: user => dispatch( updateCurrentUser( user ) ),
     fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) ),
     fetchPosts: ( ) => dispatch( fetchPosts( ) ),
-    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) )
+    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) ),
+    fetchSpecies: ( ) => dispatch( fetchSpecies( true ) ),
+    fetchRecentObservations: ( ) => dispatch( fetchRecentObservations( true ) )
   };
 }
 
