@@ -13,8 +13,16 @@ class IdentifiersTab extends Component {
   }
 
   render( ) {
-    const { identifiers, config, setConfig } = this.props;
+    const {
+      identifiers,
+      config,
+      setConfig,
+      project
+    } = this.props;
 
+    if ( !project.all_identifiers_loaded ) {
+      return ( <div className="loading_spinner huge" /> );
+    }
     if ( _.isEmpty( identifiers ) ) { return ( <span /> ); }
     const scrollIndex = config.identifiersScrollIndex || 30;
     const loader = ( <div key="identifiers-tab-loading" className="loading_spinner huge" /> );
@@ -62,7 +70,8 @@ IdentifiersTab.propTypes = {
   config: PropTypes.object,
   setConfig: PropTypes.func,
   identifiers: PropTypes.array,
-  fetchIdentifiers: PropTypes.func
+  fetchIdentifiers: PropTypes.func,
+  project: PropTypes.object
 };
 
 export default IdentifiersTab;

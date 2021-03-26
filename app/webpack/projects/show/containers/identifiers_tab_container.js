@@ -6,7 +6,8 @@ import { fetchIdentifiers } from "../ducks/project";
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    identifiers: state.project.identifiers ? state.project.identifiers.results : null
+    identifiers: state.project.identifiers ? state.project.identifiers.results : null,
+    project: state.project
   };
 }
 
