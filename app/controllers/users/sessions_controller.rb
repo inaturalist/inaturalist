@@ -69,7 +69,7 @@ class Users::SessionsController < Devise::SessionsController
       password ||= params[:user][:password]
     end
     user = User.find_by_login(login)
-    user ||= User.find_by_email(login)
+    user ||= User.find_by_email(login) unless login.blank?
     return false unless user
     pepper = @site.legacy_rest_auth_key
     stretches = 10
