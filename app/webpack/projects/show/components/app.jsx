@@ -2,7 +2,6 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
-import LazyLoad from "react-lazy-load";
 import tinycolor from "tinycolor2";
 import UserText from "../../../shared/components/user_text";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
@@ -28,11 +27,7 @@ const App = ( {
   project,
   leave,
   setSelectedTab,
-  convertProject,
-  fetchSpeciesObservers,
-  fetchSpecies,
-  fetchRecentObservations,
-  fetchIdentifiers
+  convertProject
 } ) => {
   let view;
   let tab = config.selectedTab;
@@ -46,52 +41,16 @@ const App = ( {
   }
   switch ( tab ) {
     case "observations":
-      view = (
-        <LazyLoad
-          debounce={false}
-          height={406}
-          offset={100}
-          onContentVisible={fetchRecentObservations}
-        >
-          <ObservationsTabContainer />
-        </LazyLoad>
-      );
+      view = ( <ObservationsTabContainer /> );
       break;
     case "identifiers":
-      view = (
-        <LazyLoad
-          debounce={false}
-          height={406}
-          offset={100}
-          onContentVisible={fetchIdentifiers}
-        >
-          <IdentifiersTabContainer />
-        </LazyLoad>
-      );
+      view = ( <IdentifiersTabContainer /> );
       break;
     case "observers":
-      view = (
-        <LazyLoad
-          debounce={false}
-          height={406}
-          offset={100}
-          onContentVisible={fetchSpeciesObservers}
-        >
-          <ObserversTabContainer />
-        </LazyLoad>
-      );
+      view = ( <ObserversTabContainer /> );
       break;
     case "species":
-      view = (
-        <LazyLoad
-          debounce={false}
-          height={406}
-          offset={100}
-          onContentVisible={fetchSpecies}
-        >
-          <SpeciesTabContainer />
-        </LazyLoad>
-      );
+      view = ( <SpeciesTabContainer /> );
       break;
     case "stats":
       view = ( <StatsTabContainer /> );
@@ -363,11 +322,7 @@ App.propTypes = {
   project: PropTypes.object,
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
-  convertProject: PropTypes.func,
-  fetchSpeciesObservers: PropTypes.func,
-  fetchSpecies: PropTypes.func,
-  fetchRecentObservations: PropTypes.func,
-  fetchIdentifiers: PropTypes.func
+  convertProject: PropTypes.func
 };
 
 export default App;

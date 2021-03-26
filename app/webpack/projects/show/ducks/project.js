@@ -265,7 +265,7 @@ export function fetchPosts( ) {
 export function fetchIconicTaxaCounts( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.iconic_taxa_species_counts_loaded ) { return null; }
     return inatjs.observations.iconicTaxaSpeciesCounts( project.search_params ).then( response => {
       dispatch( setAttributes( {
         iconic_taxa_species_counts_loaded: true,

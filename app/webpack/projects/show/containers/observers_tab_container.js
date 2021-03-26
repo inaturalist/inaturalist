@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import ObserversTab from "../components/observers_tab";
 import { setConfig } from "../../../shared/ducks/config";
+import { fetchSpeciesObservers } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -13,7 +14,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setConfig: attributes => { dispatch( setConfig( attributes ) ); }
+    setConfig: attributes => { dispatch( setConfig( attributes ) ); },
+    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) )
   };
 }
 

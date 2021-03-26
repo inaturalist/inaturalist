@@ -3,11 +3,7 @@ import App from "../components/app";
 import {
   setSelectedTab,
   leave,
-  convertProject,
-  fetchSpeciesObservers,
-  fetchSpecies,
-  fetchRecentObservations,
-  fetchIdentifiers
+  convertProject
 } from "../ducks/project";
 
 function mapStateToProps( state ) {
@@ -21,11 +17,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     convertProject: ( ) => dispatch( convertProject( ) ),
     setSelectedTab: tab => dispatch( setSelectedTab( tab ) ),
-    leave: ( ) => dispatch( leave( ) ),
-    fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) ),
-    fetchSpecies: ( ) => { dispatch( fetchSpecies( true ) ); },
-    fetchRecentObservations: ( ) => { dispatch( fetchRecentObservations( true ) ); },
-    fetchIdentifiers: ( ) => { dispatch( fetchIdentifiers( true ) ); }
+    leave: ( ) => dispatch( leave( ) )
   };
 }
 

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import IdentifiersTab from "../components/identifiers_tab";
 import { setConfig } from "../../../shared/ducks/config";
+import { fetchIdentifiers } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +12,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setConfig: attributes => { dispatch( setConfig( attributes ) ); }
+    setConfig: attributes => { dispatch( setConfig( attributes ) ); },
+    fetchIdentifiers: ( ) => { dispatch( fetchIdentifiers( true ) ); }
   };
 }
 

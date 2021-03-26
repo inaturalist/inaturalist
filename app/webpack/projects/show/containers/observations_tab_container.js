@@ -4,7 +4,8 @@ import { setConfig, updateCurrentUser } from "../../../shared/ducks/config";
 import {
   infiniteScrollObservations,
   setSelectedTab,
-  setObservationFilters
+  setObservationFilters,
+  fetchRecentObservations
 } from "../ducks/project";
 
 function mapStateToProps( state ) {
@@ -22,7 +23,8 @@ function mapDispatchToProps( dispatch ) {
       dispatch( setConfig( { observationsSearchSubview: subview } ) ),
     infiniteScrollObservations: nextScrollIndex =>
       dispatch( infiniteScrollObservations( nextScrollIndex ) ),
-    updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
+    updateCurrentUser: user => dispatch( updateCurrentUser( user ) ),
+    fetchRecentObservations: ( ) => dispatch( fetchRecentObservations( true ) )
   };
 }
 
