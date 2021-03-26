@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import SpeciesTab from "../components/species_tab";
-import { fetchSpecies, infiniteScrollSpecies } from "../ducks/project";
+import { setConfig } from "../../../shared/ducks/config";
+import { fetchSpecies } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -13,10 +14,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fetchSpecies: ( ) => { dispatch( fetchSpecies( ) ); },
-    infiniteScrollSpecies: nextScrollIndex => {
-      dispatch( infiniteScrollSpecies( nextScrollIndex ) );
-    }
+    setConfig: attributes => { dispatch( setConfig( attributes ) ); },
+    fetchSpecies: ( ) => { dispatch( fetchSpecies( true ) ); }
   };
 }
 

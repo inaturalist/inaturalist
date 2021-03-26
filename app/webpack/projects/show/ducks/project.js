@@ -180,47 +180,22 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   };
 }
 
-export function infiniteScrollSpecies( nextScrollIndex ) {
-  return ( dispatch, getState ) => {
-    const { project } = getState( );
-    if ( !project ) { return null; }
-    const total = project.species.total_results;
-    const loaded = project.species.results.length;
-    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
-      dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
-      return null;
-    }
-    const params = {
-      ...project.search_params,
-      per_page: 50,
-      page: project.species_page + 1
-    };
-    return inatjs.observations.speciesCounts( params ).then( response => {
-      project.species.results = project
-        .species.results.concat( response.results );
-      dispatch( setAttributes( {
-        species: project.species,
-        species_page: project.species_page + 1
-      } ) );
-      dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
-    } ).catch( e => console.log( e ) );
-  };
-}
-
-export function fetchSpecies( perPage = 50 ) {
+export function fetchSpecies( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( !project || project.all_species_loaded ) { return null; }
     const params = {
       ...project.search_params,
-      per_page: perPage
+      per_page: 0
     };
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
         species: response,
-        all_species_loaded: perPage !== 0,
-        species_page: perPage !== 0 ? 1 : null
+        all_species_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -374,7 +349,7 @@ export function fetchOverviewData( ) {
       dispatch( fetchUmbrellaStats( ) );
     }
     dispatch( fetchRecentObservations( 0 ) );
-    dispatch( fetchSpecies( 0 ) );
+    dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchMembers( ) );

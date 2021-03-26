@@ -15,7 +15,7 @@ class SpeciesTab extends Component {
       project,
       config,
       species,
-      infiniteScrollSpecies
+      setConfig
     } = this.props;
 
     if ( !project.all_species_loaded ) {
@@ -30,7 +30,7 @@ class SpeciesTab extends Component {
           <Row>
             <Col xs={ 12 }>
               <InfiniteScroll
-                loadMore={ ( ) => infiniteScrollSpecies( scrollIndex + 30 ) }
+                loadMore={ ( ) => { setConfig( { speciesScrollIndex: scrollIndex + 30 } ); } }
                 hasMore={ species.length >= scrollIndex }
                 loader={ loader }
                 className="results"
@@ -65,9 +65,9 @@ class SpeciesTab extends Component {
 SpeciesTab.propTypes = {
   project: PropTypes.object,
   config: PropTypes.object,
+  setConfig: PropTypes.func,
   species: PropTypes.array,
-  fetchSpecies: PropTypes.func,
-  infiniteScrollSpecies: PropTypes.func
+  fetchSpecies: PropTypes.func
 };
 
 export default SpeciesTab;
