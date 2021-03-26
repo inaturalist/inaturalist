@@ -68,6 +68,9 @@ class ObservationsTab extends Component {
         />
       );
     }
+    if ( !project.all_recent_observations_loaded ) {
+      return ( <div className="loading_spinner huge" /> );
+    }
     return (
       <div className="ObservationsTab">
         <Grid>

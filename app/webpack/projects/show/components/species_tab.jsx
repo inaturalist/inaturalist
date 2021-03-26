@@ -18,6 +18,9 @@ class SpeciesTab extends Component {
       setConfig
     } = this.props;
 
+    if ( !project.all_species_loaded ) {
+      return ( <div className="loading_spinner huge" /> );
+    }
     if ( _.isEmpty( species ) ) { return ( <span /> ); }
     const loader = <div key="species-tab-loading-spinner" className="loading_spinner huge" />;
     const scrollIndex = config.speciesScrollIndex || 30;

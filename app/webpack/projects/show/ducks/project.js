@@ -183,7 +183,7 @@ export function infiniteScrollObservations( nextScrollIndex ) {
 export function fetchSpecies( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.full_species_loaded ) { return null; }
+    if ( !project || project.all_species_loaded ) { return null; }
     const params = {
       ...project.search_params,
       per_page: 0
@@ -195,7 +195,7 @@ export function fetchSpecies( noPageLimit = false ) {
       dispatch( setAttributes( {
         species_loaded: true,
         species: response,
-        full_species_loaded: noPageLimit
+        all_species_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -278,7 +278,7 @@ export function fetchIconicTaxaCounts( ) {
 export function fetchUmbrellaStats( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.full_umbrella_stats_loaded ) { return null; }
+    if ( !project || project.all_umbrella_stats_loaded ) { return null; }
     const params = {
       ...project.search_params,
       per_page: 8
@@ -290,7 +290,7 @@ export function fetchUmbrellaStats( noPageLimit = false ) {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response,
-        full_umbrella_stats_loaded: noPageLimit
+        all_umbrella_stats_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
