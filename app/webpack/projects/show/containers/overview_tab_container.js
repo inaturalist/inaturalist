@@ -24,7 +24,7 @@ function mapDispatchToProps( dispatch ) {
     fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) ),
     fetchPosts: ( ) => dispatch( fetchPosts( ) ),
     fetchSpeciesObservers: ( ) => dispatch( fetchSpeciesObservers( ) ),
-    fetchSpecies: ( ) => dispatch( fetchSpecies( true ) ),
+    fetchSpecies: ( ) => dispatch( fetchSpecies( ) ),
     fetchRecentObservations: ( ) => dispatch( fetchRecentObservations( true ) )
   };
 }
