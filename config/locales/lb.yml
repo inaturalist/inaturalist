@@ -451,10 +451,14 @@ lb:
   captive_cultivated: Gefaangen / Kultivéiert
   captive_observations: Gefaangen Observatiounen
   card: Kaart
+  casual: Geleeëntlech
   casual_: Geleeëntlech
   categories: Kategorien
+  cc_0_name: Nee Copyright (CC0)
   cc_by_name: Attributioun
   change_admin: Administrateur änneren
+  #Button to change the cover (or banner) image for a project
+  change_cover: Cover änneren
   change_descriptions:
     split: Een alen Taxon an etlech nei Taxa opgespléckt
     merge: Etlech al Taxa zesummegefaasst an een neien Taxon
@@ -542,6 +546,7 @@ lb:
     life_stage: Liewensstadium
     adult: Erwuessen
     pupa: Popp
+    nymph: Nymph
     egg: Ee
     juvenile: Juvenil
     alive_or_dead: Lieweg oder Dout
@@ -571,12 +576,15 @@ lb:
   create_an_account: E Benotzerkont opmaachen
   create_an_atlas: En Atlas uleeën
   created: Erstallt
+  created_by: Kreéiert vum
   created_by_user_on_date: Ugeluecht vum %{user} de(n) %{date}
+  created_on: Kreéiert den
   creating_your_account: "Äre Benotzerkont gëtt ugeluecht..."
   csv: CSV
   csv_file: CSV Fichier
   cumulative_ids: "Kumulativ IDs: %{count} vun %{total}"
   curation: Kuratioun
+  curator: Kurator
   current_flags: Aktuell Markéierungen
   daily_users: Alldeeglech Benotzer
   dashboard: Dashboard
@@ -858,7 +866,9 @@ lb:
   import_photos: Fotoen importéieren
   improving: Verbesseren
   in_n: "a(n) %{n}"
+  include_projects: Projet aschléissen
   include_suggestions_not_seen_nearby: Suggestiounen abegräifen déi net an der Géigend gesi gi sinn
+  include_taxa: Taxa aschléissen
   including: inklusiv
   in_progress: am Gaang
   in_the_past: an der Vergaangenheet
@@ -1010,6 +1020,7 @@ lb:
     sk: Slokwakesch
     sq: Albanesch
     sv: Schwedesch
+    uk: Ukrainesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
   location: Plaz
@@ -1123,6 +1134,7 @@ lb:
   names: Nimm
   names_for_taxon_html: "Nimm fir %{taxon}"
   native_to_place: "Einheimesch an %{place}"
+  needs_id: brauch ID
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
   #@vow_or_con can be used here for the first letter of %{place}
@@ -1189,6 +1201,7 @@ lb:
   no_summary_from_wikipedia: Kee Resumé vu Wikipedia
   no_summary_has_been_set: Kee Resumé gouf festgesat.
   no_users_found_with_those_filters: Keng Benotzer fir dëse Filter fonnt
+  no_x_this_y: "Ne %{x} dest %{y}"
   non_human?: Net-mënschlech?
   none: Keen
   none_found: Kee fonnt
@@ -1231,6 +1244,9 @@ lb:
   observation_field_type_dna: DNA
   observation_fields: Observatiounsfelder
   observation_fields_are_additional: D'Observatiounsfelder sinn zousätzlech Datenfelder déi bei Observatioune kenne bäigesat ginn.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    z.B. 2019-10-29 13:12:21
   observation_rules: Observatiouns Regelen
   observation_was_deleted: Observatioun gouf geläscht.
   observation_without_media: Observatioun ouni Medien
@@ -1249,6 +1265,7 @@ lb:
   observations_per_month: Observatiounen / Mount
   observations_total: Observatiounen Total
   observations_w: Observatiounen w/
+  observations_with_this_field: Observatiounen mat desem Feld
   observed: Observéiert
   observed_by: Observéiert vum
   observers: Observateuren
@@ -1293,6 +1310,10 @@ lb:
   output_taxon: Output-Taxon
   overview: Iwwersiicht
   owner: Besëtzer
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Elterendeel
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Numm vum Elterendeel
   password: Passwuert
   password_confirmation: 'Passwuert bestätegen'
   people: Leit
@@ -1415,6 +1436,7 @@ lb:
     europe: Europa
     fiji: Fidschi
     france: Frankräich
+    french_guiana: Franséisch Guyane
     gabon: Gabun
     gambia: Gambia
     georgia: Georgien
@@ -1422,6 +1444,7 @@ lb:
     greece: Griicheland
     greenland: Grönland
     guam: Guam
+    guyana: Guyana
     hong_kong: Hong-Kong
     hungary: Ungarn
     iceland: Island
@@ -1501,6 +1524,7 @@ lb:
   previous_tab: Viregen Tab
   print_verb: Drécken
   privacy: Dateschutz
+  private: privat
   private_: Privat
   probably_spam: Wahrscheinlech Spam
   processing: Verschaffen
@@ -1532,6 +1556,7 @@ lb:
   ranks:
     kingdom: Kinnekräich
     subclass: Ënnerklass
+    order: Uerdnung
     family: Famill
     subgenus: Ënneraart
     section: Abschnitt
@@ -1736,9 +1761,11 @@ lb:
   top_identifiers: Top Bestëmmer
   top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
   top_observer: Top Observateuren
+  top_observers: Top Observateuren
   top_species: Top Aarten
   tos_privacy_guidelines_label: |
     Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
+  total: Total
   total_observations: Total Observatiounen
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
@@ -1746,7 +1773,10 @@ lb:
   #Noun
   trust: Vertrauen
   trusted: Deem een traue kann
+  trust_this_person_with_your_private_coordinates: Dëser Persoun Är verstoppte Koordinaten uvertrauen
   trust_this_project_with_your_private_coordinates?: Dësem Projet verstoppte Koordinaten uvertrauen?
+  trust_with_private_coordinates: Verstoppten Koordinaten uvertrauen
+  twitter: Twitter
   two_thirds: 2/3tel
   type: Typ
   unblock: Spär ophiewen
@@ -1796,6 +1826,7 @@ lb:
   values: Wäerter
   verifiable_observations_by_observation_date: Iwwerpréifbar Observatiounen no Observatiounsdatum
   view: Weisen
+  view_all: All kucken
   view_all_members: All Membere weisen
   view_all_observations: All Observatioune weisen
   view_details: Detailer weisen
@@ -1819,6 +1850,7 @@ lb:
   view_yours: Är weisen
   video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
+  vulnerable: Vulnerabel
   w_photos_only: w/ Fotoen
   w_sounds: w/ Sounds
   #Species that are "wanted," e.g. we know they exist but haven't been observed
@@ -1902,6 +1934,7 @@ lb:
   your_content: Ären Inhalt
   your_contributions_to_project: "Är Kontributioune fir %{project_title}"
   your_email_address: Är E-Mailadress
+  your_id: Är ID
   your_membership: Är Memberschaft
   your_name_was_saved: Ären Numm gouf gespäichert.
   your_observations: Är Observatiounen
@@ -1927,6 +1960,11 @@ lb:
     lifelists:
       observed_rank: Observeiert %{rank}
       all_species: All Aarten
+      no_observations_found_in_place: Keng Observatioune fonnt an %{place}
+      dropdowns:
+        sort: Sortéieren
+        show: Weisen
+        children: Kanner
     messages:
       from: Vum
       to: Fir
@@ -1960,6 +1998,7 @@ lb:
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
       import:
         date_column_format: JJJJ-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
       show:
         observer_does_not_allow_observation_fields: De Beobachter erlaabt keng zousätzlech Observatiounsfelder.
     emailer:
@@ -2015,8 +2054,12 @@ lb:
           verifiable: Iwwerpréifbar
           "Alive or Dead=Alive": Lieweg
           "Alive or Dead=Dead": Dout
+          "Plant Phenology=Flowering": Bléiend
+          "Plant Phenology=Fruiting": Kritt Friichten
           "Life Stage=egg": Ee
           "Life Stage=larva": Larve
+          "Life Stage=nymph": Nymph
+          "Life Stage=pupa": Popp
           "Life Stage=adult": Erwuessen
           unannotated: Keng Notiz
     users:
@@ -2129,6 +2172,18 @@ lb:
   datetime:
     distance_in_words:
       half_a_minute: eng hallef Minutt
+      x_days:
+        one: "%{count} Dag"
+        other: '%{count} Deeg'
+      x_minutes:
+        one: "%{count} Minut"
+        other: '%{count} Minuten'
+      x_months:
+        one: "%{count} Mount"
+        other: '%{count} Méint'
+      x_seconds:
+        one: "%{count} Sekonn"
+        other: '%{count} Sekonnen'
     countdown_x_days:
       one: Dag
       other: Deeg
@@ -2165,6 +2220,8 @@ lb:
       requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       taken: gouf scho geholl
   helpers:
+    defaults:
+      title: "DEST AS EEN TITEL"
     submit:
       submit: '%{model} späicheren'
   number:
@@ -2199,6 +2256,13 @@ lb:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
       decimal_units:
         format: '%n %u'
@@ -2249,6 +2313,8 @@ lb:
         requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
         requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
   activerecord:
+    models:
+      Atlas: Atlas
     attributes:
       assessment:
         description: Beschreiwung
@@ -2264,16 +2330,20 @@ lb:
       message:
         subject: Sujet
         body: Inhalt
+      observation:
+        description: Notizen
       observation_field_value:
         value: 'Wäert'
       post:
         title: Titel
       project:
+        title: Titel
         project_icon: Symbol vum Projet
         description: Beschreiwung
       place:
         name: Numm
       source:
+        title: Titel
         in_text: Am Text
         url: URL
       taxon:
@@ -2316,6 +2386,13 @@ lb:
               must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
   i18n:
     inflections:
+      "@vow_or_con":
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: männlech
         f: weiblech
@@ -2428,6 +2505,8 @@ lb:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Warnung
   wikimedia: Wikimedia
   wild: Wëll
   will_paginate:
