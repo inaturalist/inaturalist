@@ -2,8 +2,8 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
-import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 import InfiniteScroll from "react-infinite-scroller";
+import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
 class SpeciesTab extends Component {
   componentDidMount( ) {
