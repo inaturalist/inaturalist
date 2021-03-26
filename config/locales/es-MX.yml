@@ -942,6 +942,11 @@ es-MX:
   convert: Convierte
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Solo con coordenadas que pueda ver
   copy: Copia
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incluir esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copia y pega esto en tu propio HTML.
@@ -968,6 +973,7 @@ es-MX:
   copyright_holder: Titular de los derechos de autor
   copyright_info: Información acerca de derechos de autor
   copyright_info_and_more: Información acerca de derechos de autor y más
+  copyright_infringement: Violación de derechos de autor
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona distinta al observador y carece de atribución
   covered_by_a_taxon_framework_html: "Cubierto por un %{link}"
   covered_by_a_taxon_framework_link: "marco de referencia del taxon para %{taxon_framework_rank} %{taxon_framework_name}"
@@ -983,6 +989,7 @@ es-MX:
   create_a_query: Crea una consulta
   create_an_account: Crea una cuenta
   create_an_atlas: Crea un atlas
+  create_export: Exportar
   create_new_taxon: Crea una nueva especie o grupo
   create_observations: Crea observaciones
   created: Creado
@@ -994,6 +1001,7 @@ es-MX:
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
   css_description: Esto será incluido después de los otros css en la página.
+  csv: CSV
   csv_file: Archivo CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   cumulative_ids: "Identificadores acumulados: %{count} de %{total}"
@@ -1003,6 +1011,95 @@ es-MX:
   curating: Curando
   curation: Curación
   curator: Curador
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Debes explicar por qué quieres ser curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: '¿Por qué quieres ser curador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
+    de cambios taxonómicos que te gustaría realizar, e incluye enlaces a las autoridades taxonómicas pertinentes tal como establece la Guía del curador
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Si quieres moderar el comportamiento en iNaturalist, por favor proporciona un ejemplo
+    o dos de infracciones de la Guía de la comunidad y lo que harías en esas situaciones
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Cómo pierde sus poderes un curador
+  curator_application_how_curators_lose_their_powers_desc: |
+    El personal de iNat puede quitarle sus poderes curatoriales a un curador si 
+     repetidamente:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignora las políticas de la Guía del curador.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    No muestra un comportamiento correcto.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Para solicitar ser curador tu cuenta debe tener al menos 60 días de antigüedad y debes haber añadido 100 propuestas de mejora de identificación a diversas observaciones, incluyendo las tuyas (has añadido %{num_idents}). Cuando cumplas con estos requisitos, regresa aquí y podrás enviar tu solicitud.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Resolver <a href="/flags" target="_blank">denuncias</a> en taxones y contenido de los usuarios.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Crear y editar páginas wiki, como la de las <a href="/pages/help"
+    target="_blank">Preguntas frecuentes de iNaturalist</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Editar lugares supervisados por la comunidad y subir archivos KML mayores de 1 MB (pero
+    menores de 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Qué no pueden hacer los curadores
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Influir sobre el taxón comunitario o la calidad de los datos de una observación más que cualquier otro usuario.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Efectuar cambios en <a href="/pages/curator+guide#completetaxa"
+    target="_blank">taxones completos</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Eliminar contenido elaborado por otros usuarios.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Leer los mensajes de otras personas.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Solicitud para ser curador
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Sólo deberías solicitar ser curador si:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Llevas contribuyendo con identificaciones y/o observaciones por unos meses y tienes la intención de continuar.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Puedes dar ejemplo de comportamiento correcto en iNaturalist y cumplir las Directrices
+    de la comunidad. Los poderes curatoriales conllevan la responsabilidad de ser un usuario ejemplar de iNaturalist.
   curators_changed_for_x_html: "Curadores cambiado por %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
@@ -1013,6 +1110,8 @@ es-MX:
   custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
   customize_location: Personaliza la ubicación
   darr_apply_darr: "&darr; Applicar &darr;"
+  daily_users: Usuarios Diarios
+  danger_zone: Zona de peligro
   dashboard: Tablero
   data_deficient: con datos deficientes
   data_quality: Calidad de datos
@@ -1021,6 +1120,7 @@ es-MX:
   datatype: Tipo de datos
   date_: Fecha
   date_added: Fecha añadida
+  date_authorized: Fecha de autorización
   date_created: fecha de creación
   date_format:
     date_long:
@@ -1050,6 +1150,7 @@ es-MX:
       november: noviembre
       december: diciembre
   date_is_accurate: La fecha es correcta
+  date_joined: Fecha de inscripción
   date_observed: Fecha de la obs.
   date_observed_: Fecha de observación
   date_observed_on: fecha que se observo
@@ -1077,6 +1178,7 @@ es-MX:
   default_invite_comment: "¡Excelente foto! Debes subirla a  %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licencia predeterminada de observación
   default_photo_license: Licencia predeterminada de foto
+  default_search_place: Lugar predeterminado de búsqueda
   default_search_place_description: |
     Este será tu lugar predeterminado para todas las búsquedas en "Explora".
   default_sound_license: Licencias de sonido predeterminadas
@@ -1215,6 +1317,7 @@ es-MX:
   duplicate_verb: Duplicado
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
+  earliest_added: Primeras adiciones
   edit: Modificar
   edit_a_batch_of_observations: Edita un grupo de observaciones
   edit_account_settings_and_profile: "Edita la configuración de la cuenta y perfil"
@@ -1335,6 +1438,10 @@ es-MX:
   export_observations: Exporta observaciones
   export_with_private_coordinates: Exportar con coordenadas privadas
   exporting: "Exportando..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Aplicaciones externas
+  external_applications_description: Las aplicaciones externas son aplicaciones de terceros a las cuales has autorizado acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que tú puedes hacer en tu cuenta, así que asegúrate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxón externo (incluyendo descendientes)
   extinct: Extinta
   extinct_in_the_wild: Extinta en vida silvestre
@@ -1348,6 +1455,7 @@ es-MX:
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
+  failed_to_unlink_your_account: Error al desconectar tu cuenta
   'false': 'No'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: favoritos
