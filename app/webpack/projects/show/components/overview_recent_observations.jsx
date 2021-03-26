@@ -9,7 +9,7 @@ const OverviewRecentObservations = ( {
   project,
   setSelectedTab
 } ) => {
-  if ( !project.recent_observations_loaded ) {
+  if ( !project.all_recent_observations_loaded ) {
     return ( <div className="loading_spinner huge" /> );
   }
   const instances = project.recent_observations.results;

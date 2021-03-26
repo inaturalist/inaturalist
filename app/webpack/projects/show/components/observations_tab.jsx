@@ -29,7 +29,7 @@ class ObservationsTab extends Component {
       loading = !project.filtered_observations_loaded;
       observations = loading ? null : project.filtered_observations.results;
     } else {
-      loading = !project.recent_observations_loaded;
+      loading = !project.all_recent_observations_loaded;
       observations = loading ? null : project.recent_observations.results;
     }
     if ( loading ) {
