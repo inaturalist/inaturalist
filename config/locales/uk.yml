@@ -186,9 +186,9 @@ uk:
     many: "%{count} звуків"
     other: "%{count} звуки"
   x_taxa_curated_html:
-    one: "<span class='count'>%{count}</span>курований таксон"
-    few: "<span class='count'>%{count}</span>курованих таксони"
-    many: "<span class='count'>%{count}</span>курованих таксонів"
+    one: "<span class='count'>%{count}</span> курований таксон"
+    few: "<span class='count'>%{count}</span> курованих таксони"
+    many: "<span class='count'>%{count}</span> курованих таксонів"
     other: "<span class='count'>%{count}</span> курованих таксони"
   x_taxa_matching_current_filters:
     one: "%{count} таксон, що відповідає поточним фільтрам"
@@ -3031,7 +3031,7 @@ uk:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: додав(ла) <strong>виззначення</strong> до %{observation_link} %{user_link}
+      with_observation: додав(ла) <strong>визначення</strong> до %{observation_link} %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
