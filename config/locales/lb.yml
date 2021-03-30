@@ -895,10 +895,10 @@ lb:
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiven Text
-  join: Matmaachen
-  join_project: Bei dësem Projet matmaachen
+  join: Bäitrieden
+  join_project: Dësem Projet bäitrieden
   join_the_largest_group_of_naturalists_in_the_world: Gitt Member vum gréissten Naturaliste-Grupp op der Welt!
-  join_this_project: Bei dësem Projet matmaachen
+  join_this_project: Dësem Projet bäitrieden
   joined_with_date: "Bäigetrueden: %{date}"
   journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, oder GIF"
@@ -1201,7 +1201,6 @@ lb:
   no_summary_from_wikipedia: Kee Resumé vu Wikipedia
   no_summary_has_been_set: Kee Resumé gouf festgesat.
   no_users_found_with_those_filters: Keng Benotzer fir dëse Filter fonnt
-  no_x_this_y: "Ne %{x} dest %{y}"
   non_human?: Net-mënschlech?
   none: Keen
   none_found: Kee fonnt
@@ -1747,6 +1746,7 @@ lb:
   this_is_your_observation_desc: Dir kënnt ëmmer d'Koordinate vun Ären Observatioune gesinn.
   this_list_is_empty!: Dës Lëscht ass eidel!
   this_observation: Dës Observatioun
+  this_observation_is_research_grade: Des Observatioun huet de Recherche Grade!
   this_user_has_been_suspended: Dëse Benotzer gouf suspendéiert
   this_year: Dëst Joer
   threatened: Bedrot
@@ -1814,7 +1814,7 @@ lb:
   user_blocked: Benotzer gespaart
   user_commented: "%{user} huet kommenteiert"
   user_commented_on: "%{user} huet kommenteiert ob Är %{title} %{time}"
-  user_invited_you_to_join_html: "%{user} huet Iech invitéiert fir matzemaachen"
+  user_invited_you_to_join_html: "%{user} huet Iech invitéiert bäizetrieden"
   user_muted: Benotzer stommgeschalt
   user_suggested_an_id: "%{user} huet eng ID virgeschloen"
   username: Benotzernumm
@@ -1907,7 +1907,7 @@ lb:
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "Jo, fir egal wat fir eng vu mengen Observatiounen"
-  yes_i_want_to_join: Jo, Ech wëll matmaachen
+  yes_i_want_to_join: Jo, Ech wëll bäitrieden
   yes_license_my_childs_observations: Jo, lizenzéiert mengen Kand seng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler des Donnéeë benotze kënnen (recommandéiert).
   yes_license_my_observations_so_scientists_can_use: Jo, lizenzéiert meng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler meng Donnéeë benotze kënnen (recommandéiert).
   yes_reject_it: Jo, refuséiert et
@@ -1921,7 +1921,7 @@ lb:
   you_cant_delete_observation_fields_that_people_are_using: "Dir kennt keng Observatiounsfelder läschen déi vun aneren Notzer genotzt ginn."
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
   you_have_left_x_project: "Dir hutt %{project} verlooss"
-  you_joined_this_project: Dir maacht bei dësem Projet mat!
+  you_joined_this_project: Dir sidd dësem Projet bäigetrueden!
   you_must_be_a_member_of_this_project_to_do_that: Dir musst e Member vun dësem Projet si fir dat ze maachen
   you_must_fill_out_the_required_fields: Dir musst déi obligatoresch Felder ausfëllen
   you_sure_delete_comment?: Sidd Dir sécher datt Dir dës Bemierkung läsche wëllt?
@@ -2051,6 +2051,7 @@ lb:
         about_conservation_status_desc: |
           Den Erhalungszoustand resuméiert de Risiko vum Ausstierwe vun engem Grupp vun Organismen
         frequency:
+          research: Recherche Grade
           verifiable: Iwwerpréifbar
           "Alive or Dead=Alive": Lieweg
           "Alive or Dead=Dead": Dout
@@ -2115,7 +2116,7 @@ lb:
           mobillen Empfang oder Wifi.
         who_uses_site_name: "Wien benotzt %{site_name}?"
         what_are_you_waiting_for: Wourop waart Dir nach?
-        join_today: Maacht mat
+        join_today: Maacht haut nach mat
   date:
     abbr_day_names:
       - Son
