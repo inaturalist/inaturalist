@@ -612,6 +612,20 @@ describe Observation do
       expect( o.errors[:longitude] ).not_to be_blank
     end
 
+    it "should set time_zone to the Rails time zone even when set to the zic time zone" do
+      tz = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
+      o = Observation.make!( time_zone: tz.tzinfo.name )
+      expect( o.time_zone ).to eq tz.name
+      expect( o.zic_time_zone ).to eq tz.tzinfo.name
+    end
+
+    it "should set zic_time_zone to the zic time zone even when set to the Rails time zone" do
+      tz = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
+      o = Observation.make!( zic_time_zone: tz.name )
+      expect( o.time_zone ).to eq tz.name
+      expect( o.zic_time_zone ).to eq tz.tzinfo.name
+    end
+
   end
 
   describe "updating" do

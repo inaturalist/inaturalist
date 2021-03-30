@@ -24,5 +24,5 @@
               = link_to url do
                 =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
-      .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase, gender: noun
+      .nocontent.meta=t :no_results_found
   = extra

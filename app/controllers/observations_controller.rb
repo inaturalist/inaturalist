@@ -493,6 +493,12 @@ class ObservationsController < ApplicationController
       @observation.interpolate_coordinates
     end
 
+    # If the value of time_zone is actually the zic or IANA time zone, make sure
+    # it gets set to the Rails time zone name for editing purposes
+    if ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+      @observation.time_zone = ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
