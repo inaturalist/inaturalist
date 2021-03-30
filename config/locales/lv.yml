@@ -316,7 +316,7 @@ lv:
   add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves posms: nepieaudzis"'
   add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves posms: ola"'
   #As in a Taxon Framework Relationship
-  add_relationship: 'Pievienot taksonu saistību'
+  add_relationship: 'Pievienot taksonu attiecības'
   #As in a Guide Section
   add_section: Pievienot sadaļu
   add_several_observations_at_once: Pievienot vairākus novērojumus reizē.
@@ -596,7 +596,7 @@ lv:
     Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem un novērojumiem?
   are_you_sure_want_delete_taxon_observations: |
     Vai tiešām vēlies dzēst šo taksonu kopā ar tā novērojumiem?
-  are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksona aprakstu?
+  are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksonu?
   are_you_sure_want_delete_this_name: Vai tiešām vēlies dzēst šo nosaukumu?
   are_you_sure_want_delete_this_range: Vai tiešām vēlies dzēst šo izplatības apgabalu?
   are_you_sure_you_want_to_commit_this_change: Vai tiešām vēlies veikt šīs izmaiņas? Šī darbība ir neatgriezeniska.
@@ -673,7 +673,7 @@ lv:
   back_to_suggestions: Atpakaļ pie ieteikumiem
   back_to_taxon: "Atvērt vēlreiz %{defaulttaxon}"
   back_to_taxon_changes: "Atpakaļ pie taksonu izmaiņu sadaļas"
-  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona apraksta"
+  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona iedalījuma"
   back_to_viewing: "Atpakaļ uz <i>%{taxon}</i> lapu"
   back_to_x: "Atpakaļ uz %{noun}"
   back_to_x_assessment: "Atpakaļ pie %{project} projekta novērtējumiem"
@@ -1088,8 +1088,8 @@ lv:
     Šī būs noklusējuma vieta, kad kaut ko meklēsi izzināšanas un identificēšanas sadaļā.
   default_sound_license: Noklusējuma audiofailu licence
   defaults_to_your_name_or_username: Tava vārda un lietotājvārda noklusējuma iestatījumi
-  defines_a_taxon_framework_for: Definē %{taxon_name} taksona aprakstu
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: 'Definē %{taxon} taksona aprakstu. Avots: %{source}'
+  defines_a_taxon_framework_for: Definē %{taxon_name} taksona iedalījumu
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: 'Definē %{taxon} taksona iedalījumu. Avots: %{source}'
   definitions: Definīcijas
   delete: Dzēst
   delete_all: Dzēst visu
