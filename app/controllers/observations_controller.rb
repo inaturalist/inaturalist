@@ -1794,6 +1794,7 @@ class ObservationsController < ApplicationController
       :iconic_taxon_id,
       :latitude,
       :license,
+      :license_code,
       :location_is_exact,
       :longitude,
       :make_license_default,

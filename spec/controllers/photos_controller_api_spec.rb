@@ -11,6 +11,13 @@ shared_examples_for "a PhotosController" do
       photo.reload
       expect( photo.license ).to eq Photo::CC_BY
     end
+    it "should update the licese by license_code" do
+      photo = LocalPhoto.make!( user: user, license: Photo::CC0 )
+      put :update, format: :json, id: photo.id, photo: { license_code: "cc-by" }
+      expect( response.response_code ).to eq 200
+      photo.reload
+      expect( photo.license ).to eq Photo::CC_BY
+    end
     it "should work with a UUID" do
       photo = LocalPhoto.make!( user: user, license: Photo::CC0 )
       put :update, format: :json, id: photo.uuid, photo: { license: Photo::CC_BY }

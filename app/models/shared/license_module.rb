@@ -83,6 +83,10 @@ module Shared::LicenseModule
     LICENSE_INFO[license.to_i].try(:[], :code)
   end
 
+  def license_code=( license_code )
+    self.license = LICENSE_INFO.detect{|number, info| info[:code] === license_code.to_s.upcase }.try(:[], 0)
+  end
+
   def index_license_code
     (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase

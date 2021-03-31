@@ -2104,6 +2104,10 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def license_code=( license_code )
+    self.license = license_code
+  end
+
   def trim_user_agent
     return true if user_agent.blank?
     self.user_agent = user_agent[0..254]

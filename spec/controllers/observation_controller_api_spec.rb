@@ -941,6 +941,13 @@ shared_examples_for "an ObservationsController" do
       expect( o.private_latitude ).to be_blank
       expect( o ).not_to be_georeferenced
     end
+
+    it "should update the license by license_code" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "cc0" }
+      o.reload
+      expect( o.license ).to eq Observation::CC0
+    end
   end
 
   describe "by_login" do
