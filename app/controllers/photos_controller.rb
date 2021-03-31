@@ -1,9 +1,11 @@
 #encoding: utf-8
 class PhotosController < ApplicationController
+  before_action :doorkeeper_authorize!, only: [:update],
+    if: lambda { authenticate_with_oauth? }
   before_filter :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, :only =>
-    [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all, :create]
+  before_filter :authenticate_user!, except: [:show],
+    unless: lambda { authenticated_with_oauth? }
   before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
@@ -31,12 +33,26 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes(params[:photo])
-      flash[:notice] = t(:updated_photo)
+    if @photo.update_attributes( params[:photo] )
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:updated_photo)
+          redirect_to @photo.becomes(Photo)
+        end
+        format.json { render json: @photo.as_json }
+      end
     else
-      flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+      # flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+      respond_to do |format|
+        format.html do
+          flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+          redirect_to @photo.becomes(Photo)
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { errors: @photo.errors.as_json }
+        end
+      end
     end
-    redirect_to @photo.becomes(Photo)
   end
   
   def local_photo_fields
@@ -170,8 +186,16 @@ class PhotosController < ApplicationController
   
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
-      flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to @photo.becomes(Photo)
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to @photo.becomes( Photo )
+        end
+        format.json do
+          return render json: { error: msg }, status: :forbidden
+        end
+      end
     end
   end
 
