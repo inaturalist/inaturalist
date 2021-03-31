@@ -100,7 +100,11 @@ module ActsAsElasticModel
           result_ids = scope.order(:id).pluck(:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
-          queue = result_ids.size > 100 ? "slow" : nil
+          queue = if result_ids.size > 500
+            "throttled"
+          elsif result_ids.size > 100
+            "slow"
+          end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
             queue: queue
