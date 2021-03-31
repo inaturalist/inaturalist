@@ -265,7 +265,7 @@ lv:
   add_blocked_users: Pievienot bloķētos lietotājus
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Pievienot tekstu treknrakstā
-  add_comma_separated_tags: "Pievienot ar komatiem atdalītas kategorijas"
+  add_comma_separated_tags: "Pievienot ar komatiem atdalītus tagus"
   add_comment: Pievienot komentāru
   add_conservation_status: Norādīt aizsardzības statusu
   add_countries: Pievienot valstis
@@ -325,8 +325,6 @@ lv:
   add_sex_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzimums: nenosakāms"'
   add_some_now: Pievienot tagad
   add_tag: Pievienot kategoriju
-  add_tags: Pievienot kategorijas
-  add_tags_to_selected_taxa: Pievienot kategorijas izvēlētajiem taksoniem
   add_taxa: Pievienot taksonus
   add_taxon_batch_to: "Pievienot taksonu grupu sarakstam: %{list}"
   add_taxon_range: Pievienot taksonu apgabalu
@@ -605,7 +603,6 @@ lv:
   are_you_sure_you_want_to_delete_this_photo?: Vai tiešām vēlies dzēst fotogrāfiju?
   are_you_sure_you_want_to_delete_this_post: Vai tiešām vēlies dzēst ierakstu?
   are_you_sure_you_want_to_delete_this_taxon_change: Vai tiešām vēlies dzēst izmaiņas taksonā?
-  are_you_sure_you_want_to_remove_all_tags: Vai tiešām vēlies noņemt visas kategorijas?
   are_you_sure_you_want_to_remove_curator: Vai tiešām vēlies atņemt lietotājam %{user} pārziņa lomu?
   are_you_sure_you_want_to_remove_from_project: Vai tiešām vēlies izraidīt lietotāju %{user} no projekta?
   are_you_sure_you_want_to_remove_manager: Vai tiešām vēlies atņemt lietotājam %{user} vadītāja lomu?
@@ -748,7 +745,6 @@ lv:
   card: Karte
   casual: Hobija līm.
   casual_: Hobija līm.
-  categories: Kategorijas
   cc_0_description: "Ar šo licenci tavs darbs būs pieejams publikai – tā lai citi to varētu kopēt, labot un izplatīt, tai skaitā arī komerciāliem nolūkiem, nejautājot tavu piekrišanu un nenorādot tavus nopelnus. Šai no visām pieejamajām licencēm ir vismazāk ierobežojumu. Tā paredzēta pēc iespējas atvieglotākai informācijas izplatīšanai."
   cc_0_name: Bez autortiesībām (CC0)
   cc_attribution_license: '"Creative Commons Attribution" licence'
@@ -820,8 +816,7 @@ lv:
   choose_a_field: Izvēlēties lauku
   choose_a_list_above: Izvēlēties kādu no augšējiem laukiem
   choose_a_place: Izvēlēties vietu
-  choose_a_taxon: Izvēlēties taksonu (nav obligāti)
-  choose_columns: Izvēlēties kolonnas
+  choose_a_taxon: Izvēlēties taksonu (pēc izvēles)
   choose_file: Izvēlēties failu
   choose_files: Izvēlēties failus
   choose_from_your_lists: Izvēlēties no saviem sarakstiem
@@ -829,7 +824,6 @@ lv:
   choose_photos_to_tag_from_photostream: Izvēlēties fotogrāfijas atzīmēšanai no savas galerijas
   choose_rule: Izvēlēties nosacījumu
   choose_subjects: Izvēlēties subjektus
-  choose_tags: Izvēlēties kategorijas
   choose_taxon: Izvēlēties taksonu
   choose_what_kind_of_change_youre_creating: "Kādas izmaiņas veiksi?"
   cid_d_to_genus: Kopiena identificējusi ģinti
@@ -842,7 +836,6 @@ lv:
   close: Aizvērt
   code: Kods
   colors: Krāsas
-  columns: Kolonnas
   combine: Kombinēt
   comma_separated_please: Lūdzu, atdalīt ar komatu
   comment: komentēt
@@ -910,7 +903,6 @@ lv:
   cannot_be_changed_during_a_content_freeze: Izmaiņas nav iespējams veikt kamēr saturs ir bloķēts
   conservation_status: Aizsardzības statuss
   conservation_status_descriptions:
-    status: Statusa kods, kategorija utt. Ja pieejams īsais kods, piemēram, "E" vai "CR", lūdzu, izmanto to. Ja īsie kodi nav pieejami, lūdzu, norādi pilno statusa nosaukumu, piemēram, "apdraudēts" vai "kritiski apdraudēts".
     description: Īss skaidrojums tam, kāpēc tas tika iekļauts sarakstā.
     authority: |
       Organizācija, kas norādīja šo statusu. Pirms jaunas organizācijas pievienošanas, lūdzu, izmanto automātisko nosaukuma pabeigšanu, lai izvēlētos kādu no jau pieejamajām organizācijām. Izlaid šo soli, ja vēlies, lai tu pats tiktu iekļauts organizāciju sarakstā.
