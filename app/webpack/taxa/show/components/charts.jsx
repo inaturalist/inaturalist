@@ -403,7 +403,9 @@ class Charts extends React.Component {
       seasonalityKeys,
       setNoAnnotationHiddenPreference,
       setScaledPreference,
-      taxon
+      taxon,
+      historyLoading,
+      seasonalityLoading
     } = this.props;
     const { helpModalVisible } = this.state;
     const noHistoryData = _.isEmpty( historyKeys );
@@ -578,7 +580,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { seasonalityLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart" />
           </div>
@@ -588,7 +590,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noHistoryData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { historyLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart" />
           </div>
@@ -641,7 +643,9 @@ Charts.propTypes = {
   taxon: PropTypes.object,
   config: PropTypes.object,
   loadFieldValueChartData: PropTypes.func,
-  fetchMonthFrequency: PropTypes.func
+  fetchMonthFrequency: PropTypes.func,
+  historyLoading: PropTypes.bool,
+  seasonalityLoading: PropTypes.bool
 };
 
 Charts.defaultProps = {
