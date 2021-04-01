@@ -98,13 +98,15 @@ const HighlightsTab = ( {
             offset={100}
             onContentVisible={fetchWanted}
           >
-            <HighlightsCarousel
-              title={ I18n.t( "wanted" ) }
-              description={ I18n.t( "views.taxa.show.wanted_desc" ) }
-              taxa={ wantedTaxa ? wantedTaxa.slice( 0, 20 ) : null }
-              showNewTaxon={ showNewTaxon }
-              config={ config }
-            />
+            <div className={!wantedTaxa || wantedTaxa.length === 0 ? "hidden" : ""}>
+              <HighlightsCarousel
+                title={ I18n.t( "wanted" ) }
+                description={ I18n.t( "views.taxa.show.wanted_desc" ) }
+                taxa={ wantedTaxa ? wantedTaxa.slice( 0, 20 ) : null }
+                showNewTaxon={ showNewTaxon }
+                config={ config }
+              />
+            </div>
           </LazyLoad>
         ) : null }
       </Col>
