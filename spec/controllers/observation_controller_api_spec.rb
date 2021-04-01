@@ -948,6 +948,20 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.license ).to eq Observation::CC0
     end
+
+    it "should remove the license if license_code is a blank string" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "" }
+      o.reload
+      expect( o.license ).to be_blank
+    end
+
+    it "should not remove the license if license_code is not specified" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { description: "foo" }
+      o.reload
+      expect( o.license ).to eq Observation::CC_BY
+    end
   end
 
   describe "by_login" do

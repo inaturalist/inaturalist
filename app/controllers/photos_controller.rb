@@ -33,13 +33,15 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes( params[:photo] )
+    if @photo.update_attributes( photo_params( params[:photo] ) )
       respond_to do |format|
         format.html do
           flash[:notice] = t(:updated_photo)
           redirect_to @photo.becomes(Photo)
         end
-        format.json { render json: @photo.as_json }
+        format.json do
+          render json: @photo.as_json
+        end
       end
     else
       # flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
@@ -197,6 +199,12 @@ class PhotosController < ApplicationController
         end
       end
     end
+  end
+
+  def photo_params( options = {} )
+    p = options.blank? ? params : options
+    allowed_fields = Photo::MASS_ASSIGNABLE_ATTRIBUTES + [:license, :license_code]
+    p.permit( allowed_fields )
   end
 
 end
