@@ -35,6 +35,8 @@ class Photo < ActiveRecord::Base
 
   MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
 
+  class MissingPhotoError < StandardError; end
+
   def original_url
     self["original_url"] && self["original_url"].with_fixed_https
   end

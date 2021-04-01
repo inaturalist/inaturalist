@@ -217,10 +217,14 @@ class FlagsController < ApplicationController
       end
     end
     respond_to do |format|
-      msg = if @flag.update_attributes(params[:flag])
-        t(:flag_saved)
-      else
-        t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+      msg = begin
+        if @flag.update_attributes(params[:flag])
+          t(:flag_saved)
+        else
+          t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+        end
+      rescue Photo::MissingPhotoError
+        "Flag resolved, but the photo in question is gone and cannot be restored"
       end
       if @object.is_a?(Project)
         Project.refresh_es_index
