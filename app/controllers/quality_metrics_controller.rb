@@ -6,7 +6,7 @@ class QualityMetricsController < ApplicationController
   
   def vote
     if @existing = @observation.quality_metrics.where(user_id: current_user.id, metric: params[:metric]).first
-      @existing.wait_for_obs_index_refresh = true
+      @existing.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
       @existing.destroy
     end
     
@@ -42,7 +42,7 @@ class QualityMetricsController < ApplicationController
   def respond_to_create
     qm = @observation.quality_metrics.build(:user_id => current_user.id, 
       :metric => params[:metric], :agree => params[:agree] != "false")
-    qm.wait_for_obs_index_refresh = true
+    qm.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     if qm.save
       respond_to do |format|
         format.html do

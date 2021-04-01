@@ -1310,6 +1310,10 @@ class User < ActiveRecord::Base
     test_groups_array.include?( group)
   end
 
+  def is_testing_skip_refresh_wait?
+    is_admin?
+  end
+
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!

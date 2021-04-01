@@ -166,10 +166,12 @@ class FlagsController < ApplicationController
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
     end
-    if @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
+    unless current_user.is_testing_skip_refresh_wait?
+      if @flag.flaggable_type == "Observation"
+        @flag.flaggable.wait_for_index_refresh = true
+      elsif @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
+        @flag.flaggable.wait_for_obs_index_refresh = true
+      end
     end
     if @flag.save
       flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
@@ -207,10 +209,12 @@ class FlagsController < ApplicationController
     if resolver_id = params[:flag].delete("resolver_id")
       params[:flag]["resolver"] = User.find_by_id(resolver_id)
     end
-    if @flag.flaggable && @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
+    unless current_user.is_testing_skip_refresh_wait?
+      if @flag.flaggable && @flag.flaggable_type == "Observation"
+        @flag.flaggable.wait_for_index_refresh = true
+      elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
+        @flag.flaggable.wait_for_obs_index_refresh = true
+      end
     end
     respond_to do |format|
       msg = if @flag.update_attributes(params[:flag])
@@ -238,10 +242,12 @@ class FlagsController < ApplicationController
   
   def destroy
     @object = @flag.flaggable
-    if @flag.flaggable && @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
+    unless current_user.is_testing_skip_refresh_wait?
+      if @flag.flaggable && @flag.flaggable_type == "Observation"
+        @flag.flaggable.wait_for_index_refresh = true
+      elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
+        @flag.flaggable.wait_for_obs_index_refresh = true
+      end
     end
     @flag.destroy
     if @object.is_a?(Project)

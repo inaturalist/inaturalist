@@ -914,7 +914,7 @@ class ProjectsController < ApplicationController
       project: @project,
       observation: @observation,
       user: current_user,
-      wait_for_obs_index_refresh: true
+      wait_for_obs_index_refresh: !current_user.is_testing_skip_refresh_wait?
     )
     
     unless @project_observation.valid?
@@ -981,7 +981,7 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    @project_observation.wait_for_obs_index_refresh = true
+    @project_observation.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     @project_observation.destroy
     respond_to do |format|
       format.html do

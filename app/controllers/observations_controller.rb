@@ -648,7 +648,9 @@ class ObservationsController < ApplicationController
     end
     Observation.elastic_index!(
       ids: @observations.compact.map( &:id ),
-      wait_for_index_refresh: !params[:skip_refresh] )
+      wait_for_index_refresh: params[:force_refresh] ?
+        true : !params[:skip_refresh] && !current_user.is_testing_skip_refresh_wait?
+    )
     respond_to do |format|
       format.html do
         unless errors
@@ -827,7 +829,7 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      observation.wait_for_index_refresh = true
+      observation.wait_for_index_refresh = !current_user.is_testing_skip_refresh_wait?
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
@@ -846,7 +848,8 @@ class ObservationsController < ApplicationController
 
     Observation.elastic_index!(
       ids: @observations.to_a.compact.map( &:id ),
-      wait_for_index_refresh: true )
+      wait_for_index_refresh: !current_user.is_testing_skip_refresh_wait?
+    )
 
     respond_to do |format|
       if errors
@@ -2047,7 +2050,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.wait_for_index_refresh = !params[:skip_refresh]
+    review.observation.wait_for_index_refresh = !params[:skip_refresh] && !current_user.is_testing_skip_refresh_wait?
     review.observation.elastic_index!
   end
 

@@ -157,7 +157,7 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       duplicate_key_violation = false
       begin
-        @identification.wait_for_obs_index_refresh = true
+        @identification.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
         @identification.save
       rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
@@ -217,7 +217,7 @@ class IdentificationsController < ApplicationController
       end
       return
     end
-    @identification.wait_for_obs_index_refresh = true
+    @identification.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     if @identification.save
       msg = t(:identification_updated)
       respond_to do |format|
@@ -247,7 +247,7 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
-    @identification.wait_for_obs_index_refresh = true
+    @identification.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     if params[:delete]
       if @identification.hidden?
         respond_to do |format|
