@@ -116,6 +116,10 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
+      return;
+    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )

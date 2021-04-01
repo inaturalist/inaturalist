@@ -142,6 +142,7 @@ class Charts extends React.Component {
           this.seasonalityChart.flush( );
         }
       } else if ( e.target.hash === "#charts-history" ) {
+        this.props.fetchMonthFrequency( );
         if ( this.historyChart ) {
           this.historyChart.flush( );
         }
@@ -639,7 +640,8 @@ Charts.propTypes = {
   setScaledPreference: PropTypes.func,
   taxon: PropTypes.object,
   config: PropTypes.object,
-  loadFieldValueChartData: PropTypes.func
+  loadFieldValueChartData: PropTypes.func,
+  fetchMonthFrequency: PropTypes.func
 };
 
 Charts.defaultProps = {
