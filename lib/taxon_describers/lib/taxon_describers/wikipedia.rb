@@ -94,12 +94,23 @@ module TaxonDescribers
     end
 
     def wikidata_wikipedia_url_for_taxon( taxon )
-      lang = @locale.to_s.split( "-" ).first
-      return nil unless r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
-      return nil if r.header[:location].blank?
-      uri = URI.parse( r.header[:location].to_s ) rescue nil
-      return nil unless uri && uri.host.split( "." )[0] == lang
-      r.header[:location]
+      Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}", expires_in: 1.day ) do
+        lang = @locale.to_s.split( "-" ).first
+        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
+          if r.header[:location].blank?
+            nil
+          else
+            uri = URI.parse( r.header[:location].to_s ) rescue nil
+            if uri && uri.host.split( "." )[0] == lang
+              r.header[:location]
+            else
+              nil
+            end
+          end
+        else
+          nil
+        end
+      end
     end
   end
 
