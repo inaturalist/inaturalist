@@ -6,7 +6,6 @@ class AnnotationsController < ApplicationController
   def create
     p = annotation_params(params[:annotation])
     @annotation = Annotation.new(p)
-    @annotation.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     if !@annotation.save
       flash[:error] = @annotation.errors.full_messages.to_sentence
     end
@@ -26,7 +25,6 @@ class AnnotationsController < ApplicationController
   end
 
   def destroy
-    @annotation.wait_for_obs_index_refresh = !current_user.is_testing_skip_refresh_wait?
     @annotation.destroy
     respond_to do |format|
       format.html do
