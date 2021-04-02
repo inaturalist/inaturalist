@@ -3879,7 +3879,7 @@ fr:
   sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
-  similar_species: Espèces proches
+  similar_species: Espèces similaires
   similar_taxa: Taxons similaires
   #Journal post formatting option
   simple: Simple
@@ -5562,7 +5562,7 @@ fr:
         quality_assessment_help_html: |
           <p>
           L’assurance qualité des données est le résumé de l’exactitude d’une observation. Toutes
-          les observations démarrent à l’état de <strong>« occasionnel »</strong>, et deviennent
+          les observations démarrent au niveau <strong>« informel »</strong>, et deviennent
           <strong>« nécessite une ID »</strong> quand
           </p>
 
@@ -5572,16 +5572,16 @@ fr:
           <li>l’observation <strong>a des photos ou des sons</strong></li>
           <li>l’observation <strong>n’est pas d’un humain</strong></li></ul>
           <p>
-          Les observations deviennent <strong>« état recherché »</strong> quand
+          Les observations parviennent au <strong>« niveau de recherche »</strong> quand
           </p>
           <ul>
           <li>
-          la <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.
-          quand plus de 2/3 des identificateurs sont d’accord sur un taxon
+          la <strong>communauté %{site_name} est d’accord avec l’ID au niveau de l’espèce ou à un rang inférieur</strong>, c.-à-d.
+          quand plus de 2/3 des identificateurs sont d’accord sur un taxon (si la communauté a voté en indiquant que le taxon de la communauté ne pouvait pas être amélioré, l'ID nécessaire repasse au rang de la sous-famille ou inférieur
           </li>
           </ul>
           <p>
-          Les observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté est d’accord
+          Les observations repassent au niveau <strong>« informel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté en convient.
           </p>
           <ul>
           <li>
@@ -5605,24 +5605,23 @@ fr:
           sont ok)
           </li>
           <li>
-          l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
+          l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est d'un rang supérieur à la famille
           </li>
           <li>
           l’observateur a refusé l’ID de la communauté et l’id de taxon
-          de la communauté n’est pas un ancêtre ou un descendant du taxon associé
+          de la communauté n’est pas un parent ou un descendant du taxon associé
           avec l’ID de l’observateur
           </li>
           </ul>
           <p>
-          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système nécessite un vote :
+          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système a voix au chapitre :
           </p>
           <ul>
           <li>
-          Le système votera que l’observation n’est pas sauvage/naturalisée
-          s’il y a au moins 10 autres observations d’un genre ou inférieur dans
-          le plus petit lieu équivalent à la région, à l’état ou au pays qui
-          contient cette observation, et 80% ou plus de ces observations
-          qui ont été marquées comme non sauvages/naturalisées.
+          Le système indique que l’observation n’est pas un organisme sauvage/naturalisé
+          s’il y a au moins 10 autres observations du genre ou d'un rang inférieur dans
+          la région ou, à défaut, l’État ou le pays de cette observation, et qu'au moins 80% de ces observations
+          ont été marquées comme non sauvages/naturalisées.
           </li></ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
