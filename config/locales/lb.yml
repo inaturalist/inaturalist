@@ -241,6 +241,7 @@ lb:
   added_to_favorites_html: |
     Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: "Derbäisetzen..."
+  admin: Admin
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
   admin_tools: Geschier fir Administrateuren
@@ -248,6 +249,7 @@ lb:
   agree?: Zoustëmmen?
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
   agreeing: Sinn d'accord...
+  all: All
   all_comments: All Bemierkungen
   all_life: All Liewesformen
   all_names: All Nimm
@@ -724,6 +726,8 @@ lb:
   endangered: Bedréit
   endemic: Endemesch
   endemic_to_x: "Endemesch zu %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   error_updating_photo: "Feeler beim Aktualiséiere vun der Foto: %{photo_errors}"
   establishment:
     endemic: endemesch
@@ -834,6 +838,8 @@ lb:
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
   hi: Salut,
   hi_user: "Salut %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Verstoppen
   hide_content: Inhalt verstoppen
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
@@ -842,6 +848,7 @@ lb:
   highest_rank: Héichste Rang
   history: Historique
   home: Home
+  icon: Symbol
   id: ID
   ids_by_taxon: IDs no Taxon
   identify: Bestëmmen
@@ -904,6 +911,7 @@ lb:
   jpg_png_or_gif: "JPG, PNG, oder GIF"
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
+  kml: KML
   kml_file_size_error: "KML muss méi kleng si wéi 1 MB"
   labels: Etiketten
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
@@ -944,6 +952,7 @@ lb:
     estonian: Estnesch
     finnish: Finnesch
     french: Franséisch
+    gela: Gela
     german: Däitsch
     greek: Griichesch
     hawaiian: Hawaiianesch
@@ -1032,6 +1041,7 @@ lb:
   log_scale_label: Log
   login_slash_username: Aloggen / Benotzernumm
   logo:
+    logo: Logo
     transparent_png: transparente PNG
     none: keen
   long: Lon
@@ -1096,6 +1106,8 @@ lb:
       h: "1 Stonn"
       #Short text representing %d hours in the past
       hh: "%d Stonnen"
+      #Short text representing 1 day in the past
+      d: "1D"
       #Short text representing %d days in the past
       dd: "%d Deeg"
       #Short text representing 1 month in the past
@@ -1131,6 +1143,8 @@ lb:
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
   name: Numm
+  name_providers:
+    ubio: uBio
   names: Nimm
   names_for_taxon_html: "Nimm fir %{taxon}"
   native_to_place: "Einheimesch an %{place}"
@@ -1240,6 +1254,8 @@ lb:
   observation_date: Datum
   observation_date?: Datum?
   observation_field_type_text: Text
+  observation_field_type_date: Datum
+  observation_field_type_time: Zäit
   observation_field_type_dna: DNA
   observation_fields: Observatiounsfelder
   observation_fields_are_additional: D'Observatiounsfelder sinn zousätzlech Datenfelder déi bei Observatioune kenne bäigesat ginn.
@@ -1299,6 +1315,7 @@ lb:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: ODER
+  order: Uerdnung
   organisms: Organismen
   organism_appears_captive_cultivated: Organismus schéngt Gefaangen / Kultivéiert ze sinn
   other: Anerer
@@ -1567,6 +1584,7 @@ lb:
       other: Aarten
     #Singular
     subspecies: Ënneraart
+    form: Vun
     leaves: Blieder
   ranges: Beräicher
   read_more: Liest méi
@@ -1636,6 +1654,8 @@ lb:
   search_projects: Projeten duerchsichen
   search_species_: Aart sichen...
   seasonality: Saisonalitéit
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
   seen_nearby: Nobäi gesinn
   seen_one: Hutt dir ee gesinn?
   select: Eraussichen
@@ -1645,6 +1665,8 @@ lb:
   select_options: Optiounen auswielen
   send: schécken
   sending: Schécken...
+  #Label for messages you've sent
+  sent: Geschéckt
   settings: Astellungen
   share: Deelen
   show: Weisen
@@ -1687,9 +1709,12 @@ lb:
   source_: 'Quell:'
   source_wikipedia: "Quell: Wikipedia"
   source_list_: "Lëscht vun de Quellen"
+  source_list:
+    ubio: uBio
   source_eg:
     in_text: 'z.B. Greene, 2000'
   sources: Quellen
+  spam: Spam
   #Plural
   species: Aarten
   species_by_category: Aarten no Kategorie
@@ -1754,6 +1779,7 @@ lb:
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreiwung"
+  to_recipient: un
   to_suggest_an_identification: zu Bestëmmung virschloen
   today: Haut
   too_many_results: Ze vill Resultater
@@ -1885,6 +1911,7 @@ lb:
   who_user_helped_the_most: "Wien dem %{user} am Meeschte gehollef huet"
   with_annotation: Mat Annotatiounen
   without_annotation: Ouni Annotatiounen
+  with: mat
   withdraw: Zréckzéien
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
@@ -1963,6 +1990,7 @@ lb:
       no_observations_found_in_place: Keng Observatioune fonnt an %{place}
       dropdowns:
         sort: Sortéieren
+        name: Numm
         show: Weisen
         children: Kanner
     messages:
@@ -2342,6 +2370,7 @@ lb:
         project_icon: Symbol vum Projet
         description: Beschreiwung
       place:
+        code: Code
         name: Numm
       source:
         title: Titel
@@ -2349,6 +2378,7 @@ lb:
         url: URL
       taxon:
         name: Numm
+        rank: Rang
       user:
         email: E-Mail
         login: Benotzernumm
