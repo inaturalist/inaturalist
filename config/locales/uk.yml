@@ -2680,6 +2680,7 @@ uk:
   no_results_for: 'Немає результатів для '
   no_results_matching: Немає результатів, що відповідають
   no_sections_available: Немає доступних розділів.
+  no_sections_have_been_added_to_this_assessments_yet: Поки що жоден розділ не був доданий до цієї оцінки.
   no_species_have_been_listed: Для цього місця ще наводиться жодного виду!
   no_species_observed: Жодного виду не спостерігали
   no_species_on_this_list: Видів у цьому списку поки що немає!
@@ -5130,6 +5131,8 @@ uk:
           <code>родина=Laridae</code>
           або
           <code>родина=Мартини та близькі таксони</code>
+        coordinates_desc: |
+          Надання ваших координат посібника допоможе людям знайти його під час пошуку за локацією.
         import_tags_from_csv_help_html: |
           <p>
           Завантажити CSV файл, що містить позначки для таксонів з цього посібника. Ваш CSV файл повинен мати таку структуру:
