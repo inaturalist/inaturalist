@@ -727,8 +727,8 @@ it:
   captive_observations: Osservazioni In Cattività
   card: Carta
   casual: casuale
-  casual_: Casuale
-  casual_tooltip_html: 'Le osservazioni di livello "Casuale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
+  casual_: Informale
+  casual_tooltip_html: 'Le osservazioni di livello "Informale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -1707,7 +1707,7 @@ it:
   go: Vai
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
-  good_choice_for_sharing: Buona scelta per condivider con gli scienziati
+  good_choice_for_sharing: Buona scelta condividere con gli scienziati
   google: Google
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo aiutare.
@@ -2471,7 +2471,7 @@ it:
     user: "%{user} non ha aggiunto nessuna identificazione a nessuna delle osservazioni"
   no_ids_have_been_suggested_yet: Ancora nessuna ID suggerita
   no_interaction_data_available: Nessuna informazione di interazione disponibile
-  no_its_as_good_as_it_can_be: No, è al meglio di quanto può essere
+  no_its_as_good_as_it_can_be: No, è il meglio che si possa fare
   no_favorites_added:
     current_user: Non hai ancora aggiunto dei preferiti
     user: "%{user} non aggiunto ai preferiti"
@@ -3997,7 +3997,7 @@ it:
   suitable_for_the_global_biodiversity_information_facility: Adatto per il Global Biodiversity Information Facility
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adatto per Wikipedia e altri progetti della Wikimedia Foundation
   summary: Riassunto
-  supporting: Di supporto
+  supporting: Sostenitori
   support_inaturalist: Sostieni iNaturalist
   suspend_user: Sospendi utente
   sw_lat: Lat. SO
@@ -5339,7 +5339,7 @@ it:
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
         quality_assessment_help_html: |
           <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"casuale"</strong>, e diventano <strong>"serve ID"</strong> quando
+          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
           </p>
 
           <ul>
@@ -5513,7 +5513,7 @@ it:
         you_can_attempt_repair: |
           Puoi tentare di riparare le foto visitando la pagina della foto e cliccando il link %{repair_link_text}. Se sai che la foto non esiste più, puoi scegliere di cancellarla.
         please_address: |
-          Per favore risolvi il problema <b>nei prossimi 30 giorni</b>. Dopo 30 giorni inizieremo a cancellare le foto danneggiate da iNaturalist. Tutte le tue osservazioni rimarranno. Saranno rivalutate dopo che le foto sono state cancellate, ed è possibile che alcune delle osservazioni a livello ricerca diventeranno di livello casuale se non hanno più foto.
+          Per favore risolvi il problema <b>nei prossimi 30 giorni</b>. Dopo 30 giorni inizieremo a cancellare le foto danneggiate da iNaturalist. Tutte le tue osservazioni rimarranno. Saranno rivalutate dopo che le foto sono state cancellate, ed è possibile che alcune delle osservazioni a livello ricerca diventeranno di livello informale se non hanno più foto.
         we_included_links: |
           Abbiamo incluso i collegamenti alle foto interessate qui sotto.
       user_parent_confirmation:
@@ -6039,8 +6039,7 @@ it:
         about_taxon_curators_desc: |
           Queste persone gestiscono la parte dell'albero tassonomico che include questo taxon. Se vuoi fare cambiamenti, per favore segnala questo taxon o contatta una di queste persone.
         charts_help_seasonality: |
-          Questo grafico mostra il numero di osservazione di questo taxon raggruppate per mese. Tieni a mente che rappresenta il numero di osservazioni, e quindi è influenzato sia da quando l'organismo può essere osservato, sia da quando le persone comunemente lo osservano. Per questo, ad esempio, una specie di uccello può sembrare molto attiva a Maggio, ma questo può essere dovuto al fatto che la maggior parte delle persone fa birdwatching a Maggio rispetto ai mesi successivi.
-          Analogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello Ricerca".
+          Questo grafico mostra il numero di osservazione di questo taxon raggruppate per mese. Tieni a mente che rappresenta il numero di osservazioni, e quindi è influenzato sia da quando l'organismo può essere osservato, sia da quando le persone comunemente lo osservano. Per questo, ad esempio, una specie di uccello può sembrare molto attiva a maggio, ma questo può essere dovuto al fatto che la maggior parte delle persone fa birdwatching a maggio rispetto ai mesi successivi. Analogamente, se vedi più osservazioni di libellule in giugno che in gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a giugno: controlla la mappa quando esamini questi grafici! È sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello ricerca".
         charts_help_history: |
           Questo grafico mostra il numero di osservazioni di questo taxon al mese negli ultimi 10 anni. Di nuovo, è influenzato dal numero di persone, ma permette di vedere picchi inusuali nel numero di osservazioni; inoltre, se sembra piatto o decrescente nonostante un aumento del numero di osservatori, questo potrebbe suggerire una reale variazione nell'abbondanza del taxon.
         charts_help_other: |
@@ -6261,7 +6260,7 @@ it:
           Mostra il nome scientifico prima di quello comune.
         taxon_change_desc: |
           Quando dei taxa sono uniti o rinominati su %{site_name}, le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai un aggiornamento sulla modifica, con un link ad uno strumento che potrai usare per aggiornare manualmente il tuo contenuto.
-        thanks_for_supporting_us!: Grazie di sostenerci!
+        thanks_for_supporting_us!: Grazie del sostegno!
         this_only_applies_to_traditional_projects: |
           Questo si applica ai progetti tradizionali. Non puoi escludere delle osservazioni dai progetti collezione ed ombrello, che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi un blocco per poterne aggiungere un altro.
