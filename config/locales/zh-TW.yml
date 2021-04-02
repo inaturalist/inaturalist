@@ -773,6 +773,7 @@ zh-TW:
   committed_on: 提交於 %{date}
   #Status message while a taxon change is being committed
   committing: 提交中…
+  common_name: 俗名
   community: 社群
   community_curated: 社群策劃
   community_guidelines: 社群指南
@@ -943,6 +944,8 @@ zh-TW:
   curating: 策展中
   curation: 策展
   curator: 策展人
+  #Header
+  curator_application_what_curators_can_do: 策展人能做什麼
   curators_changed_for_x_html: "%{x} 的策展人已更改"
   curators: 策展人
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
@@ -1401,6 +1404,7 @@ zh-TW:
   #Adjective, as in a fluid layout of images
   fluid: 流動
   follow: 追蹤
+  follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
   follow_user: "關注 %{user}"
   followed_projects: 追蹤中的專案
   followers: 關注者
@@ -1499,6 +1503,7 @@ zh-TW:
   heads_up: 注意
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
+  heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
   help: 幫助
   help_confirm_observations!: 幫助確認觀察！
   help_support_inaturalist: "協助支持 iNaturalist"
@@ -2211,6 +2216,7 @@ zh-TW:
   no_results_for: '沒有結果用於'
   no_results_matching: 沒有符合的結果
   no_sections_available: 沒有可用的部份。
+  no_sections_have_been_added_to_this_assessments_yet: 此評估尚未添加章節內容。
   no_species_have_been_listed: 此地點尚未有物種被列出！
   no_species_observed: 沒有觀察的物種
   no_species_on_this_list: 在此清單上尚未有觀察的物種！
