@@ -118,6 +118,9 @@ id:
   about_muting: Tentang Bisukan
   #Header for a section describing taxon names
   about_names: Tentang Nama
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Tentang %{place}"
   about_places: Tentang tempat
   about_the_cc_licenses: Tentang lisensi Creative Commons
   about_these_licenses: Tentang lisensi ini
@@ -339,7 +342,9 @@ id:
     section: Seluruh bagian telah ditambahkan ke database
     subsection: Seluruh sub bagian telah ditambahkan ke database
     species: Seluruh spesies telah ditambahkan ke dalam database
+    hybrid: Seluruh hibrida telah ditambahkan ke database
     subspecies: Seluruh sub spesies telah ditambahkan ke database
+    variety: Seluruh varietas telah ditambahkan ke database
     form: Seluruh bentuk telah ditambahkan ke database
   all_rights_reserved: Hak cipta dilindungi undang-undang
   all_taxa:
@@ -434,6 +439,11 @@ id:
   any_reviewed: Lainnya
   #Label for an option to show/include content by any user
   any_user: Lainnya
+  anyone: Siapapun
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplikasi
+  applications: Aplikasi
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Daftar
@@ -459,6 +469,9 @@ id:
   are_you_sure_remove_taxon_from_list: "Apakah Anda yakin ingin menghapus taksa ini dari daftar?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Apa kamu yakin? Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
+  are_you_sure_unresolve_flag?: |
+    Apakah anda yakin ingin menghilangkan perbaikan di tanda ini? Hal ini akan menghilangkan
+    perbaikan dan pengguna yang memperbaiki tanda ini.
   are_you_sure_want_delete_taxon: "Apakah Anda yakin ingin menghapus takson ini?"
   are_you_sure_want_delete_taxon_link: Apakah Anda yakin ingin menghapus link yang takson ini?
   are_you_sure_want_delete_this_name: Apakah Anda yakin ingin menghapus nama ini?
@@ -500,17 +513,26 @@ id:
   #an Atom representation of the content shown on the current page
   atom: Atom
   attached_taxon: Takson Terlampir
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Atribut
+  attribution: Atribusi
   authority_list:
     iucn_red_list: Daftar Merah IUCN
+  authorize: Otorisasi
   authorize_permissions_from_provider: "Otorisasi izin dari %{provider}"
   automatic_short: Otomatis
   automatically_add_observations_to_this_project: Secara otomatis menambahkan pengamatan ke dalam proyek ini
   automatically_update_my_content_for_taxon_changes: Memperbarui konten saya untuk perubahan takson otomatis
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Rerata
   back: Kembali
   back_to_all_species: Kembali ke semua spesies
   back_to_browsing_people: Kembali ke pencarian orang
   back_to_calendar: "Kembali ke kalender %{user}"
   back_to_editing_observation: Kembali ke merubah observasi
+  back_to_friends: Kembali ke teman
   back_to_flags_html: "&laquo; Kembali ke tanda"
   back_to_lists: "Kembali ke daftar %{name}"
   back_to_observation: Kembali ke pengamatan
@@ -586,6 +608,7 @@ id:
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender hanya menampilkan %{x} pengamatan dalam satu waktu
   cancel: Batalkan
+  cant_edit_or_delete_hidden_content: Anda tidak dapat mensunting atau menghapus konten yang telah disembunyikan oleh kurator situs
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
   cant_merge_a_taxon_with_itself: Tidak dapat menggabungkan takson yang sama
   captive: Peliharaan
@@ -880,6 +903,27 @@ id:
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Anda harus menjelaskan mengapa anda ingin menjadi seorang kurator
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Mengapa anda ingin menjadi seorang kurator?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Jika anda ingin mensunting nama yang umum digunakan, sila tambahkan sebuah atau beberapa contoh dari
+    perubahan yang anda ingin buat
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Bagaimana Seorang Kurator Dapat Kehilangan Kekuasaannya
+  curator_application_how_curators_lose_their_powers_desc: |
+    Staf iNat akan mencabut kekuasaan kurator jika seseorang kurator tersebut berulang kali:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Mengabaikan peraturan di dalam Petunjuk Kurator.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Gagal dalam mendemonstrasikan tingkah laku yang sepadannya.
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
@@ -1353,6 +1397,7 @@ id:
   flickr_tags: Tanda Flickr
   #Adjective, as in a fluid layout of images
   fluid: cairan
+  follow_receive_updates_about_new_observations: Ikuti (dapatkan pembaruan tentang pengamatan terbaru)
   follow_user: "Ikuti %{user}"
   followed_projects: Proyek yang Diikuti
   followers: Pengikut
@@ -1424,6 +1469,7 @@ id:
   heads_up: 'PENTING:'
   heads_up_this_photo_has_been_flagged: "PENTING: Foto ini telah ditandai."
   heads_up_this_photo_is_already_associated_with: "PENTING: foto ini sudah dikaitkan dengan <a target='_blank' href='%{url}'>observasi lain</a>"
+  heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa tag mesin taksonomi untuk jajaran identik. Mereka diberikan kode warna di bawahnya berdasarkan peringkat."
   help: Bantuan
   help_confirm_observations!: Membantu mengkonfirmasi pengamatan!
   help_support_inaturalist: "Bantu dukung iNaturalist"
@@ -1999,6 +2045,7 @@ id:
   no_results_for: 'Tidak ada hasil untuk'
   no_results_matching: Tidak ada hasil yang sesuai
   no_sections_available: Tidak bagian yang tersedia
+  no_sections_have_been_added_to_this_assessments_yet: Belum ada bagian yang ditambahkan pada penilaian ini
   no_species_have_been_listed: Belum ada spesies yang telah didaftarkan pada tempat ini!
   no_species_on_this_list: Belum ada spesies ini pada daftar!
   no_subject_parens: "(Tidak ada subjek)"
