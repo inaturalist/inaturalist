@@ -1627,6 +1627,7 @@ fi:
   #Adjective, as in a fluid layout of images
   fluid: neste
   follow: Seuraa
+  follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
   follow_user: "Seuraa käyttäjää %{user}"
   followed_projects: Seuratut projektit
   followers: Seuraajat
@@ -2461,6 +2462,7 @@ fi:
   no_results_found: Tuloksia ei löytynyt
   no_results_for: 'Ei tuloksia kohteelle'
   no_results_matching: Ei vastaavia tuloksia
+  no_sections_have_been_added_to_this_assessments_yet: Tähän arviointiin ei ole vielä lisätty yhtään osiota.
   no_species_have_been_listed: Tähän paikkaan ei ole vielä tallennettu yhtään lajia!
   no_species_observed: Ei havaittuja lajeja
   no_species_on_this_list: Ei vielä lajeja tässä luettelossa!
@@ -4019,6 +4021,8 @@ fi:
   'true': 'Kyllä'
   trending: Nousussa
   trends: Trendit
+  #Noun
+  trust: Luottamus
   trusted: Luotettu
   trusted_project?: Luotettava projekti?
   twitter: Twitter
@@ -5005,6 +5009,10 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
+        trust_allow_members_to_trust: |-
+          Salli jäsenten luottaa tähän projektiin tarkkojen koordinaattien saamiseksi.
+        trust_help_desc: |-
+          Jos haluat saada käyttöösi kaikkien havaintojen tarkat koordinaatit, valitse tämä. Se antaa projektiin osallistuville mahdollisuuden luottaa projektin ylläpitäjiin, niin että he saavat nämä koordinaatit. Osallistujat voivat antaa pääsyn kaikkiin havaintoihin, jotka liittyvät tähän projektiin, tai vain niihin jotka on karkeistettu arkaluontoisten lajien suojelemiseksi. (Suomen alueiden havaintoja voi myös pyytää Lajitietokeskuksen kautta.)
         trust_help_notification2: |-
           Tästä ilmoitetaan kaikille projektin jäsenille, jotka ovat luottaneet projektiin joka kerta kun
           muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,
