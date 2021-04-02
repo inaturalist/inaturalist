@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel
+  Dropdown, MenuItem, OverlayTrigger, Popover, Panel
 } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
@@ -11,9 +11,8 @@ import { termsForTaxon } from "../ducks/controlled_terms";
 class Annotations extends React.Component {
   constructor( props ) {
     super( props );
-    const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
+      open: false
     };
   }
 
@@ -198,8 +197,8 @@ class Annotations extends React.Component {
       controlledTerms,
       showEmptyState,
       addAnnotation,
-      collapsible,
-      updateSession
+      collapsible
+      // updateSession
     } = this.props;
     const observationAnnotations = observation.annotations || [];
     const {
@@ -379,12 +378,7 @@ class Annotations extends React.Component {
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={( ) => {
-            if ( this.loggedIn ) {
-              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
-            }
-            this.setState( { open: !isOpen } );
-          }}
+          onClick={( ) => this.setState( { open: !isOpen } )}
         >
           <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
           { I18n.t( "annotations" ) }
@@ -407,7 +401,6 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
-  updateSession: PropTypes.func,
   collapsible: PropTypes.bool,
   showEmptyState: PropTypes.bool
 };

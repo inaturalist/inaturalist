@@ -267,9 +267,15 @@ const App = ( {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12}>
-                  <AnnotationsContainer />
-                </Col>
+                <LazyLoad
+                  debounce={false}
+                  offset={100}
+                  height={30}
+                >
+                  <Col xs={12}>
+                    <AnnotationsContainer />
+                  </Col>
+                </LazyLoad>
               </Row>
               <Row className={_.isEmpty( controlledTerms ) ? "top-row" : ""}>
                 <Col xs={12}>
