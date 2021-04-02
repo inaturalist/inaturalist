@@ -15,14 +15,16 @@ const API_V2_BASE_REQUEST_PARAMS = {
   }
 };
 
-export default function reducer( state = { terms: [], allTerms: [] }, action ) {
+export default function reducer( state = { terms: [], allTerms: [], loaded: false }, action ) {
   const newState = Object.assign( {}, state );
   switch ( action.type ) {
     case SET_CONTROLLED_TERMS:
       newState.terms = action.terms;
+      newState.loaded = true;
       break;
     case SET_ALL_CONTROLLED_TERMS:
       newState.allTerms = action.terms;
+      newState.loaded = true;
       break;
     default:
       // nothing to see here
@@ -48,6 +50,9 @@ export function setAllControlledTerms( terms ) {
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.controlledTerms && state.controlledTerms.loaded ) {
+      return null;
+    }
     const { testingApiV2 } = state.config;
     const observation = options.observation || state.observation;
     if ( !observation || !observation.taxon || !observation.taxon.ancestor_ids ) {

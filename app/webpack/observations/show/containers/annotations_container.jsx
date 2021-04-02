@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Annotations from "../components/annotations";
+import { fetchControlledTerms } from "../ducks/controlled_terms";
 import {
   addAnnotation,
   deleteAnnotation,
@@ -22,7 +23,8 @@ function mapDispatchToProps( dispatch ) {
     },
     deleteAnnotation: id => { dispatch( deleteAnnotation( id ) ); },
     voteAnnotation: ( id, vote ) => { dispatch( voteAnnotation( id, vote ) ); },
-    unvoteAnnotation: id => { dispatch( unvoteAnnotation( id ) ); }
+    unvoteAnnotation: id => { dispatch( unvoteAnnotation( id ) ); },
+    fetchControlledTerms: ( ) => { dispatch( fetchControlledTerms( ) ); }
   };
 }
 

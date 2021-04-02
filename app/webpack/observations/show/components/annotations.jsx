@@ -195,10 +195,9 @@ class Annotations extends React.Component {
       observation,
       config,
       controlledTerms,
-      showEmptyState,
       addAnnotation,
-      collapsible
-      // updateSession
+      collapsible,
+      fetchControlledTerms
     } = this.props;
     const observationAnnotations = observation.annotations || [];
     const {
@@ -208,20 +207,7 @@ class Annotations extends React.Component {
       controlledTerms,
       observation ? observation.taxon : null
     );
-    if (
-      !observation
-      || !observation.user
-      || _.isEmpty( availableControlledTerms )
-    ) {
-      if (
-        showEmptyState && ( !availableControlledTerms || availableControlledTerms.length === 0 )
-      ) {
-        return (
-          <div className="noresults">
-            { I18n.t( "no_relevant_annotations" ) }
-          </div>
-        );
-      }
+    if ( !observation || !observation.user ) {
       return ( <span /> );
     }
     this.loggedIn = config && config.currentUser;
@@ -349,6 +335,12 @@ class Annotations extends React.Component {
       }
     } );
 
+    const emptyState = (
+      <div className="noresults">
+        { I18n.t( "no_relevant_annotations" ) }
+      </div>
+    );
+
     const table = (
       <table className="table">
         <thead>
@@ -378,7 +370,10 @@ class Annotations extends React.Component {
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={( ) => this.setState( { open: !isOpen } )}
+          onClick={( ) => {
+            fetchControlledTerms( );
+            this.setState( { open: !isOpen } )
+          }}
         >
           <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
           { I18n.t( "annotations" ) }
@@ -386,7 +381,11 @@ class Annotations extends React.Component {
           { count }
         </h4>
         <Panel expanded={isOpen} onToggle={() => {}}>
-          <Panel.Collapse>{ table }</Panel.Collapse>
+          <Panel.Collapse>
+            {!availableControlledTerms || availableControlledTerms.length === 0
+              ? emptyState
+              : table}
+          </Panel.Collapse>
         </Panel>
       </div>
     );
@@ -402,7 +401,8 @@ Annotations.propTypes = {
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
   collapsible: PropTypes.bool,
-  showEmptyState: PropTypes.bool
+  showEmptyState: PropTypes.bool,
+  fetchControlledTerms: PropTypes.func
 };
 
 Annotations.defaultProps = {
