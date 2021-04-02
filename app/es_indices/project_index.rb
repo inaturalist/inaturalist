@@ -237,8 +237,8 @@ class Project < ActiveRecord::Base
       updated_at: updated_at,
       last_post_at: posts.published.last.try(:published_at),
       observations_count: obs_count,
-      # Giving a bit of a search boost to featured projects
-      universal_search_rank: obs_count + ( site_featured_projects.size > 0 ? 1000 : 0 ),
+      # Giving a search boost to featured projects
+      universal_search_rank: ( obs_count + project_user_ids.size ) * ( site_featured_projects.size > 0 ? 10000 : 1 ),
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json),

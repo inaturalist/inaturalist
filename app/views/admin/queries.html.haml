@@ -36,7 +36,7 @@
             %br
             %span.kill<
               = surround "(", ")" do
-                = link_to "kill", "#", data: { url: stop_query_admin_url( pid: query["pid"] ) }, onclick: "return false;"
+                = link_to "kill", "#", data: { url: stop_query_admin_url( pid: query["pid"], state: query["state"] ) }, onclick: "return false;"
           %td
             - query.each do |k,v|
               %strong= "#{ k }:"

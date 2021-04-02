@@ -3,8 +3,8 @@
 # last observed taxon (saving some db time), this model's validation makes
 # sure a taxon passes all of a list's ListRules.
 #
-class ListedTaxon < ActiveRecord::Base  
-  has_subscribers
+class ListedTaxon < ActiveRecord::Base
+  has_subscribers destroy_callback: :commit
   
   belongs_to :list
   belongs_to :taxon
@@ -835,7 +835,11 @@ class ListedTaxon < ActiveRecord::Base
         next if !taxon_change.automatable_for_output?( output_taxon.id )
         if existing = ListedTaxon.where( list_id: lt.list_id, taxon_id: output_taxon.id ).first
           existing.skip_index_taxon = true
-          existing.merge( lt )
+          begin
+            existing.merge( lt )
+          rescue ActiveRecord::RecordInvalid => e
+            Rails.logger.error "Failed to update #{lt} for #{taxon_change}: #{e.message}"
+          end
         else
           lt.skip_index_taxon = true
           lt.update_attributes( taxon: output_taxon )

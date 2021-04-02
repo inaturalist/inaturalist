@@ -1646,7 +1646,6 @@ de:
   #Adjective, as in a fluid layout of images
   fluid: Flexibel
   follow: Folgen
-  follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert werden)
   follow_user: "Folge %{user}"
   followed_projects: Gefolgte Projekte
   followers: Follower
@@ -1696,7 +1695,9 @@ de:
   get_started: Erste Schritte
   getting_started_guide: Anleitung für den Einstieg
   give_it_some_detail: Bitte detaillieren!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: MONATLICH SPENDEN
+  #Prompt to donate money once
   give_now_caps: JETZT SPENDEN
   global_names: Globale Namen
   globally: Global
@@ -1745,12 +1746,10 @@ de:
   heads_up: Achtung
   heads_up_this_photo_has_been_flagged: "Achtung: dieses Foto wurde gemeldet."
   heads_up_this_photo_is_already_associated_with: "Achtung: dieses Foto ist schon mit <a target='_blank' href='%{url}'>einer anderen Beobachtung verbunden</a>"
-  heads_up_you_have_multiple: "Achtung: Du hast mehrere taxonomische maschinelle Tags für identische Ränge. Sie sind unten nach Rang farblich gekennzeichnet."
   help: Hilfe
   help_confirm_observations!: Hilf Beobachtungen zu bestätigen!
   help_support_inaturalist: "iNaturalist unterstützen"
   help_translate!: Hilf beim Übersetzen!
-  helped_the_observer_make: hat dem Beobachter geholfen, seine endgültige ID zu erstellen (d.h. sie wurde vor der endgültigen ID gemacht und sie stimmt mit ihr überein)
   here_are_3_examples: Hier sind 3 Exemplare von gut formatierten Datensätzen.
   here_are_our_top_suggestions: Hier sind unsere besten Vorschläge
   here_are_our_top_species_suggestions: Hier sind unsere besten Vorschläge
@@ -1765,6 +1764,7 @@ de:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Keine Annotation" ausblenden'
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Nicht-zählbare Arten verstecken
   high: Obergrenze
@@ -1823,6 +1823,7 @@ de:
   ignore_times: Ignoriere Zeiten
   image_must_be_exactly: Bild muss genau 950 px breit und maximal 400 px hoch sein
   image_size_control: Kontrolle der Bild-Größe
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Gefährdet
   import: Importieren
   import_all_photos_as_observations: Alle Fotos als Beobachtungen importieren
@@ -1892,7 +1893,6 @@ de:
   invited_x: "Eingeladen %{x}"
   iphone: iPhone
   is_not_following_anyone: folgt niemandem.
-  is_now: ist jetzt
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Soll der Bestimmung '%{taxon}' widersprochen werden?
   is_this_offensive_html: 'Ist dies <a href="/help#inappropriate">unangemessen</a>, Spam, oder anstößig?'
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
@@ -2746,7 +2746,7 @@ de:
       <li><strong>Deine Inhalte:</strong> Aktivität deiner Beobachtungen wie Kommentare, Identifikationen oder Favoriten der %{site_name}-Community. Du wirst auch Updates erhalten, wenn jemand deine Beobachtung zu einem Projekt hinzufügt oder sie mit zusätzlichen Beobachtungsfeldern versieht.</li>
       <li><strong>Personen:</strong> Neue Beobachtungen oder Journalbeiträge von den Personen, denen du folgst.</li>
       <li><strong>Taxa, Projekte & Orte:</strong> Neue Beobachtungen von bestimmten Taxa oder Orten, die du abonniert hast. Du kannst auch Projekten beitreten, so dass du benachrichtigt wirst, wenn Projektjournalbeiträge veröffentlicht werden.</li>
-      <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Beutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
+      <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Benutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
   one_of_your_lists: "einer deiner Listen..."
@@ -3792,6 +3792,7 @@ de:
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: 'beschränken auf:'
   show_relative_proportions_of_all_observations: Relativen Anteil aller Beobachtungen anzeigen
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Gesamtzahl anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
@@ -4690,7 +4691,6 @@ de:
   you_appear_offline_try_again: |
     Du scheinst offline zu sein. Bitte versuche es wieder, wenn Du mit dem Internet verbunden bist.
   you_are_over_your_invites_quota: ...Du überschreitest das monatliche Kontingent von 60 Einladungen
-  you_are_now: Du bist jetzt
   you_are_now_following_x: "Du folgst jetzt %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>Du</strong> bist jetzt der Admin für %{project}

@@ -483,7 +483,11 @@ export function vote( scope, params = { } ) {
     } else {
       payload.skip_refresh = true;
     }
-    iNaturalistJS.observations.fave( payload );
+    iNaturalistJS.observations.fave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Faile to add annotation: ", e );
+      } );
   };
 }
 
@@ -502,7 +506,11 @@ export function unvote( scope ) {
     } else {
       payload.skip_refresh = true;
     }
-    iNaturalistJS.observations.unfave( payload );
+    iNaturalistJS.observations.unfave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) )
+      .catch( e => {
+        console.log( "[DEBUG] Faile to add annotation: ", e );
+      } );
   };
 }
 

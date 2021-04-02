@@ -1855,7 +1855,9 @@ en:
   get_started: Get Started
   getting_started_guide: Getting Started Guide
   give_it_some_detail: Give it some detail!
+  # Prompt to donate money on a montly basis
   give_monthly_caps: GIVE MONTHLY
+  # Prompt to donate money once
   give_now_caps: GIVE NOW
   global_names: Global Names
   globally: Globally
@@ -1905,12 +1907,11 @@ en:
   heads_up: Heads up
   heads_up_this_photo_has_been_flagged: "HEADS UP: this photo has been flagged."
   heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
-  heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identicical ranks. They're color-coded below by rank."
+  heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identical ranks. They're color-coded below by rank."
   help: Help
   help_confirm_observations!: Help confirm observations!
   help_support_inaturalist: "Help Support iNaturalist"
   help_translate!: Help Translate!
-  helped_the_observer_make: helped the observer make their final ID (i.e. they were made before the final ID and they match it)
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_our_top_suggestions: Here are our top suggestions
   here_are_our_top_species_suggestions: Here are our top species suggestions
@@ -1932,6 +1933,7 @@ en:
   # Option to hide data series that show "No Annotation" data, i.e. records that
   # have no annotation
   hide_no_annotation: Hide "No Annotation"
+  # Label for a button to hide the running total of an accumulation chart
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
@@ -1999,6 +2001,7 @@ en:
   ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
   image_size_control: Image size control
+  # NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Imperiled
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
@@ -2070,7 +2073,6 @@ en:
   invited_x: "Invited %{x}"
   iphone: iPhone
   is_not_following_anyone: is not following anyone.
-  is_now: is now
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
@@ -2712,7 +2714,7 @@ en:
   no_results_for: 'No results for '
   no_results_matching: No results matching
   no_sections_available: No sections available.
-  no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessments yet.
+  no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessment yet.
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_observed: No species observed
   no_species_on_this_list: No species on this list yet!
@@ -2732,7 +2734,6 @@ en:
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_users_found_with_those_filters: No users found with those filters
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
-  no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"
   non_human?: Non-human?
   none: None
@@ -4057,6 +4058,7 @@ en:
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
+  # Label for a button to show the running total of an accumulation chart
   show_running_total: Show Running Total
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
@@ -5050,7 +5052,6 @@ en:
     you have any questions about curating content or don't want to
     be a curator anymore, please contact us at %{email}
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
-  you_are_now: You are now
   you_are_now_following_x: "You are now following %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>you</strong> are now the admin for %{project}

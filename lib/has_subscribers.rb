@@ -22,19 +22,12 @@ module HasSubscribers
 
       Subscription.subscribable_classes << to_s
       
-      after_destroy do |record|
-        UpdateAction.transaction do
-          # some classes, like ListedTaxa, tons of records but barely any UpdateActions or
-          # Subscriptions. Check to make sure there are some subscriptions for this record before
-          # initiating a delete query. We've seen longer-running deletes lead to table lock issues
-          if UpdateAction.where(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id]).any?
-            UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-          end
-          if Subscription.where(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id]).any?
-            Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-          end
-        end
-        true
+      if options[:destroy_callback] == :commit
+        after_commit :delete_update_actions, on: :destroy
+        after_commit :delete_subscriptions, on: :destroy
+      else
+        after_destroy :delete_update_actions
+        after_destroy :delete_subscriptions
       end
     end
     
@@ -338,6 +331,23 @@ module HasSubscribers
         action.append_subscribers( user_ids_to_notify )
         action.restrict_to_subscribers( user_ids_to_notify )
       end
+    end
+
+    def delete_update_actions
+      # some classes, like ListedTaxa, have tons of records but barely any UpdateActions or
+      # Subscriptions. Check to make sure there are some subscriptions for this record before
+      # initiating a delete query. We've seen longer-running deletes lead to table lock issues
+      if UpdateAction.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
+        UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id])
+      end
+      true
+    end
+
+    def delete_subscriptions
+      if Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
+        Subscription.delete_all(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id])
+      end
+      true
     end
 
   end

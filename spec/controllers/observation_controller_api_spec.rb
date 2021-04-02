@@ -184,7 +184,21 @@ shared_examples_for "an ObservationsController" do
           time_zone: tz.tzinfo.name
         }
         o = Observation.last
-        expect( o.time_zone ).to eq tz.tzinfo.name
+        expect( o.time_zone ).to eq tz.name
+        expect( o.zic_time_zone ).to eq tz.tzinfo.name
+      end
+      it "should accept TZInfo time zone names when observed_on_string is an ISO 8601 formtted datetime" do
+        zone_name = "Baghdad"
+        zic_zone_name = "Asia/Baghdad"
+        tz = ActiveSupport::TimeZone[zone_name]
+        post :create, format: :json, observation: {
+          observed_on_string: "2021-03-24T14:40:25",
+          time_zone: zic_zone_name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+        expect( o.zic_time_zone ).to eq tz.tzinfo.name
+        expect( o.time_observed_at_in_zone.hour ).to eq 14
       end
       it "should override the user's time zone" do
         tz = ActiveSupport::TimeZone["Baghdad"]
@@ -926,6 +940,27 @@ shared_examples_for "an ObservationsController" do
       expect( o.latitude ).to be_blank
       expect( o.private_latitude ).to be_blank
       expect( o ).not_to be_georeferenced
+    end
+
+    it "should update the license by license_code" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "cc0" }
+      o.reload
+      expect( o.license ).to eq Observation::CC0
+    end
+
+    it "should remove the license if license_code is a blank string" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "" }
+      o.reload
+      expect( o.license ).to be_blank
+    end
+
+    it "should not remove the license if license_code is not specified" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { description: "foo" }
+      o.reload
+      expect( o.license ).to eq Observation::CC_BY
     end
   end
 

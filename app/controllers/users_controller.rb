@@ -739,7 +739,7 @@ class UsersController < ApplicationController
     else
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])
-      @display_user ||= User.find_by_email(params[:id])
+      @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
       @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
       @display_user ||= User.elastic_paginate( query: {
         bool: {

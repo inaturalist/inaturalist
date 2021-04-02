@@ -127,8 +127,9 @@ const App = ( {
         <FlashMessage
           key="testing_apiv2"
           title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
           type="warning"
+          html
         />
       ) }
       <FlashMessagesContainer
@@ -304,12 +305,12 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad height={748} verticalOffset={500}>
+      <LazyLoad debounce={false} height={748} verticalOffset={500}>
         <div className="data_quality_assessment">
           <AssessmentContainer />
         </div>
       </LazyLoad>
-      <LazyLoad height={325} offset={500}>
+      <LazyLoad debounce={false} height={325} offset={500}>
         <div className="more_from">
           <Grid>
             <Row>
@@ -320,7 +321,7 @@ const App = ( {
           </Grid>
         </div>
       </LazyLoad>
-      <LazyLoad height={190} offset={500}>
+      <LazyLoad debounce={false} height={190} offset={500}>
         <div className="other_observations">
           <Grid>
             <Row>
@@ -343,14 +344,18 @@ const App = ( {
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
       <ModeratorActionModalContainer />
-      { config && config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
-        <TestGroupToggle
-          group="apiv2"
-          joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-          joinedStatus="Joined API V2 test"
-          user={config.currentUser}
-        />
-      ) }
+      {
+        config && config.currentUser
+        && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
+        && (
+          <TestGroupToggle
+            group="apiv2"
+            joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+            joinedStatus="Joined API V2 test"
+            user={config.currentUser}
+          />
+        )
+      }
     </div>
   );
 };

@@ -9,6 +9,7 @@
   show_multiple_taxa_field ||= !@observations_taxon_ids.blank?
   show_extra_date_fields ||= false
   show_ident_user_field ||= !@ident_user.blank?
+  show_without_taxon_field ||= !@without_observations_taxon.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -245,6 +246,44 @@
     </div>
   </div>
 </div>
+
+<% if show_without_taxon_field %>
+  <div class="clear row">
+    <div id="without_taxon_filter" class="left">
+      <div id="without_taxon_filter_label" class="label">
+        <strong><%=t :without_taxon %></strong>
+      </div>
+      <div class="left">
+        <div class="buttons">
+          <%= search_field_tag :without_taxon_name, @without_observations_taxon.try(:name), :id => "obs_filter_without_taxon_name", :class => "text",
+            :placeholder => t(:start_typing_taxon_name),
+            "data-iconic-taxon-id" => @without_observations_taxon ? @without_observations_taxon.iconic_taxon_id : nil,
+            "data-default-photo-url" => ( @without_observations_taxon && @without_observations_taxon.default_photo ) ?
+              @without_observations_taxon.default_photo.best_url(:square) : nil %>
+          <%-
+            alt_attr = if @without_observations_taxon
+              css_class =  [
+                  'taxon',
+                  'sciname',
+                  @without_observations_taxon.rank,
+                  Taxon::ICONIC_TAXA_BY_ID[@without_observations_taxon.iconic_taxon_id].try(:name)
+                ].compact.join(' ')
+              "<span class='#{css_class}'>#{@without_observations_taxon.name}</span>"
+            end
+          -%>
+          <%= hidden_field_tag :without_taxon_id, @without_observations_taxon.try(:id),
+            :alt => alt_attr,
+            :rel => (@without_observations_taxon ? taxon_image_url(@without_observations_taxon) : nil) %>
+        </div>
+      </div>
+    </div>
+    <% if @filters_open -%>
+      <script type="text/javascript" charset="utf-8">
+        $( "#filters input[name=without_taxon_name]" ).taxonAutocomplete( { idEl: $( "#without_taxon_id" ) } );
+      </script>
+    <% end -%>
+  </div>
+<% end %>
 
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">

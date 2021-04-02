@@ -493,6 +493,12 @@ class ObservationsController < ApplicationController
       @observation.interpolate_coordinates
     end
 
+    # If the value of time_zone is actually the zic or IANA time zone, make sure
+    # it gets set to the Rails time zone name for editing purposes
+    if ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+      @observation.time_zone = ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -642,7 +648,9 @@ class ObservationsController < ApplicationController
     end
     Observation.elastic_index!(
       ids: @observations.compact.map( &:id ),
-      wait_for_index_refresh: !params[:skip_refresh] )
+      wait_for_index_refresh: params[:force_refresh] ?
+        true : !params[:skip_refresh] && !current_user.is_testing_skip_refresh_wait?
+    )
     respond_to do |format|
       format.html do
         unless errors
@@ -794,7 +802,7 @@ class ObservationsController < ApplicationController
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.last
+          next unless photo = observation.observation_photos.last.try(:photo)
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
@@ -821,7 +829,7 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      observation.wait_for_index_refresh = true
+      observation.wait_for_index_refresh = !current_user.is_testing_skip_refresh_wait?
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
@@ -840,7 +848,8 @@ class ObservationsController < ApplicationController
 
     Observation.elastic_index!(
       ids: @observations.to_a.compact.map( &:id ),
-      wait_for_index_refresh: true )
+      wait_for_index_refresh: !current_user.is_testing_skip_refresh_wait?
+    )
 
     respond_to do |format|
       if errors
@@ -1732,7 +1741,7 @@ class ObservationsController < ApplicationController
 
   def moimport
     if @api_key = params[:api_key]&.strip
-      @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
       @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
       begin
@@ -1788,6 +1797,7 @@ class ObservationsController < ApplicationController
       :iconic_taxon_id,
       :latitude,
       :license,
+      :license_code,
       :location_is_exact,
       :longitude,
       :make_license_default,
@@ -2040,7 +2050,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.wait_for_index_refresh = !params[:skip_refresh]
+    review.observation.wait_for_index_refresh = !params[:skip_refresh] && !current_user.is_testing_skip_refresh_wait?
     review.observation.elastic_index!
   end
 
@@ -2156,6 +2166,7 @@ class ObservationsController < ApplicationController
     @iconic_taxa = search_params[:iconic_taxa_instances]
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
+    @without_observations_taxon = search_params[:without_observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
@@ -2210,6 +2221,7 @@ class ObservationsController < ApplicationController
       !@q.nil? ||
       !@observations_taxon_id.blank? ||
       !@observations_taxon_name.blank? ||
+      !@without_observations_taxon.blank? ||
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
