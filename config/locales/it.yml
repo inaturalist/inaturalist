@@ -727,8 +727,8 @@ it:
   captive_observations: Osservazioni In Cattività
   card: Carta
   casual: casuale
-  casual_: Informale
-  casual_tooltip_html: 'Le osservazioni di livello "Informale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
+  casual_: Casuale
+  casual_tooltip_html: 'Le osservazioni di livello "Casuale" mancano di contenuto multimediale, posizione o data, o non soddisfano i requisiti dei livelli di qualità "Ricerca" o "Serve ID" per altri motivi. <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   categories: Categorie
   cc_0_description: "Questa licenza rilascia il tuo lavoro nel pubblico dominio, in modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro, anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti. Questo è il tipo di licenza più permissiva. Raccomandato per la massima diffusione e utilizzo dei materiali concessi in licenza."
   cc_0_name: Nessun copyright (CC0)
@@ -5339,7 +5339,7 @@ it:
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
         quality_assessment_help_html: |
           <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
+          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"casuale"</strong>, e diventano <strong>"serve ID"</strong> quando
           </p>
 
           <ul>
@@ -5353,7 +5353,7 @@ it:
           </p>
           <ul>
           <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
+          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon
           </li>
           </ul>
           <p>
@@ -5513,7 +5513,7 @@ it:
         you_can_attempt_repair: |
           Puoi tentare di riparare le foto visitando la pagina della foto e cliccando il link %{repair_link_text}. Se sai che la foto non esiste più, puoi scegliere di cancellarla.
         please_address: |
-          Per favore risolvi il problema <b>nei prossimi 30 giorni</b>. Dopo 30 giorni inizieremo a cancellare le foto danneggiate da iNaturalist. Tutte le tue osservazioni rimarranno. Saranno rivalutate dopo che le foto sono state cancellate, ed è possibile che alcune delle osservazioni a livello ricerca diventeranno di livello informale se non hanno più foto.
+          Per favore risolvi il problema <b>nei prossimi 30 giorni</b>. Dopo 30 giorni inizieremo a cancellare le foto danneggiate da iNaturalist. Tutte le tue osservazioni rimarranno. Saranno rivalutate dopo che le foto sono state cancellate, ed è possibile che alcune delle osservazioni a livello ricerca diventeranno di livello casuale se non hanno più foto.
         we_included_links: |
           Abbiamo incluso i collegamenti alle foto interessate qui sotto.
       user_parent_confirmation:
