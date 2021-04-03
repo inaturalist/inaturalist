@@ -163,7 +163,7 @@ lv:
     Noklusējuma taksona nosaukums izveidosies automātiski, vadoties pēc šī taksona zinātniskā nosaukuma.
     Kad saglabāsi jauno taksonu, varēsi pevienot arī citus nosaukumus (tautā pieņemtos, novecojušus zinātniskos nosaukums u.c.).
   a_flag_for_x: "%{x} karodziņš"
-  a_member_of_taxon_html: "%{taxon} biedrs"
+  a_member_of_taxon_html: "daļa no %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "No A līdz Z"
@@ -1764,7 +1764,7 @@ lv:
   internal_taxon_rank: Iekšējā taksona klasifikācija
   introduced: Introducēts
   introduced_in_place: "Introducēts šeit: %{place}"
-  invitation: Uzaicinājums
+  invitation: Ielūgums
   invite: uzaicināt
   invite_more: Uzaicināt vēl
   invite_people: Uzaicināt lietotājus
@@ -2333,7 +2333,7 @@ lv:
   no_matching_species: Sugas nav atrastas
   no_matching_taxa: Taksoni nav atrasti
   no_matching_users: Lietotāji nav atrasti
-  no_members_yet: "Pagaidām nav biedru"
+  no_members_yet: "Pagaidām nav dalībnieku"
   no_messages_yet: Pagaidām nav ziņu
   no_misidentifications_yet: Pagaidām nepareizu identifikāciju nav
   no_more_mail_from_site: "Nevēlies saņemt ziņas e-pastā no %{site_name}? Pielāgo iestatījumus šeit:"
@@ -2422,7 +2422,7 @@ lv:
   observation_: novērojums
   observation_added: Novērojums pievienots.
   observation_added_to_the_project: "Novērojums pievienots \"%{project}\" projektam"
-  observation_aggregation: Novērojumu kopums
+  observation_aggregation: Novērojumu apkopošana
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Lietotāja %{user} novērojums
@@ -2680,7 +2680,7 @@ lv:
   per_week: Reizi nedēļā
   person: Lietotājs
   personal_message: Privāta ziņa
-  personal_message_description: Nevienam taču nepatīk saņemt tās automātiskās ziņas no robotiem. Labāk tomēr uzraksti, kāpēc nosūtīji uzaicinājumu!
+  personal_message_description: Nevienam taču nepatīk saņemt tās automātiskās ziņas no robotiem. Labāk tomēr uzraksti, kāpēc nosūtīji ielūgumu!
   place_geo:
     geo_planet_place_types:
       colloquial: sarunvaloda
