@@ -1256,7 +1256,7 @@ el:
   default_photo_license: Προεπιλεγμένη άδεια φωτογραφίας
   default_search_place: Προεπιλεγμένη περιοχή αναζήτησης
   default_search_place_description: |
-    Αυτή θα είναι η προεπιλεγμένη περιοχή για όλες της αναζητήσεις στο πεδίο Εξερευνήστε και Αναγνωρίστε.
+    Αυτή θα είναι η προεπιλεγμένη περιοχή για όλες της αναζητήσεις στο πεδίο Εξερευνήστε και Ταυτοποιήστε.
   default_sound_license: Προεπιλεγμένη άδεια ήχου
   defaults_to_your_name_or_username: Προεπιλογές στο όνομά σας ή στο όνομα χρήστη σας
   defines_a_taxon_framework_for: Προσδιορίζει το πλαίσιο Taxon για %{taxon_name}
@@ -1798,10 +1798,10 @@ el:
         Η ταξινομική βαθμίδα δεν είναι απόγονος ή πρόγονος από την κοινοτική ταξινομική βαθμίδα, δηλαδή η κοινότητα δε συμφωνεί με αυτή την ταξινομική βαθμίδα.
   id_withdrawn: Το αναγνωριστικό αποσύρθηκε
   ids_by_taxon: Ταυτοποίηση ανά Taxon
-  identify: Αναγνωρίστε
-  identify_observations: "Αναγνωρίστε Παρατηρήσεις"
-  identify_observations_by_these_users: Αναγνωρίστε Παρατηρήσεις Αυτών των Χρηστών
-  identify_title: "Αναγνωρίστε"
+  identify: Ταυτοποιήστε
+  identify_observations: "Ταυτοποιήστε Παρατηρήσεις"
+  identify_observations_by_these_users: Ταυτοποιήστε Παρατηρήσεις Αυτών των Χρηστών
+  identify_title: "Ταυτοποιήστε"
   identification: ταυτοποίηση
   identification_by_user: Ταυτοποίηση από %{user}
   identification_deleted: Η ταυτοποίηση διαγράφηκε.
@@ -2225,8 +2225,8 @@ el:
   mark_as_reviewed: Σήμανση ως θεωρημένο
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
   mark_as_reviewed_desc: |
-    Σημειώνοντας μια παρατήρηση ως αναθεωρημένη σημαίνει ότι δεν θα την δείτε ξανά ως
-    προεπιλογή στο πεδίο "Αναγνωρίστε". Θα εξακολουθήσει να είναι ορατή σε άλλους ανθρώπους στο πεδίο "Αναγνωρίστε".
+    Σημειώνοντας μια παρατήρηση ως αναθεωρημένη σημαίνει ότι δε θα τη δείτε ξανά ως
+    προεπιλογή στο πεδίο "Ταυτοποιήστε". Θα εξακολουθήσει να είναι ορατή σε άλλους ανθρώπους στο πεδίο "Ταυτοποιήστε".
   mark_all_as_reviewed: Σήμανση όλων ως θεωρημένα
   mark_all_as_unreviewed: Σήμανση όλων ως μη θεωρημένα
   matching_species_will_shown_up_here: Η αντιστοιχία ειδών θα εμφανίζεται εδώ. Οι χάρτες θα δείχνουν μια κλίμακα του εάν το μέρος %{place} έχει κάποιο από αυτά τα είδη.
@@ -2520,7 +2520,6 @@ el:
   no_results_for: 'Κανένα αποτέλεσμα για'
   no_results_matching: Δεν υπάρχουν αντιστοιχούμενα αποτελέσματα
   no_sections_available: Δεν υπάρχουν διαθέσιμοι τομείς.
-  no_sections_have_been_added_to_this_assessments_yet: Κανένα τμήμα δεν έχει προστεθεί σε αυτή την αξιολόγηση ακόμα.
   no_species_have_been_listed: Κανένα είδος δεν έχει ακόμα καταγραφεί για αυτόν τον τόπο!
   no_species_observed: Δεν έχουν παρατηρηθεί ακόμα είδη
   no_species_on_this_list: Ακόμα δεν υπάρχουν είδη σε αυτή τη λίστα!
@@ -2538,7 +2537,6 @@ el:
   no_taxonomic_changes_match_those_criteria: Δεν υπάρχουν ταξονομικές αλλαγές που να αντιστοιχούν σε αυτά τα κριτήρια
   no_users_found_with_those_filters: Δεν βρέθηκαν χρήστες με αυτά τα φίλτρα
   no_wikipedia_page_for_taxon: Καμιά σελίδα της Wikipedia για αυτό το taxon.
-  no_x_this_y: "Κανένα %{x} σε αυτό το %{y}"
   noble_curators: "Αξιότιμοι Επιμελητές του %{site}"
   non_human?: Μη άνθρωπος;
   none: Κανένα

@@ -1517,10 +1517,10 @@ nl:
   exact_date: Exacte datum
   exact_rank: Exacte rang
   except: met uitzondering van
-  exclude_places: Plaatsen uitsluiten
-  exclude_projects: Projecten uitsluiten
-  exclude_taxa: Taxa uitsluiten
-  exclude_users: Gebruikers uitsluiten
+  exclude_places: Exclusief de plaatsen
+  exclude_projects: Exclusief de projecten
+  exclude_taxa: Exclusief de taxa
+  exclude_users: Exclusief de gebruikers
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -1657,7 +1657,7 @@ nl:
   flagged_thing_explanation: "Gebruikers hebben @gender{n:dit|deze} %{thing} gemeld omdat"
   flagging_desc: |
     Melden brengt iets onder de aandacht van vrijwillige sitecuratoren.
-    Meld geen problemen die je kunt opgelossen met determinaties, de kwaliteitsbeoordeling, of door in gesprek te gaan met de maker van de inhoud.
+    Meld geen problemen die je kunt oplossen met determinaties, kwaliteitsbeoordeling of door in gesprek te gaan met de maker van de inhoud.
   flagger: Melder
   flags: Meldingen
   flags_with_count: Meldingen (%{count})
@@ -1677,6 +1677,7 @@ nl:
   #Adjective, as in a fluid layout of images
   fluid: vloeiend
   follow: Volg
+  follow_receive_updates_about_new_observations: Volgen (ontvang informatie over nieuwe waarnemingen)
   follow_user: "Volg %{user}"
   followed_projects: Gevolgde projecten
   followers: Volgers
@@ -1778,6 +1779,7 @@ nl:
   heads_up: Opgelet
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
+  heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
   help_support_inaturalist: "Help en ondersteun iNaturalist!"
@@ -1879,11 +1881,11 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
-  include_places: Includeer plaatsen
-  include_projects: Includeer projecten
+  include_places: Inclusief de plaatsen
+  include_projects: Inclusief de projecten
   include_suggestions_not_seen_nearby: Alle soorten
-  include_taxa: Includeer taxa
-  include_users: Includeer gebruikers
+  include_taxa: Inclusief de taxa
+  include_users: Inclusief de gebruikers
   including: inclusief
   increase_brightness: Helderheid verhogen
   in_progress: bezig
@@ -2574,7 +2576,6 @@ nl:
   no_taxonomic_changes_match_those_criteria: Er zijn geen taxonomische veranderingen die voldoen aan die criteria
   no_users_found_with_those_filters: Geen gebruikers gevonden met deze filters
   no_wikipedia_page_for_taxon: Geen Wikipediapagina voor dit taxon
-  no_x_this_y: "Geen %{x} @gender{n:dit|deze} %{y}"
   noble_curators: "%{site}'s Edele Curatoren"
   non_human?: Niet-menselijk?
   none: Geen

@@ -163,7 +163,7 @@ lv:
     Noklusējuma taksona nosaukums izveidosies automātiski, vadoties pēc šī taksona zinātniskā nosaukuma.
     Kad saglabāsi jauno taksonu, varēsi pevienot arī citus nosaukumus (tautā pieņemtos, novecojušus zinātniskos nosaukums u.c.).
   a_flag_for_x: "%{x} karodziņš"
-  a_member_of_taxon_html: "%{taxon} biedrs"
+  a_member_of_taxon_html: "daļa no %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "No A līdz Z"
@@ -194,10 +194,18 @@ lv:
   about_complete_taxa: Vairāk par pilnīgiem taksoniem
   about_conservation_status: Vairāk par aizsardzības statusu
   about_editing_observation_fields: Vairāk par novērojuma lauka rediģēšanu
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Vairāk par izplatības skaidrojumu
+  about_license_options: Vairāk par licenču izvēles iespējām
   about_licenses: Vairāk par licencēm
   about_muting: Vairāk par apklusināšanu
   #Header for a section describing taxon names
   about_names: Vairāk par nosaukumiem
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Vairāk par %{place}"
   about_places: Vairāk par vietām
   about_the_cc_licenses: Vairāk par "Creative Commons" licencēm
   about_these_licenses: Vairāk par šīm licencēm
@@ -265,7 +273,7 @@ lv:
   add_blocked_users: Pievienot bloķētos lietotājus
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Pievienot tekstu treknrakstā
-  add_comma_separated_tags: "Pievienot ar komatiem atdalītas kategorijas"
+  add_comma_separated_tags: "Pievienot ar komatiem atdalītus tagus"
   add_comment: Pievienot komentāru
   add_conservation_status: Norādīt aizsardzības statusu
   add_countries: Pievienot valstis
@@ -316,7 +324,7 @@ lv:
   add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves posms: nepieaudzis"'
   add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves posms: ola"'
   #As in a Taxon Framework Relationship
-  add_relationship: 'Pievienot taksonu saistību'
+  add_relationship: 'Pievienot taksonu attiecības'
   #As in a Guide Section
   add_section: Pievienot sadaļu
   add_several_observations_at_once: Pievienot vairākus novērojumus reizē.
@@ -325,8 +333,8 @@ lv:
   add_sex_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzimums: nenosakāms"'
   add_some_now: Pievienot tagad
   add_tag: Pievienot kategoriju
-  add_tags: Pievienot kategorijas
-  add_tags_to_selected_taxa: Pievienot kategorijas izvēlētajiem taksoniem
+  add_tags: Pievienot tagus
+  add_tags_to_selected_taxa: Pievienot tagus izvēlētajiem taksoniem
   add_taxa: Pievienot taksonus
   add_taxon_batch_to: "Pievienot taksonu grupu sarakstam: %{list}"
   add_taxon_range: Pievienot taksonu apgabalu
@@ -596,7 +604,7 @@ lv:
     Vai tiešām vēlies dzēst šo taksonu kopā ar sarakstā iekļautajiem taksoniem un novērojumiem?
   are_you_sure_want_delete_taxon_observations: |
     Vai tiešām vēlies dzēst šo taksonu kopā ar tā novērojumiem?
-  are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksona aprakstu?
+  are_you_sure_want_delete_taxon_link: Vai tiešām vēlies dzēst saiti uz taksonu?
   are_you_sure_want_delete_this_name: Vai tiešām vēlies dzēst šo nosaukumu?
   are_you_sure_want_delete_this_range: Vai tiešām vēlies dzēst šo izplatības apgabalu?
   are_you_sure_you_want_to_commit_this_change: Vai tiešām vēlies veikt šīs izmaiņas? Šī darbība ir neatgriezeniska.
@@ -605,7 +613,7 @@ lv:
   are_you_sure_you_want_to_delete_this_photo?: Vai tiešām vēlies dzēst fotogrāfiju?
   are_you_sure_you_want_to_delete_this_post: Vai tiešām vēlies dzēst ierakstu?
   are_you_sure_you_want_to_delete_this_taxon_change: Vai tiešām vēlies dzēst izmaiņas taksonā?
-  are_you_sure_you_want_to_remove_all_tags: Vai tiešām vēlies noņemt visas kategorijas?
+  are_you_sure_you_want_to_remove_all_tags: Vai tiešām vēlies noņemt visus tagus?
   are_you_sure_you_want_to_remove_curator: Vai tiešām vēlies atņemt lietotājam %{user} pārziņa lomu?
   are_you_sure_you_want_to_remove_from_project: Vai tiešām vēlies izraidīt lietotāju %{user} no projekta?
   are_you_sure_you_want_to_remove_manager: Vai tiešām vēlies atņemt lietotājam %{user} vadītāja lomu?
@@ -628,7 +636,7 @@ lv:
   assessment_has_benn_completed: Novērtējums ir pabeigts
   assessment_sections: Novērtējuma sadaļas
   assessment_was_deleted: Novērtējums ir izdzēsts.
-  assessment_was_successfully_created: Novērtējums ir veiksmīgi izveidots.
+  assessment_was_successfully_created: Novērtējums veiksmīgi izveidots.
   assessment_was_successfully_updated: Novērtējums ir veiksmīgi atjaunots.
   assessment_x: "%{assessment} novērtējums"
   assessments: novērtējumi
@@ -673,7 +681,7 @@ lv:
   back_to_suggestions: Atpakaļ pie ieteikumiem
   back_to_taxon: "Atvērt vēlreiz %{defaulttaxon}"
   back_to_taxon_changes: "Atpakaļ pie taksonu izmaiņu sadaļas"
-  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona apraksta"
+  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona iedalījuma"
   back_to_viewing: "Atpakaļ uz <i>%{taxon}</i> lapu"
   back_to_x: "Atpakaļ uz %{noun}"
   back_to_x_assessment: "Atpakaļ pie %{project} projekta novērtējumiem"
@@ -820,8 +828,8 @@ lv:
   choose_a_field: Izvēlēties lauku
   choose_a_list_above: Izvēlēties kādu no augšējiem laukiem
   choose_a_place: Izvēlēties vietu
-  choose_a_taxon: Izvēlēties taksonu (nav obligāti)
-  choose_columns: Izvēlēties kolonnas
+  choose_a_taxon: Izvēlēties taksonu (pēc izvēles)
+  choose_columns: Izvēlēties slejas
   choose_file: Izvēlēties failu
   choose_files: Izvēlēties failus
   choose_from_your_lists: Izvēlēties no saviem sarakstiem
@@ -829,7 +837,7 @@ lv:
   choose_photos_to_tag_from_photostream: Izvēlēties fotogrāfijas atzīmēšanai no savas galerijas
   choose_rule: Izvēlēties nosacījumu
   choose_subjects: Izvēlēties subjektus
-  choose_tags: Izvēlēties kategorijas
+  choose_tags: Izvēlēties tagus
   choose_taxon: Izvēlēties taksonu
   choose_what_kind_of_change_youre_creating: "Kādas izmaiņas veiksi?"
   cid_d_to_genus: Kopiena identificējusi ģinti
@@ -842,7 +850,7 @@ lv:
   close: Aizvērt
   code: Kods
   colors: Krāsas
-  columns: Kolonnas
+  columns: Slejas
   combine: Kombinēt
   comma_separated_please: Lūdzu, atdalīt ar komatu
   comment: komentēt
@@ -864,6 +872,7 @@ lv:
   committed_on: 'Izmaiņas veiktas: %{date}'
   #Status message while a taxon change is being committed
   committing: Veic izmaiņas...
+  common_name: Tautā pieņemtais nosaukums
   community: Kopiena
   community_curated: Kopienas pārbaudīts
   community_guidelines: Kopienas vadlīnijas
@@ -900,9 +909,16 @@ lv:
   confirm_new_password: Apstiprināt jauno paroli
   confirm_now: Apstiprināt tagad
   confirm_your_info: Apstiprināt informāciju par sevi
+  confirming_ids: Vairākkārt apstiprinātas ID
+  confirming_ids_description: Ja izslēgsi šo funkciju, vairs nesaņemsi paziņojumus par ID, kas sakrīt ar tavām ID.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Savienot
   connect_to_provider: "Savienoties ar %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Savienotie konti
+  connected_accounts_description: Savienotie konti ir citu lietotņu un tīmekļa vietņu konti, kuriem esi devis iNaturalist piekļuvi, lai tavā vārdā pierakstītos, importētu fotogrāfijas u.t.m.l.
+  connected_accounts_titlecase: Savienotie konti
   connecting_flickr: "Savienojas ar Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Pieslēdzies vēlreiz Flickr, lai autorizētu rakstīšanas atļaujas
   connecting_to_facebook: "Savienojas ar Facebook..."
@@ -910,7 +926,7 @@ lv:
   cannot_be_changed_during_a_content_freeze: Izmaiņas nav iespējams veikt kamēr saturs ir bloķēts
   conservation_status: Aizsardzības statuss
   conservation_status_descriptions:
-    status: Statusa kods, kategorija utt. Ja pieejams īsais kods, piemēram, "E" vai "CR", lūdzu, izmanto to. Ja īsie kodi nav pieejami, lūdzu, norādi pilno statusa nosaukumu, piemēram, "apdraudēts" vai "kritiski apdraudēts".
+    status: Statusa kods, klasifikācija utt. Ja pieejams īsais kods, piemēram, "E" vai "CR", lūdzu, izmanto to. Ja īsie kodi nav pieejami, lūdzu, norādi pilno statusa nosaukumu, piemēram, "apdraudēts" vai "kritiski apdraudēts".
     description: Īss skaidrojums tam, kāpēc tas tika iekļauts sarakstā.
     authority: |
       Organizācija, kas norādīja šo statusu. Pirms jaunas organizācijas pievienošanas, lūdzu, izmanto automātisko nosaukuma pabeigšanu, lai izvēlētos kādu no jau pieejamajām organizācijām. Izlaid šo soli, ja vēlies, lai tu pats tiktu iekļauts organizāciju sarakstā.
@@ -924,6 +940,7 @@ lv:
   contain_all_descendants?: Vai kontrollapā redzami visi taksoni, kam ir zemāka pakāpe par šo taksonu?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Saturs
+  content_and_display: Saturs un attēlojums
   content_author: Satura autors
   content_hidden: Slēpts saturs
   content_hidden_by_user_on_date_because_reason_html: |
@@ -966,6 +983,19 @@ lv:
     flower_budding: Ziedpumpuri ir redzami, bet nav uzplaukuši
     flowering: Ziedi ir redzami, uzplaukuši un vēl aizvien klāt pie auga
     fruiting: Augļi ir redzami un vēl aizvien klāt pie auga
+    no_evidence_of_flowering: Pievienotajos failos nekas neliecina par reproduktīvajām struktūrām
+    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
+    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
+  controls: Vadīklas
+  convert: Konvertēt
+  coordinate_systems: Koordinātu sistēmas
+  coordinates: Koordinātas
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Tikai ar pilnām koordinātām
+  copy: Kopēt
   copy_and_paste_the_following_code_to: Nokopē un ielīmē šo kodu, lai ieguldītu šo vērtējumu citā tīmekļa vietnē.
   copy_and_paste_this_into_your_own_html: Nokopē un ielīmē šo kodu savā HTML.
   copy_guide_taxon_to: Nokopēt un pārvietot padomā iekļauto taksonu uz...
@@ -978,13 +1008,22 @@ lv:
     no_rights_reserved: tiesības nav paturētas
     no_rights_reserved_by: "%{name}, tiesības nav paturētas (%{license_name})"
     anonymous: anonīms
-    public_domain: neaizsargātie darbi
+    public_domain: publiski pieejams
     copyright: autortiesības
     no_copyright: bez autortiesībām (CC0)
+    attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike licence
+    attribution_noncommercial_license: Attribution-NonCommercial licence
+    attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs licence
+    attribution_license: Attribution licence
+    attribution_sharealike_license: Attribution-ShareAlike licence
+    attribution_noderivs_license: Attribution-NoDerivs licence
+    gnu_free_documentation_license: GNU Free Documentation licence
   copyright_holder: Autortiesību turētājs
   copyright_info: Autortiesību informācija
   copyright_info_and_more: Autortiesību un cita informācija
   copyright_infringement: Autortiesību pārkāpums
+  copyright_infringement_desc: Pārkāpj autortiesību likumu vai novērojumu izveidojis kāds cits, nevis pats novērotājs un nav norādīts patiesais autors.
+  covered_by_a_taxon_framework_html: "Paskaidrots ar %{link}"
   covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} taksonu iedalījums"
   couldnt_change_your_password: "Neizdevās nomainīt paroli: %{e}"
   couldnt_find_a_user_matching_x_param: "Neizdevās atrast lietotāju %{id}"
@@ -1007,6 +1046,71 @@ lv:
   created_on: Izveidots
   creating_your_account: "Izveido kontu..."
   critically_endangered: Kritiski apdraudēts
+  csv: CSV
+  csv_file: CSV fails
+  csv_should_not_contain_a_header_row: CSV nav jāsatur virsraksta rinda
+  cumulative_ids: "Cumulative IDs: %{count} no %{total}"
+  curate_observations: Pārbaudīti novērojumi
+  curate_taxa: Pārbaudīti taksoni
+  curate_user: Pārbaudīts lietotājs
+  curating: Tiek pārbaudīts
+  curation: Pārbaude
+  curator: Pārzinis
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist pārziņi ir uzticami brīvprātīgie darbinieki, kuriem ir sniegta piekļuve pie iNaturalist taksonomijas un lietotāju satura pārvaldīšanas. iNaturalist nevarētu iztikt bez pārziņiem, jo viņi atjaunina taksonomiju un uztur kārtību lietotāju saskarsmē. Ja vēlies kļūt par pārzini, lūdzu, uzmanīgi izlasi <a href="/pages/curator+guide" target="_blank"> pārziņa rokasgrāmatu</a> un aizpildi pieteikuma anketu, kas atrodama šajā lapā.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Lūdzu, pamato, kāpēc vēlies kļūt par pārzini.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Kāpēc vēlies kļūt par pārzini?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Ja vēlies rediģēt iNaturalist taksonomiju, lūdzu, sniedz vienu vai divus piemērus tevis plānotajām taksonu izmaiņām, iekļaujot saites uz attiecīgajām taksonu datubāzēm, kā noradīts Pārziņa rokasgrāmatā.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Ja vēlies rediģēt tautā pieņemtos nosaukumus, lūdzu, sniedz vienu vai divus piemērus.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Ja vēlies uzturēt kārtību iNaturalist lietotāju saskarsmē, lūdzu, sniedz vienu vai divus piemērus, kad kopienas vadlīnijas ir tikušas pārkāptas, kā arī pastāsti, kā tu rīkotos šajās situācijās.
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Iemesli pārziņa pilnvaru atņemšanai
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNaturalist personāls var izlemt atņemt pilnvaras, ja pārzinis atkārtoti veic šādas darbības:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Pārkāpj pārziņa rokasgrāmatā norādītās pamatnostādnes.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Neizturas atbilstoši uzvedības normu nosacījumiem.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja %{num_idents} pievienotās identifikācijas. Kad šie kritēriji ir izpildīti, šajā sadaļā iespējams pieteikties pārziņa statusam.
+  curator_application_inelligible_error: |
+    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja pievienotās identifikācijas.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Pieteikums pārziņa statusa iegūšanai ir iesniegts.
+  #Header
+  curator_application_what_curators_can_do: Pārziņiem pieejamās darbības
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Rediģēt iNaturalist taksonomiju saskaņā ar <a href="/pages/curator+guide#policies" target="_blank">pārziņa rokasgrāmatā norādītajām pamatnostādnēm</a>. Pārziņi drīkst pievienot, sadalīt, samainīt, apvienot, dezaktivizēt un dzēst iNaturalist taksonus. Pārziņi var mainīt aizsardzības statusus un taksonu ģeoprivātumu, kā arī rediģēt lietotāju pievienotos tautā pieņemtos sugu nosaukumus.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Slēpt komentārus un uz laiku bloķēt lietotājus, kas pārkāpj<a
+    href="/pages/community+guidelines" target="_blank">kopienas vadlīnijas</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Atrisināt ziņojumus par taksonu un lietotāju satura problēmām, kas atzīmētas ar <a href="/flags" target="_blank">karodziņiem</a>.
+  curators_changed_for_x_html: "Pārziņu maiņa iekš %{x}"
   curators: Pārziņi
   curator_identification: Pārziņa identifikācija
   current_flags: Pašreizējie ziņojumi
@@ -1088,8 +1192,8 @@ lv:
     Šī būs noklusējuma vieta, kad kaut ko meklēsi izzināšanas un identificēšanas sadaļā.
   default_sound_license: Noklusējuma audiofailu licence
   defaults_to_your_name_or_username: Tava vārda un lietotājvārda noklusējuma iestatījumi
-  defines_a_taxon_framework_for: Definē %{taxon_name} taksona aprakstu
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: 'Definē %{taxon} taksona aprakstu. Avots: %{source}'
+  defines_a_taxon_framework_for: Definē %{taxon_name} taksona iedalījumu
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: 'Definē %{taxon} taksona iedalījumu. Avots: %{source}'
   definitions: Definīcijas
   delete: Dzēst
   delete_all: Dzēst visu
@@ -1173,6 +1277,7 @@ lv:
   disconnect_caps: ATVIENOT
   disconnect_provider: "Atvienot %{provider} kontu"
   display: Attēlojums
+  display_name: Publiskais vārds
   display_name_description: Šis vārds būs redzams tavā profilā un autortiesībās.
   distance_traveled_value: "Mērotais attālums: %{distance}m"
   distance_traveled: "Mērotais attālums (m)"
@@ -1180,6 +1285,50 @@ lv:
   do_not_show_this_message_again: Vairs nerādīt šo ziņojumu
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Vai esi nematožu pētnieks, vai varbūt vadošais eksperts sprogkāju taksonomijā? Varbūt tev vienkārši patīk skatīties uz skaistiem ziediem? Aizpildi savu profilu, lai piešķirtu tam personīgu pieskārienu, kas var noderēt brīžos, kad palīdzi citiem identificēt novērojumus.
+  doesnt_have_default_photo: vēl nav pievienota noklusējuma fotogrāfija
+  doh_something_went_wrong: Ak nē, kaut kas nogāja greizi.
+  doh_something_went_wrong_error: "Ak nē, kaut kas nogāja greizi: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: ZIEDOT
+  done: Gatavs
+  dont_have_an_account_sign_up_html: Vēl neesi izveidojis kontu? <strong>Izveido to tagad!</strong>
+  dont_send_me_email: "Nesūtīt man e-pasta ziņas!"
+  dont_use_double_quotes: Neizmantot pēdiņas citās vietās
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
+  drop_it: Nomest šeit
+  double_click_to_finish: (noklikšķini divreiz, lai pabeigtu)
+  download: Lejupielādēt
+  download_bulk_import_template_html: |
+    <a href="%{url}">Lejupielādēt veidni</a>, lai to izmantotu
+    <a href="/observations/import?project_id=%{project_id}#csv_import">lielapjoma augšupielādes sadaļā</a>
+  download_csv: Lejupielādēt CSV
+  download_csv_template: Lejupielādēt CSV veidni
+  download_kml: Lejupielādēt KML
+  draft: melnraksts
+  draft_: Melnraksts
+  draft_saved: Melnraksts saglabāts.
+  drafts: Melnraksts
+  drag_and_drop_some_photos_or_sounds: Velc un nomet fotogrāfijas un audiofailus
+  drawings: Zīmējumi
+  duplicate_verb: Kopēt
+  duration_value: "Ilgums: %{duration} minūtes"
+  earliest_added: Vissenāk pievienotie
+  edit: Rediģēt
+  edit_a_batch_of_observations: Rediģēt vairākus novērojumus reizē
+  edit_account_settings_and_profile: "Mainīt konta un profila iestatījumus"
+  edit_assessment: Rediģēt novērtējumu
+  edit_atlas: Rediģēt atlantu
+  edit_atlas_for_taxon_html: Rediģēt %{taxon} taksona atlantu
+  edit_body: Rediģēt tekstu
+  edit_comment: Rediģēt savu komentāru
+  edit_complete_set_for_taxon_in_place_html: "Rediģēt %{taxon} taksona sugu kopumu iekš %{place}"
+  edit_custom_project_fields: Rediģēt projektam pielāgojamus laukus
+  edit_field: Rediģēt lauku
+  edit_license: Rediģēt licenci
+  edit_multiple_dates: Rediģēt vairākus datumus reizē
+  edit_multiple_descriptions: Rediģēt vairākas piezīmes reizē
   edit_multiple_locations: Rediģēt vairākas atrašanās vietas reizē
   edit_multiple_species: Rediģēt vairākas sugas reizē
   edit_notes: Rediģēt piezīmes
@@ -1240,6 +1389,7 @@ lv:
   embed_widget_project: Iegult šī projekta logrīku savā tīmekļa vietnē
   enable_offline_access: Iespējot bezsaistes režīmu
   enable_offline_access_for_mobile: Iespējot viedtālruņu bezsaistes režīmu
+  encompassing_places: Iekļautās vietas
   end: Beigas
   end_date_time: Beigu datums un laiks
   endangered: Apdraudēts
@@ -1247,9 +1397,11 @@ lv:
   endemic_to_x: "Endēmisks šeit: %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
+  eol_collection_url: "EOL kolekcijas URL"
   error_updating_photo: "Fotoattēla atjaunošanas laikā radās kļūda: %{photo_errors}"
   establishment:
     endemic: Endēmisks
+    establishment: Izplatība
     introduced: Introducēts
     invasive: Invazīvs
     managed: Kontrolēts
@@ -1297,7 +1449,7 @@ lv:
   facebook_options: Facebook iestatījumi
   failed_to_find_your_location: Neizdevās sameklēt tavu atrašanās vietu.
   failed_to_repair_photo: "Neizdevās salabot fotogrāfiju: %{errors}"
-  failed_to_save_record: "Neizdevās saglabāt ierakstu. Lūdzu mēģini vēlreiz nedaudz vēlāk."
+  failed_to_save_record: "Neizdevās saglabāt ierakstu. Lūdzu, mēģini vēlreiz nedaudz vēlāk."
   failed_to_save_record_with_errors: "Neizdevās saglabāt ierakstu: %{errors}"
   failed_to_unlink_your_account: Neizdevās atvienot kontu
   'false': 'Nepareizi'
@@ -1345,20 +1497,1339 @@ lv:
   find_species: Meklēt sugas
   find_suitable_observations: Meklēt atbilstošus novērojumus
   find_unsuitable_observations: Meklēt neatbilstošus novērojumus
+  find_your_current_location: Atrast pašreizējo atrašanās vietu
+  finished: Gatavs
+  finished_with_page: Darbs ar lapu pabeigts
+  first_confirmed_inat_observation: "Pirmais apstiprinātais novērojums iekš %{site_name}"
+  first_connect_your_provider_account_to_your_site: "Vispirms pievieno %{provider} kontu %{site_name} vietnei"
+  first_inat_observation: "Pirmais novērojums iekš %{site_name}"
+  first_observation: Pirmais novērojums
+  first_observation_by_date_added: Pirmais novērojums norādītajā datumā
+  first_observer: Pirmais novērotājs
   #Verb form, as in "Flag this item"
   flag: Pievienot karodziņu
+  flag_as_inappropriate: Pievienot karodziņu par neatbilstību
+  flag_an_item: Pievienot karodziņu
+  flag_as_spammer: Pievienot mēstuļotāja karodziņu
+  flag_as_non_spammer: Pievienot nemēstuļotāja karodziņu
+  #Label for the date/time when a flag was created
+  flag_created: Karodziņš izveidots
+  flag_description: Pievieno šim saturam karodziņu, lai pārziņi zinātu, ka kaut kas nav kārtībā.
+  flag_for_check_list_title_html: |
+    Pievienot kontrollapas karodziņu: %{title}
+  flag_for_comment_id_html: Pievienot karodziņu<a href="%{url}">komentāram %{id}</a>
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Objekts
+  flag_resolution: Risinājums
   flag_this_sound: Pievienot audiofailam karodziņu
   flagged: karodziņš pievienots
   flagged_: Karodziņš pievienots
   flagged_for_curation: Atzīmēts ar karodziņu un nodots pārziņiem
   flags: Karodziņi
+  flickr_account_information: Tava Flickr konta informācija
+  flickr_has_no_creative_commons: Flickr vietnē nav nevienas fotogrāfijas ar Creative Commons licenci no šīs vietas.
+  flickr_identity: Flickr identitāte
+  flickr_needs_to_confirm: "Flickr jāpārliecinās, ka vēlies saistīt savu kontu ar %{site_name}."
+  flickr_photo: Flickr fotogrāfija
+  flickr_photos: Flickr fotogrāfijas
+  flickr_style: Flickr-style
+  flickr_tagger: Flickr tagotājs
+  flickr_tags: Flickr tagi
+  fluid_layout: Plūstošs izkārtojums
+  #Adjective, as in a fluid layout of images
+  fluid: plūstošs
+  follow: Sekot
+  follow_receive_updates_about_new_observations: Sekot (saņemt ziņojumus par jauniem novērojumiem)
+  follow_user: "Sekot lietotājam %{user}"
+  followed_projects: Projekti, kuriem tu seko
+  followers: Sekotāji
+  following: Tu seko
+  following_x_people:
+    zero: 'Seko %{count} lietotājiem'
+    one: 'Seko 1 lietotājam'
+    other: 'Seko %{count} lietotājiem'
+  for_a_taxon: taksonam
+  formatting: Formatē
+  forgot_your_password: Aizmirsi paroli?
+  forum: Forums
+  forum_categories:
+    bug_reports: Kļudu ziņojumi
+    feature_requests: Piedāvājumu pieprasījumi
+    forum_feedback: Foruma atsauksmes
+    forum_moderation: Foruma pārvaldība
+    nature_talk: Sarunas par dabu
+    news_and_updates: Ziņas un aktualitātes
+    tutorials: Apmācības
+  forum_desc: |
+    Forumā iespējams diskutēt par iNat vietni un lietotni, tai skaitā par palīdzību un atbalstu, paziņojumiem, piedāvājumu pieprasījumiem, kļūdu ziņojumiem u.c.
+  frequency: Biežums
+  from_a_place: no vietas
+  from_eol_collection: No EOL kolekcijas
+  from_flickr_facebook_etc: No Flickr, Facebook u.t.t.
+  from_list: No saraksta
+  from_photos: No fotogrāfijām
+  from_place: No vietas
+  from_soundcloud: No Soundcloud
+  full_screen: Pilnekrāna režīms
+  fungi:
+    zero: sēnes
+    one: sēne
+    other: sēnes
+  gbif: GBIF
+  gbif_occurrences: GBIF parādīšana
+  generate_taxonomic_tags_for_flickr: Ģenerēt taksanomiskos tagus Flickr fotogrāfijām
+  generate_widget: Ģenerēt logrīku
+  generate_your_stats: Ģenerēt savu statistiku
+  generating_mobile_archive: "Ģenerēt mobilo arhīvu"
+  Genus: Ģints
+  geoprivacy: Ģeoprivātums
+  geoprivacy_is_obscured: Ģeoprivātums apslēpts
+  geoprivacy_is_obscured_desc: Novērotājs ir apslēpis koordinātas.
+  geoprivacy_is_private: Ģeoprivātums ir iestatīts privātajā režīmā
+  geoprivacy_is_private_desc: Novērotājs ir apslēpis koordinātas
+  georeferenced: Pievienota ģeogrāfiskā atsauce?
+  get_started: Sākt
+  getting_started_guide: Uzsākšanas padomi
+  give_it_some_detail: Apraksti sīkāk!
+  #Prompt to donate money on a montly basis
+  give_monthly_caps: ZIEDOT KATRU MĒNESI
+  #Prompt to donate money once
+  give_now_caps: ZIEDOT TŪLĪT
+  global_names: Globāli nosaukumi
+  globally: Globāli
+  go: Meklēt
+  go_back: Atgriezties
+  going_to_your_observations: Ielādē tavus novērojumus...
+  good_choice_for_sharing: Laba izvēle, lai dalītos ar zinātniekiem
+  google: Google
+  got_it!: Skaidrs!
+  got_your_data_somewhere_else?: Tev ir dati, kas pieejami citur? Varam palīdzēt.
+  graft: Atzars
+  graft_taxon: '%{taxon} taksona atzars'
+  grant_role: "%{grant} %{role} loma"
+  grid: Režģis
+  grid_layout: Režģa izkārtojums
+  grid_tooltip: Rādīt režģa skatu
+  group: Grupa
+  grouping: Grupē...
+  guides: Padomi
+  guide_compiled_by: 'Padomu izveidojis:'
+  guide_deleted: Padoms dzēsts
+  guide_will_be_deleted: Padoms tiks izdzēsts. Apjomīgu padomu izdzēšana var aizņemt kādu brīdi.
+  guide_taxon: Taksona padoms
+  guide_was_successfully_created: Padoms veiksmīgi izveidots.
+  guide_was_successfully_published: Padoms veiksmīgi publicēts.
+  guide_was_successfully_updated: Padoms veiksmīgi labots.
+  guidelines: Vadlīnijas
+  has_already_been_flagged_by: 'karodziņu jau pievienojis:'
+  has_id_supported_by_two_or_more: Vismaz divi lietotāji ir pievienojuši ID
+  has_one_or_more_faves: Vismaz viens lietotājs pievienojis izlasei
+  has_photo: Ar fotogrāfiju
+  has_photos: Ar fotogrāfijām
+  has_photo_and_sound: Ar fotogrāfijām un audiofailiem
+  has_photos_or_sounds: Ar fotogrāfijām un audiofailiem
+  has_sound: Ar audiofailu
+  has_sounds: Ar audiofailiem
+  hasnt_contributed_any_observations: nav pievienojis nevienu novērojumu šim projektam
+  header_your_observations: Tavi novērojumi
+  header_your_calendar: Tavs kalendārs
+  header_your_favorites: Tava izlase
+  header_your_lists: Tavi saraksti
+  header_your_journal: Tavs žurnāls
+  header_your_identifications: Tavi novērojumi
+  header_your_projects: Tavi projekti
+  header_your_profile: Tavs profils
+  heads_up: Uzmanību!
+  heads_up_this_photo_has_been_flagged: "UZMANĪBU: šai fotogrāfijai pievienots karodziņš"
+  heads_up_this_photo_is_already_associated_with: "Uzmanību: šī fotogrāfija jau ir saistīta ar <a target='_blank' href='%{url}'>citu novērojumu</a>"
+  heads_up_you_have_multiple: "Uzmanību: vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
+  help: Palīdzība
+  help_confirm_observations!: Palīdzi apstiprināt novērojumus!
+  help_support_inaturalist: "Atbalsti iNaturalist"
+  help_translate!: Palīdzi tulkot!
+  here_are_3_examples: Trīs piemēri veiksmīgi izveidotiem datiem
+  here_are_our_top_suggestions: 'Labākie minējumi:'
+  here_are_our_top_species_suggestions: 'Labākie organisma sugas minējumi:'
+  hex_color_eg: HEX krāsas kods, piemēram, 65644F
+  hi: Sveiks/a,
+  hi_user: "Sveiks/a, %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Slēpt
+  hide_content: Slēpt saturu
+  hide_desc: |
+    Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes pārziņi var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Noslēpt "Bez piezīmēm"
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total: Nerādīt kopējo skaitu
+  hide_uncountable_species: Noslēpt "Nesaskaitāmās sugas"
+  high: Augsts
+  highest_rank: Augstākā klasifikācija
+  highlights_and_stats_from_year_on_site: "Butiskākie momenti un statistika %{year} gadā %{site} vietnē"
+  history: Vēsture
+  home: Sākums
+  however_there_were_some_issues: "Tomēr radušās problēmas: %{issues}"
+  i_dont_know_but_i_am_sure_this_is_taxon: Nespēju noteikt sugu, bet organisms %{taxon} taksonam
+  icon: Ikona
+  icon_size: Ikonas izmērs
+  iconic_taxon: Ikonisks taksons
+  id: ID
+  id_categories:
+    tooltips:
+      leading: |
+        Šis ir viens no kopienas piedāvātajiem taksoniem. Iespējams, ka identifikācija tuvojas pareizajai atbildei.
+      improving: |
+        Pirmais taksona minējums, kam piekrīt kopiena. Šādi tiek precizēts kopienas piedāvātais taksons.
+  id_withdrawn: ID atsaukta
+  ids_by_taxon: ID iedal. pēc taksona
+  identify: Identificēt
+  identify_observations: "Identificēt novērojumus"
+  identify_observations_by_these_users: Identificēt šo lietotāju novērojumus
+  identify_title: "Identificēt"
+  identification: identifikācija
+  identification_by_user: Lietotāja %{user} identifikācija
+  identification_deleted: Identifikācija dzēsta
+  identification_saved: "Identifikācija saglabāta"
+  identification_updated: Identifikācija izlabota
+  identification_user_short: ID lietotājs
+  identification_withdrawn: Identifikācija atsaukta.
+  identifications: Identifikācijas
+  identifications_by: "Lietotāja %{user} identifikācijas"
+  computer_vision_suggestion: Datorredzes sistēmas ieteikums
+  identifiers: Identificētāji
+  identotron: Salīdzinātājs
+  identotron_for: Salīdzinātājs
+  identotron_help: Salīdzinātāja palīdzība
+  ids: "IDs"
+  ids_made_for_others: Citiem radītas IDs
+  ignore: ignorēt
+  ignore_and_continue: Ignorēt un turpināt
+  ignore_times: Ignorēšanas laiki
+  image_must_be_exactly: Attēlam jābūt tieši 950px platam un 400px augstam
+  image_size_control: Attēla izmēra kontrole
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  imperiled: Apdraudēts
+  import: Importēt
+  import_all_photos_as_observations: Importēt visas fotogrāfijas kā novērojumus
+  import_as_an_observation: Importēt kā novērojumu
+  import_as_another_observation: Importēt kā vēl vienu novērojumu?
+  import_date_time_location_taxonomic: "Importēt datumu, laiku, atrašanās vietu, aprakstu un taksonomisko informāciju no šīs fotogrāfijas."
+  import_from_csv: Importēt no CSV
+  import_from_other_photo_sites: Importēt no citām foto vietnēm
+  import_observations: Importēt novērojumus
+  import_observations_from_a_photo: Importēt novērojumus no foto vietnes vai no faila tavā datorā.
+  import_photos: Importēt fotogrāfijas
+  import_ranges: Importēt izplatības apgabalus
+  import_sections: Importēt sadaļas
+  import_tags_from_csv: Importēt tagus no CSV
+  importing: "Importē..."
+  improving: Tiek precizēta
+  in_n: "iekš %{n}"
+  in_place_x: iekš %{place}
+  inaturalist_network_affiliation: Piederība iNaturalist tīklam
+  #Label for messages you've received
+  inbox: Iesūtne
+  include_places: Iekļaut vietas
+  include_projects: Iekļaut projektus
+  include_suggestions_not_seen_nearby: Iekļaut indivīdu minējumus, kas nav novēroti tuvumā
+  include_taxa: Iekļaut taksonus
+  include_users: Iekļaut lietotājus
+  including: iekļaujot
+  increase_brightness: Palielināt spilgtumu
+  in_progress: procesā
+  in_the_past: pagātnē
+  in_the_past_week: pagājušonedēļ
+  inactive: Neaktīvs
+  inactive_taxon: Neaktīvs taksons
+  inappropriate_content: Nepieņemams saturs?
+  inat_account_action: "%{site_name} &#58; Konts &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name} vietnes lietotāji uzskata, ka šis ir pilnīgs taksona saraksts šajā vietā."
+  inat_user_profile: "%{site_name}: lietotāja %{user} profils"
+  inaturalist_activity_notifications: "%{site_name} aktivitātes paziņojumi"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist lietotnes"
+  inaturalist_is_a_joint_initiative: "%{site_name} ir California Academy of Sciences un National Geographic Society kopdarbs."
+  inaturalist_places: "%{site_name} vietnes vietas"
+  info: Info
+  input_taxon: Sākotnējais taksons
+  insects: kukaiņi
+  insect_life_stage: Kukaiņu dzīves posms
+  instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Pievienot citātu
+  interactions: Saskarsme
+  internal_server_error: Iekšējā servera kļūda
+  internal_taxon_including_descendants: Iekšējais taksons (t.s. zemākas pakāpes taksoni)
+  internal_taxon_rank: Iekšējā taksona klasifikācija
+  introduced: Introducēts
+  introduced_in_place: "Introducēts šeit: %{place}"
+  invitation: Ielūgums
+  invite: uzaicināt
+  invite_more: Uzaicināt vēl
+  invite_people: Uzaicināt lietotājus
+  invite_people_to_project: "Uzaicināt lietotājus šajā projektā: %{project}"
+  invite_someone_to: "Uzaicini kādu uz %{name}!"
+  invite_your_friends: Uzaicini savus draugus!
+  invite_your_friends_description: "Palīdzi augt un pilnveidoties %{site_name} kopienai, uzaicinot savus draugus!"
+  #Type of project where people can only join after they have been invited
+  inviteonly: tikai ar ielūgumu
+  invited_x: "Ielūgts %{x}"
+  iphone: iPhone
+  is_not_following_anyone: nevienam neseko.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Vai ir pietiekami daudz datu, lai apstiprinātu, ka šis ir %{taxon}?
+  is_this_offensive_html: 'Vai šis saturs ir <a href="/help#inappropriate">nepieņemams</a>, aizskarošs vai surogātpasts?'
+  is_this_place_a_duplicate: Vai šai vietai ir dublikāts?
+  it_can_now_be_used_for_research: Tagad to var izmantot pētniecībā un citās tīmekļa vietnēs.
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: slīpraksts
+  item_flagged_notice_html: |
+    Šis ir atzīmēts kā surogātpasts un vairs nav publiski redzams. Tev tas ir redzams, jo esi šī satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+    <a href="mailto:%{help_email}" class="contact">sazinies ar mums</a>.
+    <a href="%{manage_flags_path}">Pārvaldīt karodziņus</a>.
+  join: Pievienoties
+  join_and_add_an_observation_to_project_html: Pievienojies un iesniedz novērojumu %{project} projektā
+  join_project: Pievienoties projektam
+  #Prompt to join a specific project
+  join_project?: Pievienoties %{project} projektam?
+  join_some_projects_and_invite_some_observations_html: "Pievienojies <a href='%{join_url}'>projektiem</a> un <a href='%{invite_url}'>rosini pievienot novērojumus</a>"
+  join_the_largest_group_of_naturalists_in_the_world: Pievienojies lielākajai naturālistu kopienai pasaulē!
+  join_this_project: Pievienoties projektam
+  'joined!': Esi pievienojies!
+  joined_projects: Pievienojās projektiem
+  joined_with_date: "Pievienojās: %{date}"
+  journal: Žurnāls
+  journal_archives_for: Žurnāla arhīvi priekš
+  journal_post: Žurnāla ieraksts
+  journal_post_deleted: Žurnāla ieraksts izdzēsts
+  journal_posts: Žurnāla ieraksti
+  jpg_png_or_gif: "JPG, PNG vai GIF"
+  jump_to_letter: Pāriet pie burta
+  just_a_reminder: 'Atgādinājums: iespējams, ka esi sniedzis projekta pārziņiem pieeju savu novērojumu noslēptajām koordinātām.'
+  just_added!: Tikko pievienots.
+  keep_editing: Turpināt rediģēšanu
+  keyboard_shortcuts: Tastatūras saīsnes
+  kml: KML
+  kml_file_size_error: "KML jāaizņem mazāk par 1 MB"
+  label_colon: "%{label}:"
+  labels: Iezīmes
+  label_to_group_a_batch_of_taxon_changes: Iezīme, kas paredzēta vairāku taksonu izmaiņu grupēšanai reizē
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  location_private: Privāta atrašanās vieta
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Trūkst atrašanās vietas
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Nemainīt tālummaiņas līmeni
+  language_slash_locale: Valoda/vieta
+  language_slash_locale_description: Ar šo funkciju iespējams saglabāt valodas un datuma formāta iestatījumus, kas atbilst tavai atrašanās vietai. Izmaiņas stāsies spēkā, kad pārlādēsi lapu.
+  language_slash_type: Valoda / veids
+  #Large photo size
+  large: liels
+  last_active_with_date: "Pēdējā aktivitāte: %{date}"
+  last_confirmed_observation: Pēdējais apstiprinātais novērojums
+  last_observation: Pēdējais novērojums
+  last_seen: 'Pēdējoreiz manīts:'
+  last_year: Pagājušogad
+  lat: Plat.
+  latitude: Platums
+  latitude_in_decimals: 'Platums decimālajos grādos, piemēram, 38.123'
+  latitude_slash_y_coord_slash_northing: Platums / y koordinātas / ziemeļu virzienā
+  latitude_value: "Platums: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers: Slāņi
+  layout: Izkārtojums
+  leaderboard: Rangu tabula
+  leaderboard_for_x: "%{x} rangu tabula"
+  leaderboards: Rangu tabulas
+  leaderboard_most:
+    species: 'Visvairāk sugu laika periodā: %{time}'
+    observations: 'Visvairāk novērojumu laika periodā: %{time}'
+    identifications: 'Visvairāk identifikāciju laika periodā: %{time}'
+  leading: Vadošā
+  learn: Mācies
+  learn_about_the_species_live_in: Mācies par sugām, kas dzīvo
+  learn_about_third_party_tracking: Papildinformācija par trešo pušu izsekošanu
+  learn_more: Uzzini vairāk
+  learn_more_on_the_blog: Uzzini vairāk mūsu emuārā
+  learn_more_raquo: "Uzzini vairāk &raquo;"
+  learn_what_these_licenses_mean: Uzzini vairāk par šīm licencēm
+  least_concern: Zems risks
+  leave: Pamest
+  leave_a_comment: Pievienot komentāru
+  leave_this_project: Pamest projektu
+  leaves: lapas
+  legacy_authentication_notice_html: |
+    Izskatās, ka izmantoji paroli no vecākas vietnes versijas.
+    Lūdzu, neaizmirsti <a href="%{url}">nomainīt savu paroli</a> jaunajā versijā.
+  let_us_walk_you_through: Apskatīsim galvenās vietnes funkcijas.
+  lexicon: Leksikons
+  lexicons:
+    scientific_names: Zinātniskie nosaukumi
+    afrikaans: Afrikandu
+    albanian: Albāņu
+    bengali: Bengāļu
+    catalan: Katalāņu
+    cebuano: Sebuāņu
+    chinese_simplified: Ķīniešu (vienkāršota)
+    chinese_traditional: Ķīniešu (tradicionāla)
+    creole_french: Franču kreols
+    creole_portuguese: Portugāļu kreols
+    czech: Čehu
+    danish: Dāņu
+    davawenyo: Davavenjo
+    dutch: Nīderlandiešu
+    english: Angļu
+    estonian: Igauņu
+    finnish: Somu
+    french: Franču
+    gela: Geliešu
+    german: Vācu
+    greek: Grieķu
+    hawaiian: Havajiešu
+    hebrew: Ivrits
+    hiligaynon: Hiligajnoniešu
+    icelandic: Islandiešu
+    ilokano: Ilokanoiešu
+    italian: Itāliešu
+    japanese: Japāņu
+    korean: Korejiešu
+    latvian: Latviešu
+    lithuanian: Lietuviešu
+    luxembourgish: Luksemburgiešu
+    maltese: Maltiešu
+    maori: Maoru
+    misima_paneati: Misimiešu
+    norwegian: Norvēģu
+    occitan: Oksitāņu
+    pangasinan: Pangasinaniešu
+    portuguese: Portugāļu
+    romanian: Rumāņu
+    russian: Krievu
+    spanish: Spāņu
+    swedish: Zviedru
+    tagalog: Tagalogu
+    tahitian: Taitiešu
+    tokelauan: Tokelauiešu
+    turkish: Turku
+    waray_waray: Varajiešu
+  less: Mazāk
+  licensed_site_photos: "%{site_name} vietnes licencētas fotogrāfijas"
+  license: Licence
+  licensing: Licences
+  licensing_your_content_gives_others_legal: "Piešķirot savam saturam licenci, sniegsi citiem tiesisko pamatu izmantot tavu saturu ar nosacījumu, ka viņi nepārkāpj licences noteikumus. %{site_name} izmanto saturu ar Creative Commons licenci, lai dalītos ar šiem datu partneriem: "
+  life: Dzīvība
+  life_list: "Lietotāja %{user} saraksts"
+  life_list_updated: Saraksts izmainīts.
+  life_list_updated_we_also_saved_a: Saraksts izmainīts. Saglabājām arī vienu tukšu šī taksona novērojumu.
+  life_lists_automatically_fill: Novērojot jaunus taksonus, tavi saraksti tiek ar tiem automātiski papildināti. Tos var sakārtot, izvēloties arī augstākas pakāpes taksonus, piemēram, saraksts ar vārnu dzimtas putniem (Corvidae).
+  linear_scale_label: Lineāri
+  link: Saite
+  link_or_unlink_your_facebook_account: Pievieno vai atvieno savu Facebook kontu
+  link_or_unlink_your_flickr_account: Pievieno vai atvieno savu Flickr kontu
+  link_or_unlink_your_google_account: Pievieno vai atvieno savu Google kontu
+  link_your_facebook_account: Pievieno savu Facebook kontu
+  link_your_flickr_account: Pievieno savu Flickr kontu
+  link_your_google_account: Pievieno savu Google kontu
+  linked_facebook: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Facebook kontu."
+  linked_facebook_automaticaly: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Facebook kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Facebook kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Facebook."
+  linked_facebook_description: "%{site_name} konta savienošana ar Facebook kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Facebook konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Facebook kontu, ko gribēsi savienot ar %{site_name} kontu."
+  linked_facebook_howto: "Lai savienotu Facebook ar %{site_name}, nospied uz saites pa labi un pieslēdzies savam Facebook kontam."
+  linked_facebook_password: "Mēs nekad nepieprasām tavu Facebook paroli, bet paši Facebook to mēdz palūgt, lai pārbaudītu, vai pogas URL patiešām ir no Facebook.com. Mēs arī neveicam izmaiņas tavos Facebook datos, ja vien tu pats to nelūdz."
+  linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
+  linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
+  linked_flickr_description: "%{site_name} konta savienošana ar Flickr kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Flickr konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Flickr kontu, ko gribēsi savienot ar %{site_name} kontu."
+  linked_flickr_password_html: "<strong>Mēs nekad nepieprasām tavu Flickr paroli</strong>, bet paši Flickr to mēdz palūgt, lai pārbaudītu, vai pogas URL patiešām ir no Flickr.com. Mēs arī neveicam izmaiņas tavos Flickr datos, ja vien tu pats to nelūdz."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: saites teksts
+  linkedin: LinkedIn
+  list: Saraksts
+  list_deleted: Saraksts izdzēsts.
+  list_reloaded_from_observations: Saraksts no jauna ielādēts no novērojumiem
+  list_rules_reapplied: Sarakstu noteikumi ir piemēroti no jauna
+  list_saved: Saraksts saglabāts.
+  list_tooltip: Ieslēgt saraksta skatu
+  list_updated: Saraksts izmainīts.
+  list_views:
+    plain: standarta
+    taxonomic: taksonomisks
+    photo: foto
+  list_was_successfully_created: Saraksts veiksmīgi izveidots.
+  listed_taxa: Sarakstā iekļautie taksoni
+  listed_taxon: Sarakstā iekļautais taksons
+  listed_taxon_updated: Sarakstā iekļautais taksons ir izmainīts
+  listing_lists: Saraksti
+  listing_project_assets: Uzrāda projekta pielikumus
+  listing_taxa: Uzrāda taksonus
+  lists: Saraksti
+  lists_by_login:
+    title:
+      current_user: Tavi saraksti
+      login: '%{login} lietotāja saraksti'
+  load: Ielādēt
+  loading: "Ielādē..."
+  loading_flickr_photos: "Ielādē Flickr fotogrāfijas..."
+  loading_images: Ielādē attēlus...
+  loading_metadata: Ielādē metadatus...
+  loading_preview_and_code: Ielādē priekšskatījumu un kodu...
+  loading_suggestions: Ielādē minējumus...
+  loading_tags: "Ielādē tagus..."
+  loading_taxa_from_your: "Ielādē taksonus no taviem novērojumiem..."
+  loading_wikipedia_description: "Ielādē Vikipēdijas aprakstu..."
+  locale_description: Izvēloties norises vietu, tiek iestatīta valoda un datuma formāts.
+  locales_: Norises vietas
+  locales:
+    ar: Arābu
+    bg: Bulgāru
+    br: Bretoņu
+    ca: Katalāņu
+    cs: Čehu
+    da: Dāņu
+    de: Vācu
+    el: Grieķu
+    en: Angļu
+    eo: Esperanto
+    es: Spāņu
+    es-AR: Spāņu (Argentīna)
+    es-MX: Spāņu (Meksika)
+    et: Igauņu
+    eu: Basku
+    fi: Somu
+    fr: Franču
+    fr-CA: Franču (Kanāda)
+    gl: Galisiešu
+    he: Ivrits
+    id: Indonēziešu
+    it: Itāliešu
+    ja: Japāņu
+    ko: Korejiešu
+    lb: Luksemburgiešu
+    lt: Lietuviešu
+    lv: Latviešu
+    mk: Maķedoniešu
+    nb: Norvēģu būkmols
+    nl: Nīderlandiešu
+    oc: Oksitāņu
+    pl: Poļu
+    pt: Portugāļu
+    pt-BR: Portugāļu (Brazīlijā)
+    ru: Krievu
+    sk: Slovāku
+    sq: Albāņu
+    sv: Zviedru
+    tr: Turku
+    uk: Ukraiņu
+    zh-CN: Ķīniešu (vienkāršota)
+    zh-TW: Ķīniešu (tradicionāla)
+  locality_notes: Piezīmes par atrašanās vietu
+  location: Atrašanās vieta
+  location_is_accurate: Atrašanās vieta ir precīza
+  location_is_exact: atrašanās vieta ir precīza
+  location_is_public: Atrašanās vieta ir publiska
+  location_is_obscured: Atrašanās vieta ir noslēpta
+  location_is_private: Atrašanās vieta ir privāta
+  location_specified: Norādīta atrašanās vieta
+  log_in: Pieslēgties
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Pieslēdzies</a> vai <a href="/signup">reģistrējies</a>, lai pievienotu komentārus.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Pieslēdzies</a> vai <a href="/signup">reģistrējies</a>, lai pievienotu identifikācijas.
+  log_out: Iziet
+  log_out_caps: IZIET
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "Iziet no %{site_name}?"
+  log_scale_label: Žurnāls
+  login_slash_username: Lietotājvārds
+  logo:
+    logo: Logo
+    white_bg_gif: GIF ar baltu fonu
+    transparent_png: Caurspīdīgs PNG
+    white_text_transparent_png: Caurspīdīgs PNG ar baltu tekstu
+    none: bez
+  long: Gar.
+  longitude: Garums
+  longitude_in_decimal: 'Garums decimālajos grādos, piemēram, -122.123'
+  longitude_slash_x_coord_slash_easting: Garums / x koordinātas / austrumu virzienā
+  longitude_value: "Garums: %{longitude}"
+  look_up_name: "Meklēt nosaukumu"
+  looks_like_neither_have!: Izskatās, ka nevienam nav taksonu.
+  looks_like_no_species_in_guide: Izskatās, ka padomiem vēl neesi pievienojis nevienu sugu.
+  lookup: Meklēt
+  low: Zems
+  lowest_rank: Zemākā klasifikācija
+  make_admin: Padarīt par administratoru
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Galvenais saturs
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Galvenā satura vieta ir te
+  make_a_new_place: Izveidot jaunu vietu
+  make_a_taxon_swap_instead?: Tā vietā samainīt taksonus?
+  make_curator: Piešķirt pārziņa statusu
+  make_manager: Piešķirt menedžera statusu
+  make_sure_the_default_photo_looks_good: Pārliecinies, lai noklusējuma fotogrāfija izskatītos labi lielā izmērā.
+  make_this_your_default_license: "Padarīt šo par noklusējuma %{type} licenci"
+  mammals: zīdītāji
+  manage_all_your_subscriptions: Pārvaldīt visus abonementus
+  manage_names: Pārvaldīt nosaukumus
+  manage_your_projects: Pārvaldīt savus projektus
+  manage_your_project_invitations: Pārvaldīt ielūgumus uz projektiem
+  manage_your_relationships: Pārvaldīt attiecības
+  manager: Menedžeris
+  managers: Menedžeri
+  managers_can_do: Menedžeriem ir tiesības veikt visas tās pašas darbības, ko veic pārziņi, kā arī papildus mainīt projektu iestatījumus un veidot projektu žurnālu ierakstus.
+  managing_projects: Projektu pārvaldīšana
+  map: Karte
+  map_legend: Kartes apzīmējumi
+  map_marker_size: Izvēlētā punkta izmērs kartē
+  map_of_observations: Novērojumu karte
   maps:
     overlays:
+      all_observations: Visi novērojumi
+      every_publicly_visible_observation: Visi publiski pieejamie novērojumi, kas izveidoti iNaturalist tīklā.
+      featured_observations: Piedāvātie novērojumi
+      gbif_network: GBIF tīkls
+      gbif_network_description: Muzeju un citu avotu arhīvi, kurus izplatījusi Globālās bioloģiskās daudzveidības informācijas sistēma (GBIF).
+      observations: Novērojumi
+      place_boundary: Vietas robeža
       checklist_places: Vietu kontrollapa
+      checklist_places_description: Vietas, kur šis taksons ir iekļauts sarakstā
+      range: Apgabals
+  map_tooltip: Rādīt kartes skatu
+  mark_as_reviewed: Atzīmēt kā pārbaudītu
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Ja atzīmēsi novērojumu kā pārbaudītu, noklusējuma režīmā tas vairs nebūs redzams identifikāciju sadaļā. Tomēr citi lietotāji to varēs redzēt.
+  mark_all_as_reviewed: Atzīmēt visu kā pārbaudītu
+  mark_all_as_unreviewed: Atzīmēt visu kā nepārbaudītu
+  matching_species_will_shown_up_here: 'Šeit uzrādīsies filtriem atbilstošās sugas. Kartē uzrādīsies izplatības apgabals, ja tāds ir pieejams šai sugai šajā vietā: %{place}.'
+  maverick: Atšķirīga
+  media: Mediji
+  media_type: Mediju veids
+  medium: medijs
+  meet: Iepazīt
+  member_of_the_inaturalist_network_html: |
+    Daļa no <a href="%{url}">iNaturalist Network</a> tīkla
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Daļa no%{partial_inat_network_tag_html}iNaturalist Network</a>, %{cas_tag_html} un %{nat_geo_tag_html} kopdarbs.
+  #As in members of a project
+  members: Dalībnieki
+  membership_model: Dalībnieku modelis
+  merge: Apvienot
+  merge_it_with_another_place: Apvienot ar citu vietu
+  merge_observation_field_x_into: 'Apvienot novērojuma lauku "%{x}" ar...'
+  merging: Apvieno...
+  merging_places: Apvieno vietas...
+  message: Ziņa
+  message_deleted: Ziņa izdzēsta
+  message_from_user_at_time: No %{user} %{time}
+  message_from_user_on_date: No %{user} %{date}
+  messages: Ziņas
+  messages_new_correspondent_it_looks_like: |
+    Izskatās, ka iepriekš neesi sazinājies ar šo personu, tāpēc, lūdzu, ievēro šo:
+  messages_new_correspondent_specimens: |
+    Esi uzmanīgs, ja kāds lūdz īpatņu paraugus vai atklāt noslēptos datus. Centies pārbaudīt konkrētā lietotāja identitāti. Ja persona lūdz īpatņu paraugus, pieprasi uzrādīt atļauju.
+  messages_new_correspondent_personal: |
+    Neizpaud neuzticamiem cilvēkiem informāciju par sevi.
+  messages_new_correspondent_actions_html: |
+    Ja rodas aizdomas par to, ka šī persona pārkāpj <a href="%{tos_url}"
+    target="_blank">lietošanas noteikumus</a> vai neievēro <a
+    href="%{guidelines_url}" target="_blank">kopienas vadlīnijas</a>, lūdzu, atzīmē lietotāja ziņu ar karodziņu.
+  misidentifications: Nepareizas identifikācijas
+  misleading_or_illegal_content_html: |
+    Maldinošs vai nelikumīgs saturs, rasu un etniskā un naida izraisīšana u.t.m.l. Lai uzzinātu vairāk par to, ko saprotam ar vārdu "piemērots", skatīt <a href="/help#inappropriate">BUJ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Trūkst datuma
+  mobile: Mob.
+  mollusks: gliemji
+  momentjs:
+    shortRelativeTime:
+      future: "iekš %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1 s."
+      #Short text representing 1 minute in the past
+      m: "1 min."
+      #Short text representing %d minutes in the past
+      mm: "%d min."
+      #Short text representing 1 hour in the past
+      h: "1 st."
+      #Short text representing %d hours in the past
+      hh: "%d st."
+      #Short text representing 1 day in the past
+      d: "1 d."
+      #Short text representing %d days in the past
+      dd: "%d d."
+      #Short text representing 1 month in the past
+      M: "1 mēn."
+      #Short text representing %d months in the past
+      MM: "%d mēn."
+      #Short text representing 1 year in the past
+      'y': "1 g."
+      #Short text representing %d years in the past
+      yy: "%d g."
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mma z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM, YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+  month: Mēnesis
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Mēneša atbalstītājs</a> kopš %{date}
+  months: Mēneši
+  more: Vairāk
+  more_fields: Vairāk lauku
+  more_filters: Vairāk filtru
+  more_from_x: Vairāk no %{x}
+  more_import_options: Vairāk importa opciju
+  more_info: Vairāk informācijas
+  more_info_title: Vairāk informācijas
+  more_journal_posts: Vairāk žurnāla ierakstu
+  more_observations: Vairāk novērojumu
+  more_photos: Vairāk fotogrāfiju
+  more_than_a_week_ago: Vairāk nekā pirms nedēļas
+  most_agree: vairums piekrīt
+  most_browser_print_pdf: "Vairumam interneta pārlūku ir funkcija, lai printētu PDF formātā"
+  most_disagree: vairums nepiekrīt
+  most_comments_and_faves: Visvairāk komentētie un izlasei pievienotie
+  most_observations: Visvairāk novērojumu
+  most_recent_observation_by_date_observed: Nesenākais pierādāmais novērojums, šķirojot pēc novērojuma datuma
+  most_species: Visvairāk sugu
+  most_observed_species: Visvairāk novēroto sugu
+  most_observed_introduced_species: Visvairāk novēroto introducēto sugu
+  most_observed_threatened_species: Visvairāk novēroto apdraudēto sugu
+  multiple: vairāki
+  multiple_select_option: '-- vairāki --'
+  multiple_taxon_ids_separated_by_commas: 'Vairākas taksonu identifikācijas, kas jāatdala ar komatiem, piemēram, 123,654.'
+  must_be_observed_after: |
+    jābūt novērotam pēc %{operand}
+  must_be_observed_before: |
+    jābūt novērotam pirms %{operand}
+  must_be_observed_in: jābūt novērotam iekš
+  must_be_less_than_x_MB: "Faila izmēram jabūt mazākam par %{x} MB"
+  must_have_observation_field: "%{operand} novērojuma laukam jābūt aizpildītam"
+  must_have_x: "jābūt ar %{x}"
+  mute_user: Apklusināt lietotāju
+  mute_removed: Vairs nav apklusināts
+  muted_users: Apklusinātie lietotāji
+  n_ago: "pirms %{n}"
+  n_people_agrees: "%{amount} lietotāju piekrīt"
+  n_people_disagrees: "%{amount} lietotāju nepiekrīt"
+  n_person_agrees: "%{amount} lietotāju piekrīt"
+  n_person_disagrees: "%{amount} lietotāju nepiekrīt"
+  name: Nosaukums
+  name_entered: Ievadītais nosaukums
+  name_or_slug: "Nosaukums vai URL, piemēram, mans-projekts"
+  name_of_the_place_you: Novērojuma vietas nosaukums
+  name_providers:
+    col: Dzīvības katalogs
+    ubio: uBio
+    nzor: Jaunzēlandes organismu reģistrs
+  names: Nosaukumi
+  names_for_taxon_html: "%{taxon} nosaukumi"
+  native: vietējs
+  native_page_url: Iepriekš ielādētas lapas URL
+  native_to_place: "Izcelsmes vieta: %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
+  nav: Navig.
+  #Stub text to show where the nav section of the project detail page is.
+  nav_description: Vieta informācijai par projekta navigāciju
+  ne_lat: ZA platums
+  ne_lon: ZA garums
+  near_threatened: Gandrīz apdraudēts
+  nearby_observations_: Tuvējie novērojumi
+  needs_id: nepieciešama ID
+  needs_id_: Nepieciešama ID
+  needs_id_expandable_html: "<span class='full'>Nepieciešama </span>ID"
+  needs_id_tooltip_html: 'Novērojumiem ar "Nepieciešama ID" statusu ir mediji, atrašanās vieta un datums, bet trūkst precīzas kopienas identifikācijas. <a href="https://www.inaturalist.org/pages/help#quality"> Vairāk par novērojumu kvalitātes līmeņiem</a>'
+  needs_to_be_identified: Nepieciešama identifikācija
+  new: Jauns
+  new_and_noteworthy: Jauns un ievērojamības cienīgs
+  new_announcement: Jauns paziņojums
+  new_assessment: Jauns novērtējums
+  new_check_list: Jauna kontrollapa
+  new_check_list_for: "Izveidot jaunu kontrollapu, kas paredzēta šai vietai: %{place} &raquo;"
+  new_flag_for: Jauns karodziņš priekš
+  new_guide: Jauns padoms
+  new_journal_post: Jauns ieraksts žurnālā
+  new_lexicon: Jauns leksikons
+  new_list: Jauns saraksts
+  new_members: "Jauni dalībnieki"
+  new_message: Jauna ziņa
+  new_observation_field: Jauns novērojuma lauks
+  new_observations: Jauni novērojumi
+  new_observations_in_year: "Jauni novērojumi %{year}. gadā"
+  new_observations_ellispsis: "Jauni novērojumi"
+  new_observations_from_place_html: "Jauni novērojumi no %{place}"
+  new_observations_may_take_up_to: Jaunu novērojumu parādīšanās logrīkā var aizņemt līdz pat %{widget_expiration} minūtēm.
+  new_observations_of_x_html: "Jauni novērojumi no %{x}"
+  new_password: Jauna parole
+  new_post: Jauns ieraksts
+  new_project: Jauns projekts
+  new_project_asset: Jauns projekta pielikums
+  new_project_asset_for: Jauns projekta pielikums priekš
+  new_source: Jauns avots
+  new_species_added_in_interval: 'Jaunas sugas, kas pievienotas šajā laika sprīdī: %{interval}'
+  new_species_added_in_interval_x_of_y: 'Jaunas sugas, kas pievienotas šajā laika sprīdī: %{interval} (Rāda %{x} no %{y})'
+  new_taxon_change: Jaunas izmaiņas taksonos
+  new_taxon_link: Jauna taksona saite
+  new_taxon_name_for: Jauns taksona nosaukums priekš
+  new_taxon_range: Jauna taksona klasifikācija
+  new_taxonomic_change: Jaunas taksonomiskās izmaiņas (Melnraksts)
+  new_trip: Jauns ceļojums
+  new_updates_in_the_last_24_hours_from: "Pēdējo 24 stundu jaunumi no %{site_name}"
+  new_users: Jauni lietotāji
+  new_users_in_year: "Jauni lietotāji %{year}. gadā"
+  new_users_w_7_obs: Jauni lietotāji ar 7 novērojumiem
+  newly_added: Nesen pievienotās
+  newly_added_species: Nesen pievienotās sugas
+  newly_observed_species: Pirmoreiz novērotās sugas
+  newly_observed_species_in_year: "Pirmoreiz pievienotās sugas %{year}. gadā"
+  next: Nākamais
+  next_observation: Nākamais novērojums
+  next_page: Nākamā lapa
+  next_photo: Nākamā fotogrāfija
+  next_tab: Nākamā cilne
+  'no': 'Nē'
+  no_assessments_have_been_added_to_this_project_yet: Šim projektam vēl nav pievienots neviens novērtējums.
+  no_but_it_is_a_member_of_taxon: "Nē, bet tas pieder pie %{taxon}"
+  no_comments_yet: Pagaidām nav komentāru.
+  no_countries_added_yet: Pagaidām nav pievienota neviena valsts
+  no_creative_commons_flickr_photos_tagged_x: 'Nav nevienas Creative Commons Flickr fotogrāfijas ar "%{x}" tagu'
+  no_curators_set: Nav neviena pārziņa
+  no_curators_yet: Pagaidām nav neviena pārziņa.
+  no_description: Nav apraksta
+  no_flags: Pagaidām nav neviena karodziņa
+  no_flickr_photos_tagged: Neviena Flickr fotogrāfija nav izvēlēta!
+  no_identifications: Nav identifikāciju
+  no_identifications_added:
+    current_user: Neesi pievienojis nevienu identifikāciju neviena lietotāja novērojumam.
+    user: "%{user}nav pievienojis nevienu identifikāciju neviena lietotāja novērojumam."
+  no_ids_have_been_suggested_yet: Neviena ID vēl nav ieteikta
+  no_interaction_data_available: Saskarsmes dati nav pieejami
+  no_its_as_good_as_it_can_be: Nē, to vairs nevar uzlabot
+  no_favorites_added:
+    current_user: Izlasei vēl nekas nav pievienots.
+    user: "%{user} izlasei vēl neko nav pievienojis."
+  no_journal_posts_yet: Pagaidām žurnālā nav neviena ieraksta.
+  no_license_all_rights_reserved: Licences nav (visas tiesības paturētas)
+  no_managers_set: Menedžeri nav izvēlēti
+  no_matching_article_from_x: "No %{x} neizdevās atrast nevienu rakstu"
+  no_matching_invitations: Ielūgumi nav atrasti
+  no_matching_observations: Novērojumi nav atrasti
+  no_matching_places: Vietas nav atrastas
+  no_matching_projects: Projekti nav atrasti
+  no_matching_species: Sugas nav atrastas
+  no_matching_taxa: Taksoni nav atrasti
+  no_matching_users: Lietotāji nav atrasti
+  no_members_yet: "Pagaidām nav dalībnieku"
+  no_messages_yet: Pagaidām nav ziņu
+  no_misidentifications_yet: Pagaidām nepareizu identifikāciju nav
+  no_more_mail_from_site: "Nevēlies saņemt ziņas e-pastā no %{site_name}? Pielāgo iestatījumus šeit:"
+  no_more_taxa_to_load: Vairs nav ielādējamu taksonu.
+  no_more_results_found: Vairāk rezultātu nav
+  no_new_messages: Nav jaunu ziņu
+  no_observations: Nav novērojumu
+  no_observations_from_this_place_yet: Šajā vietā vēl nav novērojumu.
+  no_observations_matching_those_ids: Šīm identifikācijām atbilstoši novērojumi nav atrasti.
+  no_observations_submitted: "Nav iesniegts neviens novērojums."
+  no_observations_yet: Pagaidām nav novērojumu
+  no_one_has_added_any: Neviens šai vietai nav pievienojis piezīmes.
+  no_one_has_been_invited_yet: Neviens vēl nav ielūgts
+  no_one_posted_anything_yet: Neviens vēl nav veicis nevienu ierakstu.
+  no_photo: Nav fotogrāfijas
+  no_photos: Nav fotogrāfiju
+  no_photos_of_that_size: Šajā izmērā nav nevienas fotogrāfijas
+  no_places_available: Nav pieejamu vietu
+  no_post_yet: Pagaidām nav ierakstu.
+  no_project_selected: Nav izvēlēts neviens projekts
+  no_project_to_admin_current_user: "Tu neesi neviena projekta administrators"
+  no_project_to_admin_login: "%{login} nav neviena projekta administrators"
+  no_projects_yet: Pagaidām nav projektu
+  no_range_data_available: Nav pieejamu datu par izplatības apgabalu.
+  no_recent_activity: Nav nesenas aktivitātes
+  no_relevant_annotations: Nav atbilstošu piezīmju
+  no_reply_yet: Pagaidām atbildes nav
+  no_results_found: Nekas netika atrasts
+  no_results_for: 'Nekas netika atrasts, meklējot '
+  no_results_matching: Nav atbilstošu rezultātu
+  no_sections_available: Nav pieejama neviena sadaļa.
+  no_sections_have_been_added_to_this_assessments_yet: Novērtējumam vēl nav pievienota neviena sadaļa.
+  no_species_have_been_listed: Vietas sarakstā vēl nav iekļauta neviena suga.
+  no_species_observed: Neviena suga nav novērota
+  no_species_on_this_list: Sarakstam vēl nav pievienota neviena suga.
+  no_species_on_this_list_for_owner_html: |
+    Sugas var pievienot sarakstam tieši šeit. Ja sugas ir tavā sarakstā, tās tiks automātiski atjaunotas, kad <a href="%{url}" class="nobr">pievienosi novērojumus</a>.
+  no_subject_parens: "(Bez nosaukuma)"
+  no_suggestions_available: Nav neviena ieteikuma
+  no_summary_from_wikipedia: Nav Vikipēdijas apraksta
+  no_summary_has_been_set: Apraksts nav pievienots.
+  no_taxa: Nav taksonu
+  no_taxa_listed: Sarakstā nav taksonu
+  no_taxa_selected: Nav izvēlēts neviens taksons.
+  no_taxa_with_unknown_relationships: Nav taksonu ar nezināmām attiecībām
+  no_taxon_framework_relationships: nav taksonu iedalījuma attiecību
+  no_taxonomic_changes_match_those_criteria: Kritērijiem neatbilst nevienas taksonomiskās izmaiņas
+  no_users_found_with_those_filters: Izmantojot šos filtrus, netika atrasts neviens lietotājs
+  no_wikipedia_page_for_taxon: Šim taksonam nav Vikipēdijas apraksta
+  noble_curators: "%{site} vietnes cēlie pārziņi"
+  non_human?: Mākslīgs?
+  none: Nekas
+  none_found: Nekas netika atrasts
+  normal: normāls
+  not_completed: Nav pabeigts
+  not_confident: Neesam pietiekami pārliecināti, lai ieteiktu sugu.
+  not_confident_top_suggestions: Neesam pietiekami pārliecināti, lai ieteiktu sugu, bet šie ir mūsu labākie minējumi
+  not_covered_by_any_taxon_frameworks: Neatbilst nevienai no taksonu iedalījuma sistēmām
+  not_evaluated: nav novērtēts
+  not_findig_what_you_want: Nevari atrast iecerēto?
+  not_finding_place_you_want?: Nevari atrast vēlamo vietu?
+  not_found: Nav atrasts
+  not_linked_facebook: "Tavs %{site_name} konts nav savienots ar tavu Facebook kontu."
+  not_linked_flickr: "Tavs %{site_name} konts nav savienots ar tavu Flickr kontu."
+  not_on_this_list: Nav šajā sarakstā.
+  not_recorded: Nav saglabāts
+  not_resolved: Nav atrisināts
+  not_seeing_what_looking_for: Nevari atrast meklēto?
+  note: Piezīme
+  notes: Piezīmes
+  note_you_can_modify_the_height_attribute: "Uzmanību: augstumu ir iespējams mainīt, lai tas iederētos tavas tīmekļas vietnes brīvajā vietā."
+  notifications: Paziņojumi
+  notify_me_of_mentions: Saņemt paziņojumus par pieminēšanu (t.i., @lietotājvārds)
+  notify_me_of_mentions_description: "Ja funkcija būs izslēgta, nesaņemsi paziņojumus brīžos, kad kāds pieminēs tevi %{site_name} vietnē."
+  notify_me_about_redundant_identifications: Saņemt paziņojumus par apstiprināmām identifikācijām
+  number_of_observations: Novērojumu skaits
+  number_of_observers_value: "Novērotāju skaits: %{number}"
+  number_of_observers: "Novērotāju skaits"
+  number_selected: "# izvēlēts"
+  obs: Nov.
+  obs_cid_d: Nov. apstipr. ID
+  obs_id_d: Nov. ID
+  obscured: Noslēpts
+  obscured_or_private: noslēpts vai privāts
+  observation: Novērojums
+  observation_: novērojums
+  observation_added: Novērojums pievienots.
+  observation_added_to_the_project: "Novērojums pievienots \"%{project}\" projektam"
+  observation_aggregation: Novērojumu apkopošana
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Lietotāja %{user} novērojums
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Novērojums &copy; %{user}
+  observation_belongs_to_project_requiring_field: |
+    Novērojums iekļauts projektā, kam nepieciešams šis lauks. Lai izdzēstu šo lauku, novērojums jāizdzēš no minētā projekta.
+  observation_brief_something_on_day: "Kaut kas šajā dienā: %{day}"
+  observation_brief_something_on_day_at_time: "Kaut kas šajā dienā: %{day} plkst. %{time}"
+  observation_brief_something_on_day_at_time_by_user: "Kaut kas šajā dienā: %{day} plkst. %{time} no %{user}"
+  observation_brief_something_on_day_by_user: "Kaut kas šajā dienā: %{day} no %{user}"
+  observation_brief_something_by_user: "Kaut kas no %{user}"
+  observation_brief_something_from_place: "Kaut kas iekš %{place}"
+  observation_brief_something_from_place_by_user: "Kaut kas iekš %{place} no %{user}"
+  observation_brief_something_from_place_on_day: "Kaut kas iekš %{place} %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Kaut kas iekš %{place} %{day} no %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Kaut kas iekš %{place} %{day} plkst. %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Kaut kas iekš %{place} %{day} plkst. %{time} no %{user}"
+  observation_brief_taxon_on_day: "%{taxon} %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} %{day} plkst. %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} plkst. %{time} no %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} %{day} no %{user}"
+  observation_brief_taxon_by_user: "%{taxon} no %{user}"
+  observation_brief_taxon_from_place: "%{taxon} no %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} iekš %{place} no %{user}"
+  observations_by_category: "Novērojumi pēc kategorijas"
+  observations_by_app: Novērojumi pēc lietotnes
+  observations_by_user_on_date: "Lietotāja %{user} novērojumi %{date}"
+  observations_by_you: "Tavi novērojumi"
+  observations_by_you_on_date: "Tavi novērojumi %{date}"
+  observation_calendar_for: "Lietotāja %{user} novērojumu kalendārs %{year}. gadā"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Novērojumiem var pievienot tikai %{limit} fotogrāfijas
+  observation_curation: Novērojumu pārskatīšana
+  observation_date: Datums
+  observation_date?: Datums?
+  observation_field: Novērojuma lauks
+  observation_field_details: Novērojuma lauka dati
+  observation_field_type_text: Teksts
+  observation_field_type_numeric: Skaitliski
+  observation_field_type_date: Datums
+  observation_field_type_time: Laiks
+  observation_field_type_datetime: Datums un laiks
+  observation_field_type_taxon: Taksons
+  observation_field_type_dna: DNS
+  observation_fields: Novērojuma lauki
+  observation_fields_are_additional: Novērojuma lauki ir papildu informācijas lauki, kas pievienojami novērojumiem.
+  observation_fields_by_preferences_description: |
+    Novērojumu lauki nedaudz līdzinās tagiem, bet jau noklusējuma režīmā jebkurš lietotājs tos var pievienot taviem novērojumiem. Pielāgo attiecīgos iestatījumus, ja vēlies, lai tikai tu vai pārziņi varētu veikt šo darbību.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    piemēram, 29-10-2019 13:12:21
+  observed_on_datetime: Novērots %{datetime}
+  observation_removed_from_the_project: "Novērojums izdzēsts no \"%{project}\" projekta"
+  observation_requirements: Prasības novērojumiem
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: 'Prasības novērojumiem atjauninātas:'
+  observation_rules: Novērojumu noteikumi
+  observation_was_deleted: Novērojums izdzēsts.
+  observation_without_media: Novērojums bez medijiem
+  observations: Novērojumi
+  observations_: novērojumi
+  observations_added_by_x_html: "Lietotāja %{x} pievienotie novērojumi"
+  observations_annotated_with_annotation: "Novērojumi ar %{annotation} piezīmi"
+  observations_by: Novērojumi no
+  observations_by_user: "Lietotāja %{user} novērojumi"
+  observations_deleted: Novērojumi izdzēsti.
+  observations_fields_are: |
+    Novērojuma lauki ir papildu informācija par novērojumu, piemēram, novēroto indivīdu skaits, biotopa apraksts un jebkas cits, ko izdomāsi. Projektos ir iespējams norādīt, kurus laukus būtu vēlams aizpildīt.
+  observations_from: Novērojumi no %{date}
+  observations_from_people_taxa_and_places_youre_following: "Novērojumi no cilvēkiem, vietām un taksoniem, kuriem tu seko."
+  observations_from_this_place: Novērojumi šajā vietā
+  observations_from_this_project: Šī projekta novērojumi
+  observations_in_this_project_must: 'Projekta novērojumiem jāatbilst šiem kritērijiem:'
+  observations_map: Novērojumi / Karte
+  observation_must_dotdotdot: 'Novērojumam jāatbilst šim kritērijam:'
+  observations_needing_curation: Novērojumi, kas jāpārskata pārziņiem
+  observations_observed_this_month: Novērojumi, kas <em>novēroti</em> šomēnes, nevis pievienoti šomēnes. Dodies pie dabas!
+  observations_of_relatives: Radniecisku organismu novērojumi
+  observations_of_taxon: "%{taxon_name} novērojumi"
+  observations_per_month: Novērojumi / Mēnesis
+  observations_removed_from_the_project: "Novērojumi, kas izdzēsti no \"%{project}\" projekta"
+  observations_saved: Novērojumi saglabāti.
+  observations_specifying_this_field: Novērojumi, kas attiecas uz šo lauku
+  observations_specifying_this_field_with_value: Novērojumi, kas attiecas uz šo lauku ar "%{value}"
+  observations_this_year_vs_last_year: Šī gada novērojumi salīdzinājumā ar pagājušā gada novērojumiem
+  observations_total: Kopējais novērojumu skaits
+  observations_w: Novērojumi ar
+  observations_w_field: Novērojumi ar lauku
+  observations_was_successfully_updated: Novērojumi ir veiksmīgi atjaunoti.
+  observations_widget: Novērojumu logrīks
+  observations_with_this_field: Novērojumi ar šo lauku
+  observations_with_this_field_and_value: Novērojumi ar šo lauku un vērtību
+  observations_without_media: Novērojumi bez medijiem
+  observationcounts_refreshed: Novērojumu skaits pārlādēts
+  observed: Novērots
+  observed_by: Novērojis
+  observed_on: Novērots
+  observer: Novērotājs
+  observers: Novērotāji
+  observer_prefers_no_project_addition: |
+    Novērotājs nav devis atļauju savam projektam pievienot citu lietotāju novērojumus.
+  observer_prefers_addition_to_projects_joined: |
+    Novērotājs atļauj citiem pievienot savus novērojumus tikai projektiem, kuriem viņi seko.
+  observer_short: Novērotājs
+  of_observations: novērojumi
+  of_species: sugas
+  of_observers: novērotāji
+  of_identifiers: identificētāji
+  of_places: vietas
+  of_this_taxon: Ar šo taksonu
+  offensive_inappropriate: Aizskarošs vai nepieņemams
+  off_caps: "IZSLĒGTS"
+  official_blog: Oficiālais emuārs
+  offline_access_enabled: Iespējota bezsaistes pieeja
+  old_observation_form: Vecā novērojumu veidlapa (neiesakām lietot)
+  ok: "Labi"
+  on_caps: "IESLĒGTS"
+  on_day: "ieslēgts"
+  onboarding:
+    observe_panel_title: Sāksim ar novērojumu pievienošanu!
+    observe_panel_body_p1_local: Vēlies iedvesmoties? Apskati tavā apkārtnē novērotos organismus!
+    observe_panel_body_p1_global: Vēlies iedvesmoties? Apskati nesen novērotos organismus!
+    observe_panel_body_p2: Dodies dabā, atrodi kādu individuālu organismu un uzņem skaidru pilnizmēra attēlu! Ja tev jau ir šādas fotogrāfijas, <a href="%{new_observation_path}">pievieno tās jau tagad!</a> Vēl iespējams izmantot arī %{site_name} lietotnes, lai saglabātu novērojumus.
+    observe_panel_body_p3: Kad būsi saglabājis kādu novērojumu, šajā lapā varēsi apskatīt aktualitātes – komentārus un identifikācijas no mūsu kopienas. Diezin kas tevi sagaida!
+    follow_panel_title_local: Pieseko naturālistiem tavā apkārtnē!
+    follow_panel_title_global: Pieseko aktīvajiem naturālistiem!
+    follow_panel_body: Ja profilu lapās nospiedīsi uz pogas "Sekot", saņemsi aktualitātes par šo lietotāju novērojumiem.
+    following_panel_title: Esi informēts par lietotājiem, taksoniem un vietām
+    following_panel_body: |
+      %{site_name} vietnē iespējams sekot lietotājiem, lai saņemtu aktualitātes par viņu novērojumiem. Vēl iespējams sekot noteiktām sugām un vietām, lai uzzinātu par jaunākajiem novērojumiem.
+    comments_panel_title: Tevi interesē diskusijas %{site_name} vietnē?
+    comments_panel_body: "<p>%{site_name} galvenais mērķis ir dalīties un diskutēt par dzīvo būtņu novērojumiem. Zemāk iespējams apskatīt aktuālās diskusijas. (Uzmanību: paziņojumi par diskusijām, kurām esi pievienojis komentārus vai novērojumus, tiek saņemti automātiski. Šīs funkcijas iespējams pielāgot \"Abonementi\" sadaļā labajā pusē).</p>"
+    updates_by_you_panel_title: Šo cilni var izmantot, lai ātri izfiltrētu tikai tava satura aktualitātes.
+    updates_by_you_panel_body: '"Visas aktualitātes" cilnē saņemsi paziņojumus ne tikai par savu saturu, bet arī par lietotājiem, taksoniem un vietām, kam tu seko, izmantojot labajā pusē atrodamo "Abonementi" rīku.'
+    youve_got_updates_panel_title: Saņemti jauni paziņojumi.
+    youve_got_updates_panel_body_p1: 'Esi lietas kursā ar šiem paziņojumiem:'
+  one_of_your_lists: "viens no taviem sarakstiem..."
+  only_a_project_manager_can_add: Tikai projekta menedžeris var piešķirt projekta pārziņa statusu
+  only_administrators_may_access_that_page: Tikai administratoriem ir piekļuve šai lapai
+  only_an_admin_can_remove_project_users: Tikai administratori var izslēgt lietotājus no projektiem
+  only_curators_can_add_edit_scientific_names: Tikai pārziņi var pievienot vai rediģēt zinātniskos nosaukumus.
+  only_curators_can_access_that_page: Tikai pārziņiem ir piekļuve šai lapai.
+  only_files_with_10000_rows_at_a_time: Tikai faili ar mazāk par 10000 rindām
+  only_letters_numbers: "Tikai burti vai skaitļi, bez atstarpēm, jāsākas ar burtu"
+  only_project_curators_can_do_that: Tikai projektu pārziņi var veikt šo darbību.
+  only_receive_updates_about_this_taxon: Saņemt aktualitātes tikai par šo taksonu
+  only_show_active_taxa: Rādīt tikai aktīvos taksonus
+  only_show_events_that_last_less_than_2_weeks: Rādīt tikai tos pasākumus, kas īsāki par divām nedēļām
+  only_show_for_species_subspecies_varieties_etc: Rādīt tikai sugas, apakšsugas, šķirnes utt.
+  only_show_taxa_fom_this_list: "Rādīt taksonus tikai no šī saraksta"
+  only_showing_taxa_from: rāda taksonus tikai no šī saraksta
+  only_species: tikai sugas
+  only_species_and_subspecies: tikai sugas, apakšsugas un šķirnes
+  only_staff_can_edit_large_places: Tikai vietnes darbinieki var rediģēt pavisam lielās vietas
+  only_staff_can_edit_standard_places: Tikai vietnes darbinieki var rediģēt vietas standarta hierarhijā
+  only_the_owner_of_this_list_can_do_that: Tikai šī saraksta īpašnieks var veikt šo darbību. Neesi ļauns!
+  only_the_project_admin_can_delete_this_project: Tikai projekta administrators var dzēst projektu.
+  only_view_nearby_suggestions: Skatīt tikai tos indivīdu minējumus, kas novēroti tuvumā
+  only_you: Tikai tu
+  open: publiska
+  open_: Publiska
+  open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
+  open_street_map: OpenStreetMap
+  optional: pēc izvēles
+  optional_columns_note_for_any: "Izvēles slejas (uzmanību: lai slejas varētu izmantot novērojumos, tās visas jāizmanto reizē)"
+  or: vai
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: VAI
+  or_choose_high_level_taxa: "... vai izvēlies no augsto līmeņu taksoniem"
+  or_if_you_dont_want_email: "Ja nevēlies saņemt e-pasta ziņas, tad..."
+  orange: oranžs
+  order: Kārta
+  order_by: 'Sakārtot pēc:'
+  organism_is_wild: Organisms novērots savvaļā
+  organisms: Organismi
+  original: Sākotnējais
+  originally_flagged_by: 'Karodziņu sākotnēji pievienojis:'
+  originally_imported_from_url_html: "Sākotnēji importēts no <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "Fotogrāfijas URL no sākotnējās vietnes."
+  original_rights_holder: Sākotnējais tiesību turētājs
+  original_url_for_this_map: Sākotnējais kartes URL
+  organism_appears_captive_cultivated: Izskatās, ka organisms ir nebrīvē vai kultivēts
+  other: Citi
+  other_animals: citi dzīvnieki
+  other_lexicons: Citi leksikoni
+  other_listings_of_this_taxon_for_this_place: Citas reizes, kad taksons ir bijis iekļauts šīs vietas sarakstā
+  other_names: Citi nosaukumi
+  other_species_commonly_misidentified_as_this_species: Citas sugas, kas bieži tiek kļūdaini identificētas kā šī suga
+  other_species_commonly_misidentified_as_this_species_in_place_html: 'Citas sugas, kas bieži tiek kļūdaini identificētas kā šī suga, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_complex: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī sīksuga
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī sīksuga, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genus: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī ģints
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī ģints, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genushybrid: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šis ģints hibrīds
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šis ģints hibrīds, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_hybrid: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šis hibrīds
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šis hibrīds, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_rank: Citi taksoni, kas bieži tiek kļūdaini identificēti kā %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā %{rank}, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_section: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī sekcija
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī sekcija, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_species: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī suga
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī suga, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subgenus: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī apakšģints
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī apakšģints, šajā vietā: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subsection: Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī apakšsekcija
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 'Citi taksoni, kas bieži tiek kļūdaini identificēti kā šī apakšsekcija, šajā vietā: <a href="%{url}">%{place}</a>'
+  our_blog: Mūsu emuārs
+  output_taxon: Galējais taksons
+  overview: Pārskats
+  owner: Īpašnieks
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Augstāks
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Augst. pakāpes nosauk.
+  parental_consent:
+    must_specify_email: Jānorāda e-pasta adrese
+    invalid_email: Nederīgs e-pasta formāts
+  password: Parole
+  password_confirmation: 'Paroles apstiprināšana'
+  paste: Ielīmēt
+  paste_in_a_bunch_of_names: Ielīmē vienu nosaukumu katrā rindā un nospied pogu.
+  paste_in_a_comma_separated_list: Ielīmē sarakstu ar valstīm, atdalot katru valsti ar komatu.
+  people: Lietotāji
+  people_following_user: "Lietotāji, kas seko %{user}"
+  people_user_follows: "Lietotāji, kam seko %{user}"
+  people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: pievienoja <a href="%{observation_url}">novērojumu</a>
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: pievienoja <strong>ID</strong> lietotāja %{user_link} novērojumam %{observation_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: pievienoja <strong>ID</strong>
+    post: izveidoja %{post_link}
+    comment:
+      with_by: komentēja %{by_link} izveidoto %{comment_subject_link}
+      without_by: komentēja %{comment_subject_link}
+  per_day: Riezi dienā
+  per_month: Reizi mēnesī
+  per_week: Reizi nedēļā
+  person: Lietotājs
+  personal_message: Privāta ziņa
+  personal_message_description: Nevienam taču nepatīk saņemt tās automātiskās ziņas no robotiem. Labāk tomēr uzraksti, kāpēc nosūtīji ielūgumu!
+  place_geo:
+    geo_planet_place_types:
+      colloquial: sarunvaloda
+      Commune: Komūna
+      commune: komūna
+      Constituency: Vēlēšanu apgabals
+      constituency: vēlēšanu apgabals
+      Continent: Kontinents
+      continent: kontinents
+      Country: Valsts
+      country: valsts
+      County: Apgabals
+      county: apgabals
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Apgabals
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: apgabals
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Department Segment
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: department segment
+      District: Novads
+      district: novads
+      Division: Administratīvais iedalījums
+      division: administratīvais iedalījums
+      Drainage: Baseins
+      drainage: baseins
+      Estate: Īpašums
+      estate: īpašums
+      Governorate: Vietējā pašvaldība
+      governorate: vietējā pašvaldība
+      Historical_County: Vēsturisks apgabals
+      historical_county: vēsturisks apgabals
+      Historical_State: Pavalsts
+      historical_state: pavalsts
+      Historical_Town: Vēsturiska pilsēta
+      historical_town: vēsturiska pilsēta
+      Intersection: Krustojums
+      intersection: krustojums
+      Island: Sala
+      island: sala
+      Land_Feature: Dabas objekts
+      land_feature: dabas objekts
+      Local_Administrative_Area: Vietējā administratīvā teritorija
+      local_administrative_area: vietējā administratīvā teritorija
+      Local_Authority: Vietējā organizācija
+      local_authority: vietējā organizācija
+      Miscellaneous: Dažādi
+      miscellaneous: dažādi
+      Municipality: Pašvaldība
+      municipality: pašvaldība
+      Nationality: Nācija
+      nationality: nācija
+      Nearby_Building: Netāla ēka
+      nearby_building: netāla ēka
+      Nearby_Intersection: Netāls krustojums
+      nearby_intersection: netāls krustojums
+      Open_Space: Vieta brīvā dabā
+      open_space: vieta brīvā dabā
+      Parish: Pagasts
+      parish: pagats
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: '"Poblacion" administratīvā teritorija'
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: '"poblacion" administratīvā teritorija'
+      Prefecture: Administratīvs apgabals
+      prefecture: administratīvs apgabals
+      Prefecture_City: Prefektūras pilsēta
+      prefecture_city: prefektūras pilsēta
+      Point_of_Interest: Apskates objekts
+      point_of_interest: Apskates objekts
+      Postal_Code: Pasta indekss
+      postal_code: pasta indekss
+      Province: Province
+      province: province
+      Regency: Pavaldonība
+      regency: pavaldonība
+      Region: Reģions
+      region: reģions
+      Republic: Republika
+      republic: republika
+      Shire: Grāfiste
+      shire: grāfiste
+      Sports_Team: Sporta komanda
+      sports_team: sporta komanda
+      State: Štats
+      state: štats
+      Street: Iela
+      street: iela
+      Street_Segment: Ielas daļa
+      street_segment: ielas daļa
+      Subdivision: Administratīvā iedalījuma apakšvienība
+      subdivision: administratīvā iedalījuma apakšvienība
+      Suburb: Priekšpilsēta
+      suburb: priekšpilsēta
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Aimaks
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: aimaks
+      Supername: Kontinenta vai reģiona daļa
+      supername: kontinenta vai reģiona daļa
+      Territory: Teritorija
+      territory: teritorija
+      Time_Zone: Laika zona
+      time_zone: laika zona
+      Town: Pilsēta
+      town: pilsēta
+      Undefined: Nenoteikta
+      undefined: nenoteikta
+      Unknown: Nezināma
+      unknown: nezināma
+      Village_block: Kvartāls
+      village_block: kvartāls
+      Zone: Apgabals
+      zone: apgabals
+  place_guess: vietas minējums
+  place_imported: Vieta ir importēta.
+  place_must_have_a_boundary_defined: Vietai jābūt noteiktai robežai.
+  place_name: Vietas nosaukums
+  place_notes: Pieraksti par vietu
+  range: Periods
+  ranges: Izplatības apgabali
+  remove_range: Dzēst izplatības apgabalu
   source_list:
     catalogue_of_life_2012_annual_checklist: 'Dzīvības katalogs: 2012. gada ikgadējā kontrollapa'
     catalogue_of_life_2013_annual_checklist: 'Dzīvības katalogs: 2013. gada ikgadējā kontrollapa'
+  taxon_doesnt_have_a_range: Taksonam nav izplatības apgabala
+  taxon_range: Taksona izplatības apgabals
   taxon_range_created_notice: Taksona izplatības apgabals veiksmīgi saglabāts. Paies pāris minūtes līdz tas būs redzams kartēs.
+  taxon_range_updated_notice: Taksona izplatības apgabals veiksmīgi izlabots. Paies pāris minūtes līdz tas būs redzams kartēs.
+  upload_range: Augšupielādēt izplatības apgabalu
+  view_photos_ranges_observations_more: "Skatīt fotogrāfijas, sugu izplatības apgabalus, %{site_name} novērojumus u.c. Esam apkopojuši informāciju no daudz dažādiem avotiem un izveidojuši parocīgu pārskatu par konkrētām sugām dažādās vietās."
+  views:
+    observations:
+      compare:
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Intervāls
+      export:
+        date_range_help: "Sākuma un beigu datums DD-MM-YYYY formātā, piemēram, 17.01.2015."
+      field_descriptions:
+        out_of_range: Vai šis novērojums atrodas ārpus taksona zināmā izplatības apgabala?
+    projects:
+      new:
+        use_this_for_a_time_limited_event: |
+          Šī funkcija paredzēta notikumiem konkrētā laika posmā, "Bioblitz" un sezonas projektiem. Norādi konkrētu datumu, laika periodu vai mēnešus, kuros jāveic novērojumi (neatkarīgi no gada). Ja izmanto datuma perioda sadaļu, pārliecinies, vai ir izvēlēta pareizā laika zona. Lai iekļautu novērojumus, kas veikti jebkurā dienas laikā, izdzēs laiku un laika zonu tekstu. Ja ir vajadzība izvēlēties tikai vienu projekta dienu, atstāj sākuma un beigu datumu logus tukšus.
   date:
     abbr_month_names:
       - 

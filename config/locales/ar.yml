@@ -1069,6 +1069,7 @@ ar:
   #Adjective, as in a fluid layout of images
   fluid: مائع
   follow: تابع
+  follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
   follow_user: "اتبع %{user}"
   followed_projects: المشاريع المتبعة
   followers: متابعون
@@ -1151,6 +1152,7 @@ ar:
   heads_up: انتباه
   heads_up_this_photo_has_been_flagged: "انتباه: تم التعليم على هذه الصورة"
   heads_up_this_photo_is_already_associated_with: "تنبيه: هذه الصورة مقترنة بالفعل <a target='_blank' href='%{url}'>بملاحظة أخرى</a>"
+  heads_up_you_have_multiple: "تنبيه: لديك عدة علامات تصنيفية للتصنيفات المميزة، إنها مرمزة بالألوان أدناه حسب الرتبة."
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_support_inaturalist: "مساعدة دعم إيناتوراليست"
@@ -1820,7 +1822,6 @@ ar:
   no_taxon_framework_relationships: لا علاقات إطار للأنواع
   no_taxonomic_changes_match_those_criteria: لا تتطابق أي تغييرات تصنيفية مع تلك المعايير
   no_wikipedia_page_for_taxon: لا توجد صفحة في ويكيبيديا لهذا الصنف.
-  no_x_this_y: "لا %{x} هذا %{y}"
   noble_curators: "%{site} قيمو نوبل"
   non_human?: غير بشري؟
   none: لا شيء
