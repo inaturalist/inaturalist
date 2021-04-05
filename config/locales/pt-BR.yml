@@ -168,6 +168,9 @@ pt:
   about_muting: Sobre o Silenciar
   #Header for a section describing taxon names
   about_names: Sobre Nomes
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
   about_the_cc_licenses: Sobre as licenças Creative Commons
   about_these_licenses: Sobre estas licenças
@@ -726,6 +729,7 @@ pt:
   card: Identificação
   casual: casual
   casual_: Casual
+  casual_tooltip_html: 'Observações "casuais" estão faltando mídia, localização ou data, ou não atende os requisitos de "Pesquisa" ou "Precisa de ID" notas de qualidade por outras razões <a href="https://www.inaturalist.org/pages/help#quality"> Saiba mais sobre as notas de qualidade </a>'
   categories: Categorias
   cc_0_description: "Esta licença libera a sua obra em domínio público, de modo que outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença mais livre das que se oferecem. Recomendado para uma máxima difusão e uso dos materiais licenciados."
   cc_0_name: Sem direitos de autor (CC0)
@@ -1091,6 +1095,11 @@ pt:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
     Desconsidere as políticas no Guia de Curadores.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Falha em demostrar comportamento apropriado em si mesmo.
   curators_changed_for_x_html: "Administradores mudaram para %{x}"
   curators: Coordenadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
@@ -1569,6 +1578,7 @@ pt:
   #Adjective, as in a fluid layout of images
   fluid: fluído
   follow: Seguir
+  follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
   follow_user: "Seguir %{user}"
   followed_projects: Projetos seguidos
   followers: Seguidores
@@ -1669,6 +1679,7 @@ pt:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "Atenção: esta foto foi marcada."
   heads_up_this_photo_is_already_associated_with: "Atenção: esta foto já esta associada com <a target='_blank' href='%{url}'>outra observação</a>"
+  heads_up_you_have_multiple: "Atenção: Existem várias marcações taxonômicas para categorias idênticas."
   help: Ajuda
   help_confirm_observations!: Ajude confirmar observações!
   help_support_inaturalist: "Ajude a apoiar o iNaturalist"
@@ -2447,7 +2458,6 @@ pt:
   no_taxonomic_changes_match_those_criteria: Nenhuma mudança taxonômica corresponde a estes critérios
   no_users_found_with_those_filters: Nenhum usuário encontrado com esses filtros
   no_wikipedia_page_for_taxon: Nenhuma página da Wikipédia foi encontrada para este táxon.
-  no_x_this_y: "Não existe %{x} deste %{y}"
   noble_curators: "Nobres Coordenadores de %{site}"
   non_human?: Não-humano?
   none: Nenhum

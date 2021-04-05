@@ -58,7 +58,7 @@
             = raw t(:site_site_admin, site_name: site_link)
             - if admin_site.place
               = " (#{admin_site.place.translated_name})"
-            - info_link = wiki_page_url( "network" )
+            - info_link = network_sites_url
           - else
             = t(:curator)
           = link_to info_link do

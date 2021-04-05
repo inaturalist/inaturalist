@@ -1627,6 +1627,7 @@ fi:
   #Adjective, as in a fluid layout of images
   fluid: neste
   follow: Seuraa
+  follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
   follow_user: "Seuraa käyttäjää %{user}"
   followed_projects: Seuratut projektit
   followers: Seuraajat
@@ -2476,7 +2477,6 @@ fi:
   no_taxonomic_changes_match_those_criteria: Ei näitä kriteereitä vastaavia taksonomisia muutoksia
   no_users_found_with_those_filters: Yhtään käyttäjää ei löytynyt näillä suodattimilla
   no_wikipedia_page_for_taxon: Ei Wikipedia-artikkelia tälle taksonille.
-  no_x_this_y: "Ei %{x} tämä %{y}"
   noble_curators: "%{site}in mahtavat kuraattorit"
   non_human?: Ei-ihminen?
   none: Ei mitään
@@ -2484,6 +2484,7 @@ fi:
   normal: normaali
   not_completed: Ei valmis
   not_confident: Emme ole tarpeeksi varmoja tekemään suositusta.
+  not_confident_top_suggestions: Meillä ei ole luotettavia suosituksia, mutta tässä ovat parhaat ehdotuksemme
   not_covered_by_any_taxon_frameworks: Ei kuulu mihinkään taksonikehyksiin
   not_evaluated: arvioimatta jätetty
   not_findig_what_you_want: Et löydä mitä haluat?
@@ -4020,6 +4021,8 @@ fi:
   'true': 'Kyllä'
   trending: Nousussa
   trends: Trendit
+  #Noun
+  trust: Luottamus
   trusted: Luotettu
   trusted_project?: Luotettava projekti?
   twitter: Twitter
@@ -5006,6 +5009,10 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
+        trust_allow_members_to_trust: |-
+          Salli jäsenten luottaa tähän projektiin tarkkojen koordinaattien saamiseksi.
+        trust_help_desc: |-
+          Jos haluat saada käyttöösi kaikkien havaintojen tarkat koordinaatit, valitse tämä. Se antaa projektiin osallistuville mahdollisuuden luottaa projektin ylläpitäjiin, niin että he saavat nämä koordinaatit. Osallistujat voivat antaa pääsyn kaikkiin havaintoihin, jotka liittyvät tähän projektiin, tai vain niihin jotka on karkeistettu arkaluontoisten lajien suojelemiseksi. (Suomen alueiden havaintoja voi myös pyytää Lajitietokeskuksen kautta.)
         trust_help_notification2: |-
           Tästä ilmoitetaan kaikille projektin jäsenille, jotka ovat luottaneet projektiin joka kerta kun
           muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,

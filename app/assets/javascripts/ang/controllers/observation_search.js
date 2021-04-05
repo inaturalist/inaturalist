@@ -74,7 +74,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
     "locale", "preferred_place_id", "ident_user_id", "spam" ];
   $scope.defaultView = "observations";
-  $scope.defaultSubview = "map";
+  $scope.defaultSubview = "grid";
   $rootScope.mapType = "map";
   $rootScope.mapLabels = true;
   $rootScope.mapTerrain = false;

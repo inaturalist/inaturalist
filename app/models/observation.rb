@@ -1230,11 +1230,19 @@ class Observation < ActiveRecord::Base
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
-    self.time_zone = nil if time_zone.blank?
-    self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
-    self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
-    self.time_zone ||= 'UTC'
-    self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+    if time_zone.blank?
+      self.time_zone = nil
+      self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
+      self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
+      self.time_zone ||= 'UTC'
+    end
+    if !time_zone.blank? && !ActiveSupport::TimeZone::MAPPING[time_zone] && ActiveSupport::TimeZone[time_zone]
+      self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
+    end
+    self.zic_time_zone ||= ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+    if !zic_time_zone.blank? && ActiveSupport::TimeZone::MAPPING[zic_time_zone] && ActiveSupport::TimeZone[zic_time_zone]
+      self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[zic_time_zone]
+    end
     true
   end
   
@@ -2096,6 +2104,10 @@ class Observation < ActiveRecord::Base
     self.license = Shared::LicenseModule.normalize_license_code( license )
     self.license = nil unless LICENSE_CODES.include?( license )
     true
+  end
+
+  def license_code=( license_code )
+    self.license = license_code
   end
 
   def trim_user_agent

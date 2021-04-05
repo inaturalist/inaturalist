@@ -298,7 +298,7 @@ class ProviderOauthController < ApplicationController
     end
     existing_pa = ProviderAuthorization.where( provider_name: "apple", provider_uid: provider_uid ).first
     user = existing_pa&.user
-    user ||= User.find_by_email( id_token_conents["email"] )
+    user ||= User.find_by_email( id_token_conents["email"] ) unless id_token_conents["email"].blank?
     unless user
       auth_info = {
         "provider" => "apple",
@@ -312,7 +312,24 @@ class ProviderOauthController < ApplicationController
       user = User.create_from_omniauth( auth_info )
     end
     return nil unless user && user.persisted?
-    assertion_access_token_for_client_and_user( client, user )
+    if access_token = assertion_access_token_for_client_and_user( client, user )
+      # We could get into a situation where the token was created but no
+      # ProviderAuthorization records was created if an existing user was found
+      # via email and User.create_from_omniauth wasn't called, so we make
+      # absolutely sure it exists here
+      existing_pa = ProviderAuthorization.where(
+        provider_name: "apple",
+        provider_uid: provider_uid
+      ).first
+      if !existing_pa
+        ProviderAuthorization.create!(
+          provider_name: "apple",
+          provider_uid: provider_uid,
+          user: user
+        )
+      end
+    end
+    access_token
   end
 
   def assertion_access_token_for_client_and_user( client, user )

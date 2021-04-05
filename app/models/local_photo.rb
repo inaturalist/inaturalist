@@ -286,7 +286,7 @@ class LocalPhoto < Photo
 
     # If this is a copyright violation AND we don't have access to an original file, we're screwed.
     else
-      raise "We no longer have access to the original file."
+      raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
     io = open( URI.parse( url ) )

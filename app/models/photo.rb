@@ -35,6 +35,8 @@ class Photo < ActiveRecord::Base
 
   MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
 
+  class MissingPhotoError < StandardError; end
+
   def original_url
     self["original_url"] && self["original_url"].with_fixed_https
   end
@@ -76,9 +78,11 @@ class Photo < ActiveRecord::Base
   end
 
   def set_license
-    return true unless license.blank?
+    return true unless license.nil?
     return true unless user
-    self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    if license.nil?
+      self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    end
     true
   end
 

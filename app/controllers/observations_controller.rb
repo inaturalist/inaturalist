@@ -496,6 +496,12 @@ class ObservationsController < ApplicationController
       @observation.interpolate_coordinates
     end
 
+    # If the value of time_zone is actually the zic or IANA time zone, make sure
+    # it gets set to the Rails time zone name for editing purposes
+    if ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+      @observation.time_zone = ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -645,7 +651,8 @@ class ObservationsController < ApplicationController
     end
     Observation.elastic_index!(
       ids: @observations.compact.map( &:id ),
-      wait_for_index_refresh: !params[:skip_refresh] )
+      wait_for_index_refresh: params[:force_refresh]
+    )
     respond_to do |format|
       format.html do
         unless errors
@@ -824,7 +831,6 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      observation.wait_for_index_refresh = true
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
@@ -842,8 +848,8 @@ class ObservationsController < ApplicationController
     end
 
     Observation.elastic_index!(
-      ids: @observations.to_a.compact.map( &:id ),
-      wait_for_index_refresh: true )
+      ids: @observations.to_a.compact.map( &:id )
+    )
 
     respond_to do |format|
       if errors
@@ -1798,6 +1804,7 @@ class ObservationsController < ApplicationController
       :iconic_taxon_id,
       :latitude,
       :license,
+      :license_code,
       :location_is_exact,
       :longitude,
       :make_license_default,
@@ -2050,7 +2057,6 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.wait_for_index_refresh = !params[:skip_refresh]
     review.observation.elastic_index!
   end
 

@@ -1798,6 +1798,7 @@ cs:
   #Adjective, as in a fluid layout of images
   fluid: proměnlivý
   follow: Sledovat
+  follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
   follow_user: "Sledovat %{user}"
   followed_projects: Sledované projekty
   followers: Sledovatelé
@@ -1903,6 +1904,7 @@ cs:
   heads_up: Pozor
   heads_up_this_photo_has_been_flagged: "POZOR: tato fotka byla označena."
   heads_up_this_photo_is_already_associated_with: "Pozor: tato fotka už je spojena s <a target='_blank' href='%{url}'>jiným pozorováním</a>"
+  heads_up_you_have_multiple: "Pozor: Máte několikanásobná automatické taxonomická označení pro stejné kategorie. Níže jsou jednotlivé kategorie barevně označeny."
   help: Nápověda
   help_confirm_observations!: Pomozte potvrdit pozorování!
   help_support_inaturalist: "Nápověda iNaturalist"
@@ -2708,7 +2710,6 @@ cs:
   no_taxonomic_changes_match_those_criteria: Těmto kritériím neodpovídají žádné taxonomické změny
   no_users_found_with_those_filters: S těmito filtry nebyli nalezeni žádní uživatelé
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
-  no_x_this_y: "Žádný %{x} tohoto %{y}"
   noble_curators: "Vybraní kurátoři stránky %{site}"
   non_human?: Není lidský?
   none: Žádný
@@ -2820,6 +2821,9 @@ cs:
   observed_on_datetime: Pozorováno na %{datetime}
   observation_removed_from_the_project: "Pozorování odebráno z projektu \"%{project}\""
   observation_requirements: Požadavky pozorování
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Požadavky na pozorování aktualizovány na
   observation_rules: Pravidla pozorování
   observation_rules_description: |
     Můžete si zvolit pravidla, která určí, jaká pozorování lze k tomuto projektu přidat, například můžete pozorování omezit na určité místo nebo taxon. Pokud máte pro jeden typ pravidla více než jedno pravidlo, budou pozorování platná v případě, že bude splněno některé pravidlo. Pokud máte například nastavena pravidla „musí být obojživelník“ a „musí být plaz“, přijme projekt pozorování plazů NEBO obojživelníků.
@@ -6577,6 +6581,8 @@ cs:
           any: Jakýkoliv
           joined: Projekty, ke kterým jste se přidali
           none: "Žádný, k projektům můžete přidávat svá pozorování pouze vy"
+        prefers_community_taxa_desc: |
+          %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.

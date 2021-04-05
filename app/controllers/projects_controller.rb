@@ -913,8 +913,7 @@ class ProjectsController < ApplicationController
     @project_observation = ProjectObservation.create(
       project: @project,
       observation: @observation,
-      user: current_user,
-      wait_for_obs_index_refresh: true
+      user: current_user
     )
     
     unless @project_observation.valid?
@@ -981,7 +980,6 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    @project_observation.wait_for_obs_index_refresh = true
     @project_observation.destroy
     respond_to do |format|
       format.html do

@@ -1340,6 +1340,7 @@ ja:
   #Adjective, as in a fluid layout of images
   fluid: 可変
   follow: フォロー
+  follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
   follow_user: "%{user}さんをフォロー"
   followers: フォロワー
   following: フォロー中
@@ -1439,6 +1440,7 @@ ja:
   help_support_inaturalist: "iNaturalistを支援する"
   help_translate!: 翻訳を手伝ってください!
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
+  here_are_our_top_suggestions: これらが上位の提案です。
   here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
@@ -2053,6 +2055,7 @@ ja:
   no_favorites_added:
     current_user: お気に入りに登録されている項目がありません
     user: "%{user}さんはお気に入りに登録されている項目がありません"
+  no_journal_posts_yet: ジャーナルの投稿はまだありません。
   no_license_all_rights_reserved: ライセンスなし（著作権を全て留保する）
   no_managers_set: 管理者が指定されていません
   no_matching_article_from_x: "%{x}に一致する記事がありません"
@@ -2108,13 +2111,14 @@ ja:
   no_taxa_with_unknown_relationships: 関係が不明な分類群はありません
   no_taxonomic_changes_match_those_criteria: 指定の条件に一致する分類群変更がありません
   no_wikipedia_page_for_taxon: ウィキペディアにこのタクソンに関するページがありません。
-  no_x_this_y: "ここ%{y}に%{x}がありません"
   noble_curators: "%{site}のキュレーター管理者の紹介"
   non_human?: 非人間？
   none: 該当する項目ありません
   none_found: 見つかりません
   normal: 通常
   not_completed: 未完成
+  not_confident: 信頼性のある提案ができません。
+  not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です。
   not_covered_by_any_taxon_frameworks: どの分類群フレームワークでもカバーされていない
   not_evaluated: 未評価
   not_findig_what_you_want: お探しのもの見つかりませんか？

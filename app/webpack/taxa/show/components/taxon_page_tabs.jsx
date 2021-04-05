@@ -8,6 +8,7 @@ import {
   Dropdown,
   MenuItem
 } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
@@ -231,8 +232,20 @@ class TaxonPageTabs extends React.Component {
             className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
             id="map-tab"
           >
-            <TaxonPageMapContainer />
-            <RecentObservationsContainer />
+            <LazyLoad
+              debounce={false}
+              height={630}
+              offset={100}
+            >
+              <TaxonPageMapContainer />
+            </LazyLoad>
+            <LazyLoad
+              debounce={false}
+              height={120}
+              offset={100}
+            >
+              <RecentObservationsContainer />
+            </LazyLoad>
           </div>
           <div
             role="tabpanel"
@@ -296,7 +309,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "map"
+  chosenTab: "articles"
 };
 
 export default TaxonPageTabs;
