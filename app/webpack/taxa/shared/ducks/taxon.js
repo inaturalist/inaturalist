@@ -399,6 +399,9 @@ export function fetchRare( ) {
 export function fetchRecent( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.observations && state.observations.recent ) {
+      return;
+    }
     const params = Object.assign( { }, defaultObservationParams( state ), {
       quality_grade: "needs_id,research",
       rank: "species",
@@ -417,6 +420,10 @@ export function fetchRecent( ) {
 
 export function fetchWanted( ) {
   return ( dispatch, getState ) => {
+    const { observations } = getState( );
+    if ( observations && observations.wanted ) {
+      return;
+    }
     const params = {
       id: getState( ).taxon.taxon.id,
       per_page: 12
