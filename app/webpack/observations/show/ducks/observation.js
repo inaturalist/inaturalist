@@ -1298,7 +1298,6 @@ export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
         newPhotos.push( new inatjs.Photo( { preview: f.preview } ) );
         const params = {
           "observation_photo[observation_id]": observation.id,
-          refresh_index: true,
           file: f
         };
         promises.push( inatjs.observation_photos.create(
@@ -1309,7 +1308,6 @@ export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
         newSounds.push( { file_url: f.preview } );
         const params = {
           "observation_sound[observation_id]": observation.id,
-          refresh_index: true,
           file: f
         };
         promises.push( inatjs.observation_sounds.create(
