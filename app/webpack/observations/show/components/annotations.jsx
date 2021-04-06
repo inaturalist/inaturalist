@@ -208,7 +208,6 @@ class Annotations extends React.Component {
       controlledTerms,
       observation ? observation.taxon : null
     );
-    console.log( loading, "loading" );
     if ( !observation || !observation.user ) {
       return ( <span /> );
     }
