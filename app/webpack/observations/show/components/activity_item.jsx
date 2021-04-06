@@ -578,7 +578,6 @@ class ActivityItem extends React.Component {
       && observation
       && observation.obscured
       && !observation.private_geojson
-      && currentUserID
     ) {
       const coordinatesObscured = observation
         && observation.obscured
