@@ -197,7 +197,8 @@ class Annotations extends React.Component {
       controlledTerms,
       addAnnotation,
       collapsible,
-      fetchControlledTerms
+      fetchControlledTerms,
+      loading
     } = this.props;
     const observationAnnotations = observation.annotations || [];
     const {
@@ -207,6 +208,7 @@ class Annotations extends React.Component {
       controlledTerms,
       observation ? observation.taxon : null
     );
+    console.log( loading, "loading" );
     if ( !observation || !observation.user ) {
       return ( <span /> );
     }
@@ -337,7 +339,7 @@ class Annotations extends React.Component {
 
     const emptyState = (
       <div className="noresults">
-        { I18n.t( "no_relevant_annotations" ) }
+        { loading ? I18n.t( "loading" ) : I18n.t( "no_relevant_annotations" ) }
       </div>
     );
 
@@ -401,8 +403,8 @@ Annotations.propTypes = {
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
   collapsible: PropTypes.bool,
-  showEmptyState: PropTypes.bool,
-  fetchControlledTerms: PropTypes.func
+  fetchControlledTerms: PropTypes.func,
+  loading: PropTypes.bool
 };
 
 Annotations.defaultProps = {

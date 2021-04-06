@@ -12,7 +12,8 @@ function mapStateToProps( state ) {
   return {
     observation: state.observation,
     config: state.config,
-    controlledTerms: state.controlledTerms.terms
+    controlledTerms: state.controlledTerms.terms,
+    loading: !state.controlledTerms.loaded
   };
 }
 
