@@ -563,6 +563,37 @@ class ActivityItem extends React.Component {
     }
     const elementID = this.isID ? `activity_identification_${item.uuid}` : `activity_comment_${item.uuid}`;
     const itemURL = this.isID ? `/identifications/${item.uuid}` : `/comments/${item.uuid}`;
+    let time = (
+      <time
+        className="time"
+        dateTime={item.created_at}
+        title={moment( item.created_at ).format( "LLL" )}
+      >
+        <a href={itemURL} target={linkTarget}>{relativeTime}</a>
+      </time>
+    );
+    const { testingInterpolationMitigation } = config;
+    if (
+      testingInterpolationMitigation
+      && observation
+      && observation.obscured
+      && !observation.private_geojson
+    ) {
+      const coordinatesObscured = observation
+        && observation.obscured
+        && !observation.private_geojson;
+      const viewerCreatedItem = config
+        && config.currentUser
+        && item.user
+        && item.user.id === config.currentUser.id;
+      if ( coordinatesObscured && !viewerCreatedItem ) {
+        time = (
+          <time className="time">
+            { moment( item.created_at ).format( I18n.t( "momentjs.month_year_short" ) ) }
+          </time>
+        );
+      }
+    }
     return (
       <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
         <div className="icon">
@@ -575,13 +606,7 @@ class ActivityItem extends React.Component {
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
               {headerItems}
-              <time
-                className="time"
-                dateTime={item.created_at}
-                title={moment( item.created_at ).format( "LLL" )}
-              >
-                <a href={itemURL} target={linkTarget}>{relativeTime}</a>
-              </time>
+              { time }
               <ActivityItemMenu
                 item={item}
                 observation={observation}

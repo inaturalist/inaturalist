@@ -40,19 +40,40 @@ const OTHER_OBSERVATION_FIELDS = {
   uuid: true
 };
 
+const TESTING_INTEPROLATION_MITIGATION = typeof ( CURRENT_USER ) === "object"
+  && CURRENT_USER.testGroups
+  && CURRENT_USER.testGroups.includes( "interpolation" );
+
 export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, action ) {
   if ( action.data && action.data.params && action.data.params.fields ) {
     delete action.data.params.fields;
   }
+  const otherObsFilter = o => (
+    !TESTING_INTEPROLATION_MITIGATION
+    || !o.obscured
+    || o.private_geojson
+  );
   switch ( action.type ) {
     case SET_EARLIER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, { earlierUserObservations: action.observations } );
+      return Object.assign( { }, state, {
+        earlierUserObservations: _.filter( action.observations, otherObsFilter )
+      } );
     case SET_LATER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, { laterUserObservations: action.observations } );
+      return Object.assign( { }, state, {
+        laterUserObservations: _.filter( action.observations, otherObsFilter )
+      } );
     case SET_NEARBY:
-      return Object.assign( { }, state, { nearby: action.data } );
+      return Object.assign( { }, state, {
+        nearby: Object.assign( {}, action.data, {
+          observations: _.filter( action.data.observations, otherObsFilter )
+        } )
+      } );
     case SET_MORE_FROM_CLADE:
-      return Object.assign( { }, state, { moreFromClade: action.data } );
+      return Object.assign( { }, state, {
+        moreFromClade: Object.assign( {}, action.data, {
+          observations: _.filter( action.data.observations, otherObsFilter )
+        } )
+      } );
     default:
       // nothing to see here
   }
