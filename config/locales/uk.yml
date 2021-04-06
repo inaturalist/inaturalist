@@ -634,7 +634,7 @@ uk:
   any_quality_grade: Будь-який
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: Будь-який
+  any_reviewed: Усі
   #Label for an option to show/include content by any user
   any_user: Будь-який
   anyone: Будь-хто
@@ -4277,10 +4277,10 @@ uk:
     many: "%{taxon} - це %{rank} грибів з %{count} спостереженнями"
     other: "%{taxon} - це %{rank} грибів з %{count} спостереженнями"
   taxon_is_a_rank_of_protozoa_with_x_observations:
-    one: "%{taxon} - це %{rank} найпростіших з 1 спостереженням"
-    few: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
-    many: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
-    other: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
+    one: "%{taxon} - це %{rank} протист з 1 спостереженням"
+    few: "%{taxon} - це %{rank} протисти з %{count} спостереженнями"
+    many: "%{taxon} - це %{rank} протистів з %{count} спостереженнями"
+    other: "%{taxon} - це %{rank} протисти з %{count} спостереженнями"
   taxon_is_a_rank_of_mollusca_with_x_observations:
     one: "%{taxon} - це %{rank} молюсків з 1 спостереженням"
     few: "%{taxon} - це %{rank} молюсків з %{count} спостереженнями"
