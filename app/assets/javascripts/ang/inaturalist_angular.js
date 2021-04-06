@@ -196,7 +196,7 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
           && !scope.time
         ) return;
         scope.timezone = scope.timezone || "UTC";
-        return moment(scope.time).tz(scope.timezone).format("LT z");
+        return moment(scope.time.replace( /[+-]\d\d:\d\d/, "" )).tz(scope.timezone).format("LT z");
       }
     },
     template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'
