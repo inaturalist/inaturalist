@@ -730,6 +730,7 @@ es:
   card: Tarjeta
   casual: casual
   casual_: Casual
+  casual_tooltip_html: 'Las observaciones "casuales" no tienen medios, ubicación, o una fecha, o no cumplen los requisitos de las calificadas como calidad "Investigación" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   categories: Categorías
   cc_0_description: "Esta licencia difunde tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
@@ -1654,6 +1655,7 @@ es:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguir
+  follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre observaciones nuevas)
   follow_user: "Sigue a %{user}"
   followed_projects: Proyectos seguidos
   followers: Seguidores
@@ -1755,6 +1757,7 @@ es:
   heads_up: Aviso
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
+  heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas debajo por colores según el rango."
   help: Ayuda
   help_confirm_observations!: '¡Ayúdanos a confirmar observaciones!'
   help_support_inaturalist: "Apoya iNaturalist"
@@ -2405,6 +2408,7 @@ es:
   needs_id: necesita identificador
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
+  needs_id_tooltip_html: 'Las observaciones "Necesita ID" tienen medios, ubicación y fecha, pero todavía requieren consenso de la comunidad sobre su identificación precisa. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las notas de calidad</a>'
   needs_to_be_identified: Necesita identificarse
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2550,13 +2554,14 @@ es:
   no_taxonomic_changes_match_those_criteria: No hay cambios taxonómicos con ese criterio de búsqueda
   no_users_found_with_those_filters: No hay usuarios que cumplan estos filtros
   no_wikipedia_page_for_taxon: No hay página en Wikipedia para este taxón.
-  no_x_this_y: "No hay %{x} de este %{y}"
   noble_curators: "Curadores activos de %{site}"
   non_human?: '¿No humano?'
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
   not_completed: No completado
+  not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
+  not_confident_top_suggestions: 'No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:'
   not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de taxón
   not_evaluated: no evaluado
   not_findig_what_you_want: '¿No encuentra lo que desea?'
@@ -2713,6 +2718,8 @@ es:
   observed_on: Observado el
   observer: Observador
   observers: Observadores
+  observer_prefers_no_project_addition: |
+    El observador no permite a otras personas añadir sus observaciones a los proyectos.
   observer_prefers_addition_to_projects_joined: |
     El observador sólo permite a otras personas añadir sus observaciones a proyectos a los que
     se han unido.
@@ -2797,6 +2804,7 @@ es:
   only_staff_can_edit_standard_places: Solo el personal de la página puede editar la jerarquía estándar
   only_the_owner_of_this_list_can_do_that: Solo el propietario de esa lista puede hacer eso.  No seas malvado.
   only_the_project_admin_can_delete_this_project: Solo el administrador del proyecto puede eliminar este proyecto.
+  only_view_nearby_suggestions: Mostrar solo sugerencias que hayan sido vistas cerca de aquí
   only_you: Solo tú
   open: Transparente
   open_: Abierto
@@ -3661,6 +3669,7 @@ es:
   research_: Investigación
   research_grade: Grado de investigación
   research_grade_short_html: "G<span class='full'>rado</span> de I<span class='full'>nv.</span>"
+  research_grade_tooltip_html: 'Las observaciones de "Grado de Investigación" tienen medios, ubicación, una fecha y el consenso de la comunidad sobre su identificación precisa (generalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   research_grade_observations_have: 'Las observaciones de "grado de investigación" tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad. Haga clic para ver la evaluación de la calidad de LOS datos.'
   research_grade_qualification: Calificación de Grado de Investigación
   reset_filters_short: Restablecer

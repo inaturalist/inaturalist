@@ -116,6 +116,10 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
+      return;
+    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )
@@ -203,25 +207,6 @@ export function fetchRecentObservations( ) {
     dispatch( setObservationsCount( response.total_results ) );
     dispatch( setConfig( { mapBounds: response.total_bounds } ) );
   } );
-}
-
-export function setFirstObservation( observation ) {
-  return {
-    type: SET_FIRST_OBSERVATION,
-    observation
-  };
-}
-
-export function fetchFirstObservation( ) {
-  return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      order: "asc",
-      per_page: 1
-    } );
-    return ( inatjs.observations.search( params ).then( response => {
-      dispatch( setFirstObservation( response.results[0] ) );
-    } ) );
-  };
 }
 
 export function setLastObservation( observation ) {

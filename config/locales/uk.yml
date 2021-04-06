@@ -186,9 +186,9 @@ uk:
     many: "%{count} звуків"
     other: "%{count} звуки"
   x_taxa_curated_html:
-    one: "<span class='count'>%{count}</span>курований таксон"
-    few: "<span class='count'>%{count}</span>курованих таксони"
-    many: "<span class='count'>%{count}</span>курованих таксонів"
+    one: "<span class='count'>%{count}</span> курований таксон"
+    few: "<span class='count'>%{count}</span> курованих таксони"
+    many: "<span class='count'>%{count}</span> курованих таксонів"
     other: "<span class='count'>%{count}</span> курованих таксони"
   x_taxa_matching_current_filters:
     one: "%{count} таксон, що відповідає поточним фільтрам"
@@ -375,7 +375,7 @@ uk:
   add_obs_from_a_link: "Додати спостереження зі списку: %{link}"
   add_obs_from_a_list: Додати спостереження зі списку
   add_observations: Додати спостереження
-  add_observations_by_checking_off: Додайте спостереження, перевіряючи види зі списку.
+  add_observations_by_checking_off: Додати спостереження, позначаючи види у списку.
   add_observations_project: Додати спостереження до цього проєкту
   #Prompt to add a new journal post
   add_one: Додайте новий!
@@ -2698,7 +2698,6 @@ uk:
   no_taxonomic_changes_match_those_criteria: Немає таксономічних змін, що відповідали б цим умовам
   no_users_found_with_those_filters: За вказаними фільтрами користувачів не знайдено
   no_wikipedia_page_for_taxon: Немає сторінки на Вікіпедії для цього таксону.
-  no_x_this_y: "Немає %{x} за цей %{y}"
   noble_curators: "Почесні куратори %{site}"
   non_human?: Не людина?
   none: Нічого
@@ -3031,7 +3030,7 @@ uk:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: додав(ла) <strong>виззначення</strong> до %{observation_link} %{user_link}
+      with_observation: додав(ла) <strong>визначення</strong> до %{observation_link} %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -4007,7 +4006,6 @@ uk:
   showing_x_of_y: Показано %{x} з %{y}
   showing_x_of_y_listings: "Показано %{x} з %{y} списків"
   sign_in: Увійти
-  sign_in_with_provider: "Увійти за допомогою %{provider}"
   sign_in_with_google: Увійти за допомогою Google
   sign_out: Вийти
   sign_up: Зареєструватися
@@ -5132,6 +5130,8 @@ uk:
           <code>родина=Laridae</code>
           або
           <code>родина=Мартини та близькі таксони</code>
+        coordinates_desc: |
+          Надання ваших координат посібника допоможе людям знайти його під час пошуку за локацією.
         import_tags_from_csv_help_html: |
           <p>
           Завантажити CSV файл, що містить позначки для таксонів з цього посібника. Ваш CSV файл повинен мати таку структуру:
