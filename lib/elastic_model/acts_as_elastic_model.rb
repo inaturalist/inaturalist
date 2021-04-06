@@ -260,6 +260,7 @@ module ActsAsElasticModel
       def elastic_delete_by_ids!( ids, options = { } )
         return if ids.blank?
         bulk_delete( ids, options )
+        __elasticsearch__.refresh_index! if Rails.env.test?
       end
 
       private
