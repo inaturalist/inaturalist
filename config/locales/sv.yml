@@ -23,9 +23,9 @@ sv:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestämd av'
+    one: '<span class="count">%{count}</span> Determinatör'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestämda av'
+    other: '<span class="count">%{count}</span> Determinatörer'
   x_languages:
     one: "%{count} språk"
     other: "%{count} språk"
@@ -2009,8 +2009,8 @@ sv:
   leaderboards: Topplistor
   leaderboard_most:
     species: Flest arter i %{time}
-    observations: Flest observationer på %{time}
-    identifications: Flest bestämningar på %{time}
+    observations: Flest observationer i %{time}
+    identifications: Flest bestämningar i %{time}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
@@ -2916,7 +2916,7 @@ sv:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: lagt till en <strong>bestämning</strong> till en %{observation_link} av %{user_link}
+      with_observation: lade till en <strong>bestämning</strong> till en %{observation_link} av %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -4243,7 +4243,7 @@ sv:
     Identomaten är ett verktyg för att hjälpa dig att bestämma observationer baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den fyndplatsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en fyndplats, kommer Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
   the_observation_was_already_added_to_that_project: Observationen hade redan lagts till i det projektet.
-  the_people_of_inat: "Personerna på %{site_name}"
+  the_people_of_inat: "Människorna på %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Arterna som listas nedan hittades inte i %{site_name}-databasen.
   the_title_of_the_wikipedia_article_we_use: |
