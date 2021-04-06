@@ -247,10 +247,7 @@ class UpdateAction < ActiveRecord::Base
     return if args.blank?
     # first delete all entries from Elasticearch
     UpdateAction.where(*args).select(:id).find_in_batches do |batch|
-      ids = batch.map(&:id)
-      if ids.any?
-        UpdateAction.elastic_delete!(filters: [ { terms: { id: ids } } ])
-      end
+      UpdateAction.elastic_delete_by_ids!( batch.map(&:id) )
     end
     # then delete them from Postgres
     UpdateAction.delete_all(*args)
