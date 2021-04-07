@@ -1811,7 +1811,7 @@ fr:
   history: Historique
   home: Accueil
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je suis sûr de que c'est %{taxon}
+  i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
   iconic_taxon: Taxon emblématique
@@ -1932,7 +1932,7 @@ fr:
   invited_x: "%{x} invité(e)"
   iphone: iPhone
   is_not_following_anyone: ne suit personne.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que ceci est %{taxon} ?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que c'est %{taxon} ?
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites web
@@ -1946,12 +1946,12 @@ fr:
     <a href="%{manage_flags_path}">Gérer les signalements</a>
   join: S'y joindre
   join_and_add_an_observation_to_project_html: Rejoindre et ajouter une observation à %{project}
-  join_project: Joignez-vous à ce projet
+  join_project: Rejoindre ce projet
   #Prompt to join a specific project
   join_project?: Rejoindre %{project} ?
   join_some_projects_and_invite_some_observations_html: "Joignez des <a href='%{join_url}'>projets</a> et <a href='%{invite_url}'>invitez des gens à afficher quelques observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Rejoignez le plus grand groupe de naturalistes du monde !
-  join_this_project: Joignez-vous à ce projet
+  join_this_project: Rejoindre ce projet
   'joined!': Vous vous êtes joint!
   joined_projects: Projets liés
   joined_with_date: "Rejoint le : %{date}"
@@ -2495,7 +2495,7 @@ fr:
   next_tab: Onglet suivant
   'no': 'Non'
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
-  no_but_it_is_a_member_of_taxon: "Non, mais c'est un membre de %{taxon}"
+  no_but_it_is_a_member_of_taxon: "Non, je ne suis pas d'accord avec l'identification, mais je confirme que ça fait partie des %{taxon}"
   no_comments_yet: Aucun commentaire jusqu’à présent.
   no_countries_added_yet: Aucun pays n’a été ajouté jusqu’à présent
   no_creative_commons_flickr_photos_tagged_x: 'Aucune photo Creative Commons de Flickr n’a été étiquetée « %{x} »'
@@ -3618,9 +3618,9 @@ fr:
   recaptcha_verification_failed: échec de la vérification reCAPTCHA
   receive_email_notifications: Recevoir les notifications par mail
   receive_email_notifications_description: "Si vous désactivez cette option, vous ne recevrez plus de mail de notification par %{site_name}"
-  receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
+  receive_email_notifications_when_people_leave_you: Recevoir des notifications par mail sur
   receive_project_journal_notifications?: Recevoir des notifications à propos du projet ?
-  receive_updates_from_this_project: Recevoir des avis pour ce projet
+  receive_updates_from_this_project: Recevoir des notifications pour ce projet
   recent: Récent
   recent_evidence_of_organism: Preuve récente d’un organisme
   recent_exports: Exports récents
@@ -4789,7 +4789,7 @@ fr:
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "Oui, pour toutes mes observations"
-  yes_i_want_to_join: Oui, je veux me joindre
+  yes_i_want_to_join: Oui, rejoindre ce projet
   yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos de mon enfant, l'audio, et les observations afin que les scientifiques puissent utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes photos, sons et observations, de sorte que les scientifiques puissent utiliser mes données.
   yes_reject_it: Oui, le refuser
