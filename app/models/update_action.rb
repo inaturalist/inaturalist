@@ -216,31 +216,31 @@ class UpdateAction < ActiveRecord::Base
   def self.user_viewed_updates(updates, user_id)
     updates = updates.to_a.compact
     return if updates.blank?
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      UpdateAction.__elasticsearch__.client.update_by_query(
-        index: UpdateAction.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            bool: {
-              must: [
-                { terms: { id: updates.map(&:id) } },
-                { term: { subscriber_ids: user_id } }
-              ]
-            }
-          },
-          script: {
-            source: "
-              if ( !ctx._source.viewed_subscriber_ids.contains( params.user_id ) ) {
-                ctx._source.viewed_subscriber_ids.add( params.user_id );
-              }",
-            params: {
-              user_id: user_id
-            }
-          }
+    update_script = {
+      script: {
+        source: "
+          if ( ctx._source.subscriber_ids.contains( params.user_id ) &&
+            !ctx._source.viewed_subscriber_ids.contains( params.user_id )
+          ) {
+            ctx._source.viewed_subscriber_ids.add( params.user_id );
+          } else { ctx.op = 'none' }",
+        params: {
+          user_id: user_id
         }
-      )
-    end
+      }
+    }
+    UpdateAction.__elasticsearch__.client.bulk(
+      index: UpdateAction.index_name,
+      refresh: Rails.env.test?,
+      body: updates.map do |update|
+        [{
+          update: {
+            _id: update.id,
+            retry_on_conflict: 10
+          }
+        }, update_script]
+      end.flatten
+    )
   end
 
   def self.delete_and_purge(*args)
@@ -299,32 +299,33 @@ class UpdateAction < ActiveRecord::Base
   def append_subscribers( user_ids )
     raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
     if es_source
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-        UpdateAction.__elasticsearch__.client.update_by_query(
-          index: UpdateAction.index_name,
-          refresh: Rails.env.test?,
-          body: {
-            query: {
-              bool: {
-                must: [
-                  { term: { id: id } }
-                ]
+      UpdateAction.__elasticsearch__.client.bulk(
+        index: UpdateAction.index_name,
+        refresh: Rails.env.test?,
+        body: [{
+          update: {
+            _id: id,
+            retry_on_conflict: 10
+          }
+        }, {
+          script: {
+            source: "
+              boolean updated = false;
+              for ( entry in params.user_ids ) {
+                if ( !ctx._source.subscriber_ids.contains( entry ) ) {
+                  ctx._source.subscriber_ids.add( entry );
+                  updated = true;
+                }
               }
-            },
-            script: {
-              source: "
-                for ( entry in params.user_ids ) {
-                  if ( !ctx._source.subscriber_ids.contains( entry ) ) {
-                    ctx._source.subscriber_ids.add( entry );
-                  }
-                }",
-              params: {
-                user_ids: user_ids_without_blocked_and_muted( user_ids )
-              }
+              if ( !updated ) {
+                ctx.op = 'none';
+              }",
+            params: {
+              user_ids: user_ids_without_blocked_and_muted( user_ids )
             }
           }
-        )
-      end
+        }]
+      )
     else
       bulk_insert_subscribers( user_ids )
       elastic_index!
@@ -334,27 +335,26 @@ class UpdateAction < ActiveRecord::Base
   def restrict_to_subscribers( user_ids )
     raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
     if es_source
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-        UpdateAction.__elasticsearch__.client.update_by_query(
-          index: UpdateAction.index_name,
-          refresh: Rails.env.test?,
-          body: {
-            query: {
-              bool: {
-                must: [
-                  { term: { id: id } }
-                ]
-              }
-            },
-            script: {
-              source: "ctx._source.subscriber_ids.retainAll( params.user_ids )",
-              params: {
-                user_ids: user_ids_without_blocked_and_muted( user_ids )
-              }
+      UpdateAction.__elasticsearch__.client.bulk(
+        index: UpdateAction.index_name,
+        refresh: Rails.env.test?,
+        body: [{
+          update: {
+            _id: id,
+            retry_on_conflict: 10
+          }
+        }, {
+          script: {
+            source: "
+              if ( !ctx._source.subscriber_ids.retainAll( params.user_ids ) ) {
+                ctx.op = 'none';
+              }",
+            params: {
+              user_ids: user_ids_without_blocked_and_muted( user_ids )
             }
           }
-        )
-      end
+        }]
+      )
     else
       self.filtered_subscriber_ids ||= []
       restricted_subscriber_ids = self.filtered_subscriber_ids.dup
