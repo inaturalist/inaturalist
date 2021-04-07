@@ -1117,6 +1117,10 @@ lb:
       'y': "1 Joer"
       #Short text representing %d years in the past
       yy: "%d Joer"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM JJJJ"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'JJ"
   month: Mount
   months: Méint
   more: Méi
