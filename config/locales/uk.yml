@@ -1794,10 +1794,10 @@ uk:
   followers: Підписники
   following: Підписки
   following_x_people:
-    one: 'Підписана 1 людина'
+    one: 'Стежить за 1 людиною'
     few: 'Підписані %{count} людини'
-    many: 'Підписані %{count} людей'
-    other: 'Підписані %{count} людини'
+    many: 'Стежить за %{count} людьми'
+    other: 'Стежити за %{count} людьми'
   for_a_taxon: для таксону
   formatting: Форматування
   forgot_your_password: Забули пароль?
@@ -2053,7 +2053,7 @@ uk:
   inviteonly: лише за запрошенням
   invited_x: "Запрошено %{x}"
   iphone: iPhone
-  is_not_following_anyone: ні на кого не підписані.
+  is_not_following_anyone: ні за ким не стежить.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Чи достатньо доказів, що підтверджують що це %{taxon}?
   is_this_offensive_html: 'Чи цей контент є <a href="/help#inappropriate">недоречним</a>, спамом чи образливим?'
   is_this_place_a_duplicate: Це місце є копією вже існуючого?
@@ -3018,7 +3018,7 @@ uk:
   paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
   paste_in_a_comma_separated_list: Вставте у розділений комами список країн
   people: Люди
-  people_following_user: "Люди, підписані на користувача %{user}"
+  people_following_user: "Люди, що стежать за %{user}"
   people_user_follows: "Люди, на яких підписаний %{user}"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -4940,7 +4940,7 @@ uk:
   you_are_subscribed_to_comments_on_this_taxon_drop: Ви підписані на коментарі під цим видаленням таксонів
   you_are_subscribed_to_observations_from_this_place: Ви підписані на коментарі щодо цього місця.
   you_arent_a_member_of_that_project: Ви не є членом цього проєкту.
-  you_arent_following_that_person: "Ти не слідкуєш за цією людиною."
+  you_arent_following_that_person: "Ви не стежите за цією людиною."
   you_can_accept_invitations: Ви можете прийняти запрошення тут
   you_can_choose_observations_associated: Ви можете вибирати спостереження та пов'язати їх із цим дописом у журналі.
   you_can_edit_this_default_check_list_because: |
