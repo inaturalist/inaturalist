@@ -202,7 +202,6 @@ export function fetchNewProjects( ) {
 export function renderObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
     if ( !observation || !observation.uuid ) {
-      console.log( "observation not found" );
       return;
     }
     const s = getState( );
@@ -365,6 +364,7 @@ export function fetchObservation( uuid, options = { } ) {
         created_at: true,
         description: true,
         faves: {
+          id: true,
           user: userFields
         },
         geojson: true,
@@ -847,7 +847,7 @@ export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const payload = Object.assign( { }, { id: state.observation.id }, params );
+    const payload = Object.assign( { }, { id: state.observation.uuid }, params );
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.filter( state.observation.votes, v => (
@@ -860,14 +860,14 @@ export function vote( scope, params = { } ) {
       }] );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
-    dispatch( callAPI( inatjs.observations.fave, payload ) );
+    dispatch( callAPI( inatjs.observations.vote, payload ) );
   };
 }
 
 export function unvote( scope ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const payload = { id: state.observation.id };
+    const payload = { id: state.observation.uuid };
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.map( state.observation.votes, v => (
@@ -877,7 +877,7 @@ export function unvote( scope ) {
       ) );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
-    dispatch( callAPI( inatjs.observations.unfave, payload ) );
+    dispatch( callAPI( inatjs.observations.unvote, payload ) );
   };
 }
 

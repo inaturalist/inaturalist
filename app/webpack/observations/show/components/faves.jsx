@@ -43,7 +43,7 @@ const Faves = ( {
     </a>
   );
   const faveToUserLink = f => (
-    <span key={`fave-${f.id}`} className="user">
+    <span key={`fave-${f.id || f.uuid}`} className="user">
       <a href={`/people/${f.user.login}`}>{ f.user.login }</a>
     </span>
   );
