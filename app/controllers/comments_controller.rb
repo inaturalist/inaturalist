@@ -70,7 +70,6 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    @comment.wait_for_obs_index_refresh = true
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
@@ -104,7 +103,6 @@ class CommentsController < ApplicationController
       return
     end
     @comment.attributes = params[:comment]
-    @comment.wait_for_obs_index_refresh = true
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html do
@@ -153,7 +151,6 @@ class CommentsController < ApplicationController
     end
 
     parent = @comment.parent
-    @comment.wait_for_obs_index_refresh = true
     @comment.destroy
     respond_to do |format|
       format.html do

@@ -147,6 +147,9 @@ pt:
   about_muting: Sobre Silenciar
   #Header for a section describing taxon names
   about_names: Sobre nomes
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
   about_the_cc_licenses: Acerca das licenças Creative Commons
   about_these_licenses: Sobre estas licenças
@@ -1547,7 +1550,6 @@ pt:
   help: Ajuda
   help_confirm_observations!: Ajude a confirmar observações!
   help_support_inaturalist: "Apoie o iNaturalist"
-  helped_the_observer_make: ajudaram o observador a fazer a sua identificação final (ou seja, foram feitas antes da identificação final e coincidiram)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa selecção de espécies
@@ -1557,6 +1559,7 @@ pt:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sem anotação"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar total acumulado
   hide_uncountable_species: Ocultar espécies incontáveis
   high: Alto
@@ -1605,6 +1608,7 @@ pt:
   ignore_and_continue: Ignorar e continuar
   ignore_times: Ignorar datas
   image_must_be_exactly: imagem deve ter exactamente 950px de largura e no máximo 400px de altura
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Em perigo
   import: Importar
   import_all_photos_as_observations: Importar todas as fotografias como observações
@@ -1660,7 +1664,6 @@ pt:
   inviteonly: convidar apenas
   invited_x: "Convidado %{x}"
   is_not_following_anyone: não está seguindo ninguém.
-  is_now: é agora
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A evidência fornecida é suficiente para confirmar que é %{taxon}?
   is_this_offensive_html: 'Isto é <a href="/help#inappropriate">inappropriado</a>, invasivo ou ofensivo?'
   is_this_place_a_duplicate: Este local está duplicado?
@@ -2181,7 +2184,6 @@ pt:
   no_taxonomic_changes_match_those_criteria: Nenhuma mudança taxonômica corresponde a estes critérios
   no_users_found_with_those_filters: Não foram encontrados utilizadores com estes filtros!
   no_wikipedia_page_for_taxon: Nenhuma página da Wikipédia foi encontrada para este táxon.
-  no_x_this_y: "Não existe %{x} deste %{y}"
   noble_curators: "Nobres Curadores do %{site}"
   non_human?: Não-humano?
   none: Nenhum

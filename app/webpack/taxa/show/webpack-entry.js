@@ -55,11 +55,9 @@ if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
     chosenPlace: serverPayload.place
   } ) );
 }
-if ( serverPayload.chosenTab ) {
-  store.dispatch( setConfig( {
-    chosenTab: serverPayload.chosenTab
-  } ) );
-}
+store.dispatch( setConfig( {
+  chosenTab: serverPayload.chosenTab || "articles"
+} ) );
 if ( serverPayload.ancestorsShown ) {
   store.dispatch( setConfig( {
     ancestorsShown: serverPayload.ancestorsShown

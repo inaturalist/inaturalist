@@ -29,7 +29,7 @@ class AdminController < ApplicationController
   def user_detail
     @display_user = User.find_by_id(params[:id].to_i)
     @display_user ||= User.find_by_login(params[:id])
-    @display_user ||= User.find_by_email(params[:id])
+    @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
     @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
 
     respond_to do |format|
@@ -167,7 +167,7 @@ class AdminController < ApplicationController
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id(user_id)
     @display_user ||= User.find_by_login(user_id)
-    @display_user ||= User.find_by_email(user_id)
+    @display_user ||= User.find_by_email(user_id) unless user_id.blank?
     unless @display_user
       flash[:error] = "User #{user_id} doesn't exist"
       redirect_back_or_default(:action => "index")

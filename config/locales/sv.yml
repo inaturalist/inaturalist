@@ -1737,7 +1737,9 @@ sv:
   get_started: Kom igång
   getting_started_guide: Komma igång-guide
   give_it_some_detail: Lägg till lite detaljer!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: GE MÅNADSVIS
+  #Prompt to donate money once
   give_now_caps: GE NU
   global_names: Globala namn
   globally: Globalt
@@ -1792,7 +1794,6 @@ sv:
   help_confirm_observations!: Hjälp till att bekräfta observationer!
   help_support_inaturalist: "Hjälp till att stödja iNaturalist"
   help_translate!: Hjälp till med översättning!
-  helped_the_observer_make: hjälpte observatören att göra sin slutliga bestämning (d.v.s. de gjordes innan den slutliga bestämningen och de stämmer överens)
   here_are_3_examples: Här är 3 exempel på bra utformade data
   here_are_our_top_suggestions: Här är våra bästa förslag
   here_are_our_top_species_suggestions: Här är våra bästa förslag på arter
@@ -1807,6 +1808,7 @@ sv:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj arter som inte kan räknas
   high: Hög
@@ -1866,6 +1868,7 @@ sv:
   ignore_times: Ignorera tider
   image_must_be_exactly: bilden måste vara exakt 950px bred och högst 400px hög
   image_size_control: Kontroll av bildstorlek
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Äventyrad
   import: Importera
   import_all_photos_as_observations: Importera alla bilder som observationer
@@ -1935,7 +1938,6 @@ sv:
   invited_x: "%{x} inbjudna"
   iphone: iPhone
   is_not_following_anyone: följer inte någon.
-  is_now: är nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna fyndplats en dubblett?
@@ -2585,7 +2587,6 @@ sv:
   no_taxonomic_changes_match_those_criteria: Inga taxonomiska ändringar matchar dessa kriterier
   no_users_found_with_those_filters: Inga användare hittades med dessa filter
   no_wikipedia_page_for_taxon: Ingen Wikipedia-sida för detta taxon.
-  no_x_this_y: "Inget %{x} detta %{y}"
   noble_curators: "%{site}s förnäma förvaltare"
   non_human?: Icke-mänsklig?
   none: Ingen
@@ -3427,7 +3428,7 @@ sv:
   posts: Inlägg
   potential_disagreement: Möjlig oenighet
   powered_by: Drivs av
-  powered_by_inaturalist_open_source_software_html: 'Drivs av <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist programvara med öppen källkod</a>'
+  powered_by_inaturalist_open_source_software_html: 'Drivs av <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist-programvara med öppen källkod</a>'
   present: påträffad
   press: Press
   preview: Förhandsgranska
@@ -3555,7 +3556,7 @@ sv:
       one: Klass
       other: Klasser
     subclass: Underklass
-    infraclass: infraklass
+    infraclass: Infraklass
     superorder: Överordning
     order: Ordning
     x_orders:
@@ -3857,6 +3858,7 @@ sv:
   show_off_your_recent_observations: Visa upp dina senaste observationer på din egen blogg eller hemsida!
   show_only: Visa endast
   show_relative_proportions_of_all_observations: Visa relativ andel av alla observationer
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Visa ackumulerat
   show_scientific_name_first: Visa vetenskapliga namn först
   show_taxa_from_both: (visa taxa från båda listorna)
@@ -4785,7 +4787,6 @@ sv:
   youre_a_site_curator_which_means: |
     Du är en av webbplatsens förvaltare, vilket innebär att du frivilligt förvaltar våra data och övervakar innehåll. Känn dig inte tvingad att ta dig an alla dessa uppgifter, men har du tid att kolla på några av dem blir vi glada för all hjälp vi kan få. Om du har några frågor kring förvaltning av innehåll eller inte vill vara förvaltare längre, vänligen kontakta oss på %{email}
   you_are_over_your_invites_quota: ...du har överskridit din månatliga kvot om 60 inbjudningar
-  you_are_now: Du är nu
   you_are_now_following_x: "Du följer nu %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>du</strong> är nu administratör för %{project}

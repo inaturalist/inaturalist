@@ -61,7 +61,6 @@ class ObservationPhotosController < ApplicationController
     end
     
     begin
-      @observation_photo.observation.wait_for_index_refresh = true if params[:refresh_index]
       @observation_photo.save
     rescue PG::UniqueViolation => e
       raise e unless e.message =~ /index_observation_photos_on_uuid/
@@ -101,7 +100,6 @@ class ObservationPhotosController < ApplicationController
     end
     respond_to do |format|
       if @observation_photo.update_attributes(params[:observation_photo])
-        @observation_photo.observation.wait_for_index_refresh = true
         @observation_photo.observation.elastic_index!
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else

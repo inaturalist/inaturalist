@@ -53,7 +53,6 @@ class ProjectObservationsController < ApplicationController
         end
         set_curator_coordinate_access
         if @project_observation.save
-          @project_observation.observation.wait_for_index_refresh = true
           @project_observation.observation.elastic_index!
           render json: @project_observation
         else

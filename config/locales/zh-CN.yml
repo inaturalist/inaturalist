@@ -1526,7 +1526,9 @@ zh-CN:
   get_started: 入门
   getting_started_guide: 入门指导
   give_it_some_detail: 给它提供一些详情！
+  #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
+  #Prompt to donate money once
   give_now_caps: 立即捐款
   global_names: 全域名称
   globally: 全域
@@ -1580,7 +1582,6 @@ zh-CN:
   help_confirm_observations!: 帮助确认观察！
   help_support_inaturalist: "帮助支持 iNaturalist"
   help_translate!: 协助翻译
-  helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_suggestions: 这是我们的最佳建议
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
@@ -1593,6 +1594,7 @@ zh-CN:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
   high: 高
@@ -1635,7 +1637,7 @@ zh-CN:
   ids: "ID"
   ids_made_for_others: 由其他人做出的ID
   if_for_some_reason_a_user_doesnt_agree: |
-    如果出于某种原因，你不同意社区分类单元，你可以拒绝它，这意味着你的ID会被用于链接到其他观察，更新生命列表等。这也意味着只有当社区同意你的看法时，你的观察才能被作为研究成绩 。
+    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
@@ -1646,6 +1648,7 @@ zh-CN:
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
   image_size_control: 图片大小控制
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: 危及
   import: 导入
   import_all_photos_as_observations: 将所有照片导入为观察
@@ -1711,7 +1714,6 @@ zh-CN:
   invited_x: "已邀请 %{x}"
   iphone: iPhone
   is_not_following_anyone: 未关注任何人。
-  is_now: 现已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
   is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
@@ -2336,7 +2338,6 @@ zh-CN:
   no_taxonomic_changes_match_those_criteria: 没有分类学的改变符合这些标准
   no_users_found_with_those_filters: 没有找到符合过滤规则的用户
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
-  no_x_this_y: "不是%{x}这个%{y}"
   noble_curators: "%{site}的博物馆长"
   non_human?: 非人类？
   none: 无
@@ -3386,8 +3387,8 @@ zh-CN:
   research_: 研究
   research_grade: 研究级别
   research_grade_short_html: "研<span class='full'>究</span>级<span class='full'>别</span>"
-  research_grade_observations_have: '“研究成绩”观察具有日期，照片，坐标和由社区支持的ID。点击查看数据质量评估。'
-  research_grade_qualification: 研究成果资格
+  research_grade_observations_have: '达到“研究级别”的观察须具备观察日期、照片、坐标，以及由社区支持的鉴定结果。点击查看数据质量评估标准。'
+  research_grade_qualification: 研究级资质
   reset_filters_short: 重设
   reset_brightness: 重新设定亮度
   reset_search_filters: 重置搜索过滤器
@@ -3533,6 +3534,7 @@ zh-CN:
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
   show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
   show_scientific_name_first: 首先显示学名
   show_taxa_from_both: '（显示来自两个清单中的分类群）'
@@ -3862,7 +3864,7 @@ zh-CN:
   the_admin_is_the_person_who: |
     管理员是创建项目的人。他们可以做管理者和馆长可以做的任何事情，也可以删除项目。
   the_below_items_are_needed_to_achieve: |
-    以下项需要达到特定<span className="bold">研究等级：</span>
+    下列项目需要达到<span className="bold">研究等级：</span>
   the_community_id_requires_at_least_two_identifications: 社区ID至少需要两个标识。
   the_community_must_feel_that: |
     社区必须认为此社区ID是最好的，它可以基于如下证据
@@ -4379,7 +4381,6 @@ zh-CN:
   youre_a_site_curator_which_means: |
     您是站点馆长，这意味着您自愿帮助我们管理数据和监控内容。请不要觉得您有必要去处理所有这些问题，只要您有时间检查其中的一些问题，我们已经非常感谢您的帮助。如果您对管理的内容有任何疑问或不想成为馆长，请通过%{email}与我们联系
   you_are_over_your_invites_quota: '…您已达到每月60个邀请限额'
-  you_are_now: 您现在
   you_are_now_following_x: "您正在关注%{friend_user}。"
   you_are_now_the_admin_for_project_html: |
     <strong>您</strong> 现在是 %{project} 的总管理员了

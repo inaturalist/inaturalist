@@ -1724,7 +1724,9 @@ fr:
   get_started: Commencer
   getting_started_guide: Guide pour le débutant
   give_it_some_detail: Fournissez des détails !
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DONNER MENSUELLEMENT
+  #Prompt to donate money once
   give_now_caps: DONNER MAINTENANT
   global_names: Noms globaux
   globally: A l’échelle mondiale
@@ -1779,7 +1781,6 @@ fr:
   help_confirm_observations!: Aider à confirmer les observations!
   help_support_inaturalist: "Aider à soutenir iNaturalist "
   help_translate!: Aidez-nous à traduire !
-  helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
   here_are_our_top_suggestions: Voici nos meilleures suggestions.
   here_are_our_top_species_suggestions: Voici les suggestions concernant nos espèces favorites
@@ -1801,6 +1802,7 @@ fr:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
   high: Haut
@@ -1860,6 +1862,7 @@ fr:
   ignore_times: Ignorer le nombre de fois
   image_must_be_exactly: la largeur de l’image doit être exactement 950px et la hauteur d’un maximum de 400px
   image_size_control: Contrôle de la taille de l'image
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En péril
   import: Importer
   import_all_photos_as_observations: Importer toutes les photos comme des observations
@@ -1929,7 +1932,6 @@ fr:
   invited_x: "%{x} invité(e)"
   iphone: iPhone
   is_not_following_anyone: ne suit personne.
-  is_now: est maintenant
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que ceci est %{taxon} ?
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
@@ -1942,7 +1944,7 @@ fr:
     responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les signalements</a>
-  join: Joignez-vous à
+  join: S'y joindre
   join_and_add_an_observation_to_project_html: Rejoindre et ajouter une observation à %{project}
   join_project: Joignez-vous à ce projet
   #Prompt to join a specific project
@@ -2575,7 +2577,6 @@ fr:
   no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond à ces critères
   no_users_found_with_those_filters: Pas d'utilisateurs trouvés ave ces filtres
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
-  no_x_this_y: "Aucun %{x} durant %{y}"
   noble_curators: "Responsables éminents de l’organisation d’%{site}"
   non_human?: Non-humain ?
   none: Aucun
@@ -3731,7 +3732,7 @@ fr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Révoquer %{site_name}?"
-  rg_observations: Observations RG
+  rg_observations: Observations CR
   role: Rôle
   rotate_left: Pivoter vers la gauche
   rotate_right: Pivoter vers la droite
@@ -3861,6 +3862,7 @@ fr:
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blog ou site web !
   show_only: 'Montrer seulement :'
   show_relative_proportions_of_all_observations: Afficher les proportions relatives de toutes les observations
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Afficher le total actuel
   show_scientific_name_first: Afficher les noms scientifiques en premier
   show_taxa_from_both: (afficher les taxons des deux listes)
@@ -3880,7 +3882,7 @@ fr:
   sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
   sign_up: Inscrivez-vous
-  similar_species: Espèces proches
+  similar_species: Espèces similaires
   similar_taxa: Taxons similaires
   #Journal post formatting option
   simple: Simple
@@ -4805,7 +4807,6 @@ fr:
     vous avez des questions sur le contenu organisé ou ne voulez plus
     être un responsable de l’organisation, veuillez nous contacter à %{email}
   you_are_over_your_invites_quota: '… vous avez dépassé votre quota mensuel de 60 invitations'
-  you_are_now: Vous êtes maintenant
   you_are_now_following_x: "Vous suivez désormais %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>vous</strong> êtes désormais administrateur pour %{project}
@@ -5564,7 +5565,7 @@ fr:
         quality_assessment_help_html: |
           <p>
           L’assurance qualité des données est le résumé de l’exactitude d’une observation. Toutes
-          les observations démarrent à l’état de <strong>« occasionnel »</strong>, et deviennent
+          les observations démarrent au niveau <strong>« informel »</strong>, et deviennent
           <strong>« nécessite une ID »</strong> quand
           </p>
 
@@ -5574,16 +5575,16 @@ fr:
           <li>l’observation <strong>a des photos ou des sons</strong></li>
           <li>l’observation <strong>n’est pas d’un humain</strong></li></ul>
           <p>
-          Les observations deviennent <strong>« état recherché »</strong> quand
+          Les observations parviennent au <strong>« niveau de recherche »</strong> quand
           </p>
           <ul>
           <li>
-          la <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.
-          quand plus de 2/3 des identificateurs sont d’accord sur un taxon
+          la <strong>communauté %{site_name} est d’accord avec l’ID au niveau de l’espèce ou à un rang inférieur</strong>, c.-à-d.
+          quand plus de 2/3 des identificateurs sont d’accord sur un taxon (si la communauté a voté en indiquant que le taxon de la communauté ne pouvait pas être amélioré, l'ID nécessaire repasse au rang de la sous-famille ou inférieur
           </li>
           </ul>
           <p>
-          Les observations seront ramenées à <strong>« occasionnel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté est d’accord
+          Les observations repassent au niveau <strong>« informel »</strong> si les conditions ci-dessus ne sont pas respectées ou si la communauté en convient.
           </p>
           <ul>
           <li>
@@ -5607,24 +5608,23 @@ fr:
           sont ok)
           </li>
           <li>
-          l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
+          l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est d'un rang supérieur à la famille
           </li>
           <li>
           l’observateur a refusé l’ID de la communauté et l’id de taxon
-          de la communauté n’est pas un ancêtre ou un descendant du taxon associé
+          de la communauté n’est pas un parent ou un descendant du taxon associé
           avec l’ID de l’observateur
           </li>
           </ul>
           <p>
-          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système nécessite un vote :
+          Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système a voix au chapitre :
           </p>
           <ul>
           <li>
-          Le système votera que l’observation n’est pas sauvage/naturalisée
-          s’il y a au moins 10 autres observations d’un genre ou inférieur dans
-          le plus petit lieu équivalent à la région, à l’état ou au pays qui
-          contient cette observation, et 80% ou plus de ces observations
-          qui ont été marquées comme non sauvages/naturalisées.
+          Le système indique que l’observation n’est pas un organisme sauvage/naturalisé
+          s’il y a au moins 10 autres observations du genre ou d'un rang inférieur dans
+          la région ou, à défaut, l’État ou le pays de cette observation, et qu'au moins 80% de ces observations
+          ont été marquées comme non sauvages/naturalisées.
           </li></ul>
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |

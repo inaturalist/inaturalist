@@ -1156,7 +1156,6 @@ ar:
   help: مساعدة
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_support_inaturalist: "مساعدة دعم إيناتوراليست"
-  helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   hex_color_eg: لون Hex، على سبيل المثال 65644F
@@ -1172,6 +1171,7 @@ ar:
     المعرف تكون مخفية، لا يمكنك التراجع عن ذلك، ولا يمكن إلا لموظفي الموقع إظهار
     المحتوى بمجرد إخفائه؛ لذا كن حذرا واستخدم هذا فقط 
     للمحتوى غير المرغوب فيه للغاية.
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
@@ -1234,6 +1234,7 @@ ar:
   ignore_and_continue: تجاهل ومتابعة
   ignore_times: مرات التجاهل
   image_must_be_exactly: يجب أن تكون الصورة بعرض 950 بكسل وعلى الأكثر بطول 400 بكسل بالضبط
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: معرض للخطر
   import: استيراد
   import_all_photos_as_observations: استيراد جميع الصور كملاحظات
@@ -1292,7 +1293,6 @@ ar:
   invited_x: "تمت دعوة %{x}"
   iphone: آيفون
   is_not_following_anyone: لا يتبع أي شخص.
-  is_now: هو الآن
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: هل الأدلة المقدمة تكفي لتأكيد أن هذا %{taxon}؟
   is_this_offensive_html: 'هل هذا <a href="/help#inappropriate">غير لائق</a> أو محتوى غير مرغوب فيه أو مسيئ؟'
   is_this_place_a_duplicate: هل هذا المكان مكرر؟
@@ -1822,7 +1822,6 @@ ar:
   no_taxon_framework_relationships: لا علاقات إطار للأنواع
   no_taxonomic_changes_match_those_criteria: لا تتطابق أي تغييرات تصنيفية مع تلك المعايير
   no_wikipedia_page_for_taxon: لا توجد صفحة في ويكيبيديا لهذا الصنف.
-  no_x_this_y: "لا %{x} هذا %{y}"
   noble_curators: "%{site} قيمو نوبل"
   non_human?: غير بشري؟
   none: لا شيء
@@ -2911,6 +2910,7 @@ ar:
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
   show_relative_proportions_of_all_observations: إظهار النسب المرتبطة لجميع الملاحظات
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: إظهار تشغيل الاجمالي
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
@@ -3696,7 +3696,6 @@ ar:
     لديك أية أسئلة حول تنسيق المحتوى أو عدم رغبتك في أن 
     تكون أمينا بعد الآن، يُرجَى الاتصال بنا على %{email}
   you_are_over_your_invites_quota: ...لقد تجاوزت الحصة الشهرية لعدد 60 دعوة
-  you_are_now: أنت الآن
   you_are_now_following_x: "أنت الآن تتابع %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
     أنت لا تقوم بتحرير أي أدلة، <a href="/guides/new">إضافة واحد</a>

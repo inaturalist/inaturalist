@@ -1517,10 +1517,10 @@ nl:
   exact_date: Exacte datum
   exact_rank: Exacte rang
   except: met uitzondering van
-  exclude_places: Plaatsen uitsluiten
-  exclude_projects: Projecten uitsluiten
-  exclude_taxa: Taxa uitsluiten
-  exclude_users: Gebruikers uitsluiten
+  exclude_places: Exclusief de plaatsen
+  exclude_projects: Exclusief de projecten
+  exclude_taxa: Exclusief de taxa
+  exclude_users: Exclusief de gebruikers
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -1657,7 +1657,7 @@ nl:
   flagged_thing_explanation: "Gebruikers hebben @gender{n:dit|deze} %{thing} gemeld omdat"
   flagging_desc: |
     Melden brengt iets onder de aandacht van vrijwillige sitecuratoren.
-    Meld geen problemen die je kunt opgelossen met determinaties, de kwaliteitsbeoordeling, of door in gesprek te gaan met de maker van de inhoud.
+    Meld geen problemen die je kunt oplossen met determinaties, kwaliteitsbeoordeling of door in gesprek te gaan met de maker van de inhoud.
   flagger: Melder
   flags: Meldingen
   flags_with_count: Meldingen (%{count})
@@ -1727,7 +1727,9 @@ nl:
   get_started: Aan de slag
   getting_started_guide: Aan de slag-gids
   give_it_some_detail: Geef het wat detail!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: GEEF MAANDELIJKS
+  #Prompt to donate money once
   give_now_caps: GEEF NU
   global_names: Globale Namen
   globally: Wereldwijd
@@ -1782,7 +1784,6 @@ nl:
   help_confirm_observations!: Help waarnemingen bevestigen!
   help_support_inaturalist: "Help en ondersteun iNaturalist!"
   help_translate!: Help met vertalen!
-  helped_the_observer_make: heeft de waarnemer geholpen zijn of haar uiteindelijke ID te maken (ze werden dus gedaan vóór het laatste ID, en ze komen overeen)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
   here_are_our_top_suggestions: Dit zijn onze topvoorstellen
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
@@ -1799,6 +1800,7 @@ nl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
   high: Hoog
@@ -1857,6 +1859,7 @@ nl:
   ignore_times: Tijden negeren
   image_must_be_exactly: afbeelding moet exact 950px breed en maximaal 400px hoog zijn
   image_size_control: Grootte afbeelding bepalen
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: In gevaar brengen
   import: Importeren
   import_all_photos_as_observations: Importeer alle foto's als waarnemingen
@@ -1878,11 +1881,11 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
-  include_places: Includeer plaatsen
-  include_projects: Includeer projecten
+  include_places: Inclusief de plaatsen
+  include_projects: Inclusief de projecten
   include_suggestions_not_seen_nearby: Alle soorten
-  include_taxa: Includeer taxa
-  include_users: Includeer gebruikers
+  include_taxa: Inclusief de taxa
+  include_users: Inclusief de gebruikers
   including: inclusief
   increase_brightness: Helderheid verhogen
   in_progress: bezig
@@ -1926,7 +1929,6 @@ nl:
   invited_x: "%{x} uitgenodigd"
   iphone: iPhone
   is_not_following_anyone: volgt niemand.
-  is_now: is nu
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?
   is_this_offensive_html: 'Is dit <a href="/help#inappropriate">ongepast</a>, spam, of aanstootgevend?'
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
@@ -2574,7 +2576,6 @@ nl:
   no_taxonomic_changes_match_those_criteria: Er zijn geen taxonomische veranderingen die voldoen aan die criteria
   no_users_found_with_those_filters: Geen gebruikers gevonden met deze filters
   no_wikipedia_page_for_taxon: Geen Wikipediapagina voor dit taxon
-  no_x_this_y: "Geen %{x} @gender{n:dit|deze} %{y}"
   noble_curators: "%{site}'s Edele Curatoren"
   non_human?: Niet-menselijk?
   none: Geen
@@ -3870,6 +3871,7 @@ nl:
   show_off_your_recent_observations: Schep op over je recente waarnemingen op je eigen blog of website!
   show_only: Toon alleen
   show_relative_proportions_of_all_observations: Relatieve verhoudingen van alle waarnemingen tonen
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Lopend totaal weergeven
   show_scientific_name_first: Wetenschappelijke namen als eerste weergeven
   show_taxa_from_both: (toon taxa van beide lijsten)
@@ -4804,7 +4806,6 @@ nl:
   youre_a_site_curator_which_means: |
     Je bent een sitecurator, wat betekent dat je hebt aangeboden om te helpen om onze gegevens te beoordelen en de inhoud te monitoren. Voel je alsjeblieft niet verplicht om al deze problemen op te lossen, maar als je de tijd hebt om er een aantal te controleren zou dat fijn zijn. We waarderen alle hulp die we kunnen krijgen. Als je nog vragen hebt over het beheren van inhoud of geen curator meer wilt zijn, neem dan contact met ons op via %{email}
   you_are_over_your_invites_quota: ...je bent door je maandelijkse quotum van 60 uitnodigingen
-  you_are_now: Je bent nu
   you_are_now_following_x: "Je volgt nu %{friend_user}"
   you_are_now_the_admin_for_project_html: |
     <strong>jij</strong> bent nu de administrator voor %{project}

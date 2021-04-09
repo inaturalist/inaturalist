@@ -1852,7 +1852,9 @@ cs:
   get_started: Začněte
   getting_started_guide: Příručka pro nováčky
   give_it_some_detail: Přidejte nějaký detail!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: DÁT MĚSÍČNĚ
+  #Prompt to donate money once
   give_now_caps: DÁT NYNÍ
   global_names: Globální názvy
   globally: globálně
@@ -1907,7 +1909,6 @@ cs:
   help_confirm_observations!: Pomozte potvrdit pozorování!
   help_support_inaturalist: "Nápověda iNaturalist"
   help_translate!: Pomozte s překladem!
-  helped_the_observer_make: pomohl pozorovateli provést konečné ID (byly provedeny před konečným ID, kterému odpovídají)
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
   here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
@@ -1928,6 +1929,7 @@ cs:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skrýt Running Total
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
@@ -1985,6 +1987,7 @@ cs:
   ignore_times: Ignorovat časy
   image_must_be_exactly: obrázek musí být přesně 950px široký a maximálně 400px vysoký
   image_size_control: Ovládání velikosti obrázku
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohrožen
   import: Importovat
   import_all_photos_as_observations: Importovat všechny fotky jako pozorování
@@ -2054,7 +2057,6 @@ cs:
   invited_x: "Pozván/a %{x}"
   iphone: iPhone
   is_not_following_anyone: nikoho nesleduje.
-  is_now: je nyní
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Jsou předložené důkazy dostatečné k potvrzení, že toto je %{taxon}?
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, nebo urážlivé?'
   is_this_place_a_duplicate: Je toto místo duplikát?
@@ -2708,7 +2710,6 @@ cs:
   no_taxonomic_changes_match_those_criteria: Těmto kritériím neodpovídají žádné taxonomické změny
   no_users_found_with_those_filters: S těmito filtry nebyli nalezeni žádní uživatelé
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
-  no_x_this_y: "Žádný %{x} tohoto %{y}"
   noble_curators: "Vybraní kurátoři stránky %{site}"
   non_human?: Není lidský?
   none: Žádný
@@ -2820,6 +2821,9 @@ cs:
   observed_on_datetime: Pozorováno na %{datetime}
   observation_removed_from_the_project: "Pozorování odebráno z projektu \"%{project}\""
   observation_requirements: Požadavky pozorování
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Požadavky na pozorování aktualizovány na
   observation_rules: Pravidla pozorování
   observation_rules_description: |
     Můžete si zvolit pravidla, která určí, jaká pozorování lze k tomuto projektu přidat, například můžete pozorování omezit na určité místo nebo taxon. Pokud máte pro jeden typ pravidla více než jedno pravidlo, budou pozorování platná v případě, že bude splněno některé pravidlo. Pokud máte například nastavena pravidla „musí být obojživelník“ a „musí být plaz“, přijme projekt pozorování plazů NEBO obojživelníků.
@@ -4008,6 +4012,7 @@ cs:
   show_off_your_recent_observations: Ukažte svá poslední pozorování na svém blogu nebo webové stránce!
   show_only: Zobrazit jen
   show_relative_proportions_of_all_observations: Zobrazte příbuzné části všech pozorování
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobrazit Running Total
   show_scientific_name_first: Zobrazit nejdřív vědecké názvy
   show_taxa_from_both: (zobrazit taxony z obou seznamů)
@@ -4983,7 +4988,6 @@ cs:
   youre_a_site_curator_which_means: |
     Jste kurátorem stránky, což znamená, že jste se dobrovolně přihlásili, abyste nám pomohli spravovat naše údaje a sledovat obsah. Rozhodně nejste povinni řešit všechny tyto záležitosti, ale pokud máte čas se na některé z nich podívat, budeme rádi za veškerou pomoc, kterou můžete poskytnout. Jestli máte otázky ke správě obsahu nebo už nechcete být kurátorem, kontaktujte nás prosím na adrese %{email}
   you_are_over_your_invites_quota: ...překročili jste měsíční limit 60 pozvánek
-  you_are_now: Nyní jste
   you_are_now_following_x: "Teď sledujete %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>ty</strong> jsi nyní admin pro %{project}
@@ -6577,6 +6581,8 @@ cs:
           any: Jakýkoliv
           joined: Projekty, ke kterým jste se přidali
           none: "Žádný, k projektům můžete přidávat svá pozorování pouze vy"
+        prefers_community_taxa_desc: |
+          %{site_name} sleduje, co si myslíte, že jsou vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity nad tím vaším nikdy neměl převážit, můžete si zvolit tuto možnost nepoužívat. Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň, pokud budete mít jiný názor než komunita.
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.

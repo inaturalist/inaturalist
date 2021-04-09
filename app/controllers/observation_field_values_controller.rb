@@ -78,7 +78,6 @@ class ObservationFieldValuesController < ApplicationController
         @observation_field_value.attributes = ofv_params
       end
     end
-    @observation_field_value.wait_for_obs_index_refresh = true
     respond_to do |format|
       if @observation_field_value.save
         format.json { render :json => @observation_field_value }
@@ -97,7 +96,6 @@ class ObservationFieldValuesController < ApplicationController
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end
-      @observation_field_value.wait_for_obs_index_refresh = true
       if @observation_field_value.update_attributes(update_params)
         format.json { render :json => @observation_field_value }
       else
@@ -127,7 +125,6 @@ class ObservationFieldValuesController < ApplicationController
         status = :unprocessable_entity
         errors << t(:observation_belongs_to_project_requiring_field)
       else
-        @observation_field_value.wait_for_obs_index_refresh = true
         @observation_field_value.destroy
         status = :ok
       end

@@ -166,12 +166,15 @@ tr:
   about_muting: Susturma Hakkında
   #Header for a section describing taxon names
   about_names: Adlar Hakkında
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} Hakkında"
   about_places: Yerler Hakkında
   about_the_cc_licenses: Creative Commons Lisansları Hakkında
   about_these_licenses: Bu lisanslar hakkında
   about_this_bioblitz: Bu bioblitz hakkında
-  about_this_map: Bu harita hakkında
-  about_this_project: Bu proje hakkında
+  about_this_map: Bu Harita Hakkında
+  about_this_project: Bu Proje Hakkında
   about_trips_html: |
     <h4>
     Geziler, gözlemlerinize bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
@@ -1700,7 +1703,9 @@ tr:
   get_started: Başla
   getting_started_guide: Başlangıç Rehberi
   give_it_some_detail: Biraz ayrıntı ver!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: AYLIK ÖDE
+  #Prompt to donate money once
   give_now_caps: ŞİMDİ ÖDE
   global_names: Küresel Adlar
   globally: Küresel
@@ -1755,7 +1760,6 @@ tr:
   help_confirm_observations!: Gözlemleri doğrulamaya yardımcı olun!
   help_support_inaturalist: "iNaturalist Yardım ve Destek"
   help_translate!: Çeviriye Yardımcı Olun!
-  helped_the_observer_make: gözlemcinin son tanımlamasını yapmasına yardımcı oldu (yani, son tanımlamadan önce yapıldı ve eşleşti)
   here_are_3_examples: İşte iyi biçimlendirilmiş verilere 3 örnek
   here_are_our_top_suggestions: En iyi önerilerimiz şunlar
   here_are_our_top_species_suggestions: İşte en iyi tür önerilerimiz
@@ -1770,6 +1774,7 @@ tr:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Açıklama Notu Olmayan"ları Gizle'
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Toplam Bulunanı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
   high: Yüksek
@@ -1827,6 +1832,7 @@ tr:
   ignore_times: Zamanları yok say
   image_must_be_exactly: görüntü tam olarak 950 piksel genişliğinde ve en çok 400 piksel uzunluğunda olmalıdır
   image_size_control: Görüntü boyutu kontrolü
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Tehlikede
   import: İçe aktar
   import_all_photos_as_observations: Tüm fotoğrafları gözlem olarak içe aktar
@@ -1896,7 +1902,6 @@ tr:
   invited_x: "%{x} davet edildi"
   iphone: iPhone
   is_not_following_anyone: kimseyi takip etmiyor.
-  is_now: şimdi
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Bunun %{taxon} olduğunu doğrulamak için yeterli kanıt var mı?
   is_this_offensive_html: 'Bu <a href="/help#inappropriate">uygunsuz</a>, gereksiz ya da rahatsız edici mi?'
   is_this_place_a_duplicate: Bu kopyalanmış bir yer mi?
@@ -2534,7 +2539,6 @@ tr:
   no_taxonomic_changes_match_those_criteria: Bu ölçüte uygun sınıflandırmasal değişiklikler yok
   no_users_found_with_those_filters: Bu filtrelerle eşleşen herhangi bir kullanıcı bulunamadı
   no_wikipedia_page_for_taxon: Bu sınıf için Vikipedi sayfası yok.
-  no_x_this_y: "Bu %{y} için %{x} yok"
   noble_curators: "%{site} Sayfasının Seçkin Sorumluları"
   non_human?: İnsan değil mi?
   none: Hiçbiri
@@ -3792,6 +3796,7 @@ tr:
   show_off_your_recent_observations: Son gözlemlerinizi kendi blogunuzda veya web sitenizde gösterin!
   show_only: Sadece göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin karşılaştırmalı oranlarını göster
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Toplam Bulunanı Göster
   show_scientific_name_first: İlk önce bilimsel isimleri göster
   show_taxa_from_both: (her iki listeden sınıfları göster)
@@ -4711,7 +4716,6 @@ tr:
     bir sorunuz varsa veya artık sorumlu olmak istemiyorsanız, lütfen 
     %{email} adresinden bize ulaşın
   you_are_over_your_invites_quota: ...aylık 60 davet kontenjanının üzerindesiniz
-  you_are_now: Şimdi sen
   you_are_now_following_x: "Sen şimdi %{friend_user} kullanıcısını takip ediyorsun."
   you_are_now_the_admin_for_project_html: |
     <strong>sen</strong> şimdi %{project} için yöneticisin
@@ -5060,6 +5064,7 @@ tr:
         least_observed: En Az Gözlemlenenler
         date_added_newest: Ekleme Tarihi, Yeniden Eskiye
         date_added_oldest: Ekleme Tarihi, Eskiden Yeniye
+        ancestry: Soy
         show: Göster
         children: Çocuklar
         simplified_tree: Basitleştirilmiş Ağaç

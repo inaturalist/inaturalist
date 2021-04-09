@@ -1677,7 +1677,9 @@ fi:
   get_started: Aloita
   getting_started_guide: Aloitusopas
   give_it_some_detail: Lisää joitakin yksityiskohtia!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
+  #Prompt to donate money once
   give_now_caps: LAHJOITA NYT
   global_names: Maailmanlaajuiset nimet
   globally: Maailmanlaajuisesti
@@ -1729,7 +1731,6 @@ fi:
   help_confirm_observations!: Auta vahvistamaan havaintoja!
   help_support_inaturalist: "Auta tukemaan iNaturalistia"
   help_translate!: Auta kääntämisessä!
-  helped_the_observer_make: auttoi havainnoijaa tekemään lopullisen tunnistuksensa (eli ne tehtiin ennen lopullista tunnistusta, ja ne täsmäävät sen kanssa)
   here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
   here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
   here_are_our_top_species_suggestions: Tässä ovat parhaat lajiehdotuksemme
@@ -1744,6 +1745,7 @@ fi:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -1794,6 +1796,7 @@ fi:
   ignore_times: Jätä kellonaika huomioimatta
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
   image_size_control: Kuvan koon hallinta
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Vaarantunut
   import: Tuo
   import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
@@ -1860,7 +1863,6 @@ fi:
   invited_x: "Kutsuttu %{x}"
   iphone: iPhone
   is_not_following_anyone: ei seuraa ketään.
-  is_now: on nyt
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?
   is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
@@ -2475,7 +2477,6 @@ fi:
   no_taxonomic_changes_match_those_criteria: Ei näitä kriteereitä vastaavia taksonomisia muutoksia
   no_users_found_with_those_filters: Yhtään käyttäjää ei löytynyt näillä suodattimilla
   no_wikipedia_page_for_taxon: Ei Wikipedia-artikkelia tälle taksonille.
-  no_x_this_y: "Ei %{x} tämä %{y}"
   noble_curators: "%{site}in mahtavat kuraattorit"
   non_human?: Ei-ihminen?
   none: Ei mitään
@@ -2483,6 +2484,7 @@ fi:
   normal: normaali
   not_completed: Ei valmis
   not_confident: Emme ole tarpeeksi varmoja tekemään suositusta.
+  not_confident_top_suggestions: Meillä ei ole luotettavia suosituksia, mutta tässä ovat parhaat ehdotuksemme
   not_covered_by_any_taxon_frameworks: Ei kuulu mihinkään taksonikehyksiin
   not_evaluated: arvioimatta jätetty
   not_findig_what_you_want: Et löydä mitä haluat?
@@ -3632,6 +3634,7 @@ fi:
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
   show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteellinen määrä
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Näytä kumulatiivinen yhteismäärä
   show_scientific_name_first: Näytä tieteelliset nimet ensin
   show_taxa_from_everywhere: "Näytä taksonit kaikkialta"
@@ -4018,6 +4021,8 @@ fi:
   'true': 'Kyllä'
   trending: Nousussa
   trends: Trendit
+  #Noun
+  trust: Luottamus
   trusted: Luotettu
   trusted_project?: Luotettava projekti?
   twitter: Twitter
@@ -4357,7 +4362,6 @@ fi:
   youre_a_site_curator_which_means: |
     Olet sivuston kuraattori, mikä tarkoittaa, että olet tarjoutunut vaapaehtoiseksi avustamaan datan hallinnassa ja sisällön valvonnassa. Sinun ei tarvitse käsitellä kaikkia ongelmia, mutta hienoa, jos ehdit katsastaa niistä osan, sillä arvostamme kaikkea saamaamme apua. Jos sinulla on jotain kysyttävää sisällön kuratointiin liittyen tai et halua olla enää kuraattori, ota yhteyttä osoitteeseen %{email}
   you_are_over_your_invites_quota: ...olet lähettänyt enimmäismäärän kutsuja (60 kpl kuukaudessa).
-  you_are_now: Olet nyt
   you_are_now_following_x: "Seuraat nyt ystävää %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
     Et muokkaa yhtään oppaita. <a href="/guides/new">Lisää yksi</a>
@@ -5005,6 +5009,10 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
+        trust_allow_members_to_trust: |-
+          Salli jäsenten luottaa tähän projektiin tarkkojen koordinaattien saamiseksi.
+        trust_help_desc: |-
+          Jos haluat saada käyttöösi kaikkien havaintojen tarkat koordinaatit, valitse tämä. Se antaa projektiin osallistuville mahdollisuuden luottaa projektin ylläpitäjiin, niin että he saavat nämä koordinaatit. Osallistujat voivat antaa pääsyn kaikkiin havaintoihin, jotka liittyvät tähän projektiin, tai vain niihin jotka on karkeistettu arkaluontoisten lajien suojelemiseksi. (Suomen alueiden havaintoja voi myös pyytää Lajitietokeskuksen kautta.)
         trust_help_notification2: |-
           Tästä ilmoitetaan kaikille projektin jäsenille, jotka ovat luottaneet projektiin joka kerta kun
           muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,

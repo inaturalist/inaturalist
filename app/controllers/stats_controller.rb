@@ -9,7 +9,7 @@ class StatsController < ApplicationController
     unless: lambda { authenticated_with_oauth? }
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
-  caches_action :summary, expires_in: 1.hour
+  caches_action :summary, expires_in: 1.day
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes

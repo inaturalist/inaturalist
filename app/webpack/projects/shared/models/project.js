@@ -30,7 +30,7 @@ const Project = class Project {
     this.createRulePreferenceAttributes( );
     this.search_params = {
       project_id: this.id,
-      ttl: 120,
+      ttl: 900,
       v: moment( this.updated_at ).format( "x" )
     };
     if ( this.is_traditional ) {
