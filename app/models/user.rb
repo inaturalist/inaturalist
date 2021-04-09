@@ -195,6 +195,10 @@ class User < ActiveRecord::Base
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
   has_many :moderator_actions, inverse_of: :user
+  has_many :moderator_notes, inverse_of: :user
+  has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
+    foreign_key: "subject_user_id", inverse_of: :subject_user,
+    dependent: :destroy
   
   file_options = {
     processors: [:deanimator],

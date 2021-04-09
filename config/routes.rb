@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :moderator_notes
   resources :data_partners
   resources :saved_locations
   apipie
@@ -182,6 +183,9 @@ Rails.application.routes.draw do
     collection do
       get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
+    end
+    member do
+      get :moderation
     end
   end
   resources :relationships, controller: :relationships, only: [:index, :update, :destroy]

@@ -15,7 +15,9 @@ class UsersController < ApplicationController
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute, :block, :unblock ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute,
+    :block, :unblock, :moderation
+  ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -24,12 +26,19 @@ class UsersController < ApplicationController
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
   before_filter :site_admin_required, only: [:add_role, :remove_role]
-  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
+  before_filter :curator_required, only: [
+    :moderation,
+    :recent,
+    :set_spammer,
+    :suspend,
+    :unsuspend
+  ]
   before_filter :return_here, only: [
     :curation,
     :dashboard,
     :edit,
     :index,
+    :moderation,
     :relationships,
     :show
   ]
@@ -986,6 +995,50 @@ class UsersController < ApplicationController
         else
           render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not blocked"] }
         end
+      end
+    end
+  end
+
+  def moderation
+    before = params[:before] || Time.now
+    if @user == current_user && !current_user.is_admin?
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
+      return redirect_back_or_default person_by_login_path( @user.login )
+    end
+    moderator_notes = ModeratorNote.
+      where( subject_user_id: @user ).
+      where( "created_at < ?", before ).
+      order( "id desc" ).
+      limit( 100 )
+    moderator_actions_on_identifications = ModeratorAction.
+      where( "moderator_actions.created_at < ?", before ).
+      where( resource_type: "Identification" ).
+      joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
+      where( "i.user_id = ?", @user ).
+      order( "moderator_actions.id desc" ).
+      limit( 100 )
+    moderator_actions_on_comments = ModeratorAction.
+      where( "moderator_actions.created_at < ?", before ).
+      where( resource_type: "Comment" ).
+      joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
+      where( "c.user_id = ?", @user ).
+      order( "moderator_actions.id desc" ).
+      limit( 100 )
+    flags = Flag.
+      where( "created_at < ?", before ).
+      where( flaggable_user_id: @user ).
+      where( "flaggable_type != 'Taxon'" ).
+      order( "id desc" ).
+      limit( 100 )
+    @records = [
+      moderator_notes.to_a,
+      moderator_actions_on_comments.to_a,
+      moderator_actions_on_identifications.to_a,
+      flags.to_a
+    ].flatten.sort_by {|r| r.created_at }
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap-container"
       end
     end
   end

@@ -1,5 +1,6 @@
 class ModeratorActionsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :curator_required
 
   def create
     @moderator_action = ModeratorAction.new( approved_params )

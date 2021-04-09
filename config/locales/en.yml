@@ -2468,6 +2468,7 @@ en:
   # Label shown when a date has not been entered
   missing_date: Missing Date
   mobile: Mobile
+  moderation_history_for_user_html: Moderation history for %{user}
   mollusks: mollusks
   momentjs:
     shortRelativeTime:
@@ -7946,6 +7947,10 @@ en:
           attributes:
             base:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: must be a curator
         mushroom_observer_import_flow_task:
           attributes:
             base:

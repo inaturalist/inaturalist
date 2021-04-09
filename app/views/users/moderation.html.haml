@@ -1,0 +1,43 @@
+- content_for(:title) do
+  = strip_tags( t( :moderation_history_for_user_html, user: link_to_user( @user ) ) )
+
+%h2=t :moderation_history_for_user_html, user: link_to_user( @user )
+%p
+  This includes moderator actions, notes, and flags on everything this user has created other than taxa.
+
+%table.table
+  %thead
+    %tr
+      %th=t :date_added
+      %th=t :type
+      %th=t :author
+      %th=t :body
+      %th=t :actions
+  %tbody
+    - for record in @records
+      %tr
+        %td.nobr
+          %time.datetime{ datetime: record.created_at.iso8601, title: l( record.created_at, format: :long ) }=l record.created_at, format: :long
+        %td.nobr
+          = record.class.name
+          - if record.is_a?( Flag )
+            = surround "(", ")" do
+              = link_to record.flaggable_type, record.flaggable
+        %td= link_to_user( record.user )
+        %td= record.try_methods( :body, :flag, :description )
+        %td.nobr
+          - if record.is_a?( ModeratorNote )
+            - if record.editable_by?( current_user )
+              = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
+              = link_to t(:delete), moderator_note_path( record ), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-sm btn-danger"
+          - elsif record.is_a?( ModeratorAction )
+            = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
+          - else
+            = link_to t(:view), record, class: "btn btn-sm btn-link"
+
+.row
+  .col-xs-8
+    = form_for ModeratorNote.new( subject_user: @user ), builder: BootstrapFormBuilder do |f|
+      = f.hidden_field :subject_user_id
+      = f.text_area :body, label: t(:add_a_note), maxlength: ModeratorNote::MAX_LENGTH, description: "Moderation notes are records of curator actions, or evidence-based concerns about a user, such as whether they are a possible sockpuppet account. Please do not include personal opinions or hearsay about the user"
+      = f.submit t(:add), class: "btn btn-primary"
