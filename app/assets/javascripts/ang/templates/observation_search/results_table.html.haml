@@ -37,9 +37,9 @@
               %i.fa.fa-star
               {{ o.faves_count }}
         %td.user
-          %a.user.userimage{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
+          %a.user.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
-          %a{ href: "/observations/{{ o.id }}", title: "{{ o.user.login }}", target: "_self" }
+          %a{ href: "/people/{{ o.user.login }}", title: "{{ o.user.login }}", target: "_self" }
             {{ o.user.login }}
         %td{ :class => "{{ params.order_by == 'observed_on' ? 'sorting' : '' }}", title: "{{ shared.t('observed_on_datetime', { datetime: o.time_observed_at || o.observed_on }) }}" }
           %inat-calendar-date{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", time: "o.time_observed_at", obscured: "o.obscured && !o.private_geojson" }
