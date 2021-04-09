@@ -7,9 +7,8 @@ class ProjectUser < ActiveRecord::Base
   after_save :check_role,
              :remove_updates,
              :subscribe_to_assessment_sections_later,
-             :index_project,
              :update_project_observations_later
-  after_destroy :remove_updates, :index_project
+  after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
