@@ -1573,6 +1573,7 @@ class TaxaController < ApplicationController
   end
   
   def do_external_lookups
+    return if CONFIG.content_freeze_enabled
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     start = Time.now
