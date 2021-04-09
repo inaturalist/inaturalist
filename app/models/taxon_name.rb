@@ -15,6 +15,7 @@ class TaxonName < ActiveRecord::Base
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: Proc.new { |tn| tn.lexicon.present? }
+  validates :taxon_id, presence: true
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
