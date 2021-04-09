@@ -1,10 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import {
-  setSelectedTab,
-  leave,
-  convertProject
-} from "../ducks/project";
+import { setSelectedTab, leave, convertProject } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {

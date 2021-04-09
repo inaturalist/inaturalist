@@ -20,10 +20,7 @@ const OverviewTab = props => {
     project,
     updateCurrentUser,
     fetchQualityGradeCounts,
-    fetchPosts,
-    fetchSpeciesObservers,
-    fetchSpecies,
-    fetchRecentObservations
+    fetchPosts
   } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
@@ -32,7 +29,6 @@ const OverviewTab = props => {
         debounce={false}
         height={229}
         verticalOffset={100}
-        onContentVisible={fetchRecentObservations}
       >
         <OverviewRecentObservations {...props} />
       </LazyLoad>
@@ -41,10 +37,6 @@ const OverviewTab = props => {
           debounce={false}
           height={229}
           verticalOffset={100}
-          onContentVisible={( ) => {
-            fetchSpeciesObservers( );
-            fetchSpecies( );
-          }}
         >
           <Row>
             <Col xs={4} className="no-padding">
@@ -101,10 +93,7 @@ OverviewTab.propTypes = {
   setSelectedTab: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   fetchQualityGradeCounts: PropTypes.func,
-  fetchPosts: PropTypes.func,
-  fetchSpeciesObservers: PropTypes.func,
-  fetchSpecies: PropTypes.func,
-  fetchRecentObservations: PropTypes.func
+  fetchPosts: PropTypes.func
 };
 
 export default OverviewTab;

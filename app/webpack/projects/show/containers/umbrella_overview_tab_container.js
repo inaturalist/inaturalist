@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { setConfig } from "../../../shared/ducks/config";
 import UmbrellaOverviewTab from "../components/umbrella_overview_tab";
-import { fetchPosts, fetchRecentObservations } from "../ducks/project";
+import { fetchPosts } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -13,8 +13,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     setConfig: attributes => { dispatch( setConfig( attributes ) ); },
-    fetchPosts: ( ) => { dispatch( fetchPosts( ) ); },
-    fetchRecentObservations: ( ) => { dispatch( fetchRecentObservations( ) ); }
+    fetchPosts: ( ) => { dispatch( fetchPosts( ) ); }
   };
 }
 

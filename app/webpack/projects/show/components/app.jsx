@@ -23,11 +23,7 @@ import FlashMessagesContainer from "../../../shared/containers/flash_messages_co
 import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 
 const App = ( {
-  config,
-  project,
-  leave,
-  setSelectedTab,
-  convertProject
+  config, project, leave, setSelectedTab, convertProject
 } ) => {
   let view;
   let tab = config.selectedTab;

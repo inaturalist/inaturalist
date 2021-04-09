@@ -93,13 +93,13 @@ export function fetchPopularObservations( ) {
   };
 }
 
-export function fetchRecentObservations( perPage = 50 ) {
+export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.all_recent_observations_loaded ) { return null; }
+    if ( !project ) { return null; }
     const params = Object.assign( { }, project.search_params, {
       return_bounds: "true",
-      per_page: perPage
+      per_page: 50
     } );
     dispatch( setConfig( {
       observationFilters: {
@@ -111,7 +111,6 @@ export function fetchRecentObservations( perPage = 50 ) {
       dispatch( setAttributes( {
         recent_observations_loaded: true,
         recent_observations: response,
-        all_recent_observations_loaded: perPage !== 0,
         filtered_observations_loaded: true,
         filtered_observations: response,
         filtered_observations_page: 1
@@ -180,22 +179,14 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   };
 }
 
-export function fetchSpecies( noPageLimit = false ) {
+export function fetchSpecies( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.all_species_loaded ) { return null; }
-    const params = {
-      ...project.search_params,
-      per_page: 0
-    };
-    if ( noPageLimit ) {
-      delete params.per_page;
-    }
-    return inatjs.observations.speciesCounts( params ).then( response => {
+    if ( !project ) { return null; }
+    return inatjs.observations.speciesCounts( project.search_params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
-        species: response,
-        all_species_loaded: noPageLimit
+        species: response
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -217,7 +208,7 @@ export function fetchObservers( ) {
 export function fetchSpeciesObservers( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.species_observers_loaded ) { return null; }
+    if ( !project ) { return null; }
     const params = Object.assign( { }, project.search_params, { order_by: "species_count" } );
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
@@ -348,9 +339,10 @@ export function fetchOverviewData( ) {
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
-    dispatch( fetchRecentObservations( 0 ) );
+    dispatch( fetchRecentObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
+    dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchMembers( ) );
   };
