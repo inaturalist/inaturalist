@@ -2318,6 +2318,10 @@ de:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM T"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Monat
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
