@@ -7,6 +7,7 @@ class ProjectUser < ActiveRecord::Base
   after_save :check_role,
              :remove_updates,
              :subscribe_to_assessment_sections_later,
+             :index_project,
              :update_project_observations_later
   after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
