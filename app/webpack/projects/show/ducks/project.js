@@ -266,22 +266,14 @@ export function fetchIconicTaxaCounts( ) {
   };
 }
 
-export function fetchUmbrellaStats( noPageLimit = false ) {
+export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project || project.all_umbrella_stats_loaded ) { return null; }
-    const params = {
-      ...project.search_params,
-      per_page: 8
-    };
-    if ( noPageLimit ) {
-      delete params.per_page;
-    }
-    return inatjs.observations.umbrellaProjectStats( params ).then( response => {
+    if ( !project ) { return null; }
+    return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
-        umbrella_stats: response,
-        all_umbrella_stats_loaded: noPageLimit
+        umbrella_stats: response
       } ) );
     } ).catch( e => console.log( e ) );
   };
