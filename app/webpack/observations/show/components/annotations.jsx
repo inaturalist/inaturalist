@@ -6,14 +6,24 @@ import {
 } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
-import { termsForTaxon } from "../ducks/controlled_terms";
+import { fetchControlledTerms, termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
   constructor( props ) {
     super( props );
+    const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: false
+      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
     };
+  }
+
+  componentDidMount( ) {
+    // const currentUser = this.props.config && this.props.config.currentUser;
+    // if ( this.loggedIn ) {
+    //   if ( currentUser && currentUser.prefers_hide_obs_show_annotations ) {
+    // fetchControlledTerms( );
+    //   }
+    // }
   }
 
   annotationRow( a, term ) {
@@ -198,7 +208,8 @@ class Annotations extends React.Component {
       addAnnotation,
       collapsible,
       fetchControlledTerms,
-      loading
+      loading,
+      updateSession
     } = this.props;
     const observationAnnotations = observation.annotations || [];
     const {
@@ -372,6 +383,9 @@ class Annotations extends React.Component {
         <h4
           className="collapsible"
           onClick={( ) => {
+            if ( this.loggedIn ) {
+              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
+            }
             fetchControlledTerms( );
             this.setState( { open: !isOpen } )
           }}
@@ -401,6 +415,7 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
+  updateSession: PropTypes.func,
   collapsible: PropTypes.bool,
   fetchControlledTerms: PropTypes.func,
   loading: PropTypes.bool
