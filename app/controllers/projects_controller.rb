@@ -486,7 +486,13 @@ class ProjectsController < ApplicationController
       end
       format.json do
         @project_users = @selected_user.project_users.joins(:project).
-          includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
+          includes({
+            project: [
+              :project_list,
+              { project_observation_rules: :operand },
+              { project_observation_fields: :observation_field }
+            ]
+          }, :user).
           order("lower(projects.title)").
           limit(1000)
         project_options = Project.default_json_options.update(
