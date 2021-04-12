@@ -185,13 +185,13 @@ describe ActsAsElasticModel do
 
     end
 
-    describe "elastic_delete!" do
+    describe "elastic_delete_by_ids!" do
       it "deletes instances of a class from ES" do
         Observation.destroy_all
         obs = Observation.make!
         expect( Observation.count ).to eq 1
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
-        Observation.elastic_delete!( where: { id: obs.id } )
+        Observation.elastic_delete_by_ids!( [obs.id] )
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
         expect( Observation.count ).to eq 1
       end
