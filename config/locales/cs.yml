@@ -2488,6 +2488,10 @@ cs:
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Měsíc
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
