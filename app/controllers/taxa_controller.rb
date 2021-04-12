@@ -280,7 +280,6 @@ class TaxaController < ApplicationController
     @taxon.creator = current_user
     @taxon.current_user = current_user
     if @taxon.save
-      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -333,7 +332,6 @@ class TaxaController < ApplicationController
             "draft taxon change</a> that we assume you'll commit shortly."
         end
       end
-      Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)
       return
     else
@@ -917,7 +915,6 @@ class TaxaController < ApplicationController
     if @taxon.save
       @taxon.reload
       @taxon.elastic_index!
-      Taxon.refresh_es_index
     else
       errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
     end
@@ -1003,7 +1000,6 @@ class TaxaController < ApplicationController
     if @taxon.save
       @taxon.reload
       @taxon.elastic_index!
-      Taxon.refresh_es_index
     else
       Rails.logger.debug "[DEBUG] error: #{@taxon.errors.full_messages.to_sentence}"
       respond_to do |format|
@@ -1573,6 +1569,7 @@ class TaxaController < ApplicationController
   end
   
   def do_external_lookups
+    return if CONFIG.content_freeze_enabled
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     start = Time.now
@@ -1583,12 +1580,12 @@ class TaxaController < ApplicationController
       @status = e.message
       return
     end
-    
+
     ext_taxon_ids = ext_names.map(&:taxon_id).compact
     @external_taxa = Taxon.find( ext_taxon_ids ) unless ext_taxon_ids.blank?
-    
+
     return if @external_taxa.blank?
-    
+
     # graft in the background
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
@@ -1597,8 +1594,6 @@ class TaxaController < ApplicationController
       end
     end
 
-    Taxon.refresh_es_index
-    
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
       pager.replace(@external_taxa)
       pager.total_entries = @external_taxa.size

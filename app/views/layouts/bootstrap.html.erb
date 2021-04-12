@@ -195,6 +195,9 @@
         }
       };
       var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
+      };
     </script>
     <%= javascript_include_tag "bootstrap_bundle" %>
     <script type="text/javascript">

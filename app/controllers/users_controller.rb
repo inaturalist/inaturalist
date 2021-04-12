@@ -34,6 +34,11 @@ class UsersController < ApplicationController
     :show
   ]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
+  skip_before_action :check_preferred_place, only: :api_token
+  skip_before_action :preload_user_preferences, only: :api_token
+  skip_before_action :set_site, only: :api_token
+  skip_before_action :check_preferred_site, only: :api_token
+  skip_before_action :set_ga_trackers, only: :api_token
 
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }

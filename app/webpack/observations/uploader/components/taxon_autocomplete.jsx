@@ -445,6 +445,9 @@ class TaxonAutocomplete extends React.Component {
     const {
       perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
+    const searchExternalEnabled = searchExternal
+      // eslint-disable-next-line no-undef
+      && ( typeof ( CONFIG ) === "undefined" || !CONFIG.content_freeze_enabled );
     const params = {
       q: request.term,
       per_page: perPage || 10,
@@ -463,7 +466,7 @@ class TaxonAutocomplete extends React.Component {
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers
-      if ( searchExternal !== false ) {
+      if ( searchExternalEnabled !== false ) {
         results.push( {
           type: "search_external",
           title: I18n.t( "search_external_name_providers" )

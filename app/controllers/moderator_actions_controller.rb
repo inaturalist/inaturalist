@@ -6,7 +6,6 @@ class ModeratorActionsController < ApplicationController
     @moderator_action.user = current_user
     respond_to do |format|
       if @moderator_action.save
-        Observation.refresh_es_index
         format.json { render json: @moderator_action }
         format.html do
           if @moderator_action == ModeratorAction::HIDE
