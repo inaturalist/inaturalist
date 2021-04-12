@@ -484,7 +484,7 @@ de:
   almost_there_: Fast geschafft...
   alphabetical: Alphabetisch
   alphabetical_order: Alphabetische Reihenfolge
-  already_have_an_account_log_in_html: Hast du schon einen Account? <strong>Anmelden</strong>
+  already_have_an_account_log_in_html: Hast du schon einen Account? <b><strong>Hier anmelden</strong></b>
   amphibians: Amphibien
   ancestor_taxon: Höheres Taxon
   and: und
@@ -797,7 +797,7 @@ de:
   check_above_for_errors: Oben nach Fehlern suchen
   check_back_soon: Schau demnächst wieder vorbei!
   check_here_to_autoload_description: Hier klicken, um die Beschreibung von Wikipedia automatisch zu laden. Vielleicht möchtest du es deaktivieren, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige falsche Schreibweise wie "Parus" ist.
-  check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige Falschschreibung (z.B. "Parus") ist.
+  check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort (z.B. "Mus") oder eine häufige Falschschreibung ist.
   check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt, erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen können.
   check_list_for_individual_taxa_that: 'Checklisten für individuelle Taxa die hier leben, wie "Vögel in %{place}".'
@@ -1911,7 +1911,7 @@ de:
   #Prompt to join a specific project
   join_project?: Dem Projekt "%{project}" beitreten?
   join_some_projects_and_invite_some_observations_html: "Tritt <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere passende Beobachtungen</a>"
-  join_the_largest_group_of_naturalists_in_the_world: Treten Sie der größten Gruppe von Naturwissenschaftlern der Welt bei!
+  join_the_largest_group_of_naturalists_in_the_world: Werde Teil der Gemeinschaft von Naturbeobachtern auf der ganzen Welt!
   join_this_project: Diesem Projekt beitreten
   'joined!': Beigetreten!
   joined_projects: Beigetretene Projekte
@@ -2318,6 +2318,10 @@ de:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM T"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Monat
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
@@ -2527,7 +2531,7 @@ de:
   no_taxon_framework_relationships: keine Taxon-Framework Beziehungen
   no_users_found_with_those_filters: Keine Benutzer mit diesen Filtern gefunden
   no_wikipedia_page_for_taxon: Keine Wikipediaseite für dieses Taxon.
-  noble_curators: "%{site}s noble Kuratoren"
+  noble_curators: "%{site}s ehrwürdige Kuratoren"
   non_human?: Nichtmenschlich?
   none: Keine
   none_found: nichts gefunden
@@ -2663,7 +2667,7 @@ de:
   observations_near_a_place_are: |
     Beobachtungen "in der Nähe" eines Ortes befinden sich innerhalb eines Rechtecks, das um die Grenze des Gebiets gezeichnet wird, was zu ungenauen Ergebnissen für Orte führen kann, wenn Orte einem Rechteck entsprechen. Dies ist auf eine Einschränkung unserer Datenbank zurückzuführen, an deren Lösung wir arbeiten.
   observations_needing_curation: Beobachtungen, die einer Kuration bedürfen
-  observations_observed_this_month: Diesen Monat <em>beobachtete</em> Beobachtungen (nicht hinzugefügte). Finde noch mehr!
+  observations_observed_this_month: 'Diesen Monat <em>beobachtete</em> (nicht: hinzugefügte) Beobachtungen.'
   observations_of_relatives: Beobachtungen von verwandten Taxa
   observations_of_taxon: "Beobachtungen von %{taxon_name}"
   observations_per_month: Beobachtungen/Monat
@@ -2899,8 +2903,7 @@ de:
     <a href='%{privacy_url}' target='_blank'>Datenschutzrichtlinie</a>
     und unsere <a href='%{terms_url}' target='_blank'>Geschäftsbedingungen</a>.
   pi_consent_label: |
-    Ich stimme zu, dass iNaturalist begrenzte Arten von
-    persönlichen Daten über mich speichern und verarbeiten darf, um mein Konto zu verwalten
+    Ich bin damit einverstanden, dass iNaturalist in begrenztem Umfang persönliche Informationen über mich speichert und verarbeitet, um mein Konto zu verwalten.
   pi_consent_child_label: |
     Ich bin damit einverstanden, dass iNaturalist bestimmte personenbezogene Daten über mein Kind speichert und verarbeitet, um das Konto meines Kindes verwalten zu können.
   pin_verb: Anpinnen
@@ -4181,7 +4184,7 @@ de:
     gibt, die umfassend ist, d.h. es enthält <em>sämtliche</em> Vertreter von
     einem Taxon an einem Ort, wird Identotron eine Nachricht anzeigen.
   the_observation_was_already_added_to_that_project: Die Beobachtung wurde bereits zu diesem Projekt hinzugefügt.
-  the_people_of_inat: "Die Menschen von %{site_name}"
+  the_people_of_inat: "Menschen auf %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Die unten aufgeführten Arten wurden in der %{site_name}-Datenbank nicht gefunden.
   the_user_x_has_been_suspended: "Der Benutzer %{user} wurde gesperrt."
@@ -4208,7 +4211,7 @@ de:
   there_were_some_problems_with_these_files: "Es gab einige Probleme mit diesen Dateien:"
   these_are_items_people_on: |
     Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
-  these_folks_kindly_volunteer_to: Diese Personen engagieren sich freundlicherweise freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
+  these_folks_kindly_volunteer_to: Diese Personen engagieren sich freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
   these_observations_have_not_been_uploaded_yet: |
     Diese Beobachtungen wurden noch nicht hochgeladen.
   they_already_have_iNat_accounts: "...sie haben bereits %{site_name}-Accounts"
@@ -4287,7 +4290,7 @@ de:
   top_species: Top-Arten
   tos_privacy_guidelines_label: |
     Ich stimme den <a href="/terms" target="_blank">Nutzungsbedingungen</a> und der
-    <a href="/privacy" target="_blank">Datenschutzerklärung</a>zu, und ich habe
+    <a href="/privacy" target="_blank">Datenschutzerklärung</a> zu, und ich habe
     die <a href="/pages/community+guidelines" target="_blank">Community-Richtlinien</a> verstanden.
   total: Gesamt
   totals: Insgesamt
@@ -4664,7 +4667,7 @@ de:
   x_project_stats: "Statistiken für %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} hat Ihnen eine neue Nachricht gesendet am %{y}:"
   x_site_is_a_social_network_for_naturalist: |
-    %{site} ist ein soziales Netzwerk für Naturalisten! Erfasse Deine Beobachtungen von Pflanzen und Tieren, teile sie mit Freunden und Forschern und erfahre mehr über die Welt der Natur.
+    %{site} ist ein soziales Netzwerk für Naturbeobachter! Erfasse Deine Beobachtungen von Pflanzen und Tieren, teile sie mit Freunden und Wissenschaftlern und erfahre mehr über die Welt der Natur.
   x_wrote_a_new_post_html: "%{x} hat einen neuen Eintrag geschrieben"
   x_wrote_y_new_posts_html: "%{x} hat %{y} neue Beiträge geschrieben"
   year: Jahr
@@ -4684,6 +4687,8 @@ de:
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "Ja, für alle meiner Beobachtungen"
   yes_i_want_to_join: Ja, ich möchte beitreten
+  yes_license_my_childs_observations: Ja, lizenziere die Fotos, Audioaufnahmen und Beobachtungen meines Kindes, damit Wissenschaftler die Daten verwenden können (empfohlen).
+  yes_license_my_observations_so_scientists_can_use: Ja, meine Fotos, Tonaufnahmen und Beobachtungen sollen lizenziert werden, damit Wissenschaftler meine Daten verwenden können (empfohlen).
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
@@ -6318,11 +6323,11 @@ de:
           bei %{image}, hier kannst du deine Naturbeobachtungen <strong>erfassen</strong>, andere Naturbeobachter <strong>treffen</strong> und mehr über die Welt der Natur <strong>lernen</strong>.
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
-        observations_to_date: 'Beobachtungen bis dato'
+        observations_to_date: 'Beobachtungen bisher'
         species_observed: 'Arten beobachtet'
         people_signed_up: 'Benutzer angemeldet'
         how_it_works: Wie es funktioniert
-        record_your_observations: Deine Beobachtungen erfassen
+        record_your_observations: Beobachtungen machen
         share_with_fellow_naturalists: Mit anderen Naturfreunden teilen
         discuss_your_findings: Deine Funde diskutieren
         contribute_to_science: Zur Wissenschaft beitragen
@@ -6331,23 +6336,23 @@ de:
         nature_at_your_fingertips: Die Natur zum Greifen nah
         keep_track: Den Überblick behalten
         record_your_encounters: |
-          Erfasse deine Begegnungen mit anderen Organismen und führe Life-Listen, alles in der Cloud.
+          Zeichne deine Naturbeobachtungen auf und sortiere sie in verschiedenen Listen - alles in der Cloud
         create_useful_data: Erzeuge nützliche Daten
-        help_scientists: Wissenschaftlern und Ressourcenmanagern helfen, zu verstehen, wann und wo Organismen vorkommen.
+        help_scientists: Hilf Wissenschaftlern und Naturschützern zu verstehen, wann und wo welche Organismen vorkommen.
         crowdsource_identifications: Identifikationen durch Crowdsourcing
-        connect_with_experts: Verbinde dich mit Experten, die die beobachteten Organismen identifizieren können.
+        connect_with_experts: Tausche dich mit Experten aus, die die beobachteten Organismen bestimmen können.
         become_a_citizen_scientist: Werde ein Citizen Scientist
-        find_a_project: "Finde ein Projekt mit einer Mission, die Dich interessiert, oder starte Dein eigenes."
+        find_a_project: "Finde ein Projekt zu einem Thema, das dich interessiert, oder starte ein eigenes Projekt."
         learn_about_nature: Erfahre mehr über die Natur
-        build_your_knowledge: Erweitere dein Wissen, indem du mit anderen Naturforschern kommunizierst und anderen hilfst.
+        build_your_knowledge: Erweitere und nutze dein Wissen, indem du mit anderen Naturbeobachtern kommunizierst und bei Bestimmungen hilfst.
         run_a_bioblitz: Betreibe einen Bioblitz
-        hold_an_event: Eine Veranstaltung erstellen, bei welcher die Teilnehmer so viele Arten wie möglich finden sollen.
+        hold_an_event: Organisiere eine Veranstaltung, bei der die Teilnehmer so viele Arten wie möglich finden sollen.
         works_on_all_your_devices: Verfügbar für alle deine Geräte
         install_our_mobile_apps: |
           Installiere unsere Apps für mobile Endgeräte, damit du auch ohne Mobilfunkempfang oder WLAN jederzeit beobachten kannst.
-        who_uses_site_name: "Wer benutzt %{site_name}?"
+        who_uses_site_name: "Wer verwendet %{site_name}?"
         what_are_you_waiting_for: Worauf wartest du?
-        join_today: Jetzt Mitglied werden
+        join_today: Jetzt beitreten
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Speichern und bearbeiten um Anhang hinzuzufügen

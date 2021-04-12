@@ -244,6 +244,8 @@ th:
   add_sex_female_annotation: 'ใส่คำอธิบายประกอบ "เพศ: เมีย"'
   add_sex_male_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ผู้"'
   add_sex_cannot_be_determined_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ไม่สามารถระบุได้"'
+  admin: ผู้ดูแล
+  admin_s: กลุ่มผู้ดูแล
   all: ทั้งหมด
   all_comments: ความคิดเห็นทั้งหมด
   all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
@@ -315,6 +317,9 @@ th:
       other: "%{count} สัตว์เลื้อยคลาน"
     x_aves:
       other: "%{count} นก"
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: อื่นๆ
+  anyone: ใครก็ได้ (Automatic Translation)
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: นำไปใช้

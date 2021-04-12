@@ -634,7 +634,7 @@ uk:
   any_quality_grade: Будь-який
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: Будь-який
+  any_reviewed: Усі
   #Label for an option to show/include content by any user
   any_user: Будь-який
   anyone: Будь-хто
@@ -925,7 +925,7 @@ uk:
   check_here_to_autoload_description: Позначте тут, щоб автоматично завантажити опис з Вікіпедії. Ви можете зняти відмітки в разі, якщо наукова назва таксона також є загальним словом або має місце помилка, наприклад, "Parus".
   check_here_to_autoload_photos: Позначте тут, щоб автоматично завантажувати фото з Flickr. Ви можете зняти відмітки в разі, якщо наукове ім'я таксона також є загальним словом або поширеною опечаткою, наприклад, "Parus".
   check_list: Таксономічний список
-  check_list_description: Оберіть таксон вищого рівня, який ви хотіли б показати у цьому списку, наприклад, "Птахи" для птахів, або "Амфібії" для земноводних. Це налаштування унеможливить додавання до списку таксонів за межами вказаного таксону вищого рівня. Наприклад, якщо ви створюєте список птахів, ви не зможете додавати до нього жабу.
+  check_list_description: Оберіть таксон вищого рівня, який ви хотіли б показати у цьому списку, наприклад, "Птахи" для птахів, або "Земноводні" для земноводних. Це налаштування унеможливить додавання до списку таксонів за межами вказаного таксону вищого рівня. Наприклад, якщо ви створюєте список птахів, ви не зможете додавати до нього жабу.
   check_list_for_individual_taxa_that: 'Таксономічні списки для окремих таксонів, що тут мешкають, наприклад, "Птахи %{place}".'
   check_list_for_taxon_html: "Таксономічний список для %{taxon}"
   check_lists_must_belong_to_a_place: |
@@ -1222,8 +1222,7 @@ uk:
   curator_application_inelligible: |
     Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
     днів та більше, додати не менше 100 уточнень визначень для будь-чиїх 
-    спостережень, у тому числі ваших власних (наразі ви додали %{num_idents}). Коли ви
-    будете відповідати обом вимогам, поверніться сюди і заповніть
+    спостережень, у тому числі ваших власних (наразі ви додали %{num_idents}). Коли ви будете відповідати обом вимогам, поверніться сюди і заповніть
     форму.
   curator_application_inelligible_error: |
     Щоб подати заявку, вам необхідно мати обліковий запис протягом 60
@@ -1422,7 +1421,7 @@ uk:
   devise:
     failure:
       already_authenticated: 'Ви вже авторизовані на сайті'
-      unauthenticated: 'Ви повинні увійти або зареєструватися, перш ніж продовжити.'
+      unauthenticated: 'Перш ніж продовжити Ви повинні увійти або зареєструватися.'
       invalid: 'Недійсна адреса електронної пошти або пароль'
       invalid_token: 'Недійсний код автентифікації.'
       user:
@@ -1795,10 +1794,10 @@ uk:
   followers: Підписники
   following: Підписки
   following_x_people:
-    one: 'Підписана 1 людина'
+    one: 'Стежить за 1 людиною'
     few: 'Підписані %{count} людини'
-    many: 'Підписані %{count} людей'
-    other: 'Підписані %{count} людини'
+    many: 'Стежить за %{count} людьми'
+    other: 'Стежити за %{count} людьми'
   for_a_taxon: для таксону
   formatting: Форматування
   forgot_your_password: Забули пароль?
@@ -2054,7 +2053,7 @@ uk:
   inviteonly: лише за запрошенням
   invited_x: "Запрошено %{x}"
   iphone: iPhone
-  is_not_following_anyone: ні на кого не підписані.
+  is_not_following_anyone: ні за ким не стежить.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Чи достатньо доказів, що підтверджують що це %{taxon}?
   is_this_offensive_html: 'Чи цей контент є <a href="/help#inappropriate">недоречним</a>, спамом чи образливим?'
   is_this_place_a_duplicate: Це місце є копією вже існуючого?
@@ -2312,7 +2311,7 @@ uk:
   location_is_obscured: Розташування є розмитим
   location_is_private: Розташування є конфіденційним
   location_specified: Розташування вказано
-  locked_taxa_will_not_allow_new: Заблоковані таксони не дозволять додавати до них нові дочірні таксони. Отже, якщо ви заблокували Amphibia і хтось намагався імпортувати <i>Rana catesbeiana</i> із зовнішнього джерела назв, новий таксон буде створено, але не будевіднесено до земноводних. В такій ситуації, новододані таксони мають бути позначені прапорцем для привернення уваги куратора. Це має бути використане тільки для таксонів, щодо яких ми впевнені, що у нас вже додано всі дочірні таксони. Куратор може перевизначити це, змінивши шляхом редагування таксону та введення батьківських ідентифікаторів вручну, але натомість розгляньте можливість злиття нових таксонів у вже наявні.
+  locked_taxa_will_not_allow_new: Заблоковані таксони не дозволять додавати до них нові дочірні таксони. Отже, якщо ви заблокували Amphibia і хтось намагався імпортувати <i>Rana catesbeiana</i> із зовнішнього джерела назв, новий таксон буде створено, але не буде віднесено до земноводних. В такій ситуації, новододані таксони мають бути позначені прапорцем для привернення уваги куратора. Це має бути використане тільки для таксонів, щодо яких ми впевнені, що у нас вже додано всі дочірні таксони. Куратор може перевизначити це, змінивши шляхом редагування таксону та введення батьківських ідентифікаторів вручну, але натомість розгляньте можливість злиття нових таксонів у вже наявні.
   log_in: Увійти
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Увійдіть</a> або <a href="/signup">зареєструйтеся</a> , щоб додати коментарі.
@@ -2630,13 +2629,13 @@ uk:
   no_identifications: Жодного визначення
   no_identifications_added:
     current_user: Ви не запропонували визначень до чиїхось спостережень.
-    user: "%{user} не запропонував визначень до чиїхось спостережень."
+    user: "%{user} не запропонував/запропонувала визначень до чиїхось спостережень."
   no_ids_have_been_suggested_yet: Ще не запропоновано жодного визначення
   no_interaction_data_available: Немає доступних даних про взаємодії
   no_its_as_good_as_it_can_be: Ні, це добре, наскільки можливо
   no_favorites_added:
     current_user: Ви ще не додали нічого до уподобаних.
-    user: "%{user} не додав нічого до вподобаних."
+    user: "%{user} не додав/додала нічого до вподобаних."
   no_journal_posts_yet: Ужурналі ще жодного допису
   no_license_all_rights_reserved: Немає ліцензії. Всі права застережено
   no_managers_set: Менеджерів не визначено
@@ -2814,7 +2813,7 @@ uk:
   observation_rules: Правила для спостережень
   observation_rules_description: |
     Ви можете обрати правила, що визначатимуть, які спостереження можуть бути додані до цього проєкту, наприклад, лише обмежені певним місцем або таксоном. Якщо ви встановите
-    більше одного правила для одного типу правил, спостереження будуть дійсні, якщо відповідатимуть бодай одному з правил. Наприклад, якщо у вас встановлено правила "повинні належати до Земноводних" і "повинні належати до Плазунів", то проєкт прийатиме спостережень як плазунів, так і земноводних.
+    більше одного правила для одного типу правил, спостереження будуть дійсні, якщо відповідатимуть бодай одному з правил. Наприклад, якщо у вас встановлено правила "повинні належати до Земноводних" і "повинні належати до Плазунів", то проєкт прийматиме спостереження як плазунів, так і земноводних.
   observation_was_deleted: Спостереження видалено
   observation_without_media: Спостереження без медіа
   observations: Спостереження
@@ -3019,22 +3018,22 @@ uk:
   paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
   paste_in_a_comma_separated_list: Вставте у розділений комами список країн
   people: Люди
-  people_following_user: "Люди, підписані на користувача %{user}"
+  people_following_user: "Люди, що стежать за %{user}"
   people_user_follows: "Люди, на яких підписаний %{user}"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: додав(ла) <a href="%{observation_url}">спостереження</a>
+    observation: додав/додала <a href="%{observation_url}">спостереження</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: додав(ла) <strong>визначення</strong> до %{observation_link} %{user_link}
+      with_observation: додав/додала <strong>визначення</strong> до %{observation_link} %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
-      without_observation: додав(ла) <strong>визначення</strong>
+      without_observation: додав/додала <strong>визначення</strong>
     post: зробив(ла) %{post_link}
     comment:
       with_by: прокоментував(ла) %{comment_subject_link} %{by_link}
@@ -3054,7 +3053,7 @@ uk:
   photo_deleted: Фото видалено
   photo_destroyed_because_it_was_deleted_from: "Фото пошкоджене, оскільки воно було видалене з зовнішнього сайту або %{site_name} більше не має дозволу на його перегляд"
   photo_hosting_accounts: Облікові записи фотохостингів
-  photo_licensing: Ліцензування фото
+  photo_licensing: Ліцензія фото
   photo_type: Тип фото
   photo_urls_repaired: Посилання на фото відновлено
   photos_chosen_for_this_taxon: Фото обрані для цього таксону
@@ -3852,7 +3851,7 @@ uk:
   restoring: Відновлення...
   results: результати
   review_all: Переглянути все
-  reviewed: Переглянуто
+  reviewed: Перевірено
   revoke: Скасувати
   revoke_caps: СКАСУВАТИ
   #Application is a third-party app or service the user has authorized to
@@ -4006,7 +4005,7 @@ uk:
   showing_x_of_y: Показано %{x} з %{y}
   showing_x_of_y_listings: "Показано %{x} з %{y} списків"
   sign_in: Увійти
-  sign_in_with_google: Увійти за допомогою Google
+  sign_in_with_google: Увійти через Google
   sign_out: Вийти
   sign_up: Зареєструватися
   similar_species: Схожі види
@@ -4278,10 +4277,10 @@ uk:
     many: "%{taxon} - це %{rank} грибів з %{count} спостереженнями"
     other: "%{taxon} - це %{rank} грибів з %{count} спостереженнями"
   taxon_is_a_rank_of_protozoa_with_x_observations:
-    one: "%{taxon} - це %{rank} найпростіших з 1 спостереженням"
-    few: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
-    many: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
-    other: "%{taxon} - це %{rank} найпростіших з %{count} спостереженнями"
+    one: "%{taxon} - це %{rank} протист з 1 спостереженням"
+    few: "%{taxon} - це %{rank} протисти з %{count} спостереженнями"
+    many: "%{taxon} - це %{rank} протистів з %{count} спостереженнями"
+    other: "%{taxon} - це %{rank} протисти з %{count} спостереженнями"
   taxon_is_a_rank_of_mollusca_with_x_observations:
     one: "%{taxon} - це %{rank} молюсків з 1 спостереженням"
     few: "%{taxon} - це %{rank} молюсків з %{count} спостереженнями"
@@ -4668,21 +4667,21 @@ uk:
   user: Користувач
   user1_and_user2_faved_this_observation: "%{user1} та %{user2} вподобали це спостереження"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} та %{x_others} вподобали це спостереження"
-  user_added_a_comment_html: "%{user} додав/ла коментар"
-  user_added_a_fave_html: "%{user} додав/ла уподобання"
-  user_added_a_flag_html: "%{user} додав/ла прапорець"
-  user_added_a_project_invitation_html: "%{user} додав/ла запрошення до проєкту"
-  user_added_a_x: "%{user} додав %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} додав/ла %{x} до %{noun} %{by}"
-  user_added_a_x_to_noun_by_user_html: "%{user} додав/ла %{x} до %{noun} %{by}"
-  user_added_a_x_to_noun_by_you_html: "%{user} додав/ла %{x} до вашого %{noun}"
-  user_added_a_x_to_noun_html: "%{user} додав/ла %{x} до %{noun}"
-  user_added_an_identification_html: "%{user} додав/ла визначення"
-  user_added_an_observation_field_html: '%{user} додав значення до "%{field_name}" до спостереження %{owner}'
-  user_added_an_observation_field_value_html: "%{user} додав значення до поля спостереження"
-  user_added_an_observation_html: "%{user} додав спостереження"
-  user_added_an_x: "%{user} додав/ла %{x}"
-  user_added_x_observations_html: "%{user} додав %{x} спостережень"
+  user_added_a_comment_html: "%{user} додав/додала коментар"
+  user_added_a_fave_html: "%{user} додав/додала уподобання"
+  user_added_a_flag_html: "%{user} додав/додала прапорець"
+  user_added_a_project_invitation_html: "%{user} додав/додала запрошення до проєкту"
+  user_added_a_x: "%{user} додав/додала %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  user_added_a_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
+  user_added_an_identification_html: "%{user} додав/додала визначення"
+  user_added_an_observation_field_html: '%{user} додав/додала значення до "%{field_name}" до спостереження %{owner}'
+  user_added_an_observation_field_value_html: "%{user} додав/додала значення до поля спостереження"
+  user_added_an_observation_html: "%{user} додав/додала спостереження"
+  user_added_an_x: "%{user} додав/додала %{x}"
+  user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
   user_is_a_naturalist: "%{user} є натуралістом!"
   user_muted: Користувача ігноровано
   user_suggested_an_id: "%{user} запропонував визначення"
@@ -4941,7 +4940,7 @@ uk:
   you_are_subscribed_to_comments_on_this_taxon_drop: Ви підписані на коментарі під цим видаленням таксонів
   you_are_subscribed_to_observations_from_this_place: Ви підписані на коментарі щодо цього місця.
   you_arent_a_member_of_that_project: Ви не є членом цього проєкту.
-  you_arent_following_that_person: "Ти не слідкуєш за цією людиною."
+  you_arent_following_that_person: "Ви не стежите за цією людиною."
   you_can_accept_invitations: Ви можете прийняти запрошення тут
   you_can_choose_observations_associated: Ви можете вибирати спостереження та пов'язати їх із цим дописом у журналі.
   you_can_edit_this_default_check_list_because: |
