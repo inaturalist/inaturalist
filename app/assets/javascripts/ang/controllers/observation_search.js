@@ -543,26 +543,34 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.hideRedoSearch = true;
     }
-    if( _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+    var isDefaultSearch = _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale );
+    if ( isDefaultSearch ) {
       processedParams.ttl = 3600;
     }
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
       page: $scope.apiPage( ) || 1,
-      per_page: $scope.pagination.perSection,
-      return_bounds: true });
+      per_page: $scope.pagination.perSection
+    } );
+    // Only request the bounds if this isn't a default search
+    if (
+      ( options.browserStateOnly || !$scope.mapLayersInitialized ) &&
+      !isDefaultSearch
+    ) {
+      searchParams.return_bounds = true;
+    }
     // prevent slow searches from overwriting current results
     var thisSearchTime = new Date( ).getTime( );
     $scope.lastSearchTime = thisSearchTime;
-    ObservationsFactory.search( searchParams ).
-                        then( function( response ) {
+    ObservationsFactory.search( searchParams ).then( function( response ) {
       if( $scope.lastSearchTime != thisSearchTime ) { return; }
-
       // this is an initial search, and not the default no-params search,
       // and we have bounds of the results, so focus the map on the results
-      if( response.data.total_bounds &&
-          ( options.browserStateOnly || !$scope.mapLayersInitialized ) &&
-          !_.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+      if (
+        response.data.total_bounds
+        && ( options.browserStateOnly || !$scope.mapLayersInitialized )
+        && !isDefaultSearch
+      ) {
         var bounds = response.data.total_bounds;
         var swlat = bounds.swlat;
         var swlng = bounds.swlng;
