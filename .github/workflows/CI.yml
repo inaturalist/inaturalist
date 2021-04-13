@@ -13,6 +13,7 @@ jobs:
       - uses: fkirc/skip-duplicate-actions@master
         with:
           github_token: ${{ github.token }}
+          cancel_others: true
 
   build:
     needs: pre_build
