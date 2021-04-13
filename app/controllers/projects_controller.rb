@@ -105,12 +105,6 @@ class ProjectsController < ApplicationController
             merge(Project.not_flagged_as_spam).includes( project: :stored_preferences ).
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
-          @followed = Project.
-            includes(:stored_preferences).
-            joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
-            where( "subscriptions.user_id = ?", current_user ).
-            where( "projects.user_id != ?", current_user ).
-            order( "subscriptions.id DESC" ).limit( 15 ).select{ |p| !@joined.include?( p ) }
         end
         render layout: "bootstrap"
       end
