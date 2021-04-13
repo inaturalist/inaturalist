@@ -3342,11 +3342,24 @@ gl:
     zimbabwe: Zimbabwe
   places_of_interest: Lugares de Interese
   places_merged_successfully: '¡Os lugares combináronse satisfactoriamente!'
+  places_warning_export_complex_boundary_html: |
+    Se estás tentando exportar observacións dun territorio con fronteiras complexas, considera <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargalas dende GBIF</a>, onde podes debuxar fronteiras arbitrarias; ou exportalas dende iNat usando lugares existentes, ou unha caixa delimitada, e logo filtrar os dados unha descargadas.
+  places_warning_look_for_existing_html: |
+    Busca <a href="/search?source[]=places">lugares existentes</a>para asegurarte de que non estás creando un duplicado. Xa temos lugares para tódolos contientes e países, así como dous niveis administrativos inferiores a país.
+  places_warning_projects_can_have_multiple_places: |
+    Se estás tentando demarcar un lugar para limitar un proxecto, sabe que os proxectos poden ser compostos de varios lugares. Por exemplo, se queres compoñer un proxecto para Nova Zelanda e Australia, podes engadir requisitos para dous lugares en vez de crear un novo.
+  places_warning_new_places_are_slow_html: |
+    Os lugares novos son as maiores fontes de desaceleración en iNat, así que <strong>por favor, considera non crear lugares novos</strong>. Se ben os lugares pequenos que conteñen só uns poucos millares de observacións non acostuman dar problemas, se creares un novo lugar con moitas observacións, diminuirías a velocidade de iNat para tódolos demais. Velaquí algunhas alternativas:
+  places_warning_editing_places_is_slow: |
+    A edición das demarcacións dos lugares é una das principais causas de desaceleracón en iNat. Se o puderes evitar, non engadas, mudes ou elimines as fronteiras dos lugares se non é estritamente necesario.
+  places_warning_the_future: |
+    Polo que vale, teremos que restrinxir as condicións para poder engadir lugares no futuro, dado a actual taxa de crecemento de iNat.
   plants: Plantas
   please_add_a_citation_for_this_change: Debes engadir unha referencia para este cambio.
   please_add_this_observation_to: 'Por favor, engade esta observación a:'
   please_add_this_to_x_html: "Engade isto a %{x}"
   please_allow_a_few_weeks_for_external_sites: Por favor, dálles unhas semanas ás páxinas externas para sincronizar os cambios desta observación #Title to a section warning a user to exercise caution
+  please_be_careful!: '¡Por favor, Ten Coidado!'
   please_complete_the_following_to_add_project: |
     Por favor, completa o seguinte para engadir esta observación ó proxecto:
   please_confirm_your_inat_username: "Confirma o teu nome de usuario con %{site_name}"
@@ -3551,6 +3564,7 @@ gl:
   receive_email_notifications: Recibir Notificacións por Email
   receive_email_notifications_description: "Se apagas isto, non recibirás máis emails de %{site_name} co gallo das notificacións."
   receive_email_notifications_when_people_leave_you: Recibe notificacións por correo cando alguén deixe de seguirte.
+  receive_project_journal_notifications?: '¿Recibir notificacións do diario do proxecto?'
   receive_updates_from_this_project: Recibe actualizacións deste proxecto
   recent: Recente
   recent_evidence_of_organism: Evidencia recente dun organismo
@@ -3640,6 +3654,7 @@ gl:
   research_: Investigación
   research_grade: grao de investigación
   research_grade_short_html: "G<span class='full'>rao de </span>I<span class='full'>nvestigación</span>"
+  research_grade_tooltip_html: 'As observacións "Grao de Investigación" teñen medios, localización, data e un consenso comunitario nunha identificación precisa (normalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Sabe máis sobre os graos de calidade</a>'
   research_grade_observations_have: 'As observacións con "grao de investigación" dispoñen de data, foto, coordenadas e unha identificación apoiada pola comunidade. Preme o botón para ver a avaliación da calidade dos datos.'
   research_grade_qualification: Calificación de Grao de Investigación
   reset_filters_short: Restablecer
@@ -3651,11 +3666,17 @@ gl:
   resolved_by: Resolto por
   resolved_by_user_on_date_html: Resolto por %{user} no %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} dixo:</span> "%{x}"'
+  restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
   results: Resultados
   review_all: Rever Todo
   reviewed: Revisto
+  revoke: Revogar
+  revoke_caps: REVOGAR
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  revoke_external_application: "¿Revogar %{site_name}?"
   rg_observations: Observacións GI
   role: Permiso
   rotate_left: Xirar á esquerda
@@ -3691,8 +3712,10 @@ gl:
   save_observation: Gardar observación
   save_photos: Gardar fotos
   save_place: Gardar lugar
+  save_settings_caps: GARDAR CONFIGURACIÓN
   save_trip: Gardar excursión
   saved: Gardado
+  saved_at_time: Gardado ás %{time}
   saving: "Gardando..."
   saving_num_of_count_observations:
     one: Gardando observación...
@@ -3705,6 +3728,7 @@ gl:
   scientific_name: Nome Científico
   search: Procurar
   search_all_fields: Procurar todos os campos
+  search_by_name: Buscar por nome
   search_by_name_or_email: Procura por nome ou email
   search_by_taxon_name_or_observation_id: Buscar por nome de taxon ou identificación da observación
   search_by_taxon_name_or_flickr_photo_id: Buscar por nome de taxon ou identificación de foto de Flickr
@@ -3776,6 +3800,9 @@ gl:
   show_keyboard_shortcuts: Mostrar Atallos de Teclado
   show_less: Mostrar Menos
   show_more: Mostrar Máis
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Mostrar "Sen Anotacións"
   show_observation_photos: Mostra as fotos das observacións
   show_off_your_recent_observations: Publica as túas observacións no teu propio blog ou páxina web!
   show_only: Mostrar soamente
@@ -3818,6 +3845,10 @@ gl:
   site_stats: Estatísticas da páxina
   site_taxon_page: "Páxina do taxon %{site_name}"
   some_agree: Algúns dan o seu apoio
+  some_observations_are_missing_media_or_identifications: |
+    A algunhas observacións fáltanlles medios ou identificacións
+  some_observations_are_missing_media_or_identifications_desc: |
+    As observacións sen medios non serán visibles nas buscas por defecto, e aquelas sen ningún tipo de identificación poderán non ser vistas por expertos que busquen taxons específicos. Incluso unha identificación grosa como "plantas" pode axudar a un experto en plantas atopar a túa observación.
   some_observations_failed_to_be_added: Fallou a adición dalgunhas observacións a proxectos
   some_observations_failed_to_save: Algunhas observacións non foron gardadas
   some_of_those_photos_couldnt_be_saved: "Algunhas das fotos non puideron ser gardadas: %{error}"
@@ -3952,6 +3983,12 @@ gl:
   subscribe_to_a_place: Subscríbete a un Lugar
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Subscríbete%{tag_end} ós comentarios nesta marca"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Subscríbete%{tag_end} ós comentarios nesta publicación"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Subscríbete%{tag_end} para comentar neste estadio de taxon"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Subscríbete%{tag_end} para comentar neste intercambio de taxon"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Subscríbete%{tag_end} para comentar nesta fusión de taxons"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Subscríbete%{tag_end} para comentar nesta división de taxon"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Subscríbete%{tag_end}para comentar neste abandono de taxon"
+  subscribe_to_observations_from_this_place_html: <a>Subscríbete</a> a observacións deste lugar
   subscribe_to_observations_in_a_taxon: Subscríbete a tódalas observacións publicadas dunha especie ou grupo de organismos (p.e. "escorpións").
   subscribe_to_observations_in_a_place: Subscríbete a tódalas observacións publicadas neste lugar. Tamén podes engadir un filtro de taxons opcional (p.e. "escorpións de Texas")
   subscribe_to_places_to: |
@@ -3969,6 +4006,8 @@ gl:
   suggest_an_identification: Suxire unha Identificación
   suggest_or_require_that: Suxírese ou solicítase que os contribuíntes enchan estes campos para as observacións que engadan ao teu proxecto.
   suggestions: Suxestións
+  suitable_for_the_global_biodiversity_information_facility: Apropiado para a Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Apropiado para a Wikipedia e para outros proxectos de Wikimedia Foundation
   summary: Resumo
   supporting: Apoio
   support_inaturalist: Apoiar a iNaturalist
@@ -3989,6 +4028,7 @@ gl:
   take_me_flickr!: Si, ir a Flickr
   target_list_alert: '¿Seguro que tentaches observar tódalas especies cubertas pola túa listaxe de obxectivos? Lembra que todo o que está cuberto na túa listaxe de obxectivos e non observaches, será interpretado como unha ausencia, polo que é moi importante que a túa listaxe de obxectivos reflicte con exactitude o conxunto de especies que trataches de detectar.'
   target_list_warning: Lembra que todo o que estea cuberto pola túa lista de obxectivos que non observaches no radio e duración desta excursión será interpretado como unha ausencia. É moi importante que a túa lista de obxectivos reflicta o conxunto de especies que intentaches detectar. Se non intentaches detectar unha especie ou tódalas especies cubertas por un grupo na túa listaxe de obxectivos, por favor, elimínaa.
+  task_deleted: Tarefa borrada
   taxa: Taxóns
   taxa_with_unknown_relationships: Taxons con relacións descoñecidas
   taxa_info: Información dos Taxons
@@ -4125,6 +4165,11 @@ gl:
   terms_service: Termos do servizo
   terrain: Terreo
   text: Texto
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Controis de bloque de texto
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Controis de formatación de texto
+  text_editing_controls: Controis de edición de texto
   thanks!: '¡Graciñas!'
   thanks_from_all_of_us_here_at: Grazas de parte de todos nós aquí en
   that_photo_doesnt_exist: Esa foto non existe.
@@ -4192,6 +4237,7 @@ gl:
     Esas observacións aínda non foron subidas.
   they_already_have_iNat_accounts: "...que xa teñen contas %{site_name}"
   they_have_been_invited: ...eles xa foron convidados.
+  third_party_tracking: Rastrexo de Terceiros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: Este
@@ -4202,6 +4248,7 @@ gl:
   this_is_more_convenient_way_find_parent: Esta é unha forma máis conveniente de atopar un Identificador pai. O Identificador pai é o que realmente queda gardado.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Esta é a vía máis conveniente para atopar o identificador da especie ou grupo. Este é o identificador da especie ou grupo que quedará gardado. Esta procura só funciona para especies ou grupos activos.
+  this_is_how_taxon_names_will_be_displayed: Así será como se mostren os nomes de taxon en %{site_name}
   this_is_taking_forever: Isto tarda de máis. Por favor, téntao de novo máis tarde.
   this_is_the_primary_listing: Esta é a listaxe primaria
   this_is_your_observation: Esta é a túa observación
@@ -4233,6 +4280,11 @@ gl:
   this_will_refresh_listed_taxa: Isto actualizará os taxons listados nesta lista. Isto pode levar algún tempo, asi que por favor, emprégao pouco en en listas de comprobacións pequenas
   this_will_re_apply_all_list_rules: |
     Isto aplicará novamente todas as regras da lista aos taxóns, por exemplo, para rexeitar taxóns que non están dentro do taxón da lista de vida ou dentro do rango seleccionado. Non agregará ningún taxón. Esta acción podería tardar uns minutos.
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Isto quitaralle a iNaturalist a capacidade de acceder da túa parte a esta conta, ata que lle permitas o accesso de novo. Pode ser que precises mudar a configuración no sitio externo para evitar o acceso completamente.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  this_will_sign_you_out_current_session: Isto pechará a túa sesión nesta aplicación.
   this_will_try_to_add_tags_to_your_flickr: Con isto tratarase de engadir etiquetas ás túas fotos de Flickr. Desexas continuar?
   this_year: Este Ano
   those_observations_no_longer_exist: Estas observacións xa non existen.
@@ -4259,6 +4311,8 @@ gl:
   top_observer: Maior Observador
   top_observers: Maiores Observadores
   top_species: Especies Máis Observadas
+  tos_privacy_guidelines_label: |
+    Estou dacordo cós <a href="/terms" target="_blank">Termos de Servizo</a> e <a href="/privacy" target="_blank">Políticas de Privacidade</a>, e revisei as <a href="/pages/community+guidelines" target="_blank">Directrices da Comunidade</a>.
   total: Total
   totals: Totais
   total_members: Total de membros
@@ -4270,9 +4324,12 @@ gl:
   trending: Tendencias
   trends: Tendencias
   trip_target_list_info: 'Calquera especie cuberta nesta listaxe de obxectivos que non sexa observada dentro do radio e duración desta excursión interpretarase como ausencia. <a href="/pages/trips">Sabe máis</a>.'
+  #Noun
+  trust: Confiar
   trusted: Fiable
   trusted_project?: '¿É un proxecto verificado?'
   trust_this_person_with_your_private_coordinates: Confía as túas coordenadas a esta persoa
+  trust_this_project_with_your_private_coordinates?: '¿Confiar a este proxecto as coordenadas agochadas?'
   trust_with_private_coordinates: Confiar con coordenadas ocultas
   try_adding_species_form: Tenta agregar algunha especie empregando o formulario desta páxina.
   twitter: Twitter
@@ -4312,6 +4369,7 @@ gl:
   unresolve: Desfacer solución
   unreview_all: Desfacer Tódalas Revisións
   unsubscribe: Quitar subscrición
+  unsubscribe_from_emails_like_this: Darse de baixa de correos electrónicos coma este
   unsuspend_user: Reactivar usuario
   upcoming_bioblitzes: Próximas Bioblitzes
   update: Actualizar
@@ -4340,6 +4398,7 @@ gl:
   upload_a_csv_file: Carga un arquivo CSV
   upload_a_csv_file_with_observation: |
     Cargar un arquivo CSV con datos de observación. Se os teus datos están nunha folla de cálculo ou base de datos, probablemente deberás facelo deste xeito.
+  upload_new_photo: Carga unha foto nova
   upload_photo: Cargar Foto
   upload_range: Cargar Intervalo
   uploaded_by: Subido por
@@ -4441,6 +4500,7 @@ gl:
     O observador escoulleu confiarte as coordenadas ocultas de tódalas súas observacións.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> escribiu,
   username: Nome de usuario
+  username_description: Este é o nome de usuario que usarás para iniciar sesión, e que outros usuarios poden utilizar para indentificárente en iNaturalist.
   username_or_email: Nome de usuario ou email
   username_or_user_id: Nome ou identificador do usuario
   users: Usuarios
@@ -4467,6 +4527,7 @@ gl:
   view_check_list_page: Ver páxina de lista de verificación
   view_contributions: Ver Achegas
   view_details: Ver detalles
+  view_dynamic_lifelist: Ver lista de vida dinámica
   view_field_options: Ver Opcións de Campo
   view_flag: Ver Marca
   view_flags: Ver marcas
@@ -4484,10 +4545,12 @@ gl:
   view_moderation_history_for_this_comment: Ver Histórico de Moderación para este Comentario
   view_more: Ver máis
   view_more_about_x: "Ver máis sobre %{x}"
+  view_more_observations_from_this_place: Ver máis observacións deste lugar
   view_more_observations_near_x_place: "Ver máis observacións preto de %{place} en <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "Ver máis observacións do proxecto %{project} en <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Ver máis observacións de %{taxon} en <nobr>%{site_name} »</nobr>"
   view_more_unreviewed: "Ver máis por revisar"
+  view_my_life_list: Ver a miña lista de vida
   view_observation: Ver observación
   view_observations: Ver observacións
   view_observation_flags: Ver marcas da observación
@@ -4682,6 +4745,11 @@ gl:
     Estás presentando observacións sen data ou ubicación. As observacións sen esta información frecuentemente son imposibles de identificar e non serán visibles de xeito predeterminado nas buscas de observacións.
   you_are_subscribed_to_comments_on_this_flag: Estás subscrito/a ós comentarios desta marca.
   you_are_subscribed_to_comments_on_this_post: Estás subscrito/a a comentarios desta publicación.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Estás subscrito/ós comentarios deste estadio de taxon
+  you_are_subscribed_to_comments_on_this_taxon_swap: Estás subscrito/a ós comentarios deste intercambio de taxon
+  you_are_subscribed_to_comments_on_this_taxon_merge: Estás subscrito/a ós comentarios desta fusión de taxons
+  you_are_subscribed_to_comments_on_this_taxon_split: Estás subscrito/a ós comentarios desta división de taxon
+  you_are_subscribed_to_comments_on_this_taxon_drop: Estás subscrito/a ós comentarios deste abandono de taxon
   you_are_subscribed_to_observations_from_this_place: Estás subscrito/a ós comentarios deste lugar.
   you_arent_a_member_of_that_project: Non es un membro do proxecto.
   you_arent_following_that_person: "Non estás seguindo a esa persoa."
@@ -4689,6 +4757,8 @@ gl:
   you_can_choose_observations_associated: Podes seleccionar observacións para asocialas con este artigo do diario.
   you_can_edit_this_default_check_list_because: |
     Podes editar esta listaxe de verificación predeterminada porque es un administrador, pero non debería haber necesidade de facelo.
+  you_can_only_destroy_taxa_you_created2: |
+    Só podes borrar taxons creados por ti e que non estean asociados con mudanzas de taxon, identificacións ou outros contidos
   you_can_only_block_three_users: Só podes bloquear tres usuarios
   you_can_show_the_boundary_of: Podes mostrar os límites do lugar na páxina do teu proxecto só se o lugar ten límites.
   you_can_sign_free_at: "Podes rexistrarse nunha conta gratis con %{site_name} neste enlace"
@@ -4698,6 +4768,7 @@ gl:
   you_cant_do_that_for_the_default_check_list_place: '¡Non podes facer iso para listaxe de verificación predeterminada dun lugar!'
   you_cant_flag_that: Non podes poñer iso como advertencia
   you_cant_leave_a_project_you_created: Non podes abandonar un proxecto que ti creaches.
+  you_cant_merge_standard_places: Non podes fusionar lugares estándar
   you_cant_rotate_photos_hostde_outside: "Non podes xirar fotos que estean almacenadas fóra de %{site_name}."
   you_cannot_delete_taxa_involved_in_taxon_changes: Non podes borrar taxons ligados a cambios de taxon ou que conteñan taxons ligados en cambios de taxon
   you_curate_a_project_that_contains_this_observation: Conservas un proxecto que contén esta observación
@@ -4731,6 +4802,7 @@ gl:
   you_sure_delete_asset?: Estás seguro de que desexas eliminar este arquivo?
   you_sure_delete_check_list: "Estás seguro de que desexas eliminar esta lista? Algunhas persoas poderían ter traballado moito nela..."
   you_sure_delete_comment?: Estás seguro de que queres borrar o comentario?
+  you_sure_delete_identification?: '¿Seguro que queres borrar esta identificación?'
   you_sure_delete_custom_field?: Estás seguro de que desexas eliminar estes campos personalizados?
   you_sure_delete_flag?: Estás seguro de que desexas eliminar esta marca?
   you_sure_delete_project?: '¿Seguro que queres eliminar este proxecto?'
@@ -4773,6 +4845,7 @@ gl:
   yours: Teu
   youre_not_following_anyone: |-
     Non segues a ninguén. Seguir a outros naturalistas permitirache levar un control das túas observacións máis recentes. Pescuda o que a xente está facendo
+  youre_not_following_anyone_on_inat: '¡Aínda non segues a ninguén en %{site_name}!'
   youve_linked_your_inaturalist_google_account: "Vinculaches a túa conta de %{site_name} e a túa conta de Google. Isto permitirache asociar as túas fotos de Google cás túas observacións de %{site_name}."
   youve_seen_it_want_to: "Víchelo! Deséxalo?"
   youve_successfully_linked_your_provider_account: "Vinculaches correctamente a túa conta de %{provider}"
@@ -4950,12 +5023,51 @@ gl:
         reuse_desc: |
           Podes copiar este taxon noutra guía. Se es un dos editores desta guía, deberíase copiar todo, pero se non o es, só copiará o contido con licenza.
     lifelists:
+      list_view: Vista en lista
+      tree_view: Vista en Árbore
+      observed_species: Especies Observadas
+      observed_rank: '%{rank} Observados'
+      unobserved_species: Especies Non Observadas
+      all_species: Tódalas Especies
+      all_unobserved_species: Tódalas Especies Non Observadas
+      observations_at_this_taxon: Observacións neste taxon
+      observations_within_this_taxon: Observacións dentro deste taxon
+      all_observations: Tódalas Observacións
+      total_observations: Observacións Totais
+      filter_by: Filtrar por
+      filtered_by: Filtrado por
+      apply_filters_to_export: Aplicar filtros para exportación
+      restrict_to_leaf_taxa: Restrinxir ós taxons folla
+      restrict_to_taxon: Restrinxir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restrinxir a taxons observados en %{place}
+      exporting_all_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando tódolos %{count} taxons
+      exporting_x_taxa:
+        one: Exportando %{count} taxon
+        other: Exportando %{count} taxons
+      no_observations_found_in_place: Non se atoparon observacións en %{place}.
+      no_observations_found_within_this_taxon_in_place: Non se atoparon observacións neste taxon en %{place}.
+      no_species_found_within_this_taxon_in_place: Non se atoparon especies neste taxon en %{place}.
+      no_species_found_in_place: Non se atoparon especies en %{place}.
+      no_unobserved_species_in_place: Non hai especies non observadas en %{place}.
+      no_unobserved_species_within_this_taxon: Non hai especies non obeservadas neste taxon.
+      no_unobserved_species_within_this_taxon_in_place: Non hai especies non observadas neste taxon en %{place}.
+      reset_place_filter: Restablecer o Filtro de Lugar
+      all_observations_in_this_taxon: Tódalas observacións neste taxon
+      observations_of_exactly_this_taxon: Observacións deste taxon exacto
+      focus_tree_on_this_taxon: Centrar a árbore neste taxon
+      expand_all_nodes_in_this_branch: Expandir tódolos nodos nesta póla
+      collapse_this_branch: Contraer esta póla
       dropdowns:
         sort: Ordenar
         taxonomic: Taxonómico
         name: Nome
         most_observed: Máis Observados
         least_observed: Menos Observados
+        date_added_newest: Data de Adición, de Máis Recente a Máis Antigo
+        date_added_oldest: Data de Adición, de Máis Antigo a Máis Recente
+        ancestry: Ascendencia
         show: Mostrar
         children: Nenos
         simplified_tree: Árbore Simplificada
@@ -4987,6 +5099,8 @@ gl:
       show:
         flag_notice_html: |
           Marcaches esta conversación no %{date}. A marca persistirá aínda que borres a túa copia desta conversa, así que é seguro borrala se xa non queres vela.
+        privacy_notice_html: |
+          Mesmo que as mensaxes sexan privadas entre ti e o receptor, os traballadores de iNaturalist pódenas ver tamén, e o farán se as mensaxes foren marcadas para moderación. Se requires comuncacións realmente privadas, por favor, busca outros mecanismos de comunicación que soporten alta encriptación.
     oauth:
       authorizations:
         new:
@@ -5080,8 +5194,13 @@ gl:
           other: "%{count} únicos"
       export:
         choose_columns_desc: Escolle as columnas que queres exportar
+        create_a_query_desc_html: |
+          Crea unha consulta sobre observacións como farías noutro sitio calquera dentro do sitio web. Tamén podes cortar e colar a URL dunha observación doutra parte do sitio. A túa consulta debería devolver <strong> non máis de 200.000 observacións</strong>.
+        export_in_progress_notice_html: |
+          Tes unha <a href="%{url}">exportación en curso</a>. Deberás agardar ata que remata para que poidas facer outra.
         ident_by_user_desc_html: |
           Columnas para a identificación actual de %{user}
+        limit_alert: A túa exportación será demasiado grande. Cambia os teus filtros ata que obteñas menos de 200.000 observacións.
         query_placeholder: "Escolle abaixo os parámetros de consulta ou cola a URL dunha observación"
         taxon_extras_help_html: "Nota: estas columnas frearán a xeración da túa exportación"
         geo_help_html: |
@@ -5294,6 +5413,14 @@ gl:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Por favor, comproba a ortografía en cada entrada. Se a túa ortografía é correcta, busca a especie en %{search_taxa_url}. Se o nome aínda non está na base de dados de %{site_name}, precisarás engadilo antes de facer unha carga masiva. Usa a caixa no fondo da páxina de busca para importar noves novos. Se o nome está presente pero é aplicable a taxons válidos varios, tenta empregar un nome máis ou menos específico que só coincida cun único taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Debido a que confiaches a este proxecto as coordenadas agochadas de <a
+          href="%{obs_url}">algunhas das túas observacións</a>, os administradores poderán ter acceso a máis coordenadas agochadas túas das que tiñan no momento en que confiaches neste proxecto. Deberías revisar a lista de administradores e os requisitos do proxecto para asegurarte de que aínda confías as túas observacións a este proxecto:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Os requisitos do seguinte proxecto cambiaron recentemente:
       observations_export_notification:
         your_observations_export_is_ready_html: |
           A túa exportación de observacións está preparada. Hai unha copia adxunta neste email, ou podes <a href="%{url}">descargar a exportación</a>.
@@ -6100,7 +6227,6 @@ gl:
           href="https://akismet.com/">Akismet</a>, pero Akismet non é perfecto, así que se queres pasar uns minutos marcando novas contas como remitentes de correo lixo ou non, axudarasnos.
           </p>
       show:
-        take_a_chance_to_review_html: 'Aproveita a oportunidade para revisar <a href="%{link}">as nosas directrices</a>.'
         this_user_was_banned: Este usuario foi suspenso.
         favorites_list_prompt_html: |
           ¿Quéreste gabar dalgún dos teus taxons favoritos?%{link_start_tag}Crea unha lista%{link_end_tag} chamada "Favoritos" e as adicións máis recentes aparecerán neste espazo.
