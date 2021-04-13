@@ -3,7 +3,7 @@ import React from "react";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { setControlledTerms } from "./controlled_terms";
+import { resetControlledTerms } from "./controlled_terms";
 import {
   fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
@@ -138,7 +138,7 @@ export function resetStates( ) {
     dispatch( setObservation( { } ) );
     dispatch( setIdentifiers( null ) );
     dispatch( setObservationPlaces( [] ) );
-    dispatch( setControlledTerms( [] ) );
+    dispatch( resetControlledTerms( ) );
     dispatch( setQualityMetrics( [] ) );
     dispatch( setEarlierUserObservations( [] ) );
     dispatch( setLaterUserObservations( [] ) );

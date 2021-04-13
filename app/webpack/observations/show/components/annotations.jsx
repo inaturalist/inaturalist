@@ -6,24 +6,32 @@ import {
 } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
-import { fetchControlledTerms, termsForTaxon } from "../ducks/controlled_terms";
+import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
   constructor( props ) {
     super( props );
     const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
+      open: currentUser ? currentUser.prefers_hide_obs_show_annotations : false
     };
   }
 
   componentDidMount( ) {
-    // const currentUser = this.props.config && this.props.config.currentUser;
-    // if ( this.loggedIn ) {
-    //   if ( currentUser && currentUser.prefers_hide_obs_show_annotations ) {
-    // fetchControlledTerms( );
-    //   }
-    // }
+    this.fetchAnnotations( );
+  }
+
+  fetchAnnotations( ) {
+    const {
+      open: isOpen
+    } = this.state;
+    const { fetchControlledTerms, updateSession } = this.props;
+    if ( this.loggedIn ) {
+      updateSession( { prefers_hide_obs_show_annotations: isOpen } );
+    }
+    if ( isOpen ) {
+      fetchControlledTerms( );
+    }
   }
 
   annotationRow( a, term ) {
@@ -383,11 +391,7 @@ class Annotations extends React.Component {
         <h4
           className="collapsible"
           onClick={( ) => {
-            if ( this.loggedIn ) {
-              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
-            }
-            fetchControlledTerms( );
-            this.setState( { open: !isOpen } )
+            this.setState( { open: !isOpen }, ( ) => this.fetchAnnotations( ) )
           }}
         >
           <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />

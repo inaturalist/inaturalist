@@ -3,6 +3,7 @@ import _ from "lodash";
 
 const SET_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_CONTROLLED_TERMS";
 const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_TERMS";
+const RESET_CONTROLLED_TERMS = "obs-show/controlled_terms/RESET_CONTROLLED_TERMS";
 
 const API_V2_BASE_REQUEST_PARAMS = {
   fields: {
@@ -26,6 +27,11 @@ export default function reducer( state = { terms: [], allTerms: [], loaded: fals
       newState.allTerms = action.terms;
       newState.loaded = true;
       break;
+    case RESET_CONTROLLED_TERMS:
+      newState.terms = [];
+      newState.allTerms = [];
+      newState.loaded = false;
+      break;
     default:
       // nothing to see here
   }
@@ -43,6 +49,12 @@ export function setAllControlledTerms( terms ) {
   return {
     type: SET_ALL_CONTROLLED_TERMS,
     terms
+  };
+}
+
+export function resetControlledTerms( ) {
+  return {
+    type: RESET_CONTROLLED_TERMS
   };
 }
 
