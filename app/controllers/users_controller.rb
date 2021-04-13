@@ -1005,37 +1005,64 @@ class UsersController < ApplicationController
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default person_by_login_path( @user.login )
     end
-    moderator_notes = ModeratorNote.
+    max = 100
+    @valid_years = ( 2008..Date.today.year ).to_a.reverse
+    @years = ( params[:years] || [] ).map(&:to_i) & @valid_years
+    @types = ( params[:types] || [] ) & %w(Flag ModeratorNote ModeratorAction)
+    scopes = {}
+    scopes["ModeratorNote"] = ModeratorNote.
       where( subject_user_id: @user ).
       where( "created_at < ?", before ).
-      order( "id desc" ).
-      limit( 100 )
-    moderator_actions_on_identifications = ModeratorAction.
-      where( "moderator_actions.created_at < ?", before ).
-      where( resource_type: "Identification" ).
-      joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
-      where( "i.user_id = ?", @user ).
-      order( "moderator_actions.id desc" ).
-      limit( 100 )
-    moderator_actions_on_comments = ModeratorAction.
-      where( "moderator_actions.created_at < ?", before ).
-      where( resource_type: "Comment" ).
-      joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
-      where( "c.user_id = ?", @user ).
-      order( "moderator_actions.id desc" ).
-      limit( 100 )
-    flags = Flag.
+      order( "id desc" )
+    scopes["Flag"] = Flag.
       where( "created_at < ?", before ).
       where( flaggable_user_id: @user ).
       where( "flaggable_type != 'Taxon'" ).
-      order( "id desc" ).
-      limit( 100 )
-    @records = [
-      moderator_notes.to_a,
-      moderator_actions_on_comments.to_a,
-      moderator_actions_on_identifications.to_a,
-      flags.to_a
-    ].flatten.sort_by {|r| r.created_at }
+      order( "id desc" )
+    @records = []
+    scopes.each do |type, scope|
+      next unless @types.blank? || @types.include?( type )
+      if @years.blank?
+        scope = scope.limit( max )
+      else
+        @years.each do |year|
+          d1 = "#{year}-01-01"
+          d2 = "#{year}-12-31"
+          scope = scope.where( "#{Object.const_get( type ).table_name}.created_at BETWEEN ? AND ?", d1, d2 )
+        end
+      end
+      @records += scope.to_a
+    end
+    if @types.include?( "ModeratorAction" )
+      moderator_actions_on_identifications = ModeratorAction.
+        where( "moderator_actions.created_at < ?", before ).
+        where( resource_type: "Identification" ).
+        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
+        where( "i.user_id = ?", @user ).
+        order( "moderator_actions.id desc" )
+      moderator_actions_on_comments = ModeratorAction.
+        where( "moderator_actions.created_at < ?", before ).
+        where( resource_type: "Comment" ).
+        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
+        where( "c.user_id = ?", @user ).
+        order( "moderator_actions.id desc" )
+      if @years.blank?
+        moderator_actions_on_comments = moderator_actions_on_comments.limit( max )
+        moderator_actions_on_identifications = moderator_actions_on_identifications.limit( max )
+      else
+        @years.each do |year|
+          d1 = "#{year}-01-01"
+          d2 = "#{year}-12-31"
+          moderator_actions_on_comments = moderator_actions_on_comments.
+            where( "moderator_actions.created_at BETWEEN ? AMD ?", d1, d2 )
+          moderator_actions_on_identifications = moderator_actions_on_identifications.
+            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
+        end
+      end
+      @records += moderator_actions_on_comments.to_a
+      @records += moderator_actions_on_identifications.to_a
+    end
+    @records = @records.flatten.sort_by {|r| r.created_at }
     respond_to do |format|
       format.html do
         render layout: "bootstrap-container"
