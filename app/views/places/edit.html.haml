@@ -2,97 +2,33 @@
   = t :editing
   = @place.name
 - content_for(:extracss) do
-  = stylesheet_link_tag "leaflet.fullscreen/Control.FullScreen"
   :css
     #map {width: 100%;height: 500px;}
     .edit_place input.text, .edit_place textarea {width: 415px;}
     .latitude_field input.text, .longitude_field input.text { width: 175px;}
     input.ac_loading {background: white url('/assets/spinner-small.gif') 420px 5px no-repeat;}
 - content_for(:extrajs) do
-  = leaflet_js(:draw => true)
-  = javascript_include_tag "shramov-leaflet-plugins/Bing"
-  = javascript_include_tag "leaflet.fullscreen/Control.FullScreen"
   :javascript
-    var PLACE = #{json_escape @place.to_json.html_safe},
-        NPOINTS = #{@npoints.to_i},
-        BING_KEY = #{CONFIG.bing ? CONFIG.bing.key.inspect.html_safe : "null"}
+    var PLACE = #{json_escape @place.to_json.html_safe}
     $(document).ready(function() {
       $('#place_parent_id').chooser({
         collectionUrl: '/places/autocomplete.json',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
       })
-      window.map = L.map('map').setView([PLACE.latitude, PLACE.longitude], 8)
-      if (PLACE.swlat) {
-        var b = new L.LatLngBounds(
-          new L.LatLng(PLACE.swlat, PLACE.swlng),
-          new L.LatLng(PLACE.nelat, PLACE.nelng)
-        )
-        map.fitBounds(b)
-      }
-      var d = new Date()
-      var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      map.addLayer(bing);
-      var fullScreen = new L.Control.FullScreen();
-      // add fullscreen control to the map
-      map.addControl(fullScreen)
-      window.drawnItems = new L.FeatureGroup()
-      map.addLayer(drawnItems)
-      if (NPOINTS < 5000) {
-        addDrawControls()
-      }
-      if (NPOINTS > 3) {
-        $.getJSON('/places/geometry/'+PLACE.id+'.geojson', function(geojson) {
-          var l = L.geoJson(geojson, {
-            onEachFeature: function(feature, layer) {
-              layer.eachLayer(function(lyr) {
-                drawnItems.addLayer(lyr)
-              })
-            }
-          })
-          l.addTo(map)
-        })
-      }
+    } );
+  = google_maps_js
+  :javascript
+    var PLACE = #{json_escape @place.to_json.html_safe},
+        SHOW_PLACE_GEOMETRY = true
+  = javascript_include_tag 'map_bundle'
+  :javascript
+    $(document).ready(function() {
+      var script = document.createElement("script")
+      script.setAttribute("type", "text/javascript")
+      script.setAttribute("src", "#{asset_path('places/show.gmaps.js')}")
+      document.body.appendChild(script);
     })
-    function saveGeom() {
-      $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
-    }
-    function addDrawControls() {
-      var drawControl = new L.Control.Draw({
-        draw: {
-          marker: false,
-          rectangle: false,
-          circle: false,
-          polyline: false,
-          polygon: {
-            allowIntersection: false,
-            drawError: {
-                color: '#e1e100', // Color the shape will turn when intersects
-                message: 'Illegal shape'
-            }
-          }
-        },
-        edit: {
-          featureGroup: drawnItems,
-          marker: false
-        }
-      })
-      map.addControl(drawControl)
-      map.on('draw:created', function(e) {
-        var type = e.layerType,
-            layer = e.layer
-        drawnItems.addLayer(layer)
-        map.addLayer(layer)
-        saveGeom()
-      })
-      map.on('draw:edited', function(e) {
-        var layers = e.layers
-        saveGeom()
-      })
-      map.on('draw:deleted', function(e) {
-        saveGeom()
-      })
-    }
 #pageheader
   .breadcrumbs
     %strong= link_to "&laquo; #{t(:back_to)} #{@place.name}".html_safe, @place, :class => 'crumb'
@@ -117,7 +53,9 @@
           :include_blank => t(:unknown), :class => 'select'
     = f.text_field :woeid, :description => "Yahoo Where On Earth ID"
     = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => @place.parent.to_json.html_safe, :label => t(:parent).capitalize
+
     = link_to_toggle_box t(:replace_boundary_with_kml) do
+      .notice=t :places_warning_editing_places_is_slow
       = file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml"
       .meta= t('views.places.kml_field_desc')
     %input{:type => "hidden", :name => "geojson"}
@@ -128,14 +66,8 @@
         :data => {:confirm => t(:are_you_sure_delete_this_place)}, |
         :class => 'minor delete button'                 |
 .last.column.span-12
-  .notice.box
-    %h3=t :warning_title
-    %p.ui=t :places_warning_editing_places_is_slow
   #map.stacked
-  - if @npoints && @npoints > 5000
-    .notice.box=t 'views.places.edit.complex_boundary_note_html', :url => place_geometry_url(@place, :format => "kml")
-  - else
-    = link_to t(:download_kml), place_geometry_url(@place, :format => "kml")
+  = link_to t(:download_kml), place_geometry_url(@place, :format => "kml")
 .column.span-24
   .small.description
     = t(:is_this_place_a_duplicate)

@@ -175,9 +175,6 @@ class PlacesController < ApplicationController
       @place.user = current_user
       if params[:file]
         assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        @place.validate_with_geom( @geometry, user: current_user )
       end
 
       if @geometry # && @place.valid?
@@ -220,9 +217,6 @@ class PlacesController < ApplicationController
       redirect_to place_path(@place)
       return
     end
-    
-    r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
-    @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
   
   def update
@@ -233,11 +227,6 @@ class PlacesController < ApplicationController
         @place.add_custom_error(:place_geometry, :is_too_large_to_edit)
       elsif params[:file]
         assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        if @place.validate_with_geom( @geometry, user: current_user )
-          @place.save_geom(@geometry, user: current_user) if @geometry
-        end
       end
 
       if @place.errors.any?
