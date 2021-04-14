@@ -1054,7 +1054,7 @@ class UsersController < ApplicationController
           d1 = "#{year}-01-01"
           d2 = "#{year}-12-31"
           moderator_actions_on_comments = moderator_actions_on_comments.
-            where( "moderator_actions.created_at BETWEEN ? AMD ?", d1, d2 )
+            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
           moderator_actions_on_identifications = moderator_actions_on_identifications.
             where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
         end
