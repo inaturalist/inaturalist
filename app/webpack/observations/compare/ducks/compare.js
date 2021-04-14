@@ -36,6 +36,7 @@ const setUrl = state => {
     "taxonFrequenciesSortIndex",
     "taxonFrequenciesSortOrder",
     "mapLayout",
+    "historyDateField",
     "historyLayout",
     "historyInterval",
     "colorScheme"
