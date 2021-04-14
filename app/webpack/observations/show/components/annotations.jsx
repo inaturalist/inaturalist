@@ -9,23 +9,18 @@ import UserImage from "../../../shared/components/user_image";
 import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
-  constructor( props ) {
-    super( props );
-    const currentUser = props.config && props.config.currentUser;
-    this.state = {
-      open: currentUser ? currentUser.prefers_hide_obs_show_annotations : false
-    };
-  }
-
   componentDidMount( ) {
     this.fetchAnnotations( );
   }
 
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.open !== this.props.open ) {
+      this.fetchAnnotations( );
+    }
+  }
+
   fetchAnnotations( ) {
-    const {
-      open: isOpen
-    } = this.state;
-    const { fetchControlledTerms, updateSession } = this.props;
+    const { fetchControlledTerms, updateSession, open: isOpen } = this.props;
     if ( this.loggedIn ) {
       updateSession( { prefers_hide_obs_show_annotations: isOpen } );
     }
@@ -215,14 +210,11 @@ class Annotations extends React.Component {
       controlledTerms,
       addAnnotation,
       collapsible,
-      fetchControlledTerms,
       loading,
-      updateSession
+      open: isOpen,
+      showAnnotationsPanel
     } = this.props;
     const observationAnnotations = observation.annotations || [];
-    const {
-      open: isOpen
-    } = this.state;
     const availableControlledTerms = termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
@@ -390,9 +382,7 @@ class Annotations extends React.Component {
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={( ) => {
-            this.setState( { open: !isOpen }, ( ) => this.fetchAnnotations( ) )
-          }}
+          onClick={( ) => showAnnotationsPanel( !isOpen )}
         >
           <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
           { I18n.t( "annotations" ) }
@@ -422,7 +412,9 @@ Annotations.propTypes = {
   updateSession: PropTypes.func,
   collapsible: PropTypes.bool,
   fetchControlledTerms: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  open: PropTypes.bool,
+  showAnnotationsPanel: PropTypes.func
 };
 
 Annotations.defaultProps = {
