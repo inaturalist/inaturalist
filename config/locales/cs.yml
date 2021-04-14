@@ -5441,6 +5441,8 @@ cs:
         about_total_taxa: "O taxonech celkem"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinované
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datum
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontální
         #Date range to aggregate by, e.g. observations per month vs. observations per week
