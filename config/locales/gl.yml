@@ -5148,6 +5148,8 @@ gl:
         about_total_taxa: "Sobre o Total dos Taxons"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinadas
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Campo de data
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -5421,6 +5423,12 @@ gl:
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           Os requisitos do seguinte proxecto cambiaron recentemente:
+        subject: Os requisitos de observación do proxecto cambiaran para %{project}
+        wondering_what_this_means_html: |
+          ¿Queres saber que é a "xeoprivacidade"?
+          <a href="%{url}">Sabe máis na nosa documentación</a>.
+        you_can_change_html: |-
+          Podes cambiar as túas preferencias ou deixar o proxecto na <a href="%{url}">páxina do proxecto</a>.
       observations_export_notification:
         your_observations_export_is_ready_html: |
           A túa exportación de observacións está preparada. Hai unha copia adxunta neste email, ou podes <a href="%{url}">descargar a exportación</a>.
@@ -5580,6 +5588,7 @@ gl:
         revoke_observations_desc: |
           Se a única razón pola que marchas é impedir ós conservadores de proxecto ver as túas coordenadas ocultas.
       edit:
+        admins_must_be_existing_members: Os administradores deben ser membros do proxecto
         aggregation_pending: Agregación pendente
         new_place_desc_html: |
           Tenta mirando polos <a href="%{places_url}" target="_blank">nosos lugares existenes</a> e asegúrate de que tes o nome correcto da ubicación. Se realmente non atopas o lugar que queres, considera <a href="%{new_place_url}" target="_blank">crear un novo lugar</a>, pero por favor, asegúrate de non duplicar un lugar existente.
@@ -5657,6 +5666,12 @@ gl:
         submission_models:
           any: calquera
           curators: conservadores de proxecto
+        trust_allow_members_to_trust: |-
+          Permitir a membros confiar a este proxecto as coordenadas agochadas
+        trust_help_desc: |-
+          Se queres acceso ás coordenadas agochadas de observacións escuras, esta opción permitirá que a xente que se uniu a este proxecto confiarlles ós administradores do proxecto o acceso a estas coordenadas agochadas. Os membros do proxecto serán quen de permitir o acceso ás coordenadas agochadas de calquera das súas observacións que aparecen neste proxecto, ou só das observacións escuras por seren dun taxon ameazado.
+        trust_help_notification2: |-
+          Porén, isto tamén notificará a tódolos membros do proxecto confiados de cada vez que mudas os requisitos de observación do proxecto, de xeito que poden valorar se queren seguir confiando, dado os novos requerimentos. O teu acceso ás coordenadas agochadas será revogado durante unha semana logo de alterar os requisitos de observacións para que os membros teñan tempo de facelo.
         trusted_project_means: |
           Cando un proxecto está verificado, os administradores e xestores do proxecto poden crear, actualizar e borrar os seus recursos do proxecto.
         you_can_preview: |
@@ -5744,6 +5759,8 @@ gl:
           Especifica os filtros polos que incluír observacións no teu proxecto. Podes seleccionar varias especies (ou taxons), lugares, datas ou outros criterios para incluír observacións automáticamente.
         start_and_end_times_for_bioblitzes: Data e hora de comezo e fin (para eventos tipo bioblitz)
         traditional_projects_cannot_be_copied: O proxecto tradicional non se pode copiar
+        trusting_members_will_be_notified: |
+          Cambiaches os requisitos do proxecto ou activaches a confianza do usuario. Isto notificará ós membros do proxecto que xa confiaran ó proxecto as coordenadas agochadas para que poidan decidir se queren seguir confiando no proxecto, dados os novos requisitos.
         umbrella_project_features: "O Proxecto Paraugas presenta:"
         unique_url_for_outreach: URL única para participación
         use_this_for_a_time_limited_event: |
@@ -5890,8 +5907,14 @@ gl:
         website_desc_html: |
           Creado vía <a href="https://www.inaturalist.org">iNaturalist</a> ou sitios web da<a href="%{url}">Rede de iNaturalist</a>
       year:
+        compare_desc: |
+          ¿Como foi este ano, comparado cós anos previos? Con tres anos de uso ou máis, podemos comezar a comparar as medidas de actividade anuais. A barra verde mostra este ano, a barra branca vertical mostra o ano pasado e as áreas grises de fondo mostran os anos de maior e menor actividade, así coma a media de tódolos anos. As estatísticas non inclúen anos onde a contaxe foi cero.
+        compare_site_desc: |
+          ¿Como foi este ano, comparado cós anos previos? A barra verde mostra este ano, a barra branca vertical mostra o ano pasado e as áreas grises de fondo mostran os anos de maior e menor actividade, así coma a media de tódolos anos.
         compared_to_previous_years: Comparar con Anos Anteriores
         donate_title: "Especial Agradecemento A Tódolos Nosos Colaboradores"
+        donate_desc_html: |
+          ¡Grazas por ser xeneroso có teu tempo, atención, habilidade e doazóns! iNaturalist é un emprendemento conxunto sen ánimo de lucro da Academia de Ciencias de California e a Sociedade National Geographic. É mantido por un <a href="%{team_url}">pequeno grupo</a> que fai todo o deseño e enxeñería de software para a web, mobil e <a href="%{seek_url}">Seek por iNaturalist</a>, alén da xestión do apoio á comunidade, colaboracións e integracións que fan que siga funcionando (¡e crecendo rapidamente!). O programa deepende de numerosas becas e doazóns, incluíndo regalos caritativos de menos dunha pequena fracción dos contribuíntes. Estámoslles particularmente agradecidos ós Patrocinadores Mensuais, xa que cós seus agasallos recorrentes podemos planificar o futuro. Podes doar en múltiples moedas para apoiar as operacións centrais de iNaturalist. ¡Graciñas a todos pola vosa aportación para facer do %{year} o meirande ano de iNaturalist ata o de agora!
         donors: Doantes
         donors_guide_label_our_goal_is_1000: O noso obxectivo é 1.000 doadores recorrentes ó mes
         inaturalist_network: Rede iNaturalist
@@ -5905,6 +5928,10 @@ gl:
           As gráficas de "Observacións" e "Taxons" poden incluír dados visibles en %{site_name} contribuídos por xente que non está afiliada con %{site_name}, mentres que a gráfica de "Usuarios" só mostra as datas de cando os usuarios que están afiliados con %{site_name} se uniron a iNaturalist.
         growth_in_year_obs: "Crecemento en %{year} (obs)"
         growth_title: Crecemento
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Baixo: %{low_value} (%{low_desc}), moi pequeno para se mostrar"
         new_species_desc: |
           Especies que foron observadas pola primeira vez en %{site_name} este ano.
           Mostrando %{x} de <a href="%{url}">%{y} especies</a>.
@@ -5931,9 +5958,11 @@ gl:
         observations_per_year_by_date_added: Por data de adición
         observations_per_year_by_date_observed: Por data de observación
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
-        observation_streaks: Series de Observacións
+        observation_streaks: Lapsos de Observacións
         observation_streaks_color_desc: |
           A cor representa o número de días nunha escala logarítmica:
+        observation_streaks_desc2: |
+          Un lapso de observación é un período de cinco días ou máis no que alguén foi fóra e rexistrou observacións novas e verificables tódolos días. Velaquí os lapsos máis longos que comezaran este ano ou en curso cando estas estatísticas se xeraron (para usuarios individuais, incluímos tamén lapsos que remataran este ano).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Recorrente
         species_per_year: Especies / Ano
@@ -5959,6 +5988,9 @@ gl:
           Un taxon "completo contén <em>tódolos</em> taxons descendentes coñecidos nun rango específico que cumpre cás políticas de conservación de iNaturalist, foran observados ou non. Só os administradores do sitio poden declarar taxons completos.
         complete_rank_desc_html: |
           Rango no que un taxon está completo, p.e. se esta familia contén tódolos seus xéneros pero on tódalas súas especies, isto estableceríase para "xénero". O rango predeterminado é o de especie.
+        wikipedia_summary_desc_html: |
+          Breve resumo deste taxon baseado na sua <a target="_blank"
+          href="%{url}">páxina da Wikipedia</a>, que almacenamos indefinidamente ata que se actualice manualmente. A actualización este resumo tamén recarga imediatamente o noso caché do contido da Wikipedia subxacente que mostramos no site, e que é actualizado automaticamente logo dunha semana.
       show:
         about_names_desc: |
           <p>
@@ -6184,6 +6216,8 @@ gl:
           any: Calquera
           joined: Proxectos ós que te uniches
           none: "Ningún, só ti podes engadir as túas observacións a proxectos"
+        prefers_community_taxa_desc: |
+          %{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. Se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda poderá engadir identificacións, pero as túas observacións continuarán asociadas ó taxon da túa identificación. Isto significa que as túas observacións non poderán optar ó Grao de Investigación, non sendo que a túa identificación coincida cá opinión da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Cando pós a xeoprivacidade dunha observación "escurecida" ou "privada", aplicarase a mesma xeoprivacidade a tódalas outras observacións do mesmo día para dificutar que outra xente atope as coordenadas verdadeiras baseándose nas observacións feitas ó redor do mesmo tempo.
         prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
@@ -6227,6 +6261,7 @@ gl:
           href="https://akismet.com/">Akismet</a>, pero Akismet non é perfecto, así que se queres pasar uns minutos marcando novas contas como remitentes de correo lixo ou non, axudarasnos.
           </p>
       show:
+        take_a_moment_to_review_html: 'Toma un momento para revisar <a href="%{link}">as nosas directrices</a>.'
         this_user_was_banned: Este usuario foi suspenso.
         favorites_list_prompt_html: |
           ¿Quéreste gabar dalgún dos teus taxons favoritos?%{link_start_tag}Crea unha lista%{link_end_tag} chamada "Favoritos" e as adicións máis recentes aparecerán neste espazo.
@@ -6658,6 +6693,8 @@ gl:
         started_at: Comezado
         #Date/time the task finished processing
         finished_at: Rematado
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Entradas
       post:
         title: Título
         body: Texto
@@ -6783,6 +6820,11 @@ gl:
           attributes:
             base:
               guide_has_too_many_taxa: "a guía só pode ter 500 taxons"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "A importación para ese usuario Observador de Cogomelos está en curso ou en fila para ser importado."
+              api_key_missing: "Falta a chave API do Observador de Cogomelos"
         observation:
           attributes:
             base:
@@ -6869,6 +6911,9 @@ gl:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: debe non conter comas nin barras
+              should_match_english_translation: |
+                debe estar en inglés, pero actualmente a traducción de %{suggested_locale} coincide cá de "%{suggested}". 
+                Usa "%{suggested}" se é o que quixeches dicir e traducirase cando vexas o sitio nesa língua.
               should_be_in_english: debe estar en inglés
             name:
               already_exists: xa existe para este taxon neste léxico
