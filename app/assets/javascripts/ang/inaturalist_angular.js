@@ -154,12 +154,26 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     scope: {
       time: "=",
       date: "=",
-      timezone: "="
+      timezone: "=",
+      obscured: "=",
+      short: "="
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
         if( !scope.date ) {
           return shared.t( "missing_date" );
+        }
+        if (
+          typeof ( CURRENT_USER ) === "object"
+          && CURRENT_USER.testGroups
+          && CURRENT_USER.testGroups.indexOf( "interpolation" ) >= 0
+          && scope.obscured
+        ) {
+           return moment(scope.date).format(
+             scope.short
+               ? I18n.t( "momentjs.month_year_short" )
+               : I18n.t( "momentjs.month_year" )
+           );
         }
         var date = moment(scope.date),
             now = moment(new Date()),
@@ -174,9 +188,15 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         return dateString;
       }
       scope.timeString = function() {
-        if( !scope.time ) { return; }
+        if ( !scope.time ) return "";
+        if(
+          typeof ( CURRENT_USER ) === "object"
+          && CURRENT_USER.testGroups
+          && CURRENT_USER.testGroups.indexOf( "interpolation" ) >= 0
+          && scope.obscured
+        ) return "";
         scope.timezone = scope.timezone || "UTC";
-        return moment(scope.time.replace( /[+-]\d\d:\d\d/, "" )).tz(scope.timezone).format("LT z");
+        return moment( scope.time.replace( /[+-]\d\d:\d\d/, "" ) ).tz( scope.timezone ).format( "LT z" );
       }
     },
     template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'

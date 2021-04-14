@@ -538,7 +538,7 @@ lv:
   any_quality_grade: Jebkāds
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: Jebkāds
+  any_reviewed: Vienalga
   #Label for an option to show/include content by any user
   any_user: Jebkurš
   anyone: Jebkurš
@@ -617,9 +617,6 @@ lv:
   are_you_sure_you_want_to_remove_curator: Vai tiešām vēlies atņemt lietotājam %{user} pārziņa lomu?
   are_you_sure_you_want_to_remove_from_project: Vai tiešām vēlies izraidīt lietotāju %{user} no projekta?
   are_you_sure_you_want_to_remove_manager: Vai tiešām vēlies atņemt lietotājam %{user} vadītāja lomu?
-  are_you_sure_you_want_to_remove_spammer: |
-    Vai šis lietotājs šķiet uzticams?
-    Visas problēmas ziņojumos ar karodziņiem par surogātpastu lietotāja publicētajā saturā tiks atrisinātas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Vai tiešām vēlies dzēst %{x} taksonus?"
   are_you_sure_you_want_to_remove_this_invitation: Vai tiešām vēlies dzēst šo ielūgumu?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
@@ -1076,8 +1073,6 @@ lv:
   #Header
   curator_application_how_curators_lose_their_powers: |
     Iemesli pārziņa pilnvaru atņemšanai
-  curator_application_how_curators_lose_their_powers_desc: |
-    iNaturalist personāls var izlemt atņemt pilnvaras, ja pārzinis atkārtoti veic šādas darbības:
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1657,13 +1652,11 @@ lv:
   hide: Slēpt
   hide_content: Slēpt saturu
   hide_desc: |
-    Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes pārziņi var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
+    Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes darbinieki var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Noslēpt "Bez piezīmēm"
-  #Label for a button to hide the running total of an accumulation chart
-  hide_running_total: Nerādīt kopējo skaitu
-  hide_uncountable_species: Noslēpt "Nesaskaitāmās sugas"
+  hide_uncountable_species: Noslēpt nesaskaitāmās sugas
   high: Augsts
   highest_rank: Augstākā klasifikācija
   highlights_and_stats_from_year_on_site: "Butiskākie momenti un statistika %{year} gadā %{site} vietnē"
@@ -1778,13 +1771,12 @@ lv:
   iphone: iPhone
   is_not_following_anyone: nevienam neseko.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Vai ir pietiekami daudz datu, lai apstiprinātu, ka šis ir %{taxon}?
-  is_this_offensive_html: 'Vai šis saturs ir <a href="/help#inappropriate">nepieņemams</a>, aizskarošs vai surogātpasts?'
   is_this_place_a_duplicate: Vai šai vietai ir dublikāts?
   it_can_now_be_used_for_research: Tagad to var izmantot pētniecībā un citās tīmekļa vietnēs.
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: slīpraksts
   item_flagged_notice_html: |
-    Šis ir atzīmēts kā surogātpasts un vairs nav publiski redzams. Tev tas ir redzams, jo esi šī satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+    Šis ir atzīmēts kā mēstule un vairs nav publiski redzams. Tev tas ir redzams, jo esi šī satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
     <a href="mailto:%{help_email}" class="contact">sazinies ar mums</a>.
     <a href="%{manage_flags_path}">Pārvaldīt karodziņus</a>.
   join: Pievienoties

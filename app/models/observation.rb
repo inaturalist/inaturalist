@@ -801,13 +801,15 @@ class Observation < ActiveRecord::Base
       key += "_from_place"
       i18n_vars[:place] = place_guess
     end
-    unless self.observed_on.blank?
-      key += "_on_day"
-      i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
-    end
-    unless self.time_observed_at.blank? || options[:no_time]
-      key += "_at_time"
-      i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
+    if !options[:viewer] || !options[:viewer].in_test_group?( "interpolation" ) || coordinates_viewable_by?( options[:viewer] )
+      unless self.observed_on.blank?
+        key += "_on_day"
+        i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
+      end
+      unless self.time_observed_at.blank? || options[:no_time]
+        key += "_at_time"
+        i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
+      end
     end
     unless options[:no_user]
       key += "_by_user"
@@ -1437,7 +1439,7 @@ class Observation < ActiveRecord::Base
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?(viewer)
+  def coordinates_viewable_by?( viewer )
     return true unless coordinates_obscured?
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)

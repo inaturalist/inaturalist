@@ -2509,6 +2509,10 @@ en:
     date_long_without_year: "MMMM D"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Month
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
@@ -5590,6 +5594,8 @@ en:
         about_total_taxa: "About Total Taxa"
         # Label for a visualization that combines multiple series of data in a single chart
         combined: Combined
+        # Date field to use when grouping by date, e.g. date created or date added
+        date_field: Date Field
         # Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontal
         # Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -7417,7 +7423,7 @@ en:
             spammers or not spammers, it would help.
           </p>
       show:
-        take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
+        take_a_moment_to_review_html: 'Take a moment to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended
         favorites_list_prompt_html: |
           Want to show off some of your favorite taxa? %{link_start_tag}Create a

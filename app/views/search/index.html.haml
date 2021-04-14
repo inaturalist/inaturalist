@@ -193,7 +193,7 @@
                 %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
                 %p= highlight strip_tags( record.try_methods( :body, :description ).to_s.truncate( 300 ) ), matched_terms || @q
         = will_paginate @results, renderer: INatLinkRenderer, skip_right: true
-  - if logged_in? && @sources.include?( "taxa" )
+  - if logged_in? && @sources.include?( "taxa" ) && !CONFIG.content_freeze_enabled
     .row
       .col-xs-12
         = separator
