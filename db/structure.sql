@@ -2264,6 +2264,40 @@ ALTER SEQUENCE public.moderator_actions_id_seq OWNED BY public.moderator_actions
 
 
 --
+-- Name: moderator_notes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.moderator_notes (
+    id integer NOT NULL,
+    user_id integer,
+    body text,
+    subject_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.moderator_notes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.moderator_notes_id_seq OWNED BY public.moderator_notes.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5617,6 +5651,13 @@ ALTER TABLE ONLY public.moderator_actions ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: moderator_notes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes ALTER COLUMN id SET DEFAULT nextval('public.moderator_notes_id_seq'::regclass);
+
+
+--
 -- Name: oauth_access_grants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6543,6 +6584,14 @@ ALTER TABLE ONLY public.model_attribute_changes
 
 ALTER TABLE ONLY public.moderator_actions
     ADD CONSTRAINT moderator_actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: moderator_notes moderator_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes
+    ADD CONSTRAINT moderator_notes_pkey PRIMARY KEY (id);
 
 
 --
@@ -7951,6 +8000,20 @@ CREATE INDEX index_moderator_actions_on_resource_type_and_resource_id ON public.
 --
 
 CREATE INDEX index_moderator_actions_on_user_id ON public.moderator_actions USING btree (user_id);
+
+
+--
+-- Name: index_moderator_notes_on_subject_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_subject_user_id ON public.moderator_notes USING btree (subject_user_id);
+
+
+--
+-- Name: index_moderator_notes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING btree (user_id);
 
 
 --
@@ -10395,4 +10458,6 @@ INSERT INTO schema_migrations (version) VALUES ('20210213020914');
 INSERT INTO schema_migrations (version) VALUES ('20210220195556');
 
 INSERT INTO schema_migrations (version) VALUES ('20210305235042');
+
+INSERT INTO schema_migrations (version) VALUES ('20210408221535');
 
