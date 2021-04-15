@@ -10,34 +10,34 @@ describe PlacesController do
           place: {
             name: "Pine Island Ridge Natural Area"
           },
-          geojson: test_place_geojson
+          file: test_place_kml
         })
       }.to change(Place, :count).by(1)
       expect( Place.last.place_type ).to be_blank
     end
 
-    it "creates places with geojson" do
+    it "creates places with kml" do
       sign_in user
       post :create, place: {
-        name: "Test geojson",
+        name: "Test kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml
       p = Place.last
-      expect( p.name ).to eq "Test geojson"
+      expect( p.name ).to eq "Test kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
-    it "fails with invalid geojson" do
+    it "fails with invalid kml" do
       sign_in user
       expect {
         post :create,
           place: {
-            name: "Test geojson",
+            name: "Test kml",
             latitude: 30,
             longitude: 30
           },
-          geojson: test_place_geojson(:invalid)
+          file: test_place_kml(:invalid)
       }.not_to change( Place, :count )
     end
 
@@ -45,10 +45,10 @@ describe PlacesController do
       sign_in user
       place_count = Place.count
       post :create, place: {
-        name: "Test non-admin geojson",
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge)
       expect( response ).not_to be_redirect
       expect( Place.count ).to eq place_count
     end
@@ -57,12 +57,12 @@ describe PlacesController do
       user = make_admin
       sign_in user
       post :create, place: {
-        name: "Test admin geojson",
+        name: "Test admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge)
       p = Place.last
-      expect( p.name ).to eq "Test admin geojson"
+      expect( p.name ).to eq "Test admin kml"
       expect( p.place_geometry ).to_not be_nil
     end
   end
@@ -85,16 +85,16 @@ describe PlacesController do
   end
 
   describe "update" do
-    it "updates places with geojson" do
+    it "updates places with kml" do
       p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
-        name: "Test geojson",
+        name: "Test kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml
       p = Place.last
-      expect( p.name ).to eq "Test geojson"
+      expect( p.name ).to eq "Test kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
@@ -102,10 +102,10 @@ describe PlacesController do
       p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
-        name: "Test non-admin geojson",
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge)
       expect( response ).not_to be_redirect
     end
 
@@ -113,10 +113,10 @@ describe PlacesController do
       p = make_place_with_geom( user: user, wkt: "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))" )
       sign_in user
       put :update, id: p.id, place: {
-        name: "Test non-admin geojson",
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml
       expect( response ).not_to be_redirect
     end
 
@@ -125,12 +125,12 @@ describe PlacesController do
       p = make_place_with_geom(user: user)
       sign_in user
       put :update, id: p.id, place: {
-        name: "Test admin geojson",
+        name: "Test admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge)
       p = Place.last
-      expect( p.name ).to eq "Test admin geojson"
+      expect( p.name ).to eq "Test admin kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
@@ -141,18 +141,6 @@ describe PlacesController do
       put :update, id: p.id, place: { name: "the new name" }
       p.reload
       expect( p.name ).to eq "the new name"
-    end
-
-    it "does not allow removal of the geometry with blank geojson" do
-      p = make_place_with_geom( user: user )
-      put :update, id: p.id,
-        place: {
-          name: "something else"
-        },
-        geojson: ""
-      expect( response ).not_to be_success
-      p.reload
-      expect( p.place_geometry ).not_to be_blank
     end
     it "does not allow removal of the geometry with old remove_geom" do
       p = make_place_with_geom( user: user )
@@ -288,23 +276,38 @@ describe PlacesController, "geometry" do
   end
 end
 
-def test_place_geojson(size = :default)
+def test_place_kml(size = :default)
   coords = if size == :default
-    [[ [0,0], [0,1], [1,1], [1,0], [0,0] ]]
+    [[0,0], [0,1], [1,1], [1,0], [0,0]]
   elsif size == :huge
-    [[ [0,0], [0,60], [60,60], [60,0], [0,0] ]]
+    [[0,0], [0,60], [60,60], [60,0], [0,0]]
   elsif size == :invalid
-    [[ [0,0], [0,1] ]]
+    [[0,0], [0,1]]
   end
-  {
-    type: "FeatureCollection",
-    features: [{
-      type: "Feature",
-      properties: { },
-      geometry: {
-        type: "Polygon",
-        coordinates: coords
-      }
-    }]
-  }.to_json
+  path = File.join(Dir::tmpdir, "test-place-kml-#{size}.kml")
+  if File.exists?( path )
+    Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )
+  end
+  kml = <<-XML
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <Document>
+    <Placemark>
+      <MultiGeometry>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>#{coords.map{|c| c.join( "," )}.join( " " )}</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Document>
+</kml>
+  XML
+  open( path, "w" ) do |f|
+    f << kml
+  end
+  Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )
 end
