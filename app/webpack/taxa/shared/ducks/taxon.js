@@ -262,7 +262,8 @@ export function fetchSpecies( taxon, options = { } ) {
       taxon_id: t.id,
       rank: "species,subspecies,variety",
       verifiable: true,
-      taxon_is_active: true
+      taxon_is_active: true,
+      per_page: 0
     } );
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setSpecies( response ) );

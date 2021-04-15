@@ -57,6 +57,7 @@ function fetchObservations( ) {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale,
+      skip_total_hits: true,
       ttl: -1
     }, paramsForSearch( s.searchParams.params ) );
     if ( s.config.blind ) {

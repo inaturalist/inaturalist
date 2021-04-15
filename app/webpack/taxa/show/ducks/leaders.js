@@ -8,7 +8,7 @@ import { defaultObservationParams } from "../../shared/util";
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 const RESET_STATE = "taxa-show/leaders/RESET_STATE";
 
-const INITIAL_STATE = { topObserver: {}, topIdentifier: {}, firstObserver: {}, topSpecies: {} };
+const INITIAL_STATE = { topObserver: {}, topIdentifier: {}, topSpecies: {} };
 
 export default function reducer(
   state = INITIAL_STATE,
@@ -57,27 +57,6 @@ export function fetchTopIdentifier( ) {
   };
 }
 
-export function fetchFirstObserver( ) {
-  return function ( dispatch, getState ) {
-    return inatjs.observations.search( defaultObservationParams( getState( ) ) ).then( response => {
-      if ( !response.results[0] ) {
-        return;
-      }
-      dispatch( setLeader( "firstObserver", {
-        user: response.results[0].user,
-        observeration: response.results[0]
-      } ) );
-    } );
-  };
-}
-
-export function fetchTopSpecies( ) {
-  return function ( dispatch, getState ) {
-    return inatjs.observations.speciesCounts( defaultObservationParams( getState( ) ) )
-      .then( response => dispatch( setLeader( "topSpecies", response.results[0] ) ) );
-  };
-}
-
 export function fetchLeaders( selectedTaxon ) {
   return ( dispatch, getState ) => {
     const taxon = selectedTaxon || getState( ).taxon.taxon;
@@ -87,11 +66,6 @@ export function fetchLeaders( selectedTaxon ) {
       dispatch( fetchRecentObservations( taxon ) ),
       dispatch( fetchLastObservation( taxon ) )
     ];
-    if ( taxon.rank_level <= 10 ) {
-      promises.push( dispatch( fetchFirstObserver( taxon ) ) );
-    } else {
-      promises.push( dispatch( fetchTopSpecies( taxon ) ) );
-    }
     return Promise.all( promises );
   };
 }
