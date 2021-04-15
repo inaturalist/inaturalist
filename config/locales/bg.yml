@@ -3330,6 +3330,7 @@ bg:
   trust_this_project_with_your_private_coordinates?: Довери скритите си координати на този проект?
   twitter: Туитър
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Вид
   type_one_name_per_line: Въведи по едно име на ред
   type_place_name: Въведи място
@@ -3759,6 +3760,9 @@ bg:
         agreement: Съгласие
         algorithm_summary: Резюме на алгоритъма
         disagreement: Несъгласие
+      compare:
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Поле за дата
       export:
         export_in_progress_notice_html: |
           В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
@@ -4294,6 +4298,7 @@ bg:
       recent:
         about_recent_users: Относно
       show:
+        take_a_moment_to_review_html: 'Отделете момент, да прегледате <a href="%{link}">нашите напътствия</a>.'
         this_user_was_banned: Този потребител е запориран
         favorites_list_prompt_html: |
           Искате да покажете някои от любимите си таксони? %{link_start_tag}Създайте списък%{link_end_tag} озаглавен „Любими“ и най-новите попълнения в него ще се появят в този раздел.
