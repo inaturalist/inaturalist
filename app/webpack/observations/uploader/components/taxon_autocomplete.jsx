@@ -185,7 +185,7 @@ class TaxonAutocomplete extends React.Component {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
             const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: item.rank,
+              rank: I18n.t( `ranks_lowercase_${_.snakeCase( item.rank )}`, { defaultValue: item.rank } ),
               gender: item.rank
             } );
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
