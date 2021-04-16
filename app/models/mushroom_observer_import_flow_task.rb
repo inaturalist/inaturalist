@@ -4,6 +4,8 @@ class MushroomObserverImportFlowTask < FlowTask
   validate :api_key_present
   before_validation :set_unique_hash
 
+  attr_accessor :warnings
+
   class MushroomObserverImportFlowTaskError < StandardError; end
   class TooManyRequestsError < MushroomObserverImportFlowTaskError; end
   class TimeoutError < MushroomObserverImportFlowTaskError; end
