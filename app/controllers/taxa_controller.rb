@@ -1563,9 +1563,12 @@ class TaxaController < ApplicationController
   def load_taxon
     unless @taxon = Taxon.where(id: params[:id]).includes(:taxon_names).first
       render_404
-      return
+      return false
     end
     @taxon.current_user = current_user
+  rescue RangeError
+    render_404
+    return false
   end
   
   def do_external_lookups
