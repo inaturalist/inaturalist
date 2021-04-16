@@ -140,6 +140,21 @@ zh-TW:
     <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
   about_trusting_projects: 關於信任專案
   about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
+  about_trusting_projects_options_any_desc: |-
+    這包含了您設定地理資訊隱私權為「遮蔽」或「私有」的觀察記錄，例：從您的後院或您不想讓其他人知道的景點中所建立之觀察記錄。
+  about_trusting_projects_options_taxon: |-
+    僅限您在此專案中之觀察記錄因瀕危分類群而被遮蔽的座標
+  about_trusting_projects_options_taxon_desc: |-
+    許多專案只需要存取被遮蔽的座標，因為該觀察記錄描述了一個瀕危的分類群。
+  about_trusting_projects_overview: |-
+    授權您的隱藏座標將會允許這個專案的管理者看到您在此專案中真實而無遮蔽的地點。這對於科學家或是資源管理者來說，為了分析和做決策，存取真正的座標是非常重要的。
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    有權限存取您的隱藏座標的專案管理者為：
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    您可以選擇分享隱藏的座標給：
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -168,6 +183,7 @@ zh-TW:
   #Tool tip for a button that adds a link to a text area
   add_a_link: 加入連結
   add_a_name: 加入名稱
+  add_a_note: 新增備註
   add_a_new_change_group: 增加一新變更群組
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 加入編號列表
@@ -193,6 +209,7 @@ zh-TW:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 添加可用物件
   add_batch: 批次新增
+  add_blocked_users: 新增封鎖使用者
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: 加入粗體字
   add_comma_separated_tags: "新增以逗號分隔式標籤"
@@ -209,6 +226,7 @@ zh-TW:
   add_id: 新增物種鑑定
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: 加入斜體字
+  add_muted_users: 新增禁言的使用者
   add_new_lexicon: 新增新的詞彙
   add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片（必須是創用 CC（Creative Commons）授權!）
   add_new_place: 新增一處新地點
@@ -435,6 +453,13 @@ zh-TW:
   #Label for an option to show/include content by any user
   any_user: 任一
   anyone: 任何人
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: 應用程式
+  applications: 應用程式
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: 申請
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
   apply_fields: 套用欄位
@@ -547,6 +572,9 @@ zh-TW:
   automatic_short: 自動
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
   automatically_update_my_content_for_taxon_changes: 自動更新我的內容以用於物種分類更改
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: 平均
   back: 返回
   back_to_all_species: 返回至所有物種
   back_to_browsing_people: 返回至瀏覽人員
@@ -578,6 +606,7 @@ zh-TW:
   back_to_your_observations: 返回至您的觀察
   back_to_your_profile: 返回至您的個人檔案
   back_to_your_projects: 返回至您的專案
+  badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
     基於現有證據，仍需要確認或改善社群分類群嗎?
   batch: 批量
@@ -588,6 +617,8 @@ zh-TW:
   because_of: 因為
   before_importing_photos: 在匯入照片前
   bg_color: 背景顏色
+  bio: 個人簡介
+  bio_description: 跟其他 iNaturalist 的使用者來描述您自己
   bioblitz: 生物速查
   birds: 鳥類
   birthday: 生日
@@ -637,6 +668,7 @@ zh-TW:
   card: 卡片
   casual: 粗略
   casual_: 粗略
+  casual_tooltip_html: '「一般」的觀察記錄是缺乏媒體(照片或錄音)、地點、日期，或是不符合「研究等級」或「需要鑑定」所須的其他條件。<a href="https://www.inaturalist.org/pages/help#quality">了解更多有關等級的說明</a>'
   categories: 分類
   cc_0_description: "此許可協議出您的作品至公用領域，因此其他人可以複製、更改、發佈和行使您的作品，即使在用於商業的目的下，而所有的行為皆不必請求許可或註明於您。這是最通融的許可提供，推薦用於大規模傳播和授權資料方面的使用。"
   cc_0_name: 無著作權 (CC0)
@@ -719,6 +751,7 @@ zh-TW:
   check_out_my_observations_at: 若您有意願，您可以查看我的觀察在：
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
+  check_out_your_new_and_improved_list_list: 確定您新改正過的生涯物種清單！
   check_this_box_if_html: |
     如果您想套用<a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -780,6 +813,7 @@ zh-TW:
   community_id_heading: 社群分類群
   community_id_at_species_or_lower?: 在物種或更低階層的社群分類群？
   community_id_at_species_level_or_lower: 屬於物種層級或是較低階層級的社群分類群
+  community_id_is_precise: 社群鑑定出來的分類群是準確的
   community_moderation_settings: 社群管制設定
   community_supported_id: 社群支持的分類群？
   compare: 比較
@@ -808,6 +842,11 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
+  confirming_ids: 確認物種鑑定
+  confirming_ids_description: 如果您關閉此選項，您將不會收到同意您鑑定的分類群通知。
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: 連接
   connect_to_provider: "連接至%{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已連接帳號
