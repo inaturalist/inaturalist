@@ -2140,6 +2140,8 @@ es-MX:
       'y': "1a"
       #Short text representing %d years in the past
       yy: "%da"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM AAAA"
   month: Mes
   months: Meses
   more: Más
@@ -5512,6 +5514,7 @@ es-MX:
 
           Traducción realizada con el traductor www.DeepL.com/Translator
       show:
+        take_a_moment_to_review_html: 'Toma un momento para revisar <a href="%{link}">nuestros lineamientos</a>.'
         this_user_was_banned: Este usuario fue suspendido
     welcome:
       index:
