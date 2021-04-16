@@ -1038,7 +1038,7 @@ class UsersController < ApplicationController
       end
       @records += scope.to_a
     end
-    if @types.include?( "ModeratorAction" )
+    if @types.blank? || @types.include?( "ModeratorAction" )
       moderator_actions_on_identifications = ModeratorAction.
         where( "moderator_actions.created_at < ?", before ).
         where( resource_type: "Identification" ).

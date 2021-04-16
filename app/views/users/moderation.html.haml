@@ -42,14 +42,24 @@
           =t "activerecord.models.#{record.class.name}", default: record.class.name
           - if record.is_a?( Flag )
             = surround "(", ")" do
-              = link_to record.flaggable_type, record.flaggable
+              - if record.flaggable
+                = link_to record.flaggable_type, record.flaggable
+              - else
+                = record.flaggable_type
+                &mdash;
+                =t :removed
             - if record.resolved?
               %span.text-muted
                 = surround "[", "]" do
                   =t :resolved
           - elsif record.is_a?( ModeratorAction )
             = surround "(", ")" do
-              = link_to record.resource_type, record.resource
+              - if record.resource
+                = link_to record.resource_type, record.resource
+              - else
+                = record.resource_type
+                &mdash;
+                =t :removed
             = surround "[", "]" do
               = record.action
         %td= link_to_user( record.user )
