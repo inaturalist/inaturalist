@@ -1240,8 +1240,12 @@ class ObservationsController < ApplicationController
     Observation.preload_for_component(@observations, logged_in: !!current_user)
     if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
       filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
-      diff = @observations.total_entries - filtered_obs.size
-      @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
+      diff = @observations.size - filtered_obs.size
+      @observations = WillPaginate::Collection.create(
+        @observations.current_page,
+        @observations.per_page,
+        @observations.total_entries - diff
+      ) do |pager|
         pager.replace( filtered_obs )
       end
     end
