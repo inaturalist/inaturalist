@@ -1606,7 +1606,7 @@ uk:
   establishment:
     endemic: Ендемік
     establishment: Шляхи виникнення
-    introduced: Інтродуцент
+    introduced: Інтродукований
     invasive: Інвазійний
     managed: Культивований
     native: Аборигенний
@@ -2039,7 +2039,7 @@ uk:
   internal_server_error: Внутрішня помилка серверу
   internal_taxon_including_descendants: Внутрішній таксон (у т.ч. дочірні)
   internal_taxon_rank: Внутрішній ранг таксону
-  introduced: Інтродуцент
+  introduced: Інтродукований
   introduced_in_place: "Інтродукований у такому місці: %{place}"
   invitation: Запрошення
   invite: запросити
@@ -2505,7 +2505,7 @@ uk:
   most_recent_observation_by_date_observed: Останні перевірювані спостереження за датою спостереження
   most_species: Найбільше видів
   most_observed_species: Види, що їх найчастіше спостерігали
-  most_observed_introduced_species: Чужорідні види, що їх найчастіше спостерігали
+  most_observed_introduced_species: Інтродуковані види, що їх найчастіше спостерігали
   most_observed_threatened_species: Види під загрозою, що їх найчастіше спостерігали
   move_input_children_to_output?: Перемістити дочірні таксони у експорт?
   multiple: декілька
@@ -5170,6 +5170,7 @@ uk:
           редакторів цього посібника, буде скопійовано все, але якщо ні, то скопійовано буде лише ліцензований контент.
     lifelists:
       observed_rank: '%{rank} спостережуваного'
+      no_observations_found_in_place: У місці %{place} немає нових спостережень
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Назва Списку Живого не може бути змінена
