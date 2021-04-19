@@ -162,7 +162,7 @@ export function fetchAnnotationsPanelPreferences( ) {
   return ( dispatch, getState ) => {
     const { config } = getState( );
     const currentUser = config && config.currentUser;
-    const open = currentUser ? currentUser.prefers_hide_obs_show_annotations : false;
+    const open = currentUser ? !currentUser.prefers_hide_obs_show_annotations : false;
     dispatch( showAnnotationsPanel( open ) );
   };
 }
