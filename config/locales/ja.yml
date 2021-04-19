@@ -3608,6 +3608,8 @@ ja:
   top_observer: トップ観察者
   top_observers: トップ観察者
   top_species: トップ種
+  tos_privacy_guidelines_label: |
+    <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
   total: 合計
   totals: 合計
   total_members: メンバー人数
@@ -3856,6 +3858,7 @@ ja:
   'yes': "はい"
   yes_find_them!: "はい、見つけてください！"
   yes_i_want_to_join: はい、参加したい
+  yes_license_my_observations_so_scientists_can_use: 観察データを科学研究用に提供することに同意します。（推奨）
   yesterday: 昨日
   you: あなた
   you_appear_offline_try_again: |
@@ -4278,6 +4281,7 @@ ja:
     welcome:
       index:
         connect_with_nature: 自然とふれ合おう
+        explore_and_share: 自然界からの観察記録を探索し、共有しましょう
         observations_to_date: '件の観察記録（これまで）'
         species_observed: '観察された種'
         people_signed_up: '人が参加しています'
@@ -4286,8 +4290,12 @@ ja:
         share_with_fellow_naturalists: ナチュラリスト仲間と情報共有しよう
         discuss_your_findings: 見つけたものについて話し合いましょう
         contribute_to_science: 科学への貢献をする
+        science_desc_html: |
+          希少な蝶からごくありふれた裏庭の雑草まで、あらゆる観察記録が生物多様性科学に貢献します。私たちは、科学者があなたのデータを見つけて利用できるように、<a href='http://gbif.org/ja' target='_blank'>地球規模生物多様性情報機構</a>のような科学データリポジトリとあなたの発見を共有します。ただ観察さえすればよいのです。
         nature_at_your_fingertips: 自然の世界があなたの指先で
         keep_track: 記録を残そう
+        record_your_encounters: |
+          出会った生物を記録し、ライフリストを作ろう。すべてをクラウドで。
         create_useful_data: 研究に役立つデータを作ろう
         help_scientists: いつどこで生き物が発生しているかという情報を科学者と資源管理者に提供し、協力しよう
         crowdsource_identifications: 世界中のユーザーと同定しよう
@@ -4299,6 +4307,8 @@ ja:
         run_a_bioblitz: バイオブリッツ（自然観察会）を開催
         hold_an_event: 参加者ができるだけ多くの種を観察するイベントを開催する。
         works_on_all_your_devices: すべてのデバイスに対応しています
+        install_our_mobile_apps: |
+          モバイルアプリをインストールすれば、携帯電話の電波が届かない場所でも、いつでも観察することができます。
         who_uses_site_name: "誰が%{site_name}を使うのか？"
         what_are_you_waiting_for: 今すぐ始めませんか？
         join_today: 今すぐ新規ユーザー登録を

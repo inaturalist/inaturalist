@@ -376,3 +376,29 @@ describe UsersController, "show" do
     expect( response ).to be_success
   end
 end
+
+describe UsersController, "moderation" do
+  let(:subject_user) { User.make! }
+  it "should be viewable by curators" do
+    sign_in make_curator
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).to eq 200
+  end
+  it "should not be viewable by non-curators" do
+    sign_in User.make!
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should not be viewable by a curator if it's about the curator" do
+    curator = make_curator
+    sign_in curator
+    get :moderation, id: curator.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should be viewable by an admin if it's about the admin" do
+    admin = make_admin
+    sign_in admin
+    get :moderation, id: admin.login
+    expect( response.response_code ).to eq 200
+  end
+end

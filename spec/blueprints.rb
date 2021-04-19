@@ -203,6 +203,12 @@ ModeratorAction.blueprint do
   reason { Faker::Lorem.sentence }
 end
 
+ModeratorNote.blueprint do
+  user { make_curator }
+  body { Faker::Lorem.paragraph }
+  subject_user { User.make! }
+end
+
 MushroomObserverImportFlowTask.blueprint do
   user { User.make! }
 end

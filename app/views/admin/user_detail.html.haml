@@ -269,6 +269,7 @@
                   = " (#{ I18n.t(:draft) })"
       = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
       = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
+      = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
       = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
         :data => {:confirm => t(:are_you_sure_no_undo)},
         class: "btn btn-block btn-danger"
