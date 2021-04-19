@@ -94,8 +94,8 @@ module TaxonDescribers
     end
 
     def wikidata_wikipedia_url_for_taxon( taxon )
-      Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}", expires_in: 1.day ) do
-        lang = @locale.to_s.split( "-" ).first
+      lang = @locale.to_s.split( "-" ).first
+      Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}-#{lang}", expires_in: 1.day ) do
         if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
           if r.header[:location].blank?
             nil
