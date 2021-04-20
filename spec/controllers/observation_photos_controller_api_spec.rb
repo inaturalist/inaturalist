@@ -40,8 +40,6 @@ shared_examples_for "an ObservationPhotosController" do
 
     describe "observation" do
       elastic_models( Identification )
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
 
       it "should change quality_grade from casual to needs_id" do
         o = Observation.make!( user: user, observed_on_string: "2018-05-02", latitude: 1, longitude: 1 )

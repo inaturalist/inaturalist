@@ -43,7 +43,15 @@ class Observation < ActiveRecord::Base
     on: :save,
     notification: "mention",
     delay: true,
-    if: lambda {|u| u.prefers_receive_mentions? }
+    if: lambda {|u| u.prefers_receive_mentions? },
+    unless: lambda { |observation|
+      # descriotion hasn't changed, so mentions haven't changed
+      return true unless observation.previous_changes[:description]
+      # description has changed, but neither version mentioned users
+      observation.previous_changes[:description].map do |d|
+        d ? d.mentioned_users.any? : false
+      end.none?
+    }
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
@@ -408,15 +416,17 @@ class Observation < ActiveRecord::Base
              :set_taxon_photo,
              :create_observation_review,
              :reassess_annotations
-  after_create :set_uri, :update_user_counter_caches_after_create
+  after_create :set_uri
+  after_commit :update_user_counter_caches_after_create, on: :create
+  after_commit :update_user_counter_caches_after_destroy, on: :destroy
+  after_commit :update_user_counter_caches_after_update, on: :update
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
-    :update_user_counter_caches_after_destroy, :delete_observations_places
+    :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
 
-  after_update :update_user_counter_caches_after_update
 
   ##
   # Named scopes
@@ -2190,7 +2200,7 @@ class Observation < ActiveRecord::Base
     return if bulk_delete
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
-      run_at: 1.minute.from_now
+      run_at: 15.minutes.from_now
     ).update_observations_counter_cache( user_id )
     # this is only called on create and delete. Run a species count if this is
     # the first obs of this taxon on create or last obs of this taxon on delete
@@ -2204,7 +2214,7 @@ class Observation < ActiveRecord::Base
   def update_user_species_counter_cache_later
     User.delay(
       unique_hash: { "User::update_species_counter_cache": user_id },
-      run_at: 1.minute.from_now
+      run_at: 15.minutes.from_now
     ).update_species_counter_cache( user_id )
   end
 
