@@ -2330,6 +2330,8 @@ de:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM T"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -3360,6 +3362,7 @@ de:
   please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
   please_add_this_to_x_html: "Bitte dies zu %{x} hinzufügen"
   please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Title to a section warning a user to exercise caution
+  please_be_careful!: Bitte sei vorsichtig!
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
   please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
@@ -3422,6 +3425,9 @@ de:
     Du solltest die versteckten Koordinaten von Beobachtungen der Benutzer sehen können, die dir vertrauen.
   project_coordinate_access_disabled_until_datetime: |
     Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
+  project_coordinate_access_warning: |
+    Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch von
+    Wilderern missbraucht werden. Stelle sicher, dass du allen Projektkuratoren vertraust, bevor du diesem Projekt vertraust.
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -3620,6 +3626,8 @@ de:
   ranks_lowercase_variety: Varietät
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: Form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Bereiche
   ray_finned_fishes: Strahlenflosser
   re_apply_list_rules: Listenregeln erneut anwenden
@@ -3917,6 +3925,11 @@ de:
   some_agree: einige stimmen zu
   some_observations_are_missing_media_or_identifications: |
     Bei einigen Beobachtungen fehlt die Bestimmung oder Fotos/Audios.
+  some_observations_are_missing_media_or_identifications_desc: |
+    Beobachtungen ohne Medien werden standardmäßig nicht in der Suche sichtbar sein, und
+    solche, die keine Bestimmung haben, können von Experten nicht gesehen werden, die nach
+    spezifischen Taxa suchen. Selbst eine sehr grobe Identifikation wie "Pflanzen" kann einem
+    Pflanzenexperten helfen, deine Beobachtung zu finden.
   some_observations_failed_to_be_added: Das Hinzufügen einiger Beobachtungen zum Projekt ist fehlgeschlagen
   some_observations_failed_to_save: Einige Beobachtungen konnten nicht gespeichert werden.
   some_of_those_photos_couldnt_be_saved: "Einige dieser Bilder konnten nicht gespeichert werden: %{error}"
@@ -5051,6 +5064,8 @@ de:
         replace_existing_eol_desc: Bestehenden Inhalt vor dem Import von EOL löschen
         place_choose_taxon_note: |
           Wähle ein Taxon zum Filtern, wenn du deine Suche einschränken möchtest, z.B. "Pflanzen"
+      eolupdate_notice: |
+        Bitte habe einen Moment Geduld, das Importieren von Inhalten von EOL kann eine oder zwei Minuten dauern.
       show:
         draft_desc: |
           Dieser Guide ist nur für Personen sichtbar, die ihn bearbeiten können, bis du ihn veröffentlichst.
