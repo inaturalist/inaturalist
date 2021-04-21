@@ -343,9 +343,11 @@ class ObservationModal extends React.Component {
         }
         if ( flagNotice ) {
           if (
-            currentUser.id === observation.user.id
-            || currentUser.roles.indexOf( "curator" ) >= 0
-            || currentUser.roles.indexOf( "admin" ) >= 0
+            observation.user && (
+              currentUser.id === observation.user.id
+              || currentUser.roles.indexOf( "curator" ) >= 0
+              || currentUser.roles.indexOf( "admin" ) >= 0
+            )
           ) {
             return (
               <div key={soundKey}>
@@ -734,7 +736,7 @@ class ObservationModal extends React.Component {
                                   <i className="icon-link-external bullet-icon" />
                                   { I18n.t( "view" ) }
                                 </a>
-                                { observation.user.id === currentUser.id ? null : (
+                                { observation.user && observation.user.id === currentUser.id ? null : (
                                   <div style={{ display: "inline-block" }}>
                                     <span className="separator">&bull;</span>
                                     <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
