@@ -2,19 +2,31 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel
+  Dropdown, MenuItem, OverlayTrigger, Popover, Panel
 } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
 import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
-  constructor( props ) {
-    super( props );
-    const currentUser = props.config && props.config.currentUser;
-    this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
-    };
+  componentDidMount( ) {
+    this.fetchAnnotations( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.open !== this.props.open ) {
+      this.fetchAnnotations( );
+    }
+  }
+
+  fetchAnnotations( ) {
+    const { fetchControlledTerms, updateSession, open: isOpen } = this.props;
+    if ( this.loggedIn ) {
+      updateSession( { prefers_hide_obs_show_annotations: isOpen } );
+    }
+    if ( isOpen ) {
+      fetchControlledTerms( );
+    }
   }
 
   annotationRow( a, term ) {
@@ -196,33 +208,18 @@ class Annotations extends React.Component {
       observation,
       config,
       controlledTerms,
-      showEmptyState,
       addAnnotation,
       collapsible,
-      updateSession
+      loading,
+      open: isOpen,
+      showAnnotationsPanel
     } = this.props;
     const observationAnnotations = observation.annotations || [];
-    const {
-      open: isOpen
-    } = this.state;
     const availableControlledTerms = termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
     );
-    if (
-      !observation
-      || !observation.user
-      || _.isEmpty( availableControlledTerms )
-    ) {
-      if (
-        showEmptyState && ( !availableControlledTerms || availableControlledTerms.length === 0 )
-      ) {
-        return (
-          <div className="noresults">
-            { I18n.t( "no_relevant_annotations" ) }
-          </div>
-        );
-      }
+    if ( !observation || !observation.user ) {
       return ( <span /> );
     }
     this.loggedIn = config && config.currentUser;
@@ -350,6 +347,12 @@ class Annotations extends React.Component {
       }
     } );
 
+    const emptyState = (
+      <div className="noresults">
+        { loading ? I18n.t( "loading" ) : I18n.t( "no_relevant_annotations" ) }
+      </div>
+    );
+
     const table = (
       <table className="table">
         <thead>
@@ -379,12 +382,7 @@ class Annotations extends React.Component {
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={( ) => {
-            if ( this.loggedIn ) {
-              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
-            }
-            this.setState( { open: !isOpen } );
-          }}
+          onClick={( ) => showAnnotationsPanel( !isOpen )}
         >
           <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
           { I18n.t( "annotations" ) }
@@ -392,7 +390,11 @@ class Annotations extends React.Component {
           { count }
         </h4>
         <Panel expanded={isOpen} onToggle={() => {}}>
-          <Panel.Collapse>{ table }</Panel.Collapse>
+          <Panel.Collapse>
+            {!availableControlledTerms || availableControlledTerms.length === 0
+              ? emptyState
+              : table}
+          </Panel.Collapse>
         </Panel>
       </div>
     );
@@ -409,7 +411,10 @@ Annotations.propTypes = {
   unvoteAnnotation: PropTypes.func,
   updateSession: PropTypes.func,
   collapsible: PropTypes.bool,
-  showEmptyState: PropTypes.bool
+  fetchControlledTerms: PropTypes.func,
+  loading: PropTypes.bool,
+  open: PropTypes.bool,
+  showAnnotationsPanel: PropTypes.func
 };
 
 Annotations.defaultProps = {
