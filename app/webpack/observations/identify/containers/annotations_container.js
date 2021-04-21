@@ -6,6 +6,7 @@ import {
   voteAnnotation,
   unvoteAnnotation
 } from "../actions/current_observation_actions";
+import { updateSession } from "../../show/ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -25,7 +26,8 @@ function mapDispatchToProps( dispatch ) {
     voteAnnotation: ( id, vote ) => {
       dispatch( voteAnnotation( id, vote ) );
     },
-    unvoteAnnotation: id => dispatch( unvoteAnnotation( id ) )
+    unvoteAnnotation: id => dispatch( unvoteAnnotation( id ) ),
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 
