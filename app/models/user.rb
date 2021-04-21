@@ -504,6 +504,7 @@ class User < ActiveRecord::Base
   alias :admin? :is_admin?
 
   def is_site_admin_of?( site )
+    return true if is_admin?
     return false unless site && site.is_a?( Site )
     !!site_admins.detect{ |sa| sa.site_id == site.id }
   end

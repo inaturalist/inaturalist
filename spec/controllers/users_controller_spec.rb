@@ -285,7 +285,9 @@ describe UsersController, "add_role" do
   end
   it "should work for a site_admin" do
     Site.make! if Site.default.blank?
-    sa = SiteAdmin.make!( site: Site.default )
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    normal_user.update_attributes!( site: site )
     sign_in sa.user
     put :add_role, id: normal_user.id, role: Role::CURATOR
     normal_user.reload
@@ -312,7 +314,9 @@ describe UsersController, "remove_role" do
   end
   it "should work for a site_admin" do
     Site.make! if Site.default.blank?
-    sa = SiteAdmin.make!( site: Site.default )
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    target_curator_user.update_attributes!( site: site )
     sign_in sa.user
     put :remove_role, id: target_curator_user.id, role: Role::CURATOR
     target_curator_user.reload

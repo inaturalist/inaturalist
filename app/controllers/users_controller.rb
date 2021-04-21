@@ -25,10 +25,10 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :site_admin_required, only: [:add_role, :remove_role]
-  before_filter :curator_required, only: [
+  before_filter :site_admin_of_user_required, only: [:add_role, :remove_role]
+  before_filter :curator_required, only: [:recent]
+  before_filter :curator_or_site_admin_required, only: [
     :moderation,
-    :recent,
     :set_spammer,
     :suspend,
     :unsuspend
@@ -1334,6 +1334,30 @@ protected
     @sites = Site.live.limit(100)
     if @user = current_user
       @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    end
+  end
+
+  def curator_or_site_admin_required
+    unless logged_in? && @user && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
+      flash[:notice] = t(:only_curators_can_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
+  end
+
+  def site_admin_of_user_required
+    unless logged_in? && @user && current_user.is_site_admin_of?( @user.site )
+      flash[:notice] = t(:only_administrators_may_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
     end
   end
 
