@@ -49,7 +49,13 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     # Facebook requires app approval for the user_photos scope, and we're still
     # pending as of 20201110
     # opts = { scope: "email,user_photos", image_size: "large" }
-    opts = { scope: "email" }
+    opts = {
+      scope: "email",
+      client_options: {
+        site: 'https://graph.facebook.com/v10.0',
+        authorize_url: "https://www.facebook.com/v10.0/dialog/oauth"
+      }
+    }
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 

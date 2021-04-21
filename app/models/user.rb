@@ -504,6 +504,7 @@ class User < ActiveRecord::Base
   alias :admin? :is_admin?
 
   def is_site_admin_of?( site )
+    return true if is_admin?
     return false unless site && site.is_a?( Site )
     !!site_admins.detect{ |sa| sa.site_id == site.id }
   end
@@ -558,7 +559,8 @@ class User < ActiveRecord::Base
 
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.where(user_id: id).update_all(license: preferred_observation_license)
+    Observation.where( user_id: id ).
+      update_all( license: preferred_observation_license, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -567,7 +569,8 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
+      update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -576,7 +579,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
-    Sound.where(user_id: id).update_all(license: number)
+    Sound.where( user_id: id ).update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -590,7 +593,7 @@ class User < ActiveRecord::Base
   end
 
   def update_observation_sites
-    observations.update_all(site_id: site_id)
+    observations.update_all( site_id: site_id, updated_at: Time.now )
     index_observations
   end
 

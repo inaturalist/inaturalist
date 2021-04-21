@@ -7,7 +7,8 @@
       %p
         = link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified"
     = render :partial => 'glance'
-    - if logged_in? && (current_user.is_admin? || current_user.is_curator?)
+    - is_curator_or_site_admin = current_user.is_curator? || current_user.is_site_admin_of?( @user.site )
+    - if logged_in? && ( current_user.is_admin? || is_curator_or_site_admin )
       .row
         .col-md-12
           .dropdown
@@ -16,14 +17,14 @@
               = t :admin_tools, default: 'Admin Tools'
               %span.caret
             %ul.dropdown-menu{:style => "width:100%"}
-              - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+              - if is_curator_or_site_admin && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
                 - if @user.active?
                   %li
                     = link_to t(:suspend_user), suspend_user_path(@user)
                 - else
                   %li
                     = link_to t(:unsuspend_user), unsuspend_user_path(@user)
-              - if is_site_admin? && !@user.is_admin?
+              - if current_user.is_site_admin_of?( @user.site ) && !@user.is_admin?
                 - if @user.is_curator?
                   %li
                     = link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete
@@ -33,7 +34,7 @@
               - if is_admin?
                 %li
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
-              - if current_user.is_curator?
+              - if is_curator_or_site_admin
                 %li.divider{:role => "separator"}
                 - unless is_me?(@user) || @user.is_admin?
                   - unless @user.spammer?

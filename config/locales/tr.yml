@@ -240,6 +240,7 @@ tr:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Bir bağlantı ekle
   add_a_name: Bir Ad Ekle
+  add_a_note: Not Ekle
   add_a_new_change_group: Yeni Bir Değişim Grubu Ekle
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Numaralı bir liste ekle
@@ -2283,6 +2284,9 @@ tr:
   #Label shown when a date has not been entered
   missing_date: Eksik Tarih
   mobile: Mobil
+  moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderatör / İşaretleyici
   mollusks: yumuşakçalar
   momentjs:
     shortRelativeTime:
@@ -2324,6 +2328,10 @@ tr:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Ay
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
@@ -3539,6 +3547,54 @@ tr:
     form: Form
     infrahybrid: İnfra yüzergezer
     leaves: Yapraklar
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: alem
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: alt alem
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: şube
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: alt şube
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: üst sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: alt sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infra sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: üst takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: alt takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infra takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: üst aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: alt aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: üst oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: alt oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: alt cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: tür
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: melez
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: alt tür
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varyasyon
   ranges: Aralıklar
   ray_finned_fishes: ışınsal yüzgeçli balıklar
   re_apply_list_rules: Liste kurallarını yeniden uygula
@@ -4318,6 +4374,7 @@ tr:
   try_adding_species_form: Bu sayfadaki formu kullanarak bazı türler eklemeyi deneyin.
   twitter: Twitter
   two_thirds: 2/3'ü
+  #As in a category, not as in a keyboard
   type: Tür
   type_authority: Yetki gir...
   type_one_name_per_line: Satır başına bir ad yaz
@@ -5146,6 +5203,8 @@ tr:
         about_total_taxa: "Mevcut Sınıflar Hakkında"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Birleşik
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Tarih Alanı
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Yatay
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6992,6 +7051,14 @@ tr:
       CompleteSet: Eksiksiz Küme
       #Noun
       Flag: İşaret
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Moderatör Etkinliği
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Moderatör Notu
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:
@@ -7163,6 +7230,10 @@ tr:
           attributes:
             base:
               guide_has_too_many_taxa: "rehber yalnızca 500 sınıfa sahip olabilir"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: küratör olmalı
         mushroom_observer_import_flow_task:
           attributes:
             base:

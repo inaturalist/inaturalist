@@ -60,6 +60,7 @@
               %th Description &amp; MO URL
           %tbody
             - @results.each do |result, observation|
+              - mo_url = @mo_import_task.mo_url_from_result( result )
               %tr
                 %td
                   - if ( images = @mo_import_task.images_from_result( result ) ) && images.size > 0
@@ -87,21 +88,21 @@
                     = formatted_user_text observation.description
                     %p
                       MO URL:
-                      = link_to result[:url], result[:url]
+                      = link_to mo_url, mo_url
                 - else
                   %td{ colspan: 8 }
                     .alert.alert-danger
-                      - if @mo_import_task.warnings && !@mo_import_task.warnings[result[:url]].blank?
+                      - if @mo_import_task.warnings && !@mo_import_task.warnings[mo_url].blank?
                         %p Problems:
                         %ul
-                          - @mo_import_task.warnings[result[:url]].each do |w|
+                          - @mo_import_task.warnings[mo_url].each do |w|
                             %li= w
                       - else
                         %p Failed to parse data from Mushroom Observer:
                         %pre= result.to_xml
                       %p
                         MO URL:
-                        = link_to result[:url], result[:url]
+                        = link_to mo_url, mo_url
   .row
     .col-xs-12
       %h2 How This Works

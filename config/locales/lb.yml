@@ -1591,6 +1591,72 @@ lb:
     subspecies: Ënneraart
     form: Vun
     leaves: Blieder
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: Zoustand vun der Matière
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: Räich
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: Ënnerräich
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: Stamm
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: Ënnerstamm
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: Iwerklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: Klass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: Ënnerklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: Infraklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: Iweruerdnung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: Uerdnung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: Ënneruednung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: Infrauerdnung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: Zoosektioun
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: Superfamill
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: Epifamill
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: Famill
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: Ënnerfamill
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: Supertribue
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: Tribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: Ënnertribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: Gattung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: Gattungshybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: Ënnergattung
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: Sektioun
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: Ënnersektioun
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: Komplex
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: Aart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: Hybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: Ënneraart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: Varietéit
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: Form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Beräicher
   read_more: Liest méi
   real_time_discussions: Live-Diskussiounen
@@ -1809,6 +1875,7 @@ lb:
   trust_with_private_coordinates: Verstoppten Koordinaten uvertrauen
   twitter: Twitter
   two_thirds: 2/3tel
+  #As in a category, not as in a keyboard
   type: Typ
   unblock: Spär ophiewen
   unknown: Onbekannt
@@ -2414,6 +2481,10 @@ lb:
         requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
         requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       models:
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: muss een Kurator sinn
         place:
           attributes:
             place_geometry:
