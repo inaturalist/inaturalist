@@ -1237,8 +1237,19 @@ class Observation < ActiveRecord::Base
       self.time_zone ||= 'UTC'
     end
     if !time_zone.blank? && !ActiveSupport::TimeZone::MAPPING[time_zone] && ActiveSupport::TimeZone[time_zone]
-      self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
+      # self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
+      # We've got a zic time zone
+      # ztz = ActiveSupport::TimeZone[time_zone]
+      self.time_zone = if rails_tz = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
+        rails_tz
+      else
+        # Now we're in trouble, b/c the client specified a valid IANA time zone
+        # that TZInfo knows about, but it's one the Rails chooses to ignore and
+        # doesn't provide any mapping for so... we have to map it
+        ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+      end
     end
+    self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
     self.zic_time_zone ||= ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
     if !zic_time_zone.blank? && ActiveSupport::TimeZone::MAPPING[zic_time_zone] && ActiveSupport::TimeZone[zic_time_zone]
       self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[zic_time_zone]

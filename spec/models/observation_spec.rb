@@ -626,6 +626,23 @@ describe Observation do
       expect( o.zic_time_zone ).to eq tz.tzinfo.name
     end
 
+    it "should set time_zone to a Rails time zone when a zic time zone we know about was specified but Rails ignores it" do
+      ignored_time_zones = { "America/Toronto" => "Eastern Time (US & Canada)" }
+      ignored_time_zones.each do |tz_name, rails_name|
+        o = Observation.make!( time_zone: tz_name )
+        expect( o.time_zone ).to eq rails_name
+      end
+    end
+
+    it "should set time_zone to the user's time zone when a zic time zone we don't know about was specified but Rails ignores it" do
+      u = User.make!( time_zone: "Pacific Time (US & Canada)" )
+      iana_tz = "America/Bahia"
+      expect( ActiveSupport::TimeZone[iana_tz] ).not_to be_nil
+      expect( ActiveSupport::TimeZone::MAPPING.invert[iana_tz] ).to be_nil
+      o = Observation.make!( user: u, time_zone: "America/Bahia" )
+      expect( o.time_zone ).to eq u.time_zone
+    end
+
   end
 
   describe "updating" do
