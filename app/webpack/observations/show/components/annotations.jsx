@@ -409,7 +409,7 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
-  updateSession: PropTypes.func,
+  updateSession: PropTypes.func.isRequired,
   collapsible: PropTypes.bool,
   fetchControlledTerms: PropTypes.func,
   loading: PropTypes.bool,
