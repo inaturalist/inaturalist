@@ -20,8 +20,13 @@ class Annotations extends React.Component {
   }
 
   fetchAnnotations( ) {
-    const { fetchControlledTerms, updateSession, open: isOpen } = this.props;
-    if ( this.loggedIn ) {
+    const {
+      fetchControlledTerms,
+      updateSession,
+      open: isOpen,
+      config
+    } = this.props;
+    if ( this.loggedIn && isOpen !== config.currentUser.prefers_hide_obs_show_annotations ) {
       updateSession( { prefers_hide_obs_show_annotations: isOpen } );
     }
     if ( isOpen ) {
