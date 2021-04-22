@@ -1274,7 +1274,7 @@ sv:
   default_photo_license: Standard bildlicens
   default_search_place: Standard sökplats
   default_search_place_description: |
-    Detta kommer att vara din standardlokal för alla sökningar i Utforska och Artbestäm.
+    Detta kommer att vara din standardfyndplats för alla sökningar i Utforska och Artbestäm.
   default_sound_license: Standard ljudlicens
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
   defines_a_taxon_framework_for: Definierar en taxonkontext för %{taxon_name}
@@ -2190,7 +2190,7 @@ sv:
   locality_notes: Fyndplatsanteckningar
   localized_species_accounts: Lokaliserade artredogörelser
   location: Position
-  location_is_accurate: Noggrann fyndplatsangivelse
+  location_is_accurate: Rimlig fyndplats
   location_is_exact: positionen är exakt
   location_is_public: Positionen är publik
   location_is_obscured: Positionen är diffuserad
@@ -5513,7 +5513,7 @@ sv:
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för denna och alla andra observationer i projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
         quality_assessment_help_html: |
           <p>
-          Datakvalitetsbedömningen är en redovisning av en observations noggrannhet. Alla observationer utgår från <strong>"grund"</strong>klass, och <strong>"behöver bestämmas"</strong> när
+          Datakvalitetsbedömningen är en summering av en observations korrekthet. Alla observationer utgår från <strong>"grund"</strong>klass, och <strong>"behöver bestämmas"</strong> när
           </p>
 
           <ul>
@@ -5535,7 +5535,7 @@ sv:
           </p>
           <ul>
           <li>
-          <strong>fyndplatsen verkar inte riktigt riktig</strong> (t.ex. apor mitt i havet, flodhästar på kontoret, etc.)
+          <strong>fyndplatsen verkar inte rimlig</strong> (t.ex. apor mitt i havet, flodhästar på kontoret, etc.)
           </li>
           <li>
           <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människor eller intelligenta rymdvarelser)
