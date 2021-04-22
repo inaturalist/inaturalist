@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary ]
+  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -2061,7 +2061,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.elastic_index!
+    review.update_observation_index
   end
 
   def stats_adequately_scoped?(search_params = { })
@@ -2973,7 +2973,8 @@ class ObservationsController < ApplicationController
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
       ( action_name == "observation_links" ) ||
-      ( action_name == "show" )
+      ( action_name == "show" ) ||
+      ( action_name == "review" )
   end
 
   def observations_index_search(params)

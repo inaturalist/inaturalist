@@ -22,9 +22,8 @@ class Photo < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses,
-             :index_observations,
-             :index_taxa
+             :update_all_licenses
+  after_commit :index_observations, :index_taxa, on: [:create, :update]
   after_destroy :create_deleted_photo
 
   SQUARE = 75

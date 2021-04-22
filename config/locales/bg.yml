@@ -262,6 +262,9 @@ bg:
   add_observations_project: Добави наблюдения към проекта
   #Prompt to add a new journal post
   add_one: Добави!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Добавете такава
   add_photos: Добавяне на снимки
   add_place: Добави място
   add_alive_or_dead_alive_annotation: 'Добави анотация „Жив или мъртъв: Жив“'
@@ -2705,6 +2708,7 @@ bg:
   project_requirements: Изисквания на проекта
   project_rules: Правила на проекта
   project_settings: Настройки за проекти
+  project_start_time_datetime: "Начало: %{datetime}"
   project_type_description: |
     Оценяванията са предназначени за сътрудничества по оценяване на определени видове, обикновено за да се установи консервационната им значимост.
   project_was_successfully_created: Проектът беше създаден успешно.
@@ -3085,6 +3089,7 @@ bg:
   start: Начало
   start_a_new_project: Започни нов проект
   start_a_project: Започни проект
+  start_date_time: Начална дата / час
   start_typing_field_name: Започни да въвеждаш име на полето...
   start_typing_place_name: Започни да въвеждаш място...
   start_typing_taxon_name: Започни да въвеждаш таксон...
@@ -3330,6 +3335,7 @@ bg:
   trust_this_project_with_your_private_coordinates?: Довери скритите си координати на този проект?
   twitter: Туитър
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Вид
   type_one_name_per_line: Въведи по едно име на ред
   type_place_name: Въведи място
@@ -3759,6 +3765,9 @@ bg:
         agreement: Съгласие
         algorithm_summary: Резюме на алгоритъма
         disagreement: Несъгласие
+      compare:
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Поле за дата
       export:
         export_in_progress_notice_html: |
           В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
@@ -3891,6 +3900,8 @@ bg:
           Това ще Ви лиши от способността да изтривате проекта или да променяте собственика му отново. Сигурни ли сте, че искате да продължите?
         cover_desc: "Незадължително изображение за заглавното каре, което се показва най-отгоре на страницата на проекта. Трябва да е широко 950 пиксела и високо по-малко от 400 пиксела."
         icon_desc: "Ще бъде изрязано до квадрат"
+        no_curators: |
+          Проектът няма куратори. Ако искате да зададете нов администратор – той трябва първо да се присъедини към проекта и да го направите куратор.
         project_list_desc_html: |
           <p class="description">
           Можете да създадете проектен списък от таксони и да го свържете с Вашия проект. Такъв списък може да се използва за ограничаване на наблюденията добавяни към проекта само до такива отговарящи на таксон от списъка - чрез правилото „Трябва да е от таксон от списъка на проекта“.
@@ -3948,6 +3959,7 @@ bg:
         leaderboards_among_projects_and_bioblitzes: |
           Водачества за <strong>проекти</strong>
         multiple_project_administrators: Множество администратори на проекта
+        name_placeholder: Черноморски птици, Прекрасни калинки и т.н.
         no_need_to_rely_on_manual_addition: |
           Без ръчно добавяне на наблюдения
         note_these_users_will_be_able_to_edit: |
@@ -4294,6 +4306,7 @@ bg:
       recent:
         about_recent_users: Относно
       show:
+        take_a_moment_to_review_html: 'Отделете момент, да прегледате <a href="%{link}">нашите напътствия</a>.'
         this_user_was_banned: Този потребител е запориран
         favorites_list_prompt_html: |
           Искате да покажете някои от любимите си таксони? %{link_start_tag}Създайте списък%{link_end_tag} озаглавен „Любими“ и най-новите попълнения в него ще се появят в този раздел.
@@ -4646,6 +4659,8 @@ bg:
       observation_field_value:
         value: 'стойност'
       observations_export_flow_task:
+        #Date/time the task began processing
+        started_at: Започнато
         #Date/time the task finished processing
         finished_at: Завършено
       post:

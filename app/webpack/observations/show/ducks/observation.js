@@ -3,7 +3,7 @@ import React from "react";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
+import { resetControlledTerms } from "./controlled_terms";
 import {
   fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
@@ -138,7 +138,7 @@ export function resetStates( ) {
     dispatch( setObservation( { } ) );
     dispatch( setIdentifiers( null ) );
     dispatch( setObservationPlaces( [] ) );
-    dispatch( setControlledTerms( [] ) );
+    dispatch( resetControlledTerms( ) );
     dispatch( setQualityMetrics( [] ) );
     dispatch( setEarlierUserObservations( [] ) );
     dispatch( setLaterUserObservations( [] ) );
@@ -230,7 +230,6 @@ export function renderObservation( observation, options = { } ) {
       dispatch( fetchTaxonSummary( ) );
       dispatch( fetchCommunityTaxonSummary( ) );
     }
-    if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
       dispatch( resetSubscriptions( ) );
@@ -251,9 +250,6 @@ export function renderObservation( observation, options = { } ) {
       }
       if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
         dispatch( fetchMoreFromClade( ) );
-      }
-      if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
-        dispatch( fetchControlledTerms( ) );
       }
       if ( ( fetchAll || taxonUpdated ) && !_.has( observation, "non_traditional_projects" ) ) {
         dispatch( fetchNewProjects( ) );

@@ -184,6 +184,9 @@ class TaxaController < ApplicationController
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
           @taxon.html = render_to_string(:partial => "#{partial}.html.erb", :object => @taxon)
         end
+        Taxon.preload_associations([@taxon], [
+          { taxon_photos: { photo: :user } },
+          { taxon_names: :place_taxon_names }, :iconic_taxon ] )
 
         opts = Taxon.default_json_options
         opts[:include][:taxon_names] = {}

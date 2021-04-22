@@ -230,6 +230,7 @@ da:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Tilføj et link
   add_a_name: Tilføj et navn
+  add_a_note: Tilføj et notat
   add_a_new_change_group: Tilføj en ny ændringsgruppe
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Tilføj en nummereret liste
@@ -2312,6 +2313,17 @@ da:
   #Label shown when a date has not been entered
   missing_date: Dato mangler
   mobile: Mobil
+  moderation_history_for_user_html: Moderationshistorik for %{user}
+  moderation_history_desc_html: |
+    Dette omfatter moderatorhandlinger (f.eks. skjule/vise kommentarer), notater,
+    og flag på alt, hvad denne bruger har oprettet udover taksa. Dette er
+    <strong>kun synligt for kuratorer</strong> og <strong>kuratorer kan ikke se
+    deres egen historik</strong>, så notater om en person bør aldrig være synlige
+    for den pågældende person.
+  moderator_note_desc: |
+    Moderatornotater er optegnelser over moderationssvar eller evidensbaserede tvivl om en bruger, såsom om der er tale om en mulig fiktiv konto. Inkludér venligst ikke personlige meninger eller rygter om brugeren.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderator/Flagger
   mollusks: bløddyr
   momentjs:
     shortRelativeTime:
@@ -2353,6 +2365,10 @@ da:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH.mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Måned
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
@@ -3603,6 +3619,78 @@ da:
     form: form
     infrahybrid: Infrahybrid
     leaves: blade
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: en form for
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: rige
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: underrige
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: stamme
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: understamme
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: overklasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: klasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: underklasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infraklasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: overorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: orden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: underorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infraorder
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterklasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zooundersektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: overfamilie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epifamilie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: familie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: underfamilie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: overtribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: undertribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: slægt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: slægtshybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: underslægt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: undersektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: art
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: underart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Områder
   ray_finned_fishes: strålefinnede fisk
   re_apply_list_rules: Genanvend listens regler
@@ -4409,6 +4497,7 @@ da:
   try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne side.
   twitter: Twitter
   two_thirds: 2/3 dele
+  #As in a category, not as in a keyboard
   type: Indtast
   type_authority: Indtast autorisation ...
   type_one_name_per_line: Indtast et navn per linje
@@ -5293,6 +5382,8 @@ da:
         about_total_taxa: "Om Taksa i alt"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinerede
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datofelt
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horisontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6743,6 +6834,7 @@ da:
           konti som spammere eller ikke spammere, vil det hjælpe.
           </p>
       show:
+        take_a_moment_to_review_html: 'Brug et øjeblik på at gennemse <a href="%{link}">vores retningslinjer</a>'
         this_user_was_banned: Denne bruger er blevet suspenderet
         favorites_list_prompt_html: |
           Vil du vise nogle af dine favorittaksa? %{link_start_tag}Opret en
@@ -7135,6 +7227,14 @@ da:
       CompleteSet: Fuldt sæt
       #Noun
       Flag: Markering
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Moderatorindstillinger
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Moderatornotater
       TaxonLink: Takson link
     attributes:
       assessment:
@@ -7306,6 +7406,10 @@ da:
           attributes:
             base:
               guide_has_too_many_taxa: "Guide kan kun have 500 taksa"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: skal være kurator
         mushroom_observer_import_flow_task:
           attributes:
             base:
