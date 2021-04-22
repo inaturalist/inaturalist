@@ -967,7 +967,7 @@ export function subscribe( ) {
       }] );
       dispatch( setSubscriptions( newSubscriptions ) );
     }
-    const payload = { id: state.observation.id };
+    const payload = { id: state.observation.uuid };
     dispatch( callAPI( inatjs.observations.subscribe, payload, {
       callback: ( ) => dispatch( fetchSubscriptions( ) )
     } ) );

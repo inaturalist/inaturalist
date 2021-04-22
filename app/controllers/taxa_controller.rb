@@ -11,6 +11,13 @@ class TaxaController < ApplicationController
       c.params[:test].blank?
     }
 
+  caches_action :show, expires_in: 1.day,
+    cache_path: Proc.new{ |c| {
+      locale: I18n.locale,
+      only_path: true
+    } },
+    if: Proc.new {|c| request.format.json? }
+
   before_filter :allow_external_iframes, only: [:map]
   
   include TaxaHelper
