@@ -3,8 +3,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Flag, "creation" do
   elastic_models( Observation )
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   it "should not allow flags that are too long" do
     f = Flag.make(

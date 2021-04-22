@@ -23,7 +23,8 @@ class Flag < ActiveRecord::Base
   notifies_subscribers_of :self, :notification => "activity", :include_owner => true,
     :on => :update,
     :queue_if => Proc.new {|flag|
-      !flag.new_record? && flag.comment_changed?
+      # existing flag whose comment has been changed
+      !flag.previous_changes[:id] && flag.previous_changes[:comment]
     }
   auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
     record.resolved_changed? && !record.resolver.blank? && 

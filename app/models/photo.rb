@@ -163,6 +163,7 @@ class Photo < ActiveRecord::Base
   end
 
   def index_taxa
+    return if taxon_ids.empty?
     Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 

@@ -196,15 +196,6 @@ shared_examples_for "an IdentificationsController" do
   end
 
   describe "destroy" do
-    before(:all) do
-      # some identification deletion callbacks need to happen after the transaction is complete
-      DatabaseCleaner.strategy = :truncation
-    end
-
-    after(:all) do
-      DatabaseCleaner.strategy = :transaction
-    end
-
     elastic_models( Observation, Identification )
 
     let(:identification) { Identification.make!(:user => user) }

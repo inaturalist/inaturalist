@@ -579,9 +579,6 @@ describe Observation do
     end
 
     describe "identification category" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should be set" do
         t = Taxon.make!
         o = Observation.make!( taxon: t )
@@ -890,11 +887,6 @@ describe Observation do
     end
   
     describe "quality_grade" do
-
-      # some identification deletion callbacks need to happen after the transaction is complete
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-    
       it "should become research when it qualifies" do
         o = Observation.make!(:taxon => Taxon.make!(rank: 'species'), latitude: 1, longitude: 1)
         i = Identification.make!(:observation => o, :taxon => o.taxon)
@@ -1743,8 +1735,6 @@ describe Observation do
     end
     
     describe "has_photos" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should find observations with photos" do
         make_observation_photo(:observation => @pos)
         obs = Observation.has_photos.all
@@ -1966,9 +1956,6 @@ describe Observation do
       place_guess: original_place_guess
     } }
 
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-  
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!( defaults )
       expect( observation.taxon ).to be_threatened
@@ -2707,8 +2694,6 @@ describe Observation do
 
   describe "update_stats_for_observations_of" do
     elastic_models( Identification )
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3686,9 +3671,6 @@ describe Observation do
     end
 
     describe "with a photo" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should not be mappable if its photo is flagged" do
         o = make_research_grade_observation
         op = make_observation_photo(observation: o)

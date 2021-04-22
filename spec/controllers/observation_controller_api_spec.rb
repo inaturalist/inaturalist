@@ -229,8 +229,6 @@ shared_examples_for "an ObservationsController" do
       end
 
       describe "if photo present" do
-        before(:all) { DatabaseCleaner.strategy = :truncation }
-        after(:all)  { DatabaseCleaner.strategy = :transaction }
         it "should add to project with has_media rule" do
           photo = LocalPhoto.make!(:user => user)
           project = Project.make!
@@ -1315,8 +1313,6 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "identifications_count" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should get incremented" do
         o = Observation.make!
         i = Identification.make!(:observation => o)
@@ -2033,8 +2029,6 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "review" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     let(:o) { Observation.make! }
     it "should mark an observation as reviewed by the current user" do
       post :review, format: :json, id: o.id

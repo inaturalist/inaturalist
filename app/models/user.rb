@@ -594,7 +594,30 @@ class User < ActiveRecord::Base
 
   def update_observation_sites
     observations.update_all( site_id: site_id, updated_at: Time.now )
-    index_observations
+    # update ES-indexed observations in place with update_by_query as the site_id
+    # will not affect any other attributes that necessitate a full reindex
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Observation.__elasticsearch__.client.update_by_query(
+        index: Observation.index_name,
+        refresh: Rails.env.test?,
+        body: {
+          query: {
+            term: {
+              "user.id": id
+            }
+          },
+          script: {
+            source: "
+              if ( ctx._source.site_id != params.site_id ) {
+                ctx._source.site_id = params.site_id;
+              } else { ctx.op = 'noop' }",
+            params: {
+              site_id: site_id
+            }
+          }
+        }
+      )
+    end
   end
 
   def index_observations_later

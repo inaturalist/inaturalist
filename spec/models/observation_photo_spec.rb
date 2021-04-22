@@ -2,8 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationPhoto, "creation" do  
   elastic_models( Observation, Identification )
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   it "should update observation quality grade" do
     o = Observation.make!( observed_on_string: "2017-02-01", latitude: 1, longitude: 1 )
@@ -32,8 +30,6 @@ end
 
 describe ObservationPhoto, "destruction" do
   elastic_models( Observation )
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   it "should update observation quality grade" do
     o = make_research_grade_observation
