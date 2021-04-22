@@ -3930,6 +3930,14 @@ ja:
   verifiable: 研究用+要同定
   views:
     views: '閲覧回数'
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: '%{site_name}を教育機関で使用する予定ですか？'
+          community_guidelines_html: |
+            iNaturalistを親しみやすい場所にするためのヒントとして、<a href="%{url}">コミュニティ・ガイドライン</a>をご確認ください
+          please_read_the_teachers_guide_html: |
+            もしそうであれば、<a href="%{url}">ティーチャーズ・ガイド</a>を読んで、%{site_name}を使うヒントにしてください。
     donate:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalistのマンスリーサポーターになる
