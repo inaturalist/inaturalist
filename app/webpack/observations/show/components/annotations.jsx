@@ -14,8 +14,7 @@ class Annotations extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    const { open: isOpen } = this.props;
-    if ( prevProps.open !== isOpen ) {
+    if ( prevProps.open !== this.props.open ) {
       this.fetchAnnotations( );
     }
   }
