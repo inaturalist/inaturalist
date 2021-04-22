@@ -2029,8 +2029,6 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "review" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     let(:o) { Observation.make! }
     it "should mark an observation as reviewed by the current user" do
       post :review, format: :json, id: o.id

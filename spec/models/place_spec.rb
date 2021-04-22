@@ -97,8 +97,6 @@ describe Place, "creation" do
 end
 
 describe Place, "updating" do
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
   before(:each) do
     @place = make_place_with_geom
   end
