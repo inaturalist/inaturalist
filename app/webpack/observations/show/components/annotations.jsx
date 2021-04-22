@@ -14,7 +14,8 @@ class Annotations extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( prevProps.open !== this.props.open ) {
+    const { open: isOpen } = this.props;
+    if ( prevProps.open !== isOpen ) {
       this.fetchAnnotations( );
     }
   }
@@ -22,12 +23,17 @@ class Annotations extends React.Component {
   fetchAnnotations( ) {
     const {
       fetchControlledTerms,
-      updateSession,
       open: isOpen,
+      updateSession,
       config
     } = this.props;
-    if ( this.loggedIn && isOpen !== config.currentUser.prefers_hide_obs_show_annotations ) {
-      updateSession( { prefers_hide_obs_show_annotations: isOpen } );
+    if ( this.loggedIn
+      // if user closes the panel, set in preferences that they prefer to hide the panel
+      // if user opens the panel, set in preferences that they don't prefer to hide the panel
+      // only update if the current user setting is different from the new panel state
+      && ( config.currentUser.prefers_hide_obs_show_annotations !== !isOpen )
+    ) {
+      updateSession( { prefers_hide_obs_show_annotations: !isOpen } );
     }
     if ( isOpen ) {
       fetchControlledTerms( );
