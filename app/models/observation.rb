@@ -2175,6 +2175,7 @@ class Observation < ActiveRecord::Base
 
   def update_user_counter_caches_after_destroy
     return if bulk_delete
+    return unless User.where( id: user_id ).any?
     User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
     user.reload
     user.elastic_index!

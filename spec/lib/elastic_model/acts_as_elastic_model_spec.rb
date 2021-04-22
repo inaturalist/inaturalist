@@ -24,7 +24,7 @@ describe ActsAsElasticModel do
 
     it "properly deletes the document on commit" do
       obs = Observation.make!
-      expect(obs).to receive(:elastic_delete!).twice
+      expect(obs).to receive(:elastic_delete!).at_least(:twice)
       # we need to destroy to make sure we hit the after_commit on: destroy
       obs.destroy!
       # forcing the commit, which doesn't usually happen in specs

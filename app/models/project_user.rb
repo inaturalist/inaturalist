@@ -52,7 +52,7 @@ class ProjectUser < ActiveRecord::Base
     # don't bother queuing this if there's no relevant role change
     queue_if: Proc.new{ |pu|
       !pu.project.is_new_project? &&
-        pu.role_changed? &&
+        pu.previous_changes[:role] &&
         ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
     },
     # check to make sure role status hasn't changed since queuing
