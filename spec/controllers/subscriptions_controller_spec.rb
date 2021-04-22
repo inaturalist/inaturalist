@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../spec_helper'
+
 describe SubscriptionsController do
   describe "subscribe" do
     let(:user) { User.make! }
