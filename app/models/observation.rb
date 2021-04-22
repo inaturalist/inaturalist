@@ -45,7 +45,7 @@ class Observation < ActiveRecord::Base
     delay: true,
     if: lambda {|u| u.prefers_receive_mentions? },
     unless: lambda { |observation|
-      # descriotion hasn't changed, so mentions haven't changed
+      # description hasn't changed, so mentions haven't changed
       return true unless observation.previous_changes[:description]
       # description has changed, but neither version mentioned users
       observation.previous_changes[:description].map do |d|
