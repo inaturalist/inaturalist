@@ -7,7 +7,7 @@
       %p
         = link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified"
     = render :partial => 'glance'
-    - is_curator_or_site_admin = current_user.is_curator? || current_user.is_site_admin_of?( @user.site )
+    - is_curator_or_site_admin = logged_in? && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
     - if logged_in? && ( current_user.is_admin? || is_curator_or_site_admin )
       .row
         .col-md-12
