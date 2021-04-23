@@ -412,7 +412,15 @@ class TaxonAutocomplete extends React.Component {
     if ( this.cachedVisionResponse ) {
       this.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
-      const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
+      const baseParams = config.testingApiV2
+        ? {
+          fields: {
+            frequency_score: true,
+            vision_score: true,
+            taxon: TAXON_FIELDS
+          }
+        }
+        : {};
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
           .then( r => {
