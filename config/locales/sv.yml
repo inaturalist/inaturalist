@@ -5513,14 +5513,14 @@ sv:
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för denna och alla andra observationer i projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
         quality_assessment_help_html: |
           <p>
-          Datakvalitetsbedömningen är en summering av en observations korrekthet. Alla observationer utgår från <strong>"grund"</strong>klass, och <strong>"behöver bestämmas"</strong> när
+          Datakvalitetsbedömningen är en summering av en observations korrekthet. Alla observationer utgår från <strong>"grund"</strong>klass, och får status <strong>"behöver bestämmas"</strong> när
           </p>
 
           <ul>
           <li>observationen <strong>är daterad</strong></li>
           <li>observationen <strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
-          <li>the observation <strong>har bild eller ljud</strong></li>
-          <li>observationen <strong>inte är när någon sett en människa</strong></li>
+          <li>observationen <strong>har bild eller ljud</strong></li>
+          <li>observationen <strong>inte föreställer en människa</strong></li>
           </ul>
           <p>
           Observationer uppnår <strong>"forskningsklass"</strong> när
