@@ -1029,8 +1029,6 @@ fi:
   csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
   cumulative_ids: "Kumulatiiviset tunnistukset: %{count}/%{total}"
   curate_observations: Kuratoi havaintoja
-  curate_taxa: Kuratoi taksoneita
-  curate_user: Kuratoi käyttäjää
   curating: Kuratointi
   curation: Kuratointi
   curator: Kuraattori
@@ -3544,17 +3542,8 @@ fi:
   save_and_continue: "Tallenna &amp; jatka..."
   save_and_add_taxa: "Tallenna ja aloita lisäämällä lajeja"
   save_changes: Tallenna muutokset
-  save_comment: Tallenna kommentti
   save_draft: Tallenna luonnos
-  save_fields: Tallenna kentät
-  save_flag: Tallenna lippu
-  save_guide_taxon: Tallenna oppaan taksoni
-  save_identification: Tallenna tunnistus
-  save_observation: Tallenna havainto
-  save_photos: Tallenna valokuvat
-  save_place: Tallenna paikka
   save_settings_caps: TALLENNA ASETUKSET
-  save_trip: Tallenna retki
   saved: Tallennettu
   saved_at_time: Tallennettu %{time}
   saving: "Tallennetaan..."
@@ -4227,18 +4216,10 @@ fi:
   view_observations_of_this_taxon_by: Näytä tämän taksonin havainnot käyttäjältä
   view_on: Näytä sivustolla
   view_on_flickr: Näytä Flickrissä
-  view_original: "Näytä alkuperäinen"
   view_original_by: "Näytä alkuperäinen käyttäjän %{by} kuva sivustolla %{photo}"
   view_original_ccD_photo: "Näytä alkuperäinen käyttäjän %{owner} CC kuva"
   view_photos_ranges_observations_more: "Katso valokuvia, lajeja, %{site_name}-havaintoja ja paljon muuta! Olemme koonneet tietoja monista eri lähteistä ja yhdistäneet ne yhteen kunkin lajin nopeaan tiivistelmään kussakin paikassa."
-  view_place: Näytä paikka
-  view_post: Näytä viesti
   view_projects_from_place: "Näytä projektit paikasta %{place}"
-  view_sample: Näytä esimerkki
-  view_stats: Näytä tilastot
-  view_taxon_change: Näytä taksonimuutos
-  view_taxon_changes: Näytä taksonimuutokset
-  view_taxon_page: Näytä taksonisivu
   view_taxon_page_for_this_x: "Näytä taksonisivu kohteessa %{x}"
   view_the: "Näytä %{action}&#59; %{link}"
   view_the_observation: Näytä havainnot
