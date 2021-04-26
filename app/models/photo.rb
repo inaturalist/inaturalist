@@ -22,9 +22,8 @@ class Photo < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses,
-             :index_observations,
-             :index_taxa
+             :update_all_licenses
+  after_commit :index_observations, :index_taxa, on: [:create, :update]
   after_destroy :create_deleted_photo
 
   SQUARE = 75
@@ -164,6 +163,7 @@ class Photo < ActiveRecord::Base
   end
 
   def index_taxa
+    return if taxon_ids.empty?
     Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 

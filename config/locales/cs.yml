@@ -2488,6 +2488,10 @@ cs:
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Měsíc
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
@@ -4579,6 +4583,7 @@ cs:
   try_adding_species_form: Zkuste přidat některé druhy pomocí formuláře na této stránce.
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Psát
   type_authority: Napište úřad...
   type_one_name_per_line: Napište jeden název na každý řádek
@@ -5437,6 +5442,8 @@ cs:
         about_total_taxa: "O taxonech celkem"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinované
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datum
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontální
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6643,7 +6650,7 @@ cs:
         recent_users_desc_html: |
           <p> Chceme přivítat nové uživatele, ale také bojovat proti spammerům. Naštěstí tento nástroj pomůže oběma. Pomocí <ahref="https://akismet.com/">Akismet</a>automaticky označujeme mnoho uživatelů za spammery, ale Akismet není dokonalý, takže pokud chcete strávit pár minut označením spammerů nebo nespammerů, tak by  to pomohlo. </p>
       show:
-        take_a_chance_to_review_html: 'Využijte možnosti projít si <a href="%{link}">naše směrnice</a>.'
+        take_a_moment_to_review_html: 'Udělejte si chvíli a přečtěte si <a href="%{link}">naše pokyny</a>.'
         this_user_was_banned: Tento uživatel byl vyloučen
         favorites_list_prompt_html: |
           Chcete ukázat některé z vašich oblíbených taxonů? %{link_start_tag}Vytvořte

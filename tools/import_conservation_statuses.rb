@@ -95,7 +95,9 @@ CSV.foreach( csv_path, headers: HEADERS ) do |row|
     skipped << identifier
     next
   end
-  unless iucn = Taxon::IUCN_STATUS_VALUES[row["iucn"].to_s.parameterize.underscore]
+  iucn = Taxon::IUCN_STATUS_VALUES[row["iucn"].to_s.strip.parameterize.underscore]
+  iucn ||= Taxon::IUCN_CODE_VALUES[row["iucn"].to_s.strip.upcase]
+  unless iucn
     puts "\t#{row["iucn"]} is not a valid IUCN status, skipping..."
     skipped << identifier
     next

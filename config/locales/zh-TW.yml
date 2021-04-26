@@ -140,6 +140,23 @@ zh-TW:
     <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
   about_trusting_projects: 關於信任專案
   about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
+  about_trusting_projects_options_any_desc: |-
+    這包含了您設定地理資訊隱私權為「遮蔽」或「私有」的觀察記錄，例：從您的後院或您不想讓其他人知道的景點中所建立之觀察記錄。
+  about_trusting_projects_options_taxon: |-
+    僅限您在此專案中之觀察記錄因瀕危分類群而被遮蔽的座標
+  about_trusting_projects_options_taxon_desc: |-
+    許多專案只需要存取被遮蔽的座標，因為該觀察記錄描述了一個瀕危的分類群。
+  about_trusting_projects_overview: |-
+    授權您的隱藏座標將會允許這個專案的管理者看到您在此專案中真實而無遮蔽的地點。這對於科學家或是資源管理者來說，為了分析和做決策，存取真正的座標是非常重要的。
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    有權限存取您的隱藏座標的專案管理者為：
+  about_trusting_projects_warning: |-
+    請注意專案管理者可以更動專案的設定來包含您任一觀察記錄，而且他們可以隨時新增或移除專案管理者。您將會收到關於這些更動的通知，但基本上您是把私有地點之座標託付給此專案，所以務必小心。
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    您可以選擇分享隱藏的座標給：
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -168,6 +185,7 @@ zh-TW:
   #Tool tip for a button that adds a link to a text area
   add_a_link: 加入連結
   add_a_name: 加入名稱
+  add_a_note: 新增備註
   add_a_new_change_group: 增加一新變更群組
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 加入編號列表
@@ -193,6 +211,7 @@ zh-TW:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 添加可用物件
   add_batch: 批次新增
+  add_blocked_users: 新增封鎖使用者
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: 加入粗體字
   add_comma_separated_tags: "新增以逗號分隔式標籤"
@@ -209,6 +228,7 @@ zh-TW:
   add_id: 新增物種鑑定
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: 加入斜體字
+  add_muted_users: 新增禁言的使用者
   add_new_lexicon: 新增新的詞彙
   add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片（必須是創用 CC（Creative Commons）授權!）
   add_new_place: 新增一處新地點
@@ -435,6 +455,13 @@ zh-TW:
   #Label for an option to show/include content by any user
   any_user: 任一
   anyone: 任何人
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: 應用程式
+  applications: 應用程式
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: 申請
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
   apply_fields: 套用欄位
@@ -547,6 +574,9 @@ zh-TW:
   automatic_short: 自動
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
   automatically_update_my_content_for_taxon_changes: 自動更新我的內容以用於物種分類更改
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: 平均
   back: 返回
   back_to_all_species: 返回至所有物種
   back_to_browsing_people: 返回至瀏覽人員
@@ -578,6 +608,7 @@ zh-TW:
   back_to_your_observations: 返回至您的觀察
   back_to_your_profile: 返回至您的個人檔案
   back_to_your_projects: 返回至您的專案
+  badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
     基於現有證據，仍需要確認或改善社群分類群嗎?
   batch: 批量
@@ -588,6 +619,8 @@ zh-TW:
   because_of: 因為
   before_importing_photos: 在匯入照片前
   bg_color: 背景顏色
+  bio: 個人簡介
+  bio_description: 跟其他 iNaturalist 的使用者來描述您自己
   bioblitz: 生物速查
   birds: 鳥類
   birthday: 生日
@@ -637,6 +670,7 @@ zh-TW:
   card: 卡片
   casual: 粗略
   casual_: 粗略
+  casual_tooltip_html: '「一般」的觀察記錄是缺乏媒體(照片或錄音)、地點、日期，或是不符合「研究等級」或「需要鑑定」所須的其他條件。<a href="https://www.inaturalist.org/pages/help#quality">了解更多有關等級的說明</a>'
   categories: 分類
   cc_0_description: "此許可協議出您的作品至公用領域，因此其他人可以複製、更改、發佈和行使您的作品，即使在用於商業的目的下，而所有的行為皆不必請求許可或註明於您。這是最通融的許可提供，推薦用於大規模傳播和授權資料方面的使用。"
   cc_0_name: 無著作權 (CC0)
@@ -719,6 +753,7 @@ zh-TW:
   check_out_my_observations_at: 若您有意願，您可以查看我的觀察在：
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
+  check_out_your_new_and_improved_list_list: 確定您新改正過的生涯物種清單！
   check_this_box_if_html: |
     如果您想套用<a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -780,6 +815,7 @@ zh-TW:
   community_id_heading: 社群分類群
   community_id_at_species_or_lower?: 在物種或更低階層的社群分類群？
   community_id_at_species_level_or_lower: 屬於物種層級或是較低階層級的社群分類群
+  community_id_is_precise: 社群鑑定出來的分類群是準確的
   community_moderation_settings: 社群管制設定
   community_supported_id: 社群支持的分類群？
   compare: 比較
@@ -808,6 +844,11 @@ zh-TW:
   confirm_new_password: 確認新密碼
   confirm_now: 現在確認
   confirm_your_info: 確認您的資訊
+  confirming_ids: 確認物種鑑定
+  confirming_ids_description: 如果您關閉此選項，您將不會收到同意您鑑定的分類群通知。
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: 連接
   connect_to_provider: "連接至%{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已連接帳號
@@ -1208,6 +1249,7 @@ zh-TW:
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
   email_addresses_to_receive_invites: 接收邀請用的電子郵件地址
   email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
+  email_notifications: 電子郵件通知
   email_settings: 電子郵件設定
   embed: '內嵌'
   embed_place_widget: 內嵌地點小工具
@@ -1614,6 +1656,7 @@ zh-TW:
   inat_account_action: "%{site_name} &#58;帳號&#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
+  inaturalist_activity_notifications: "%{site_name} 活動通知"
   inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
   inaturalist_places: "%{site_name} 地點"
   info: 資訊
@@ -2253,7 +2296,9 @@ zh-TW:
   note: 註解
   notes: 註解
   note_you_can_modify_the_height_attribute: "註：您可以調整「高度」屬性來符合您的網頁可用空間。"
+  notifications: 通知
   notify_me_of_mentions: 通知提及到我的（例如：@username）
+  notify_me_of_mentions_description: "如果您關閉此選項，當有人在%{site_name}提到您的時候，您將不會收到任何通知。"
   notify_me_about_redundant_identifications: 通知我有關確認鑑定
   notify_me_about_redundant_identifications_desc: |
     接收符合所屬您鑑定的通知。若您選擇停用此功能，您僅會收到有關不在您鑑定裡的物種分類群之鑑定通知。
@@ -3184,7 +3229,10 @@ zh-TW:
   reason: 原因
   reason_you_are_flagging_this_item: 您標記此項目原因。
   recaptcha_verification_failed: reCAPTCHA 驗證失敗
+  receive_email_notifications: 接收電子郵件通知
+  receive_email_notifications_description: "如果您把此選項關閉，您將無法從 %{site_name}中收到任何電子郵件的通知。"
   receive_email_notifications_when_people_leave_you: 接收電子郵件通知有關於在
+  receive_project_journal_notifications?: 接收專案日誌通知？
   receive_updates_from_this_project: 從該專案接收更新
   recent: 最近
   recent_evidence_of_organism: 近期的生物證據
@@ -3321,6 +3369,7 @@ zh-TW:
   save_observation: 儲存觀察
   save_photos: 儲存照片
   save_place: 儲存地點
+  save_settings_caps: 儲存設定
   save_trip: 儲存行程
   saved: 已儲存
   saving: "儲存中..."
@@ -3807,12 +3856,15 @@ zh-TW:
   this_is_more_convenient_way_find_parent: 此為找尋父級鑑定的更簡便方法。這是實際被儲存的父級鑑定。
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     此為找尋物種分類鑑定的更簡便方法。這是實際被儲存的物種分類鑑定。這僅在可用的物種分類之下能被有效搜尋。
+  this_is_how_taxon_names_will_be_displayed: 以下是在 %{site_name} 網站上如何顯示分類群的名字
   this_is_taking_forever: 這會一直進行下去。請稍後重試。
   this_is_the_primary_listing: 此為主要清單
   this_is_your_observation: 這是您的觀察
   this_is_your_observation_desc: 您可以在您的觀察上查看座標。
   this_job_failed_to_run: 任務運作失敗。請聯絡 %{email}
   this_list_is_empty!: 此清單是空的！
+  this_list_only_accepts_taxa_that_are_species: 此列表僅接受的分類群為物種階層
+  this_list_only_accepts_taxa_that_are_species_or_lower: 此列表僅接受的分類群為種或種以下階層
   this_observation: 此觀察
   this_observation_is_featured_on_x_sites:
     other: 此觀察已展示在 %{count} 個網站
@@ -3836,6 +3888,11 @@ zh-TW:
   this_will_refresh_listed_taxa: 這將會在此名錄上重新整理已列出的物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
   this_will_re_apply_all_list_rules: |
     這將會重新套用所有清單規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選級別的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    這將取消 iNaturalist 代表您存取此帳號的能力，直到您再次授權為止。您也許需要在外部網站上更改您的設定來完全防止存取。
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  this_will_sign_you_out_current_session: 這將會登出您在此應用程式中目前的連線階段。
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
   this_year: 今年
   those_observations_no_longer_exist: 這些觀察已不存在。
@@ -3862,6 +3919,8 @@ zh-TW:
   top_observer: 熱門觀察者
   top_observers: 熱門觀察者
   top_species: 熱門物種
+  tos_privacy_guidelines_label: |
+    我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
   totals: 總計
   total_members: 會員總數
@@ -3873,13 +3932,17 @@ zh-TW:
   trending: 趨勢
   trends: 趨勢
   trip_target_list_info: "未在此行程半徑和時間區間內觀察到目標名錄中所有涵蓋物種，會被視為不出現紀錄\n<a href=\"/pages/trips\">了解更多細節</a>。"
+  #Noun
+  trust: 信任
   trusted: 已信任
   trusted_project?: 託付的專案？
   trust_this_person_with_your_private_coordinates: 以您的隱藏座標信任此人
+  trust_this_project_with_your_private_coordinates?: 信任此專案來使用您的隱藏座標？
   trust_with_private_coordinates: 以隱藏座標信任
   try_adding_species_form: 嘗試使用此頁面上的表單來添加一些物種。
   twitter: Twitter
   two_thirds: 第2/3個
+  #As in a category, not as in a keyboard
   type: 類型
   type_authority: 輸入權威...
   type_one_name_per_line: 在每一行輸入一個名稱
@@ -3915,6 +3978,7 @@ zh-TW:
   unresolve: 未解決的
   unreview_all: 取消全部檢閱
   unsubscribe: 取消訂閱
+  unsubscribe_from_emails_like_this: 取消像這樣的電子郵件訂閱
   unsuspend_user: 取消暫停用戶
   upcoming_bioblitzes: 即將到來的 bioblitz
   update: 更新
@@ -3935,12 +3999,14 @@ zh-TW:
   update_with_site_content: "以 %{site_name} 內容更新"
   updated: 已更新
   updated_by: 已更新由
+  updated_by_user_on_date_html: 在 %{date} 由 %{user} 所更新
   updated_daily: 每日更新
   updated_photo: 已更新照片
   upload: 上傳
   upload_a_csv_file: 上傳 CSV 檔案
   upload_a_csv_file_with_observation: |
     上傳帶有觀察資料的 CSV 檔案。如果您的資料是以電子試算表或資料庫的形式儲存，這會是最佳的上傳方式。
+  upload_new_photo: 上傳新照片
   upload_photo: 上傳照片
   upload_range: 上傳範圍
   uploaded_by: 上傳由
@@ -3953,6 +4019,7 @@ zh-TW:
     tooltips:
       add: 添加觀察
       combine: 結合已選擇的觀察
+      duplicate: 複製已選擇的觀察記錄
       photo_failed: 照片上傳失敗
       remove: 移除已選擇的觀察
       remove_observation: 移除觀察
@@ -3977,21 +4044,33 @@ zh-TW:
   used_x_times:
     other: 使用過 %{count} 次
   user: 使用者
+  user1_and_user2_faved_this_observation: "%{user1} 和 %{user2} 把這筆觀察記錄加到最愛"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}、%{user2} 和 %{x_others} 將此筆觀察記錄加到最愛"
   user_added_a_comment_html: "%{user} 新增了一個評論"
   user_added_a_fave_html: "%{user} 添加為最愛"
   user_added_a_flag_html: "%{user} 添加一個標記"
+  user_added_a_project_invitation_html: "%{user} 新增一份專案邀請"
   user_added_a_x: "%{user}添加一個%{x}"
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  user_added_a_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  user_added_a_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
   user_added_a_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_an_identification_html: "%{user} 添加了一個鑑定"
   user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
+  user_added_an_observation_field_value_html: "%{user} 新增一筆觀察欄位的值"
   user_added_an_observation_html: "%{user} 添加一個觀察"
   user_added_an_x: "%{user}添加一個%{x}"
   user_added_an_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
+  user_added_an_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
+  user_added_an_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
   user_added_an_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
   user_added_x_observations_html: "%{user}添加%{x}個觀察"
   user_already_authenticated: 使用者已驗證
   user_autocomplete_placeholder: kueda、simon123 等等。
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} 認為這是一份在 %{place} 的 %{taxon} 之完整名錄
   user_blocked: 使用者已被封鎖
   user_commented: "%{user} 已評論"
   user_commented_on: "%{user} 已評論您的 %{title} %{time}"
@@ -3999,6 +4078,7 @@ zh-TW:
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意之前較佳的鑑定"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛"
+  user_faved_this_observation: "%{user} 將此觀察記錄設為最愛"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"
   user_has_opted_out_of_community_id: 用戶已選擇排除社群分類群
@@ -4052,6 +4132,7 @@ zh-TW:
   view_check_list_page: 檢視清單頁面
   view_contributions: 檢視貢獻
   view_details: 檢視詳細資料
+  view_dynamic_lifelist: 顯示動態生涯物種清單
   view_field_options: 檢視欄位選項
   view_flag: 檢視標記
   view_flags: 檢視標記
@@ -4218,6 +4299,8 @@ zh-TW:
   'yes': "是"
   yes_find_them!: "是的，找到它們！"
   yes_i_want_to_join: 是的，我想加入
+  yes_license_my_childs_observations: 是的，授權我小孩的照片、聲音與觀察記錄，來讓科學家們可使用這些資料 （建議）。
+  yes_license_my_observations_so_scientists_can_use: 是的，授權我的照片、聲音與觀察記錄，來讓科學家們可使用這些資料 （建議）。
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
@@ -4487,6 +4570,39 @@ zh-TW:
       show:
         reuse_desc: |
           您可以複製此物種分類至其它指南。若您是此指南的編者之一則可複製任何內容，若不是則僅能複製具授權的內容。
+    lifelists:
+      list_view: 列表顯示
+      tree_view: 樹狀顯示
+      observed_species: 觀察到的物種
+      observed_rank: 觀察到的 %{rank}
+      unobserved_species: 未觀察到的物種
+      all_species: 所有物種
+      all_unobserved_species: 所有未被觀察到的物種
+      observations_at_this_taxon: 在此分類群中的觀察記錄
+      observations_within_this_taxon: 在此分類群中的觀察記錄
+      all_observations: 所有觀察記錄
+      total_observations: 觀察記錄總數
+      filter_by: 篩選條件
+      filtered_by: 依據以下條件篩選
+      apply_filters_to_export: 套用篩選條件匯出
+      restrict_to_leaf_taxa: 限定在單元分類群
+      restrict_to_taxon: 限定在 %{taxon}
+      restrict_to_taxa_observed_in_place: 限定於 %{place} 所觀察到的分類群
+      reset_place_filter: 重設地點之篩選條件
+      focus_tree_on_this_taxon: 聚焦在此分類群的分類樹上
+      expand_all_nodes_in_this_branch: 展開在此分支中的所有節點
+      collapse_this_branch: 收起此分支
+      dropdowns:
+        sort: 排序
+        taxonomic: 物種分類
+        name: 名字
+        most_observed: 觀察次數最多的
+        least_observed: 最少觀察的
+        date_added_newest: 加入的日期，由最新到最舊來排序
+        date_added_oldest: 加入的日期，由最舊至最新來排序
+        show: 顯示
+        simplified_tree: 簡化樹
+        full_taxonomy: 完整分類
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5403,7 +5519,7 @@ zh-TW:
           重要通知，比如鑑定內容有切換社群鑑定在您的觀察上。
           </p>
         name_place_help_html: |
-          在此地點優先採用通用名稱。
+          在此地點優先使用俗名。
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: 評論
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5457,7 +5573,6 @@ zh-TW:
           href="https://akismet.com/">Akismet</a> 將許多使用者自動標記為濫發垃圾訊息者，但 Akismet 並非完美，因此若您花個幾分鐘來決定新帳號是否為濫發垃圾訊息者，這會很有幫助的。
           </p>
       show:
-        take_a_chance_to_review_html: '來試試看<a href="%{link}">我們的指南</a>。'
         this_user_was_banned: 此用戶已被停用
     user_parents:
       confirm:

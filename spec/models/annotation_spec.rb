@@ -209,9 +209,6 @@ describe Annotation do
   end
 
   describe "creation" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
     it "should touch the resource" do
       o = Observation.make!
       t = o.created_at
@@ -223,9 +220,6 @@ describe Annotation do
   end
 
   describe "deletion" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
     it "should touch the resource" do
       o = Observation.make!
       a = make_annotation( resource: o )

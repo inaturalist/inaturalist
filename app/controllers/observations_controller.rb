@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary ]
+  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -1240,8 +1240,12 @@ class ObservationsController < ApplicationController
     Observation.preload_for_component(@observations, logged_in: !!current_user)
     if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
       filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
-      diff = @observations.total_entries - filtered_obs.size
-      @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
+      diff = @observations.size - filtered_obs.size
+      @observations = WillPaginate::Collection.create(
+        @observations.current_page,
+        @observations.per_page,
+        @observations.total_entries - diff
+      ) do |pager|
         pager.replace( filtered_obs )
       end
     end
@@ -2057,7 +2061,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.elastic_index!
+    review.update_observation_index
   end
 
   def stats_adequately_scoped?(search_params = { })
@@ -2969,7 +2973,8 @@ class ObservationsController < ApplicationController
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
       ( action_name == "observation_links" ) ||
-      ( action_name == "show" )
+      ( action_name == "show" ) ||
+      ( action_name == "review" )
   end
 
   def observations_index_search(params)

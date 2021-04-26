@@ -1440,7 +1440,7 @@ ja:
   help_support_inaturalist: "iNaturalistを支援する"
   help_translate!: 翻訳を手伝ってください!
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
-  here_are_our_top_suggestions: これらが上位の提案です。
+  here_are_our_top_suggestions: これらが上位の提案です
   here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
@@ -2117,8 +2117,8 @@ ja:
   none_found: 見つかりません
   normal: 通常
   not_completed: 未完成
-  not_confident: 信頼性のある提案ができません。
-  not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です。
+  not_confident: 信頼性のある提案ができません
+  not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です
   not_covered_by_any_taxon_frameworks: どの分類群フレームワークでもカバーされていない
   not_evaluated: 未評価
   not_findig_what_you_want: お探しのもの見つかりませんか？
@@ -2962,6 +2962,8 @@ ja:
     tribe: 族/連
     subtribe: 亜族/亜連
     genus: 属
+    x_genera:
+      other: 属
     genushybrid: 属間雑種
     subgenus: 亜属
     section: 節
@@ -3606,6 +3608,8 @@ ja:
   top_observer: トップ観察者
   top_observers: トップ観察者
   top_species: トップ種
+  tos_privacy_guidelines_label: |
+    <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
   total: 合計
   totals: 合計
   total_members: メンバー人数
@@ -3617,6 +3621,7 @@ ja:
   trust_this_person_with_your_private_coordinates: このユーザーを信頼して正確な位置情報を共有する
   trust_with_private_coordinates: 信頼して正確な位置情報を共有する
   twitter: ツイッター
+  #As in a category, not as in a keyboard
   type: 種類
   type_authority: 出典先を入力...
   type_one_name_per_line: 1行あたり1つの名称
@@ -3854,6 +3859,7 @@ ja:
   'yes': "はい"
   yes_find_them!: "はい、見つけてください！"
   yes_i_want_to_join: はい、参加したい
+  yes_license_my_observations_so_scientists_can_use: 観察データを科学研究用に提供することに同意します。（推奨）
   yesterday: 昨日
   you: あなた
   you_appear_offline_try_again: |
@@ -4276,6 +4282,7 @@ ja:
     welcome:
       index:
         connect_with_nature: 自然とふれ合おう
+        explore_and_share: 自然界からの観察記録を探索し、共有しましょう
         observations_to_date: '件の観察記録（これまで）'
         species_observed: '観察された種'
         people_signed_up: '人が参加しています'
@@ -4284,8 +4291,12 @@ ja:
         share_with_fellow_naturalists: ナチュラリスト仲間と情報共有しよう
         discuss_your_findings: 見つけたものについて話し合いましょう
         contribute_to_science: 科学への貢献をする
+        science_desc_html: |
+          希少な蝶からごくありふれた裏庭の雑草まで、あらゆる観察記録が生物多様性科学に貢献します。私たちは、科学者があなたのデータを見つけて利用できるように、<a href='http://gbif.org/ja' target='_blank'>地球規模生物多様性情報機構</a>のような科学データリポジトリとあなたの発見を共有します。ただ観察さえすればよいのです。
         nature_at_your_fingertips: 自然の世界があなたの指先で
         keep_track: 記録を残そう
+        record_your_encounters: |
+          出会った生物を記録し、ライフリストを作ろう。すべてをクラウドで。
         create_useful_data: 研究に役立つデータを作ろう
         help_scientists: いつどこで生き物が発生しているかという情報を科学者と資源管理者に提供し、協力しよう
         crowdsource_identifications: 世界中のユーザーと同定しよう
@@ -4297,6 +4308,8 @@ ja:
         run_a_bioblitz: バイオブリッツ（自然観察会）を開催
         hold_an_event: 参加者ができるだけ多くの種を観察するイベントを開催する。
         works_on_all_your_devices: すべてのデバイスに対応しています
+        install_our_mobile_apps: |
+          モバイルアプリをインストールすれば、携帯電話の電波が届かない場所でも、いつでも観察することができます。
         who_uses_site_name: "誰が%{site_name}を使うのか？"
         what_are_you_waiting_for: 今すぐ始めませんか？
         join_today: 今すぐ新規ユーザー登録を

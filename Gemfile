@@ -1,3 +1,4 @@
+
 source "https://rubygems.org"
 
 ruby "~> 2.6.0"
@@ -107,6 +108,7 @@ gem "rgeo-geojson"
 gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
 gem "terrapin"
+gem "test_after_commit"
 
 group :production do
   gem "newrelic_rpm", "~> 6.2.0"

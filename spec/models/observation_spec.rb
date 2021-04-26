@@ -579,9 +579,6 @@ describe Observation do
     end
 
     describe "identification category" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should be set" do
         t = Taxon.make!
         o = Observation.make!( taxon: t )
@@ -624,6 +621,23 @@ describe Observation do
       o = Observation.make!( zic_time_zone: tz.name )
       expect( o.time_zone ).to eq tz.name
       expect( o.zic_time_zone ).to eq tz.tzinfo.name
+    end
+
+    it "should set time_zone to a Rails time zone when a zic time zone we know about was specified but Rails ignores it" do
+      ignored_time_zones = { "America/Toronto" => "Eastern Time (US & Canada)" }
+      ignored_time_zones.each do |tz_name, rails_name|
+        o = Observation.make!( time_zone: tz_name )
+        expect( o.time_zone ).to eq rails_name
+      end
+    end
+
+    it "should set time_zone to the user's time zone when a zic time zone we don't know about was specified but Rails ignores it" do
+      u = User.make!( time_zone: "Pacific Time (US & Canada)" )
+      iana_tz = "America/Bahia"
+      expect( ActiveSupport::TimeZone[iana_tz] ).not_to be_nil
+      expect( ActiveSupport::TimeZone::MAPPING.invert[iana_tz] ).to be_nil
+      o = Observation.make!( user: u, time_zone: "America/Bahia" )
+      expect( o.time_zone ).to eq u.time_zone
     end
 
   end
@@ -873,11 +887,6 @@ describe Observation do
     end
   
     describe "quality_grade" do
-
-      # some identification deletion callbacks need to happen after the transaction is complete
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-    
       it "should become research when it qualifies" do
         o = Observation.make!(:taxon => Taxon.make!(rank: 'species'), latitude: 1, longitude: 1)
         i = Identification.make!(:observation => o, :taxon => o.taxon)
@@ -1726,8 +1735,6 @@ describe Observation do
     end
     
     describe "has_photos" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should find observations with photos" do
         make_observation_photo(:observation => @pos)
         obs = Observation.has_photos.all
@@ -1949,9 +1956,6 @@ describe Observation do
       place_guess: original_place_guess
     } }
 
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-  
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!( defaults )
       expect( observation.taxon ).to be_threatened
@@ -2690,8 +2694,6 @@ describe Observation do
 
   describe "update_stats_for_observations_of" do
     elastic_models( Identification )
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3669,9 +3671,6 @@ describe Observation do
     end
 
     describe "with a photo" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should not be mappable if its photo is flagged" do
         o = make_research_grade_observation
         op = make_observation_photo(observation: o)

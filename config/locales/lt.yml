@@ -626,6 +626,9 @@ lt:
   #the iNaturalist Android app or Flickr
   application: Programėlė
   applications: Programėlės
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Taikyti
   apply_to_selected: Taikyti pasirinktiems
   apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
   apply_fields: Taikyti laukus
@@ -1264,7 +1267,12 @@ lt:
   disable_comments: Išjungti komentarus
   disable_comments_desc: Neleisk žmonėms pridėti daugiau komentarų
   disagree_: Nesutikti
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Atsijungti
+  disconnect_caps: ATSIJUNGTI
   disconnect_provider: "Atjungti %{provider}"
+  display: Rodymas
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
   distance_traveled_value: "Nukeliautas atstumas: %{distance}m"
   distance_traveled: "Nukeliautas atstumas (m)"
@@ -1367,6 +1375,7 @@ lt:
   email_address_for_comments_and_other_feedback: El. pašto adresai komentarams ir kitiems atsiliepimams.
   email_addresses_to_receive_invites: El. pašto adresai pakvietimams gauti
   email_copyright: "Autorinės teisės &copy; %{x}, visos teisės saugomos"
+  email_notifications: El. pašto pranešimai
   email_settings: El. pašto nustatymai
   embed: 'Įterpti'
   embed_place_widget: Įterpti vietos valdiklį
@@ -1867,6 +1876,7 @@ lt:
     italian: Italų
     japanese: Japonų
     korean: Korėjiečių
+    latvian: Latvių
     lithuanian: Lietuvių
     luxembourgish: Liuksemburgiečių
     maltese: Maltiečių
@@ -1971,6 +1981,7 @@ lt:
     ko: Korėjiečių
     lb: Liuksemburgiečių
     lt: Lietuvių
+    lv: Latvių
     mk: Makedonų
     nb: Norvegų Bukmolas
     nl: Olandų
@@ -2151,7 +2162,7 @@ lt:
   most_comments_and_faves: Daugiausia komentarų ir pamėgimų
   most_observations: Daugiausia stebėjimų
   most_recent_observation_by_date_observed: Naujausias identifikuotinas stebėjimas pagal stebėjimo datą
-  most_species: Dauguma rūšių
+  most_species: Daugiausia rūšių
   most_observed_species: Dažniausiai stebimos rūšys
   most_observed_introduced_species: Dažniausiai stebimos introdukuotos rūšys
   most_observed_threatened_species: Dažniausiai stebimos nykstančios rūšys
@@ -2331,6 +2342,7 @@ lt:
   not_seeing_what_looking_for: Nerandate to, ko ieškote?
   note: Pastaba
   notes: Pastabos
+  notifications: Pranešimai
   notify_me_about_redundant_identifications: Praneškite, kai patvirtinamos identifikacijos
   number_of_observations: Stebėjimų skaičius
   number_of_observers_value: "Stebėtojų skaičius: %{number}"
@@ -3055,20 +3067,46 @@ lt:
     subphylum: Potipis
     superclass: Antklasis
     class: Klasė
+    x_classes:
+      one: Klasė
+      few: Klasės
+      many: Klasės
+      other: Klasės
     subclass: Poklasis
     infraclass: Infraklasė
     superorder: Antbūris
     order: Būrys
+    x_orders:
+      one: Būrys
+      few: Būriai
+      many: Būriai
+      other: Būriai
     suborder: Pobūris
     infraorder: Infrabūrys
+    superfamily: Antšeimis
     family: Šeima
+    x_families:
+      one: Šeima
+      few: Šeimos
+      many: Šeimos
+      other: Šeimos
     subfamily: Pošeimis
     tribe: Triba
     genus: Gentis
+    x_genera:
+      one: Gentis
+      few: Gentys
+      many: Gentys
+      other: Gentys
     subgenus: Pogentis
     complex: Kompleksas
     #Singular
     species: Rūšys
+    x_species:
+      one: Rūšis
+      few: Rūšys
+      many: Rūšys
+      other: Rūšys
     hybrid: Hibridas
     #Singular
     subspecies: Porūšis
@@ -3740,12 +3778,16 @@ lt:
   'true': 'Taip'
   trending: Populiariausia
   trends: Tendencijos
+  #Noun
+  trust: Pasitikėjimas
   trusted: Patikimas
   trusted_project?: Patikimas projektas?
   trust_this_person_with_your_private_coordinates: Patikėti šiam žmogui paslėptas koordinates
   trust_with_private_coordinates: Patikėti paslėptas koordinates
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
+  type: Tipas
   type_place_name: Įveskite vietos pavadinimą
   type_source_name: Įveskite šaltinio pavadinimą
   type_source_title: "Įveskite šaltinio pavadinimą"
@@ -3768,6 +3810,8 @@ lt:
   updates_notification_email_subject: "%{prefix} Atnaujinimai %{date}"
   updates_suspension_email_subject: "%{prefix} Jūsų prenumeratos pristabdytos"
   updating: Atnaujinama...
+  unprocessable: Neapdorojama
+  unpublish: Anuliuoti publikavimą
   #Undo the action of resolving a flag
   unresolve: Neišspręsti
   unsubscribe: Atšaukti prenumeratą
@@ -3786,6 +3830,7 @@ lt:
   upload_a_csv_file: Įkelti CSV failą
   upload_a_csv_file_with_observation: |
     Įkelti CSV failą su stebėjimo duomenimis. Jeigu jūsų duomenys yra skaičiuoklėje ar duomenų bazėje, tai tikriausiai yra geriausias būdas tai padaryti.
+  upload_new_photo: Įkelti naują nuotrauką
   upload_photo: Įkelti nuotrauką
   uploaded_by: Įkėlė
   uploader:
@@ -4217,6 +4262,11 @@ lt:
         default: Vadovų tvarka
         alphaname: Abėcėlės tvarka, pagal mokslinį pavadinimą
         alphadisplay: Abėcėlės tvarka, pagal rodomą pavadinimą
+    lifelists:
+      all_species: Visos rūšys
+      all_observations: Visi stebėjimai
+      filter_by: Filtruoti pagal
+      filtered_by: Filtruota pagal
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Gyvenimo sąrašo pavadinimų keisti negalima
@@ -4289,6 +4339,7 @@ lt:
       project_type: Projekto tipas
       umbrella: Skėtinis
       tracks_multiple_projects: seka daug projektų
+      projects_included: Įtraukti projektai
       confirm_leave:
         keep_observations_label: |
           Palikti savo stebėjimus šiame projekte

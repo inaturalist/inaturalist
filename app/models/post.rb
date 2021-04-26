@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
         UpdateAction.delete_and_purge(conditions)
         return false
       end
-      return !post.draft? && existing_updates_count == 0 && post.published_at_changed?
+      return !post.draft? && existing_updates_count == 0 && post.previous_changes[:published_at]
     },
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'

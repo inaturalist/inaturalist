@@ -39,5 +39,8 @@
         include: { place: { only: [ :id, :name ] } }    |
       ).html_safe };                                    |
       var CONTROLLER_ACTION = "#{controller.class.to_s}::#{action_name}";
+      var CONFIG = { |
+        content_freeze_enabled: #{ !!CONFIG.content_freeze_enabled } |
+      }; |
     - if content_for?(:delayed_js)
       = yield(:delayed_js)

@@ -377,7 +377,7 @@ zh-CN:
     x_fungi:
       other: "%{count} 种真菌"
     x_chromista:
-      other: "%{count} 位科学家"
+      other: "%{count} 种原藻"
     x_protozoa:
       other: "%{count} 种原生动物"
     x_other_animals:
@@ -2629,7 +2629,7 @@ zh-CN:
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
   paste_in_a_comma_separated_list: 粘贴以逗号分隔的国家列表
-  people: 人们
+  people: 成员
   people_following_user: "关注 %{user} 的人"
   people_user_follows: "%{user} 关注的人"
   people_added:
@@ -3255,8 +3255,8 @@ zh-CN:
     infraorder: 下目
     subterclass: 子类
     parvorder: 小目
-    zoosection: 动物园区域
-    zoosubsection: 动物园子区域
+    zoosection: 派
+    zoosubsection: 亚派
     superfamily: 总科
     epifamily: 领科
     family: 科
@@ -4004,6 +4004,7 @@ zh-CN:
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   twitter: 推特
   two_thirds: 第2/3个
+  #As in a category, not as in a keyboard
   type: 类型
   type_authority: 类型机构……
   type_one_name_per_line: 请在每行输入一个名称
@@ -5482,7 +5483,6 @@ zh-CN:
       recent:
         about_recent_users: 关于
       show:
-        take_a_chance_to_review_html: '抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。'
         this_user_was_banned: 此用户已被停用
     user_parents:
       confirm:

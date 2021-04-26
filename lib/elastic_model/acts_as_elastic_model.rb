@@ -100,10 +100,8 @@ module ActsAsElasticModel
           result_ids = scope.order(:id).pluck(:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
-          queue = if result_ids.size > 500
+          queue = if result_ids.size > 50
             "throttled"
-          elsif result_ids.size > 100
-            "slow"
           end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
@@ -133,20 +131,6 @@ module ActsAsElasticModel
           batches_indexed += 1
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
-      end
-
-      def elastic_delete!(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-          begin
-            __elasticsearch__.client.delete_by_query(index: index_name,
-              body: ElasticModel.search_hash(options))
-            __elasticsearch__.refresh_index! if Rails.env.test?
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-            Logstasher.write_exception(e)
-            Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-          end
-        end
       end
 
       def elastic_sync(start_id, end_id, options)
@@ -179,7 +163,7 @@ module ActsAsElasticModel
           ids_only_in_es = results.keys - batch.map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end
@@ -214,7 +198,7 @@ module ActsAsElasticModel
           ).map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end

@@ -225,6 +225,7 @@ ca:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Afegeix un enllaç
   add_a_name: Afegiu un nom
+  add_a_note: Afegeix una nota
   add_a_new_change_group: Afegiu un nou canvi en grup
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Afegeix una llista numerada
@@ -2276,6 +2277,13 @@ ca:
   #Label shown when a date has not been entered
   missing_date: No hi ha data
   mobile: Mòbil
+  moderation_history_for_user_html: Història de moderació de %{user}
+  moderation_history_desc_html: |
+    Això inclou les accions del moderador (com ocultar o mostrar comentaris), notes i marques de qualsevol mena que aquest usuari ha creat i no són tàxons. Això <strong>només és visible als supervisors</strong>, però <strong>els supervisors no poden veure el seu historial</strong>, per tant, les notes sobre una persona mai són visibles per aquesta persona.
+  moderator_note_desc: |
+    Les notes del moderador són registres de les respostes de moderació o dubtes basades en evidències sobre un usuari, com un possible compte fals. No incloeu opinions personals o impressions sobre l'usuari.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderador/Marcador
   mollusks: mol·luscs
   momentjs:
     shortRelativeTime:
@@ -2317,6 +2325,10 @@ ca:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h.mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
@@ -3536,6 +3548,78 @@ ca:
     form: Forma
     infrahybrid: Infrahíbrid
     leaves: Fulles
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: estat de la matèria
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: regne
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: subregne
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: fílum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: subfílum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: superclasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: subclasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infraclasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: superordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: subordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infra-ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterclasse
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosecció
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoosubsecció
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: superfamília
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epifamília
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: família
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: subfamília
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: supertribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: subtribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: gènere
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: gènere híbrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: subgènere
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: secció
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: subsecció
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: complex
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: espècie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: híbrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: subespècie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietat
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahíbrid
   ranges: Rangs
   ray_finned_fishes: peixos ossis
   re_apply_list_rules: Torna a aplicar les regles de la llista
@@ -4317,6 +4401,7 @@ ca:
   try_adding_species_form: Intenta afegir alguna espècie utilitzant el formulari d'aquesta pàgina.
   twitter: Twitter
   two_thirds: dos terços
+  #As in a category, not as in a keyboard
   type: Tipus
   type_authority: Tipus d'autoritat...
   type_one_name_per_line: Escriviu un nom per línia
@@ -4714,7 +4799,7 @@ ca:
   you_are_now_the_admin_for_project_html: |
     <strong>Ara</strong> sou administrador de %{project}
   you_are_now_a_curator_for_project_html: |
-    <strong>Ara</strong> sou revisor de %{project}
+    <strong>Ara</strong> sou supervisor de %{project}
   you_are_now_a_manager_for_project_html: |
     <strong>Ara</strong> sou gestor de %{project}
   you_are_not_editing_any_guides_add_one_html: |
@@ -5141,6 +5226,8 @@ ca:
         about_total_taxa: "Sobre tots els tàxons"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinat
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Camp data
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horitzontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -5552,7 +5639,7 @@ ca:
       collection_and_umbrellas_do_not_support: |
         Els projectes Col·lectius i Paraigües actualment no permeten accedir a coordenades ocultes.
       curator_coordinate_access_desc_html: |
-        Recordeu, <strong>els gestors del projecte poden afegir qualsevol de les vostres observacions al seu projecte</strong> a menys que ho hagueu desmarcat a la vostra <a href=" users="" edit"="">configuració del compte</a>. Marque aquesta casella només si confieu en el gestor del projecte per que pugui veure les coordenades ocultes de qualsevol de les vostres observacions del projecte. Si decidiu no atorgar accés a totes les coordenades ocultes, encara podeu concedir observació a observació.
+        Recordeu, <strong>els supervisors del projecte poden afegir qualsevol de les vostres observacions al seu projecte</strong> a menys que ho hàgiu desmarcat a la vostra <a href=" users="" edit"="">configuració del compte</a>. Marqueu aquesta casella només si confieu en el supervisor del projecte perquè pugui veure les coordenades ocultes de qualsevol de les vostres observacions del projecte. Si decidiu no atorgar accés a totes les coordenades ocultes, encara el podeu concedir observació a observació.
       confirm_leave:
         what_would_you_like: |
           Què us agradaria fer amb les vostres observacions en aquest projecte?
@@ -6232,7 +6319,7 @@ ca:
           href="https://akismet.com/">Akismet</a>, però Akismet no és perfecta, per això si voleu dedicar uns minuts a identificar quins nous usuaris són spammers i quins no, ens ajudareu.
           </p>
       show:
-        take_a_chance_to_review_html: 'Preneu un moment per revisar <a href="%{link}">les nostres directrius</a>.'
+        take_a_moment_to_review_html: 'Preneu-vos un moment per revisar <a href="%{link}">les nostres directrius</a>.'
         this_user_was_banned: Aquest usuari ha estat suspès
         favorites_list_prompt_html: |
           Voleu mostrar alguns dels vostres tàxons preferits?%{link_start_tag}Creeu una llista%{link_end_tag} titulada "Favorits" i es mostraran en aquest espai les vostres addicions més recents.
@@ -6620,6 +6707,14 @@ ca:
       CompleteSet: Conjunt complet
       #Noun
       Flag: Marca
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Acció de Moderador
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Nota del Moderador
       TaxonLink: Enllaç al Tàxon
     attributes:
       assessment:
@@ -6791,6 +6886,10 @@ ca:
           attributes:
             base:
               guide_has_too_many_taxa: "La guia només pot tenir 500 tàxons"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: ha de ser supervisor
         mushroom_observer_import_flow_task:
           attributes:
             base:

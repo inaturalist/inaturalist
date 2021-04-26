@@ -23,9 +23,9 @@ sv:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestämd av'
+    one: '<span class="count">%{count}</span> Determinatör'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestämda av'
+    other: '<span class="count">%{count}</span> Determinatörer'
   x_languages:
     one: "%{count} språk"
     other: "%{count} språk"
@@ -242,6 +242,7 @@ sv:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Lägg till en länk
   add_a_name: Lägg till ett namn
+  add_a_note: Lägg till en anteckning
   add_a_new_change_group: Lägg till en ny ändringsgrupp
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lägg till en numrerad lista
@@ -2009,8 +2010,8 @@ sv:
   leaderboards: Topplistor
   leaderboard_most:
     species: Flest arter i %{time}
-    observations: Flest observationer på %{time}
-    identifications: Flest bestämningar på %{time}
+    observations: Flest observationer i %{time}
+    identifications: Flest bestämningar i %{time}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
@@ -2327,6 +2328,17 @@ sv:
   #Label shown when a date has not been entered
   missing_date: Saknar datum
   mobile: Mobil
+  moderation_history_for_user_html: Modereringshistorik för %{user}
+  moderation_history_desc_html: |
+    Detta inkluderar moderatoråtgärder (t.ex. gömma eller visa kommentarer), anteckningar och flaggor på allt som användaren har skapat annat än taxa. Detta är
+    <strong>endast synligt för förvaltare</strong> och <strong>förvaltare kan inte se
+    sin egen historik</strong>, så anteckningar om en person ska aldrig synas
+    för den personen.
+  moderator_note_desc: |
+    Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
+    oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderator / Flaggare
   mollusks: blötdjur
   momentjs:
     shortRelativeTime:
@@ -2368,6 +2380,10 @@ sv:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Månad
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
@@ -2587,7 +2603,7 @@ sv:
   no_taxonomic_changes_match_those_criteria: Inga taxonomiska ändringar matchar dessa kriterier
   no_users_found_with_those_filters: Inga användare hittades med dessa filter
   no_wikipedia_page_for_taxon: Ingen Wikipedia-sida för detta taxon.
-  noble_curators: "%{site}s förnäma förvaltare"
+  noble_curators: "%{site}s ädla förvaltare"
   non_human?: Icke-mänsklig?
   none: Ingen
   none_found: Hittade ingen
@@ -2916,7 +2932,7 @@ sv:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: lagt till en <strong>bestämning</strong> till en %{observation_link} av %{user_link}
+      with_observation: lade till en <strong>bestämning</strong> till en %{observation_link} av %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -3599,6 +3615,78 @@ sv:
     form: Form
     infrahybrid: Infrahybrid
     leaves: Löv
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: tillståndet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: rike
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: underrike
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: fylum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: underfylum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: överklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: klass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: underklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infraklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: överordning
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: ordning
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: underordning
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infraordning
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvordning
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zooundersektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: överfamilj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epifamilj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: familj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: underfamilj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: övertribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: undertribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: släkte
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: släkteshybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: undersläkte
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: undersektion
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: komplex
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: art
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: underart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahybrid
   ranges: Områden
   ray_finned_fishes: strålfeniga fiskar
   re_apply_list_rules: Tillämpa listreglerna igen
@@ -4243,7 +4331,7 @@ sv:
     Identomaten är ett verktyg för att hjälpa dig att bestämma observationer baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den fyndplatsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en fyndplats, kommer Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
   the_observation_was_already_added_to_that_project: Observationen hade redan lagts till i det projektet.
-  the_people_of_inat: "Personerna på %{site_name}"
+  the_people_of_inat: "Människorna på %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Arterna som listas nedan hittades inte i %{site_name}-databasen.
   the_title_of_the_wikipedia_article_we_use: |
@@ -4388,6 +4476,7 @@ sv:
   try_adding_species_form: Försök att lägga till några arter via formuläret på denna sida.
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Typ
   type_authority: Typauktoritet...
   type_one_name_per_line: Skriv ett namn per rad
@@ -5220,6 +5309,8 @@ sv:
         about_total_taxa: "Om totala antalet taxa"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinerade
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datumfält
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horisontellt
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6418,7 +6509,7 @@ sv:
           href="https://akismet.com/">Akismet</a>, men Akismet är inte perfekt, så om du kan lägga några minuter på att markera nya konton som spammare eller inte spammare, skulle det hjälpa oss långt.
           </p>
       show:
-        take_a_chance_to_review_html: 'Passa på att läsa igenom <a href="%{link}">våra riktlinjer</a>.'
+        take_a_moment_to_review_html: 'Passa på att läsa igenom <a href="%{link}">våra riktlinjer</a>.'
         this_user_was_banned: Denna användare har stängts av
         favorites_list_prompt_html: |
           Vill du visa upp några av dina favorittaxa? %{link_start_tag}Skapa en lista%{link_end_tag} med rubriken "Favoriter" och de senaste tilläggen kommer att visas här.
@@ -6805,6 +6896,14 @@ sv:
       CompleteSet: Fullständig uppsättning
       #Noun
       Flag: Flagga
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Moderators åtgärd
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Moderators anteckning
       TaxonLink: Taxonlänk
     attributes:
       assessment:
@@ -6976,6 +7075,10 @@ sv:
           attributes:
             base:
               guide_has_too_many_taxa: "guide kan bara ha 500 taxa"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: måste vara förvaltare
         mushroom_observer_import_flow_task:
           attributes:
             base:

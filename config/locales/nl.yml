@@ -2357,6 +2357,10 @@ nl:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Maand
   monthly_supporter_since_date_html: |
     <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
@@ -4411,6 +4415,7 @@ nl:
   try_adding_species_form: Probeer enkele soorten toe te voegen met het formulier op deze pagina.
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Type
   type_authority: Type autoriteit...
   type_one_name_per_line: Eén naam per regel
@@ -6447,7 +6452,6 @@ nl:
              spammers of niet, zou dat helpen.
           </p>
       show:
-        take_a_chance_to_review_html: 'Werp eens een blik op <a href="%{link}">onze richtlijnen</a>.'
         this_user_was_banned: Deze gebruiker werd geschorst
         favorites_list_prompt_html: |
           Wil je met je favoriete taxa pronken? %{link_start_tag}Maak een

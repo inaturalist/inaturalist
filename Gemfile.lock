@@ -422,7 +422,7 @@ GEM
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
-    oauth (0.5.4)
+    oauth (0.5.6)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -614,6 +614,8 @@ GEM
     temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
+    test_after_commit (1.2.2)
+      activerecord (>= 3.2, < 5.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -762,6 +764,7 @@ DEPENDENCIES
   soundcloud
   sprockets (~> 2.12.5)
   terrapin
+  test_after_commit
   thin (~> 1.7)
   uglifier
   utf8-cleaner

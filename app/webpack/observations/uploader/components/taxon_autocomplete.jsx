@@ -185,7 +185,7 @@ class TaxonAutocomplete extends React.Component {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
             const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: item.rank,
+              rank: I18n.t( `ranks_lowercase_${_.snakeCase( item.rank )}`, { defaultValue: item.rank } ),
               gender: item.rank
             } );
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
@@ -412,7 +412,15 @@ class TaxonAutocomplete extends React.Component {
     if ( this.cachedVisionResponse ) {
       this.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
-      const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
+      const baseParams = config.testingApiV2
+        ? {
+          fields: {
+            frequency_score: true,
+            vision_score: true,
+            taxon: TAXON_FIELDS
+          }
+        }
+        : {};
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
           .then( r => {
@@ -445,6 +453,9 @@ class TaxonAutocomplete extends React.Component {
     const {
       perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
+    const searchExternalEnabled = searchExternal
+      // eslint-disable-next-line no-undef
+      && ( typeof ( CONFIG ) === "undefined" || !CONFIG.content_freeze_enabled );
     const params = {
       q: request.term,
       per_page: perPage || 10,
@@ -463,7 +474,7 @@ class TaxonAutocomplete extends React.Component {
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers
-      if ( searchExternal !== false ) {
+      if ( searchExternalEnabled !== false ) {
         results.push( {
           type: "search_external",
           title: I18n.t( "search_external_name_providers" )

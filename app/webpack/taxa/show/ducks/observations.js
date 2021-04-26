@@ -221,7 +221,8 @@ export function fetchLastObservation( ) {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       order_by: "observed_on",
       order: "desc",
-      per_page: 1
+      per_page: 1,
+      skip_total_hits: true
     } );
     return ( inatjs.observations.search( params ).then( response => {
       dispatch( setLastObservation( response.results[0] ) );
