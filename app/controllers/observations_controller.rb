@@ -2061,7 +2061,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.update_observation_index
+    review.update_observation_index( wait_for_refresh: params[:wait_for_refresh] )
   end
 
   def stats_adequately_scoped?(search_params = { })

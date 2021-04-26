@@ -3,7 +3,7 @@ class ObservationReview < ActiveRecord::Base
   belongs_to :observation
   belongs_to :user
 
-  def update_observation_index
+  def update_observation_index( options = { } )
     update_script_source = reviewed ? "
       if ( !ctx._source.reviewed_by.contains( params.user_id ) ) {
         ctx._source.reviewed_by.add( params.user_id );
@@ -15,7 +15,7 @@ class ObservationReview < ActiveRecord::Base
     Observation.__elasticsearch__.client.update(
       index: Observation.index_name,
       id: observation_id,
-      refresh: Rails.env.test?,
+      refresh: ( options[:wait_for_refresh] || Rails.env.test? ) ? "wait_for" : false,
       retry_on_conflict: 10,
       body: {
         script: {

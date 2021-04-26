@@ -24,9 +24,10 @@ class Annotations extends React.Component {
       fetchControlledTerms,
       open: isOpen,
       updateSession,
-      config
+      config,
+      collapsible
     } = this.props;
-    if ( this.loggedIn
+    if ( collapsible && this.loggedIn
       // if user closes the panel, set in preferences that they prefer to hide the panel
       // if user opens the panel, set in preferences that they don't prefer to hide the panel
       // only update if the current user setting is different from the new panel state
