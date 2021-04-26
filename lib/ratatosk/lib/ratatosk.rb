@@ -131,7 +131,6 @@ module Ratatosk
             name.taxon = existing_taxon
           end
           
-          name.skip_taxon_id_validation = true
           unless name.valid?
             # If the name was invalid b/c its taxon was saved first, and the
             # taxon made a TaxonName from its own scientific name already,
@@ -153,7 +152,6 @@ module Ratatosk
               name = nil
             end
           end
-          name.skip_taxon_id_validation = nil
           name
         end.compact.uniq
         
