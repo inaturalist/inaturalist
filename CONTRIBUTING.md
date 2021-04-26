@@ -26,6 +26,12 @@ If you've found a problem in the code, please supply detailed reproduction condi
 1. Work on your changes
 1. When you're done, issue a pull request to the master branch in the main repo. iNat staff will review it when we have time
 
+# Reporting Security Issues
+
+You should report security issues that require confidential communication to [help+security@inaturalist.org](mailto:help+security@inaturalist.org). We do not offer any rewards or bounties for reporting security issues. Our heartfelt thanks to everyone who has reported issues, including (but not limited to):
+
+* [Sohail Ahmed](https://www.linkedin.com/in/sohail-ahmed-755776184/)
+
 # Conduct and Behavior
 
 We expect all contributors to abide by the [iNaturalist Community Guidelines](https://www.inaturalist.org/pages/community+guidelines), or at least the parts that aren't specific to the use of iNaturailst itself.
