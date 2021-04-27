@@ -909,6 +909,7 @@ ja:
   csv_should_not_contain_a_header_row: ヘッダー行のないCSVでお願いします
   cumulative_ids: "累積ID:%{total} 件中%{count} 件"
   curate_observations: 観察記録を管理
+  curate_taxa: 分類群を管理
   curating: キュレーター管理中
   curation: キュレーター管理
   curator: キュレーター管理者
@@ -3105,7 +3106,14 @@ ja:
   save_and_continue: "保存し、続行"
   save_and_add_taxa: "保存し、種を追加する"
   save_changes: 変更を保存
+  save_comment: コメントを保存
   save_draft: 下書きを保存
+  save_fields: フィールドを保存
+  save_flag: フラグを保存
+  save_identification: 同定を保存
+  save_observation: 観察記録を保存
+  save_photos: 写真を保存
+  save_place: 場所を保存
   save_settings_caps: 設定を保存
   saved: 保存しました
   saving: "保存中..."
@@ -3751,9 +3759,15 @@ ja:
   view_observations_of_this_taxon_by: この分類群の観察記録を見る
   view_on: 次のサイトで表示：
   view_on_flickr: Flickrで表示
+  view_original: "オリジナルを表示"
   view_original_by: "%{photo}で%{by}のオリジナルを表示"
   view_original_ccD_photo: "CCライセンスが与えられた%{owner}のオリジナル画像を表示"
+  view_place: 場所を表示
+  view_post: 投稿を表示
   view_projects_from_place: "%{place}のプロジェクトを表示"
+  view_stats: 統計データを表示
+  view_taxon_changes: 分類群変更履歴を表示
+  view_taxon_page: 分類群ページを表示
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
   view_taxononomy_details_for_taxon: "%{taxon} の分類の詳細を表示"
   view_the_observation: 観察記録を表示
