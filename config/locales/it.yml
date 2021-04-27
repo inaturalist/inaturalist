@@ -1051,6 +1051,8 @@ it:
   csv_should_not_contain_a_header_row: Il CSV non deve contenere la riga di intestazione
   cumulative_ids: "ID comulative: %{count} di %{total}"
   curate_observations: Organizza osservazioni
+  curate_taxa: Organizza Taxa
+  curate_user: Gestisci Utente
   curating: Amministrazione in corso
   curation: Amministrazione
   curator: Curatore
@@ -3780,8 +3782,17 @@ it:
   save_and_continue: "Salva &amp; continua..."
   save_and_add_taxa: "Salva ed inizia ad aggiungere le specie"
   save_changes: Salva le modifiche
+  save_comment: Salva il Commento
   save_draft: Salva la Bozza
+  save_fields: Salva i Campi
+  save_flag: Salva il Contrassegno
+  save_guide_taxon: Salva la Guida del Taxon
+  save_identification: Salva l'Identificazione
+  save_observation: Salva l'Osservazione
+  save_photos: Salva le Foto
+  save_place: Salva il Luogo
   save_settings_caps: SALVA IMPOSTAZIONI
+  save_trip: Salva il Viaggio
   saved: Salvato
   saved_at_time: Salvato alle %{time}
   saving: "Salvataggio..."
@@ -4626,11 +4637,19 @@ it:
   view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
   view_on: Visualizza su
   view_on_flickr: Visualizza su Flickr
+  view_original: "Mostra l'Originale"
   view_original_by: "Visualizza l'originale di %{by} su %{photo}"
   view_original_ccD_photo: "Visualizza la foto originale sotto licenza CC di %{owner}"
   view_photos_ranges_observations_more: "Visualizza foto, areali di specie, osservazioni %{site_name}, e altro! Abbiamo raccolto informazioni da fonti diverse e le abbiamo condensate in un breve riassunto di ogni specie per ogni luogo."
+  view_place: Visualizza Luogo
+  view_post: Visualizza il Post
   view_projects_from_place: "Visualizza i progetti in %{place}"
+  view_sample: Visualizza Esempio
+  view_stats: Vedi Statistiche
+  view_taxon_change: Visualizza la Modifica Tassonomica
+  view_taxon_changes: Visualizza le Modifiche Tassonomiche
   view_taxon_framework_relationship: Visualizza relazioni del quadro del taxon
+  view_taxon_page: Visualizza la Pagina del Taxon
   view_taxon_page_for_this_x: "Visualizza la pagina per questo %{x}"
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
   view_the: "Visualizza la %{action}&#59; %{link}"
