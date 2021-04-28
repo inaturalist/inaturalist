@@ -181,19 +181,19 @@
     </div>
   <% end -%>
   
-  <div class="clear meta feeds">
-    <strong><%= t :download %></strong>
-    <%= link_to "CSV", list_path(@list, :format => 'csv'), 
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
-      :rel => "nofollow" %>
-      
-    <%= link_to t(:taxonomic) + " CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => 
-        t(:wait_file_generation),
-      :rel => "nofollow" %>
-  </div>
+  <% if logged_in? %>
+    <div class="clear meta feeds">
+      <strong><%= t :download %></strong>
+      <%= link_to "CSV", list_path(@list, :format => 'csv'),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        :rel => "nofollow" %>
+      <%= link_to t(:taxonomic) + " CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+        :class => "delayedlink csvlink", 
+        "data-delayed-link-msg" => t(:wait_file_generation),
+        :rel => "nofollow" %>
+    </div>
+  <% end %>
   <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 

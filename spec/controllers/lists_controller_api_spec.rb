@@ -3,6 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ListsController, "show" do
   elastic_models( Observation )
   let(:lt) { ListedTaxon.make! }
+  before do
+    sign_in User.make!
+  end
   it "should include a list" do
     get :show, :format => :json, :id => lt.list_id
     json = JSON.parse(response.body)

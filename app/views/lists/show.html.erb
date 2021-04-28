@@ -150,21 +150,22 @@
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
 
-  <div class="clear meta feeds">
-    <%= separator %>
-  <strong><%=t :download %></strong>
-    <%= link_to t(:csv), list_path(@list, :format => 'csv'),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file),
-      :rel => "nofollow" %>
-
-    <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file_is_generated),
-      :rel => "nofollow" %>
-  </div>
+  <% if logged_in? %>
+    <div class="clear meta feeds">
+      <%= separator %>
+      <strong><%=t :download %></strong>
+      <%= link_to t(:csv), list_path(@list, :format => 'csv'),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file),
+        :rel => "nofollow" %>
+      <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file_is_generated),
+        :rel => "nofollow" %>
+    </div>
+  <% end %>
   <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 
