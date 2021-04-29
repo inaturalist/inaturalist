@@ -30,7 +30,7 @@ class ObservationPhotosController < ApplicationController
         first
     end
     @observation_photo ||= ObservationPhoto.new
-    @observation_photo.assign_attributes(params[:observation_photo] || {})
+    @observation_photo.assign_attributes( allowed_params )
     unless @observation_photo.observation
       respond_to do |format|
         format.json do
@@ -99,7 +99,7 @@ class ObservationPhotosController < ApplicationController
       @observation_photo.photo = @photo
     end
     respond_to do |format|
-      if @observation_photo.update_attributes(params[:observation_photo])
+      if @observation_photo.update_attributes( allowed_params )
         @observation_photo.observation.elastic_index!
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
@@ -146,5 +146,13 @@ class ObservationPhotosController < ApplicationController
     end
     true
   end
-  true
+
+  def allowed_params
+    params.require(:observation_photo).permit(
+      :observation_id,
+      :photo_id,
+      :position,
+      :uuid
+    )
+  end
 end

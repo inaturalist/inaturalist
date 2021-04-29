@@ -38,6 +38,16 @@ shared_examples_for "an ObservationPhotosController" do
       expect( observation.photos ).to be_blank
     end
 
+    it "should ignore a nested photo object" do
+      post :create, format: :json, observation_photo: {
+        observation_id: observation.id,
+        photo: { license_code: "CC0" }
+      }, file: file
+      expect( response.status ).to eq 200
+      observation.reload
+      expect( observation.photos.last.license_code ).not_to eq "CC0"
+    end
+
     describe "observation" do
       elastic_models( Identification )
 
