@@ -134,10 +134,10 @@ class SubscriptionsController < ApplicationController
     end
     return render_404 unless resource_type
     klass = Object.const_get( resource_type )
-    @resource = klass.find_by_id( params[:resource_id] ) rescue nil
     if klass.column_names.include?( "uuid" )
       @resource ||= klass.find_by_uuid( params[:resource_id] ) rescue nil
     end
+    @resource ||= klass.find_by_id( params[:resource_id] ) rescue nil
     render_404 unless @resource
   end
   
