@@ -1890,6 +1890,16 @@ ja:
   message_deleted: メッセージを削除しました
   message_from_user_on_date: '%{user}さんから %{date} に'
   messages: メッセージ
+  messages_new_correspondent_it_looks_like: |
+    この方とは一度もやり取りをしたことがないようですので、以下の点に注意してください。
+  messages_new_correspondent_specimens: |
+    標本や非公開データの要求には注意が必要です。依頼者が誰であるかを確認するようにし、標本を要求している場合は許可証を見せてもらうようにしましょう。
+  messages_new_correspondent_personal: |
+    信頼できない人に自分の個人情報を開示しないようにしましょう。
+  messages_new_correspondent_actions_html: |
+    この人物が<a href="%{tos_url}"
+    target="_blank">利用規約</a>に違反しているか、<a
+    href="%{guidelines_url}" target="_blank">コミュニティガイドライン</a>に従わない行為をしている疑いがありましたら、このメッセージの下部からフラグを立ててください。
   misidentifications: 誤同定
   misleading_or_illegal_content_html: |
     紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など
