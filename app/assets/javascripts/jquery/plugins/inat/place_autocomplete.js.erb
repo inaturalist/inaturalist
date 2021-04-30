@@ -1,15 +1,16 @@
-$.fn.placeAutocomplete = function( options ) {
-  options = options || { };
-  if( !options.idEl ) { return; }
+/* global _ */
+/* global iNatModels */
+$.fn.placeAutocomplete = function ( opts ) {
+  var options = opts || { };
+  if ( !options.idEl ) { return; }
   var field = this;
 
-  field.template = function( item ) {
+  field.template = function ( item ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-    labelDiv.append( $( "<span/>" ).addClass( "title" ).
-      append( item.title ));
+    labelDiv.append( $( "<span/>" ).addClass( "title" ).append( item.title ) );
     var type = item.placeTypeLabel( );
-    if( type ) {
+    if ( type ) {
       labelDiv.append( $( "<span/>" ).addClass( "type" ).append( type ) );
     }
     wrapperDiv.append( labelDiv );
@@ -18,9 +19,9 @@ $.fn.placeAutocomplete = function( options ) {
 
   field.genericAutocomplete( _.extend( options, {
     extraClass: "place",
-    source: function( request, response ) {
-      $.ajax({
-      url: "<%= CONFIG.node_api_url %>/places/autocomplete",
+    source: function ( request, response ) {
+      $.ajax( {
+        url: "<%= CONFIG.node_api_url %>/places/autocomplete",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "placeAutocompleteCallback",
@@ -30,14 +31,13 @@ $.fn.placeAutocomplete = function( options ) {
           geo: true,
           order_by: "area"
         },
-        success: function( data ) {
-          var results = data.results || [ ];
-          response( _.map( results, function( r ) {
-            r.title = r.display_name;
-            return new iNatModels.Place( r );
-          }));
+        success: function ( data ) {
+          var results = data.results || [];
+          response( _.map( results, function ( r ) {
+            return new iNatModels.Place( Object.assign( {}, r, { title: r.display_name } ) );
+          } ) );
         }
-      });
+      } );
     }
-  }));
+  } ) );
 };
