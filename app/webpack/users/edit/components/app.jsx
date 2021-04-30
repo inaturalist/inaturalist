@@ -92,6 +92,11 @@ class App extends Component {
             { userSettings[section] }
           </div>
         </div>
+        <div className="row vertical-align">
+          <div className="col-xs-12">
+            <SaveButtonContainer />
+          </div>
+        </div>
         <RevokeAccessModalContainer />
         <ThirdPartyTrackingModalContainer />
         <CreativeCommonsLicensingModalContainer />
