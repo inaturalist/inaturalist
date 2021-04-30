@@ -236,7 +236,7 @@ class MapDetails extends React.Component {
               <div>
                 <h4>{ I18n.t( "why_you_can_see_the_coordinates" ) }</h4>
                 <ul className="plain">
-                  { currentUser && currentUser.id === observation.user.id && (
+                  { currentUser && observation.user && currentUser.id === observation.user.id && (
                     <li>
                       <strong>
                         <i className="icon-person" />

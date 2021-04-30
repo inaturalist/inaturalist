@@ -94,6 +94,7 @@ function agreeWithCurrentObservation( ) {
       !currentObservation
       || !currentObservation.id
       || !currentObservation.taxon
+      || !currentObservation.user
       || currentObservation.user.id === currentUser.id
       || ( currentObservation.taxon && !currentObservation.taxon.is_active )
       || existingIdent

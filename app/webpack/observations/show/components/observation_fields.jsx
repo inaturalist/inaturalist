@@ -9,8 +9,11 @@ class ObservationFields extends React.Component {
   constructor( props ) {
     super( props );
     const { config, observation } = props;
-    this.observerPrefersFieldsBy = ( observation.user.preferences
-      && observation.user.preferences.prefers_observation_fields_by )
+    this.observerPrefersFieldsBy = (
+      observation.user
+      && observation.user.preferences
+      && observation.user.preferences.prefers_observation_fields_by
+    )
       ? observation.user.preferences.prefers_observation_fields_by
       : "anyone";
     const currentUser = config && config.currentUser;
@@ -44,7 +47,7 @@ class ObservationFields extends React.Component {
     if ( loggedIn ) {
       let disabled = false;
       let placeholder;
-      const viewerIsObserver = config.currentUser.id === observation.user.id;
+      const viewerIsObserver = observation.user && config.currentUser.id === observation.user.id;
       const viewerIsCurator = config.currentUser.roles.indexOf( "curator" ) >= 0;
       if ( this.observerPrefersFieldsBy === "observer" && !viewerIsObserver ) {
         disabled = true;

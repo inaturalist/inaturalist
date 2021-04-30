@@ -8,7 +8,12 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 class ObservationFieldValue extends React.Component {
   render( ) {
     const { ofv, config, observation } = this.props;
-    if ( !observation || !ofv || !ofv.observation_field ) { return ( <div /> ); }
+    if (
+      !observation
+      || !ofv
+      || !ofv.observation_field
+      || !observation.user
+    ) { return ( <div /> ); }
     const currentUser = config && config.currentUser;
     const pref = observation.user.preferences.prefers_observation_fields_by;
     const viewerIsCurator = currentUser && currentUser.roles && (
