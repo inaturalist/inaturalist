@@ -755,6 +755,7 @@ ja:
   community_id_heading: コミュニティ分類群
   community_id_at_species_or_lower?: 種以下の階級によるコミュニティ分類の有無は？
   community_id_at_species_level_or_lower: 種以下の階級によるコミュニティ分類
+  community_id_is_precise: コミュニティ分類群は正確である
   community_moderation_settings: コミュニティモデレーション設定
   community_supported_id: コミュニティが支持する分類ですか？
   compare: 比較
@@ -1937,6 +1938,7 @@ ja:
   more: その他
   more_fields: 追加フィールド
   more_filters: その他のフィルター
+  more_from_x: '%{x}さんの観察記録'
   more_import_options: その他のインポート設定
   more_info: 詳細情報
   more_info_title: 詳細情報
@@ -4127,6 +4129,8 @@ ja:
         ダッシュボードと毎日の更新メールで、このプロジェクトの更新情報を受け取ることができます。
     shared:
       spam:
+        message_for_owner_and_curators_html: |
+          これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、キュレーター管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{email}">ご連絡</a>ください。
         this_has_been_flagged_as_spam: スパムとしてフラグ付けられました
       not_found:
         sorry_that_doesnt_exist: 申し訳ありません。それは存在しません。
