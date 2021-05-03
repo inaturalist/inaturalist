@@ -736,6 +736,7 @@ ja:
   comment_deleted: コメント削除されました
   comments: コメント
   comments_by_me: 自分のコメント
+  comments_have_been_disabled: コメントが無効になっています
   comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
@@ -1046,10 +1047,13 @@ ja:
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
   disable: 無効
+  disable_comments: コメントの無効化
+  disable_comments_desc: 新しいコメントを追加できないようにする
   disagree_: 同意しない
   disconnect_provider: "%{provider}とリンク解除"
   display: 表示
   display_link_to_checklist: プロジェクトページにプロジェクトリストのリンクを表示
+  display_monthly_supporter_badge: プロフィールにマンスリーサポーターバッジを表示する
   display_name: 表示名
   display_name_description: 著作権表示のためだけでなく、プロフィールにも表示される名前です
   distance_traveled_value: "移動距離：%{distance} m"
@@ -2851,7 +2855,7 @@ ja:
   #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} によるジャーナル</a>からの投稿
   #Post is a noun
-  post_from_your_journal_html: <a href="%{url}">貴誌</a>からの投稿
+  post_from_your_journal_html: <a href="%{url}">あなたのジャーナル</a>からの投稿
   post_published: 投稿されました！
   posted_by: 投稿者
   posted_on: 投稿日
