@@ -30,7 +30,9 @@ class ObservationPhotosController < ApplicationController
         first
     end
     @observation_photo ||= ObservationPhoto.new
-    @observation_photo.assign_attributes( allowed_params )
+    observation_photo_params = allowed_params.to_h.symbolize_keys
+    photo_params = observation_photo_params.delete(:photo) || {}
+    @observation_photo.assign_attributes( observation_photo_params )
     unless @observation_photo.observation
       respond_to do |format|
         format.json do
@@ -47,7 +49,11 @@ class ObservationPhotosController < ApplicationController
       return
     end
     if params[:file]
-      @photo = LocalPhoto.new(:file => params[:file], :user => current_user, :mobile => is_mobile_app?)
+      @photo = LocalPhoto.new( photo_params.merge(
+        file: params[:file],
+        user: current_user,
+        mobile: is_mobile_app?
+      ) )
       @photo.save
       @observation_photo.photo = @photo
     end
@@ -151,6 +157,7 @@ class ObservationPhotosController < ApplicationController
     params.require(:observation_photo).permit(
       :observation_id,
       :photo_id,
+      { photo: [:license_code] },
       :position,
       :uuid
     )
