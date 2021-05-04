@@ -852,6 +852,7 @@ zh-TW:
   connect_to_provider: "連接至%{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 已連接帳號
+  connected_accounts_titlecase: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次連結 Flickr 帳號以授權寫入權限
   connecting_to_facebook: "連接至臉書..."
@@ -873,6 +874,7 @@ zh-TW:
   contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: 内容
+  content_and_display: 內容 & 顯示
   content_author: 內容作者
   content_hidden: 內容隱藏
   content_hidden_by_user_on_date_because_reason_html: |
@@ -916,11 +918,17 @@ zh-TW:
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
+    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
     cannot_be_determined: 從提供的證據當中無法判定
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
   coordinates: 座標
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: 僅有完整座標的
   copy: 複製
   copy_and_paste_the_following_code_to: 複製並貼上以下代碼來內嵌此評估至其它網頁。
   copy_and_paste_this_into_your_own_html: 複製貼上至您自己的 HTML。
@@ -980,11 +988,17 @@ zh-TW:
   csv_should_not_contain_a_header_row: CSV 不應該包含標題列
   cumulative_ids: "累計鑑定：%{count} 個，全部 %{total} 個"
   curate_observations: 策展觀察
+  curate_taxa: 策展物種分類
+  curate_user: 策展用戶
   curating: 策展中
   curation: 策展
   curator: 策展人
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: 為什麼您想要成為策展人？
   #Header
   curator_application_what_curators_can_do: 策展人能做什麼
+  #Title of a page where people apply to become a curator
+  curator_application_title: 策展人申請
   curators_changed_for_x_html: "%{x} 的策展人已更改"
   curators: 策展人
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
@@ -996,6 +1010,7 @@ zh-TW:
   customize_location: 自訂位置
   darr_apply_darr: "&darr; 申請 &darr;"
   daily_users: 每日使用者
+  danger_zone: 危險操作區
   dashboard: 控制面板
   data_deficient: 資料不足
   data_quality: 資料品質
@@ -1004,6 +1019,7 @@ zh-TW:
   datatype: 資料類型
   date_: 日期
   date_added: 加入日期
+  date_authorized: 授權的日期
   date_created: 日期已創建
   date_format:
     date_long:
@@ -1061,6 +1077,9 @@ zh-TW:
   default_invite_comment: "很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}"
   default_observation_license: 預設觀察許可協議
   default_photo_license: 預設照片許可權
+  default_search_place: 預設搜尋地點
+  default_search_place_description: |
+    這將會是您在探索和鑑定中預設的搜尋地點。
   default_sound_license: 預設聲音許可權
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
   defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
@@ -1131,6 +1150,11 @@ zh-TW:
     如果您沒有要求重設密碼，請忽略這封 email。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您點擊上面網址和建立一個新密碼之前，您的密碼不會更動。
+  devise_unlock_instructions_your_account_has_been_locked: |
+    因為超過一定數量的登入嘗試失敗，您的帳號已被鎖定。
+  devise_unlock_instructions_click_the_link: |
+    點選以下連結來解鎖您的帳號
+  devise_unlock_instructions_unlock: 解鎖您的帳號
   discoveries: 發現
   did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: '您是指'
@@ -1139,8 +1163,16 @@ zh-TW:
   disable_comments: 關閉評論
   disable_comments_desc: 防止其他人新增評論
   disagree_: 不同意
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: 取消連結
+  disconnect_caps: 取消連結
   disconnect_provider: "中斷連接%{provider}"
+  display: 顯示
   display_link_to_checklist: 顯示連至來自於專案頁面之專案清單的連結
+  display_monthly_supporter_badge: 在我的個人檔案上顯示每月贊助者徽章
+  display_name: 顯示名稱
+  display_name_description: 這是在您個人簡介中顯示的名稱，也是版權宣告中的名稱
   distance_traveled_value: "行程距離：%{distance} m"
   distance_traveled: "行程距離（m）"
   documentation_for_developers_html: <a href="/pages/developers">開發者</a>文件
@@ -1184,6 +1216,7 @@ zh-TW:
   duplicate_verb: 重複
   duration_value: "持續時間：%{duration} 分"
   each_place_displays_all_species_inat_knows: "任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在 %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來篩選物種。"
+  earliest_added: 最早加入的
   edit: 編輯
   edit_a_batch_of_observations: 編輯批量觀察
   edit_account_settings_and_profile: "編輯帳號設定&amp;個人檔案"
@@ -1243,6 +1276,7 @@ zh-TW:
   either_that_user_doesnt_exist_or: "不存在該用戶，或著是您已有在關注。"
   eligible_for_research_grade: 符合研究等級
   email: 電子郵件
+  email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
   email_addresses_description: 以逗號分隔的電子郵件地址，每 30 天限制 60 個。
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
   email_addresses_to_receive_invites: 接收邀請用的電子郵件地址
@@ -1302,6 +1336,9 @@ zh-TW:
   export_observations: 匯出觀察
   export_with_private_coordinates: 以隱藏座標匯出
   exporting: "匯出中..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: 外部應用程式
   external_taxon_including_children: 外部分類（包含子項）
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
@@ -1317,6 +1354,7 @@ zh-TW:
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
   failed_to_save_record_with_errors: "儲存紀錄失敗：%{errors}"
+  failed_to_unlink_your_account: 取消連結您的帳號失敗
   'false': '否'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 最愛
@@ -1476,6 +1514,7 @@ zh-TW:
   full_screen: 全螢幕
   fungi:
     other: 個真菌
+  gbif: 全球生物多樣性資訊機構(GBIF)
   gbif_occurrences: GBIF 事件
   generate_taxonomic_tags_for_flickr: 為您的 Flickr 照片產生物種分類標籤。
   generate_widget: 產生小工具
@@ -1549,6 +1588,7 @@ zh-TW:
   help_support_inaturalist: "協助支持 iNaturalist"
   help_translate!: 協助翻譯
   here_are_3_examples: 此為 3 個良好格式資料的範例
+  here_are_our_top_suggestions: 以下是我們最佳的建議
   here_are_our_top_species_suggestions: 這是我們的最佳物種建議
   hex_color_eg: 16 進位色彩碼，例如：65644F
   hi: 嗨，
@@ -1558,6 +1598,9 @@ zh-TW:
   hide_content: 隱藏內容
   hide_desc: |
     隱藏的內容將無法公開檢視，但人們仍可查看一些被隱藏的事物，且網站策展人與內容作者仍可查看隱藏內容。通常這僅會套用到編寫的內容，例如假設您隱藏了鑑定內容，鑑定雖仍可見；但鑑定者的備註會被隱藏。一旦被隱藏後，您會無法取消掉此狀況，僅有網站人員可以取消隱藏內容。因此請小心並僅用在不適當的內容上。
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: 隱藏「沒有註記」
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
@@ -1640,6 +1683,7 @@ zh-TW:
   inbox: 收件匣
   include_places: 包含的地點
   include_projects: 包含的專案
+  include_suggestions_not_seen_nearby: 包含附近沒見過的鑑定建議
   include_taxa: 包含的分類群
   include_users: 包含的使用者
   including: 包含
@@ -1655,6 +1699,8 @@ zh-TW:
   inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
   inaturalist_activity_notifications: "%{site_name} 活動通知"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist 應用程式"
   inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
   inaturalist_places: "%{site_name} 地點"
   info: 資訊
@@ -1728,6 +1774,8 @@ zh-TW:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: 鎖定縮放等級
+  language_slash_locale: 語言/在地化
+  language_slash_locale_description: 這將會依據您的地區來設定您在 iNaturalist 上的語言和日期格式偏好。當此頁更新的時候，更動才會生效。
   language_slash_type: 語言/類型
   #Large photo size
   large: 大
@@ -1754,7 +1802,9 @@ zh-TW:
   leading: 優先
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
+  learn_about_third_party_tracking: 了解更多關於第三方追蹤的細節
   learn_more: 了解更多
+  learn_more_on_the_blog: 在部落格上了解更多詳情
   learn_more_raquo: "了解更多&raquo;"
   learn_what_these_licenses_mean: 了解這些許可協議的含義
   least_concern: 最不重要
@@ -1796,6 +1846,7 @@ zh-TW:
     italian: 義大利語
     japanese: 日語
     korean: 韓語
+    latvian: 拉脫維亞文
     lithuanian: 立陶宛語
     luxembourgish: 盧森堡語
     maltese: 馬爾他語
@@ -1846,6 +1897,8 @@ zh-TW:
   linkedin: LinkedIn
   list: 清單
   list_deleted: 列表已刪除。
+  list_reloaded_from_observations: 從觀察記錄中重新載入的列表
+  list_rules_reapplied: 列表規則已重新套用
   list_saved: 清單已儲存。
   list_tooltip: 顯示清單檢視
   list_updated: 列表已更新！
@@ -1904,6 +1957,7 @@ zh-TW:
     ko: 韓語
     lb: 盧森堡語
     lt: 立陶宛語
+    lv: 拉脫維亞文
     mk: 馬其頓語
     nb: 書面挪威文 (挪威博克莫爾語)
     nl: 荷蘭語
@@ -1916,6 +1970,7 @@ zh-TW:
     sq: 阿爾巴尼亞
     sv: 瑞典語
     tr: 土耳其語
+    uk: 烏克蘭文
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -1929,6 +1984,10 @@ zh-TW:
   location_specified: 位置指定
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
   log_in: 登入
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">登入</a>或是<a href="/signup">註冊</a>以新增回應。
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">登入</a>或是<a href="/signup">註冊</a>以新增鑑定。
   log_scale_label: 日誌
   login_slash_username: 登入 / 用戶名稱
   logo:
@@ -3216,6 +3275,42 @@ zh-TW:
     form: 型
     infrahybrid: 種內雜種
     leaves: 葉
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: 亞綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: 下綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: 超目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: 目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: 亞目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: 下目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: 準綱
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: 小目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: 派
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: 亞派
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: 總科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: 領科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: 科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: 亞科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: 超族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: 族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: 亞族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: 屬
   ranges: 範圍
   ray_finned_fishes: 輻鰭魚類
   re_apply_list_rules: 重新套用清單規則
@@ -3358,8 +3453,17 @@ zh-TW:
   save_and_continue: "儲存&amp;繼續..."
   save_and_add_taxa: "儲存並開始添加物種"
   save_changes: 儲存變更
+  save_comment: 儲存評論
   save_draft: 儲存草稿
+  save_fields: 儲存欄位
+  save_flag: 儲存標記
+  save_guide_taxon: 儲存指南物種分類
+  save_identification: 儲存鑑定
+  save_observation: 儲存觀察
+  save_photos: 儲存照片
+  save_place: 儲存地點
   save_settings_caps: 儲存設定
+  save_trip: 儲存行程
   saved: 已儲存
   saving: "儲存中..."
   saving_num_of_count_observations:
@@ -4095,6 +4199,7 @@ zh-TW:
     觀察者選擇以他所有觀察的隱藏座標來信任您
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> 寫道，
   username: 使用者名稱
+  username_description: 這是您在 iNaturalist 上用來登入，還有讓其他使用者辨識您的使用者名稱
   username_or_email: 用戶名稱或電子郵件
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
@@ -4151,11 +4256,19 @@ zh-TW:
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_on: 檢視在
   view_on_flickr: 在 Flickr 上檢視
+  view_original: "檢視原始"
   view_original_by: "查看由 %{by} 在 %{photo} 上的原始版"
   view_original_ccD_photo: "檢視由 %{owner} 創作的原始版創用CC照片"
   view_photos_ranges_observations_more: "檢視照片、物種範圍、%{site_name} 觀察以及其它更多內容！我們收集了來自多樣不同來源的訊息，並將這些結合成在各地點裡各不同物種的快速摘要。"
+  view_place: 檢視地點
+  view_post: 檢視發佈文章
   view_projects_from_place: "檢視來自於%{place}的專案"
+  view_sample: 檢視範例
+  view_stats: 檢視統計內容
+  view_taxon_change: 檢視物種分類變更
+  view_taxon_changes: 檢視物種分類變更
   view_taxon_framework_relationship: 檢視物種分類框架關聯
+  view_taxon_page: 檢視物種分類頁面
   view_taxon_page_for_this_x: "檢視用於%{x}的物種分類頁面"
   view_taxononomy_details_for_taxon: "檢視%{taxon}的分類詳情"
   view_the: "查看%{action}&#59; %{link}"
@@ -4570,6 +4683,8 @@ zh-TW:
       restrict_to_taxon: 限定在 %{taxon}
       restrict_to_taxa_observed_in_place: 限定於 %{place} 所觀察到的分類群
       reset_place_filter: 重設地點之篩選條件
+      all_observations_in_this_taxon: 在此分類群中的所有觀察記錄
+      observations_of_exactly_this_taxon: 精確在此分類群的觀察記錄
       focus_tree_on_this_taxon: 聚焦在此分類群的分類樹上
       expand_all_nodes_in_this_branch: 展開在此分支中的所有節點
       collapse_this_branch: 收起此分支
