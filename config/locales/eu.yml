@@ -835,6 +835,7 @@ eu:
   csv_should_not_contain_a_header_row: CSVk ez luke datuen goibururik izan behar
   cumulative_ids: "ID akumulatuak: %{total}(e)tik %{count}"
   curate_observations: Oharrak administratu
+  curate_taxa: Taxonak administratu
   curating: Administratzen
   curation: administrazioa
   curator: Administratzailea
@@ -1998,7 +1999,14 @@ eu:
   save_and_add_another: Gorde eta beste bat gehitu
   save_and_continue: "Gorde & jarraitu..."
   save_changes: Aldaketak gorde
+  save_comment: Aipamena gorde
   save_draft: Zirriborroa gorde
+  save_fields: Eremuak gorde
+  save_flag: Txostena gorde
+  save_identification: Identifikazioa gorde
+  save_observation: Behaketa gorde
+  save_photos: Argazkiak gorde
+  save_place: Lekua gorde
   saved: Gordeta
   saving: "Gordetzen..."
   saving_verb: Gordetzen
@@ -2393,9 +2401,15 @@ eu:
   view_observations_of_this_taxon_by: Taxon honetako oharrak iksui
   view_on: 'Hemen ikusi:'
   view_on_flickr: Flickr-en ikusi
+  view_original: "Jatorrizkoa ikusi"
   view_original_by: "%{by}-(r)en jatorrizkoa %{photo}-(e)an ikusi"
   view_original_ccD_photo: "%{owner}-(e)k Flickr-en kopiatutako jatorrizko argazkia ikusi"
   view_photos_ranges_observations_more: "Begiratu argazkiei, espezieen banaketei, %{site_name} behaketei eta are gehiago! Iturri ugaritako informazioa bildu eta konbinatu dugu, leku bakoitzeko espezieen laburpen txikia eskaintzeko."
+  view_place: Lekua ikusi
+  view_post: Sarrera ikusi
+  view_stats: Ekarpenak ikusi
+  view_taxon_changes: Taxonaren aldaketak ikusi
+  view_taxon_page: Taxonaren orrialdea ikusi
   view_taxon_page_for_this_x: "%{x} honetarako taxonaren orrialdea ikusi"
   view_taxononomy_details_for_taxon: "Ikusi %{taxon} taxoiaren xehetasun taxonomikoak"
   view_the: "%{action} ikusi"
