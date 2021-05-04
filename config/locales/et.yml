@@ -836,6 +836,8 @@ et:
   csv_should_not_contain_a_header_row: CSV ei tohiks sisaldada päiserida
   cumulative_ids: "Kokku määratlusi: %{count}/%{total}"
   curate_observations: Kureeri vaatlusi
+  curate_taxa: Kureeri taksoneid
+  curate_user: Kureeri kasutajat
   curating: Kuraator
   curation: Kureerimine
   curator: Kuraator
@@ -2760,7 +2762,16 @@ et:
   save_and_continue: "Salvesta ja jätka..."
   save_and_add_taxa: "Salvesta ja hakka liike lisama"
   save_changes: Salvesta muudatused
+  save_comment: Salvesta kommentaar
   save_draft: Salvesta mustand
+  save_fields: Salvesta väljad
+  save_flag: Salvesta märkus
+  save_guide_taxon: Salvesta näidistakson
+  save_identification: Salvesta määratlus
+  save_observation: Salvesta vaatlus
+  save_photos: Salvesta fotod
+  save_place: Salvesta koht
+  save_trip: Salvesta reis
   saved: Salvestatud
   saving: "Salvestan..."
   saving_num_of_count_observations:
@@ -3462,10 +3473,18 @@ et:
   view_observations_of_this_taxon_by: Näita teisi selle taksoni vaatluseid
   view_on: Näita lehel
   view_on_flickr: Näita lehel Flickr
+  view_original: "Vaata originaali"
   view_original_by: "Näita %{by} originaali lehel %{photo}"
   view_original_ccD_photo: "Näita %{owner} originaal CC fotot"
   view_photos_ranges_observations_more: "Vaata fotosid, liikide piirkondi, %{site_name} vaatluseid ja muud! Oleme kogunud erinevatest allikatest andmed ja teinud neist kokkuvõte iga liigi kohta kõigis kohtades."
+  view_place: Vaata kohta
+  view_post: Vaata postitust
   view_projects_from_place: "Näita koha %{place} projekte"
+  view_sample: Vaata näidist
+  view_stats: Vaata statistikat
+  view_taxon_change: Vaata taksonimuudatust
+  view_taxon_changes: Vaata taksonimuutuseid
+  view_taxon_page: Vaata taksoni lehekülge
   view_taxon_page_for_this_x: "Näita taksoni lehte: %{x}"
   view_the: "Näita %{action}&#59; %{link}"
   view_the_observation: Ava vaatlus
