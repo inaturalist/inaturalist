@@ -165,6 +165,7 @@ th:
   #Tool tip for a button that adds a link to a text area
   add_a_link: เพิ่มลิงก์
   add_a_name: เพิ่มชื่อ
+  add_a_note: เพิ่มหมายเหตุ
   add_a_new_change_group: เพิ่มการเปลี่ยนแปลงกลุ่ม
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: เพิ่มรายการลำดับเลข
@@ -215,9 +216,16 @@ th:
   add_new_source: "เพิ่มแหล่งใหม่"
   add_new_taxon_name: เพิ่มชื่อลำดับขั้นทางอนุกรมวิธานใหม่
   add_notes_about_this_taxon: เพิ่มหมายเหตุเกี่ยวกับอนุกรมวิธานในสถานที่นี้ เช่น เกิดขึ้นที่ไหนและเมื่อไหร่
+  add_obs_from_a_link: "เพิ่มการสังเกตการณ์จากลิงก์: %{link}"
+  add_obs_from_a_list: เพิ่มการสังเกตการณ์เข้าในรายการ
   add_observations: เพิ่มการสังเกต
   add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
   add_observations_project: เพิ่มการสังเกตในโครงการนี้
+  #Prompt to add a new journal post
+  add_one: เพิ่มอีก
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: เพิ่มเดี๋ยวนี้
   add_photos: เพิ่มภาพถ่าย
   add_place: เพิ่มสถานที่
   add_alive_or_dead_alive_annotation: 'เพิ่มมีชีวิตหรือเสียชีวิต ในคำอธิบาย'
@@ -244,8 +252,56 @@ th:
   add_sex_female_annotation: 'ใส่คำอธิบายประกอบ "เพศ: เมีย"'
   add_sex_male_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ผู้"'
   add_sex_cannot_be_determined_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ไม่สามารถระบุได้"'
+  add_some_now: เพิ่มบางอย่าง เดี๋ยวนี้
+  add_tag: เพิ่มป้ายกำกับ
+  add_tags: เพิ่มป้ายกำกับทั้งหมด
+  add_tags_to_selected_taxa: เพิ่มป้ายกำกับในกลุ่มลำดับที่ถูกเลือก
+  add_taxa: เพิ่มลำดับทางอนุกรมวิธาน
+  add_taxon_batch_to: "เพิ่มชุดลำดับขั้นทางอนุกรมวิธานใน %{list}"
+  add_taxon_range: เพิ่มช่วงอันดับขั้นทางอนุกรมวิธาน
+  add_taxonomic_tags_to: "เพิ่มป้ายกำกับของอันดับทางอนุกรมวิธานในรูปภาพ Flickr &raquo;"
+  add_to_a_scheme: เพิ่มเข้าไปในแผนการ
+  add_to_a_project: เพิ่มเข้าไปในโครงการ
+  add_to_calendar: เพิ่มลงในปฎิทิน
+  add_to_checklist: เพิ่มลงในรายการตรวจสอบ
+  add_to_favorites: เพิ่มไปยังรายการโปรด
+  add_to_list: เพิ่มไปยังรายการ
+  add_to_project: เพิ่มเข้าไปในโครงการ
+  add_to_your_life_list: เพิ่มไปในรายการชีวิตของคุณ
+  add_to_your_list: เพิ่มไปยังรายการของคุณ
+  add_your_email_to_get: |
+    เพิ่มอีเมลของคุณเพื่อรับความคิดเห็นเกี่ยวกับการสังเกตการณ์ของคุณจากชุมชน หากคุณไม่ต้องการที่จะแบ่งบัน โปรดกลับมาตรวจสอบอีกครั้ง
+  add_your_own_observations_at: "เพิ่มการสังเกตการณ์ของคุณที่ %{site_name}"
+  added: เพิ่มสำเร็จ
+  added!: เพิ่มสำเร็จแล้ว
+  added_as_a_part_of_a_taxon_change_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่เปลี่ยนแปลง</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกรวมเข้าด้วยกัน</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกแยกออกมา</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกสลับ</a>
+  added_by: ถูกเพิ่มโดย
+  added_by_user_on_date_html: "ถูกเพิ่มโดย %{user} เมื่อ %{date}"
+  added_on_datetime: "ถูกเพิ่มเมื่อ %{datetime}"
+  added_to_favorites_html: |
+    เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
+  adding: "กำลังทำการเพิ่ม..."
+  adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
   admin: ผู้ดูแล
   admin_s: กลุ่มผู้ดูแล
+  admin_only: ผู้ดูแลระบบเท่านั้น
+  admin_tools: เครื่องมือสำหรับผู้ดูแลระบบ
+  agree_: เห็นด้วย
+  agree?: เห็นด้วย
+  agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
+  agreeing: กำลังยืนยัน...
+  aka: เป็นที่รู้จักกันในชื่อ
   all: ทั้งหมด
   all_comments: ความคิดเห็นทั้งหมด
   all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
@@ -267,6 +323,7 @@ th:
     suborder: อันดับย่อย (Suborder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
     infraorder: อันดับระหว่างวงศ์ (Infraorder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
     superfamily: วงศ์ใหญ่ (Superfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    epifamily: อันดับระหว่างครอบครัว (epifamily) ทั้งหมดถูกเพิ่มไปยังฐานข้อมูล
     family: วงศ์ (Family) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
     subfamily: วงศ์ย่อย (Subfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
     supertribe: เผ่าใหญ่ (Supertribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
@@ -317,9 +374,51 @@ th:
       other: "%{count} สัตว์เลื้อยคลาน"
     x_aves:
       other: "%{count} นก"
+    x_insecta:
+      other: "%{count} แมลง"
+    x_protozoa:
+      other: "%{count} โปรโตซัว"
+    x_other_animals:
+      other: "%{count} สัตว์อื่น ๆ"
+  all_taxa_: อันดับอนุกรมวิธานทั้งหมด
+  all_taxa_in_this_guide: อันดับอนุกรมวิธานทั้งหมดตามคำแนะนำนี้
+  all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
+  all_updates: ทั้งหมดที่อัปเดต
+  all_your_observations_will_default_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
+  all_your_observations_will_default_to_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
+  #Option to allow any taxa on a list
+  allow_any: อนุญาตทั้งหมด
+  allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
+  allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
+  amphibians: สัตว์สะเทินน้ำสะเทินบก
+  and: และ
+  animals: สัตว์
+  any: อื่น ๆ
+  any_: รายการใดก็ได้
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: รายการใดก็ได้
+  #Label for an option to show content from any date
+  any_date: อื่นๆ
+  #Label for an option to show content with any establishment means
+  any_establishment: อื่นๆ
+  #Label for an option to show content with any license
+  any_license: อื่นๆ
   #Label for an option to show content with photos, sounds, or neither
   any_media: อื่นๆ
+  #Label for an option to show content from any project
+  any_project: อื่นๆ
+  #Label for an option to show content with any quality grade
+  any_quality_grade: อื่นๆ
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: อื่นๆ
+  #Label for an option to show/include content by any user
+  any_user: อื่นๆ
   anyone: ใครก็ได้ (Automatic Translation)
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: แอปพลิเคชัน
+  applications: แอปพลิเคชันอื่นๆ
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: นำไปใช้
@@ -327,6 +426,7 @@ th:
   apply_captive_cultivated: "นำไปใช้กับการเพาะเลี้ยง/เพาะปลูก"
   apply_fields: นำไปใช้กับงานสนาม
   apply_geoprivacy: นำไปใช้กับความเป็นส่วนตัวของตำแหน่ง
+  apply_darr: "ใช้สำหรับ &darr;"
   apply_these_settings_to_all: ใช้การตั้งค่าเหล่านี้กับการสังเกตทั้งหมดด้านล่าง
   appropriate?: เหมาะสมหรือไม่?
   arachnids: แมง
@@ -359,6 +459,29 @@ th:
     คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ ถูกบันทึกในรายการ และมีการจำแนก
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
     คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ ถูกบันทึกในรายการ มีการจำแนก และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ การระบุจำแนกและการสังเกตการณ์
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์และการระบุจำแนก
+  are_you_sure_want_delete_taxon_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกระบุตัวตนแล้ว
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่มีการระบุจำแนกและสังเกตการณ์
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกเพิ่มเข้าไปแล้ว
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ และมีการจำแนก
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ มีการจำแนก และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่มีการสังเกตารณ์
+  are_you_sure_want_delete_taxon_link: คุณแน่ใจหรือไม่ว่าต้องการลบแบบของอันดับทางอนุกรมวิธานนี้?
+  are_you_sure_want_delete_this_name: คุณแน่ใจหรือไม่ว่าต้องการลบชื่อนี้?
+  are_you_sure_want_delete_this_range: คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเหล่านี้?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจาก %{place} รายการ?"
+  assessment: การประเมินผล
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
   upload: อัปโหลด
