@@ -913,6 +913,7 @@ ja:
   cumulative_ids: "累積ID:%{total} 件中%{count} 件"
   curate_observations: 観察記録を管理
   curate_taxa: 分類群を管理
+  curate_user: キュレーター管理者
   curating: キュレーター管理中
   curation: キュレーター管理
   curator: キュレーター管理者
@@ -3130,11 +3131,13 @@ ja:
   save_draft: 下書きを保存
   save_fields: フィールドを保存
   save_flag: フラグを保存
+  save_guide_taxon: ガイド分類群を保存
   save_identification: 同定を保存
   save_observation: 観察記録を保存
   save_photos: 写真を保存
   save_place: 場所を保存
   save_settings_caps: 設定を保存
+  save_trip: トリップを保存
   saved: 保存しました
   saving: "保存中..."
   saving_num_of_count_observations:
@@ -4050,6 +4053,8 @@ ja:
       identify:
         review_all_tooltip: "ページ内のすべての観察記録を確認済みにする"
         unreview_all_tooltip: "ページ内のすべての観察記録を未確認にする"
+        too_many_results_desc: |
+          観察記録が10000件を超える（ページ数×1ページあたりの検索結果数）場合は表示できません。フィルターを適用して検索結果を減らすか、確認済みの観察記録をマークして、ページ番号の代わりに「もっと表示」ボタンを使用してください。
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
