@@ -688,6 +688,8 @@ ar:
   csv_should_not_contain_a_header_row: يجب ألا يحتوي CSV على صف رأس
   cumulative_ids: "المعرفات التراكمية: %{count} لـ%{total}"
   curate_observations: الإشراف على الملاحظات
+  curate_taxa: تنظيف الأصناف
+  curate_user: الإشراف على المستخدم
   curating: المشرفون
   curation: إشراف
   curator: المشرف
@@ -2817,7 +2819,16 @@ ar:
   save_and_continue: "حفظ &amp; استمرار..."
   save_and_add_taxa: "حفظ والبدء في إضافة الأنواع"
   save_changes: حفظ التغييرات
+  save_comment: حفظ التعليق
   save_draft: حفظ المسودة
+  save_fields: حفظ الحقول
+  save_flag: حفظ العلم
+  save_guide_taxon: حفظ دليل الأصنوفة
+  save_identification: حفظ الهوية
+  save_observation: حفظ الملاحظة
+  save_photos: حفظ الصور
+  save_place: حفظ المكان
+  save_trip: حفظ الرحلة
   saved: تم الحفظ
   saving: "جارٍ الحفظ..."
   saving_verb: جارٍ الحفظ
@@ -3533,11 +3544,19 @@ ar:
   view_observations_of_this_taxon_by: عرض ملاحظات هذ الأصنوفة من قبل
   view_on: عرض في
   view_on_flickr: عرض في فليكر
+  view_original: "عرض الأصلي"
   view_original_by: "عرض النسخة الأصلية بواسطة %{by} في %{photo}"
   view_original_ccD_photo: "عرض صورة CC'd الأصلية بواسطة %{owner}"
   view_photos_ranges_observations_more: "عرض الصور، ونطاقات الأنواع، وملاحظات %{site_name}، والمزيد! لقد جمعنا المعلومات من مصادر مختلفة وتم تجميعها لهم للحصول على ملخص سريع لكل نوع في كل مكان."
+  view_place: عرض المكان
+  view_post: اعرض المنشور
   view_projects_from_place: "عرض مشاريع من %{place}"
+  view_sample: عرض عينة
+  view_stats: عرض الإحصائيات
+  view_taxon_change: عرض تغيير الأصنوفة
+  view_taxon_changes: عرض تغييرات الأصنوفة
   view_taxon_framework_relationship: عرض علاقة إطار عمل الأصنوفة
+  view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for_this_x: "عرض صفحة الأصنوفة لهذا %{x}"
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
   view_the: "عرض %{action}&#59; %{link}%{action}"
