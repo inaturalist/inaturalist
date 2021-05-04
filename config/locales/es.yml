@@ -227,6 +227,7 @@ es:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Añadir un enlace
   add_a_name: Agregar un nombre
+  add_a_note: Añadir una Nota
   add_a_new_change_group: Agregar un nuevo grupo de cambio
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Añadir una lista numerada
@@ -1054,6 +1055,8 @@ es:
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   cumulative_ids: "Identificadores acumulados: %{count} de %{total}"
   curate_observations: Curar observaciones
+  curate_taxa: Administrar táxones
+  curate_user: Administra usuario
   curating: Curando
   curation: Curación
   curator: Curador
@@ -2294,6 +2297,18 @@ es:
   #Label shown when a date has not been entered
   missing_date: Falta la fecha
   mobile: Móvil
+  moderation_history_for_user_html: Historial de moderación de %{user}
+  moderation_history_desc_html: |
+    Esto incluye las acciones de moderador (como ocultar u mostrar comentarios), notas,
+    y marcas en todo lo que este usuario ha creado diferente a los taxones. Esto es
+    <strong>sólo visible para los supervisores</strong> y <strong>los supervisores no pueden ver
+    su propio historial</strong>, así que las notas sobre una persona nunca deberían ser visibles
+    para esa persona.
+  moderator_note_desc: |
+    Las notas de moderador son registros de respuestas de moderación o preocupaciones
+    basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderador / Marcador
   mollusks: moluscos
   momentjs:
     shortRelativeTime:
@@ -2335,6 +2350,10 @@ es:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
@@ -3563,6 +3582,78 @@ es:
     form: forma
     infrahybrid: Infrahíbrido
     leaves: Hojas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: estado de la materia
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: reino
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: subreino
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: filo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: subfilo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: superclase
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: clase
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: subclase
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infraclase
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: superorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: orden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: suborden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infraorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterclase
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosección
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoosubsección
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: superfamilia
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epifamilia
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: familia
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: subfamilia
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: supertribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: subtribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: género
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: género híbrido
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: subgénero
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sección
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: subsección
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: complejo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: especie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: híbrido
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: subespecie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: variedad
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahíbrido
   ranges: Distribuciónes
   ray_finned_fishes: peces con aletas radiadas
   re_apply_list_rules: Re-aplicar las reglas de la lista
@@ -3716,8 +3807,17 @@ es:
   save_and_continue: "Guardar &amp; continuar..."
   save_and_add_taxa: "Guardar y comenzar a agregar las especies"
   save_changes: Guardar cambios
+  save_comment: Guardar comentario
   save_draft: Guardar borrador
+  save_fields: Guardar campos
+  save_flag: Guardar marca
+  save_guide_taxon: Guardar guía taxón
+  save_identification: Guardar identificación
+  save_observation: Guardar observación
+  save_photos: Guardar fotos
+  save_place: Guardar lugar
   save_settings_caps: GUARDAR AJUSTES
+  save_trip: Guarda el viaje
   saved: Guardado
   saved_at_time: Guardado a las %{time}
   saving: "Guardando..."
@@ -4564,11 +4664,19 @@ es:
   view_observations_of_this_taxon_by: Ver observaciones de este taxón por
   view_on: Ver en
   view_on_flickr: Ver en Flickr
+  view_original: "Ver original"
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_photos_ranges_observations_more: "¡Ve fotos, distribuciones de especies, observaciones de %{site_name} y más. Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para proporcionar un breve resumen de cada especie en cada lugar."
+  view_place: Ver lugar
+  view_post: Ver ingreso
   view_projects_from_place: "Ver proyectos de %{place}"
+  view_sample: Ver muestra
+  view_stats: Ver contribuciones
+  view_taxon_change: Ver cambio de taxón
+  view_taxon_changes: Ver los cambios del taxón
   view_taxon_framework_relationship: Ver relaciones entre marcos de referencia de taxones
+  view_taxon_page: Ver página del taxón
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
   view_the: "Ver la %{action}"
@@ -5182,6 +5290,8 @@ es:
         about_total_taxa: "Acerca del total de taxones"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinadas
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Campo de Fecha
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6382,6 +6492,7 @@ es:
 
           Traducción realizada con el traductor www.DeepL.com/Translator
       show:
+        take_a_moment_to_review_html: 'Aprovecha para revisar <a href="%{link}">nuestras directrices</a>.'
         this_user_was_banned: Este usuario fue suspendido
         favorites_list_prompt_html: |
           ¿Quieres mostrar algunos de tus taxones favoritos? %{link_start_tag}Crea una
@@ -6775,6 +6886,14 @@ es:
       CompleteSet: Lista completa
       #Noun
       Flag: Marca
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Actividad del Moderador
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Nota de Moderador
       TaxonLink: Enlace de taxón
     attributes:
       assessment:
@@ -6946,6 +7065,10 @@ es:
           attributes:
             base:
               guide_has_too_many_taxa: "la guía solo puede tener 500 taxones"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: Debe ser un supervisor
         mushroom_observer_import_flow_task:
           attributes:
             base:
