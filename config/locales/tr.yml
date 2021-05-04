@@ -1060,6 +1060,8 @@ tr:
   csv_should_not_contain_a_header_row: CSV başlık satırı içermemelidir
   cumulative_ids: "Tanımlama Toplamı: %{total} / %{count}"
   curate_observations: Gözlemleri yönet
+  curate_taxa: Sınıfları düzenle
+  curate_user: Kullanıcıyı yönet
   curating: Yönetme
   curation: Yönetme
   curator: Sorumlu
@@ -3746,8 +3748,17 @@ tr:
   save_and_continue: "Kaydet &amp; Devam Et..."
   save_and_add_taxa: "Kaydet ve tür eklemeye başla"
   save_changes: Değişiklikleri Kaydet
+  save_comment: Yorumu kaydet
   save_draft: Taslağı Kaydet
+  save_fields: Alanları kaydet
+  save_flag: İşareti kaydet
+  save_guide_taxon: Rehber sınıfını kaydet
+  save_identification: Tanımlamayı kaydet
+  save_observation: Gözlemi kaydet
+  save_photos: Fotoğrafları kaydet
+  save_place: Yeri kaydet
   save_settings_caps: AYARLARI KAYDET
+  save_trip: Geziyi kaydet
   saved: Kaydedildi
   saved_at_time: 'Kaydedilme zamanı: %{time}'
   saving: "Kaydediliyor..."
@@ -4589,11 +4600,19 @@ tr:
   view_observations_of_this_taxon_by: Bu sınıfın gözlemlerini şu açıdan görüntüle
   view_on: Şunun üzerinden görüntüle
   view_on_flickr: Flickr'da Görüntüle
+  view_original: "Orjinali görüntüle"
   view_original_by: "%{by} vasıtasıyla %{photo} üzerinde aslını görüntüle"
   view_original_ccD_photo: "%{owner} tarafından paylaşılan asıl CC Lisanslı fotoğrafı göster"
   view_photos_ranges_observations_more: "Fotoğrafları, tür aralıklarını, %{site_name} gözlemlerini ve daha çoğunu görüntüle! Birçok değişik kaynaktan gelen bilgileri topladık ve her bir yerdeki her bir türün hızlı bir özeti için bunları birleştirdik."
+  view_place: Yeri görüntüle
+  view_post: Gönderiyi görüntüle
   view_projects_from_place: "%{place} yerinden projeleri görüntüle"
+  view_sample: Örneği görüntüle
+  view_stats: İstatistikleri görüntüle
+  view_taxon_change: Sınıf değişikliğini görüntüle
+  view_taxon_changes: Sınıf değişikliklerini görüntüle
   view_taxon_framework_relationship: Sınıf yapısı ilişkisini görüntüle
+  view_taxon_page: Sınıf aralığını görüntüle
   view_taxon_page_for_this_x: "%{x} için sınıf sayfasını görüntüle"
   view_taxononomy_details_for_taxon: "%{taxon} için sınıflandırma detaylarını görüntüle"
   view_the: "%{action}&#59; %{link} görüntüle"
