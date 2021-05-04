@@ -1052,6 +1052,8 @@ pt:
   csv_should_not_contain_a_header_row: CSV não deve conter um linha de cabeçalho
   cumulative_ids: "Identificações acumuladas: %{count} de %{total}"
   curate_observations: Administrar observações
+  curate_taxa: Táxon administrado
+  curate_user: Usuário curador
   curating: Em avaliação
   curation: Administração
   curator: Coordenador
@@ -2236,7 +2238,7 @@ pt:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "MMM D, AAAA · LT Z"
+    datetime_with_offset: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "MMMM D, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3564,7 +3566,16 @@ pt:
   save_and_continue: "Salvar &amp; continuar..."
   save_and_add_taxa: "Salvar e começar a adicionar espécies"
   save_changes: Salvar Mudanças
+  save_comment: Salvar comentário
   save_draft: Salvar rascunho
+  save_fields: Salve campos
+  save_flag: Salvar alerta
+  save_guide_taxon: Salvar guia de táxon
+  save_identification: Salvar identificação
+  save_observation: Salvar observação
+  save_photos: Salvar fotos
+  save_place: Salvar local
+  save_trip: Salvar viajem
   saved: Salvo
   saving: "Salvando..."
   saving_num_of_count_observations:
@@ -4391,11 +4402,19 @@ pt:
   view_observations_of_this_taxon_by: Ver observações deste táxon por
   view_on: Ver em
   view_on_flickr: Ver no Flickr
+  view_original: "Ver original"
   view_original_by: "Ver original de %{by} na %{photo}"
   view_original_ccD_photo: "Visualizar imagens originais da conta Flickr de %{owner}"
   view_photos_ranges_observations_more: "Veja fotos, áreas de distribuição de espécies, observações do %{site_name}, e mais! Nós montamos informações de diversas fontes diferentes e combinamos elas para um resumo rápido de cada espécie em cada local."
+  view_place: Ver lugar
+  view_post: Ver publicação
   view_projects_from_place: "Ver projetos do %{place}"
+  view_sample: Visualizar amostra
+  view_stats: Veja as estatisticas
+  view_taxon_change: Veja as mudanças do Táxon
+  view_taxon_changes: Veja as mudanças do Táxon
   view_taxon_framework_relationship: Veja o relacionamento da estrutura do taxon
+  view_taxon_page: Veja a página do Táxon
   view_taxon_page_for_this_x: "Veja a página de táxon para este %{x}"
   view_taxononomy_details_for_taxon: "Visualizar detalhes da taxonomia para %{taxon}"
   view_the: "Ver a %{action}&#59; %{link}"
