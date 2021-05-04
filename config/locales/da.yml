@@ -1064,6 +1064,8 @@ da:
   csv_should_not_contain_a_header_row: CSV bør ikke indeholde en overskrifts linje
   cumulative_ids: "Kumulative id'er:%{count} af %{total}"
   curate_observations: Kuratér observationer
+  curate_taxa: Kuratér taksa
+  curate_user: Kuratér brugere
   curating: Kuraterer
   curation: Kuratering
   curator: Kurator
@@ -3842,8 +3844,17 @@ da:
   save_and_continue: "Gem &amp; fortsæt..."
   save_and_add_taxa: "Gem og begynd at tilføje arter"
   save_changes: Gem ændringer
+  save_comment: Gem kommentar
   save_draft: Gem kladde
+  save_fields: Gem felter
+  save_flag: Gem markering
+  save_guide_taxon: Gem takson i Guiden
+  save_identification: Gem identifikation
+  save_observation: Gem observation
+  save_photos: Gem foto´s
+  save_place: Gem sted
   save_settings_caps: GEM INDSTILLINGER
+  save_trip: Gem tur
   saved: Gemt
   saved_at_time: Gemt %{time}
   saving: "Gemmer..."
@@ -4716,11 +4727,19 @@ da:
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_on: Vis på
   view_on_flickr: Vis på Flickr
+  view_original: "Vis original"
   view_original_by: "Vis original af %{by} på %{photo}"
   view_original_ccD_photo: "Vis original CC´d foto af %{owner}"
   view_photos_ranges_observations_more: "Se billeder, arter, %{site_name} observationer og meget mere! Vi har samlet information fra mange forskellige kilder og kombineret dem i en hurtig oversigt med alle arter på hvert sted."
+  view_place: Vis sted
+  view_post: Vis indlæg
   view_projects_from_place: "Vis projekter fra %{place}"
+  view_sample: Vis prøve
+  view_stats: Vis statistikker
+  view_taxon_change: Vis takson ændring
+  view_taxon_changes: Vis takson ændringer
   view_taxon_framework_relationship: Vis takson ramme forbindelse
+  view_taxon_page: Vis takson side
   view_taxon_page_for_this_x: "Vis takson side for dette %{x}"
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
   view_the: "Vis %{action}&#59; %{link}"
