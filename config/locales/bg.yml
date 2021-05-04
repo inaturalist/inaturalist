@@ -851,6 +851,8 @@ bg:
   csv_file: CSV файл
   csv_should_not_contain_a_header_row: CSV не трябва да съдържа заглавен ред
   curate_observations: Курирай наблюдения
+  curate_taxa: Курирай таксони
+  curate_user: Курирай потребител
   curating: Куриране
   curation: Куриране
   curator: Куратор
@@ -2728,6 +2730,8 @@ bg:
   quality_grade: Оценка на качество
   quality_grade_: Оценка на качество
   quality_grade_colon: "Оценка на качество:"
+  queued: На опашка
+  query: Заявка
   radius: Радиус (m)
   radius_value: "Радиус (m): %{radius}"
   random: Произволно
@@ -2799,6 +2803,44 @@ bg:
     form: Форма
     infrahybrid: Инфрахибрид
     leaves: Листа
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: царство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: подцарство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: надклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: клас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: подклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: инфраклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: надразред
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: разред
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: подразред
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: инфраразред
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: субтерклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: парворазред
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: зоосекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: зооподсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: надсемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: еписемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: семейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: подсемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: хибрид
   ranges: Граници
   ray_finned_fishes: лъчеперки
   re_apply_list_rules: Приложи списъчните правила наново
@@ -2878,6 +2920,7 @@ bg:
   resolved_by: Коригирано от
   resolved_by_user_on_date_html: Коригирано от %{user} на %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} каза:</span> "%{x}"'
+  restart: Рестартиране
   restore: Възстанови
   restoring: Възстановяване...
   results: резултати
@@ -2893,6 +2936,7 @@ bg:
   rotate_left: Завърти наляво
   rotate_right: Завърти надясно
   row_singular_or_plural: Ред(ове)
+  rules_and_formatting: "Правила и форматиране"
   rules_for_adding_observations: Правила за добавяне на наблюдения
   rules_types:
     must_be_captive: трябва да е в плен / култивирано
@@ -2909,7 +2953,14 @@ bg:
   save_and_continue: "Запази и продължи"
   save_and_add_taxa: "Запази и започни да добавяш видове"
   save_changes: Запази промените
+  save_comment: Запази коментара
   save_draft: Запази чернова
+  save_fields: Запази полетата
+  save_guide_taxon: Запази таксона на ръководството
+  save_identification: Запази разпознаването
+  save_observation: Запази наблюдението
+  save_photos: Запази снимките
+  save_place: Запази мястото
   save_settings_caps: ЗАПАЗИ НАСТРОЙКИТЕ
   saved: Запазено
   saved_at_time: Запазено в %{time}
@@ -2958,6 +3009,7 @@ bg:
   select_one_of_your_albums: Изберете някой от албумите си
   select_options: Избери опция
   select_photos_to_display: Избор на снимки за изобразяване
+  selected: избрано
   selected_photos: Избрани снимки
   send: Изпрати
   send_invites_to: Изпрати покани на
@@ -2967,8 +3019,10 @@ bg:
   #Label for messages you've sent
   sent: Изпратени
   separate_values_with_a_pipe: Разделете отделните стойности с вертикална черта, например „да|не|може би“ или „зелен|червен|син“
+  set_license: Задаване на лиценз
   settings: Настройки
   share: Споделяне
+  share_colon: "Споделяне:"
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_common_names: Показвай народните имена
@@ -3089,6 +3143,7 @@ bg:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Не е генерирана статистика за тази година.
   status: Статус
+  stay_and_try_again: Останете и опитайте пак
   still_no_luck?: Пак ли нищо?
   stop_following_user: "Спри да следваш %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
@@ -3128,6 +3183,7 @@ bg:
   suspend_user: Запорирай потребителя
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ дълж.
+  sync: Синхронизирате ли?
   sync_obs_with_photo_metadata: "Съгласувай с метаданните от снимката"
   synonyms: Синоними
   table: Таблица
@@ -3136,6 +3192,7 @@ bg:
   tag: Етикет
   tags: Етикети
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
+  task_deleted: Задачата изтрита
   taxa: Таксони
   taxa_info: Информация за таксони
   taxa_needing_curation: Таксони нуждаещи се от куриране
@@ -3253,6 +3310,7 @@ bg:
   the_world: Светът
   the_world_is_full_of_interesting_places: |
     Светът е пълен с интересни места, всяко изпълнено с чудати и чудесни форми на живот. Някои са на другия край на света, докато други са ти точно под носа! %{site_name} Места ти позволява да разгледаш живота по целия свят. Започни да го изучаваш!
+  then_keybord_sequence: тогава
   there_is_no_wikipedia_page_matching: Няма съответстваща страница в Уикипедия
   there_were_some_problems_saving_this_observation: Възникна проблем при записването на наблюдението
   there_were_some_problems_saving_those_colors: "Възникна проблем при записването на тези цветове: %{error}"
@@ -3294,6 +3352,7 @@ bg:
   this_will_sign_you_out_current_session: Това ще ви отпише от текущата Ви сесия на това приложение.
   this_year: Тази година
   threatened: Застрашен
+  time_: час
   time_ago: "преди %{time}"
   #As in the title of a book or a blog post
   title: заглавие
@@ -3346,6 +3405,7 @@ bg:
   unfollow: Спри следването
   unlink_your_google_account: Откачи акаунта си на Google
   updating: Обновяване...
+  unpublish: Непубликувано
   unsubscribe: Отпиши ме
   unsubscribe_from_emails_like_this: Отпишете се от тези писма
   unsuspend_user: Възстанови потребителя
@@ -3390,6 +3450,9 @@ bg:
     Използвайте този формуляр за да създадете нов проект за таксономична промяна - описващ предлагано разделяне, обединяване или размяна на активни таксони - който да бъде изпълнен по-късно.
   use_well_formed_csv: |
     Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
+  used_x_times:
+    one: Употребено веднъж
+    other: Употребено %{count} пъти
   user: Потребител
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} и %{x_others} харесаха това наблюдение"
   user_added_a_comment_html: "%{user} добави коментар"
@@ -3481,10 +3544,17 @@ bg:
   view_observations_of_this_taxon_by: Виж наблюдения на този таксон от
   view_on: Виж във
   view_on_flickr: Виж във Flickr
+  view_original: "Виж оригинала"
   view_original_by: "Виж оригинала от %{by} на %{photo}"
   view_original_ccD_photo: "Виж оригиналната снимка от %{owner}"
   view_photos_ranges_observations_more: "Вижте снимки, разпространение, наблюдения от %{site_name} и още много! Събрали сме информация от много различни източници и сме я обединили в удобно резюме за всеки биологичен вид от всяко място."
+  view_place: Виж мястото
+  view_post: Виж публикацията
   view_projects_from_place: "Виж проекти от %{place}"
+  view_sample: Виж пример
+  view_stats: Виж статистика
+  view_taxon_change: Виж таксономичната промяна
+  view_taxon_changes: Виж таксономичните промени
   view_taxononomy_details_for_taxon: "Виж таксономични детайли за %{taxon}"
   view_the_observation: Виж наблюдението
   view_user_observations: "Виж наблюденията на %{user}"
@@ -3719,9 +3789,12 @@ bg:
         alphaname: Азбучно по научно име
         alphadisplay: Азбучно по имената показвани по подразбиране
     lifelists:
+      all_observations: Всички наблюдения
       restrict_to_taxa_observed_in_place: Ограничи до таксони наблюдавани във %{place}
       dropdowns:
+        name: Име
         least_observed: Най-малко наблюдаван
+        children: Деца
     lists:
       new:
         place_desc: |
@@ -3756,8 +3829,14 @@ bg:
         algorithm_summary: Резюме на алгоритъма
         disagreement: Несъгласие
       compare:
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Комбинирано
         #Date field to use when grouping by date, e.g. date created or date added
         date_field: Поле за дата
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Хоризонтално
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Интервал
       export:
         export_in_progress_notice_html: |
           В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
@@ -4619,6 +4698,7 @@ bg:
   activerecord:
     models:
       Atlas: Атлас
+      BlockedUser: Блокиран потребител
       #Noun
       Flag: Маркер
     attributes:
@@ -4645,6 +4725,7 @@ bg:
         subject: Тема
         body: Съдържание
       observation:
+        description: Бележки
         observed_on: Дата на наблюдаване
       observation_field_value:
         value: 'стойност'
@@ -4680,9 +4761,11 @@ bg:
         prefers_check_lists: Позволи видови списъци?
       source:
         title: Заглавие
+        citation: Цитиране
       taxon:
         name: Име
         rank: Ранг
+        parent_id: Родителски №
         wikipedia_title: Заглавие в Уикипедия
         wikipedia_summary: Резюме от Уикипедия
       user:
@@ -4769,6 +4852,12 @@ bg:
             login:
               must_begin_with_a_letter: |
                 трябва да започва с буква, да не съдържа интервали и да съдържа само букви, числа, тирета и подчертавки.
+            email:
+              domain_is_not_supported: домейнът не се поддържа
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Вече сте блокирали този потребител
   doorkeeper:
     scopes:
       write: |
@@ -4909,6 +4998,8 @@ bg:
         variety: "@m"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Внимание
   wikimedia: Уикимедия
   wild: Див
   will_paginate:
