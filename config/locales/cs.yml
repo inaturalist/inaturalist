@@ -337,6 +337,7 @@ cs:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Přidat odkaz
   add_a_name: Vložit jméno
+  add_a_note: Přidat poznámku
   add_a_new_change_group: Přidat novou skupinu změn
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Přidat číslovaný seznam
@@ -1187,6 +1188,8 @@ cs:
   csv_should_not_contain_a_header_row: CSV by neměl obsahovat řádek nadpisu
   cumulative_ids: "Kumulativní ID: %{count} z %{total}"
   curate_observations: Spravovat pozorování
+  curate_taxa: Spravovat taxony
+  curate_user: zaštítit uživatele
   curating: Spravování
   curation: Spravování
   curator: Kurátor
@@ -2445,6 +2448,9 @@ cs:
   #Label shown when a date has not been entered
   missing_date: Chybějící datum
   mobile: Mobilní
+  moderation_history_for_user_html: Historie moderování pro %{user}
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderátor / nahlašovatel
   mollusks: měkkýši
   momentjs:
     shortRelativeTime:
@@ -3753,6 +3759,74 @@ cs:
     form: forma
     infrahybrid: infrahybrid
     leaves: listy
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: skupenství
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: říše
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: podříše
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: kmen
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: podkmen
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: nadtřída
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: třída
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: podtřída
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infratřída
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: nadřád
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: řád
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: podřád
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infrařád
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosekce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoopodsekce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: nadčeleď
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epičeleď
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: čeleď
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: podčeleď
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: nadkmen
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: kmen
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: podkmen
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: rod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: křížený rod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: podrod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sekce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: podsekce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: komplexní
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: druh
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: kříženec
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: poddruh
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: odrůda
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrakříženec
   ranges: oblasti
   ray_finned_fishes: paprskoploutví
   re_apply_list_rules: Znovu aplikovat pravidla seznamu
@@ -3908,8 +3982,17 @@ cs:
   save_and_continue: "Uložit &amp; pokračovat..."
   save_and_add_taxa: "Uložit a začít přidávat druhy"
   save_changes: Uložit změny
+  save_comment: Uložit komentář
   save_draft: Uložit koncept
+  save_fields: Uložit pole
+  save_flag: Uložit vlajku
+  save_guide_taxon: Uložit průvodce taxonu
+  save_identification: Uložit identifikaci
+  save_observation: Uložit pozorování
+  save_photos: Uložit fotky
+  save_place: Uložit místo
   save_settings_caps: ULOŽIT NASTAVENÍ
+  save_trip: Uložit cestu
   saved: Uloženo
   saved_at_time: Uloženo v %{time}
   saving: "Ukládá se…"
@@ -4804,11 +4887,19 @@ cs:
   view_observations_of_this_taxon_by: Zobrazit pozorování tohoto taxonu
   view_on: Zobrazit na
   view_on_flickr: Zobrazit na Flickru
+  view_original: "Zobrazit originál"
   view_original_by: "Zobrazit originál %{by} na %{photo}"
   view_original_ccD_photo: "Zobrazit originální kopii fotky %{owner}"
   view_photos_ranges_observations_more: "Zobrazit fotky, rozsahy druhů, pozorování %{site_name} a další! Nasbírali jsme informace z mnoha různých zdrojů a zkombinovali jsme je do rychlého přehledu o každém druhu na každém místě."
+  view_place: Zobrazit místo
+  view_post: Zobrazit příspěvek
   view_projects_from_place: "Zobrazit projekty z %{place}"
+  view_sample: Zobrazit ukázku
+  view_stats: Zobrazit statistiku
+  view_taxon_change: Zobrazit změnu taxonu
+  view_taxon_changes: Zobrazit změny taxonů
   view_taxon_framework_relationship: Zobrazit vztahy mezi taxony
+  view_taxon_page: Zobrazit stránku taxonu
   view_taxon_page_for_this_x: "Zobrazit stránku taxonu pro tento %{x}"
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
   view_the: "Zobrazit %{action}&#59; %{link}"
@@ -5941,6 +6032,8 @@ cs:
           Povolit členům důvěřovat tomuto projektu se skrytými souřadnicemi
         trust_help_desc: |-
           Pokud chcete přístup ke skrytým souřadnicím skrytých pozorování, tato možnost umožní lidem, kteří se připojili k tomuto projektu, důvěřovat správcům projektu s přístupem k těmto skrytým souřadnicím. Členové projektu budou moci udělit přístup ke skrytým souřadnicím všech jejich pozorování, která se objevují v tomto projektu, nebo jen pozorování, která jsou skryta kvůli ohroženým taxonům.
+        trust_help_notification2: |-
+          Toto však také upozorní všechny důvěřující členy projektu, pokaždé, když změníte požadavky na pozorování projektu, aby mohli znovu posoudit, zda vám budou i nadále důvěřovat vzhledem k novým požadavkům. Váš přístup ke skrytým souřadnicím bude po změně požadavků na pozorování na jeden týden odvolán, aby na to měli členové čas.
         trusted_project_means: |
           Důvěra v projektu znamená, že vedoucí projektu mohou přidávat projektové položky a vlastní znaky projektu (např. HTML banner, CSS). Přístup k vlastním znakům projektu znamená, že vedoucí projektu mohou potenciálně přidat škodlivý Javascript, takže důvěřujte pouze projektům, které mají vedoucí, kteří jsou zodpovědní a technicky kompetentní.
         you_can_preview: |
@@ -7082,6 +7175,14 @@ cs:
       CompleteSet: Dokončit sady
       #Noun
       Flag: Označit
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Akce moderátora
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Poznámka moderátora
       TaxonLink: Odkazy taxonu
     attributes:
       assessment:
@@ -7261,6 +7362,10 @@ cs:
           attributes:
             base:
               guide_has_too_many_taxa: "průvodce může mít jen 500 taxonů"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: musí být kurátor
         mushroom_observer_import_flow_task:
           attributes:
             base:
