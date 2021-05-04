@@ -229,6 +229,7 @@ fr:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
+  add_a_note: Ajouter une Remarque
   add_a_new_change_group: Ajouter un nouveau groupe de modifications
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
@@ -1029,7 +1030,7 @@ fr:
     gnu_free_documentation_license: Licence Documentation libre GNU
   copyright_holder: Détenteur des droits
   copyright_info: Informations concernant les droits d'auteur
-  copyright_info_and_more: Information de Copyright et Plus
+  copyright_info_and_more: Information de copyright et plus
   copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: "Couvert par un %{link}"
@@ -1063,6 +1064,8 @@ fr:
   csv_should_not_contain_a_header_row: Le format CSV ne doit pas contenir de ligne d’entête
   cumulative_ids: "ID cumulées : %{count} sur %{total}"
   curate_observations: Organiser les observations
+  curate_taxa: Organiser les taxons
+  curate_user: Superviser l’utilisateur
   curating: Organisation en cours
   curation: Organisation
   curator: Responsable de l’organisation
@@ -2317,6 +2320,17 @@ fr:
   #Label shown when a date has not been entered
   missing_date: Date manquante
   mobile: Portable
+  moderation_history_for_user_html: Historique de modération pour %{user}
+  moderation_history_desc_html: |
+    Cela inclut les actions du modérateur (par exemple, masquer ou non les commentaires), les notes 
+    et les signalements sur tout ce que cet utilisateur a créé, à l'exception des taxons. Ceci est
+    <strong>uniquement visible par les superviseurs</strong> et <strong>les superviseurs ne peuvent pas visualiser
+    leur propre historique</strong>, donc les notes sur une personne ne devraient jamais être visibles
+    par cette personne.
+  moderator_note_desc: |
+    Les remarques du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Modérateur / Signaleur
   mollusks: mollusques
   momentjs:
     shortRelativeTime:
@@ -2358,6 +2372,10 @@ fr:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM YY"
   month: Mois
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
@@ -3603,6 +3621,78 @@ fr:
     form: Forme
     infrahybrid: Sous-hybride
     leaves: Feuilles
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: état de la matière
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: règne
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: sous-règne
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: embranchement
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: sous-embranchement
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: super-classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: sous-classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infra-classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: super-ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: sous-ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infra-ordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subter-classe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvordre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: section en zoologie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: sous-section en zoologie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: super-famille
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: épifamille
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: famille
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: sous-famille
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: super-tribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: sous-tribu
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: genre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: nothogenre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: sous-genre
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: section
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: sous-section
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: complexe
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: espèce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybride
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: sous-espèce
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: variété
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forme
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infra-hybride
   ranges: Aires de répartition
   ray_finned_fishes: poissons à nageoires rayonnées
   re_apply_list_rules: Réappliquer les règles de la liste
@@ -3756,8 +3846,17 @@ fr:
   save_and_continue: "Enregistrer &amp; continuez…"
   save_and_add_taxa: "Enregistrer et commencer à ajouter des espèces"
   save_changes: Enregistrer les modifications
+  save_comment: Enregistrer le commentaire
   save_draft: Enregistrer le brouillon
+  save_fields: Enregistrer les champs
+  save_flag: Enregistrer le signalement
+  save_guide_taxon: Enregistrer le guide du taxon
+  save_identification: Enregistrer l’identification
+  save_observation: Enregistrer l’observation
+  save_photos: Enregistrer les photos
+  save_place: Enregistrer le lieu
   save_settings_caps: ENREGISTRER LES PARAMÈTRES
+  save_trip: Enregistrer le voyage
   saved: Enregistré
   saved_at_time: Enregistré à %{time}
   saving: "Enregistrement en cours…"
@@ -4619,11 +4718,19 @@ fr:
   view_observations_of_this_taxon_by: Afficher les observations de ce taxon par
   view_on: Afficher sur
   view_on_flickr: Afficher sur Flickr
+  view_original: "Afficher l’original"
   view_original_by: "Afficher l’original de %{by} sur %{photo}"
   view_original_ccD_photo: "Afficher la photo originale envoyée en copie ponforme par %{owner}"
   view_photos_ranges_observations_more: "Afficher les photos, les aires de répartition des taxons, les observations d’%{site_name} et plus encore ! Nous avons rassemblé des informations à partir de différentes sources et les avons combinées pour vous fournir un aperçu rapide de chaque espèce dans chaque lieu."
+  view_place: Afficher le lieu
+  view_post: Afficher le message
   view_projects_from_place: "Afficher les projets de %{place}"
+  view_sample: Voir un exemple
+  view_stats: Afficher les statistiques
+  view_taxon_change: Afficher la modification du taxon
+  view_taxon_changes: Afficher les modifications de taxon
   view_taxon_framework_relationship: Afficher la relation du cadre taxonomique
+  view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
   view_the: "Afficher le %{action}&#59; %{link}"
@@ -4990,16 +5097,12 @@ fr:
           </p>
           <p class="lead">
           Vos dons charitables aident à soutenir la croissance de la communauté, depuis
-          la vision informatique avancée, la mise en oeuvre de  nouvelles fonctionnalités
+          la vision informatique avancée, la mise en oeuvre de nouvelles fonctionnalités
           et la prise en charge de nos serveurs et le soutien de nos personnels. Si vous
           préférez effectuer un don en une fois, veuillez <a href="%{donate_url}">cliquer ici</a>.
           </p>
           <p class="text-muted">
-          iNaturalist est une initiative conjointe de l’Académie des sciences de Californie
-          et de la Société géographique nationale (''National Geographic Society''). Tous
-          les dons seront reçus par l’Académie des sciences de Californie, une organisation
-          sans but lucratif exemptée de taxes aux États-Unis d’Amérique selon le code
-          fiscal américain 501(c)(3).
+          iNaturalist est une initiative conjointe de la California Academy of Sciences et de la National Geographic Society'. Tous les dons seront reçus par la California Academy of Sciences, une organisation sans but lucratif exemptée de taxes aux États-Unis d’Amérique selon le code fiscal américain 501(c)(3).
           </p>
     flags:
       show:
@@ -5298,6 +5401,8 @@ fr:
         about_total_taxa: "À propos des taxons totaux"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combiné
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Champ de date
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6722,9 +6827,7 @@ fr:
         monthly_supporter: Donateur mensuel
         monthly_supporter_desc_html: |
           Les parrains réguliers d’iNaturalist font des contributions mensualisées
-          automatiques qui sont reçues par l’Académie des sciences de Californie
-          (Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les
-          opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
+          automatiques qui sont reçues par la California Academy of Sciences (code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
           <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
           Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
           boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
@@ -7241,6 +7344,14 @@ fr:
       CompleteSet: Ensemble complet
       #Noun
       Flag: Signalement
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Action du Modérateur
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Remarque du Modérateur
       TaxonLink: Lien de taxon
     attributes:
       assessment:
@@ -7412,6 +7523,10 @@ fr:
           attributes:
             base:
               guide_has_too_many_taxa: "le guide ne peut avoir que 500 taxons"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: doit être un·e responsable
         mushroom_observer_import_flow_task:
           attributes:
             base:
