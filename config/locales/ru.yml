@@ -306,6 +306,7 @@ ru:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Добавить ссылку
   add_a_name: Добавить имя
+  add_a_note: Добавить заметку
   add_a_new_change_group: Добавить новую группу изменений
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Добавить нумерованный список
@@ -1162,6 +1163,8 @@ ru:
   csv_should_not_contain_a_header_row: Файл CSV не должен содержать строку заголовка
   cumulative_ids: "Общее число идентификаций: %{count} из %{total}"
   curate_observations: Курировать наблюдения
+  curate_taxa: Курировать таксоны
+  curate_user: Курировать пользователя
   curating: Курирование
   curation: Курирование
   curator: Куратор
@@ -2392,6 +2395,13 @@ ru:
   #Label shown when a date has not been entered
   missing_date: Отсутствует дата
   mobile: Мобильный
+  moderation_history_for_user_html: История модерации %{user}
+  moderation_history_desc_html: |
+    Это включает в себя действия модератора (например, скрытие или отображение комментариев), заметки и флаги для всего, что создал этот пользователь, кроме таксонов. Это <strong>видно только кураторам</strong>, а <strong>кураторы не могут просматривать свою собственную историю</strong>, поэтому заметки о человеке никогда не должны быть видны этому человеку.
+  moderator_note_desc: |
+    Заметки модератора - это записи ответов модератора или основанные на фактических данных опасения по поводу пользователя, например, являются ли они возможной учетной записью бота. Пожалуйста, не включайте личные мнения или слухи о пользователе.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Модератор / Флаггер
   mollusks: Моллюски
   momentjs:
     shortRelativeTime:
@@ -2433,6 +2443,10 @@ ru:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Месяц
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесячный спонсор</a> с %{date}
@@ -3665,6 +3679,78 @@ ru:
     form: Форма
     infrahybrid: Инфрагибрид
     leaves: Листья
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: царство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: подцарство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: тип
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: подтип
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: надкласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: класс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: подкласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: инфракласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: надотряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: отряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: подотряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: инфраотряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: надкласс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: парвотряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: зоосекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: зооподсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: надсемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: эписемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: семейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: подсемейство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: надтриба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: триба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: подтриба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: род
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: геногибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: подрод
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: секция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: подсекция
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: комплекс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: вид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: гибрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: подвид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: разновидность
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: инфрагибрид
   ranges: Диапазоны
   ray_finned_fishes: Лучепёрые рыбы
   re_apply_list_rules: Повторно применить правила списка
@@ -3820,8 +3906,17 @@ ru:
   save_and_continue: "Сохранить и продолжить"
   save_and_add_taxa: "Сохранить и начать добавлять виды"
   save_changes: Сохранить изменения
+  save_comment: Сохранить комментарий
   save_draft: Сохранить Черновик
+  save_fields: Сохранить поля
+  save_flag: Сохранить флаг
+  save_guide_taxon: Сохранить руководство по таксону
+  save_identification: Сохранить идентификацию
+  save_observation: Сохранить наблюдение
+  save_photos: Сохранить фото
+  save_place: Сохранить место
   save_settings_caps: СОХРАНИТЬ НАСТРОЙКИ
+  save_trip: Сохранить путешествие
   saved: Сохранено
   saved_at_time: Сохранено в %{time}
   saving: "Сохраняется…"
@@ -4707,11 +4802,19 @@ ru:
   view_observations_of_this_taxon_by: 'Посмотреть наблюдения этого таксона:'
   view_on: Посмотреть в
   view_on_flickr: Посмотреть на Flickr
+  view_original: "Посмотреть оригинал"
   view_original_by: "Посмотреть оригинал %{by} на %{photo}"
   view_original_ccD_photo: "Просмотреть оригинал лицензионного (CC) фото %{owner}"
   view_photos_ranges_observations_more: "Посмотрите фото, ареалы видов, наблюдения из %{site_name} и многое другое! Мы собрали информацию из разных источников и объединили их в краткий обзор каждого вида в каждом месте."
+  view_place: Посмотреть место
+  view_post: Посмотреть сообщение
   view_projects_from_place: "Посмотреть проекты для %{place}"
+  view_sample: Посмотреть образец
+  view_stats: Посмотреть статистику
+  view_taxon_change: Посмотреть изменение таксона
+  view_taxon_changes: Просмотреть изменения таксона
   view_taxon_framework_relationship: Посмотреть связь основы таксона
+  view_taxon_page: Посмотреть страницу таксона
   view_taxon_page_for_this_x: "Посмотреть страницу таксона для %{x}"
   view_taxononomy_details_for_taxon: "Просмотр сведений о таксономии для %{taxon}"
   view_the: "Посмотреть %{action}&#59; %{link}"
@@ -5301,6 +5404,8 @@ ru:
         about_total_taxa: "Об общем числе таксонов"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Совмещённый
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Поле Дата
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Горизонтально
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6475,6 +6580,7 @@ ru:
           href="https://akismet.com/">Akismet</a>, но Akismet не идеален, поэтому, если хотите потратить несколько минут, помечая новые учетные записи как спамеров или не спамеров, это поможет.
           </p>
       show:
+        take_a_moment_to_review_html: 'Уделите время и прочтите <a href="%{link}">наши руководства</a>.'
         this_user_was_banned: Этот пользователь был заблокирован
         favorites_list_prompt_html: |
           Хотите показать некоторые из ваших любимых таксонов? %{link_start_tag}Создайте список%{link_end_tag} под названием "Фавориты", и последние дополнения появятся в этом разделе.
@@ -6909,6 +7015,14 @@ ru:
       CompleteSet: Полный набор
       #Noun
       Flag: Флаг
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Действие модератора
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Заметка модератора
       TaxonLink: Ссылка на таксон
     attributes:
       assessment:
@@ -7088,6 +7202,10 @@ ru:
           attributes:
             base:
               guide_has_too_many_taxa: "руководство может содержать только 500 таксонов"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: должен быть куратором
         mushroom_observer_import_flow_task:
           attributes:
             base:
