@@ -28,6 +28,7 @@ HEADERS = %w(
   url
   geoprivacy
   user
+  taxon_id
 )
 REQUIRED = %w(
   taxon_name
@@ -71,7 +72,9 @@ CSV.foreach( csv_path, headers: HEADERS ) do |row|
     puts "#{blank_column} cannot be blank, skipping..."
     next
   end
-  unless taxon = Taxon.single_taxon_for_name( row["taxon_name"] )
+  taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
+  taxon ||= Taxon.single_taxon_for_name( row["taxon_name"] )
+  unless taxon
     puts "\tCouldn't find taxon for '#{row["taxon_name"]}', skipping..."
     skipped << identifier
     next
@@ -95,7 +98,11 @@ CSV.foreach( csv_path, headers: HEADERS ) do |row|
     skipped << identifier
     next
   end
-  iucn = Taxon::IUCN_STATUS_VALUES[row["iucn"].to_s.strip.parameterize.underscore]
+  iucn = if place && row["iucn"].to_s.strip.parameterize.underscore == "regionally_extinct"
+    Taxon::IUCN_STATUS_VALUES["extinct"]
+  else
+    Taxon::IUCN_STATUS_VALUES[row["iucn"].to_s.strip.parameterize.underscore]
+  end
   iucn ||= Taxon::IUCN_CODE_VALUES[row["iucn"].to_s.strip.upcase]
   unless iucn
     puts "\t#{row["iucn"]} is not a valid IUCN status, skipping..."
