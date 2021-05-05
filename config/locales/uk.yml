@@ -322,6 +322,7 @@ uk:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Додати посилання
   add_a_name: Додати назву
+  add_a_note: Додати нотатку
   add_a_new_change_group: Додати нову групу змін
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Додати нумерований список
@@ -1147,7 +1148,7 @@ uk:
   copyright_infringement: Порушення авторських прав
   copyright_infringement_desc: Порушує закон про авторське право або було створене кимось, крім спостерігача і не має інформації про авторство
   covered_by_a_taxon_framework_html: "Охоплено %{link}"
-  covered_by_a_taxon_framework_link: "система поглядів на таксономію для %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_link: "систему поглядів на таксономію для %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Не вдалося змінити пароль: %{e}"
   couldnt_find_a_user_matching_x_param: "Не вдалося знайти користувача, що відповідає %{id}"
   couldnt_find_that_taxon: Не вдалося знайти цей таксон.
@@ -2441,6 +2442,17 @@ uk:
   #Label shown when a date has not been entered
   missing_date: Відсутня дата
   mobile: Мобільний
+  moderation_history_for_user_html: Історія модерації для %{user}
+  moderation_history_desc_html: |
+    Це, у тому числі, дії модератора (наприклад, приховування чи припинення приховування коментарів), позначки
+    та прапорці на всьому, що створював користувач, окрім таксонів. Ці дії
+    <strong>видимі тільки кураторам</strong> і <strong>куратори не можуть передивлятися
+    свою власну історію</strong>, тому нотатки про людину ніколи не видимі цій
+    людині.
+  moderator_note_desc: |
+    Нотатки модератора - це записи про дії з боку модератора або підкріплені доказами застереження щодо користувача, наприклад, коли обліковий запис ймовірно є ботом. Будь ласка, уникайте особистих думок або розповсюдження чуток про користувача.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Модератор / Встановлювач прапорця
   mollusks: молюски
   momentjs:
     shortRelativeTime:
@@ -2482,6 +2494,10 @@ uk:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Місяць
   monthly_supporter_since_date_html: |
     <a href="%{url}">Щомісячний спонсор</a> від %{date}
@@ -2898,6 +2914,7 @@ uk:
   old_observation_form: Стара форма для спостережень (не рекомендована)
   ok: "Прийняти"
   on_caps: "УВІМК"
+  on_day: ","
   onboarding:
     observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
     observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
@@ -3728,6 +3745,78 @@ uk:
     form: Форма
     infrahybrid: Інфрагібрид
     leaves: Листя
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: форма матерії
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: царство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: підцарство
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: тип/відділ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: підтип/підвідділ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: надклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: клас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: підклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: інфраклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: надпорядок
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: ряд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: підряд/підпорядок
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: інфраряд/інфрапорядок
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: субтерклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: парворяд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: секція
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: підсекція
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: надродина
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: епіродина
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: родина
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: підродина
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: надтриба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: триба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: підтриба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: рід
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: міжродовий гібрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: підрід
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: секція
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: підсекція
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: комплекс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: вид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: гібрид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: підвид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: різновид
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: інфрагібрид
   ranges: Територія
   ray_finned_fishes: променепері риби
   re_apply_list_rules: Повторно застосувати правила списку
@@ -4005,6 +4094,7 @@ uk:
   showing_x_of_y: Показано %{x} з %{y}
   showing_x_of_y_listings: "Показано %{x} з %{y} списків"
   sign_in: Увійти
+  sign_in_with_provider: "Увійти через %{provider}"
   sign_in_with_google: Увійти через Google
   sign_out: Вийти
   sign_up: Зареєструватися
@@ -4365,7 +4455,7 @@ uk:
   taxonomic_tags_for_flickr: Таксономічні позначки для Flickr
   taxonomy_details: Подробиці таксономії
   taxonomy_details_for: Подробиці таксономії для
-  taxonomy_details_info: 'Сторінка "Подробиці таксономії" використовує Системи поглядів на таксономію для того, щоб описати, що саме ми розуміємо під таксоном. <a href="/pages/taxon_frameworks">Докладніше</a>.'
+  taxonomy_details_info: 'Сторінка "Подробиці таксономії" створена, аби пояснити, що саме ми розуміємо під таксоном на основі Системи поглядів на таксономію. <a href="/pages/taxon_frameworks">Докладніше</a>.'
   taxonomy_settings: Налаштування таксономії
   teachers_guide: Посібник вчителя
   tell_everyone_a_little_about_you: Розкажіть нам трохи про себе
@@ -4580,6 +4670,8 @@ uk:
   unknown_error: Невідома помилка
   unknown_rank: '(Невідомий ранг)'
   unfollow: Не стежити
+  unlink_your_google_account: Від'єднати свій обліковий запис Google
+  unlink_your_flickr_account: "Від'єднати свій обліковий запис Flickr"
   unmute: Скасувати ігнорування
   updates_notification_email_subject: "%{prefix} Свіжі оновлення %{date}"
   updates_suspension_email_subject: "%{prefix} Ваші підписки призупинено"
@@ -4682,18 +4774,63 @@ uk:
   user_added_an_observation_field_value_html: "%{user} додав/додала значення до поля спостереження"
   user_added_an_observation_html: "%{user} додав/додала спостереження"
   user_added_an_x: "%{user} додав/додала %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} додав/додала %{x} до %{noun} %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
+  user_added_an_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
   user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
+  user_already_authenticated: Користувача вже було автентифіковано
+  user_autocomplete_placeholder: kueda, simon123 тощо
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} вважає, що це вичерпний список таксону %{taxon} у місці %{place}
+  user_blocked: Користувача заблоковано
+  user_commented: "%{user} коментує"
+  user_commented_on: "%{user} коментує щодо вашого %{title} %{time}"
+  user_disagrees_this_is_taxon: "%{user} не погоджується, що це %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} не погоджується з попередніми уточнючими визначеннями"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
+  user_faved_a_noun_by_owner: "%{user} додав/додала в уподобані %{noun} від %{owner}"
+  user_faved_this_observation: "%{user} додав/додала це спостереження в уподобані"
+  user_flagged_as_a_non_spammer_html: "%{user} позначено як не-спамера"
+  user_flagged_as_a_spammer_html: "%{user} позначено як спамера"
+  user_has_opted_out_of_community_id: Користувач скасував можливість визначення таксону спільнотою
+  user_hasnt_joined_any_projects: "%{user} ще не долучився/долучилася до жодних проєктів"
+  user_helped_x_people_with_y_ids_html: "%{user} надав/надала допомогу <strong>%{x} людям</strong> у <strong>%{y} визначеннях</strong>"
+  user_invite_observation_to_project: '%{user} хочу долучити ваше спостереження %{observation} до проєкту %{project}'
+  user_invited_you_to_join_html: "%{user} запрошує вас долучитися"
+  user_invited_you_to_join_project: "%{user} запрошує вас долучитися до проєкту %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} запрошує вас долучитися до проєкту %{date}"
+  user_invited_your_x_to_a_project_html: "%{user} хоче долучити ваше %{x} до проєкту"
   user_is_a_naturalist: "%{user} є натуралістом!"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> тепер є адміністратором проєкту %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> тепер є менеджером проєкту %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> тепер є куратором проєкту %{project}
   user_muted: Користувача ігноровано
+  user_observed_on_on_date_in_place: |
+    Користувач %{user} спостерігав це %{date} у такому місці: %{place}
   user_suggested_an_id: "%{user} запропонував визначення"
   user_thinks_yours_is: "%{user} %{noun} ваше спостереження %{observation} є"
+  user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Спостерігач вирішив довірити вам приховані координати всіх своїх спостережень.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> писав/писала,
   username: Ім’я користувача
   username_description: Це ім'я користувача, яке ви будете використовувати для входу, а інші користувачі можуть використовувати для ідентифікації вас на iNaturalist
   username_or_email: Ім'я користувача або email
   username_or_user_id: Ім'я або ID користувача
   users: Користувачі
+  users_contributions_to_project_html: Внесок користувача <a href="%{url}">%{login}</a> у проєкт %{project_title}
+  users_highlights_and_stats_from_year_on_site: "Яскраві моменти та статистика року %{year} користувача %{user} на %{site}"
+  users_id: "ID користувача %{user}"
+  users_latest_observations_on_site: "найновіші спостереження користувача %{user} на %{site}"
+  users_profile: "Профіль користувача %{user}"
+  users_projects: "Проєкти користувача %{user}"
+  users_year_on_site: "%{year} Рік користувача %{user} на %{site}"
   valid_options_are: Доступні опції
   value: Значення
   values: Значення
@@ -5132,6 +5269,19 @@ uk:
           <code>родина=Мартини та близькі таксони</code>
         coordinates_desc: |
           Надання ваших координат посібника допоможе людям знайти його під час пошуку за локацією.
+        eol_subjects_desc: |
+          EOL публікує вміст у багатьох рубриках, і не всі вони доступні для кожного таксону. Вибір "Огляд" просто імпортує перший доступний блок тексту з EOL, яка
+          зазвичай містить зведення про таксон.
+        eol_collection_desc_html: |
+          <a href="http://eol.org/" target="_blank">Енциклопедія життя (Encyclopedia of Life, EOL)</a> є сховищем інформації про життя на Землі. В EOL ви можете
+          створити
+          <a href="http://eol.org/info/252" target="_blank">колекції</a>
+          видів. Якщо ви хочете імпортувати види з колекції EOL,
+          вставте вебадресу цієї колекції сюди.
+        guide_place_desc: |
+          Прив'язка вашого посібника до місця допоможе іншим знайти його під час
+          пошуку місць і покаже його межі на
+          мапі %{site_name}, якщо межі місця були встановлені (наприклад, під час перегляду у вигляді карток, на сторінці таксону, тощо)
         import_tags_from_csv_help_html: |
           <p>
           Завантажити CSV файл, що містить позначки для таксонів з цього посібника. Ваш CSV файл повинен мати таку структуру:
@@ -5161,32 +5311,394 @@ uk:
           <p>
           Перший рядок починається з поля "Назва", за яким слідують предикати/категорії позначок. Кожен наступний рядок починається з назви таксону, за яким йдуть позначки відповідно до предикатів у назві поля. В наведеному прикладі, <i>Homo sapiens</i> має позначки <code>двоноге</code> та <code>Кількість рук=2</code>, тоді як <i>Vulpes vulpes</i> має позначки <code>чотириноге</code>, <code>колір=червоний</code>, <code>колір=чорний</code> та <code>Кількість рук=0</code>. Порожні значення буде пропущено, і ви можете додати декілька рядків для одного таксону. Також ви маєте змогу додати декілька значень на одну комірку, розділюючи їх вертикальною рискою.
           </p>
+        licensing_explanation: |
+          Ліцензування вашого контенту надає іншим людям право на його копіювання та
+          змінювання без вашого дозволу, адже так набагато простіше
+          ділитися власним доробком. Якщо ви додаєте сторонні матеріали з інших
+          джерел, які використовують ліцензії Creative Commons ShareAlike (такі як
+          Вікіпедія), ви юридично зобов'язані використовувати подібну ліцензію. 
+          Ось огляд всіх ліцензій Creative Commons і того, що вони означають:
+        paste_note_html: |
+          Вставте до 500 назв видів, по одній на рядок. %{site_name} спробує співставити народні назви з концептами видів, але, щоб уникнути
+          неоднозначності, краще використовувати наукові назви. Якщо ви хочете
+          вказати обидві назви, відділіть наукову назву від народної
+          комою, наприклад <code>Homo sapiens, Людина</code>.
+        places_note: |
+          Примітка: не всі місця мають таксономічні списки. Якщо вам не вдається знайти місце з таксонами, спробуйте обрати більші площі за допомогою
+          політичних кордонів, таких як об'єднання, держави, області, райони тощо.
+        replace_existing_eol_desc: Видалити вже наявний контент перед імпортом з EOL
+        place_choose_taxon_note: |
+          Якщо ви бажаєте звузити пошук, застосуйте фільтр за таксоном, наприклад, оберіть "рослини"
+      eolupdate_notice: |
+        Зачекайте, будь-ласка, імпорт контенту з EOL може зайняти хвилину або дві.
+      show:
+        draft_desc: |
+          Цей посібник буде видимим лише для людей, які мають право його редагувати, доки ви його не опублікуєте.
+      generating_mobile_archive_tip_html: |
+        Це може зайняти деякий час, тому спробуйте оновити цю сторінку за кілька хвилин.
+      mobile_downloads_tip_html: |
+        Цей посібник можна завантажити до мобільного додатку для автономного використання.
+      mobile_downloads_help_html: |
+        <p>Так ви створите доступний для завантаження архів усіх даних та медіафайлів, пов'язаних із цим посібником, щоб користувачі мобільного додатку могли переглядати весь
+        вміст посібника без підключення до Інтернету. Для створення архіву знадобиться
+        кілька хвилин, але коли це буде завершено, архів оновлюватиметься кожного разу при редагуванні цього посібника.</p>
+        <p class="alert status">
+        Будь ласка <strong>, не вмикайте мобільні завантаження офлайн, якщо ви 
+        насправді не збираєтеся ними користуватися.</strong> Вони добряче обтяжують нашу систему.
+        </p>
+      pdf_layouts:
+        grid: сітка
+        book: книга
+        journal: журнал
+      pdf_layout_notes:
+        grid: |
+          Сітка виключно з зображень, без опису
+        journal: |
+          Розділити сторінку: інформація про види ліворуч, місце для нотаток праворуч. Інформація про види буде обмежена розмірами сторінки.
+        book: |
+          Повний посібник, у тому числі всі фотографії і описи, займає багато сторінок.
+      pdf_generation_notice: |
+        Зачекайте, будь-ласка, створення великих PDF-файлів може зайняти хвилину або дві.
       tags_help_html: |
         Позначки (теги) подібні до категорій для видів у вашому посібнику, за винятком випадків, коли декілька видів мають однакову позначку. Введіть позначки як список, розділяючи їх комами, наприклад <code>маленьке, пухнасте</code>. Щоб додати поіменовані категорії, використовуйте позначки подібно до <code>назва_категорії=значення_категорії</code>, наприклад <code>колір=жовтий</code>.
+      sorts:
+        default: Порядок посібників
+        alphaname: За абеткою за науковою назвою
+        alphadisplay: За абеткою за відтворюваною назвою
     guide_taxa:
+      edit:
+        eol_explanation: "Додати народну назву, до 5 зображень, 1 опис та 1 мапу з EOL."
+        site_explanation: "Додати народну назву, до 5 ліцензованих зображень та відомості з Вікіпедії з %{site_name}."
       show:
         reuse_desc: |
           Ви можете скопіювати цей таксон до іншого посібника. Якщо ви є одним з
           редакторів цього посібника, буде скопійовано все, але якщо ні, то скопійовано буде лише ліцензований контент.
     lifelists:
+      list_view: У вигляді списку
+      tree_view: У вигляді дерева
+      observed_species: Спостережені види
       observed_rank: '%{rank} спостережуваного'
+      unobserved_species: Види, що не були спостережені
+      all_species: Усі види
+      all_unobserved_species: Усі види, що не були спостережені
+      observations_at_this_taxon: Cпостереження за цим таксоном
+      observations_within_this_taxon: Cпостереження у межах цього таксону
+      all_observations: Усі спостереження
+      total_observations: Усього спостережень
+      filter_by: Фільтрувати за
+      filtered_by: Фільтровано за
+      apply_filters_to_export: Застосувати фільтри для експорту
+      restrict_to_leaf_taxa: Обмежити до термінальних таксонів
+      restrict_to_taxon: Обмежити таксоном %{taxon}
+      restrict_to_taxa_observed_in_place: Обмежити таксонами, спостереженими у %{place}
+      exporting_all_x_taxa:
+        one: Експорт %{count} таксону
+        few: Експорт %{count} таксонів
+        many: Експорт %{count} таксонів
+        other: Експорт %{count} таксонів
+      exporting_x_taxa:
+        one: Експорт %{count} таксону
+        few: Експорт %{count} таксонів
+        many: Експорт %{count} таксонів
+        other: Експорт %{count} таксонів
       no_observations_found_in_place: У місці %{place} немає нових спостережень
+      no_observations_found_within_this_taxon_in_place: У місці %{place} немає спостережень даного таксону
+      no_species_found_within_this_taxon_in_place: У місці %{place} немає видів з даного таксону
+      no_species_found_in_place: У місці %{place} немає видів
+      no_unobserved_species_in_place: У місці %{place} немає видів без спостережень.
+      no_unobserved_species_within_this_taxon: В межах цього таксону немає видів без спостережень.
+      no_unobserved_species_within_this_taxon_in_place: В межах цього таксону немає видів без спостережень у місці %{place}.
+      reset_place_filter: Скинути фільтри за місцем
+      all_observations_in_this_taxon: Усі спостереження за цим таксоном
+      observations_of_exactly_this_taxon: Cпостереження в точності цього таксону
+      focus_tree_on_this_taxon: Сфокусувати дерево на цьому таксонові
+      expand_all_nodes_in_this_branch: Розгорнути всі вузли в цій гілці
+      collapse_this_branch: Згорнути цю гілку
+      dropdowns:
+        sort: Сортувати
+        taxonomic: Таксономічний
+        name: Назва
+        most_observed: Спостережені найчастіше
+        least_observed: Спостережені найрідше
+        date_added_newest: За датою додавання, спочатку новіші
+        date_added_oldest: За датою додавання, спочатку старіші
+        ancestry: Предки
+        show: Показати
+        children: Дочірні таксони
+        simplified_tree: Спрощене дерево
+        full_taxonomy: Повна таксономія
+    listed_taxa:
+      establishment_field:
+        confirmation: |
+          Ви впевнені? Ця дія змінить шляхи виникнення для ВСІХ
+          таксонів у списку в межах цього місця. Ви ризикуєте втратити
+          багато роботи.
+        description_html: |
+          Ця дія змінить шляхи виникнення для <em>усіх</em> згадок
+          цього таксону у всіх місцях, дочірніх для
+          <a href="%{place_url}">%{place_name}</a>
+          на <strong>"%{establishment_means}"</strong>. Цим інструментом можуть користуватися лише куратори. Зміна шляхів виникнення на
+          "інтродукований" матиме приблизно такий же ефект, але не змінюватиме
+          існуючих значень, а просто заповнить порожні.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Назва Списку Живого не може бути змінена
+      new:
+        place_desc: |
+          Автоматично наповнити цей список таксонами, що спостерігалися в цьому місці.
+          Зверніть увагу, що обирати можна лише місця, які мають створені межі.
       show:
         project_list_desc: |
           Таксони, що їх було вручну додано кураторами проєкту, а також таксони, представлені спостереженнями дослідницького рівня доданими до проєкту наведено у списках проєкту.
+    messages:
+      from: Від
+      to: Кому
+      subject_body: Тема / Текст
+      index:
+        show_messages_from_user: Показати повідомлення від користувача %{user}
+        show_messages_to_user: Показати повідомлення користувачеві %{user}
+        speech_privilege_notice: |
+          Ви зможете надсилати нові повідомлення після додавання трьох перевірюваних спостережень або трьох визначень для інших. Наразі ви можете читати і відповідати на повідомлення, які інші люди надіслали вам.
+      show:
+        flag_notice_html: |
+          Ви позначили цю розмову %{date}. Прапорець буде збережений навіть якщо ви видалите свою копію цієї розмови, тож це можна безпечно зробити, якщо ви більше не хочете це бачити.
+        privacy_notice_html: |
+          Попри те, що повідомлення є приватними між вами та отримувачем, співробітники iNaturalist також можуть переглядати їх, і робитимуть це, якщо повідомлення буде позначене для модерування. Якщо ви потребуєте справді особистого зв'язку, розгляньте інші механізми комунікації, які добре захищені шифруванням.
+    oauth:
+      authorizations:
+        new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
+          authorize_application_to_use_your_account?: Авторизуватися у %{application}, щоб використовувати ваш аккаунт?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
+          this_application_will_be_able_to_colon: "Цей застосунок матиме змогу:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
+          more_about_application: Докладніше про %{application}
     observations:
+      community_id:
+        agreement: Угода
+        algorithm_summary: Докладно про алгоритм
+        ancestor_disagreements: Розбіжності з предковими таксонами
+        below_cutoff: Нижче відсікання
+        cumulative_count: Сукупний підрахунок
+        disagreement: Розбіжність
+        disagreement_count: Кількість розбіжностей
+        identification_count: Кількість визначень
+        score: Оцінка
+        explanation: |
+          <p>
+          Якщо з якоїсь причини користувач не згоден з таксом спільноти, він може його відхилити, що означатиме, що його визначення буде єдиним, що використовуватиметься для зв'язку з іншими спостереженнями, оновлення списків Життя тощо. Це також означатиме, що таке спостереження зможе набути дослідницького рівня тільки в разі, якщо спільнота погодиться з цим визначенням.
+          </p>
+          <p>
+          Однак, визначення спільноти все одно відображатимуться, тож усі зможуть побачити
+          різні визначення, які було запропоновано.
+          </p>
+        you_have_opted_out: Ви відмовилися від визначень спільноти
+        opt_in_for_this_observation: Вдатися до допомоги спільноти з цим спостереженням
+        your_id_does_not_match: |
+          Ваше визначення (<span class="bold">%{taxon_name}</span>) не збігається з визначенням спільноти
+      copy_tip: "Додати нове спостереження, скопіюваши дату, місце, фотографії та поля цього спостереження."
+      captive_help_html: |
+        Чи був організм <strong>культивований</strong> або <strong>утримуваний в неволі</strong>? Наприклад, організм спостерігали в <strong>саду, зоопарку, акваріумі</strong> або у інших обставинах, в якіх він міг опинитися <strong>виключно з навмисної волі людини</strong>? Всі спостереження живих організмів вітаються, але ми хотіли б знати напевно, чи є організм диким або здичавілим.
+      compare:
+        about_missing_taxa: Про відсутні таксони
+        about_total_taxa: "Про всі таксони"
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Поєднане
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Поле дати
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Горизонтально
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Проміжок
+        interval_limit_warning_hour: Показувати лише кількість годин, еквівалентну 1 тижню
+        interval_limit_warning_day: Показувати лише кількість днів, еквівалентну 1 року
+        interval_limit_warning_week: Показувати лише кількість тижнів, еквівалентну 10 рокам
+        interval_limit_warning_month: Показувати лише кількість місяців, еквівалентну 100 рокам
+        interval_limit_warning_year: Показувати лише кількість років, еквівалентну сторіччю
+        some_queries_missing_taxa: Деякі запити відображують не всі таксони
+        some_queries_missing_taxa_desc: |
+          Ми можемо завантажити лише 500 найчастіше спостережуваних таксонів за один запит, відтак якщо в запиті більше таксонів, вони або не відображатимуться, або з'являться як "?" в разі, якщо вони присутні в інших запитах. Спробуйте звузити свої запити таким чином, аби вони показували вам до 500 таксонів для оптимальних порівнянь.
+        taxa_not_observed_in_all_queries: Таксон не знайдено у жодному з запитів
+        taxa_observed_in_all_queries: Таксон знайдено в усіх запитах
+        taxa_observed_in_only_one_query: Таксон, знайдений лише в одному запиті
+        total_taxa: Всього таксонів
+        total_taxa_desc: |
+          Це - підсумкова кількість "кінцевих" таксонів, що представлені у запиті. Часом ви можете бачити більше рядків, аніж потрібно для перелічення усіх таксонів, доданих до запиту. Якщо, наприклад, Запит 1 містить спостереження Homo sapiens, а Запит 2 - спостереження представників роду Homo, обидва таксони будуть представлені у таблиці, але для Запиту 1 з'явиться додатковий рядок для роду Homoб що не буде враховано у підсумковому підрахунку, позаяк запит враховує лише вид Homo sapiens, що належить до цього роду, адже цей таксон є "кінцевим" для цієї частини філогенетичного дерева.
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Вертикально
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          #Count of how many taxa several observation searches have in common
+          one: "%{count} спільний"
+          #Count of how many taxa several observation searches have in common
+          few: "%{count} спільних"
+          #Count of how many taxa several observation searches have in common
+          many: "%{count} спільних"
+          #Count of how many taxa several observation searches have in common
+          other: "%{count} спільних"
+        #Count of how many taxa are not present in *all* of several observation searches
+        x_not_in_common:
+          #Count of how many taxa are not present in *all* of several observation searches
+          one: "%{count} не спільний"
+          #Count of how many taxa are not present in *all* of several observation searches
+          few: "%{count} не спільних"
+          #Count of how many taxa are not present in *all* of several observation searches
+          many: "%{count} не спільних"
+          #Count of how many taxa are not present in *all* of several observation searches
+          other: "%{count} не спільних"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          #Count of how many taxa are present in an observation search
+          one: "%{count} загалом"
+          #Count of how many taxa are present in an observation search
+          few: "%{count} загалом"
+          #Count of how many taxa are present in an observation search
+          many: "%{count} загалом"
+          #Count of how many taxa are present in an observation search
+          other: "%{count} загалом"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count} унікальний"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          few: "%{count} унікальні"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          many: "%{count} унікальних"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count} унікальних"
+      export:
+        choose_columns_desc: Виберіть стовпчик, який ви хочете експортувати
+        create_a_query_desc_html: |
+          Створіть запит до бази даних спостережень подібно до того, як ви робили б це у будь-якому іншому місці на сайті. Ви також можете вирізати і вставити URL-адресу спостережень з іншого місця на сайті. Ваш запит <strong>повинен повертати не більше 200 тисяч спостережень</strong>.
+        export_in_progress_notice_html: |
+          Ваш <a href="%{url}">експорт триває</a>. Зачекайте на завершення, перед тим, як виконати наступний експорт.
+        ident_by_user_desc_html: |
+          Стовпці для поточної ідентифікації %{user}
+        limit_alert: Ваше експорт буде занадто великим. Змініть ваші фільтри таким чином, щоб вивантаження не перевищувало 200 тисяч спостережень.
+        query_placeholder: "Виберіть параметри запиту нижче або вставте в URL-адресу спостережень"
+        taxon_extras_help_html: "Примітка: ці стовпці сповільнюватимуть створення вашого експорту"
+        geo_help_html: |
+          Поля "місто", "область", "штат", "країна" базуються на координатах. Для спостережень у місцях, де ці типи поділу не у вжитку, будуть застосовані адміністративні одиниці аналогічного рівня. Поля private_* будуть включені тільки у разі використанні фільтра за користувачем і ви є користувачем, або при використанні фільтру за проєктом і ви є куратором проєкту.
+        be_patient: |
+          Будь ласка, зачекайте, це може зайняти кілька хвилин. Якщо пройшло вже багато часу, ви можете
+        check_back: |
+          Якщо ви перезавантажите цю сторінку за кілька хвилин, ваш експорт має з'явитися
+          у списку внизу сторінки.
+        receive_an_email_with_your_data: Отримати електронний лист з вашими даними
+        receive_an_email_with_your_data_help: Ви отримаєте електронного листа з вашим експортом у вкладенні.
+        well_email_you: "Гаразд, ми надішлемо вам електронні листи коли він буде готовий."
+        taking_a_while: "Це займе деякий час. Будь ласка, спробуйте один з варіантів нижче."
+        date_range_help: "Максимальна і мінімальна дати спостережнь у форматі РРРР-ММ-ДД, наприклад 2015-01-17"
+        created_on_help: "Дата, у яку спостереження були створені на сайті (не спостережені!), наприклад 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Інші варіанти</h3>
+          <p>
+          Експорт великих масивів даних сповільнює нашу інфраструктуру і ускладнює випуск оновлень. Перегляньте наступні альтернативи:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF поглинає більшість ліцензованих спостережень дослідницького рівня, і має чудові інструменти експорту. Дані, експортовані з GBIF, супроводжуються <a href="https://www.doi.org/">DOI</a>, який ви можете цитувати у наукових публікаціях, створених з використанням цих даних. Такі цитування надзвичайно важливі, оскільки допомагають нам побачити як використовуються дані з iNat.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">формат DarwinCore
+          Archive (DwC-A) для GBIF</a>: це <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          файл, який ми створюємо для передачі у GBIF, тобто він містить те саме, що є у GBIF, але якщо ви хочете отримати весь архів, ви можете його завантажити. Це дуже великий zip-файл, якій містить записи у форматы CSV. Оновлюється щотижня.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">Дані iNaturalist
+          Challenge під час FGVC 2017</a>: посилання на 675,000 ліцензованих світлин 5,089 видів
+          з iNaturalist для навчання алгоритмів комп'ютерного зору. Створений у червні 2017, не оновлювався.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Унікальний ідентифікатор спостереження"
+        species_guess: "Назва, яку спостерігач ввів для спостереженого таксону"
+        scientific_name: "Наукова назва спостереженого таксону відповідно до цього сайту"
+        common_name: "Побутова або народна назва спостереженого таксону відповідно до цього сайту"
+        iconic_taxon_name: Таксономічна категорія вищого рівня для спостереженого таксону
         taxon_id: Унікальний ідентифікатор спостереженого таксону
+        id_please: Запитував спостерігач допомоги у визначенні чи ні
+        num_identification_agreements: Кількість визначень, які співпадають з визначенням спостерігача
+        num_identification_disagreements: Кількість визначень, які конфліктують з визначенням спостерігача
+        observed_on_string: Дата/час, введені спостерігачем
+        observed_on: Нормалізована дата спостереження
+        time_observed_at: Нормалізовані дата та час спостереження
+        time_zone: Часовий пояс спостереження
+        place_guess: Опис місцезнаходження, введений спостерігачем
+        latitude: Публічно видима широта
+        longitude: Публічно видима довгота
+        positional_accuracy: "Прецизійність координат (саме так, точність(accuracy) != прецизійність(precision), погано обрані терміни)"
+        private_latitude: "Приватна широта, оберіть якщо спостереження приватне або розмите"
+        private_longitude: "Приватна довгота, оберіть якщо спостереження приватне або розмите"
+        geoprivacy: "Чи вирішив спостерігач приховати або розмити координати, чи ні"
+        taxon_geoprivacy: "Найконсервативніший рівень конфіденційності геоданих, що застосовується через охоронні статуси таксонів у поточному визначенні."
         coordinates_obscured: "Чи були розмиті координати (через налаштування конфіденційності геоданих або ймовірну загрозу для таксонів)"
+        out_of_range: Чи знаходиться спостереження за межами знаної області поширення таксону
         user_id: Унікальний ідентифікатор спостерігача
+        user_login: Користувацьке ім'я спостерігача
+        created_at: Дата і час, у який спостереження було створено
+        updated_at: Дата і час, у який спостереження було останнього разу оновлено
+        quality_grade: Рівень якості цього спостереження. Деталі того, що це означає, дивіться у розділі Допомога
+        license: Ліцензія, яку спостерігач обрав для цього спостереження
+        url: URL спостереження
+        image_url: URL-адреса зображення за промовчанням
+        sound_url: URL для звуку за промовчання. Зауважте, що це працюватиме тільки для прямих завантажень, але не для звуків, розміщених на сторонніх ресурсах
         tag_list: Список позначок, розділених комами
+        place_admin1_name: Назва адміністративної одиниці на один ступінь нижче рівня країни
+        place_admin2_name: Назва адміністративної одиниці на два ступеня нижче рівня країни
+        positioning_method: Як було отримано координати
+        positioning_device: Пристрій, яким було виміряно координати
       identify:
         review_all_tooltip: "Позначити всі спостереження на сторінці як переглянуті"
+        you_reviewed_message: "Ви переглянули %{reviewed} з %{pageTotal} спостережень на цій сторінці з %{total} відповідних спостережень."
+        unreview_all_tooltip: "Видалити статус \"перевірено\" для всіх спостережень на сторінці"
+        too_many_results_desc: |
+          Кількість сторінок, помножена на кількість результатів на сторінку, не може перевищувати 10 000. Спробуйте застосувати фільтри, щоб зменшити кількість результатів, або позначте
+          спостереження як "переглянуті" та скористайтеся кнопкою "Переглянути більше" замість перегляду по сторінках.
+      import:
+        coordinate_systems_help: |
+          %{site_name} приймає координати, записані у кількох різних системах координат, тому, коли ви надаєте координати, записані інакше ніж
+          широта / довгота, нам потрібно знати, яку систему координат ви
+          використовуєте, щоб мати можливість їх правильно інтерпретувати. Будь-ласка, переконайтеся, що ви обрали для ваших даних правильну систему координат. Інакше
+          ваші знахідки можуть пройти довгий шлях, допоки знайдуть правильне місце на мапі. Якщо ваші координати було отримано за допомогою пристрою GPS, перевірте назву його системи координат у його налаштуваннях. Зверніть увагу, що ми не зберігаємо первинні
+          координати, лише похідні від них у форматі широта / довгота.
+        date_column_format: РРРР-ММ-ДД ГГ:ХХ
+        decimal_degrees_format: гг.гггг (градус)
+        geoprivacy_must_be_in_english: |
+          Колонка конфіденційність геоданих (geoprivacy) має бути англійською і бути пустою, або містити значення "obscured"(розмиті) або "private"(приватні)
+        google_photos_notice_html: |
+          У лютому 2019 року Google змінив свій API, унеможлививши нам доступ до координат GPS, інформації про ліцензію і майже будь-якої інформації, яку можна використовувати для додавання визначення (наприклад, теги). Вони також видалили текстовий пошук та числовий порядок сторінок. На додачу до цього, вони вимагають від усіх підключених акаунтів додаткових дозволів, і до того, як сторонні застосунки можуть запитати додаткові дозволи у користувача, сторонні застосунки також мають бути верифіковані. Ми очікуємо на верифікацію, але поки це не відбудеться, ви не зможете імпортувати фото з Google.
+          Якщо ми отримаємо схвалення, ви зможете імпортувати фотографії, але вони не
+          не міститимуть жодної інформації про місцезнаходження чи інформацію про ліцензію, яку ви можете бачити на Google Photos. Про це можна дізнатися більше <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Завантаження оригінальних файлів і додавання їх за допомогою <a
+          href="/observations/upload">Завантажувача</a> є найкращим виходом.
+        project_csv_template_notice_html: |
+          Для цього проєкту існує шаблон файлу, який може допомогти вам з структурою файлу CSV.
+          <a href="%{url}">Завантажити шаблон</a>
+        soundcloud_notice_html: |
+          У 2018 Soundcloud змінив свій API, зробивши неможливим для нас встановлення нових зв'язків з вашим обліковим записом Soundcloud. Якщо вони відновлять цей функціонал, ми поновимо зв'язок акаунтів із Soundcloud. Тим часом, ви можете імпортовувати звукові файли напряму, за допомогою <a href="/observations/upload">Завантажувача</a>.
       show:
+        allow_curator_coordinate_access_desc_html: |
+          Дозволити кураторам проєкту переглядати приховані координати для цього спостереження.
+        ancestor_disagreements_desc: "Кількість визначений таксонів, що лежать у межах таксонів вищого рангу, але не співпадають з поточним таксоном (напр., \"Я гадаю, що це щось з цього роду, але я не згодний з видом\")"
         community_taxon_desc_html: |
           <p class="ui">
           Таксон спільноти (чи визначення спільноти) – це той таксон, який за думкою спільноти
@@ -5201,6 +5713,21 @@ uk:
           <p class="ui">
           <strong> Алгоритм</strong> для усіх визначених таксонів і таксонів вищого рангу, до яких вони належать (напр. рід <i>Homo</i> містить <i>Homo sapiens</i>), оцінює кожен таксон як відношення між числом "згод" – сукупних визначень, які співпадають з даним таксоном поміж усіх сукупних визначень, "незгод" – визначень, що повністю відрізняються (наприклад, визначення, що зовсім не містять назви оцінюваного таксону), та "часткових незгод" – кількості консервативніших визначень, себто визначень до таксону вищого рангу, які не співпадають з більш детальним визначенням. Для визначених таксонів, що мають оцінку вище за 2/3 та щонайменш 2 визначення, алгоритм обирає таксон найнижчого рангу.
           </p>
+        cumulative_count_desc: 'Кількість визначень для конкретного таксону та усіх його дочірніх таксонів'
+        curator_coordinate_access_disabled_desc_html: |
+          Цей проєкт не дозволяє додавати спостереження з координатами, що їх
+          куратори проєкту не зможуть побачити. Якщо ви волієте не ділитися
+          координатами ваших спостережень з кураторами цього проєкту,
+          ви маєте видалити їх з проєкту.
+        data_quality_assessment_desc_html: |
+          Оцінка Якості Даних є оцінюванням праильності визначення. Спостереження дослідницького рівня можуть використовуватися з науковою метою. Проголосуйте нижче:
+        disagreement_count_desc: "Кількість визначених таксонів, що лежать поза межами батьківського таксону"
+        identification_count_desc: 'Кількість визначень для окремого таксону'
+        flagged_photos_desc_html: |
+          Деякі з цих фотографій були позначені як такі, що несуть невідповідний зміст або
+          порушують авторські права. Докладніше дивіться %{links}
+        join_project_desc_html: |
+          Долучаючись до проєкту, ви надаєте його кураторам право переглядати приховані координати для цього або будь-якого іншого спостереження в межах проєкту та підтверджуєте, що погоджуєтеся з <a href="%{url}" target="_blank">умовами проєкту</a>.
         quality_assessment_help_html: |2
           <p>
           Оцінка якості даних — це підбиття підсумку точності спостереження. Усі спостереження починають з оцінки <strong>"пересічне"</strong> та переходять у статус
@@ -5253,22 +5780,431 @@ uk:
           Система не позначить спостережений вид як дикий/натуралізований, якщо існує як мінімум 10 інших спостережень на рівні роду або нижче у найменшому місці (еквівалентному району, області, країні), яке містить це спостереження, при цьому 80% або більше цих спостережень були позначені не як дикі/натуралізовані.
           </li>
           </ul>
+        score_desc: "оцінка = сукупна кількість / (накопичена кількість + кількість розбіжностей + розбіжності з таксонами вищого рангу)"
+        observation_flagged_notice_html: |
+          Це спостереження було позначено як спам та більше недоступне для загального перегляду. Ви можете його бачити тому, що є його автором, або є куратором сайту. Якщо ви вважаєте, що це помилка, будь ласка, <a href="mailto:%{help_email}" class="contact">повідомте нам</a>.
+          <a href="/observations/%{observation_id}/flags">Керувати прапорцями</a>
+        observer_does_not_allow_observation_fields: Спостережник не дозволяє додаткові поля спостереження
+        observer_only_allows_curators_to_add_fields: Спостережник дозволяє лише кураторам сайту додавати поля спостереження
+      user_stats:
+        user_stats_desc: |
+          Статистика користувача обмежена максимум 500 (спостережень чи видів), відтак загальний список зазвичай трохи перевищує 500, адже два списки, вірогідно, не місять одних і тих самих користувачів. Значення, відмічені символом '*', означають, що вони не входять у перші 500 записів цієї статистики.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+        Ви можете редагувати це спостереження, оскільки ви створили його або ви є куратором сайту. Якщо ви є куратором сайту, будь ласка, слідуйте цим інструкціям:
+        </p>
+        <ol>
+        <li>Не змінюйте довільні назви (напр., замінюючи "харчується" на "п'є нектар")</li>
+        <li>Враховуйте, що поля спостережень можуть використовуватися для спостережень будь-яких таксонів, тож уникайте таксон-спеціифічної термінології</li>
+        <li>Не видаляйте поля, які використовуються</li>
+        <li>Не перекладайте наявні назви полів іншими мовами. Англійська є lingua franca на цьому сайті. Якщо ви дійсно потребуєте поля, що повторює значення наявного, але іншою мовою, будь ласка, створіть нове поле.</li>
+        </ol>
+      dna_help: |
+        Щоб увімкнути функцію BOLD ДНК штрихкодування, переконайтеся, що в імені поля містяться слова "COI", "COX1", "ITS" або "matK", що відповідають гену, для якого це поле призначене.
+      merge:
+        warning_html: |
+          Будь ласка, ставтеся з належною повагою до даних інших людей і <strong>спочатку обговоріть злиття полів з тим, хто створив це поле</strong>. Цей інструмент знищить
+          поле, яке зливають, і перемістить всі спостереження, що використовували його. <strong>Цей процес не може бути скасований</strong>, тож будьте обачні.
     emailer:
+      bulk_import_success:
+        success_message: |
+          Ваш пакетний імпорт файлу %{filename} завершився успіхом. Ваші спостереження
+          зараз обробляються і скоро будуть видимі на веб-сайті.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Будь ласка, перевірте орфографію для кожного запису. Якщо нава виду не містить помилок, шукацте вид у %{search_taxa_url}. Якщо назва ще немає в базі даних %{site_name}, вам потрібно додати її перед тим, як виконувати пакетне завантаження. Використовуйте поле в нижній частині сторінки пошуку для імпорту нових назв. Якщо назва вже присутня, але
+          відноситься до кількох валідних таксонів, спробуйте використати більш або менш точне ім'я, що відповідає лише одному таксону.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Оскільки ви вказали, що довіряєте цьому проєкту свої приховані координати <a
+          href="%{obs_url}">деяких ваших спостережень</a>, адміністратори відтепер можуть мати доступ до ширшого спектру ваших прихованих координат, ніж на той час, коли ви встановлювали ваші налаштування у проєкті. Вам варто переглянути список адміністраторів
+          та вимоги проєкту щоб переконатися, що ви все ще довіряєте цьому проєкту ваші спостереження:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Вимоги до спостережень у цьому проєкті було нещодавно змінено:
+        subject: Вимоги проєкту до спостережень змінено для %{project}
+        wondering_what_this_means_html: |
+          Бажаєте дізнатися, що мається на увазі під "приватністю геоданих"?
+          <a href="%{url}">Докладніше в нашій документації</a>.
+        you_can_change_html: |-
+          Ви можете змінити ваші налаштування або залишити проєкт на
+          <a href="%{url}">сторінці проєкту</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Ваш експорт спостережень готовий. До цього листа прикріплено копію, або ви можете
+          <a href="%{url}">завантажити ваш експорт</a> напряму.
+        your_observations_export_failed_html: |
+          Не вдалося виконати експорт спостережень. Відвідайте
+          <a href="%{url}">сторінку експорту</a> , щоб переглянути список ваших експортів.
+      parental_consent:
+        subject: Вашій дитині сподобається iNaturalist
+        content_html: |
+          <p>
+          Ваша дитина користується <strong>Seek від iNaturalist</strong> та хотіла б поширити дані через платформу громадської науки iNaturalist. Позаяк розміщення даних на iNaturalist розкриває інформацію, через яку особу людини може бути розкрито, iNaturalist не можна використовувати особам до 13 років без згоди батьків.
+          </p>
+          <p>
+          <strong>Seek від iNaturalist</strong> можна використовувати без створення облікового запису, і жодної особистої інформації не буде зібрано чи поширено, але ваша дитина не зможе робити внесок до iNaturalist. iNaturalist є соціальною мережею для аматорів громадської науки, де учасники діляться спостереженнями та визначеннями живих організмів, пізнаючи природу разом та створюючи дані з біорізноманіття для науки.
+          </p>
+          <p>
+          Якщо ви бажаєте дозволити вашій дитині користуватися iNaturalist, вам слід зробити наступне:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Створити обліковий запис iNaturalist для вашої дитини, перейшовши за посиланням:
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Після того, як ви створите обліковий запис для вашої дитини, ми попросимо вас зробити символічний внесок в розмірі $1 США за допомогою кредитної карти, щоб підтвердити, що ви є дорослою особою. Будь ласка, переконайтеся, що ви використовуєте для внеску ту саму адресу електронної пошти, яку ви вводили у полі "Батьківська адреса електронної пошти" під час реєстрації.
+          </p>
+          </li>
+          <li>
+          <p>
+          Щойно ми обробимо внесок, ми надішлемо вам іншого листа з повідомленням про те, що обліковий запис було активовано й ви можете використати створені раніше ім'я користувача та пароль на iNaturalist для входу в застосунок Seek вашої дитини.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist збирає наступну персональну інформацію:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>адреса електронної пошти (приватно):</strong> кожен обліковий запис iNaturalist має адресу електронної пошти, прв'язану з ним, що не є публічно видима.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>ім'я користувача (публічне, обов'язкове):</strong> кожен обліковий запис iNaturalist має публічне ім'я користувача та ідентифікаційний номер. Ім'я користувача не обов'язково має бути схожим на реальне ім'я особи, але може використовуватися для контактування з особою через публічні коментарі та приватні особисті повідомлення.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> IP адреса (приватне, обов'язкове):</strong> iNaturalist зберігає, але не розголошує IP адресу користувача, яка може бути використана для отримання особистої інформації, наприклад, визначення місцеположення користувача (з точністю до міста).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>зображення профілю (публічне, не обов'язкове):</strong> облікові записи iNaturalist можуть опційно мати зображення профілю, яке часто є фото користувача.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>місцеположення спостережень (піблічні або приватні, обов'язкове):</strong> спостереження iNaturalist містять інформацію про розташування місць, де вони були зроблені. Вона може бути публічною або приватною, але за замовчанням вона публічна.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist також дає користувачам змогу ділитися піблічними зображеннями, коментарями, або приватними особистими повідомленнями, пов'язаними зі своїми обліковими записами. Може статися, що користувач поширить персональну інформацію у своєму контенті.
+          </p>
+          <p>
+          Дізнатися більше про Політику конфіденційності iNaturalist <a href="%{privacy_policy_url}">тут</a>.
+          </p>
       photos_missing:
+        subject: Деякі фото потребують відновлення
+        we_have_been_housekeeping: |
+          Ми наводили лад і знайшли деякі фото, пов'язані з вашим обліковим записом, які більше не доступні з їхніх первинних джерел. Фото зберігаються на %{providers}.
+        we_would_like_to_remove: |
+          Ми хотіли б видалити всі посилання на пошкоджені фото найближчим часом, але ми не хочемо втрачати те, що може бути збережене. Цілком можливо, деякі з цих фото все ще існують у зовнішніх сховищах і можуть бути відновлені. Можливо, деякі фото були завантажені шляхом підключення вашого <a href='%{account_url}'>%{site_name} облікового запису</a> до іншого облікового запису хостингу фотографій, і термін дії цього підключення сплинув і воно потребує поновлення.
+        you_can_attempt_repair: |
+          Ви можете спробувати відновити ці фото, відвідавши сторінку з фото та натиснувши на посилання %{repair_link_text}". Якщо ви знаєте, що фото більше не існує, ви можете видалити його.
         please_address: |
           Будь ласка, розв'яжіть ці питання <b>впродовж наступних 30 днів</b>. Через 30
           днів ми почнемо видаляти пошкоджені фото з iNaturalist. Усі ваші спостереження залишаться. Вони будуть переоцінені після видалення фото, і цілком можливе, що деякі спостереження дослідницького рівня стануть пересічними, якщо вони більше не матимуть жодного фото.
-    projects:
+        we_included_links: |
+          Нижче ми включили посилання на пошкоджені фото.
+      user_parent_confirmation:
+        subject: Обліковий запис iNaturalist вашого дитини активовано
+        content_html: |
+          <p>
+          Дякуєм, що створили обліковий запис на iNaturalist для своєї дитини! Його щойно активовано. Нижче - інформація, яку ви ввели і яка була записана:
+          </p>
+          <ul> 
+          <li><strong>Ім'я одного з батьків або опікунів: </strong>%{parent_name}</li>
+          <li><strong>Електронна адреса одного з батьків або опікунів:</strong>%{parent_email}</li>
+          <li><strong>Ім'я дитини:</strong>%{child_name}</li>
+          <li><strong>Дата народження дитини:</strong>%{child_birthday}</li>
+          <li><strong>Електронна адреса облікового запису дитини:</strong>%{child_email}</li>
+          <li><strong>Ім'я користувача дитини:</strong>%{child_username}</li>
+          </ul>
+          <p>
+          Будь ласка, увійдіть в обліковий запис застосунку Seek вашої дитини, натиснувши кнопку "iNaturalist" в меню й далі "Увійти за допомогою iNaturalist" внизу екрана.
+          </p>
+          <p>
+          Ваша дитина відтепер зможе розміщувати спостереження у своєму обліковому записі iNaturalist, використовуючи застосунок Seek, тож вони відображатимуться на iNaturalist.org.
+          </p>
+      users_updates_suspended:
+        message: |
+          Ви були неактивними у %{site_name} деякий час, тому ми призупинили ваші підписки. Щоб відновити отримання оновлень на сайті, будь ласка,
+          <a href="%{login_url}">увійдіть до вашої обліковки</a> знову.
+    photos:
+      forbidden_notice_html: |
+        У нас немає дозволу на доступ до цих фото просто зараз. Можливо, вам знадобиться
+        відключити обліковий запис та підключити його знову у ваших <a href="/users/edit">налаштуваннях</a> , щоб надати нам додаткові дозволи.
+      show:
+        view_original_html: |
+          Ви можете переглянути оригінал в <a href="%{url}">%{url}</a>. Будь ласка, залиште прапорець порушення авторських прав нерозв'язаним, якщо це фото порушує авторське право.
+    places:
+      kml_field_desc: |
+        Межі місця у форматі KML. Ви можете створити такий файл за допомогою Карт Google, Google
+        Планета Земля, або більшості ГІС-програм. Мусить містити принаймні один полігон, бути
+        меншим за 1 МБ (5 МБ для кураторів) і не перевищувати за площею штат Техас, США.
       edit:
+        complex_boundary_note_html: |
+          Ці межі занадто складні, щоб бути зміненими засобами сайту. Однак, ви можете <a href="%{url}">завантажити KML</a>, змінити його у геоінформаційній системі на ваш вибір, та вивантажити ваш відредагований KML напряму.
+        admin_level_desc: |
+          Відноситься лише до політичних меж. На прикладі США, 0 = країна, 1 = штат, 2 = округ, 3 = місто
+      new:
+        check_list_note: "Примітка: таксономічні списки будуть автоматично відключені для дуже великих місць."
+        coordinates_desc: Ви маєте вказати координати, якщо не бажаєте малювати межі або завантажувати KML.
+        map_instruction: Використовуйте інструмент створення полігонів, щоб намалювати межі місця.
+    posts:
+      formatting_none_help: "HTML не вставлено, використовуються лише теги, які ви вводите."
+      formatting_simple_help: "Автоматично посилатися на веб-адреси та вставляти розриви рядків."
+    projects:
+      project_type: Тип проєкту
+      collection: Збірний проєкт
+      umbrella: Парасолька
+      tracks_multiple_projects: відслідковує декілька проєктів
+      projects_included: Залучені проєкти
+      collection_and_umbrellas_do_not_support: |
+        На даний час збірні проєкти та проєкти-парасольки не підтримують доступ до прихованих координат.
+      curator_coordinate_access_desc_html: |
+        Пам'ятайте, <strong>куратори проєктів можуть додати будь-яке з ваших спостережень до
+        свого проєкту</strong> , якщо ви не заборонили це робити у <a
+        href="/users/edit">налаштуваннях облікового запису</a>. Ставте тут галочку, лише якщо
+        довіряєте кураторам проєкту перегляд ваших прихованих координат будь-яких
+        спостережень, які можуть бути додані до цього проєкту. Якщо ви
+        волієте не надавати їм такого дозволу, ви все ще можете надати доступ
+        до прихованих координат щодо окремих спостережень.
+      confirm_leave:
+        what_would_you_like: |
+          Що б ви хотіли зробити з вашими спостереженнями у цьому проєкті?
+        keep_observations_label: |
+          Залишити спостереження у цьому проєкті
+        keep_observations_desc: |
+          Ваші спостереження залишаться в проєкті і куратори все ще
+          матимуть можливість переглядати їхні приховані координати.
+        project_requires_curator_coordinate_access_desc: |
+          Цей проєкт не дозволяє додавати спостереження з координатами, що їх
+          куратори проєкту не зможуть побачити. Якщо ви волієте не ділитися
+          координатами ваших спостережень з кураторами цього проєкту,
+          ви маєте видалити їх з проєкту.
+        remove_observations_label: |
+          Видалити всі ваші спостереження з цього проєкту
+        remove_observations_desc_html: |
+          Майте на увазі, що куратори проєктів все одно зможуть долучати ваші
+          спостереження до їхнього проєкту, допоки ви не забороните це у
+          <a href="/users/edit">налаштуваннях облікового запису</a>.
+        revoke_observations_label: |
+          Залишити спостереження у цьому проєкті, але заборонити кураторам перегляд
+          їхніх прихованих координат
+        revoke_observations_desc: |
+          Якщо єдина причина того, чому ви залишаєте проєкт — це зупинити перегляд ваших прихованих координат кураторами проєкту.
+      edit:
+        admins_must_be_existing_members: Адміністратори мають бути дійсними учасниками проєкту.
+        aggregation_pending: Очікується агрегація
+        new_place_desc_html: |
+          Спробуйте переглянути
+          <a href="%{places_url}" target="_blank">наші наявні місця</a>
+          і переконатись, що ви правильно розумієте назву місця. Якщо ви
+          дійсно не можете знайти бажане місце, оберіть
+          <a href="%{new_place_url}" target="_blank">створити нове місце</a>,
+          але, будь ласка, переконайтеся, що ви не дублюєте існуюче місце.
+        bioblitz_desc_html: |
+          <p>
+          Біобліц - це подія, під час якої учасники намагаються спостерігти якнайбільше видів за певний проміжок часу. Це прикольний спосіб познайомити людей з біорізноманіттям, водночас збираючи цінні дані.
+          </p>
+        change_admin_desc: Оберіть одного/одну з кураторів проєкту новим адміністратором.
+        change_owner_alert: |
+          Це позбавить вас можливості видалити цей проєкт або знову передати
+          права на нього. Бажаєте продовжити?
+        cover_desc: "Необов'язкове зображення-банер, яке буде відображатися згори сторінки проєкту. Має бути 950 пікселів шириною і менше 400 пікселів висотою."
+        custom_project_fields_means: "Налаштуйте банер проєкту, додайте бічний вміст і відредагуйте CSS."
+        end_time_desc: "Час завершення вашого біобліцу. Має бути менше одного року від дати початку"
+        event_url_desc: |
+          URL сервісу для реєстрації подій, який ви використовуватимете для вашого біобліцу.
+          Якщо це URL Eventbrite, що містить числовий ID, ми
+          будемо показувати віджет реєстрації на сторінці проєкту до початку роботи біобліцу.
+        icon_desc: "Буде обрізано до квадрату"
+        it_looks_like_this_project_can_be_converted: |
+          Схоже, цей проект можна перетворити на новий <a href="%{url}">Збірний проєкт</a>.
+        last_aggregated_at_desc: |
+          Час останнього завершеного додавання спостережень до цього проєкту агрегатором
+        #Label for button to make another user the owner of a project
+        make_owner: Зробити власником
+        no_curators: |
+          Куратори проєкту відсутні. Якщо ви хочете призначити адміністратором нових осіб, вони повинні спочатку долучитися до цього проєкту і ви маєте зробити їх
+          кураторами.
+        observation_aggregation_desc_html: |
+          <p class="description">
+          Агрегація спостережень автоматично додаватиме потрібні спостереження до вашого проєкту, відповідно до правил вашого проєкту. Оскільки способу видалити багато спостережень з проєкту за один раз немає, це може бути потенційно небезпечним, тож переконайтеся, що ви коректно обрали місце і обмеження щодо таксонів. Інакше ви може опинитися у ситуації, коли вам доведеться вручну видаляти купу нерелевантних таксонів. </p>
+          <p class="description">
+          Агрегатор запрацює тільки якщо будуть виконані нижчезазначені умови:
+          </p>
+          <ol>
+          <li class="readable description">
+          Ваш проєкт містить щонайменш одне правило "має бути спостереженим у місці", застосоване для місць малого або середнього розміру (приблизно, розміром з Україну
+          чи штат Техас)
+          </li>
+          <li class="readable description">
+          АБО ваш проєкт містить щонайменш одне правило "має належати до таксону"
+          </li>
+          </ol>
+        project_assets_desc_html: |
+          <p class="description">Активи проєкту — це просто файли, пов'язані з проєктом спеціальними правилами:</p>
+          <ol class="description">
+          <li>Файли, назви яких закінчуються на .logo.jpg, .logo.png, тощо, буде використано як логотип проєкту на його сторінці замість іконки</li>
+          <li>Файли з розширеннями KML або KMZ буде додано на мапу на сторінці проєкту</li>
+          </ol>
+        project_list_desc_html: |
+          <p class="description">
+          Ви можете створити власний список таксонів проєкту та прив'язати його до вашого
+          проєкту. Цим можна скористатися щоб обмежити спостереження, додані до вашого
+          проєкту, таксонами у вашому списку через правило "мають бути таксонами
+          зі списку проєкту".
+          </p>
         rules:
+          captive: утримується в неволі / вирощується
+          coordinates_shareable_by_project_curators: має координати, що видимі кураторам
+          georeferenced: мати координати
+          has_a_photo: мати фото
           has_a_sound: мати звук
           has_media: мати медіа (фото або звук)
+          identified: бути визначеним
+          in_taxon: належати до таксону
+          observed_in_place: бути спостереженим у місці
+          on_list: належати до таксону зі списку проєкту
+          verifiable: бути перевірюваним
+          wild: бути диким/здичавілим
+        start_time_desc: "Час початку вашого біобліцу. Формат: РРРР-ММ-ДДТгг:хх:сс±гг:хх"
+        submission_models:
+          any: хто-завгодно
+          curators: куратори проєкту
+        trust_allow_members_to_trust: |-
+          Дозволити учасникам довіряти цьому проєктові приховані координати
         trust_help_desc: |-
           Якщо ви хочете мати доступ до прихованих або розмитих координат, ця опція надасть людям, що долучилися до проєкту, можливість довірити адміністраторам проєкту свої приховані координати. Учасники проєкту матимуть змогу надавати доступ до прихованих координат для будь-яких своїх спостережень з цього проєкту, або лише для тих із них, чиї розташування розмиті для таксонів під загрозою.
+        trust_help_notification2: |-
+          Однак, всі учасники проєкту, що довірилися йому, отримуватимуть сповіщення щоразу як ви змінюватимете вимоги до спостережень, тож вони зможуть наново оцінити, чи хочуть вони продовжувати довіряти проєктові у світлі ваших нових вимог. Ваш доступ до прихованих координат буде відкликано впродовж одного тижня після зміни вимог до спостереження, тому учасники матимуть час на те, щоб зробити свій вибір.
+        trusted_project_means: |
+          Довіра до проєкту означає, що менеджери проєктів можуть додати Доробки та користувацькі атрибути проєкту (наприклад, банер HTML, CSS). Доступ до користувацьких властивостей проєкту означає, що менеджери проєкту зможуть додавати потенційно шкідливі Javascript, тож довіряйте лише тим проєктам, менеджери яких є як відповідальними, так і технічно компетентними.
+        you_can_preview: |
+          Ви можете попередньо переглянути, як виглядатиме ваш проєкт в якості збірного проєкту, <a href="%{url}">натиснувши тут</a>.
+      invite:
+        description_html: |
+          <h3>Про запрошення</h3>
+          <p class="ui">
+          Запрошення людей до вашого проєкту дещо відрізняється від запрошення окремих спостережень. Запрошення людей призведе до того, що
+          </p>
+          <ol>
+          <li>Їм буде надіслано електронного листа із запрошенням долучитися до вашого проєкту</li>
+          <li>Запрошення відробразиться у їхній інформаційній панелі</li>
+          <li>Вони отримають можливість долучитися до вашого проєкту вразі, якщо приєднання до проєкту налаштовано виключно через запрошення</li>
+          </ol>
+          <p class="ui">
+          Лише куратори проєкту можуть запрошувати людей долучитися. Ви зможете шукати людей за їхніми іменами користувача iNat або за їхніми <em>повними</em> електронними адресами, припускаючи, що ми маємо їх у файлі.
+          </p>
+      join:
+        invite_only_description: |
+          У цьому проєкті членство передбачено лише за запрошенням. Якщо ви хотіли б долучитися, будь ласка, зв'яжіться з одним з кураторів, що наведені нижче, і запросіть запрошення.
       new:
+        a_project_allows_you_to_gather: |
+          Збірний проєкт дає вам змогу збирати й відображати спостереження за допомогою основних засобів пошуку iNaturalist. Все, що відповідає параметрам, встановленим у проєкті, буде автоматично включено в нього.
+        an_umbrella_project_can_be_used_to: |
+          Парасольковий проєкт можна використовувати для порівняння статистичних зведень між двома або більше збірними чи традиційними проєктами. Інші проєкти повинні існувати до того, як ви зможете додати їх до парасолькового проєкту. Ви можете об'єднати сотні проєктів під однією парасолькою. Парасольковий проєкт не може включати інші парасолькові проєкти.
+        are_you_ready_to_duplicate: |
+          Чи готові ви залишити цю сторінку для того, щоб здублювати цей проєкт? Зауважте, що зображення та баннер проєкту не буде здубліковано, - їх необхідно буде вивантажити наново для здублікованого проєкту.
+        are_you_sure_you_want_to_delete: Ви впевнені у тому, що хочете видалити цей проєкт?
+        can_be_included_in_multiple: Може бути включений до кількох парасолькових проєктів
+        check_the_box_to_include_member_observations: |
+          Поставте відмітку тут, якщо хочете, щоб проєкт включав тільки ті спостереження, які зробили люди, що долучилися до нього. Скористайтеся фільтром "Виключити користувачів" вище для того, щоб виключити спостереження конкретних користувачів, включно з власником проєкту та адміністраторами.
+        click_through_to_individual_projects: Перейти до окремих проєктів
+        collection_projects: Збірний проєкт
+        collection_project_features: "Властивості збірного проєкту:"
+        contain_entire_image_without_cropping: Містить повне, необітнуте зображення
+        custom_banner_icon_and_project_description: Користувацький банер, значок та опис проєкту
+        data_visualizations: Візуалізація даних
+        delete_project: Видалити проєкт
+        display_project_name: Показувати назву проєкту
+        do_you_need_features_from_traditional: |
+          Чи потребуєте ви функціоналу традиційних проєктів, такого як досуп до справжніх координат, користувальницькі поля спостережень, або додавання окремих спостережень, що не можуть бути відфільтровані автоматично?
+        duplicate_project: Дублювати проєкт
         include_annotated_observations: |
           Включити тільки спостереження, супроводжені певним атрибутом (наприклад, стадія життєвого циклу), або конкретним атрибутом і значенням (наприклад, стадія життєвого циклу = доросла особина).
           Обмежено одним фільтром за приміткою на проєкт.
+        leaderboards_among_individuals: Таблиця лідерів серед <strong>окремих осіб</strong>
+        leaderboards_among_projects_and_bioblitzes: |
+          Таблиця лідерів серед <strong>проєктів</strong>
+        multiple_project_administrators: Кілька адміністраторів проєкту
+        name_placeholder: Птахи Чикаго, Дивовижні бабки тощо
+        no_need_to_rely_on_manual_addition: |
+          Без ручного додавання спостережень
+        note_these_users_will_be_able_to_edit: |
+          Примітка: ці користувачі зможуть редагувати всі деталі проєкту, включно з переліком адміністраторів.
+        note_you_can_delete_the_time: |
+          (Примітка: ви можете видалити часовий пояс і точний час, якщо ви хочете включити весь день.)
+        note_about_unselected_filters: |
+          Примітка: Якщо ви не оберете таксони, місця чи користувачів, все буде включено за замовчуванням.
+        only_display_member_observations: |
+          Відображати спостереження лише від учасників проєкту (люди, які долучилися до проєкту)
+        optionally_filter_media: Опційно фільтрувати за спостереженнями з фото, звуками, чи обома
+        or_drag_and_drop: (або перетягніть файл сюди)
+        please_specify_the_requirements: |
+          Будь ласка, вкажіть вимоги до спостережень що додаватимуться до цього проєкту.
+        project_background_color: Колір тла для опису проєкту
+        project_background_color_help: Переконайтеся, що ви обрали достатньо темний відтінок, щоб білий текст був читабельним на цьому тлі.
+        project_banner: Баннер проєкту (PNG, JPG, або GIF)
+        project_banner_help: Опційне зображення баннера. Ідеальні розміри - 760х320 пікселів.
+        project_details: Деталі проєкту
+        project_icon: Піктограма проекту (PNG, JPG, або GIF)
+        project_icon_help: |
+          Необов'язкова піктограма. Повинна бути шонайменше 72 x 72 пікселів та буде обітнутою до квадрата.
+        project_name: Назва проєкту
+        project_summary: Опис проєкту
+        project_summary_help: |
+          Наведіть короткий опис вашого проєкту. Приблизно 200 символів будуть видимі у правій частині баннера на домашній сторінці вашого проєкту, тож пишіть про голове на початку!
+        project_summary_placeholder: Відкрийте для себе і відстежуйте птахів Парку Golden Gate...
+        select_native_to_include: |
+          Щоб включити тільки таксони, позначені як "Аборигенні" у місці(ях) вашого проєкту, оберіть "Аборигенний". Щоб включити тільки таксони, позначені як "Інтродуковані" у місці(ях) вашого проєкту, оберіть "Інтродукований".
+        select_quality_grade: |
+          Оберіть щонайменше один рівень якості. Детальніше пояснення для кожного з рівнів якості ви можете знайти у наших <a href="%{url}">ЧАПах</a>.
+        show_projects_as_flags: Показувати проєкти як прапорці на карті
+        specify_project_filters: |
+          Визначіть фільтри, відповідно до яких спостереження додаватимуться до вашого проєкту. Ви можете обрати декілька видів (або таксонів), місць, дат або інших критеріїв для автоматичного додавання спостережень.
+        start_and_end_times_for_bioblitzes: Дата й час початку та закінчення (для подій типу біобліців)
+        traditional_projects_cannot_be_copied: Традиційний проєкт не може бути скопійований
+        trusting_members_will_be_notified: |
+          Ви змінили вимоги проєкту або ввімкнули запит на довіру користувачів. Про це буде сповіщено учасників проєкту, які вже довірили проєктові приховані координати, щоб у них була можливість вирішити, чи вони все ще хочуть довіряти проєкту з урахуванням нових вимог.
+        umbrella_project_features: "Властивості парасолькового проєкту:"
+        unique_url_for_outreach: Унікальна URL-адреса для просвітництва
+        use_this_for_a_time_limited_event: |
+          Використовуйте це для подій, обмежених в часі, біобліців або сезонних проєктів. Виберіть конкретну дату, діапазон дат, або місяці, в якіс постереження має бути зроблене (незалежно від року). При використанні діапазону дат, переконайтеся, що ви обрали правильний час і часові пояси, або видаліть текст часу/часового поясу, щоб включити спостереження, здійснені у будь-який час протягом усього дня. Ви можете залишити дату початку або кінцеву дату порожньо, якщо ви хочете звести проєкт лише до однієї дати.
+        users_can_follow_your_project: Користувачі можуть стежити за оновленнями вашого проєкту за допомогою дописів у журналі
+        use_this_link_to_create_html: |
+          Щоб створити традиційний проєкт, скористайтеся <a href="%{url}">цим посиланням</a>.
+        visual_comparison_of_data_among: Наочне порівняння даних поміж проєктами, що під парасолькою
+        we_have_redesigned_projects: |
+          Проєкти придумані для того, щоб автоматично включати всі спостереження, що відповідають
+          місцям, таксонам, користувачам, якості даних та датам, які ви визначили. Вам слід обрати між двома основними типами: збірні та парасолькові проєкти, які подібні у наступних ознаках:
+        welcome_to_projects: Вітаємо у Проєктах!
+        you_can_learn_more_html: |
+          Ви можете дізнатися більше про управління проєктами
+          <a href="https://www.inaturalist.org/pages/managing-projects">тут</a>
+          або прочитати історію проєктів на
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">нашому блозі</a>.
+        you_have_not_defined_any_observation_requirements: |
+          Ви не вказали жодних вимог до спостережень. Переконайтеся, що ви вибрали однин або кілька таксонів (напр., птах, хвойні), місця (напр., Бразилія, Єллоустоун), користувачів, та/або дати щоб визначити, які спостереження ви хотіли б включити до вашого проєкту.
+        errors:
+          name_is_required: Поле "Назва проєкту" обов'язкове до заповнення
+          name_less_than_100_characters: Назва проєкту не повинна перевищувати 100 символів.
+          name_already_taken: Така назва проєкту вже використовується
+          cannot_have_more_than_x_project_rules: Не може мати більше ніж %{x} правил проєкту
+          summary_is_required: Потрібен текст опису проєкту
       project_location_privacy_notice_html: |
         <p>
         Майте на увазі, що куратори проєкту матимуть змогу бачити будь-які конфіденційні або розмиті розташування ваших спостережень, що включені до цього проєкту, якщо ви не скасуєте цей дозвіл самі. Також вони матимуть змогу додавати будь-які ваші спостереження до цього проєкту, якщо ви не <a href="/users/edit">зміните налаштування</a>. Ви також маєте можливість надавати або забороняти доступ до спостережень проєкту в кожному випадку окремо.
@@ -5276,6 +6212,19 @@ uk:
         <p>
         Якщо ви занепокоєні конфіденційністю розташування, не долучайтеся до проєктів, кураторам яких ви не довіряєте.
         </p>
+      project_user_curator_coordinate_access_labels:
+        observer: Так, але тільки якщо я додаю спостереження до проєкту самостійно.
+        any: Так, незалежно від того, хто додає спостереження до проєкту.
+        none: Ні.
+      show:
+        are_you_sure_you_want_to_convert: |
+          Ви впевнені, що хочете перетворити цей проєкт у Збірний Проєкт?
+        click_here_to_convert_this_project: |
+          Натисніть тут, щоб конвертувати цей проєкт у Збірний Проєкт.
+        make_sure_you_have_read_about_the_differences: |
+          Переконайтеся, що ви прочитали про відмінності у нашому <a href="%{url}" target="_blank">дописі на блозі про Збірні Проєкти</a>.
+        this_is_a_preview: |
+          Це попередній перегляд того, як виглядав би цей проєкт у якості Збірного Проєкту.
     stats:
       index:
         identifiers_desc: Додали визначення до чужих спостережень цього дня
@@ -5337,7 +6286,13 @@ uk:
           joined: Проєкти, до яких ви долучилися
           none: "Жодні, лише ви можете додати ваші спостереження до проєктів"
         prefers_no_tracking_label: Не збирати дані про стабільність роботи та використання даних за допомогою сторонніх сервісів
+        this_only_applies_to_traditional_projects: |
+          Це відноситься тільки до традиційних проєктів. Ви не можете виключити спостереження
+          зі збірних або парасолькових проєктів, які по суті зберігаються результати пошукових запитів.
+          Ви можете прочитати більше
+          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тут</a>.
       show:
+        take_a_moment_to_review_html: 'Знайдіть хвилинку, щоб переглянути <a href="%{link}">наші правила</a>.'
         favorites_list_prompt_html: |
           Хочете поділитися спостереженнями ваших улюблених таксонів? %{link_start_tag}Створіть
           список%{link_end_tag} під назвою "Обране", й нещодавно додані спостереження
@@ -5381,6 +6336,8 @@ uk:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      project:
+        project_icon: Іконка проєкту
       taxon:
         source_identifier: Ідентифікатор джерела
       taxon_name:
@@ -5397,7 +6354,27 @@ uk:
           attributes:
             base:
               guide_has_too_many_taxa: "посібник може містити лише 500 таксонів"
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                не може бути пізніше за дату додавання спостереження
+        project_observation:
+          attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                збірні та парасолькові проєкти не передбачають пряме додавання
+        taxon_name:
+          attributes:
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                не відповідає жодній науковій назві виду з цього лесикону
   wild: В дикій природі
   will_paginate:
     previous_label: "&#8592; Попередні"
     next_label: "Наступні &#8594;"
+  you_will_no_longer_be_following_or_trusting: "Ви більше не будете стежити або довіряти %{user}"

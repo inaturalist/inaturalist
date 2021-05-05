@@ -906,6 +906,8 @@ pt:
     nymph: Ninfa
     egg: Ovo
     juvenile: Juvenil
+    alive: Vivo
+    dead: Morto
   controls: Controlos
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -1941,6 +1943,7 @@ pt:
   mark_all_as_reviewed: Marcar todos como revistos
   mark_all_as_unreviewed: Marcar todos como não revistos
   matching_species_will_shown_up_here: As espécies encontradas são apresentadas aqui. Os mapas mostram uma área de ocorrência se %{place} tem alguma destas espécies.
+  maverick: Em desacordo
   media: Multimédia
   media_type: Tipo de media
   medium: médio
@@ -2000,6 +2003,10 @@ pt:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM AAAA"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'AA"
   month: Mês
   months: Meses
   more: Mais
@@ -2934,14 +2941,14 @@ pt:
   save_and_add_another: Guardar e adicionar outra
   save_and_add_taxa: "Guardar e começar a adicionar espécies"
   save_changes: Guardar Alterações…
-  save_comment: Guardar comentário
+  save_comment: Guardar o comentário
   save_draft: Guardar Rascunho
-  save_fields: Guardar campos
+  save_fields: Guardar os campos
   save_flag: Guardar sinalizador
   save_guide_taxon: Guardar guia do taxón
-  save_identification: Guardar identificação
-  save_observation: Guardar observação
-  save_photos: Guardar fotos
+  save_identification: Guardar a identificação
+  save_observation: Guardar a observação
+  save_photos: Guardar as fotos
   save_place: Guardar local
   save_settings_caps: GUARDAR CONFIGURAÇÕES
   save_trip: Guardar viagem
@@ -3148,6 +3155,7 @@ pt:
   suitable_for_the_global_biodiversity_information_facility: Adequado para o GBIF (Global Biodiversity Information Facility)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adequado para Wikipédia e outros projetos da Wikimedia Foundation
   summary: Resumo
+  supporting: Concordante
   suspend_user: Suspender utilizador
   sync: Sincronizar?
   synonyms: Sinónimos

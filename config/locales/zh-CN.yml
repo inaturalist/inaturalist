@@ -140,6 +140,10 @@ zh-CN:
   about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
     包括将地理位置设置为“隐藏”或 “私密”的观察，例如在您的后院发现的或其它不想让其他人知道具体坐标的观察。
+  about_trusting_projects_options_taxon: |-
+    只有你那些在项目中因受威胁等级而模糊了坐标的观察
+  about_trusting_projects_options_taxon_desc: |-
+    许多项目只需要访问模糊的坐标，因为观测描述了一个受威胁的分类群。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -175,6 +179,7 @@ zh-CN:
   #Tool tip for a button that adds a link to a text area
   add_a_link: 添加一个链接
   add_a_name: 添加名字
+  add_a_note: 添加备注
   add_a_new_change_group: 添加一个新的更改组
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 添加编号列表
@@ -650,6 +655,7 @@ zh-CN:
   card: 卡
   casual: 非正式的
   casual_: 非正式的
+  casual_tooltip_html: '“隐藏”观测缺少媒体、位置或日期，或由于其他原因不符合“研究”或“需要ID”质量等级的要求。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>'
   categories: 分类
   cc_0_description: "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。"
   cc_0_name: 无版权（CC0）
@@ -896,6 +902,11 @@ zh-CN:
   convert: 转换
   coordinate_systems: 坐标系
   coordinates: 坐标
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: 仅适用于 w/ 完整坐标
   copy: 复制
   copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
@@ -1540,6 +1551,7 @@ zh-CN:
   got_it!: 明白了！
   got_your_data_somewhere_else?: 在别的地方找到了您的数据？我们可以帮助。
   graft: 移植
+  graft_taxon: 转移 %{taxon}
   grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
   grant_role: "%{grant} %{role}角色"
   grid: 网格
@@ -1591,6 +1603,8 @@ zh-CN:
   #Verb, usually a button to hide an interface element
   hide: 隐藏
   hide_content: 隐藏内容
+  hide_desc: |
+    隐藏的内容无法被公众查看，但人们仍然能看到有东西被隐藏，且网站管理员和内容作者仍然可以看到被隐藏的内容。通常这会被应用到文字内容，举个例子，如果您选择隐藏一个鉴定，这个鉴定仍然可以显示但鉴定者的备注内容将会被隐藏。仅有网站的工作人员可以解除隐藏，所以当您使用这个功能的时候请深思熟虑，最好仅将其用在非常令人反感的内容上。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
@@ -1612,6 +1626,8 @@ zh-CN:
     tooltips:
       leading: |
         分类单元来自社区分类单元。这种认同更有可能产生正确的结果。
+      improving: |
+        此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
       maverick: |
         分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
   id_withdrawn: ID撤回
@@ -1954,6 +1970,7 @@ zh-CN:
     sq: 阿尔巴尼亚语
     sv: 瑞典语
     tr: 土耳其语
+    uk: 乌克兰语
     zh-CN: 简体中文
     zh-TW: 繁体中文
   locality_notes: 位置注释
@@ -2133,6 +2150,12 @@ zh-CN:
     date_long: "YYYY年M月D日"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: 月
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> 自从 %{date}
@@ -2435,6 +2458,9 @@ zh-CN:
   observed_on_datetime: 观察于 %{datetime}
   observation_removed_from_the_project: "从项目“%{project}”中移除的观察"
   observation_requirements: 观察要求
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: 观察要求更新于
   observation_rules: 观察规则
   observation_rules_description: |
     您可以选择规则来决定可以添加到该项目中的观察，例如将观察限制在某个地区或分类群中。如果您对某个规则类别设置了多条规则，则如果任一条规则通过，则观察将有效。例如，如果你有“必须在两栖动物中”和“必须在爬行动物中”的规则，那么该项目将会接受对爬行动物或两栖动物的观察。
@@ -2562,6 +2588,7 @@ zh-CN:
   only_staff_can_edit_standard_places: 只有网站工作人员可以编辑标准层次中的地点
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   only_the_project_admin_can_delete_this_project: 只有项目管理员才能删除此项目。
+  only_view_nearby_suggestions: 只查看附近的建议
   only_you: 只有您
   open: 打开
   open_: 打开
@@ -3111,6 +3138,7 @@ zh-CN:
   please_add_this_observation_to: 请将这一观察添加至
   please_add_this_to_x_html: "请将此添加至 %{x}"
   please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改 #Title to a section warning a user to exercise caution
+  please_be_careful!: 请小心！
   please_complete_the_following_to_add_project: |
     请完成以下操作来添加此观察至项目：
   please_confirm_your_inat_username: "请确认您在%{site_name}的用户名"
@@ -3167,6 +3195,10 @@ zh-CN:
     项目不能启用自动观察聚合，除非项目与中等大小的地点相关联，或者只允许对特定的分类群或在清单中的分类群进行观察
   project_assessments: 项目评估
   project_assets: 项目资产
+  project_coordinate_access_enabled: |
+    您可以通过信任成员来查看隐藏的观察坐标。
+  project_coordinate_access_disabled_until_datetime: |
+    您将无法访问隐藏坐标，直到 %{datetime}
   project_cover: 项目封面
   project_created_on: 于%{date}创建此项目
   project_curator_id: 项目馆长ID
@@ -3285,6 +3317,68 @@ zh-CN:
     form: 型
     infrahybrid: 种内杂种
     leaves: 叶片
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: 物态
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: 界
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: 亚界
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: 门
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: 亚门
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: 总纲
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: 纲
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: 亚纲
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: 下纲
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: 总目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: 目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: 亚目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: 下目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: 下纲
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: 小目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: 派
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: 亚派
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: 总科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: 领科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: 科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: 亚科
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: 总族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: 族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: 亚族
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: 属
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: 属间杂种
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: 亚属
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: 组
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: 亚组
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: 复合群
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: 物种
   ranges: 范围
   ray_finned_fishes: 鳍鱼类
   re_apply_list_rules: 重新应用列表规则
