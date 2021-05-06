@@ -12,6 +12,9 @@ class PlacesController < ApplicationController
   before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   before_filter :curator_required, :only => [:planner]
+  before_filter :check_quota, only: [:create]
+
+  QUOTA = 10
   
   caches_page :geometry
   caches_action :cached_guide,
@@ -165,6 +168,7 @@ class PlacesController < ApplicationController
   
   def new
     @place = Place.new
+    @user_quota_reached = quota_reached?
   end
   
   def create
@@ -615,5 +619,18 @@ class PlacesController < ApplicationController
         @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
       end
     end
+  end
+
+  def check_quota
+    if quota_reached?
+      flash[:error] = t(:place_create_quota_exceeded, quota: QUOTA)
+      redirect_back_or_default places_path
+      return false
+    end
+    true
+  end
+
+  def quota_reached?
+    @quota_reached ||= Place.where( user: current_user ).where( "created_at > ?", 1.day.ago ).count >= QUOTA
   end
 end

@@ -3166,6 +3166,9 @@ en:
   place: Place
   placeholder: Placeholder
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
+  place_create_quota_exceeded: |
+    You have exceeded the number of places you can create in a 24-hour period
+    (%{quota})
   place_deleted: Place deleted.
   place_geo:
           geo_planet_place_types:
