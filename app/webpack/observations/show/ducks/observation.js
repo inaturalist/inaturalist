@@ -76,6 +76,7 @@ const PROJECT_FIELDS = {
       id: true
     }
   },
+  slug: true,
   title: true
 };
 const FIELDS = {
