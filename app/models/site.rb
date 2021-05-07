@@ -307,6 +307,10 @@ class Site < ActiveRecord::Base
   preference :google_recaptcha_key, :string
   preference :google_recaptcha_secret, :string
 
+  # We have a limited number of callback URLs we're allowed on twitter, and
+  # we've used them all
+  preference :twitter_sign_in, :boolean, default: false
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
@@ -329,7 +333,8 @@ class Site < ActiveRecord::Base
 
   STAFF_ONLY_PREFERENCES = [
     :google_webmaster_dns_verification,
-    :google_webmaster_dns_verified
+    :google_webmaster_dns_verified,
+    :twitter_sign_in
   ]
 
   after_save :refresh_default_site
