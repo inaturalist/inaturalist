@@ -44,6 +44,7 @@ class ListedTaxon < ActiveRecord::Base
   after_save :index_taxon
   after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
+  after_commit :reindex_observations
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
   after_create :log_create
@@ -962,6 +963,20 @@ class ListedTaxon < ActiveRecord::Base
     default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
     key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
     I18n.t( "establishment_means_descriptions.#{ key }", default: default )
+  end
+
+  def reindex_observations
+    return true if taxon_id.blank? || place_id.blank?
+    return true unless previous_changes[:establishment_means]
+    Observation.
+      delay(
+        priority: INTEGRITY_PRIORITY,
+        unique_hash: {
+          "CheckList::reindex_observations.taxon_id": taxon_id,
+          "CheckList::reindex_observations.place_id": place_id
+        } ).
+      elastic_index!( scope: Observation.of( taxon_id ).in_place( place_id ) )
+    true
   end
 
 end
