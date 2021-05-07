@@ -3456,6 +3456,11 @@ ja:
     other: "%{taxon}は軟体動物の%{rank}です。%{count}件の観察記録があります"
   taxon_is_a_rank_of_chromista_with_x_observations:
     other: "%{taxon}はクロミスタの%{rank}です。%{count}件の観察記録があります"
+  taxon_is_threatened_coordinates_hidden_desc: |
+    同定で提案された分類群、またはその下位の分類群には、希少および/または絶滅の恐れがあることが知られているため、この観察記録の座標は非公開にされています。
+  taxon_is_threatened_coordinates_obscured: この分類群は絶滅の危機に瀕しているため、表示される座標を不明瞭にしています。
+  taxon_is_threatened_coordinates_obscured_desc: |
+    同定で提案された分類群、またはその下位の分類群には、希少および/または絶滅の恐れがあることが知られているため、この観察記録の座標は不明瞭にされています。
   taxonomy: 分類
   taxon_deleted: 分類群（taxon）が削除されました
   taxon_doesnt_have_a_range: 分類群には分布・生息区域がありません
@@ -3740,6 +3745,8 @@ ja:
     %{user} さんが %{date} に %{place} で観察しました
   user_suggested_an_id: "%{user} さんが 同定を提案しました"
   user_trusts_you_with_their_private_coordinates: "%{user} はあなたを信頼して位置情報を公開しています。"
+  user_trusts_you_with_their_private_coordinates_desc: |
+    この観察者は、全ての観察記録について、あなたを信頼して隠された座標を表示することを選択しました。
   username: ユーザー名
   username_description: これはあなたがログインする際に使用するユーザー名で、他のユーザーがiNaturalistであなたを識別するために使用することができます。
   username_or_email: ユーザー名またはメールアドレス
@@ -3845,10 +3852,16 @@ ja:
   where_were_you?: 場所は？
   which_projects_can_add_your_observations?: どのプロジェクトに自分の観察記録の追加を許可しますか？
   white: 白
+  why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
+  who_can_see_the_coordinates: 正確な座標を見ることができる人
+  who_can_see_the_coordinates_observer: 観察記録を作成したユーザー
+  who_can_see_the_coordinates_projects: 以下のプロジェクトのキュレーター
+  who_can_see_the_coordinates_trusted: 設定で「信頼して正確な位置情報を共有する」を選択した相手
   who_helped_user_the_most: "%{user} さんの同定を最も助けたユーザー"
   who_user_helped_the_most: "%{user} さんが最も同定を助けたユーザー"
+  why_the_coordinates_are_obscured: 座標が不明瞭な理由
   with_annotation: 注釈付き
   without_annotation: 注釈なし
   widget: ウィジェット
