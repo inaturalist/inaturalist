@@ -130,6 +130,12 @@ ja:
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
+  about_trusting_projects_options_any_desc: |-
+    これには、あなたがジオプライバシーを「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
+  about_trusting_projects_options_taxon_desc: |-
+    多くのプロジェクトでは、絶滅のおそれのある分類群を観察しているために、不明瞭になっている座標にアクセスする必要があります。
+  about_trusting_projects_overview: |-
+    隠された座標へのアクセスを許可することで、このプロジェクトの管理者は、このプロジェクトでのあなたの観察記録について、正確な座標を見ることができます。これは、科学者や資源管理者が分析や意思決定のために正確な座標へのアクセスを必要とする状況において、非常に重要なことです。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     非表示の座標を共有するか選択できます
@@ -2842,6 +2848,7 @@ ja:
   please_add_this_observation_to: この観察記録をこちらにご追加ください：
   please_add_this_to_x_html: "%{x}に追加してください"
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Title to a section warning a user to exercise caution
+  please_be_careful!: 気をつけてください！
   please_complete_the_following_to_add_project: |
     この観察記録をプロジェクトに追加するには、次のことを完了してください：
   please_confirm_your_inat_username: "%{site_name}のユーザネームをご確認ください"
@@ -2894,6 +2901,8 @@ ja:
     other: プロジェクト管理者
   project_assessments: プロジェクト評定
   project_assets: プロジェクトアセット
+  project_coordinate_access_warning: |
+    位置情報のアクセスは科学者にとって重要ですが、密猟者に悪用される可能性もあります。このプロジェクトを信頼する前に、すべてのプロジェクトキュレーターを信頼するようにしてください。
   project_cover: プロジェクトカバー
   project_created_on: が%{date}にこのプロジェクトを作成しました
   project_curator_id: プロジェクトキュレーターID
@@ -3645,6 +3654,7 @@ ja:
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
   trust_this_person_with_your_private_coordinates: このユーザーを信頼して正確な位置情報を共有する
+  trust_this_project_with_your_private_coordinates?: このプロジェクトを信頼して管理者と正確な位置情報を共有しますか？
   trust_with_private_coordinates: 信頼して正確な位置情報を共有する
   twitter: ツイッター
   #As in a category, not as in a keyboard
@@ -3892,7 +3902,15 @@ ja:
   year_month: 年/月
   yellow: 黄
   'yes': "はい"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    はい。しかし絶滅危惧種の観察記録のみで、私が自らジオプライバシーを設定している場合は公開に応じません
   yes_find_them!: "はい、見つけてください！"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "はい。私の観察記録の全てについて同意します"
   yes_i_want_to_join: はい、参加したい
   yes_license_my_observations_so_scientists_can_use: 観察データを科学研究用に提供することに同意します。（推奨）
   yesterday: 昨日
