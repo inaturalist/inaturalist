@@ -477,7 +477,7 @@ fr:
   allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables de projets à voir vos coordonnées géographiques masquées
   allowed_establish_means_values: Valeurs des types d'implantation autorisés
   allowed_html: HTML autorisé
-  allowed_occurrence_status_values: Valeurs de présence autorisées
+  allowed_occurrence_status_values: Valeurs d'état de peuplement autorisées
   allowed_values: Valeurs autorisées
   almost_there_: Vous y êtes presque ...
   alphabetical: Alphabétique
@@ -1613,7 +1613,7 @@ fr:
   flag_created: Signalement créé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
   flag_for_check_list_title_html: |
-    Indicateur de la check-list : %{title}
+    Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
   flag_for_comment_id_deleted: Signalement pour le commentaire %{id} (supprimé)
   flag_for_curation: Marquer pour la supervision
@@ -1954,7 +1954,7 @@ fr:
   join_the_largest_group_of_naturalists_in_the_world: Rejoignez le plus grand groupe de naturalistes du monde !
   join_this_project: Rejoindre ce projet
   'joined!': Vous vous êtes joint!
-  joined_projects: Projets liés
+  joined_projects: Projets que vous avez rejoints.
   joined_with_date: "Rejoint le : %{date}"
   journal: Journal
   journal_archives_for: Archives du journal de
@@ -2768,7 +2768,7 @@ fr:
   observer_prefers_addition_to_projects_joined: |
     La personne qui a publié cette observation n'autorise d'autres personnes à ajouter ses observations qu'aux projets auxquels elle participe.
   observer_short: Obs.
-  occurence_status_describes_how: 'L’état de la présence décrit le degré de rareté d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus d’information sur la terminologie</a>.'
+  occurence_status_describes_how: 'L''état du peuplement décrit le degré de rareté d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus d’information sur la terminologie</a>.'
   occurrence_status: État de la présence
   occurrence_status_descriptions:
     absent: N’apparaît pas dans la zone
