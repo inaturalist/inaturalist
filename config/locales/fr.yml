@@ -324,7 +324,7 @@ fr:
   add_taxon_batch_to: "Ajouter un groupe de taxons à %{list}"
   add_taxon_range: Ajouter une aire de répartition
   add_taxonomic_tags_to: "Ajouter des étiquettes taxinomiques aux photos 'Flickr' sélectionnées &raquo;"
-  add_to_a_scheme: Ajouter à un programme
+  add_to_a_scheme: Ajouter à un inventaire
   add_to_a_project: Ajouter à un projet
   add_to_calendar: Ajouter au calendrier
   add_to_checklist: Ajouter à la check-list
@@ -2461,7 +2461,7 @@ fr:
     Voulez-vous changer votre affiliation de <strong>%{other_site_name}</strong> à
     <strong>%{site_name}</strong>?
   new: Nouveau
-  new_and_noteworthy: Nouveau & Marquant
+  new_and_noteworthy: Récent & important
   new_announcement: Nouvelle annonce
   new_assessment: Nouvelle évaluation
   new_check_list: Nouvelle check-list
@@ -3754,7 +3754,7 @@ fr:
   remove: Supprimer
   remove_all_tags: Supprimer toutes les étiquettes
   remove_comma_separated_tags: "Supprimer les étiquettes séparées par des virgules"
-  remove_conservation_status: supprimer la situation quant à la conservation
+  remove_conservation_status: supprimer l'état de conservation
   remove_from: Supprimer de
   remove_curator: Supprimer le responsable de l’organisation
   remove_curator_status: Supprimer le statut du responsable de l’organisation
@@ -3865,8 +3865,8 @@ fr:
     other: Enregistrement de %{num} sur %{count} observations…
   saving_verb: Enregistrement
   scale_colon: "Échelle :"
-  schemes: Plans
-  schemes_including: Plans comprenant
+  schemes: Inventaires
+  schemes_including: Inventaires comprenant
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Nom scientifique
   search: Rechercher
@@ -4271,8 +4271,8 @@ fr:
   taxon_range_updated_notice: L'aire de répartition du taxon a bien été mise à jour. Veuillez attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   taxon_ranks: Rangs des taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
-  taxon_scheme: Classification du taxon
-  taxon_schemes: "Classifications de taxons"
+  taxon_scheme: Inventaire taxinomique
+  taxon_schemes: "Inventaire taxinomiques"
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
   taxon_split: séparation de taxon
@@ -4656,7 +4656,7 @@ fr:
   user_thinks_yours_is: "%{user} %{noun} que votre observation %{observation} est"
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
-    L’observateur a choisi de vous faire confiance pour les coordonnées masquées relatives à ses observations associées.
+    L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_description: Ce sera le nom d'utilisateur que vous utiliserez pour vous identifier et que les autres verrons pour vous tagger sur iNaturalist
