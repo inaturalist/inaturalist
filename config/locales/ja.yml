@@ -1171,7 +1171,7 @@ ja:
   embed_widget_project: プロジェクトのウィジェットをホームページに掲載しましょう
   enable_offline_access: オフラインアクセスを有効にする
   enable_offline_access_for_mobile: モバイル用にオフラインアクセスを有効にする
-  encompassing_places: 場所を含める
+  encompassing_places: 観察記録の属する場所
   end: 終了
   end_date_time: 終了日時
   endangered: 絶滅危惧IB類
@@ -4147,6 +4147,8 @@ ja:
       new:
         note_you_can_delete_the_time: |
           (注：丸１日を含めたい場合は、タイムゾーンと正確な時刻を削除できます。
+        trusting_members_will_be_notified: |
+          プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
       project_user_curator_coordinate_access_labels:
         observer: 同意します。ただしその観察記録をプロジェクトに追加したのが私自身だった場合に限定します。
         any: その観察記録をプロジェクトに追加したのが私自身ではない場合も同意します。
