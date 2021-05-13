@@ -45,12 +45,23 @@ module TaxonDescribers
       decoded = coder.decode(html)
       decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
       decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
-      decoded.gsub!(/<div .*?class=.*?hatnote.*?>.+?<\/div>/, '')
+      doc = Nokogiri::HTML::DocumentFragment.parse( decoded )
+      selectors_to_remove = [
+        ".hatnote",
+        ".infobox.biota",
+        ".mw-editsection",
+        ".navbar",
+        ".taxobox",
+        ".taxobox_v3"
+      ]
       if options[:strip_references]
-        decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
-        decoded.gsub!(/<strong .*?class=.*?error.*?>.+?<\/strong>/, '')
+        selectors_to_remove << ".reference"
+        selectors_to_remove << ".error"
       end
-      decoded
+      selectors_to_remove.each do |selector|
+        doc.css( selector ).remove
+      end
+      doc.to_s
     end
 
     def wikipedia
