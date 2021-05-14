@@ -22,7 +22,7 @@ ja:
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} ライフリスト初"
   x_journal_posts_html:
-    other: '<span class="count">%{count}</span>件のジャーナル投稿'
+    other: '<span class="count">%{count}</span>件の日記'
   x_matching_taxa:
     other: '%{count}件の該当する分類群'
   x_matching_taxa_html:
@@ -419,10 +419,25 @@ ja:
   any_: すべて
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: すべて
+  #Label for an option to show content with any annotation value
+  any_annotation_value: すべて
   #Label for an option to show content from any date
   any_date: 指定なし
+  #Label for an option to show content with any establishment means
+  any_establishment: すべて
+  #Label for an option to show content with any license
+  any_license: すべて
   #Label for an option to show content with photos, sounds, or neither
   any_media: 全てのメディア
+  #Label for an option to show content from any project
+  any_project: すべて
+  #Label for an option to show content with any quality grade
+  any_quality_grade: すべて
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: すべて
+  #Label for an option to show/include content by any user
+  any_user: すべて
   anyone: 誰でも
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -561,7 +576,7 @@ ja:
   back_to_x: "%{noun}に戻る"
   back_to_x_assessment: "%{project}の評定に戻る"
   back_to_x_history: "%{x}の履歴へ戻る"
-  back_to_x_journal: "%{user}さんのジャーナルへ戻る"
+  back_to_x_journal: "%{user}さんの日記へ戻る"
   back_to_x_blog: "%{x}のブログに戻る"
   back_to_your_dashboard: 自分のダッシュボードに戻る
   back_to_your_lists: 自分のリストに戻る
@@ -608,9 +623,9 @@ ja:
   built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
   by: '投稿者:'
-  by_everyone: みんなの
+  by_everyone: 全てのユーザー
   by_user: "%{user}さんによる"
-  by_you: 自分の
+  by_you: あなた
   calendar: カレンダー
   calendars_only_show_x_observations_at_time: カレンダーは一度に%{x} 個の観察記録のみを表示します
   cancel: キャンセル
@@ -1187,7 +1202,7 @@ ja:
     introduced: 外来種
     invasive: 外来種
     managed: 管理種
-    native: 在来
+    native: 在来種
     naturalised: 帰化種
   establishment_means: 定着方法
   establishment_means_describes_how: |
@@ -1199,7 +1214,7 @@ ja:
   every_species_seen_by: 次のユーザが観察したすべての種：
   everyone: 全てのユーザー
   everyone_: みんな
-  everyone_journal_posts: みんなのジャーナル投稿
+  everyone_journal_posts: みんなの日記
   everywhere: すべての場所
   exact: 完全一致
   exact_date: 正確な日付
@@ -1209,7 +1224,7 @@ ja:
   exclude_projects: プロジェクトを除く
   exclude_taxa: 分類群を除く
   exclude_users: ユーザーを除く
-  exclusion_filters: 除外フィルタ
+  exclusion_filters: 除外フィルター
   existing_flags: 既存のフラグ
   exit_full_screen: "全画面表示を終了"
   explore: 探索
@@ -1440,7 +1455,7 @@ ja:
   header_your_calendar: 自分のカレンダー
   header_your_favorites: お気に入り
   header_your_lists: あなたのリスト
-  header_your_journal: あなたのジャーナル
+  header_your_journal: あなたの日記
   header_your_identifications: あなたの同定
   header_your_projects: あなたのプロジェクト
   header_your_profile: あなたのプロフィール
@@ -1596,11 +1611,11 @@ ja:
   'joined!': 参加しました！
   joined_projects: 参加したプロジェクト
   joined_with_date: "登録日: %{date}"
-  journal: ジャーナル
-  journal_archives_for: ジャーナルアーカイブ：
-  journal_post: ジャーナル投稿
-  journal_post_deleted: ジャーナル投稿が削除されました
-  journal_posts: ジャーナル投稿
+  journal: 日記
+  journal_archives_for: 日記のアーカイブ：
+  journal_post: 日記
+  journal_post_deleted: 日記が削除されました
+  journal_posts: 日記
   jpg_png_or_gif: "JPG、PNG、またはGIF"
   jump_to_letter: 次の文字に移動
   just_a_reminder: このプロジェクトの観察情報の非表示座標を表示する権限がプロジェクト管理者に与えられている可能性があるため、念のためにお知らせします。
@@ -1650,6 +1665,7 @@ ja:
   learn_more_raquo: "もっと詳しく &raquo;"
   learn_what_these_licenses_mean: 各種ライセンスについて
   least_concern: 低危険種/<br />軽度懸念
+  leave: 退会する
   leave_a_comment: コメントする
   leave_this_project: このプロジェクトを退会
   leaves: 末端ノード
@@ -1953,7 +1969,7 @@ ja:
   more_import_options: その他のインポート設定
   more_info: 詳細情報
   more_info_title: 詳細情報
-  more_journal_posts: ジャーナル投稿をもっと表示する
+  more_journal_posts: 日記をもっと表示する
   more_observations: 観測記録をもっと表示する
   more_photos: 写真をもっと表示する
   more_than_a_week_ago: 1週間以上前
@@ -2020,7 +2036,7 @@ ja:
   new_comment_on_a_parent_by_user_link: '%{user_link}さんから@vow_or_con{vow:an|a} %{parent}に新規コメントがあります'
   new_flag_for: 新規フラグ：
   new_guide: 新規ガイド
-  new_journal_post: 新規ジャーナル投稿
+  new_journal_post: 最近投稿された日記
   new_lexicon: 新規言語
   new_list: 新規リスト
   new_members: "新規メンバー"
@@ -2080,7 +2096,7 @@ ja:
   no_favorites_added:
     current_user: お気に入りに登録されている項目がありません
     user: "%{user}さんはお気に入りに登録されている項目がありません"
-  no_journal_posts_yet: ジャーナルの投稿はまだありません。
+  no_journal_posts_yet: 日記はまだ投稿されていません
   no_license_all_rights_reserved: ライセンスなし（著作権を全て留保する）
   no_managers_set: 管理者が指定されていません
   no_matching_article_from_x: "%{x}に一致する記事がありません"
@@ -2111,7 +2127,7 @@ ja:
   no_places_available: 有効な場所がありません
   no_post_yet: 投稿まだありません
   no_project_selected: プロジェクトは選択されていません
-  no_project_to_admin_current_user: "あなたが管理するプロジェクトがありません"
+  no_project_to_admin_current_user: "あなたが管理するプロジェクトはありません"
   no_project_to_admin_login: "%{login}が管理するプロジェクトはありません"
   no_projects_yet: プロジェクトはまだありません
   no_range_data_available: 分布・生息区域データありません
@@ -2210,6 +2226,10 @@ ja:
     観察記録フィールドはタグに少し似ていますが、初期設定ではだれでも観察記録に追加できます。自分だけができるようにしたい場合、またはサイトの管理者だけができるようにしたい場合は、これを変更します。
   observed_on_datetime: '観察日時: %{datetime}'
   observation_removed_from_the_project: "観察記録は「%{project}」から除去されました"
+  observation_requirements: 観察記録の要件
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: 観察記録の要件が更新されました：
   observation_rules: 観測記録ルール
   observation_was_deleted: 観察記録が削除されました
   observation_without_media: メディアなしの観察
@@ -2304,9 +2324,9 @@ ja:
     youve_got_updates_panel_body_p1: 以下の最新情報をご確認ください。
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を載せたり、新規フィールドに注釈を追加した場合には更新の通知が届きます。</li>
-      <li><strong>人々:</strong>フォローしている人々の新しい観察記録、ジャーナル投稿。</li>
-      <li><strong>生物、プロジェクト、場所: </strong>フォローしている特定の生物や場所の新しい観察記録。プロジェクトに参加すると、そちらでジャーナル投稿が公開されたときに通知を受け取るように設定できます。</li>
+      <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を加えたり、新規フィールドに注釈を追加した場合には更新の通知が届きます。</li>
+      <li><strong>人々:</strong>フォローしている人々の新しい観察記録、日記。</li>
+      <li><strong>生物、プロジェクト、場所: </strong>フォローしている特定の生物や場所の新しい観察記録。プロジェクトに参加すると、プロジェクトジャーナルが公開されたときに通知を受け取るように設定できます。</li>
       <li><strong>参加した議論:</strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツのフォロワーに登録されます。フォロー解除には「フォローの管理」ツールを使います。</li>
       </ul>
   one_by_one: "１個ずつ"
@@ -2861,9 +2881,9 @@ ja:
   position: 位置
   possessive_user: "%{user}さんの"
   #Post is a noun
-  post_from_journal_by_parent_html: <a href="%{url}">%{parent} によるジャーナル</a>からの投稿
+  post_from_journal_by_parent_html: <a href="%{url}">%{parent} による日記</a>からの投稿
   #Post is a noun
-  post_from_your_journal_html: <a href="%{url}">あなたのジャーナル</a>からの投稿
+  post_from_your_journal_html: <a href="%{url}">あなたの日記</a>からの投稿
   post_published: 投稿されました！
   posted_by: 投稿者
   posted_on: 投稿日
@@ -2923,7 +2943,7 @@ ja:
     <a href="%{url}">%{project}</a>のキュレーター管理者があなたの観察記録を追加しました
   project_members: "%{project}のメンバー"
   project_members_only: プロジェクトメンバー限定
-  project_membership_model_description: このプロジェクトは一般公開か招待制？
+  project_membership_model_description: このプロジェクトは誰にでも公開されていますか？それとも、招待した人にのみ公開されていますか？
   project_observations: プロジェクトの観測記録
   project_post: プロジェクト投稿
   project_requirements: プロジェクトの必要条件
@@ -3019,6 +3039,7 @@ ja:
   receive_email_notifications: メール通知を受け取る
   receive_email_notifications_description: "これをオフにすると、 %{site_name} からの通知に関するメールが届かなくなります。"
   receive_email_notifications_when_people_leave_you: 以下の内容のメール配信を希望します：
+  receive_project_journal_notifications?: プロジェクトジャーナルの通知を受信しますか？
   receive_updates_from_this_project: このプロジェクトより新着情報を受信する
   recent: 新着
   recent_evidence_of_organism: 生物の最近の証拠
@@ -3121,6 +3142,7 @@ ja:
   rules_for_becoming_a_member: 新規メンバーに関するルール
   rules_for_becoming_memner: 新規メンバーに関するルール
   rules_types:
+    must_be_captive: 飼育/栽培されている必要があります
     must_be_georeferenced: 位置情報が必要です
     must_be_identified: 同定済みでなければなりません
     must_be_on_list: リストに入っていなければなりません
@@ -3785,7 +3807,7 @@ ja:
   view_full_observation: 観察記録の全体表示
   view_full_size_photo: フルサイズの写真を表示
   view_invitation: 招待を表示
-  view_journal: ジャーナルを表示
+  view_journal: 日記を表示
   view_leaderboard_from_last_month: 先月の達人ランキングを表示
   view_leaderboard_from_last_year: 昨年の達人ランキングを表示
   view_license: ライセンスを表示
@@ -3886,8 +3908,8 @@ ja:
   x_blog: "%{x}のブログ"
   x_deleted: "%{x}は削除されました"
   x_does_not_exist: "%{x}は存在しません"
-  x_journal: "%{user}さんのジャーナル"
-  x_journal_middot: "%{user}さんのジャーナル •"
+  x_journal: "%{user}さんの日記"
+  x_journal_middot: "%{user}さんの日記"
   x_observations_failed:
     other: "%{count}件の観察失敗記録"
   x_of_y: "全%{y}種中%{x}種"
@@ -3926,7 +3948,7 @@ ja:
   you_arent_a_member_of_that_project: このプロジェクトに参加していません。
   you_arent_following_that_person: "そのユーザーをフォローしていません"
   you_can_accept_invitations: ここで招待を承諾することができます
-  you_can_choose_observations_associated: このジャーナル投稿に関連付ける観察記録を選択することができます。
+  you_can_choose_observations_associated: この日記に関連付ける観察記録を選択することができます。
   you_can_sign_free_at: "無料の%{site_name}アカウントは以下から登録できます。"
   you_cant_compare_a_list_with_nothing: 比較先のリストがないと比較できません！
   you_cant_delete_a_project_list: "プロジェクトリストを削除することができません"
@@ -3971,6 +3993,7 @@ ja:
   your_home: あなたのホーム
   your_id: あなたのID
   your_identification: あなたの同定
+  your_membership: 会員の皆様へ
   your_name_was_saved: 名前が保存されました。
   your_observations: 自分の観察記録
   your_observations_couldnt_be_added_to_that_project: "指定のプロジェクトに観察記録を追加できません：%{errors}"
@@ -4002,7 +4025,7 @@ ja:
           ガイドの開発のための資金は
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> によって提供されました
         welcome_message_html: |
-          ガイドは、世界中の生物多様性について学ぶのに役立ちます。セレンゲティでも、地元の公園（もしかしたらそれがセレンゲティかもしれませんが）でも、ガイドは地球上の驚くべき生物の多様性を理解するのに役立ちます。
+          ガイドは世界中の生物多様性を学ぶ手助けをします。セレンゲティでも、地元の公園でも（もしかしたらそれがセレンゲティかもしれませんが）、地球上の驚くべき生物多様性を理解するのに役立ちます。
       edit:
         add_color_tags_help: |
           選択中の分類群に紐付いている色から色タグを追加
@@ -4013,7 +4036,7 @@ ja:
       pdf_layouts:
         grid: グリッド
         book: 書籍
-        journal: ジャーナル
+        journal: 日記
       pdf_layout_notes:
         grid: |
           説明なしの１枚ずつの写真グリッドです
@@ -4114,6 +4137,7 @@ ja:
     posts:
       formatting_simple_help: "自動的にURLをリンクに変換し、改行を挿入"
     projects:
+      project_type: プロジェクト種類
       confirm_leave:
         what_would_you_like: |
           プロジェクト内の観察記録をどうしますか
@@ -4145,10 +4169,40 @@ ja:
           any: 誰でも
           curators: プロジェクトキュレーター
       new:
+        check_the_box_to_include_member_observations: |
+          このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
+        include_annotated_observations: |
+          特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
+        note_these_users_will_be_able_to_edit: |
+          注意: これらのユーザーは、管理者を含むすべてのプロジェクトの詳細を編集することができます。
         note_you_can_delete_the_time: |
           (注：丸１日を含めたい場合は、タイムゾーンと正確な時刻を削除できます。
+        note_about_unselected_filters: |
+          注：分類群、場所、またはユーザーを選択しない場合、デフォルトですべてが追加されます。
+        only_display_member_observations: |
+          プロジェクトメンバー（プロジェクトに参加している人）の観測記録のみを表示する
+        optionally_filter_media: オプションで、写真、音声、またはその両方を含む観測結果をフィルタリングできます。
+        or_drag_and_drop: またはドラッグ＆ドロップ
+        project_background_color: プロジェクトの概要の背景色
+        project_background_color_help: 白いオーバーレイテキストが読みやすいように、十分に暗い色を選択してください。
+        project_banner: プロジェクトバナー (PNG、JPG、またはGIF)
+        project_banner_help: 任意のバナー画像。理想的なサイズは760px×320pxです。
+        project_details: プロジェクトの詳細
+        project_icon: プロジェクトアイコン (PNG、JPG、または GIF)
+        project_icon_help: |
+          任意のアイコンです。72px×72px以上の大きさが必要で、正方形にトリミングされます。
+        project_summary: プロジェクトの概要
+        project_summary_help: |
+          プロジェクトの内容を簡潔に説明してください。最初の200文字程度（アルファベット）は、プロジェクトのホーム画面のバナーの右側に表示されますので、わかりやすい文章を最初に入れてください。
+        project_summary_placeholder: ゴールデンゲートパークの鳥を発見し、追跡する...
+        select_quality_grade: |
+          少なくとも1つのデータ品質を選択してください。各データ品質の詳細については、<a href="%{url}">FAQページ</a>をご参照ください。
+        specify_project_filters: |
+          プロジェクトに追加する観測記録のフィルターを指定します。複数の種（または分類群）、場所、日付、またはその他の条件を選択して、自動的に観測結果をプロジェクトに追加することができます。
         trusting_members_will_be_notified: |
           プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
+        errors:
+          summary_is_required: プロジェクトの概要が必要です。
       project_user_curator_coordinate_access_labels:
         observer: 同意します。ただしその観察記録をプロジェクトに追加したのが私自身だった場合に限定します。
         any: その観察記録をプロジェクトに追加したのが私自身ではない場合も同意します。
@@ -4314,7 +4368,7 @@ ja:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: メッセージ
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: プロジェクトのジャーナル投稿
+        notification_preferences_project_journal_posts: プロジェクトジャーナル
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: プロジェクトがあなたの観察記録を追加するとき
         #Checkbox label for user preference about what to receive in the daily
@@ -4661,6 +4715,10 @@ ja:
         header:
           other: この %{model} の保存を禁止する %{count} 件のエラーが発生しました。
       models:
+        application:
+          attributes:
+            redirect_uri:
+              invalid_uri: "有効なURIである必要があります。"
         guide:
           attributes:
             published_at:
@@ -4669,10 +4727,18 @@ ja:
           attributes:
             base:
               guide_has_too_many_taxa: "ガイドは最大５００件の分類群までとなっています"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: キュレーターである必要があります
         observation_field_value:
           attributes:
             value:
               dna_only_atcg: "DNAは次の値のみ有効です: A, T, C, G"
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: エクスポートには20万件以上の観察記録を含めることはできません
         place:
           attributes:
             place_geometry:
