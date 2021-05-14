@@ -1114,7 +1114,7 @@ lv:
   curator_application_inelligible_error: |
     Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja pievienotās identifikācijas.
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: Pieteikums pārziņa statusa iegūšanai ir iesniegts.
+  curator_application_success: Pieteikums pārziņa statusam iesniegts.
   #Header
   curator_application_what_curators_can_do: Pārziņiem pieejamās darbības
   #Description of a curator's ability to edit the taxonomy; part of a list of
@@ -1151,6 +1151,8 @@ lv:
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
     Lasīt citu cilvēku sarakstes.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Pieteikums pārziņa statusam
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Vairākus mēnešus esi pievienojis identifikācijas un novērojumus un tā plāno turpināt.
   #A requirement for becoming a curator; part of a list, so you might imagine
